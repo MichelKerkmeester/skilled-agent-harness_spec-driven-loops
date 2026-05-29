@@ -241,7 +241,7 @@ function probeModelServer(socketPath, options = {}) {
     let chunks = [];
     let timer;
 
-    // 031/005: carry the parsed health body so callers (the idle-eviction tick) can read
+    // Carry the parsed health body so callers (the idle-eviction tick) can read
     // lastSuccessfulEmbedAt / inFlight. The 'alive' branches below pass parsed.body as the 3rd arg.
     const finish = (status, reason, health) => {
       if (settled) return;
@@ -339,7 +339,7 @@ async function maybeBridgeLeaseHolder(options) {
   // never services requests). A connect-ok-only probe would bridge a client to the wedged daemon and
   // hang it forever, never respawning. The raised probe timeout (default 5000ms, < the 7000ms launcher
   // grace) already prevents false-reaping a busy-but-responsive daemon mid-FTS-merge, so deep probing
-  // does not regress that. (026/007/011 review finding.)
+  // does not regress that.
   const probe = await probeDaemon(socketPath, { timeoutMs: probeTimeoutMs, connect, deepProbe: true });
   if (probe.status !== 'alive') {
     process.stderr.write(`[${loggerPrefix}] lease holder pid=${ownerPid} socket=${socketPath} failed liveness probe: ${probe.reason}\n`);

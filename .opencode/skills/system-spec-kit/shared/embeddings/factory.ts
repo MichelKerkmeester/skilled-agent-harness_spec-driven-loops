@@ -100,9 +100,9 @@ const providerValidationCache = new Map<string, Promise<ApiKeyValidationResult>>
 export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'ollama', 'auto'] as const;
 const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
 
-// 014-local-embeddings-setup-a / 007-voyage-cleanup-and-egress-monitoring:
+// Voyage egress guard:
 // Runtime guard that fires once per process startup if VOYAGE_API_KEY is present
-// while the resolved provider is hf-local. The original Voyage purge in 003 only
+// while the resolved provider is hf-local. The original Voyage purge only
 // cleaned shell-propagating sources (~/.zshrc, project .env, macOS launchd). If a
 // future setup re-exports the key (e.g. via a different shell rc or a system-wide
 // launchd plist), `EMBEDDINGS_PROVIDER=auto` will silently fall back to Voyage and
@@ -1080,7 +1080,7 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
   const resolution = resolveProvider();
   // Auto-mode recovery: resolveProvider()'s ollama branch is a DB-only gate with no server probe,
   // so a transient miss demotes to the hf-local fallback even when ollama is up. If that happened,
-  // probe ollama directly and prefer it (local-first per ADR-014) rather than the unhealthy fallback.
+  // probe ollama directly and prefer it (local-first) rather than the unhealthy fallback.
   const effectiveResolution =
     (options.provider === 'auto' || !options.provider)
     && resolution.name === 'hf-local'

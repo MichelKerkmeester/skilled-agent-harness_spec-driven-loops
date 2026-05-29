@@ -47,7 +47,7 @@ export const TASK_PREFIX: TaskPrefixMap = {
 };
 
 // ---------------------------------------------------------------
-// 1b. PREFIX REGISTRY (014-local-embeddings-setup-a / 001-prefix-registry-architecture)
+// 1b. PREFIX REGISTRY
 // ---------------------------------------------------------------
 // Model-keyed prefix lookup. The supported local menu is nomic-only; unlisted
 // user overrides fall through to an empty prefix unless env overrides are set.

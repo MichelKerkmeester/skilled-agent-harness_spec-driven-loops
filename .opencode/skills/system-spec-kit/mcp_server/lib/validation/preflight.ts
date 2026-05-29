@@ -774,7 +774,7 @@ export function runPreflight(params: PreflightParams, options: PreflightOptions 
     result.details[name] = check_result;
   };
 
-  // 010-index-large-files: token-budget overages can be warnings when chunking can safely handle them.
+  // Token-budget overages can be warnings when chunking can safely handle them.
   const isChunkEligible = !!content
     && content.length >= CHUNKING_THRESHOLD
     && content.length <= PREFLIGHT_CONFIG.max_content_length;

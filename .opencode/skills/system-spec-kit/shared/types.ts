@@ -475,7 +475,7 @@ export interface ExtractionResult {
  *   - tests/memory-context.test.ts (local, missing isError)
  *   - scripts/memory/reindex-embeddings.ts (local, optional isError)
  *
- * Consolidated per REC-010 (Spec 103 audit).
+ * Consolidated to a single canonical definition.
  */
 export interface MCPResponse {
   content: Array<{ type: 'text'; text: string }>;

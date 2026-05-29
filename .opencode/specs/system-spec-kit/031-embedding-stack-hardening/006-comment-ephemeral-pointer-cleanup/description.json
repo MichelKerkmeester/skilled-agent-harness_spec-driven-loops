@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
+  "description": "Feature Specification: Comment ephemeral-artifact pointer cleanup",
+  "keywords": [
+    "feature",
+    "specification",
+    "comment",
+    "ephemeral-artifact",
+    "pointer",
+    "cleanup"
+  ],
+  "lastUpdated": "2026-05-29T19:34:16.059Z",
+  "specId": "006",
+  "folderSlug": "comment-ephemeral-pointer-cleanup",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

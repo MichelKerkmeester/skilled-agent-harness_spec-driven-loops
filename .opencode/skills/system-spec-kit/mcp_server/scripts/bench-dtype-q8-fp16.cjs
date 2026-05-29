@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // ───────────────────────────────────────────────────────────────
-// BENCH: hf-model-server dtype comparison (q8 vs fp16) — 031/005
+// BENCH: hf-model-server dtype comparison (q8 vs fp16)
 // ───────────────────────────────────────────────────────────────
 // Spawns the REAL hf-model-server twice (HF_EMBEDDINGS_DTYPE=q8 then fp16) against a cached
 // onnx model, embeds a fixed fixture, and reports per-request p50/p95 (from /api/health.timing)
 // plus a cosine-recall delta between the two dtypes. Numbers gate the device-aware DEFAULT_DTYPE
-// decision (REQ-006) — DO NOT change DEFAULT_DTYPE without a measured fp16/MPS win.
+// decision — DO NOT change DEFAULT_DTYPE without a measured fp16/MPS win.
 //
 // SAFETY: this bench NEVER opens the live memory DB — it benches embed latency on an in-process
 // text fixture only. If recall were ever extended to real corpus rows, copy the DB first

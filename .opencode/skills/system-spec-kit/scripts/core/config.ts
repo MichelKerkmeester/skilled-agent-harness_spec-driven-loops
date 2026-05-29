@@ -233,7 +233,7 @@ function loadConfig(): WorkflowConfig {
     contextPreviewTailLines: 20,
     timezoneOffsetHours: 0,
     maxFilesInMemory: 10,
-    maxObservations: 15, // Raised from 3 to 15 to prevent 96% data loss (010-perfect-session-capturing)
+    maxObservations: 15, // Raised from 3 to 15 to prevent 96% data loss
     minPromptLength: 60,
     maxContentPreview: 500,
     toolPreviewLines: 10,

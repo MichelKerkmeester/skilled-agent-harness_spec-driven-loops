@@ -4,8 +4,6 @@
 // Tracks query history per session to detect reformulations and
 // same-topic re-queries. Emits feedback events via the existing
 // feedback ledger. Bounded in-memory session cache — no DB reads on hot path.
-//
-// Spec: system-spec-kit/023-hybrid-rag-fusion-refinement/014-feedback-signal-pipeline
 import type Database from 'better-sqlite3';
 import {
   logFeedbackEvent,

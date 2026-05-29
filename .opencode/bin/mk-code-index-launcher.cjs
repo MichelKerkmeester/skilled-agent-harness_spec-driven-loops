@@ -76,7 +76,7 @@ for (const fname of ['.env.local', '.env']) {
 // defaults (end-user safe); the maintainer flips this one flag locally to enable
 // indexing of .opencode/{skills,agents,commands,specs,plugins} on their machine only.
 // Per-call code_graph_scan args (includeSkills, etc.) still override env for fine-grained
-// control. See ENV_REFERENCE.md § GRAPH and packet 014/007-mcp-topology-pivot.
+// control. See ENV_REFERENCE.md § GRAPH.
 if (process.env.SPECKIT_CODE_GRAPH_MAINTAINER_MODE === 'true') {
   const INDEX_KEYS = [
     'SPECKIT_CODE_GRAPH_INDEX_SKILLS',
@@ -370,7 +370,7 @@ function acquireOwnerLeaseFile() {
     return { acquired: true, lease, reclaimed: existing };
   }
 
-  // DR-002-01: the reclaim path is last-writer-wins (writeOwnerLeaseFile is an atomic
+  // The reclaim path is last-writer-wins (writeOwnerLeaseFile is an atomic
   // tmp+rename). Re-read after the rename and confirm we are the surviving owner; if a
   // concurrent launcher reclaimed the same stale lease, exactly one will see its own pid.
   writeOwnerLeaseFile(lease);
@@ -395,7 +395,7 @@ function refreshOwnerLeaseFile(ownerPid, patch = {}) {
     ...patch,
     lastHeartbeatIso: new Date().toISOString(),
   });
-  // DR-002-01: re-read after the atomic write; if a concurrent reclaim superseded us between
+  // Re-read after the atomic write; if a concurrent reclaim superseded us between
   // the ownership check and the write, do not claim the refresh succeeded.
   const reread = readOwnerLeaseFile();
   if (!reread || reread.ownerPid !== nextOwnerPid) return false;
@@ -406,7 +406,7 @@ function refreshOwnerLeaseFile(ownerPid, patch = {}) {
 function clearOwnerLeaseFile() {
   if (!Number.isInteger(ownerLeasePid)) return;
   try {
-    // DR-008-03: re-confirm ownership immediately before unlink so a successor lease written
+    // Re-confirm ownership immediately before unlink so a successor lease written
     // after the first read is not deleted by path. A residual sub-syscall window remains; fully
     // closing it would require the launcher to share owner-lease.ts's mutation lock.
     const lease = readOwnerLeaseFile();
@@ -423,7 +423,7 @@ function clearOwnerLeaseFile() {
 
 function clearOwnerLeaseFileIfOwner(ownerPid) {
   try {
-    // DR-008-03: re-confirm ownership immediately before unlink (see clearOwnerLeaseFile).
+    // Re-confirm ownership immediately before unlink (see clearOwnerLeaseFile).
     const lease = readOwnerLeaseFile();
     if (lease && lease.ownerPid === ownerPid
         && readOwnerLeaseFile()?.ownerPid === ownerPid) {
@@ -444,7 +444,7 @@ function pidLiveAt(filePath, pidField) {
   } catch { return false; } // missing/unreadable → not live
 }
 
-// DR-002-02 / DR-001-02: a former-location DB is still "owned" if EITHER the launcher PID lease
+// A former-location DB is still "owned" if EITHER the launcher PID lease
 // (.mk-code-index-launcher.json) or the owner lease (.code-graph-owner.json) names a live process.
 function formerLocationOwnerLive(dir) {
   return pidLiveAt(path.join(dir, '.mk-code-index-launcher.json'), 'pid')
@@ -454,7 +454,7 @@ function formerLocationOwnerLive(dir) {
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
   if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
-  // DR-003-01: do not bridge to a LEGACY-location lease unless its lease file is owned by the
+  // Do not bridge to a LEGACY-location lease unless its lease file is owned by the
   // current user. A foreign-owned lease in a shared/former path could otherwise point this
   // client at a spoofed IPC socket.
   if (legacyPath && typeof process.getuid === 'function') {
@@ -472,7 +472,7 @@ function leaseHeldFromFile(filePath, legacyPath = null) {
     return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
   } catch (error) {
     if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
-    // 016/006/009: mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
+    // Mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
     if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
     throw error;
   }
@@ -736,7 +736,7 @@ async function acquireBootstrapLock(options = {}) {
           process.stderr.write(
             `[mk-code-index-launcher] stale bootstrap lock (mtime ${Math.round((Date.now() - lockStat.mtimeMs) / 1000)}s old); reclaiming ${rel(lockDir)}\n`
           );
-          // DR-008-02: atomically CLAIM the stale lockdir via rename before deleting it. Only one
+          // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
           // racer wins the rename; a successor that mkdir's a fresh lockDir after our stat creates
           // a NEW inode that our rename/rmSync cannot touch, so we never delete a live successor
           // lock. A losing racer's rename throws ENOENT and falls through to the outer retry.
@@ -839,7 +839,7 @@ function installSignalHandlers() {
 
   try {
     installSignalHandlers();
-    // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
+    // Lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearAllLeaseFiles);
     refreshPaths();
     ensureLayout(actions);
@@ -888,9 +888,9 @@ function installSignalHandlers() {
       // target DB out from under the winner's daemon (SQLite corruption). Gating on lockHeld makes
       // only one launcher migrate; the COPYFILE_EXCL + pre-copy re-check below is the belt-and-
       // suspenders guarantee that NO launcher ever overwrites an existing (possibly live) target DB.
-      // DR-006-02: never auto-seed/migrate into an explicit SPECKIT_CODE_GRAPH_DB_DIR override
+      // Never auto-seed/migrate into an explicit SPECKIT_CODE_GRAPH_DB_DIR override
       //   (the operator chose that target); migrate only into the resolved default.
-      // DR-001-02 / DR-002-02: never copy a former DB that a live legacy owner could still be
+      // Never copy a former DB that a live legacy owner could still be
       //   writing — probe BOTH the former PID lease and the former owner lease for liveness first.
       //   The former owner lease (.code-graph-owner.json) is intentionally NOT copied forward.
       const formerSharedDbDir = path.join(opencodeDir, '.spec-kit', 'code-graph', 'database');

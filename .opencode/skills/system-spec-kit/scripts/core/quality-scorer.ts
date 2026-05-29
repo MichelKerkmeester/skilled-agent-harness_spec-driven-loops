@@ -133,7 +133,7 @@ const JSON_FLOOR_THRESHOLDS = {
   observationDedup: 5,   // Some observations present
 } as const;
 const JSON_FLOOR_MIN_DIMENSIONS = 4;  // At least 4/6 must pass
-const JSON_FLOOR_DAMPING = 0.85;      // Per DR-004
+const JSON_FLOOR_DAMPING = 0.85;      // Damping factor for the JSON floor
 const JSON_FLOOR_CAP = 0.70;          // Hard maximum
 
 export function scoreMemoryQuality(

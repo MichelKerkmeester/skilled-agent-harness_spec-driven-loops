@@ -347,7 +347,7 @@ function getUncleanShutdownMarkerPath(): string {
   // Derive the marker dir from the ACTUAL opened DB path (vectorIndex.getDbPath()) — the same path the
   // marker writer in vector-index-store uses — not the independently-derived DATABASE_PATH. Under a
   // MEMORY_DB_PATH whose dirname differs from the resolved DB dir, DATABASE_PATH would point the boot check
-  // at the wrong dir and silently disable corruption detection (026/007/011 review finding). Falls back to
+  // at the wrong dir and silently disable corruption detection. Falls back to
   // DATABASE_PATH if the DB is not open yet (the boot check only runs post-connect, so getDbPath is set).
   const dbPath = vectorIndex.getDbPath() || DATABASE_PATH;
   return path.join(path.dirname(dbPath), UNCLEAN_SHUTDOWN_MARKER);
@@ -1494,7 +1494,7 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
     // which write through requireDb()/getDb() — and getDb() REOPENS the connection if it was
     // already closed. So closeDb() must run AFTER the drain, otherwise a draining task reopens
     // the DB and writes fresh WAL frames after the TRUNCATE checkpoint, leaving a non-empty WAL
-    // at rest and defeating the durability guarantee (026/007/009 review finding). closeDb() is
+    // at rest and defeating the durability guarantee. closeDb() is
     // synchronous, so it still runs to completion uninterrupted once reached; the SHUTDOWN_DEADLINE
     // race only bounds the awaited drains before it, and 010's autocheckpoint keeps the at-rest WAL
     // small even if a pathologically slow drain starves this step.

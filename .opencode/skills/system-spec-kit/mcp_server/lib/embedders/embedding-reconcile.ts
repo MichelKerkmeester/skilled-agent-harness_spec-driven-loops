@@ -5,10 +5,6 @@
 // with active vector coverage. A row that already has both active vector
 // surfaces (vec_memories_rowids + vec_<dim>) must not stay failed/pending/retry.
 //
-
-// Acceptance contract: 004-embedding-backlog-drain-investigation
-//   research/iterations/iteration-008.md §F1-F4, iteration-010.md §F6.
-//
 // Safety model: dry-run is the default. The active shard is resolved from
 // runtime metadata only (never a caller-supplied path) and verified against the
 // main active-embedder pointer before any read or mutation; requireActiveShard

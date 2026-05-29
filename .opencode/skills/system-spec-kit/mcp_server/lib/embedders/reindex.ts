@@ -375,8 +375,8 @@ function writeVectorsToShard(
       writeVectorsToKnn(shard, rows, embeddings);
     }
   } finally {
-    // 031/review WAL-durability: flush + TRUNCATE the shard WAL before close so the shard file is
-    // consistent at rest with an empty WAL — mirrors close_db's corruption-prevention (026/004/012).
+    // WAL-durability: flush + TRUNCATE the shard WAL before close so the shard file is
+    // consistent at rest with an empty WAL — mirrors close_db's corruption-prevention.
     // better-sqlite3 .close() only does a passive checkpoint; an abrupt later kill could otherwise
     // corrupt un-checkpointed shard frames (vec0 / FTS segment writes). Best-effort; never block close.
     try { shard.pragma('wal_checkpoint(TRUNCATE)'); } catch (_err: unknown) { /* best-effort */ }

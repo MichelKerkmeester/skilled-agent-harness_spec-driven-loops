@@ -6,7 +6,7 @@
 // ARCH-1: Consumer scripts import from '@spec-kit/mcp-server/api' instead of lib/.
 // Review note: Barrel is wide due to legitimate external consumers in scripts/evals,
 // scripts/core, scripts/spec-folder, and scripts/memory. Do not narrow without
-// auditing all consumers first (see review/review-report.md P2-MNT-02).
+// auditing all consumers first.
 
 export {
   runAblation,

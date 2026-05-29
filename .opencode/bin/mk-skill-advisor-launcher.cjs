@@ -139,7 +139,7 @@ function loadBridgeModule() {
   }
 }
 
-// 008-REQ-002: gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.
+// Gate verbose error/path logging behind MK_SKILL_ADVISOR_DEBUG.
 // Operationally-important events keep using log(); error stacks + DB-path traces use debug().
 function debug(message) {
   if (process.env.MK_SKILL_ADVISOR_DEBUG === '1') {
@@ -607,7 +607,7 @@ async function main() {
 
   try {
     installSignalHandlers();
-    // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
+    // Lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearLeaseFile);
     refreshPaths();
     debug(`DB: ${advisorDbPath()}`);
@@ -632,8 +632,8 @@ async function main() {
         database: rel(advisorDbPath()),
       });
 
-      // 008-REQ-001: PID guard write + reprobe stay inside the bootstrap-lock critical section.
-      // Closes the visual race window flagged in 007's deep-review iter-001 P2 finding: two
+      // PID guard write + reprobe stay inside the bootstrap-lock critical section.
+      // Closes the visual race window: two
       // launchers cannot simultaneously pass the strict-single-writer check and race to write
       // their PID guards because both writers serialize on the bootstrap lock.
       if (strictSingleWriter && checkStrictSingleWriter()) return;

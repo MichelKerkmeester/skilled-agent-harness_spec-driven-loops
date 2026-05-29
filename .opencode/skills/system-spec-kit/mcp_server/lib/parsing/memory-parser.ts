@@ -75,7 +75,7 @@ export interface ParsedMemory {
   memoryTypeConfidence: number;
   causalLinks: CausalLinks;
   hasCausalLinks: boolean;
-  /** Spec 126: Document structural type (spec, plan, tasks, memory, etc.) */
+  /** Document structural type (spec, plan, tasks, memory, etc.) */
   documentType: string;
   qualityScore: number;
   qualityFlags: string[];

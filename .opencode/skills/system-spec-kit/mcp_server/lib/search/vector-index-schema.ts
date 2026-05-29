@@ -414,7 +414,7 @@ function getMigrationAllowedBasePaths(): string[] {
 // V13: Add document_type and spec_level columns for full spec folder document indexing
 // V14: Add content_text column + FTS5 rebuild for BM25 full-text search across restarts
 // V15: Add quality_score and quality_flags columns for memory quality gates
-// V16: Add parent_id column for chunked indexing of large files (010-index-large-files)
+// V16: Add parent_id column for chunked indexing of large files
 // V17: Add interference_score column
 // V18: the rollout — weight_history table + causal_edges provenance + encoding_intent column
 // V19: degree_snapshots + community_assignments (N2 graph centrality)

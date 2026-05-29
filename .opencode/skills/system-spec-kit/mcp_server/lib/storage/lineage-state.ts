@@ -696,7 +696,7 @@ export function recordLineageTransition(
             // predecessor's CURRENT row identity: if that matches, this is the same logical file
             // with a stale key — start a fresh chain under the current identity (the supersede
             // block below still deprecates the old predecessor). If it still differs, the memories
-            // are genuinely distinct and the cross-identity link is rejected (T070-3).
+            // are genuinely distinct and the cross-identity link is rejected.
             const predecessorCurrentKey = buildLogicalKey(getMemoryRow(database, predecessorMemoryId));
             if (predecessorCurrentKey !== rowLogicalKey) {
               throw new Error(

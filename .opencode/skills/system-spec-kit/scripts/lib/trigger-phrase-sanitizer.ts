@@ -1,11 +1,8 @@
 // ---------------------------------------------------------------
 // MODULE: Trigger Phrase Sanitizer
 // ---------------------------------------------------------------
-// Empirical authority for this module is iteration-015:
-// `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/
-// 003-memory-quality-issues/research/iterations/iteration-015.md`
-// Keep the blocklist and allowlist narrow, shape-based, and aligned to that
-// frozen corpus guidance.
+// Keep the blocklist and allowlist narrow, shape-based, and aligned to the
+// empirical corpus guidance the module's design was validated against.
 
 import { canonicalFold } from './unicode-normalization.js';
 

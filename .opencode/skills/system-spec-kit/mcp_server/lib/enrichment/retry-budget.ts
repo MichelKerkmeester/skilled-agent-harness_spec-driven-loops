@@ -10,7 +10,6 @@ import { BoundedMap } from '../memory/bounded-cache.js';
  * @invariant ephemeral — budget entries do not persist across process restarts.
  * AsyncLocalStorage caller-context is request-scoped while this Map is process-scoped;
  * both are wiped on restart, so no retry carry-over survives a crash or fresh boot.
- * C4 (iter 5) documents that shared expectation explicitly for recovery analysis.
  */
 
 // ───────────────────────────────────────────────────────────────

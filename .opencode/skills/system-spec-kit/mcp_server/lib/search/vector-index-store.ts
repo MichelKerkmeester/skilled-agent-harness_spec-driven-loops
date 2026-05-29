@@ -1328,10 +1328,10 @@ export function close_db(): void {
   for (const [, conn] of db_connections) {
     try {
       if (conn !== db) {
-        // WS-1 (031/review): non-active tracked connections must also flush + TRUNCATE their
+        // Non-active tracked connections must also flush + TRUNCATE their
         // WAL before close, exactly like the active db below — otherwise a non-active connection
         // closes with only better-sqlite3's passive checkpoint and can leave un-checkpointed
-        // frames that an abrupt later kill could corrupt (the 026/004/012 corruption window).
+        // frames that an abrupt later kill could corrupt (the corruption window).
         // Checkpoint BEFORE detaching the shard (the shard schema must still be attached).
         try { conn.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch (_: unknown) { /* best-effort: shard may not be attached on this conn */ }
         try { conn.pragma('wal_checkpoint(TRUNCATE)'); } catch (_: unknown) { /* best-effort */ }
@@ -1343,7 +1343,7 @@ export function close_db(): void {
   db_connections.clear();
   if (db) {
     const closing_db_path = db_path;
-    // FTS-corruption prevention (see bug report 026/004/012): flush + TRUNCATE the
+    // FTS-corruption prevention: flush + TRUNCATE the
     // WAL before close so context-index.sqlite is consistent at rest with an empty
     // WAL. better-sqlite3 `.close()` only does a passive checkpoint and can leave
     // un-checkpointed frames; an explicit TRUNCATE shrinks the window that an

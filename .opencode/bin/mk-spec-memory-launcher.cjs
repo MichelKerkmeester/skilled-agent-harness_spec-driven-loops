@@ -3,8 +3,7 @@
 // Loads project-local env overrides, ensures dist artifacts are built and current,
 // serializes concurrent starts via a filesystem bootstrap lock, then spawns the
 // context-server.js child. All stderr lines are tagged with the bracketed module
-// prefix for ops grepping. See .opencode/specs/.../014/052-mk-spec-memory-rename for
-// the rename packet that established this name.
+// prefix for ops grepping.
 
 'use strict';
 
@@ -236,7 +235,7 @@ function leaseHeldFromFile(filePath, legacyPath = null) {
     return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
   } catch (error) {
     if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
-    // 016/006/009: mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
+    // Mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
     if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
     throw error;
   }
@@ -615,7 +614,7 @@ function refreshDescendantSnapshot(childPid, runner = defaultProcessRowsRunner) 
   });
 }
 
-// Reap an orphaned sidecar on crash-loop give-up (REQ-007). The dominant RC-1 RSS lives in a
+// Reap an orphaned sidecar on crash-loop give-up. The dominant RC-1 RSS lives in a
 // forked-detached sidecar GRANDCHILD; on hard daemon death it re-parents to pid 1, so a fresh walk
 // anchored on the (now-dead, ps-absent) childPid finds nothing. We therefore reap the UNION of any
 // still-live childPid subtree (the not-yet-reparented case) and the before-death snapshot
@@ -872,7 +871,7 @@ async function main() {
 
   try {
     installSignalHandlers();
-    // REQ-011: lease cleanup runs unconditionally regardless of child termination path.
+    // Lease cleanup runs unconditionally regardless of child termination path.
     process.on('exit', clearLeaseFile);
     refreshPaths();
 

@@ -170,5 +170,5 @@ export function getCanonicalFallback(provider: CanonicalProvider): string {
 }
 
 // Reranking is fully removed (local cross-encoder + cloud voyage/cohere paths deleted).
-// The former RERANKER_CANONICAL / getRerankerFallback dead config was dropped in 031/005;
+// The former RERANKER_CANONICAL / getRerankerFallback dead config was removed;
 // re-introduce a reranker registry here if reranking ever returns.

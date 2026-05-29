@@ -320,7 +320,7 @@ Latency reflects this machine, current sidecar cache state, and current embeddin
 <!-- ANCHOR:recommendations -->
 ## 8. RECOMMENDATIONS
 
-**Phase 005 verdict: `{verdict['verdict']}`.**
+**Verdict: `{verdict['verdict']}`.**
 
 Promotion rule:
 

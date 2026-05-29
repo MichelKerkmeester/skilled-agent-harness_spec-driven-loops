@@ -12,7 +12,7 @@ import { isWorkingArtifactPath } from '../config/spec-doc-paths.js';
 
 /**
  * Calculate importance weight based on file path and document type.
- * Spec 126 applies document-type-aware weighting when available.
+ * Applies document-type-aware weighting when available.
  *
  * @param filePath - Source file path used for fallback heuristics.
  * @param documentType - Parsed document classification when known.
