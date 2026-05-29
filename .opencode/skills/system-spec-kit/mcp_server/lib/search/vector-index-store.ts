@@ -476,6 +476,7 @@ function ensure_vector_shard_schema(database: Database.Database, profile: Embedd
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.cache_size = -8192`);
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.mmap_size = 33554432`);
   database.pragma(`${ACTIVE_VECTOR_SCHEMA}.temp_store = DEFAULT`);
+  database.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_autocheckpoint = 256`);
 
   write_shard_metadata(database, profile);
   ensure_embedding_cache_table(database);
@@ -1226,6 +1227,7 @@ export function initialize_db(custom_path: string | null = null): Database.Datab
   new_db.pragma('cache_size = -64000');
   new_db.pragma('mmap_size = 268435456');
   new_db.pragma('synchronous = NORMAL');
+  new_db.pragma('wal_autocheckpoint = 256');
   new_db.pragma('temp_store = MEMORY');
 
   if (target_path !== ':memory:') {
@@ -1294,17 +1296,24 @@ export function close_db(): void {
   }
   db_connections.clear();
   if (db) {
-    detachActiveVectorShard(db);
     // FTS-corruption prevention (see bug report 026/004/012): flush + TRUNCATE the
     // WAL before close so context-index.sqlite is consistent at rest with an empty
     // WAL. better-sqlite3 `.close()` only does a passive checkpoint and can leave
     // un-checkpointed frames; an explicit TRUNCATE shrinks the window that an
     // abrupt later kill (e.g. SIGKILL on MCP reconnect) could corrupt — notably
     // FTS5 segment writes. Best-effort: a checkpoint failure must never block close.
+    try { db.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch (_: unknown) { /* best-effort */ }
     try { db.pragma('wal_checkpoint(TRUNCATE)'); } catch (_: unknown) { /* best-effort */ }
+    detachActiveVectorShard(db);
     db.close();
     db = null;
   }
+}
+
+export function checkpointAllWal(): void {
+  if (!db) return;
+  try { db.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch { /* best-effort */ }
+  try { db.pragma('wal_checkpoint(TRUNCATE)'); } catch { /* best-effort */ }
 }
 
 /**

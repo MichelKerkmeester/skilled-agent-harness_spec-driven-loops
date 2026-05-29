@@ -1,0 +1,87 @@
+{
+  "source_db": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite",
+  "copy_db": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability/scratch/wal-bench-copy-22292.sqlite",
+  "transaction_count": 200,
+  "page_size": 4096,
+  "source_wal_before_checkpoint": {
+    "bytes": 9677912,
+    "pages": 2349
+  },
+  "current_wal_checkpoint": {
+    "ms": 4.813,
+    "result": [
+      {
+        "busy": 0,
+        "log": 0,
+        "checkpointed": 0
+      }
+    ]
+  },
+  "normal": {
+    "count": 200,
+    "p50_ms": 0.822,
+    "p99_ms": 11.14,
+    "min_ms": 0.464,
+    "max_ms": 13.089
+  },
+  "normal_wal_before_forced_checkpoint": {
+    "bytes": 2472032,
+    "pages": 600
+  },
+  "autocheckpoint_256_after_normal": {
+    "ms": 0.1,
+    "result": [
+      {
+        "busy": 0,
+        "log": 0,
+        "checkpointed": 0
+      }
+    ]
+  },
+  "full": {
+    "count": 200,
+    "p50_ms": 0.862,
+    "p99_ms": 10.246,
+    "min_ms": 0.523,
+    "max_ms": 11.054
+  },
+  "full_wal_before_forced_checkpoint": {
+    "bytes": 2846952,
+    "pages": 691
+  },
+  "autocheckpoint_256_after_full": {
+    "ms": 1.606,
+    "result": [
+      {
+        "busy": 0,
+        "log": 0,
+        "checkpointed": 0
+      }
+    ]
+  },
+  "full_fullfsync": {
+    "count": 200,
+    "p50_ms": 7.012,
+    "p99_ms": 30.716,
+    "min_ms": 4.171,
+    "max_ms": 42.514
+  },
+  "full_fullfsync_wal_before_forced_checkpoint": {
+    "bytes": 2723352,
+    "pages": 661
+  },
+  "autocheckpoint_256_after_full_fullfsync": {
+    "ms": 11.035,
+    "result": [
+      {
+        "busy": 0,
+        "log": 0,
+        "checkpointed": 0
+      }
+    ]
+  },
+  "deltas": {
+    "full_minus_normal_p99_ms": -0.894,
+    "full_fullfsync_minus_normal_p99_ms": 19.576
+  }
+}

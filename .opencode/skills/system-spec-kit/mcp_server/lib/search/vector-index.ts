@@ -129,6 +129,7 @@ export {
 export {
   initializeDb,
   initialize_db,
+  checkpointAllWal,
   closeDb,
   close_db,
   getDb,

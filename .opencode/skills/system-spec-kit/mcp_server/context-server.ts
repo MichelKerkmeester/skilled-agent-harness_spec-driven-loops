@@ -106,7 +106,7 @@ import {
   isFileWatcherEnabled,
 } from './lib/search/search-flags.js';
 import { runCleanupStep, runAsyncCleanupStep } from './lib/utils/cleanup-helpers.js';
-import { clearAllTimers, clearRegisteredTimer, registerTimeout } from './lib/runtime/timer-registry.js';
+import { clearAllTimers, clearRegisteredTimer, registerInterval, registerTimeout } from './lib/runtime/timer-registry.js';
 import { runShutdownHooks } from './lib/runtime/shutdown-hooks.js';
 import {
   getIpcBridgeStats,
@@ -1991,6 +1991,7 @@ async function main(): Promise<void> {
   transportConnectedAt = new Date().toISOString();
   transport = new StdioServerTransport();
   await server.connect(transport);
+  registerInterval(() => vectorIndex.checkpointAllWal(), 300_000, { unref: true });
   launcherIdleMonitor = createLauncherIdleMonitor({
     serviceName: 'context-server',
     getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,

@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+  "description": "Feature Specification: At-Rest WAL Durability",
+  "keywords": [
+    "feature",
+    "specification",
+    "at-rest",
+    "wal",
+    "durability"
+  ],
+  "lastUpdated": "2026-05-29T13:15:07.833Z",
+  "specId": "010",
+  "folderSlug": "at-rest-wal-durability",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

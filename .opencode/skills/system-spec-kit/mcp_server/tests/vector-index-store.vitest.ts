@@ -5,6 +5,8 @@ import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  ACTIVE_VECTOR_SCHEMA,
+  checkpointAllWal,
   clearConstitutionalCache,
   close_db,
   get_constitutional_memories,
@@ -67,6 +69,47 @@ describe('close_db WAL checkpoint (FTS-corruption prevention, bug 026/004/012)',
       const db = initializeDb(dbPath);
       const pragmaSpy = vi.spyOn(db, 'pragma');
       close_db();
+      expect(pragmaSpy).toHaveBeenCalledWith('wal_checkpoint(TRUNCATE)');
+    } finally {
+      removeTempDir(dir);
+    }
+  });
+
+  it('checkpoints the active vector shard before detaching it on close', () => {
+    const { dir, dbPath } = createTempDbPath('close-db-shard-wal');
+    try {
+      const db = initializeDb(dbPath);
+      const pragmaSpy = vi.spyOn(db, 'pragma');
+      const execSpy = vi.spyOn(db, 'exec');
+
+      close_db();
+
+      const shardCheckpointIndex = pragmaSpy.mock.calls.findIndex(
+        ([statement]) => statement === `${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`,
+      );
+      const detachIndex = execSpy.mock.calls.findIndex(
+        ([statement]) => typeof statement === 'string' && statement.includes(`DETACH DATABASE ${ACTIVE_VECTOR_SCHEMA}`),
+      );
+
+      expect(shardCheckpointIndex).toBeGreaterThanOrEqual(0);
+      expect(detachIndex).toBeGreaterThanOrEqual(0);
+      expect(pragmaSpy.mock.invocationCallOrder[shardCheckpointIndex]).toBeLessThan(
+        execSpy.mock.invocationCallOrder[detachIndex],
+      );
+    } finally {
+      removeTempDir(dir);
+    }
+  });
+
+  it('checkpointAllWal checkpoints the active vector shard and main DB', () => {
+    const { dir, dbPath } = createTempDbPath('periodic-wal-checkpoint');
+    try {
+      const db = initializeDb(dbPath);
+      const pragmaSpy = vi.spyOn(db, 'pragma');
+
+      checkpointAllWal();
+
+      expect(pragmaSpy).toHaveBeenCalledWith(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`);
       expect(pragmaSpy).toHaveBeenCalledWith('wal_checkpoint(TRUNCATE)');
     } finally {
       removeTempDir(dir);
