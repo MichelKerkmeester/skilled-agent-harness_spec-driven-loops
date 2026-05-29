@@ -35,7 +35,7 @@ export type BackendKind = 'ollama' | 'api' | 'sentence-transformers';
  */
 export interface EmbedderManifest {
   /**
-   * Canonical name (e.g. "mxbai-embed-large-v1"). Used as the lookup key in
+   * Canonical name (e.g. "nomic-embed-text-v1.5"). Used as the lookup key in
    * `EmbedderRegistry.get(name)` and as the persisted value of the active
    * embedder pointer.
    */

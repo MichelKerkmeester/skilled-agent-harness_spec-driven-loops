@@ -15,10 +15,9 @@ import { OllamaAdapter } from './adapters/ollama.js';
 import type { BackendKind, EmbedderManifest } from './types.js';
 
 /**
- * Frozen list of supported embedder manifests. Add a new model = append a
- * row here + ensure the manifest's `backend` adapter exists.
+ * Frozen list of supported embedder manifests.
  *
- * Order keeps the local fallback candidates grouped by provider.
+ * Keep nomic first: local canonical fallbacks derive from MANIFESTS[0].
  */
 const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
   {
@@ -30,52 +29,6 @@ const MANIFESTS: ReadonlyArray<EmbedderManifest> = Object.freeze([
     prefixDocument: 'search_document: ',
     maxInputChars: 5000,
     notes: 'Drop-in 768-dim swap candidate. Retrieval-specialist trained on 235M pairs with hard negatives. Requires prefix tokens. Local-first cascade default per ADR-014.',
-  },
-  {
-    name: 'mxbai-embed-large-v1',
-    dim: 1024,
-    backend: 'ollama',
-    ollamaName: 'mxbai-embed-large:latest',
-    maxInputChars: 1200,
-    notes: 'Phase 016/004 target. AnglE loss explicitly optimizes paraphrase cosine — directly addresses 008/cat-24/409 LLM-made-memory recall.',
-  },
-  {
-    name: 'bge-small-en-v1.5',
-    dim: 384,
-    backend: 'ollama',
-    ollamaName: 'bge-small-en-v1.5:latest',
-    notes: 'Compact 33M-param baseline. Fast but limited paraphrase capacity. Schema migration to vec_384 required.',
-  },
-  {
-    name: 'bge-large-en-v1.5',
-    dim: 1024,
-    backend: 'ollama',
-    ollamaName: 'bge-large-en-v1.5:latest',
-    notes: 'BAAI flagship retrieval model. Schema migration to vec_1024 required.',
-  },
-  {
-    name: 'jina-embeddings-v3',
-    dim: 1024,
-    backend: 'ollama',
-    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
-    maxInputChars: 8000,
-    notes: 'Multilingual + paraphrase-tuned. Matryoshka representation allows 256/512/768/1024 truncation.',
-  },
-  {
-    name: 'bge-m3',
-    dim: 1024,
-    backend: 'ollama',
-    ollamaName: 'bge-m3:latest',
-    maxInputChars: 8000,
-    notes: 'BAAI multilingual hybrid (dense+sparse+colbert), 8192 context, top MTEB multilingual.',
-  },
-  {
-    name: 'snowflake-arctic-embed-l-v2.0',
-    dim: 1024,
-    backend: 'ollama',
-    ollamaName: 'snowflake-arctic-embed2:latest',
-    maxInputChars: 8000,
-    notes: 'Snowflake late-2024 flagship. 8192 context, multilingual, top MTEB retrieval scores at release.',
   },
 ]);
 

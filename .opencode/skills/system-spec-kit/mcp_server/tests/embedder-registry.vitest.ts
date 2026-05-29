@@ -14,28 +14,22 @@ import { listSupportedDimensions } from '@spec-kit/shared/embeddings/registry.js
 import type { EmbedderManifest } from '@spec-kit/shared/embeddings/types.js';
 
 describe('016/001 EmbedderRegistry', () => {
-  it('lists 7 manifests in declaration order', () => {
+  it('lists the nomic manifest in declaration order', () => {
     const all = listManifests();
-    expect(all).toHaveLength(7);
+    expect(all).toHaveLength(1);
     expect(all[0]?.name).toBe('nomic-embed-text-v1.5');
     expect(all.map((m) => m.name)).toEqual([
       'nomic-embed-text-v1.5',
-      'mxbai-embed-large-v1',
-      'bge-small-en-v1.5',
-      'bge-large-en-v1.5',
-      'jina-embeddings-v3',
-      'bge-m3',
-      'snowflake-arctic-embed-l-v2.0',
     ]);
   });
 
   it('getManifest returns the matching manifest by canonical name', () => {
-    const mxbai = getManifest('mxbai-embed-large-v1');
-    expect(mxbai).toBeDefined();
-    expect(mxbai?.dim).toBe(1024);
-    expect(mxbai?.backend).toBe('ollama');
-    expect(mxbai?.ollamaName).toBe('mxbai-embed-large:latest');
-    expect(mxbai?.maxInputChars).toBe(1200);
+    const nomic = getManifest('nomic-embed-text-v1.5');
+    expect(nomic).toBeDefined();
+    expect(nomic?.dim).toBe(768);
+    expect(nomic?.backend).toBe('ollama');
+    expect(nomic?.ollamaName).toBe('nomic-embed-text:v1.5');
+    expect(nomic?.maxInputChars).toBe(5000);
   });
 
   it('getManifest returns undefined for unknown name', () => {
@@ -50,17 +44,13 @@ describe('016/001 EmbedderRegistry', () => {
     expect(nomic?.maxInputChars).toBe(5000);
   });
 
-  it('bge-m3 declares the 1024-dim Ollama manifest with 8K input cap', () => {
-    const bgeM3 = getManifest('bge-m3');
-    expect(bgeM3?.dim).toBe(1024);
-    expect(bgeM3?.backend).toBe('ollama');
-    expect(bgeM3?.ollamaName).toBe('bge-m3:latest');
-    expect(bgeM3?.maxInputChars).toBe(8000);
+  it('removed local alternatives are not registered as menu entries', () => {
+    expect(getManifest('legacy-local-alternative')).toBeUndefined();
   });
 
   it('listSupportedDimensions returns unique sorted dim values', () => {
     const dims = listSupportedDimensions();
-    expect(dims).toEqual([384, 768, 1024]);
+    expect(dims).toEqual([768]);
   });
 
   it('every manifest declares a positive integer dim', () => {

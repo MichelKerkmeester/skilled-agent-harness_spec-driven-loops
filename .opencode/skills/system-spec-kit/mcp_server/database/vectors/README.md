@@ -19,7 +19,7 @@ Current state:
 
 - The active metadata DB `context-index.sqlite` in the parent `database/` folder attaches exactly one shard from this directory at runtime under the SQL alias `active_vec`.
 - The active production shard is `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` (Ollama nomic-embed-text v1.5, 768 dimensions).
-- A quantised hf-local shard is also present for the BAAI bge-base-en-v1.5 embedder at 768 dimensions with q8 quantisation.
+- A quantised hf-local shard may also be created for `nomic-ai/nomic-embed-text-v1.5` at 768 dimensions with q8 quantisation.
 - Legacy and experimental shards get deleted once they fall out of the active rotation. This folder is not an archive.
 - The `.gitkeep` file keeps the directory tracked. The `.sqlite`, `.sqlite-shm` and `.sqlite-wal` files are runtime artifacts and stay ignored by git under the same rule the parent `database/README.md` documents.
 
@@ -46,10 +46,10 @@ Current state:
                                │
        ┌───────────────────────┼───────────────────────┐
        ▼                       ▼                       ▼
-context-vectors__       context-vectors__      [other shards
-ollama__nomic-          hf-local__baai_         created lazily
-embed-text-v1.5__       bge-base-en-v1.5__      on embedder
-768.sqlite              768__q8.sqlite          selection]
+context-vectors__       context-vectors__           [other shards
+ollama__nomic-          hf-local__nomic-ai_          created lazily
+embed-text-v1.5__       nomic-embed-text-v1.5__      on embedder
+768.sqlite              768__q8.sqlite               selection]
 
 Attach is one shard at a time. Schema creation is lazy on first attach
 when a new embedder profile is selected.
@@ -66,9 +66,9 @@ vectors/
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite        # Active production shard
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite-shm    # Runtime sidecar
 +-- context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite-wal    # Runtime sidecar
-+-- context-vectors__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite  # Quantised hf-local shard
-+-- context-vectors__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite-shm
-`-- context-vectors__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite-wal
++-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite  # Optional hf-local shard
++-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite-shm
+`-- context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite-wal
 ```
 
 ---
@@ -84,16 +84,16 @@ context-vectors__<provider>__<model>__<dim>[__<quant>].sqlite
 | Token | Required | Example | Purpose |
 |---|---|---|---|
 | `provider` | Yes | `ollama`, `hf-local` | Backend that produced the embeddings |
-| `model` | Yes | `nomic-embed-text-v1.5`, `baai_bge-base-en-v1.5` | Embedder model identifier, with `/` replaced by `_` |
+| `model` | Yes | `nomic-embed-text-v1.5`, `nomic-ai_nomic-embed-text-v1.5` | Embedder model identifier, with `/` replaced by `_` |
 | `dim` | Yes | `768`, `1024` | Embedding dimension, drives the `vec_<dim>` virtual table name |
 | `quant` | Optional | `q8` | Quantisation tag when the shard stores quantised vectors |
 
 Examples that exist today:
 
 - `context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` (~15 MB, active production shard)
-- `context-vectors__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite` (quantised hf-local shard)
+- `context-vectors__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite` (quantised hf-local shard)
 
-The double-underscore separator is load-bearing. Single underscores inside a token (such as `baai_bge-base-en-v1.5`) survive because the parser splits on `__`.
+The double-underscore separator is load-bearing. Single underscores inside a token survive because the parser splits on `__`.
 
 ---
 

@@ -52,16 +52,16 @@ function vector(dim: number, seed: number): number[] {
   return Array.from({ length: dim }, (_, index) => seed + index / 100);
 }
 
-function createActiveJinaDb(dbDir: string, withVec1024Rows: boolean): string {
+function createActiveNomicDb(dbDir: string, withVec768Rows: boolean): string {
   const dbPath = path.join(dbDir, 'context-index.sqlite');
   execFileSync('sqlite3', [
     dbPath,
     [
       'CREATE TABLE vec_metadata (key TEXT PRIMARY KEY, value TEXT NOT NULL);',
-      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_name', 'jina-embeddings-v3');",
-      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_dim', '1024');",
-      withVec1024Rows ? 'CREATE TABLE vec_1024 (id INTEGER PRIMARY KEY, vec BLOB NOT NULL);' : '',
-      withVec1024Rows ? "INSERT INTO vec_1024 (id, vec) VALUES (1, x'00');" : '',
+      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_name', 'nomic-embed-text-v1.5');",
+      "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_dim', '768');",
+      withVec768Rows ? 'CREATE TABLE vec_768 (id INTEGER PRIMARY KEY, vec BLOB NOT NULL);' : '',
+      withVec768Rows ? "INSERT INTO vec_768 (id, vec) VALUES (1, x'00');" : '',
     ].filter(Boolean).join('\n'),
   ]);
   return dbPath;
@@ -102,20 +102,20 @@ afterEach(() => {
 
 describe('016/002 OllamaAdapter', () => {
   it('embeds a batch through /api/embed and returns Float32Array rows', async () => {
-    const adapter = new OllamaAdapter(requireManifest('mxbai-embed-large-v1'));
+    const adapter = new OllamaAdapter(requireManifest('nomic-embed-text-v1.5'));
 
     installFetchMock(async (_input, init) => {
       const payload = JSON.parse(String(init?.body)) as { model: string; input: string[] };
-      expect(payload.model).toBe('mxbai-embed-large:latest');
-      expect(payload.input).toEqual(['alpha', 'beta']);
-      return jsonResponse({ embeddings: [vector(1024, 1), vector(1024, 2)] });
+      expect(payload.model).toBe('nomic-embed-text:v1.5');
+      expect(payload.input).toEqual(['search_document: alpha', 'search_document: beta']);
+      return jsonResponse({ embeddings: [vector(768, 1), vector(768, 2)] });
     });
 
     const embeddings = await adapter.embed(['alpha', 'beta']);
 
     expect(embeddings).toHaveLength(2);
     expect(embeddings[0]).toBeInstanceOf(Float32Array);
-    expect(embeddings[0]).toHaveLength(1024);
+    expect(embeddings[0]).toHaveLength(768);
     expect(embeddings[1]?.[0]).toBeCloseTo(2);
   });
 
@@ -211,7 +211,6 @@ describe('016/002 OllamaAdapter', () => {
       expect(String(input)).toBe('http://127.0.0.1:11434/api/tags');
       return jsonResponse({
         models: [
-          { name: 'mxbai-embed-large:latest' },
           { name: 'nomic-embed-text:v1.5' },
         ],
       });
@@ -223,11 +222,11 @@ describe('016/002 OllamaAdapter', () => {
 
   it('honors OLLAMA_BASE_URL', async () => {
     process.env.OLLAMA_BASE_URL = 'http://localhost:11435/';
-    const adapter = new OllamaAdapter(requireManifest('mxbai-embed-large-v1'));
+    const adapter = new OllamaAdapter(requireManifest('nomic-embed-text-v1.5'));
 
     installFetchMock(async (input) => {
       expect(String(input)).toBe('http://localhost:11435/api/tags');
-      return jsonResponse({ models: [{ name: 'mxbai-embed-large:latest' }] });
+      return jsonResponse({ models: [{ name: 'nomic-embed-text:v1.5' }] });
     });
 
     await expect(adapter.ready()).resolves.toBe(true);
@@ -254,7 +253,7 @@ describe('016/002 OllamaAdapter', () => {
   });
 
   it('throws typed errors for unreachable backend, missing model, and dimension mismatch', async () => {
-    const adapter = new OllamaAdapter(requireManifest('mxbai-embed-large-v1'));
+    const adapter = new OllamaAdapter(requireManifest('nomic-embed-text-v1.5'));
 
     installFetchMock(async () => {
       throw new Error('ECONNREFUSED');
@@ -269,7 +268,7 @@ describe('016/002 OllamaAdapter', () => {
   });
 
   it('serializes Ollama JSON error bodies instead of reporting [object Object]', async () => {
-    const adapter = new OllamaAdapter(requireManifest('mxbai-embed-large-v1'));
+    const adapter = new OllamaAdapter(requireManifest('nomic-embed-text-v1.5'));
 
     installFetchMock(async () => jsonResponse(
       { error: 'the input length exceeds the context length' },
@@ -282,15 +281,15 @@ describe('016/002 OllamaAdapter', () => {
   });
 
   it('registry getAdapter constructs Ollama adapters and returns undefined for unknown names', () => {
-    expect(getAdapter('mxbai-embed-large-v1')).toBeInstanceOf(OllamaAdapter);
+    expect(getAdapter('nomic-embed-text-v1.5')).toBeInstanceOf(OllamaAdapter);
     expect(getAdapter('missing-model')).toBeUndefined();
   });
 });
 
 describe('016/006 shared OllamaProvider factory wiring', () => {
-  it('routes explicit EMBEDDINGS_PROVIDER=ollama through OllamaProvider and returns 1024-dim jina vectors', async () => {
+  it('routes explicit unlisted Ollama models and derives runtime dimensions', async () => {
     process.env.EMBEDDINGS_PROVIDER = 'ollama';
-    process.env.OLLAMA_EMBEDDINGS_MODEL = 'jina-embeddings-v3';
+    process.env.OLLAMA_EMBEDDINGS_MODEL = 'local-unlisted-ollama-model';
     delete process.env.VOYAGE_API_KEY;
     delete process.env.OPENAI_API_KEY;
 
@@ -298,15 +297,15 @@ describe('016/006 shared OllamaProvider factory wiring', () => {
       const pathname = new URL(String(input)).pathname;
       if (pathname === '/api/tags') {
         return jsonResponse({
-          models: [{ name: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M' }],
+          models: [{ name: 'local-unlisted-ollama-model' }],
         });
       }
 
       expect(pathname).toBe('/api/embed');
       const payload = JSON.parse(String(init?.body)) as { model: string; input: string[] };
-      expect(payload.model).toBe('hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M');
+      expect(payload.model).toBe('local-unlisted-ollama-model');
       expect(payload.input).toEqual(['test query']);
-      return jsonResponse({ embeddings: [vector(1024, 1)] });
+      return jsonResponse({ embeddings: [vector(321, 1)] });
     });
 
     expect(resolveProvider()).toMatchObject({ name: 'ollama' });
@@ -314,18 +313,18 @@ describe('016/006 shared OllamaProvider factory wiring', () => {
     const embedding = await provider.generateEmbedding('test query');
 
     expect(embedding).toBeInstanceOf(Float32Array);
-    expect(embedding).toHaveLength(1024);
+    expect(embedding).toHaveLength(321);
     expect(provider.constructor.name).toBe('OllamaProvider');
     expect(provider.getMetadata()).toMatchObject({
       provider: 'ollama',
-      model: 'jina-embeddings-v3',
-      dim: 1024,
+      model: 'local-unlisted-ollama-model',
+      dim: 321,
     });
   });
 
-  it('auto-selects Ollama from vec_metadata when vec_1024 exists and has rows', async () => {
+  it('auto-selects Ollama from vec_metadata when vec_768 exists and has rows', async () => {
     tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-ollama-provider-'));
-    createActiveJinaDb(tempDir, true);
+    createActiveNomicDb(tempDir, true);
     process.env.SPEC_KIT_DB_DIR = tempDir;
     delete process.env.EMBEDDINGS_PROVIDER;
     delete process.env.VOYAGE_API_KEY;
@@ -335,24 +334,24 @@ describe('016/006 shared OllamaProvider factory wiring', () => {
       const pathname = new URL(String(input)).pathname;
       if (pathname === '/api/tags') {
         return jsonResponse({
-          models: [{ name: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M' }],
+          models: [{ name: 'nomic-embed-text:v1.5' }],
         });
       }
 
       expect(pathname).toBe('/api/embed');
       const payload = JSON.parse(String(init?.body)) as { input: string[] };
-      expect(payload.input).toEqual(['search']);
-      return jsonResponse({ embeddings: [vector(1024, 1)] });
+      expect(payload.input).toEqual(['search_query: search']);
+      return jsonResponse({ embeddings: [vector(768, 1)] });
     });
 
     expect(resolveProvider()).toMatchObject({ name: 'ollama' });
     const provider = await createEmbeddingsProvider({ warmup: false });
-    await expect(provider.embedQuery('search')).resolves.toHaveLength(1024);
+    await expect(provider.embedQuery('search')).resolves.toHaveLength(768);
   });
 
-  it('does not select Ollama from vec_metadata when the active vec_1024 table is missing', () => {
+  it('does not select Ollama from vec_metadata when the active vec_768 table is missing', () => {
     tempDir = mkdtempSync(path.join(tmpdir(), 'spec-kit-ollama-provider-'));
-    createActiveJinaDb(tempDir, false);
+    createActiveNomicDb(tempDir, false);
     process.env.SPEC_KIT_DB_DIR = tempDir;
     delete process.env.EMBEDDINGS_PROVIDER;
     delete process.env.VOYAGE_API_KEY;

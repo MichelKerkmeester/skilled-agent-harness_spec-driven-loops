@@ -34,10 +34,8 @@ export const TASK_PREFIX: TaskPrefixMap = {
 // ---------------------------------------------------------------
 // 1b. PREFIX REGISTRY (014-local-embeddings-setup-a / 001-prefix-registry-architecture)
 // ---------------------------------------------------------------
-// Model-keyed prefix lookup. Different embedding models use different prefix
-// conventions (Nomic vs E5 vs Snowflake-Arctic vs mxbai vs bge).
-// Hardcoding Nomic's `search_document:` / `search_query:` for every model causes
-// ~5-8% silent recall loss when running a non-Nomic model.
+// Model-keyed prefix lookup. The supported local menu is nomic-only; unlisted
+// user overrides fall through to an empty prefix unless env overrides are set.
 //
 // Resolution order (getPrefixFor):
 //   1) env override:
@@ -57,33 +55,13 @@ export const PREFIX_REGISTRY: Readonly<Record<string, Readonly<ModelPrefixConfig
     document: 'search_document: ',
     query: 'search_query: ',
   }),
-  'BAAI/bge-base-en-v1.5': Object.freeze({
-    document: '',
-    query: 'Represent this sentence for searching relevant passages: ',
-  }),
-  'intfloat/e5-large-v2': Object.freeze({
-    document: 'passage: ',
-    query: 'query: ',
-  }),
-  'mixedbread-ai/mxbai-embed-large-v1': Object.freeze({
-    document: '',
-    query: '',
-  }),
-  'Snowflake/snowflake-arctic-embed-l-v2.0': Object.freeze({
-    document: '',
-    query: 'Represent this sentence for searching relevant passages: ',
-  }),
-  'BAAI/bge-m3': Object.freeze({
-    document: '',
-    query: '',
-  }),
 });
 
 /**
  * Resolve the prefix string for a given (modelId, kind) pair.
  * Returns '' (empty string) as the safe final fallback.
  *
- * @param modelId - HuggingFace model id, e.g. 'BAAI/bge-base-en-v1.5'
+ * @param modelId - HuggingFace model id, e.g. 'nomic-ai/nomic-embed-text-v1.5'
  * @param kind    - 'document' for index-time embeddings, 'query' for search-time embeddings
  */
 export function getPrefixFor(modelId: string, kind: 'document' | 'query'): string {
@@ -155,6 +133,13 @@ export function resolveDtype(explicit?: string): HfLocalDtype {
 
 interface ErrorWithCode extends Error {
   code?: string;
+}
+
+function resolveInitialDimension(modelName: string, explicitDim?: number): number {
+  if (typeof explicitDim === 'number' && Number.isFinite(explicitDim) && explicitDim > 0) {
+    return Math.trunc(explicitDim);
+  }
+  return modelName === DEFAULT_MODEL ? EMBEDDING_DIM : 0;
 }
 
 // Type for the HuggingFace pipeline extractor
@@ -234,7 +219,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
 
   constructor(options: HfLocalOptions = {}) {
     this.modelName = options.model || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
-    this.dim = options.dim || EMBEDDING_DIM;
+    this.dim = resolveInitialDimension(this.modelName, options.dim);
     this.dtype = resolveDtype(options.dtype);
     this.maxTextLength = options.maxTextLength || MAX_TEXT_LENGTH;
     this.timeout = options.timeout || EMBEDDING_TIMEOUT;
@@ -391,7 +376,9 @@ export class HfLocalProvider implements IEmbeddingProvider {
         ? output.data
         : new Float32Array(output.data);
 
-      if (embedding.length !== this.dim) {
+      if (this.dim <= 0) {
+        this.dim = embedding.length;
+      } else if (embedding.length !== this.dim) {
         throw new Error(`Embedding dimension mismatch: expected ${this.dim}, got ${embedding.length}`);
       }
 

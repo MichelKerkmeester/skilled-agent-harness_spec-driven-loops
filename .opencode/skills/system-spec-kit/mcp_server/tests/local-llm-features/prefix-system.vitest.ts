@@ -36,27 +36,28 @@ describe('local LLM prefix system', () => {
     }
   });
 
-  it('T1 registers all documented hf-local model prefixes', () => {
-    const expectedModels = [
+  it('T1 registers only the nomic prefix entry after consolidation', () => {
+    // 029/001 consolidation: PREFIX_REGISTRY is nomic-only; removed models are gone.
+    expect(Object.keys(PREFIX_REGISTRY)).toEqual(['nomic-ai/nomic-embed-text-v1.5']);
+    for (const removed of [
       'BAAI/bge-base-en-v1.5',
-      'nomic-ai/nomic-embed-text-v1.5',
       'intfloat/e5-large-v2',
       'mixedbread-ai/mxbai-embed-large-v1',
       'Snowflake/snowflake-arctic-embed-l-v2.0',
       'BAAI/bge-m3',
-    ];
-
-    for (const model of expectedModels) {
-      expect(PREFIX_REGISTRY).toHaveProperty(model);
+    ]) {
+      expect(PREFIX_REGISTRY).not.toHaveProperty(removed);
     }
   });
 
-  it('T2 returns the BGE document prefix', () => {
-    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('');
+  it('T2 returns the Nomic query prefix', () => {
+    expect(getPrefixFor('nomic-ai/nomic-embed-text-v1.5', 'query')).toBe('search_query: ');
   });
 
-  it('T3 returns the BGE query prefix', () => {
-    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'query')).toBe('Represent this sentence for searching relevant passages: ');
+  it('T3 returns the safe empty fallback for a removed local model', () => {
+    // bge was removed in 029/001 → treated as an unknown model → empty prefix.
+    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'query')).toBe('');
+    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('');
   });
 
   it('T4 returns the Nomic document prefix', () => {
@@ -66,7 +67,7 @@ describe('local LLM prefix system', () => {
   it('T5 lets HF_EMBEDDINGS_PREFIX_DOC override the registry', () => {
     process.env.HF_EMBEDDINGS_PREFIX_DOC = 'fixture-document: ';
 
-    expect(getPrefixFor('BAAI/bge-base-en-v1.5', 'document')).toBe('fixture-document: ');
+    expect(getPrefixFor('nomic-ai/nomic-embed-text-v1.5', 'document')).toBe('fixture-document: ');
   });
 
   it('T6 returns the safe empty-string fallback for unknown models', () => {

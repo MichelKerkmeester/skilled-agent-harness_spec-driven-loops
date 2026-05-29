@@ -403,7 +403,7 @@ Code-graph P1 config defaults with env-var overrides.  Numeric values are parsed
 
 ## 15. EMBEDDING
 
-Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19): (1) Ollama — first pulled model in ADR-013 priority order (`nomic-embed-text-v1.5` 768d, then `jina-embeddings-v3` 1024d, `bge-m3` 1024d, `mxbai-embed-large-v1` 1024d); (2) hf-local — `sentence-transformers` importable, default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default); (3) OpenAI — `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d); (4) Voyage — `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
+Embedding provider selection stays auto-cascaded unless you force it. In `EMBEDDINGS_PROVIDER=auto`, the runtime probes this **local-first** sequence (ADR-014, 2026-05-19): (1) Ollama — local default `nomic-embed-text-v1.5` (768d); (2) hf-local — default `nomic-ai/nomic-embed-text-v1.5` (768d, same family as the Ollama default); (3) OpenAI — `OPENAI_API_KEY` set, `text-embedding-3-small` (1536d); (4) Voyage — `VOYAGE_API_KEY` set, `voyage-code-3` (1024d). Unlisted local overrides set through `OLLAMA_EMBEDDINGS_MODEL` or `HF_EMBEDDINGS_MODEL` are accepted at runtime and derive their dimension from the first embedding vector. If you override only `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR`, the sqlite filename is derived automatically from that active profile.
 
 For the simplest local-first new-user setup, install [Ollama](https://ollama.com) and `ollama pull nomic-embed-text:v1.5` — the cascade auto-selects it with no API keys.
 

@@ -13,8 +13,6 @@ import type { EmbeddingProfileData, IEmbeddingProvider, ProviderMetadata } from 
 
 const DEFAULT_OLLAMA_BASE_URL = 'http://127.0.0.1:11434';
 // Derived from registry MANIFESTS[0].
-// Previously hardcoded to 'jina-embeddings-v3' — that was stale
-// and contradicted the bake-off operator override.
 const DEFAULT_MODEL: string = getCanonicalFallback('ollama');
 const EMBEDDING_TIMEOUT = 30000;
 
@@ -35,40 +33,6 @@ export const OLLAMA_MANIFESTS: ReadonlyArray<OllamaManifest> = Object.freeze([
     prefixQuery: 'search_query: ',
     prefixDocument: 'search_document: ',
     maxInputChars: 5000,
-  },
-  {
-    name: 'mxbai-embed-large-v1',
-    dim: 1024,
-    ollamaName: 'mxbai-embed-large:latest',
-    maxInputChars: 1200,
-  },
-  {
-    name: 'bge-small-en-v1.5',
-    dim: 384,
-    ollamaName: 'bge-small-en-v1.5:latest',
-  },
-  {
-    name: 'bge-large-en-v1.5',
-    dim: 1024,
-    ollamaName: 'bge-large-en-v1.5:latest',
-  },
-  {
-    name: 'jina-embeddings-v3',
-    dim: 1024,
-    ollamaName: 'hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M',
-    maxInputChars: 8000,
-  },
-  {
-    name: 'bge-m3',
-    dim: 1024,
-    ollamaName: 'bge-m3:latest',
-    maxInputChars: 8000,
-  },
-  {
-    name: 'snowflake-arctic-embed-l-v2.0',
-    dim: 1024,
-    ollamaName: 'snowflake-arctic-embed2:latest',
-    maxInputChars: 8000,
   },
 ]);
 
@@ -129,15 +93,18 @@ export function resolveOllamaCanonicalModel(model: string): string {
   return getOllamaManifest(model)?.name || model;
 }
 
-function resolveManifest(model: string | undefined): OllamaManifest {
+function resolveManifest(model: string | undefined, dim?: number): OllamaManifest {
   const configured = model || process.env.OLLAMA_EMBEDDINGS_MODEL || DEFAULT_MODEL;
   const manifest = getOllamaManifest(configured);
-  if (!manifest) {
-    throw new Error(
-      `Unknown Ollama embedding model "${configured}". Supported: ${OLLAMA_MANIFESTS.map((m) => m.name).join(', ')}`,
-    );
+  if (manifest) {
+    return manifest;
   }
-  return manifest;
+
+  return {
+    name: configured,
+    dim: typeof dim === 'number' && Number.isFinite(dim) && dim > 0 ? Math.trunc(dim) : 0,
+    ollamaName: configured,
+  };
 }
 
 function getErrorMessage(error: unknown): string {
@@ -252,7 +219,7 @@ export class OllamaProvider implements IEmbeddingProvider {
   private readonly manifest: OllamaManifest;
 
   constructor(options: OllamaOptions = {}) {
-    this.manifest = resolveManifest(options.model);
+    this.manifest = resolveManifest(options.model, options.dim);
     this.modelName = this.manifest.name;
     this.dim = options.dim || this.manifest.dim;
     this.baseUrl = resolveOllamaBaseUrl(options.baseUrl);
@@ -348,7 +315,9 @@ export class OllamaProvider implements IEmbeddingProvider {
     if (!row) {
       throw new Error('Ollama returned no embedding rows');
     }
-    if (row.length !== this.dim) {
+    if (this.dim <= 0) {
+      this.dim = row.length;
+    } else if (row.length !== this.dim) {
       throw new Error(`Ollama embedding dimension mismatch for ${this.modelName}: expected ${this.dim}, got ${row.length}`);
     }
 

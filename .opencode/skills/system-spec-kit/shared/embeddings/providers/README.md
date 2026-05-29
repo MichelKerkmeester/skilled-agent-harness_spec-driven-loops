@@ -1,6 +1,6 @@
 ---
 title: "Embedding Providers"
-description: "Concrete embedding provider implementations for Ollama, ollama, HuggingFace Local, OpenAI and Voyage AI backends."
+description: "Concrete embedding provider implementations for Ollama, HuggingFace Local, OpenAI and Voyage AI backends."
 trigger_phrases:
   - "embedding providers"
   - "ollama embeddings"
@@ -32,8 +32,7 @@ Ollama closes the 016/002 dual-path migration: the MCP registry/re-index path wr
 ```text
 providers/
 ├── README.md      # This file
-├── ollama.ts      # Ollama provider for active registry manifests
-├── ollama.ts   # ollama GGUF provider (default local)
+├── ollama.ts      # Ollama provider (default local)
 ├── hf-local.ts    # HuggingFace local ONNX provider (fallback)
 ├── openai.ts      # OpenAI embeddings provider
 └── voyage.ts      # Voyage AI embeddings provider
@@ -41,9 +40,8 @@ providers/
 
 | File | Provider | Default model | Dimensions | Role |
 | ---- | -------- | ------------- | ---------- | ---- |
-| `ollama.ts` | Ollama | `jina-embeddings-v3` | 384, 768, 1024 | Active embedder provider for Jina v3, Nomic, mxbai, BGE, and Snowflake manifests |
-| `ollama.ts` | ollama | `nomic-embed-text-v1.5` | 768 | Default local provider. Metal GPU acceleration, nomic-embed-text local-first default (ADR-014) |
-| `hf-local.ts` | HuggingFace Local | `onnx-community/bge-base-en-v1.5-ONNX` | 768 | Fallback local provider. ONNX q8 quantization on CPU when ollama is unavailable |
+| `ollama.ts` | Ollama | `nomic-embed-text-v1.5` | 768 | Default local provider. Unlisted local overrides are accepted and derive dimension from runtime output. |
+| `hf-local.ts` | HuggingFace Local | `nomic-ai/nomic-embed-text-v1.5` | 768 | Fallback local provider. q8 quantization by default when ollama is unavailable. |
 | `openai.ts` | OpenAI | `text-embedding-3-small` | 1536 | Cloud provider with OpenAI usage tracking and retry handling |
 | `voyage.ts` | Voyage AI | `voyage-4` | 1024 | Cloud provider using Voyage `input_type` for document and query embeddings |
 

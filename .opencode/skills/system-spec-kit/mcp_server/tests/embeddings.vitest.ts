@@ -10,6 +10,7 @@ import {
   resolveStartupEmbeddingConfig,
   validateApiKey,
 } from '@spec-kit/shared/embeddings/factory';
+import { HfLocalProvider } from '@spec-kit/shared/embeddings/providers/hf-local';
 import { VoyageProvider } from '@spec-kit/shared/embeddings/providers/voyage';
 import { getStartupEmbeddingProfile } from '../../shared/embeddings/factory.js';
 import * as sharedEmbeddings from '../../shared/embeddings.js';
@@ -224,6 +225,28 @@ describe('Embeddings Architecture (T513)', () => {
 
       await expect(createEmbeddingsProvider({ provider: 'openai' })).rejects.toThrow('invalid or unauthorized');
     });
+
+    it('T513-02f: unlisted hf-local model derives dimension from first embedding', async () => {
+      process.env.EMBEDDINGS_PROVIDER = 'hf-local';
+      process.env.HF_EMBEDDINGS_MODEL = 'local/unlisted-runtime-dim';
+      const runtimeVector = new Float32Array(321);
+      runtimeVector[0] = 1;
+      const extractor = vi.fn(async () => ({ data: runtimeVector })) as unknown as Awaited<ReturnType<HfLocalProvider['getModel']>>;
+      vi.spyOn(HfLocalProvider.prototype, 'getModel').mockResolvedValue(extractor);
+
+      const provider = await createEmbeddingsProvider({
+        provider: 'hf-local',
+        warmup: false,
+      });
+
+      expect(provider.getMetadata().model).toBe('local/unlisted-runtime-dim');
+      expect(provider.getMetadata().dim).toBe(0);
+
+      const embedding = await provider.embedDocument('runtime dimension probe');
+
+      expect(embedding?.length).toBe(321);
+      expect(provider.getMetadata().dim).toBe(321);
+    });
   });
 
   describe('Provider info and validation', () => {
@@ -296,8 +319,8 @@ describe('Embeddings Architecture (T513)', () => {
 
       expect(profile.provider).toBe('hf-local');
       expect(profile.dim).toBe(768);
-      expect(profile.model).toBe('BAAI/bge-base-en-v1.5');
-      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__baai_bge-base-en-v1.5__768__q8.sqlite');
+      expect(profile.model).toBe('nomic-ai/nomic-embed-text-v1.5');
+      expect(profile.getDatabasePath('/tmp/spec-kit-db')).toBe('/tmp/spec-kit-db/context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8.sqlite');
     });
 
     it('T513-03g: hf-local inference respects provider timeout', async () => {

@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Consolidate local embedding models to nomic only"
-description: "Spec authored only. Captures implementation scope, plan, tasks, risks, and verification commands for nomic-only local embedding consolidation; application code remains unchanged."
+description: "Implemented. Local embedding model menus consolidated to nomic-ai/nomic-embed-text-v1.5 across registry/factory/providers/docs, with a graceful runtime-dim guard for unlisted user models. Headless-verified (tsc + 79 embedding vitest) and adversarially reviewed."
 trigger_phrases:
   - "nomic-only local embedding consolidation implementation summary"
 importance_tier: "important"
@@ -8,18 +8,19 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored spec packet docs only; implementation remains pending"
-    next_safe_action: "Begin implementation from tasks.md when this phase is selected"
+    last_updated_at: "2026-05-29T07:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Implemented via codex gpt-5.5; review clean; prefix-system stale tests fixed; 79 green"
+    next_safe_action: "Proceed to phase 002-hf-model-server when Option B is scheduled"
     blockers: []
     key_files:
       - "shared/embeddings/registry.ts"
+      - "shared/embeddings/factory.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000591"
       session_id: "029-001-impl-summary"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -37,7 +38,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 001-nomic-only-consolidation |
-| **Completed** | Not completed - spec authored 2026-05-29 |
+| **Completed** | 2026-05-29 (implemented + headless-verified) |
 | **Level** | 1 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,20 +47,22 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-No application code was built in this pass. This packet authored the phase markdown needed to implement nomic-only local embedding consolidation: `001-nomic-only-consolidation/spec.md`, `001-nomic-only-consolidation/plan.md`, `001-nomic-only-consolidation/tasks.md`, and this `001-nomic-only-consolidation/implementation-summary.md`.
+Local embedding model menus are now consolidated to a single default — `nomic-ai/nomic-embed-text-v1.5`. `registry.ts` MANIFESTS holds only the nomic entry (so `getCanonicalFallback` resolves nomic for both ollama and hf-local), and `factory.ts` `VALID_PROVIDER_DIMENSIONS` for the local providers is nomic-only (768). The removed models (mxbai, bge-small/large, jina-v3, bge-m3, snowflake-arctic, e5, bge-base) are gone from the registries, the `PREFIX_REGISTRY`, provider/profile/type copy, and the user docs.
 
-### Spec packet authored
+### Graceful unknown-model guard (REQ-003)
 
-The phase now has a Level-1 specification, implementation plan, task list, and continuity summary. The implementation remains pending; the files named in the phase plan are target surfaces for a future implementation session, not changes made by this authoring pass.
+Critically, removing the menu did NOT make the code hard-fail on a user-set unlisted model. A model set via `HF_EMBEDDINGS_MODEL`/`OLLAMA_EMBEDDINGS_MODEL` that is absent from the registry resolves with **runtime dimension derivation**: hf-local `resolveInitialDimension` returns 0 for non-default models and ollama `resolveManifest` synthesizes a `dim:0` manifest (instead of throwing); the provider then locks `this.dim` to the first returned vector length, and the per-vector length assertion still guards against mixed-dim corruption. The kept nomic path resolves 768 via the registry map, not the fallback. Cloud providers (voyage/openai `CLOUD_CANONICAL`) are untouched.
 
 ### Files Changed
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `spec.md` | Create | Defines problem, scope, requirements, success criteria, risks, and open questions |
-| `plan.md` | Create | Defines implementation approach, affected surfaces, phases, testing, dependencies, and rollback |
-| `tasks.md` | Create | Defines setup, implementation, verification, and completion tasks |
-| `implementation-summary.md` | Create | Records that this is spec-authoring only and implementation is pending |
+| `shared/embeddings/registry.ts` | Modify | MANIFESTS reduced to the nomic entry; `getCanonicalFallback` stays nomic |
+| `shared/embeddings/factory.ts` | Modify | `VALID_PROVIDER_DIMENSIONS` local maps nomic-only (768) + runtime-dim provisional for unlisted models |
+| `shared/embeddings/providers/{ollama,hf-local}.ts` | Modify | Trim model menus + `PREFIX_REGISTRY` to nomic; unlisted-model runtime-dim derivation; `DEFAULT_MODEL` stays derived |
+| `shared/embeddings/{profile,types}.ts` | Modify | Remove stale local model menu references |
+| `mcp_server/{ENV_REFERENCE.md,README.md}`, `INSTALL_GUIDE.md`, `shared/embeddings/providers/README.md`, `mcp_server/database/vectors/README.md` | Modify | Docs trimmed to nomic-only local guidance |
+| `mcp_server/tests/{embeddings,embedder-registry,embedder-ollama}.vitest.ts`, `tests/local-llm-features/prefix-system.vitest.ts` | Modify | Update stale old-registry assertions to nomic-only + add a runtime-dim (REQ-007) regression test |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -67,7 +70,7 @@ The phase now has a Level-1 specification, implementation plan, task list, and c
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Authored by mirroring the known-good Level-1 child packet structure from `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose/` and filling only the human content for this phase. The authoring pass stayed inside the approved packet folder and did not edit application code, tests, benchmarks, generated metadata, or git state.
+Implemented by a `cli-codex` dispatch (`gpt-5.5`, high reasoning, fast tier, `--sandbox workspace-write`) fenced to the live embedding files (benchmarks/fixtures/cloud-providers excluded). The orchestrator ran independent `tsc` builds + the embedding vitest and a 4-lens opus adversarial review, which confirmed the REQ-003 guard correct and the kept-nomic path intact, and surfaced one straggler — `prefix-system.vitest.ts` (in `tests/local-llm-features/`, outside the codex sweep) still asserted the removed-model `PREFIX_REGISTRY`. The orchestrator fixed those stale assertions to the nomic-only reality. Final: 79 embedding tests pass / 0 fail.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -89,9 +92,12 @@ Authored by mirroring the known-good Level-1 child packet structure from `.openc
 
 | Check | Result |
 |-------|--------|
-| `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation --strict` | Expected verification command for this phase |
-| `tsc` / focused vitest commands named in `plan.md` | Pending implementation |
-| Application-code tests | Not run; out of scope for spec-authoring only |
+| `npm run build --workspace=@spec-kit/shared` + `@spec-kit/mcp-server` (tsc) | PASS (exit 0) |
+| `vitest run` embeddings + embedder-* + prefix-system (8 files) | PASS (79 passed / 8 skipped / 0 failed) |
+| 4-lens opus adversarial review (guard / registry-factory / test-triage / scope) | PASS — REQ-003 guard correct, kept-nomic path intact; 1 straggler (prefix-system stale tests) found + fixed |
+| Unlisted-model runtime-dim path (REQ-003/007) | PASS — added regression tests (hf-local + ollama unlisted → runtime-derived dim) |
+| Cloud providers + benchmarks untouched (REQ-006/008) | PASS — voyage/openai CLOUD_CANONICAL + benchmarks/fixtures unchanged |
+| `validate.sh --strict` on this packet | PASS |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -99,7 +105,8 @@ Authored by mirroring the known-good Level-1 child packet structure from `.openc
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. Implementation is pending; this summary records authored markdown, not shipped runtime behavior.
-2. `description.json` and `graph-metadata.json` are intentionally absent because generated metadata is handled separately.
+1. **Live re-embed not performed here** — switching the default doesn't re-embed an existing corpus; vectors stay valid because the default was already nomic (768). A genuine model change would require a reindex (documented in ENV_REFERENCE).
+2. **Unlisted-model runtime-dim is verified headlessly** (mocked vector length); a live unlisted model on a running daemon is the natural follow-up check.
+3. Phases 002-006 (the hf-local HTTP model-server, Option B) remain spec-only/deferred.
 <!-- /ANCHOR:limitations -->
 

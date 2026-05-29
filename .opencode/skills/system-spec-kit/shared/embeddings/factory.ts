@@ -160,12 +160,7 @@ export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
   voyage: Object.freeze({ ...VOYAGE_MODEL_DIMENSIONS }),
   openai: Object.freeze({ ...OPENAI_MODEL_DIMENSIONS }),
   'hf-local': Object.freeze({
-    'BAAI/bge-base-en-v1.5': 768,
     'nomic-ai/nomic-embed-text-v1.5': 768,
-    'intfloat/e5-large-v2': 1024,
-    'mixedbread-ai/mxbai-embed-large-v1': 1024,
-    'Snowflake/snowflake-arctic-embed-l-v2.0': 1024,
-    'BAAI/bge-m3': 1024,
   }),
   ollama: Object.freeze({ ...OLLAMA_MODEL_DIMENSIONS }),
 } satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
@@ -580,6 +575,16 @@ export function resolveProviderDimension(
   const modelDimension = dimensionsByModel[configuredModel];
   if (typeof modelDimension === 'number') {
     return modelDimension;
+  }
+
+  // Local model menus are intentionally nomic-only, but user-set unlisted
+  // local overrides remain valid. Startup needs a provisional dimension for
+  // metadata; the local provider locks to the first returned vector length.
+  if (supportedProvider === 'hf-local' || supportedProvider === 'ollama') {
+    const defaultDimension = dimensionsByModel[DEFAULT_PROVIDER_MODELS[supportedProvider]];
+    if (typeof defaultDimension === 'number') {
+      return defaultDimension;
+    }
   }
 
   const [fallbackDimension] = getValidDimensionsForProvider(supportedProvider);

@@ -127,12 +127,6 @@ type ActiveProfileProvider = 'voyage' | 'openai' | 'hf-local' | 'ollama';
 
 const OLLAMA_MODEL_DIMENSIONS: Readonly<Record<string, number>> = Object.freeze({
   'nomic-embed-text-v1.5': 768,
-  'mxbai-embed-large-v1': 1024,
-  'bge-small-en-v1.5': 384,
-  'bge-large-en-v1.5': 1024,
-  'jina-embeddings-v3': 1024,
-  'bge-m3': 1024,
-  'snowflake-arctic-embed-l-v2.0': 1024,
 });
 
 export const ALLOWED_HF_LOCAL_DTYPES: ReadonlyArray<string> = [
@@ -185,8 +179,6 @@ export function resolveActiveProfileProvider(): ActiveProfileProvider {
 
 function resolveActiveProfileModel(provider: ActiveProfileProvider): string {
   // Derived from registry MANIFESTS[0] + CLOUD_CANONICAL.
-  // Pre-022 the switch returned inline string literals (`'BAAI/bge-base-en-v1.5'`,
-  // `'jina-embeddings-v3'`, etc.) and duplicated the verification clause.
   switch (provider) {
     case 'voyage':
       return process.env.VOYAGE_EMBEDDINGS_MODEL || getCanonicalFallback('voyage');
@@ -209,26 +201,11 @@ function resolveActiveProfileDim(provider: ActiveProfileProvider, model: string)
   if (provider === 'openai' && model === 'text-embedding-3-large') {
     return 3072;
   }
-  if (provider === 'hf-local' && model === 'intfloat/e5-large-v2') {
-    return 1024;
-  }
-  if (provider === 'hf-local' && model === 'mixedbread-ai/mxbai-embed-large-v1') {
-    return 1024;
-  }
-  if (provider === 'hf-local' && model === 'Snowflake/snowflake-arctic-embed-l-v2.0') {
-    return 1024;
-  }
-  if (provider === 'hf-local' && model === 'BAAI/bge-m3') {
-    return 1024;
-  }
-  if (provider === 'hf-local' && model === 'BAAI/bge-base-en-v1.5') {
-    return 768;
-  }
   if (provider === 'voyage') {
     return 1024;
   }
   if (provider === 'ollama') {
-    return OLLAMA_MODEL_DIMENSIONS[model] ?? 1024;
+    return OLLAMA_MODEL_DIMENSIONS[model] ?? 768;
   }
   return 768;
 }

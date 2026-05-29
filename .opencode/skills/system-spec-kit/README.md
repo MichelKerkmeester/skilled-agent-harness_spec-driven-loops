@@ -261,7 +261,7 @@ When you search, the system checks five sources at once -- like a librarian who 
 
 | Channel          | How It Works                                        | Good For                                       |
 | ---------------- | --------------------------------------------------- | ---------------------------------------------- |
-| **Vector**       | Compares meaning via embeddings (jina-embeddings-v3 1024d default per ADR-012) | Finding related content even when words differ |
+| **Vector**       | Compares meaning via embeddings (`nomic-embed-text-v1.5` 768d local default) | Finding related content even when words differ |
 | **FTS5**         | Full-text search on exact words and phrases         | Specific terms and error messages              |
 | **BM25**         | Keyword relevance scoring                           | Ranking when you know roughly what you want    |
 | **Causal Graph** | Follows cause-and-effect links between memories     | "Why did we choose this?" questions            |
@@ -583,7 +583,7 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 
 | Tier | Provider          | Dimensions | Notes                                                            |
 | ---- | ----------------- | ---------- | ---------------------------------------------------------------- |
-| 1    | Ollama            | 768        | **Default.** Probes `/api/tags`; selects first pulled model in ADR-013 order (`nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`). Recommended new-user setup. |
+| 1    | Ollama            | 768        | **Default.** Probes `/api/tags`; uses `nomic-embed-text-v1.5`. Recommended new-user setup. |
 | 2    | HuggingFace Local | 768        | Python `sentence-transformers` fallback. Default model: `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014). |
 | 3    | OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
 | 4    | Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
@@ -595,8 +595,8 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `EMBEDDINGS_PROVIDER` | No         | `auto` (default) follows the ADR-014 cascade; set to `ollama`, `hf-local`, `openai`, or `voyage` to pin a specific tier |
 | `VOYAGE_API_KEY`     | No          | Voyage AI cloud embeddings (opt-in)                  |
 | `OPENAI_API_KEY`     | No          | OpenAI cloud embeddings (opt-in)                     |
-| `OLLAMA_EMBEDDINGS_MODEL` | No     | Override Ollama model (default: first pulled in ADR-013 priority order) |
-| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (default: `nomic-ai/nomic-embed-text-v1.5`) |
+| `OLLAMA_EMBEDDINGS_MODEL` | No     | Override Ollama model (listed default: `nomic-embed-text-v1.5`; unlisted local models derive dimension at runtime) |
+| `HF_EMBEDDINGS_MODEL` | No         | Override hf-local model (listed default: `nomic-ai/nomic-embed-text-v1.5`; unlisted local models derive dimension at runtime) |
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |

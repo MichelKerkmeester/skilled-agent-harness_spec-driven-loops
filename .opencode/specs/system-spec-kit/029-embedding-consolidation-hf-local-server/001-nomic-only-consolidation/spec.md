@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored implement-now spec for nomic-only local embedding consolidation"
-    next_safe_action: "Implement registry/factory/doc cleanup and run tsc plus embeddings vitest"
+    last_updated_at: "2026-05-29T07:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Implemented nomic-only consolidation; tsc + 79 embedding vitest green; review clean"
+    next_safe_action: "Proceed to phase 002-hf-model-server when Option B is scheduled"
     blockers: []
     key_files:
       - "shared/embeddings/registry.ts"
@@ -24,11 +24,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000291"
       session_id: "029-001-nomic-only-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Historical benchmark reports and test fixtures are out of scope"
       - "Cloud providers voyage/openai stay intact"
+      - "Unlisted user models resolve via runtime dimension derivation (no hard-fail)"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Consolidate local embedding models to nomic only
@@ -44,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (tsc + 79 embedding vitest green; review clean) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
