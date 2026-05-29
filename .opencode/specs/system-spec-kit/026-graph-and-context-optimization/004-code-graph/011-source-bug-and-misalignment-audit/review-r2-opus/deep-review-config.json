@@ -1,0 +1,27 @@
+{
+  "type": "config",
+  "mode": "review",
+  "reviewTarget": "Second independent deep review (Opus 4.8, Workflow-orchestrated): cross-model verification of the 011 code-graph audit-fix work in its REMEDIATED state — all DR-* and CG-* fixes landed in commits 69e7bf12 / 4f1dc0ed / 574267cf67 / 016f47b4 / 6f6c6595 / 8943837b / 49a8a97d / 5ec1caf4ee, vs baseline 0ef38d58. Jobs: (1) verify each landed fix is correct + complete, (2) find NEW issues gpt-5.5-fast missed, (3) re-validate the 9 deferred findings + the new regression tests.",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "executor": {
+    "type": "workflow-tool",
+    "model": "claude-opus-4-8",
+    "note": "Per owner direction: Opus 4.8 agents orchestrated via the Workflow tool, following the deep-review skill contract (iterations, externalized state, adversarial verification, convergence, packet-local artifacts). Distinct from the prior gpt-5.5-fast xhigh review in ../review/."
+  },
+  "resource_map_present": false,
+  "resource_map": { "emit": false },
+  "lineageMode": "new",
+  "generation": 2,
+  "continuedFromRun": "../review (gpt-5.5-fast xhigh, generation 1)",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "baseline": "0ef38d58",
+  "headAtStart": "8a30db8820",
+  "createdAt": "2026-05-29T13:59:42Z",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+  "crossReference": {
+    "priorReviewGpt55": "../review/review-report.md (36 raw findings, 8 confirmed-real P1 — all now fixed)",
+    "parallelOpusReview": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph/review/ (different agent, daemon-shutdown focus)"
+  }
+}

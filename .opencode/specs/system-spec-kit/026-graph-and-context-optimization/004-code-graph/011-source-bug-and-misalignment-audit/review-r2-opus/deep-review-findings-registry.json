@@ -1,0 +1,185 @@
+{
+  "generatedAt": "2026-05-29T14:15:37Z",
+  "verdict": "CONDITIONAL",
+  "counts": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 4,
+    "confirmedReal": 5,
+    "falsePositive": 8,
+    "alreadyFixedVerified": 21
+  },
+  "confirmedReal": [
+    {
+      "id": "OR-1-01",
+      "severity": "P1",
+      "dimension": "correctness",
+      "kind": "fix-incomplete",
+      "file": ".opencode/bin/mk-code-index-launcher.cjs",
+      "line": "857-879 (migration block); guards 883/913 (locks acquired AFTER)",
+      "title": "DR-001-02/006-02 fix incomplete: migration-back still runs BEFORE any lock; two concurrent launchers can both migrate and the second can clobber the first's now-live target DB",
+      "why": "The prior review's DR-001-02/DR-006-02 recommendation had two parts: (1) honor SPECKIT_CODE_GRAPH_DB_DIR and (2) \"Acquire the bootstrap/owner lease BEFORE migrating\" so two concurrent launchers cannot both migrate (review-report.md:48). Part (1) is correctly landed (verified: line 857 `!process.env.SPECKIT_CODE_GRAPH_DB_DIR` skip + `migrationTarget = resolvedDbDir()` at 856). Part (2) was NOT implemented — instead the remediation added `formerLocationOwnerLive(formerSharedDbDir)` (line 860), which probes liveness of the SOURCE/former location only. The migration copy at lines 861-878 still executes in the main IIFE BEFORE `acquireOwnerLeaseFile()` (line 883) and BEFORE `acquireBootstrapLock()` (line 913), with no mutual exclusion. Window: two launchers L1/L2 start concurrently into the default skill-local target; both evaluate `!exists(migrationTarget/code-graph.sqlite)` as true (neither has copied yet), both pass the dead-former-owner check, both enter the block. Worse case: L1 finishes its `fs.copyFileSync` (line 873, no COPYFILE_EXCL — unconditional truncate+overwrite, confirmed), then proceeds to win the owner lease (347-376) and launch the daemon, which opens and actively writes the target code-graph.sqlite; L2, slightly behind, having already passed the `!exists` guard before L1's copy created the file, now runs `copyFileSync(former -> target)` and truncates/overwrites the live DB out from under L1's running daemon -> SQLite corruption / data loss on the live writer. `formerLocationOwnerLive` cannot prevent this because it inspects the source (former) location, never the target. This is the exact data-loss hazard class DR-001-02 was meant to eliminate, merely relocated from source-side to target-side.",
+      "fix": "Move the migration block to run AFTER acquireBootstrapLock() succeeds (only the single bootstrap-lock winner migrates), or guard the copy with COPYFILE_EXCL plus a per-target lock. Lock-before-migrate (the prior review's recommendation) is the robust fix: only one launcher per workspace holds the bootstrap lock, so only it performs the copy, and it does so before opening the DB. At minimum, re-check `!exists(migrationTarget/code-graph.sqlite)` while holding the lock and use `fs.copyFileSync(src, dst, fs.constants.COPYFILE_EXCL)` so a late copier refuses to overwrite an existing (possibly live) target.",
+      "confidence": 0.78,
+      "relatedPriorId": "DR-001-02"
+    },
+    {
+      "id": "OR-2-01",
+      "severity": "P2",
+      "dimension": "correctness",
+      "kind": "test-false-confidence",
+      "file": ".opencode/skills/system-code-graph/mcp_server/tests/launcher-lease.vitest.ts",
+      "line": "207-227",
+      "title": "Sole concurrency test exercises the wx fresh-lease path, not the DR-002-01 reclaim re-read CAS",
+      "why": "The DR-002-01 fix added a re-read-after-write CAS to the RECLAIM branch of acquireOwnerLeaseFile (mk-code-index-launcher.cjs lines 373-386), which runs only when an `existing` stale owner lease is present. The only concurrency regression test, 'lets exactly one concurrent launcher own the lease' (line 207), spawns two launchers from a fresh createWorkspace() (tmpdir, no seeded owner lease, line 24-42). With no `existing` lease, both launchers take the `writeOwnerLeaseFileExclusive` (O_EXCL `wx`) fresh path (lines 360-371), whose single-winner guarantee comes entirely from O_EXCL and predates DR-002-01. The reclaim-path re-read CAS (the actual code DR-002-01 changed) is never reached: 'reclaims a stale-heartbeat owner lease with a live PID' (line 309) and 'reclaims a dead-pid lease' (line 296) each spawn only ONE launcher against a pre-seeded stale lease, so no two processes ever concurrently hit the reclaim branch. The test therefore passes identically against the un-fixed code (delete lines 377-384 and 'exactly one concurrent launcher' still goes green), giving false confidence that the reclaim CAS is verified.",
+      "fix": "Add a regression test that seeds a stale-heartbeat owner lease (ttlMs small, lastHeartbeatIso > 2*ttl old, ownerPid = a LIVE helper pid so classifyOwnerLease returns 'stale-heartbeat-reclaim'), then spawns TWO launchers simultaneously so both read the same `existing` stale lease and both enter the reclaim branch. Assert exactly one ends up as the recorded owner (readOwnerLeasePid) and the other reports/bridges — this is the only scenario that distinguishes the re-read CAS from plain last-writer-wins.",
+      "confidence": 0.83,
+      "relatedPriorId": "DR-002-01"
+    },
+    {
+      "id": "OR-3-01",
+      "severity": "P2",
+      "dimension": "correctness",
+      "kind": "fix-incomplete",
+      "file": ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
+      "line": "104-148 (tryAcquireOwnerLeaseMutationLock)",
+      "title": "Orphaned empty mutation-lock file (write-failure mid-creation) is permanently unreclaimable, can wedge the server heartbeat",
+      "why": "tryAcquireOwnerLeaseMutationLock openSync's the lock file with 'wx' FIRST (line 109), then writeFileSync's the pid (110) and fsyncSync's (111). If writeFileSync or fsyncSync throws (e.g. ENOSPC/EIO) after the file already exists on disk, the catch closeSync's the fd but does NOT unlink the now-empty/partial lock file; code !== 'EEXIST' so it re-throws (118-119), leaving an orphan lock file with no parseable pid. Every later acquirer then hits EEXIST, calls readOwnerLeaseMutationLockPid -> null (empty/unparseable content), and the stale-reclaim guard at line 123 requires lockPid !== null, so it is NEVER removed. tryAcquire returns null forever -> refreshOwnerLease() returns false forever (lines 439-440) -> server's heartbeat sees !refreshed and triggers ownerLeaseMismatchShutdownStarted self-shutdown (dist/index.js:39-42). This is a NEW gap introduced by the DR-001-03/002-03 mutation-lock itself; prior reviews predate the lock. Plausible only under a disk/IO failure mid-mutation, hence P2.",
+      "fix": "On the write/fsync failure path inside tryAcquireOwnerLeaseMutationLock, unlink the just-created lock file before re-throwing (the openSync succeeded so we own it): wrap writeFileSync+fsyncSync so that if they throw, unlinkSync(lockPath) (ignore ENOENT) then close+rethrow. Alternatively, treat lockPid===null (empty/corrupt lock) as reclaimable in the stale path with an mtime-age guard so a wedged empty lock self-heals.",
+      "confidence": 0.72,
+      "relatedPriorId": "DR-002-03"
+    },
+    {
+      "id": "OR-5-01",
+      "severity": "P2",
+      "dimension": "correctness",
+      "kind": "test-false-confidence",
+      "file": ".opencode/skills/system-code-graph/mcp_server/tests/ensure-ready.vitest.ts",
+      "line": "375-398 (auto-establishes ...) and 400-420 (does NOT auto-establish ...)",
+      "title": "Both new ensure-ready auto-establish tests give false confidence — they pass against the un-fixed gate",
+      "why": "The two new tests claim to verify the BUG-03/CG-020 first-time auto-establish gate (the new isDefaultEndUserScope(...) branch added at lib/ensure-ready.ts:668-670). I empirically confirmed they do NOT distinguish the fix: I neutralized the new gate (set `const firstTimeAutoEstablish = false;`) and BOTH tests still passed (2 passed). Reason: for these fixtures the pre-existing evaluateGuardedFullScan -> shouldAutoRescan path already produces the identical decision. Test 1 (default scope, empty graph): stored fingerprint = active fingerprint (both default 'skills=none...') and parse backlog 0, so shouldAutoRescan returns {allowed:true} at baseline too -> scan runs, inlineIndexPerformed:true, autoRescanSafety:'allowed'. Test 2 (INDEX_SKILLS=true, stored=default): active fingerprint (skills=all) != stored (skills=none) -> scope_mismatch -> blocked at baseline too -> action:'full_scan', inlineIndexPerformed:false, autoRescanSafety:'blocked'. A regression in isDefaultEndUserScope (always-true or always-false) would not be caught: Test 1's matching fingerprint still allows via the fallback; Test 2's scope mismatch still blocks via the fallback. The end-to-end behavior IS correct, but the tests assert nothing the old code didn't already satisfy.",
+      "fix": "Make each test isolate the new branch from the fallback. For the auto-establish test, set stored scope != active scope (e.g. getStoredCodeGraphScopeMock returns a NON-default/mismatched fingerprint) so evaluateGuardedFullScan would BLOCK (scope_mismatch) — then only the isDefaultEndUserScope empty-graph branch can produce autoRescanSafety:'allowed'/inlineIndexPerformed:true. For the no-auto-establish test, keep stored==active (matching fingerprint, 0 backlog) so the fallback would ALLOW, and rely on isDefaultEndUserScope=false (because INDEX_SKILLS opt-in) to be the sole reason for the block; assert autoRescanBlockReason is the guard/scope reason. With these fixtures, neutralizing firstTimeAutoEstablish would flip both results and the tests would fail against the un-fixed code.",
+      "confidence": 0.9,
+      "relatedPriorId": "CG-020"
+    },
+    {
+      "id": "OR-8-01",
+      "severity": "P2",
+      "dimension": "traceability",
+      "kind": "fix-incomplete",
+      "file": ".opencode/skills/system-code-graph/references/readiness/readiness_and_scope_fingerprint.md",
+      "line": "57 (and ARCHITECTURE.md:136)",
+      "title": "`absent` still presented as a top-level readiness/contract state in §2 table + ARCHITECTURE, contradicting the remediation's own SKILL.md correction",
+      "why": "The remediation's SKILL.md fix (016f47b4) now states explicitly: \"Freshness states are `fresh`, `stale`, `empty`, `error` (`absent` is not a freshness state — it is the companion trust-state projection of an `empty` graph)\". But two sibling docs were left unchanged and still present `absent` as a top-level readiness/contract state: (a) readiness_and_scope_fingerprint.md §2 \"READINESS STATES\" table line 57 lists an `absent` row claiming \"`code_graph_status` returns `absent`\"; (b) ARCHITECTURE.md §136 \"Readiness contract ... States are `fresh`, `stale`, `empty`, `error`, `absent`\". Verified against code: `GraphFreshness` is only `fresh|stale|empty|error` (readiness-contract.ts:9; ensure-ready.ts assigns only those four — apply-orchestrator.ts:524 enumerates exactly those). `canonicalReadiness` is `ready|stale|missing` (canonicalReadinessFromFreshness: empty→missing, error→missing — never `absent`). `absent` appears ONLY as a `trustState`/`goldVerificationTrust` projection of `empty` (queryTrustStateFromFreshness: empty→absent, readiness-contract.ts:112; getGoldVerificationTrust returns 'absent' only when no verification record, status.ts:173). So `code_graph_status` never returns a top-level `readiness`/`freshness`/`canonicalReadiness` of `absent`; when no DB exists it emits freshness:empty / canonicalReadiness:missing / trustState:absent. This is an incomplete propagation of the same `absent`-vs-freshness cleanup the remediation landed in SKILL.md, leaving the skill's own docs internally inconsistent. Distinct from prior CG-011 (which covered only the §3 trustState verified/unverified/quarantined vocabulary, now correctly fixed to live/stale/absent/unavailable + goldVerificationTrust).",
+      "fix": "Propagate the SKILL.md framing to the two sibling docs: in readiness §2 either rename the table to make clear it mixes the freshness enum with derived projections, or annotate the `absent` row that it surfaces via `trustState: absent` / `canonicalReadiness: missing` (the top-level freshness for a missing DB is `empty`), not a literal `readiness: \"absent\"`. In ARCHITECTURE.md §136 change \"States are `fresh`, `stale`, `empty`, `error`, `absent`\" to the four-value freshness enum, optionally noting `absent` as the empty-graph trust projection.",
+      "confidence": 0.72,
+      "relatedPriorId": "CG-011"
+    }
+  ],
+  "fixesVerifiedSound": [
+    "DR-001-02/006-02 part (1): SPECKIT_CODE_GRAPH_DB_DIR override skip + migrationTarget=resolvedDbDir() (launcher 856-857) — verified correct in current code",
+    "DR-002-02: legacyLeasePaths probes both former .spec-kit PID lease and owner lease; formerLocationOwnerLive/pidLiveAt fail safe (live/EPERM->true, ESRCH/missing/corrupt->false) — sound source-side liveness",
+    "DR-003-01: leaseHeldFromFile uid check rejects a legacy-location lease whose file is not owned by current uid (launcher 454-468) — sound, plus bridge socket derives from resolvedDbDir not the legacy lease (defense-in-depth)",
+    "DR-002-01: acquireOwnerLeaseFile reclaim-branch re-read CAS + fresh-path O_EXCL writeOwnerLeaseFileExclusive — both branches single-winner; refreshOwnerLeaseFile re-read post-write",
+    "DR-001-03: releaseOwnerLease wrapped in owner-lease mutation lock + re-read holder identity before unlink (closes read-then-unlink split-brain)",
+    "DR-002-03: mutation-lock stale cleanup re-reads pid immediately before unlink, removes only if still the classified dead pid; attempt<2 cap prevents spin",
+    "DR-008-02: bootstrap-lock stale reclaim uses atomic renameSync(lockDir, staleClaim) before rmSync; losing racer's rename ENOENTs into retry",
+    "DR-008-03: clearOwnerLeaseFile / clearOwnerLeaseFileIfOwner double re-read before unlink; residual sub-syscall window bounded by launcher lifecycle (no concurrent launcher+server lease writes)",
+    "DR-003-02: canonical-db-dir.ts realpath-resolves deepest existing ancestor + isWithinWorkspace BEFORE mkdir; post-mkdir check kept as defense-in-depth; empirically rejects leaf + mid-path symlink escapes; new regression test FAILS against baseline (genuine)",
+    "DR-008-01: socket-server.ts post-mkdir owner+mode check (statSync follows symlinks, & 0o022 flags group/world-write, getuid-guarded); refuses pre-existing foreign/world-writable dir; new test FAILS against baseline (genuine)",
+    "DR-008-04: launcher-idle-timeout re-arms (resets stopped, re-adds stdin listener, restarts timer) when onIdle throws; new test asserts second fire, FAILS against baseline (genuine)",
+    "DR-001-01: status.ts readiness-snapshot + stored-scope reads wrapped -> readiness_unavailable degraded envelope with rg fallback; targets the genuinely-throwing getStoredCodeGraphScope; distinct blockReasons per failure class; new test FAILS against baseline (genuine)",
+    "DR-010-01: structural-indexer.ts parseCandidates checks options.signal?.aborted at top of per-file loop; reachable because parseFile awaits getParser (yields); no partial-DB leak (persist runs only after race resolves); only signal-bearing caller is indexWithTimeout",
+    "BUG-03/CG-020 prune deferral: code-graph-db.ts replaceEdges gates inline prune behind !deferDanglingTargetPrune; scan.ts full-scan passes deferDanglingTargetPrune:true and sweeps once post-loop, preserving forward-referenced cross-file IMPORTS edges — wired end-to-end",
+    "BUG-01: query/context shouldBlockReadPath widened to freshness!=='fresh' — fixes deleted-files-only stale (action:none) and failed inline selective_reindex slip-throughs",
+    "BUG-07: query handler status 'error'->'blocked' crash fix — test forces ensureCodeGraphReady rejection and asserts blocked envelope",
+    "CG-003: code-graph-db removeFile transaction wrapping — all 3 callers run outside open transactions, no nested-transaction throw",
+    "CG-005: tree-sitter-parser tree.delete() in try/finally; quarantine check correctly moved out of SKIP_LIST_ENABLED guard (improvement, not regression)",
+    "Doc fixes 016f47b4: database_path_policy migration direction reversed, naming_conventions, launcher_lease PID path, README/SKILL/INSTALL_GUIDE/ownership_boundary tool counts (verified exactly 8 tools in tool-schemas.ts + dispatch switch), readiness §3 trustState/goldVerificationTrust two-axis separation (resolves CG-011)"
+  ],
+  "deferredReverified": [
+    "CG-002 (numeric ranges unenforced in BUG-04, PARTIAL) — out of the changed primary-file scope; no change touched it; still stands",
+    "CG-006 (failed/non-promoted scan reports freshness:fresh) — confirmed standing; handlers/scan.ts:764-781 computes freshness on lastPersistedAt not scanPromotable",
+    "CG-007 (read-path mutates via setLastGitHead) — confirmed standing; getGraphReadinessSnapshot->detectState calls setLastGitHead on HEAD advance, contradicting the no-mutation doc",
+    "CG-008 (candidate-manifest can't detect on-disk-only new files) — unchanged, manifest still DB-derived; deferred",
+    "CG-009 (destructive recover/rollback bypass confirm gate) — confirmed; apply-orchestrator confirm gate keys only on hard-stale; file byte-identical to baseline",
+    "CG-010 (failed-rollback over-broad status) — confirmed; recovery-procedures.ts correctly distinguishes ok/no-op from failed; the over-broad check lives in unchanged apply-orchestrator",
+    "CG-013 (DB-dir cwd-divergence) — confirmed standing AND now accurately documented; readiness-marker base aligned to skill-local DATABASE_DIR default but still module-load process.cwd()",
+    "CG-020 (per-file unconditional orphan-DELETE) — confirmed CLOSED by BUG-03 (verified wiring end-to-end)",
+    "CG-037 (dry-run rollback target) — confirmed standing; apply-orchestrator dry-run branch operation-agnostic, file unchanged"
+  ],
+  "refuted": [
+    {
+      "id": "OR-3-02",
+      "severity": "P2",
+      "title": "No regression test exercises the new reclaim-path mutation lock under contention; the existing 'concurrent' test cannot interleave and would pass without the lock",
+      "statuses": [
+        "FALSE_POSITIVE",
+        "DOWNGRADE"
+      ]
+    },
+    {
+      "id": "OR-6-01",
+      "severity": "P2",
+      "title": "DR-010-01/BUG-06 abort path has NO regression test despite commit claiming '+ regression tests'",
+      "statuses": [
+        "FALSE_POSITIVE",
+        "CONFIRMED_REAL"
+      ]
+    },
+    {
+      "id": "OR-7-01",
+      "severity": "P2",
+      "title": "verificationGate==='fail' on a FRESH graph blocks reads with a misleading 'full_scan_required' hint and no fallbackDecision (query.ts + context.ts), unlike detect-changes.ts",
+      "statuses": [
+        "FALSE_POSITIVE",
+        "DOWNGRADE"
+      ]
+    },
+    {
+      "id": "OR-9-01",
+      "severity": "P2",
+      "title": "Owner-lease state machine is duplicated across launcher.cjs and owner-lease.ts with DIVERGENT concurrency primitives",
+      "statuses": [
+        "PRE_EXISTING",
+        "PRE_EXISTING"
+      ]
+    },
+    {
+      "id": "OR-9-02",
+      "severity": "P2",
+      "title": "WorkingSetTracker has zero production consumers; the session's serialize/deserialize symbol-persistence + version-envelope change adds complexity to dead-in-production code",
+      "statuses": [
+        "PRE_EXISTING",
+        "PRE_EXISTING"
+      ]
+    },
+    {
+      "id": "OR-9-03",
+      "severity": "P2",
+      "title": "deserialize() type guard accepts symbols:null (typeof null === 'object'), then Object.entries(null) throws",
+      "statuses": [
+        "DOWNGRADE",
+        "DOWNGRADE"
+      ]
+    },
+    {
+      "id": "OR-9-04",
+      "severity": "P2",
+      "title": "pruneDanglingEdges() carefully returns the removed-edge count but the only caller discards it",
+      "statuses": [
+        "FALSE_POSITIVE",
+        "FALSE_POSITIVE"
+      ]
+    },
+    {
+      "id": "OR-10-01",
+      "severity": "P2",
+      "title": "Legacy-location lease is detected for split-brain prevention, but the IPC bridge cannot connect to a live legacy-location daemon (socket asymmetry across the .spec-kit -> skill-local relocation)",
+      "statuses": [
+        "FALSE_POSITIVE",
+        "DOWNGRADE"
+      ]
+    }
+  ]
+}
