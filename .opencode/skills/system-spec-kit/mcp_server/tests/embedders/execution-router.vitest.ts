@@ -165,6 +165,21 @@ describe('execution router', () => {
     expect(mockState.getAdapter).not.toHaveBeenCalled();
   });
 
+  it('re-creates the adapter when the requested dimension changes (DR-013)', async () => {
+    const router = await loadRouter();
+    mockState.profile = { provider: 'hf-local', model: 'model-a', dim: 2 };
+
+    const a2 = router.getEmbedderAdapter('hf-local', 'model-a', 2);
+    expect(a2.dim).toBe(2);
+
+    // Same provider:model but a different dimensionsOverride must NOT reuse the
+    // cached dim-2 adapter (the cache key is provider:model).
+    const a4 = router.getEmbedderAdapter('hf-local', 'model-a', 4);
+    expect(a4.dim).toBe(4);
+    // Without the fix, a4 would be the cached dim-2 adapter (a4 === a2, dim 2).
+    expect(a4).not.toBe(a2);
+  });
+
   it('chunks factory providers with embedBatch and preserves output order', async () => {
     const router = await loadRouter();
     process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH = '2';

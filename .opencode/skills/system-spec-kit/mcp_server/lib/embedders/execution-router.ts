@@ -267,7 +267,11 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
   warnIgnoredExecutionPolicyEnv();
 
   let adapter = directAdapters.get(key);
-  if (!adapter) {
+  // A dimensionsOverride must never silently reuse a wrong-dimension adapter.
+  // The cache key stays provider:model (so teardownEmbedderAfterSwap is
+  // unaffected); re-create the adapter when the cached one resolved a
+  // different dimension.
+  if (!adapter || adapter.dim !== dimensions) {
     adapter = createDirectProviderAdapter(normalizedProvider, model, dimensions);
     directAdapters.set(key, adapter);
   }

@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/031-embedding-stack-hardening/008-deep-review-correctness-edges",
+  "spec_folder": "system-spec-kit/031-embedding-stack-hardening/008-deep-review-correctness-edges",
+  "parent_id": "system-spec-kit/031-embedding-stack-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep review correctness edges",
+      "retention toctou adapter-cache provider-precedence fixes",
+      "C2 isolated correctness fixes re-validation",
+      "deep review correctness edges plan",
+      "deep review correctness edges tasks",
+      "deep review correctness edges summary"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "correctness",
+      "edges",
+      "retention",
+      "toctou",
+      "adapter-cache",
+      "provider-precedence",
+      "fixes",
+      "isolated",
+      "re-validation",
+      "plan"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/governance/memory-retention-sweep.ts",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "shared/embeddings/auto-select.ts",
+      "mcp_server/tests/memory-retention-sweep.vitest.ts",
+      "mcp_server/tests/embedders/execution-router.vitest.ts",
+      "mcp_server/tests/embedder-auto-selection.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-retention-sweep.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/governance/memory-retention-sweep.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "auto-select.ts",
+        "kind": "code",
+        "path": "shared/embeddings/auto-select.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-retention-sweep.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-retention-sweep.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/execution-router.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-auto-selection.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-auto-selection.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Land",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Re",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Point",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Unchanged",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 20-iteration deep review flagged seven correctness findings as \"isolated.\" The handover mandates re-validating each against HEAD before fixing. Re-validation showed the first-pass analysis was uneven: one finding was already fixed, one was mis-located (`acquireLock` does not exist; the real function is `acquireFilesystemLock`) and mis-framed (its \"fail-open\" is intentional graceful degradation), and the rest needed concrete design decisions rather than rote patches.",
+    "created_at": "2026-05-29T21:04:05.407Z",
+    "last_save_at": "2026-05-29T21:04:05.407Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

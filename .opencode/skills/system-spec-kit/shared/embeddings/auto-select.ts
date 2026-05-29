@@ -486,6 +486,18 @@ async function selectWithoutPersistence(options: AutoSelectOptions): Promise<Aut
     ['voyage', probeVoyage],
   ];
 
+  // Honor an explicit EMBEDDINGS_PROVIDER ahead of the local-first cascade: an
+  // operator who pins a provider should have it tried first, then fall back to
+  // the cascade if it is unreachable. Mirrors resolveProvider() precedence.
+  const explicitProvider = context.env.EMBEDDINGS_PROVIDER?.trim().toLowerCase();
+  if (explicitProvider && explicitProvider !== 'auto') {
+    const idx = sequence.findIndex(([tier]) => tier === explicitProvider);
+    if (idx > 0) {
+      const [preferred] = sequence.splice(idx, 1);
+      sequence.unshift(preferred);
+    }
+  }
+
   for (const [tier, probe] of sequence) {
     const outcome = await probe(context);
     probes.push({

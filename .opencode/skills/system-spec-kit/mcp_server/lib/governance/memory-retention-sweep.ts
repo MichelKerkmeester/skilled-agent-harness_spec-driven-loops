@@ -68,6 +68,24 @@ function selectExpiredRows(database: Database.Database): RetentionExpiredRow[] {
   `).all() as RetentionExpiredRow[];
 }
 
+// Re-validate inside the delete transaction: a concurrent writer can raise or
+// clear delete_after between candidate selection and deletion, so a row that is
+// no longer expired must not be swept. Mirrors the selectExpiredRows predicate.
+function isStillExpired(database: Database.Database, id: number): boolean {
+  const row = database.prepare(`
+    SELECT 1 AS expired
+    FROM memory_index
+    WHERE id = ?
+      AND delete_after IS NOT NULL
+      AND datetime(delete_after) < datetime('now')
+    LIMIT 1
+  `).get(id) as { expired?: number } | undefined;
+  return row?.expired === 1;
+}
+
+/** Test-only surface for the retention TOCTOU guard. */
+export const __retentionSweepTestables = { isStillExpired };
+
 function countRows(database: Database.Database): number {
   const row = database.prepare('SELECT COUNT(*) AS count FROM memory_index').get() as { count: number };
   return row.count;
@@ -185,6 +203,10 @@ export function runMemoryRetentionSweep(
 
   const sweepTx = database.transaction(() => {
     for (const candidate of candidates) {
+      // TOCTOU guard: skip rows un-expired by another writer since selection.
+      if (!isStillExpired(database, candidate.id)) {
+        continue;
+      }
       const deleted = vectorIndex.deleteMemory(candidate.id, database);
       if (!deleted) {
         continue;

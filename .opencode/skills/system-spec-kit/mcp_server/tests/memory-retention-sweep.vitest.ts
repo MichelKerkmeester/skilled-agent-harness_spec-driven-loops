@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import Database from 'better-sqlite3';
 
-import { runMemoryRetentionSweep } from '../lib/governance/memory-retention-sweep';
+import { runMemoryRetentionSweep, __retentionSweepTestables } from '../lib/governance/memory-retention-sweep';
 import { createMemoryIndexTestDatabase } from './fixtures/memory-index-db';
 
 function isoOffset(ms: number): string {
@@ -89,6 +89,19 @@ describe('memory retention sweep', () => {
       deletedIds: [1],
     });
     expect(memoryIds(db)).toEqual([2, 3]);
+  });
+
+  it('isStillExpired re-validates delete_after for the in-transaction TOCTOU guard', () => {
+    const db = createMemoryIndexTestDatabase({ includeContentColumns: true });
+    insertMemory(db, 1, isoOffset(-3_600_000), 'expired');
+    insertMemory(db, 2, isoOffset(3_600_000), 'future');
+    insertMemory(db, 3, null, 'never');
+
+    const { isStillExpired } = __retentionSweepTestables;
+    expect(isStillExpired(db, 1)).toBe(true); // past delete_after -> still expired
+    expect(isStillExpired(db, 2)).toBe(false); // future delete_after -> not expired
+    expect(isStillExpired(db, 3)).toBe(false); // null delete_after -> never expires
+    expect(isStillExpired(db, 999)).toBe(false); // missing row -> not expired
   });
 
   it('dry-run returns expired candidates without mutating rows or audit tables', () => {

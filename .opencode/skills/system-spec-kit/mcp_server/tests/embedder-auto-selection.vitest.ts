@@ -69,6 +69,25 @@ describe('embedder bootstrap auto-selection', () => {
     expect(fetchImpl).toHaveBeenCalledTimes(2);
   });
 
+  it('honors an explicit EMBEDDINGS_PROVIDER ahead of the local-first cascade (DR-001/015)', async () => {
+    // With EMBEDDINGS_PROVIDER=voyage the cascade is reordered so Voyage is
+    // probed FIRST; ollama is never contacted (would otherwise be probe #1).
+    const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
+      expect(String(input)).toBe('https://api.voyageai.com/v1/embeddings');
+      return jsonResponse({ data: [{ embedding: embedding(1024) }] });
+    });
+
+    const selected = await autoSelectActiveEmbedder({
+      env: { EMBEDDINGS_PROVIDER: 'voyage', VOYAGE_API_KEY: VALID_VOYAGE_KEY },
+      fetchImpl: fetchImpl as typeof fetch,
+      probeHfLocalServer: async () => ({ available: false, reason: 'test: hf-local server unreachable' }),
+    });
+
+    expect(selected).toMatchObject({ provider: 'voyage', dim: 1024 });
+    // Only Voyage was probed — the explicit provider jumped the cascade.
+    expect(fetchImpl).toHaveBeenCalledTimes(1);
+  });
+
   it('selects OpenAI when local probes are unavailable and OpenAI is reachable', async () => {
     const fetchImpl = vi.fn(async (input: RequestInfo | URL) => {
       if (String(input) === 'http://127.0.0.1:11434/api/tags') {

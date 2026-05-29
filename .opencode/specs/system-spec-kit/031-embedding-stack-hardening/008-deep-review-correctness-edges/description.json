@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/008-deep-review-correctness-edges",
+  "description": "Feature Specification: Deep-review correctness edges (re-validated)",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-review",
+    "correctness",
+    "edges",
+    "re-validated"
+  ],
+  "lastUpdated": "2026-05-29T21:04:05.142Z",
+  "specId": "008",
+  "folderSlug": "deep-review-correctness-edges",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "031-embedding-stack-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
