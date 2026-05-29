@@ -35,7 +35,7 @@ evaluation_philosophy:
 # USER INPUTS
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
-  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json."
+  profile: "[PROFILE] - Path or ID of the benchmark profile. Default: .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json."
   scoring_method: "[SCORING_METHOD] - 'pattern' for the default heading/pattern matcher, '5dim' for the ported 5-dimension scorer. Default: pattern."
   grader: "[GRADER] - 'noop' deterministic no-dispatch grader, 'mock', or 'llm' (model dispatch). Default: noop."
   spec_folder: "[SPEC_FOLDER] - Spec folder path for benchmark runtime. REQUIRED."
@@ -48,7 +48,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    profile_empty: ".opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json"
+    profile_empty: ".opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json"
     scoring_method_empty: "pattern"
     grader_empty: "noop"
     max_iterations_empty: "5"
@@ -82,8 +82,8 @@ skill_reference:
   skill: deep-agent-improvement
   skill_md: .opencode/skills/deep-agent-improvement/SKILL.md
   templates:
-    config: .opencode/skills/deep-agent-improvement/assets/improvement_config.json
-    default_profile: .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json
+    config: .opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json
+    default_profile: .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json
   scripts:
     loop_host: .opencode/skills/deep-agent-improvement/scripts/loop-host.cjs
     benchmark_materializer: .opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs
@@ -123,7 +123,7 @@ workflow:
         on_fail: "Halt with STATUS=FAIL and instruct the operator to archive the prior improvement packet before re-running."
       step_resolve_profile:
         description: "Resolve the benchmark profile path or ID, defaulting to the bundled default profile"
-        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
+        action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
       step_create_directories:
         description: "Create benchmark runtime directories including the outputs dir"
         command: "mkdir -p {spec_folder}/improvement/benchmark-outputs"

@@ -24,7 +24,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 **Rollback script:** `scripts/rollback-candidate.cjs`
 
-**Policy reference:** `references/promotion-gates/promotion_rules.md`
+**Policy reference:** `references/shared/promotion_rules.md`
 
 ---
 
@@ -68,7 +68,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 
 **Failure mode:** `benchmark_gate_failed` - candidate fails output-based validation.
 
-**Note:** Benchmark integration requires target-specific fixture set under `assets/benchmark-fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
+**Note:** Benchmark integration requires target-specific fixture set under `assets/model-benchmark/benchmark-fixtures/`. Not all targets have fixtures; this gate is conditional on fixture availability.
 
 ---
 
@@ -93,7 +93,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 **Requirement:** Candidate path matches `target_manifest.jsonc` target definition.
 
 **Validation:**
-- Load `assets/target_manifest.jsonc`
+- Load `assets/agent-improvement/target_manifest.jsonc`
 - Check candidate path matches `targets[].canonicalPath`
 - Verify target is marked `mutable: true`
 - Check candidate is under packet-local `candidates/` directory (not canonical)
@@ -276,6 +276,6 @@ node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
 | `scripts/score-candidate.cjs` | Prompt scoring gate |
 | `scripts/run-benchmark.cjs` | Benchmark execution gate |
 | `scripts/benchmark-stability.cjs` | Repeatability analysis |
-| `assets/target_manifest.jsonc` | Target boundary definition |
-| `references/promotion-gates/promotion_rules.md` | Promotion policy documentation |
+| `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
+| `references/shared/promotion_rules.md` | Promotion policy documentation |
 | `feature_catalog/01--evaluation-loop/04-promotion-gates.md` | Feature catalog entry |

@@ -34,11 +34,11 @@ The copied runtime templates use the `improvement_*` asset names, but the packet
 
 ```text
 node .opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs \
-  --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json \
+  --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 
 node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
-  --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json \
+  --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
@@ -48,7 +48,7 @@ node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
 
 ```text
 node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
-  --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json \
+  --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs \
   --scorer 5dim --grader noop
 ```
@@ -58,7 +58,7 @@ node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
 When running with an integration report, add the `--integration-report` flag:
 
 ```text
-node scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
+node scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
 ```
 
 The integration report adds `integrationScore` and `integrationDetails` to the benchmark output:
@@ -106,6 +106,6 @@ Benchmark success does not mean:
 
 ## 6. RELATED RESOURCES
 
-- `../scoring/evaluator_contract.md`
-- `loop_protocol.md`
-- `../promotion-gates/promotion_rules.md`
+- `evaluator_contract.md`
+- `../shared/loop_protocol.md`
+- `../shared/promotion_rules.md`

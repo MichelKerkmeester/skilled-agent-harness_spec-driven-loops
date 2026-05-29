@@ -28,7 +28,7 @@ The discovery map includes the consolidated advisor script at `.opencode/skills/
 | File | Layer | Role |
 |---|---|---|
 | `.opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs` | Scanner | Walks the repo and collects canonical, mirror, command, YAML, skill, global-doc, and skill-advisor surfaces. |
-| `.opencode/skills/deep-agent-improvement/references/integration/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
+| `.opencode/skills/deep-agent-improvement/references/agent-improvement/integration_scanning.md` | Reference | Documents the intended scan taxonomy and output summary fields. |
 | `.opencode/commands/deep/start-agent-improvement-loop.md` | Command | Uses the integration report as part of loop setup and review. |
 | `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Scoring consumer | Converts the scan results into the integration dimension score. |
 
@@ -36,8 +36,8 @@ The discovery map includes the consolidated advisor script at `.opencode/skills/
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
-| `.opencode/skills/deep-agent-improvement/references/workflow/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
+| `.opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md` | Contract reference | Locks the scanner into the integration-consistency dimension and its weighted contribution. |
+| `.opencode/skills/deep-agent-improvement/references/agent-improvement/target_onboarding.md` | Operator reference | Requires the integration scan before new targets enter the loop. |
 
 ---
 

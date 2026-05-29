@@ -365,7 +365,7 @@ After generation, the candidate is scored via `scripts/score-candidate.cjs`:
 node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
-  --manifest=assets/target_manifest.jsonc
+  --manifest=assets/agent-improvement/target_manifest.jsonc
 ```
 
 **Scoring output includes:**
@@ -384,6 +384,6 @@ node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs \
 | `scripts/mutation-coverage.cjs` | Mutation coverage tracking and dedup |
 | `scripts/candidate-lineage.cjs` | Candidate lineage graph management |
 | `scripts/score-candidate.cjs` | Candidate scoring |
-| `assets/improvement_charter.md` | Charter template (read during generation) |
-| `assets/target_manifest.jsonc` | Target boundary definition |
+| `assets/agent-improvement/improvement_charter.md` | Charter template (read during generation) |
+| `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
 | `feature_catalog/01--evaluation-loop/02-candidate-generation.md` | Feature catalog entry |

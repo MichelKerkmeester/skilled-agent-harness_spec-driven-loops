@@ -27,18 +27,18 @@ The helper that enforces those rules is stricter than the current dynamic scorer
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md` | Policy reference | Defines the keep, reject, tie-break, and promotion-prerequisite rules. |
-| `.opencode/skills/deep-agent-improvement/references/workflow/loop_protocol.md` | Workflow reference | Places promotion after score, benchmark, and reduction stages. |
-| `.opencode/skills/deep-agent-improvement/assets/improvement_charter.md` | Runtime policy | Freezes legal-stop gates and approval rules inside the copied runtime control bundle. |
-| `.opencode/skills/deep-agent-improvement/assets/improvement_config.json` | Runtime config | Supplies `proposalOnly`, `promotionEnabled`, and `scoring.thresholdDelta` checks consumed by the helper. |
+| `.opencode/skills/deep-agent-improvement/references/shared/promotion_rules.md` | Policy reference | Defines the keep, reject, tie-break, and promotion-prerequisite rules. |
+| `.opencode/skills/deep-agent-improvement/references/shared/loop_protocol.md` | Workflow reference | Places promotion after score, benchmark, and reduction stages. |
+| `.opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_charter.md` | Runtime policy | Freezes legal-stop gates and approval rules inside the copied runtime control bundle. |
+| `.opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json` | Runtime config | Supplies `proposalOnly`, `promotionEnabled`, and `scoring.thresholdDelta` checks consumed by the helper. |
 | `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Promotion helper | Validates score, benchmark, repeatability, runtime config, manifest target, and approval before copying a candidate into the canonical target. |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md` | Contract reference | Documents the current scorer output shape and recommendation labels. |
-| `.opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md` | Safety reference | Defines the conditions that should block expansion or promotion. |
+| `.opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md` | Contract reference | Documents the current scorer output shape and recommendation labels. |
+| `.opencode/skills/deep-agent-improvement/references/shared/promotion_rules.md` | Safety reference | Defines the conditions that should block expansion or promotion. |
 
 ---
 

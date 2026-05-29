@@ -146,7 +146,7 @@ These contracts match the deep-research and deep-review runtime-truth model so t
 For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 
 - **Mixed-executor dispatch.** Runs breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5 in an 8+2 split, which balances exploration cost against synthesis quality.
-- **Adjudication-iter filter.** Adds a false-positive filter pass before synthesis, typically at the iteration-7 mark, so only confirmed findings reach the synthesis iterations. See `references/scoring/mixed_executor_methodology.md` for the split mechanics and adjudication details.
+- **Adjudication-iter filter.** Adds a false-positive filter pass before synthesis, typically at the iteration-7 mark, so only confirmed findings reach the synthesis iterations. See `references/model-benchmark/mixed_executor_methodology.md` for the split mechanics and adjudication details.
 
 ---
 
@@ -210,13 +210,13 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 
 | Path | Purpose |
 |---|---|
-| `assets/improvement_config.json` | Runtime config: weights, stop rules, feature flags |
-| `assets/improvement_config_reference.md` | Field-level config documentation |
-| `assets/improvement_charter.md` | Fixed policy charter template |
-| `assets/improvement_strategy.md` | Mutable runtime strategy template |
-| `assets/target_manifest.jsonc` | Target classification and mutability |
-| `assets/benchmark-fixtures/*.json` | Baseline, edge, and improved benchmark fixtures |
-| `assets/benchmark-profiles/default.json` | Default benchmark profile |
+| `assets/agent-improvement/improvement_config.json` | Runtime config: weights, stop rules, feature flags |
+| `assets/agent-improvement/improvement_config_reference.md` | Field-level config documentation |
+| `assets/agent-improvement/improvement_charter.md` | Fixed policy charter template |
+| `assets/agent-improvement/improvement_strategy.md` | Mutable runtime strategy template |
+| `assets/agent-improvement/target_manifest.jsonc` | Target classification and mutability |
+| `assets/model-benchmark/benchmark-fixtures/*.json` | Baseline, edge, and improved benchmark fixtures |
+| `assets/model-benchmark/benchmark-profiles/default.json` | Default benchmark profile |
 | `feature_catalog/feature_catalog.md` | Current-state feature inventory with source anchors |
 
 ---
@@ -232,7 +232,7 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 | `thresholdDelta` | `2` | Minimum score improvement for `candidate-better` |
 | `minimumAggregateScore` | `85` | Benchmark pass threshold |
 
-Field-level documentation lives in `assets/improvement_config_reference.md`. Target classification and mutability live in `assets/target_manifest.jsonc`.
+Field-level documentation lives in `assets/agent-improvement/improvement_config_reference.md`. Target classification and mutability live in `assets/agent-improvement/target_manifest.jsonc`.
 
 ### Runtime Parity
 
@@ -322,9 +322,9 @@ A: When all five dimensions repeat their scores across the plateau window, the r
 |---|---|
 | [`SKILL.md`](./SKILL.md) | Router and runtime instructions |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md) | Current-state feature inventory across the three categories |
-| [`references/workflow/quick_reference.md`](./references/workflow/quick_reference.md) | Command and dimension reminder |
-| [`references/workflow/loop_protocol.md`](./references/workflow/loop_protocol.md) | End-to-end operator workflow |
-| [`references/scoring/evaluator_contract.md`](./references/scoring/evaluator_contract.md) | Five-dimension scoring and benchmark contract |
+| [`references/shared/quick_reference.md`](./references/shared/quick_reference.md) | Command and dimension reminder |
+| [`references/shared/loop_protocol.md`](./references/shared/loop_protocol.md) | End-to-end operator workflow |
+| [`references/model-benchmark/evaluator_contract.md`](./references/model-benchmark/evaluator_contract.md) | Five-dimension scoring and benchmark contract |
 
 ### Cross-System Connections
 

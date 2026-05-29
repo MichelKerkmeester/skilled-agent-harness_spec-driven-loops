@@ -74,6 +74,6 @@ Forbidden outcomes:
 
 ## 5. RELATED RESOURCES
 
-- `../promotion-gates/rollback_runbook.md`
-- `../promotion-gates/promotion_rules.md`
+- `../shared/rollback_runbook.md`
+- `../shared/promotion_rules.md`
 - `../scripts/check-mirror-drift.cjs`

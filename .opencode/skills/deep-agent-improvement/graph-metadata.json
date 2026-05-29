@@ -86,13 +86,13 @@
     "key_files": [
       ".opencode/skills/deep-agent-improvement/SKILL.md",
       ".opencode/skills/deep-agent-improvement/README.md",
-      ".opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md",
-      ".opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md",
-      ".opencode/skills/deep-agent-improvement/assets/improvement_strategy.md",
+      ".opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md",
+      ".opencode/skills/deep-agent-improvement/references/shared/promotion_rules.md",
+      ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_strategy.md",
       ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
-      ".opencode/skills/deep-agent-improvement/assets/improvement_config.json",
+      ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json",
       ".claude/agents/deep-agent-improvement.md",
       ".opencode/agents/deep-agent-improvement.md"
     ],
@@ -112,19 +112,19 @@
       {
         "name": "evaluator_contract",
         "kind": "reference",
-        "path": ".opencode/skills/deep-agent-improvement/references/scoring/evaluator_contract.md",
+        "path": ".opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md",
         "source": "derived"
       },
       {
         "name": "promotion_rules",
         "kind": "reference",
-        "path": ".opencode/skills/deep-agent-improvement/references/promotion-gates/promotion_rules.md",
+        "path": ".opencode/skills/deep-agent-improvement/references/shared/promotion_rules.md",
         "source": "derived"
       },
       {
         "name": "improvement_strategy",
         "kind": "reference",
-        "path": ".opencode/skills/deep-agent-improvement/assets/improvement_strategy.md",
+        "path": ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_strategy.md",
         "source": "derived"
       },
       {
@@ -148,7 +148,7 @@
       {
         "name": "improvement_config",
         "kind": "config",
-        "path": ".opencode/skills/deep-agent-improvement/assets/improvement_config.json",
+        "path": ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json",
         "source": "derived"
       },
       {
@@ -168,12 +168,12 @@
     "source_docs": [
       "SKILL.md",
       "README.md",
-      "references/scoring/evaluator_contract.md",
-      "references/promotion-gates/promotion_rules.md",
-      "references/workflow/quick_reference.md",
-      "references/scoring/score_dimensions.md",
-      "references/promotion-gates/promotion_gate_contract.md",
-      "references/workflow/candidate_proposal_format.md"
+      "references/model-benchmark/evaluator_contract.md",
+      "references/shared/promotion_rules.md",
+      "references/shared/quick_reference.md",
+      "references/agent-improvement/score_dimensions.md",
+      "references/shared/promotion_gate_contract.md",
+      "references/agent-improvement/candidate_proposal_format.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-05-28T20:58:04Z"

@@ -41,7 +41,7 @@ Only add a target when all of the following are true:
 
 ## 3. REQUIRED STEPS
 
-1. (Optional) Add the manifest entry in `assets/target_manifest.jsonc` if the target needs explicit classification or guardrail protections
+1. (Optional) Add the manifest entry in `assets/agent-improvement/target_manifest.jsonc` if the target needs explicit classification or guardrail protections
 2. Run `generate-profile.cjs` to derive a scoring profile from the agent's own structure and rules:
 
    ```text
@@ -73,6 +73,6 @@ Dynamic mode is the only scoring path. There are no static profiles to maintain.
 
 ## 6. RELATED RESOURCES
 
-- `../scoring/evaluator_contract.md`
-- `../assets/target_manifest.jsonc`
+- `../model-benchmark/evaluator_contract.md`
+- `../../assets/agent-improvement/target_manifest.jsonc`
 

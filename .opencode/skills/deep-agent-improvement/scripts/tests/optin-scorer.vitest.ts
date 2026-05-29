@@ -8,7 +8,7 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improvement/scripts');
-const PROFILE = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json');
+const PROFILE = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json');
 
 let work: string;
 

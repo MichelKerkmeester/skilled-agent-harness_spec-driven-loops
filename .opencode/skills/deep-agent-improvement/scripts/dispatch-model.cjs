@@ -35,7 +35,7 @@ function loadConfig() {
   const explicit = process.env.DEEP_AGENT_IMPROVEMENT_CONFIG;
   const candidates = [
     explicit,
-    path.join(SCRIPTS_ROOT, '..', 'assets', 'improvement_config.json'),
+    path.join(SCRIPTS_ROOT, '..', 'assets', 'agent-improvement', 'improvement_config.json'),
   ].filter(Boolean);
   for (const file of candidates) {
     try {

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-references-assets-lane-reorg",
+  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-references-assets-lane-reorg",
+  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "references-assets-lane-reorg",
+      "deep-agent-improvement lane reorg",
+      "references assets lane split"
+    ],
+    "key_topics": [
+      "references",
+      "assets",
+      "lane",
+      "reorg",
+      "agent-improvement",
+      "model-benchmark",
+      "shared"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md"],
+    "entities": [],
+    "causal_summary": "Split function-organized references and assets into agent-improvement, model-benchmark, and shared lane subdirs and repoint SKILL path literals.",
+    "created_at": "2026-05-29T07:56:24Z",
+    "last_save_at": "2026-05-29T08:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md"]
+  }
+}

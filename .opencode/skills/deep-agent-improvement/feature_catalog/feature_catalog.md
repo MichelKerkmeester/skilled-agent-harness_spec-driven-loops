@@ -234,7 +234,7 @@ Produces the score and benchmark evidence that later gates consume.
 
 #### Current Reality
 
-`score-candidate.cjs` always runs in `dynamic-5d` mode, regenerates the profile every run, allows optional weight overrides, and emits structured dimension details plus `candidate-acceptable` or `needs-improvement`. `run-benchmark.cjs` is also deterministic, but it still expects a profile JSON and fixture directory under `assets/target-profiles`, so benchmark gating only becomes runnable when that profile-specific artifact set exists.
+`score-candidate.cjs` always runs in `dynamic-5d` mode, regenerates the profile every run, allows optional weight overrides, and emits structured dimension details plus `candidate-acceptable` or `needs-improvement`. `run-benchmark.cjs` is also deterministic, but it still expects a profile JSON and fixture directory under `assets/agent-improvement/target-profiles`, so benchmark gating only becomes runnable when that profile-specific artifact set exists.
 
 #### Source Files
 

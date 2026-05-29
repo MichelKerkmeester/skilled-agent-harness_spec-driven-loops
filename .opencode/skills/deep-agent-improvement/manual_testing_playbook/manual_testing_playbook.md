@@ -776,4 +776,4 @@ The feature catalog root is `.opencode/skills/deep-agent-improvement/feature_cat
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
 | Model-Benchmark Mode | No one-to-one catalog file; validate against the Mode 4 contract in `.opencode/skills/deep-agent-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
 
-Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, and `references/workflow/quick_reference.md`.
+Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

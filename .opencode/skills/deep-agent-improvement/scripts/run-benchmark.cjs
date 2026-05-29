@@ -314,7 +314,7 @@ async function main() {
   const profileArg = args.profile;
   const outputsDir = args['outputs-dir'];
   const outputPath = args.output || (outputsDir ? path.join(outputsDir, 'report.json') : null);
-  const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/benchmark-profiles';
+  const profilesDir = args['profiles-dir'] || '.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles';
   const integrationReportPath = args['integration-report'] || null;
 
   // 121/005: opt-in scorer selection. 'pattern' (default) keeps the byte-identical

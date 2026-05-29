@@ -144,4 +144,4 @@ Operators can manually implement the mixed-executor pattern by:
 ## Related References
 
 - DAI SKILL.md: section "5. MULTI-ITER METHODOLOGY"
-- `references/workflow/loop_protocol.md`: end-to-end operator workflow that consumes this methodology
+- `references/shared/loop_protocol.md`: end-to-end operator workflow that consumes this methodology

@@ -94,7 +94,7 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
 
 ## 5. RELATED RESOURCES
 
-- `../scoring/evaluator_contract.md` for the 5-dimension scoring rubric
+- `../model-benchmark/evaluator_contract.md` for the 5-dimension scoring rubric
 - `../scripts/scan-integration.cjs` for the implementation
 - `../scripts/check-mirror-drift.cjs` for the original mirror-only scanner
 

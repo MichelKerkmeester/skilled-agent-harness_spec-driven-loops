@@ -30,7 +30,7 @@
     "manifest": "improvement/target_manifest.jsonc",
     "candidates": "improvement/candidates",
     "benchmarkRoot": "improvement/benchmark-runs",
-    "targetProfiles": ".opencode/skills/deep-agent-improvement/assets/target-profiles",
+    "targetProfiles": ".opencode/skills/deep-agent-improvement/assets/agent-improvement/target-profiles",
     "fixtureCatalog": ".opencode/skills/deep-agent-improvement/assets/fixtures"
   },
   "targets": {

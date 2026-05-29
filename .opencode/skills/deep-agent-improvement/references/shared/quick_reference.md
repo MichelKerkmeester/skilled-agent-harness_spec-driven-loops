@@ -50,13 +50,13 @@ node scripts/generate-profile.cjs --agent=.opencode/agents/debug.md
 node scripts/score-candidate.cjs --candidate=.opencode/agents/debug.md
 
 # Static benchmark fixtures
-node .opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
-node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
+node .opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
+node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
 
 # Model-benchmark mode (benchmarks a model/prompt, not an agent file; default path unchanged)
-node .opencode/skills/deep-agent-improvement/scripts/loop-host.cjs --mode=model-benchmark --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
+node .opencode/skills/deep-agent-improvement/scripts/loop-host.cjs --mode=model-benchmark --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs
 # Opt-in 5-dimension scorer (default is --scorer pattern); grader noop|mock|llm
-node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs --scorer 5dim --grader noop
+node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs --scorer 5dim --grader noop
 ```
 
 ### Dimension Weights (Dynamic Mode)
@@ -100,8 +100,8 @@ node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs --profile
 ## 5. RELATED RESOURCES
 
 - `loop_protocol.md`
-- `../scoring/evaluator_contract.md`
-- `../integration/integration_scanning.md`
-- `benchmark_operator_guide.md`
-- `../promotion-gates/promotion_rules.md`
+- `../model-benchmark/evaluator_contract.md`
+- `../agent-improvement/integration_scanning.md`
+- `../model-benchmark/benchmark_operator_guide.md`
+- `promotion_rules.md`
 - `../README.md`

@@ -71,7 +71,7 @@ After rollback, re-run `score-candidate.cjs --dynamic` against the restored targ
 ## 6. RELATED RESOURCES
 
 - `promotion_rules.md`
-- `../integration/mirror_drift_policy.md`
+- `../agent-improvement/mirror_drift_policy.md`
 - `../scripts/promote-candidate.cjs`
 - `../scripts/rollback-candidate.cjs`
 

@@ -88,7 +88,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 
 | Level | When to Load | Resources |
 | --- | --- | --- |
-| ALWAYS | Every skill invocation | `references/workflow/quick_reference.md` |
+| ALWAYS | Every skill invocation | `references/shared/quick_reference.md` |
 | CONDITIONAL | If intent signals match | Workflow, policy, or onboarding references |
 | ON_DEMAND | Only on explicit request or full setup | Markdown runtime templates in `assets/` |
 
@@ -106,7 +106,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parent
 RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
-DEFAULT_RESOURCE = "references/workflow/quick_reference.md"
+DEFAULT_RESOURCE = "references/shared/quick_reference.md"
 
 INTENT_SIGNALS = {
     "QUICK_REFERENCE": {"weight": 3, "keywords": ["quick reference", "short reminder", "command example"]},
@@ -120,18 +120,18 @@ INTENT_SIGNALS = {
 }
 
 RESOURCE_MAP = {
-    "QUICK_REFERENCE": ["references/workflow/quick_reference.md"],
-    "LOOP_EXECUTION": ["references/workflow/loop_protocol.md", "references/workflow/benchmark_operator_guide.md"],
-    "EVALUATION_POLICY": ["references/scoring/evaluator_contract.md", "references/promotion-gates/promotion_rules.md"],
-    "PROMOTION_OPERATIONS": ["references/promotion-gates/rollback_runbook.md", "references/integration/mirror_drift_policy.md", "references/promotion-gates/promotion_rules.md"],
-    "TARGET_ONBOARDING": ["references/workflow/target_onboarding.md"],
-    "INTEGRATION_SCAN": ["references/integration/integration_scanning.md", "references/scoring/evaluator_contract.md"],
-    "MODEL_BENCHMARK": ["references/workflow/benchmark_operator_guide.md", "references/scoring/evaluator_contract.md"],
-    "FULL_SETUP": ["assets/improvement_charter.md", "assets/improvement_strategy.md"],
+    "QUICK_REFERENCE": ["references/shared/quick_reference.md"],
+    "LOOP_EXECUTION": ["references/shared/loop_protocol.md", "references/model-benchmark/benchmark_operator_guide.md"],
+    "EVALUATION_POLICY": ["references/model-benchmark/evaluator_contract.md", "references/shared/promotion_rules.md"],
+    "PROMOTION_OPERATIONS": ["references/shared/rollback_runbook.md", "references/agent-improvement/mirror_drift_policy.md", "references/shared/promotion_rules.md"],
+    "TARGET_ONBOARDING": ["references/agent-improvement/target_onboarding.md"],
+    "INTEGRATION_SCAN": ["references/agent-improvement/integration_scanning.md", "references/model-benchmark/evaluator_contract.md"],
+    "MODEL_BENCHMARK": ["references/model-benchmark/benchmark_operator_guide.md", "references/model-benchmark/evaluator_contract.md"],
+    "FULL_SETUP": ["assets/agent-improvement/improvement_charter.md", "assets/agent-improvement/improvement_strategy.md"],
 }
 
 RUNTIME_ASSETS = {
-    "ALWAYS": ["assets/improvement_config.json", "assets/target_manifest.jsonc"],
+    "ALWAYS": ["assets/agent-improvement/improvement_config.json", "assets/agent-improvement/target_manifest.jsonc"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
@@ -293,7 +293,7 @@ For multi-iter evaluation sweeps, a mixed-executor split plus an adjudication pa
 - **Mixed-executor 8+2 split**: run breadth iterations on cli-devin SWE-1.6 and synthesis iterations on cli-codex gpt-5.5. For a 10-iter sweep, that is iters 1-8 breadth and iters 9-10 synthesis.
 - **Adjudication iter**: insert a false-positive filter pass before the synthesis iterations (typically the iter-7 mark) so only confirmed findings carry forward. In validation this delivers a 90%+ false-positive reduction, with one pass dropping 9 false-positive and 4 outdated items to take a 20-item queue down to 7.
 
-See `references/scoring/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
+See `references/model-benchmark/mixed_executor_methodology.md` for the split mechanics, adjudication details, and the full validation evidence.
 
 ---
 
@@ -335,12 +335,12 @@ Event types: `session_start`, `session_initialized`, `integration_scanned`, `can
 
 The reusable benchmark contract ships with the skill, not with each spec packet:
 
-- Profile: `assets/benchmark-profiles/default.json`
-- Fixtures: `assets/benchmark-fixtures/*.json`
+- Profile: `assets/model-benchmark/benchmark-profiles/default.json`
+- Fixtures: `assets/model-benchmark/benchmark-fixtures/*.json`
 - Materializer: `scripts/materialize-benchmark-fixtures.cjs`
 - Runner: `scripts/run-benchmark.cjs`
 
-The command workflow first materializes static fixture JSON into packet-local markdown under `{spec_folder}/improvement/benchmark-outputs/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs`. The runner writes `{spec_folder}/improvement/benchmark-outputs/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
+The command workflow first materializes static fixture JSON into packet-local markdown under `{spec_folder}/improvement/benchmark-outputs/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs`. The runner writes `{spec_folder}/improvement/benchmark-outputs/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
 `benchmark_completed` may be emitted only after `benchmark-outputs/report.json` exists. Repeatability output from `benchmark-stability.cjs` is separate evidence and does not by itself prove benchmark completion.
 
@@ -506,7 +506,7 @@ The dashboard now also includes a dedicated **Sample Quality** section. This sep
 
 ## 9. REFERENCES
 
-Core references: `README.md`, `references/workflow/quick_reference.md`, `references/workflow/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
+Core references: `README.md`, `references/shared/quick_reference.md`, `references/shared/loop_protocol.md`, evaluator/promotion/rollback/no-go/onboarding docs, runtime assets under `assets/`, benchmark assets, and helper scripts for scoring, reduction, promotion, rollback, scanning, drift, journal, mutation coverage, trade-offs, candidate lineage, and benchmark stability.
 
 ---
 
@@ -522,7 +522,7 @@ Core references: `README.md`, `references/workflow/quick_reference.md`, `referen
 
 ## 11. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/workflow/loop_protocol.md`, `references/workflow/quick_reference.md`, `references/workflow/benchmark_operator_guide.md`, `references/scoring/evaluator_contract.md`, `references/integration/integration_scanning.md`, `references/integration/mirror_drift_policy.md`, `references/promotion-gates/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop_protocol.md`, `references/shared/quick_reference.md`, `references/model-benchmark/benchmark_operator_guide.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, `references/agent-improvement/mirror_drift_policy.md`, `references/shared/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 Scripts: `scripts/benchmark-stability.cjs`, `scripts/candidate-lineage.cjs`, `scripts/check-mirror-drift.cjs`, `scripts/generate-profile.cjs`, `scripts/improvement-journal.cjs`, `scripts/materialize-benchmark-fixtures.cjs`, `scripts/mutation-coverage.cjs`, `scripts/promote-candidate.cjs`, `scripts/reduce-state.cjs`, `scripts/rollback-candidate.cjs`, `scripts/run-benchmark.cjs`, `scripts/scan-integration.cjs`, `scripts/score-candidate.cjs`, `scripts/trade-off-detector.cjs`.
 

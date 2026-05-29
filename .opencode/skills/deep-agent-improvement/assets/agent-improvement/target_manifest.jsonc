@@ -22,7 +22,7 @@
 
   // profileCatalog remains referenced for path consistency with config, but
   // the directory is intentionally empty (contains only .gitkeep).
-  "profileCatalog": ".opencode/skills/deep-agent-improvement/assets/target-profiles",
+  "profileCatalog": ".opencode/skills/deep-agent-improvement/assets/agent-improvement/target-profiles",
   "targets": [],
 
   // `fixed` declares files deep-agent-improvement MUST NEVER mutate. These paths

@@ -224,5 +224,5 @@ weightedScore = (
 | `scripts/score-candidate.cjs` | Main scoring implementation |
 | `scripts/generate-profile.cjs` | Dynamic profile generation |
 | `scripts/scan-integration.cjs` | Integration surface discovery |
-| `references/scoring/evaluator_contract.md` | Evaluator policy contract |
+| `references/model-benchmark/evaluator_contract.md` | Evaluator policy contract |
 | `feature_catalog/03--scoring-system/01-five-dimension-rubric.md` | Feature catalog entry |

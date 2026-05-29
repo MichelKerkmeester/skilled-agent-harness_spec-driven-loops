@@ -127,9 +127,9 @@ Use `infra_failure` only when the scorer or benchmark runner cannot read files, 
 
 ## 7. RELATED RESOURCES
 
-- `../workflow/benchmark_operator_guide.md`
-- `../promotion-gates/promotion_rules.md`
-- `../promotion-gates/promotion_rules.md`
+- `benchmark_operator_guide.md`
+- `../shared/promotion_rules.md`
+- `../shared/promotion_rules.md`
 - `../scripts/score-candidate.cjs`
 - `../scripts/scan-integration.cjs`
 - `../scripts/generate-profile.cjs`

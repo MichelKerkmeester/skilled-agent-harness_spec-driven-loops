@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-28T15:15:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Shipped phases 011 and 012; agent note + catalog + F-P2-5 mode display done"
-    next_safe_action: "Build phase 010 references and assets lane reorg"
+    recent_action: "Shipped phase 010; references and assets are lane-separated"
+    next_safe_action: "Build phase 013 scripts physical reorg"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "template-session"
       parent_session_id: null
-    completion_pct: 85
+    completion_pct: 92
     open_questions: []
     answered_questions: []
 ---
@@ -117,7 +117,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 
 | 8 | 008-command-lane-asking/ | Extend `/deep:start-agent-improvement-loop` to ask the use-case lane (improve an agent file vs benchmark a model/prompt) and branch; add model-benchmark workflow YAMLs + a dedicated `/deep:start-model-benchmark-loop` command + gemini mirror + README/advisor registration | Complete |
 | 9 | 009-skill-md-two-lane/ | SKILL.md restructure into two co-equal lanes + smart-router MODEL_BENCHMARK intent | Complete |
-| 10 | 010-references-assets-lane-reorg/ | Physically separate references/ + assets/ into agent-improvement / model-benchmark / shared lanes + update SKILL literals + graph-metadata | Planned |
+| 10 | 010-references-assets-lane-reorg/ | Physically separate references/ + assets/ into agent-improvement / model-benchmark / shared lanes + update SKILL literals + graph-metadata | Complete |
 | 11 | 011-agent-lane-note/ | Upgrade the agent "Mode awareness" note to "Lane awareness" across all 4 runtime mirrors | Complete |
 | 12 | 012-catalog-playbook-advisor-fp25/ | feature_catalog lane legend + playbook note + advisor recompile + F-P2-5 reduce-state mode display + test | Complete |
 | 13 | 013-scripts-physical-reorg/ | Move 16 scripts into agent-improvement / model-benchmark / shared subdirs + rewrite all refs + fix __dirname (high-risk, last) | Planned |
@@ -141,6 +141,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 008-command-lane-asking | 009-skill-md-two-lane | Command layer shipped; SKILL.md must catch up to two co-equal lanes | DQI excellent + validate strict on 009 |
 | 010-references-assets-lane-reorg | 011-agent-lane-note | references/assets lane split shipped; agent note must catch up to Lane awareness | strict validate on 011 + 4-mirror parity check |
 | 011-agent-lane-note | 012-catalog-playbook-advisor-fp25 | Agent Lane note shipped across 4 mirrors; remaining catalog/playbook/advisor surfaces follow | strict validate on 012 + advisor recompile + F-P2-5 test |
+| 010-references-assets-lane-reorg | 013-scripts-physical-reorg | references and assets lane split shipped, so the scripts physical reorg can follow on the same lane layout | strict validate on 010 + SKILL literal sweep returns zero stale paths |
 <!-- /ANCHOR:phase-map -->
 
 ---

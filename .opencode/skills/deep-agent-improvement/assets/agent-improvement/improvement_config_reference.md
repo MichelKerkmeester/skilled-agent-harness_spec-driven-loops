@@ -80,5 +80,5 @@ The default agent-improvement path is unaffected when no mode flag is set. See S
 ## 3. RELATED RESOURCES
 
 - `improvement_config.json`: the actual config file
-- `../references/scoring/evaluator_contract.md`: scoring rubric details
-- `../references/promotion-gates/promotion_rules.md`: stop condition reference
+- `../../references/model-benchmark/evaluator_contract.md`: scoring rubric details
+- `../../references/shared/promotion_rules.md`: stop condition reference

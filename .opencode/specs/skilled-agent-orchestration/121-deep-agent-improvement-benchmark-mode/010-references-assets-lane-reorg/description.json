@@ -1,0 +1,22 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/010-references-assets-lane-reorg",
+  "description": "Split references and assets into agent-improvement, model-benchmark, and shared lane subdirs and repoint SKILL path literals.",
+  "keywords": [
+    "references",
+    "assets",
+    "lane",
+    "reorg",
+    "agent-improvement",
+    "model-benchmark",
+    "shared"
+  ],
+  "lastUpdated": "2026-05-29T08:00:00.000Z",
+  "specId": "010",
+  "folderSlug": "references-assets-lane-reorg",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
