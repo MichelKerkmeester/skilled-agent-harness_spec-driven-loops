@@ -360,7 +360,17 @@ caller explicitly selects an apply action, `plannerMode:"full-auto"`, or the CLI
 
 > **Graph metadata refresh:** The same save pass refreshes `graph-metadata.json` with checklist-aware status fallback (`implementation-summary.md` presence + checklist completion), lowercase status normalization, sanitized `key_files`, deduplicated entities, and a 12-item cap on derived trigger phrases.
 
-> **Auto-index of touched files (Step 11.5):** After the canonical save updates packet docs and `graph-metadata.json`, the workflow runs an incremental `memory_index_scan` scoped to the target spec folder. This re-indexes any canonical spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `research/research.md`, `resource-map.md`) and `graph-metadata.json` that were modified earlier in the session. Incremental mode skips unchanged files cheaply via mtime + content-hash checks.
+> **Auto-index of touched files (Step 11.5):** After the canonical save updates packet docs and `graph-metadata.json`, the workflow re-indexes touched canonical spec docs only when the standalone process is the sole SQLite writer. If the mk-spec-memory daemon is down, `generate-context.js` may run the direct incremental spec-doc index path. If the daemon is up, Step 11.5 must not open a second better-sqlite3 writer on `context-index.sqlite`; finish freshness through the daemon-owned MCP tool instead:
+>
+> ```javascript
+> mcp__mk_spec_memory__memory_index_scan({
+>   specFolder: "<target-folder>",
+>   includeSpecDocs: true,
+>   force: false
+> })
+> ```
+>
+> The save itself is durable before indexing. When Step 11.5 skips because the daemon is running, docs are not lost; retrieval remains stale until the MCP scan runs. The re-index covers canonical spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `handover.md`, `research/research.md`, `resource-map.md`) and `graph-metadata.json` modified earlier in the session. Incremental mode skips unchanged files cheaply via mtime + content-hash checks.
 >
 > Kill switches: `SPECKIT_AUTO_INDEX_TOUCHED=false` (targeted opt-out) or `SPECKIT_INDEX_SPEC_DOCS=false` (existing global opt-out) disables Step 11.5. The backend has a 51s cooldown between scans; when a save fires during cooldown, Step 11.5 logs `skipped (scan cooldown active; retry on next save)` and continues — the index catches up on the next save.
 

@@ -97,6 +97,11 @@ import {
   runBackfillResearchMetadata,
 } from '../memory/backfill-research-metadata.js';
 import { dirnameFromImportMeta } from '../lib/esm-entry.js';
+import {
+  isProcessAlive,
+  isSpecMemoryDaemonAlive,
+  type SpecMemoryDaemonStatus,
+} from './daemon-detect.js';
 
 const moduleDir = dirnameFromImportMeta(import.meta.url);
 
@@ -327,6 +332,25 @@ export interface WorkflowResult {
   };
 }
 
+export interface Step115IndexingApi {
+  readonly initializeIndexingRuntime: () => void;
+  readonly reindexSpecDocs: (specFolder: string) => Promise<unknown>;
+}
+
+export interface Step115AutoIndexOptions {
+  readonly specFolderName: string | null;
+  readonly autoIndexTouchedDisabled: boolean;
+  readonly shouldRunExplicitSaveFollowUps: boolean;
+  readonly log: (message?: string) => void;
+  readonly warn: (message?: string) => void;
+  readonly daemonStatus?: SpecMemoryDaemonStatus;
+  readonly importIndexingApi?: () => Promise<Step115IndexingApi>;
+}
+
+export interface Step115AutoIndexResult {
+  readonly warning?: string;
+}
+
 // ───────────────────────────────────────────────────────────────
 // 4. WORKFLOW RUN LOCK
 // ───────────────────────────────────────────────────────────────
@@ -352,20 +376,6 @@ function writeWorkflowLockOwner(): void {
     acquiredAt: new Date().toISOString(),
   };
   fsSync.writeFileSync(WORKFLOW_LOCK_OWNER_PATH, JSON.stringify(owner, null, 2), 'utf8');
-}
-
-function isProcessAlive(pid: number): boolean {
-  if (!Number.isInteger(pid) || pid <= 0) {
-    return false;
-  }
-
-  try {
-    process.kill(pid, 0);
-    return true;
-  } catch (err: unknown) {
-    const code = (err as NodeJS.ErrnoException)?.code;
-    return code !== 'ESRCH';
-  }
 }
 
 function clearWorkflowLockDir(): void {
@@ -520,6 +530,167 @@ async function withSavePfdLock<TResult>(
       releaseSavePfdLock(folderPath);
     }
   }
+}
+
+async function importDefaultIndexingApi(): Promise<Step115IndexingApi> {
+  const indexingApi = await import('@spec-kit/mcp-server/api/indexing');
+  return {
+    initializeIndexingRuntime: indexingApi.initializeIndexingRuntime,
+    reindexSpecDocs: indexingApi.reindexSpecDocs,
+  };
+}
+
+function formatMemoryIndexScanFollowUp(specFolderName: string): string {
+  return `memory_index_scan({ specFolder: "${specFolderName}" })`;
+}
+
+function formatStep115DaemonSkipMessage(
+  specFolderName: string,
+  daemonStatus: SpecMemoryDaemonStatus,
+): string {
+  const pidLabel = daemonStatus.pid !== undefined ? `pid ${daemonStatus.pid}` : 'pid unknown';
+  return 'Step 11.5 SKIPPED: mk-spec-memory daemon is running '
+    + `(${pidLabel}). A standalone index here would be a 2nd writer on `
+    + 'context-index.sqlite (corruption-risk class, incident 026/004/012). '
+    + `Finish indexing via MCP: ${formatMemoryIndexScanFollowUp(specFolderName)}.`;
+}
+
+function isStep115DaemonContentionError(message: string): boolean {
+  const normalized = message.toLowerCase();
+  return normalized.includes('sqlite_busy')
+    || normalized.includes('vector_index is null')
+    || (normalized.includes('embedding_cache') && normalized.includes('unique'));
+}
+
+function formatStep115ContentionWarning(specFolderName: string, errMsg: string): string {
+  return 'Warning: Step 11.5 auto-index skipped after daemon/index contention signal: '
+    + `${errMsg}. This matches the second-writer failure class for `
+    + 'context-index.sqlite (embedding_cache UNIQUE, SQLITE_BUSY, or vector_index null). '
+    + `Leave the standalone writer closed and finish indexing via MCP: ${formatMemoryIndexScanFollowUp(specFolderName)}.`;
+}
+
+async function runStep115AutoIndex(
+  options: Step115AutoIndexOptions,
+): Promise<Step115AutoIndexResult> {
+  const {
+    specFolderName,
+    autoIndexTouchedDisabled,
+    shouldRunExplicitSaveFollowUps,
+    log,
+    warn,
+    daemonStatus: providedDaemonStatus,
+    importIndexingApi = importDefaultIndexingApi,
+  } = options;
+
+  if (!specFolderName || autoIndexTouchedDisabled) {
+    return {};
+  }
+
+  if (!shouldRunExplicitSaveFollowUps) {
+    log('Step 11.5: deferred (planner-default save requires explicit reindex follow-up)');
+    return {};
+  }
+
+  const daemonStatus = providedDaemonStatus ?? isSpecMemoryDaemonAlive();
+  if (daemonStatus.alive) {
+    const warning = formatStep115DaemonSkipMessage(specFolderName, daemonStatus);
+    warn(`   ${warning}`);
+    return { warning };
+  }
+
+  try {
+    const { initializeIndexingRuntime, reindexSpecDocs } = await importIndexingApi();
+    log('Step 11.5: Indexing touched canonical spec documents...');
+    // Ensure indexing runtime is initialized. Idempotent: safe to call even if Step 11
+    // Already initialized it via the vectorIndex module (different init path).
+    try {
+      initializeIndexingRuntime();
+    } catch (initErr: unknown) {
+      // Not fatal — runtime may already be warm; runMemoryIndexScan will surface real errors.
+      const initMsg = initErr instanceof Error ? initErr.message : String(initErr);
+      if (!/already/i.test(initMsg)) {
+        warn(`   Step 11.5: indexing runtime init note: ${initMsg}`);
+      }
+    }
+    const scanResult = await reindexSpecDocs(specFolderName);
+
+    // runMemoryIndexScan returns MCP-style { content: [{ type: "text", text: "<json>" }], isError }.
+    // Parse the nested JSON envelope to extract scan counts.
+    let scanEnvelope: { summary?: string; data?: Record<string, unknown> } | null = null;
+    try {
+      const contentText = (scanResult as {
+        content?: Array<{ text?: string }>
+      } | null | undefined)?.content?.[0]?.text;
+      if (typeof contentText === 'string' && contentText.length > 0) {
+        scanEnvelope = JSON.parse(contentText) as { summary?: string; data?: Record<string, unknown> };
+      }
+    } catch {
+      // Fall through to generic message below.
+    }
+
+    const scanIsError = Boolean((scanResult as { isError?: boolean } | null | undefined)?.isError);
+    const scanData = scanEnvelope?.data;
+    if (scanIsError) {
+      const reason = typeof scanData?.error === 'string' ? scanData.error : (scanEnvelope?.summary ?? 'unknown error');
+      const code = typeof scanData?.code === 'string' ? scanData.code : null;
+      // P1-2 fix: trust the backend error-code contract; drop the over-eager regex fallback
+      // That could accidentally swallow unrelated errors whose message happens to contain
+      // "rate limit" or "cooldown" substrings.
+      if (code === 'E429') {
+        log('   Step 11.5: skipped (scan cooldown active; retry on next save)');
+      } else if (code === 'E_RESTORE_IN_PROGRESS') {
+        log('   Step 11.5: skipped (checkpoint restore in progress; retry after restore)');
+      } else {
+        warn(`   Warning: Step 11.5 scan reported error: ${reason}${code ? ` [${code}]` : ''}`);
+      }
+    } else if (scanData && typeof scanData === 'object') {
+      const indexed = Number(scanData.indexed) || 0;
+      const updated = Number(scanData.updated) || 0;
+      const unchanged = Number(scanData.unchanged) || 0;
+      const failed = Number(scanData.failed) || 0;
+      const scanned = Number(scanData.scanned) || 0;
+      log(`   Step 11.5: ${indexed + updated} indexed/updated, ${unchanged} unchanged, ${failed} failed (${scanned} files scanned)`);
+      // P1-3 fix: when failures occur, surface per-file detail (capped at 3) so prod
+      // Investigations don't need a second manual memory_index_scan to diagnose.
+      // Backend increments `failed` for ANY non-successful status; per-file entries
+      // Use the actual status string ('rejected', 'failed', etc.) — match the inverse
+      // Of the success set rather than hard-coding 'failed'.
+      if (failed > 0) {
+        const successStatuses = new Set([
+          'success', 'indexed', 'updated', 'unchanged', 'reinforced', 'duplicate', 'deferred',
+        ]);
+        const filesList = Array.isArray(scanData.files) ? scanData.files : [];
+        const failedFiles = filesList.filter(
+          (entry: unknown): entry is { file?: string; status?: string; error?: string } => {
+            if (typeof entry !== 'object' || entry === null) return false;
+            const status = (entry as { status?: string }).status;
+            return typeof status === 'string' && !successStatuses.has(status);
+          }
+        );
+        const failureCap = 3;
+        for (const failure of failedFiles.slice(0, failureCap)) {
+          const fileName = typeof failure.file === 'string' ? failure.file : 'unknown';
+          const statusLabel = typeof failure.status === 'string' ? failure.status : 'failed';
+          const errorMsg = typeof failure.error === 'string' ? failure.error : '';
+          warn(`     - ${statusLabel}: ${fileName}${errorMsg ? ` - ${errorMsg}` : ''}`);
+        }
+        if (failedFiles.length > failureCap) {
+          warn(`     - (${failedFiles.length - failureCap} additional failure(s) omitted)`);
+        }
+      }
+    } else {
+      log('   Step 11.5: scan completed (no summary payload)');
+    }
+  } catch (e: unknown) {
+    const errMsg = e instanceof Error ? e.message : String(e);
+    const warning = isStep115DaemonContentionError(errMsg)
+      ? formatStep115ContentionWarning(specFolderName, errMsg)
+      : `Warning: Step 11.5 auto-index skipped: ${errMsg}`;
+    warn(`   ${warning}`);
+    return { warning };
+  }
+
+  return {};
 }
 
 // ───────────────────────────────────────────────────────────────
@@ -1590,96 +1761,15 @@ async function runWorkflow(options: WorkflowOptions = {}): Promise<WorkflowResul
 
   // Guard on specFolderName only so canonical docs still re-index even though
   // the legacy memory artifact is no longer written by this workflow.
-  if (specFolderName && !autoIndexTouchedDisabled && shouldRunExplicitSaveFollowUps) {
-    try {
-      const { initializeIndexingRuntime, reindexSpecDocs } = await import('@spec-kit/mcp-server/api/indexing');
-      log('Step 11.5: Indexing touched canonical spec documents...');
-      // Ensure indexing runtime is initialized. Idempotent: safe to call even if Step 11
-      // Already initialized it via the vectorIndex module (different init path).
-      try {
-        initializeIndexingRuntime();
-      } catch (initErr: unknown) {
-        // Not fatal — runtime may already be warm; runMemoryIndexScan will surface real errors.
-        const initMsg = initErr instanceof Error ? initErr.message : String(initErr);
-        if (!/already/i.test(initMsg)) {
-          warn(`   Step 11.5: indexing runtime init note: ${initMsg}`);
-        }
-      }
-      const scanResult = await reindexSpecDocs(specFolderName);
-
-      // runMemoryIndexScan returns MCP-style { content: [{ type: "text", text: "<json>" }], isError }.
-      // Parse the nested JSON envelope to extract scan counts.
-      let scanEnvelope: { summary?: string; data?: Record<string, unknown> } | null = null;
-      try {
-        const contentText = (scanResult as {
-          content?: Array<{ text?: string }>
-        } | null | undefined)?.content?.[0]?.text;
-        if (typeof contentText === 'string' && contentText.length > 0) {
-          scanEnvelope = JSON.parse(contentText) as { summary?: string; data?: Record<string, unknown> };
-        }
-      } catch {
-        // Fall through to generic message below.
-      }
-
-      const scanIsError = Boolean((scanResult as { isError?: boolean } | null | undefined)?.isError);
-      const scanData = scanEnvelope?.data;
-      if (scanIsError) {
-        const reason = typeof scanData?.error === 'string' ? scanData.error : (scanEnvelope?.summary ?? 'unknown error');
-        const code = typeof scanData?.code === 'string' ? scanData.code : null;
-        // P1-2 fix: trust the backend error-code contract; drop the over-eager regex fallback
-        // That could accidentally swallow unrelated errors whose message happens to contain
-        // "rate limit" or "cooldown" substrings.
-        if (code === 'E429') {
-          log('   Step 11.5: skipped (scan cooldown active; retry on next save)');
-        } else if (code === 'E_RESTORE_IN_PROGRESS') {
-          log('   Step 11.5: skipped (checkpoint restore in progress; retry after restore)');
-        } else {
-          warn(`   Warning: Step 11.5 scan reported error: ${reason}${code ? ` [${code}]` : ''}`);
-        }
-      } else if (scanData && typeof scanData === 'object') {
-        const indexed = Number(scanData.indexed) || 0;
-        const updated = Number(scanData.updated) || 0;
-        const unchanged = Number(scanData.unchanged) || 0;
-        const failed = Number(scanData.failed) || 0;
-        const scanned = Number(scanData.scanned) || 0;
-        log(`   Step 11.5: ${indexed + updated} indexed/updated, ${unchanged} unchanged, ${failed} failed (${scanned} files scanned)`);
-        // P1-3 fix: when failures occur, surface per-file detail (capped at 3) so prod
-        // Investigations don't need a second manual memory_index_scan to diagnose.
-        // Backend increments `failed` for ANY non-successful status; per-file entries
-        // Use the actual status string ('rejected', 'failed', etc.) — match the inverse
-        // Of the success set rather than hard-coding 'failed'.
-        if (failed > 0) {
-          const successStatuses = new Set([
-            'success', 'indexed', 'updated', 'unchanged', 'reinforced', 'duplicate', 'deferred',
-          ]);
-          const filesList = Array.isArray(scanData.files) ? scanData.files : [];
-          const failedFiles = filesList.filter(
-            (entry: unknown): entry is { file?: string; status?: string; error?: string } => {
-              if (typeof entry !== 'object' || entry === null) return false;
-              const status = (entry as { status?: string }).status;
-              return typeof status === 'string' && !successStatuses.has(status);
-            }
-          );
-          const failureCap = 3;
-          for (const failure of failedFiles.slice(0, failureCap)) {
-            const fileName = typeof failure.file === 'string' ? failure.file : 'unknown';
-            const statusLabel = typeof failure.status === 'string' ? failure.status : 'failed';
-            const errorMsg = typeof failure.error === 'string' ? failure.error : '';
-            warn(`     - ${statusLabel}: ${fileName}${errorMsg ? ` - ${errorMsg}` : ''}`);
-          }
-          if (failedFiles.length > failureCap) {
-            warn(`     - (${failedFiles.length - failureCap} additional failure(s) omitted)`);
-          }
-        }
-      } else {
-        log('   Step 11.5: scan completed (no summary payload)');
-      }
-    } catch (e: unknown) {
-      const errMsg = e instanceof Error ? e.message : String(e);
-      warn(`   Warning: Step 11.5 auto-index skipped: ${errMsg}`);
-    }
-  } else if (specFolderName && !autoIndexTouchedDisabled) {
-    log('Step 11.5: deferred (planner-default save requires explicit reindex follow-up)');
+  const step115Result = await runStep115AutoIndex({
+    specFolderName,
+    autoIndexTouchedDisabled,
+    shouldRunExplicitSaveFollowUps,
+    log,
+    warn,
+  });
+  if (step115Result.warning) {
+    workflowWarnings.push(step115Result.warning);
   }
 
   // Step 11.75: Post-save quality review — wire into production pipeline.
@@ -1751,5 +1841,6 @@ export { stripWorkflowHtmlOutsideCodeFences } from './content-cleaner.js';
 export {
   filterTriggerPhrases,
   releaseFilesystemLock,
+  runStep115AutoIndex,
   runWorkflow,
 };
