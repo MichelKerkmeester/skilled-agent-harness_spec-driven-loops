@@ -53,13 +53,13 @@ This package communicates via stdio transport. MCP clients register the compiled
                   ┌─────────────────────────────┼─────────────┐
                   ▼                             ▼             ▼
         ┌──────────────────┐          ┌─────────────────┐    ┌────────────────────┐
-        │ lib/             │          │ handlers/       │    │ shared DB dir      │
-        │ readiness marker │          │ tool execution  │    │ .opencode/.spec-kit│
+        │ lib/             │          │ handlers/       │    │ skill-local DB dir │
+        │ readiness marker │          │ tool execution  │    │ mcp_server/database│
         └──────────────────┘          └─────────────────┘    └────────────────────┘
 
 Dependency direction:
 index.ts ───▶ tool-schemas.ts (ListTools response)
-index.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/ ───▶ core/ ───▶ shared DB dir
+index.ts ───▶ tools/ ───▶ handlers/ ───▶ lib/ ───▶ core/ ───▶ skill-local DB dir (mcp_server/database)
 index.ts ───▶ lib/ (readiness marker before serving)
 ```
 

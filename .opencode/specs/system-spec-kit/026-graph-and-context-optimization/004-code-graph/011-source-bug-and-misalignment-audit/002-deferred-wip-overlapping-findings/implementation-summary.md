@@ -49,12 +49,12 @@ _memory:
 
 | Finding | Outcome / Reason |
 |---------|------------------|
-| CG-002 | Already implemented by in-tree BUG-04 WIP (schema enforcement before dispatch). Fast-fix only changed the error message and broke a test — reverted. |
+| CG-002 | Only PARTIALLY addressed by in-tree BUG-04 WIP: enum / minLength / additionalProperties are enforced before dispatch, but NUMERIC RANGES (min/max) are still NOT enforced — so CG-002 is not fully closed. Fast-fix only changed the error message and broke a test — reverted. |
 | CG-006 | scan freshness gating on scanPromotable: correct in intent but the readiness-mock + status flow rely on the old value; needs reconciliation with BUG-06. |
 | CG-007 | Read-path setLastGitHead removal is right in principle but the existing freshness flow RELIES on the read path recording HEAD; removing it makes status report stale. Needs scan-side HEAD recording first. |
 | CG-008 | Candidate-manifest source change lives in ensure-ready.ts (active BUG-06 WIP file); deferred to avoid conflicting with in-flight work. |
 | CG-009 | Recovery confirm-gate; bundled in apply-orchestrator with CG-010, reverted together. |
-| CG-010 | rollback-failed status is OVER-BROAD: recovery returns status:failed for a graceful no-op rollback (nothing to restore), which is not data loss. Correct fix needs recovery-procedures to distinguish no-op from error. |
+| CG-010 | rollback-failed status is OVER-BROAD: recovery-procedures returns status:ok with restored:false for the genuine no-op case (nothing to restore), and status:failed only when a restore was attempted and errored. The original fix's `restored !== true` check was too broad — it flagged the status:ok/restored:false no-op as a failure. Correct fix needs recovery-procedures to distinguish the no-op (status ok, restored false) from an errored rollback (status failed) — which is why it remains deferred. |
 | CG-037 | apply dry-run rollback target; bundled with apply-orchestrator revert. |
 <!-- /ANCHOR:what-built -->
 

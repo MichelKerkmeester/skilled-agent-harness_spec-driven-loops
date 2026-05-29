@@ -2,15 +2,16 @@
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
   "description": "Feature Specification: Code Graph Source Bug & Misalignment Audit",
   "keywords": [
+    "feature",
+    "specification",
     "code",
     "graph",
     "source",
-    "audit",
     "bug",
     "misalignment",
-    "mk-code-index"
+    "audit"
   ],
-  "lastUpdated": "2026-05-29T08:05:00.000Z",
+  "lastUpdated": "2026-05-29T09:27:47.490Z",
   "specId": "011",
   "folderSlug": "source-bug-and-misalignment-audit",
   "parentChain": [

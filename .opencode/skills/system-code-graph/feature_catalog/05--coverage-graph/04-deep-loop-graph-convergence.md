@@ -9,19 +9,21 @@ importance_tier: "important"
 
 # deep_loop_graph_convergence
 
+> **STATUS (arc-118):** `deep_loop_graph_convergence` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (e.g. `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+
 ## 1. OVERVIEW
 
 `deep_loop_graph_convergence` computes typed convergence decisions and signals for deep research/review coverage graphs.
 
 ## 2. CURRENT REALITY
 
-### Trigger / Auto-Fire Path
+### Trigger / Invocation Path
 
-Command-owned deep-research/deep-review YAML plus direct MCP call.
+Command-owned deep-research/deep-review YAML invokes the internal deep-loop-runtime `.cjs` script. There is no MCP routing.
 
 ### Class
 
-auto inside the deep-loop command workflows. Direct MCP calls remain explicit.
+auto inside the deep-loop command workflows, via the internal `.cjs` script. There is no MCP routing.
 
 ### Caveats / Fallback
 

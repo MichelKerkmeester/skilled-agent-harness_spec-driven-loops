@@ -9,19 +9,21 @@ importance_tier: "important"
 
 # deep_loop_graph_query
 
+> **STATUS (arc-118):** `deep_loop_graph_query` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (under `.opencode/skills/deep-loop-runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+
 ## 1. OVERVIEW
 
 `deep_loop_graph_query` is the read side of the deep-loop coverage graph. It inspects research/review graph state but does not run from command YAML automatically.
 
 ## 2. CURRENT REALITY
 
-### Trigger / Auto-Fire Path
+### Trigger / Invocation Path
 
-Direct MCP call only. There is no YAML, bootstrap, watcher or after-tool auto-fire path.
+Invoked internally by the deep-loop runtime as a `.cjs` script. There is no MCP routing, YAML, bootstrap, watcher or after-tool auto-fire path.
 
 ### Class
 
-manual. The tool runs only when an operator calls it explicitly.
+manual. The script runs only when invoked explicitly by the deep-loop runtime.
 
 ### Caveats / Fallback
 

@@ -50,7 +50,7 @@ Your AI assistant will:
 
 System Code Graph is a TypeScript MCP server under `.opencode/skills/system-code-graph/mcp_server/` that registers the `mk-code-index` server identity. The runtime package is published privately as `@spec-kit/system-code-graph` and ships a Node launcher at `.opencode/bin/mk-code-index-launcher.cjs`. The launcher boots the compiled entrypoint at `mcp_server/dist/index.js` after loading `.env.local` overrides, applying the optional maintainer-mode flag, and guarding the database path against external locations.
 
-The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. Its database lives at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`, shared across runtimes and auto-migrated from the legacy skill-local location on first launch.
+The server is runtime-standalone: it does not depend on `mk-spec-memory` being installed or running first. Its database lives at `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite`. This skill-local path is the canonical location, shared across runtimes via the `.opencode/skills` symlink. A former shared location (`.opencode/.spec-kit/code-graph/database/`) is auto-migrated back to this skill-local location on first launch.
 
 Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become underscores in the namespace prefix per MCP convention.
 
@@ -208,7 +208,7 @@ Override with `SPECKIT_CODE_GRAPH_DB_DIR` (env var or `.env.local`). The launche
 
 ### Migration
 
-Legacy installs (database at `.opencode/skills/system-code-graph/mcp_server/database/`) are auto-migrated to the standalone shared location on next launch. The legacy database file is preserved as a backup; the launcher copies (does not move) the SQLite triplet, readiness marker, and launcher state file.
+Installs with a database at the former shared location (`.opencode/.spec-kit/code-graph/database/`) are auto-migrated back to the skill-local location (`mcp_server/database/`) on next launch. The former database file is preserved as a backup; the launcher copies (does not move) the SQLite triplet, readiness marker, and launcher state file.
 
 ### Indexing scope flags
 

@@ -9,19 +9,21 @@ importance_tier: "important"
 
 # deep_loop_graph_upsert
 
+> **STATUS (arc-118):** `deep_loop_graph_upsert` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (under `.opencode/skills/deep-loop-runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+
 ## 1. OVERVIEW
 
 `deep_loop_graph_upsert` stores coverage graph nodes and edges for deep research/review loops. The command workflows call it only when a reducer exposes graph events.
 
 ## 2. CURRENT REALITY
 
-### Trigger / Auto-Fire Path
+### Trigger / Invocation Path
 
-Command-owned deep-research/deep-review YAML, conditional on `graphEvents`. Direct MCP call remains available.
+Command-owned deep-research/deep-review YAML, conditional on `graphEvents`, invokes the internal deep-loop-runtime `.cjs` script. There is no MCP routing.
 
 ### Class
 
-half. Command workflows can call it conditionally and direct MCP calls remain explicit.
+half. Command workflows can invoke the internal script conditionally; there is no MCP routing.
 
 ### Caveats / Fallback
 

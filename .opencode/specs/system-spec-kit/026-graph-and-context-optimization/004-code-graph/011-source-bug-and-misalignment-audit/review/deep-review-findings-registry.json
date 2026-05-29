@@ -1,0 +1,26 @@
+{
+  "sessionId": "2026-05-29T08:58:43.933Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 19,
+    "P2": 14
+  },
+  "openFindingsCount": 33,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.95,
+  "confirmedRealP1": 8,
+  "preExistingP1": 11,
+  "verdict": "CONDITIONAL",
+  "completedAt": "2026-05-29T09:44:52.648Z"
+}

@@ -9,19 +9,21 @@ importance_tier: "important"
 
 # deep_loop_graph_status
 
+> **STATUS (arc-118):** `deep_loop_graph_status` is NOT a registered MCP tool. It is an internal deep-loop-runtime `.cjs` script (under `.opencode/skills/deep-loop-runtime/scripts/`) and is not routed through system-spec-kit / mk-spec-memory. MCP routing for the `deep_loop_graph_*` family was removed in arc-118. The code-graph MCP surface is 8 tools and does NOT include this script.
+
 ## 1. OVERVIEW
 
 `deep_loop_graph_status` reports deep-loop graph health for a session namespace. It is useful for dashboards and synthesis checks.
 
 ## 2. CURRENT REALITY
 
-### Trigger / Auto-Fire Path
+### Trigger / Invocation Path
 
-Direct MCP call only. There is no command YAML auto-fire for status.
+Invoked internally by the deep-loop runtime as a `.cjs` script. There is no MCP routing or command YAML auto-fire for status.
 
 ### Class
 
-manual. The tool runs only when an operator calls it explicitly.
+manual. The script runs only when invoked explicitly by the deep-loop runtime.
 
 ### Caveats / Fallback
 

@@ -1,0 +1,13 @@
+{"type":"config","mode":"review","reviewTarget":"Session work: code-graph audit remediation (commits 69e7bf12/4f1dc0ed/574267cf67) + fix#1 DB relocation, vs baseline 0ef38d58","reviewTargetType":"files","reviewDimensions":["correctness","security","traceability","maintainability"],"resource_map_present":false,"resource_map":{"emit":true},"sessionId":"2026-05-29T08:58:43.933Z","parentSessionId":null,"lineageMode":"new","generation":1,"continuedFromRun":null,"maxIterations":10,"convergenceThreshold":0.1,"createdAt":"2026-05-29T08:58:43.933Z","specFolder":".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit"}
+{"type":"iteration","run":1,"dimension":"correctness","newFindings":4,"newFindingsRatio":1,"p0":0,"p1":3,"p2":1,"timestamp":"2026-05-29T09:07:49Z"}
+{"type":"iteration","run":2,"dimension":"correctness","newFindings":5,"newFindingsRatio":0.5556,"p0":0,"p1":3,"p2":2,"timestamp":"2026-05-29T09:14:37Z"}
+{"type":"iteration","run":2,"dimension":"correctness","newFindings":5,"newFindingsRatio":0.5556,"p0":0,"p1":3,"p2":2,"timestamp":"2026-05-29T09:14:37Z"}
+{"type":"iteration","run":3,"dimension":"security","newFindings":3,"newFindingsRatio":0.25,"p0":0,"p1":2,"p2":1,"timestamp":"2026-05-29T09:22:53Z"}
+{"type":"iteration","run":4,"dimension":"traceability","newFindings":4,"newFindingsRatio":0.25,"p0":0,"p1":0,"p2":4,"timestamp":"2026-05-29T09:29:29Z"}
+{"type":"iteration","run":5,"dimension":"maintainability","newFindings":3,"newFindingsRatio":0.2,"p0":0,"p1":0,"p2":3,"timestamp":"2026-05-29T09:29:37Z"}
+{"type":"iteration","run":6,"dimension":"correctness","newFindings":2,"newFindingsRatio":0.1429,"p0":0,"p1":2,"p2":0,"timestamp":"2026-05-29T09:29:21Z"}
+{"type":"iteration","run":7,"dimension":"traceability","newFindings":9,"newFindingsRatio":0.75,"p0":0,"p1":6,"p2":3,"timestamp":"2026-05-29T09:28:07Z"}
+{"type":"iteration","run":8,"dimension":"security","newFindings":4,"newFindingsRatio":0.1176,"p0":0,"p1":3,"p2":1,"timestamp":"2026-05-29T09:35:39Z"}
+{"type":"iteration","run":9,"dimension":"correctness","newFindings":9,"newFindingsRatio":0.2647,"p0":0,"p1":8,"p2":1,"timestamp":"2026-05-29T09:38:29Z"}
+{"type":"iteration","run":10,"dimension":"maintainability","newFindings":2,"newFindingsRatio":0.0625,"p0":0,"p1":1,"p2":1,"timestamp":"2026-05-29T09:38:13Z"}
+{"type":"event","event":"maxIterationsReached","mode":"review","stopReason":"maxIterationsReached","iterations":10,"verdict":"CONDITIONAL","findings":{"P0":0,"P1":19,"P2":14,"confirmedRealP1":8},"timestamp":"2026-05-29T09:44:52.648Z"}

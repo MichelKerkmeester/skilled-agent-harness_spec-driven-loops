@@ -163,7 +163,7 @@ Verification runs at two layers.
 |---|---|---|
 | ADR-001 | Hook ownership stays with the spec-kit sibling package; code-graph data accessed through a stable boundary import | Accepted |
 | ADR-002 | Plugin and bridge names use `mk-code-graph` while the MCP server identity stays as `mk-code-index` for caller stability | Accepted |
-| ADR-003 | Single-writer invariant on the SQLite graph: the scan loop (`code_graph_scan`) is the only writer of graph rows. Other tools are graph-read-only with two bounded, non-graph side effects: `code_graph_status` refreshes the file-based readiness marker, and the read-path handlers may run an inline self-heal reindex (`ensureCodeGraphReady`) which itself goes through the scan path. `code_graph_apply` mutates only under its verification-gated recovery contract. | Accepted |
+| ADR-003 | Single-writer invariant on the SQLite graph: the scan loop (`code_graph_scan`) is the only writer of graph rows. Other tools are graph-read-only; `code_graph_status` is read-only with no readiness-marker write (the file-based readiness marker is written only at server startup and by the scan path). The read-path handlers may still run an inline self-heal reindex (`ensureCodeGraphReady`) which itself goes through the scan path. `code_graph_apply` mutates only under its verification-gated recovery contract. | Accepted |
 | ADR-004 | Standalone-storage guard refuses to point the database outside the workspace | Accepted |
 | ADR-005 | Three-way isolation finalize: code-graph runs as a standalone MCP server with no required runtime dependency on adjacent skills | Accepted |
 
