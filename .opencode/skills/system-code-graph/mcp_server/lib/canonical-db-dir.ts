@@ -2,8 +2,8 @@
 // MODULE: Canonical Code Graph DB Directory
 // ───────────────────────────────────────────────────────────────────
 
-import { mkdirSync, realpathSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { existsSync, mkdirSync, realpathSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { isWithinWorkspace } from './utils/workspace-path.js';
 
 export class CanonicalDbDirError extends Error {
@@ -30,6 +30,25 @@ export function resolveCanonicalDbDir(dir: string, workspaceRoot?: string): stri
         );
       }
       canonicalWorkspace = realpathSync.native(resolvedWorkspace);
+    }
+    // DR-003-02: resolve symlinks of the deepest EXISTING ancestor and reject an out-of-workspace
+    // escape BEFORE mkdir, so a symlink-escaping path never creates directories outside the
+    // workspace. (The lexical pre-check above does not resolve symlinks; the post-mkdir check
+    // below stays as defense-in-depth against a TOCTOU symlink swap.)
+    if (canonicalWorkspace) {
+      let ancestor = resolvedDir;
+      while (!existsSync(ancestor)) {
+        const parent = dirname(ancestor);
+        if (parent === ancestor) break;
+        ancestor = parent;
+      }
+      const canonicalAncestor = realpathSync.native(ancestor);
+      if (!isWithinWorkspace(canonicalWorkspace, canonicalAncestor)) {
+        throw new CanonicalDbDirError(
+          `Code graph DB directory must stay within the workspace root: ${canonicalWorkspace}`,
+          'OUTSIDE_WORKSPACE',
+        );
+      }
     }
     mkdirSync(resolvedDir, { recursive: true, mode: 0o700 });
     const canonicalDir = realpathSync.native(resolvedDir);

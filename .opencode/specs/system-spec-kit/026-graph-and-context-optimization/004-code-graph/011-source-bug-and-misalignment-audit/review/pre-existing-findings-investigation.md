@@ -97,3 +97,15 @@ The systemic race-class cluster is now FIXED + verified (launcher parses; typech
 - **DR-008-03** — `clearOwnerLeaseFile` / `clearOwnerLeaseFileIfOwner` now re-confirm ownership immediately before unlink (window narrowed to the re-read→unlink span; residual sub-syscall window noted — full closure needs the launcher to adopt the mutation lock).
 
 Remaining pre-existing items (DR-003-02 symlink-escape mkdir, DR-008-01 /tmp dir trust, DR-008-04 watchdog re-arm, DR-001-01 status degraded-envelope, DR-010-01 operator BUG-06) are unchanged — see the disposition table above.
+
+---
+
+## Security + correctness remainder landed 2026-05-29
+
+The remaining fixable pre-existing items are now FIXED + verified (typecheck clean; full suite 583 passed / 0 failed):
+- **DR-003-02** — `resolveCanonicalDbDir` now realpath-resolves the deepest EXISTING ancestor and rejects an out-of-workspace escape **before** `mkdirSync`, so a symlink-escaping override never creates directories outside the workspace. The post-mkdir check stays as defense-in-depth.
+- **DR-008-01** — `startIpcSocketServer` now refuses to bind under a pre-existing socket dir that is not owned by the current uid or is group/world-writable (`mode 0o700` only applies on creation, so a planted dir was previously trusted).
+- **DR-008-04** — the idle-timeout watchdog now **re-arms** (resets `stopped`, re-adds the stdin listener, restarts the timer) when `onIdle()` throws, instead of being permanently disabled.
+- **DR-001-01** — `code_graph_status` now wraps the readiness-snapshot / stored-scope reads in a try and returns a `readiness_unavailable` degraded envelope (with `rg` fallback) instead of throwing a generic error on a corrupt/locked DB.
+
+**Only DR-010-01 remains open** — it belongs to the operator's active BUG-06 cooperative-cancellation WIP (intra-phase signal checks). Note: these four fixes are not yet covered by dedicated regression tests (same coverage gap the review highlighted); follow-up tests recommended.

@@ -201,10 +201,34 @@ export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: 
   // generic "Code graph not initialized" error and action-level readiness was
   // hidden. The snapshot helper is read-only, so calling it earlier never
   // causes side effects.
-  const snapshot = getGraphReadinessSnapshot(process.cwd());
+  // DR-001-01: these reads were previously unguarded, so a corrupt/locked DB threw a generic
+  // error instead of a degraded envelope. Wrap them and surface the same degraded shape.
+  let snapshot: ReturnType<typeof getGraphReadinessSnapshot>;
+  let storedScope: ReturnType<typeof graphDb.getStoredCodeGraphScope>;
+  let activeScopePolicy: ReturnType<typeof resolveIndexScopePolicy>;
+  try {
+    snapshot = getGraphReadinessSnapshot(process.cwd());
+    storedScope = graphDb.getStoredCodeGraphScope();
+    activeScopePolicy = parseIndexScopePolicyFromFingerprint(storedScope) ?? resolveIndexScopePolicy();
+  } catch (err: unknown) {
+    const readinessError = err instanceof Error ? err.message : String(err);
+    return {
+      content: [{
+        type: 'text',
+        text: JSON.stringify({
+          status: 'error',
+          message: `code_graph_status_degraded: readiness snapshot unavailable: ${readinessError}`,
+          data: {
+            degraded: true,
+            graphAnswersOmitted: true,
+            blockReason: 'readiness_unavailable',
+            fallbackDecision: { nextTool: 'rg', reason: 'readiness_unavailable' },
+          },
+        }, null, 2),
+      }],
+    };
+  }
   const freshness = snapshot.freshness;
-  const storedScope = graphDb.getStoredCodeGraphScope();
-  const activeScopePolicy = parseIndexScopePolicyFromFingerprint(storedScope) ?? resolveIndexScopePolicy();
   const scopeMismatch = storedScope.fingerprint !== activeScopePolicy.fingerprint;
 
   // Stats is isolated so an unavailable DB never suppresses the readiness

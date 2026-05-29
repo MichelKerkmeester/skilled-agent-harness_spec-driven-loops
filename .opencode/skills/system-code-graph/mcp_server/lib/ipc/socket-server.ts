@@ -168,7 +168,24 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
   const maxClients = options.maxClients ?? parseMaxClients();
   const onActivity = options.onActivity ?? (() => undefined);
   if (!socketPath.startsWith('tcp://')) {
-    fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
+    const socketDir = path.dirname(socketPath);
+    fs.mkdirSync(socketDir, { recursive: true, mode: 0o700 });
+    // DR-008-01: `mode: 0o700` only applies when mkdir CREATES the dir. A pre-existing socket dir
+    // (e.g. an attacker-planted /tmp/mk-code-index on a shared host) is not protected by the mkdir
+    // above, so refuse to bind under a dir not owned by us or that is group/world-writable.
+    try {
+      const st = fs.statSync(socketDir);
+      const uid = typeof process.getuid === 'function' ? process.getuid() : null;
+      if (uid !== null && st.uid !== uid) {
+        throw new Error(`IPC socket dir ${socketDir} not owned by current user (uid ${st.uid} != ${uid})`);
+      }
+      if ((st.mode & 0o022) !== 0) {
+        throw new Error(`IPC socket dir ${socketDir} is group/world-writable (mode ${(st.mode & 0o777).toString(8)})`);
+      }
+    } catch (error: unknown) {
+      const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+      if (code !== 'ENOENT') throw error;
+    }
   }
 
   const server = net.createServer((socket) => {
