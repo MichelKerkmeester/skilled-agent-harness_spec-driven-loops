@@ -833,13 +833,14 @@ Brings several AI viewpoints together to plan hard decisions. `@ai-council` runs
 - **Saved for later:** the plan and its reasoning persist as `ai-council/**` files in the packet
 
 &nbsp;
-#### Agent Improvement
+#### Agent Improvement & Model Benchmarking
 
-Reviews and upgrades any of your agents, safely. `/deep:start-agent-improvement-loop` runs `@deep-agent-improvement`.
+Two co-equal lanes on one skill. Lane A reviews and upgrades any of your agents: `/deep:start-agent-improvement-loop` runs `@deep-agent-improvement`. Lane B benchmarks a model or prompt framework against fixtures: `/deep:start-model-benchmark-loop`.
 - **Objective scoring:** rates an agent across five dimensions with fixed, repeatable checks, not another AI's opinion
 - **Sees the whole footprint:** finds every place the agent lives (definition, mirrors, commands, workflows, skills) before changing anything
 - **Never breaks the original:** changes go to a sandbox copy and only get promoted after they pass scoring, benchmarks and your approval, with rollback if they don't
 - **Knows when to stop:** ends once the scores stop improving
+- **Benchmarks models too (Lane B):** runs a model or prompt framework against fixtures with pattern or 5-dimension scoring, deterministic or graded, via `/deep:start-model-benchmark-loop`
 
 For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runtime/README.md), or each loop's own README under `.opencode/skills/`.
 
@@ -904,7 +905,7 @@ The shared runtime plus the four loop skills behind the autonomous loops. See th
 - Multi-seat planning council: diverse AI seats, cross-seat critique, convergence to evidence-backed recommendations, packet-local `ai-council/**` artifacts. Planning-only. See [Deep Loop](#deep-loop).
 
 **deep-agent-improvement**
-- Evaluator-first agent improvement: 5-dimension deterministic scoring, integration scanner, proposal-first candidates with guarded promotion. Dispatched by `/deep:start-agent-improvement-loop`. See [Deep Loop](#deep-loop).
+- Two co-equal lanes. Lane A (agent-improvement): evaluator-first agent improvement with 5-dimension deterministic scoring, integration scanner, and proposal-first candidates under guarded promotion, dispatched by `/deep:start-agent-improvement-loop`. Lane B (model-benchmark): benchmark a model or prompt framework against fixtures with pattern or 5-dimension scoring, deterministic or graded runs, dispatched by `/deep:start-model-benchmark-loop`. See [Deep Loop](#deep-loop).
 
 &nbsp;
 #### CROSS-AI CLI
@@ -1143,6 +1144,9 @@ The four autonomous loops. See the [Deep Loop](#deep-loop) section for how they 
 **Agent Improvement** (`/deep:start-agent-improvement-loop`)
 - Evaluates and improves any agent across 5 deterministic dimensions. Proposal-first with guarded promotion (scoring, benchmark, repeatability, operator approval) and rollback. Modes: `:auto`, `:confirm`
 
+**Model Benchmark** (`/deep:start-model-benchmark-loop`)
+- Benchmarks a model or prompt framework against fixtures. Pattern or 5-dimension scoring, deterministic or graded runs, with mode-aware records and optional promotion. Modes: `:auto`, `:confirm`
+
 &nbsp;
 #### DOCTOR
 
@@ -1262,7 +1266,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `system-spec-kit`                                   | ✅ Codebase-agnostic                        | Spec folder workflow + validator + memory. Works for any project.                                                                                                                                        |
 | `mcp-code-mode`                                     | ✅ Codebase-agnostic                        | Multi-tool MCP orchestration. Works for any project.                                                                                                                                                     |
 | `deep-loop-runtime` / `deep-research` / `deep-review` | ✅ Codebase-agnostic                        | Shared runtime plus iterative loop protocols. Work for any topic / target.                                                                                                                               |
-| `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt + agent improvement frameworks. Work for any project.                                                                                                                                             |
+| `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model benchmarking frameworks. Work for any project.                                                                                                                                             |
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
 
