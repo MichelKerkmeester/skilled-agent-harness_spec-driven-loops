@@ -13,6 +13,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = resolve(fileURLToPath(new URL('../../../../../..', import.meta.url)));
 const serverModule = require(join(repoRoot, '.opencode/bin/hf-model-server.cjs')) as {
   createHfModelServer: (options?: Record<string, unknown>) => HfModelServer;
+  INFERENCE_DRAIN_TIMEOUT_MS: number;
   resolveListenTarget: (options?: Record<string, unknown>) => string;
   toConnectionOptions: (socketPath: string) => string | { host: string; port: number };
 };
@@ -117,6 +118,7 @@ async function startServer(options: Record<string, unknown>, target: string): Pr
 
 describe('hf-model-server.cjs', () => {
   afterEach(async () => {
+    vi.useRealTimers();
     while (apps.length > 0) {
       const app = apps.pop();
       if (app) {
@@ -162,6 +164,9 @@ describe('hf-model-server.cjs', () => {
       dim: null,
       device: null,
       loadTimeMs: null,
+      loadStartedAt: expect.any(Number),
+      lastSuccessfulEmbedAt: null,
+      inFlight: 0,
     });
 
     load.resolve(extractor);
@@ -172,9 +177,43 @@ describe('hf-model-server.cjs', () => {
       dim: 3,
       device: 'cpu',
       loadTimeMs: 42,
+      loadStartedAt: expect.any(Number),
+      lastSuccessfulEmbedAt: null,
+      inFlight: 0,
     });
     expect(extractor.calls).toEqual(['warm']);
     expect(loadModel).toHaveBeenCalledTimes(1);
+  });
+
+  it('re-stamps loadProgressAt when a device fallback starts a new load attempt', async () => {
+    const load = deferred<FakeExtractor>();
+    const enteredCpuAttempt = deferred<void>();
+    const extractor = createFakeExtractor(3);
+    const loadModel = vi.fn(async (options: {
+      onLoadAttemptStart?: (attempt: Record<string, unknown>) => void;
+    }) => {
+      options.onLoadAttemptStart?.({ device: 'mps', startedAt: 1000, timeoutMs: 120000 });
+      options.onLoadAttemptStart?.({ device: 'cpu', startedAt: 2000, timeoutMs: 120000 });
+      enteredCpuAttempt.resolve();
+      return {
+        extractor: await load.promise,
+        device: 'cpu',
+        loadTimeMs: 250,
+      };
+    });
+    const socketPath = join(tempDir('hf-model-server-progress-'), 'hf-embed.sock');
+    const handle = await startServer({ loadModel, selfWarm: false }, socketPath);
+
+    await enteredCpuAttempt.promise;
+    const loading = await handle.inject('GET', '/api/health');
+    expect(loading.body).toMatchObject({
+      state: 'loading',
+      loadStartedAt: expect.any(Number),
+      loadProgressAt: 2000,
+    });
+
+    load.resolve(extractor);
+    await waitForReady(handle);
   });
 
   it('awaits the in-flight load for tcp embeds and derives dim from runtime output', async () => {
@@ -211,6 +250,67 @@ describe('hf-model-server.cjs', () => {
     expect(response.body.embeddings).toEqual([[3, 4, 5, 6]]);
     expect(extractor.calls).toEqual(['warm', 'abc']);
     expect(loadModel).toHaveBeenCalledTimes(1);
+  });
+
+  it('reports in-flight native runs and stamps lastSuccessfulEmbedAt after successful embeds', async () => {
+    const run = deferred<{ data: Float32Array }>();
+    const extractor = (async () => await run.promise) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const embedPromise = handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['slow'],
+    });
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 10));
+
+    const during = await handle.inject('GET', '/api/health');
+    expect(during.body).toMatchObject({
+      state: 'ready',
+      inFlight: 1,
+      lastSuccessfulEmbedAt: null,
+    });
+
+    run.resolve({ data: new Float32Array([1, 2, 3]) });
+    const response = await embedPromise;
+    expect(response.statusCode).toBe(200);
+
+    const after = await handle.inject('GET', '/api/health');
+    expect(after.body).toMatchObject({
+      state: 'ready',
+      inFlight: 0,
+      lastSuccessfulEmbedAt: expect.any(Number),
+    });
+  });
+
+  it('bounds dispose drain for uncancellable native runs at the inference drain timeout', async () => {
+    const run = deferred<{ data: Float32Array }>();
+    const extractor = (async () => await run.promise) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+    vi.useFakeTimers();
+    const app = apps.pop();
+    expect(app).toBeDefined();
+
+    const embedPromise = handle.inject('POST', '/api/embed', { input: ['stuck'] });
+    void embedPromise.catch(() => undefined);
+    await vi.advanceTimersByTimeAsync(0);
+
+    const disposePromise = app!.dispose();
+    const disposeAssertion = expect(disposePromise).rejects.toThrow(`native inference drain after ${serverModule.INFERENCE_DRAIN_TIMEOUT_MS}ms`);
+    await vi.advanceTimersByTimeAsync(serverModule.INFERENCE_DRAIN_TIMEOUT_MS);
+    await disposeAssertion;
+
+    run.resolve({ data: new Float32Array([1, 2]) });
+    await expect(embedPromise).resolves.toMatchObject({ statusCode: 200 });
+    await app!.close({ disposeModel: false });
   });
 
   it('rejects dispose when the loaded extractor does not expose exactly one native session', async () => {

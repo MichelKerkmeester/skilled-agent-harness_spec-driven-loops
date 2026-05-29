@@ -102,9 +102,52 @@ let supervisorRelaunchTimer = null;
 // process-tree monitor while the child is alive; the give-up reap path uses this to find an
 // orphaned sidecar after the child has already exited.
 let lastKnownDescendantPids = [];
+const DURABLE_WRITE_UNAVAILABLE_CODES = new Set(['ENOSPC', 'EDQUOT', 'EROFS']);
+const durableWriteWarnings = new Set();
 
 function log(message) {
   process.stderr.write(`[mk-spec-memory-launcher] ${message}\n`);
+}
+
+function isDurableWriteUnavailable(error) {
+  const code = error && typeof error === 'object' ? error.code : undefined;
+  return DURABLE_WRITE_UNAVAILABLE_CODES.has(code);
+}
+
+function logDurableWriteUnavailableOnce(operation, targetPath, error) {
+  const code = error && typeof error === 'object' ? error.code : 'UNKNOWN';
+  const key = `${operation}:${targetPath}:${code}`;
+  if (durableWriteWarnings.has(key)) return;
+  durableWriteWarnings.add(key);
+  const detail = error instanceof Error ? error.message : String(error ?? code);
+  log(`${operation} skipped for ${rel(targetPath)}: ${code} ${detail}`);
+}
+
+function cleanupTmpFile(tmpPath) {
+  try {
+    fs.unlinkSync(tmpPath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      // Best-effort cleanup only; the original durable-write failure is more useful.
+    }
+  }
+}
+
+function writeAtomicJsonFile(targetPath, payload, operation) {
+  const currentPath = path.join(ensureCanonicalDir(path.dirname(targetPath)), path.basename(targetPath));
+  const tmp = `${currentPath}.tmp.${process.pid}`;
+  try {
+    fs.writeFileSync(tmp, `${JSON.stringify(payload, null, 2)}\n`, { mode: 0o600 });
+    fs.renameSync(tmp, currentPath);
+    return true;
+  } catch (error) {
+    cleanupTmpFile(tmp);
+    if (isDurableWriteUnavailable(error)) {
+      logDurableWriteUnavailableOnce(operation, currentPath, error);
+      return false;
+    }
+    throw error;
+  }
 }
 
 function loadProjectEnvFiles() {
@@ -344,12 +387,9 @@ function buildLeaseObject(childPid = null, startedAt = leaseStartedAt, modelServ
 }
 
 function writeLeaseFile(childPid = getContextServerPid(), modelServerPid = hfControl.getPid()) {
-  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(leasePath())), PID_FILE_NAME);
-  const tmp = currentLeasePath + '.tmp.' + process.pid;
   if (!leaseStartedAt) leaseStartedAt = new Date().toISOString();
   const payload = buildLeaseObject(childPid, leaseStartedAt, modelServerPid);
-  fs.writeFileSync(tmp, JSON.stringify(payload, null, 2), { mode: 0o600 });
-  fs.renameSync(tmp, currentLeasePath);
+  return writeAtomicJsonFile(leasePath(), payload, 'lease write');
 }
 
 function sharedModelServerPidPath(socketPath = resolveModelServerSocketPath()) {
@@ -364,20 +404,22 @@ function writeSharedModelServerPid(pid) {
     try {
       fs.unlinkSync(pidPath);
     } catch (error) {
-      if (error.code !== 'ENOENT') throw error;
+      if (error.code === 'ENOENT') return true;
+      if (isDurableWriteUnavailable(error)) {
+        logDurableWriteUnavailableOnce('shared model-server pid clear', pidPath, error);
+        return false;
+      }
+      throw error;
     }
-    return;
+    return true;
   }
 
-  const currentPidPath = path.join(ensureCanonicalDir(path.dirname(pidPath)), path.basename(pidPath));
-  const tmp = `${currentPidPath}.tmp.${process.pid}`;
-  fs.writeFileSync(tmp, JSON.stringify({
+  return writeAtomicJsonFile(pidPath, {
     pid,
     startedAt: new Date().toISOString(),
     ownerLauncher: 'mk-spec-memory',
     socketPath,
-  }, null, 2), { mode: 0o600 });
-  fs.renameSync(tmp, currentPidPath);
+  }, 'shared model-server pid write');
 }
 
 function readSharedModelServerPid() {
@@ -922,6 +964,8 @@ module.exports = {
   startRssWatchdog,
   stopModelServerDemandListener,
   superviseChildExit,
+  writeLeaseFile,
+  writeSharedModelServerPid,
 };
 
 if (require.main === module) {

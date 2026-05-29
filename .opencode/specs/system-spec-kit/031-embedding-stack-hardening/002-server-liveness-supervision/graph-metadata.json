@@ -36,28 +36,20 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/bin/hf-model-server.cjs",
       ".opencode/bin/lib/launcher-ipc-bridge.cjs",
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "mcp_server/tests/embedders/hf-model-server.vitest.ts",
+      "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
+      "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+      "spec.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "hf-model-server.cjs",
         "kind": "file",
@@ -83,6 +75,42 @@
         "source": "derived"
       },
       {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-model-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-model-server-cross-launcher.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge-probe.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
@@ -96,12 +124,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -126,6 +148,12 @@
       },
       {
         "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -161,39 +189,15 @@
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Data Flow",
         "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "a",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
+        "path": "plan.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 2 of 5** of the embedding-stack hardening decomposition: make the model server fail safe under wedges, hung inference, crash loops, and disk-full. These are the silent-failure killers — a server that looks alive but is not.",
     "created_at": "2026-05-29T11:22:57.376Z",
-    "last_save_at": "2026-05-29T11:22:57.376Z",
+    "last_save_at": "2026-05-29T12:05:57.663Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

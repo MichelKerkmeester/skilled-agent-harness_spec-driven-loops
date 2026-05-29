@@ -29,7 +29,11 @@ const DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS = 5000;
 const HF_MODEL_SERVER_SOCKET_FILE_NAME = 'hf-embed.sock';
 const HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME = 'hf-embed-respawn.lock';
 const HF_MODEL_SERVER_PID_FILE_NAME = 'hf-embed.pid';
+const HF_MODEL_SERVER_GIVEUP_FILE_NAME = 'hf-embed-giveup.json';
 const MODEL_SERVER_DEMAND_STATUS = 503;
+const DEFAULT_MODEL_SERVER_GIVEUP_COOLDOWN_MS = 60000;
+const DURABLE_WRITE_UNAVAILABLE_CODES = new Set(['ENOSPC', 'EDQUOT', 'EROFS']);
+const durableWriteWarnings = new Set();
 
 function defaultLog(message) {
   process.stderr.write(`[model-server-supervision] ${message}\n`);
@@ -46,6 +50,30 @@ function isPermissionError(error) {
   if (code === 'EPERM' || code === 'EACCES') return true;
   const message = error instanceof Error ? error.message : String(error ?? '');
   return /operation not permitted|permission denied/i.test(message);
+}
+
+function isDurableWriteUnavailable(error) {
+  const code = error && typeof error === 'object' ? error.code : undefined;
+  return DURABLE_WRITE_UNAVAILABLE_CODES.has(code);
+}
+
+function logDurableWriteUnavailableOnce(logger, operation, targetPath, error, rel = (p) => p) {
+  const code = error && typeof error === 'object' ? error.code : 'UNKNOWN';
+  const key = `${operation}:${targetPath}:${code}`;
+  if (durableWriteWarnings.has(key)) return;
+  durableWriteWarnings.add(key);
+  const detail = error instanceof Error ? error.message : String(error ?? code);
+  logger(`${operation} skipped for ${rel(targetPath)}: ${code} ${detail}`);
+}
+
+function cleanupTmpFile(tmpPath, fsApi = fs) {
+  try {
+    fsApi.unlinkSync(tmpPath);
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      // Best-effort cleanup only; the original durable-write failure is more useful.
+    }
+  }
 }
 
 function parseProcessRows(input) {
@@ -202,6 +230,10 @@ function getCrashLoopConfig(env = process.env) {
     initialBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_INITIAL_BACKOFF_MS, DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS),
     maxBackoffMs: parsePositiveInteger(env.SPECKIT_LAUNCHER_CRASH_LOOP_MAX_BACKOFF_MS, DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS),
   };
+}
+
+function getModelServerGiveUpCooldownMs(env = process.env) {
+  return parsePositiveInteger(env.SPECKIT_HF_MODEL_SERVER_GIVEUP_COOLDOWN_MS, DEFAULT_MODEL_SERVER_GIVEUP_COOLDOWN_MS);
 }
 
 function superviseChildExit(event, actions) {
@@ -404,6 +436,96 @@ function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(),
   return path.join(lockDirPath, HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME);
 }
 
+function modelServerGiveUpPath(socketPath = resolveModelServerSocketPath(), options = {}) {
+  const rawDbDir = typeof options.dbDir === 'function' ? options.dbDir() : options.dbDir;
+  const giveUpDirPath = socketPath.startsWith('tcp://')
+    ? path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'))
+    : path.dirname(socketPath);
+  return path.join(giveUpDirPath, HF_MODEL_SERVER_GIVEUP_FILE_NAME);
+}
+
+function writeModelServerGiveUpUntil(socketPath, giveUpUntilMs, options = {}) {
+  const logger = options.log || defaultLog;
+  const rel = options.rel || ((p) => p);
+  const fsApi = { ...fs, ...(options.fs || {}) };
+  const giveUpPath = path.join(ensureCanonicalDir(path.dirname(modelServerGiveUpPath(socketPath, options))), HF_MODEL_SERVER_GIVEUP_FILE_NAME);
+  if (!Number.isFinite(giveUpUntilMs) || giveUpUntilMs <= 0) {
+    try {
+      fsApi.unlinkSync(giveUpPath);
+    } catch (error) {
+      if (error.code === 'ENOENT') return true;
+      if (isDurableWriteUnavailable(error)) {
+        logDurableWriteUnavailableOnce(logger, 'hf-model-server give-up clear', giveUpPath, error, rel);
+        return false;
+      }
+      throw error;
+    }
+    return true;
+  }
+
+  const tmp = `${giveUpPath}.tmp.${process.pid}`;
+  try {
+    fsApi.writeFileSync(tmp, `${JSON.stringify({
+      giveUpUntil: giveUpUntilMs,
+      writtenAt: new Date().toISOString(),
+      pid: process.pid,
+    }, null, 2)}\n`, { mode: 0o600 });
+    fsApi.renameSync(tmp, giveUpPath);
+    return true;
+  } catch (error) {
+    cleanupTmpFile(tmp, fsApi);
+    if (isDurableWriteUnavailable(error)) {
+      logDurableWriteUnavailableOnce(logger, 'hf-model-server give-up write', giveUpPath, error, rel);
+      return false;
+    }
+    throw error;
+  }
+}
+
+function nowMsFromOptions(options = {}) {
+  if (typeof options.nowMs === 'function') return options.nowMs();
+  if (typeof options.nowMs === 'number') return options.nowMs;
+  return Date.now();
+}
+
+function modelServerGiveUpStaleMs(options = {}) {
+  const giveUpCooldownMs = parsePositiveInteger(options.giveUpCooldownMs, getModelServerGiveUpCooldownMs(options.env || process.env));
+  const staleMs = parsePositiveInteger(options.staleMs, RESPAWN_LOCK_STALE_MS);
+  return Math.max(staleMs, giveUpCooldownMs);
+}
+
+function isModelServerGiveUpStale(parsed, options = {}) {
+  const liveness = options.liveness || processLiveness;
+  if (liveness(parsed?.pid) === 'dead') return true;
+
+  const writtenAtMs = parsed?.writtenAt ? Date.parse(parsed.writtenAt) : NaN;
+  if (!Number.isFinite(writtenAtMs)) return false;
+  return nowMsFromOptions(options) - writtenAtMs > modelServerGiveUpStaleMs(options);
+}
+
+function unlinkBestEffort(filePath, fsApi = fs) {
+  try {
+    fsApi.unlinkSync(filePath);
+  } catch {
+    // Best-effort stale-state cleanup.
+  }
+}
+
+function readModelServerGiveUpUntil(socketPath, options = {}) {
+  const fsApi = { ...fs, ...(options.fs || {}) };
+  const giveUpPath = modelServerGiveUpPath(socketPath, options);
+  try {
+    const parsed = JSON.parse(fsApi.readFileSync(giveUpPath, 'utf8'));
+    if (isModelServerGiveUpStale(parsed, options)) {
+      unlinkBestEffort(giveUpPath, fsApi);
+      return null;
+    }
+    return Number.isFinite(parsed?.giveUpUntil) && parsed.giveUpUntil > 0 ? parsed.giveUpUntil : null;
+  } catch {
+    return null;
+  }
+}
+
 function isRespawnLockStale(raw, options = {}) {
   const liveness = options.liveness || processLiveness;
   const nowMs = typeof options.nowMs === 'number' ? options.nowMs : Date.now();
@@ -424,32 +546,53 @@ function isRespawnLockStale(raw, options = {}) {
 function acquireRespawnLockFileAt(lockPath, label = 'respawn', options = {}) {
   const logger = options.log || defaultLog;
   const rel = options.rel || ((p) => p);
+  const fsApi = { ...fs, ...(options.fs || {}) };
   const currentLockPath = path.join(ensureCanonicalDir(path.dirname(lockPath)), path.basename(lockPath));
   const tryOpen = () => {
-    const fd = fs.openSync(currentLockPath, 'wx', 0o600);
-    fs.writeFileSync(fd, `${JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2)}\n`, 'utf8');
-    fs.fsyncSync(fd);
-    return { acquired: true, fd, path: currentLockPath };
+    let fd = null;
+    try {
+      fd = fsApi.openSync(currentLockPath, 'wx', 0o600);
+      fsApi.writeFileSync(fd, `${JSON.stringify({ pid: process.pid, startedAt: new Date().toISOString() }, null, 2)}\n`, 'utf8');
+      fsApi.fsyncSync(fd);
+      return { acquired: true, fd, path: currentLockPath };
+    } catch (error) {
+      if (typeof fd === 'number') {
+        try {
+          fsApi.closeSync(fd);
+        } catch {
+          // Close failure is secondary to the durable-write failure.
+        }
+        cleanupTmpFile(currentLockPath, fsApi);
+      }
+      if (isDurableWriteUnavailable(error)) {
+        logDurableWriteUnavailableOnce(logger, `${label} lock acquire`, currentLockPath, error, rel);
+        return { acquired: false, path: currentLockPath, reason: 'durable-write-unavailable' };
+      }
+      throw error;
+    }
   };
   try {
-    return tryOpen();
+    const opened = tryOpen();
+    if (!opened.acquired) return opened;
+    return opened;
   } catch (error) {
     if (error.code !== 'EEXIST') throw error;
   }
   let raw = '';
   try {
-    raw = fs.readFileSync(currentLockPath, 'utf8');
+    raw = fsApi.readFileSync(currentLockPath, 'utf8');
   } catch (readErr) {
     if (readErr.code !== 'ENOENT') throw readErr;
   }
   if (raw === '' || isRespawnLockStale(raw, options)) {
     try {
-      fs.unlinkSync(currentLockPath);
+      fsApi.unlinkSync(currentLockPath);
     } catch (unlinkErr) {
       if (unlinkErr.code !== 'ENOENT') throw unlinkErr;
     }
     try {
       const reclaimed = tryOpen();
+      if (!reclaimed.acquired) return reclaimed;
       logger(`reclaimed stale ${label} lock ${rel(currentLockPath)}`);
       return reclaimed;
     } catch (retryErr) {
@@ -537,6 +680,9 @@ function createModelServerSupervisor(options = {}) {
   const clearTimer = options.clearTimeout || clearTimeout;
   const shouldExitLauncher = options.shouldExitLauncher || (() => false);
   const onRssBreach = options.onRssBreach || (() => undefined);
+  const writeGiveUpUntil = options.writeGiveUpUntil || (() => true);
+  const giveUpCooldownMs = parsePositiveInteger(options.giveUpCooldownMs, getModelServerGiveUpCooldownMs(env));
+  const nowMs = typeof options.nowMs === 'function' ? options.nowMs : () => Date.now();
 
   function getPid() {
     return isChildRunning(state.child) ? state.child.pid : null;
@@ -653,6 +799,7 @@ function createModelServerSupervisor(options = {}) {
         },
       );
       if (result.action === 'give-up') {
+        writeGiveUpUntil(nowMs() + giveUpCooldownMs);
         logger(`hf-model-server crash loop detected after ${result.deathsInWindow} deaths; modelServerPid removed from lease`);
         scheduleDemandListener();
       }
@@ -685,6 +832,8 @@ function createModelServerControl(deps = {}) {
   const signal = deps.signal || signalProcess;
   const processRowsRunner = deps.processRowsRunner || defaultProcessRowsRunner;
   const liveness = deps.liveness || processLiveness;
+  const nowMs = typeof deps.nowMs === 'function' ? deps.nowMs : () => Date.now();
+  const giveUpCooldownMs = parsePositiveInteger(deps.giveUpCooldownMs, getModelServerGiveUpCooldownMs(env));
   const state = {
     demandServer: null,
     demandTarget: null,
@@ -711,6 +860,35 @@ function createModelServerControl(deps = {}) {
     return null;
   }
 
+  function writeGiveUpUntil(giveUpUntilMs) {
+    const socketPath = resolveSocketPath();
+    if (typeof deps.writeGiveUpUntil === 'function') {
+      return deps.writeGiveUpUntil(giveUpUntilMs, socketPath);
+    }
+    return writeModelServerGiveUpUntil(socketPath, giveUpUntilMs, { dbDir, log: logger });
+  }
+
+  function readGiveUpUntil(socketPath = resolveSocketPath()) {
+    if (typeof deps.readGiveUpUntil === 'function') return deps.readGiveUpUntil(socketPath);
+    return readModelServerGiveUpUntil(socketPath, {
+      dbDir,
+      env,
+      giveUpCooldownMs,
+      liveness,
+      nowMs,
+    });
+  }
+
+  function activeGiveUpCooldown(socketPath = resolveSocketPath()) {
+    const giveUpUntil = readGiveUpUntil(socketPath);
+    const current = nowMs();
+    if (!Number.isFinite(giveUpUntil) || giveUpUntil <= current) return null;
+    return {
+      giveUpUntil,
+      retryAfterMs: Math.max(1, giveUpUntil - current),
+    };
+  }
+
   function getSupervisor() {
     if (!state.supervisor) {
       state.supervisor = createModelServerSupervisor({
@@ -722,6 +900,8 @@ function createModelServerControl(deps = {}) {
         modelServerPath,
         log: logger,
         writeLease: writeModelServerPid,
+        writeGiveUpUntil,
+        giveUpCooldownMs,
         crashLoopConfig: deps.crashLoopConfig || (() => getCrashLoopConfig(env)),
         watchdogConfig: deps.watchdogConfig || (() => getModelServerWatchdogConfig(env, logger)),
         processRowsRunner,
@@ -730,6 +910,7 @@ function createModelServerControl(deps = {}) {
         waitForExit: deps.waitForExit || waitForPidExit,
         setTimeout: deps.setTimeout || setTimeout,
         clearTimeout: deps.clearTimeout || clearTimeout,
+        nowMs,
         shouldExitLauncher: deps.getLauncherShutdownInProgress || (() => false),
         onRssBreach: deps.onRssBreach || (() => undefined),
         startDemandListener: () => startModelServerDemandListener(),
@@ -756,6 +937,20 @@ function createModelServerControl(deps = {}) {
       state.demandRespawnLock = lock;
     }
     return lock;
+  }
+
+  function respawnLockBlockedReason(lock) {
+    return lock?.reason === 'durable-write-unavailable'
+      ? 'model-server-respawn-lock-unwritable'
+      : 'model-server-respawn-lock-held';
+  }
+
+  function clearRecoveredGiveUpCooldown() {
+    writeGiveUpUntil(null);
+  }
+
+  function armGiveUpCooldown() {
+    writeGiveUpUntil(nowMs() + giveUpCooldownMs);
   }
 
   function releaseModelServerDemandListenerForSpawn(options = {}) {
@@ -792,7 +987,7 @@ function createModelServerControl(deps = {}) {
   async function reapRecordedModelServerBeforeRespawn(socketPath, options = {}) {
     const lock = options.lock || acquireModelServerRespawnLockFile(socketPath, { dbDir, log: logger });
     if (!lock.acquired) {
-      return { allowed: false, reason: 'model-server-respawn-lock-held', lockPath: lock.path };
+      return { allowed: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
     }
     try {
       const modelServerPid = readModelServerPid();
@@ -808,17 +1003,20 @@ function createModelServerControl(deps = {}) {
   async function prepareModelServerDemandTarget(socketPath) {
     if (socketPath.startsWith('tcp://')) {
       const lock = acquireDemandRespawnLock(socketPath);
-      if (!lock.acquired) return { shouldListen: false, reason: 'model-server-respawn-lock-held', lockPath: lock.path };
+      if (!lock.acquired) return { shouldListen: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
       return { shouldListen: true };
     }
     fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
+    let deadProbeReason = null;
     if (fs.existsSync(socketPath)) {
       const probeModelServer = deps.bridge && deps.bridge.probeModelServer;
       if (typeof probeModelServer === 'function') {
         const probe = await probeModelServer(socketPath, { timeoutMs: 1000 });
         if (probe.status === 'alive') {
+          if (probe.reason === 'health-ready') clearRecoveredGiveUpCooldown();
           return { shouldListen: false, reason: 'model-server-alive' };
         }
+        deadProbeReason = probe.reason;
       }
     }
 
@@ -827,7 +1025,7 @@ function createModelServerControl(deps = {}) {
     // cleanly with 'model-server-respawn-lock-held' instead of racing the bind. (Lock LIFETIME differs
     // from the phase-004 single-launcher path by design; the wx-open + UDS-bind primitives are unchanged.)
     const lock = acquireDemandRespawnLock(socketPath);
-    if (!lock.acquired) return { shouldListen: false, reason: 'model-server-respawn-lock-held', lockPath: lock.path };
+    if (!lock.acquired) return { shouldListen: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
     let reapResult;
     if (fs.existsSync(socketPath)) {
       reapResult = await reapRecordedModelServerBeforeRespawn(socketPath, { lock });
@@ -847,12 +1045,25 @@ function createModelServerControl(deps = {}) {
       releaseDemandRespawnLock();
       return { shouldListen: false, reason: reapResult.reason, lockPath: reapResult.lockPath };
     }
+    if (reapResult.reaped && (deadProbeReason === 'loading-wedged' || deadProbeReason === 'health-error')) {
+      armGiveUpCooldown();
+    }
     unlinkModelServerSocket(socketPath);
     return { shouldListen: true, reason: reapResult.reason };
   }
 
   function handleModelServerDemand(request, response) {
     const routePath = new URL(request.url || '/', 'http://127.0.0.1').pathname;
+    const cooldown = activeGiveUpCooldown(state.demandTarget || resolveSocketPath());
+    if (cooldown) {
+      logger(`hf-model-server demand received ${request.method || 'GET'} ${routePath}; crash-loop cooldown active for ${cooldown.retryAfterMs}ms`);
+      writeDemandResponse(response, MODEL_SERVER_DEMAND_STATUS, {
+        state: 'error',
+        reason: 'crash-loop-cooldown',
+        retryAfterMs: cooldown.retryAfterMs,
+      });
+      return;
+    }
     logger(`hf-model-server demand received ${request.method || 'GET'} ${routePath}; spawning launcher-owned sibling`);
     releaseModelServerDemandListenerForSpawn({ keepRespawnLock: true });
     const launched = getSupervisor().launch();
@@ -957,9 +1168,11 @@ module.exports = {
   DEFAULT_CRASH_LOOP_WINDOW_MS,
   DEFAULT_CRASH_LOOP_INITIAL_BACKOFF_MS,
   DEFAULT_CRASH_LOOP_MAX_BACKOFF_MS,
+  DEFAULT_MODEL_SERVER_GIVEUP_COOLDOWN_MS,
   HF_MODEL_SERVER_SOCKET_FILE_NAME,
   HF_MODEL_SERVER_RESPAWN_LOCK_FILE_NAME,
   HF_MODEL_SERVER_PID_FILE_NAME,
+  HF_MODEL_SERVER_GIVEUP_FILE_NAME,
   MODEL_SERVER_DEMAND_STATUS,
   acquireModelServerRespawnLockFile,
   acquireRespawnLockFileAt,
@@ -972,11 +1185,14 @@ module.exports = {
   defaultProcessRowsRunner,
   ensureCanonicalDir,
   getCrashLoopConfig,
+  getModelServerGiveUpCooldownMs,
   getModelServerWatchdogConfig,
   getWatchdogConfig,
+  isDurableWriteUnavailable,
   isChildRunning,
   isPermissionError,
   isRespawnLockStale,
+  modelServerGiveUpPath,
   modelServerRespawnLockPath,
   normalizeModelServerTarget,
   normalizeWatchdogGraceMs,
@@ -994,5 +1210,7 @@ module.exports = {
   superviseChildExit,
   unlinkModelServerSocket,
   waitForPidExit,
+  readModelServerGiveUpUntil,
   writeDemandResponse,
+  writeModelServerGiveUpUntil,
 };

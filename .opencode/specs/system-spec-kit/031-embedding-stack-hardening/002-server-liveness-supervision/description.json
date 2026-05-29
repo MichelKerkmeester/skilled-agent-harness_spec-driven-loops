@@ -9,7 +9,7 @@
     "supervision",
     "hardening"
   ],
-  "lastUpdated": "2026-05-29T11:22:33.015Z",
+  "lastUpdated": "2026-05-29T11:46:56Z",
   "specId": "002",
   "folderSlug": "server-liveness-supervision",
   "parentChain": [

@@ -151,6 +151,30 @@ describe('launcher-owned hf model server supervision', () => {
     supervisor.clearTimers();
   });
 
+  it('does not clear model-server give-up cooldown on spawn and arms it after load-crash give-up', () => {
+    const children: FakeChild[] = [];
+    const writeGiveUpUntil = vi.fn(() => true);
+    const supervisor = launcher.createModelServerSupervisor({
+      spawnFn: createSpawn(children),
+      startDemandListener: false,
+      writeLease: () => undefined,
+      writeGiveUpUntil,
+      nowMs: () => 1000,
+      giveUpCooldownMs: 500,
+      crashLoopConfig: () => ({ maxDeaths: 1, windowMs: 1000, initialBackoffMs: 25, maxBackoffMs: 100 }),
+      watchdogConfig: () => ({ enabled: false, maxRssMb: null, intervalMs: 1000, consecutiveBreaches: 1, graceMs: 7000 }),
+    });
+
+    expect(supervisor.launch()).toBe(true);
+    expect(writeGiveUpUntil).not.toHaveBeenCalled();
+
+    children[0].exit(1, null);
+
+    expect(writeGiveUpUntil).toHaveBeenCalledTimes(1);
+    expect(writeGiveUpUntil).toHaveBeenCalledWith(1500);
+    supervisor.clearTimers();
+  });
+
   it('generalized RSS watchdog samples the model-server pid tree and uses model-server env names', async () => {
     vi.useFakeTimers();
     const snapshots: number[][] = [];

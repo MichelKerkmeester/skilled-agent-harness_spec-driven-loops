@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/031-embedding-stack-hardening/002-server-liveness-supervision"
-    last_updated_at: "2026-05-29T14:00:00Z"
-    last_updated_by: "claude-opus"
-    recent_action: "Authored Level-1 child spec for server liveness + supervision hardening"
-    next_safe_action: "Implement phase 002"
+    last_updated_at: "2026-05-29T11:46:56Z"
+    last_updated_by: "codex"
+    recent_action: "Implemented and verified phase 002 server liveness + supervision hardening"
+    next_safe_action: "Continue to successor phase 003-observability-model-switch when ready"
     blockers: []
     key_files:
       - ".opencode/bin/hf-model-server.cjs"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003121"
       session_id: "031-002-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Predecessor: 001-selector-and-shared-socket (depends on the shared socket)."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Complete — implemented and verified |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

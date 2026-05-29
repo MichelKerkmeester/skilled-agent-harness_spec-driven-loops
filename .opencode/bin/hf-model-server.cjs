@@ -26,6 +26,7 @@ const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
 const DEFAULT_DTYPE = 'q8';
 const DEFAULT_INFERENCE_TIMEOUT_MS = 30000;
 const MODEL_LOAD_TIMEOUT = 120000;
+const INFERENCE_DRAIN_TIMEOUT_MS = 5000;
 const ALLOWED_HF_LOCAL_DTYPES = Object.freeze([
   'fp32',
   'fp16',
@@ -255,6 +256,9 @@ async function loadHfModel(options = {}) {
   const dtype = options.dtype || resolveDtype();
   const importer = options.importTransformers || importTransformers;
   const timeoutMs = options.modelLoadTimeoutMs || MODEL_LOAD_TIMEOUT;
+  const onLoadAttemptStart = typeof options.onLoadAttemptStart === 'function'
+    ? options.onLoadAttemptStart
+    : null;
   const start = Date.now();
 
   try {
@@ -266,6 +270,8 @@ async function loadHfModel(options = {}) {
     console.error(`[hf-model-server] Attempting device: ${targetDevice}`);
 
     const loadWithTimeout = async (device) => {
+      const attemptStartedAt = Date.now();
+      onLoadAttemptStart?.({ device, startedAt: attemptStartedAt, timeoutMs });
       return await new Promise((resolve, reject) => {
         const timeoutId = setTimeout(() => {
           reject(new Error(`Model loading timed out after ${timeoutMs}ms. ` +
@@ -392,6 +398,9 @@ function createHfModelServer(options = {}) {
     disposePromise: null,
     inFlightRawRuns: new Set(),
     serverState: 'loading',
+    loadStartedAt: null,
+    loadProgressAt: null,
+    lastSuccessfulEmbedAt: null,
     device: null,
     dim: 0,
     loadTimeMs: null,
@@ -444,13 +453,19 @@ function createHfModelServer(options = {}) {
 
     state.serverState = 'loading';
     state.lastError = null;
+    state.loadStartedAt = Date.now();
+    state.loadProgressAt = state.loadStartedAt;
     state.loadingPromise = (async () => {
-      const start = Date.now();
+      const start = state.loadStartedAt;
       try {
         const result = await loadModel({
           modelName: state.modelName,
           dtype: state.dtype,
           modelLoadTimeoutMs: MODEL_LOAD_TIMEOUT,
+          onLoadAttemptStart: (attempt = {}) => {
+            const startedAt = Number.isFinite(attempt.startedAt) ? attempt.startedAt : Date.now();
+            state.loadProgressAt = startedAt;
+          },
         });
         const normalized = normalizeLoadResult(result, Date.now() - start);
         state.extractor = normalized.extractor;
@@ -488,6 +503,10 @@ function createHfModelServer(options = {}) {
       dim: state.dim > 0 ? state.dim : null,
       device: state.device,
       loadTimeMs: state.loadTimeMs,
+      loadStartedAt: state.loadStartedAt,
+      loadProgressAt: state.loadProgressAt,
+      lastSuccessfulEmbedAt: state.lastSuccessfulEmbedAt,
+      inFlight: state.inFlightRawRuns.size,
       error: state.lastError ? getErrorMessage(state.lastError) : undefined,
     };
   }
@@ -521,7 +540,9 @@ function createHfModelServer(options = {}) {
       const extractor = await getModel();
       const embeddings = [];
       for (const text of body.input) {
-        embeddings.push(await runExtractor(extractor, text));
+        const embedding = await runExtractor(extractor, text);
+        state.lastSuccessfulEmbedAt = Date.now();
+        embeddings.push(embedding);
       }
       return {
         statusCode: 200,
@@ -678,8 +699,8 @@ function createHfModelServer(options = {}) {
       if (state.inFlightRawRuns.size > 0) {
         await withTimeout(
           Promise.allSettled(Array.from(state.inFlightRawRuns)),
-          MODEL_LOAD_TIMEOUT,
-          `[hf-model-server] Timed out waiting for native inference drain after ${MODEL_LOAD_TIMEOUT}ms`,
+          INFERENCE_DRAIN_TIMEOUT_MS,
+          `[hf-model-server] Timed out waiting for native inference drain after ${INFERENCE_DRAIN_TIMEOUT_MS}ms`,
         );
       }
 
@@ -696,6 +717,8 @@ function createHfModelServer(options = {}) {
       state.extractor = null;
       state.loadingPromise = null;
       state.loadTimeMs = null;
+      state.loadStartedAt = null;
+      state.loadProgressAt = null;
       state.serverState = 'loading';
       if (!extractor) {
         return;
@@ -750,6 +773,7 @@ async function main() {
 module.exports = {
   ALLOWED_HF_LOCAL_DTYPES,
   DEFAULT_MODEL,
+  INFERENCE_DRAIN_TIMEOUT_MS,
   MODEL_LOAD_TIMEOUT,
   SOCKET_FILE_NAME,
   assertSingleSessionBeforeDispose,

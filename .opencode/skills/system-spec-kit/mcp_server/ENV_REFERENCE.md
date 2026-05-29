@@ -106,7 +106,7 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 <!-- PHASE-010-ENV-SLOT: SPECKIT_RERANK_USE_SHARED_RERANK / SPECKIT_EMBEDDING_CACHE_* flags inserted here (027/010) -->
 <!-- PHASE-011-ENV-SLOT: SPECKIT_CODE_GRAPH_EXEMPLARS_* / SPECKIT_CONTEXT_CURATOR_* flags inserted here (027/011) -->
 
-Total unique variables documented: 139 (legacy HYDRA aliases removed in commit 6f2c2c939).
+Total unique variables documented: 141 (legacy HYDRA aliases removed in commit 6f2c2c939).
 
 ### Provisional Measurement Contract
 
@@ -416,6 +416,8 @@ For the simplest local-first new-user setup, install [Ollama](https://ollama.com
 | `HF_EMBED_SERVER_READY_TIMEOUT_MS` | `45000` | number | Max time the `hf-local` client waits for the model server to finish a cold model load (it retries through `503 loading`). | `shared/embeddings/providers/hf-local.ts` |
 | `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB` | (unset → disabled) | number | RSS ceiling (MB) for the launcher-supervised model-server process tree. Unset disables the watchdog. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_HF_MODEL_SERVER_RSS_SELF_EXIT` | (unset → off) | string | Set `1` (with `SPECKIT_HF_MODEL_SERVER_MAX_RSS_MB`) to recycle the model server via graceful self-exit on an RSS breach. | `bin/lib/model-server-supervision.cjs` |
+| `SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS` | `150000` | number | Maximum age, in milliseconds, for one model-server load attempt before launcher probes classify `loading` as wedged/dead. Device fallback re-stamps the per-attempt marker, so this is not a whole-`getModel()` budget. Missing or invalid loading markers remain backward-compatible and are treated as alive while loading. | `bin/lib/launcher-ipc-bridge.cjs`, `bin/hf-model-server.cjs` |
+| `SPECKIT_HF_MODEL_SERVER_GIVEUP_COOLDOWN_MS` | `60000` | number | Cooldown written after launcher-supervised hf-model-server crash-loop give-up. During the cooldown, demand requests return `503` with `reason: "crash-loop-cooldown"` instead of spawning again. | `bin/lib/model-server-supervision.cjs` |
 | `SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED` | (unset → off) | string | Set `1` to let the **skill-advisor** launcher win the shared model-server spawn when mk-spec-memory is absent (single-winner via the socket-keyed lock). Default off — the memory daemon owns the spawn in the steady state. | `bin/mk-skill-advisor-launcher.cjs` |
 | `SPECKIT_EMBED_CACHE_MAX_BYTES` | `104857600` | number | Global hard cap for persistent embedding cache rows across all profiles and document/query kinds. Defaults to 100 MB. | `lib/cache/embedding-cache.ts` |
 | `SPECKIT_EMBED_CACHE_PROFILE_MAX_BYTES` | `52428800` | number | Per-profile cap for persistent embedding cache rows. Defaults to 50 MB per active embedder profile. | `lib/cache/embedding-cache.ts` |

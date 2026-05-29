@@ -6,9 +6,16 @@ const path = require('path');
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_PROBE_TIMEOUT_MS = 2500;
+const DEFAULT_MODEL_SERVER_LOADING_MAX_MS = 150000;
 const JSON_RPC_PROTOCOL_VERSION = '2025-06-18';
 const MODEL_SERVER_HEALTH_PATH = '/api/health';
 let nextProbeId = 1;
+
+function parsePositiveInteger(value, fallback) {
+  if (value === undefined || value === null || String(value).trim() === '') return fallback;
+  const parsed = Number.parseInt(String(value).trim(), 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
 
 function repoRoot() {
   return path.resolve(__dirname, '..', '..', '..');
@@ -198,6 +205,13 @@ function probeModelServer(socketPath, options = {}) {
   const timeoutMs = Number.isFinite(options.timeoutMs) && options.timeoutMs > 0
     ? options.timeoutMs
     : DEFAULT_PROBE_TIMEOUT_MS;
+  const loadingMaxMs = Number.isFinite(options.loadingMaxMs) && options.loadingMaxMs > 0
+    ? options.loadingMaxMs
+    : parsePositiveInteger(
+      (options.env ?? process.env).SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS,
+      DEFAULT_MODEL_SERVER_LOADING_MAX_MS,
+    );
+  const nowMs = typeof options.nowMs === 'function' ? options.nowMs : () => Date.now();
   const connect = options.connect ?? ((connectionOptions) => net.createConnection(connectionOptions));
   const request = `GET ${MODEL_SERVER_HEALTH_PATH} HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nConnection: close\r\n\r\n`;
 
@@ -236,8 +250,22 @@ function probeModelServer(socketPath, options = {}) {
       const state = parsed && parsed.body && typeof parsed.body === 'object'
         ? parsed.body.state
         : null;
-      if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && (state === 'ready' || state === 'loading')) {
+      if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'ready') {
         finish('alive', `health-${state}`);
+        return;
+      }
+      if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'loading') {
+        const loadStartedAt = parsed.body.loadStartedAt;
+        const loadProgressAt = parsed.body.loadProgressAt;
+        // The loading budget is per model-load attempt; device fallback re-stamps loadProgressAt.
+        const loadingMarker = Number.isFinite(loadProgressAt) && loadProgressAt > 0
+          ? loadProgressAt
+          : loadStartedAt;
+        if (Number.isFinite(loadingMarker) && loadingMarker > 0 && nowMs() - loadingMarker > loadingMaxMs) {
+          finish('dead', 'loading-wedged');
+          return;
+        }
+        finish('alive', 'health-loading');
         return;
       }
       finish('dead', state === 'error' ? 'health-error' : 'health-not-ready');
@@ -301,6 +329,7 @@ async function maybeBridgeLeaseHolder(options) {
 }
 
 module.exports = {
+  DEFAULT_MODEL_SERVER_LOADING_MAX_MS,
   bridgeStdioToSocket,
   getIpcSocketPath,
   maybeBridgeLeaseHolder,

@@ -8,9 +8,10 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
-const { maybeBridgeLeaseHolder, probeDaemon } = require(bridgeModulePath) as {
+const { maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
   maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string }>;
   probeDaemon: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
+  probeModelServer: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
 };
 
 const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
@@ -63,6 +64,24 @@ function createErrorConnect(): () => FakeSocket {
   };
 }
 
+function createModelHealthConnect(body: Record<string, unknown>): () => FakeSocket {
+  return () => {
+    const socket = new FakeSocket();
+    socket.write = (chunk: string): boolean => {
+      socket.writes.push(String(chunk));
+      const responseBody = JSON.stringify(body);
+      const response = `HTTP/1.1 200 OK\r\ncontent-type: application/json\r\ncontent-length: ${Buffer.byteLength(responseBody)}\r\n\r\n${responseBody}`;
+      queueMicrotask(() => {
+        socket.emit('data', Buffer.from(response));
+        socket.emit('end');
+      });
+      return true;
+    };
+    queueMicrotask(() => socket.emit('connect'));
+    return socket;
+  };
+}
+
 describe('launcher IPC bridge liveness probe', () => {
   afterEach(() => {
     process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
@@ -108,6 +127,36 @@ describe('launcher IPC bridge liveness probe', () => {
       connect: createErrorConnect(),
       timeoutMs: 100,
     })).resolves.toMatchObject({ status: 'dead' });
+  });
+
+  it('classifies over-age model-server loading per load attempt but keeps fresh or legacy loading alive', async () => {
+    await expect(probeModelServer('tcp://127.0.0.1:65535', {
+      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1000 }),
+      loadingMaxMs: 150,
+      nowMs: () => 1200,
+      timeoutMs: 100,
+    })).resolves.toMatchObject({ status: 'dead', reason: 'loading-wedged' });
+
+    await expect(probeModelServer('tcp://127.0.0.1:65535', {
+      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1000, loadProgressAt: 1125 }),
+      loadingMaxMs: 150,
+      nowMs: () => 1200,
+      timeoutMs: 100,
+    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
+
+    await expect(probeModelServer('tcp://127.0.0.1:65535', {
+      connect: createModelHealthConnect({ state: 'loading', loadStartedAt: 1100 }),
+      loadingMaxMs: 150,
+      nowMs: () => 1200,
+      timeoutMs: 100,
+    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
+
+    await expect(probeModelServer('tcp://127.0.0.1:65535', {
+      connect: createModelHealthConnect({ state: 'loading' }),
+      loadingMaxMs: 150,
+      nowMs: () => 1200,
+      timeoutMs: 100,
+    })).resolves.toMatchObject({ status: 'alive', reason: 'health-loading' });
   });
 
   it('returns a respawn verdict when the liveness probe is dead', async () => {
