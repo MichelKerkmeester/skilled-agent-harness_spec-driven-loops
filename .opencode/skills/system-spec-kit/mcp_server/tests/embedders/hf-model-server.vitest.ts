@@ -43,8 +43,9 @@ interface Deferred<T> {
   reject: (error: unknown) => void;
 }
 
-type FakeExtractor = ((text: string, options: { pooling: string; normalize: boolean }) => Promise<{ data: Float32Array }>) & {
+type FakeExtractor = ((text: string | string[], options: { pooling: string; normalize: boolean }) => Promise<{ data: Float32Array; dims?: number[] }>) & {
   calls: string[];
+  callInputs?: Array<string | string[]>;
   dispose: ReturnType<typeof vi.fn>;
   model: { sessions: Record<string, unknown> };
 };
@@ -74,13 +75,26 @@ function tempDir(prefix: string): string {
 
 function createFakeExtractor(dim = 4, sessions: Record<string, unknown> = { main: {} }): FakeExtractor {
   const calls: string[] = [];
-  const extractor = (async (text: string) => {
-    calls.push(text);
+  const callInputs: Array<string | string[]> = [];
+  const extractor = (async (input: string | string[]) => {
+    callInputs.push(input);
+    const texts = Array.isArray(input) ? input : [input];
+    calls.push(...texts);
+    const values = texts.flatMap((text) => (
+      Array.from({ length: dim }, (_value, index) => text.length + index)
+    ));
+    if (Array.isArray(input)) {
+      return {
+        data: new Float32Array(values),
+        dims: [input.length, dim],
+      };
+    }
     return {
-      data: new Float32Array(Array.from({ length: dim }, (_value, index) => text.length + index)),
+      data: new Float32Array(values),
     };
   }) as FakeExtractor;
   extractor.calls = calls;
+  extractor.callInputs = callInputs;
   extractor.dispose = vi.fn(async () => undefined);
   extractor.model = { sessions };
   return extractor;
@@ -284,6 +298,201 @@ describe('hf-model-server.cjs', () => {
       inFlight: 0,
       lastSuccessfulEmbedAt: expect.any(Number),
     });
+  });
+
+  it('reports idle timing as nulls and summarizes inference timing after an embed', async () => {
+    const extractor = createFakeExtractor(3);
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const idle = await handle.inject('GET', '/api/health');
+    expect(idle.body).toMatchObject({
+      inFlight: 0,
+      queueDepth: 0,
+      timing: {
+        p50Ms: null,
+        p95Ms: null,
+        lastMs: null,
+        count: 0,
+      },
+    });
+
+    const embed = await handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['timed'],
+    });
+    expect(embed.statusCode).toBe(200);
+
+    const after = await handle.inject('GET', '/api/health');
+    const timing = after.body.timing as Record<string, unknown>;
+    expect(after.body).toMatchObject({
+      inFlight: 0,
+      queueDepth: 0,
+    });
+    expect(Number.isFinite(timing.p50Ms)).toBe(true);
+    expect(Number.isFinite(timing.p95Ms)).toBe(true);
+    expect(Number.isFinite(timing.lastMs)).toBe(true);
+    expect(timing.count).toBe(1);
+  });
+
+  it('embeds a batch with one native extractor call and returns one row per input', async () => {
+    const extractor = createFakeExtractor(3);
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['aa', 'bbb', 'cccc'],
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.dim).toBe(3);
+    expect(response.body.embeddings).toEqual([
+      [2, 3, 4],
+      [3, 4, 5],
+      [4, 5, 6],
+    ]);
+    expect(extractor.callInputs).toEqual([['aa', 'bbb', 'cccc']]);
+  });
+
+  it('slices flat batched extractor output into ordered rows', async () => {
+    const extractor = (async () => ({
+      data: new Float32Array([11, 12, 13, 21, 22, 23]),
+      dims: [2, 3],
+    })) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['first', 'second'],
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.embeddings).toEqual([
+      [11, 12, 13],
+      [21, 22, 23],
+    ]);
+  });
+
+  it('rejects mismatched batched output dimensions without partial rows', async () => {
+    const extractor = (async () => ({
+      data: new Float32Array([1, 2, 3, 4, 5, 6]),
+      dims: [1, 3],
+    })) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings?: number[][]; error?: string }>('POST', '/api/embed', {
+      input: ['first', 'second'],
+    });
+
+    expect(response.statusCode).toBe(500);
+    expect(response.body.embeddings).toBeUndefined();
+    expect(response.body.error).toContain('Batch output dimensions mismatch');
+  });
+
+  it('rejects indivisible batched output without partial rows', async () => {
+    const extractor = (async () => ({
+      data: new Float32Array([1, 2, 3, 4, 5]),
+    })) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings?: number[][]; error?: string }>('POST', '/api/embed', {
+      input: ['first', 'second'],
+    });
+
+    expect(response.statusCode).toBe(500);
+    expect(response.body.embeddings).toBeUndefined();
+    expect(response.body.error).toContain('not divisible by input count');
+  });
+
+  it('falls back to per-text extraction when array input is unsupported', async () => {
+    const callInputs: Array<string | string[]> = [];
+    const extractor = (async (input: string | string[]) => {
+      callInputs.push(input);
+      if (Array.isArray(input)) {
+        throw new TypeError('array input unsupported');
+      }
+      return { data: new Float32Array([input.length, input.length + 1]) };
+    }) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['aa', 'bbbb'],
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.embeddings).toEqual([
+      [2, 3],
+      [4, 5],
+    ]);
+    expect(callInputs).toEqual([['aa', 'bbbb'], 'aa', 'bbbb']);
+  });
+
+  it('does NOT permanently disable batching after a transient (coded) first-batch error', async () => {
+    let arrayCalls = 0;
+    const extractor = (async (input: string | string[]) => {
+      if (Array.isArray(input)) {
+        arrayCalls += 1;
+        if (arrayCalls === 1) {
+          // A transient connection drop on the very first batch is NOT a capability gap — it
+          // must propagate (and be retried next request), never latch the server to per-text.
+          const err = new Error('socket hang up') as Error & { code: string };
+          err.code = 'ECONNRESET';
+          throw err;
+        }
+        return { data: new Float32Array(input.length * 2), dims: [input.length, 2] };
+      }
+      throw new Error('per-text path must NOT be used after a transient batch error');
+    }) as FakeExtractor;
+    extractor.calls = [];
+    extractor.dispose = vi.fn(async () => undefined);
+    extractor.model = { sessions: { main: {} } };
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    // First request: the transient error propagates (500), batching NOT silently downgraded.
+    const first = await handle.inject('POST', '/api/embed', { input: ['aa', 'bbbb'] });
+    expect(first.statusCode).toBe(500);
+
+    // Second request: batching is STILL attempted (supportsArrayInput never latched false).
+    const second = await handle.inject<{ embeddings: number[][] }>('POST', '/api/embed', { input: ['aa', 'bbbb'] });
+    expect(second.statusCode).toBe(200);
+    expect(arrayCalls).toBe(2);
+  });
+
+  it('uses the batch path for a single input and preserves the previous row shape', async () => {
+    const extractor = createFakeExtractor(4);
+    const loadModel = vi.fn(async () => ({ extractor, device: 'cpu', loadTimeMs: 1 }));
+    const handle = await startServer({ loadModel, selfWarm: false }, 'tcp://127.0.0.1:0');
+    await waitForReady(handle);
+
+    const response = await handle.inject<{ embeddings: number[][]; dim: number }>('POST', '/api/embed', {
+      input: ['abcd'],
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.embeddings).toEqual([[4, 5, 6, 7]]);
+    expect(extractor.callInputs).toEqual([['abcd']]);
   });
 
   it('bounds dispose drain for uncancellable native runs at the inference drain timeout', async () => {

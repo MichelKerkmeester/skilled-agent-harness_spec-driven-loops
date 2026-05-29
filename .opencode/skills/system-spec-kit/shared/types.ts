@@ -55,6 +55,7 @@ export interface IEmbeddingProvider {
   generateEmbedding(text: string): Promise<Float32Array | null>;
   embedDocument(text: string): Promise<Float32Array | null>;
   embedQuery(text: string): Promise<Float32Array | null>;
+  embedBatch?(texts: ReadonlyArray<string>, inputType: 'document' | 'query'): Promise<(Float32Array | null)[]>;
   warmup(): Promise<boolean>;
   dispose?(): Promise<void>;
   getMetadata(): ProviderMetadata;
@@ -78,6 +79,10 @@ export interface ProviderMetadata {
   loadTimeMs?: number | null;
   loadStartedAt?: string | null;
   loadProgressAt?: string | null;
+  inferenceP50Ms?: number | null;
+  inferenceP95Ms?: number | null;
+  lastInferenceMs?: number | null;
+  queueDepth?: number | null;
   baseUrl?: string;
   requestCount?: number;
   totalTokens?: number;

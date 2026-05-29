@@ -397,6 +397,10 @@ function createHfModelServer(options = {}) {
     loadingPromise: null,
     disposePromise: null,
     inFlightRawRuns: new Set(),
+    recentInferMs: [],
+    inferenceCount: 0,
+    lastInferenceMs: null,
+    supportsArrayInput: undefined,
     serverState: 'loading',
     loadStartedAt: null,
     loadProgressAt: null,
@@ -416,7 +420,58 @@ function createHfModelServer(options = {}) {
   const logger = options.logger || console;
   const activeSockets = new Set();
 
+  function recordInferenceMs(inferMs) {
+    state.recentInferMs.push(inferMs);
+    if (state.recentInferMs.length > 256) {
+      state.recentInferMs.shift();
+    }
+    state.inferenceCount += 1;
+    state.lastInferenceMs = inferMs;
+  }
+
+  function percentile(sortedValues, percentileValue) {
+    const index = Math.min(
+      sortedValues.length - 1,
+      Math.ceil((percentileValue / 100) * sortedValues.length) - 1,
+    );
+    return sortedValues[index] ?? null;
+  }
+
+  function timingSummary() {
+    if (state.recentInferMs.length === 0) {
+      return {
+        p50Ms: null,
+        p95Ms: null,
+        lastMs: null,
+        count: 0,
+      };
+    }
+
+    const sorted = state.recentInferMs.slice().sort((left, right) => left - right);
+    return {
+      p50Ms: percentile(sorted, 50),
+      p95Ms: percentile(sorted, 95),
+      lastMs: state.lastInferenceMs,
+      count: state.inferenceCount,
+    };
+  }
+
+  function isArrayInputUnsupported(error) {
+    // A transient connection/timeout error is NOT a capability gap — it is retryable and must
+    // never permanently latch batching off (mirrors hf-local.ts isRetryableReadinessError).
+    // Without this guard a one-off first-batch ETIMEDOUT/ECONNRESET silently degrades the
+    // server to per-row inference for its whole lifetime.
+    const code = getErrorCode(error);
+    if (code === 'ETIMEDOUT' || code === 'ECONNRESET' || code === 'EPIPE' || code === 'ECONNREFUSED' || code === 'ECONNABORTED') {
+      return false;
+    }
+    // Only an unambiguous "this runner rejects array input" message latches batching off. A bare
+    // TypeError or a generic "shape"/"invalid input" error is not a reliable capability signal.
+    return /array input|unsupported array input|input must be a string|expected (?:a )?string|got an array|received an array/i.test(getErrorMessage(error));
+  }
+
   async function runExtractor(extractor, text) {
+    const t0 = performance.now();
     const run = Promise.resolve(extractorRunner(extractor)(text, {
       pooling: 'mean',
       normalize: true,
@@ -431,6 +486,7 @@ function createHfModelServer(options = {}) {
       state.inferenceTimeoutMs,
       `HF local inference timed out after ${state.inferenceTimeoutMs}ms`,
     );
+    recordInferenceMs(performance.now() - t0);
     const embedding = embeddingData(output);
     if (state.dim <= 0) {
       state.dim = embedding.length;
@@ -438,6 +494,63 @@ function createHfModelServer(options = {}) {
       throw new Error(`Embedding dimension mismatch: expected ${state.dim}, got ${embedding.length}`);
     }
     return Array.from(embedding);
+  }
+
+  function sliceBatchOutput(output, n) {
+    const data = embeddingData(output);
+    if (output && typeof output === 'object' && Array.isArray(output.dims)) {
+      const [rows, dim] = output.dims;
+      if (rows !== n || dim * n !== data.length) {
+        throw new Error(`[hf-model-server] Batch output dimensions mismatch: dims=${JSON.stringify(output.dims)} data=${data.length} inputs=${n}`);
+      }
+    }
+
+    if (n <= 0) {
+      return [];
+    }
+    if (data.length % n !== 0) {
+      throw new Error(`[hf-model-server] Batch output length ${data.length} is not divisible by input count ${n}`);
+    }
+
+    const dim = data.length / n;
+    if (!Number.isInteger(dim)) {
+      throw new Error(`[hf-model-server] Batch output dimension is not an integer: ${dim}`);
+    }
+    if (state.dim <= 0) {
+      state.dim = dim;
+    } else if (dim !== state.dim) {
+      throw new Error(`Embedding dimension mismatch: expected ${state.dim}, got ${dim}`);
+    }
+
+    const rows = [];
+    for (let index = 0; index < n; index += 1) {
+      rows.push(Array.from(data.subarray(index * dim, (index + 1) * dim)));
+    }
+    return rows;
+  }
+
+  async function runExtractorBatch(extractor, texts) {
+    if (texts.length === 0) {
+      return [];
+    }
+
+    const t0 = performance.now();
+    const run = Promise.resolve(extractorRunner(extractor)(texts, {
+      pooling: 'mean',
+      normalize: true,
+    }));
+    state.inFlightRawRuns.add(run);
+    void run.finally(() => {
+      state.inFlightRawRuns.delete(run);
+    }).catch(() => undefined);
+
+    const output = await withTimeout(
+      run,
+      state.inferenceTimeoutMs,
+      `HF local inference timed out after ${state.inferenceTimeoutMs}ms`,
+    );
+    recordInferenceMs(performance.now() - t0);
+    return sliceBatchOutput(output, texts.length);
   }
 
   async function getModel() {
@@ -507,6 +620,8 @@ function createHfModelServer(options = {}) {
       loadProgressAt: state.loadProgressAt,
       lastSuccessfulEmbedAt: state.lastSuccessfulEmbedAt,
       inFlight: state.inFlightRawRuns.size,
+      queueDepth: state.inFlightRawRuns.size,
+      timing: timingSummary(),
       error: state.lastError ? getErrorMessage(state.lastError) : undefined,
     };
   }
@@ -538,11 +653,30 @@ function createHfModelServer(options = {}) {
 
     try {
       const extractor = await getModel();
-      const embeddings = [];
-      for (const text of body.input) {
-        const embedding = await runExtractor(extractor, text);
-        state.lastSuccessfulEmbedAt = Date.now();
-        embeddings.push(embedding);
+      let embeddings;
+      if (state.supportsArrayInput !== false) {
+        try {
+          embeddings = await runExtractorBatch(extractor, body.input);
+          if (body.input.length > 0) {
+            state.supportsArrayInput = true;
+            state.lastSuccessfulEmbedAt = Date.now();
+          }
+        } catch (error) {
+          if (state.supportsArrayInput !== undefined || !isArrayInputUnsupported(error)) {
+            throw error;
+          }
+          state.supportsArrayInput = false;
+          logger.warn?.(`[hf-model-server] extractor rejected batched array input; falling back to per-text inference for this server: ${getErrorMessage(error)}`);
+        }
+      }
+
+      if (!embeddings) {
+        embeddings = [];
+        for (const text of body.input) {
+          const embedding = await runExtractor(extractor, text);
+          state.lastSuccessfulEmbedAt = Date.now();
+          embeddings.push(embedding);
+        }
       }
       return {
         statusCode: 200,

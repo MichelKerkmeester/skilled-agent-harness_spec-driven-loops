@@ -37,9 +37,11 @@ async function loadTestables() {
 
 describe('execution router', () => {
   const originalExecutionPolicy = process.env.SPECKIT_EMBEDDER_EXECUTION;
+  const originalMaxBatch = process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH;
 
   beforeEach(async () => {
     delete process.env.SPECKIT_EMBEDDER_EXECUTION;
+    delete process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH;
     mockState.getAdapter.mockReset();
     mockState.createEmbeddingsProvider.mockReset();
     mockState.createEmbeddingsProvider.mockImplementation(async ({ model }: { model: string }) => ({
@@ -60,6 +62,11 @@ describe('execution router', () => {
       delete process.env.SPECKIT_EMBEDDER_EXECUTION;
     } else {
       process.env.SPECKIT_EMBEDDER_EXECUTION = originalExecutionPolicy;
+    }
+    if (originalMaxBatch === undefined) {
+      delete process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH;
+    } else {
+      process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH = originalMaxBatch;
     }
     vi.restoreAllMocks();
   });
@@ -156,6 +163,95 @@ describe('execution router', () => {
       warmup: false,
     });
     expect(mockState.getAdapter).not.toHaveBeenCalled();
+  });
+
+  it('chunks factory providers with embedBatch and preserves output order', async () => {
+    const router = await loadRouter();
+    process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH = '2';
+    const embedBatch = vi.fn(async (texts: ReadonlyArray<string>, inputType: 'document' | 'query') => (
+      texts.map((text) => new Float32Array([text.length, inputType === 'query' ? 1 : 0]))
+    ));
+    mockState.createEmbeddingsProvider.mockResolvedValueOnce({
+      embedDocument: vi.fn(),
+      embedQuery: vi.fn(),
+      embedBatch,
+    });
+
+    const adapter = router.getEmbedderAdapter('hf-local', 'model-a', 2);
+    const vectors = await adapter.embed(['a', 'bb', 'ccc', 'dddd', 'eeeee'], { inputType: 'query' });
+
+    expect(embedBatch).toHaveBeenCalledTimes(3);
+    expect(embedBatch).toHaveBeenNthCalledWith(1, ['a', 'bb'], 'query');
+    expect(embedBatch).toHaveBeenNthCalledWith(2, ['ccc', 'dddd'], 'query');
+    expect(embedBatch).toHaveBeenNthCalledWith(3, ['eeeee'], 'query');
+    expect(vectors).toEqual([
+      new Float32Array([1, 1]),
+      new Float32Array([2, 1]),
+      new Float32Array([3, 1]),
+      new Float32Array([4, 1]),
+      new Float32Array([5, 1]),
+    ]);
+  });
+
+  it('splits a batch by BYTES so a chunk never exceeds the server request cap, even under the count limit', async () => {
+    const router = await loadRouter();
+    // High count cap so only the byte budget forces a split. Each text is ~512 KiB; the byte
+    // budget (~768 KiB) admits exactly one per chunk, so 3 large texts => 3 single-text POSTs
+    // even though the count cap (100) would otherwise pack them into one oversized request.
+    process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH = '100';
+    const big = 'x'.repeat(512 * 1024);
+    const embedBatch = vi.fn(async (texts: ReadonlyArray<string>) => (
+      texts.map(() => new Float32Array([1, 0]))
+    ));
+    mockState.createEmbeddingsProvider.mockResolvedValueOnce({
+      embedDocument: vi.fn(),
+      embedQuery: vi.fn(),
+      embedBatch,
+    });
+
+    const adapter = router.getEmbedderAdapter('hf-local', 'model-a', 2);
+    const vectors = await adapter.embed([big, big, big], { inputType: 'document' });
+
+    expect(embedBatch).toHaveBeenCalledTimes(3); // one large text per request (byte budget), not 1x3
+    embedBatch.mock.calls.forEach(([chunk]) => {
+      expect(chunk).toHaveLength(1);
+    });
+    expect(vectors).toHaveLength(3);
+  });
+
+  it('throws when a batched provider returns null for a non-empty input slot', async () => {
+    const router = await loadRouter();
+    mockState.createEmbeddingsProvider.mockResolvedValueOnce({
+      embedDocument: vi.fn(),
+      embedQuery: vi.fn(),
+      embedBatch: vi.fn(async () => [new Float32Array([1, 0]), null]),
+    });
+
+    const adapter = router.getEmbedderAdapter('hf-local', 'model-a', 2);
+
+    await expect(adapter.embed(['ok', 'bad'])).rejects.toThrow(
+      'Embedding provider returned null for hf-local:model-a',
+    );
+  });
+
+  it('falls back to per-text provider calls when embedBatch is unavailable', async () => {
+    const router = await loadRouter();
+    const embedDocument = vi.fn(async (text: string) => new Float32Array([text.length, 0]));
+    const embedQuery = vi.fn(async (text: string) => new Float32Array([text.length, 1]));
+    mockState.createEmbeddingsProvider.mockResolvedValueOnce({
+      embedDocument,
+      embedQuery,
+    });
+
+    const adapter = router.getEmbedderAdapter('openai', 'model-a', 2);
+    const vectors = await adapter.embed(['one', 'three'], { inputType: 'document' });
+
+    expect(vectors).toEqual([
+      new Float32Array([3, 0]),
+      new Float32Array([5, 0]),
+    ]);
+    expect(embedDocument).toHaveBeenCalledTimes(2);
+    expect(embedQuery).not.toHaveBeenCalled();
   });
 
   it('accepts SPECKIT_EMBEDDER_EXECUTION as an ignored one-release no-op', async () => {

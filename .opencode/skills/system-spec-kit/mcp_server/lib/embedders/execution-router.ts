@@ -36,6 +36,11 @@ const directAdapters = new Map<string, ExecutionRouterAdapter>();
 const credentialCacheInvalidationListeners = new Set<CredentialCacheInvalidationListener>();
 let activeAdapterKey: string | null = null;
 let executionPolicyNoOpWarningLogged = false;
+const DEFAULT_EMBED_CLIENT_MAX_BATCH = 256;
+// Keep each batched /api/embed request body under the hf-model-server's MAX_REQUEST_BYTES (1 MiB)
+// with headroom for task prefixes + JSON framing. The client chunks by BOTH count and bytes so a
+// batch of large documents can't fail wholesale where the pre-004 per-text path would have succeeded.
+const MAX_EMBED_REQUEST_BYTES = 768 * 1024;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -55,6 +60,15 @@ function warnIgnoredExecutionPolicyEnv(): void {
   console.warn(
     `[embedder-execution] SPECKIT_EMBEDDER_EXECUTION="${raw}" is deprecated and ignored; using direct provider routing`,
   );
+}
+
+function resolveEmbedClientMaxBatch(): number {
+  const raw = process.env.SPECKIT_EMBED_CLIENT_MAX_BATCH;
+  if (raw === undefined || raw.trim().length === 0) {
+    return DEFAULT_EMBED_CLIENT_MAX_BATCH;
+  }
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : DEFAULT_EMBED_CLIENT_MAX_BATCH;
 }
 
 export function resolveDimensions(provider: string, model: string, dimensions?: number): number {
@@ -175,6 +189,37 @@ function createFactoryBackedAdapter(provider: string, model: string, dimensions:
       }
 
       const embeddingProvider = await getProvider();
+      if (typeof embeddingProvider.embedBatch === 'function') {
+        const inputType = options.inputType === 'query' ? 'query' : 'document';
+        const maxBatch = resolveEmbedClientMaxBatch();
+        const vectors: Float32Array[] = [];
+        let cursor = 0;
+        while (cursor < texts.length) {
+          const chunk: string[] = [];
+          let chunkBytes = 0;
+          while (cursor < texts.length && chunk.length < maxBatch) {
+            // Estimate this text's contribution to the JSON body (utf8 bytes + a few for the
+            // quotes/comma). Always keep at least one text per chunk even if it alone exceeds the
+            // budget — a single oversized text is the server's maxTextLength concern, not ours.
+            const textBytes = Buffer.byteLength(texts[cursor] ?? '', 'utf8') + 4;
+            if (chunk.length > 0 && chunkBytes + textBytes > MAX_EMBED_REQUEST_BYTES) {
+              break;
+            }
+            chunk.push(texts[cursor]);
+            chunkBytes += textBytes;
+            cursor += 1;
+          }
+          const embeddings = await embeddingProvider.embedBatch(chunk, inputType);
+          embeddings.forEach((embedding) => {
+            if (!embedding) {
+              throw new Error(`Embedding provider returned null for ${provider}:${model}`);
+            }
+            vectors.push(embedding);
+          });
+        }
+        return vectors;
+      }
+
       const vectors: Float32Array[] = [];
       for (const text of texts) {
         const embedding = options.inputType === 'query'

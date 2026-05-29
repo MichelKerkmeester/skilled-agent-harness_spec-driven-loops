@@ -148,6 +148,57 @@ describe('HfLocalProvider HTTP client', () => {
     expect(healthCalls).toBe(2);  // waitForReady re-probed before the retry
   });
 
+  it('reuses a fresh ready latch across back-to-back embeds', async () => {
+    let healthCalls = 0;
+    let postCalls = 0;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          healthCalls += 1;
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        postCalls += 1;
+        return jsonResponse(200, { embeddings: [vector(3, postCalls)], dim: 3 });
+      },
+    });
+
+    await provider.embedQuery('first');
+    await provider.embedQuery('second');
+    await provider.embedQuery('third');
+
+    expect(healthCalls).toBe(1);
+    expect(postCalls).toBe(3);
+  });
+
+  it('invalidates the ready latch after a reaped embed POST and re-probes before retry', async () => {
+    let healthCalls = 0;
+    let postAttempts = 0;
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 1000,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          healthCalls += 1;
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        postAttempts += 1;
+        if (postAttempts === 2) {
+          const error = new Error('socket hang up') as Error & { code: string };
+          error.code = 'ECONNRESET';
+          throw error;
+        }
+        return jsonResponse(200, { embeddings: [vector(3, postAttempts)], dim: 3 });
+      },
+    });
+
+    await provider.embedDocument('prime latch');
+    await expect(provider.embedDocument('reaped after latch')).resolves.toHaveLength(3);
+
+    expect(postAttempts).toBe(3);
+    expect(healthCalls).toBe(2);
+  });
+
   it('keeps retrying loading health past the ready timeout and resolves before the load cap', async () => {
     let now = 0;
     let healthCalls = 0;
@@ -235,6 +286,145 @@ describe('HfLocalProvider HTTP client', () => {
 
     expect(embedding).toHaveLength(4);
     expect(provider.getMetadata().dim).toBe(4);
+  });
+
+  it('exposes server timing and queue metadata from health responses', async () => {
+    const provider = new HfLocalProvider({
+      dim: 3,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, {
+            state: 'ready',
+            model: MODEL,
+            dim: 3,
+            device: 'cpu',
+            loadTimeMs: 12,
+            timing: {
+              p50Ms: 4.5,
+              p95Ms: 9.25,
+              lastMs: 5.75,
+              count: 3,
+            },
+            queueDepth: 2,
+          });
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+
+    await provider.embedQuery('timing metadata');
+
+    expect(provider.getMetadata()).toMatchObject({
+      inferenceP50Ms: 4.5,
+      inferenceP95Ms: 9.25,
+      lastInferenceMs: 5.75,
+      queueDepth: 2,
+    });
+  });
+
+  it('sends a multi-text embedBatch as one prefixed POST and increments requestCount by rows', async () => {
+    const postBodies: unknown[] = [];
+    const provider = new HfLocalProvider({
+      dim: 3,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        postBodies.push(request.body);
+        const body = request.body as { input: string[] };
+        return jsonResponse(200, {
+          embeddings: body.input.map((_input, index) => vector(3, index + 1)),
+          dim: 3,
+        });
+      },
+    });
+
+    const embeddings = await provider.embedBatch(['alpha', 'beta', 'gamma'], 'document');
+
+    expect(embeddings).toHaveLength(3);
+    expect(embeddings.every((embedding) => embedding instanceof Float32Array)).toBe(true);
+    expect(postBodies).toHaveLength(1);
+    expect((postBodies[0] as { input: string[] }).input).toEqual([
+      'search_document: alpha',
+      'search_document: beta',
+      'search_document: gamma',
+    ]);
+    expect(provider.getMetadata().requestCount).toBe(3);
+  });
+
+  it('preserves null slots and chunks each sent item independently in embedBatch', async () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const postBodies: unknown[] = [];
+    const provider = new HfLocalProvider({
+      dim: 2,
+      maxTextLength: 32,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 2 });
+        }
+        postBodies.push(request.body);
+        const body = request.body as { input: string[] };
+        return jsonResponse(200, {
+          embeddings: body.input.map((_input, index) => vector(2, index + 1)),
+          dim: 2,
+        });
+      },
+    });
+
+    const longA = `alpha ${'x'.repeat(80)}`;
+    const longB = `beta ${'y'.repeat(80)}`;
+    const embeddings = await provider.embedBatch([longA, '   ', longB], 'query');
+
+    expect(embeddings[0]).toBeInstanceOf(Float32Array);
+    expect(embeddings[1]).toBeNull();
+    expect(embeddings[2]).toBeInstanceOf(Float32Array);
+    expect(postBodies).toHaveLength(1);
+    const sent = (postBodies[0] as { input: string[] }).input;
+    expect(sent).toHaveLength(2);
+    expect(sent.every((input) => input.length <= 32)).toBe(true);
+    expect(sent[0]).toContain('search_query: alpha');
+    expect(sent[1]).toContain('search_query: beta');
+    expect(warnSpy).toHaveBeenCalledTimes(2);
+  });
+
+  it('rejects truncated batch responses instead of returning partial embeddings', async () => {
+    const provider = new HfLocalProvider({
+      dim: 3,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+
+    await expect(provider.embedBatch(['one', 'two'], 'document')).rejects.toThrow(
+      'HF local model server returned 1 embedding rows for 2 inputs',
+    );
+  });
+
+  it('fires onDimensionResolved once across a multi-text batch for custom models', async () => {
+    const resolved: Array<{ dim: number; model: string }> = [];
+    const provider = new HfLocalProvider({
+      model: 'custom/batched-embedder',
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, { state: 'ready', model: 'custom/batched-embedder', dim: null });
+        }
+        return jsonResponse(200, {
+          embeddings: [vector(321), vector(321, 2)],
+          dim: 321,
+        });
+      },
+      onDimensionResolved: (dim, model) => {
+        resolved.push({ dim, model });
+      },
+    });
+
+    await provider.embedBatch(['first', 'second'], 'document');
+
+    expect(resolved).toEqual([{ dim: 321, model: 'custom/batched-embedder' }]);
+    expect(provider.getMetadata().dim).toBe(321);
   });
 
   it('fires onDimensionResolved once with the server-reported dim on first embed (custom-model drift hook)', async () => {

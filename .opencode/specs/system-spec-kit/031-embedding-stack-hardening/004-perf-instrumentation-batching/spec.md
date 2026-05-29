@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching"
-    last_updated_at: "2026-05-29T14:00:00Z"
+    last_updated_at: "2026-05-29T17:35:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored Level-1 child spec for perf instrumentation + batching (measure-first)"
-    next_safe_action: "Implement phase 004"
+    recent_action: "Shipped instrument + batching + latch; cache-into-reindex + live bench deferred to 005"
+    next_safe_action: "Begin phase 005 live validation + flag-flip"
     blockers: []
     key_files:
       - "shared/embeddings/providers/hf-local.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003141"
       session_id: "031-004-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Predecessor: 003-observability-model-switch; instrumentation builds on the phase-002 health fields."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented — instrument + batching + latch shipped; cache-into-reindex + live bench → 005 (2026-05-29) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

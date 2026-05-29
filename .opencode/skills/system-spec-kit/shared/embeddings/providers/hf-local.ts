@@ -29,6 +29,8 @@ const DEFAULT_LOADING_TIMEOUT: number = 150000;
 const DEFAULT_HEALTH_TIMEOUT: number = 5000;
 const READY_RETRY_INITIAL_DELAY: number = 100;
 const READY_RETRY_MAX_DELAY: number = 1000;
+const DEFAULT_READY_LATCH_TTL_MS: number = 30000;
+const MAX_READY_LATCH_TTL_MS: number = 120000;
 const SOCKET_FILE_NAME = 'hf-embed.sock';
 
 // Task prefixes required by nomic-embed-text-v1.5
@@ -165,6 +167,8 @@ interface HfLocalHealthResponse {
   readonly loadTimeMs?: unknown;
   readonly loadStartedAt?: unknown;
   readonly loadProgressAt?: unknown;
+  readonly timing?: unknown;
+  readonly queueDepth?: unknown;
   readonly error?: unknown;
 }
 
@@ -226,6 +230,10 @@ function parsePositiveInteger(value: string | undefined, fallback: number): numb
 
   const parsed = Number.parseInt(value, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function parseBoundedPositiveInteger(value: string | undefined, fallback: number, max: number): number {
+  return Math.min(parsePositiveInteger(value, fallback), max);
 }
 
 function systemSpecKitRoot(): string {
@@ -345,6 +353,16 @@ function parseResponseDim(body: unknown): number | null {
     return null;
   }
   return Math.trunc(body.dim);
+}
+
+function parseFiniteNumberOrNull(value: unknown): number | null | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+  if (value === null) {
+    return null;
+  }
+  return undefined;
 }
 
 function parseHealthState(body: unknown): HfLocalServerState | null {
@@ -512,12 +530,18 @@ export class HfLocalProvider implements IEmbeddingProvider {
   modelLoadTime: number | null;
   loadStartedAt: string | null;
   loadProgressAt: string | null;
+  inferenceP50Ms: number | null;
+  inferenceP95Ms: number | null;
+  lastInferenceMs: number | null;
+  queueDepth: number | null;
   requestCount: number;
 
   private notifiedDim: number | null = null;
   private readonly onDimensionResolved?: (resolvedDim: number, model: string) => void;
   private readonly target: HfLocalServerTarget;
   private readonly request: HfLocalTransport;
+  private readonly readyLatchTtlMs: number;
+  private readyLatch: { at: number } | null = null;
   private serverState: HfLocalServerState | null;
 
   constructor(options: HfLocalOptions = {}) {
@@ -543,10 +567,19 @@ export class HfLocalProvider implements IEmbeddingProvider {
     this.modelLoadTime = null;
     this.loadStartedAt = null;
     this.loadProgressAt = null;
+    this.inferenceP50Ms = null;
+    this.inferenceP95Ms = null;
+    this.lastInferenceMs = null;
+    this.queueDepth = null;
     this.requestCount = 0;
     this.onDimensionResolved = options.onDimensionResolved;
     this.target = resolveHfLocalServerTarget();
     this.request = options.request || activeTransport;
+    this.readyLatchTtlMs = parseBoundedPositiveInteger(
+      process.env.SPECKIT_HF_READY_LATCH_TTL_MS,
+      DEFAULT_READY_LATCH_TTL_MS,
+      MAX_READY_LATCH_TTL_MS,
+    );
     this.serverState = null;
   }
 
@@ -653,6 +686,26 @@ export class HfLocalProvider implements IEmbeddingProvider {
     } else if (payload.loadProgressAt === null) {
       this.loadProgressAt = null;
     }
+
+    if (isRecord(payload.timing)) {
+      const p50Ms = parseFiniteNumberOrNull(payload.timing.p50Ms);
+      const p95Ms = parseFiniteNumberOrNull(payload.timing.p95Ms);
+      const lastMs = parseFiniteNumberOrNull(payload.timing.lastMs);
+      if (p50Ms !== undefined) {
+        this.inferenceP50Ms = p50Ms;
+      }
+      if (p95Ms !== undefined) {
+        this.inferenceP95Ms = p95Ms;
+      }
+      if (lastMs !== undefined) {
+        this.lastInferenceMs = lastMs;
+      }
+    }
+
+    const queueDepth = parseFiniteNumberOrNull(payload.queueDepth);
+    if (queueDepth !== undefined) {
+      this.queueDepth = queueDepth;
+    }
   }
 
   private async healthOnce(timeoutMs: number): Promise<HfLocalJsonResponse> {
@@ -682,6 +735,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
         if (state === 'ready') {
           this.serverState = 'ready';
           this.isHealthy = healthModel === null || healthModel === this.modelName;
+          this.readyLatch = { at: Date.now() };
           return;
         }
         if (isLoadingResponse(response)) {
@@ -755,7 +809,11 @@ export class HfLocalProvider implements IEmbeddingProvider {
     }
   }
 
-  private async embedPrepared(input: string): Promise<Float32Array> {
+  private async embedPrepared(inputs: string[]): Promise<Float32Array[]> {
+    if (inputs.length === 0) {
+      return [];
+    }
+
     // A mid-request reap (RSS watchdog SIGTERM, OOM, crash-loop) drops the in-flight
     // /api/embed connection with ECONNRESET/EPIPE — the dominant reap window is DURING
     // the embed POST (inference load drives the pressure), not the cheap readiness GET.
@@ -765,33 +823,51 @@ export class HfLocalProvider implements IEmbeddingProvider {
     const MAX_EMBED_ATTEMPTS = 2;
     let lastError: unknown = null;
     for (let attempt = 1; attempt <= MAX_EMBED_ATTEMPTS; attempt += 1) {
-      await this.waitForReady();
+      const now = Date.now();
+      if (
+        !this.readyLatch
+        || this.serverState !== 'ready'
+        || now - this.readyLatch.at >= this.readyLatchTtlMs
+      ) {
+        await this.waitForReady();
+      }
       try {
         const response = await this.requestJson('POST', '/api/embed', {
           model: this.modelName,
-          input: [input],
+          input: inputs,
         }, this.timeout);
 
         if (!response.status || response.status < 200 || response.status >= 300) {
           this.throwForEmbeddingResponse(response, response.body);
         }
 
-        const [row] = parseEmbeddingRows(response.body);
-        if (!row) {
+        const rows = parseEmbeddingRows(response.body);
+        if (rows.length !== inputs.length) {
+          throw new Error(`HF local model server returned ${rows.length} embedding rows for ${inputs.length} inputs`);
+        }
+        if (!rows[0]) {
           throw new Error('HF local model server returned no embedding rows');
         }
 
-        this.adoptEmbeddingDimension(row, response.body);
-        this.requestCount += 1;
-        return l2Normalize(new Float32Array(row));
+        this.adoptEmbeddingDimension(rows[0], response.body);
+        const embeddings = rows.map((row) => {
+          if (row.length !== this.dim) {
+            throw new Error(`HF local embedding dimension mismatch for ${this.modelName}: expected ${this.dim}, got ${row.length}`);
+          }
+          return l2Normalize(new Float32Array(row));
+        });
+        this.requestCount += rows.length;
+        return embeddings;
       } catch (error: unknown) {
         if (attempt < MAX_EMBED_ATTEMPTS && isRetryableReadinessError(error)) {
           // Transient connection drop: force the next waitForReady() to re-probe the
           // respawned server, then re-issue the POST.
           lastError = error;
           this.serverState = null;
+          this.readyLatch = null;
           continue;
         }
+        this.readyLatch = null;
         throw error;
       }
     }
@@ -818,7 +894,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     }
 
     try {
-      return await this.embedPrepared(input);
+      return (await this.embedPrepared([input]))[0] ?? null;
     } catch (error: unknown) {
       console.warn(`[hf-local] Generation failed: ${getErrorMessage(error)}`);
       this.isHealthy = false;
@@ -835,7 +911,7 @@ export class HfLocalProvider implements IEmbeddingProvider {
     if (!input) {
       return null;
     }
-    return await this.embedPrepared(input);
+    return (await this.embedPrepared([input]))[0] ?? null;
   }
 
   async embedQuery(text: string): Promise<Float32Array | null> {
@@ -843,7 +919,32 @@ export class HfLocalProvider implements IEmbeddingProvider {
     if (!input) {
       return null;
     }
-    return await this.embedPrepared(input);
+    return (await this.embedPrepared([input]))[0] ?? null;
+  }
+
+  async embedBatch(texts: ReadonlyArray<string>, inputType: 'document' | 'query'): Promise<(Float32Array | null)[]> {
+    const preparedInputs: string[] = [];
+    const preparedIndexes: number[] = [];
+    const results: (Float32Array | null)[] = texts.map(() => null);
+
+    texts.forEach((text, index) => {
+      const prepared = this.prepareInput(text, inputType);
+      if (prepared === null) {
+        return;
+      }
+      preparedIndexes.push(index);
+      preparedInputs.push(prepared);
+    });
+
+    if (preparedInputs.length === 0) {
+      return results;
+    }
+
+    const embeddings = await this.embedPrepared(preparedInputs);
+    embeddings.forEach((embedding, index) => {
+      results[preparedIndexes[index]] = embedding;
+    });
+    return results;
   }
 
   async warmup(): Promise<boolean> {
@@ -871,6 +972,10 @@ export class HfLocalProvider implements IEmbeddingProvider {
       loadTimeMs: this.modelLoadTime,
       loadStartedAt: this.loadStartedAt,
       loadProgressAt: this.loadProgressAt,
+      inferenceP50Ms: this.inferenceP50Ms,
+      inferenceP95Ms: this.inferenceP95Ms,
+      lastInferenceMs: this.lastInferenceMs,
+      queueDepth: this.queueDepth,
       baseUrl: formatServerTarget(this.target),
       requestCount: this.requestCount,
     };
