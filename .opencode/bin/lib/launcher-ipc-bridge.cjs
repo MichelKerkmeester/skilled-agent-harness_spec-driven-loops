@@ -241,12 +241,14 @@ function probeModelServer(socketPath, options = {}) {
     let chunks = [];
     let timer;
 
-    const finish = (status, reason) => {
+    // 031/005: carry the parsed health body so callers (the idle-eviction tick) can read
+    // lastSuccessfulEmbedAt / inFlight. The 'alive' branches below pass parsed.body as the 3rd arg.
+    const finish = (status, reason, health) => {
       if (settled) return;
       settled = true;
       if (timer) clearTimeout(timer);
       if (socket) socket.destroy();
-      resolve({ status, reason });
+      resolve({ status, reason, health });
     };
 
     try {
@@ -271,7 +273,7 @@ function probeModelServer(socketPath, options = {}) {
         ? parsed.body.state
         : null;
       if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'ready') {
-        finish('alive', `health-${state}`);
+        finish('alive', `health-${state}`, parsed.body);
         return;
       }
       if (parsed && parsed.statusCode >= 200 && parsed.statusCode < 300 && state === 'loading') {
@@ -285,7 +287,7 @@ function probeModelServer(socketPath, options = {}) {
           finish('dead', 'loading-wedged');
           return;
         }
-        finish('alive', 'health-loading');
+        finish('alive', 'health-loading', parsed.body);
         return;
       }
       finish('dead', state === 'error' ? 'health-error' : 'health-not-ready');

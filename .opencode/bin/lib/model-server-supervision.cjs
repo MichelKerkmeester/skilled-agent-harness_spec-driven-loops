@@ -195,6 +195,18 @@ function getModelServerWatchdogConfig(env = process.env, warn = defaultLog) {
   });
 }
 
+function getModelServerIdleConfig(env = process.env) {
+  const rawIdleMin = env.SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN;
+  const idleMin = rawIdleMin === undefined || rawIdleMin === null || String(rawIdleMin).trim() === ''
+    ? 0
+    : Number.parseFloat(String(rawIdleMin).trim());
+  const enabled = Number.isFinite(idleMin) && idleMin > 0;
+  return {
+    enabled,
+    timeoutMs: enabled ? idleMin * 60000 : 0,
+  };
+}
+
 function computeBackoffMs(deathsInWindow, initialBackoffMs, maxBackoffMs) {
   const exponent = Math.max(0, deathsInWindow - 1);
   return Math.min(maxBackoffMs, initialBackoffMs * (2 ** exponent));
@@ -426,6 +438,56 @@ function resolveModelServerSocketPath(env = process.env, options = {}) {
     ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
     : path.resolve(rawDbDir || path.join(defaultOpencodeDir, 'skills', 'system-spec-kit', 'mcp_server', 'database'));
   return path.join(socketDir, HF_MODEL_SERVER_SOCKET_FILE_NAME);
+}
+
+function codedError(code, message) {
+  const error = new Error(message);
+  error.code = code;
+  return error;
+}
+
+function assertSunPathLimit(socketPath) {
+  if (socketPath.startsWith('tcp://')) return;
+  const byteLength = Buffer.byteLength(socketPath);
+  // sun_path is a 104-byte field on macOS INCLUDING the NUL terminator, so the longest path that
+  // actually binds is 103 bytes. Reject at 104 to avoid an EINVAL that would otherwise pass this guard.
+  if (byteLength <= 103) return;
+  throw codedError(
+    'ESUNPATHTOOLONG',
+    `hf-model-server socket path exceeds the conservative 104-byte sun_path limit (${byteLength} bytes): ${socketPath}. Set SPECKIT_IPC_SOCKET_DIR to a shorter directory.`,
+  );
+}
+
+function assertSocketDirOwnership(socketPath, options = {}) {
+  if (socketPath.startsWith('tcp://')) return;
+  const statApi = options.statApi || fs;
+  const getuid = options.getuid;
+  const socketDir = path.dirname(socketPath);
+  let dirStat = null;
+  try {
+    dirStat = statApi.lstatSync(socketDir);
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+
+  if (dirStat) {
+    if (dirStat.isSymbolicLink()) {
+      throw codedError('ESOCKETDIRSYMLINK', `Refusing to use symlinked SPECKIT_IPC_SOCKET_DIR for hf-model-server socket: ${socketDir}`);
+    }
+    const uid = typeof getuid === 'function' ? getuid() : undefined;
+    if (Number.isInteger(uid) && Number.isInteger(dirStat.uid) && dirStat.uid !== uid) {
+      throw codedError('ESOCKETDIRFOREIGN', `Refusing to use hf-model-server socket directory owned by uid ${dirStat.uid}; current uid is ${uid}: ${socketDir}`);
+    }
+  }
+
+  try {
+    const socketStat = statApi.lstatSync(socketPath);
+    if (socketStat.isSymbolicLink()) {
+      throw codedError('ESOCKETSYMLINK', `Refusing to unlink or bind through symlinked hf-model-server socket node: ${socketPath}`);
+    }
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
 }
 
 function modelServerRespawnLockPath(socketPath = resolveModelServerSocketPath(), options = {}) {
@@ -834,12 +896,19 @@ function createModelServerControl(deps = {}) {
   const liveness = deps.liveness || processLiveness;
   const nowMs = typeof deps.nowMs === 'function' ? deps.nowMs : () => Date.now();
   const giveUpCooldownMs = parsePositiveInteger(deps.giveUpCooldownMs, getModelServerGiveUpCooldownMs(env));
+  const idleConfig = deps.idleConfig || getModelServerIdleConfig(env);
+  const setIntervalFn = deps.setInterval || setInterval;
+  const clearIntervalFn = deps.clearInterval || clearInterval;
+  const statApi = deps.statApi || fs;
+  const getuid = typeof deps.getuid === 'function' ? deps.getuid : () => process.getuid?.();
   const state = {
     demandServer: null,
     demandTarget: null,
     demandRespawnLock: null,
     supervisor: null,
     lastKnownDescendantPids: [],
+    idleTimer: null,
+    idleTickInFlight: false,
   };
 
   const resolveSocketPath = (options = {}) => {
@@ -953,6 +1022,63 @@ function createModelServerControl(deps = {}) {
     writeGiveUpUntil(nowMs() + giveUpCooldownMs);
   }
 
+  function disarmIdleMonitor() {
+    if (!state.idleTimer) return;
+    clearIntervalFn(state.idleTimer);
+    state.idleTimer = null;
+  }
+
+  async function tickIdleMonitor() {
+    if (state.idleTickInFlight) return;
+    state.idleTickInFlight = true;
+    try {
+      const pid = getPid();
+      if (!Number.isInteger(pid) || pid <= 0) return;
+      const probeModelServer = deps.bridge && deps.bridge.probeModelServer;
+      if (typeof probeModelServer !== 'function') return;
+      let probe;
+      try {
+        probe = await probeModelServer(resolveSocketPath(), { timeoutMs: 1000 });
+      } catch {
+        return;
+      }
+      if (!probe || probe.status !== 'alive') return;
+      const health = probe.health && typeof probe.health === 'object' ? probe.health : null;
+      const inFlight = Number(health?.inFlight);
+      if (Number.isFinite(inFlight) && inFlight > 0) return;
+      const lastSuccessfulEmbedAt = health?.lastSuccessfulEmbedAt;
+      if (lastSuccessfulEmbedAt === null || lastSuccessfulEmbedAt === undefined) return;
+      const lastSuccessfulEmbedAtMs = Number(lastSuccessfulEmbedAt);
+      if (!Number.isFinite(lastSuccessfulEmbedAtMs) || lastSuccessfulEmbedAtMs <= 0) return;
+      if (nowMs() - lastSuccessfulEmbedAtMs < idleConfig.timeoutMs) return;
+
+      const supervisor = getSupervisor();
+      supervisor.clearTimers();
+      supervisor.reapProcessTree(pid);
+      writeModelServerPid(null);
+      state.supervisor = null;
+      // The re-arm can legitimately reject (a sibling reclaimed the socket via the EADDRINUSE
+      // live-resident guard, or a perimeter assertion tripped). Swallow it here: the interval
+      // driver calls this via `void tickIdleMonitor()` (no .catch), so an escaping rejection would
+      // crash the launcher (Node defaults unhandled rejections to throw). The monitor self-heals
+      // on the next tick / next embed demand re-arms the listener lazily.
+      await startModelServerDemandListener().catch((error) => {
+        logger(`hf-model-server idle re-arm failed (will retry on next demand): ${error && error.message ? error.message : error}`);
+      });
+    } finally {
+      state.idleTickInFlight = false;
+    }
+  }
+
+  function armIdleMonitor() {
+    if (!idleConfig.enabled || state.idleTimer) return;
+    const intervalMs = Math.min(idleConfig.timeoutMs, 60000);
+    state.idleTimer = setIntervalFn(() => {
+      void tickIdleMonitor();
+    }, intervalMs);
+    state.idleTimer.unref?.();
+  }
+
   function releaseModelServerDemandListenerForSpawn(options = {}) {
     const server = state.demandServer;
     const target = state.demandTarget;
@@ -966,6 +1092,7 @@ function createModelServerControl(deps = {}) {
   }
 
   async function stopModelServerDemandListener() {
+    disarmIdleMonitor();
     const server = state.demandServer;
     const target = state.demandTarget;
     state.demandServer = null;
@@ -1006,6 +1133,9 @@ function createModelServerControl(deps = {}) {
       if (!lock.acquired) return { shouldListen: false, reason: respawnLockBlockedReason(lock), lockPath: lock.path };
       return { shouldListen: true };
     }
+    assertSunPathLimit(socketPath);
+    // Keep SPECKIT_IPC_SOCKET_DIR fail-closed: never mkdir/unlink through a symlinked or foreign-owned perimeter.
+    assertSocketDirOwnership(socketPath, { statApi, getuid, logger });
     fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
     let deadProbeReason = null;
     if (fs.existsSync(socketPath)) {
@@ -1103,8 +1233,18 @@ function createModelServerControl(deps = {}) {
               return;
             }
             reclaimedStaleSocket = true;
-            unlinkModelServerSocket(socketPath);
-            server.listen(socketPath);
+            // The re-assert + reclaim runs inside this 'error' handler, which fires in a
+            // microtask — a synchronous throw here would ESCAPE the Promise executor instead of
+            // rejecting it. Wrap so a perimeter violation (symlinked node, etc.) or unlink failure
+            // fails the listener closed (rejects → outer catch releases the lock and rethrows).
+            try {
+              assertSocketDirOwnership(socketPath, { statApi, getuid, logger });
+              unlinkModelServerSocket(socketPath);
+              server.listen(socketPath);
+            } catch (reclaimError) {
+              server.off('listening', onListening);
+              reject(reclaimError);
+            }
             return;
           }
           server.off('listening', onListening);
@@ -1133,6 +1273,7 @@ function createModelServerControl(deps = {}) {
     }
     state.demandServer = server;
     state.demandTarget = socketPath;
+    armIdleMonitor();
     logger(`hf-model-server lazy demand listener ready at ${socketPath}`);
     return { started: true, socketPath };
   }
@@ -1147,6 +1288,7 @@ function createModelServerControl(deps = {}) {
     getChild: () => (state.supervisor ? state.supervisor.getChild() : null),
     getSnapshotPids: () => (state.supervisor ? state.supervisor.getSnapshotPids() : [...state.lastKnownDescendantPids]),
     clearTimers: () => {
+      disarmIdleMonitor();
       if (state.supervisor) state.supervisor.clearTimers();
     },
     reapProcessTree: (childPid) => getSupervisor().reapProcessTree(childPid),
@@ -1186,8 +1328,11 @@ module.exports = {
   ensureCanonicalDir,
   getCrashLoopConfig,
   getModelServerGiveUpCooldownMs,
+  getModelServerIdleConfig,
   getModelServerWatchdogConfig,
   getWatchdogConfig,
+  assertSocketDirOwnership,
+  assertSunPathLimit,
   isDurableWriteUnavailable,
   isChildRunning,
   isPermissionError,

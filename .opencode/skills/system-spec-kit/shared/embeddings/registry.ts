@@ -169,26 +169,6 @@ export function getCanonicalFallback(provider: CanonicalProvider): string {
   return `nomic-ai/${first.name}`;
 }
 
-// ───────────────────────────────────────────────────────────────
-// Canonical reranker model names
-// ───────────────────────────────────────────────────────────────
-// Single source of truth for reranker model defaults used by
-// cross-encoder.ts PROVIDER_CONFIG entries. P1 audit closure
-// eliminates the hardcoded "cross-encoder/ms-marco-MiniLM-L-6-v2"
-// string duplicated from PROVIDER_CONFIG.local.model.
-//
-// Reranking is REMOVED: the mk-spec-memory local cross-encoder path and local
-// rerank sidecar skill were deleted, and cloud rerankers voyage/cohere were
-// already removed.
-// These canonical names are now dead config defaults with no live importers —
-// retained only as a reference should a reranker ever be re-introduced.
-
-export type RerankerProvider = 'local';
-
-const RERANKER_CANONICAL: Readonly<Record<RerankerProvider, string>> = Object.freeze({
-  local: 'cross-encoder/ms-marco-MiniLM-L-6-v2',
-});
-
-export function getRerankerFallback(provider: RerankerProvider): string {
-  return RERANKER_CANONICAL[provider];
-}
+// Reranking is fully removed (local cross-encoder + cloud voyage/cohere paths deleted).
+// The former RERANKER_CANONICAL / getRerankerFallback dead config was dropped in 031/005;
+// re-introduce a reranker registry here if reranking ever returns.

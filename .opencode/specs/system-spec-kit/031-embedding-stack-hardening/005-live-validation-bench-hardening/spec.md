@@ -10,20 +10,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening"
-    last_updated_at: "2026-05-29T14:00:00Z"
+    last_updated_at: "2026-05-29T18:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored Level-1 child spec for live validation + bench + perimeter hardening"
-    next_safe_action: "Implement phase 005"
+    recent_action: "Shipped perimeter + idle + live-test + cleanup; flag-flip + dtype + live numbers gated"
+    next_safe_action: "Reconcile 031 + 026/007 parent packets, then the 20-iter deep review"
     blockers: []
     key_files:
       - ".opencode/bin/lib/model-server-supervision.cjs"
+      - ".opencode/bin/lib/launcher-ipc-bridge.cjs"
       - ".opencode/bin/mk-skill-advisor-launcher.cjs"
-      - ".opencode/bin/hf-model-server.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003151"
       session_id: "031-005-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Predecessor: 004-perf-instrumentation-batching; the live test gates the advisor flag flip and is the final phase."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented — perimeter + idle + live-test + cleanup shipped; flag-flip + dtype + live numbers gated on a working onnxruntime tree (2026-05-29) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
