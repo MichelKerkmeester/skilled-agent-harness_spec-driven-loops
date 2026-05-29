@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
+  "description": "Feature Specification: opus-4.8 Deep Review (Daemon-Shutdown + Code-Graph)",
+  "keywords": [
+    "feature",
+    "specification",
+    "opus-4",
+    "deep",
+    "review",
+    "daemon-shutdown",
+    "code-graph"
+  ],
+  "lastUpdated": "2026-05-29T13:33:38.822Z",
+  "specId": "011",
+  "folderSlug": "deep-review-shutdown-and-codegraph",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

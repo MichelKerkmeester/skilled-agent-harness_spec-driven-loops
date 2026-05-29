@@ -11,7 +11,10 @@
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/009-shutdown-durability",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/010-at-rest-wal-durability",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph"
   ],
   "manual": {
     "depends_on": [],
@@ -96,12 +99,12 @@
     ],
     "causal_summary": "The mk-spec-memory and mk_code_index MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS grows until the OS OOM-kills the process, nothing auto-restarts a dead daemon, reconnects bridge to a dead socket, and rebuilding the server wipes the live `dist/` out from under it. Each forces a manual `/mcp` reconnect.",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-05-29T12:05:57.537Z",
+    "last_save_at": "2026-05-29T13:33:41.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph"
   }
 }

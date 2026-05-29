@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.10",
+  "target": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph",
+  "reviewScope": "Recent daemon-shutdown / memory-DB-lifecycle work (008 checkpoint-on-close, 009 shutdown-durability, 010 at-rest-wal) + code-graph fixes (012 empty-graph auto-establish, 15-bug audit remediation), across system-spec-kit/mcp_server + system-code-graph/mcp_server.",
+  "executor": "workflow-tool/opus-4.8 (operator-directed; reproduces deep-review contract; single state-writer = main agent, mirroring reduce-state.cjs)",
+  "dimensions": ["Correctness", "Security", "Spec-Alignment/Traceability", "Completeness/Maintainability"],
+  "maxIterations": 10,
+  "convergence": { "threshold": 0.10, "minStabilizationPasses": 2, "compositeStopScore": 0.85 },
+  "traceabilityProtocols": ["spec_code", "checklist_evidence"],
+  "resource_map_present": false,
+  "securitySensitive": true,
+  "adversarialP0Replay": true,
+  "readOnly": true,
+  "lineage": {
+    "sessionId": "011-opus-workflow-deep-review-20260529",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "generation": 1,
+    "continuedFromRun": null,
+    "releaseReadinessState": "in-progress"
+  },
+  "notes": "Executed via the Workflow tool with opus-4.8 agents per explicit operator request ('workflows format ... still following correct deep review skill workflow'). The deep-review skill normally forbids custom dispatchers; here the full contract (state machine, dimensions, P0/P1/P2 + [SOURCE:file:line], per-iteration verdict, adversarial P0 replay, 9-section report) is reproduced, with the main agent as the single state-writer."
+}
