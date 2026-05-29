@@ -42,7 +42,7 @@ Commands are organized into five groups plus root-level utilities:
 | Group | Path | Commands | Purpose |
 |-------|------|----------|---------|
 | **create** | `commands/create/` | 7 | Scaffold OpenCode components, documentation packages, and changelogs |
-| **deep** | `commands/deep/` | 4 | Deep research, review, AI council, and agent-improvement loops |
+| **deep** | `commands/deep/` | 5 | Deep research, review, AI council, agent-improvement, and model-benchmark loops |
 | **doctor** | `commands/doctor/` | 3 | MCP, Spec Kit, update, and subsystem diagnostics |
 | **memory** | `commands/memory/` | 4 | Memory system operations (search, save, learn, manage with shared lifecycle) |
 | **speckit** | `commands/speckit/` | 4 | Spec folder workflows (plan, implement, resume, complete) |
@@ -84,9 +84,10 @@ command/
 ├── deep/                     # Deep-loop commands
 │   ├── ask-ai-council.md     # Multi-seat AI council planning
 │   ├── start-agent-improvement-loop.md # Evaluator-first agent improvement loop
+│   ├── start-model-benchmark-loop.md # Model/prompt-framework benchmark loop
 │   ├── start-research-loop.md # Iterative deep research workflow
 │   ├── start-review-loop.md  # Iterative code review workflow
-│   └── assets/               # YAML workflow definitions (8 files)
+│   └── assets/               # YAML workflow definitions (10 files)
 ├── doctor/                   # MCP server diagnostic and install commands
 │   ├── mcp.md                # Diagnose/install MCP infrastructure
 │   ├── speckit.md            # Spec Kit diagnostics
@@ -144,6 +145,7 @@ Run long-form, stateful deep-loop workflows. Each command supports `:auto` and `
 |---------|------------|---------|
 | AI Council | `/deep:ask-ai-council <question> [:auto\|:confirm]` | Multi-seat planning and convergence checks |
 | Agent Improvement | `/deep:start-agent-improvement-loop <agent_path> [:auto\|:confirm]` | Evaluate and improve agents across 5 integration-aware dimensions |
+| Model Benchmark | `/deep:start-model-benchmark-loop [profile] [:auto\|:confirm]` | Benchmark and optimize a model or prompt framework against fixtures |
 | Research Loop | `/deep:start-research-loop <topic> [:auto\|:confirm]` | Iterative technical investigation with convergence |
 | Review Loop | `/deep:start-review-loop <target> [:auto\|:confirm]` | Iterative code review with severity-weighted findings |
 

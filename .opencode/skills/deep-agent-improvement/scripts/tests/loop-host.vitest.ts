@@ -100,5 +100,20 @@ describe('loop-host', () => {
     it('requires --profile and --outputs-dir', () => {
       expect(loopHost.planInvocation('model-benchmark', loopHost.parseArgs(['--profile=p'])).ok).toBe(false);
     });
+    it('forwards --scorer and --grader to run-benchmark (5dim + mock/llm reachable via loop-host)', () => {
+      const plan = loopHost.planInvocation(
+        'model-benchmark',
+        loopHost.parseArgs(['--profile=p.json', '--outputs-dir=/tmp/o', '--scorer=5dim', '--grader=mock']),
+      );
+      expect(plan.ok).toBe(true);
+      if (plan.ok) {
+        expect(plan.steps[1].script).toBe('run-benchmark.cjs');
+        expect(plan.steps[1].args).toEqual(
+          expect.arrayContaining(['--scorer', '5dim', '--grader', 'mock']),
+        );
+        // materialize never carries scorer/grader
+        expect(plan.steps[0].args).not.toContain('--scorer');
+      }
+    });
   });
 });

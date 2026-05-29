@@ -18,7 +18,8 @@
  *     node loop-host.cjs [--mode=agent-improvement] --candidate=<path> [--baseline=<path>] [--output=<path>]
  *   model-benchmark:
  *     node loop-host.cjs --mode=model-benchmark --profile=<path-or-id> --outputs-dir=<path> \
- *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>]
+ *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>] \
+ *        [--scorer=<pattern|5dim>] [--grader=<noop|mock|llm>]
  *
  * Unknown --mode values warn to stderr and fall back to agent-improvement (EC-2).
  */
@@ -68,6 +69,11 @@ function planInvocation(mode, args) {
     if (args['state-log']) benchArgs.push('--state-log', args['state-log']);
     if (args.label) benchArgs.push('--label', args.label);
     if (args['profiles-dir']) benchArgs.push('--profiles-dir', args['profiles-dir']);
+    // Forward scorer/grader selection to run-benchmark. Without this the command
+    // path silently falls back to pattern/noop while the journal/dashboard claim
+    // the requested method, so report.json and the ledger would disagree.
+    if (args.scorer) benchArgs.push('--scorer', args.scorer);
+    if (args.grader) benchArgs.push('--grader', args.grader);
     return {
       ok: true,
       steps: [

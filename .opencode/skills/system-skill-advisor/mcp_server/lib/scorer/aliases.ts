@@ -30,6 +30,12 @@ const RAW_ALIAS_GROUPS: Readonly<Record<string, readonly string[]>> = Object.fre
     'deep-agent-improvement',
     'sk-deep-agent-improvement',
   ],
+  'deep-model-benchmark': [
+    'command-spec-kit-deep-model-benchmark',
+    '/deep:start-model-benchmark-loop',
+    'deep-model-benchmark',
+    'sk-deep-model-benchmark',
+  ],
   'deep-ai-council': [
     '@deep-ai-council',
     'deep-ai-council',

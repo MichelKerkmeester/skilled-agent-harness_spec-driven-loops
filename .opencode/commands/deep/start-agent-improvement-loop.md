@@ -84,6 +84,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
+  lane: agent-improvement  # optional; one of: agent-improvement | model-benchmark; defaults to agent-improvement when an agent path is present
   target_path: .opencode/agents/debug.md  # required path matching .opencode/agents/*.md
   target_profile: dynamic  # optional; one of: handover | context-prime | dynamic; derived from target_path when omitted
   spec_folder: specs/041/008  # required spec folder path or explicit runtime folder
@@ -98,6 +99,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
+| `lane` | Y | flag `--lane`, marker `lane`, agent-path presence -> `agent-improvement`, benchmark-profile or `--profile` arg -> `model-benchmark` | `agent-improvement` when an agent path is present | N |
 | `target_path` | Y | `$ARGUMENTS` agent path, or marker `target_path` | none | N |
 | `target_profile` | Y | marker `target_profile`, or auto-detect from `target_path` (`handover` -> `handover`, `context-prime` -> `context-prime`, otherwise `dynamic`) | inferred from `target_path` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
@@ -121,7 +123,19 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ ":confirm" suffix detected → execution_mode = "INTERACTIVE" (pre-set, omit Q2)
    └─ No suffix → execution_mode = "ASK" (include Q2 in prompt)
 
-2. CHECK if $ARGUMENTS contains an agent path:
+1B. RESOLVE lane BEFORE the agent-path check (additive; default is Lane A):
+   ├─ IF $ARGUMENTS contains an agent path (.opencode/agents/*.md) OR --lane=agent-improvement OR marker lane=agent-improvement
+   │     → lane = "agent-improvement", omit Q(lane), proceed exactly as today (Lane A)
+   ├─ IF --lane=model-benchmark OR marker lane=model-benchmark OR a --profile arg / benchmark-profile is present
+   │     → lane = "model-benchmark" → AUTO-ROUTE to the dedicated model-benchmark workflow:
+   │         load .opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml
+   │         (see /deep:start-model-benchmark-loop). Subsequent questions become the Lane B set
+   │         (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model).
+   │         DO NOT ask Q0/Q1/Q3 (the agent-improvement questions).
+   └─ IF neither lane signal present AND interactive (no :auto)
+         → include Q(lane) as the FIRST question in the consolidated prompt and resolve it before Q0.
+
+2. CHECK if $ARGUMENTS contains an agent path (Lane A only; skipped when lane=model-benchmark):
    ├─ IF present (.opencode/agents/*.md) → target_path = detected value, omit Q0
    └─ IF missing → include Q0 in prompt
 
@@ -143,6 +157,14 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
    ┌────────────────────────────────────────────────────────────────┐
    │ **Before proceeding, please answer:**                          │
+   │                                                                │
+   │ **Q(lane). Use Case** (only when lane is ambiguous: no agent    │
+   │    path and no --lane flag):                                    │
+   │    A) Improve an agent file (Lane A)                           │
+   │    B) Benchmark a model / prompt framework (Lane B)            │
+   │    (If A or an agent path was given, continue with Q0-Q3 below. │
+   │     If B, this command auto-routes to                          │
+   │     /deep:start-model-benchmark-loop and asks the Lane B set.)  │
    │                                                                │
    │ **Q0. Target Agent** (if not provided in command):             │
    │    Which agent would you like to evaluate and improve?         │
@@ -167,6 +189,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 8. WAIT for user response (DO NOT PROCEED)
 
 9. Parse response and store ALL results:
+   - lane = [agent-improvement (Lane A) or model-benchmark (Lane B), resolved in step 1B / Q(lane)]
+   - IF lane = model-benchmark → STOP this Lane A parse and HAND OFF to
+     /deep:start-model-benchmark-loop using
+     .opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml;
+     the Lane B set (profile, outputs/spec_folder, exec, scoring_method, grader, executor+model)
+     replaces the fields below.
    - target_path = [from Q0 or $ARGUMENTS]
    - target_profile = [derived dynamic profile for the selected target]
    - spec_folder = [from Q1 or --spec-folder]
@@ -187,6 +215,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 **Phase Output:**
 - `general_agent_verified = ________________`
+- `lane = ________________`
 - `target_path = ________________`
 - `target_profile = ________________`
 - `spec_folder = ________________`
@@ -203,6 +232,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | FIELD                  | REQUIRED      | YOUR VALUE | SOURCE                  |
 | ---------------------- | ------------- | ---------- | ----------------------- |
 | general_agent_verified | ✅ Yes         | ______     | Automatic check         |
+| lane                   | ✅ Yes         | ______     | Step 1B / Q(lane)       |
 | target_path            | ✅ Yes         | ______     | Q0 or $ARGUMENTS        |
 | target_profile         | ✅ Yes         | ______     | Derived from target rules |
 | spec_folder            | ✅ Yes         | ______     | Q1 or --spec-folder     |
@@ -456,9 +486,11 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 ---
 
-## 8. MODEL-BENCHMARK MODE (SKILL-LEVEL)
+## 8. MODEL-BENCHMARK MODE (LANE B)
 
-This command drives the **agent-improvement** loop only. The underlying `deep-agent-improvement` skill ALSO supports a separate **model-benchmark** mode that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path and is invoked directly through the skill, not through this command.
+This command is the **Lane A** (agent-improvement) entry point. The underlying `deep-agent-improvement` skill ALSO supports a separate **model-benchmark** mode (Lane B) that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path.
+
+**Lane B now has its own command: `/deep:start-model-benchmark-loop`.** When this command resolves `lane=model-benchmark` (via `--lane=model-benchmark`, a `--profile` / benchmark-profile arg, or the Q(lane) answer), it auto-routes to that dedicated command and loads `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml` instead of the agent-improvement YAMLs. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` automatically and this command runs exactly as before.
 
 - **Entry point**: `scripts/loop-host.cjs` resolves `--mode`. Default or `--mode=agent-improvement` routes to `scripts/score-candidate.cjs` (this command's path, unchanged). `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns to stderr and falls back to agent-improvement.
 - **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor routing across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It loads only on the model-benchmark path, never in agent-improvement mode.
@@ -474,6 +506,7 @@ Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` "M
 
 | Command | Purpose |
 | --- | --- |
+| `/deep:start-model-benchmark-loop` | Lane B: benchmark a model or prompt framework (auto-routed from here when `--lane=model-benchmark`) |
 | `/speckit:complete` | Full spec-driven development workflow |
 | `/prompt` | Improve AI prompts with DEPTH + CLEAR scoring |
 | `/deep:start-review-loop` | Iterative code review with convergence detection |

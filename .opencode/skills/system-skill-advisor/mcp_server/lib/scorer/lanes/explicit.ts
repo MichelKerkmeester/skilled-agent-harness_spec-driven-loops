@@ -95,6 +95,8 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/memory:save': [['memory:save', 1.6], ['command-memory-save', 1], ['system-spec-kit', 0.45]],
   '/deep:start-research-loop': [['deep-research', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-model-benchmark-loop': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-agent-improvement-loop': [['deep-agent-improvement', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['deep-review', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
@@ -115,6 +117,23 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '5-dimension agent scoring': [['deep-agent-improvement', 1.6]],
   'integration scan': [['deep-agent-improvement', 1.5]],
   'dynamic profile': [['deep-agent-improvement', 1.5]],
+  // Lane B (model-benchmark) command anchors. These benchmark or optimize a
+  // model / prompt framework against fixtures, routed by the
+  // /deep:start-model-benchmark-loop command (canonical deep-model-benchmark).
+  // Lane B runs as a MODE of the deep-agent-improvement skill, so the skill
+  // itself is NOT penalized here. The disambiguation is COMMAND-level: a
+  // bounded penalty on command-spec-kit-deep-agent-improvement (the Lane A
+  // "improve an agent" command) keeps benchmark phrasing from recommending the
+  // wrong command entry point.
+  'benchmark a model': [['deep-model-benchmark', 1.6], ['command-spec-kit-deep-agent-improvement', -0.6]],
+  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['command-spec-kit-deep-agent-improvement', -0.6]],
+  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['command-spec-kit-deep-agent-improvement', -0.4]],
+  'optimize a model': [['deep-model-benchmark', 1.5], ['command-spec-kit-deep-agent-improvement', -0.6]],
+  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['command-spec-kit-deep-agent-improvement', -0.6]],
+  'model benchmark loop': [['deep-model-benchmark', 1.6], ['command-spec-kit-deep-agent-improvement', -0.4]],
+  'model benchmark': [['deep-model-benchmark', 1.4], ['command-spec-kit-deep-agent-improvement', -0.4]],
+  'benchmark fixtures': [['deep-model-benchmark', 1.3]],
+  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['command-spec-kit-deep-agent-improvement', -0.4]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],
   'staging site': [['mcp-chrome-devtools', 0.65]],

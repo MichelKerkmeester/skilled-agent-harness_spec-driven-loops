@@ -10,7 +10,8 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-command-lane-asking"
   ],
   "migrated": true,
   "migration_source": "legacy",

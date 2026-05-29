@@ -1,0 +1,20 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/008-command-lane-asking",
+  "description": "Command lane-asking for the model-benchmark lane: extend start-agent-improvement-loop to ask the use-case lane and branch, add a dedicated start-model-benchmark-loop command, gemini mirror, and README/advisor registration.",
+  "keywords": [
+    "command",
+    "lane-asking",
+    "model-benchmark",
+    "start-model-benchmark-loop",
+    "deep-agent-improvement"
+  ],
+  "lastUpdated": "2026-05-29T09:00:00.000Z",
+  "specId": "008",
+  "folderSlug": "command-lane-asking",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
