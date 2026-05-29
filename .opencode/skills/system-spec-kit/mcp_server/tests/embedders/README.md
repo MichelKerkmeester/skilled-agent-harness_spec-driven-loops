@@ -1,9 +1,8 @@
 ---
 title: "Embedder Tests"
-description: "Vitest coverage for embedding execution, sidecar behavior and hardening regressions."
+description: "Vitest coverage for embedding execution routing, local model-server behavior, and hardening regressions."
 trigger_phrases:
   - "embedder tests"
-  - "sidecar worker tests"
   - "execution router tests"
 ---
 
@@ -11,7 +10,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`tests/embedders/` verifies server-side embedding behavior, especially execution routing and sidecar safety.
+`tests/embedders/` verifies server-side embedding behavior, especially execution routing, local model-server behavior, and provider hardening.
 
 ## 2. OWNERSHIP
 
@@ -21,9 +20,10 @@ These tests belong to `mcp_server/lib/embedders/`. Shared provider contract test
 
 | File | Responsibility |
 |---|---|
-| `execution-router.vitest.ts` | Covers routing between local and sidecar execution. |
-| `sidecar-worker.vitest.ts` | Covers worker process behavior. |
-| `sidecar-hardening.vitest.ts` | Guards sidecar failure and hardening paths. |
+| `execution-router.vitest.ts` | Covers direct routing across local, Ollama, and cloud providers. |
+| `hf-local-client.vitest.ts` | Covers the hf-local HTTP client contract. |
+| `hf-model-server.vitest.ts` | Covers local model-server lifecycle and health behavior. |
+| `launcher-model-server.vitest.ts` | Covers launcher-supervised model-server behavior. |
 | `deep-review-remediation.vitest.ts` | Regression coverage from prior review findings. |
 
 ## 4. BOUNDARIES

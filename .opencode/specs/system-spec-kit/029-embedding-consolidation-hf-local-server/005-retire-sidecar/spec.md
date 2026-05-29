@@ -10,19 +10,18 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/005-retire-sidecar"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred spec for retiring the embedding sidecar path"
-    next_safe_action: "Implement after launcher-supervised model server is stable"
+    last_updated_at: "2026-05-29T12:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Retired sidecar; router collapsed to direct adapter; tsc green; review clean; 87 tests pass"
+    next_safe_action: "Phase 006: skill-advisor shared wiring + env docs"
     blockers: []
     key_files:
       - "mcp_server/lib/embedders/execution-router.ts"
-      - "mcp_server/lib/embedders/sidecar-client.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000295"
       session_id: "029-005-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "dependsOn: 004-launcher-supervision."
@@ -41,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (sidecar deleted; router collapsed to direct adapter; 87 tests pass; review clean) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

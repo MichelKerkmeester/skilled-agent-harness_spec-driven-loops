@@ -8,10 +8,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/005-retire-sidecar"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred tasks for retiring the embedding sidecar path"
-    next_safe_action: "Implement after launcher-supervised model server is stable"
+    last_updated_at: "2026-05-29T12:00:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "All tasks complete; sidecar deleted; router collapsed; tsc green; 87 tests pass"
+    next_safe_action: "Phase 006: skill-advisor shared wiring + env docs"
     blockers: []
     key_files:
       - "mcp_server/lib/embedders/execution-router.ts"
@@ -19,7 +19,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000495"
       session_id: "029-005-tasks"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor handoff criteria from 004-launcher-supervision
-- [ ] T002 Inventory affected files and symbols before implementation
-- [ ] T003 [P] Identify focused tests to add or migrate
+- [x] T001 Confirm predecessor handoff criteria from 004-launcher-supervision
+- [x] T002 Inventory affected files and symbols before implementation
+- [x] T003 [P] Identify focused tests to add or migrate
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Remove sidecar policy constants, maps, snapshots, shutdown/recycle helpers, and adapter branch [REQ-001]
-- [ ] T005 Route hf-local through the direct factory-backed adapter path [REQ-002]
-- [ ] T006 Delete obsolete sidecar client/worker/testables files [REQ-003]
-- [ ] T007 Keep SPECKIT_EMBEDDER_EXECUTION accepted-but-ignored with one-time logging [REQ-004]
+- [x] T004 Remove sidecar policy constants, maps, snapshots, shutdown/recycle helpers, and adapter branch [REQ-001]
+- [x] T005 Route hf-local through the direct factory-backed adapter path [REQ-002]
+- [x] T006 Delete obsolete sidecar client/worker/testables files [REQ-003]
+- [x] T007 Keep SPECKIT_EMBEDDER_EXECUTION accepted-but-ignored with one-time logging [REQ-004]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T08 Migrate or remove sidecar tests around /api/health behavior [REQ-005]
-- [ ] T09 Run grep and focused execution-router/embedding tests [REQ-006]
-- [ ] T099 Run strict spec validation for this phase folder
+- [x] T08 Migrate or remove sidecar tests around /api/health behavior [REQ-005]
+- [x] T09 Run grep and focused execution-router/embedding tests [REQ-006]
+- [x] T099 Run strict spec validation for this phase folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 tasks complete
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Focused phase tests/static checks are green and predecessor/successor handoff is documented
+- [x] All P0 tasks complete
+- [x] No `[B]` blocked tasks remaining
+- [x] Focused phase tests/static checks are green and predecessor/successor handoff is documented
 <!-- /ANCHOR:completion -->
 
 ---

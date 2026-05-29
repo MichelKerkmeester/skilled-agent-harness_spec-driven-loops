@@ -1,6 +1,6 @@
 ---
 title: "MCP Embedders Library"
-description: "Runtime embedding orchestration, reindexing and sidecar execution helpers for mk-spec-memory."
+description: "Runtime embedding orchestration and reindexing helpers for mk-spec-memory."
 trigger_phrases:
   - "spec kit embedders"
   - "embedding execution router"
@@ -11,7 +11,7 @@ trigger_phrases:
 
 ## 1. OVERVIEW
 
-`lib/embedders/` owns mk-spec-memory runtime embedding orchestration. It adapts the shared embedder registry into MCP server behavior, routes local versus sidecar execution, and coordinates reindex workflows.
+`lib/embedders/` owns mk-spec-memory runtime embedding orchestration. It adapts the shared embedder registry into MCP server behavior, routes every provider (ollama, hf-local, cloud) through a single direct factory-backed adapter, and coordinates reindex workflows.
 
 ## 2. OWNERSHIP
 
@@ -21,11 +21,9 @@ This folder belongs to `@spec-kit/mcp-server`. Canonical embedder manifests, pro
 
 | File | Responsibility |
 |---|---|
-| `execution-router.ts` | Chooses in-process or sidecar-backed embedding execution. |
+| `execution-router.ts` | Resolves each provider to a direct factory-backed embedding adapter (ollama, hf-local HTTP client, cloud). |
 | `reindex.ts` | Coordinates profile-aware reindex behavior. |
 | `schema.ts` | Defines embedder-facing runtime schema helpers. |
-| `sidecar-client.ts` | Talks to the sidecar worker process. |
-| `sidecar-worker.ts` | Runs embedding work outside the MCP request path. |
 | `registry.ts`, `types.ts`, `adapter.ts` | Compatibility re-exports from `@spec-kit/shared`. |
 
 ## 4. BOUNDARIES
@@ -36,7 +34,7 @@ This folder belongs to `@spec-kit/mcp-server`. Canonical embedder manifests, pro
 
 ## 5. ENTRYPOINTS
 
-Production callers enter through `execution-router.ts`, `reindex.ts` and `sidecar-client.ts`. Tests use the `*.testables.ts` files for focused coverage without widening runtime exports.
+Production callers enter through `execution-router.ts` and `reindex.ts`. Tests use the `*.testables.ts` files for focused coverage without widening runtime exports.
 
 ## 6. VALIDATION
 

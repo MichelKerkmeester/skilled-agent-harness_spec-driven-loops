@@ -8,14 +8,12 @@ import type { IEmbeddingProvider } from '@spec-kit/shared/types';
 
 import type { EmbedderAdapter } from './adapter.js';
 import { getAdapter } from './registry.js';
-import { SidecarClient, toBackendKind, type EmbedOptions, type SidecarClientOptions, type SidecarWorkerInfo } from './sidecar-client.js';
 import type { BackendKind } from './types.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
 // ───────────────────────────────────────────────────────────────
 
-type EmbedderExecutionPolicy = 'auto' | 'direct' | 'sidecar';
 export type ExecutionRouterAdapter = Omit<EmbedderAdapter, 'ready'> & {
   dispose?: () => Promise<void>;
 };
@@ -34,19 +32,10 @@ export type CredentialCacheInvalidationListener = (event: CredentialCacheInvalid
 // 2. CONSTANTS
 // ───────────────────────────────────────────────────────────────
 
-const SIDECAR_LOCAL_PROVIDERS = new Set(['hf-local', 'sentence-transformers']);
-const SHUTDOWN_SIGNALS: readonly NodeJS.Signals[] = ['SIGINT', 'SIGTERM', 'SIGHUP'];
 const directAdapters = new Map<string, ExecutionRouterAdapter>();
-const sidecarClients = new Map<string, SidecarClient>();
 const credentialCacheInvalidationListeners = new Set<CredentialCacheInvalidationListener>();
-const registeredShutdownHandlers: Array<{
-  readonly signal: NodeJS.Signals;
-  readonly handler: (signal: NodeJS.Signals) => Promise<void>;
-}> = [];
-let beforeExitShutdownHandler: (() => Promise<void>) | null = null;
-let shutdownHooksRegistered = false;
-let shutdownSignalInFlight = false;
 let activeAdapterKey: string | null = null;
+let executionPolicyNoOpWarningLogged = false;
 
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -56,40 +45,16 @@ function normalizeProvider(provider: string): string {
   return provider.trim().toLowerCase();
 }
 
-function readExecutionPolicyEnv(): string | undefined {
-  return process.env.SPECKIT_EMBEDDER_EXECUTION?.trim().toLowerCase();
-}
+function warnIgnoredExecutionPolicyEnv(): void {
+  const raw = process.env.SPECKIT_EMBEDDER_EXECUTION?.trim();
+  if (raw === undefined || raw.length === 0 || executionPolicyNoOpWarningLogged) {
+    return;
+  }
 
-export function resolveExecutionPolicy(raw: string | undefined = readExecutionPolicyEnv()): EmbedderExecutionPolicy {
-  if (raw === undefined || raw.length === 0 || raw === 'auto') {
-    return 'auto';
-  }
-  if (raw === 'direct' || raw === 'sidecar') {
-    return raw;
-  }
-  return 'auto';
-}
-
-export function logPolicyResolution(
-  raw: string | undefined = readExecutionPolicyEnv(),
-  policy: EmbedderExecutionPolicy = resolveExecutionPolicy(raw),
-): void {
-  if (policy === 'auto' && raw !== undefined && raw.length > 0 && raw !== 'auto') {
-    console.warn(`[embedder-execution] Invalid SPECKIT_EMBEDDER_EXECUTION="${raw}"; using auto`);
-  }
-}
-
-export function shouldUseSidecar(provider: string): boolean {
-  const rawPolicy = readExecutionPolicyEnv();
-  const policy = resolveExecutionPolicy(rawPolicy);
-  logPolicyResolution(rawPolicy, policy);
-  if (policy === 'direct') {
-    return false;
-  }
-  if (policy === 'sidecar') {
-    return true;
-  }
-  return SIDECAR_LOCAL_PROVIDERS.has(normalizeProvider(provider));
+  executionPolicyNoOpWarningLogged = true;
+  console.warn(
+    `[embedder-execution] SPECKIT_EMBEDDER_EXECUTION="${raw}" is deprecated and ignored; using direct provider routing`,
+  );
 }
 
 export function resolveDimensions(provider: string, model: string, dimensions?: number): number {
@@ -150,38 +115,6 @@ function reconcileActiveAdapterKey(nextKey: string): void {
   activeAdapterKey = nextKey;
 }
 
-export function registerShutdownHooks(): void {
-  if (shutdownHooksRegistered) {
-    return;
-  }
-
-  shutdownHooksRegistered = true;
-  const shutdown = async (): Promise<void> => {
-    await shutdownAllSidecars();
-  };
-  const handleSignal = async (signal: NodeJS.Signals): Promise<void> => {
-    if (shutdownSignalInFlight) {
-      console.warn(`[embedder-execution] Ignoring duplicate ${signal} while sidecar shutdown is already in progress`);
-      return;
-    }
-
-    shutdownSignalInFlight = true;
-    void shutdown()
-      .catch((error: unknown) => {
-        console.warn(`[embedder-execution] Sidecar shutdown during ${signal} failed: ${error instanceof Error ? error.message : String(error)}`);
-      })
-      .finally(() => {
-        process.kill(process.pid, signal);
-      });
-  };
-  beforeExitShutdownHandler = shutdown;
-  process.once('beforeExit', beforeExitShutdownHandler);
-  SHUTDOWN_SIGNALS.forEach((signal) => {
-    process.once(signal, handleSignal);
-    registeredShutdownHandlers.push({ signal, handler: handleSignal });
-  });
-}
-
 // ───────────────────────────────────────────────────────────────
 // 4. DIRECT ADAPTER
 // ───────────────────────────────────────────────────────────────
@@ -199,6 +132,16 @@ function createOllamaDelegatingAdapter(adapter: EmbedderAdapter): ExecutionRoute
 
 function toProviderFactoryName(provider: string): string {
   return provider === 'api' ? 'openai' : provider;
+}
+
+function toBackendKind(provider: string | undefined): BackendKind {
+  if (provider === 'ollama') {
+    return 'ollama';
+  }
+  if (provider === 'openai' || provider === 'voyage' || provider === 'api') {
+    return 'api';
+  }
+  return 'sentence-transformers';
 }
 
 function createFactoryBackedAdapter(provider: string, model: string, dimensions: number): ExecutionRouterAdapter {
@@ -276,22 +219,7 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
   const key = `${normalizedProvider}:${model}`;
   const dimensions = resolveDimensions(normalizedProvider, model, dimensionsOverride);
   reconcileActiveAdapterKey(key);
-
-  if (shouldUseSidecar(normalizedProvider)) {
-    let client = sidecarClients.get(key);
-    if (!client) {
-      const options: SidecarClientOptions = {
-        provider: normalizedProvider,
-        model,
-        dimensions,
-        backend: toBackendKind(normalizedProvider),
-      };
-      client = new SidecarClient(options);
-      sidecarClients.set(key, client);
-      registerShutdownHooks();
-    }
-    return client;
-  }
+  warnIgnoredExecutionPolicyEnv();
 
   let adapter = directAdapters.get(key);
   if (!adapter) {
@@ -299,32 +227,6 @@ export function getEmbedderAdapter(provider: string, model: string, dimensionsOv
     directAdapters.set(key, adapter);
   }
   return adapter;
-}
-
-export function getSidecarWorkerSnapshot(now: number = Date.now()): Record<string, SidecarWorkerInfo> {
-  const snapshot: Record<string, SidecarWorkerInfo> = {};
-  for (const [key, client] of sidecarClients.entries()) {
-    const info = client.getWorkerInfo(now);
-    if (info) {
-      snapshot[key] = info;
-    }
-  }
-  return snapshot;
-}
-
-export async function shutdownAllSidecars(): Promise<void> {
-  const clients = Array.from(sidecarClients.values());
-  await Promise.all(clients.map((client) => client.shutdown()));
-}
-
-export async function recycleActiveSidecars(key: string): Promise<void> {
-  const client = sidecarClients.get(key);
-  if (!client) {
-    return;
-  }
-
-  sidecarClients.delete(key);
-  await client.shutdown();
 }
 
 export async function disposeDirectAdapter(key: string): Promise<void> {
@@ -340,29 +242,14 @@ export async function disposeDirectAdapter(key: string): Promise<void> {
 export async function teardownEmbedderAfterSwap(provider: string, model: string): Promise<void> {
   const normalizedProvider = normalizeProvider(provider);
   const key = `${normalizedProvider}:${model}`;
-  if (shouldUseSidecar(normalizedProvider)) {
-    await recycleActiveSidecars(key);
-    return;
-  }
-
   await disposeDirectAdapter(key);
 }
 
 export function clearEmbedderExecutionRouterState(): void {
   const previousKey = activeAdapterKey;
   clearDirectAdapterCredentialCache('router-state-cleared', previousKey, null);
-  for (const { signal, handler } of registeredShutdownHandlers) {
-    process.off(signal, handler);
-  }
-  registeredShutdownHandlers.length = 0;
-  if (beforeExitShutdownHandler) {
-    process.off('beforeExit', beforeExitShutdownHandler);
-    beforeExitShutdownHandler = null;
-  }
-  sidecarClients.clear();
-  shutdownHooksRegistered = false;
-  shutdownSignalInFlight = false;
   activeAdapterKey = null;
+  executionPolicyNoOpWarningLogged = false;
 }
 
 export function getDirectAdapterCacheKeys(): readonly string[] {
