@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────────
+# DOCTOR: EMBEDDINGS STATUS WORKFLOW (READ-ONLY)
+# ─────────────────────────────────────────────────────────────────
+role: Expert Operator running embeddings provider and model-server status diagnostics
+purpose: Read-only status surface for active embedder provider selection and hf-local model-server health
+action: Call embedder_status -> inspect provider/model-server fields -> report operator actions
+
+# ─────────────────────────────────────────────────────────────────
+# OPERATING MODE
+# ─────────────────────────────────────────────────────────────────
+operating_mode:
+  workflow: single_read_only_status_probe
+  compliance: MANDATORY
+  execution: interactive
+  approvals: none
+  tracking: diagnostic_report
+  validation: embedder_status_response_shape
+  read_only: true
+
+embeddings_doctor_invariant: |
+  Embeddings doctor is strictly read-only. It calls embedder_status and reports
+  provider resolution, fallback reason, and model-server metadata already exposed
+  by the MCP server. It never manages model-server lifecycle; launchers own that.
+
+# ─────────────────────────────────────────────────────────────────
+# USER INPUTS
+# ─────────────────────────────────────────────────────────────────
+user_inputs:
+  execution_mode: "INTERACTIVE"
+
+# ─────────────────────────────────────────────────────────────────
+# MUTATION BOUNDARIES
+# ─────────────────────────────────────────────────────────────────
+mutation_boundaries:
+  read_only: true
+  allowed_targets: []
+  forbidden_targets:
+    - "**/*"
+  invariant: "This workflow is report-only. It may call embedder_status and print output, but it must not write files, change databases, alter env, or manage processes."
+
+# ─────────────────────────────────────────────────────────────────
+# WORKFLOW
+# ─────────────────────────────────────────────────────────────────
+workflow:
+  phase_0_status:
+    purpose: "Read the current embedding provider and model-server status."
+    activities:
+      - "Call: embedder_status({})"
+      - "Read data.embeddings.provider.requestedProvider, effectiveProvider, fallbackReason, and dimensionChanged."
+      - "If data.embeddings.modelServer is present, read model, dim, dtype, healthy, serverState, loaded, baseUrl, loadStartedAt, loadProgressAt, and loadTimeMs."
+      - "Report any data.embeddings.modelServerError as diagnostic context."
+    outputs:
+      - requested_provider
+      - effective_provider
+      - fallback_reason
+      - dimension_changed
+      - model_server_state
+      - model_server_model
+      - model_server_dim
+
+# ─────────────────────────────────────────────────────────────────
+# OUTPUT FORMAT
+# ─────────────────────────────────────────────────────────────────
+output_format: |
+  STATUS=OK when embedder_status returns a structured embeddings payload.
+  STATUS=FAIL ERROR="<message>" only if embedder_status itself fails.
+  Include: requestedProvider, effectiveProvider, fallbackReason, dimensionChanged,
+  and hf-local model-server metadata when present.

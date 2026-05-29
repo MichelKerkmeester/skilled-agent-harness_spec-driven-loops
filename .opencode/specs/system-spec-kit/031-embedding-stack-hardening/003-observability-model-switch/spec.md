@@ -10,20 +10,20 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch"
-    last_updated_at: "2026-05-29T14:00:00Z"
+    last_updated_at: "2026-05-29T16:40:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Authored Level-1 child spec for observability + safe model-switch + cold-start timeout"
-    next_safe_action: "Implement phase 003"
+    recent_action: "Shipped 003 observability + model-switch + cold-start; verified, reviewed, fixed"
+    next_safe_action: "Begin phase 004 perf measure-first"
     blockers: []
     key_files:
-      - "mcp_server/handlers/embedder_status.ts"
+      - "mcp_server/handlers/embedder-status.ts"
       - "shared/embeddings/providers/hf-local.ts"
-      - ".opencode/bin/hf-model-server.cjs"
+      - "shared/embeddings/factory.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003131"
       session_id: "031-003-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Predecessor: 002-server-liveness-supervision (status surface reuses the new health fields)."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P0 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented — verified, reviewed, fixed (2026-05-29) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

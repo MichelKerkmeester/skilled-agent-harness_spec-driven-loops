@@ -72,9 +72,12 @@ export interface ProviderMetadata {
   dim: number;
   dtype?: EmbeddingProfileDtype | null;
   healthy: boolean;
+  serverState?: string | null;
   device?: string | null;
   loaded?: boolean;
   loadTimeMs?: number | null;
+  loadStartedAt?: string | null;
+  loadProgressAt?: string | null;
   baseUrl?: string;
   requestCount?: number;
   totalTokens?: number;

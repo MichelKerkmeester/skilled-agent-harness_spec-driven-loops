@@ -148,20 +148,60 @@ describe('HfLocalProvider HTTP client', () => {
     expect(healthCalls).toBe(2);  // waitForReady re-probed before the retry
   });
 
-  it('throws an actionable "still loading" readiness-timeout message pointing at the tunable env', async () => {
+  it('keeps retrying loading health past the ready timeout and resolves before the load cap', async () => {
+    let now = 0;
+    let healthCalls = 0;
+    vi.spyOn(Date, 'now').mockImplementation(() => now);
+    __hfLocalProviderTestables.setSleep(async (ms) => {
+      now += ms;
+    });
+
     const provider = new HfLocalProvider({
       dim: 3,
-      readyTimeout: 30,
+      readyTimeout: 45,
+      loadTimeout: 90,
       request: async (request) => {
         if (request.path === '/api/health') {
+          healthCalls += 1;
+          if (now < 60) {
+            return jsonResponse(503, { state: 'loading', model: MODEL, dim: null });
+          }
+          return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
+        }
+        return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
+      },
+    });
+
+    await expect(provider.embedQuery('slow cold start')).resolves.toHaveLength(3);
+    expect(healthCalls).toBeGreaterThan(1);
+    expect(now).toBeGreaterThan(45);
+  });
+
+  it('throws an actionable "still loading" message only after the load cap', async () => {
+    let now = 0;
+    let healthCalls = 0;
+    vi.spyOn(Date, 'now').mockImplementation(() => now);
+    __hfLocalProviderTestables.setSleep(async (ms) => {
+      now += ms;
+    });
+
+    const provider = new HfLocalProvider({
+      dim: 3,
+      readyTimeout: 45,
+      loadTimeout: 90,
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          healthCalls += 1;
           return jsonResponse(503, { state: 'loading', model: MODEL, dim: null });
         }
         return jsonResponse(200, { embeddings: [vector(3)], dim: 3 });
       },
     });
     await expect(provider.embedQuery('still loading')).rejects.toThrow(
-      /still loading the model after \d+ms.*HF_EMBED_SERVER_READY_TIMEOUT_MS/s,
+      /still loading the model after 90ms.*SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS/s,
     );
+    expect(healthCalls).toBeGreaterThan(1);
+    expect(now).toBe(90);
   });
 
   it('throws an "unreachable" readiness-timeout message when the server never answers', async () => {
@@ -197,17 +237,48 @@ describe('HfLocalProvider HTTP client', () => {
     expect(provider.getMetadata().dim).toBe(4);
   });
 
+  it('fires onDimensionResolved once with the server-reported dim on first embed (custom-model drift hook)', async () => {
+    const resolved: Array<{ dim: number; model: string }> = [];
+    const provider = new HfLocalProvider({
+      model: 'custom/unlisted-embedder',
+      // Custom model: dim is unknown at construction (starts at 0) and only resolves here.
+      request: async (request) => {
+        if (request.path === '/api/health') {
+          return jsonResponse(200, { state: 'ready', model: 'custom/unlisted-embedder', dim: null });
+        }
+        return jsonResponse(200, { embeddings: [vector(321)], dim: 321 });
+      },
+      onDimensionResolved: (dim, model) => {
+        resolved.push({ dim, model });
+      },
+    });
+
+    await provider.embedDocument('first');
+    await provider.embedDocument('second');
+
+    // Fired exactly once (deduped by notifiedDim), with the dim the server actually reported.
+    expect(resolved).toEqual([{ dim: 321, model: 'custom/unlisted-embedder' }]);
+    expect(provider.getMetadata().dim).toBe(321);
+  });
+
   it('maps 404 model-missing responses to the provider-cascade error shape', async () => {
     const provider = new HfLocalProvider({
+      model: 'custom/local-embedder',
       request: async (request) => {
         if (request.path === '/api/health') {
           return jsonResponse(200, { state: 'ready', model: MODEL, dim: 3 });
         }
-        return jsonResponse(404, { error: 'Model missing-model is not loaded by this hf-local server' }, 'Not Found');
+        return jsonResponse(404, {
+          error: 'Model custom/local-embedder is not loaded by this hf-local server',
+          model: 'custom/local-embedder',
+          loadedModel: MODEL,
+        }, 'Not Found');
       },
     });
 
-    await expect(provider.embedDocument('missing model')).rejects.toThrow('HF local model is not loaded');
+    await expect(provider.embedDocument('missing model')).rejects.toThrow(
+      'HF local model is not loaded: requested custom/local-embedder; server loaded nomic-ai/nomic-embed-text-v1.5',
+    );
   });
 
   it('canLoad probes /api/health and treats ready/loading as available', async () => {

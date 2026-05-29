@@ -1,7 +1,7 @@
 ---
 description: Router for /doctor <target>; dispatches per-subsystem diagnostic to the right YAML via the _routes.yaml manifest.
 argument-hint: "<target> [flags] | list | ?"
-allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
+allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_graph_status, mcp__mk_code_index__code_graph_query, mcp__mk_code_index__code_graph_context, mcp__mk_code_index__code_graph_scan, mcp__mk_code_index__code_graph_apply, mcp__mk_code_index__detect_changes, mcp__mk_spec_memory__memory_context, mcp__mk_spec_memory__memory_search, mcp__mk_spec_memory__memory_health, mcp__mk_spec_memory__memory_index_scan, mcp__mk_spec_memory__memory_drift_why, mcp__mk_spec_memory__memory_stats, mcp__mk_spec_memory__embedder_status, mcp__mk_spec_memory__memory_causal_stats, mcp__mk_spec_memory__memory_causal_link, mcp__mk_skill_advisor__advisor_recommend, mcp__mk_skill_advisor__advisor_status, mcp__mk_skill_advisor__advisor_validate, mcp__mk_skill_advisor__advisor_rebuild, mcp__mk_skill_advisor__skill_graph_scan, mcp__mk_skill_advisor__skill_graph_query, mcp__mk_skill_advisor__skill_graph_status
 ---
 <!-- skill_agent: system-spec-kit -->
 
@@ -29,7 +29,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write, mcp__mk_code_index__code_gra
 - **ALL** workflow execution happens through the target YAML — this document is target resolution + setup only.
 - **MARKDOWN OWNS SETUP**: resolve `execution_mode` + per-target `setup_vars` here first, then hand off to YAML.
 - **YAML START CONDITION**: do not load the target YAML until `target` is bound AND every `setup_var` for that target is resolved.
-- **NO YAML MODIFICATIONS**: the 7 YAML assets under `assets/doctor_*.yaml` are stable and untouched by this router.
+- **NO YAML MODIFICATIONS**: the 10 YAML assets under `assets/doctor_*.yaml` are stable and untouched by this router.
 - **MANIFEST IS CANONICAL**: per-target metadata (yaml asset, setup vars, allowed flags, mutation class, mcp tools, script invocations, trigger phrases) lives in `_routes.yaml`. The SUBSYSTEM MANIFEST table below is a human-readable mirror, not the source of truth.
 
 > **Format:** `/doctor <target> [flags]` | `/doctor list` | `/doctor ?`
@@ -42,6 +42,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | Target          | Location                                                                                  | Mutation class | Reason                                                            | Alternative                                                  |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
 | `memory`        | `mcp_server/database/context-index__*.sqlite` active profile DB                           | **mutates**    | Runtime database files, not spec folder packets                   | Phase 3 canonical-path validator + `VACUUM INTO` snapshot    |
+| `embeddings`    | n/a (read-only provider/model-server status)                                              | **read-only**  | No mutations; report-only                                         | Diagnostic output only                                       |
 | `causal-graph`  | `mcp_server/database/context-index__*.sqlite` causal_edges table                          | **add-only**   | Edges are evidence; existing rows never deleted or updated        | Phase 3 validator + snapshot; halts if upsert detected       |
 | `code-graph`    | `.opencode/code-graph.config.json` + `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | **mutates**    | Runtime config + index; not packet docs                           | Phase 3 validator + gold-battery + auto-rollback             |
 | `deep-loop`     | `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite`                       | **mutates**    | Coverage graph DB; not packet docs                                | Phase 3 validator + `VACUUM INTO` snapshot                   |
@@ -55,6 +56,7 @@ This router never modifies authored spec packet docs. Each routed target has its
 | Target          | YAML asset                      | Setup vars                                                              | Mutation class | One-line purpose                                                          |
 | --------------- | ------------------------------- | ----------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------- |
 | `memory`        | `doctor_memory.yaml`            | execution_mode, intent, incremental, no_snapshot, dry_run               | mutates        | Diagnose the memory continuity index; rebuild on demand                   |
+| `embeddings`    | `doctor_embeddings.yaml`        | execution_mode                                                          | read-only      | Inspect provider selection and hf-local model-server status               |
 | `causal-graph`  | `doctor_causal-graph.yaml`      | execution_mode, intent, confidence_threshold, no_snapshot, dry_run      | add-only       | Diagnose causal-edge integrity; add new high-confidence edges only        |
 | `code-graph`    | `doctor_code-graph.yaml`        | execution_mode, scope                                                   | mutates        | Diagnose / rescan code-graph index; prune stale excludes                  |
 | `deep-loop`     | `doctor_deep-loop.yaml`         | execution_mode, intent, scope, no_snapshot, dry_run                     | mutates        | Diagnose deep-loop coverage graphs (research / review)                    |
@@ -95,11 +97,12 @@ What do you want to do?
 
    1) Update everything to match latest spec-kit release   (e.g. 3.3.0.0 → 3.4.x)
    2) Debug Memory database              (search index, spec-doc indexing)
-   3) Debug Causal-Graph                 (spec lineage, drift_why)
-   4) Debug Code-Graph                   (structural index, stale/missed/bloat)
-   5) Debug Deep-Loop history            (research/review iteration graphs)
-   6) Re-tune Skill Advisor              (which skill gets recommended)
-   7) Audit Skill Description budget     (char counts, CI-friendly)
+   3) Debug Embeddings                   (provider choice, hf-local health)
+   4) Debug Causal-Graph                 (spec lineage, drift_why)
+   5) Debug Code-Graph                   (structural index, stale/missed/bloat)
+   6) Debug Deep-Loop history            (research/review iteration graphs)
+   7) Re-tune Skill Advisor              (which skill gets recommended)
+   8) Audit Skill Description budget     (char counts, CI-friendly)
    0) Full sweep — rebuild everything    (no migration, current schema)
    H) Help me decide
    X) Cancel
@@ -108,11 +111,12 @@ What do you want to do?
    - WAIT for selection. Map answers as follows:
      - 1 → ABORT this command, EMIT: "Switch to `/doctor:update --migrate` for upgrade migration. Exiting /doctor."
      - 2 → target = "memory"
-     - 3 → target = "causal-graph"
-     - 4 → target = "code-graph"
-     - 5 → target = "deep-loop"
-     - 6 → target = "skill-advisor"
-     - 7 → target = "skill-budget"
+     - 3 → target = "embeddings"
+     - 4 → target = "causal-graph"
+     - 5 → target = "code-graph"
+     - 6 → target = "deep-loop"
+     - 7 → target = "skill-advisor"
+     - 8 → target = "skill-budget"
      - 9 → ABORT, EMIT: "Switch to `/doctor:mcp debug --fix` (or `/doctor:mcp install`). Exiting /doctor."
      - 0 → ABORT, EMIT: "Switch to `/doctor:update` for full sweep. Exiting /doctor."
      - H → print the HELP block below, then re-ask Tier 1 question.
@@ -126,22 +130,23 @@ Pick by symptom:
 
    Search returns stale or empty results              → 2  Memory
    "context-index__*.sqlite missing" warning          → 2  Memory
-   memory_drift_why returns nothing                   → 3  Causal-Graph
-   "causal coverage <60%" warning                     → 3  Causal-Graph
-   "code-graph stale/missed/bloat" warning            → 4  Code-Graph
-   "code_graph_status: unhealthy" or code-graph errors → 4  Code-Graph
-   deep-research/deep-review iteration graph empty    → 5  Deep-Loop
-   Convergence not detected between iterations        → 5  Deep-Loop
-   Skill Advisor recommends the wrong skill           → 6  Skill Advisor
-   New skill not appearing in advisor results         → 6  Skill Advisor
-   Description char-count over hard cap (1536)        → 7  Skill Budget
+   Model mismatch or hf-local loading state unclear   → 3  Embeddings
+   memory_drift_why returns nothing                   → 4  Causal-Graph
+   "causal coverage <60%" warning                     → 4  Causal-Graph
+   "code-graph stale/missed/bloat" warning            → 5  Code-Graph
+   "code_graph_status: unhealthy" or code-graph errors → 5  Code-Graph
+   deep-research/deep-review iteration graph empty    → 6  Deep-Loop
+   Convergence not detected between iterations        → 6  Deep-Loop
+   Skill Advisor recommends the wrong skill           → 7  Skill Advisor
+   New skill not appearing in advisor results         → 7  Skill Advisor
+   Description char-count over hard cap (1536)        → 8  Skill Budget
 
 Quick reference for confusable pairs:
-   Code-Graph (4) is STRUCTURAL — functions, files, dirs, AST
-   Skill Advisor (6) tunes ROUTING quality (which skill gets picked)
-   Skill Budget (7) audits CHAR COUNTS (frontmatter description size)
+   Code-Graph (5) is STRUCTURAL — functions, files, dirs, AST
+   Skill Advisor (7) tunes ROUTING quality (which skill gets picked)
+   Skill Budget (8) audits CHAR COUNTS (frontmatter description size)
 
-Press 1-9, 0, or X.
+Press 1-8, 0, or X.
 ```
 
    - After printing HELP, RE-EMIT the Tier 1 question above and WAIT again.
@@ -170,6 +175,10 @@ TIER 2 — PER-TARGET FLAG PARSING (case block)
        --dry-run                → dry_run = true          (default: false)
        intent = "DIAGNOSE"  (default; YAML may override after Phase 0)
        SET yaml_asset = "doctor_memory.yaml"
+       ;;
+     embeddings)
+       # no flags
+       SET yaml_asset = "doctor_embeddings.yaml"
        ;;
      causal-graph)
        # allowed: --confidence-threshold=N, --no-snapshot, --dry-run
@@ -286,6 +295,7 @@ Use `/doctor` when you need to diagnose or rebuild ONE subsystem. Use `/doctor:u
 /doctor list                                          # Print SUBSYSTEM MANIFEST and exit
 /doctor memory                                        # Diagnose continuity index (incremental prompt)
 /doctor memory --incremental=true --dry-run           # Skip prompts; dry-run rebuild
+/doctor embeddings                                    # Inspect provider/model-server status
 /doctor causal-graph                                  # Diagnose causal edges; recommend candidates
 /doctor causal-graph --confidence-threshold=0.8       # Stricter candidate floor
 /doctor code-graph --scope=stale --operation=rescan   # Rescan stale code-graph nodes

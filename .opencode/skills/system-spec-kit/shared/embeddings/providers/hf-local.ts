@@ -25,6 +25,7 @@ const DEFAULT_MODEL: string = getCanonicalFallback('hf-local');
 const CANONICAL_DEFAULT_DIM = 768;
 const EMBEDDING_TIMEOUT: number = 30000;
 const DEFAULT_READY_TIMEOUT: number = 45000;
+const DEFAULT_LOADING_TIMEOUT: number = 150000;
 const DEFAULT_HEALTH_TIMEOUT: number = 5000;
 const READY_RETRY_INITIAL_DELAY: number = 100;
 const READY_RETRY_MAX_DELAY: number = 1000;
@@ -113,7 +114,12 @@ interface HfLocalOptions {
   timeout?: number;
   dtype?: HfLocalDtype;
   readyTimeout?: number;
+  loadTimeout?: number;
   request?: HfLocalTransport;
+  // Fired once per distinct resolved dimension, after the server reports it on first
+  // embed. Lets the factory compare a CUSTOM model's true dim (unknown at construction)
+  // against the persisted vec_metadata active dim without a provider->factory import cycle.
+  onDimensionResolved?: (resolvedDim: number, model: string) => void;
 }
 
 interface HfLocalAvailability {
@@ -157,6 +163,8 @@ interface HfLocalHealthResponse {
   readonly dim?: unknown;
   readonly device?: unknown;
   readonly loadTimeMs?: unknown;
+  readonly loadStartedAt?: unknown;
+  readonly loadProgressAt?: unknown;
   readonly error?: unknown;
 }
 
@@ -445,6 +453,27 @@ function isModelMissingResponse(response: HfLocalJsonResponse, body: unknown): b
   return /model.*(not found|not loaded|pull)|pull.*model/i.test(message);
 }
 
+function parseModelMissingDetails(body: unknown, requestedFallback: string): { requestedModel: string; loadedModel: string | null } {
+  if (!isRecord(body)) {
+    return {
+      requestedModel: requestedFallback,
+      loadedModel: null,
+    };
+  }
+
+  const requestedModel = typeof body.model === 'string' && body.model.trim().length > 0
+    ? body.model
+    : requestedFallback;
+  const loadedModel = typeof body.loadedModel === 'string' && body.loadedModel.trim().length > 0
+    ? body.loadedModel
+    : null;
+
+  return {
+    requestedModel,
+    loadedModel,
+  };
+}
+
 function isLoadingResponse(response: HfLocalJsonResponse): boolean {
   return (response.status === 503 || response.status === 200) && parseHealthState(response.body) === 'loading';
 }
@@ -478,10 +507,15 @@ export class HfLocalProvider implements IEmbeddingProvider {
   maxTextLength: number;
   timeout: number;
   readyTimeout: number;
+  loadTimeout: number;
   isHealthy: boolean;
   modelLoadTime: number | null;
+  loadStartedAt: string | null;
+  loadProgressAt: string | null;
   requestCount: number;
 
+  private notifiedDim: number | null = null;
+  private readonly onDimensionResolved?: (resolvedDim: number, model: string) => void;
   private readonly target: HfLocalServerTarget;
   private readonly request: HfLocalTransport;
   private serverState: HfLocalServerState | null;
@@ -498,9 +532,19 @@ export class HfLocalProvider implements IEmbeddingProvider {
       process.env.HF_EMBED_SERVER_READY_TIMEOUT_MS,
       DEFAULT_READY_TIMEOUT,
     );
+    this.loadTimeout = Math.max(
+      this.readyTimeout,
+      options.loadTimeout || parsePositiveInteger(
+        process.env.SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS,
+        DEFAULT_LOADING_TIMEOUT,
+      ),
+    );
     this.isHealthy = true;
     this.modelLoadTime = null;
+    this.loadStartedAt = null;
+    this.loadProgressAt = null;
     this.requestCount = 0;
+    this.onDimensionResolved = options.onDimensionResolved;
     this.target = resolveHfLocalServerTarget();
     this.request = options.request || activeTransport;
     this.serverState = null;
@@ -597,6 +641,18 @@ export class HfLocalProvider implements IEmbeddingProvider {
     } else if (payload.loadTimeMs === null) {
       this.modelLoadTime = null;
     }
+
+    if (typeof payload.loadStartedAt === 'string') {
+      this.loadStartedAt = payload.loadStartedAt;
+    } else if (payload.loadStartedAt === null) {
+      this.loadStartedAt = null;
+    }
+
+    if (typeof payload.loadProgressAt === 'string') {
+      this.loadProgressAt = payload.loadProgressAt;
+    } else if (payload.loadProgressAt === null) {
+      this.loadProgressAt = null;
+    }
   }
 
   private async healthOnce(timeoutMs: number): Promise<HfLocalJsonResponse> {
@@ -607,13 +663,16 @@ export class HfLocalProvider implements IEmbeddingProvider {
   }
 
   private async waitForReady(): Promise<void> {
-    const deadline = Date.now() + this.readyTimeout;
+    const startedAt = Date.now();
+    const readyDeadline = startedAt + this.readyTimeout;
+    const loadingDeadline = startedAt + this.loadTimeout;
     let delay = READY_RETRY_INITIAL_DELAY;
     let lastError: unknown = null;
     let sawLoading = false;
 
-    while (Date.now() <= deadline) {
-      const remaining = Math.max(1, deadline - Date.now());
+    while (Date.now() <= (sawLoading ? loadingDeadline : readyDeadline)) {
+      const activeDeadline = sawLoading ? loadingDeadline : readyDeadline;
+      const remaining = Math.max(1, activeDeadline - Date.now());
       const healthTimeout = Math.min(DEFAULT_HEALTH_TIMEOUT, remaining);
 
       try {
@@ -646,11 +705,12 @@ export class HfLocalProvider implements IEmbeddingProvider {
         lastError = error;
       }
 
-      if (Date.now() >= deadline) {
+      const retryDeadline = sawLoading ? loadingDeadline : readyDeadline;
+      if (Date.now() >= retryDeadline) {
         break;
       }
 
-      await sleep(Math.min(delay, Math.max(1, deadline - Date.now())));
+      await sleep(Math.min(delay, Math.max(1, retryDeadline - Date.now())));
       delay = nextDelay(delay);
     }
 
@@ -660,8 +720,8 @@ export class HfLocalProvider implements IEmbeddingProvider {
       // The server answered but was still loading/downloading the model when the
       // client gave up — actionable: this is a slow cold start, not an outage.
       throw new Error(
-        `HF local model server at ${target} was still loading the model after ${this.readyTimeout}ms `
-        + `(first-run model download can exceed this). Raise HF_EMBED_SERVER_READY_TIMEOUT_MS or retry once warm.`,
+        `HF local model server at ${target} was still loading the model after ${this.loadTimeout}ms `
+        + `(first-run model download can exceed this). Raise SPECKIT_HF_MODEL_SERVER_LOADING_MAX_MS or retry once warm.`,
       );
     }
     throw new Error(
@@ -683,6 +743,15 @@ export class HfLocalProvider implements IEmbeddingProvider {
 
     if (this.dim <= 0) {
       this.dim = row.length;
+    }
+
+    // First-embed drift hook: a custom HF_EMBEDDINGS_MODEL starts at dim 0 and only
+    // resolves its true dimension here (from the server). This is the only point the
+    // factory-injected reporter can compare it against the persisted vec_metadata active
+    // dim, so the model-switch drift warning actually fires for non-canonical models.
+    if (this.onDimensionResolved && this.dim > 0 && this.dim !== this.notifiedDim) {
+      this.notifiedDim = this.dim;
+      this.onDimensionResolved(this.dim, this.modelName);
     }
   }
 
@@ -731,7 +800,11 @@ export class HfLocalProvider implements IEmbeddingProvider {
 
   private throwForEmbeddingResponse(response: HfLocalJsonResponse, body: unknown): never {
     if (isModelMissingResponse(response, body)) {
-      throw new Error(`HF local model is not loaded: ${this.modelName}`);
+      const { requestedModel, loadedModel } = parseModelMissingDetails(body, this.modelName);
+      const loadedDetail = loadedModel === null
+        ? 'server did not report loadedModel'
+        : `server loaded ${loadedModel}`;
+      throw new Error(`HF local model is not loaded: requested ${requestedModel}; ${loadedDetail}`);
     }
 
     throw new Error(`HF local embedding request failed (${response.status} ${response.statusText}): ${JSON.stringify(body)}`);
@@ -791,10 +864,13 @@ export class HfLocalProvider implements IEmbeddingProvider {
       model: this.modelName,
       dim: this.dim,
       dtype: this.dtype,
+      serverState: this.serverState,
       device: currentDevice,
       healthy: this.isHealthy,
       loaded: this.serverState === 'ready',
       loadTimeMs: this.modelLoadTime,
+      loadStartedAt: this.loadStartedAt,
+      loadProgressAt: this.loadProgressAt,
       baseUrl: formatServerTarget(this.target),
       requestCount: this.requestCount,
     };

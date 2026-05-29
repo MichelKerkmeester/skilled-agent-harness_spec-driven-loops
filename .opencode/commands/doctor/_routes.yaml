@@ -42,6 +42,19 @@ routes:
       - "context-index doctor"
       - "voyage embedding rebuild"
 
+  - target: embeddings
+    yaml: doctor_embeddings.yaml
+    setup_vars: [execution_mode]
+    allowed_flags: []
+    mutating: read-only
+    gate3_location: "n/a (read-only provider and model-server status)"
+    mcp_tools:
+      - mcp__mk_spec_memory__embedder_status
+    trigger_phrases:
+      - "embedding provider status"
+      - "hf-local model-server health"
+      - "embedder_status diagnostics"
+
   - target: causal-graph
     yaml: doctor_causal-graph.yaml
     setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run]

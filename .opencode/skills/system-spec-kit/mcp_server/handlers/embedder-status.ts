@@ -2,6 +2,8 @@
 // MODULE: Embedder Status Handler
 // -------------------------------------------------------------------
 
+import { getProviderInfo } from '@spec-kit/shared/embeddings/factory';
+import { HfLocalProvider } from '@spec-kit/shared/embeddings/providers/hf-local';
 import { checkDatabaseUpdated } from '../core/index.js';
 import { createMCPSuccessResponse } from '../lib/response/envelope.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
@@ -12,6 +14,7 @@ import {
   getJobStatus,
 } from '../lib/embedders/reindex.js';
 
+import type { ProviderMetadata } from '@spec-kit/shared/types';
 import type { ReindexJob } from '../lib/embedders/reindex.js';
 import type { MCPResponse } from './types.js';
 
@@ -32,13 +35,57 @@ interface EmbedderStatusData {
   readonly error?: string;
   readonly fromName?: string;
   readonly toName?: string;
+  readonly embeddings: EmbeddingsStatusData;
+}
+
+interface EmbeddingsStatusData {
+  readonly provider: ReturnType<typeof getProviderInfo> | null;
+  readonly modelServer: ProviderMetadata | null;
+  readonly modelServerError?: string;
 }
 
 // -------------------------------------------------------------------
 // 2. HELPERS
 // -------------------------------------------------------------------
 
-function mapJob(job: ReindexJob | null, missingStatus: 'idle' | 'not_found'): EmbedderStatusData {
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : String(error);
+}
+
+async function collectEmbeddingsStatus(): Promise<EmbeddingsStatusData> {
+  // getProviderInfo() can throw on a misconfigured EMBEDDINGS_PROVIDER — keep it inside
+  // the try so the diagnostic degrades to a reported error instead of crashing the whole
+  // embedder_status call (which also serves re-index job status).
+  let provider: ReturnType<typeof getProviderInfo> | null = null;
+  try {
+    provider = getProviderInfo();
+    if (provider.effectiveProvider !== 'hf-local') {
+      return {
+        provider,
+        modelServer: null,
+      };
+    }
+
+    const hfLocal = new HfLocalProvider();
+    await hfLocal.healthCheck();
+    return {
+      provider,
+      modelServer: hfLocal.getMetadata(),
+    };
+  } catch (error: unknown) {
+    return {
+      provider,
+      modelServer: null,
+      modelServerError: getErrorMessage(error),
+    };
+  }
+}
+
+function mapJob(
+  job: ReindexJob | null,
+  missingStatus: 'idle' | 'not_found',
+  embeddings: EmbeddingsStatusData,
+): EmbedderStatusData {
   if (!job) {
     return {
       jobId: null,
@@ -46,6 +93,7 @@ function mapJob(job: ReindexJob | null, missingStatus: 'idle' | 'not_found'): Em
       total: 0,
       processed: 0,
       eta: null,
+      embeddings,
     };
   }
 
@@ -58,6 +106,7 @@ function mapJob(job: ReindexJob | null, missingStatus: 'idle' | 'not_found'): Em
     ...(job.error ? { error: job.error } : {}),
     fromName: job.fromName,
     toName: job.toName,
+    embeddings,
   };
 }
 
@@ -75,7 +124,8 @@ export async function handleEmbedderStatus(args: EmbedderStatusArgs = {}): Promi
     ? args.jobId.trim()
     : null;
   const job = requestedJobId ? getJobStatus(requestedJobId, db) : getActiveJob(db);
-  const data = mapJob(job, requestedJobId ? 'not_found' : 'idle');
+  const embeddings = await collectEmbeddingsStatus();
+  const data = mapJob(job, requestedJobId ? 'not_found' : 'idle', embeddings);
 
   return createMCPSuccessResponse({
     tool: 'embedder_status',

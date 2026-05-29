@@ -260,7 +260,15 @@ interface ActiveOllamaEmbedder {
   dbPath: string;
 }
 
+interface ActiveEmbedderMetadata {
+  provider: string;
+  name: string;
+  dim: number;
+  dbPath: string;
+}
+
 const activeOllamaWarnings = new Set<string>();
+const hfLocalDimensionDriftWarnings = new Set<string>();
 
 function warnActiveOllamaFallback(message: string): void {
   if (activeOllamaWarnings.has(message)) {
@@ -475,6 +483,28 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
   };
 }
 
+function readActiveEmbedderMetadataFromDb(sqlitePath: string): ActiveEmbedderMetadata | null {
+  if (!existsSync(sqlitePath) || !tableExistsInSqlite(sqlitePath, 'vec_metadata')) {
+    return null;
+  }
+
+  const name = readVecMetadataValue(sqlitePath, 'active_embedder_name');
+  const dimRaw = readVecMetadataValue(sqlitePath, 'active_embedder_dim');
+  const provider = normalizeProviderName(readVecMetadataValue(sqlitePath, 'active_embedder_provider')) ?? 'unknown';
+  const dim = typeof dimRaw === 'string' ? Number.parseInt(dimRaw, 10) : NaN;
+
+  if (!name || !Number.isInteger(dim) || dim <= 0) {
+    return null;
+  }
+
+  return {
+    provider,
+    name,
+    dim,
+    dbPath: sqlitePath,
+  };
+}
+
 function resolveActiveOllamaEmbedder(): ActiveOllamaEmbedder | null {
   for (const sqlitePath of resolveConfiguredDatabaseCandidates()) {
     const active = readActiveOllamaEmbedderFromDb(sqlitePath);
@@ -483,6 +513,61 @@ function resolveActiveOllamaEmbedder(): ActiveOllamaEmbedder | null {
     }
   }
   return null;
+}
+
+function resolveActiveEmbedderMetadata(): ActiveEmbedderMetadata | null {
+  for (const sqlitePath of resolveConfiguredDatabaseCandidates()) {
+    const active = readActiveEmbedderMetadataFromDb(sqlitePath);
+    if (active) {
+      return active;
+    }
+  }
+  return null;
+}
+
+// Compare a resolved hf-local dimension against the persisted vec_metadata active
+// embedder and warn once per distinct drift. Shared by the create-time check (canonical
+// model, dim known at construction) and the first-embed callback (custom model, dim only
+// known after the server reports it — see createProviderInstance's onDimensionResolved).
+function reportHfLocalDimensionDrift(resolvedDim: number, model: string): boolean {
+  if (!Number.isInteger(resolvedDim) || resolvedDim <= 0) {
+    return false;
+  }
+
+  const active = resolveActiveEmbedderMetadata();
+  if (!active || active.dim === resolvedDim) {
+    return false;
+  }
+
+  const key = [
+    active.dbPath,
+    active.provider,
+    active.name,
+    String(active.dim),
+    'hf-local',
+    model,
+    String(resolvedDim),
+  ].join(':');
+  if (hfLocalDimensionDriftWarnings.has(key)) {
+    return true;
+  }
+  hfLocalDimensionDriftWarnings.add(key);
+
+  console.error(
+    `[factory] WARNING: hf-local resolved embedding dimension differs from vec_metadata active embedder: ` +
+    `active ${active.provider}/${active.name} is ${active.dim}-dim, ` +
+    `requested hf-local/${model} is ${resolvedDim}-dim. ` +
+    `Vector index may need rebuilding. Existing ${active.dim}-dim vectors are incompatible with ${resolvedDim}-dim vectors.`,
+  );
+  return true;
+}
+
+// Create-time check: only fires for models whose dim is known at construction (the
+// canonical default). Custom HF_EMBEDDINGS_MODEL values resolve dim=0 until first embed,
+// so their drift is caught by the onDimensionResolved callback, not here.
+function warnIfHfLocalDimensionDrift(provider: IEmbeddingProvider): boolean {
+  const metadata = provider.getMetadata();
+  return reportHfLocalDimensionDrift(metadata.dim, metadata.model);
 }
 
 function setLastProviderFactoryMetadata(metadata: ProviderFactoryMetadata): void {
@@ -796,6 +881,10 @@ async function createProviderInstance(
         dtype: options.dtype,
         maxTextLength: options.maxTextLength,
         timeout: options.timeout,
+        // Catch dim drift for custom models, whose true dim is only known at first embed.
+        onDimensionResolved: (resolvedDim, model) => {
+          reportHfLocalDimensionDrift(resolvedDim, model);
+        },
       });
 
     case 'ollama': {
@@ -1037,10 +1126,14 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
       }
     }
 
+    const dimensionChanged = providerName === 'hf-local'
+      ? warnIfHfLocalDimensionDrift(provider)
+      : false;
+
     return attachFactoryMetadata(provider, {
       requestedProvider: providerName,
       effectiveProvider: providerName,
-      dimensionChanged: false,
+      dimensionChanged,
     });
 
   } catch (error: unknown) {
