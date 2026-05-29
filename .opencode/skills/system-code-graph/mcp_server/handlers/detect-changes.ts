@@ -319,9 +319,9 @@ export async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPR
     if (fileNodes.length === 0) continue;
 
     for (const hunk of diffFile.hunks) {
-      // Use the post-image range for attribution because that's
-      // what callers will read in the working tree. The pre-image
-      // range is also covered for pure-delete hunks (newLines=0).
+      // Use post-image coordinates because callers read symbols
+      // from the working tree. Pure-delete hunks have no new range,
+      // so attribute their post-image gap as a zero-length marker.
       for (const node of fileNodes) {
         // Skip the synthetic 'module' node — every file has one
         // and any change would always overlap it, drowning the
@@ -330,16 +330,12 @@ export async function handleDetectChanges(args: DetectChangesArgs): Promise<MCPR
         if (node.endLine < node.startLine) continue;
         const nodeLines = node.endLine - node.startLine + 1;
 
-        const overlapsPostImage = hunk.newLines > 0 && rangesOverlap(
+        const overlapsPostImage = rangesOverlap(
           node.startLine, nodeLines,
           hunk.newStart, hunk.newLines,
         );
-        const overlapsPreImage = hunk.oldLines > 0 && rangesOverlap(
-          node.startLine, nodeLines,
-          hunk.oldStart, hunk.oldLines,
-        );
 
-        if (!overlapsPostImage && !overlapsPreImage) continue;
+        if (!overlapsPostImage) continue;
         if (affectedSymbolsById.has(node.symbolId)) continue;
 
         affectedSymbolsById.set(node.symbolId, {

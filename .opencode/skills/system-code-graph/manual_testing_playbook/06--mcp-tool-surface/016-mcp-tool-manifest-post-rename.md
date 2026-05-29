@@ -21,7 +21,7 @@ Verify the mk-code-index launcher exposes exactly 8 tools with correct names aft
 - Real user request: `Confirm that the mk-code-index MCP server advertises the expected 8 tools with correct tool IDs after renaming from system_code_graph.`
 - Operator prompt: `Send initialize + tools/list JSON-RPC to the mk-code-index launcher. Show the tool count and name list, then return PASS/FAIL.`
 - Expected execution process: Start the launcher via stdio, send initialize + initialized notification + tools/list, capture the response.
-- Expected signals: Exactly 8 tools: code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes, code_graph_status, code_graph_scan, code_graph_verify. No legacy system_code_graph tool names.
+- Expected signals: Exactly 8 tools: code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes. No legacy system_code_graph tool names.
 - Desired user-visible outcome: A concise verdict confirming the tool manifest matches the post-rename spec.
 - Pass/fail: PASS if 8 tools with matching names and no legacy names. FAIL if tool count differs, names contain system_code_graph, or the launcher fails to start.
 
@@ -38,7 +38,7 @@ Verify the mk-code-index launcher exposes exactly 8 tools with correct names aft
 
 ### Expected Output / Verification
 
-Exactly 8 tools: code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes, code_graph_status, code_graph_scan, code_graph_verify. No system_code_graph names.
+Exactly 8 tools: code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes. No system_code_graph names.
 
 ### Cleanup
 

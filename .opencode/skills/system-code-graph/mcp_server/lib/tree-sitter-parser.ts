@@ -783,58 +783,65 @@ export class TreeSitterParser implements ParserAdapter {
         };
       }
 
-      if (SKIP_LIST_ENABLED) {
-        if (filePath) {
-          const skipEntry = lookupSkipList(filePath);
-          if (skipEntry) {
-            return earlyReturnSentinel(content, language, startTime, 'skip-list', skipEntry);
-          }
+      if (SKIP_LIST_ENABLED && filePath) {
+        const skipEntry = lookupSkipList(filePath);
+        if (skipEntry) {
+          return earlyReturnSentinel(content, language, startTime, 'skip-list', skipEntry);
         }
-        if (parserHealth === 'quarantined') {
-          return earlyReturnSentinel(content, language, startTime, 'quarantined', null);
-        }
+      }
+
+      if (parserHealth === 'quarantined') {
+        return earlyReturnSentinel(content, language, startTime, 'quarantined', null);
       }
 
       parserInstance.setLanguage(lang);
       const tree = parserInstance.parse(content);
-      const lines = content.split('\n');
+      try {
+        const lines = content.split('\n');
+        const rootNode = tree.rootNode as TSNode;
 
-      const captures = walkAST(tree.rootNode as TSNode, language, lines);
-      const nodes = capturesToNodes(captures, '', language, content);
-      const detectorProvenance = detectorProvenanceFromParserBackend('treesitter');
-      const edges = extractEdges(nodes, lines, captures, detectorProvenance, edgeWeights);
+        const captures = walkAST(rootNode, language, lines);
+        const nodes = capturesToNodes(captures, '', language, content);
+        const detectorProvenance = detectorProvenanceFromParserBackend('treesitter');
+        const edges = extractEdges(nodes, lines, captures, detectorProvenance, edgeWeights);
 
-      const hasError = (tree.rootNode as TSNode).hasError;
-      const parseHealth: ParseResult['parseHealth'] = hasError
-        ? (captures.length > 0 ? 'recovered' : 'error')
-        : (captures.length > 0 ? 'clean' : 'recovered');
+        const hasError = rootNode.hasError;
+        const parseHealth: ParseResult['parseHealth'] = hasError
+          ? (captures.length > 0 ? 'recovered' : 'error')
+          : (captures.length > 0 ? 'clean' : 'recovered');
 
-      if (isSpeckitMetricsEnabled()) {
-        speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome: parseHealth === 'error' ? 'error' : 'success' });
+        if (isSpeckitMetricsEnabled()) {
+          const outcome = parseHealth === 'error'
+            ? 'error'
+            : (parseHealth === 'recovered' ? 'recovered' : 'success');
+          speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome });
+        }
+        return rememberParseResultCaptures({
+          filePath: '',
+          language,
+          nodes,
+          edges,
+          detectorProvenance,
+          contentHash,
+          parseHealth,
+          parseErrors: hasError ? ['Tree contains syntax errors (partial parse)'] : [],
+          parseDurationMs: Date.now() - startTime,
+        }, captures);
+      } finally {
+        tree?.delete?.();
       }
-      return rememberParseResultCaptures({
-        filePath: '',
-        language,
-        nodes,
-        edges,
-        detectorProvenance,
-        contentHash,
-        parseHealth,
-        parseErrors: hasError ? ['Tree contains syntax errors (partial parse)'] : [],
-        parseDurationMs: Date.now() - startTime,
-      }, captures);
     } catch (err: unknown) {
       if (isSpeckitMetricsEnabled()) {
         speckitMetrics.recordHistogram('spec_kit.graph.parse_duration_ms', Date.now() - speckitParseStart, { language, outcome: 'error' });
       }
       const errorClass = classifyError(err);
+      if (errorClass === 'B2') {
+        parserHealth = 'quarantined';
+      }
       if (SKIP_LIST_ENABLED) {
         if (errorClass === 'B1' || errorClass === 'B2') {
           if (filePath) {
             addToSkipList(filePath, errorClass, err instanceof Error ? err.message : String(err));
-          }
-          if (errorClass === 'B2') {
-            parserHealth = 'quarantined';
           }
         }
       }

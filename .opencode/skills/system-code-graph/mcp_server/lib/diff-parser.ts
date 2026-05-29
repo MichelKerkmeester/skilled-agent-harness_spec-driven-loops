@@ -284,13 +284,12 @@ export function parseUnifiedDiff(diff: string): DiffParseResult {
 }
 
 /**
- * Compute whether two 1-based half-open line ranges overlap.
+ * Compute whether two inclusive (closed) 1-based line ranges overlap.
  * `aStart`..`aStart+aLines-1` overlaps `bStart`..`bStart+bLines-1`.
  *
- * Pure-add hunks (oldLines=0) and pure-delete hunks (newLines=0)
- * are handled by the caller — both sides are checked against the
- * same node range so an addition between two nodes can still be
- * attributed to whichever node covers `oldStart`.
+ * Zero-length ranges are treated as a single-line marker at the
+ * supplied start so callers can attribute gap-only changes such as
+ * pure-delete hunks in post-image coordinates.
  */
 export function rangesOverlap(
   aStart: number,

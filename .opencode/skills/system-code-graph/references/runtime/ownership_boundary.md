@@ -56,7 +56,7 @@ Both libraries own research and review loop state, iteration logs and convergenc
 - **Structural indexer** - AST parsing through tree-sitter and symbol extraction.
 - **SQLite graph storage** - Tables `code_files`, `code_nodes` and `code_edges` plus their indexes.
 - **Readiness state machine** - Freshness states `fresh`, `stale`, `empty`, `error` and `absent` with transition gates.
-- **MCP tool surface** - 8 tools through the `mk_code_index` server: `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_classify_query_intent`, `code_graph_verify`, `code_graph_apply`, `detect_changes`, `code_graph_status`, `code_graph_scan` and `code_graph_verify`.
+- **MCP tool surface** - 8 tools through the `mk_code_index` server: `code_graph_scan`, `code_graph_query`, `code_graph_status`, `code_graph_context`, `code_graph_classify_query_intent`, `code_graph_verify`, `code_graph_apply` and `detect_changes`.
 
 The package is a pure code-structure service with no workflow dependencies. Independent iteration on graph algorithms can proceed without touching spec-kit.
 

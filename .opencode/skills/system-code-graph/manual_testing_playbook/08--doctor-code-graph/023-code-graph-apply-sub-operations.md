@@ -78,4 +78,4 @@ contextType: "verification"
 
 ## Notes
 
-Tests `mcp_server/handlers/apply.ts` → `mcp_server/lib/apply-mode/{rescan,prune,repair,recovery,rollback}.ts`. Each operation runs the gold-query battery before AND after (verify via `apply.batteryPassRate` in `code_graph_status` post-apply).
+Tests `mcp_server/handlers/apply.ts` → `mcp_server/lib/apply-orchestrator.ts` for operation dispatch and `mcp_server/lib/recovery-procedures.ts` for CG-RP-001/002/003 recovery procedures. Each operation runs the gold-query battery before AND after (verify via `apply.batteryPassRate` in `code_graph_status` post-apply).

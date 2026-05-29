@@ -90,9 +90,11 @@ export function addToSkipList(
   }
 }
 
-export function recordSuccess(_filePath: string, _database?: Database.Database): void {
-  // Manual-review-only self-heal per research.md §11; successful parses do not unskip files.
-}
+/**
+ * @deprecated Intentional no-op: parser skip-list removal is manual-review-only.
+ * Successful parses must not auto-unskip files or imply self-heal support.
+ */
+export function recordSuccess(_filePath: string, _database?: Database.Database): void {}
 
 export function getSkipListSummary(database?: Database.Database): SkipListSummary {
   try {

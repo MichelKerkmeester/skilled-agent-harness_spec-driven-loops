@@ -7,9 +7,9 @@
  *
  * ## Environment Variables
  *
- * - `MK_CODE_INDEX_ROOT_DIR` — Workspace root directory used for the readiness
- *   marker path resolution. When set, this value replaces `process.cwd()`.
- *   Defaults to `process.cwd()` when the variable is absent or empty.
+ * - `MK_CODE_INDEX_ROOT_DIR` — Workspace root directory used for readiness
+ *   snapshot evaluation and the marker JSON body. The marker file path is
+ *   resolved from the configured code-graph database directory.
  */
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
@@ -91,22 +91,30 @@ function createCodeIndexMcpServer(): Server {
 
 let ipcBridge: IpcSocketServerHandle | null = null;
 let launcherIdleMonitor: LauncherIdleMonitor | null = null;
+let shutdownPromise: Promise<void> | null = null;
 
 async function shutdownCodeIndex(reason: string): Promise<void> {
-  console.error(`[mk-code-index] ${reason}`);
-  clearOwnerLeaseRefreshTimer();
-  if (launcherIdleMonitor) {
-    launcherIdleMonitor.stop();
-    launcherIdleMonitor = null;
-  }
-  if (ipcBridge) {
-    await ipcBridge.close().catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : String(error);
-      console.error(`[mk-code-index] ipc-bridge close error: ${message}`);
-    });
-    ipcBridge = null;
-  }
-  closeDbWithAssertion();
+  if (shutdownPromise) return shutdownPromise;
+
+  shutdownPromise = (async () => {
+    console.error(`[mk-code-index] ${reason}`);
+    clearOwnerLeaseRefreshTimer();
+    if (launcherIdleMonitor) {
+      launcherIdleMonitor.stop();
+      launcherIdleMonitor = null;
+    }
+    if (ipcBridge) {
+      const bridge = ipcBridge;
+      ipcBridge = null;
+      await bridge.close().catch((error: unknown) => {
+        const message = error instanceof Error ? error.message : String(error);
+        console.error(`[mk-code-index] ipc-bridge close error: ${message}`);
+      });
+    }
+    closeDbWithAssertion();
+  })();
+
+  return shutdownPromise;
 }
 
 process.once('SIGINT', () => {

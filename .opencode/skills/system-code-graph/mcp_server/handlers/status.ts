@@ -24,7 +24,6 @@ import { buildReadinessBlock, type SharedPayloadTrustState } from '../lib/readin
 import { getSkipListSummary } from '../lib/parser-skip-list.js';
 import { getParserHealth } from '../lib/tree-sitter-parser.js';
 import { getLastApplyMetadata } from '../lib/apply-metadata.js';
-import { writeCodeGraphReadinessMarker } from '../lib/readiness-marker.js';
 
 /**
  * Gold-query verification trust state, derived from the persisted gold battery
@@ -196,11 +195,6 @@ function getGoldVerificationTrust(
 
 /** Handle code_graph_status tool call */
 export async function handleCodeGraphStatus(): Promise<{ content: Array<{ type: string; text: string }> }> {
-  try {
-    writeCodeGraphReadinessMarker(process.cwd());
-  } catch {
-    // Status must remain best-effort even if the marker cannot be refreshed.
-  }
   // Read the readiness snapshot FIRST so the degraded envelope still surfaces
   // even when `graphDb.getStats()` throws (e.g. DB file corrupted or locked).
   // Previously stats was called first; on crash the catch path returned a

@@ -37,12 +37,12 @@ The read path refuses to answer on non-fresh graphs. A `blocked` payload with an
 - `mcp_server/lib/ensure-ready.ts`
 - `mcp_server/handlers/status.ts`
 
-### Why two signals (readiness + trust state)
+### Why two signals (readiness + verification trust)
 
 - **Readiness** answers "does the graph reflect current workspace state."
-- **Trust state** answers "did the graph pass its gold-query battery recently."
+- **Verification trust** answers "did the graph pass its gold-query battery recently."
 
-Both must be acceptable before a tool returns authoritative output. A graph can be `fresh` but `untrusted` if it has not been verified since a structural change.
+Both must be acceptable before verification-gated decisions proceed. A graph can be `fresh` while `goldVerificationTrust` is `absent` or `stale` if it has not been verified since a structural change.
 
 ---
 
@@ -52,24 +52,23 @@ Both must be acceptable before a tool returns authoritative output. A graph can 
 |---|---|---|
 | `fresh` | Graph reflects current workspace. Recent scan, content hashes match, scope fingerprint unchanged. | Tools answer normally. |
 | `stale` | Workspace changed since last scan. Soft-stale: incremental rescan can self-heal. Hard-stale: too many changes, full rescan needed. | Read tools return `blocked` with `requiredAction: "code_graph_scan"`. |
-| `blocked` | Explicit refusal payload from a tool. Returned when readiness is not `fresh`, scope fingerprint mismatches, or trust state requires re-verification. | Tools return the blocked payload with `readiness`, `requiredAction`, `lastPersistedAt`. |
+| `blocked` | Explicit refusal payload from a tool. Returned when readiness is not `fresh`, scope fingerprint mismatches, or `goldVerificationTrust` requires re-verification. | Tools return the blocked payload with `readiness`, `requiredAction`, `lastPersistedAt`. |
 | `empty` | Graph has zero indexed nodes. Either uninitialized or after a destructive operation. | Tools return `blocked` with `requiredAction: "code_graph_scan"`. |
 | `absent` | No graph database exists yet. | `code_graph_status` returns `absent`; read tools return `blocked` with `requiredAction: "code_graph_scan"`. |
 | `error` | Database corrupt, schema mismatch, or unrecoverable parse failure. | Tools return `blocked` with `requiredAction` pointing to `code_graph_apply` recovery operation. |
 
 ---
 
-## 3. TRUST STATE
+## 3. TRUST STATE AND GOLD VERIFICATION TRUST
 
-Companion signal that marks whether the gold-query verification battery passed recently.
+`code_graph_status` returns two separate status axes:
 
-| Trust State | Meaning | Operator Action |
-|---|---|---|
-| `verified` | Last `code_graph_verify` run passed within trust window. | Proceed; trust is fresh. |
-| `unverified` | Graph is fresh but verification has not been run since the last meaningful change. | Run `code_graph_verify` before acting on high-stakes queries. |
-| `quarantined` | Verification failed; parser errors accumulated past threshold; or apply-mode rolled back a bad apply. | Diagnose via `parserHealth` in `code_graph_status`; use `code_graph_apply` repair operations. |
+| Field | Runtime Values | Meaning | Operator Action |
+|---|---|---|---|
+| `trustState` | `live` / `stale` / `absent` / `unavailable` | Freshness-derived projection from `mcp_server/lib/readiness-contract.ts`. `fresh` maps to `live`, `stale` maps to `stale`, `empty` maps to `absent`, and `error` maps to `unavailable`. | Use with `readiness` to decide whether read-path tools can answer. |
+| `goldVerificationTrust` | `live` / `stale` / `absent` | Gold-query verification freshness from `mcp_server/handlers/status.ts`. `live` means the last verification exists, passed, and is within the trust window; `stale` means the verification is failed, old, or attached to a non-fresh graph; `absent` means no verification record exists. | Run `code_graph_verify` before high-stakes or verification-gated decisions when this is not `live`. |
 
-`code_graph_status` returns both `readiness` and `trustState` in one call. Treat them as independent dimensions: a `fresh + quarantined` graph can answer structural reads but should not be trusted for verification-gated decisions.
+Parser quarantine is a separate health signal surfaced through `parserHealth`, `parserSkipList`, and related status metadata; it is not a `trustState` value.
 
 ---
 
@@ -84,6 +83,8 @@ A hash of the scan inputs:
 - Maintainer mode.
 
 The fingerprint is computed at scan time and stored alongside the graph. Every read-path call recomputes the fingerprint of the **current** scan inputs and compares.
+
+**Per-call exception (FIX-009-v3):** when the stored scope came from an explicit per-call scan (`source: 'scan-argument'`, e.g. `code_graph_scan({ includeSkills: false })`), the read path trusts that stored scope and does NOT block on env-vs-stored fingerprint drift. The index contains exactly what the caller last requested, so a later env-flag change does not invalidate read-after-scan. Env/default-sourced scopes still block on mismatch.
 
 ### When it matters
 
@@ -108,7 +109,7 @@ Fingerprint mismatch means: "this graph was indexed under a different scope, so 
 code_graph_status         → readiness: "absent"
 code_graph_scan           → returns scan metadata, readiness flips to "fresh"
 code_graph_query / ...    → answers normally
-code_graph_verify         → trustState flips to "verified"
+code_graph_verify         → goldVerificationTrust flips to "live"
 ```
 
 ### After a small refactor
@@ -142,5 +143,5 @@ code_graph_verify         → re-establishes trust
 ## 6. RELATED RESOURCES
 
 - [`code_graph_readiness_check.md`](code_graph_readiness_check.md) — `ensureCodeGraphReady()` implementation contract used by handlers.
-- [`../runtime/tool_surface.md`](../runtime/tool_surface.md) — which of the 11 tools are gated by readiness.
+- [`../runtime/tool_surface.md`](../runtime/tool_surface.md) — which of the 8 tools are gated by readiness.
 - [`../config/database_path_policy.md`](../config/database_path_policy.md) — where the readiness marker and graph DB live.

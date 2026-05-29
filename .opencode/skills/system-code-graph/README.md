@@ -141,7 +141,7 @@ system-code-graph/
 +-- tsconfig.json                    # TypeScript build config
 +-- vitest.config.ts                 # Focused test config
 +-- feature_catalog/                 # Current feature inventory (14 entries, 7 groups)
-+-- manual_testing_playbook/         # Operator validation scenarios (22 scenarios, 10 groups)
++-- manual_testing_playbook/         # Operator validation scenarios (22 scenarios, 9 groups)
 +-- references/                      # Ownership, readiness, database-path-policy primers
 +-- mcp_server/
 |   +-- index.ts                     # Standalone mk-code-index MCP entrypoint

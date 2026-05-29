@@ -33,10 +33,10 @@ Status can recommend `rg` or `code_graph_scan`. It does not perform either. Trea
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:158-180` | Handler | reads the readiness snapshot before stats |
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:181-212` | Handler | returns a degraded envelope when stats are unavailable |
-| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:214-260` | Handler | assembles the successful status payload |
-| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:72-76` | Schema | defines the public schema |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:197-208` | Handler | reads the readiness and scope snapshot before stats |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:210-252` | Handler | returns a degraded envelope when stats are unavailable |
+| `.opencode/skills/system-code-graph/mcp_server/handlers/status.ts:254-354` | Handler | assembles the successful status payload |
+| `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts:66-70` | Schema | defines the public schema |
 
 ### Validation And Tests
 

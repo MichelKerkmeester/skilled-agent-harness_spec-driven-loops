@@ -12,6 +12,19 @@ export interface FileAccess {
   symbolRefs: string[];   // fqNames referenced
 }
 
+export interface SerializedWorkingSetTracker {
+  version: 1;
+  files: Record<string, FileAccess>;
+  symbols: Record<string, SymbolAccess>;
+}
+
+type LegacySerializedWorkingSetTracker = Record<string, FileAccess>;
+
+function isSerializedWorkingSetTracker(data: SerializedWorkingSetTracker | LegacySerializedWorkingSetTracker): data is SerializedWorkingSetTracker {
+  const candidate = data as Partial<SerializedWorkingSetTracker>;
+  return candidate.version === 1 && typeof candidate.files === 'object' && typeof candidate.symbols === 'object';
+}
+
 /** In-memory working set for the current session */
 export class WorkingSetTracker {
   private files = new Map<string, FileAccess>();
@@ -69,19 +82,28 @@ export class WorkingSetTracker {
   }
 
   /** Serialize to JSON (for hook state persistence) */
-  serialize(): Record<string, FileAccess> {
-    const obj: Record<string, FileAccess> = {};
+  serialize(): SerializedWorkingSetTracker {
+    const files: Record<string, FileAccess> = {};
     for (const [key, value] of this.files) {
-      obj[key] = value;
+      files[key] = value;
     }
-    return obj;
+    const symbols: Record<string, SymbolAccess> = {};
+    for (const [key, value] of this.symbols) {
+      symbols[key] = value;
+    }
+    return { version: 1, files, symbols };
   }
 
   /** Restore from serialized state */
-  static deserialize(data: Record<string, FileAccess>): WorkingSetTracker {
+  static deserialize(data: SerializedWorkingSetTracker | LegacySerializedWorkingSetTracker): WorkingSetTracker {
     const tracker = new WorkingSetTracker();
-    for (const [key, value] of Object.entries(data)) {
+    const files = isSerializedWorkingSetTracker(data) ? data.files : data;
+    const symbols = isSerializedWorkingSetTracker(data) ? data.symbols : {};
+    for (const [key, value] of Object.entries(files)) {
       tracker.files.set(key, value);
+    }
+    for (const [key, value] of Object.entries(symbols)) {
+      tracker.symbols.set(key, value);
     }
     return tracker;
   }

@@ -21,7 +21,7 @@ This catalog is the current feature inventory for `.opencode/skills/system-code-
 
 The catalog covers 14 runtime features across 7 groups. Per-feature files carry the implementation surface, trigger path, current automation class, fallback and cross-references.
 
-**Feature-to-tool granularity (F013/F014).** The 14 features map to **11 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
+**Feature-to-tool granularity (F013/F014).** The 14 features map to **8 MCP tools** in the `mk-code-index` server because individual features often compose multiple operations on the same tool. For example, `code_graph_query` provides multiple query operations (`outline`, `calls_from`, `calls_to`, `imports_from`, `imports_to`, `blast_radius`), each catalogued as its own feature. Previously, the **coverage-graph deep-loop tools** (`deep_loop_graph_*`) were registered with the `mk-spec-memory` MCP server; they were removed in arc 118 (FULL_ISOLATE_NO_MCP) and now live as direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`. The catalog entries below are retained as historical reference and point at the current script paths.
 
 | Group | Count | Scope |
 | --- | ---: | --- |
@@ -247,7 +247,7 @@ See [`05--coverage-graph/04-deep-loop-graph-convergence.md`](05--coverage-graph/
 
 #### Description
 
-MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*` and `detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools dispatch through the `mk-spec-memory` server.
+MCP registration and dispatch surface for the `mk-code-index` runtime. Exposes `code_graph_*` and `detect_changes` names through the code graph dispatcher. Deep-loop coverage graph tools are no longer MCP tools; arc 118 replaced them with direct `.cjs` script entry points under `.opencode/skills/deep-loop-runtime/scripts/`.
 
 #### Current Reality
 

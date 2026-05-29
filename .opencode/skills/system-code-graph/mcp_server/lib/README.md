@@ -225,7 +225,9 @@ code_graph_apply handler
 |---|---|---|
 | `index.ts` | Module | Public export surface for handlers and startup code. |
 | `indexFiles()` | Function | Scans and indexes workspace files. |
-| `CodeGraphDatabase` | Class | Reads and writes SQLite graph state. |
+| `initDb()` / `getDb()` / `closeDb()` | Functions | Manage the SQLite graph database lifecycle. |
+| `upsertFile()` / `replaceNodes()` / `replaceEdges()` / `removeFile()` / `pruneDanglingEdges()` | Functions | Persist file, node, edge, deletion and dangling-edge cleanup state. |
+| `getStats()` / `queryOutline()` / `queryEdgesFrom()` / `queryEdgesTo()` | Functions | Read graph statistics, file outlines and edge relationships. |
 | `buildCodeGraphContext()` | Function | Produces compact graph neighborhoods. |
 | `resolveSeeds()` | Function | Maps context seeds to graph nodes. |
 | `ensureCodeGraphReady()` | Function | Checks readiness before graph reads. |

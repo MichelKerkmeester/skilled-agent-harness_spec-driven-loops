@@ -56,7 +56,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 
 | Field | Value |
 |---|---|
-| Skill version | `1.0.3.1` |
+| Skill version | `1.0.3.2` |
 | Runtime package | `@spec-kit/system-code-graph` |
 | Server name | `mk-code-index` |
 | Config key | `mk_code_index` |
