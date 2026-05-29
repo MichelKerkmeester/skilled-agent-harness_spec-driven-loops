@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   clearConstitutionalCache,
@@ -55,6 +55,41 @@ function insertConstitutionalMemory(
     VALUES (?, ?, ?, ?)
   `).run(`${specFolder}::${id}`, id, id, now);
 }
+
+describe('close_db WAL checkpoint (FTS-corruption prevention, bug 026/004/012)', () => {
+  afterEach(() => {
+    close_db();
+  });
+
+  it('runs wal_checkpoint(TRUNCATE) before closing the main DB', () => {
+    const { dir, dbPath } = createTempDbPath('close-db-wal');
+    try {
+      const db = initializeDb(dbPath);
+      const pragmaSpy = vi.spyOn(db, 'pragma');
+      close_db();
+      expect(pragmaSpy).toHaveBeenCalledWith('wal_checkpoint(TRUNCATE)');
+    } finally {
+      removeTempDir(dir);
+    }
+  });
+
+  it('leaves the WAL truncated and data durable at rest', () => {
+    const { dir, dbPath } = createTempDbPath('close-db-wal-rest');
+    try {
+      const db = initializeDb(dbPath);
+      insertConstitutionalMemory(db, '026-004-012/test', 1, 'Rule', '/tmp/rule.md');
+      close_db();
+      const walPath = `${dbPath}-wal`;
+      const walSize = fs.existsSync(walPath) ? fs.statSync(walPath).size : 0;
+      expect(walSize).toBe(0);
+      const reopened = initializeDb(dbPath);
+      const row = reopened.prepare('SELECT COUNT(*) AS c FROM memory_index').get() as { c: number };
+      expect(row.c).toBe(1);
+    } finally {
+      removeTempDir(dir);
+    }
+  });
+});
 
 describe('vector-index-store constitutional cache isolation', () => {
   const originalEmbeddingDim = process.env.EMBEDDING_DIM;

@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close",
+  "description": "Feature Specification: spec-memory Graceful WAL Checkpoint on Close",
+  "keywords": [
+    "feature",
+    "specification",
+    "spec-memory",
+    "graceful",
+    "wal",
+    "checkpoint",
+    "close"
+  ],
+  "lastUpdated": "2026-05-29T12:05:55.377Z",
+  "specId": "008",
+  "folderSlug": "spec-memory-graceful-wal-checkpoint-on-close",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

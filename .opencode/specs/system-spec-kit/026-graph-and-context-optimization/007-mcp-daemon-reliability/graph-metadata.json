@@ -10,7 +10,8 @@
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
     "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
-    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
   ],
   "manual": {
     "depends_on": [],
@@ -19,29 +20,37 @@
   },
   "derived": {
     "trigger_phrases": [
-      "007-mcp-daemon-reliability",
-      "phase parent"
+      "mcp daemon reliability",
+      "007-mcp-daemon-reliability phase parent",
+      "daemon socket lifecycle build provider"
     ],
     "key_topics": [
-      "007-mcp-daemon-reliability",
-      "phase",
-      "parent",
-      "phased",
-      "decomposition",
-      "tracks",
       "mcp",
       "daemon",
       "reliability",
-      "consolidated",
-      "socket-dir",
-      "daemon-lifecycle"
+      "007-mcp-daemon-reliability",
+      "phase",
+      "parent",
+      "socket",
+      "lifecycle",
+      "build",
+      "provider",
+      "mk-spec-memory",
+      "daemons"
     ],
     "importance_tier": "important",
     "status": "planned",
     "key_files": [
+      "mcp_server/package.json",
       "spec.md"
     ],
     "entities": [
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": "mcp_server/package.json",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -50,6 +59,12 @@
       },
       {
         "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -73,25 +88,20 @@
         "source": "derived"
       },
       {
-        "name": "Problem Statement This",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Purpose Keep",
+        "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This phased decomposition tracks MCP daemon reliability: consolidated socket-dir, daemon-lifecycle, build-safety, and embedding-provider memory fixes across independently executable child phase folders.",
+    "causal_summary": "The mk-spec-memory and mk_code_index MCP daemons fail repeatedly during sessions: a missing `/tmp` socket dir crashes startup, the embedding model RSS grows until the OS OOM-kills the process, nothing auto-restarts a dead daemon, reconnects bridge to a dead socket, and rebuilding the server wipes the live `dist/` out from under it. Each forces a manual `/mcp` reconnect.",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-05-28T18:48:33.003Z",
+    "last_save_at": "2026-05-29T12:05:57.537Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close"
   }
 }

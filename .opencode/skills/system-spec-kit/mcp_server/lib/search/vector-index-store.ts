@@ -1295,6 +1295,13 @@ export function close_db(): void {
   db_connections.clear();
   if (db) {
     detachActiveVectorShard(db);
+    // FTS-corruption prevention (see bug report 026/004/012): flush + TRUNCATE the
+    // WAL before close so context-index.sqlite is consistent at rest with an empty
+    // WAL. better-sqlite3 `.close()` only does a passive checkpoint and can leave
+    // un-checkpointed frames; an explicit TRUNCATE shrinks the window that an
+    // abrupt later kill (e.g. SIGKILL on MCP reconnect) could corrupt — notably
+    // FTS5 segment writes. Best-effort: a checkpoint failure must never block close.
+    try { db.pragma('wal_checkpoint(TRUNCATE)'); } catch (_: unknown) { /* best-effort */ }
     db.close();
     db = null;
   }
