@@ -1,0 +1,772 @@
+#!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ COMPONENT: HF Model Server                                                ║
+// ╠══════════════════════════════════════════════════════════════════════════╣
+// ║ PURPOSE: Local HTTP/UDS embedding server for HuggingFace transformers      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const fs = require('fs');
+const http = require('http');
+const path = require('path');
+const { createRequire } = require('module');
+const { pathToFileURL } = require('url');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+const SOCKET_FILE_NAME = 'hf-embed.sock';
+const DEFAULT_MODEL = 'nomic-ai/nomic-embed-text-v1.5';
+const DEFAULT_DTYPE = 'q8';
+const DEFAULT_INFERENCE_TIMEOUT_MS = 30000;
+const MODEL_LOAD_TIMEOUT = 120000;
+const ALLOWED_HF_LOCAL_DTYPES = Object.freeze([
+  'fp32',
+  'fp16',
+  'q4',
+  'q4f16',
+  'q8',
+  'int8',
+  'uint8',
+  'bnb4',
+]);
+const HEALTH_PATH = '/api/health';
+const EMBED_PATH = '/api/embed';
+const MAX_REQUEST_BYTES = 1024 * 1024;
+const DEFAULT_SELF_WARM_INPUT = 'test warmup query';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. PATH AND TRANSPORT HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function repoRoot() {
+  return path.resolve(__dirname, '..', '..');
+}
+
+function systemSpecKitRoot() {
+  return path.join(repoRoot(), '.opencode', 'skills', 'system-spec-kit');
+}
+
+function defaultDbDir() {
+  return path.join(systemSpecKitRoot(), 'mcp_server', 'database');
+}
+
+function normalizeProfileDtype(value) {
+  const normalized = value?.trim().toLowerCase();
+  if (!normalized) {
+    return null;
+  }
+  return normalized.replace(/[^a-z0-9-_.]/g, '_').replace(/__+/g, '_');
+}
+
+function resolveDtype(explicit) {
+  const raw = explicit ?? process.env.HF_EMBEDDINGS_DTYPE ?? DEFAULT_DTYPE;
+  const normalized = normalizeProfileDtype(raw);
+  if (!normalized || !ALLOWED_HF_LOCAL_DTYPES.includes(normalized)) {
+    console.warn(
+      `[hf-model-server] Unknown HF_EMBEDDINGS_DTYPE="${raw}"; falling back to ${DEFAULT_DTYPE}. Allowed: ${ALLOWED_HF_LOCAL_DTYPES.join(', ')}`,
+    );
+    return DEFAULT_DTYPE;
+  }
+  return normalized;
+}
+
+function normalizeListenTarget(value) {
+  if (typeof value !== 'string' || value.trim() === '') {
+    return null;
+  }
+  const raw = value.trim();
+  if (raw.startsWith('tcp://')) {
+    return raw;
+  }
+  if (raw.startsWith('http://') || raw.startsWith('https://')) {
+    const url = new URL(raw);
+    return `tcp://${url.hostname}:${url.port || (url.protocol === 'https:' ? '443' : '80')}`;
+  }
+  if (raw.startsWith('unix://')) {
+    return path.resolve(raw.slice('unix://'.length));
+  }
+  return path.resolve(raw);
+}
+
+function resolveListenTarget(options = {}) {
+  const env = options.env ?? process.env;
+  const explicitTarget = normalizeListenTarget(options.listenTarget ?? env.HF_EMBED_SERVER_URL);
+  if (explicitTarget) {
+    return explicitTarget;
+  }
+  if (env.SPECKIT_IPC_SOCKET_DIR?.startsWith('tcp://')) {
+    return env.SPECKIT_IPC_SOCKET_DIR;
+  }
+
+  const socketDir = env.SPECKIT_IPC_SOCKET_DIR
+    ? path.resolve(env.SPECKIT_IPC_SOCKET_DIR)
+    : path.resolve(options.dbDir ?? defaultDbDir());
+  return path.join(socketDir, SOCKET_FILE_NAME);
+}
+
+function toConnectionOptions(socketPath) {
+  if (!socketPath.startsWith('tcp://')) {
+    return socketPath;
+  }
+  const url = new URL(socketPath);
+  return {
+    host: url.hostname,
+    port: Number.parseInt(url.port, 10),
+  };
+}
+
+function getListeningEndpoint(server, target) {
+  const address = server.address();
+  if (address && typeof address === 'object') {
+    return `tcp://${address.address}:${address.port}`;
+  }
+  return target;
+}
+
+async function listenOnce(server, target) {
+  await new Promise((resolve, reject) => {
+    const onError = (error) => {
+      server.off('listening', onListening);
+      reject(error);
+    };
+    const onListening = () => {
+      server.off('error', onError);
+      resolve();
+    };
+    server.once('error', onError);
+    server.once('listening', onListening);
+    if (target.startsWith('tcp://')) {
+      const url = new URL(target);
+      server.listen(Number.parseInt(url.port, 10), url.hostname || '127.0.0.1');
+      return;
+    }
+    server.listen(target);
+  });
+}
+
+async function listenHttpServer(server, target) {
+  if (!target.startsWith('tcp://')) {
+    fs.mkdirSync(path.dirname(target), { recursive: true, mode: 0o700 });
+  }
+
+  try {
+    await listenOnce(server, target);
+  } catch (error) {
+    if (error.code !== 'EADDRINUSE' || target.startsWith('tcp://')) {
+      throw error;
+    }
+    try {
+      fs.unlinkSync(target);
+    } catch (unlinkError) {
+      if (unlinkError.code !== 'ENOENT') {
+        throw unlinkError;
+      }
+    }
+    await listenOnce(server, target);
+  }
+
+  if (!target.startsWith('tcp://')) {
+    fs.chmodSync(target, 0o600);
+  }
+
+  return getListeningEndpoint(server, target);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. MODEL LOAD HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+function getOptimalDevice() {
+  if (process.platform === 'darwin') {
+    return 'mps';
+  }
+  return 'cpu';
+}
+
+function getErrorMessage(error) {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function getErrorCode(error) {
+  if (typeof error !== 'object' || error === null || !('code' in error)) {
+    return undefined;
+  }
+  const code = error.code;
+  return typeof code === 'string' ? code : undefined;
+}
+
+function createTimeoutError(message) {
+  const error = new Error(message);
+  error.code = 'ETIMEDOUT';
+  return error;
+}
+
+function getSessionCount(sessions) {
+  if (!sessions) {
+    return 0;
+  }
+  if (sessions instanceof Map) {
+    return sessions.size;
+  }
+  if (Array.isArray(sessions)) {
+    return sessions.length;
+  }
+  return Object.keys(sessions).length;
+}
+
+async function withTimeout(operation, timeoutMs, message) {
+  return await new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => reject(createTimeoutError(message)), timeoutMs);
+
+    operation
+      .then((value) => {
+        clearTimeout(timeoutId);
+        resolve(value);
+      })
+      .catch((error) => {
+        clearTimeout(timeoutId);
+        reject(error);
+      });
+  });
+}
+
+async function importTransformers() {
+  try {
+    return await import('@huggingface/transformers');
+  } catch (error) {
+    if (getErrorCode(error) !== 'ERR_MODULE_NOT_FOUND' || !getErrorMessage(error).includes('@huggingface/transformers')) {
+      throw error;
+    }
+    const packageRequire = createRequire(path.join(systemSpecKitRoot(), 'package.json'));
+    const resolved = packageRequire.resolve('@huggingface/transformers');
+    return await import(pathToFileURL(resolved).href);
+  }
+}
+
+async function loadHfModel(options = {}) {
+  const modelName = options.modelName || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL;
+  const dtype = options.dtype || resolveDtype();
+  const importer = options.importTransformers || importTransformers;
+  const timeoutMs = options.modelLoadTimeoutMs || MODEL_LOAD_TIMEOUT;
+  const start = Date.now();
+
+  try {
+    console.warn(`[hf-model-server] Loading ${modelName} (dtype=${dtype}, first load may take 15-30s)...`);
+
+    const { pipeline } = await importer();
+
+    let targetDevice = getOptimalDevice();
+    console.error(`[hf-model-server] Attempting device: ${targetDevice}`);
+
+    const loadWithTimeout = async (device) => {
+      return await new Promise((resolve, reject) => {
+        const timeoutId = setTimeout(() => {
+          reject(new Error(`Model loading timed out after ${timeoutMs}ms. ` +
+            'This may indicate a corrupted cache or network issue. ' +
+            'Try clearing: ~/.cache/huggingface/hub/'));
+        }, timeoutMs);
+
+        pipeline('feature-extraction', modelName, {
+          dtype,
+          device,
+        }).then((extractor) => {
+          clearTimeout(timeoutId);
+          resolve(extractor);
+        }).catch((error) => {
+          clearTimeout(timeoutId);
+          reject(error);
+        });
+      });
+    };
+
+    let extractor;
+    let currentDevice;
+    try {
+      extractor = await loadWithTimeout(targetDevice);
+      currentDevice = targetDevice;
+    } catch (deviceError) {
+      if (targetDevice !== 'cpu' && !getErrorMessage(deviceError).includes('timed out')) {
+        console.warn(`[hf-model-server] ${targetDevice.toUpperCase()} unavailable (${getErrorMessage(deviceError)}), using CPU`);
+        extractor = await loadWithTimeout('cpu');
+        currentDevice = 'cpu';
+      } else {
+        throw deviceError;
+      }
+    }
+
+    const loadTimeMs = Date.now() - start;
+    console.warn(`[hf-model-server] Model loaded in ${loadTimeMs}ms (device: ${currentDevice})`);
+
+    return {
+      extractor,
+      device: currentDevice,
+      loadTimeMs,
+    };
+  } catch (error) {
+    const errMsg = getErrorMessage(error);
+    const errCode = getErrorCode(error);
+    if (
+      errCode === 'ERR_DLOPEN_FAILED' ||
+      errMsg.includes('NODE_MODULE_VERSION') ||
+      errMsg.includes('was compiled against a different Node.js version')
+    ) {
+      console.error('[hf-model-server] ═══ NATIVE MODULE ERROR ═══');
+      console.error(`[hf-model-server] ${errMsg}`);
+      console.error(`[hf-model-server] Running: Node ${process.version} (MODULE_VERSION ${process.versions.modules})`);
+      console.error('[hf-model-server] Recovery options:');
+      console.error('[hf-model-server]   1. Clear cache: rm -rf ~/.cache/huggingface/hub/');
+      console.error('[hf-model-server]   2. Switch provider: EMBEDDINGS_PROVIDER=voyage');
+      console.error('[hf-model-server] ═══════════════════════════');
+    }
+
+    throw error;
+  }
+}
+
+function normalizeLoadResult(result, fallbackLoadTimeMs) {
+  if (result && typeof result === 'object' && Object.prototype.hasOwnProperty.call(result, 'extractor')) {
+    return {
+      extractor: result.extractor,
+      device: result.device ?? null,
+      loadTimeMs: result.loadTimeMs ?? fallbackLoadTimeMs,
+    };
+  }
+  return {
+    extractor: result,
+    device: null,
+    loadTimeMs: fallbackLoadTimeMs,
+  };
+}
+
+function extractorRunner(extractor) {
+  if (typeof extractor === 'function') {
+    return extractor;
+  }
+  if (extractor && typeof extractor.embed === 'function') {
+    return extractor.embed.bind(extractor);
+  }
+  throw new Error('[hf-model-server] Loaded extractor is not callable');
+}
+
+function embeddingData(output) {
+  const data = output && typeof output === 'object' && Object.prototype.hasOwnProperty.call(output, 'data')
+    ? output.data
+    : output;
+  if (data instanceof Float32Array) {
+    return data;
+  }
+  if (Array.isArray(data)) {
+    return new Float32Array(data);
+  }
+  throw new Error('[hf-model-server] Extractor output does not contain embedding data');
+}
+
+function assertSingleSessionBeforeDispose(extractor) {
+  const sessionCount = getSessionCount(extractor?.model?.sessions);
+  if (sessionCount !== 1) {
+    throw new Error(`[hf-model-server] Expected exactly one native session before dispose, got ${sessionCount}`);
+  }
+  if (typeof extractor.dispose !== 'function') {
+    throw new Error('[hf-model-server] Loaded extractor does not expose dispose()');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. SERVER FACTORY
+// ─────────────────────────────────────────────────────────────────────────────
+
+function createHfModelServer(options = {}) {
+  const state = {
+    modelName: options.modelName || process.env.HF_EMBEDDINGS_MODEL || DEFAULT_MODEL,
+    dtype: resolveDtype(options.dtype),
+    inferenceTimeoutMs: options.inferenceTimeoutMs || DEFAULT_INFERENCE_TIMEOUT_MS,
+    extractor: null,
+    loadingPromise: null,
+    disposePromise: null,
+    inFlightRawRuns: new Set(),
+    serverState: 'loading',
+    device: null,
+    dim: 0,
+    loadTimeMs: null,
+    lastError: null,
+    listenTarget: null,
+    listenedEndpoint: null,
+    isDisposed: false,
+  };
+  const loadModel = options.loadModel || loadHfModel;
+  const listenServer = options.listen || listenHttpServer;
+  const selfWarmInput = options.selfWarmInput || DEFAULT_SELF_WARM_INPUT;
+  const shouldSelfWarm = options.selfWarm !== false;
+  const logger = options.logger || console;
+  const activeSockets = new Set();
+
+  async function runExtractor(extractor, text) {
+    const run = Promise.resolve(extractorRunner(extractor)(text, {
+      pooling: 'mean',
+      normalize: true,
+    }));
+    state.inFlightRawRuns.add(run);
+    void run.finally(() => {
+      state.inFlightRawRuns.delete(run);
+    }).catch(() => undefined);
+
+    const output = await withTimeout(
+      run,
+      state.inferenceTimeoutMs,
+      `HF local inference timed out after ${state.inferenceTimeoutMs}ms`,
+    );
+    const embedding = embeddingData(output);
+    if (state.dim <= 0) {
+      state.dim = embedding.length;
+    } else if (embedding.length !== state.dim) {
+      throw new Error(`Embedding dimension mismatch: expected ${state.dim}, got ${embedding.length}`);
+    }
+    return Array.from(embedding);
+  }
+
+  async function getModel() {
+    if (state.isDisposed) {
+      throw new Error(`[hf-model-server] Server for ${state.modelName} has been disposed`);
+    }
+    if (state.extractor) {
+      return state.extractor;
+    }
+    if (state.loadingPromise) {
+      return state.loadingPromise;
+    }
+
+    state.serverState = 'loading';
+    state.lastError = null;
+    state.loadingPromise = (async () => {
+      const start = Date.now();
+      try {
+        const result = await loadModel({
+          modelName: state.modelName,
+          dtype: state.dtype,
+          modelLoadTimeoutMs: MODEL_LOAD_TIMEOUT,
+        });
+        const normalized = normalizeLoadResult(result, Date.now() - start);
+        state.extractor = normalized.extractor;
+        state.device = normalized.device;
+        state.loadTimeMs = normalized.loadTimeMs;
+
+        if (shouldSelfWarm) {
+          try {
+            await runExtractor(state.extractor, selfWarmInput);
+          } catch (warmError) {
+            // Self-warm is best-effort: the model loaded successfully, so a warm-up
+            // failure must NOT pin the server to 'error' (phase-004 probeModelServer
+            // treats 'error' as dead and would reap a working server). Log + proceed.
+            logger.warn?.(`[hf-model-server] self-warm failed (model still usable): ${getErrorMessage(warmError)}`);
+          }
+        }
+
+        state.serverState = 'ready';
+        return state.extractor;
+      } catch (error) {
+        state.loadingPromise = null;
+        state.serverState = 'error';
+        state.lastError = error;
+        throw error;
+      }
+    })();
+
+    return state.loadingPromise;
+  }
+
+  function healthPayload() {
+    return {
+      state: state.serverState,
+      model: state.modelName,
+      dim: state.dim > 0 ? state.dim : null,
+      device: state.device,
+      loadTimeMs: state.loadTimeMs,
+      error: state.lastError ? getErrorMessage(state.lastError) : undefined,
+    };
+  }
+
+  async function embedPayload(body) {
+    if (body === null || typeof body !== 'object' || Array.isArray(body)) {
+      return {
+        statusCode: 400,
+        body: { error: 'POST /api/embed requires a JSON object body with an input array of strings' },
+      };
+    }
+    const requestedModel = body.model || state.modelName;
+    if (requestedModel !== state.modelName) {
+      return {
+        statusCode: 404,
+        body: {
+          error: `Model ${requestedModel} is not loaded by this hf-local server`,
+          model: requestedModel,
+          loadedModel: state.modelName,
+        },
+      };
+    }
+    if (!Array.isArray(body.input) || body.input.some((value) => typeof value !== 'string')) {
+      return {
+        statusCode: 400,
+        body: { error: 'POST /api/embed requires input to be an array of strings' },
+      };
+    }
+
+    try {
+      const extractor = await getModel();
+      const embeddings = [];
+      for (const text of body.input) {
+        embeddings.push(await runExtractor(extractor, text));
+      }
+      return {
+        statusCode: 200,
+        body: {
+          embeddings,
+          dim: state.dim,
+        },
+      };
+    } catch (error) {
+      logger.warn?.(`[hf-model-server] Embed failed: ${getErrorMessage(error)}`);
+      return {
+        statusCode: 500,
+        body: { error: getErrorMessage(error) },
+      };
+    }
+  }
+
+  async function routeJson(method, routePath, body = {}) {
+    if (method === 'GET' && routePath === HEALTH_PATH) {
+      return {
+        statusCode: 200,
+        body: healthPayload(),
+      };
+    }
+    if (method === 'POST' && routePath === EMBED_PATH) {
+      return await embedPayload(body);
+    }
+    return {
+      statusCode: 404,
+      body: { error: `Unknown route: ${method || 'GET'} ${routePath}` },
+    };
+  }
+
+  function writeJson(response, statusCode, payload) {
+    const body = JSON.stringify(payload);
+    response.writeHead(statusCode, {
+      'content-type': 'application/json',
+      'content-length': Buffer.byteLength(body),
+    });
+    response.end(body);
+  }
+
+  async function readJsonBody(request) {
+    return await new Promise((resolve, reject) => {
+      let body = '';
+      request.setEncoding('utf8');
+      request.on('data', (chunk) => {
+        body += chunk;
+        if (Buffer.byteLength(body, 'utf8') > MAX_REQUEST_BYTES) {
+          reject(new Error(`Request body exceeds ${MAX_REQUEST_BYTES} bytes`));
+          request.destroy();
+        }
+      });
+      request.on('end', () => {
+        try {
+          resolve(body.trim() ? JSON.parse(body) : {});
+        } catch (error) {
+          reject(new Error(`Invalid JSON body: ${getErrorMessage(error)}`));
+        }
+      });
+      request.on('error', reject);
+    });
+  }
+
+  async function requestHandler(request, response) {
+    const url = new URL(request.url || '/', 'http://127.0.0.1');
+    let body = {};
+    if (request.method === 'POST') {
+      try {
+        body = await readJsonBody(request);
+      } catch (error) {
+        writeJson(response, 400, { error: getErrorMessage(error) });
+        return;
+      }
+    }
+    const result = await routeJson(request.method || 'GET', url.pathname, body);
+    writeJson(response, result.statusCode, result.body);
+  }
+
+  const server = http.createServer((request, response) => {
+    void requestHandler(request, response).catch((error) => {
+      writeJson(response, 500, { error: getErrorMessage(error) });
+    });
+  });
+
+  server.on('connection', (socket) => {
+    activeSockets.add(socket);
+    socket.once('close', () => {
+      activeSockets.delete(socket);
+    });
+  });
+
+  async function listen(target = resolveListenTarget(options)) {
+    state.listenTarget = target;
+    const endpoint = await listenServer(server, target);
+    state.listenedEndpoint = endpoint;
+    void getModel().catch((error) => {
+      logger.error?.(`[hf-model-server] Model load failed: ${getErrorMessage(error)}`);
+    });
+    return {
+      server,
+      socketPath: endpoint,
+      endpoint,
+      close,
+      dispose,
+      inject,
+      getState: () => healthPayload(),
+    };
+  }
+
+  async function close(closeOptions = {}) {
+    const disposeModel = closeOptions.disposeModel === true;
+    for (const socket of activeSockets) {
+      socket.destroy();
+    }
+    activeSockets.clear();
+
+    await new Promise((resolve, reject) => {
+      if (!server.listening) {
+        resolve();
+        return;
+      }
+      server.close((error) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve();
+      });
+    });
+
+    if (state.listenTarget && !state.listenTarget.startsWith('tcp://')) {
+      try {
+        fs.unlinkSync(state.listenTarget);
+      } catch (error) {
+        if (error.code !== 'ENOENT') {
+          throw error;
+        }
+      }
+    }
+
+    if (disposeModel) {
+      await dispose();
+    }
+  }
+
+  async function dispose() {
+    if (state.disposePromise) {
+      return state.disposePromise;
+    }
+
+    state.isDisposed = true;
+    state.disposePromise = (async () => {
+      if (state.inFlightRawRuns.size > 0) {
+        await withTimeout(
+          Promise.allSettled(Array.from(state.inFlightRawRuns)),
+          MODEL_LOAD_TIMEOUT,
+          `[hf-model-server] Timed out waiting for native inference drain after ${MODEL_LOAD_TIMEOUT}ms`,
+        );
+      }
+
+      const loading = state.loadingPromise;
+      if (loading) {
+        await withTimeout(
+          loading.then(() => undefined, () => undefined),
+          MODEL_LOAD_TIMEOUT,
+          `[hf-model-server] Timed out waiting for model load before dispose after ${MODEL_LOAD_TIMEOUT}ms`,
+        );
+      }
+
+      const extractor = state.extractor;
+      state.extractor = null;
+      state.loadingPromise = null;
+      state.loadTimeMs = null;
+      state.serverState = 'loading';
+      if (!extractor) {
+        return;
+      }
+
+      assertSingleSessionBeforeDispose(extractor);
+      await extractor.dispose();
+    })();
+
+    return state.disposePromise;
+  }
+
+  async function inject(method, routePath, body = {}) {
+    return await routeJson(method, routePath, body);
+  }
+
+  return {
+    server,
+    listen,
+    close,
+    dispose,
+    getModel,
+    inject,
+    getState: () => healthPayload(),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
+
+async function main() {
+  const app = createHfModelServer();
+  const handle = await app.listen();
+  process.stderr.write(`[hf-model-server] listening at ${handle.endpoint}\n`);
+
+  const shutdown = (signal) => {
+    process.stderr.write(`[hf-model-server] received ${signal}; shutting down\n`);
+    app.close({ disposeModel: true })
+      .then(() => process.exit(0))
+      .catch((error) => {
+        process.stderr.write(`[hf-model-server] shutdown failed: ${getErrorMessage(error)}\n`);
+        process.exit(1);
+      });
+  };
+
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGHUP', 'SIGQUIT']) {
+    process.once(signal, () => shutdown(signal));
+  }
+}
+
+module.exports = {
+  ALLOWED_HF_LOCAL_DTYPES,
+  DEFAULT_MODEL,
+  MODEL_LOAD_TIMEOUT,
+  SOCKET_FILE_NAME,
+  assertSingleSessionBeforeDispose,
+  createHfModelServer,
+  defaultDbDir,
+  getOptimalDevice,
+  getSessionCount,
+  importTransformers,
+  loadHfModel,
+  resolveDtype,
+  resolveListenTarget,
+  toConnectionOptions,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    process.stderr.write(`[hf-model-server] ${error.stack || getErrorMessage(error)}\n`);
+    process.exit(1);
+  });
+}

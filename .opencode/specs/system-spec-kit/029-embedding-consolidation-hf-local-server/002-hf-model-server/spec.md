@@ -10,10 +10,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/002-hf-model-server"
-    last_updated_at: "2026-05-29T00:00:00Z"
-    last_updated_by: "codex"
-    recent_action: "Authored deferred spec for the hf-model-server HTTP/UDS service"
-    next_safe_action: "Implement hf-model-server.cjs after phase 001 lands"
+    last_updated_at: "2026-05-29T07:55:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Implemented hf-model-server.cjs; node --check + 7 vitest green; review clean"
+    next_safe_action: "Phase 003: rewrite hf-local.ts as an HTTP client against this server"
     blockers: []
     key_files:
       - ".opencode/bin/hf-model-server.cjs"
@@ -22,10 +22,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000292"
       session_id: "029-002-spec"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Architecture dependsOn: none after phase 001 establishes the nomic canonical default."
+      - "Self-warm is best-effort: a warm-up failure must not pin the server to 'error' (load already succeeded)."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Build hf-model-server.cjs local HTTP model server
@@ -41,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Spec ready (implementation pending) |
+| **Status** | Implemented (node --check + 7 vitest green; review clean; not yet wired in) |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |

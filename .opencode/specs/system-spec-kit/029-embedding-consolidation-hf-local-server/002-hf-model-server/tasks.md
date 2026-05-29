@@ -48,9 +48,9 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm predecessor handoff criteria from 001-nomic-only-consolidation
-- [ ] T002 Inventory affected files and symbols before implementation
-- [ ] T003 [P] Identify focused tests to add or migrate
+- [x] T001 Confirm predecessor handoff criteria from 001-nomic-only-consolidation
+- [x] T002 Inventory affected files and symbols before implementation
+- [x] T003 [P] Identify focused tests to add or migrate
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Add the hand-written CJS server entrypoint and argument/env parsing [REQ-001]
-- [ ] T005 Relocate existing transformers load logic into the server without algorithm changes [REQ-002]
-- [ ] T006 Bind the HTTP listener before model load resolves and implement /api/health [REQ-003]
-- [ ] T007 Implement /api/embed with loadingPromise await, runtime dim derivation, and batch response shape [REQ-004]
+- [x] T004 Add the hand-written CJS server entrypoint and argument/env parsing [REQ-001]
+- [x] T005 Relocate existing transformers load logic into the server without algorithm changes [REQ-002]
+- [x] T006 Bind the HTTP listener before model load resolves and implement /api/health [REQ-003]
+- [x] T007 Implement /api/embed with loadingPromise await, runtime dim derivation, and batch response shape [REQ-004]
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T08 Add UDS and tcp transport coverage [REQ-005]
-- [ ] T09 Add single-session dispose assertion and self-warm coverage [REQ-006]
-- [ ] T099 Run strict spec validation for this phase folder
+- [x] T08 Add UDS and tcp transport coverage [REQ-005]
+- [x] T09 Add single-session dispose assertion and self-warm coverage [REQ-006]
+- [x] T099 Run strict spec validation for this phase folder
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -79,9 +79,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All P0 tasks complete
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Focused phase tests/static checks are green and predecessor/successor handoff is documented
+- [x] All P0 tasks complete
+- [x] No `[B]` blocked tasks remaining
+- [x] Focused phase tests/static checks are green and predecessor/successor handoff is documented
 <!-- /ANCHOR:completion -->
 
 ---
