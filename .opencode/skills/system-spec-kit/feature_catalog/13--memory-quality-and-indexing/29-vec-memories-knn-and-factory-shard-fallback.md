@@ -7,7 +7,7 @@ description: "Reindex now writes embeddings to both the canonical vec_<dim> blob
 
 ## 1. OVERVIEW
 
-`memory_search` semantic retrieval was returning Z-scores near 1.2 because the runtime KNN table was empty. The reindex job wrote rebuilt embeddings only to the canonical `vec_<dim>` regular table while the search pipeline queries the sqlite-vec `vec_memories` virtual table. The factory then compounded the problem by looking for the dim-tagged table inside `context-index.sqlite` while ADR-012 had moved it into the per-embedder shard under `database/vectors/`. The cascade fell through to `DEFAULT_PROVIDER_MODELS.ollama = jina-embeddings-v3` (1024-dim) instead of the actually-active nomic at 768-dim.
+`memory_search` semantic retrieval was returning Z-scores near 1.2 because the runtime KNN table was empty. The reindex job wrote rebuilt embeddings only to the canonical `vec_<dim>` regular table while the search pipeline queries the sqlite-vec `vec_memories` virtual table. The factory then compounded the problem by looking for the dim-tagged table inside `context-index.sqlite` while ADR-012 had moved it into the per-embedder shard under `database/vectors/`. The cascade fell through to the then-current ollama default (`jina-embeddings-v3`, 1024-dim) instead of the actually-active nomic at 768-dim. (The canonical local default is now `nomic-ai/nomic-embed-text-v1.5`; see 029/001.)
 
 This feature pairs two surgical patches that restore semantic confidence end-to-end. Reindex dual-writes both tables in the same transaction. The factory accepts either the main DB or the shard subdirectory when validating the dim-tagged table.
 
