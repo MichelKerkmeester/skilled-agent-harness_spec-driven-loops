@@ -174,15 +174,25 @@ function classifyHeadDriftScope(
   return 'out-of-scope';
 }
 
-// ─── Candidate manifest for untracked indexable file discovery ───
+// ─── Candidate manifest for tracked-set drift detection ───
 //
-// Rationale: `detectState()` only looks at files already in `code_files`, so a
-// brand-new `src/new.ts` is invisible until something else triggers a full
-// scan. We persist a compact `{count, digest}` manifest of the indexable file
-// universe in `code_graph_metadata.candidate_manifest`; on `detectState()`,
-// if the on-disk indexable count or digest diverges, we flip to stale +
-// full_scan. The manifest is bounded (no per-path storage) so monorepos with
-// 10k+ files don't bloat the metadata table.
+// BUG-02 (corrected scope): this manifest pins the cardinality + digest of the
+// CURRENTLY-TRACKED file set (`getTrackedFiles()` == rows in `code_files`). It is
+// recorded from the tracked set after a scan and compared against the tracked
+// set on `detectState()`, so it detects changes WITHIN the tracked universe
+// (e.g. a bulk rebuild that rewrites the tracked set, or tracked-file removals)
+// and complements the per-file mtime check.
+//
+// It does NOT detect brand-new UNTRACKED files: a file that has never been
+// indexed is absent from `getTrackedFiles()` at both record and compare time,
+// so it cannot diverge the manifest. Detecting brand-new on-disk files at read
+// time would require a filesystem walk of the include globs, which the read
+// path deliberately avoids (NFR-P01: no FS walk on the read path). Brand-new
+// files are picked up on the next explicit/triggered full `code_graph_scan`,
+// which walks the include globs itself.
+//
+// Bounded: persists `{count, digest}` only (no per-path storage) so 10k+ file
+// monorepos don't bloat the metadata table.
 
 const CANDIDATE_MANIFEST_KEY = 'candidate_manifest';
 
@@ -297,9 +307,12 @@ export function recordCandidateManifest(filePaths: string[]): void {
  *
  * Bounded compare: no filesystem walk happens here — we use the same
  * `getTrackedFiles()` set that `detectState()` already loads, plus existence
- * checks already performed by `partitionTrackedFiles()`. The manifest just
- * pins the cardinality + digest so a rebuild that adds N untracked files at
- * once flips to stale even if the per-file mtime check would miss them.
+ * checks already performed by `partitionTrackedFiles()`. The manifest pins the
+ * cardinality + digest of the TRACKED set so a bulk rebuild that rewrites that
+ * set (or removes tracked files) flips to stale even when per-file mtimes look
+ * unchanged. Note (BUG-02): brand-new UNTRACKED files are NOT detected here —
+ * they are absent from `getTrackedFiles()`, so they cannot diverge the digest;
+ * they are indexed by the next full `code_graph_scan` (which walks the globs).
  */
 function detectCandidateManifestDrift(filePaths: string[]): boolean {
   const stored = loadCandidateManifest();
@@ -524,7 +537,10 @@ async function indexWithTimeout(
 
   try {
     const results = await Promise.race([
-      indexFiles(config, indexOptions),
+      // BUG-06: pass the deadline signal so indexFiles' phase runner can stop
+      // between phases on timeout instead of running to completion in the
+      // background and discarding the result.
+      indexFiles(config, { ...indexOptions, signal: controller.signal }),
       new Promise<never>((_, reject) => {
         controller.signal.addEventListener('abort', () =>
           reject(new Error(`Auto-indexing timed out after ${timeoutMs}ms`)),
@@ -563,7 +579,10 @@ async function indexWithTimeout(
  * lock window short (3-4 statements) so concurrent readers/writers on the
  * same DB are not starved during a long scan.
  */
-export function persistIndexedFileResult(result: ParseResult): void {
+export function persistIndexedFileResult(
+  result: ParseResult,
+  opts: { deferDanglingTargetPrune?: boolean } = {},
+): void {
   if (result.parseHealth === 'error') {
     graphDb.recordParseDiagnostic(result.filePath, result.parseErrors.join('; '));
     return;
@@ -579,7 +598,7 @@ export function persistIndexedFileResult(result: ParseResult): void {
     );
     graphDb.replaceNodes(fileId, result.nodes);
     const sourceIds = result.nodes.map((node) => node.symbolId);
-    graphDb.replaceEdges(sourceIds, result.edges);
+    graphDb.replaceEdges(sourceIds, result.edges, opts);
     graphDb.upsertFile(
       result.filePath, result.language, result.contentHash,
       result.nodes.length, result.edges.length,

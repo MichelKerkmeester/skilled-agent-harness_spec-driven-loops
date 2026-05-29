@@ -335,7 +335,10 @@ describe('code_graph_query degraded stress sweep (packet 013)', () => {
     // Restore so cleanup hooks can close the singleton normally.
     getDbSpy.mockRestore();
 
-    expect(parsed.status).toBe('error');
+    // BUG-07: a readiness-probe crash now refuses with status:'blocked' (was
+    // 'error') so all three read handlers share one refusal token; the rg
+    // fallback + code_graph_not_ready message are preserved.
+    expect(parsed.status).toBe('blocked');
     expect(parsed.data?.fallbackDecision).toEqual({
       nextTool: 'rg',
       reason: 'scan_failed',

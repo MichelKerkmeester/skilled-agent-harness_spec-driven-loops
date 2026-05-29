@@ -263,7 +263,7 @@ export function topologicalSort(phases: readonly Phase[]): string[] {
  * Returns the full output map keyed by each phase's `output` (or
  * `name` when `output` is omitted).
  */
-export async function runPhases(phases: readonly Phase[]): Promise<PhaseOutputs> {
+export async function runPhases(phases: readonly Phase[], signal?: AbortSignal): Promise<PhaseOutputs> {
   const order = topologicalSort(phases);
   const phasesByName = new Map<string, Phase>();
   for (const phase of phases) phasesByName.set(phase.name, phase);
@@ -273,6 +273,13 @@ export async function runPhases(phases: readonly Phase[]): Promise<PhaseOutputs>
   for (const phase of phases) phaseNamesByOutputKey.set(outputKey(phase), phase.name);
 
   for (const phaseName of order) {
+    // BUG-06: cooperative cancellation. When the caller's deadline aborts (e.g.
+    // ensure-ready's indexWithTimeout), stop before the next phase instead of
+    // running the whole pipeline to completion in the background and discarding
+    // the result. Checked at phase boundaries to keep it cheap and safe.
+    if (signal?.aborted) {
+      throw new Error(`runPhases aborted before phase "${phaseName}"`);
+    }
     const phase = phasesByName.get(phaseName)!;
     const deps: Record<string, unknown> = {};
     for (const inputKey of phase.inputs) {

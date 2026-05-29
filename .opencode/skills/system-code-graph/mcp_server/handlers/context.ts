@@ -65,7 +65,12 @@ function shouldBlockReadPath(readiness: ReadyResult): boolean {
   if (readiness.freshness === 'error') {
     return true;
   }
-  return readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true;
+  // False-safe contract (BUG-01 fix): block on ANY non-fresh graph, not just
+  // `action === 'full_scan'`. A deleted-files-only `freshness:'stale', action:'none'`
+  // result and a FAILED inline selective_reindex both previously fell through
+  // to buildContext() and answered over a stale graph. Gate on freshness and a
+  // failed gold-verification gate, matching query.ts + detect_changes.
+  return readiness.freshness !== 'fresh' || readiness.verificationGate === 'fail';
 }
 
 function seedProvider(seed: NonNullable<ContextHandlerArgs['seeds']>[number]): string | undefined {
@@ -98,10 +103,10 @@ function buildContextFallbackDecision(readiness: ContextReadiness): ContextFallb
     };
   }
 
-  if (readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true) {
+  if (readiness.freshness !== 'fresh') {
     return {
       nextTool: 'code_graph_scan',
-      reason: 'full_scan_required',
+      reason: readiness.action === 'selective_reindex' ? 'selective_reindex' : 'full_scan_required',
     };
   }
 

@@ -714,8 +714,22 @@ export function replaceNodes(fileId: number, nodes: CodeNode[]): void {
   tx();
 }
 
+export interface ReplaceEdgesOptions {
+  /**
+   * BUG-03: when true, skip the inline dangling-target prune. During a full
+   * scan, files are persisted one at a time; a cross-file IMPORTS edge whose
+   * target lives in a not-yet-persisted file would otherwise be deleted here
+   * (its `target_id` is not yet in `code_nodes`) and is never restored, because
+   * the post-persist resolver only reconciles CALLS edges. Callers that persist
+   * many files in sequence pass `true` and run `pruneDanglingEdges()` ONCE after
+   * all nodes + cross-file resolution land. Selective/single-file callers leave
+   * it false so genuinely-dangling edges are cleaned inline.
+   */
+  deferDanglingTargetPrune?: boolean;
+}
+
 /** Batch insert edges (deletes edges from the source nodes first) */
-export function replaceEdges(sourceIds: string[], edges: CodeEdge[]): void {
+export function replaceEdges(sourceIds: string[], edges: CodeEdge[], opts: ReplaceEdgesOptions = {}): void {
   const d = getDb();
 
   const insert = d.prepare(`
@@ -750,13 +764,31 @@ export function replaceEdges(sourceIds: string[], edges: CodeEdge[]): void {
       insert.run(e.sourceId, e.targetId, e.edgeType, e.weight, e.metadata ? JSON.stringify(e.metadata) : null);
     }
 
-    d.prepare(`
-      DELETE FROM code_edges WHERE
-        source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
-        target_id NOT IN (SELECT symbol_id FROM code_nodes)
-    `).run();
+    if (!opts.deferDanglingTargetPrune) {
+      d.prepare(`
+        DELETE FROM code_edges WHERE
+          source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+          target_id NOT IN (SELECT symbol_id FROM code_nodes)
+      `).run();
+    }
   });
   tx();
+}
+
+/**
+ * BUG-03: remove edges whose source or target symbol no longer exists in
+ * `code_nodes`. Run ONCE after a multi-file scan (all nodes persisted +
+ * cross-file resolution complete) when per-file `replaceEdges` deferred its
+ * inline prune. Returns the number of edges removed.
+ */
+export function pruneDanglingEdges(): number {
+  const d = getDb();
+  const result = d.prepare(`
+    DELETE FROM code_edges WHERE
+      source_id NOT IN (SELECT symbol_id FROM code_nodes) OR
+      target_id NOT IN (SELECT symbol_id FROM code_nodes)
+  `).run();
+  return result.changes;
 }
 
 /** Check if a file needs re-indexing based on stored mtime and content hash */
@@ -859,14 +891,18 @@ export function removeFile(filePath: string): void {
   const d = getDb();
   const file = d.prepare('SELECT id FROM code_files WHERE file_path = ?').get(filePath) as { id: number } | undefined;
   if (!file) return;
-  // CASCADE will handle nodes; edges need manual cleanup
-  const nodeIds = d.prepare('SELECT symbol_id FROM code_nodes WHERE file_id = ?').all(file.id) as { symbol_id: string }[];
-  if (nodeIds.length > 0) {
-    const placeholders = nodeIds.map(() => '?').join(',');
-    const ids = nodeIds.map(n => n.symbol_id);
-    d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders}) OR target_id IN (${placeholders})`).run(...ids, ...ids);
-  }
-  d.prepare('DELETE FROM code_files WHERE id = ?').run(file.id);
+  // CG-003: wrap the edge-delete + file-delete (CASCADE drops nodes) in a single
+  // transaction so a crash mid-call cannot leave orphaned edges / partial graph state.
+  const tx = d.transaction(() => {
+    const nodeIds = d.prepare('SELECT symbol_id FROM code_nodes WHERE file_id = ?').all(file.id) as { symbol_id: string }[];
+    if (nodeIds.length > 0) {
+      const placeholders = nodeIds.map(() => '?').join(',');
+      const ids = nodeIds.map(n => n.symbol_id);
+      d.prepare(`DELETE FROM code_edges WHERE source_id IN (${placeholders}) OR target_id IN (${placeholders})`).run(...ids, ...ids);
+    }
+    d.prepare('DELETE FROM code_files WHERE id = ?').run(file.id);
+  });
+  tx();
 }
 
 /** Query: get file outline (nodes sorted by line) */

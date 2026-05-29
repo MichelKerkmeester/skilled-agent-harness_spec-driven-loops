@@ -74,6 +74,9 @@ interface WorkspaceCandidate {
 export interface IndexFilesOptions {
   skipFreshFiles?: boolean;
   specificFiles?: string[];
+  /** BUG-06: optional deadline signal; runPhases checks it between phases so a
+   *  timed-out auto-index stops instead of running to completion in the background. */
+  signal?: AbortSignal;
 }
 
 export interface IndexFilesResult extends Array<ParseResult> {
@@ -2205,7 +2208,7 @@ export async function indexFiles(config: IndexerConfig, options: IndexFilesOptio
   // short-circuits the runner); the catch block backfills the missing
   // histogram entry with `outcome: 'error'` for operator visibility.
   try {
-    const outputs = await runPhases(phases);
+    const outputs = await runPhases(phases, options.signal);
     const emitOutput = outputs['emit-metrics'] as FinalizeOutput;
 
     // Preserve the array-with-preParseSkippedCount shape exported by the

@@ -211,6 +211,7 @@ function getCurrentGitHead(rootDir: string): string | null {
     return execSync('git rev-parse HEAD', {
       cwd: rootDir,
       encoding: 'utf-8',
+      timeout: 5_000,
       stdio: ['ignore', 'pipe', 'pipe'],
     }).trim();
   } catch (err: unknown) {
@@ -591,7 +592,12 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     }
 
     try {
-      persistIndexedFileResult(result);
+      // BUG-03: defer the dangling-target edge prune per-file. A full scan
+      // persists files one at a time, so a cross-file IMPORTS edge whose target
+      // lives in a not-yet-persisted file would be pruned here and never
+      // restored. We sweep once with pruneDanglingEdges() after the loop and
+      // cross-file resolution, when every target node exists.
+      persistIndexedFileResult(result, { deferDanglingTargetPrune: true });
 
       if (result.parseHealth !== 'error') {
         filesIndexed++;
@@ -698,6 +704,15 @@ export async function handleCodeGraphScan(args: ScanArgs): Promise<{ content: Ar
     graphDb.setLastGraphEdgeEnrichmentSummary(graphEdgeEnrichmentSummary);
   } else if (scanPromotable && filesIndexed > 0) {
     graphDb.clearLastGraphEdgeEnrichmentSummary();
+  }
+
+  // BUG-03: now that every file's nodes are persisted and cross-file CALL
+  // edges are resolved, sweep genuinely-dangling edges ONCE. Per-file
+  // replaceEdges deferred this prune so forward-referenced cross-file IMPORTS
+  // edges (importer persisted before the imported file) survived; here their
+  // targets exist, so only truly-orphaned edges are removed.
+  if (filesIndexed > 0) {
+    graphDb.pruneDanglingEdges();
   }
 
   // FIX-011-FOLLOWUP-1: report POST-PERSIST DB counts so the scan response

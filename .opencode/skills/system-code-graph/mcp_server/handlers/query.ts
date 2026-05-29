@@ -863,7 +863,16 @@ function summarizeWeakestGraphEdgeEnrichment(
 }
 
 function shouldBlockReadPath(readiness: ReadyResult): boolean {
-  return readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true;
+  // False-safe contract (BUG-01 fix): answer ONLY on a fresh graph. Any
+  // non-fresh state must block rather than return a possibly-wrong structural
+  // answer with status:'ok'. The previous predicate keyed only on
+  // `action === 'full_scan' && !inlineIndexPerformed`, which let two non-fresh
+  // states slip through: (a) a deleted-files-only `freshness:'stale', action:'none'`
+  // result, and (b) a FAILED inline selective_reindex (`freshness:'stale',
+  // inlineIndexPerformed:false`). Both returned ok over a stale graph. We now
+  // gate on freshness directly and also refuse a failed gold-verification gate,
+  // matching `detect_changes` readinessRequiresBlock for a single contract.
+  return readiness.freshness !== 'fresh' || readiness.verificationGate === 'fail';
 }
 
 function buildFallbackDecision(readiness: ReadyResult): FallbackDecision | null {
@@ -874,10 +883,13 @@ function buildFallbackDecision(readiness: ReadyResult): FallbackDecision | null 
     };
   }
 
-  if (readiness.action === 'full_scan' && readiness.inlineIndexPerformed !== true) {
+  // Any non-fresh graph that reached the block path needs a scan before reads
+  // can be trusted (full_scan, empty, or a stale graph a selective reindex
+  // could not heal).
+  if (readiness.freshness !== 'fresh') {
     return {
       nextTool: 'code_graph_scan',
-      reason: 'full_scan_required',
+      reason: readiness.action === 'selective_reindex' ? 'selective_reindex' : 'full_scan_required',
       retryAfter: 'scan_complete',
     };
   }
@@ -1196,7 +1208,12 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
       content: [{
         type: 'text',
         text: JSON.stringify({
-          status: 'error',
+          // BUG-07: align with code_graph_context + detect_changes — a non-fresh
+          // / unavailable graph (here: readiness probe crashed) refuses with
+          // status:'blocked', not 'error', so all three read handlers share one
+          // refusal token. The structured readiness block + rg fallback are
+          // preserved so consumers still see the crash detail.
+          status: 'blocked',
           message: `code_graph_not_ready: ${reason}`,
           data: {
             readiness: crashBlock,

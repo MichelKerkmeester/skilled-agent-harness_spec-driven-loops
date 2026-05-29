@@ -165,8 +165,10 @@ describe('code-graph-query handler', () => {
     // block with V2 freshness='error', V3 canonicalReadiness='missing', and
     // V5-widened trustState='unavailable' so query consumers see the same
     // canonical vocabulary as code_graph_context (S2-matching).
+    // BUG-07: status is now 'blocked' (was 'error') so all three read handlers
+    // share one refusal token for a non-fresh/unavailable graph.
     expect(parsed).toEqual({
-      status: 'error',
+      status: 'blocked',
       message: 'code_graph_not_ready: graph database unavailable',
       data: {
         readiness: {
@@ -217,6 +219,63 @@ describe('code-graph-query handler', () => {
     });
     expect(mocks.queryEdgesFrom).not.toHaveBeenCalled();
     expect(mocks.queryEdgesTo).not.toHaveBeenCalled();
+  });
+
+  it('BUG-01: blocks a stale graph with action:none (deleted-files-only) instead of answering ok', async () => {
+    mocks.ensureCodeGraphReady.mockResolvedValueOnce({
+      freshness: 'stale',
+      action: 'none',
+      inlineIndexPerformed: false,
+      reason: '1 tracked file(s) no longer exist on disk',
+    });
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.status).toBe('blocked');
+    expect(mocks.queryEdgesFrom).not.toHaveBeenCalled();
+    expect(mocks.queryEdgesTo).not.toHaveBeenCalled();
+  });
+
+  it('BUG-01: blocks a stale graph left by a FAILED inline selective_reindex', async () => {
+    mocks.ensureCodeGraphReady.mockResolvedValueOnce({
+      freshness: 'stale',
+      action: 'selective_reindex',
+      inlineIndexPerformed: false,
+      reason: '2 file(s) have newer mtime than indexed_at (auto-index failed: timeout)',
+      selfHealAttempted: true,
+      selfHealResult: 'failed',
+    });
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.status).toBe('blocked');
+    expect(mocks.queryEdgesFrom).not.toHaveBeenCalled();
+  });
+
+  it('BUG-01: blocks a fresh graph whose gold-verification gate failed', async () => {
+    mocks.ensureCodeGraphReady.mockResolvedValueOnce({
+      freshness: 'fresh',
+      action: 'none',
+      inlineIndexPerformed: false,
+      reason: 'all tracked files are up-to-date',
+      verificationGate: 'fail',
+    });
+
+    const result = await handleCodeGraphQuery({
+      operation: 'calls_from',
+      subject: 'SomeSymbol',
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.status).toBe('blocked');
   });
 
   it('includes scope and manifest diagnostics in blocked full-scan payloads', async () => {

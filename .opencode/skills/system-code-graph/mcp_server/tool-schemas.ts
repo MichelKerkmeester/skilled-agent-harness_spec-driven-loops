@@ -53,9 +53,9 @@ const codeGraphQuery: ToolDefinition = {
       subjects: { type: 'array', items: { type: 'string' }, description: 'Optional additional file paths or symbols for blast-radius union mode' },
       unionMode: { type: 'string', enum: ['single', 'multi'], description: 'Blast-radius subject handling mode; use multi to union subject + subjects' },
       edgeType: { type: 'string', description: 'Filter by edge type (optional)' },
-      limit: { type: 'number', minimum: 1, maximum: 200, default: 50, description: 'Max results' },
+      limit: { type: 'number', minimum: 1, maximum: 1000, default: 50, description: 'Max results (handler clamps to 1000)' },
       includeTransitive: { type: 'boolean', default: false, description: 'Enable multi-hop BFS traversal (follows edges transitively)' },
-      maxDepth: { type: 'number', minimum: 1, maximum: 10, default: 3, description: 'Max traversal depth when includeTransitive is true' },
+      maxDepth: { type: 'number', minimum: 1, maximum: 20, default: 3, description: 'Max traversal depth when includeTransitive is true (handler clamps to 20)' },
       minConfidence: { type: 'number', minimum: 0, maximum: 1, description: 'Minimum confidence threshold (0-1) for blast_radius dependency edges; defaults to 0 (include all). Filters import-edge confidences before blast-radius assembly.' },
     },
     required: ['operation', 'subject'],
@@ -197,6 +197,19 @@ export const CODE_GRAPH_TOOL_SCHEMAS: ToolDefinition[] = [
 // Compatibility alias for moved tests and local schema smoke checks.
 export const TOOL_DEFINITIONS = CODE_GRAPH_TOOL_SCHEMAS;
 
+/**
+ * Validate raw MCP input against a tool's published inputSchema (BUG-04 fix).
+ *
+ * Previously this only checked tool existence and object-shape, so the
+ * advertised `additionalProperties:false`, `enum`, and `minLength` constraints
+ * were never enforced and malformed calls reached handlers. We now enforce the
+ * unambiguous constraints: unknown-key rejection, enum membership, and string
+ * minLength. Required-field presence is enforced at the dispatcher
+ * (`getMissingRequiredStringArgs`); numeric range is intentionally left to the
+ * handler clamps (e.g. `limit`, `maxDepth`) to avoid rejecting values the
+ * handler safely coerces and bounds. Throws a field-specific Error on the first
+ * violation so the dispatcher can surface a structured validation error.
+ */
 export function validateToolArgs(toolName: string, rawInput: Record<string, unknown>): Record<string, unknown> {
   const tool = CODE_GRAPH_TOOL_SCHEMAS.find((definition) => definition.name === toolName);
   if (!tool) {
@@ -205,5 +218,43 @@ export function validateToolArgs(toolName: string, rawInput: Record<string, unkn
   if (!rawInput || typeof rawInput !== 'object' || Array.isArray(rawInput)) {
     throw new Error(`Invalid arguments for ${toolName}: expected object`);
   }
+
+  const schema = tool.inputSchema as {
+    properties?: Record<string, Record<string, unknown>>;
+    additionalProperties?: boolean;
+  };
+  const properties = schema.properties ?? {};
+
+  // additionalProperties:false -> reject keys not in the published schema.
+  if (schema.additionalProperties === false) {
+    const allowed = new Set(Object.keys(properties));
+    const unexpected = Object.keys(rawInput).filter((key) => !allowed.has(key));
+    if (unexpected.length > 0) {
+      throw new Error(
+        `Invalid arguments for ${toolName}: unexpected propert${unexpected.length === 1 ? 'y' : 'ies'}: ${unexpected.join(', ')}`,
+      );
+    }
+  }
+
+  // Validate each PRESENT value: enum membership and string minLength only.
+  for (const [key, value] of Object.entries(rawInput)) {
+    const prop = properties[key];
+    if (!prop || value === undefined || value === null) {
+      continue;
+    }
+    const enumValues = prop.enum as unknown[] | undefined;
+    if (Array.isArray(enumValues) && !enumValues.includes(value)) {
+      throw new Error(
+        `Invalid arguments for ${toolName}: field '${key}' must be one of: ${enumValues.map(String).join(', ')}`,
+      );
+    }
+    const minLength = prop.minLength as number | undefined;
+    if (typeof minLength === 'number' && typeof value === 'string' && value.length < minLength) {
+      throw new Error(
+        `Invalid arguments for ${toolName}: field '${key}' must be at least ${minLength} character(s)`,
+      );
+    }
+  }
+
   return rawInput;
 }

@@ -59,7 +59,13 @@ export interface OwnerClassificationOptions {
 }
 
 const OWNER_LEASE_FILE_NAME = '.code-graph-owner.json';
+const OWNER_LEASE_LOCK_FILE_NAME = `${OWNER_LEASE_FILE_NAME}.lock`;
 const DEFAULT_TTL_MS = CODE_GRAPH_DEFAULTS.ttlMs;
+
+interface OwnerLeaseMutationLock {
+  readonly fd: number;
+  readonly lockPath: string;
+}
 
 function fsyncPath(path: string): void {
   let fd: number | undefined;
@@ -79,6 +85,85 @@ function makeTempPath(targetPath: string): string {
 
 function ownerLeasePath(canonicalDbDir: string): string {
   return join(canonicalDbDir, OWNER_LEASE_FILE_NAME);
+}
+
+function ownerLeaseLockPath(canonicalDbDir: string): string {
+  return join(canonicalDbDir, OWNER_LEASE_LOCK_FILE_NAME);
+}
+
+function readOwnerLeaseMutationLockPid(lockPath: string): number | null {
+  try {
+    const raw = readFileSync(lockPath, 'utf8').trim();
+    const pid = Number.parseInt(raw, 10);
+    return Number.isInteger(pid) && pid > 0 ? pid : null;
+  } catch {
+    return null;
+  }
+}
+
+function tryAcquireOwnerLeaseMutationLock(canonicalDbDir: string): OwnerLeaseMutationLock | null {
+  const lockPath = ownerLeaseLockPath(canonicalDbDir);
+  for (let attempt = 0; attempt < 2; attempt++) {
+    let fd: number | undefined;
+    try {
+      fd = openSync(lockPath, 'wx', 0o600);
+      writeFileSync(fd, `${process.pid}\n`, { encoding: 'utf8' });
+      fsyncSync(fd);
+      return { fd, lockPath };
+    } catch (error: unknown) {
+      if (typeof fd === 'number') {
+        closeSync(fd);
+      }
+      const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+      if (code !== 'EEXIST') {
+        throw error;
+      }
+
+      const lockPid = readOwnerLeaseMutationLockPid(lockPath);
+      if (attempt === 0 && lockPid !== null && getProcessLiveness(lockPid) === 'dead') {
+        try {
+          unlinkSync(lockPath);
+          continue;
+        } catch (unlinkError: unknown) {
+          const unlinkCode = unlinkError && typeof unlinkError === 'object' && 'code' in unlinkError
+            ? (unlinkError as NodeJS.ErrnoException).code
+            : undefined;
+          if (unlinkCode !== 'ENOENT') {
+            throw unlinkError;
+          }
+        }
+      }
+
+      return null;
+    }
+  }
+
+  return null;
+}
+
+function releaseOwnerLeaseMutationLock(lock: OwnerLeaseMutationLock): void {
+  try {
+    closeSync(lock.fd);
+  } finally {
+    try {
+      unlinkSync(lock.lockPath);
+    } catch (error: unknown) {
+      const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+      if (code !== 'ENOENT') {
+        throw error;
+      }
+    }
+  }
+}
+
+function isSameOwnerLease(a: OwnerLeaseData, b: OwnerLeaseData): boolean {
+  return a.ownerPid === b.ownerPid
+    && a.ppid === b.ppid
+    && a.executablePath === b.executablePath
+    && a.startedAtIso === b.startedAtIso
+    && a.lastHeartbeatIso === b.lastHeartbeatIso
+    && a.ttlMs === b.ttlMs
+    && a.canonicalDbDir === b.canonicalDbDir;
 }
 
 function isOwnerLeaseData(raw: unknown): raw is OwnerLeaseData {
@@ -284,10 +369,57 @@ export function acquireOwnerLease(dbDir: string, options: OwnerLeaseOptions = {}
       : { acquired: false, holder: lease, leasePath, classification: 'live-owner' };
   }
 
-  writeOwnerLeaseAtomic(leasePath, lease);
-  return existing
-    ? { acquired: true, lease, leasePath, reclaimed: existing, classification: existingClassification }
-    : { acquired: true, lease, leasePath };
+  const lock = tryAcquireOwnerLeaseMutationLock(canonicalDbDir);
+  if (!lock) {
+    const holder = readOwnerLease(canonicalDbDir);
+    return {
+      acquired: false,
+      holder: holder ?? existing,
+      leasePath,
+      classification: holder
+        ? classifyOwner(holder, {
+            processKill: options.processKill,
+            readParentPid: options.readParentPid,
+            now,
+          })
+        : existingClassification ?? 'live-owner',
+    };
+  }
+
+  try {
+    const current = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
+    if (current && !isSameOwnerLease(current, existing)) {
+      return {
+        acquired: false,
+        holder: current,
+        leasePath,
+        classification: classifyOwner(current, {
+          processKill: options.processKill,
+          readParentPid: options.readParentPid,
+          now,
+        }),
+      };
+    }
+    if (current) {
+      const currentClassification = classifyOwner(current, {
+        processKill: options.processKill,
+        readParentPid: options.readParentPid,
+        now,
+      });
+      if (
+        currentClassification === 'live-owner' ||
+        currentClassification === 'symlink-alias' ||
+        currentClassification === 'unknown-eperm'
+      ) {
+        return { acquired: false, holder: current, leasePath, classification: currentClassification };
+      }
+    }
+
+    writeOwnerLeaseAtomic(leasePath, lease);
+    return { acquired: true, lease, leasePath, reclaimed: current ?? existing, classification: existingClassification };
+  } finally {
+    releaseOwnerLeaseMutationLock(lock);
+  }
 }
 
 export function refreshOwnerLease(
@@ -298,15 +430,22 @@ export function refreshOwnerLease(
 ): boolean {
   const canonicalDbDir = resolveCanonicalDbDir(dbDir);
   const leasePath = ownerLeasePath(canonicalDbDir);
-  const holder = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
-  if (!holder || holder.ownerPid !== ownerPid) return false;
+  const lock = tryAcquireOwnerLeaseMutationLock(canonicalDbDir);
+  if (!lock) return false;
 
-  writeOwnerLeaseAtomic(leasePath, {
-    ...holder,
-    ...patch,
-    lastHeartbeatIso: now.toISOString(),
-  });
-  return true;
+  try {
+    const holder = existsSync(leasePath) ? readOwnerLease(canonicalDbDir) : null;
+    if (!holder || holder.ownerPid !== ownerPid) return false;
+
+    writeOwnerLeaseAtomic(leasePath, {
+      ...holder,
+      ...patch,
+      lastHeartbeatIso: now.toISOString(),
+    });
+    return true;
+  } finally {
+    releaseOwnerLeaseMutationLock(lock);
+  }
 }
 
 export function releaseOwnerLease(dbDir: string, ownerPid: number): boolean {

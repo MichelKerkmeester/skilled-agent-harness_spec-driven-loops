@@ -249,7 +249,9 @@ describe('ensure-ready', () => {
       expect(mocks.indexFilesMock).toHaveBeenCalledTimes(1);
       expect(mocks.indexFilesMock).toHaveBeenCalledWith(
         expect.objectContaining({ rootDir: '/tmp/test-root' }),
-        { specificFiles: ['/tmp/test-root/stale.ts'] },
+        // BUG-06: indexWithTimeout now also threads a deadline `signal`, so
+        // match on the meaningful option rather than the exact object.
+        expect.objectContaining({ specificFiles: ['/tmp/test-root/stale.ts'] }),
       );
     });
 
