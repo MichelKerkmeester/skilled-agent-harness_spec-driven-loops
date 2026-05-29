@@ -95,3 +95,15 @@ resource-map.md not present; skipping coverage gate.
 **Ruled out:** no new P0/data-corruption path in active shard attach/detach ordering; HF local row-count/dimension adoption/normalization remains guarded; auto-select still probes local-first and factory fallback dimension changes are caught before vector persistence by existing dimension checks.
 
 **Next focus:** convergence/synthesis with the WAL durability workstream now covering both tracked non-active connections and the untracked reindex shard writer.
+
+## Iteration 010 Update
+
+**Dimension covered:** deep-granularity correctness/security re-examination.
+
+**New findings:** none.
+
+**Ruled out:** no new P0/data-loss path in embed-path ordering or daemon shutdown/WAL ordering. Batch shape and dimension mismatches fail before rows are returned, retryable embed drops clear the readiness latch before a bounded retry, dispose waits on tracked in-flight native runs, shutdown drains the file watcher before vector-index close, interval checkpoints are no-op after `db` is nulled, and the direct reindex shard writer now checkpoints before close.
+
+**P2 escalation review:** the direct-startup unlink, phase 005 idle-location matrix, and missing env-knob docs remain P2 advisories; no new evidence supports P1 escalation.
+
+**Next focus:** continue the requested full 20-iteration review with line-level adversarial rechecks of the remaining non-WAL P1 clusters.

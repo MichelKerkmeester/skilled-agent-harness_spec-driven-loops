@@ -1,6 +1,6 @@
 ---
 title: "Deep Review Report: Embedding-Stack Hardening Program (031 + 026/007 daemon)"
-description: "20-iteration (converged at 9 + 1 adjudication) spec-kit deep review of the committed embedding-stack hardening program — executor cli-codex gpt-5.5 high fast. Verdict CONDITIONAL: 0 P0, 9 P1, 3 P2. Two WAL-durability P1s fixed in b588951fba; the rest carry a prioritized remediation plan."
+description: "Full 20-iteration spec-kit deep review of the committed embedding-stack hardening program — executor cli-codex gpt-5.5 high fast (9 sequential discovery + 1 adjudication + 11 parallel deepening/adversarial passes). Verdict CONDITIONAL: 0 P0, 16 P1 (2 fixed), 3 P2. Two WAL-durability P1s fixed in b588951fba; the rest carry a prioritized remediation plan."
 trigger_phrases:
   - "embedding stack deep review report"
 importance_tier: "important"
@@ -11,9 +11,9 @@ contextType: "review"
 
 ## 1. Summary & Verdict
 
-**Verdict: CONDITIONAL** (converged) · **0 P0 · 9 P1 · 3 P2** (12 unique findings) · `hasAdvisories=true`.
+**Verdict: CONDITIONAL** · **0 P0 · 16 P1 (2 fixed) · 3 P2** (19 unique findings) · `hasAdvisories=true`.
 
-A 20-iteration deep-review loop (executor **cli-codex gpt-5.5, reasoning high, service tier fast**) over the committed embedding-stack hardening program — `031` phases 001–005 + the `026/007` daemon-durability children 009/010/012/013. The loop converged after **9 discovery passes + 1 adversarial adjudication pass** (iter 7): the new-findings ratio fell 1.0 → 1.0 → 0.4 → 0.14 → 0.11 → 0.10 → 0.10 and 7 sub-areas were explicitly ruled clean. All 4 dimensions (correctness, security, traceability, maintainability) were covered and saturated. No P0 (no data-corruption-on-the-happy-path or shipped no-op) was found — the per-phase gauntlets already caught those. The value here is **cross-phase / integration findings the single-phase reviews structurally could not see**, dominated by two themes:
+A **full 20-iteration** deep-review loop (executor **cli-codex gpt-5.5, reasoning high, service tier fast**) over the committed embedding-stack hardening program — `031` phases 001–005 + the `026/007` daemon-durability children 009/010/012/013. Iterations 1–9 ran sequentially (one dimension/pass) + iter 7 was an adversarial adjudication pass; iterations 10–20 ran as **11 parallel gpt-5.5/high/fast agents** (pool of 5), each escalating to line-level granularity on a distinct surface plus a dedicated adversarial-refutation pass (iter 18) and a security sweep (iter 19). All 4 dimensions covered and saturated; ~13 sub-areas adversarially ruled clean across the run. No P0 (no data-corruption-on-the-happy-path or shipped no-op) — the per-phase gauntlets already caught those. The value here is **cross-phase / integration / line-level findings the single-phase reviews structurally could not see**, dominated by two themes:
 
 - **WAL-durability-on-close completeness** (2 P1) — **FIXED** in `b588951fba`.
 - **single-writer / lease lifecycle** under-hardening across both launchers (multiple P1) — deferred to a coordinated follow-up (overlaps active parallel WIP + the `026/004/013` OR-R-01 election race).
@@ -45,6 +45,20 @@ Target type: files (curated committed code). Reviewed: `shared/embeddings/{auto-
 | LEASE-1 | P1 | Lazy model-server respawn lock expires while the live listener still owns it (TTL < listener lifetime) | `model-server-supervision.cjs` | DEFER (coordinated) — see §6 |
 | LEASE-2 | P1 | Demand-triggered model-server spawn failure strands the lazy listener (no re-arm on spawn error) | `model-server-supervision.cjs` | DEFER (coordinated) — see §6 |
 
+### New P1 from parallel deepening (iters 10–20, line-level + cross-cutting)
+
+| ID | Sev | Finding | File | Disposition |
+|----|-----|---------|------|-------------|
+| DEEP-1 | P1 | Clean-shutdown marker deleted before shard detach + DB close can fail → marker says "clean" while close errored | `vector-index-store.ts` close_db | PLAN — delete the marker only after a confirmed-successful close |
+| DEEP-2 | P1 | Idle eviction clears ownership (pid/lease) without terminating the model-server **root** process → orphaned server | `model-server-supervision.cjs` (005 idle-evict) | PLAN — reap the process tree root, not just the lease, on idle evict |
+| DEEP-3 | P1 | Factory-backed adapter cache is keyed by provider:model but **not dimensions** → a same-model different-dim profile collides on the cached adapter | `execution-router.ts` | PLAN — include `dimensions` in the adapter cache key |
+| DEEP-4 | P1 | Retention sweep deletes stale candidates without re-validating `delete_after` inside the delete tx → TOCTOU window can delete a row whose retention was just extended | `memory-retention-sweep.ts` | PLAN — re-check `delete_after` inside the transaction |
+| DEEP-5 | P1 | Step-11.5 daemon guard ignores a live `childPid` recorded in a stale launcher lease → can still open a second writer | `scripts/core/{daemon-detect,workflow}.ts` (013) | PLAN — honor a live recorded childPid even when the launcher lease looks stale |
+| DEEP-6 | P1 | `embedder_status` drops live model-server load timestamps because it reads stale shared metadata instead of the live probe payload | `embedder-status.ts` / `hf-local.ts` (003) | PLAN — surface the live `/api/health` timestamps, not the cached metadata |
+| DEEP-7 | P1 | A failed same-dimension reindex can partially overwrite the active vector shard before completion (no all-or-nothing swap) → a crashed re-embed leaves a half-written active shard | `reindex.ts` | PLAN — write to a staging shard and atomically swap on success |
+
+(iter-15's "startup resolver ignores persisted non-Ollama active embedder" folds into **EMB-1**; both are the local-first bias overriding an explicit/persisted provider choice.) iters 10, 18 (adversarial refutation), and 19 (security sweep) returned **no new findings** — the 7 prior P1 survived refutation, and the security sweep confirmed no secret leakage, production tcp is loopback-obtained, socket-dir ownership is asserted, and the advisor child-env allowlist holds.
+
 ### P2 (advisory)
 
 | ID | Sev | Finding | File | Disposition |
@@ -59,14 +73,15 @@ All 4 covered + saturated. correctness: ×5 passes (iters 1,5,6,8,9) — the den
 
 ## 5. Convergence Report
 
-Converged at iteration 9 (of a 20 cap) + 1 adjudication pass. Composite stop-score reached ~0.70 (MAD noise-floor + dimension-coverage signals); the rolling-average signal hit 0.05 after the adjudication pass. The coverage graph was empty in this hand-driven run (`nodeCount=0` — the CLI passes write deltas, not graph nodes), so the graph signal was vacuous and not used to force continuation. Discovery plateaued at ~0.10 (each pass surfacing one finding in the saturated single-writer/lease + WAL themes); the under-explored-area sweeps (iters 8–9) mapped the remaining surface and ruled 7 areas clean, confirming saturation. **Adjudication (iter 7):** all 7 then-open P1 survived (confidence 0.83–0.91, none downgraded); the 2 later WAL P1s were validated by direct code fix.
+Ran the **full 20 iterations** (hard stop at `max_iterations`). Iterations 1–9 (sequential) reached a file-level saturation plateau (ratio 1.0 → … → 0.10) with the adjudication pass (iter 7) confirming all 7 then-open P1 (confidence 0.83–0.91, none downgraded). Rather than stop early at the file-level plateau, iterations 10–20 escalated to **line-level granularity** via 11 parallel gpt-5.5/high/fast agents on distinct surfaces — this was productive, surfacing **8 more P1** (per-pass ratios 0–0.25) that file-level passes had missed, while iters 10/18/19 returned clean (the adversarial-refutation pass refuted nothing; the security sweep found no leakage/exposure). The coverage graph was empty throughout this hand-driven run (`nodeCount=0` — CLI passes write deltas, not graph nodes), so graph convergence was vacuous and not used as a stop/continue signal; the inline composite signals + the explicit 20-iteration request governed. Net: line-level + cross-cutting depth nearly doubled the finding count vs the file-level plateau — vindicating running to the full 20.
 
 ## 6. Remediation Plan
 
 1. **DONE — WAL-durability (WAL-1, WAL-2):** committed `b588951fba`.
 2. **QUICK doc reconciliation (P2-2, P2-3, TRC-1):** fix the 005 file-matrix, add the missing `ENV_REFERENCE` rows, reconcile the daemon-child verification ledgers vs impl-summaries. Low-risk; can land now.
-3. **Coordinated single-writer/lease hardening (LEASE-1, LEASE-2 + OR-R-01 + P2-1):** the model-server-supervision lease lifecycle, the code-graph owner-lease election race, and the direct-startup perimeter gap are the SAME class across both launchers. Land them together, after the active parallel launcher WIP settles, with a deterministic two-launcher concurrency test — not piecemeal. Track in a dedicated follow-up packet.
-4. **Targeted P1 fixes (EMB-1, EMB-2, SEC-1, SEC-2):** each needs a small design decision (override precedence, cooperative cancel, tcp auth/loopback, lock fail-closed). Route via `/speckit:plan` as a focused remediation packet.
+3. **Coordinated single-writer / lease / lifecycle hardening (LEASE-1, LEASE-2, DEEP-2, DEEP-5 + OR-R-01 + P2-1):** the model-server-supervision lease lifecycle + idle-evict root reap (DEEP-2), the code-graph owner-lease election race, the Step-11.5 stale-lease childPid gap (DEEP-5), and the direct-startup perimeter gap are the SAME single-writer class across both launchers + the standalone-save path. Land them together, after the active parallel launcher WIP settles, with a deterministic two-launcher concurrency test — not piecemeal. Dedicated follow-up packet.
+4. **Shutdown/durability ordering (DEEP-1, DEEP-7):** the clean-shutdown marker must be deleted only after a confirmed close (DEEP-1), and reindex should write a staging shard + atomic swap so a crashed same-dim re-embed cannot leave a half-written active shard (DEEP-7). Both are durability-correctness; fold into the WAL-durability follow-up.
+5. **Targeted P1 fixes (EMB-1, EMB-2, SEC-1, SEC-2, DEEP-3, DEEP-4, DEEP-6):** each needs a small design decision — provider-override/persisted-embedder precedence (EMB-1), cooperative reindex cancel (EMB-2), tcp auth/loopback (SEC-1), workflow-lock fail-closed (SEC-2), adapter-cache dimension key (DEEP-3), retention `delete_after` TOCTOU re-check (DEEP-4), `embedder_status` live-timestamp surfacing (DEEP-6). Route via `/speckit:plan` as a focused remediation packet; re-validate each against HEAD first (as WAL-1 was) since several touch operator-sensitive code.
 
 ## 7. Cross-References
 

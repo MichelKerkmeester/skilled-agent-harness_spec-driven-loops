@@ -74,5 +74,6 @@
       "emit": true
     }
   },
-  "verdict": "CONDITIONAL"
+  "verdict": "CONDITIONAL",
+  "iterationsExecuted": 20
 }
