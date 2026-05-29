@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-two-lane-deep-review",
+  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-two-lane-deep-review",
+  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "two-lane program deep review",
+      "121 008-013 review"
+    ],
+    "key_topics": [
+      "deep",
+      "review",
+      "two-lane",
+      "model-benchmark",
+      "gpt-5.5"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "review/review-report.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "10-iteration gpt-5.5 xhigh deep review of the 008-013 two-lane program. Verdict CONDITIONAL: 1 confirmed P0 (Lane B command flag misparse) + P1 hardening cluster.",
+    "created_at": "2026-05-29T10:35:00Z",
+    "last_save_at": "2026-05-29T10:35:00Z",
+    "save_lineage": "graph_only",
+    "source_docs": [
+      "spec.md",
+      "review/review-report.md"
+    ]
+  }
+}

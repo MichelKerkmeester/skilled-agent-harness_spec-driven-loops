@@ -16,7 +16,8 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-references-assets-lane-reorg",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-agent-lane-note",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/012-catalog-playbook-advisor-fp25",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-two-lane-deep-review"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -46,7 +47,7 @@
       "model"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -59,12 +60,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -92,16 +87,21 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Decide",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 120/003 benchmark rig (run a model against fixtures under prompt-framework variants, score, hill-climb) is packet-local and one-off. The deep-agent-improvement skill runs the same loop shape for agent definitions but cannot benchmark models/prompts. We want model/prompt benchmarking to be a first-class, repeatable capability of deep-agent-improvement.",
     "created_at": "2026-05-28T00:00:00Z",
-    "last_save_at": "2026-05-28T19:22:38Z",
+    "last_save_at": "2026-05-29T09:26:04.588Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ],
-    "last_active_child_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix"
+    ]
   }
 }
