@@ -52,7 +52,7 @@ If a resume detects `mirror_sync_state: "partial:<runtime-list>"`, the default r
 Use `scan-integration.cjs` as the primary tool for detecting mirror drift. It replaces manual file-by-file comparison with automated signal-matching across all 3 runtime mirrors:
 
 ```text
-node scripts/scan-integration.cjs --agent={agent-name}
+node scripts/agent-improvement/scan-integration.cjs --agent={agent-name}
 ```
 
 The scanner reports `aligned`, `diverged`, or `missing` for each mirror surface based on signal string matching against the canonical body.
@@ -76,4 +76,4 @@ Forbidden outcomes:
 
 - `../shared/rollback_runbook.md`
 - `../shared/promotion_rules.md`
-- `../scripts/check-mirror-drift.cjs`
+- `../scripts/agent-improvement/check-mirror-drift.cjs`

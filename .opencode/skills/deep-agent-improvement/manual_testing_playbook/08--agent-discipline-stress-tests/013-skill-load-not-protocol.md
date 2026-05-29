@@ -100,7 +100,7 @@ grep -c 'Read(".opencode/skills/deep-agent-improvement/SKILL.md")' /tmp/cp-040-B
 |---|---|
 | `.opencode/agents/deep-agent-improvement.md` | Proposal-only mutator contract |
 | `.opencode/skills/deep-agent-improvement/SKILL.md` | Protocol execution contract |
-| `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Required scoring helper |
+| `.opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs` | Required scoring helper |
 | `.opencode/skills/deep-agent-improvement/test-fixtures/060-stress-test/` | Fixture source |
 
 ## 5. SOURCE METADATA

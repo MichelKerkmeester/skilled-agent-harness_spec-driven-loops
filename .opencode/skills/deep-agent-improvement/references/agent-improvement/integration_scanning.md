@@ -59,7 +59,7 @@ Mirror sync is determined by signal matching, not byte-identical comparison:
 ## 4. USAGE
 
 ```bash
-node scripts/scan-integration.cjs --agent={agent-name} [--repo-root=.] [--output=path.json]
+node scripts/agent-improvement/scan-integration.cjs --agent={agent-name} [--repo-root=.] [--output=path.json]
 ```
 
 The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `missingCount`, `mirrorSyncStatus`, `commandCount`, and `skillCount`.
@@ -95,6 +95,6 @@ The output JSON includes a `summary` with `totalSurfaces`, `existingCount`, `mis
 ## 5. RELATED RESOURCES
 
 - `../model-benchmark/evaluator_contract.md` for the 5-dimension scoring rubric
-- `../scripts/scan-integration.cjs` for the implementation
-- `../scripts/check-mirror-drift.cjs` for the original mirror-only scanner
+- `../scripts/agent-improvement/scan-integration.cjs` for the implementation
+- `../scripts/agent-improvement/check-mirror-drift.cjs` for the original mirror-only scanner
 

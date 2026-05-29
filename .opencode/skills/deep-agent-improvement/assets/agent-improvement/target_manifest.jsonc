@@ -13,12 +13,12 @@
   "dynamicProfileEnabled": true,
 
   // Path to the script that generates a dynamic target profile on the fly.
-  "dynamicProfileScript": ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
+  "dynamicProfileScript": ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/generate-profile.cjs",
 
   // Path to the integration-surface scanner that checks mirror parity,
   // command coverage, permission alignment, and resource references
   // for a given target agent across all runtime directories.
-  "integrationScanScript": ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
+  "integrationScanScript": ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs",
 
   // profileCatalog remains referenced for path consistency with config, but
   // the directory is intentionally empty (contains only .gitkeep).

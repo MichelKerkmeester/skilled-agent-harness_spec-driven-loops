@@ -63,12 +63,12 @@ Use this reference when:
 
 ### Model-Benchmark Mode
 
-The model-benchmark mode (run via `scripts/loop-host.cjs --mode=model-benchmark`) is selected at the command line, not by a config field. Its operator-facing levers:
+The model-benchmark mode (run via `scripts/shared/loop-host.cjs --mode=model-benchmark`) is selected at the command line, not by a config field. Its operator-facing levers:
 
 | Lever | Where | Description |
 | --- | --- | --- |
 | `--mode` | `loop-host.cjs` | `agent-improvement` (default) or `model-benchmark`. Unknown values warn and fall back to agent-improvement. |
-| `--scorer` | `run-benchmark.cjs` | `pattern` (default, byte-identical heading/pattern matcher) or `5dim` (routes outputs through `scripts/scorer/score-model-variant.cjs`). |
+| `--scorer` | `run-benchmark.cjs` | `pattern` (default, byte-identical heading/pattern matcher) or `5dim` (routes outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`). |
 | `--grader` | `run-benchmark.cjs` | `noop` (default, deterministic), `mock`, or `llm`. Only consulted under `--scorer 5dim`. |
 | `DEEP_AGENT_ALLOW_CRITERIA_EXEC` | env | Set to `0` to refuse criteria-driven shell execution in the 5-dim scorer. Default permissive. |
 | `DEEP_AGENT_GRADER_CACHE_RAW` | env | Set to `0` to redact raw grader output from the on-disk cache. Default permissive. |

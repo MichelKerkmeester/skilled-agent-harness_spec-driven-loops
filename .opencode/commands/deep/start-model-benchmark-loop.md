@@ -296,7 +296,7 @@ This command drives the model-benchmark lane only. To improve an agent definitio
 The model-benchmark loop runs through `loop-host.cjs` in model-benchmark mode:
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/loop-host.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs \
   --mode=model-benchmark \
   --profile {profile_path} \
   --outputs-dir {outputs_dir} \
@@ -306,7 +306,7 @@ node .opencode/skills/deep-agent-improvement/scripts/loop-host.cjs \
 
 - `loop-host.cjs` resolves `--mode=model-benchmark`, then runs `materialize-benchmark-fixtures.cjs` and `run-benchmark.cjs` in that order (the EC-5 ordering: materialize MUST run and succeed before run-benchmark, or scoring has no inputs).
 - `--profile` and `--outputs-dir` are required for the model-benchmark path. `loop-host.cjs` forwards `--output`, `--state-log`, `--label`, and `--profiles-dir` through to `run-benchmark.cjs`.
-- `--scorer pattern` (default, heading/pattern matcher) or `--scorer 5dim` (ported 5-dimension scorer via `scripts/scorer/score-model-variant.cjs`). `--scorer` and `--grader` are consumed at the `run-benchmark.cjs` layer.
+- `--scorer pattern` (default, heading/pattern matcher) or `--scorer 5dim` (ported 5-dimension scorer via `scripts/model-benchmark/scorer/score-model-variant.cjs`). `--scorer` and `--grader` are consumed at the `run-benchmark.cjs` layer.
 - `--grader noop` (default, deterministic, no model dispatch) or `--grader mock` (stub) or `--grader llm` (real model dispatch).
 - An unknown `--mode` warns to stderr and falls back to agent-improvement. An unknown `--scorer` warns and falls back to `pattern`.
 
@@ -330,7 +330,7 @@ $ARGUMENTS
 | Scorer | Flag | What It Does | Use When |
 | --- | --- | --- | --- |
 | Pattern | `--scorer pattern` | Byte-identical heading/pattern matcher (default) | Fast deterministic structural benchmarking |
-| 5dim | `--scorer 5dim` | Ported 5-dimension scorer (`scripts/scorer/score-model-variant.cjs`) with deterministic checks plus a pluggable grader | Richer multi-dimension evaluation of produced outputs |
+| 5dim | `--scorer 5dim` | Ported 5-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`) with deterministic checks plus a pluggable grader | Richer multi-dimension evaluation of produced outputs |
 
 ### Graders (5-dimension path)
 
@@ -403,7 +403,7 @@ After the loop exits, present:
 
 Promotion is guarded and mode-aware. When evidence and approval allow it:
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
+node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
 ```
 Promotion stays guarded by evidence, repeatability, and operator approval. It refuses to act while the runtime config is still proposal-only.
 
@@ -482,8 +482,8 @@ STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 
 - **Skill dependency**: Requires `deep-agent-improvement` at `.opencode/skills/deep-agent-improvement/`
 - **Lane**: This command fixes `lane = model-benchmark`. It never mutates a canonical agent file. Use `/deep:start-agent-improvement-loop` for the agent-improvement lane.
-- **Entry point**: `scripts/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
-- **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/scorer/score-model-variant.cjs`.
+- **Entry point**: `scripts/shared/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
+- **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`.
 - **Grader default**: `--grader noop` stays deterministic with no model dispatch. `--grader llm` is the only grader that loads `dispatch-model.cjs`.
 - **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Promotion**: `promote-candidate.cjs` is mode-aware and stays guarded by evidence, repeatability, and operator approval.

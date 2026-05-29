@@ -2,7 +2,7 @@
 name: deep-agent-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.7.0.0
+version: 1.9.0.0
 triggers:
   - deep-agent-improvement
   - agent improvement loop
@@ -224,12 +224,12 @@ Lane A improves a bounded agent `.md` file. Command: `/deep:start-agent-improvem
 ### Mode 2: Proposal and Evaluation
 
 1. Read the charter, boundary file, target profile, and canonical target surface.
-2. Run `scripts/scan-integration.cjs` to discover all surfaces the target agent touches.
+2. Run `scripts/agent-improvement/scan-integration.cjs` to discover all surfaces the target agent touches.
 3. Write exactly one bounded candidate under the packet-local `candidates/` directory.
-4. Run `scripts/score-candidate.cjs` to evaluate the candidate via dynamic-mode 5-dimension scoring (the sole supported path).
-5. Run `scripts/run-benchmark.cjs` to measure produced outputs against the active fixture set.
+4. Run `scripts/agent-improvement/score-candidate.cjs` to evaluate the candidate via dynamic-mode 5-dimension scoring (the sole supported path).
+5. Run `scripts/model-benchmark/run-benchmark.cjs` to measure produced outputs against the active fixture set.
 6. Append score and benchmark results to the packet-local ledger.
-7. Run `scripts/reduce-state.cjs` to refresh the dashboard and experiment registry.
+7. Run `scripts/shared/reduce-state.cjs` to refresh the dashboard and experiment registry.
 
 ### Mode 2A: Stress-Test Failure Paths Before Promotion Claims
 
@@ -254,24 +254,24 @@ Dynamic mode is the only scoring path. Scoring evaluates five dimensions:
 | Output Quality | 0.15 | Output verification items present, no placeholder content |
 | System Fitness | 0.15 | Permission alignment, resource references valid, frontmatter complete |
 
-Profiles are generated on the fly from any agent file via `scripts/generate-profile.cjs`. No static profiles are shipped. Every target is evaluated against its own derived structure and rules.
+Profiles are generated on the fly from any agent file via `scripts/agent-improvement/generate-profile.cjs`. No static profiles are shipped. Every target is evaluated against its own derived structure and rules.
 
 ### Mode 3: Promotion and Recovery
 
 1. Promote only when prompt scoring, benchmark status, repeatability, boundary, and approval gates all pass.
-2. Use `scripts/promote-candidate.cjs` for guarded canonical mutation.
-3. Use `scripts/rollback-candidate.cjs` plus direct comparison evidence when the canonical target must be restored.
-4. Treat mirror drift as downstream packaging work and review it separately with `scripts/check-mirror-drift.cjs`.
+2. Use `scripts/shared/promote-candidate.cjs` for guarded canonical mutation.
+3. Use `scripts/agent-improvement/rollback-candidate.cjs` plus direct comparison evidence when the canonical target must be restored.
+4. Treat mirror drift as downstream packaging work and review it separately with `scripts/agent-improvement/check-mirror-drift.cjs`.
 
 ---
 
 ## 4. LANE B: MODEL-BENCHMARK
 
-Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:start-model-benchmark-loop`. Runtime entry is `scripts/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
+Lane B benchmarks a model or prompt framework instead of mutating an agent file. Command: `/deep:start-model-benchmark-loop`. Runtime entry is `scripts/shared/loop-host.cjs --mode=model-benchmark`. It reuses the three pluggable seams (candidate-source, dispatcher, scorer) and keeps the default agent-improvement path byte-identical when no mode flag is set.
 
-1. **Entry point**: `scripts/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
-2. **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It is loaded only on the model-benchmark path, never in agent-improvement mode.
-3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
+1. **Entry point**: `scripts/shared/loop-host.cjs` resolves the mode. `--mode=agent-improvement` (or no flag) routes to `scripts/agent-improvement/score-candidate.cjs`. `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. An unknown mode warns and falls back to agent-improvement.
+2. **Dispatcher**: `scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher (executor-routing map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It is loaded only on the model-benchmark path, never in agent-improvement mode.
+3. **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported 120/003 five-dimension scorer (deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch. `--grader mock` or `--grader llm` select the stub or real grader.
 4. **Mode-aware records and promotion**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports carry `scoringMethod: pattern|5dim`, so the reducer and downstream consumers can attribute results and apply mode-aware promotion.
 5. **Hardening env gates**: set `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` to redact raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
 
@@ -327,7 +327,7 @@ Every improvement session termination MUST produce both a `stopReason` (why) and
 
 All journal emission is orchestrator-only (ADR-001). The journal (`improvement-journal.jsonl`) is an append-only JSONL file capturing lifecycle events. Separate from the existing `agent-improvement-state.jsonl` which tracks proposal/evaluation data.
 
-**Script**: `scripts/improvement-journal.cjs`
+**Script**: `scripts/shared/improvement-journal.cjs`
 
 Event types: `session_start`, `session_initialized`, `integration_scanned`, `candidate_generated`, `candidate_scored`, `benchmark_completed`, `gate_evaluation`, `legal_stop_evaluated`, `blocked_stop`, `promotion_attempt`, `promotion_result`, `rollback`, `rollback_result`, `trade_off_detected`, `mutation_proposed`, `mutation_outcome`, `session_ended`, `session_end`
 
@@ -337,8 +337,8 @@ The reusable benchmark contract ships with the skill, not with each spec packet:
 
 - Profile: `assets/model-benchmark/benchmark-profiles/default.json`
 - Fixtures: `assets/model-benchmark/benchmark-fixtures/*.json`
-- Materializer: `scripts/materialize-benchmark-fixtures.cjs`
-- Runner: `scripts/run-benchmark.cjs`
+- Materializer: `scripts/shared/materialize-benchmark-fixtures.cjs`
+- Runner: `scripts/model-benchmark/run-benchmark.cjs`
 
 The command workflow first materializes static fixture JSON into packet-local markdown under `{spec_folder}/improvement/benchmark-outputs/{fixture.id}.md`, then runs `run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs`. The runner writes `{spec_folder}/improvement/benchmark-outputs/report.json` with `status:"benchmark-complete"` and appends a `benchmark_run` row to `{spec_folder}/improvement/agent-improvement-state.jsonl`.
 
@@ -354,11 +354,11 @@ Sessions support a single lineage mode today: `new`. Every invocation of the `/d
 
 Operators who want to continue evaluating an agent after a prior session SHOULD archive the prior session folder (e.g. move `improve/` to `improve_archive/{timestamp}/`) and re-invoke the command, which starts a new `new`-mode session. The reducer treats each session independently and does not carry ancestry across sessions.
 
-If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `deep-agent-improvement/scripts/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
+If the long-form lineage feature is implemented later, it will arrive with first-class event emission in `deep_start-agent-improvement-loop_{auto,confirm}.yaml`, reducer ancestry handling in `deep-agent-improvement/scripts/shared/reduce-state.cjs`, and replay fixtures. Until then, treat every session as a standalone evaluation.
 
 ### Mutation Coverage Graph
 
-**Script**: `scripts/mutation-coverage.cjs`
+**Script**: `scripts/shared/mutation-coverage.cjs`
 
 Tracks explored dimensions, tried mutation types per dimension, and exhausted mutation sets using `loop_type: "improvement"` namespace isolation (ADR-002). The orchestrator skips mutation types already in the exhausted log.
 
@@ -395,19 +395,19 @@ Stop-condition counters (`maxConsecutiveTies`, `maxInfraFailuresPerProfile`, `ma
 
 ### Trade-Off Detection
 
-**Script**: `scripts/trade-off-detector.cjs`
+**Script**: `scripts/agent-improvement/trade-off-detector.cjs`
 
 Detects Pareto trade-offs: flags when improvement > +3 in one dimension causes regression < -3 in hard dimensions (structural, integration, systemFitness) or < -5 in soft dimensions (ruleCoherence, outputQuality). Blocks promotion for Pareto-dominated candidates.
 
 ### Parallel Candidate Waves (Optional)
 
-**Script**: `scripts/candidate-lineage.cjs`
+**Script**: `scripts/agent-improvement/candidate-lineage.cjs`
 
 Disabled by default (`parallelWaves.enabled: false` in config, ADR-004). When enabled, spawns 2-3 candidates with different mutation strategies. Activation requires: exploration-breadth score above threshold, 3+ unresolved mutation families, and 2 consecutive tie/plateau iterations.
 
 ### Weight Optimizer (Advisory Only)
 
-**Script**: `scripts/benchmark-stability.cjs`
+**Script**: `scripts/agent-improvement/benchmark-stability.cjs`
 
 Reads historical session data and emits a weight-recommendation report. Recommendations do NOT auto-apply (ADR-005). Requires minimum session count threshold before producing recommendations.
 
@@ -415,12 +415,12 @@ Reads historical session data and emits a weight-recommendation report. Recommen
 
 ### Journal Wiring Contract
 
-Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly. Only the visible YAML workflow or an operator-side wrapper invokes `scripts/improvement-journal.cjs`.
+Journal emission is orchestrator-only. The target agent being evaluated never writes journal rows directly. Only the visible YAML workflow or an operator-side wrapper invokes `scripts/shared/improvement-journal.cjs`.
 
 The CLI contract is:
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
+node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit <eventType> --journal <journal_path> --details '<json>'
 ```
 
 The helper validates event type plus `session_end` or `session_ended` details, and the CLI entrypoint stores boundary context under `details`. Top-level `iteration` and `candidateId` fields are available only through the JS API, not through the CLI wrapper used by the YAML workflows.
@@ -446,7 +446,7 @@ Keep session-end emissions aligned to those helper-owned values until the helper
 
 ### Reducer Consumer Side
 
-The reducer is the consumer for replay artifacts on refresh. Every `scripts/reduce-state.cjs` pass now attempts to read:
+The reducer is the consumer for replay artifacts on refresh. Every `scripts/shared/reduce-state.cjs` pass now attempts to read:
 
 - `improvement-journal.jsonl`
 - `candidate-lineage.json`
@@ -458,7 +458,7 @@ For legal-stop replay, the reducer consumes `details.gateResults` from the lates
 
 ### Journal Replay Consumer
 
-The reducer consumes replay artifacts instead of running a separate orchestrator-only synthesis step. During each refresh pass, `scripts/reduce-state.cjs` reads the following artifacts when present:
+The reducer consumes replay artifacts instead of running a separate orchestrator-only synthesis step. During each refresh pass, `scripts/shared/reduce-state.cjs` reads the following artifacts when present:
 
 - `improvement-journal.jsonl` to summarize last session boundaries, total replayed events, per-event counts, and terminal `stopReason` / `sessionOutcome`
 - `candidate-lineage.json` to summarize lineage depth, total candidate count, and the latest candidate leaf
@@ -524,6 +524,6 @@ Core references: `README.md`, `references/shared/quick_reference.md`, `reference
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop_protocol.md`, `references/shared/quick_reference.md`, `references/model-benchmark/benchmark_operator_guide.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, `references/agent-improvement/mirror_drift_policy.md`, `references/shared/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Scripts: `scripts/benchmark-stability.cjs`, `scripts/candidate-lineage.cjs`, `scripts/check-mirror-drift.cjs`, `scripts/generate-profile.cjs`, `scripts/improvement-journal.cjs`, `scripts/materialize-benchmark-fixtures.cjs`, `scripts/mutation-coverage.cjs`, `scripts/promote-candidate.cjs`, `scripts/reduce-state.cjs`, `scripts/rollback-candidate.cjs`, `scripts/run-benchmark.cjs`, `scripts/scan-integration.cjs`, `scripts/score-candidate.cjs`, `scripts/trade-off-detector.cjs`.
+Scripts: `scripts/agent-improvement/benchmark-stability.cjs`, `scripts/agent-improvement/candidate-lineage.cjs`, `scripts/agent-improvement/check-mirror-drift.cjs`, `scripts/agent-improvement/generate-profile.cjs`, `scripts/shared/improvement-journal.cjs`, `scripts/shared/materialize-benchmark-fixtures.cjs`, `scripts/shared/mutation-coverage.cjs`, `scripts/shared/promote-candidate.cjs`, `scripts/shared/reduce-state.cjs`, `scripts/agent-improvement/rollback-candidate.cjs`, `scripts/model-benchmark/run-benchmark.cjs`, `scripts/agent-improvement/scan-integration.cjs`, `scripts/agent-improvement/score-candidate.cjs`, `scripts/agent-improvement/trade-off-detector.cjs`.
 
 Related skills: `sk-doc` for package-shape and markdown validation, `system-spec-kit` for packet validation, and `sk-prompt` when prompt surfaces need evaluator-backed rewriting.

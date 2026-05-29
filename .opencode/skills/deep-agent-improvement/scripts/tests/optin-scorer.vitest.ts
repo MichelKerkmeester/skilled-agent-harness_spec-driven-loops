@@ -13,10 +13,10 @@ const PROFILE = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improveme
 let work: string;
 
 function materialize(outDir: string) {
-  return spawnSync('node', [path.join(SCRIPTS, 'materialize-benchmark-fixtures.cjs'), '--profile', PROFILE, '--outputs-dir', outDir], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+  return spawnSync('node', [path.join(SCRIPTS, 'shared/materialize-benchmark-fixtures.cjs'), '--profile', PROFILE, '--outputs-dir', outDir], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
 }
 function runBenchmark(outDir: string, reportPath: string, extraArgs: string[]) {
-  return spawnSync('node', [path.join(SCRIPTS, 'run-benchmark.cjs'), '--profile', PROFILE, '--outputs-dir', outDir, '--output', reportPath, ...extraArgs], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
+  return spawnSync('node', [path.join(SCRIPTS, 'model-benchmark/run-benchmark.cjs'), '--profile', PROFILE, '--outputs-dir', outDir, '--output', reportPath, ...extraArgs], { encoding: 'utf8', cwd: WORKSPACE_ROOT });
 }
 
 beforeEach(() => { work = fs.mkdtempSync(path.join(os.tmpdir(), 'optin-scorer-')); });

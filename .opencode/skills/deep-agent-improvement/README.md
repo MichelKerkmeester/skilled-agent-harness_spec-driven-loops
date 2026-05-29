@@ -79,13 +79,13 @@ Expected result: an integration scan, a packet-local candidate under `candidates
 
 ```bash
 # Scan every surface the agent touches
-node .opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs --agent=debug
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs --agent=debug
 
 # Derive a scoring profile from the agent itself
-node .opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs --agent=.opencode/agents/debug.md
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/generate-profile.cjs --agent=.opencode/agents/debug.md
 
 # Score across five dimensions (dynamic mode is the only path)
-node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs --candidate=.opencode/agents/debug.md
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs --candidate=.opencode/agents/debug.md
 ```
 
 Expected result: a JSON artifact with a five-dimension breakdown and a `candidate-acceptable` or `needs-improvement` recommendation.
@@ -261,7 +261,7 @@ Expected output: five-dimension score plus a packet-local candidate, no canonica
 **Quick integration health check**
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs --agent=review
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs --agent=review
 ```
 
 Expected output: mirror sync status, command coverage, and skill references for the review agent.

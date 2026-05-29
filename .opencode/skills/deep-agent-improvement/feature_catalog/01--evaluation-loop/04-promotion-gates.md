@@ -31,7 +31,7 @@ The helper that enforces those rules is stricter than the current dynamic scorer
 | `.opencode/skills/deep-agent-improvement/references/shared/loop_protocol.md` | Workflow reference | Places promotion after score, benchmark, and reduction stages. |
 | `.opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_charter.md` | Runtime policy | Freezes legal-stop gates and approval rules inside the copied runtime control bundle. |
 | `.opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json` | Runtime config | Supplies `proposalOnly`, `promotionEnabled`, and `scoring.thresholdDelta` checks consumed by the helper. |
-| `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Promotion helper | Validates score, benchmark, repeatability, runtime config, manifest target, and approval before copying a candidate into the canonical target. |
+| `.opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Validates score, benchmark, repeatability, runtime config, manifest target, and approval before copying a candidate into the canonical target. |
 
 ### Validation And Tests
 

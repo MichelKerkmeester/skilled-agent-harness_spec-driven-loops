@@ -27,8 +27,8 @@ The rollback helper is deliberately narrow. It does not emit journal rows, re-ru
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
-| `.opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
+| `.opencode/skills/deep-agent-improvement/scripts/agent-improvement/rollback-candidate.cjs` | Rollback helper | Restores the archived backup after validating the runtime config and canonical manifest target. |
+| `.opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs` | Promotion helper | Creates the archived backup that rollback later restores. |
 | `.opencode/skills/deep-agent-improvement/references/shared/rollback_runbook.md` | Runbook | Defines the operator steps around rollback and post-rollback proof. |
 
 ### Validation And Tests

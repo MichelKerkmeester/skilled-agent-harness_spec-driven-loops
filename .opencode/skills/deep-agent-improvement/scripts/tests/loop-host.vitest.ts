@@ -9,7 +9,7 @@ const require = createRequire(import.meta.url);
 
 const loopHost = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/loop-host.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs',
 )) as {
   parseArgs: (argv: string[]) => Record<string, string | boolean>;
   resolveMode: (raw: string | undefined) => string;

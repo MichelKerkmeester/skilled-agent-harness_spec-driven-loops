@@ -42,7 +42,7 @@ This scenario validates that providing a nonexistent candidate file results in a
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| 5D-013 | Missing Candidate File Returns infra_failure | Validate Missing Candidate File Returns infra_failure | `Validate that a missing candidate file returns infra_failure and exit code 1.` | node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs \<br>  --candidate=nonexistent-file.md --dynamic; echo &quot;Exit: $?&quot; | Exit code is 1 (not 0); Output is valid JSON (no stack trace); `status` field equals `"infra_failure"`; `failureModes` array contains `"profile-generation-failure"`; No unhandled exception or stack trace is printed | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | Graceful error output (valid JSON) with `status: "infra_failure"`, `failureModes: ["profile-generation-failure"]`, and exit code 1. No stack trace in output. | If exit code is 0: the script is not validating file existence before scoring<br>If output is not valid JSON or a stack trace appears: add try/catch around the file-read step with proper error classification and JSON error envelope<br>If exit code is 2 instead of 1: review the exit code convention (1 = infra failure, 2 = scoring failure)<br>If `failureModes` is missing or empty: check the error path in the dynamic profile generation pipeline |
+| 5D-013 | Missing Candidate File Returns infra_failure | Validate Missing Candidate File Returns infra_failure | `Validate that a missing candidate file returns infra_failure and exit code 1.` | node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs \<br>  --candidate=nonexistent-file.md --dynamic; echo &quot;Exit: $?&quot; | Exit code is 1 (not 0); Output is valid JSON (no stack trace); `status` field equals `"infra_failure"`; `failureModes` array contains `"profile-generation-failure"`; No unhandled exception or stack trace is printed | `terminal transcript, command output, generated files, and PASS/FAIL verdict` | Graceful error output (valid JSON) with `status: "infra_failure"`, `failureModes: ["profile-generation-failure"]`, and exit code 1. No stack trace in output. | If exit code is 0: the script is not validating file existence before scoring<br>If output is not valid JSON or a stack trace appears: add try/catch around the file-read step with proper error classification and JSON error envelope<br>If exit code is 2 instead of 1: review the exit code convention (1 = infra failure, 2 = scoring failure)<br>If `failureModes` is missing or empty: check the error path in the dynamic profile generation pipeline |
 
 ### Optional Supplemental Checks
 
@@ -72,7 +72,7 @@ Output excerpt:
 | File | Role |
 |---|---|
 | `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement |
-| `../../scripts/score-candidate.cjs` | Implementation or verification anchor referenced by this scenario |
+| `../../scripts/agent-improvement/score-candidate.cjs` | Implementation or verification anchor referenced by this scenario |
 
 ---
 

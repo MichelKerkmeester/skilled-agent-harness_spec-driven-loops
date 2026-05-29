@@ -20,9 +20,9 @@ Formal contract defining the guarded promotion gates that must pass before a pac
 
 Promotion is a narrow, gated operation that moves a packet-local candidate into the canonical target location. The promotion gate contract defines the five required gates that must all pass before mutation is allowed: prompt scoring, benchmark status, repeatability evidence, manifest boundary compliance, and explicit operator approval.
 
-**Promotion script:** `scripts/promote-candidate.cjs`
+**Promotion script:** `scripts/shared/promote-candidate.cjs`
 
-**Rollback script:** `scripts/rollback-candidate.cjs`
+**Rollback script:** `scripts/agent-improvement/rollback-candidate.cjs`
 
 **Policy reference:** `references/shared/promotion_rules.md`
 
@@ -45,7 +45,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 | `systemFitness` | 80 |
 
 **Validation:**
-- Run `scripts/score-candidate.cjs` on the candidate
+- Run `scripts/agent-improvement/score-candidate.cjs` on the candidate
 - Check `score >= 70`
 - Check `recommendation === "candidate-better"` when promotion uses a baseline
 - Verify all 5 dimensions have scores (no NaN or missing values)
@@ -60,7 +60,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 **Requirement:** Benchmark pass with `minimumAggregateScore >= 85`.
 
 **Validation:**
-- Run `scripts/run-benchmark.cjs` with target-specific fixtures
+- Run `scripts/model-benchmark/run-benchmark.cjs` with target-specific fixtures
 - Check `benchmark-outputs/report.json` exists
 - Check `report.status === "benchmark-complete"`
 - Check `report.aggregateScore >= 85`
@@ -77,7 +77,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 **Requirement:** Minimum 3 benchmark runs with score variance <= 5.
 
 **Validation:**
-- Run `scripts/benchmark-stability.cjs` on historical benchmark data
+- Run `scripts/agent-improvement/benchmark-stability.cjs` on historical benchmark data
 - Check `runCount >= 3`
 - Check `scoreVariance <= 5`
 - Verify no regression across runs
@@ -120,7 +120,7 @@ Promotion is a narrow, gated operation that moves a packet-local candidate into 
 ### Step 1: Pre-Promotion Validation
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
   --score={score_json_path} \
@@ -153,7 +153,7 @@ node .opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs \
 ### Step 3: Post-Promotion Verification
 
 **Mirror sync check:**
-- Run `scripts/check-mirror-drift.cjs` to detect mirror divergence
+- Run `scripts/agent-improvement/check-mirror-drift.cjs` to detect mirror divergence
 - Record drift status in journal (separate packaging work)
 
 **Dimensional verification:**
@@ -175,7 +175,7 @@ Rollback is triggered when:
 ### Rollback Execution
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/rollback-candidate.cjs \
   --target={canonical_target_path} \
   --backup={backup_path}
 ```
@@ -269,13 +269,13 @@ node .opencode/skills/deep-agent-improvement/scripts/rollback-candidate.cjs \
 
 || Path | Role |
 |---|---|
-| `scripts/promote-candidate.cjs` | Promotion gate validation and mutation |
+| `scripts/shared/promote-candidate.cjs` | Promotion gate validation and mutation |
 | `scripts/lib/promotion-gates.cjs` | Named weighted, benchmark, and per-dimension gate values |
-| `scripts/rollback-candidate.cjs` | Rollback execution and verification |
-| `scripts/check-mirror-drift.cjs` | Post-promotion mirror sync check |
-| `scripts/score-candidate.cjs` | Prompt scoring gate |
-| `scripts/run-benchmark.cjs` | Benchmark execution gate |
-| `scripts/benchmark-stability.cjs` | Repeatability analysis |
+| `scripts/agent-improvement/rollback-candidate.cjs` | Rollback execution and verification |
+| `scripts/agent-improvement/check-mirror-drift.cjs` | Post-promotion mirror sync check |
+| `scripts/agent-improvement/score-candidate.cjs` | Prompt scoring gate |
+| `scripts/model-benchmark/run-benchmark.cjs` | Benchmark execution gate |
+| `scripts/agent-improvement/benchmark-stability.cjs` | Repeatability analysis |
 | `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
 | `references/shared/promotion_rules.md` | Promotion policy documentation |
 | `feature_catalog/01--evaluation-loop/04-promotion-gates.md` | Feature catalog entry |

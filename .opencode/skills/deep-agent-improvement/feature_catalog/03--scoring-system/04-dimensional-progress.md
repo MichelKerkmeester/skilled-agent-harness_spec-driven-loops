@@ -27,10 +27,10 @@ The reducer accepts more than one "good enough" label. It counts both `candidate
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
-| `.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
-| `.opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
-| `.opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
+| `.opencode/skills/deep-agent-improvement/scripts/shared/reduce-state.cjs` | Reducer | Rebuilds the registry, dashboard, stop status, and dimensional trend summary from the ledger. |
+| `.opencode/skills/deep-agent-improvement/scripts/shared/mutation-coverage.cjs` | Coverage tracker | Records mutation attempts and per-dimension trajectory points consumed by reducer-side summaries. |
+| `.opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs` | Journal helper | Stores typed lifecycle events, stop reasons, and session outcomes for replay consumers. |
+| `.opencode/skills/deep-agent-improvement/scripts/agent-improvement/candidate-lineage.cjs` | Lineage helper | Tracks parent-child candidate relationships and the active lineage leaf. |
 
 ### Validation And Tests
 

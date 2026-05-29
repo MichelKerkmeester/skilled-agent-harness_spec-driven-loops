@@ -107,5 +107,5 @@ The reducer consumes these configured stop rules and marks the runtime `shouldSt
 
 - `../model-benchmark/evaluator_contract.md`
 - `rollback_runbook.md`
-- `../scripts/reduce-state.cjs`
-- `../scripts/promote-candidate.cjs`
+- `../scripts/shared/reduce-state.cjs`
+- `../scripts/shared/promote-candidate.cjs`

@@ -15,11 +15,11 @@ const {
   WEIGHTED_SCORE_GATE,
   evaluateMirrorSyncGate,
   evaluatePromotionGates,
-} = require('./lib/promotion-gates.cjs');
+} = require('../lib/promotion-gates.cjs');
 const {
   inferAgentNameFromPath,
   verifyMirrorSync,
-} = require('./lib/mirror-sync-verify.cjs');
+} = require('../lib/mirror-sync-verify.cjs');
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. HELPERS

@@ -319,7 +319,7 @@ Read(".opencode/skills/deep-agent-improvement/SKILL.md")
 ### Step 2: Run Integration Scan
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
 ```
 
 Review the integration report: mirror sync status, command coverage, skill references.
@@ -327,7 +327,7 @@ Review the integration report: mirror sync status, command coverage, skill refer
 ### Step 3: Generate Profile
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
 ```
 
 ### Step 4: Initialize Runtime
@@ -366,7 +366,7 @@ At each journal boundary, the orchestrator MUST emit events via `improvement-jou
 
 ```bash
 # At session start:
-node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
 
 # At iteration boundaries:
 # candidate_generated after the candidate is written
@@ -375,7 +375,7 @@ node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --e
 # The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
 
 # At session end:
-# node .opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+# node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 ```
 
 ### Step 6C: Stop-Reason Reporting
@@ -479,7 +479,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
 - **Runtime parity**: Agent exists across 4 runtimes (.opencode, .claude, .gemini, .codex). Scanner checks all (`.gemini/agents/` path corrected in 060/002).
-- **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
+- **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-agent-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.
 - **CRITIC PASS verbatim emission** (post-060/006): `@deep-agent-improvement` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
@@ -492,9 +492,9 @@ This command is the **Lane A** (agent-improvement) entry point. The underlying `
 
 **Lane B now has its own command: `/deep:start-model-benchmark-loop`.** When this command resolves `lane=model-benchmark` (via `--lane=model-benchmark`, a `--profile` / benchmark-profile arg, or the Q(lane) answer), it auto-routes to that dedicated command and loads `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml` instead of the agent-improvement YAMLs. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` automatically and this command runs exactly as before.
 
-- **Entry point**: `scripts/loop-host.cjs` resolves `--mode`. Default or `--mode=agent-improvement` routes to `scripts/score-candidate.cjs` (this command's path, unchanged). `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. An unknown mode warns to stderr and falls back to agent-improvement.
-- **Dispatcher**: `scripts/dispatch-model.cjs` is the model-agnostic dispatcher (executor routing across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It loads only on the model-benchmark path, never in agent-improvement mode.
-- **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the byte-identical heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs` (the ported 120/003 five-dimension scorer: deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch; `--grader mock` or `--grader llm` select the stub or real grader.
+- **Entry point**: `scripts/shared/loop-host.cjs` resolves `--mode`. Default or `--mode=agent-improvement` routes to `scripts/agent-improvement/score-candidate.cjs` (this command's path, unchanged). `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. An unknown mode warns to stderr and falls back to agent-improvement.
+- **Dispatcher**: `scripts/model-benchmark/dispatch-model.cjs` is the model-agnostic dispatcher (executor routing across cli-opencode, cli-claude-code, cli-codex, cli-gemini, cli-devin). It loads only on the model-benchmark path, never in agent-improvement mode.
+- **Scorer selection**: `run-benchmark.cjs --scorer pattern` (default) uses the byte-identical heading/pattern matcher. `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs` (the ported 120/003 five-dimension scorer: deterministic checks plus a pluggable grader). `--grader noop` (default) stays deterministic with no model dispatch; `--grader mock` or `--grader llm` select the stub or real grader.
 - **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`. Benchmark reports and `benchmark_run` records carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Hardening env gates**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default permissive for backward compatibility.
 

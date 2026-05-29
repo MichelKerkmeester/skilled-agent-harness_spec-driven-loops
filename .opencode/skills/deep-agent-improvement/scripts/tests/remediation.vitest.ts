@@ -11,14 +11,14 @@ const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
 const SCRIPTS = path.join(WORKSPACE_ROOT, '.opencode/skills/deep-agent-improvement/scripts');
 const require = createRequire(import.meta.url);
 
-const dispatchModel = require(path.join(SCRIPTS, 'dispatch-model.cjs')) as {
+const dispatchModel = require(path.join(SCRIPTS, 'model-benchmark/dispatch-model.cjs')) as {
   dispatchReal: (opts: Record<string, unknown>) => { ok: boolean };
   KNOWN_EXECUTORS: Set<string>;
 };
-const scorer = require(path.join(SCRIPTS, 'scorer/score-model-variant.cjs')) as {
+const scorer = require(path.join(SCRIPTS, 'model-benchmark/scorer/score-model-variant.cjs')) as {
   score: (opts: Record<string, unknown>) => Promise<{ dimensions: Record<string, number>; weightedScore: number }>;
 };
-const harness = require(path.join(SCRIPTS, 'scorer/grader/harness.cjs')) as {
+const harness = require(path.join(SCRIPTS, 'model-benchmark/scorer/grader/harness.cjs')) as {
   clampScore01: (v: unknown) => number;
 };
 
@@ -66,7 +66,7 @@ describe('F-P1-2: cwd-check prefix boundary', () => {
     const opath = path.join(dir, 'o.md');
     fs.writeFileSync(fpath, JSON.stringify(fixture));
     fs.writeFileSync(opath, outputText);
-    const res = spawnSync('node', [path.join(SCRIPTS, 'scorer/deterministic/cwd-check.cjs'), fpath, opath], { encoding: 'utf8' });
+    const res = spawnSync('node', [path.join(SCRIPTS, 'model-benchmark/scorer/deterministic/cwd-check.cjs'), fpath, opath], { encoding: 'utf8' });
     return JSON.parse(res.stdout.trim());
   }
 

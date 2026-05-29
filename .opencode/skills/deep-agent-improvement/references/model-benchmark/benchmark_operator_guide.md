@@ -33,21 +33,21 @@ The copied runtime templates use the `improvement_*` asset names, but the packet
 ## 2. RUNNER COMMAND
 
 ```text
-node .opencode/skills/deep-agent-improvement/scripts/materialize-benchmark-fixtures.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/shared/materialize-benchmark-fixtures.cjs \
   --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 
-node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/model-benchmark/run-benchmark.cjs \
   --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs
 ```
 
 ### Scorer Selection
 
-`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/scorer/score-model-variant.cjs`), and `--grader noop|mock|llm` to pick the D4 grader (default `noop`, deterministic). The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
+`run-benchmark.cjs` defaults to `--scorer pattern` (the byte-identical heading and pattern matcher). Add `--scorer 5dim` to route the materialized outputs through the five-dimension scorer (`scripts/model-benchmark/scorer/score-model-variant.cjs`), and `--grader noop|mock|llm` to pick the D4 grader (default `noop`, deterministic). The report and `benchmark_run` record carry `scoringMethod: pattern` or `scoringMethod: 5dim`.
 
 ```text
-node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/model-benchmark/run-benchmark.cjs \
   --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json \
   --outputs-dir {spec_folder}/improvement/benchmark-outputs \
   --scorer 5dim --grader noop
@@ -58,7 +58,7 @@ node .opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs \
 When running with an integration report, add the `--integration-report` flag:
 
 ```text
-node scripts/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
+node scripts/model-benchmark/run-benchmark.cjs --profile .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir=... --integration-report=integration-report.json
 ```
 
 The integration report adds `integrationScore` and `integrationDetails` to the benchmark output:

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
+  "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
+  "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [
+      "scripts-physical-reorg",
+      "deep-agent-improvement scripts reorg",
+      "scripts lane subdirs"
+    ],
+    "key_topics": [
+      "scripts-physical-reorg",
+      "deep-agent-improvement",
+      "lane",
+      "agent-improvement",
+      "model-benchmark",
+      "shared",
+      "scorer",
+      "dispatch-model",
+      "loop-host",
+      "tst-1"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md","checklist.md","decision-record.md"],
+    "entities": [],
+    "causal_summary": "Move the 16 deep-agent-improvement scripts plus the scorer subtree into agent-improvement, model-benchmark, and shared lane subdirs, repair every __dirname-relative path, and rewrite all cross-references while keeping the agent-improvement default path byte-identical (TST-1).",
+    "created_at": "2026-05-29T08:26:20Z",
+    "last_save_at": "2026-05-29T08:26:20Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md"]
+  }
+}

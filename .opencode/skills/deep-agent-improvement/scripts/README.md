@@ -26,8 +26,9 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files (direct) | 16 |
-| Subtrees | `scorer/` (ported 120/003 5-dim scorer, det-checks, grader, cache) |
+| Code files (lane-separated) | 16 |
+| Lane subtrees | `agent-improvement/` (8), `model-benchmark/` (2 + `scorer/`), `shared/` (6) |
+| Subtrees | `model-benchmark/scorer/` (ported 120/003 5-dim scorer, det-checks, grader, cache); `lib/` (shared CJS modules, stays at root) |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -67,22 +68,25 @@ Run individual scripts from the repository root with the documented arguments.
 
 | Path | Purpose |
 |---|---|
-| `benchmark-stability.cjs` | CJS source file in this folder. |
-| `candidate-lineage.cjs` | CJS source file in this folder. |
-| `check-mirror-drift.cjs` | CJS source file in this folder. |
-| `generate-profile.cjs` | CJS source file in this folder. |
-| `improvement-journal.cjs` | CJS source file in this folder. |
-| `materialize-benchmark-fixtures.cjs` | CJS source file in this folder. |
-| `mutation-coverage.cjs` | CJS source file in this folder. |
-| `promote-candidate.cjs` | CJS source file in this folder. |
-| `reduce-state.cjs` | CJS source file in this folder. |
-| `rollback-candidate.cjs` | CJS source file in this folder. |
-| `run-benchmark.cjs` | Fixture/integration scorer. `--scorer pattern` (default) or `5dim` (121/005 opt-in via `scorer/`). |
-| `scan-integration.cjs` | CJS source file in this folder. |
-| `loop-host.cjs` | Mode-switching entry point (agent-improvement vs model-benchmark), 121/003. |
-| `dispatch-model.cjs` | Model-agnostic CLI dispatcher for model-benchmark mode, 121/003. |
-| `scorer/` | Ported 120/003 five-dimension scorer: `score-model-variant.cjs`, `deterministic/`, `grader/`, `lib/cache.cjs` (runtime `cache/` git-ignored). |
-| Additional files | `trade-off-detector.cjs`, `vitest.config.mjs`, `tests/` (vitest suites incl. remediation + opt-in-scorer) |
+| `agent-improvement/benchmark-stability.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/candidate-lineage.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/check-mirror-drift.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/generate-profile.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/rollback-candidate.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/scan-integration.cjs` | Lane A: agent-improvement source file. |
+| `agent-improvement/score-candidate.cjs` | Lane A: dynamic-mode 5-dimension candidate scorer. |
+| `agent-improvement/trade-off-detector.cjs` | Lane A: agent-improvement source file. |
+| `model-benchmark/run-benchmark.cjs` | Lane B: fixture/integration scorer. `--scorer pattern` (default) or `5dim` (121/005 opt-in via `scorer/`). |
+| `model-benchmark/dispatch-model.cjs` | Lane B: model-agnostic CLI dispatcher for model-benchmark mode, 121/003. |
+| `model-benchmark/scorer/` | Lane B: ported 120/003 five-dimension scorer: `score-model-variant.cjs`, `deterministic/`, `grader/`, `lib/cache.cjs` (runtime `cache/` git-ignored). |
+| `shared/loop-host.cjs` | Shared: mode-switching entry point (agent-improvement vs model-benchmark), 121/003. Resolves lane paths at spawn time. |
+| `shared/improvement-journal.cjs` | Shared: source file used by both lanes. |
+| `shared/materialize-benchmark-fixtures.cjs` | Shared: source file used by both lanes. |
+| `shared/mutation-coverage.cjs` | Shared: source file used by both lanes. |
+| `shared/promote-candidate.cjs` | Shared: guarded canonical mutation. |
+| `shared/reduce-state.cjs` | Shared: dashboard + experiment registry reducer. |
+| `lib/` | Stays at root: shared CJS modules (`typed-errors.cjs`, `promotion-gates.cjs`, `mirror-sync-verify.cjs`). |
+| Additional files | `vitest.config.mjs`, `tests/` (vitest suites incl. remediation + opt-in-scorer) |
 
 ---
 

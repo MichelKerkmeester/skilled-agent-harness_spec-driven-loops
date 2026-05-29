@@ -27,9 +27,9 @@ Two environment gates harden the five-dimension scorer, and both default to the 
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs` | Benchmark runner | Stamps `mode: model-benchmark` and `scoringMethod` on benchmark reports and `benchmark_run` records. |
-| `.opencode/skills/deep-agent-improvement/scripts/scorer/score-model-variant.cjs` | 5-dim scorer | Honors `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution. |
-| `.opencode/skills/deep-agent-improvement/scripts/scorer/grader/harness.cjs` | Grader | Honors `DEEP_AGENT_GRADER_CACHE_RAW=0` by redacting raw grader output before it is written to the on-disk cache (`scorer/lib/cache.cjs` stores whatever the harness passes). |
+| `.opencode/skills/deep-agent-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Stamps `mode: model-benchmark` and `scoringMethod` on benchmark reports and `benchmark_run` records. |
+| `.opencode/skills/deep-agent-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs` | 5-dim scorer | Honors `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` to refuse criteria-driven shell execution. |
+| `.opencode/skills/deep-agent-improvement/scripts/model-benchmark/scorer/grader/harness.cjs` | Grader | Honors `DEEP_AGENT_GRADER_CACHE_RAW=0` by redacting raw grader output before it is written to the on-disk cache (`scorer/lib/cache.cjs` stores whatever the harness passes). |
 
 ### Validation And Tests
 

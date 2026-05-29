@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 
 const stability = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/benchmark-stability.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/agent-improvement/benchmark-stability.cjs',
 )) as {
   MIN_REPLAY_COUNT_DEFAULT: number;
   DEFAULT_REPLAY_COUNT: number;

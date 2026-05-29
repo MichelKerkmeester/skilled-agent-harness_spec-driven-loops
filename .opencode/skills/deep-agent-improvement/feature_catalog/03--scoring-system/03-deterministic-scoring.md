@@ -27,8 +27,8 @@ This feature covers the JSON outputs that later gates, dashboards, and manual de
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
-| `.opencode/skills/deep-agent-improvement/scripts/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
+| `.opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs` | Scorer | Emits the current dynamic score payload and recommendation labels. |
+| `.opencode/skills/deep-agent-improvement/scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner | Scores fixture outputs and optional integration-report data against a loaded profile. |
 | `.opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md` | Contract reference | Documents the scorer output schema, benchmark schema, and recommendation threshold. |
 | `.opencode/skills/deep-agent-improvement/references/model-benchmark/benchmark_operator_guide.md` | Operator reference | Defines the benchmark command shape, repeatability rule, and integration-benchmark fields. |
 

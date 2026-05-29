@@ -15,7 +15,7 @@ const require = createRequire(import.meta.url);
 
 const lineage = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/agent-improvement/candidate-lineage.cjs',
 )) as {
   createLineageGraph: () => object;
   computeCandidateContentHash: (content: string) => string;

@@ -95,7 +95,7 @@ grep -Ec 'promoted|stopReason":"converged"' /tmp/cp-044-B-combined.txt | tee /tm
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs` | Baseline/current score comparison |
+| `.opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs` | Baseline/current score comparison |
 | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Workflow score invocation |
 | `.opencode/skills/deep-agent-improvement/SKILL.md` | Improvement gate contract |
 

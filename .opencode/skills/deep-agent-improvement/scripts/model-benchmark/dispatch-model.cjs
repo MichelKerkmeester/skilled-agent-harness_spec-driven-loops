@@ -27,15 +27,20 @@ const path = require('path');
 const crypto = require('crypto');
 const { spawnSync, execSync } = require('child_process');
 
+// 121/013: this file now lives in scripts/model-benchmark/, one level deeper
+// than the original scripts/ root. SCRIPTS_ROOT is __dirname (model-benchmark/),
+// so every path that reaches the skill root needs an extra '..' versus the
+// pre-move scripts/-root depth. state/ and assets/ live at the skill root
+// (scripts/../.. from here), NOT at scripts/.. .
 const SCRIPTS_ROOT = __dirname;
-const STATE_DIR = path.join(SCRIPTS_ROOT, '..', 'state');
+const STATE_DIR = path.join(SCRIPTS_ROOT, '..', '..', 'state');
 const PAUSE_SENTINEL = path.join(STATE_DIR, '.benchmark-pause');
 
 function loadConfig() {
   const explicit = process.env.DEEP_AGENT_IMPROVEMENT_CONFIG;
   const candidates = [
     explicit,
-    path.join(SCRIPTS_ROOT, '..', 'assets', 'agent-improvement', 'improvement_config.json'),
+    path.join(SCRIPTS_ROOT, '..', '..', 'assets', 'agent-improvement', 'improvement_config.json'),
   ].filter(Boolean);
   for (const file of candidates) {
     try {
@@ -97,7 +102,7 @@ function repoRoot() {
   try {
     return execSync('git rev-parse --show-toplevel', { encoding: 'utf8' }).trim();
   } catch (_) {
-    return path.resolve(SCRIPTS_ROOT, '..', '..', '..', '..');
+    return path.resolve(SCRIPTS_ROOT, '..', '..', '..', '..', '..');
   }
 }
 

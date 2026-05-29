@@ -89,9 +89,9 @@
       ".opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md",
       ".opencode/skills/deep-agent-improvement/references/shared/promotion_rules.md",
       ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_strategy.md",
-      ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs",
+      ".opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs",
       ".opencode/skills/deep-agent-improvement/assets/agent-improvement/improvement_config.json",
       ".claude/agents/deep-agent-improvement.md",
       ".opencode/agents/deep-agent-improvement.md"
@@ -130,19 +130,19 @@
       {
         "name": "scan-integration",
         "kind": "script",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/scan-integration.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs",
         "source": "derived"
       },
       {
         "name": "score-candidate",
         "kind": "script",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs",
         "source": "derived"
       },
       {
         "name": "promote-candidate",
         "kind": "script",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
+        "path": ".opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs",
         "source": "derived"
       },
       {

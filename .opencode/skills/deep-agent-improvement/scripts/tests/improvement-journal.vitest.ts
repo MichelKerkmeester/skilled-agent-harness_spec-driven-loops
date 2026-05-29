@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const journal = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/improvement-journal.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs',
 )) as {
   STOP_REASONS: Readonly<Record<string, string>>;
   SESSION_OUTCOMES: Readonly<Record<string, string>>;

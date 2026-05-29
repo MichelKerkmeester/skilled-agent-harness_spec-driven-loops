@@ -30,6 +30,38 @@ const { spawnSync } = require('child_process');
 const SCRIPTS_ROOT = __dirname;
 const VALID_MODES = new Set(['agent-improvement', 'model-benchmark']);
 
+// 121/013 lane separation: planInvocation() returns BARE script names (e.g.
+// 'score-candidate.cjs') to keep the TST-1 backward-compat identity plan
+// byte-identical. The real on-disk lane lives in sibling lane dirs relative to
+// this file (now scripts/shared/). resolveScriptPath maps a bare name to its
+// lane path at SPAWN time so the plan output never carries lane segments.
+const LANE_A = new Set([
+  'score-candidate.cjs',
+  'generate-profile.cjs',
+  'rollback-candidate.cjs',
+  'candidate-lineage.cjs',
+  'scan-integration.cjs',
+  'check-mirror-drift.cjs',
+  'trade-off-detector.cjs',
+  'benchmark-stability.cjs',
+]);
+const LANE_MODEL_BENCHMARK = new Set([
+  'run-benchmark.cjs',
+  'dispatch-model.cjs',
+]);
+
+function resolveScriptPath(scriptName) {
+  if (LANE_A.has(scriptName)) {
+    return path.join(SCRIPTS_ROOT, '..', 'agent-improvement', scriptName);
+  }
+  if (LANE_MODEL_BENCHMARK.has(scriptName)) {
+    return path.join(SCRIPTS_ROOT, '..', 'model-benchmark', scriptName);
+  }
+  // Other shared scripts (materialize-benchmark-fixtures, promote-candidate,
+  // reduce-state, improvement-journal, mutation-coverage) live alongside this file.
+  return path.join(SCRIPTS_ROOT, scriptName);
+}
+
 function parseArgs(argv) {
   const args = {};
   for (const entry of argv) {
@@ -93,7 +125,7 @@ function planInvocation(mode, args) {
 }
 
 function runNode(scriptName, scriptArgs) {
-  const scriptPath = path.join(SCRIPTS_ROOT, scriptName);
+  const scriptPath = resolveScriptPath(scriptName);
   const res = spawnSync('node', [scriptPath, ...scriptArgs], {
     stdio: 'inherit',
     encoding: 'utf8',
@@ -124,4 +156,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { parseArgs, resolveMode, planInvocation, VALID_MODES };
+module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES };

@@ -9,7 +9,7 @@ const TEST_DIR = path.dirname(fileURLToPath(import.meta.url));
 const WORKSPACE_ROOT = path.resolve(TEST_DIR, '../../../../../');
 const SCORE_SCRIPT = path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs',
 );
 
 let tmpDir: string;

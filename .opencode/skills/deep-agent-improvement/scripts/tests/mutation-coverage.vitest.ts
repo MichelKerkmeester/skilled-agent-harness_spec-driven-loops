@@ -11,7 +11,7 @@ const require = createRequire(import.meta.url);
 
 const coverage = require(path.join(
   WORKSPACE_ROOT,
-  '.opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs',
+  '.opencode/skills/deep-agent-improvement/scripts/shared/mutation-coverage.cjs',
 )) as {
   LOOP_TYPE: string;
   MIN_TRAJECTORY_POINTS: number;

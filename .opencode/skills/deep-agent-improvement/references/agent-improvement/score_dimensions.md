@@ -134,7 +134,7 @@ weightedScore = (
 
 ## 4. DYNAMIC PROFILING
 
-**Profile generation:** `scripts/generate-profile.cjs`
+**Profile generation:** `scripts/agent-improvement/generate-profile.cjs`
 
 **Process:**
 1. Parse agent frontmatter (name, description, triggers)
@@ -221,8 +221,8 @@ weightedScore = (
 
 || Path | Role |
 |---|---|
-| `scripts/score-candidate.cjs` | Main scoring implementation |
-| `scripts/generate-profile.cjs` | Dynamic profile generation |
-| `scripts/scan-integration.cjs` | Integration surface discovery |
+| `scripts/agent-improvement/score-candidate.cjs` | Main scoring implementation |
+| `scripts/agent-improvement/generate-profile.cjs` | Dynamic profile generation |
+| `scripts/agent-improvement/scan-integration.cjs` | Integration surface discovery |
 | `references/model-benchmark/evaluator_contract.md` | Evaluator policy contract |
 | `feature_catalog/03--scoring-system/01-five-dimension-rubric.md` | Feature catalog entry |

@@ -285,7 +285,7 @@ Where `normalizedBody64` = whitespace-collapsed, lowercased, first 64 characters
 
 ### Candidate Content Hash Dedup
 
-Candidate proposal storage additionally uses `scripts/candidate-lineage.cjs` to compute:
+Candidate proposal storage additionally uses `scripts/agent-improvement/candidate-lineage.cjs` to compute:
 
 ```javascript
 contentHash = sha256(normalize(stripFrontmatterAndRubricMetadata(candidateContent)))
@@ -359,10 +359,10 @@ The `@deep-agent-improvement` subagent must:
 
 ## 7. CANDIDATE SCORING INTEGRATION
 
-After generation, the candidate is scored via `scripts/score-candidate.cjs`:
+After generation, the candidate is scored via `scripts/agent-improvement/score-candidate.cjs`:
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs \
+node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/score-candidate.cjs \
   --candidate={spec_folder}/improvement/candidates/{candidate_id}.md \
   --target={canonical_target_path} \
   --manifest=assets/agent-improvement/target_manifest.jsonc
@@ -381,9 +381,9 @@ node .opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs \
 
 || Path | Role |
 |---|---|
-| `scripts/mutation-coverage.cjs` | Mutation coverage tracking and dedup |
-| `scripts/candidate-lineage.cjs` | Candidate lineage graph management |
-| `scripts/score-candidate.cjs` | Candidate scoring |
+| `scripts/shared/mutation-coverage.cjs` | Mutation coverage tracking and dedup |
+| `scripts/agent-improvement/candidate-lineage.cjs` | Candidate lineage graph management |
+| `scripts/agent-improvement/score-candidate.cjs` | Candidate scoring |
 | `assets/agent-improvement/improvement_charter.md` | Charter template (read during generation) |
 | `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
 | `feature_catalog/01--evaluation-loop/02-candidate-generation.md` | Feature catalog entry |

@@ -272,7 +272,7 @@ Routes loop-host between the agent-improvement scorer and the model-benchmark ma
 
 #### Current Reality
 
-`scripts/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/score-candidate.cjs` unchanged, while `--mode=model-benchmark` runs `scripts/materialize-benchmark-fixtures.cjs` then `scripts/run-benchmark.cjs`. `VALID_MODES` is a closed two-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
+`scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged, while `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. `VALID_MODES` is a closed two-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
 
 #### Source Files
 
@@ -288,7 +288,7 @@ Model-agnostic dispatcher that routes prompts across executor CLIs only on the m
 
 #### Current Reality
 
-`scripts/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, and cli-devin, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
+`scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, and cli-devin, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
 
 #### Source Files
 
@@ -304,7 +304,7 @@ Selects the pattern matcher by default or the opt-in five-dimension scorer for m
 
 #### Current Reality
 
-`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
+`run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
 
 #### Source Files
 

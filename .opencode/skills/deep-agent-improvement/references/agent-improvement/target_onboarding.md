@@ -45,7 +45,7 @@ Only add a target when all of the following are true:
 2. Run `generate-profile.cjs` to derive a scoring profile from the agent's own structure and rules:
 
    ```text
-   node scripts/generate-profile.cjs --agent=.opencode/agents/{name}.md
+   node scripts/agent-improvement/generate-profile.cjs --agent=.opencode/agents/{name}.md
    ```
 
 3. Run `score-candidate.cjs` against the target for a dynamic-mode 5-dimension baseline
