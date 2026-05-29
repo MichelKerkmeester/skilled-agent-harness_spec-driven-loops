@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/004-launcher-supervision",
+  "description": "Feature Specification: Add launcher supervision for the hf model server",
+  "keywords": [
+    "feature",
+    "specification",
+    "add",
+    "launcher",
+    "supervision",
+    "model",
+    "server"
+  ],
+  "lastUpdated": "2026-05-29T05:07:41.471Z",
+  "specId": "004",
+  "folderSlug": "launcher-supervision",
+  "parentChain": [
+    "system-spec-kit",
+    "029-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

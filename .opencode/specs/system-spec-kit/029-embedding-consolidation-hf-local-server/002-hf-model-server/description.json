@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/002-hf-model-server",
+  "description": "Feature Specification: Build hf-model-server.cjs local HTTP model server",
+  "keywords": [
+    "feature",
+    "specification",
+    "build",
+    "hf-model-server",
+    "cjs",
+    "local",
+    "http",
+    "model",
+    "server"
+  ],
+  "lastUpdated": "2026-05-29T05:07:40.987Z",
+  "specId": "002",
+  "folderSlug": "hf-model-server",
+  "parentChain": [
+    "system-spec-kit",
+    "029-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

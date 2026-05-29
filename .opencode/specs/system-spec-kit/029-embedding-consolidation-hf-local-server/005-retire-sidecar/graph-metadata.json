@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/029-embedding-consolidation-hf-local-server/005-retire-sidecar",
+  "spec_folder": "system-spec-kit/029-embedding-consolidation-hf-local-server/005-retire-sidecar",
+  "parent_id": "system-spec-kit/029-embedding-consolidation-hf-local-server",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "retire sidecar",
+      "SPECKIT_EMBEDDER_EXECUTION no-op",
+      "SidecarClient removal",
+      "retire sidecar plan",
+      "retire sidecar implementation plan",
+      "retire sidecar tasks",
+      "sidecar retirement and router collapse spec implementation summary"
+    ],
+    "key_topics": [
+      "retire",
+      "sidecar",
+      "no-op",
+      "sidecarclient",
+      "removal",
+      "plan",
+      "implementation",
+      "tasks",
+      "retirement",
+      "router",
+      "collapse",
+      "spec"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "mcp_server/lib/embedders/sidecar-client.ts",
+      "mcp_server/lib/embedders/sidecar-worker.ts",
+      "mcp_server/lib/embedders/sidecar-client.testables.ts",
+      "mcp_server/lib/embedders/execution-router.testables.ts"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-client.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/sidecar-client.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-worker.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/sidecar-worker.ts",
+        "source": "derived"
+      },
+      {
+        "name": "sidecar-client.testables.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/sidecar-client.testables.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.testables.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.testables.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Once",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Dead",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Dead",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Embedder",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 5 of 6** of the embedding-consolidation and hf-local-server decomposition: Delete the hf-local sidecar apparatus and collapse the execution router so hf-local flows through the direct factory-backed adapter like other providers, with one-release env deprecation shims.",
+    "created_at": "2026-05-29T05:06:24.645Z",
+    "last_save_at": "2026-05-29T05:06:53.476Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ]
+  }
+}

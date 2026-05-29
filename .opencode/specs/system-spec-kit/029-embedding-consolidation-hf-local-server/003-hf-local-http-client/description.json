@@ -1,0 +1,22 @@
+{
+  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "description": "Feature Specification: Rewrite hf-local as an HTTP model-server client",
+  "keywords": [
+    "feature",
+    "specification",
+    "rewrite",
+    "hf-local",
+    "http",
+    "model-server",
+    "client"
+  ],
+  "lastUpdated": "2026-05-29T05:07:41.239Z",
+  "specId": "003",
+  "folderSlug": "hf-local-http-client",
+  "parentChain": [
+    "system-spec-kit",
+    "029-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

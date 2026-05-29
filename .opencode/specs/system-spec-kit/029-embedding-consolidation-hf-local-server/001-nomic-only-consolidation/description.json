@@ -1,0 +1,23 @@
+{
+  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+  "description": "Feature Specification: Consolidate local embedding models to nomic only",
+  "keywords": [
+    "feature",
+    "specification",
+    "consolidate",
+    "local",
+    "embedding",
+    "models",
+    "nomic",
+    "only"
+  ],
+  "lastUpdated": "2026-05-29T05:07:40.738Z",
+  "specId": "001",
+  "folderSlug": "nomic-only-consolidation",
+  "parentChain": [
+    "system-spec-kit",
+    "029-embedding-consolidation-hf-local-server"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,21 @@
+{
+  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server",
+  "description": "Feature Specification: Embedding consolidation and hf-local model server",
+  "keywords": [
+    "feature",
+    "specification",
+    "embedding",
+    "consolidation",
+    "hf-local",
+    "model",
+    "server"
+  ],
+  "lastUpdated": "2026-05-29T05:07:32.709Z",
+  "specId": "029",
+  "folderSlug": "embedding-consolidation-hf-local-server",
+  "parentChain": [
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
