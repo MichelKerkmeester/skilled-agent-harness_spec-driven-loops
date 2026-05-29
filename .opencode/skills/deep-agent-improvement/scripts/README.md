@@ -1,129 +1,162 @@
 ---
-title: "deep agent improvement scripts: Code README"
-description: "Code-facing README for .opencode/skills/deep-agent-improvement/scripts."
+title: "deep-agent-improvement Scripts: Lane Runtime"
+description: "CLI scripts for the two deep-agent-improvement lanes plus their shared router, helpers, and tests."
 trigger_phrases:
   - "deep-agent-improvement scripts"
-  - "code README"
+  - "agent-improvement lane scripts"
+  - "model-benchmark lane scripts"
 ---
 
-# deep agent improvement scripts
-
-Operator and maintenance scripts for this skill.
+# deep-agent-improvement Scripts: Lane Runtime
 
 ---
 
 ## 1. OVERVIEW
 
-### Purpose
+`scripts/` holds the CLI scripts for the deep-agent-improvement skill. The scripts split into two lanes plus a shared layer. Lane A (`agent-improvement/`) improves an agent file. Lane B (`model-benchmark/`) benchmarks a model or prompt framework. `shared/` serves both lanes, and `lib/` provides CommonJS helpers consumed by the lane scripts.
 
-This README documents the code-bearing folder `.opencode/skills/deep-agent-improvement/scripts` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+Current state:
 
-### Usage
-
-Use this file to identify the folder boundary, the likely verification path, and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
-
-### Key Statistics
-
-| Metric | Value |
-|---|---:|
-| Code files (lane-separated) | 16 |
-| Lane subtrees | `agent-improvement/` (8), `model-benchmark/` (2 + `scorer/`), `shared/` (6) |
-| Subtrees | `model-benchmark/scorer/` (ported 120/003 5-dim scorer, det-checks, grader, cache); `lib/` (shared CJS modules, stays at root) |
-| README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+- `shared/loop-host.cjs` is the router. It switches between lanes and resolves bare script names to lane directories at spawn time.
+- Lane scripts require helpers from `lib/` with relative `../lib/` paths.
+- `model-benchmark/run-benchmark.cjs` defaults to `--scorer pattern` and accepts `--scorer 5dim` for the opt-in five-dimension scorer under `model-benchmark/scorer/`.
 
 ---
 
-## 2. QUICK START
-
-**Step 1: Confirm the owner.**
-
-Start with `.opencode/skills/deep-agent-improvement/SKILL.md` for runtime routing and workflow boundaries.
-
-**Step 2: Inspect the local code.**
-
-```bash
-rg --files .opencode/skills/deep-agent-improvement/scripts
-```
-
-Expected result: the command lists the source files summarized below.
-
-**Step 3: Verify changes.**
-
-Run individual scripts from the repository root with the documented arguments.
-
----
-
-## 3. FEATURES
-
-| Feature | What It Does |
-|---|---|
-| Folder boundary | Documents direct code files under `scripts`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
-
----
-
-## 4. STRUCTURE
-
-| Path | Purpose |
-|---|---|
-| `agent-improvement/benchmark-stability.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/candidate-lineage.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/check-mirror-drift.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/generate-profile.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/rollback-candidate.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/scan-integration.cjs` | Lane A: agent-improvement source file. |
-| `agent-improvement/score-candidate.cjs` | Lane A: dynamic-mode 5-dimension candidate scorer. |
-| `agent-improvement/trade-off-detector.cjs` | Lane A: agent-improvement source file. |
-| `model-benchmark/run-benchmark.cjs` | Lane B: fixture/integration scorer. `--scorer pattern` (default) or `5dim` (121/005 opt-in via `scorer/`). |
-| `model-benchmark/dispatch-model.cjs` | Lane B: model-agnostic CLI dispatcher for model-benchmark mode, 121/003. |
-| `model-benchmark/scorer/` | Lane B: ported 120/003 five-dimension scorer: `score-model-variant.cjs`, `deterministic/`, `grader/`, `lib/cache.cjs` (runtime `cache/` git-ignored). |
-| `shared/loop-host.cjs` | Shared: mode-switching entry point (agent-improvement vs model-benchmark), 121/003. Resolves lane paths at spawn time. |
-| `shared/improvement-journal.cjs` | Shared: source file used by both lanes. |
-| `shared/materialize-benchmark-fixtures.cjs` | Shared: source file used by both lanes. |
-| `shared/mutation-coverage.cjs` | Shared: source file used by both lanes. |
-| `shared/promote-candidate.cjs` | Shared: guarded canonical mutation. |
-| `shared/reduce-state.cjs` | Shared: dashboard + experiment registry reducer. |
-| `lib/` | Stays at root: shared CJS modules (`typed-errors.cjs`, `promotion-gates.cjs`, `mirror-sync-verify.cjs`). |
-| Additional files | `vitest.config.mjs`, `tests/` (vitest suites incl. remediation + opt-in-scorer) |
-
----
-
-## 5. CONFIGURATION
-
-| Setting | Default | Purpose |
-|---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
-| README scope | Direct folder | This file documents this folder, not sibling folders. |
-
----
-
-## 6. USAGE EXAMPLES
-
-**Audit this folder**
+## 2. PACKAGE TOPOLOGY
 
 ```text
-User request: Check .opencode/skills/deep-agent-improvement/scripts for sk-code and README coverage.
-Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+scripts/
++-- shared/               # Router and cross-lane scripts
+|   +-- loop-host.cjs          # Entry point and lane path resolver
+|   `-- ...                    # Journal, reducer, fixtures, promotion
++-- agent-improvement/    # Lane A scripts
++-- model-benchmark/      # Lane B scripts
+|   `-- scorer/                # Opt-in five-dimension scorer subtree
++-- lib/                  # Shared CommonJS helpers
+`-- tests/                # Vitest suites and fixtures
+```
+
+Allowed dependency direction:
+
+```text
+shared/loop-host.cjs → agent-improvement/ | model-benchmark/   (resolved at spawn)
+agent-improvement/ → lib/
+model-benchmark/ → lib/
+shared/ → lib/
 ```
 
 ---
 
-## 7. TROUBLESHOOTING
+## 3. DIRECTORY TREE
 
-| What You See | Cause | Fix |
-|---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
-| Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
+```text
+scripts/
++-- shared/
+|   +-- loop-host.cjs                      # Mode-switching entry point and lane path resolver
+|   +-- improvement-journal.cjs            # Append-only audit journal
+|   +-- materialize-benchmark-fixtures.cjs # Fixture materializer
+|   +-- mutation-coverage.cjs              # Mutation coverage and dimension trajectories
+|   +-- promote-candidate.cjs              # Guarded canonical promotion
+|   `-- reduce-state.cjs                    # Dashboard and registry reducer
++-- agent-improvement/
+|   +-- score-candidate.cjs                # Dynamic-mode five-dimension candidate scorer
+|   +-- benchmark-stability.cjs            # Score variance and weight advisory
+|   +-- candidate-lineage.cjs              # Candidate derivation tracking
+|   +-- check-mirror-drift.cjs             # Derived-surface drift report
+|   +-- generate-profile.cjs               # Dynamic target profile generator
+|   +-- rollback-candidate.cjs             # Canonical rollback helper
+|   +-- scan-integration.cjs               # Integration surface scanner
+|   `-- trade-off-detector.cjs              # Cross-dimension regression detector
++-- model-benchmark/
+|   +-- run-benchmark.cjs                  # Fixture and integration scorer
+|   +-- dispatch-model.cjs                 # Model-agnostic CLI dispatcher
+|   `-- scorer/                             # Opt-in five-dimension scorer subtree
++-- lib/                                   # Shared CommonJS helpers
++-- tests/                                 # Vitest suites and fixtures
+`-- vitest.config.mjs                      # Vitest include config
+```
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 4. KEY FILES
 
-| Document | Purpose |
+| File | Responsibility |
 |---|---|
-| [`deep-agent-improvement/SKILL.md`](../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+| `shared/loop-host.cjs` | Mode-switching entry point. `planInvocation` stays byte-identical across lanes and `resolveScriptPath` maps bare names to lane directories at spawn time. |
+| `shared/reduce-state.cjs` | Dashboard and experiment registry reducer for both lanes. |
+| `shared/promote-candidate.cjs` | Guarded canonical mutation that promotes a winning candidate. |
+| `agent-improvement/score-candidate.cjs` | Dynamic-mode five-dimension candidate scorer for Lane A. |
+| `agent-improvement/trade-off-detector.cjs` | Cross-dimension regression detection with an insufficient-data guard. |
+| `model-benchmark/run-benchmark.cjs` | Fixture and integration scorer. `--scorer pattern` is the default and `--scorer 5dim` selects the `scorer/` subtree. |
+| `model-benchmark/dispatch-model.cjs` | Model-agnostic CLI dispatcher for Lane B. |
+| `model-benchmark/scorer/` | Five-dimension scorer with `score-model-variant.cjs`, `deterministic/`, `grader/`, and `lib/cache.cjs`. The runtime `cache/` is git-ignored. |
+| `lib/` | Shared CommonJS helpers: `typed-errors.cjs`, `promotion-gates.cjs`, `mirror-sync-verify.cjs`. |
+
+---
+
+## 5. BOUNDARIES AND FLOW
+
+| Boundary | Rule |
+|---|---|
+| Entry | `shared/loop-host.cjs` is the single router. Lanes are not invoked directly by the loop. |
+| Imports | Lane and shared scripts import helpers from `lib/` only. `lib/` is not a cross-skill import surface. |
+| Lane separation | Lane A scripts stay in `agent-improvement/`, Lane B scripts stay in `model-benchmark/`, and cross-lane scripts stay in `shared/`. |
+
+Main flow:
+
+```text
+╭──────────────────────────────────────────╮
+│ loop dispatch                            │
+╰──────────────────────────────────────────╯
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ shared/loop-host.cjs (planInvocation)    │
+└──────────────────────────────────────────┘
+                  │
+                  ▼
+┌──────────────────────────────────────────┐
+│ resolveScriptPath maps bare name to lane │
+└──────────────────────────────────────────┘
+                  │
+        ┌─────────┴─────────┐
+        ▼                   ▼
+┌───────────────┐   ┌───────────────────┐
+│ agent-        │   │ model-benchmark/  │
+│ improvement/  │   │ run-benchmark.cjs │
+└───────┬───────┘   └─────────┬─────────┘
+        │                     │
+        └──────────┬──────────┘
+                   ▼
+        ┌───────────────────┐
+        │ lib/ helpers      │
+        └───────────────────┘
+```
+
+---
+
+## 6. VALIDATION
+
+Run from the `scripts/` directory.
+
+```bash
+npx vitest run
+```
+
+Expected result: every suite under `tests/**/*.vitest.ts` passes.
+
+List the source files from the repository root.
+
+```bash
+rg --files .opencode/skills/deep-agent-improvement/scripts -g '!node_modules'
+```
+
+---
+
+## 7. RELATED
+
+- [`deep-agent-improvement/SKILL.md`](../SKILL.md)
+- [`lib/README.md`](./lib/README.md)
+- [`tests/README.md`](./tests/README.md)
+- [`sk-code/SKILL.md`](../../sk-code/SKILL.md)

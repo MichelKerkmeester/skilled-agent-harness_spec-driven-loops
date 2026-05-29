@@ -1,8 +1,16 @@
-# Low Sample Benchmark Fixture
+---
+title: "Low Sample Benchmark Fixture: Insufficient-State Inputs"
+description: "Short improvement session that pins the insufficient-data and insufficient-sample paths for the vitest suites."
+trigger_phrases:
+  - "low-sample-benchmark fixture"
+  - "insufficient sample fixture"
+---
 
-This fixture demonstrates the insufficient-state path for a short improvement session.
+# Low Sample Benchmark Fixture: Insufficient-State Inputs
 
-For Gate E continuity, this fixture remains supporting evidence only. Broader packet recovery still routes through `/speckit:resume`, then `handover.md`, `_memory.continuity`, and the remaining spec docs.
+This fixture pins the insufficient-state path for a short improvement session.
+
+## 1. OVERVIEW
 
 - `trade-off-trajectory.json` contains only 2 trajectory points, so `trade-off-detector.cjs` should return `{ state: "insufficientData", dataPoints: 2, minRequired: 3 }` when called with `minDataPoints: 3`.
 - `benchmark-results.json` contains only 1 replay, so `benchmark-stability.cjs` should return `{ state: "insufficientSample", replayCount: 1, minRequired: 3 }` when called with `minReplayCount: 3`.

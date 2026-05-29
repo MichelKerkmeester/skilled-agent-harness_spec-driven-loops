@@ -126,6 +126,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 
 | 15 | 015-two-lane-review-remediation/ | Remediate the 014 deep-review findings (1 P0 + 16 P1 + 16 P2) | Complete |
 
+| 16 | 016-script-subfolder-readmes/ | Add code-folder READMEs to every source script subfolder (sk-doc code template) + audit existing | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -149,6 +150,7 @@ Summary of aggregate scope. Per-phase detail lives in child docs.
 | 012-catalog-playbook-advisor-fp25 | 013-scripts-physical-reorg | Doc/catalog/advisor lane surfaces shipped; the scripts tree is the last on-disk surface still flat | strict validate on 012 + script lane subdirs hold all 16 movers + test suite green |
 | 013-scripts-physical-reorg | 014-two-lane-deep-review | Scripts lane reorg shipped; the full two-lane program (008-013) is reviewable as one unit | strict validate on 013 + vitest 133/133 + both-lane smokes |
 | 014-two-lane-deep-review | 015-two-lane-review-remediation | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
+| 015-two-lane-review-remediation | 016-script-subfolder-readmes | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
 <!-- /ANCHOR:phase-map -->
 
 ---

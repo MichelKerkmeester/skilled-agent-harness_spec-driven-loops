@@ -1,6 +1,9 @@
 ---
 title: "deep-agent-improvement Scripts Library"
 description: "CommonJS library helpers shared by deep-agent-improvement CLI scripts: typed-error wrappers, promotion gate constants, 4-runtime mirror sync verifier."
+trigger_phrases:
+  - "shared lib"
+  - "typed errors promotion gates mirror sync"
 ---
 
 # deep-agent-improvement Scripts Library
@@ -9,8 +12,8 @@ CommonJS helpers shared by sibling deep-agent-improvement CLI scripts.
 
 ## 1. OVERVIEW
 
-This directory holds reusable helper modules for `.opencode/skills/deep-agent-improvement/scripts/*.cjs`.
-The modules are consumed by sibling scripts only and are not a cross-skill import surface.
+This directory holds reusable helper modules for the lane scripts under `.opencode/skills/deep-agent-improvement/scripts/` (`agent-improvement/`, `model-benchmark/`, `shared/`).
+The modules are consumed by those sibling scripts only and are not a cross-skill import surface.
 
 ## 2. LIBRARY CONTENTS
 
@@ -22,16 +25,16 @@ The modules are consumed by sibling scripts only and are not a cross-skill impor
 
 ## 3. USAGE
 
-Require these helpers from sibling scripts with relative `./lib/` paths.
+Require these helpers from lane scripts with relative `../lib/` paths.
 
 ```js
-const { makeTypedError } = require('./lib/typed-errors.cjs');
-const { PROMOTION_GATES } = require('./lib/promotion-gates.cjs');
-const { verifyMirrorSync } = require('./lib/mirror-sync-verify.cjs');
+const { makeTypedError } = require('../lib/typed-errors.cjs');
+const { PROMOTION_GATES } = require('../lib/promotion-gates.cjs');
+const { verifyMirrorSync } = require('../lib/mirror-sync-verify.cjs');
 ```
 
 ## 4. RELATED RESOURCES
 
-- [Promotion Gate Contract](../../references/promotion_gate_contract.md)
-- [Score Dimensions](../../references/score_dimensions.md)
-- [Candidate Proposal Format](../../references/candidate_proposal_format.md)
+- [Promotion Gate Contract](../../references/shared/promotion_gate_contract.md)
+- [Score Dimensions](../../references/agent-improvement/score_dimensions.md)
+- [Candidate Proposal Format](../../references/agent-improvement/candidate_proposal_format.md)

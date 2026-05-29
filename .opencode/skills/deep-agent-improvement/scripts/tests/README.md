@@ -1,115 +1,86 @@
 ---
-title: "deep agent improvement scripts tests: Code README"
-description: "Code-facing README for .opencode/skills/deep-agent-improvement/scripts/tests."
+title: "Scripts Tests: Vitest Suites"
+description: "Vitest suites covering the deep-agent-improvement lane scripts, shared reducers, and library helpers."
 trigger_phrases:
-  - "deep-agent-improvement scripts/tests"
-  - "code README"
+  - "deep-agent-improvement tests"
+  - "scripts vitest suite"
 ---
 
-# deep agent improvement scripts tests
-
-Test code and validation helpers for this skill area.
+# Scripts Tests: Vitest Suites
 
 ---
 
 ## 1. OVERVIEW
 
-### Purpose
+`tests/` holds the vitest suites for the deep-agent-improvement scripts. Each suite targets a script in `agent-improvement/`, `model-benchmark/`, `shared/`, or `lib/` and asserts against deterministic inputs from `fixtures/`.
 
-This README documents the code-bearing folder `.opencode/skills/deep-agent-improvement/scripts/tests` so operators can understand its role without opening every source file first. It follows the sk-doc skill README structure while staying focused on code navigation.
+Current state:
 
-### Usage
-
-Use this file to identify the folder boundary, the likely verification path, and the local source files that need sk-code conventions. Keep behavior details in source comments and higher-level workflow details in the owning `SKILL.md`.
-
-### Key Statistics
-
-| Metric | Value |
-|---|---:|
-| Code files | 7 |
-| README scope | Direct files in this folder |
-| Audit context | Internal validation notes |
+- Suites use the `.vitest.ts` extension and the explicit include glob in `vitest.config.mjs`.
+- Fixture-backed suites read static state from `fixtures/` rather than running a live loop.
+- The suite runs from the `scripts/` directory with `npx vitest run`.
 
 ---
 
-## 2. QUICK START
-
-**Step 1: Confirm the owner.**
-
-Start with `.opencode/skills/deep-agent-improvement/SKILL.md` for runtime routing and workflow boundaries.
-
-**Step 2: Inspect the local code.**
-
-```bash
-rg --files .opencode/skills/deep-agent-improvement/scripts/tests
-```
-
-Expected result: the command lists the source files summarized below.
-
-**Step 3: Verify changes.**
-
-Run the owning package test command from the nearest package boundary.
-
----
-
-## 3. FEATURES
-
-| Feature | What It Does |
-|---|---|
-| Folder boundary | Documents direct code files under `scripts/tests`. |
-| sk-code alignment | Points reviewers at OpenCode naming, header, error-handling, and type-discipline checks. |
-| Verification handoff | Records the expected owner and audit packet for follow-up work. |
-
----
-
-## 4. STRUCTURE
-
-| Path | Purpose |
-|---|---|
-| `benchmark-stability.vitest.ts` | TS source file in this folder. |
-| `candidate-lineage.vitest.ts` | TS source file in this folder. |
-| `improvement-journal.vitest.ts` | TS source file in this folder. |
-| `mutation-coverage.vitest.ts` | TS source file in this folder. |
-| `reduce-state-dashboard.vitest.ts` | TS source file in this folder. |
-| `score-candidate-cache.vitest.ts` | TS source file in this folder. |
-| `trade-off-detector.vitest.ts` | TS source file in this folder. |
-
----
-
-## 5. CONFIGURATION
-
-| Setting | Default | Purpose |
-|---|---|---|
-| sk-code surface | OPENCODE | Applies OpenCode TypeScript, JavaScript, Python, Shell, and config conventions. |
-| README scope | Direct folder | This file documents this folder, not sibling folders. |
-
----
-
-## 6. USAGE EXAMPLES
-
-**Audit this folder**
+## 2. DIRECTORY TREE
 
 ```text
-User request: Check .opencode/skills/deep-agent-improvement/scripts/tests for sk-code and README coverage.
-Skill routing: sk-code plus sk-doc.
-Expected output: Findings recorded in the 026 audit report.
+tests/
++-- benchmark-stability.vitest.ts
++-- candidate-lineage.vitest.ts
++-- improvement-journal.vitest.ts
++-- loop-host.vitest.ts
++-- mirror-sync-verify.vitest.ts
++-- mutation-coverage.vitest.ts
++-- optin-scorer.vitest.ts
++-- reduce-state-dashboard.vitest.ts
++-- reduce-state-mode-mix.vitest.ts
++-- remediation.vitest.ts
++-- run-benchmark-hardening.vitest.ts
++-- score-candidate-cache.vitest.ts
++-- scorer.vitest.ts
++-- trade-off-detector.vitest.ts
+`-- fixtures/                          # Deterministic state inputs
 ```
 
 ---
 
-## 7. TROUBLESHOOTING
+## 3. KEY FILES
 
-| What You See | Cause | Fix |
-|---|---|---|
-| README appears stale | Source files changed after this audit | Refresh the structure table and rerun the 026 audit check. |
-| Verification command is unclear | Folder is a helper boundary | Use the nearest package or skill-level verification command. |
+| File | Covers |
+|---|---|
+| `benchmark-stability.vitest.ts` | `agent-improvement/benchmark-stability.cjs` variance and insufficient-sample paths. |
+| `candidate-lineage.vitest.ts` | `agent-improvement/candidate-lineage.cjs` derivation tracking. |
+| `improvement-journal.vitest.ts` | `shared/improvement-journal.cjs` append-only journal and enum validation. |
+| `loop-host.vitest.ts` | `shared/loop-host.cjs` mode switching and lane path resolution. |
+| `mirror-sync-verify.vitest.ts` | `lib/mirror-sync-verify.cjs` four-runtime mirror equivalence. |
+| `mutation-coverage.vitest.ts` | `shared/mutation-coverage.cjs` coverage metrics and trajectories. |
+| `optin-scorer.vitest.ts` | `model-benchmark/run-benchmark.cjs` opt-in `5dim` scorer path. |
+| `reduce-state-dashboard.vitest.ts` | `shared/reduce-state.cjs` dashboard output. |
+| `reduce-state-mode-mix.vitest.ts` | `shared/reduce-state.cjs` mixed-mode registry reduction. |
+| `remediation.vitest.ts` | Remediation handling across the lane scripts. |
+| `run-benchmark-hardening.vitest.ts` | `model-benchmark/run-benchmark.cjs` hardening and fixture handling. |
+| `score-candidate-cache.vitest.ts` | `agent-improvement/score-candidate.cjs` cache behavior. |
+| `scorer.vitest.ts` | Five-dimension scoring output. |
+| `trade-off-detector.vitest.ts` | `agent-improvement/trade-off-detector.cjs` regression and insufficient-data paths. |
+| `fixtures/` | Static state inputs the suites read. See `fixtures/README.md`. |
 
 ---
 
-## 8. RELATED DOCUMENTS
+## 4. VALIDATION
 
-| Document | Purpose |
-|---|---|
-| [`deep-agent-improvement/SKILL.md`](../../SKILL.md) | Runtime instructions for the owning skill. |
-| [`sk-code/SKILL.md`](../../../sk-code/SKILL.md) | OpenCode coding standards and verification routing. |
-| [`sk-doc skill_readme_template.md`](../../../sk-doc/assets/skill/skill_readme_template.md) | README structure used for this code README. |
+Run from the `scripts/` directory.
+
+```bash
+npx vitest run
+```
+
+Expected result: every suite under `tests/**/*.vitest.ts` passes.
+
+---
+
+## 5. RELATED
+
+- [`scripts/README.md`](../README.md)
+- [`fixtures/README.md`](./fixtures/README.md)
+- [`scripts/lib/README.md`](../lib/README.md)
