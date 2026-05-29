@@ -13,16 +13,28 @@ This document combines the current feature inventory for the `deep-agent-improve
 
 Use this catalog as the canonical inventory for the live `deep-agent-improvement` feature surface. The numbered sections below group the skill by runtime responsibility so readers can move from a top-level summary into per-feature reference files without losing the current code and operator-contract context behind each claim.
 
-| Category | Coverage | Primary Runtime Surface |
-|---|---:|---|
-| Evaluation loop | 6 features | `.opencode/commands/deep/start-agent-improvement-loop.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
-| Integration scanning | 3 features | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-agent-improvement.md` |
-| Scoring system | 4 features | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
-| Model-benchmark mode | 4 features | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
+### Lane Legend
+
+The skill runs two lanes through one agent. Each category and feature below is tagged with the lane it serves.
+
+| Lane | Meaning | Entry Point |
+|---|---|---|
+| **Lane A** | Agent-improvement: evaluate and improve an agent markdown file via guarded promotion | `/deep:start-agent-improvement-loop`, `loop-host --mode=agent-improvement` |
+| **Lane B** | Model-benchmark: benchmark a model or prompt framework, no agent mutation | `/deep:start-model-benchmark-loop`, `loop-host --mode=model-benchmark` |
+| **Shared** | Surface used by both lanes (reducer, dashboard, profiling, command scaffolding) | reached from either lane |
+
+| Category | Coverage | Lane | Primary Runtime Surface |
+|---|---:|---|---|
+| Evaluation loop | 6 features | Lane A | `.opencode/commands/deep/start-agent-improvement-loop.md`, deep-agent-improvement YAML workflows, `scripts/*.cjs` |
+| Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-agent-improvement.md` |
+| Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
+| Model-benchmark mode | 4 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
 
 ---
 
 ## 2. EVALUATION LOOP
+
+**Lane:** Lane A (agent-improvement)
 
 These entries cover the session lifecycle from fresh runtime setup through proposal-only candidate generation, scoring dispatch, guarded promotion, rollback, and the stop logic that decides when the loop should stop asking for more iterations.
 
@@ -124,6 +136,8 @@ See [`01--evaluation-loop/06-plateau-detection.md`](01--evaluation-loop/06-plate
 
 ## 3. INTEGRATION SCANNING
 
+**Lane:** Lane A (agent-improvement)
+
 These entries describe how deep-agent-improvement discovers the full agent surface across the repo, evaluates runtime mirrors, and wires command-driven orchestration through the deep-agent-improvement command and YAML workflows.
 
 ### Surface discovery
@@ -175,6 +189,8 @@ See [`02--integration-scanning/03-command-dispatch.md`](02--integration-scanning
 ---
 
 ## 4. SCORING SYSTEM
+
+**Lane:** Shared (Lane A scores candidates, Lane B can opt into the same 5-dim scorer)
 
 These entries describe the dynamic scoring stack that derives evaluation structure from the target agent, applies the five-dimension rubric, records deterministic score outputs, and turns repeated runs into dimensional progress and stop-state summaries.
 
@@ -243,6 +259,8 @@ See [`03--scoring-system/04-dimensional-progress.md`](03--scoring-system/04-dime
 ---
 
 ## 5. MODEL-BENCHMARK MODE
+
+**Lane:** Lane B (model-benchmark)
 
 These entries describe the model-benchmark path that benchmarks a model or prompt framework instead of mutating an agent file. They cover the mode switch in the loop host, the model-agnostic dispatcher, the opt-in five-dimension scorer, and the record-level mode field plus the two hardening env gates.
 

@@ -29,6 +29,10 @@ Canonical package artifacts:
 
 This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-agent-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08) and the Mode 4 model-benchmark scenarios (09). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
+### Lane Note
+
+Scenarios belong to one of two lanes, or are shared by both. Categories `01--integration-scanner`, `02--profile-generator`, `06--end-to-end-loop`, `07--runtime-truth`, and `08--agent-discipline-stress-tests` are Lane A (agent-improvement). Category `09--model-benchmark-mode` is Lane B (model-benchmark). Categories `03--5d-scorer`, `04--benchmark-integration`, and `05--reducer-dimensions` are shared, since both lanes can exercise the 5-dimension scorer, benchmark runner, and reducer surfaces. When an operator runs only one lane, skip the other lane's categories and record the skip with the lane as the reason.
+
 ### REALISTIC TEST MODEL
 
 1. Start from the operator-visible improvement workflow rather than only the raw script call.

@@ -516,6 +516,10 @@ function createProfileBucket(profileId, family) {
       benchmarkPassCount: 0,
       benchmarkFailCount: 0,
     },
+    modes: {
+      'agent-improvement': 0,
+      'model-benchmark': 0,
+    },
     dimensionScores: {
       structural: [],
       ruleCoherence: [],
@@ -569,6 +573,10 @@ function buildRegistry(records) {
   const profiles = {};
   const insufficientDataIterations = [];
   const insufficientSampleIterations = [];
+  const globalModes = {
+    'agent-improvement': 0,
+    'model-benchmark': 0,
+  };
   const globalMetrics = {
     totalRecords: records.length,
     targetProfiles: 0,
@@ -603,6 +611,9 @@ function buildRegistry(records) {
     const bucket = profiles[profileId];
     bucket.latestRecord = record;
     bucket.metrics.totalRecords += 1;
+    const mode = record.mode === 'model-benchmark' ? 'model-benchmark' : 'agent-improvement';
+    bucket.modes[mode] += 1;
+    globalModes[mode] += 1;
     incrementFailureModes(bucket, record);
 
     if (record.type === 'benchmark_run') {
@@ -680,6 +691,7 @@ function buildRegistry(records) {
 
   return {
     globalMetrics,
+    modes: globalModes,
     insufficientDataIterations,
     insufficientSampleIterations,
     mirrorSync: {
@@ -820,6 +832,12 @@ function formatDimensionName(key) {
     .trim();
 }
 
+function formatLaneModeMix(modes) {
+  const agentImprovement = Number(modes?.['agent-improvement'] || 0);
+  const modelBenchmark = Number(modes?.['model-benchmark'] || 0);
+  return `agent-improvement ${agentImprovement} / model-benchmark ${modelBenchmark}`;
+}
+
 function formatDashboardValue(value) {
   if (value === null || value === undefined) {
     return 'n/a';
@@ -898,6 +916,7 @@ function renderProfileSection(bucket) {
 - Infra failures: ${bucket.metrics.infraFailureCount}
 - Best prompt score: ${bestPrompt ? Number(bestPrompt.score ?? bestPrompt.totals?.candidate ?? 0) : 'n/a'}
 - Best benchmark score: ${bestBenchmark ? Number(bestBenchmark.aggregateScore ?? 0) : 'n/a'}
+- Lane (mode) mix: ${formatLaneModeMix(bucket.modes)}
 - Latest recommendation: ${latest?.recommendation || 'n/a'}
 
 ### Repeated Failure Modes
@@ -1084,6 +1103,7 @@ function renderDashboard(registry, sampleQuality) {
 | Benchmark passes | ${registry.globalMetrics.benchmarkPassCount} |
 | Benchmark fails | ${registry.globalMetrics.benchmarkFailCount} |
 | Infra failures | ${registry.globalMetrics.infraFailureCount} |
+| Lane (mode) mix | ${formatLaneModeMix(registry.modes)} |
 
 ${renderSampleQualitySection(sampleQuality)}
 

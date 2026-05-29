@@ -12,7 +12,9 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-command-lane-asking",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/009-skill-md-two-lane"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/009-skill-md-two-lane",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-agent-lane-note",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/012-catalog-playbook-advisor-fp25"
   ],
   "migrated": true,
   "migration_source": "legacy",

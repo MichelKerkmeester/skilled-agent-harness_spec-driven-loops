@@ -1,0 +1,17 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/011-agent-lane-note",
+  "description": "Phase 11: agent-lane-note",
+  "keywords": [
+    "phase",
+    "agent-lane-note"
+  ],
+  "lastUpdated": "2026-05-29T07:36:07.413Z",
+  "specId": "011",
+  "folderSlug": "agent-lane-note",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
