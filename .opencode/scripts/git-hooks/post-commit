@@ -2,10 +2,12 @@
 # Post-commit hook — advisory code-graph staleness mitigation.
 #
 # When a commit changes more files than the configured threshold, mark the
-# code-graph SQLite stale so the next Claude Code session triggers a fresh
-# full scan on launcher boot. Without this, drift accumulates silently
-# (the launcher only detects drift at boot; multiple commits without a
-# session restart can leave the graph weeks out of date).
+# code-graph SQLite stale so the next MCP launcher boot triggers a fresh
+# full scan. Without this, drift accumulates silently (the launcher only
+# detects drift at boot; multiple commits without a launcher restart can
+# leave the graph weeks out of date). Runtime-agnostic: the launcher boots
+# under any AI CLI runtime (Claude Code, OpenCode, Codex, Gemini), so this
+# applies to whichever runtime starts the next session.
 #
 # Default threshold: 100 files changed (post-commit). Tunable via
 #   SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD=<int>

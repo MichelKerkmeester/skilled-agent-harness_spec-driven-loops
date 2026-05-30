@@ -155,7 +155,7 @@
           {
             "name": "speckit-session-stop",
             "type": "command",
-            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-stop.js'",
+            "command": "bash -c 'cd \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)\" && node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/gemini/session-stop.js ; bash .opencode/scripts/session-cleanup.sh || true'",
             "timeout": 10000
           }
         ]

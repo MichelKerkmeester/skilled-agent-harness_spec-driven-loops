@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/034-runtime-agnostic-session-lifecycle-scripts",
+  "description": "Feature Specification: Runtime-agnostic session lifecycle scripts",
+  "keywords": [
+    "feature",
+    "specification",
+    "runtime-agnostic",
+    "session",
+    "lifecycle",
+    "scripts",
+    "orphan-sweeper",
+    "session-cleanup"
+  ],
+  "lastUpdated": "2026-05-30T11:35:00.000Z",
+  "specId": "034",
+  "folderSlug": "runtime-agnostic-session-lifecycle-scripts",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

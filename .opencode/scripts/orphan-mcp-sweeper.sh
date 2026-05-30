@@ -40,7 +40,7 @@ min_classes=()
 min_ages=()
 min_pids=()
 
-claude_tree_pids=()
+session_tree_pids=()
 
 usage() {
   cat <<'EOF'
@@ -263,8 +263,8 @@ append_descendants() {
   local child
   while read -r child; do
     [ -n "$child" ] || continue
-    if [ "${#claude_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$child" "${claude_tree_pids[@]}"; then
-      claude_tree_pids+=("$child")
+    if [ "${#session_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$child" "${session_tree_pids[@]}"; then
+      session_tree_pids+=("$child")
       append_descendants "$child"
     fi
   done <<EOF
@@ -272,16 +272,21 @@ $(pgrep -P "$parent" 2>/dev/null || true)
 EOF
 }
 
-build_claude_tree() {
+# Build the live operator-session process tree across ALL AI CLI runtimes, not just
+# Claude Code. Any MCP helper descended from a live claude / opencode / codex / gemini
+# session belongs to an active operator session and must be preserved — most importantly
+# an operator's `opencode run`, which previously fell outside the Claude-only tree and
+# got swept after ORPHAN_AGE_MIN_SEC (a hard-rule violation).
+build_session_trees() {
   local pid
   while read -r pid; do
     [ -n "$pid" ] || continue
-    if [ "${#claude_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$pid" "${claude_tree_pids[@]}"; then
-      claude_tree_pids+=("$pid")
+    if [ "${#session_tree_pids[@]}" -eq 0 ] || ! pid_in_list "$pid" "${session_tree_pids[@]}"; then
+      session_tree_pids+=("$pid")
       append_descendants "$pid"
     fi
   done <<EOF
-$(pgrep -f '(^|/)(claude)( |$)|Claude Code' 2>/dev/null || true)
+$(pgrep -f '(^|/)(claude|opencode|codex|gemini)( |$)|Claude Code' 2>/dev/null || true)
 EOF
 }
 
@@ -308,13 +313,20 @@ preserve_reason() {
   local freshest_pid
   local freshest_age
 
+  # Operator-owned interactive/dispatch sessions across runtimes. These commands name a
+  # session the operator is actively running; their MCP helpers must never be swept.
+  # build_session_trees covers descendants via process ancestry; these patterns also
+  # catch the session's own root process whatever its descendants look like.
   case "$cmd" in
     *"devin --print"*) printf '%s\n' "operator-devin-preserve"; return 0 ;;
+    *"opencode run"*) printf '%s\n' "operator-opencode-preserve"; return 0 ;;
+    *"codex exec"*) printf '%s\n' "operator-codex-preserve"; return 0 ;;
+    *"gemini"*) printf '%s\n' "operator-gemini-preserve"; return 0 ;;
     *"ollama runner"*|*"ollama serve"*) printf '%s\n' "ollama-preserve"; return 0 ;;
   esac
 
-  if [ "${#claude_tree_pids[@]}" -gt 0 ] && pid_in_list "$pid" "${claude_tree_pids[@]}"; then
-    printf '%s\n' "live-claude-session-tree"
+  if [ "${#session_tree_pids[@]}" -gt 0 ] && pid_in_list "$pid" "${session_tree_pids[@]}"; then
+    printf '%s\n' "live-session-tree"
     return 0
   fi
 
@@ -470,7 +482,7 @@ sweep_tmp() {
 
 rotate_log_if_needed
 emit "action=start dry_run=$DRY_RUN verbose=$VERBOSE age_min_sec=$AGE_MIN_SEC tmp_age_hours=$TMP_AGE_HOURS"
-build_claude_tree
+build_session_trees
 scan_processes
 select_kill_candidates
 terminate_candidates
