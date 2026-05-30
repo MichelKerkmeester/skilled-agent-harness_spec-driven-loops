@@ -2605,14 +2605,16 @@ describe('Context Server', () => {
       expect(sourceCode).toMatch(/scheduleBootFtsIntegrityCheck[\s\S]*?registerTimeout\(\(\) => runBootFtsIntegrityCheck\(\), 0/)
     })
 
-    it('T56c: boot FTS integrity check is DETECT-ONLY — marks corrupt + logs the runbook on FTS failure, never auto-recovers', () => {
-      // Uses the cheap FTS5 integrity-check verb; on failure marks 'corrupt' and logs the corruption banner
-      // + the committed recovery runbook pointer. It must NOT auto-run an FTS rebuild / .recover / swap.
+    it('T56c: boot FTS integrity check auto-heals — rebuilds + re-verifies the shadow on FTS failure, falls back to corrupt + runbook', () => {
+      // Detect via the cheap FTS5 integrity-check verb; on failure (auto-heal default-on) rebuild the
+      // shadow and re-verify -> 'repaired'. A rebuild failure or SPECKIT_BOOT_FTS_AUTOHEAL=0 falls back
+      // to 'corrupt' detect-only, preserving the corruption banner + the committed recovery runbook pointer.
       expect(sourceCode).toMatch(/runBootFtsIntegrityCheck[\s\S]*?INSERT INTO memory_fts\(memory_fts\) VALUES\('integrity-check'\)/)
+      expect(sourceCode).toMatch(/INSERT INTO memory_fts\(memory_fts\) VALUES\('rebuild'\)/)
+      expect(sourceCode).toMatch(/bootFtsIntegrityHealth = 'repaired'/)
+      expect(sourceCode).toMatch(/SPECKIT_BOOT_FTS_AUTOHEAL/)
       expect(sourceCode).toMatch(/bootFtsIntegrityHealth = 'corrupt'[\s\S]*?FTS5 SHADOW INDEX CORRUPTION DETECTED/)
-      expect(sourceCode).toMatch(/DETECT-ONLY: no DB recovery/)
       expect(sourceCode).toContain('bug-report-memory-db-corruption.md')
-      expect(sourceCode).not.toContain("VALUES('rebuild')")
     })
 
     // startupScanInProgress guard

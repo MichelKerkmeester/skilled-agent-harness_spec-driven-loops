@@ -212,7 +212,7 @@ interface DynamicMemoryStats {
 }
 
 type AfterToolCallback = (tool: string, callId: string, result: unknown) => Promise<void>;
-type BootFtsIntegrityHealth = 'unknown' | 'skipped' | 'ok' | 'corrupt';
+type BootFtsIntegrityHealth = 'unknown' | 'skipped' | 'ok' | 'corrupt' | 'repaired';
 
 const afterToolCallbacks: Array<AfterToolCallback> = [];
 
@@ -358,19 +358,46 @@ function getBootFtsIntegrityHealth(): BootFtsIntegrityHealth {
 }
 
 function runBootFtsIntegrityCheck(): void {
+  const db = vectorIndex.getDb();
   try {
-    vectorIndex.getDb()
-      .prepare("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')")
-      .run();
+    db.prepare("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')").run();
     bootFtsIntegrityHealth = 'ok';
+    return;
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
+    // The FTS5 shadow is fully derivable from memory_index, so rebuilding it is
+    // non-destructive. An unclean shutdown can leave the shadow malformed while the
+    // source rows are intact; rebuild and re-verify before falling back to detect-only.
+    // Opt out with SPECKIT_BOOT_FTS_AUTOHEAL=0.
+    if (process.env.SPECKIT_BOOT_FTS_AUTOHEAL !== '0') {
+      try {
+        console.error('[context-server] FTS5 shadow integrity-check failed; attempting boot auto-rebuild...');
+        db.prepare("INSERT INTO memory_fts(memory_fts) VALUES('rebuild')").run();
+        db.prepare("INSERT INTO memory_fts(memory_fts) VALUES('integrity-check')").run();
+        bootFtsIntegrityHealth = 'repaired';
+        console.error('[context-server] FTS5 shadow rebuilt and re-verified OK at boot.');
+        return;
+      } catch (rebuildError: unknown) {
+        const rebuildMessage = rebuildError instanceof Error ? rebuildError.message : String(rebuildError);
+        bootFtsIntegrityHealth = 'corrupt';
+        console.error([
+          '[context-server] ===== FTS5 SHADOW INDEX CORRUPTION DETECTED =====',
+          '[context-server] Boot marker indicates the previous mk-spec-memory shutdown was unclean.',
+          `[context-server] FTS5 integrity-check failed: ${message}`,
+          `[context-server] Boot auto-rebuild FAILED: ${rebuildMessage}`,
+          '[context-server] DETECT-ONLY fallback: no further recovery attempted; manual repair required.',
+          `[context-server] Runbook: ${FTS_CORRUPTION_RUNBOOK}`,
+          '[context-server] =================================================',
+        ].join('\n'));
+        return;
+      }
+    }
     bootFtsIntegrityHealth = 'corrupt';
     console.error([
       '[context-server] ===== FTS5 SHADOW INDEX CORRUPTION DETECTED =====',
       '[context-server] Boot marker indicates the previous mk-spec-memory shutdown was unclean.',
       `[context-server] FTS5 integrity-check failed: ${message}`,
-      '[context-server] DETECT-ONLY: no DB recovery, index reconstruction, swap, or deletion was attempted.',
+      '[context-server] DETECT-ONLY: auto-heal disabled (SPECKIT_BOOT_FTS_AUTOHEAL=0); no rebuild attempted.',
       `[context-server] Runbook: ${FTS_CORRUPTION_RUNBOOK}`,
       '[context-server] =================================================',
     ].join('\n'));

@@ -1,0 +1,18 @@
+{
+  "researchTopic": "Root-cause the remaining system-spec-kit failures (substrate stress 5-vs-4 TSV-row mismatch; mk-spec-memory SQLITE_CONSTRAINT_PRIMARYKEY write recurrence after rebuild+restart; graph-metadata last_save_at tree-wide churn) and determine whether they share a common daemon-lifecycle / single-writer root cause.",
+  "specFolder": "system-spec-kit/032-infra-memory-db-and-graph-churn",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": {
+    "executor": {
+      "type": "cli-codex",
+      "model": "gpt-5.5",
+      "reasoningEffort": "high",
+      "serviceTier": "fast",
+      "timeoutSeconds": 900
+    },
+    "resource_map": { "emit": true }
+  }
+}

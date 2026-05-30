@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
+  "spec_folder": "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
+  "parent_id": "system-spec-kit/032-infra-memory-db-and-graph-churn",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "daemon lifecycle healing fts auto-heal",
+      "boot fts rebuild clean-close barrier",
+      "substrate stress test diagnostic row fix"
+    ],
+    "key_topics": [
+      "daemon",
+      "lifecycle",
+      "healing",
+      "fts",
+      "auto-heal",
+      "boot",
+      "rebuild",
+      "clean-close",
+      "barrier",
+      "substrate",
+      "stress",
+      "test"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/context-server.ts",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      "mcp_server/tests/context-server.vitest.ts",
+      "mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
+      "implementation-summary.md",
+      "checklist.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
+    ],
+    "entities": [
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-runner-harness.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/context-server.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-clean-close-barrier.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Heal",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "an",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. KEY DESIGN DECISIONS",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "scoped",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Tasks",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`→`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch **without verifying the DB closed cleanly** (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal). The result is a divergent FTS5 shadow (`memory_fts_data`); the next `memory_index` insert fires the `memory_fts_insert` trigger into the bad shadow and aborts with `SQLITE_CONSTRAINT_PRIMARYKEY` (SQ2). The same wedged incumbent also surfaces the SQ1 substrate `Connection closed` diagnostic row that makes a stale test assert 5-vs-4. The boot FTS integrity probe currently only **detects** corruption (logs DETECT-ONLY) and never repairs it, so the failure recurs after every unclean exit.",
+    "created_at": "2026-05-30T16:25:17.710Z",
+    "last_save_at": "2026-05-30T16:25:17.710Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

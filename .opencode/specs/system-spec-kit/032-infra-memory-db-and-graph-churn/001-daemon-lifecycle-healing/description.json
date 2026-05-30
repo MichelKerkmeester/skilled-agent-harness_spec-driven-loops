@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
+  "description": "Feature Specification: Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test)",
+  "keywords": [
+    "feature",
+    "specification",
+    "daemon-lifecycle",
+    "healing",
+    "fts",
+    "auto-heal",
+    "clean-close",
+    "barrier",
+    "substrate",
+    "test"
+  ],
+  "lastUpdated": "2026-05-30T16:37:51.007Z",
+  "specId": "001",
+  "folderSlug": "daemon-lifecycle-healing",
+  "parentChain": [
+    "system-spec-kit",
+    "032-infra-memory-db-and-graph-churn"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test)"
+}

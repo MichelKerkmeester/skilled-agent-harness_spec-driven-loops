@@ -280,25 +280,70 @@ function acquireModelServerRespawnLockFile(socketPath = resolveModelServerSocket
   return mss.acquireModelServerRespawnLockFile(socketPath, { dbDir: resolvedDbDir, log, rel });
 }
 
+const UNCLEAN_SHUTDOWN_MARKER = '.unclean-shutdown';
+
+// The context-server writes `.unclean-shutdown` on every DB open and removes it only after a
+// successful WAL checkpoint + db.close(). The launcher uses its presence to tell whether a reaped
+// child handed off the DB cleanly. Mirror the writer's location: the marker lives in the resolved
+// DB dir, or — when MEMORY_DB_PATH relocates the DB — that path's dirname. Best-effort: a wrong
+// guess only forfeits the clean-close confirmation; the replacement daemon's boot still self-heals.
+function uncleanShutdownMarkerPath() {
+  const override = process.env.MEMORY_DB_PATH;
+  const dir = override ? path.dirname(override) : resolvedDbDir();
+  return path.join(dir, UNCLEAN_SHUTDOWN_MARKER);
+}
+
+function uncleanMarkerPresent() {
+  try {
+    return fs.existsSync(uncleanShutdownMarkerPath());
+  } catch {
+    return false;
+  }
+}
+
+// A reap is a verified clean DB handoff only when the child exited on SIGTERM (not SIGKILL) AND the
+// clean-shutdown marker is gone (close_db ran its checkpoint + close). Anything else means the
+// replacement daemon will open a possibly-dirty shadow and must rebuild it at boot.
+function cleanCloseAfterReap({ killed, markerPresent }) {
+  return !killed && !markerPresent;
+}
+
 async function reapLeaseChildBeforeRespawn(childPid) {
   const liveness = processLiveness(childPid);
   if (liveness === 'unknown-eperm') {
     return { allowed: false, reason: 'child-liveness-unknown-eperm' };
   }
   if (liveness === 'dead') {
-    return { allowed: true, reaped: false, reason: 'child-already-dead' };
+    return {
+      allowed: true,
+      reaped: false,
+      cleanClose: cleanCloseAfterReap({ killed: false, markerPresent: uncleanMarkerPresent() }),
+      reason: 'child-already-dead',
+    };
   }
 
   log(`confirmed-dead socket; reaping recorded context-server child pid ${childPid} before respawn`);
   signalProcess(childPid, 'SIGTERM');
   reapProcessTreeGroups(childPid, { signal: signalProcess });
   const exitedAfterTerm = await waitForPidExit(childPid, RESPAWN_REAP_GRACE_MS);
+  let killed = false;
   if (!exitedAfterTerm) {
     log(`context-server child pid ${childPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
     signalProcess(childPid, 'SIGKILL');
     await waitForPidExit(childPid, 1000);
+    killed = true;
   }
-  return { allowed: true, reaped: true, reason: 'child-reaped' };
+
+  // Clean-close barrier: verify the child closed the DB cleanly (marker removed) before handing the
+  // DB to a replacement daemon. If it did not (graceful close timed out, or we had to SIGKILL), log
+  // it so the corruption window is visible — the replacement daemon's boot FTS auto-heal rebuilds the
+  // shadow. We never block respawn on this: a missing daemon is worse than a self-healing one.
+  const markerPresent = uncleanMarkerPresent();
+  const cleanClose = cleanCloseAfterReap({ killed, markerPresent });
+  if (!cleanClose) {
+    log(`reaped context-server child pid ${childPid} WITHOUT a verified clean DB close (killed=${killed}, uncleanMarkerPresent=${markerPresent}); the replacement daemon will rebuild the FTS shadow at boot`);
+  }
+  return { allowed: true, reaped: true, cleanClose, reason: 'child-reaped' };
 }
 
 async function respawnAfterDeadSocket(leaseResult, decision) {
@@ -955,6 +1000,9 @@ module.exports = {
   processLiveness,
   reapProcessTreeGroups,
   refreshDescendantSnapshot,
+  resolvedDbDir,
+  uncleanShutdownMarkerPath,
+  cleanCloseAfterReap,
   resolveModelServerSocketPath,
   sampleProcessTreeRssMb,
   shouldSkipLaunch,
