@@ -1,0 +1,16 @@
+{
+  "title": "Rule and cleanup — sk-code §4 + Bucket-A sweep",
+  "description": "Added the canonical no-ephemeral-artifact-pointers rule to sk-code §4 (universal + both surfaces), aggressively revised the contradicting OpenCode §4 guidance, and ran a comments-only cleanup of ~135 Bucket-A sites across deep-agent-improvement, system-code-graph, system-skill-advisor, and system-spec-kit. All four skills' suites passed post-cleanup.",
+  "status": "complete",
+  "priority": "p1",
+  "level": 3,
+  "created_at": "2026-05-27T00:00:00.000Z",
+  "trigger_phrases": ["comment hygiene rule","sk-code ephemeral ref rule","bucket-a cleanup","119 rule and cleanup","sk-code section 4","no ephemeral artifact pointers rule"],
+  "key_topics": ["comment","hygiene","sk-code","rule","ephemeral","cleanup","bucket-a"],
+  "key_files": [
+    ".opencode/skills/sk-code/references/universal/code_style_guide.md",
+    ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
+    ".opencode/skills/sk-code/references/opencode/shared/universal_patterns.md",
+    ".opencode/skills/sk-code/references/webflow/shared/cross_language_rules.md"
+  ]
+}

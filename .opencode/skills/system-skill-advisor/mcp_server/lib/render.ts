@@ -46,6 +46,10 @@ const INSTRUCTION_LABEL_PATTERN =
   /^\s*(SYSTEM|INSTRUCTION|IGNORE|EXECUTE)\s*[:=]|^\s*(<!--|```)|\b(ignore\s+(previous|all)\s+instructions|system\s*:|instruction\s*:|execute\s*:|developer\s*:|assistant\s*:)/i;
 const CONTROL_CHAR_PATTERN = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g;
 
+// Injected into every advisor brief so all hook-capable runtimes receive
+// the comment hygiene rule even when AGENTS.md is absent from session context.
+const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+
 // ───────────────────────────────────────────────────────────────
 // 3. HELPERS
 // ───────────────────────────────────────────────────────────────
@@ -150,13 +154,13 @@ export function renderAdvisorBrief(
     return capText(
       `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    );
+    ) + HYGIENE_DIRECTIVE;
   }
 
   return capText(
     `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  );
+  ) + HYGIENE_DIRECTIVE;
 }
 
 // Shared timeout-fallback renderer. Previously the Codex hook

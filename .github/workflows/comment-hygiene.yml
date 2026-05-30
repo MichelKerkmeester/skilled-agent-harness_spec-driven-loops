@@ -1,0 +1,41 @@
+name: Comment Hygiene Gate
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  comment-hygiene:
+    name: No ephemeral-artifact pointers in code comments
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Check changed files for comment hygiene violations
+        run: |
+          set -euo pipefail
+          CHECKER=".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
+          if [ ! -x "$CHECKER" ]; then
+            echo "::warning::Comment hygiene checker not found at $CHECKER — skipping"
+            exit 0
+          fi
+          VIOLATIONS=0
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              python3 "$CHECKER" "$file" 2>/dev/null; CHECKER_RC=$?
+              if [ "$CHECKER_RC" -eq 1 ]; then
+                VIOLATIONS=$((VIOLATIONS + 1))
+                echo "::error file=$file::Ephemeral-artifact pointer found in code comment"
+              fi
+            fi
+          done < <(git diff --name-only --diff-filter=ACM "$BASE" "$HEAD")
+          if [ "$VIOLATIONS" -gt 0 ]; then
+            echo ""
+            echo "BLOCKED: $VIOLATIONS file(s) contain ephemeral-artifact pointers in code comments."
+            echo "See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4"
+            echo "Fix: replace the pointer with the durable WHY."
+            exit 1
+          fi
+          echo "All clear — no comment hygiene violations found."

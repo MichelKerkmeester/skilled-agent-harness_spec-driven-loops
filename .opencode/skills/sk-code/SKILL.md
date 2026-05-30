@@ -213,8 +213,9 @@ Smart Router pseudocode (full implementation): see [`references/smart_routing.md
 1. Detect `.opencode/` context from CWD or target files.
 2. Detect language from file extension first, then keyword scores.
 3. Load shared OpenCode patterns, language standards, quick references, and checklists.
-4. Run the alignment verifier and targeted tests before completion claims.
-5. Use `sk-code-review` for formal findings-first review; use this skill for standards evidence.
+4. **Phase 1.5 comment hygiene:** Run `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` on each modified file before committing. Zero violations required.
+5. Run the alignment verifier and targeted tests before completion claims.
+6. Use `sk-code-review` for formal findings-first review; use this skill for standards evidence.
 
 ### UNKNOWN Workflow
 

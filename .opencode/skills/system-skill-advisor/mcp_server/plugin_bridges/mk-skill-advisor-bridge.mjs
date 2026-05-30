@@ -200,6 +200,8 @@ function withTimeout(operation, timeoutMs, label) {
   });
 }
 
+const HYGIENE_DIRECTIVE = '\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+
 function renderAdvisorBrief(result, options = {}) {
   if (result.status !== 'ok') return null;
   if (result.freshness !== 'live' && result.freshness !== 'stale') return null;
@@ -225,7 +227,8 @@ function renderAdvisorBrief(result, options = {}) {
   if (!topLabel) return null;
   const text = `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`;
   const charCap = Math.min(tokenCap, 80) * 4;
-  return text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
+  const brief = text.length <= charCap ? text : `${text.slice(0, Math.max(1, charCap - 3)).trimEnd()}...`;
+  return brief + HYGIENE_DIRECTIVE;
 }
 
 async function callAdvisorTool(name, args, workspaceRoot) {

@@ -39,8 +39,10 @@ const DISABLED_ENV = 'MK_SKILL_ADVISOR_HOOK_DISABLED';
 const DISABLED_ENV_PLUGIN = 'MK_SKILL_ADVISOR_PLUGIN_DISABLED';
 const LEGACY_HOOK_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_HOOK_DISABLED';
 const LEGACY_PLUGIN_DISABLED_ENV = 'SPECKIT_SKILL_ADVISOR_PLUGIN_DISABLED';
+const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const BRIDGE_PATH = fileURLToPath(new URL('../skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs', import.meta.url));
-// 013/009/005: cache-signature paths follow the standalone advisor package.
+// Cache-signature paths follow the standalone advisor package to ensure
+// consistent cache invalidation across bridge and MCP server builds.
 // The bridge now dispatches through mk_skill_advisor instead of the old
 // memory-owned advisor compat path.
 const ADVISOR_SOURCE_PATHS = [
@@ -413,7 +415,7 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
   const options = normalizeOptions(merged);
   const projectDir = normalizeWorkspaceRoot(ctx?.directory);
 
-  // per-instance state (packet 010 — see ../sibling 009 ADR-005). Two plugin instances loaded in the same process maintain independent caches/metrics.
+  // Per-instance state so two plugin instances loaded in the same process maintain independent caches/metrics.
   const state = {
     advisorCache: new Map(),
     // in-flight promise dedup — concurrent identical-key requests share one bridge spawn
@@ -669,6 +671,8 @@ export default async function MkSkillAdvisorPlugin(ctx, rawOptions) {
     });
     if (response.brief) {
       output.system.push(clampBrief(response.brief, options.maxBriefChars));
+    } else {
+      output.system.push(HYGIENE_DIRECTIVE);
     }
   }
 

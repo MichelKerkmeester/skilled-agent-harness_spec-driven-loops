@@ -9,7 +9,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
+    packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup"
     last_updated_at: "2026-05-27T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored implementation plan"

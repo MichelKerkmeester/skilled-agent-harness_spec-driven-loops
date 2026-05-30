@@ -43,4 +43,15 @@ if [ "$RC" -ne 0 ]; then
   echo "" >&2
 fi
 
+# --- Comment hygiene gate (blocking) ---
+# Blocks commits that add ephemeral-artifact pointers in code comment lines.
+# Bypass: SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit ...
+# See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
+if [ "${SPECKIT_SKIP_COMMENT_HYGIENE:-0}" != "1" ]; then
+  HYGIENE_HOOK="${REPO_ROOT}/.opencode/hooks/pre-commit"
+  if [ -x "$HYGIENE_HOOK" ]; then
+    bash "$HYGIENE_HOOK" || exit $?
+  fi
+fi
+
 exit 0

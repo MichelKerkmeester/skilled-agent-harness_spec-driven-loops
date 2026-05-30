@@ -103,12 +103,17 @@ The surface checklist assigns specific severity (P0/P1/P2) to specific rules. Th
 When you reach Phase 1.5 Code Quality Gate:
 
 1. Identify the file type and code surface (the smart router does this; or check via the surface-detection block in SKILL.md §2).
-2. Load the matching surface checklist (see §6).
-3. Validate every P0 item — fix any failures before proceeding.
-4. Validate every P1 item — fix or document approved deferral.
-5. Validate every P2 item — track for follow-up; non-blocking.
-6. Mark checklist items `[x]` with evidence (the actual code passing the rule, or the test that proves it).
-7. Then proceed to Phase 2 (Debugging) if issues, or Phase 3 (Verification).
+2. Run the comment-hygiene checker on each modified file before committing:
+   ```bash
+   bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
+   ```
+   Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
+3. Load the matching surface checklist (see §6).
+4. Validate every P0 item — fix any failures before proceeding.
+5. Validate every P1 item — fix or document approved deferral.
+6. Validate every P2 item — track for follow-up; non-blocking.
+7. Mark checklist items `[x]` with evidence (the actual code passing the rule, or the test that proves it).
+8. Then proceed to Phase 2 (Debugging) if issues, or Phase 3 (Verification).
 
 ---
 

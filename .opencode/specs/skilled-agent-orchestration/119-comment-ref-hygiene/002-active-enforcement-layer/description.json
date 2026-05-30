@@ -1,0 +1,39 @@
+{
+  "title": "Active enforcement layer for comment hygiene",
+  "description": "119 produced the text rule in sk-code §4. AIs still added 27-file worth of violations in the next 100 commits. This phase builds write-time hooks (Claude Code, OpenCode), a runtime-agnostic git pre-commit gate, a shared checker script, a sk-code router step, and optional CLAUDE.md / constitutional memory reinforcement — layered defense that catches violations before they land.",
+  "status": "in_progress",
+  "priority": "p1",
+  "level": 2,
+  "created_at": "2026-05-29T00:00:00.000Z",
+  "trigger_phrases": [
+    "comment hygiene enforcement",
+    "pre-commit hook ephemeral",
+    "write-time hook comment hygiene",
+    "sk-code comment checker",
+    "119 enforcement layer",
+    "comment hygiene hook",
+    "active enforcement layer"
+  ],
+  "key_topics": [
+    "comment",
+    "hygiene",
+    "enforcement",
+    "hook",
+    "pre-commit",
+    "checker",
+    "write-time",
+    "ephemeral",
+    "sk-code",
+    "Claude Code",
+    "OpenCode"
+  ],
+  "key_files": [
+    ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+    ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+    ".claude/settings.local.json",
+    ".opencode/hooks/pre-commit",
+    ".opencode/hooks/install-hooks.sh",
+    ".opencode/skills/sk-code/SKILL.md",
+    "CLAUDE.md"
+  ]
+}

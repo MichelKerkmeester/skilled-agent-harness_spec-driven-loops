@@ -8,7 +8,7 @@ importance_tier: "high"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene"
+    packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup"
     last_updated_at: "2026-05-28T00:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Aligned 3 spec-kit MCP env blocks across 7 configs to opencode canonical; validated JSON+TOML"

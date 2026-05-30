@@ -250,18 +250,23 @@ These improve quality but can be deferred.
    - Python: Black/flake8/mypy
    - Shell: ShellCheck
 
-2. Check this universal checklist
+2. Run comment-hygiene checker on each modified file
+   - bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
+   - Zero violations required
+   - Escape: add `// hygiene-ok` to suppress a specific line
+
+3. Check this universal checklist
    - All P0 items must pass
    - P1 items addressed or approved
 
-3. Run language-specific checklist
+4. Run language-specific checklist
    - javascript_checklist.md
    - typescript_checklist.md
    - python_checklist.md
    - shell_checklist.md
    - config_checklist.md
 
-4. Self-review
+5. Self-review
    - Would a colleague understand this?
    - Is anything overly clever?
    - Are edge cases handled?
