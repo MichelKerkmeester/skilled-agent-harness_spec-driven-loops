@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios",
+  "spec_folder": "system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios",
+  "parent_id": "system-spec-kit/036-infra-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "substrate code-graph scenario fix",
+      "code_graph_query vs code_graph_context playbook",
+      "403 404 407 tool contract",
+      "substrate code-graph tool-contract plan",
+      "code_graph_context playbook fix plan",
+      "substrate code-graph tool-contract tasks",
+      "substrate code-graph tool-contract checklist",
+      "substrate code-graph tool-contract summary",
+      "code_graph_context playbook fix summary"
+    ],
+    "key_topics": [
+      "substrate",
+      "code-graph",
+      "scenario",
+      "fix",
+      "playbook",
+      "403",
+      "404",
+      "407",
+      "tool",
+      "contract",
+      "tool-contract",
+      "plan"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "dist/tool-schemas.js",
+      ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+      "manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md",
+      "manual_testing_playbook/24--local-llm-query-intelligence/404-disambiguation-under-context.md",
+      "manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-schemas.js",
+        "kind": "code",
+        "path": "dist/tool-schemas.js",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-code-graph/mcp_server/tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "403-code-intent-matching.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md",
+        "source": "derived"
+      },
+      {
+        "name": "404-disambiguation-under-context.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/24--local-llm-query-intelligence/404-disambiguation-under-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "407-adversarial-near-miss.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/24--local-llm-query-intelligence/407-adversarial-near-miss.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Substrate Code",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Correct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Doc",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deferred goal was \"make substrate scenarios 403/404/407 run for real instead of SKIP.\" Investigation found the playbooks call `mcp__mk_code_index__code_graph_query({query, num_results})`, which is rejected.",
+    "created_at": "2026-05-30T20:48:58.838Z",
+    "last_save_at": "2026-05-30T20:48:58.838Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

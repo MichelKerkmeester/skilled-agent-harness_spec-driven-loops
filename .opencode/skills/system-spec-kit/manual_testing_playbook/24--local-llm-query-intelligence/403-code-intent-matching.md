@@ -38,36 +38,36 @@ For each of 4 code-intent queries, check whether the implementation file ranks a
 
 **Query A — provider cascade:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "how does embedding provider auto-cascade resolution work when no API keys are set",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "how does embedding provider auto-cascade resolution work when no API keys are set",
+  queryMode: "neighborhood",
 })
 ```
 Expected: `shared/embeddings/factory.ts` (impl) ranks above `shared/embeddings/README.md` (docs).
 
 **Query B — ollama availability probe:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "how does the system detect whether ollama runtime is installed",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "how does the system detect whether ollama runtime is installed",
+  queryMode: "neighborhood",
 })
 ```
 Expected: `shared/embeddings/ollama-availability.ts` (impl) ranks above `shared/embeddings/providers/README.md` (docs).
 
 **Query C — sqlite-vec virtual table creation:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "how is the sqlite-vec virtual table created and queried for embeddings",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "how is the sqlite-vec virtual table created and queried for embeddings",
+  queryMode: "neighborhood",
 })
 ```
 Expected: `mcp_server/lib/search/vector-index-store.ts` or `vector-index-impl.ts` (impl) ranks above `references/memory/embedding_resilience.md` (docs).
 
 **Query D — profile-keyed DB filename:**
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "how is the active profile sqlite filename derived from provider model dim and dtype",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "how is the active profile sqlite filename derived from provider model dim and dtype",
+  queryMode: "neighborhood",
 })
 ```
 Expected: `shared/embeddings/profile.ts:resolveActiveProfileDbPath` (impl) ranks above `mcp_server/INSTALL_GUIDE.md` (docs).
@@ -91,7 +91,7 @@ A table like:
 
 ### Evidence
 
-- The exact `mcp__mk_code_index__code_graph_query` payload for each query.
+- The exact `mcp__mk_code_index__code_graph_context` payload for each query.
 - The top-10 result paths for each query.
 - The rank-pair table above.
 - An honest assessment: if implementation ranks below docs, IS the doc actually a better answer for this query? (Sometimes the inversion is correct — INSTALL_GUIDE may be more authoritative for setup-related questions.)

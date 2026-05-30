@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios",
+  "description": "Feature Specification: Substrate Code-Graph scenario tool-contract fix",
+  "keywords": [
+    "feature",
+    "specification",
+    "substrate",
+    "code-graph",
+    "scenario",
+    "tool-contract",
+    "fix"
+  ],
+  "lastUpdated": "2026-05-30T20:48:57.031Z",
+  "specId": "002",
+  "folderSlug": "substrate-codegraph-scenarios",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "036-infra-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

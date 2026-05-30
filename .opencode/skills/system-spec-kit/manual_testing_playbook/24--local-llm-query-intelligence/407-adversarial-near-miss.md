@@ -41,9 +41,9 @@ Lexical decoy: `embedding-circuit-breaker.vitest.ts` (high term overlap with "em
 Semantic target: `mcp_server/lib/cache/embedding-cache.ts` (the actual cache impl)
 
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "where are embedding results cached by content hash to skip recomputation",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "where are embedding results cached by content hash to skip recomputation",
+  queryMode: "neighborhood",
 })
 ```
 
@@ -54,9 +54,9 @@ Lexical decoy: `vector-index-impl.vitest.ts` (test file)
 Semantic target: `mcp_server/lib/search/vector-index-store.ts` (the impl)
 
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "core class that opens the sqlite-vec virtual table for runtime vector queries",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "core class that opens the sqlite-vec virtual table for runtime vector queries",
+  queryMode: "neighborhood",
 })
 ```
 
@@ -67,9 +67,9 @@ Lexical decoy: `embeddings-ollama-factory.vitest.ts` (test file)
 Semantic target: `shared/embeddings/factory.ts` (the impl)
 
 ```
-mcp__mk_code_index__code_graph_query({
-  query: "primary entry point that constructs concrete embedding provider instances and resolves auto cascade",
-  num_results: 10,
+mcp__mk_code_index__code_graph_context({
+  input: "primary entry point that constructs concrete embedding provider instances and resolves auto cascade",
+  queryMode: "neighborhood",
 })
 ```
 
