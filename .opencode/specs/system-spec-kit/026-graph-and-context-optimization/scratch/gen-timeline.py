@@ -96,6 +96,19 @@ def fmt_date(iso):
     return (iso or "")[:10] or "??????????"
 
 
+def fmt_dt(iso):
+    """YYYY-MM-DD HH:MM from an ISO timestamp — the displayed sort key.
+
+    Day granularity alone cannot order the rows: the vast majority of folders share
+    one commit day, so HH:MM is what makes 'which is actually newest' answerable from
+    the file. Falls back to date-only (+ '     ') when no time component is present.
+    """
+    iso = iso or ""
+    if len(iso) >= 16 and iso[10] in ("T", " "):
+        return iso[:10] + " " + iso[11:16]
+    return (iso[:10] or "??????????") + "     "
+
+
 def sort_recs(recs):
     return sorted(recs, key=lambda r: (r["last"], r["born"], r["rel"]), reverse=True)
 
@@ -104,7 +117,7 @@ def block(recs):
     out = []
     for r in recs:
         impl = "impl" if r["impl"] else "    "
-        out.append(f"{fmt_date(r['last'])}  born:{fmt_date(r['born'])}  {impl}  {r['rel']}")
+        out.append(f"{fmt_dt(r['last'])}  born:{fmt_date(r['born'])}  {impl}  {r['rel']}")
     return "\n".join(out)
 
 
@@ -122,10 +135,10 @@ def tracks_table():
     rows.sort(reverse=True)
     lines = [
         "| Rank | Last active | Born | Track |",
-        "|------|-------------|------|-------|",
+        "|------|------------------|------------|-------|",
     ]
     for i, (la, bn, d) in enumerate(rows, 1):
-        lines.append(f"| {i} | {fmt_date(la)} | {fmt_date(bn)} | `{d}/` |")
+        lines.append(f"| {i} | {fmt_dt(la)} | {fmt_date(bn)} | `{d}/` |")
     return "\n".join(lines)
 
 
@@ -135,6 +148,9 @@ def main():
     gen = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     newest = live_s[0]["rel"] if live_s else "n/a"
     oldest = live_s[-1]["rel"] if live_s else "n/a"
+    top15 = "\n".join(
+        f"{i:>2}. {fmt_dt(r['last'])}  {r['rel']}" for i, r in enumerate(live_s[:15], 1)
+    )
 
     print(f"""---
 title: "Chronological Timeline [{PACKET}/timeline]"
@@ -159,9 +175,12 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** {gen}
-> **Sort key:** git last-commit date touching each folder subtree, **newest → oldest** (the recency
-> view). The `born` column is the folder's recorded `created_at` (or first git commit of its `spec.md`).
+> **Generated:** {gen} — regenerate before relying on intra-day ordering; same-day commits made
+> after this stamp are not reflected until the next run.
+> **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
+> recency view). The last-active column shows `YYYY-MM-DD HH:MM` (UTC-offset local) because most
+> folders share one commit day — the time is what orders them. The `born` column is the folder's
+> recorded `created_at` (or first git commit of its `spec.md`), shown at day granularity.
 >
 > **Folder numbers are NOT chronology.** Numbers (`000`–`007`, child `NNN-`) encode topical/structural
 > identity assigned across reorg waves. This file is the *only* surface that orders by when work happened.
@@ -171,6 +190,14 @@ _memory:
 > **Most recent live spec folder:** `{newest}`
 > **Oldest live spec folder:** `{oldest}`
 > **Counts:** {len(live_s)} live spec folders · {len(arch_s)} archived (`z_archive/`).
+
+---
+
+## 0. Most recent 15 (quick answer to "what was worked on last")
+
+```
+{top15}
+```
 
 ---
 
