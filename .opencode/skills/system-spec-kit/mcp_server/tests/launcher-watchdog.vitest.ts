@@ -245,9 +245,15 @@ describe('launcher watchdog helpers', () => {
     expect(
       launcher.isRespawnLockStale(JSON.stringify({ pid: 222, startedAt: '2026-05-28T00:00:55.000Z' }), { liveness, nowMs: now }),
     ).toBe(true);
-    // live holder but aged out (>60s) -> stale (hung / pid-reuse backstop)
+    // live holder, even aged out -> NOT stale: a live owner still holds the lock, so age alone must
+    // never reclaim it out from under a long-lived demand listener
     expect(
       launcher.isRespawnLockStale(JSON.stringify({ pid: 111, startedAt: '2026-05-27T00:00:00.000Z' }), { liveness, nowMs: now }),
+    ).toBe(false);
+    // no live owner + aged past the TTL -> stale: the age backstop applies only when the owner is not
+    // confirmably alive (absent / invalid pid here)
+    expect(
+      launcher.isRespawnLockStale(JSON.stringify({ startedAt: '2026-05-27T00:00:00.000Z' }), { liveness, nowMs: now }),
     ).toBe(true);
     // unparseable / empty -> stale
     expect(launcher.isRespawnLockStale('not json', { liveness, nowMs: now })).toBe(true);

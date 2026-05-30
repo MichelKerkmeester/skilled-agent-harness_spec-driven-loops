@@ -61,7 +61,7 @@ _memory:
 - [x] T011 Preserve chronology pointer fields across re-derive — declared `last_active_child_id` + `last_active_at` in `graphMetadataDerivedSchema`; carried through `deriveGraphMetadata` + `mergeGraphMetadata` (Zod was stripping them)
 - [x] T012 Stop status downgrade — `deriveStatus` now falls back to the existing status before returning `planned` for lean phase parents (no implementation-summary.md)
 - [x] T006 Build + targeted vitest — `npm run build` clean; 4 new round-trip/churn-kill tests + 50 existing graph-metadata tests pass; live 026 probe + 7/7 real-packet sample confirm preservation + zero churn
-- [ ] T005 [B] Scope save-time refresh to touched folder + exclude z_archive/z_future; keep global backfill as opt-in flag (still open — idempotency now neutralizes the churn symptom, but scoping the walker is the deeper fix)
+- [x] T005 Save-time refresh is already scoped to the single touched folder at HEAD (verified c657219dd9 + independently re-checked): workflow.ts calls refreshGraphMetadata(validatedSpecFolderPath); the parser writes exactly one graph-metadata.json with no tree walk; the broad walker in backfill-graph-metadata.ts is CLI-entrypoint-gated and never imported by the save path. Global backfill stays explicit opt-in. No code change needed.
 - [x] T007 [B] Memory-DB repair via /doctor memory / FTS runbook (operator-gated; DB-copy probe first)
 
 <!-- /ANCHOR:phase-2 -->
@@ -71,7 +71,7 @@ _memory:
 ## Phase 3: Verification
 
 - [x] T008 Re-save a packet twice → second produces no graph-metadata.json diff (vitest "does not rewrite … no content delta" + 7/7 real-packet sample, all idempotent)
-- [ ] T009 Save one packet → only its graph-metadata.json changes; archives untouched (still pending T005 walker scope; idempotency means archived packets no longer churn on no-op saves, but a content-changing save still walks the default root)
+- [x] T009 Verified at HEAD: a save refreshes only the touched packet's graph-metadata.json; archives untouched. The save path is single-folder (no default-root walk); idempotency additionally suppresses no-op rewrites. The earlier "content-changing save still walks the default root" assertion was false.
 - [x] T010 memory_save / memory_index_scan / memory_match_triggers succeed; no .unclean-shutdown left (operator-gated DB repair, unchanged)
 
 <!-- /ANCHOR:phase-3 -->
@@ -81,7 +81,7 @@ _memory:
 ## Completion Criteria
 
 - [x] Graph-churn idempotency + field-preservation + status-preservation applied + verified (T004/T006/T008/T011/T012)
-- [ ] Walker scope + archive exclusion (T005) — deferred follow-on; idempotency already neutralizes the no-op churn
+- [x] Walker scope + archive exclusion (T005) — verified already-scoped at HEAD: the save path is single-folder; the broad walker is CLI-only. No code change needed.
 - [ ] Memory DB repaired + writes succeed (T007/T010 — operator-gated)
 
 <!-- /ANCHOR:completion -->
