@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test",
+  "spec_folder": "system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test",
+  "parent_id": "system-spec-kit/036-infra-followup-hardening",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "live two-launcher reap test",
+      "F2 clean-close barrier coverage",
+      "reapLeaseChildBeforeRespawn test",
+      "live reap test plan",
+      "F2 clean-close coverage plan",
+      "live reap test tasks",
+      "live reap test checklist",
+      "live reap test summary",
+      "F2 clean-close coverage summary"
+    ],
+    "key_topics": [
+      "live",
+      "two-launcher",
+      "reap",
+      "test",
+      "clean-close",
+      "barrier",
+      "coverage",
+      "reapleasechildbeforerespawn",
+      "plan",
+      "tasks",
+      "checklist",
+      "summary"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-reap.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-clean-close-reap.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Add",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Export",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Direct",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Test",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "MEMORY_DB_PATH",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon. Its pure helpers (`cleanCloseAfterReap`, `uncleanShutdownMarkerPath`) are unit-tested, but the reap orchestration itself — SIGTERM, the SIGKILL escalation, and the marker-based clean-close determination — had zero live coverage. The only real-process launcher suite (`launcher-lease.vitest.ts`) is entirely `describe.skip`'d as a \"known launcher process lifecycle flake,\" so the safety-critical path was untested.",
+    "created_at": "2026-05-30T19:47:42.617Z",
+    "last_save_at": "2026-05-30T19:47:42.617Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test",
+  "description": "Feature Specification: Live coverage for the F2 clean-close reap barrier",
+  "keywords": [
+    "feature",
+    "specification",
+    "live",
+    "coverage",
+    "clean-close",
+    "reap",
+    "barrier"
+  ],
+  "lastUpdated": "2026-05-30T19:47:41.109Z",
+  "specId": "001",
+  "folderSlug": "live-two-launcher-test",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "036-infra-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
