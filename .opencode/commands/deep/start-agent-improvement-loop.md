@@ -14,7 +14,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load matching YAML workflow and execute
 >
-> This command is **general-agent based** — orchestrates deep-agent-improvement skill invocation.
+> This command is **general-agent based** — orchestrates deep-improvement skill invocation.
 
 ---
 
@@ -28,7 +28,7 @@ EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 SELF-CHECK: Are you operating as the @general agent?
 │
 ├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate deep-agent-improvement invocation
+│   ├─ You can orchestrate deep-improvement invocation
 │   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
 │   ├─ You can load skill references and execute defined logic
 │
@@ -43,7 +43,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-agent-improvement skill     │
+    │   │ This command orchestrates deep-improvement skill     │
     │   │ invocation and runs general-agent based.                   │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
@@ -323,16 +323,16 @@ $ARGUMENTS
 
 ## 4. WORKFLOW STEPS
 
-### Step 1: Load deep-agent-improvement Skill
+### Step 1: Load deep-improvement Skill
 
 ```
-Read(".opencode/skills/deep-agent-improvement/SKILL.md")
+Read(".opencode/skills/deep-improvement/SKILL.md")
 ```
 
 ### Step 2: Run Integration Scan
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
+node .opencode/skills/deep-improvement/scripts/agent-improvement/scan-integration.cjs --agent={agent_name} --output={spec_folder}/improvement/integration-report.json
 ```
 
 Review the integration report: mirror sync status, command coverage, skill references.
@@ -340,7 +340,7 @@ Review the integration report: mirror sync status, command coverage, skill refer
 ### Step 3: Generate Profile
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
+node .opencode/skills/deep-improvement/scripts/agent-improvement/generate-profile.cjs --agent={target_path} --output={spec_folder}/improvement/dynamic-profile.json
 ```
 
 ### Step 4: Initialize Runtime
@@ -359,7 +359,7 @@ Load the matching YAML workflow based on execution mode:
 
 Execute the YAML workflow step by step. Each iteration:
 1. Scan integration surfaces (refresh)
-2. Dispatch `@deep-agent-improvement` to write one bounded candidate
+2. Dispatch `@deep-improvement` to write one bounded candidate
 3. Score candidate with the dynamic 5-dimension profile
 4. Run benchmark fixtures
 5. Append results to JSONL ledger
@@ -379,7 +379,7 @@ At each journal boundary, the orchestrator MUST emit events via `improvement-jou
 
 ```bash
 # At session start:
-node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
+node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal specs/042/008/improvement/improvement-journal.jsonl --details '{"sessionId":"imp-2026-04-11T12-00-00Z","target":"deep-research","charter":"...","startedAt":"2026-04-11T12:00:00Z"}'
 
 # At iteration boundaries:
 # candidate_generated after the candidate is written
@@ -388,7 +388,7 @@ node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.
 # The CLI form carries boundary metadata inside details because the helper's CLI does not expose top-level iteration/candidate fields.
 
 # At session end:
-# node .opencode/skills/deep-agent-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
+# node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_end --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{"stopReason":"blockedStop","sessionOutcome":"advisoryOnly","endedAt":"2026-04-11T12:05:00Z","totalIterations":3}'
 ```
 
 ### Step 6C: Stop-Reason Reporting
@@ -413,7 +413,7 @@ After loop exits, classify the termination:
 
 `/deep:start-agent-improvement-loop` is one-session-only in the current release. Every invocation starts a fresh `new`-mode session with generation 1, writes a new journal, and evaluates candidates from iteration 1 for that session.
 
-Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skills/deep-agent-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
+Do **not** document or attempt journal replay, iteration carry-forward, or `resume`/`restart`/`fork`/`completed-continue` behavior here. Those lineage modes were described in earlier drafts but have no shipped runtime wiring; see `.opencode/skills/deep-improvement/SKILL.md §Resume/Continuation Semantics (current release)` for the canonical retraction.
 
 ### Step 7: Return Status
 
@@ -487,21 +487,21 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 
 ## 7. NOTES
 
-- **Skill dependency**: Requires `deep-agent-improvement` at `.opencode/skills/deep-agent-improvement/`
+- **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/deep-improvement/`
 - **Promotion**: Promotion remains guarded by evidence, repeatability, and operator approval.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
 - **Runtime parity**: Agent exists across 4 runtimes (.opencode, .claude, .gemini, .codex). Scanner checks all (`.gemini/agents/` path corrected in 060/002).
-- **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-agent-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
+- **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.
-- **CRITIC PASS verbatim emission** (post-060/006): `@deep-agent-improvement` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
+- **CRITIC PASS verbatim emission** (post-060/006): `@deep-improvement` body now mandates the 6 challenge labels appear verbatim in candidate JSON `critic_pass` field. Reviewers and stress tests grep for the exact strings.
 
 ---
 
 ## 8. MODEL-BENCHMARK MODE (LANE B)
 
-This command is the **Lane A** (agent-improvement) entry point. The underlying `deep-agent-improvement` skill ALSO supports a separate **model-benchmark** mode (Lane B) that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path.
+This command is the **Lane A** (agent-improvement) entry point. The underlying `deep-improvement` skill ALSO supports a separate **model-benchmark** mode (Lane B) that benchmarks a model or prompt framework instead of mutating an agent file. It shares the candidate, dispatcher, and scorer seams with the agent-improvement path.
 
 **Lane B now has its own command: `/deep:start-model-benchmark-loop`.** When this command resolves `lane=model-benchmark` (via `--lane=model-benchmark`, a `--profile` / benchmark-profile arg, or the Q(lane) answer), it auto-routes to that dedicated command and loads `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_{auto,confirm}.yaml` instead of the agent-improvement YAMLs. When an agent path is supplied (the normal Lane A invocation) the lane resolves to `agent-improvement` automatically and this command runs exactly as before.
 
@@ -511,7 +511,7 @@ This command is the **Lane A** (agent-improvement) entry point. The underlying `
 - **Records**: every state record carries `mode: agent-improvement` or `mode: model-benchmark`. Benchmark reports and `benchmark_run` records carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Hardening env gates**: `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default permissive for backward compatibility.
 
-Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK. Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
+Canonical source of truth: `.opencode/skills/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK. Provenance: built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005.
 
 ---
 

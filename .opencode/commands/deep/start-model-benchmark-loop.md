@@ -14,7 +14,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task
 > 3. Determine execution mode from user input (`:auto` or `:confirm`)
 > 4. Load matching YAML workflow and execute
 >
-> This command is **general-agent based** - orchestrates deep-agent-improvement skill invocation in model-benchmark mode.
+> This command is **general-agent based** - orchestrates deep-improvement skill invocation in model-benchmark mode.
 > This command is the dedicated Lane B entry. It sets `lane = model-benchmark` directly. It does NOT ask a lane question.
 
 ---
@@ -29,7 +29,7 @@ EXECUTE THIS AUTOMATIC SELF-CHECK (NOT A USER QUESTION):
 SELF-CHECK: Are you operating as the @general agent?
 │
 ├─ INDICATORS that you ARE @general agent:
-│   ├─ You can orchestrate deep-agent-improvement invocation
+│   ├─ You can orchestrate deep-improvement invocation
 │   ├─ You can orchestrate Read/Write/Edit/Bash workflow execution
 │   ├─ You can load skill references and execute defined logic
 │
@@ -44,7 +44,7 @@ SELF-CHECK: Are you operating as the @general agent?
     │   ┌────────────────────────────────────────────────────────────┐
     │   │ ⛔ GENERAL AGENT REQUIRED                                  │
     │   │                                                            │
-    │   │ This command orchestrates deep-agent-improvement skill     │
+    │   │ This command orchestrates deep-improvement skill     │
     │   │ invocation in model-benchmark mode and runs general-agent based. │
     │   │                                                            │
     │   │ To proceed, restart with:                                  │
@@ -87,7 +87,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 
 ```yaml
 PRE-BOUND SETUP ANSWERS:
-  profile_path: .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
+  profile_path: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
   spec_folder: specs/121/008  # required spec folder path or explicit runtime folder
   execution_mode: AUTONOMOUS  # from :auto suffix
   scoring_method: pattern  # pattern (default) or 5dim
@@ -104,7 +104,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default,
 | Field | Required | Resolves Via | Default | Tier-2 Candidate |
 |-------|----------|--------------|---------|------------------|
 | `lane` | Y | fixed by command | `model-benchmark` | N |
-| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json` | N |
+| `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
 | `outputs_dir` | Y | derived from `spec_folder` | `{spec_folder}/improvement/benchmark-outputs` | N |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
@@ -147,7 +147,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    └─ IF missing → scoring_method = pattern (default), grader = noop (default), max_iterations = 5 (default)
 
 6. List available benchmark profiles for Q0:
-   $ ls .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/*.json
+   $ ls .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/*.json
 
 7. List recent spec folders for Q1:
    $ ls -d specs/*/ 2>/dev/null | tail -10
@@ -302,7 +302,7 @@ This command drives the model-benchmark lane only. To improve an agent definitio
 The model-benchmark loop runs through `loop-host.cjs` in model-benchmark mode:
 
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs \
+node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=model-benchmark \
   --profile {profile_path} \
   --outputs-dir {outputs_dir} \
@@ -319,8 +319,8 @@ node .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs \
 
 ### Default Profile and Fixtures
 
-- Default profile: `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json`
-- Fixtures: `.opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`)
+- Default profile: `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json`
+- Fixtures: `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/` (`fixture-baseline`, `fixture-improved`, `fixture-edge`)
 
 ### User Input
 
@@ -361,10 +361,10 @@ $ARGUMENTS
 
 ## 4. WORKFLOW STEPS
 
-### Step 1: Load deep-agent-improvement Skill
+### Step 1: Load deep-improvement Skill
 
 ```
-Read(".opencode/skills/deep-agent-improvement/SKILL.md")
+Read(".opencode/skills/deep-improvement/SKILL.md")
 ```
 
 Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
@@ -373,7 +373,7 @@ Focus on §4 LANE B: MODEL-BENCHMARK for the canonical contract.
 
 Confirm `profile_path` exists. When the user did not supply one, use the default profile:
 ```bash
-ls .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json
+ls .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
 ```
 
 ### Step 3: Initialize Runtime
@@ -410,7 +410,7 @@ After the loop exits, present:
 
 Lane B promotes from the benchmark report, not from an agent-scored candidate file. When evidence and approval allow it:
 ```bash
-node .opencode/skills/deep-agent-improvement/scripts/shared/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
+node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
 ```
 When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmark-mode promotion path. It promotes on the report basis when the report carries `status: benchmark-complete` with a `benchmark-pass` recommendation, bypassing the agent-scored-file requirement that the agent-improvement path uses. Promotion stays guarded by the benchmark aggregate gate, repeatability, and operator approval, and it refuses to act while the runtime config is still proposal-only.
 
@@ -436,7 +436,7 @@ Uses the default profile, `--scorer pattern`, `--grader noop`.
 ### Explicit Profile, 5-Dimension Scorer (Interactive)
 
 ```
-/deep:start-model-benchmark-loop ".opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim
+/deep:start-model-benchmark-loop ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim
 ```
 Setup asks the remaining questions. Grader stays `noop` unless changed.
 
@@ -462,7 +462,7 @@ Setup phase lists available profiles, defaults the profile to `default.json`, an
 Model Benchmark Loop Complete
 ─────────────────────────────
 
-Profile: .opencode/skills/deep-agent-improvement/assets/model-benchmark/benchmark-profiles/default.json
+Profile: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
 Scoring: pattern
 Grader:  noop
 Mode:    model-benchmark
@@ -487,14 +487,14 @@ STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 
 ## 7. NOTES
 
-- **Skill dependency**: Requires `deep-agent-improvement` at `.opencode/skills/deep-agent-improvement/`
+- **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/deep-improvement/`
 - **Lane**: This command fixes `lane = model-benchmark`. It never mutates a canonical agent file. Use `/deep:start-agent-improvement-loop` for the agent-improvement lane.
 - **Entry point**: `scripts/shared/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
 - **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`.
 - **Grader default**: `--grader noop` stays deterministic with no model dispatch. `--grader llm` is the only grader that loads `dispatch-model.cjs`.
 - **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Promotion**: Lane B promotes via `promote-candidate.cjs --benchmark-report`, which runs a benchmark-mode promotion path that gates on a `benchmark-complete` report with a `benchmark-pass` recommendation instead of an agent-scored candidate file. It stays guarded by the benchmark aggregate gate, repeatability, and operator approval.
-- **Provenance**: model-benchmark mode built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005, command entry in 121/008. Canonical source of truth: `.opencode/skills/deep-agent-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
+- **Provenance**: model-benchmark mode built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005, command entry in 121/008. Canonical source of truth: `.opencode/skills/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
 
 ---
 

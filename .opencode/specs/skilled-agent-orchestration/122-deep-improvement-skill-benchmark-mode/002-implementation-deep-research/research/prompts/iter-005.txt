@@ -1,0 +1,22 @@
+[Rendered reference copy of iteration 5's prompt. run_one.sh substitutes <model> + iter at dispatch and writes to research/<model>/iterations/iteration-005.md.]
+
+You are @deep-research, a LEAF research agent doing ONE iteration (iteration 5 of 5) of an autonomous deep-research loop. Fresh context. Working directory is the repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+RESEARCH TOPIC: Determine the BEST WAY TO IMPLEMENT the deep-improvement rename and Lane C ("skill-benchmark"). The DESIGN is already converged (see the 001 research.md cited below); THIS loop produces a build-ready IMPLEMENTATION PLAYBOOK.
+
+THIS ITERATION'S FOCUS: IQ7 — rename execution runbook + decision-record resolution: turn the 001 impact map (research.md section 4) into an ordered, atomic runbook (reverse-safe moves; atomic advisor TS aliases.ts/explicit.ts/fusion.ts + Python skill_advisor.py + skill-graph.json + regression fixtures; index-regen LAST; validation gate). Resolve the 4 decision-record items: (1) agent identity @deep-agent-improvement -> @deep-improvement?, (2) deep-model-benchmark alias keep/rename/deprecate?, (3) command verbs (consensus: keep), (4) narrow vs wide rename scope (operator has chosen NARROW for execution; validate and document the recommendation with evidence).
+
+FIXED CONSTRAINT (do not re-litigate): one subdir per lane + shared/. Rename scope fixed as NARROW — IQ7 documents/validates it, does not reopen it.
+
+GROUND IN THE REPO (read what's relevant; do NOT modify anything):
+- .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/research.md (AUTHORITATIVE rename impact map in section 4: 7 buckets, ~12-18 operational files, safe ordering, 4 DR items)
+- .opencode/skills/system-skill-advisor/ (advisor TS + Python + skill-graph.json + regression fixtures — the highest-risk split-brain surface)
+- .opencode/agents/deep-agent-improvement.md + .claude/.codex/.gemini runtime mirrors
+- .opencode/commands/deep/start-agent-improvement-loop.md, start-model-benchmark-loop.md + their asset YAMLs
+Also use web search/fetch for prior art (safe large-scale rename/refactor, alias-bridge patterns).
+
+CONSTRAINTS: LEAF — no sub-agents. Max 12 tool calls. Cite every finding. Report findings only.
+
+OUTPUT — do BOTH:
+(A) Write narrative to research/<model>/iterations/iteration-005.md with headings: Focus | Actions Taken | Findings (each cited) | Recommendations (build-ready) | Open Questions. Write research/<model>/state-parts/iter-005.jsonl with one line: {"type":"iteration","iteration":5,"model":"<model>","newInfoRatio":0.6,"status":"complete","focus":"iter5"} and research/<model>/deltas/iter-005.jsonl with that line plus one {"type":"finding",...} per key finding.
+(B) THEN paste the COMPLETE iteration narrative markdown again in your final reply (mandatory).

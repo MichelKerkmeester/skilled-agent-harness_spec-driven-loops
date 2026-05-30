@@ -1,0 +1,12 @@
+{"type":"iteration","iteration":4,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter4"}
+{"type":"finding","id":"f-gpt55-i4-01","label":"Lane C scorer is lane-specific but should reuse Lane B report shell and grader/cache machinery","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-02","label":"D1 should compute interSkill 12 plus intraSkill 13 using advisor_recommend and router replay","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-03","label":"advisor_validate belongs in runQuality calibration rather than per-scenario D1 scoring","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-04","label":"D2 should use Hit@1 Hit@3 Recall@5 and MRR over canonical resource-load ranks","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-05","label":"D3 should be computed from tool/resource/token trace costs with null-safe token handling","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-06","label":"D4 should be a skill-on skill-off ablation using the existing noop mock llm grader seam","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-07","label":"D5 should run before dispatch as a hard-gate static connectivity and contamination scan","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-08","label":"report.md must be rendered only from report.json to prevent score/report drift","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-09","label":"Headline bottleneck should be the largest single-stage funnel drop-off","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-10","label":"Remediation taxonomy should map each finding class to file locus one-line fix and handoff lane","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-11","label":"Narrow rename must be stamped into report provenance so stale-root reports cannot become baselines","iteration":4}

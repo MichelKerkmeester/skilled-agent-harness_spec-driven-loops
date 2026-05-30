@@ -1,0 +1,7 @@
+{"type":"iteration","iteration":4,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter4"}
+{"type":"finding","id":"f-gpt55-i4-01","label":"dual-artifact-report-json-and-md","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-02","label":"bottleneck-ranking-formula-with-hard-gates","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-03","label":"owner-specific-remediation-taxonomy","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-04","label":"score-rollup-with-confidence-repeatability","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-05","label":"scenario-row-trace-to-remediation-join","iteration":4}
+{"type":"finding","id":"f-gpt55-i4-06","label":"rename-surface-report-section","iteration":4}

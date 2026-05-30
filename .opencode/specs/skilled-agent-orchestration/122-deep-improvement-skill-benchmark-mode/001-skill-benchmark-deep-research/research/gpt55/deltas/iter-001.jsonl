@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":1,"model":"gpt55","newInfoRatio":0.74,"status":"complete","focus":"iter1"}
+{"type":"finding","id":"f-gpt55-i1-01","label":"Lane C must score observed utilization rather than skill prose quality","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-02","label":"Recommended scorecard weights prioritize routing, discovery, and usefulness","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-03","label":"Routing accuracy should split advisor selection from in-skill resource routing","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-04","label":"Unprompted discovery should be retrieval-style precision/recall over loaded refs/assets","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-05","label":"Efficiency should score path to first useful resource, not only total runtime","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-06","label":"Usefulness requires skill-on versus skill-off ablation","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-07","label":"Structural connectivity should combine static graph checks with dynamic traces","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-08","label":"Lane C should reuse Lane B seams without inheriting model-fixture assumptions","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-09","label":"Prior art supports trajectory-level evaluation beyond final answers","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-10","label":"Rename surface is a graph rewrite spanning skill, commands, agents, mirrors, advisor metadata, docs, and tests","iteration":1}

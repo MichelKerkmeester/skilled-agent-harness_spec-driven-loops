@@ -165,7 +165,7 @@ opencode run \
   "<prompt>" 2>&1
 ```
 
-Common slugs: `general`, `context`, `orchestrate`, `write`, `review`, `debug`, `deep-research`, `deep-review`, `ai-council`, `deep-agent-improvement`.
+Common slugs: `general`, `context`, `orchestrate`, `write`, `review`, `debug`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`.
 
 ## 6. TEMPLATE 5 — CODE REVIEW
 

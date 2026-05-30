@@ -18,9 +18,9 @@ description = "Production context retrieval specialist (memory-first, read-only)
 config_file = "agents/debug.toml"
 description = "Debugging specialist for root-cause analysis and fix validation."
 
-[agents.deep-agent-improvement]
-config_file = "agents/deep-agent-improvement.toml"
-description = "Proposal-only mutator for bounded deep-agent-improvement candidate generation with evaluator-first rules"
+[agents.deep-improvement]
+config_file = "agents/deep-improvement.toml"
+description = "Proposal-only mutator for bounded deep-improvement candidate generation with evaluator-first rules"
 
 [agents.deep-research]
 config_file = "agents/deep-research.toml"

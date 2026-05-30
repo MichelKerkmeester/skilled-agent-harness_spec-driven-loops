@@ -1,0 +1,12 @@
+{"type":"iteration","iteration":3,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter3"}
+{"type":"finding","id":"f-gpt55-i3-01","label":"mode-a-router-only-pseudocode-needs-executable-replay","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-02","label":"router-replay-must-preserve-substring-resource-map-semantics","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-03","label":"advisor-recommend-must-be-captured-out-of-band","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-04","label":"advisor-is-five-lane-calibrated-not-keyword-only","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-05","label":"mode-b-can-reuse-dispatcher-but-needs-trace-capture","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-06","label":"ab-divergence-is-actionable-skill-benchmark-signal","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-07","label":"contamination-linter-must-use-router-string-rules","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-08","label":"lane-b-fixtures-lack-public-private-split","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-09","label":"three-tier-fixtures-need-t1-t2-circularity-meter","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-10","label":"reuse-lane-b-report-spine-with-lane-c-dimensions","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-11","label":"narrow-rename-must-precede-lane-c-wiring","iteration":3}

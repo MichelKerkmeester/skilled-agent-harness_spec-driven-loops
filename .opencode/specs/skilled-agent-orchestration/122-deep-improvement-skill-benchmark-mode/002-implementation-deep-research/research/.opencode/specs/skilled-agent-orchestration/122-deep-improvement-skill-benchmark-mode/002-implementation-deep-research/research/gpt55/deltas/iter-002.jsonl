@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":2,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter2"}
+{"type":"finding","id":"f-gpt55-i2-01","label":"Lane C should be additive loop-host mode with default Lane A unchanged","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-02","label":"Skill-benchmark plan should order materialize dispatch score report","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-03","label":"TST-1 needs byte-level plan snapshots for Lane A and Lane B","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-04","label":"Build Tier 1 CLI out trace parser first with later proxy/intercept seam","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-05","label":"Trace parser must normalize Read Bash Grep Glob to resource-key sets","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-06","label":"All five executors need adapters behind one RawToolEvent schema","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-07","label":"Golden trace fixture should assert resource-key set and efficiency metadata separately","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-08","label":"Narrow deep-improvement rename must precede Lane C and rebuild advisor surfaces last","iteration":2}

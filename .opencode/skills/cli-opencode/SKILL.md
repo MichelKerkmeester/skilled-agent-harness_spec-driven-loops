@@ -28,7 +28,7 @@ Orchestrate OpenCode's `opencode run` from external AI assistants (Claude Code, 
 - **Full plugin / skill / MCP runtime** (use case 1) — calling AI is Claude Code / Codex / Copilot / Gemini / raw shell AND the task needs the project's full Spec Kit Memory database, Code Graph semantic index, structural code graph, or every plugin/skill/MCP tool in a one-shot dispatch. Includes `@deep-research` / `@deep-review` agent loops with externalized state under `.opencode/specs/`.
 - **Parallel detached session** (use case 2) — operator already inside OpenCode (TUI / web / serve / acp) AND wants a SEPARATE session with its own session id and state directory for ablation, worker farm, or parallel research. Prompt explicitly mentions "parallel detached", "ablation suite", "worker farm", "parallel research", "spawn detached", or "share URL".
 - **Cross-AI orchestration handback** (use case 3) — calling AI is non-Anthropic (Codex / Copilot / Gemini), task targets a project-specific subsystem (spec-kit, memory, code-graph, advisor), and the non-Anthropic CLI cannot load the project's plugin/skill/MCP runtime on its own and needs OpenCode as a bridge.
-- **Agent dispatch** — task matches a specialized OpenCode agent. Primary agents (directly invokable via `--agent`): `general`, `plan` (built-in), `orchestrate`, `ai-council`. Subagents dispatched via the orchestrate primary: `context`, `review`, `write`, `debug`, `deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`.
+- **Agent dispatch** — task matches a specialized OpenCode agent. Primary agents (directly invokable via `--agent`): `general`, `plan` (built-in), `orchestrate`, `ai-council`. Subagents dispatched via the orchestrate primary: `context`, `review`, `write`, `debug`, `deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`.
 - **Cross-repo dispatch** — session in repo A dispatches into repo B's plugin/skill/MCP runtime via `--dir <path>` or remote OpenCode server via `--attach <url>`.
 
 ### When NOT to Use
@@ -259,9 +259,9 @@ Direct agents are `general`, `plan`, `orchestrate`, and `ai-council`. Pin one ex
 These live at `.opencode/agents/<slug>.md` with `mode: subagent` and are NOT directly invokable via `opencode run --agent`. Two dispatch surfaces are legal under the single-hop NDP contract:
 
 1. **Generic subagents** (`context`, `review`, `write`, `debug`) — dispatched by a primary (`orchestrate`) using the Task tool. To exercise via the opencode CLI, route through `--agent orchestrate` and let it dispatch the relevant subagent.
-2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/deep:start-research-loop`, `/deep:start-review-loop`, `/deep:start-agent-improvement-loop`, `/prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
+2. **Command-owned loop executors** (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`) — dispatched ONLY by their parent commands (`/deep:start-research-loop`, `/deep:start-review-loop`, `/deep:start-agent-improvement-loop`, `/prompt`). Never dispatch these directly via `--agent <slug>` and never route them through `orchestrate`. The parent command owns iteration state, convergence detection, and continuity.
 
-Generic subagents (`context`, `review`, `write`, `debug`) route through `orchestrate`; loop executors (`deep-research`, `deep-review`, `deep-agent-improvement`, `prompt-improver`) route only through their parent commands.
+Generic subagents (`context`, `review`, `write`, `debug`) route through `orchestrate`; loop executors (`deep-research`, `deep-review`, `deep-improvement`, `prompt-improver`) route only through their parent commands.
 
 See [agent_delegation.md](./references/agent_delegation.md) for the complete agent roster and dispatch patterns.
 

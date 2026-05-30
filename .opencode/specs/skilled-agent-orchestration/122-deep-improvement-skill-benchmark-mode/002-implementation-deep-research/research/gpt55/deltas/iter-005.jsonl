@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":5,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter5"}
+{"type":"finding","id":"f-gpt55-i5-01","label":"NARROW rename scope is validated: rename package plus agent id, advisor, and active cross-refs; keep command verbs and agent-improvement token family","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-02","label":"Operational rename surface is small but raw grep is misleading; freeze an active-op inventory and denylist historical research/review/archive hits before edits","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-03","label":"Rename must precede Lane C because skill-benchmark trace roots and RESOURCE_MAP resolution would otherwise bake the old package path","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-04","label":"loop-host.cjs is the correct third-mode seam; add skill-benchmark to VALID_MODES and planInvocation without changing default Lane A behavior","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-05","label":"Advisor update is the highest-risk atomic surface because TS aliases/explicit/fusion, Python skill_advisor.py, skill-graph.json, metadata, and fixtures all carry old ids","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-06","label":"Decision resolved: keep deep-model-benchmark as Lane B alias while remapping renamed package penalties/ownership to deep-improvement and adding Python parity if validated","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-07","label":"Decision resolved: rename @deep-agent-improvement to @deep-improvement in all runtime mirrors/config while preserving proposal-only Lane A behavior","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-08","label":"Lane C should reuse Lane B dispatcher/scorer/report shapes with Lane-C-specific parse-resource-loads, skill-benchmark scorer, fixture split, and report renderer","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-09","label":"Hint-free harness requires public/private fixtures, contamination linter, out-of-band advisor capture, and canonicalization of every file-touch verb","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-10","label":"Regenerate advisor graph, descriptions, metadata, and code graph last; otherwise generated indexes can re-bake deep-agent-improvement","iteration":5}

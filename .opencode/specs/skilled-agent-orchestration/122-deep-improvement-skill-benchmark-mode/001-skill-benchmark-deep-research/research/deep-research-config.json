@@ -1,0 +1,17 @@
+{
+  "topic": "Design Lane C (skill-benchmark) for the deep-improvement skill: benchmark real-world skill routing/activation accuracy, unprompted reference/asset discovery, efficiency/bottlenecks, usefulness via ablation, and structural connectivity; hint-free dispatch harness; scoring dimensions + ranked remediation report; plus the deep-agent-improvement -> deep-improvement rename impact map.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.01,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research",
+  "createdAt": "2026-05-30T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-opencode", "model": "minimax/MiniMax-M2.7", "reasoningEffort": null, "serviceTier": null, "sandboxMode": null, "timeoutSeconds": 900 },
+  "lineage": { "sessionId": "minimax-run1", "parentSessionId": null, "lineageMode": "new", "allowedModes": ["new","resume","restart"], "generation": 1, "continuedFromRun": null },
+  "reducer": { "enabled": true, "version": "1.0", "registryFile": "findings-registry.json", "dashboardFile": "deep-research-dashboard.md", "strategyFile": "deep-research-strategy.md", "machineOwnedSections": ["key-questions","answered-questions","what-worked","what-failed","exhausted-approaches","ruled-out-directions","next-focus"] }
+}

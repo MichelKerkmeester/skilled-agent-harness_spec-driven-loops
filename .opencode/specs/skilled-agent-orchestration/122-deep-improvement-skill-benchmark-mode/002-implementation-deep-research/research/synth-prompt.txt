@@ -1,0 +1,22 @@
+You are a senior research synthesizer. Working directory is the repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+You are consolidating a 20-iteration, 4-model deep-research sweep into one canonical IMPLEMENTATION PLAYBOOK. The sweep investigated the best way to IMPLEMENT the deep-agent-improvement -> deep-improvement rename and Lane C ("skill-benchmark") for the deep-improvement skill. The DESIGN is already converged in 001-skill-benchmark-deep-research/research/research.md; this report is build-ready implementation guidance, NOT a restated design.
+
+READ ALL 20 ITERATION FILES (relative to repo root). Each model ran the same 5 foci (iter1=IQ1+IQ8, iter2=IQ2+IQ3, iter3=IQ4+IQ5, iter4=IQ6, iter5=IQ7):
+- .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/minimax/iterations/iteration-001.md ... iteration-005.md
+- .../research/deepseek/iterations/iteration-001.md ... iteration-005.md
+- .../research/gpt55/iterations/iteration-001.md ... iteration-005.md
+- .../research/opus/iterations/iteration-001.md ... iteration-005.md
+
+THEN WRITE a single consolidated report (use your Write tool) to:
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research/research/research.md
+
+The report MUST have these sections:
+1. Executive Summary — the recommended implementation/build order in 6-8 bullets + headline risks.
+2. Per-IQ Synthesis — one subsection per IQ (IQ1 module architecture & seam reuse; IQ2 loop-host wiring + non-regression; IQ3 trace capture; IQ4 router-replay Mode A/B; IQ5 contamination linter + 3-tier fixtures; IQ6 scorer + report-builder; IQ7 rename runbook + 4 DR resolutions; IQ8 pilot/calibration/test/prior-art). For each IQ, synthesize ACROSS the 4 models: state the consensus, call out notable divergences, and attribute with [model/iterN] tags plus any original [SOURCE: ...] citations the iterations carried.
+3. Recommended Implementation — concrete: the shared-vs-skill-benchmark module map (files to create under scripts/ references/ assets/ skill-benchmark/ + shared/), the loop-host planInvocation diff sketch, the trace-capture module, the fixture pipeline + JSON schema, the scorer + report-builder, mapped to the three seams (candidate-source / dispatcher / scorer) and loop-host --mode=skill-benchmark.
+4. Rename Runbook — the ordered, atomic steps to execute the NARROW rename, with the 4 decision-record items resolved (agent identity, deep-model-benchmark alias, command verbs, narrow-vs-wide), and the validation gate.
+5. Cross-Model Observations — which model surfaced what; quality/divergence/coverage notes.
+6. Actionable Next Steps — concrete checklist items for Phase 003 (rename) and Phase 004 (Lane C build).
+
+Preserve citations. Be specific and build-ready, not generic. When done writing the file, reply with the single line: SYNTHESIS_DONE plus the research.md line count.

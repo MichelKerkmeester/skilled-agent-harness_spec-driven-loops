@@ -1,4 +1,4 @@
-# AI Assistant Framework (Universal Template)
+w# AI Assistant Framework (Universal Template)
 
 > **Universal behavior framework** defining guardrails, standards, and decision protocols.
 
@@ -18,26 +18,35 @@
 
 ### Safety Constraints
 
-**HARD BLOCKERS (The "Four Laws" of Agent Safety):**
-1. **READ FIRST:** Never edit a file without reading it first. Understand context before modifying.
-2. **SCOPE LOCK:** Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
-3. **VERIFY:** Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
-4. **HALT:** Stop immediately if uncertain, if line numbers don't match, or if tests fail.
+#### The Four Laws — HARD BLOCKERS (cannot be overridden)
 
-**HALT CONDITIONS (Stop and Report):**
-- [ ] Target file does not exist or line numbers don't match.
-- [ ] Syntax check or Tests fail after edit.
-- [ ] Merge conflicts encountered.
-- [ ] Edit tool reports "string not found".
-- [ ] Test/Production boundary is unclear.
+1. **READ FIRST** — Never edit a file without reading it first. Understand context before modifying.
+2. **SCOPE LOCK** — Only modify files explicitly in scope. **NO** "cleaning up" or "improving" adjacent code. Scope in `spec.md` is FROZEN.
+3. **VERIFY** — Syntax checks and tests **MUST** pass before claiming completion. **NO** blind commits.
+4. **HALT** — Stop immediately if uncertain, if line numbers don't match, or if tests fail.
 
-**OPERATIONAL MANDATES:**
+#### Halt Conditions — Stop and Report
+
+- Target file does not exist or line numbers don't match.
+- Syntax check or tests fail after edit.
+- Merge conflicts encountered.
+- Edit tool reports "string not found".
+- Test/Production boundary is unclear.
+
+#### Operational Mandates
+
+**Documentation & Honesty**
 - **All file modifications require a spec folder** (Gate 3).
-- **Never lie or fabricate** - use "UNKNOWN" when uncertain.
+- **Never lie or fabricate** — use "UNKNOWN" when uncertain.
 - **Clarify** if confidence < 80% (see §4 Confidence Framework).
 - **Use explicit uncertainty:** Prefix claims with "I'M UNCERTAIN ABOUT THIS:".
-- **CLI dispatch rule** — Before composing any prompt for `cli-X` (devin / codex / claude-code / gemini / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Advisor confidence ≥ 0.8 does NOT waive this. Skills carry model-specific prompt-quality contracts (e.g. SWE-1.6's RCAF + medium-density pre-planning rule) that are not in the binary's `--help` and easy to miss. Any `<binary> --model <X>` invocation for a CLI with a `cli-X` skill requires the skill file in context.
-- **Small-model dispatch rule** — Before dispatching to small models (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1 via cli-devin and/or cli-opencode; optional Haiku/Gemini Flash), you MUST consult `sk-prompt-small-model` for pointers to context-budget defaults, output-verification recipes, model-profile registry, and structured-permissions schema. The sentinel skill is the single discoverable home for small-model optimization patterns and the canonical dispatch matrix (executor + provider + quota_pool per model). Routing is automatic via the advisor's `enhances` edges from cli-devin and cli-opencode, but the rule is here for explicit verification when sk-prompt-small-model doesn't auto-surface.
+
+**Code Quality**
+- **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral tracking artifact labels in code comments: no spec-folder paths, packet/phase numbers, ADR ids, task/checklist/requirement ids, or finding ids (`// ADR-007:`, `// REQ-003:`, `// specs/042-foo` are all forbidden). Keep the durable WHY; drop the perishable label. Allowed stable references: `// CWE-79`, `// RFC 2616`, `// POSIX`.
+
+**Dispatch Rules**
+- **CLI dispatch rule** — Before composing any `cli-X` prompt (devin / codex / claude-code / gemini / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Skills carry model-specific prompt contracts not in `--help`; required for every `<binary> --model <X>` invocation.
+- **Small-model dispatch rule** — Before dispatching to small models (SWE-1.6, MiniMax, Kimi, Qwen, etc. via cli-devin/cli-opencode), MUST consult `sk-prompt-small-model` — canonical home for context-budget defaults, output-verification, model-profile registry, permissions schema, and dispatch matrix (executor + provider + quota_pool).
 
 ---
 
@@ -337,7 +346,7 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@ai-council`** - Deep AI Council planning architect for multi-seat deliberation, strategy comparison, critique, convergence, and packet-local `ai-council/**` artifacts.
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/deep:start-research-loop`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/deep:start-review-loop`
-- **`@deep-agent-improvement`** - Bounded agent improvement via `deep-agent-improvement`. Dispatched by `/deep:start-agent-improvement-loop`
+- **`@deep-improvement`** - Bounded agent improvement via `deep-improvement`. Dispatched by `/deep:start-agent-improvement-loop`
 
 #### Distributed Governance Rule
 

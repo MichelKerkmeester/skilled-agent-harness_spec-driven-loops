@@ -1,0 +1,159 @@
+# Iteration 004 — Lane C "skill-benchmark": the Skill Benchmark Report — scoring rollup, bottleneck ranking, remediation taxonomy (RQ5)
+
+> Model: opus · Iteration 4 of 5 · LEAF (no sub-dispatch) · Read-only research
+> Web note: consistent with iters 001–003, `WebSearch`/`WebFetch` are permission-gated in this background context and were not retried (preserving the 12-call budget for first-hand repo grounding). The few external concepts referenced (SARIF result/level shape, CVSS-style severity ladders, RICE/ICE impact-over-effort ranking, conversion-funnel drop-off analysis) are established and flagged `[web-unverified]`. The load-bearing evidence this iteration is all first-hand from repo files — especially the existing evaluator contract and the repo's own shipped deep-review report. Builds on iter-001 (D1–D5 + weights), iter-002 (hint-free harness + validity controls), iter-003 (two activation sub-scores + five-stage funnel + three-tier fixtures).
+
+---
+
+## Focus
+
+**RQ5** — The Skill Benchmark Report. Given the dimensions (iter-001), the measurement engine (iter-002), and the activation/fixture model (iter-003), RQ5 designs the *output*: how D1–D5 roll up into a verdict, how bottlenecks are ranked, and how every finding becomes a concrete, actionable remediation a follow-up packet (or Lane A) can execute. Three deliverables: **report shape**, **scoring rollup**, **remediation taxonomy** (plus bottleneck ranking, which the rollup produces for free).
+
+The governing constraint from the topic: *results must be actionable/remediable.* RQ5 is where that constraint is either satisfied or lost — a number with no fix target is exactly the failure mode this iteration must design out.
+
+---
+
+## Actions Taken
+
+1. Re-read the target skill `deep-agent-improvement/SKILL.md` (full) — re-pinned the existing report-adjacent machinery: the `reduce-state.cjs` dashboard/`experiment-registry.json` with `journalSummary`/`Sample Quality`/`latestLegalStop.gateResults`, the trade-off detector that *blocks promotion regardless of score*, and the stop-reason/session-outcome taxonomy.
+2. **Read `references/model-benchmark/evaluator_contract.md` (full, NEW this iteration)** — captured the existing scorer/benchmark **output contract** (`status`, `score`, `dimensions[]`, `recommendation`, `failureModes`; benchmark runner: `aggregateScore`, `maxScore`, `recommendation`, `fixtures`, `failureModes`), the **≥70 → "candidate-acceptable"** verdict band, and the **reject-vs-`infra_failure`** split with its core principle "weak candidates and infrastructure failures must be distinguishable."
+3. **Read `121/007-benchmark-mode-hardening-review/review/review-report.md` (full, NEW this iteration)** — captured the repo's *own shipped* finding-report architecture: Executive Summary (verdict `CONDITIONAL`, `hasAdvisories`, active P0/P1/P2 counts), a machine **Planning Trigger** JSON seed, an **Active Finding Registry** (P1 table `ID/Sev/Title/File:line/Evidence/Fix`; P2 table `ID/Title/File:line/Class`), **Remediation Workstreams**, **Spec/Plan Seeds**, **Search Ledger/searchDebt**, and a closing **§11 Remediation Status** with per-finding dispositions (`✅ FIXED` / `ACCEPTED DEFERRAL` / `RESOLVED no-defect` / `N/A`) + re-verification evidence.
+4. Re-read prior opus iterations 001–003 — anchored RQ5 on iter-001's weights (F7), iter-002's validity controls (F8) and rename-string hazard (F10), and iter-003's five-stage funnel (F4) + per-stage remediation localization (F1/F4/F5), so the report *consumes* those rather than restating them.
+5. Synthesized the report shape, the two-layer rollup, the funnel-attrition bottleneck ranking, and the stage-keyed remediation taxonomy; mapped each onto an artifact the repo already ships.
+
+---
+
+## Findings (each cited)
+
+### F1 — Don't invent a report format: FUSE the two report contracts this skill family already ships
+
+The repo already runs two complementary, production report contracts that Lane C should combine rather than reinvent:
+
+- **Machine JSON (benchmark runner shape):** `status`, `aggregateScore`, `maxScore`, `recommendation`, `fixtures`, `failureModes`; the scorer variant adds `score`, `dimensions[]` (each `{name, score, weight, details}`), and `recommendation = "candidate-acceptable"` at weighted ≥ 70 else `"needs-improvement"`. [SOURCE: .opencode/skills/deep-agent-improvement/references/model-benchmark/evaluator_contract.md:60-87]
+- **Human markdown (deep-review report shape):** Executive Summary → machine Planning-Trigger → Active Finding Registry → Remediation Workstreams → Spec/Plan Seeds → Deferred Items → Search Ledger → §11 Remediation Status. [SOURCE: .opencode/specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review/review/review-report.md:7-37,39-73,125-157]
+
+**Actionable:** the Skill Benchmark Report is a pair — `skill-benchmark-report.json` (machine, Lane-B-shaped, CI-diffable) + `skill-benchmark-report.md` (human, deep-review-shaped, planning-ready). The document *architecture* is already proven in this exact skill family; the only net-new work is the **content schema** (D1–D5 + the funnel), not a new document type. This keeps RQ5 consistent with iter-001 F8 / iter-002 F9 "reuse, don't rebuild."
+
+### F2 — Scoring rollup is TWO LAYERS: a weighted D1–D4 band, with D5 + contamination + Stage-1 as a hard GATE that caps the verdict
+
+The existing evaluator already models *both* halves of this pattern: a weighted score with a ≥70 acceptance band [SOURCE: evaluator_contract.md:87], **and** a set of *immediate* rejection conditions that fire regardless of the weighted number [SOURCE: evaluator_contract.md:114-124], plus the trade-off detector that "blocks promotion for Pareto-dominated candidates" independent of score [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:402-405]. The review even names the arithmetic: `applyHardGate()` + rubric summation [SOURCE: review-report.md:108].
+
+Lane C's rollup copies that two-layer shape, using iter-001 F7's weights:
+
+- **Weighted layer (D1–D4):** `weighted = 0.25·D1 + 0.20·D2 + 0.15·D3 + 0.30·D4`, scaled 0–100, mapped to a verdict band (`PASS` / `CONDITIONAL` / `FAIL`) reusing the existing ≥70 anchor. [SOURCE: opus/iterations/iteration-001.md:120-128 (weights); evaluator_contract.md:87 (≥70 anchor)]
+- **Gate layer (D5 + contamination + funnel Stage 1):** any dead `RESOURCE_MAP` key, orphan reference, empty-intent map, or failed contamination-lint **caps the verdict at CONDITIONAL/FAIL regardless of the weighted score**. A skill that scores 85 weighted but has a dead router key is *not* acceptable — because that dead key frequently *is the cause* of a downstream D2 miss (iter-001 F6). [SOURCE: opus/iterations/iteration-001.md:102-114,126 (D5 as hard gate); evaluator_contract.md:114-124 (immediate rejection precedent)]
+
+This is the precise mechanism that makes D5 "a hard gate, not a soft score" (iter-001 F7) executable in the report.
+
+### F3 — The five-stage funnel IS the scoring rollup's backbone AND the bottleneck localizer in one structure
+
+Iter-003 F4 defined "properly utilized" as a five-stage conjunction: **1 Reachable → 2 Activated(inter) → 3 Routed(intra) → 4 Discovered(behavioral) → 5 Useful(causal)**, and established that "the first failing stage is the finding." [SOURCE: opus/iterations/iteration-003.md:58-68] RQ5 operationalizes that into the report's central artifact:
+
+- **Per fixture:** record `firstFailingStage` ∈ {1..5, "passedAll"} plus the dimension score that drove it.
+- **Aggregate:** a **funnel rollup** — the % of fixtures surviving each stage. This single structure is simultaneously (a) the scoring rollup, (b) the bottleneck localizer, and (c) the remediation router. **The stage with the largest single-stage drop-off is THE headline bottleneck.** [SOURCE: opus/iterations/iteration-003.md:58-68; conversion-funnel drop-off analysis, general technique `[web-unverified]`]
+
+Ranking bottlenecks therefore reduces to ranking funnel attrition — no separate ranking model is needed. A funnel where 90% reach Stage 3 but only 40% survive Stage 4 says, unambiguously, "the skill is routable but not signposted inline" (iter-003 F4) — and points the fix at SKILL.md prose, not frontmatter.
+
+### F4 — Remediation taxonomy: the FAILING STAGE selects a closed set of edit classes, each naming a concrete (file, locus, one-line edit)
+
+Because iter-003 F1/F4/F5 proved each funnel stage fails for an architecturally distinct reason, the remediation class can be *derived from the failing stage* — no human triage step. This is the table that makes Lane C "remediable, not a vanity score" (iter-001 F7 / topic constraint):
+
+| Funnel stage failed | Finding class | Concrete edit target | Example one-line fix |
+| --- | --- | --- | --- |
+| 1 Reachable (D5) | `connectivity/dead-router-key` | a `RESOURCE_MAP`/`RUNTIME_ASSETS` entry pointing off-disk | repoint or delete the key |
+| 1 Reachable (D5) | `connectivity/orphan-reference` | a file under `references/`+`assets/` no router target loads | add a `RESOURCE_MAP` entry or delete the orphan |
+| 1 Reachable (D5) | `connectivity/intent-no-resource` | an `INTENT_SIGNALS` key with empty/missing map | populate `RESOURCE_MAP[intent]` |
+| 2 Activated-inter (D1) | `routing/weak-trigger` (low recall) | frontmatter `triggers`/`keywords`/`intent_signals` | add the missing trigger phrase / `explicit_author` boost |
+| 2 Activated-inter (D1) | `routing/over-broad` (low precision) | frontmatter keywords | narrow or remove the over-general keyword |
+| 2 Activated-inter (D1) | `routing/ambiguity-cluster` (sub-0.05 sibling tie) | disambiguating keyword OR skill-graph `siblings`/`conflicts_with` edge | per iter-003 F3 |
+| 2 Activated-inter (D1) | `routing/derived-dominant-cap` (confidence capped 0.72 < 0.8) | add `explicit_author`/`lexical` so `directScore > 0.2` | per iter-003 F3 |
+| 3 Routed-intra (D2) | `router/keyword-mismatch` | an `INTENT_SIGNALS[...]["keywords"]` string | align the keyword (the `"dynamic profile"` ≠ `"dynamic profiling"` bug, iter-003 F5) |
+| 3 Routed-intra (D2) | `router/missing-map-entry` | a `RESOURCE_MAP[intent]` list | add the gold reference to the map |
+| 4 Discovered-behavioral (D2 Mode B) | `signpost/not-inline` | SKILL.md prose | name the reference path inline so a live model opens it |
+| 4 Discovered (D3) | `efficiency/load-bloat` | the `ON_DEMAND` load-everything branch / SKILL.md size | tighten the branch (iter-001 F4), push detail into refs |
+| 5 Useful (D4) | `value/net-negative` | the skill itself | retire / merge / re-scope — the verdict *is* the remediation |
+
+[SOURCE: opus/iterations/iteration-001.md:51,67,81,100 (per-dimension remediations); opus/iterations/iteration-003.md:37-39,49-56,72-77 (stage-specific failure→fix); .opencode/skills/deep-agent-improvement/SKILL.md:124-138,168-172,201-205 (router loci)]
+
+Every row resolves to a precise edit target. This is the remediation taxonomy, and its structural property — *the failing stage names the class* — is what lets the harness emit fixes automatically. It mirrors SARIF's `result → fix → location` shape (a finding carries its remediation and a code locus). [SOURCE: SARIF result/fix/location schema, general standard `[web-unverified]`]
+
+### F5 — Bottleneck RANKING: severity on the repo's P0/P1/P2 ladder, ordered within-severity by attrition × fix-locality
+
+RQ5 says "rank bottlenecks." Reuse the repo's existing severity ladder (deep-review P0/P1/P2) instead of inventing a scale, mapped to Lane C semantics:
+
+- **P0 (blocking / hard-gate):** any D5 connectivity failure, contamination-lint failure, or Stage-1 failure — these cap the verdict (F2). Deep-review's "release-blocking" maps to Lane C's "the skill is structurally broken OR the benchmark itself cannot be trusted."
+- **P1 (fix-before-rely):** the single largest funnel drop-off stage (the dominant bottleneck), plus any D1 ambiguity-cluster / derived-dominant cap that *prevents auto-invocation*, plus any negative-fixture false-activation (a precision break). This matches deep-review's "genuine but non-blocking … fix-before-promote" P1 framing. [SOURCE: review-report.md:9,41-50]
+- **P2 (advisory):** efficiency/load-bloat, minor per-intent coverage gaps, the T1↔T2 circularity-gap warning (iter-003 F7), single-fixture misses on adversarial near-neighbors.
+
+**Within a severity, order by `attrition × fix-locality`** — how many fixtures the stage kills, then how cheap the fix is (a one-line keyword alignment outranks a structural rewrite). This is a RICE/ICE impact-over-effort sort. [SOURCE: RICE/ICE prioritization, general technique `[web-unverified]`] The report's **headline bottleneck = the highest-attrition stage that is also cheaply fixable** — the maximum-leverage move.
+
+### F6 — Carry the deep-review Planning-Trigger + Seed blocks VERBATIM: the report's output contract is already the remediation tool's input contract
+
+This is the single most important RQ5 finding for the "actionable by a follow-up packet or Lane A" requirement. The deep-review report already emits a machine **Planning Trigger** JSON that *seeds `/speckit:plan`*: `triggered`, `verdict`, `hasAdvisories`, `activeFindings`, `remediationWorkstreams`, `specSeed`, `planSeed`, `findingClasses`, `affectedSurfacesSeed`, `fixCompletenessRequired`. [SOURCE: review-report.md:19-37] Lane C should emit the **identical block** so a downstream planner consumes the report with zero translation:
+
+- `findingClasses` ← the remediation-taxonomy classes (F4).
+- `affectedSurfacesSeed` ← the SKILL.md / `references/*` / frontmatter loci (F4).
+- `remediationWorkstreams` ← grouped by stage/severity (F5).
+
+**Executor tagging.** Tag each workstream with its natural executor, because Lane A and a speckit packet fit different fixes:
+- `lane-a-candidate`: routing/signpost fixes that are *bounded `.md` edits* (frontmatter `triggers`/`keywords` + SKILL.md prose) — Lane A "improves a bounded agent `.md` file" via packet-local candidates + guarded promotion, and a SKILL.md is exactly such a bounded surface. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:33,218-220,233]
+- `speckit-packet`: D5 connectivity fixes (often multi-file: ref + map + mirror) and D4 retire/merge verdicts (cross-skill, structural).
+
+The report doesn't just *describe* fixes — it hands the next stage a ready-to-execute seed.
+
+### F7 — Finding disposition lifecycle + SELF-CLOSING re-run verification (Lane C is stronger here than deep-review)
+
+The review-report's §11 closes every finding with a disposition (`✅ FIXED` / `ACCEPTED DEFERRAL` / `RESOLVED no-defect` / `N/A`) plus re-verification evidence. [SOURCE: review-report.md:125-157] Lane C must adopt the same lifecycle so a benchmark finding isn't an orphan number. Two Lane-C-specific strengthenings:
+
+- **Self-closing re-run.** Because D1/D3/D5 are deterministic (iter-001/002/003), **re-running the benchmark after a fix auto-verifies closure** — the funnel drop-off that disappears *is* the regression test. Deep-review needs human re-verification; Lane C gets it free for the deterministic dimensions. The disposition for those is machine-assignable.
+- **ACCEPTED-DEFERRAL must be first-class.** Some "failures" are intended design — e.g. a skill that deliberately does *not* auto-invoke, mirroring 121's documented `dispatcher-not-default-wired` deferral. [SOURCE: review-report.md:102,153-154] Without an intended-design disposition (with rationale), every re-run re-raises the same noise. The report must let a finding be marked intended-by-design and suppress it on re-run unless its loci change.
+
+### F8 — Distinguish "weak skill" from "broken harness": a top-level `runQuality` block gating actionability
+
+The evaluator's stated core principle: "Weak candidates and infrastructure failures must be distinguishable … so a broken tool path is not mistaken for a bad prompt." [SOURCE: evaluator_contract.md:26-27,114-124] Lane C inherits a *third* confound iter-002 surfaced: a contaminated/leaky fixture or a broken trace-parser yields a fake-good or fake-bad score. So the report needs a top-level **`runQuality`** block, separate from skill findings, reusing the deep-review **Search Ledger / `searchDebt`** and the dashboard **Sample Quality** patterns. [SOURCE: review-report.md:105-109; .opencode/skills/deep-agent-improvement/SKILL.md:480]
+
+- `harnessHealth`: did the contamination linter pass on all admitted fixtures (iter-002 F7)? did the **calibration arm** behave (scores rise under injected hints, proving the trace capture measures discovery — iter-002 F8)? did the **decoy-skill negative control** stay uncredited (iter-002 F8)?
+- `sampleSufficiency`: per-fixture k-run variance for the behavioral D2/D4 dimensions (iter-002 F8) — was the sample big enough to trust?
+
+A skill finding produced under an *unhealthy* run is tagged `verify-in-rerun` (not actionable) — exactly mirroring the review's `verify-in-remediation` flag on out-of-scope findings. [SOURCE: review-report.md:59,109] This designs out the worst RQ5 failure: shipping a confident remediation list off a broken benchmark.
+
+### F9 — TWO artifacts: per-skill report vs cross-skill routing-matrix report (different remediation owners)
+
+Iters 001/003 left open whether Lane C also scores the routing layer itself (a whole-skill confusion matrix). RQ5 resolves the *report boundary* by emitting two artifacts with distinct ownership:
+
+- `skill-benchmark-report.{json,md}` — **per-skill**, the D1–D5 funnel + remediations above.
+- `routing-matrix-report.json` — **optional cross-skill**, reusing `advisor_validate`'s corpus/holdout `perSkill[]` + ambiguity clusters (iter-003 F2/F3) to surface sibling collisions (the live `sk-code`/`deep-research` tie observed across iters). A per-skill `routing/ambiguity-cluster` finding links to the matrix cell. [SOURCE: opus/iterations/iteration-003.md:43-47,49-56]
+
+Keep them separate because their **remediation owners differ**: a per-skill fix edits *that skill's* frontmatter, whereas a matrix fix may need to edit a *sibling* skill or the advisor's lane weights — never the skill-under-test. You must not silently "fix" skill A's collision by degrading skill B; the two-artifact split makes that boundary explicit (and respects iter-001/003's "don't fix one skill by harming another" caution).
+
+### F10 — Rename interaction (RQ6): the report's loci ARE the rename's blast radius; stale loci silently corrupt the report
+
+Building on iter-001 F10 + iter-002 F10: the `deep-agent-improvement → deep-improvement` rename changes exactly the strings the report's `affectedSurfacesSeed` and remediation-taxonomy loci point at — the skill dir, SKILL.md `name:`/`triggers:`/`<!-- Keywords -->`, `RESOURCE_MAP` paths, the `/deep:start-*-loop` command names, the `loop_type:"improvement"` state namespace, and the mutator agent + `.claude`/`.codex`/`.gemini` mirrors. [SOURCE: opus/iterations/iteration-001.md:146-148; opus/iterations/iteration-002.md:81-82; .opencode/skills/deep-agent-improvement/SKILL.md:2,7-17,367,520-522]
+
+If a report is generated pre-rename and consumed post-rename, **every `file:line` locus is stale** → the follow-up packet edits a nonexistent path, and the D5 connectivity gate would itself FAIL on the renamed skill (the old paths now read as dead keys). RQ5 recommendation: the report must **stamp the skill's resolved root + a metadata hash at generation time**, and a report whose stamped root no longer resolves is **auto-invalidated** (forces a re-run) — making the rename a first-class `runQuality` invalidator (F8), not a silent corruptor. Bonus: **the rename is the ideal Lane C dogfood** — run the benchmark immediately before and after; an identical funnel proves a clean rename, while any new D5 dead-key pinpoints a missed reference.
+
+---
+
+## Recommendations
+
+1. **Ship a dual report artifact** — `skill-benchmark-report.json` (machine, Lane-B-shaped) + `skill-benchmark-report.md` (human, deep-review-shaped); net-new is only the D1–D5/funnel content schema, not a new document type (F1).
+2. **Roll up scoring in two layers** — weighted D1–D4 with a ≥70-anchored verdict band, and D5 + contamination + funnel-Stage-1 as a hard gate that caps the verdict regardless of the weighted number (F2), copying the existing `applyHardGate()` + immediate-rejection precedent.
+3. **Make the five-stage funnel the report's backbone** — record `firstFailingStage` per fixture; the aggregate funnel's largest single-stage drop-off is the headline bottleneck, so ranking bottlenecks = ranking attrition (F3).
+4. **Ship the stage-keyed remediation taxonomy** (F4) — every finding resolves to a `(file, locus, one-line edit)`; the failing stage selects the class, so fixes are emitted without human triage.
+5. **Rank within severity by `attrition × fix-locality`** on the repo's P0/P1/P2 ladder; headline = highest-attrition cheaply-fixable stage (F5).
+6. **Emit the deep-review Planning-Trigger + Spec/Plan-Seed blocks verbatim**, tagging each workstream `lane-a-candidate` (bounded SKILL.md/frontmatter edits) vs `speckit-packet` (multi-file/structural), so the report is directly consumable by `/speckit:plan` or a Lane A loop (F6).
+7. **Add a finding disposition lifecycle with self-closing re-run verification** for deterministic dimensions, and a first-class `ACCEPTED-DEFERRAL` disposition for intended design so re-runs don't re-raise noise (F7).
+8. **Add a top-level `runQuality` block** (`harnessHealth` + `sampleSufficiency`) that downgrades findings from an unhealthy run to `verify-in-rerun`, porting the evaluator's infra-vs-weak split and deep-review's search-debt/sample-quality (F8).
+9. **Emit per-skill and (optional) cross-skill routing-matrix reports separately**, because their remediation owners differ — never fix one skill by silently degrading a sibling (F9).
+10. **Stamp the resolved skill root + metadata hash and auto-invalidate stale-root reports** so the rename can't silently corrupt loci; dogfood Lane C across the rename itself (F10).
+
+---
+
+## Open Questions
+
+- **Verdict-band thresholds for a *utilization* score:** the ≥70 anchor is borrowed from the file-shape scorer — what weighted score separates `PASS`/`CONDITIONAL`/`FAIL` for a *behavioral* utilization score? Needs calibration on a handful of real skills before the band is trusted.
+- **Attrition vs absolute floors:** is "biggest drop-off" always the right bottleneck, or should a stage with *low* attrition but below an absolute floor (e.g. activation recall < 0.5, or D4 net-value ≤ 0) outrank a higher-attrition-but-above-floor stage? The ranking key (F5) may need a floor-override term.
+- **Lane-A-candidate boundary:** how much of a routing fix (frontmatter + SKILL.md prose) is safely *one* bounded Lane A candidate vs needs a multi-file speckit packet? Where exactly is the cut between F6's two executor tags?
+- **Disposition persistence across rename:** dispositions key on finding IDs/loci; after a rename the loci move (F10) — how do `ACCEPTED-DEFERRAL`s survive without re-raising? Likely needs a rename-aware finding-identity (content hash, not path).
+- **`runQuality` gating threshold:** what calibration-arm gap or k-run variance makes a run "unhealthy" enough to downgrade *all* findings to `verify-in-rerun` (F8)? Needs an empirical floor, not a guess.
+- **Cross-skill matrix ownership:** is `routing-matrix-report.json` Lane C's artifact or `advisor_validate`'s (F9)? RQ5 proposes Lane C emits it but defers ownership — the last remaining cross-cutting boundary question, suitable for iter-005 synthesis.

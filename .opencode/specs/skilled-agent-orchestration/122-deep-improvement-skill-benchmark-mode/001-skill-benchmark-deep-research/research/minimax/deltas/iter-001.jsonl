@@ -1,0 +1,13 @@
+{"type":"iteration","iteration":1,"model":"minimax","newInfoRatio":0.6,"status":"complete","focus":"iter1"}
+{"type":"finding","id":"f-minimax-i1-1","label":"Skill router is self-referential — primary measurement target","iteration":1}
+{"type":"finding","id":"f-minimax-i1-2","label":"Three pluggable seams determine Lane C insertion point","iteration":1}
+{"type":"finding","id":"f-minimax-i1-3","label":"Lane-aware resource org creates observable surface","iteration":1}
+{"type":"finding","id":"f-minimax-i1-4","label":"sk-doc validates shape Lane C measures behavior","iteration":1}
+{"type":"finding","id":"f-minimax-i1-5","label":"skill-advisor operates at different layer than Lane C","iteration":1}
+{"type":"finding","id":"f-minimax-i1-6","label":"Coverage (skill-on minus skill-off) is fundamental usefulness metric","iteration":1}
+{"type":"finding","id":"f-minimax-i1-7","label":"Tau-Bench trace capture applies to routing observation","iteration":1}
+{"type":"finding","id":"f-minimax-i1-8","label":"Tool retrieval P/R maps directly to routing P/R","iteration":1}
+{"type":"finding","id":"f-minimax-i1-9","label":"LLM-as-judge has circularity risk must be mitigated","iteration":1}
+{"type":"finding","id":"f-minimax-i1-10","label":"Five scoring dimensions operationalized D1-D5","iteration":1}
+{"type":"finding","id":"f-minimax-i1-11","label":"Normalization via fractional per-skill plus complexity weighting","iteration":1}
+{"type":"finding","id":"f-minimax-i1-12","label":"loop-host.cjs mode=skill-benchmark is correct entry point","iteration":1}

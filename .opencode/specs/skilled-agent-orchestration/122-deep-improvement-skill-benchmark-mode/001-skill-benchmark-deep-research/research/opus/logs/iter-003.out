@@ -1,0 +1,138 @@
+All three output files are written. Per the mandatory output requirement, here is the complete iteration narrative:
+
+---
+
+# Iteration 003 — Lane C "skill-benchmark": activation scoring across TWO routers (RQ3) + non-circular fixture authoring (RQ4)
+
+> Model: opus · Iteration 3 of 5 · LEAF (no sub-dispatch) · Read-only research
+> Web note: `WebSearch`/`WebFetch` remained permission-gated in this background context (not retried, consistent with iters 001–002). The few external concepts referenced (train/test holdout, metamorphic testing, data-leakage) are established and flagged `[web-unverified]`; the load-bearing evidence this iteration is all **first-hand from repo files**, especially the advisor's live scorer + validation baselines. Builds on iter-001 (D1–D5 dimensions) and iter-002 (hint-free harness, contamination linter, two-author separation).
+
+---
+
+## Focus
+
+**RQ3** — Should activation accuracy be scored against the **skill-advisor**, the **in-`SKILL.md` smart router**, or **both as separate sub-scores**? What does "properly utilized" mean operationally?
+
+**RQ4** — Scenario/fixture authoring: hand-authored vs generated-from-the-skill's-own-triggers — how to get realistic coverage while **avoiding circularity** (scoring a skill against scenarios derived from itself).
+
+The two questions are coupled: RQ3 decides *what the activation number measures*, and RQ4 decides *whether the prompts feeding that number are honest*. A correct RQ3 answer is worthless on a circular RQ4 corpus.
+
+---
+
+## Actions Taken
+
+1. Re-read the target skill `deep-agent-improvement/SKILL.md` (full) — pinned the in-skill router's `INTENT_SIGNALS`/`RESOURCE_MAP`, its literal-substring `score_intents`, and the frontmatter `triggers:` block, to compare the two routing surfaces directly.
+2. Re-read `system-skill-advisor/SKILL.md` (full) — confirmed the advisor is a *separate* routing layer (`advisor_recommend` over all skills) with its own substring `score_intents` and an explicit confidence threshold for invocation.
+3. **Read `system-skill-advisor/references/scoring/advisor_scorer.md` (full, NEW this iteration)** — captured the real advisor scorer: **5 weighted lanes** (explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05), the 16 confidence-calibration constants, the derived-dominant 0.72 confidence ceiling, and ambiguity-cluster detection at a 0.05 margin.
+4. **Read `system-skill-advisor/references/scoring/validation_baselines.md` (full, NEW this iteration)** — captured `advisor_validate`'s existing routing-accuracy harness: **corpus top-1 80.5%**, **holdout top-1 77.5%**, UNKNOWN count, parity/safety/latency slices, and the explicit corpus-vs-holdout overfit signal. This is the repo's own, already-shipped answer to RQ4 circularity.
+5. Re-read prior opus iterations 001 and 002 and the phase spec — anchored RQ3/RQ4 against D1 (routing/activation), iter-002's contamination linter (F7) and two-author separation, and iter-001's auto-derived-fixture proposal (F9), to extend rather than repeat them.
+
+---
+
+## Findings (each cited)
+
+### F1 — RQ3 answer: BOTH, as two separate sub-scores, because they are two architecturally distinct routing layers
+
+There are two routers in scope and they operate at different altitudes on different inputs:
+
+- **Inter-skill (the skill-advisor)** decides *which skill, among all skills*, should handle a prompt. Entry: `advisor_recommend` on `mk_skill_advisor`; "top recommendation above confidence threshold -> invoke that skill." [SOURCE: .opencode/skills/system-skill-advisor/SKILL.md:61-72]
+- **Intra-skill (the in-`SKILL.md` smart router)** runs *after* a skill is already selected and decides *which `references/`+`assets/` to load within it*, via `INTENT_SIGNALS`→`RESOURCE_MAP`. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:113-138,183-213]
+
+They consume different metadata and therefore fail for different reasons and demand different fixes:
+- Advisor miss → fix frontmatter `triggers`/`keywords`/`intent_signals`, derived metadata, skill-graph edges, or lane weights.
+- In-skill-router miss → fix `INTENT_SIGNALS` keywords or `RESOURCE_MAP` entries.
+
+Collapsing them into one "activation" number destroys the remediation signal: you would not know whether the skill failed to *fire* or failed to *load the right reference once fired*. **Lane C must emit two sub-scores: `activation.interSkill` and `activation.intraSkill`.** (A third, behavioral "did the live model actually open it" layer was established in iter-002 F1/Mode B; it sits below these two.)
+
+### F2 — The inter-skill sub-score must REUSE the advisor's real scorer, not re-implement keyword matching; the advisor is a 5-lane model and already ships an accuracy harness
+
+The advisor is **not** a keyword matcher — it is a five-lane weighted scorer: explicit_author 0.42, lexical 0.28, graph_causal 0.13, derived_generated 0.12, semantic_shadow 0.05 (shadow-only). [SOURCE: .opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md:46-52] A Lane C activation check that only greps frontmatter substrings (the temptation, since the in-skill router *is* substring-based) would mis-measure the advisor entirely — it would ignore graph edges, embeddings, and curated boosts.
+
+Decisively, **the routing-accuracy harness Lane C's inter-skill sub-score needs already exists**: `advisor_validate` reports full-corpus **top-1 = 80.5%** and held-out **top-1 = 77.5%**, plus `telemetry.unknownCount` (≤10), parity, safety, and latency slices. [SOURCE: .opencode/skills/system-skill-advisor/references/scoring/validation_baselines.md:43-57,75-87] **Recommendation:** Lane C's inter-skill activation sub-score = call `advisor_recommend` per fixture for the per-skill rank/confidence, and reuse the `advisor_validate` `perSkill[]` slice for the corpus/holdout top-1. This makes the inter-skill score consistent with the production router and gives Lane C a free, calibrated baseline instead of a parallel definition of "routed correctly."
+
+### F3 — Two concrete, VERIFIABLE inter-skill activation failure modes that Lane C can detect and remediate
+
+First-hand from the scorer reference, both are precise and actionable (not hand-wavy "improve routing"):
+
+- **Derived-dominant confidence ceiling = 0.72, below the 0.8 invoke bar.** Confidence is pinned to 0.72 when the derived lane dominates and `directScore < 0.2`. [SOURCE: .opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md:106,117] But Gate 2 requires **confidence ≥ 0.8 to MUST-invoke a skill** [SOURCE: project CLAUDE.md §2 Gate 2], and the scorer's `taskIntentFloor`/`directScoreFloor` are both 0.82 [SOURCE: advisor_scorer.md:118-119]. So a skill reachable *only* through derived/generated triggers (no curated `explicit_author` boost, weak `lexical` coverage) is **structurally capped below the invocation threshold** — it can never be auto-invoked no matter how relevant. Remediation is specific: add an `explicit_author` TOKEN/PHRASE boost or strengthen `lexical` keywords so `directScore` clears 0.2. Lane C should flag any under-test skill whose typical winning lane is `derived_generated`.
+- **Ambiguity clusters are the measurable form of "near-neighbor confusion" (iter-001 F2).** The scorer unions a score-gap and confidence-gap test at a **0.05 margin** to flag ambiguity. [SOURCE: advisor_scorer.md:127,137] The live brief this very session — `ambiguous: sk-code 0.95/0.16 vs deep-research 0.93/0.16` [SOURCE: UserPromptSubmit hook context, this session] — is exactly such a cluster (0.02 score gap < 0.05). Lane C's inter-skill sub-score should report **ambiguity-cluster rate** for the skill-under-test (how often it lands in a sub-0.05 tie with a sibling) as a distinct, remediable metric: collision → disambiguating keyword/boost or a skill-graph `siblings`/`conflicts_with` edge.
+
+Note the two-number shape: confidence AND uncertainty are reported separately (`0.95/0.16`), matching Gate 1's **dual threshold (confidence ≥ 0.70 AND uncertainty ≤ 0.35)** [SOURCE: project CLAUDE.md §2 Gate 1]. The activation sub-score must consume both, not just confidence.
+
+### F4 — "Properly utilized" is operationally a FIVE-STAGE conjunction (funnel), not a single number; each stage failing localizes a distinct remediation
+
+Synthesizing iter-001 D1–D5 + iter-002 Mode A/B + this iteration's two-layer split, "properly utilized" means **all** of the following hold for an in-scope task, in order:
+
+1. **Reachable** (static gate, iter-001 D5): the in-skill router *can* load the right reference and the skill's metadata *can* route — no orphan ref, no dead `RESOURCE_MAP` key. [SOURCE: opus/iterations/iteration-001.md:102-114]
+2. **Activated — inter-skill** (F1/F2): `advisor_recommend` ranks the skill top-1 with confidence ≥ 0.8, uncertainty ≤ 0.35, and *not* inside an ambiguity cluster.
+3. **Routed — intra-skill** (F1): for the paraphrased prompt, the in-`SKILL.md` router's loaded set contains the gold reference (iter-002 Mode A router-replay, deterministic). [SOURCE: opus/iterations/iteration-002.md:26-30]
+4. **Discovered — behavioral** (iter-002 Mode B): a live dispatched model actually opens/consumes the right reference unprompted. [SOURCE: opus/iterations/iteration-002.md:29,37-38]
+5. **Useful — causal** (iter-001 D4): skill-on beats skill-off on the same fixture (ablation). [SOURCE: opus/iterations/iteration-001.md:83-100]
+
+A skill that passes 1–2 but fails 3 is *invoked but mis-routed internally*; passes 1–3 but fails 4 is *routable but not signposted inline*; passes 1–4 but fails 5 is *used but not earning its context cost → retire/merge*. The conjunction is the definition; the **first failing stage is the finding**. This is what makes Lane C remediable rather than a vanity score.
+
+### F5 — A first-hand divergence INSIDE the target skill proves the two layers must be scored separately (worked example for F1)
+
+The two routers key on *different strings for the same concept*, so a prompt can pass inter-skill and fail intra-skill:
+
+- Frontmatter trigger (seen by the advisor's derived/lexical lanes): **`dynamic profiling`**. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:12]
+- In-skill `INTENT_SIGNALS["INTEGRATION_SCAN"]` keyword (seen by the in-skill router): **`dynamic profile`**. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:119]
+
+The in-skill router matches by literal substring: `if keyword in text`. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:168-172] The string `"dynamic profile"` is **not** a substring of `"dynamic profiling"` (`…profil` + `ing`, never `…profile`). So a user prompt "do dynamic profiling on this agent" matches the advisor's frontmatter trigger (inter-skill: PASS) but scores **zero** on `INTEGRATION_SCAN` in the in-skill router, falling back to the `QUICK_REFERENCE` default and **failing to load `references/agent-improvement/integration_scanning.md`** (intra-skill: MISS). [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:124-133,176-181] This is a concrete, repo-verified instance of the inter-pass/intra-fail split — exactly the case a single fused activation score would hide, and exactly the kind of one-line remediation (align the keyword) Lane C exists to surface. (A separate, lower-confidence note: the target skill's frontmatter key is `triggers:` while the advisor reference and `system-skill-advisor` use `trigger_phrases:` — Lane C's connectivity gate should verify the under-test skill's frontmatter key is one the advisor actually projects into `derivedTriggers`; I could not confirm the projection without reading scorer source. [SOURCE: .opencode/skills/deep-agent-improvement/SKILL.md:6 vs .opencode/skills/system-skill-advisor/SKILL.md:6])
+
+### F6 — RQ4: pure generated-from-self fixtures are MATHEMATICALLY circular against these routers — a guaranteed false pass
+
+Both routers are literal-substring matchers (in-skill: `if keyword in text` [SOURCE: deep-agent-improvement/SKILL.md:168-172]; advisor lexical/derived lanes do token matching over the same metadata [SOURCE: advisor_scorer.md:62-66,94-98]). If a fixture prompt is generated by lifting a `trigger`/`INTENT_SIGNALS` string verbatim, then scored on whether routing fires, you are evaluating `X ⊆ X` — a tautological pass that measures keyword echo, not discovery. iter-002 F5 already proved this is a "guaranteed false pass." [SOURCE: opus/iterations/iteration-002.md:46-60] Therefore generated-from-self prompts are usable for **coverage/breadth** but are **invalid as scored discovery fixtures unless transformed and decontaminated**.
+
+### F7 — RQ4 answer: a THREE-TIER fixture taxonomy; the repo's own corpus-vs-holdout split is the proven non-circular pattern to copy
+
+The advisor team already solved "don't measure on what you tuned on": the **corpus** slice (top-1 80.5%) is the tuned-on set; the **holdout** slice (top-1 77.5%) is "a curated subset reserved for measuring generalization … unseen during weight tuning," and a holdout drop > 1pp is "a stronger regression signal than the corpus slice because holdout is unseen." [SOURCE: validation_baselines.md:43-57,98-103] Lane C should mirror this exactly with three tiers:
+
+| Tier | Source | Role | Circularity status |
+| --- | --- | --- | --- |
+| **T1 generated-from-self** | auto-derived from `WHEN TO USE`/`triggers`/`RESOURCE_MAP` (iter-001 F9) [SOURCE: opus/iterations/iteration-001.md:139-144], then **paraphrased + contamination-linted** (F8) | breadth/coverage; cheap; regenerable after rename | circular UNLESS decontaminated |
+| **T2 hand-authored holdout** | realistic task scenarios written from the *task domain*, never from the skill's metadata; author blind to `INTENT_SIGNALS`/`RESOURCE_MAP` | generalization truth; the honesty anchor | non-circular by construction |
+| **T3 adversarial near-neighbor / decoy / negative** | sibling-skill paraphrases (iter-001 OQ), decoy fixtures whose gold key belongs to a *different* skill (iter-002 F8), and "When NOT to Use" negatives [SOURCE: deep-agent-improvement/SKILL.md:66-72] | stresses D1 precision + abstention | non-circular |
+
+The **T1↔T2 score gap is Lane C's circularity meter**, directly analogous to the advisor's corpus↔holdout 3pp gap: a large gap means the generated tier is overfit to the skill's own vocabulary and the "good" T1 number is hollow. Report it as a first-class output.
+
+### F8 — Metamorphic paraphrase + two-author separation is the procedural break that lets T1 keep coverage without circularity
+
+To make T1 usable rather than tautological, generate by **semantics-preserving transformation** then verify routing **invariance** — the metamorphic-testing pattern [SOURCE: metamorphic testing, general technique `[web-unverified]`]: take the trigger *intent*, paraphrase it into natural task language that contains **none** of the router's literal keyword strings, and assert the skill still routes. Two mandatory guards, both already designed in iter-002:
+
+- **Contamination linter as admission gate** — reject any T1 prompt containing the skill name, any skill-relative path, or any `triggers`/`keywords`/`intent_signals` substring, using the routers' own substring logic so "decontaminated" is decided by the same mechanism that would otherwise be gamed. [SOURCE: opus/iterations/iteration-002.md:65-66]
+- **Two-author separation** — the gold key is derived mechanically from `RESOURCE_MAP` by the scorer side; the decontaminated prompt is authored from a paraphrased task brief by a different side, so the prompt author cannot unconsciously seed the answer. [SOURCE: opus/iterations/iteration-002.md:65-66] This is the operational guarantee that "generated from the skill" ≠ "scored against itself."
+
+### F9 — Coverage must be MEASURED so "generated" isn't shallow, and DEDUPED so it isn't padded; both have existing patterns to reuse
+
+"Realistic coverage" (RQ4) needs two explicit metrics so the generated tier is neither thin nor inflated:
+
+- **Intent/resource coverage** — assert ≥1 admitted fixture per `INTENT_SIGNALS` key AND ≥1 per `RESOURCE_MAP` target file, plus ≥1 negative per "When NOT to Use" bullet. Uncovered keys/refs are themselves findings (an intent no realistic prompt can trigger may be a dead key — links iter-001 D5). [SOURCE: deep-agent-improvement/SKILL.md:113-133,66-72]
+- **Fixture dedup via signature** — to stop generation piling near-identical paraphrases, reuse the skill's own `mutation-coverage.cjs` signature pattern (`sha256(dimension∥type∥section∥normalizedBody64)`, whitespace-collapsed/lowercased) adapted to fixtures, so duplicates are skipped the same way duplicate mutations are. [SOURCE: deep-agent-improvement/SKILL.md:372-393] This gives "coverage" a denominator instead of a vibe.
+
+---
+
+## Recommendations
+
+1. **Emit two activation sub-scores** — `activation.interSkill` (advisor) and `activation.intraSkill` (in-`SKILL.md` router) — never a single fused number (F1, F5).
+2. **Build the inter-skill sub-score on the live advisor**: call `advisor_recommend` per fixture and reuse `advisor_validate` corpus/holdout `perSkill[]`; do not re-implement keyword matching, which would ignore 4 of the advisor's 5 lanes (F2).
+3. **Add two specific inter-skill failure detectors**: (a) "derived-dominant → confidence capped at 0.72 < 0.8 invoke bar" and (b) "ambiguity-cluster rate (sub-0.05 sibling tie)", each with its concrete remediation (F3).
+4. **Define "properly utilized" as the five-stage conjunction** (reachable→activated→routed→discovered→useful) and report the *first failing stage* as the finding (F4).
+5. **Adopt the three-tier fixture taxonomy** (generated-decontaminated / hand-authored holdout / adversarial), and **publish the T1↔T2 gap as the circularity meter**, copying the advisor's corpus↔holdout pattern (F6, F7).
+6. **Make T1 non-circular by construction** via metamorphic paraphrase + the iter-002 contamination linter + two-author separation (F8).
+7. **Measure coverage (per-intent, per-resource, per-negative) and dedup fixtures via the mutation-coverage signature pattern** so the generated tier is provably broad and not padded (F9).
+
+---
+
+## Open Questions
+
+- **Holdout authoring cost & ownership:** T2 must be written by someone blind to the skill's metadata; for a self-improving loop where the same model authors and benchmarks, who/what supplies the blind holdout — a different model, a frozen human set, or a sibling skill's domain? (F7)
+- **Frontmatter key normalization:** does the advisor project `triggers:` (target skill) and `trigger_phrases:` (advisor convention) into the same `derivedTriggers`? If not, the target may be silently under-represented in the derived lane — verify against scorer source before trusting any inter-skill number (F5).
+- **Threshold portability across skills:** the 0.8 invoke bar and 0.05 ambiguity margin are global advisor constants; are they the right per-skill activation bar for Lane C, or should "properly activated" be relative to each skill's own baseline distribution? (F3)
+- **Decontamination of unavoidable common-word triggers:** "benchmark", "integration", "rollback" are both router keywords and ordinary task words; an IDF/specificity weighting (carried over from iter-002 OQ) may be needed so the linter doesn't reject every natural T1 prompt (F8).
+- **Cross-skill activation (the routing layer itself):** F3's sk-code/deep-research tie suggests Lane C may also need a *whole-skill-set confusion matrix* (not just per-skill), reusing `advisor_validate`'s corpus slice — is that in Lane C's charter or the advisor's? (links iter-001 OQ)
+- **Mode A↔Mode B agreement for the intra-skill score:** how often does deterministic router-replay (stage 3) agree with the live behavioral open (stage 4)? If high, stage 4 can be sampled rarely (carried from iter-002 OQ).
+
+---
+
+**Iteration 3 complete.** Files written: `iterations/iteration-003.md`, `state-parts/iter-003.jsonl`, `deltas/iter-003.jsonl` (9 findings). Used 9 tool calls (4 grounding reads/globs + 2 prior-iteration reads + 1 spec read + 2 new advisor-scorer reads), under the 12-call budget. The headline result: RQ3 resolves to **two separate sub-scores** (inter-skill advisor + intra-skill in-SKILL.md router) feeding a **five-stage "properly utilized" funnel**, and RQ4 resolves to a **three-tier fixture taxonomy** whose T1↔T2 gap is the circularity meter — directly modeled on the advisor's already-shipped corpus/holdout split (80.5% / 77.5%).

@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":4,"model":"minimax","newInfoRatio":0.6,"status":"complete","focus":"iter4"}
+{"type":"finding","id":"f-minimax-i4-1","label":"report-is-diagnostic-not-score","iteration":4}
+{"type":"finding","id":"f-minimax-i4-2","label":"scoring-rollup-3-layers","iteration":4}
+{"type":"finding","id":"f-minimax-i4-3","label":"report-10-section-dual-output","iteration":4}
+{"type":"finding","id":"f-minimax-i4-4","label":"remediation-taxonomy-16-codes","iteration":4}
+{"type":"finding","id":"f-minimax-i4-5","label":"severity-tied-to-remediation-urgency","iteration":4}
+{"type":"finding","id":"f-minimax-i4-6","label":"ranked-findings-primary-actionable-output","iteration":4}
+{"type":"finding","id":"f-minimax-i4-7","label":"rename-surface-11-classes","iteration":4}
+{"type":"finding","id":"f-minimax-i4-8","label":"safe-rename-12-step-ordering","iteration":4}
+{"type":"finding","id":"f-minimax-i4-9","label":"lane-a-handoff-machine-readable","iteration":4}
+{"type":"finding","id":"f-minimax-i4-10","label":"rq5-confirmed-complete","iteration":4}

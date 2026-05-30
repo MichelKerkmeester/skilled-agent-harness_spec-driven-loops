@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":2,"model":"gpt55","newInfoRatio":0.68,"status":"complete","focus":"iter2"}
+{"type":"finding","id":"f-gpt55-i2-01","label":"public-private fixture split keeps expected-resource key scorer-only","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-02","label":"resource-load capture must use out-of-band trace instrumentation","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-03","label":"score intended router output separately from actual agent file opens","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-04","label":"pre-dispatch prompt contamination lint is required","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-05","label":"reuse Lane B executor routing inside a sealed scenario workspace","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-06","label":"actual existing file opens outrank routing-trace path claims","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-07","label":"post-run scorer join should emit path-to-remediation rows","iteration":2}
+{"type":"finding","id":"f-gpt55-i2-08","label":"rename transition requires trace alias normalization","iteration":2}

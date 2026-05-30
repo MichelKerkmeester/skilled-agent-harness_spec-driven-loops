@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":4,"model":"opus","newInfoRatio":0.6,"status":"complete","focus":"iter4"}
+{"type":"finding","id":"f-opus-i4-01","label":"Fuse the two report contracts the skill family already ships (Lane B JSON + deep-review MD); net-new is only the D1-D5/funnel content schema","iteration":4}
+{"type":"finding","id":"f-opus-i4-02","label":"Two-layer rollup: weighted D1-D4 (>=70 band) + D5/contamination/Stage-1 hard gate that caps the verdict, copying applyHardGate()+immediate-rejection precedent","iteration":4}
+{"type":"finding","id":"f-opus-i4-03","label":"Five-stage funnel is the rollup backbone AND bottleneck localizer: largest single-stage drop-off = headline bottleneck; ranking = ranking attrition","iteration":4}
+{"type":"finding","id":"f-opus-i4-04","label":"Remediation taxonomy keyed to failing funnel stage; each class resolves to a (file, locus, one-line edit), emitted without human triage","iteration":4}
+{"type":"finding","id":"f-opus-i4-05","label":"Bottleneck ranking on repo P0/P1/P2 ladder, ordered within-severity by attrition x fix-locality (RICE/ICE); headline = highest-attrition cheaply-fixable stage","iteration":4}
+{"type":"finding","id":"f-opus-i4-06","label":"Emit deep-review Planning-Trigger+Seed blocks verbatim; tag workstreams lane-a-candidate vs speckit-packet so the report is directly consumable downstream","iteration":4}
+{"type":"finding","id":"f-opus-i4-07","label":"Finding disposition lifecycle with SELF-CLOSING re-run verification for deterministic dims + first-class ACCEPTED-DEFERRAL for intended design","iteration":4}
+{"type":"finding","id":"f-opus-i4-08","label":"Top-level runQuality block (harnessHealth+sampleSufficiency) downgrades unhealthy-run findings to verify-in-rerun; ports evaluator infra-vs-weak split","iteration":4}
+{"type":"finding","id":"f-opus-i4-09","label":"Two artifacts: per-skill report vs optional cross-skill routing-matrix report; different remediation owners, never fix one skill by degrading a sibling","iteration":4}
+{"type":"finding","id":"f-opus-i4-10","label":"Rename blast radius = the report's loci; stamp resolved root+metadata hash and auto-invalidate stale-root reports; dogfood Lane C across the rename","iteration":4}

@@ -1,0 +1,22 @@
+[Rendered reference copy of iteration 3's prompt. run_one.sh substitutes <model> + iter at dispatch and writes to research/<model>/iterations/iteration-003.md.]
+
+You are @deep-research, a LEAF research agent doing ONE iteration (iteration 3 of 5) of an autonomous deep-research loop. Fresh context. Working directory is the repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+RESEARCH TOPIC: Determine the BEST WAY TO IMPLEMENT the deep-improvement rename and Lane C ("skill-benchmark"). The DESIGN is already converged (see the 001 research.md cited below); THIS loop produces a build-ready IMPLEMENTATION PLAYBOOK.
+
+THIS ITERATION'S FOCUS: IQ4 — router-replay (Mode A) + live (Mode B): whether a pure route function (e.g. route_recursive_agent_resources(task)) exists in the smart-router/advisor code to call deterministically for the zero-leakage discovery proxy + CI path; how to capture advisor_recommend out-of-band for the D1 inter-skill signal; implementing Mode B live dispatch + detecting the A<->B divergence as a finding. PLUS IQ5 — contamination linter + 3-tier fixture pipeline: implement the pre-dispatch linter reusing the routers' OWN substring logic; the public/private fixture JSON schema + storage under assets/skill-benchmark/; the two-author-separation pipeline producing T1 (auto-derived+paraphrased), T2 (hand-authored holdout), T3 (adversarial); emit the T1<->T2 circularity meter + coverage assertion.
+
+FIXED CONSTRAINT (do not re-litigate): one subdir per lane + shared/. Decide only shared vs Lane-C-specific. Rename scope fixed as NARROW.
+
+GROUND IN THE REPO (read what's relevant; do NOT modify anything):
+- .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/research.md (AUTHORITATIVE design)
+- .opencode/skills/system-skill-advisor/ (advisor TS aliases.ts/explicit.ts/fusion.ts + Python skill_advisor.py + skill-graph.json + regression fixtures; the smart-router / route function)
+- .opencode/skills/deep-agent-improvement/SKILL.md (in-skill smart router INTENT_SIGNALS/RESOURCE_MAP)
+- .opencode/skills/deep-agent-improvement/scripts/model-benchmark/ (Lane B dispatch-model.cjs)
+Also use web search/fetch for prior art (metamorphic testing, contamination/decontamination, retrieval eval).
+
+CONSTRAINTS: LEAF — no sub-agents. Max 12 tool calls. Cite every finding. Report findings only.
+
+OUTPUT — do BOTH:
+(A) Write narrative to research/<model>/iterations/iteration-003.md with headings: Focus | Actions Taken | Findings (each cited) | Recommendations (build-ready) | Open Questions. Write research/<model>/state-parts/iter-003.jsonl with one line: {"type":"iteration","iteration":3,"model":"<model>","newInfoRatio":0.6,"status":"complete","focus":"iter3"} and research/<model>/deltas/iter-003.jsonl with that line plus one {"type":"finding",...} per key finding.
+(B) THEN paste the COMPLETE iteration narrative markdown again in your final reply (mandatory).

@@ -194,7 +194,7 @@ The skill ships with three providers: `opencode-go` (DEFAULT), `deepseek`, and `
 | `deep-research` | Iterative research loop | LEAF: single iteration |
 | `deep-review` | Iterative code review loop | LEAF: single iteration |
 | `ai-council` | Multi-strategy planning | PLANNING-ONLY |
-| `deep-agent-improvement` | Agent improvement proposals | Proposal-only |
+| `deep-improvement` | Agent improvement proposals | Proposal-only |
 
 ---
 

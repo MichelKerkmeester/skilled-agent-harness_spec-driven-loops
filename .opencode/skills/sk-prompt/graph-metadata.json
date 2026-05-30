@@ -34,7 +34,7 @@
     ],
     "siblings": [
       {
-        "target": "deep-agent-improvement",
+        "target": "deep-improvement",
         "weight": 0.4,
         "context": "improvement utility peer"
       }

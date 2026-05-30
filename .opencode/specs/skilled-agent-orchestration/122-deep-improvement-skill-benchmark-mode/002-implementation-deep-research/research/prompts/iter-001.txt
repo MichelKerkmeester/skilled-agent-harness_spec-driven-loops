@@ -1,0 +1,24 @@
+[Rendered reference copy of iteration 1's prompt. run_one.sh substitutes <model> + iter at dispatch and writes to research/<model>/iterations/iteration-001.md.]
+
+You are @deep-research, a LEAF research agent doing ONE iteration (iteration 1 of 5) of an autonomous deep-research loop. Fresh context. Working directory is the repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+RESEARCH TOPIC: Determine the BEST WAY TO IMPLEMENT the deep-improvement rename (deep-agent-improvement -> deep-improvement) and Lane C ("skill-benchmark") — a third evaluation lane that benchmarks whether a SKILL is well-routed, discoverable, efficient, and useful in practice. The DESIGN is already converged (see the 001 research.md cited below); THIS loop produces a concrete, build-ready IMPLEMENTATION PLAYBOOK. Output must be build-ready, not a restated design.
+
+THIS ITERATION'S FOCUS: IQ1 — Lane C module architecture & seam reuse: given the FIXED per-lane layout (skill-benchmark/ subdir under assets/ references/ scripts/ + shared/ for cross-lane code), decide which logic is genuinely shared (-> shared/) vs Lane-C-specific (-> skill-benchmark/), and how much of Lane B's scorer/grader/cache (scripts/model-benchmark/scorer/) and dispatch-model.cjs Lane C reuses by importing from a shared location vs forking; keep the three seams (candidate-source/dispatcher/scorer) clean. PLUS IQ8 — which 2-3 real skills to dogfood Lane C on first, weight/verdict-band calibration method, vitest/integration test patterns for the new lane, and external prior art for harness implementation (golden traces, CI determinism, SARIF result->fix->location).
+
+FIXED CONSTRAINT (do not re-litigate): the skill organizes assets/, references/, and scripts/ with exactly ONE subdir per lane (agent-improvement/, model-benchmark/) + a shared/ subdir for cross-lane code. Lane C adds exactly one subdir per area: skill-benchmark/. Decide only what is shared vs Lane-C-specific, never the directory structure itself. The rename scope is fixed as NARROW.
+
+GROUND IN THE REPO (read what's relevant; do NOT modify anything):
+- .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/research.md (AUTHORITATIVE converged design)
+- .opencode/skills/deep-agent-improvement/SKILL.md
+- .opencode/skills/deep-agent-improvement/scripts/shared/loop-host.cjs
+- .opencode/skills/deep-agent-improvement/scripts/model-benchmark/ (Lane B scorer/dispatch/grader/cache to reuse)
+- .opencode/skills/deep-agent-improvement/scripts/agent-improvement/ (Lane A)
+- .opencode/skills/deep-loop-runtime/ and .opencode/skills/system-skill-advisor/
+Also use web search/fetch for external prior art.
+
+CONSTRAINTS: LEAF — no sub-agents. Max 12 tool calls. Cite every finding with [SOURCE: <url>] or [SOURCE: <file:line>]. Report findings only.
+
+OUTPUT — do BOTH:
+(A) Write narrative to research/<model>/iterations/iteration-001.md with headings: Focus | Actions Taken | Findings (each cited) | Recommendations (build-ready) | Open Questions. Write research/<model>/state-parts/iter-001.jsonl with one line: {"type":"iteration","iteration":1,"model":"<model>","newInfoRatio":0.6,"status":"complete","focus":"iter1"} and research/<model>/deltas/iter-001.jsonl with that line plus one {"type":"finding",...} per key finding.
+(B) THEN paste the COMPLETE iteration narrative markdown again in your final reply (mandatory, so it survives a blocked file write).

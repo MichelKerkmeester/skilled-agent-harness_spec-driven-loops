@@ -1,0 +1,22 @@
+You are a senior research synthesizer. Working directory is the repo root: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+You are consolidating a 20-iteration, 4-model deep-research sweep into one canonical report. The sweep investigated how to design Lane C ("skill-benchmark") for the `deep-improvement` skill (benchmark whether a SKILL is well-structured, well-routed, efficient, and useful in practice — how AIs actually discover/use it — distinct from manual testing playbooks and sk-doc doc-shape validation) PLUS the `deep-agent-improvement` -> `deep-improvement` rename impact map.
+
+READ ALL 20 ITERATION FILES (relative to repo root). Each model ran the same 5 foci (iter1=RQ1+RQ7, iter2=RQ2, iter3=RQ3+RQ4, iter4=RQ5, iter5=RQ6):
+- .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/minimax/iterations/iteration-001.md ... iteration-005.md
+- .../research/deepseek/iterations/iteration-001.md ... iteration-005.md
+- .../research/gpt55/iterations/iteration-001.md ... iteration-005.md
+- .../research/opus/iterations/iteration-001.md ... iteration-005.md
+
+THEN WRITE a single consolidated report (use your Write tool) to:
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/001-skill-benchmark-deep-research/research/research.md
+
+The report MUST have these sections:
+1. Executive Summary — the recommended Lane C design in 5-8 bullets + headline risks.
+2. Per-RQ Synthesis — one subsection per RQ (RQ1 scoring dimensions+weights+normalization; RQ2 hint-free dispatch harness; RQ3 activation scoring: skill-advisor vs in-SKILL.md router vs both; RQ4 scenario/fixture authoring + anti-circularity; RQ5 Skill Benchmark Report shape + remediation taxonomy; RQ6 rename impact map + safe ordering; RQ7 external prior art). For each RQ, synthesize ACROSS the 4 models: state the consensus, call out notable divergences, and attribute with [model/iterN] tags plus any original [SOURCE: ...] citations the iterations carried.
+3. Recommended Lane C Design — concrete: the scoring dimensions + proposed weights, the hint-free dispatch/capture harness architecture, the scorer, and the report format. Map each to the existing three pluggable seams (candidate-source / dispatcher / scorer) and loop-host `--mode=skill-benchmark`.
+4. Rename Impact Map — the exhaustive surface list and a safe ordering for deep-agent-improvement -> deep-improvement, with dangling-reference risks (from RQ6).
+5. Cross-Model Observations — which model surfaced what; quality/divergence/coverage notes (this sweep doubles as a model comparison).
+6. Actionable Next Steps — concrete tasks for Phase 002 (rename) and Phase 003 (Lane C design+build), each phrased as a checklist item.
+
+Preserve citations. Be specific and decision-ready, not generic. When done writing the file, reply with the single line: SYNTHESIS_DONE plus the research.md line count.

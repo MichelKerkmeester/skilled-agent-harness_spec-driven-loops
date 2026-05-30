@@ -1,0 +1,13 @@
+{"type":"iteration","iteration":3,"model":"minimax","newInfoRatio":0.6,"status":"complete","focus":"iter3"}
+{"type":"finding","id":"f-minimax-i3-1","label":"External routing skill-advisor vs internal routing smart router are orthogonal dimensions","iteration":3}
+{"type":"finding","id":"f-minimax-i3-2","label":"D1 splits into D1a external and D1b internal with independent scoring protocols","iteration":3}
+{"type":"finding","id":"f-minimax-i3-3","label":"Properly utilized is a conjunction selected AND correctly routed","iteration":3}
+{"type":"finding","id":"f-minimax-i3-4","label":"D1b internal router is fully deterministic and immediately measurable","iteration":3}
+{"type":"finding","id":"f-minimax-i3-5","label":"D1a external routing requires labeled prompt corpus or skill-graph SQLite access","iteration":3}
+{"type":"finding","id":"f-minimax-i3-6","label":"Skill-advisor fallback chain observable even without MCP","iteration":3}
+{"type":"finding","id":"f-minimax-i3-7","label":"Circularity trap trigger-derived scenarios bake in expected routing behavior","iteration":3}
+{"type":"finding","id":"f-minimax-i3-8","label":"Four fixture authoring sources with different circularity risks cataloged","iteration":3}
+{"type":"finding","id":"f-minimax-i3-9","label":"Keyword-injection trap within INTENT_SIGNALS-derived generation identified","iteration":3}
+{"type":"finding","id":"f-minimax-i3-10","label":"Minimum viable fixture corpus structure defined","iteration":3}
+{"type":"finding","id":"f-minimax-i3-11","label":"Production traffic is gold standard for D1a but requires MCP access","iteration":3}
+{"type":"finding","id":"f-minimax-i3-12","label":"OQ1 resolved D1 splits into D1a external D1b internal as separate sub-dimensions","iteration":3}

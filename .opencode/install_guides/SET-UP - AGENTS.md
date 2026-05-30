@@ -514,7 +514,7 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | `deep-review`       | v1.3.2.0 | "deep review", "review loop", "quality audit"             | Iterative review workflow                        |
 | `sk-doc`               | v1.3.0.0 | "skill", "markdown", "flowchart", "documentation"         | Unified markdown and skill management            |
 | `sk-git`               | v1.1.0.0 | "commit", "branch", "PR", "push", "git"                  | Git workflow orchestration                       |
-| `deep-agent-improvement`     | v1.2.2.0 | "improve agent", "agent scoring", "promotion"             | Evaluator-first agent improvement                |
+| `deep-improvement`     | v1.2.2.0 | "improve agent", "agent scoring", "promotion"             | Evaluator-first agent improvement                |
 | `sk-prompt`    | v1.3.0.0 | "improve prompt", "prompt engineering", "CLEAR"           | Prompt improvement workflow                      |
 | `system-spec-kit`      | v3.3.1.0 | "save context", "/memory:save", "spec folder", "plan"     | Context preservation and spec workflow           |
 

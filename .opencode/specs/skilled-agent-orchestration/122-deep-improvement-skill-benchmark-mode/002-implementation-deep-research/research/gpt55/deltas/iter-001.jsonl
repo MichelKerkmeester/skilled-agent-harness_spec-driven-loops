@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":1,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter1"}
+{"type":"finding","id":"f-gpt55-i1-01","label":"Lane C should extend loop-host as a third mode without forking Lane B or changing Lane A default behavior","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-02","label":"Lane C candidate-source logic is skill/fixture-specific and belongs under scripts/skill-benchmark","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-03","label":"Lane C should extract a shared executor-dispatch core from dispatch-model instead of importing the Lane B dispatcher directly","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-04","label":"Lane B scorer dimensions are not reusable wholesale; only grader/cache machinery should be shared","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-05","label":"D1 inter-skill scoring must use advisor recommendation surfaces and alias-aware regression contracts","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-06","label":"Lane C needs an explicit resource-load trace contract with router-replay CI and optional live dispatch trace","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-07","label":"scripts/shared should stay limited to mechanical cross-lane core, not Lane C scoring or fixture semantics","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-08","label":"First dogfood targets should be deep-improvement, system-skill-advisor, and deep-loop-runtime","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-09","label":"Weights and verdict bands should start from converged D1-D5 values and calibrate on a 2-3 skill pilot","iteration":1}
+{"type":"finding","id":"f-gpt55-i1-10","label":"Reports should include SARIF-shaped result locations and fixes for actionable remediation","iteration":1}

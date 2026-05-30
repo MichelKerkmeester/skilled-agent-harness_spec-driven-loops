@@ -14,7 +14,7 @@ Agents:
   debug          — Fresh-perspective debugging
   deep-research  — Autonomous research iterations
   deep-review    — Autonomous code review iterations
-  deep-agent-improvement  — Agent evaluation and improvement
+  deep-improvement  — Agent evaluation and improvement
   prompt-improver — Prompt engineering
   orchestrate    — Multi-agent coordination
   review         — Code review (read-only)

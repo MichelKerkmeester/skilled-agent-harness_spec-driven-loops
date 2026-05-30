@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
+  "description": "Spec 122 — deep-improvement: skill-benchmark mode + skill rename",
+  "keywords": [
+    "spec",
+    "122",
+    "deep-improvement",
+    "skill-benchmark",
+    "mode",
+    "skill",
+    "rename"
+  ],
+  "lastUpdated": "2026-05-30T07:29:11.854Z",
+  "specId": "122",
+  "folderSlug": "deep-improvement-skill-benchmark-mode",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

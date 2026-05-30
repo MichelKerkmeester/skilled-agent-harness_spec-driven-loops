@@ -1,0 +1,13 @@
+{"type":"iteration","iteration":5,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter5"}
+{"type":"finding","id":"f-gpt55-i5-01","label":"Phase ordering is research -> rename -> Lane C build -> validation/docs","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-02","label":"Phase 002 scaffold already scopes skill dir, SKILL.md, commands, mirrors, advisor, metadata, sentinel, root docs, and internal refs","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-03","label":"SKILL.md frontmatter, triggers, and keywords still declare deep-agent-improvement","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-04","label":"Lane names and command verbs should stay stable unless a separate decision changes them","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-05","label":"Command entrypoints and YAML workflows hard-code old skill wording and old skill paths","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-06","label":"Runtime mirrors across OpenCode, Claude, Gemini, and Codex must be renamed as one unit","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-07","label":"Advisor has split Python and TypeScript scorer surfaces that must move coherently","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-08","label":"Advisor graph, graph metadata, and regression fixtures contain separate stale-id risks","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-09","label":"deep-model-benchmark should remain a command bridge while penalties retarget deep-improvement","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-10","label":"sk-prompt-small-model risk is indirect through advisor graph edges, not local runtime logic","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-11","label":"Internal README, feature catalog, playbook, script docs, and root docs are live rename surfaces","iteration":5}
+{"type":"finding","id":"f-gpt55-i5-12","label":"Historical/archive references require an allowlist so final grep does not force false edits","iteration":5}

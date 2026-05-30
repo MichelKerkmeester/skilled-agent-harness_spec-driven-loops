@@ -1,0 +1,17 @@
+{
+  "topic": "Implementation strategy for the deep-improvement rename (deep-agent-improvement -> deep-improvement) and Lane C (skill-benchmark): code architecture + seam reuse within the fixed per-lane layout, loop-host --mode=skill-benchmark wiring with Lane A/B non-regression, hint-free trace capture, contamination linter + 3-tier fixtures, D1-D5 scorer + dual-artifact report, and an atomic narrow rename runbook with the 4 decision-record resolutions.",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.01,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
+  "createdAt": "2026-05-30T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-opencode", "model": "minimax/MiniMax-M2.7", "reasoningEffort": null, "serviceTier": null, "sandboxMode": null, "timeoutSeconds": 900 },
+  "lineage": { "sessionId": "minimax-run1", "parentSessionId": null, "lineageMode": "new", "allowedModes": ["new","resume","restart"], "generation": 1, "continuedFromRun": null },
+  "reducer": { "enabled": true, "version": "1.0", "registryFile": "findings-registry.json", "dashboardFile": "deep-research-dashboard.md", "strategyFile": "deep-research-strategy.md", "machineOwnedSections": ["key-questions","answered-questions","what-worked","what-failed","exhausted-approaches","ruled-out-directions","next-focus"] }
+}

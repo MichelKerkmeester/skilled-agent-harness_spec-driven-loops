@@ -67,7 +67,7 @@
         "context": "routes git workflow requests"
       },
       {
-        "target": "deep-agent-improvement",
+        "target": "deep-improvement",
         "weight": 0.7,
         "context": "routes agent improvement requests"
       },

@@ -323,7 +323,7 @@ function primaryIntentBonus(promptLower: string, recommendation: AdvisorScoredRe
   if (/\bcreate (a )?(test|testing) playbook\b/.test(promptLower) || promptLower.includes('/create:testing-playbook')) {
     if (recommendation.skill === 'create:testing-playbook' || recommendation.skill === 'command-create-testing-playbook') return R.createTestingPlaybookBonus;
     if (recommendation.skill === 'sk-doc') return R.createTestingPlaybookSkDocPenalty;
-    if (recommendation.skill === 'deep-agent-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
+    if (recommendation.skill === 'deep-improvement') return R.createTestingPlaybookOtherSkillsPenalty;
   }
   if (/\bphase folder\b/.test(promptLower)) {
     if (recommendation.skill === 'system-spec-kit') return R.phaseFolderSpecKitBonus;

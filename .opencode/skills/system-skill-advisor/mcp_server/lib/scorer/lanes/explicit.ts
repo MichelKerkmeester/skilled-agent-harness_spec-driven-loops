@@ -96,7 +96,7 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   '/deep:start-research-loop': [['deep-research', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-review-loop': [['deep-review', 1.6], ['command-spec-kit', 0.45]],
   '/deep:start-model-benchmark-loop': [['deep-model-benchmark', 1.6], ['command-spec-kit', 0.45]],
-  '/deep:start-agent-improvement-loop': [['deep-agent-improvement', 1.6], ['command-spec-kit', 0.45]],
+  '/deep:start-agent-improvement-loop': [['deep-improvement', 1.6], ['command-spec-kit', 0.45]],
   '/speckit:resume': [['system-spec-kit', 0.9], ['command-spec-kit', 0.75]],
   'auto review release readiness': [['deep-review', 1]],
   // Colon-command syntax (":review:auto") is a deep-review LOOP invocation,
@@ -113,29 +113,29 @@ const PHRASE_BOOSTS: Readonly<Record<string, readonly [string, number][]>> = {
   'code graph search': [['system-code-graph', 1.5]],
   'find code that': [['system-code-graph', 1.4]],
   'code that handles': [['system-code-graph', 1.4]],
-  '5d scoring': [['deep-agent-improvement', 1.5]],
-  '5-dimension agent scoring': [['deep-agent-improvement', 1.6]],
-  'integration scan': [['deep-agent-improvement', 1.5]],
-  'dynamic profile': [['deep-agent-improvement', 1.5]],
+  '5d scoring': [['deep-improvement', 1.5]],
+  '5-dimension agent scoring': [['deep-improvement', 1.6]],
+  'integration scan': [['deep-improvement', 1.5]],
+  'dynamic profile': [['deep-improvement', 1.5]],
   // Lane B (model-benchmark) command anchors. These benchmark or optimize a
   // model / prompt framework against fixtures, routed by the
   // /deep:start-model-benchmark-loop command (canonical deep-model-benchmark).
   // Lane B runs as a MODE of the deep-agent-improvement skill. The projection
-  // exposes a single canonical node for that skill (deep-agent-improvement),
+  // exposes a single canonical node for that skill (deep-improvement),
   // so the disambiguation penalty must target that canonical id to actually
   // lower the ranked Lane A candidate. The earlier alias-shaped target
   // (command-spec-kit-deep-agent-improvement) is not a projection node, so it
   // never reached the ranked skill and the penalty was inert. The bounded
   // penalty keeps benchmark phrasing from out-ranking deep-model-benchmark.
-  'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-agent-improvement', -0.6]],
-  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['deep-agent-improvement', -0.6]],
-  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['deep-agent-improvement', -0.4]],
-  'optimize a model': [['deep-model-benchmark', 1.5], ['deep-agent-improvement', -0.6]],
-  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['deep-agent-improvement', -0.6]],
-  'model benchmark loop': [['deep-model-benchmark', 1.6], ['deep-agent-improvement', -0.4]],
-  'model benchmark': [['deep-model-benchmark', 1.4], ['deep-agent-improvement', -0.4]],
+  'benchmark a model': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]],
+  'benchmark a prompt framework': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.6]],
+  'benchmark a prompt': [['deep-model-benchmark', 1.4], ['deep-improvement', -0.4]],
+  'optimize a model': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.6]],
+  'optimize a prompt framework': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.6]],
+  'model benchmark loop': [['deep-model-benchmark', 1.6], ['deep-improvement', -0.4]],
+  'model benchmark': [['deep-model-benchmark', 1.4], ['deep-improvement', -0.4]],
   'benchmark fixtures': [['deep-model-benchmark', 1.3]],
-  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['deep-agent-improvement', -0.4]],
+  'prompt framework benchmark': [['deep-model-benchmark', 1.5], ['deep-improvement', -0.4]],
   'chrome devtools': [['mcp-chrome-devtools', 1]],
   'staging url': [['mcp-chrome-devtools', 0.65]],
   'staging site': [['mcp-chrome-devtools', 0.65]],

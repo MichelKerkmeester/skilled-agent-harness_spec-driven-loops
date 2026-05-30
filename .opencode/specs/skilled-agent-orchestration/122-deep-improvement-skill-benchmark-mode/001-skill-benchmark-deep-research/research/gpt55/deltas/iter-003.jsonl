@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":3,"model":"gpt55","newInfoRatio":0.6,"status":"complete","focus":"iter3"}
+{"type":"finding","id":"f-gpt55-i3-01","label":"activation-needs-advisor-router-outcome-sub-scores","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-02","label":"proper-utilization-is-trace-backed-use-before-decision","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-03","label":"activation-failure-labels-map-to-owner-surfaces","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-04","label":"scenario-authoring-should-be-hybrid-with-capped-trigger-probes","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-05","label":"fixture-metadata-and-leakage-linter-avoid-circularity","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-06","label":"trigger-derived-fixtures-are-recall-smoke-not-precision-proof","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-07","label":"rename-surface-includes-active-advisor-command-agent-runtime-code","iteration":3}
+{"type":"finding","id":"f-gpt55-i3-08","label":"alias-tolerant-traces-but-grep-strict-rename","iteration":3}

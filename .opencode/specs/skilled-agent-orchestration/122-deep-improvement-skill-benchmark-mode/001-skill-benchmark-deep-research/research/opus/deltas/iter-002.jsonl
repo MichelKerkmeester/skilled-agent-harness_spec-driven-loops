@@ -1,0 +1,11 @@
+{"type":"iteration","iteration":2,"model":"opus","newInfoRatio":0.6,"status":"complete","focus":"iter2"}
+{"type":"finding","id":"f-opus-i2-01","label":"Two capture modes: deterministic router-replay (hint-free by construction, CI gate) + live dispatch trace (behavioral); A-vs-B divergence is itself a finding","iteration":2}
+{"type":"finding","id":"f-opus-i2-02","label":"Resource-load instrumentation = parse the per-iter executor tool log the runtime already emits; MUST canonicalize all file-touch verbs (Read+Bash cat/rg+Grep+Glob), not just Read","iteration":2}
+{"type":"finding","id":"f-opus-i2-03","label":"Canary/sentinel tokens in references separate opened-vs-consumed and survive lossy logs; analogue of BIG-bench canary GUID; measure perturbation first","iteration":2}
+{"type":"finding","id":"f-opus-i2-04","label":"Held-out expected-resource key: derive from RESOURCE_MAP, store out-of-band scorer-only, two parts (expected_resources + expected_routing)","iteration":2}
+{"type":"finding","id":"f-opus-i2-05","label":"Contamination channels enumerated w/ controls; keyword leak is provably fatal because both routers are literal substring matchers (if keyword in text)","iteration":2}
+{"type":"finding","id":"f-opus-i2-06","label":"Repo-specific leak: advisor/hook brief already names the skill in-context; harness MUST strip it from dispatched agent and capture advisor_recommend out-of-band as D1","iteration":2}
+{"type":"finding","id":"f-opus-i2-07","label":"Decontamination as an auditable admission gate: contamination linter reusing routers' own matcher + two-author prompt/key separation to break circularity","iteration":2}
+{"type":"finding","id":"f-opus-i2-08","label":"Validity controls: hinted-vs-hint-free calibration arm, decoy-skill negative control, k-run repeatability (benchmark-stability.cjs), blind-to-rubric","iteration":2}
+{"type":"finding","id":"f-opus-i2-09","label":"Maps onto existing seams: reuse dispatch-model.cjs + existing .out logs; net-new is parse-resource-loads.cjs + skill-benchmark scorer + fixture prompt/expected split (Lane B pattern)","iteration":2}
+{"type":"finding","id":"f-opus-i2-10","label":"RQ2-RQ6 interaction: rename moves the strings the contamination linter+canaries+parser roots key on; derive denylist/roots from live metadata, never hard-code","iteration":2}
