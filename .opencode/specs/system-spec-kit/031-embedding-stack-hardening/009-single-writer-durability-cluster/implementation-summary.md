@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Single-writer / durability cluster (implemented + tested)"
-description: "The coordinated single-writer/durability cluster is implemented and tested (commit aa6860d835): all 5 families landed with deterministic regression suites; builds + node --check + 26 new + 29 regression + 9 leases tests pass."
+description: "The coordinated single-writer/durability cluster is implemented and tested (this session): all 5 families landed with deterministic regression suites; builds + node --check + 26 new + 29 regression + 9 leases tests pass."
 trigger_phrases:
   - "single writer durability cluster status"
 importance_tier: "important"
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 031-embedding-stack-hardening/009-single-writer-durability-cluster |
-| **Completed** | 2026-05-30 (implemented + tested, commit aa6860d835) |
+| **Completed** | 2026-05-30 (implemented + tested) |
 | **Level** | 1 |
 
 <!-- /ANCHOR:metadata -->
@@ -44,7 +44,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**Implemented + tested (commit aa6860d835, 2026-05-30).** All five families of the single-writer/durability cluster landed as one coordinated change set, each finding re-validated at HEAD by symbol and covered by a deterministic regression test:
+**Implemented + tested (2026-05-30).** All five families of the single-writer/durability cluster landed as one coordinated change set, each finding re-validated at HEAD by symbol and covered by a deterministic regression test:
 
 - **Family 1+2 — `model-server-supervision.cjs`**: respawn-lock staleness now bounded by listener liveness (DR-005); the lazy demand listener re-arms on a failed spawn (DR-006); idle eviction reaps the root process, not just descendants (DR-012).
 - **Family 4 durability — `vector-index-store.ts`**: the clean-shutdown marker is deleted only after a confirmed-successful close (DR-011).
@@ -94,7 +94,7 @@ A multi-agent design pass produced the coordinated plan; it was then re-validate
 | Check | Result |
 |-------|--------|
 | Finding-state re-validation at HEAD | DONE — OR-R-01 already O_EXCL; DR-012 = root-exclusion; rest were confirmed-open |
-| Code implementation (5 families) | DONE — commit aa6860d835 |
+| Code implementation (5 families) | DONE — this session |
 | Builds (mcp + shared + scripts) | PASS — exit 0 |
 | `node --check` (2 `.cjs`) | PASS |
 | New deterministic suites | PASS — 4 suites, 26 tests |

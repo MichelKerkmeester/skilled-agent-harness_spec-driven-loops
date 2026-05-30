@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Implemented + tested (2026-05-30, commit aa6860d835); all 5 families landed |
+| **Status** | Implemented + tested (2026-05-30); all 5 families landed |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
