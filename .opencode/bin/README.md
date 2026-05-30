@@ -128,6 +128,19 @@ Main flow:
 | `node .opencode/bin/hf-model-server.cjs` | CLI | Start the local embedding server (via `main`). |
 | `createHfModelServer` | Function | Build an embedding server instance with `listen`, `close`, `dispose` and `inject` for tests. |
 | `assertLoopbackBindAllowed` | Function | Refuse non-loopback binds unless remote bind plus auth token are set. |
+| `bash .opencode/bin/worktree-session.sh <runtime> [args]` | CLI | Launch an AI session in its own git worktree + branch + isolated MCP databases. Top-level sessions isolate; orchestrated children (`AI_SESSION_CHILD=1` or already inside a linked worktree) exec in place. `--dry-run` prints the plan. |
+| `bash .opencode/bin/worktree-reaper.sh [--dry-run] [--reap-daemons]` | CLI | Prune merged + clean per-session worktrees and stale socket dirs; report orphan daemons (kill only with `--reap-daemons`). |
+| `bash .opencode/bin/worktree-guard.sh` | CLI / SessionStart hook | Detect-and-warn: prints a one-line stderr warning when a top-level session is on shared `main`/`master` instead of an isolated worktree. Non-fatal (always exits 0); silent for children, inside worktrees, non-git dirs, or with `SPECKIT_WORKTREE_GUARD=off`. |
+
+### Worktree session isolation
+
+`worktree-session.sh` ends the cross-session contention where every runtime shared one working tree on `main` plus one set of MCP databases. A top-level session gets `.worktrees/<runtime>-<slug>` on `work/<runtime>/<slug>`, with `SPEC_KIT_DB_DIR` + `SPECKIT_CODE_GRAPH_DB_DIR` pointed at per-worktree databases and `SPECKIT_IPC_SOCKET_DIR` pointed at a short `~/.spk-wt-sock/<slug>` dir (the daemon's unix socket path would otherwise exceed the platform `sun_path` limit from inside a deep worktree). Shared `node_modules`/`dist` are symlinked from the main checkout, so there is no per-worktree reinstall or rebuild.
+
+**Child suppression.** Orchestrated children must NOT create their own worktree. Two signals make the wrapper exec in place: the env var `AI_SESSION_CHILD=1` (which the wrapper exports for its own descendants, and which cli-* dispatch recipes should set when spawning a child runtime), and a structural backstop (`git --git-dir` differs from `--git-common-dir`, i.e. already inside a linked worktree). An unknown signal defaults to top-level (isolate) — the safe failure mode.
+
+To make a runtime isolate by default, alias its launch through the wrapper, e.g. `alias claude='bash /abs/path/.opencode/bin/worktree-session.sh claude'`. See [`sk-git`](../skills/sk-git/SKILL.md) §3 for how this relates to the in-session worktree ask-first rule.
+
+**Backstop warning.** For sessions that still start directly (no alias), add `worktree-guard.sh` as a SessionStart hook step so the operator is warned when a top-level session lands on shared `main`. It is detect-and-warn only — it never relocates or blocks the session.
 
 ---
 
@@ -138,9 +151,12 @@ Run from the repository root.
 ```bash
 node -e "require('./.opencode/bin/hf-model-server.cjs')"
 node -e "require('./.opencode/bin/lib/model-server-supervision.cjs')"
+bash -n .opencode/bin/worktree-session.sh
+bash -n .opencode/bin/worktree-reaper.sh
+AI_SESSION_CHILD=1 bash .opencode/bin/worktree-session.sh --dry-run claude   # must report exec-in-place, no worktree
 ```
 
-Expected result: each module loads without throwing.
+Expected result: each `.cjs` module loads without throwing; both shell scripts pass `bash -n`; the child dry-run reports it would exec in place without creating a worktree.
 
 ---
 

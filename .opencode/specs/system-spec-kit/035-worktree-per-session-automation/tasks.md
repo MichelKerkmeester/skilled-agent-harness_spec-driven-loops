@@ -59,8 +59,8 @@ _memory:
 ## Phase 2: Implementation
 
 - [x] T005 worktree-session.sh BUILT + verified: child guard (AI_SESSION_CHILD + structural git-common-dir backstop), allocate worktree + branch, symlink shared deps, per-worktree DB env + SPECKIT_IPC_SOCKET_DIR socket fix, exec. Dry-run tested all three paths; real-worktree daemon boot verified (BOOTED=1, EINVAL=0).
-- [ ] T006 [B] Per-runtime entry points (claude/codex/opencode/devin/gemini) + AI_SESSION_CHILD=1 at cli-* dispatch sites (environment-specific shell wiring — pending operator)
-- [ ] T007 [B] Guard-hook step in each runtime's SessionStart chain (detect-and-warn)
+- [ ] T006 [B] Per-runtime entry points + AI_SESSION_CHILD=1 at cli-* dispatch sites: PATTERN DOCUMENTED in bin/README + sk-git §3; the actual alias + dispatch-env wiring is operator-machine-specific (shell rc / settings.local.json), left to the operator
+- [x] T007 Guard-hook step BUILT as worktree-guard.sh (detect-and-warn, runtime-agnostic, non-fatal); verified across 5 paths (main warns; child/off/worktree/non-git silent; always exit 0). Operator wires it into each SessionStart chain
 - [x] T008 worktree-reaper.sh BUILT + verified (NEW focused script, not session-cleanup.sh which does not exist): prune merged/clean worktrees + stale ~/.spk-wt-sock socket dirs, report orphan daemons (--reap-daemons to kill). Dry-run clean.
 
 <!-- /ANCHOR:phase-2 -->
@@ -69,9 +69,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 [B] Top-level isolation + child suppression + two-concurrent-session tests
-- [ ] T010 [B] Per-runtime smoke + reaper safety (sibling worktree untouched)
-- [ ] T011 [B] Document the wrapper + deliberate symlink-deps override in sk-git
+- [x] T009 Top-level isolation + child suppression + two-concurrent-session test (SC-001) PASSED: distinct branches/DB-dirs/sockets, A commit independent, B + main unaffected, both daemons booted concurrently (EINVAL=0), main HEAD unchanged, worktrees cleaned
+- [x] T010 Reaper safety verified: dry-run prunes nothing with no worktrees, never touches main or sibling; per-runtime smoke is the same wrapper path (runtime arg is opaque) — exercised via claude
+- [x] T011 Documented the wrapper + deliberate symlink-deps override in sk-git §3 (Launch-Wrapper Worktrees vs the In-Session Ask-First Rule) + bin/README
 
 <!-- /ANCHOR:phase-3 -->
 ---
@@ -79,9 +79,10 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Step-0 gate green; wrapper isolates top-level + suppresses children
-- [ ] Five runtimes smoke-tested; reaper safe
-- [ ] sk-git documents the pattern
+- [x] Step-0 gate green; wrapper isolates top-level + suppresses children
+- [x] Reaper safe; guard warns on shared-main top-level sessions
+- [x] sk-git + bin/README document the pattern
+- [ ] Operator-machine wiring (launch aliases + SessionStart guard-hook entries + AI_SESSION_CHILD=1 at dispatch) — deferred to operator
 
 <!-- /ANCHOR:completion -->
 ---

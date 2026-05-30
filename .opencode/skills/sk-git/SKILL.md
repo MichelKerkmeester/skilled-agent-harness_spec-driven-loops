@@ -210,6 +210,12 @@ When git workspace triggers are detected (new feature, worktree, isolated worksp
 
 **AI Behavior**: ASK before proceeding, WAIT for explicit selection (A/B), NEVER assume, RESPECT choice throughout. Once chosen, reuse preference for the session unless the user requests a change. If a new branch is needed, create it only through `git worktree add -b ...`.
 
+### Launch-Wrapper Worktrees vs the In-Session Ask-First Rule
+
+The ask-first rule above governs **in-session** decisions: once an AI is running, it must not autonomously create a worktree. That is distinct from `.opencode/bin/worktree-session.sh`, a **launch wrapper** the operator opts into at the shell (e.g. `alias claude='bash /abs/.opencode/bin/worktree-session.sh claude'`). The wrapper runs *before* the AI starts and places each top-level session in its own worktree + branch + isolated MCP databases automatically; orchestrated children (`AI_SESSION_CHILD=1`, or already inside a linked worktree) exec in place. Because the wrapper acts pre-session at operator opt-in, it does not violate the in-session ask-first rule — the operator made the choice by aliasing the launch.
+
+**Deliberate per-session deps override.** The wrapper **symlinks** the shared `node_modules`/`dist` from the main checkout into each worktree and gives each worktree its own MCP DBs (via `SPEC_KIT_DB_DIR` / `SPECKIT_CODE_GRAPH_DB_DIR` / `SPECKIT_IPC_SOCKET_DIR`). This is an intentional exception to the §4 "bare worktree lacks gitignored deps / DBs are a single global instance" guidance: that guidance is about *ad-hoc* worktrees for large reorgs, whereas the wrapper purpose-builds an isolated-but-runnable worktree. Strict-validate and memory reindex still run on `main`, never inside a wrapper worktree.
+
 ### Git Development Lifecycle Map
 
 Git development flows through 3 phases:

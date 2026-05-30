@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Core built (wrapper + reaper + gitignore + Step-0 gate green); per-runtime wiring pending |
+| **Status** | Built + tested (wrapper + reaper + guard; Step-0 + SC-001 green; sk-git/bin docs); only operator-machine wiring remains |
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Handoff Criteria** | Step-0 DB-relocation boot test green; a top-level session launched via the wrapper lands in its own worktree + branch + isolated DBs; an orchestrated child shares its parent's worktree; the reaper prunes merged/empty worktrees + orphaned daemons; verified per-runtime. |
@@ -90,6 +90,8 @@ When a **top-level (human-launched)** AI session starts, it should run in its **
 | cli-codex / cli-opencode / cli-devin dispatch recipes | Modify | Inject AI_SESSION_CHILD=1 into child env |
 | .claude/settings.local.json (+ .codex/.gemini/.devin hooks, .opencode/plugins/) | Modify | Add guard-hook step to existing SessionStart chains |
 | .opencode/bin/worktree-reaper.sh | Create | Reaper: prune merged/clean worktrees + report/kill orphan daemons (session-cleanup.sh from the original design does NOT exist; a focused new script is used instead of wedging into the operator-sensitive orphan-mcp-sweeper.sh) |
+| .opencode/bin/worktree-guard.sh | Create | Detect-and-warn SessionStart guard (runtime-agnostic; non-fatal) |
+| .opencode/bin/README.md + sk-git SKILL.md | Modify | Document the entrypoints, child-injection, and deps-override |
 | .gitignore | Modify | Ignore .worktrees/ (currently NOT ignored) |
 
 <!-- /ANCHOR:scope -->

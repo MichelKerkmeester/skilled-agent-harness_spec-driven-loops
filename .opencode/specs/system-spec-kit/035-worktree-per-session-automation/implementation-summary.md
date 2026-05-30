@@ -11,17 +11,18 @@ _memory:
     packet_pointer: "system-spec-kit/035-worktree-per-session-automation"
     last_updated_at: "2026-05-30T19:10:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Built wrapper + reaper; Step-0 gate green"
-    next_safe_action: "Wire per-runtime entry points + SessionStart guard hooks"
+    recent_action: "Built wrapper + reaper + guard; SC-001 + Step-0 green; sk-git/bin docs done"
+    next_safe_action: "Operator wires launch aliases + SessionStart guard-hook entries"
     blockers: []
     key_files:
       - ".opencode/bin/worktree-session.sh"
       - ".opencode/bin/worktree-reaper.sh"
+      - ".opencode/bin/worktree-guard.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003504"
       session_id: "035-worktree-impl"
       parent_session_id: null
-    completion_pct: 70
+    completion_pct: 90
     open_questions: []
     answered_questions:
       - "Step-0 surfaced a real blocker: the daemon's unix IPC socket defaults to <db-dir>/daemon-ipc.sock; the deep worktree DB path (174 chars) exceeds the macOS sun_path limit (~104) and the daemon dies with EINVAL on listen()."
@@ -43,7 +44,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 035-worktree-per-session-automation |
-| **Completed** | CORE BUILT (per-runtime wiring + guard hooks pending) |
+| **Completed** | BUILT + TESTED (SC-001 passed); only operator-machine wiring remains |
 | **Level** | 1 |
 
 <!-- /ANCHOR:metadata -->
@@ -71,6 +72,12 @@ A top-level session gets its own worktree (`.worktrees/<runtime>-<slug>`), branc
 ### `worktree-reaper.sh` — conservative cleanup
 Prunes only `.worktrees/*` whose branch is fully merged into main AND whose tree is clean; a dirty or unmerged worktree is left alone. Runs `git worktree prune` for stale admin entries. Also prunes the short `~/.spk-wt-sock/<slug>` socket dirs whose matching worktree is gone. Orphan daemons are reported by default and only killed with explicit `--reap-daemons` — daemon killing stays opt-in to protect live sessions.
 
+### `worktree-guard.sh` — detect-and-warn backstop
+A SessionStart hook cannot relocate an already-started process, but it can warn. This guard prints a one-line stderr warning when a top-level session is running on shared `main`/`master` instead of an isolated worktree, then always exits 0. It stays silent for orchestrated children (`AI_SESSION_CHILD=1`), sessions already inside a linked worktree, non-git dirs, and when `SPECKIT_WORKTREE_GUARD=off`. The operator adds it as an extra command in each runtime's SessionStart chain.
+
+### Verified end to end (SC-001)
+Two concurrent wrapper-style sessions were allocated as real worktrees and proven independent: distinct branches, DB dirs, and socket dirs; a commit in session A moved only A's HEAD (B and main unchanged, the probe file absent from both); and — the part the sun_path fix unblocked — both daemons booted concurrently on their own sockets with no `EINVAL`. Main's HEAD was unchanged and both worktrees + branches + socket dirs were removed cleanly afterward.
+
 ### `.gitignore`
 `.worktrees/` is now ignored so worktree contents never show as untracked in the main checkout.
 
@@ -80,8 +87,11 @@ Prunes only `.worktrees/*` whose branch is fully merged into main AND whose tree
 |------|--------|---------|
 | `.opencode/bin/worktree-session.sh` | Created | Launch wrapper (isolate top-level, suppress children, socket-dir fix) |
 | `.opencode/bin/worktree-reaper.sh` | Created | Prune merged/clean worktrees + stale socket dirs; report/kill orphan daemons |
+| `.opencode/bin/worktree-guard.sh` | Created | Detect-and-warn SessionStart guard for top-level-on-main sessions |
 | `.gitignore` | Modified | Ignore `.worktrees/` |
-| `035-…/spec.md`, `tasks.md`, `implementation-summary.md` | Modified | Reflect built state + Step-0 socket-length finding + fix |
+| `.opencode/bin/README.md` | Modified | Document the three entrypoints + child-injection + guard wiring |
+| `.opencode/skills/sk-git/SKILL.md` | Modified | §3 Launch-Wrapper Worktrees vs the In-Session Ask-First Rule + deps-override note |
+| `035-…/spec.md`, `tasks.md`, `implementation-summary.md` | Modified | Reflect built + tested state |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -115,6 +125,10 @@ Step-0 first, as the design demanded — a direct `context-server.js` boot again
 | Step-0 socket-length blocker found | CONFIRMED — 174-char worktree socket path > macOS sun_path ~104 → daemon EINVAL on listen() |
 | Step-0 fix (SPECKIT_IPC_SOCKET_DIR) end-to-end | PASS — real `git worktree add` + boot with long DB dir + short socket dir: BOOTED=1, EINVAL=0, socket in override dir, worktree+branch removed cleanly |
 | DB-dir relocation under override | PASS — daemon boots against SPEC_KIT_DB_DIR, IPC socket relocates, shared DB untouched, clean SIGTERM removes marker (DB files are lazy-created on first tool call, not at boot) |
+| SC-001 two-concurrent-session isolation | PASS — distinct branches/DB-dirs/sockets; A commit independent; B + main unaffected (probe absent in both); both daemons booted concurrently EINVAL=0; main HEAD unchanged; worktrees cleaned |
+| worktree-guard.sh (5 paths) | PASS — top-level-on-main warns + exit 0; child / GUARD=off / inside-worktree / non-git all silent + exit 0 |
+| Reaper safety dry-run | PASS — prunes nothing with no worktrees; never touches main or sibling |
+| bash -n + shellcheck (3 scripts) | PASS — clean |
 | `worktree-session.sh` `bash -n` | PASS |
 | Child detection — `AI_SESSION_CHILD=1` | PASS — exec in place, no worktree |
 | Child detection — structural (inside linked worktree) | PASS — exec in place (throwaway worktree test) |
@@ -128,10 +142,9 @@ Step-0 first, as the design demanded — a direct `context-server.js` boot again
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Per-runtime entry points not wired.** The wrapper exists but is not yet hooked to each runtime's launch. Wiring is an operator shell-alias step (e.g. `alias claude='.../worktree-session.sh claude'`) plus `AI_SESSION_CHILD=1` injection at cli-* dispatch sites — environment-specific, so left to the operator.
-2. **SessionStart guard hooks not added.** The detect-and-warn hook step across the five runtime hook chains (T007) is not built.
-3. **Reaper daemon-orphan detection is heuristic.** It matches live `context-server.js` processes referencing a `.worktrees/` path via `pgrep`; it reports rather than kills by default. A lease-file-based mapping would be more precise.
-4. **No live two-concurrent-session test yet.** Single-session isolation + child suppression + a real single-worktree daemon boot (with the socket fix) are verified; the full two-session non-interference test (SC-001) needs two real wrapper launches.
-5. **Socket-dir override is required, not optional, on this layout.** Because the worktree DB path exceeds sun_path, the daemon only boots with `SPECKIT_IPC_SOCKET_DIR` set. The wrapper sets it automatically, but any hand-rolled launch into a worktree must do the same or the daemon dies with EINVAL.
+1. **Operator-machine wiring is the only remainder.** The three scripts are built and tested, but turning them on for real sessions is operator-environment-specific and intentionally not done here: (a) launch aliases per runtime (`alias claude='.../worktree-session.sh claude'`), (b) adding `worktree-guard.sh` as a SessionStart hook entry in each runtime's machine-specific config (e.g. `.claude/settings.local.json`), and (c) setting `AI_SESSION_CHILD=1` at cli-* dispatch sites. The pattern for all three is documented in `bin/README.md` and `sk-git` §3.
+2. **Reaper daemon-orphan detection is heuristic.** It matches live `context-server.js` processes referencing a `.worktrees/` path via `pgrep`; it reports rather than kills by default. A lease-file-based mapping would be more precise.
+3. **Socket-dir override is required, not optional, on this layout.** Because the worktree DB path exceeds sun_path, the daemon only boots with `SPECKIT_IPC_SOCKET_DIR` set. The wrapper sets it automatically, but any hand-rolled launch into a worktree must do the same or the daemon dies with EINVAL.
+4. **Cross-runtime child signal is best-effort.** `AI_SESSION_CHILD=1` must be set at each dispatch site; the structural `git-common-dir` backstop catches the common case (child already inside the parent's worktree), and unknowns default to isolate. There is no universal native child signal across all five runtimes.
 
 <!-- /ANCHOR:limitations -->
