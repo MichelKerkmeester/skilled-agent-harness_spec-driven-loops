@@ -1,0 +1,21 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/035-worktree-per-session-automation",
+  "description": "Feature Specification: Worktree-per-AI-session automation",
+  "keywords": [
+    "feature",
+    "specification",
+    "worktree-per-ai-session",
+    "automation"
+  ],
+  "lastUpdated": "2026-05-30T14:07:30.496Z",
+  "specId": "035",
+  "folderSlug": "worktree-per-session-automation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
