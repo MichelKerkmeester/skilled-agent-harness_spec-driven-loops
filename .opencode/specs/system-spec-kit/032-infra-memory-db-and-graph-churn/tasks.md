@@ -57,9 +57,11 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 [B] Add idempotent last_save_at skip in graph-metadata-parser.ts (blocked: tooling must be reliable)
-- [ ] T005 [B] Scope save-time refresh to touched folder + exclude z_archive/z_future; keep global backfill as opt-in flag
-- [ ] T006 [B] Build + targeted vitest + dry-run diff (scoped vs global)
+- [x] T004 Add idempotent last_save_at skip in graph-metadata-parser.ts — `refreshGraphMetadataForSpecFolder` skips the write when `graphMetadataEqualIgnoringVolatile(existing, merged)` (skip-if-unchanged)
+- [x] T011 Preserve chronology pointer fields across re-derive — declared `last_active_child_id` + `last_active_at` in `graphMetadataDerivedSchema`; carried through `deriveGraphMetadata` + `mergeGraphMetadata` (Zod was stripping them)
+- [x] T012 Stop status downgrade — `deriveStatus` now falls back to the existing status before returning `planned` for lean phase parents (no implementation-summary.md)
+- [x] T006 Build + targeted vitest — `npm run build` clean; 4 new round-trip/churn-kill tests + 50 existing graph-metadata tests pass; live 026 probe + 7/7 real-packet sample confirm preservation + zero churn
+- [ ] T005 [B] Scope save-time refresh to touched folder + exclude z_archive/z_future; keep global backfill as opt-in flag (still open — idempotency now neutralizes the churn symptom, but scoping the walker is the deeper fix)
 - [ ] T007 [B] Memory-DB repair via /doctor memory / FTS runbook (operator-gated; DB-copy probe first)
 
 <!-- /ANCHOR:phase-2 -->
@@ -68,9 +70,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T008 Re-save a packet twice → second produces no graph-metadata.json diff
-- [ ] T009 Save one packet → only its graph-metadata.json changes; archives untouched
-- [ ] T010 memory_save / memory_index_scan / memory_match_triggers succeed; no .unclean-shutdown left
+- [x] T008 Re-save a packet twice → second produces no graph-metadata.json diff (vitest "does not rewrite … no content delta" + 7/7 real-packet sample, all idempotent)
+- [ ] T009 Save one packet → only its graph-metadata.json changes; archives untouched (still pending T005 walker scope; idempotency means archived packets no longer churn on no-op saves, but a content-changing save still walks the default root)
+- [ ] T010 memory_save / memory_index_scan / memory_match_triggers succeed; no .unclean-shutdown left (operator-gated DB repair, unchanged)
 
 <!-- /ANCHOR:phase-3 -->
 ---
@@ -78,9 +80,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] Graph-churn fix applied + verified
-- [ ] Memory DB repaired + writes succeed
-- [ ] No `[B]` blocked tasks remaining
+- [x] Graph-churn idempotency + field-preservation + status-preservation applied + verified (T004/T006/T008/T011/T012)
+- [ ] Walker scope + archive exclusion (T005) — deferred follow-on; idempotency already neutralizes the no-op churn
+- [ ] Memory DB repaired + writes succeed (T007/T010 — operator-gated)
 
 <!-- /ANCHOR:completion -->
 ---

@@ -50,6 +50,12 @@ export const graphMetadataDerivedSchema = z.object({
   save_lineage: z.enum(SAVE_LINEAGE_VALUES).optional(),
   last_accessed_at: z.string().datetime({ offset: true }).nullable(),
   source_docs: z.array(z.string().min(1)),
+  // Phase-parent chronology pointer: the most-recently-active direct child and when.
+  // The resume ladder reads these to redirect into the live child phase. Optional +
+  // nullable so leaf packets and freshly-derived metadata omit them cleanly; declared
+  // here so the Zod parse preserves (rather than strips) them on every load/re-derive.
+  last_active_child_id: z.string().min(1).nullable().optional(),
+  last_active_at: z.string().datetime({ offset: true }).nullable().optional(),
 });
 
 export const graphMetadataSchema = z.object({

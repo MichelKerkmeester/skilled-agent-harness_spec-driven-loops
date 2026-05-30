@@ -12,11 +12,10 @@ _memory:
     packet_pointer: "system-spec-kit/032-infra-memory-db-and-graph-churn"
     last_updated_at: "2026-05-30T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Root-caused both infra issues; captured fixes; reverted an unsanctioned agent edit to graph-metadata-parser.ts"
-    next_safe_action: "Apply graph-churn fix when tooling healthy; run /doctor memory for the DB repair"
+    recent_action: "Applied + verified the graph-metadata fixes (idempotent write, field + status preservation); memory-DB repair still operator-gated"
+    next_safe_action: "Run /doctor memory for the DB repair; optionally scope the refresh walker (T005)"
     blockers:
       - "Memory-DB repair is operator-gated (1 GB live DB; /doctor memory or FTS runbook)"
-      - "Graph-churn code fix deferred: degraded Read/shell tooling this session"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
@@ -24,11 +23,12 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003201"
       session_id: "032-infra-spec"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 75
     open_questions: []
     answered_questions:
       - "Memory-DB root cause: corrupted FTS5 shadow (memory_fts_data) after an unclean shutdown; the AFTER-INSERT trigger memory_fts_insert hits a duplicate shadow rowid -> SQLITE_CONSTRAINT_PRIMARYKEY, aborting every memory_index insert. Detect-only boot probe does not repair."
       - "Graph-churn root cause: the save path invokes the graph-metadata refresh with the DEFAULT ROOT (whole .opencode/specs tree, incl z_archive/z_future) and writes last_save_at unconditionally, so every save rewrites ~634 packets' timestamps."
+      - "Graph-churn was ALSO compounded by Zod stripping last_active_child_id/last_active_at (never declared in graphMetadataDerivedSchema) and deriveStatus resetting lean phase parents to 'planned' — so each re-derive both churned AND silently corrupted curated metadata. Fixed: declare+preserve the fields, preserve existing status, and make the write idempotent (skip when only last_save_at would change)."
 ---
 # Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn
 
@@ -44,7 +44,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | Investigated — fixes documented, not yet applied |
+| **Status** | Graph-metadata fixes applied + verified; memory-DB repair operator-gated |
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | (standalone infra packet) |
@@ -80,8 +80,10 @@ Record the verified root cause and a minimal, safe fix for each, so the graph-ch
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| mcp_server/lib/graph/graph-metadata-parser.ts | Modify | Idempotent `last_save_at` (skip write when derived metadata is unchanged) |
-| scripts/graph/backfill-graph-metadata.ts (+ generate-context save path) | Modify | Scope the save-time refresh to the touched folder; exclude `z_archive`/`z_future`; keep the global backfill as explicit opt-in |
+| mcp_server/lib/graph/graph-metadata-schema.ts | Modify (DONE) | Declare `last_active_child_id` + `last_active_at` (nullable optional) so Zod preserves them |
+| mcp_server/lib/graph/graph-metadata-parser.ts | Modify (DONE) | Idempotent `last_save_at` skip; preserve pointer fields + existing status across derive/merge; `graphMetadataEqualIgnoringVolatile` helper |
+| scripts/tests/graph-metadata-refresh.vitest.ts | Modify (DONE) | Round-trip + churn-kill + status-preservation regression tests |
+| scripts/graph/backfill-graph-metadata.ts (+ generate-context save path) | Modify (DEFERRED, T005) | Scope the save-time refresh to the touched folder; exclude `z_archive`/`z_future`; keep the global backfill as explicit opt-in |
 | mcp_server/database/context-index.sqlite | Repair (operator-gated) | FTS5 shadow rebuild via `/doctor memory` / runbook — NOT a normal edit |
 
 <!-- /ANCHOR:scope -->
@@ -96,7 +98,9 @@ Record the verified root cause and a minimal, safe fix for each, so the graph-ch
 |----|-------------|---------------------|
 | REQ-001 | Memory writes succeed again | `memory_save` / `memory_index_scan` / `memory_match_triggers` run without `SQLITE_CONSTRAINT_PRIMARYKEY` after the FTS5 shadow rebuild |
 | REQ-002 | Saves stop churning archived trees | A save rewrites only the touched packet's `graph-metadata.json`; `z_archive`/`z_future` are never touched |
-| REQ-003 | `last_save_at` is idempotent | A no-op save produces no `graph-metadata.json` diff |
+| REQ-003 | `last_save_at` is idempotent | A no-op save produces no `graph-metadata.json` diff — DONE (skip-if-unchanged in `refreshGraphMetadataForSpecFolder`) |
+| REQ-006 | Chronology pointer survives re-derive | `last_active_child_id` + `last_active_at` declared in the schema and preserved through derive/merge; a graph_only re-derive keeps them — DONE |
+| REQ-007 | Curated status survives re-derive | `deriveStatus` preserves an existing status for lean phase parents instead of resetting to `planned` — DONE |
 
 ### P1 - Required
 

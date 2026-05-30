@@ -988,6 +988,7 @@ function deriveStatus(
   docs: ParsedSpecDoc[],
   availability: Map<string, GraphMetadataDocReadResult['status']>,
   override?: string | null,
+  existingStatus?: string | null,
 ): string {
   const normalizedOverride = normalizeDerivedStatus(override);
   if (normalizedOverride) {
@@ -1019,7 +1020,11 @@ function deriveStatus(
 
   const implementationSummaryDoc = docs.find((doc) => doc.relativePath === 'implementation-summary.md');
   if (!implementationSummaryDoc) {
-    return 'planned';
+    // Lean phase parents have no implementation-summary.md by design, so this branch
+    // is their normal path. Returning 'planned' unconditionally here downgrades a
+    // curated status (e.g. in_progress) on every re-derive. Preserve an existing
+    // status when present; fall back to 'planned' only for genuinely new packets.
+    return normalizeDerivedStatus(existingStatus) ?? 'planned';
   }
 
   const checklistDoc = docs.find((doc) => doc.relativePath === 'checklist.md');
@@ -1079,7 +1084,7 @@ export function deriveGraphMetadata(
     trigger_phrases: triggerPhrases,
     key_topics: keyTopics,
     importance_tier: deriveImportanceTier(docs),
-    status: deriveStatus(docs, collectedDocs.availability, options.statusOverride),
+    status: deriveStatus(docs, collectedDocs.availability, options.statusOverride, existing?.derived.status),
     key_files: keyFiles,
     entities,
     causal_summary: causalSummary,
@@ -1088,6 +1093,10 @@ export function deriveGraphMetadata(
     save_lineage: options.saveLineage,
     last_accessed_at: existing?.derived.last_accessed_at ?? null,
     source_docs: sourceDocs,
+    // Chronology pointer is owned by the canonical save path (generate-context.ts);
+    // a derive/re-derive must carry it forward, never invent or drop it.
+    last_active_child_id: existing?.derived.last_active_child_id ?? null,
+    last_active_at: existing?.derived.last_active_at ?? null,
   };
 
   return graphMetadataSchema.parse({
@@ -1123,8 +1132,50 @@ export function mergeGraphMetadata(
       ...refreshed.derived,
       created_at: existing?.derived.created_at ?? refreshed.derived.created_at,
       last_accessed_at: existing?.derived.last_accessed_at ?? refreshed.derived.last_accessed_at,
+      last_active_child_id: existing?.derived.last_active_child_id ?? refreshed.derived.last_active_child_id ?? null,
+      last_active_at: existing?.derived.last_active_at ?? refreshed.derived.last_active_at ?? null,
     },
   });
+}
+
+function canonicalizeForCompare(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    // Array order is content-significant (e.g. entities, children_ids) — preserve it.
+    return value.map(canonicalizeForCompare);
+  }
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    return Object.keys(record)
+      .sort()
+      .reduce<Record<string, unknown>>((acc, key) => {
+        acc[key] = canonicalizeForCompare(record[key]);
+        return acc;
+      }, {});
+  }
+  return value;
+}
+
+/**
+ * Compare two graph-metadata payloads ignoring volatile timestamp/lineage fields.
+ *
+ * Used to make `last_save_at` idempotent: a re-derive that produced no content change
+ * must not rewrite the file (otherwise every save churns hundreds of packets' timestamps
+ * and buries real diffs in the working tree). Key order is normalized so a payload loaded
+ * from disk compares equal to a freshly-constructed one.
+ *
+ * @param a - First metadata payload
+ * @param b - Second metadata payload
+ * @returns True when the two are equal apart from `last_save_at` / `save_lineage`
+ */
+export function graphMetadataEqualIgnoringVolatile(a: GraphMetadata, b: GraphMetadata): boolean {
+  const strip = (metadata: GraphMetadata): unknown => {
+    const clone = JSON.parse(JSON.stringify(metadata)) as GraphMetadata;
+    const derived = clone.derived as Record<string, unknown>;
+    delete derived.last_save_at;
+    delete derived.save_lineage;
+    return canonicalizeForCompare(clone);
+  };
+  return JSON.stringify(strip(a)) === JSON.stringify(strip(b));
 }
 
 /**
@@ -1197,6 +1248,21 @@ export function refreshGraphMetadataForSpecFolder(
     saveLineage: options.saveLineage ?? 'graph_only',
   });
   const merged = mergeGraphMetadata(existing, refreshed);
+
+  // Idempotent write: when a re-derive produced no content change (only last_save_at
+  // would move), skip the write entirely. Without this, every save rewrites this
+  // packet's last_save_at, and a broad re-index churns hundreds of files' timestamps
+  // with no real delta — burying genuine changes in working-tree noise. A no-op
+  // re-derive has no new state worth stamping, so returning the existing payload is
+  // correct. Any real change still writes (and still bumps last_save_at).
+  if (existing && graphMetadataEqualIgnoringVolatile(existing, merged)) {
+    return {
+      filePath,
+      metadata: existing,
+      created: false,
+    };
+  }
+
   writeGraphMetadataFile(filePath, merged);
 
   return {
