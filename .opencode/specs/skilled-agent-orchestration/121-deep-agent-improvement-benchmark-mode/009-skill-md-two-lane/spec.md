@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 9 of 18 |
+| **Phase** | 9 of 19 |
 | **Predecessor** | 008-command-lane-asking |
 | **Successor** | 010-references-assets-lane-reorg |
 | **Handoff Criteria** | SKILL.md presents two co-equal lanes, router carries a MODEL_BENCHMARK intent with a RESOURCE_MAP entry, plus DQI excellent and validate strict pass |

@@ -50,7 +50,7 @@ The 014 two-lane deep review returned a CONDITIONAL verdict against the two-lane
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 15 of 18 |
+| **Phase** | 15 of 19 |
 | **Predecessor** | 014-two-lane-deep-review |
 | **Successor** | 016-script-subfolder-readmes |
 | **Handoff Criteria** | P0 fixed + verified end-to-end through the YAML path; all 16 P1 fixed-or-document-accepted; all 16 P2 fixed-or-document-accepted; every finding carries exactly one disposition; vitest green; TST-1 byte-identity holds |

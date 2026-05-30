@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-05-29 |
 | **Branch** | `scaffold/017-two-lane-opus-deep-review` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 17 of 18 |
+| **Phase** | 17 of 19 |
 | **Predecessor** | 016-script-subfolder-readmes |
 | **Successor** | 018-fix-opus-review-findings-for-two-lane-code |
 | **Handoff Criteria** | review-report.md verdict + all-findings registry |

@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: deep-agent-improvement model-benchmark mode"
-description: "Phase parent (two-arc program, 18 phases, complete): Arc 1 (001-007) designs, deep-researches, builds, and hardens a model-benchmark mode for the deep-agent-improvement skill; Arc 2 (008-018) elevates it to a co-equal lane alongside agent-improvement across command/SKILL/references/assets/agent/scripts, with two independent deep-review -> remediation cycles."
+description: "Phase parent (19 phases, complete): a two-arc program — Arc 1 (001-007) designs, deep-researches, builds, and hardens a model-benchmark mode for the deep-agent-improvement skill; Arc 2 (008-018) elevates it to a co-equal lane alongside agent-improvement across command/SKILL/references/assets/agent/scripts, with two independent deep-review -> remediation cycles — plus a doc + changelog closeout (019)."
 trigger_phrases:
   - "121-deep-agent-improvement-benchmark-mode"
   - "deep-agent-improvement benchmark mode"

@@ -46,7 +46,7 @@ _memory:
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 8 of 18 |
+| **Phase** | 8 of 19 |
 | **Predecessor** | 007-benchmark-mode-hardening-review |
 | **Successor** | 009-skill-md-two-lane |
 | **Handoff Criteria** | Lane A behavior unchanged; Lane B runs end-to-end from a command; advisor routes both lanes; README and gemini mirror present |

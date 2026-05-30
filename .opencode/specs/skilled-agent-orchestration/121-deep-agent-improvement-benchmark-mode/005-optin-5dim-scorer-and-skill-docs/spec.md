@@ -44,7 +44,7 @@ _memory:
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 5 of 18 |
+| **Phase** | 5 of 19 |
 | **Predecessor** | 004-fix-hardening-review-findings-for-benchmark-mode |
 | **Successor** | 006-deep-loop-empty-archive-dir-fix |
 | **Handoff Criteria** | 5-dim scorer wired as opt-in with tests; default pattern path byte-identical; SKILL.md documents model-benchmark mode at DQI excellent |

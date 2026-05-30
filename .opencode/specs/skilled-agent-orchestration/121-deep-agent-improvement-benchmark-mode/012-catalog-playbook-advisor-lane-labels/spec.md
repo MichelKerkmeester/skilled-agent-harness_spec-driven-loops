@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 12 of 18 |
+| **Phase** | 12 of 19 |
 | **Predecessor** | 011-agent-lane-note |
 | **Successor** | 013-scripts-physical-reorg |
 | **Handoff Criteria** | Catalog and playbook carry lane labels, reduce-state surfaces the mode mix, vitest green |

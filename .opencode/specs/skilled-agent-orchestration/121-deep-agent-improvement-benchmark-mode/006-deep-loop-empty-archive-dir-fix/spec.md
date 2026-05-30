@@ -47,7 +47,7 @@ _memory:
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 6 of 18 |
+| **Phase** | 6 of 19 |
 | **Predecessor** | 005-optin-5dim-scorer-and-skill-docs |
 | **Successor** | 007-benchmark-mode-hardening-review |
 | **Handoff Criteria** | No init mkdir creates `{mode}_archive`; restart still archives lazily; contract-parity + resolver suites green; existing empties removed |

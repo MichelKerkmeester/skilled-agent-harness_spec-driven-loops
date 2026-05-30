@@ -43,7 +43,7 @@ _memory:
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 4 of 18 |
+| **Phase** | 4 of 19 |
 | **Predecessor** | 003-build-benchmark-mode |
 | **Successor** | 005-optin-5dim-scorer-and-skill-docs |
 | **Handoff Criteria** | All 3 unique P1 defects fixed + regression-tested; actionable P2s resolved or reconciled; vitest + alignment-drift green |

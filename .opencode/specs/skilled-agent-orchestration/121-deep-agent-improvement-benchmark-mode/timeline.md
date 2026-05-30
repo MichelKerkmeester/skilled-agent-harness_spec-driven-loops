@@ -5,7 +5,7 @@ description: "All phase folders of packet 121, newest -> oldest, with paths, cre
 
 # Timeline — 121 deep-agent-improvement-benchmark-mode
 
-All phase folders, **newest → oldest**. Status: **Complete** — 18/18 phases shipped across two arcs (Build = 001–007, Two-lane = 008–018).
+All phase folders, **newest → oldest**. Status: **Complete** — 19/19 phases shipped: two arcs (Build = 001–007, Two-lane = 008–018) plus a doc + changelog closeout (019).
 
 - **Base path:** `specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/`
 - `specs/` is a symlink to `.opencode/specs/` (same directory; the canonical root is `.opencode/specs/`).
@@ -13,6 +13,7 @@ All phase folders, **newest → oldest**. Status: **Complete** — 18/18 phases 
 
 | Phase | Created | Arc | Folder (under base) | Focus |
 |------:|---------|----------|---------------------|-------|
+| 19 | 2026-05-30 | Closeout | `019-skill-doc-alignment-and-changelog-consolidation/` | Align the skill README + docs to two-lane reality; one comprehensive v1.9.0.0 changelog |
 | 18 | 2026-05-29 | Two-lane | `018-fix-opus-review-findings-for-two-lane-code/` | Remediate the 017 Opus deep-review findings (4 P1 + 13 P2) |
 | 17 | 2026-05-29 | Two-lane | `017-two-lane-opus-deep-review/` | Independent Opus 4.8 second-opinion review of the post-015 two-lane code |
 | 16 | 2026-05-29 | Two-lane | `016-script-subfolder-readmes/` | Code-folder READMEs for every source script subfolder (sk-doc) |
@@ -37,6 +38,7 @@ All phase folders, **newest → oldest**. Status: **Complete** — 18/18 phases 
 ## Full paths (newest -> oldest, copy-paste)
 
 ```
+specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/019-skill-doc-alignment-and-changelog-consolidation/
 specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/018-fix-opus-review-findings-for-two-lane-code/
 specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/017-two-lane-opus-deep-review/
 specs/skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/016-script-subfolder-readmes/

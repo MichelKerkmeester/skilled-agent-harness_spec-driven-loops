@@ -57,7 +57,7 @@ This phase moves the 16 deep-agent-improvement scripts plus the scorer subtree i
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 13 of 18 |
+| **Phase** | 13 of 19 |
 | **Predecessor** | 012-catalog-playbook-advisor-lane-labels |
 | **Successor** | 014-two-lane-deep-review |
 | **Handoff Criteria** | 16 scripts moved into the three lane subdirs, every __dirname-relative path repaired, all refs rewritten, full vitest suite green |

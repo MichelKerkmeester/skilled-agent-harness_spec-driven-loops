@@ -45,7 +45,7 @@ _memory:
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 3 of 18 |
+| **Phase** | 3 of 19 |
 | **Predecessor** | 002-implementation-deep-research |
 | **Successor** | 004-fix-hardening-review-findings-for-benchmark-mode |
 | **Handoff Criteria** | Mode wired; TST-1 byte-identity gate passes; deep-agent-improvement test suite green |

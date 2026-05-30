@@ -25,7 +25,7 @@ This is the **migration bridge** for packet 121. It carries the reorganization h
 
 - **Phases newest -> oldest with paths:** see `timeline.md`.
 - **Structural phase map (what each phase did):** see `spec.md` -> Phase Documentation Map.
-- **Status:** Complete — 18/18 phases shipped.
+- **Status:** Complete — 19/19 phases shipped (two arcs, 001-018, plus a doc/changelog closeout, 019).
 
 ---
 
@@ -74,7 +74,7 @@ Four phase folders were renamed via `git mv` (history preserved) to satisfy the 
 A naming + historic-context optimization pass over the whole packet:
 
 1. **Renamed** the 4 phase folders above (`git mv` + self-reference path-fixes; 0 residual old-slug refs inside the renamed folders).
-2. **Reconciled child metadata** across all 18 phases: `Status` -> Complete (10 were stale at "In Progress"/"Planned"/"Draft"), `Phase N of M` -> `N of 18` (denominators had drifted to 4/13/15/etc.), and repaired the predecessor/successor chain (added missing links on the review phases 002/007/014; repointed the renamed-folder cross-links).
+2. **Reconciled child metadata** across every phase: `Status` -> Complete (10 were stale at "In Progress"/"Planned"/"Draft"), normalized the `Phase N of M` denominators to `N of 19` (they had drifted to 4/13/15/etc.), and repaired the predecessor/successor chain (added missing links on the review phases 002/007/014; repointed the renamed-folder cross-links).
 3. **Rewrote** the parent `spec.md` stale sections (frontmatter description, §1 handoff criteria, §2 purpose, §3 scope + files-to-change, §4 open questions -> resolved, continuity) to reflect the full two-arc completed program, and de-fragmented the Phase Documentation Map table.
 4. **Refreshed** parent `graph-metadata.json` (`derived.status` planned -> complete; `children_ids` repointed to new names) and the renamed children's `folderSlug`.
 5. **Added** `timeline.md` (phases newest -> oldest) and this `context-index.md`.
