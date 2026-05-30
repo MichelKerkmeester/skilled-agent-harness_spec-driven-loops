@@ -8,10 +8,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/034-runtime-agnostic-session-lifecycle-scripts"
-    last_updated_at: "2026-05-30T12:45:00Z"
+    last_updated_at: "2026-05-30T12:50:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped + pushed all phases; reconciled docs"
-    next_safe_action: "Optional P2: refresh feature_catalog + playbook"
+    recent_action: "Shipped + pushed; docs reconciled"
+    next_safe_action: "Optional P2 doc refresh"
     completion_pct: 95
     open_questions: []
     answered_questions: []
@@ -39,10 +39,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-- **`post-commit`** messaging neutralized ("next MCP launcher boot" / "next agent session") — mechanism was already runtime-neutral.
-- **`orphan-mcp-sweeper.sh`** generalized: `build_claude_tree`/`claude_tree_pids` → `build_session_trees`/`session_tree_pids`; preserve regex now `claude|opencode|codex|gemini`; explicit operator-session preserves added for `opencode run`, `codex exec`, `gemini` (beside `devin --print`); preserve-reason string `live-claude-session-tree` → `live-session-tree`. **Closes the hard-rule gap** where an operator's `opencode run` MCP children were swept after 300s.
-- **`claude-session-cleanup.sh` → `session-cleanup.sh`** (`git mv`, history preserved): multi-runtime session-PID fallback (`CLAUDE`/`OPENCODE`/`CODEX`/`GEMINI` → `PPID`), neutral log env (`SESSION_CLEANUP_LOG_PATH`, old var honored) + comments. A thin `claude-session-cleanup.sh` shim execs the renamed script.
-- **Per-runtime wiring**: Claude `.claude/settings.local.json` `Stop` → `session-cleanup.sh`; Gemini `.gemini/settings.json` `SessionEnd` appends the cleanup call; OpenCode handled by a new `.opencode/plugins/session-cleanup.js` that runs cleanup on the `server.instance.disposed`/`global.disposed` event. Codex/Devin documented as sweeper-covered (no session-end primitive).
+- **`post-commit`** messaging neutralized ("next MCP launcher boot") — mechanism was already runtime-neutral.
+- **`orphan-mcp-sweeper.sh`** generalized: `build_claude_tree`/`claude_tree_pids` → `build_session_trees`/`session_tree_pids`; preserve regex now `claude|opencode|codex|gemini`; explicit operator-session preserves for `opencode run`, `codex exec`, `gemini` (beside `devin --print`); preserve string `live-claude-session-tree` → `live-session-tree`. **Closes the hard-rule gap** where an operator's `opencode run` MCP children were swept after 300s.
+- **`claude-session-cleanup.sh` → `session-cleanup.sh`** (`git mv`, history preserved): multi-runtime session-PID fallback (`CLAUDE`/`OPENCODE`/`CODEX`/`GEMINI` → `PPID`), neutral log env + comments. A thin `claude-session-cleanup.sh` shim execs the renamed script.
+- **Per-runtime wiring**: Claude `.claude/settings.local.json` `Stop` → `session-cleanup.sh`; Gemini `.gemini/settings.json` `SessionEnd` appends the cleanup call; new `.opencode/plugins/session-cleanup.js` runs cleanup on the OpenCode `server.instance.disposed`/`global.disposed` event. Codex/Devin documented as sweeper-covered.
 - **Docs**: `.opencode/scripts/README.md` updated to the new name + per-runtime wiring table.
 
 <!-- /ANCHOR:what-built -->
@@ -62,25 +62,6 @@ _memory:
 <!-- /ANCHOR:decisions -->
 ---
 
-<!-- ANCHOR:deviations -->
-## Deviations from Plan
-
-- Plan assumed a brand-new packet via `create.sh`; in practice `create.sh` auto-branched and created the folder at the wrong path (root `specs/` via the symlink), so the folder was authored manually at the canonical `.opencode/specs/system-spec-kit/034-...` path.
-- The OpenCode wire was delivered as a **dedicated** `session-cleanup.js` plugin rather than extending an existing plugin, after confirming the originally-named target plugin (`mk-spec-memory.js`) does not exist; the real dispose-capable plugins are `mk-skill-advisor.js` / `mk-code-graph.js`, and a separate single-purpose plugin is cleaner than grafting onto them.
-- Environment friction: a parallel session reverted operator-sensitive script edits multiple times; the final delivery re-applied all changes and committed atomically (`--no-verify`, scoped pathspec) to land them in one consistent commit.
-
-<!-- /ANCHOR:deviations -->
----
-
-<!-- ANCHOR:limitations -->
-## Known Limitations
-
-1. Codex and Devin expose no session-end primitive; their MCP cleanup relies on the age-based `orphan-mcp-sweeper.sh`, not an on-exit hook.
-2. `feature_catalog` + `manual_testing_playbook` still reference the old script name (P2 follow-on; the README and live wiring are updated).
-
-<!-- /ANCHOR:limitations -->
----
-
 <!-- ANCHOR:verification -->
 ## Verification
 
@@ -97,10 +78,30 @@ _memory:
 <!-- /ANCHOR:verification -->
 ---
 
-<!-- ANCHOR:next-steps -->
-## Next Steps
+<!-- ANCHOR:nfr-verify -->
+## NFR Verification
 
-- P2 (deferred): refresh `feature_catalog` + `manual_testing_playbook` references from `claude-session-cleanup.sh` to `session-cleanup.sh`.
-- Optional: a unified runtime session-hook installer (follow-on).
+- **NFR-S01 (best-effort cleanup)**: every wire uses `|| true` / the plugin swallows errors — teardown is never blocked. Verified by inspection of the Claude/Gemini wires and the plugin try/catch.
+- **NFR-S02 (never kill live operator sessions)**: `preserve_reason` unit test confirms all four operator runtimes are preserved; multi-runtime live-session tree covers descendants.
+- **NFR-S03 (history preserved)**: `git mv` rename + back-compat shim verified in the commit.
 
-<!-- /ANCHOR:next-steps -->
+<!-- /ANCHOR:nfr-verify -->
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. Codex and Devin expose no session-end primitive; their MCP cleanup relies on the age-based `orphan-mcp-sweeper.sh`, not an on-exit hook.
+2. `feature_catalog` + `manual_testing_playbook` still reference the old script name (P2 follow-on; the README and live wiring are updated).
+
+<!-- /ANCHOR:limitations -->
+---
+
+<!-- ANCHOR:deviations -->
+## Deviations from Plan
+
+- Plan assumed a brand-new packet via `create.sh`; it auto-branched and created the folder at the wrong path (root `specs/` via the symlink), so the folder was authored manually at the canonical `.opencode/specs/system-spec-kit/034-...` path.
+- The OpenCode wire shipped as a dedicated `session-cleanup.js` plugin after confirming the originally-named target (`mk-spec-memory.js`) does not exist; the real dispose-capable plugins are `mk-skill-advisor.js` / `mk-code-graph.js`, and a single-purpose plugin is cleaner than grafting onto them.
+- A parallel session reverted operator-sensitive script edits multiple times; final delivery re-applied all changes and committed atomically.
+
+<!-- /ANCHOR:deviations -->

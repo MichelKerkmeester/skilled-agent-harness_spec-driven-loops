@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/034-runtime-agnostic-session-lifecycle-scripts"
     last_updated_at: "2026-05-30T11:35:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Shipped all phases: sweeper generalization (REQ-001), rename+shim, per-runtime wiring (Claude/Gemini/OpenCode), README"
-    next_safe_action: "Optional P2: refresh feature_catalog + manual_testing_playbook to the new script name"
+    recent_action: "Shipped + pushed all phases"
+    next_safe_action: "Optional P2 doc refresh"
     blockers: []
     key_files:
       - ".opencode/scripts/orphan-mcp-sweeper.sh"
