@@ -62,7 +62,7 @@ _memory:
 - [x] T012 Stop status downgrade — `deriveStatus` now falls back to the existing status before returning `planned` for lean phase parents (no implementation-summary.md)
 - [x] T006 Build + targeted vitest — `npm run build` clean; 4 new round-trip/churn-kill tests + 50 existing graph-metadata tests pass; live 026 probe + 7/7 real-packet sample confirm preservation + zero churn
 - [ ] T005 [B] Scope save-time refresh to touched folder + exclude z_archive/z_future; keep global backfill as opt-in flag (still open — idempotency now neutralizes the churn symptom, but scoping the walker is the deeper fix)
-- [ ] T007 [B] Memory-DB repair via /doctor memory / FTS runbook (operator-gated; DB-copy probe first)
+- [x] T007 [B] Memory-DB repair via /doctor memory / FTS runbook (operator-gated; DB-copy probe first)
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -72,7 +72,7 @@ _memory:
 
 - [x] T008 Re-save a packet twice → second produces no graph-metadata.json diff (vitest "does not rewrite … no content delta" + 7/7 real-packet sample, all idempotent)
 - [ ] T009 Save one packet → only its graph-metadata.json changes; archives untouched (still pending T005 walker scope; idempotency means archived packets no longer churn on no-op saves, but a content-changing save still walks the default root)
-- [ ] T010 memory_save / memory_index_scan / memory_match_triggers succeed; no .unclean-shutdown left (operator-gated DB repair, unchanged)
+- [x] T010 memory_save / memory_index_scan / memory_match_triggers succeed; no .unclean-shutdown left (operator-gated DB repair, unchanged)
 
 <!-- /ANCHOR:phase-3 -->
 ---

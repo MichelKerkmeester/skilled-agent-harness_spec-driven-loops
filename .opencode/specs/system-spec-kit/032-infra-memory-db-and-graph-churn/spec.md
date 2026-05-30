@@ -15,7 +15,7 @@ _memory:
     recent_action: "Applied + verified graph-metadata fixes"
     next_safe_action: "Run /doctor memory for the DB repair"
     blockers:
-      - "Memory-DB repair is operator-gated (1 GB live DB; /doctor memory or FTS runbook)"
+      - "Graph-churn code fix deferred (memory-DB resolved 2026-05-30)"
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/database/context-index.sqlite"
