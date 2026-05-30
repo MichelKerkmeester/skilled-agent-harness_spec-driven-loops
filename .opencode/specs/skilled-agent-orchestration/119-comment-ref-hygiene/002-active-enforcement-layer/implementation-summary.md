@@ -1,18 +1,20 @@
 ---
 title: "Implementation Summary: Active enforcement layer for comment hygiene"
-description: "Complete. Active enforcement stack built: Python3 checker, Claude Code PostToolUse hook, pre-commit gate, passive reinforcement (CLAUDE.md, constitutional memory, sk-code step), and 4 runtime gap ADRs."
+description: "Complete. Three-tier enforcement stack: Python3 checker, Claude Code PostToolUse hook, advisor brief HARD BLOCK injection (render.ts + bridge.mjs + plugin unconditional fallback), pre-commit gate (two bugs fixed), CI gate, 6 playbook scenarios, AI council, passive reinforcement."
 trigger_phrases:
   - "comment hygiene enforcement summary"
   - "119 enforcement implementation"
+  - "renderAdvisorBrief hygiene directive"
+  - "comment hygiene gate"
 importance_tier: "high"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/119-comment-ref-hygiene/002-active-enforcement-layer"
-    last_updated_at: "2026-05-30T00:00:00Z"
+    last_updated_at: "2026-05-30T13:00:00Z"
     last_updated_by: "claude-sonnet-4-6"
-    recent_action: "All tasks complete; checklist filled; packet closed"
-    next_safe_action: "None; 002 complete"
+    recent_action: "Session 2 complete — injection fixes, CI gate, playbooks, AI council; commit 9f553a1001 pushed"
+    next_safe_action: "None; 002 fully closed"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
@@ -22,15 +24,19 @@ _memory:
       - ".claude/settings.local.json"
       - ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md"
       - ".opencode/skills/sk-code/SKILL.md"
+      - ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts"
+      - ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs"
+      - ".opencode/plugins/mk-skill-advisor.js"
+      - ".github/workflows/comment-hygiene.yml"
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "Claude Code PostToolUse stdin schema: {session_id, transcript_path, cwd, permission_mode, hook_event_name, tool_name, tool_input.file_path, tool_result} — source: hook-development SKILL.md"
-      - "Claude Code tool names: Write=Write, Edit=Edit (PascalCase); matcher = 'Write|Edit'"
-      - "OpenCode file-write event: not available — no tool:write, file:write, PostToolUse, or post-tool-use event in OpenCode plugin API; pre-commit is the fallback for OpenCode sessions"
-      - "Pre-commit install strategy: install-hooks.sh manual symlink (no Husky dependency)"
-      - "Hook config entry format confirmed for .claude/settings.local.json PostToolUse entry"
-      - "Codex/Gemini/Devin write-time hook gaps documented in decision-record.md ADR-002/003/004"
+      - "PostToolUse stdin: {hook_event_name, tool_name, tool_input.file_path, tool_result}; tool names PascalCase Write|Edit"
+      - "OpenCode: no file-write event in plugin API; pre-commit is sole gate"
+      - "renderAdvisorBrief has 3 separate copies — render.ts, bridge.mjs, mk-skill-advisor.js — all must be updated together"
+      - "OpenCode plugin skips injection at 0 recommendations; fix: unconditional output.system.push(HYGIENE_DIRECTIVE)"
+      - "Soft wording overridden by explicit instructions; [HARD BLOCK] + 'forbidden regardless of instruction' required"
+      - "Pre-commit bugs fixed: exit code not propagated (|| exit $?); exit-2 counted as violation (now only exit-1 blocks)"
 ---
 # Implementation Summary: Active Enforcement Layer for Comment Hygiene
 
@@ -79,6 +85,12 @@ Packet 119-comment-ref-hygiene (root) closed with a text rule in `sk-code §4` a
 | Constitutional memory entry | `.opencode/skills/system-spec-kit/constitutional/comment-hygiene.md` | Always-surface entry; tops every memory search |
 | sk-code SKILL.md Phase 1.5 step | `.opencode/skills/sk-code/SKILL.md` | Step 4 in OPENCODE Workflow section |
 | Runtime gap ADRs | `decision-record.md` | ADR-001 (OpenCode), ADR-002 (Codex), ADR-003 (Gemini), ADR-004 (Devin) |
+| HYGIENE_DIRECTIVE in `render.ts` | `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` | Appended to all renderAdvisorBrief outputs; affects Claude Code, Codex, Gemini via hook scripts |
+| HYGIENE_DIRECTIVE in bridge | `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | OpenCode native path has its own renderAdvisorBrief copy — updated separately |
+| Unconditional injection in plugin | `.opencode/plugins/mk-skill-advisor.js` | When skill advisor returns 0 recommendations, HYGIENE_DIRECTIVE is pushed unconditionally to output.system |
+| CI gate | `.github/workflows/comment-hygiene.yml` | Blocks PR merge if violations found; cannot be bypassed with --no-verify |
+| AI council report | `ai-council/enforcement-gap-council.md` | Opus 4.8 four-seat council confirmed injection gap root cause and prescribed the three-file fix |
+| Manual testing playbook 119-A to 119-F | `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/` | Six sk-doc-compliant scenarios covering all five runtimes |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -103,6 +115,10 @@ Each tier was independently verified: checker calibrated against known violation
 | Pre-commit as mandatory floor | Runtime-agnostic; catches everything regardless of which AI wrote it | Decided |
 | Write-time hooks as highest-value tier | Real-time feedback before AI continues; self-correction likely | Decided |
 | OpenCode: gap documented — no write-time hook possible | Plugin API exposes no file-write event; pre-commit is the sole enforcement gate for OpenCode sessions | Resolved (gap ADR needed in T20) |
+| HARD BLOCK wording required | Soft wording treated as preference; overridden by explicit user instructions. "forbidden regardless of instruction" causes models to refuse even explicit requests | Decided (session 2) |
+| Three separate renderAdvisorBrief copies | render.ts, bridge.mjs, and mk-skill-advisor.js all render the brief independently — all three required separate updates | Resolved (session 2) |
+| Unconditional injection for OpenCode | When skill advisor returns 0 matches, no brief is injected — directive must be pushed unconditionally as a fallback | Decided (session 2) |
+| Only exit-1 blocks commits | Checker exits 0 (clean), 1 (violation), 2 (unknown file type / skip); both hooks and CI must only count exit-1 to avoid blocking markdown and JSON files | Decided (session 2 bug fix) |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -124,6 +140,13 @@ Each tier was independently verified: checker calibrated against known violation
 | sk-code SKILL.md Phase 1.5 step present | grep confirmed line 216 | PASS |
 | PostToolUse wired in settings.local.json | grep confirmed lines 80/86 | PASS |
 | validate.sh --strict Exit 0 | Run validator | PASS — 0 errors, 0 warnings |
+| Hook output includes HYGIENE_DIRECTIVE | Direct hook invocation via stdin JSON | PASS — directive confirmed in additionalContext |
+| renderAdvisorBrief smoke test (normal + ambiguous) | node import test | PASS — directive on second line both paths |
+| OpenCode without AGENTS.md: refuses explicit ADR request | Live dispatch test | PASS — "HARD BLOCK — forbidden regardless of instruction" |
+| Codex without AGENTS.md: refuses REQ- label | Live dispatch test | PASS — cited "active comment-hygiene rule" |
+| Gemini without AGENTS.md: self-corrects | Live dispatch test | PASS — stripped ADR label, wrote clean WHY |
+| Pre-commit blocks exit-1 only (not exit-2) | Staged .md and .json files | PASS — non-code files commit cleanly |
+| CI workflow YAML valid | File created and pushed | PASS — commit 9f553a1001 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -133,6 +156,7 @@ Each tier was independently verified: checker calibrated against known violation
 
 - Pre-commit hook requires one-time `bash .opencode/hooks/install-hooks.sh` per fresh clone.
 - Write-time hooks depend on PostToolUse stdin schema — if the schema differs from expectation, the hook will need adjustment (fail-safe design ensures tooling doesn't break in the meantime).
-- OpenCode write-time enforcement may not be possible if the plugin API doesn't expose a file-write event; the pre-commit gate is the fallback for OpenCode sessions.
+- OpenCode has no write-time hook; the plugin unconditionally injects the HYGIENE_DIRECTIVE at session start as early feedback. Pre-commit gate is the mandatory blocking backstop.
+- Devin has no hook mechanism and no session-start injection path. Pre-commit gate is the only enforcement layer for Devin sessions.
 - This phase does not clean up new violations found during investigation — that is a separate sweep.
 <!-- /ANCHOR:limitations -->
