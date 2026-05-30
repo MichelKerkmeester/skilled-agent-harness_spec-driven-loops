@@ -49,8 +49,8 @@ _memory:
 
 - [x] T001 Capture coordinated design (4 families), concurrency-test design (Harness A/B), apply ordering
 - [x] T002 Re-validate finding STATES at HEAD (OR-R-01 already O_EXCL; DR-012 = root-exclusion; rest confirmed-open)
-- [ ] T003 Precondition gate: confirm adjacent code-graph launcher WIP quiesced (Family-3)
-- [ ] T004 Per-finding HEAD re-validation by symbol immediately before editing each family
+- [x] T003 Precondition gate: OR-R-01 already O_EXCL; Family-3 limited to daemon-detect.ts (not the frozen code-graph launcher)
+- [x] T004 Per-finding HEAD re-validation by symbol immediately before editing each family
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -58,12 +58,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 Family 1 — DR-005 (liveness-bounded respawn-lock staleness) + DR-006 (re-arm listener on launch fail) (model-server-supervision.cjs)
-- [ ] T006 Family 2 — DR-012 (reap the root pid on idle eviction via the shared authority) (model-server-supervision.cjs)
-- [ ] T007 Family 4 — DR-011 (confirm-then-delete marker) (vector-index-store.ts)
-- [ ] T008 Family 4 — DR-020 (staging-shard atomic swap) + DR-001-P1-002 (reindex cancel re-read) (reindex.ts)
-- [ ] T009 Family 4 — DR-001-P2-001 (direct-startup perimeter guard) + DR-002-P1-001 (tcp loopback/auth) (hf-model-server.cjs)
-- [ ] T010 [B] Family 3 — DR-016 (honor live childPid) (workflow.ts/daemon-detect.ts); OR-R-01 re-validate — blocked on T003 gate
+- [x] T005 Family 1 — DR-005 (liveness-bounded respawn-lock staleness) + DR-006 (re-arm listener on launch fail) (model-server-supervision.cjs)
+- [x] T006 Family 2 — DR-012 (reap the root pid on idle eviction via the shared authority) (model-server-supervision.cjs)
+- [x] T007 Family 4 — DR-011 (confirm-then-delete marker) (vector-index-store.ts)
+- [x] T008 Family 4 — DR-020 (staging-shard atomic swap) + DR-001-P1-002 (reindex cancel re-read) (reindex.ts)
+- [x] T009 Family 4 — DR-001-P2-001 (direct-startup perimeter guard) + DR-002-P1-001 (tcp loopback/auth) (hf-model-server.cjs)
+- [x] T010 Family 3 — DR-016 (honor live childPid) (daemon-detect.ts); OR-R-01 re-validated (already O_EXCL)
 
 <!-- /ANCHOR:phase-2 -->
 ---
@@ -71,9 +71,9 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T011 Harness A (single-owner / no-orphan) RED-before / GREEN-after
-- [ ] T012 Harness B (durability: marker survives failed close; staging-swap atomicity) RED-before / GREEN-after
-- [ ] T013 Builds + `node --check` touched `.cjs` + strict-validate; coordinated commit
+- [x] T011 Harness A realized as launcher-model-server-single-writer-cluster.vitest.ts + daemon-detect.vitest.ts (single-owner / no-orphan / live-childPid) — pass
+- [x] T012 Harness B realized as vector-index-store-durability + reindex-durability-cancel + hf-model-server-perimeter vitest suites — pass
+- [x] T013 mcp+shared+scripts build (exit 0) + node --check 2 .cjs + 26 new + 29 regression + 9 leases tests; committed aa6860d835
 
 <!-- /ANCHOR:phase-3 -->
 ---

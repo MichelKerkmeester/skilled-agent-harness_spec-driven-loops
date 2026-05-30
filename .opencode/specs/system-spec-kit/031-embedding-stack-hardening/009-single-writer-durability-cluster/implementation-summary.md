@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: Single-writer / durability cluster (DESIGN — implementation pending)"
-description: "Status record for the coordinated single-writer/durability cluster: the design + deterministic concurrency-test design are complete and committed; the code is intentionally NOT yet implemented (gated + scheduled as a focused effort)."
+title: "Implementation Summary: Single-writer / durability cluster (implemented + tested)"
+description: "The coordinated single-writer/durability cluster is implemented and tested (commit aa6860d835): all 5 families landed with deterministic regression suites; builds + node --check + 26 new + 29 regression + 9 leases tests pass."
 trigger_phrases:
   - "single writer durability cluster status"
 importance_tier: "important"
@@ -22,7 +22,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Implementation Summary: Single-writer / durability cluster (DESIGN — implementation pending)
+# Implementation Summary: Single-writer / durability cluster (implemented + tested)
 
 <!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
@@ -35,7 +35,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 031-embedding-stack-hardening/009-single-writer-durability-cluster |
-| **Completed** | DESIGN ONLY (implementation pending) |
+| **Completed** | 2026-05-30 (implemented + tested, commit aa6860d835) |
 | **Level** | 1 |
 
 <!-- /ANCHOR:metadata -->
@@ -44,7 +44,15 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-**The design — not yet the code.** This packet captures the complete coordinated remediation plan for the single-writer/durability cluster: a four-family shared-resource map, a two-harness deterministic concurrency-test design (no real sleeps; inject `nowMs`/`liveness`/`spawnFn`/`signal`), an apply ordering with a precondition gate, and a per-finding HEAD re-validation pass. The code changes are intentionally deferred (see Known Limitations).
+**Implemented + tested (commit aa6860d835, 2026-05-30).** All five families of the single-writer/durability cluster landed as one coordinated change set, each finding re-validated at HEAD by symbol and covered by a deterministic regression test:
+
+- **Family 1+2 — `model-server-supervision.cjs`**: respawn-lock staleness now bounded by listener liveness (DR-005); the lazy demand listener re-arms on a failed spawn (DR-006); idle eviction reaps the root process, not just descendants (DR-012).
+- **Family 4 durability — `vector-index-store.ts`**: the clean-shutdown marker is deleted only after a confirmed-successful close (DR-011).
+- **Family 4 durability — `reindex.ts`**: same-dimension reindex writes a staging shard and atomic-swaps on success; the worker re-reads the cancel flag mid-run (DR-020 + DR-001-P1-002).
+- **Family 4 perimeter — `hf-model-server.cjs`**: the direct-startup unlink path applies the ownership/live-resident perimeter guard, and tcp targets enforce loopback/auth (DR-001-P2-001 + DR-002-P1-001).
+- **Family 3 leases — `daemon-detect.ts`**: a stale-looking launcher lease with a live recorded `childPid` is no longer treated as reclaimable (DR-016). OR-R-01 was re-validated as already O_EXCL-remediated at HEAD — no change.
+
+Verification: mcp + shared + scripts builds exit 0; `node --check` on both `.cjs`; 4 new deterministic suites (26 tests) + 3 regression suites (29 tests) + the leases suite (9 tests) all pass. The original plan's design content (four-family shared-resource map, Harness A/B, apply ordering with precondition gate) drove this implementation and lives in `plan.md`.
 
 Re-validation already corrected two first-pass items: **OR-R-01 is already O_EXCL-remediated** at HEAD (re-validate only), and **DR-012's mechanism is root-EXCLUSION** in `reapProcessTreeGroups` (`pid !== childPid`), not a missing reap call. The other findings (DR-005/006/016/011/020/001-P2-001 + the folded DR-001-P1-002/DR-002-P1-001) are confirmed-open.
 
@@ -72,7 +80,7 @@ A multi-agent design pass produced the coordinated plan; it was then re-validate
 
 | Decision | Why |
 |----------|-----|
-| Capture the design as a committed packet, defer the code | Preserves the ready plan durably; avoids rushing concurrency/WAL fixes that need careful verification |
+| Design first as a committed packet, then implement | The ready plan was captured durably so the implementation could be re-validated against it per family rather than rushed |
 | Implement as one coordinated change set per family | The findings share a respawn lock / root-liveness authority / leases / marker; piecemeal fixes re-collide (handover mandate) |
 | Honor the precondition gate before Family-3 | The code-graph launcher is adjacent-session territory; OR-R-01 is already remediated |
 | Deterministic Harness A/B, no real sleeps | Concurrency bugs need reproducible RED-before / GREEN-after evidence via injected time/liveness/spawn |
@@ -85,11 +93,14 @@ A multi-agent design pass produced the coordinated plan; it was then re-validate
 
 | Check | Result |
 |-------|--------|
-| Design completeness (4 families, 2 harnesses, apply ordering) | DONE — captured in spec/plan |
-| Finding-state re-validation at HEAD | DONE — OR-R-01 already O_EXCL; DR-012 = root-exclusion; rest confirmed-open |
-| Code implementation | PENDING — not started (intentional) |
-| Harness A/B execution | PENDING — designed, not yet authored |
-| `validate.sh --strict` (this packet) | PASS (structure) |
+| Finding-state re-validation at HEAD | DONE — OR-R-01 already O_EXCL; DR-012 = root-exclusion; rest were confirmed-open |
+| Code implementation (5 families) | DONE — commit aa6860d835 |
+| Builds (mcp + shared + scripts) | PASS — exit 0 |
+| `node --check` (2 `.cjs`) | PASS |
+| New deterministic suites | PASS — 4 suites, 26 tests |
+| Regression suites (execution-router / reindex / auto-selection) | PASS — 29 tests |
+| Leases suite (daemon-detect) | PASS — 9 tests |
+| `validate.sh --strict` (this packet) | PASS |
 
 <!-- /ANCHOR:verification -->
 ---
@@ -97,8 +108,8 @@ A multi-agent design pass produced the coordinated plan; it was then re-validate
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **NOT YET IMPLEMENTED.** This packet is design + re-validation only. No source code changed. Execute Phase 1 (precondition gate + per-finding HEAD re-validation) then Phase 2/3 (per-family implementation + Harness A/B) as a focused effort.
-2. **Family-3 is gated** on the adjacent code-graph launcher WIP quiescing; OR-R-01 is already remediated so Family-3 is mostly re-validation.
-3. **Recommended execution**: a dedicated session or a coordinated workflow (one agent per family, sharing the root-liveness authority), with the orchestrator owning the Harness A/B authoring + verification + the single revertable commit.
+1. **Concurrency tests are deterministic, not live.** Harness A/B inject `nowMs`/`liveness`/`spawnFn`/`signal` to force races without real sleeps. A live two-launcher integration run (real processes) remains gated on a working `onnxruntime` tree, as documented in packet 005 — these unit-level suites assert the corrected logic, not end-to-end residency.
+2. **Family-3 scope.** DR-016 was fixed in `daemon-detect.ts` (this skill's territory); OR-R-01 was only re-validated (already O_EXCL in the code-graph launcher, adjacent-session territory — untouched).
+3. **`reindex.ts` cluster fix sits alongside the C2 cancel edit** (packet 008); both were re-validated together so the staging-swap and cancel-re-read are consistent.
 
 <!-- /ANCHOR:limitations -->
