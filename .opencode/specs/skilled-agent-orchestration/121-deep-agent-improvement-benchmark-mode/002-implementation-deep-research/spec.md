@@ -45,8 +45,9 @@ _memory:
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 2 of 2 |
+| **Phase** | 2 of 18 |
 | **Predecessor** | `001-mode-selector-design` |
+| **Successor** | 003-build-benchmark-mode |
 | **Executor** | cli-opencode → `minimax/MiniMax-M2.7` (no `--variant`) |
 <!-- /ANCHOR:metadata -->
 

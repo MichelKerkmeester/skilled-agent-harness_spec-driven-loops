@@ -65,11 +65,11 @@ The 120/003 packet built a working model/prompt-framework benchmark rig (run a m
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P2 |
-| **Status** | Draft (design; not yet built) |
+| **Status** | Complete |
 | **Created** | 2026-05-28 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
-| **Phase** | 1 of 2 |
+| **Phase** | 1 of 18 |
 | **Predecessor** | `skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark` (the rig this generalizes) |
 | **Successor** | `002-implementation-deep-research` (deepens this design) |
 <!-- /ANCHOR:metadata -->

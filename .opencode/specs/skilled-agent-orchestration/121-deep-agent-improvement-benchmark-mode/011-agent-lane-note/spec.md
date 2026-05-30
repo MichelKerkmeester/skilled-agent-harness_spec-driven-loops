@@ -43,13 +43,13 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 11 of 13 |
-| **Predecessor** | 009-skill-md-two-lane |
-| **Successor** | 012-catalog-playbook-advisor-fp25 |
+| **Phase** | 11 of 18 |
+| **Predecessor** | 010-references-assets-lane-reorg |
+| **Successor** | 012-catalog-playbook-advisor-lane-labels |
 | **Handoff Criteria** | All 4 mirror notes byte-identical with Lane awareness text, validate.sh --strict PASSED |
 <!-- /ANCHOR:metadata -->
 

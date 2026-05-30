@@ -41,13 +41,13 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-29 |
 | **Branch** | `121-deep-agent-improvement-benchmark-mode` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 16 of 16 |
-| **Predecessor** | 015-two-lane-review-remediation |
-| **Successor** | None |
+| **Phase** | 16 of 18 |
+| **Predecessor** | 015-fix-deep-review-findings-for-two-lane-code |
+| **Successor** | 017-two-lane-opus-deep-review |
 | **Handoff Criteria** | Every source script subfolder holds a sk-doc-aligned code-folder README and all 3 existing READMEs pass the same audit |
 <!-- /ANCHOR:metadata -->
 
@@ -61,7 +61,7 @@ This is **Phase 16** of the two-lane deep-agent-improvement program. The two-lan
 **Scope Boundary**: Code-folder READMEs only, under `.opencode/skills/deep-agent-improvement/scripts/`. No script behavior changes. No SKILL.md, references, or assets edits.
 
 **Dependencies**:
-- 015-two-lane-review-remediation closed the deep-review findings, so the lane layout is final.
+- 015-fix-deep-review-findings-for-two-lane-code closed the deep-review findings, so the lane layout is final.
 - sk-doc code-folder template at `.opencode/skills/sk-doc/assets/readme/readme_code_template.md`.
 
 **Deliverables**:

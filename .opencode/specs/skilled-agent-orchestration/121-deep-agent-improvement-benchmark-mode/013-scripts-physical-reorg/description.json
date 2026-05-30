@@ -1,23 +1,22 @@
 {
-  "specFolder": "121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
-  "description": "Move the 16 deep-agent-improvement scripts plus scorer into agent-improvement, model-benchmark, and shared lane subdirs, fix __dirname paths, and rewrite all refs while preserving the TST-1 default path.",
+  "level": "3",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
+  "description": "Feature Specification: scripts physical lane reorg",
   "keywords": [
-    "scripts-physical-reorg",
-    "deep-agent-improvement",
+    "feature",
+    "specification",
+    "scripts",
+    "physical",
     "lane",
-    "agent-improvement",
-    "model-benchmark",
-    "shared",
-    "scorer",
-    "tst-1"
+    "reorg"
   ],
-  "lastUpdated": "2026-05-29T08:26:21.288Z",
+  "lastUpdated": "2026-05-29T09:27:47.385Z",
   "specId": "013",
   "folderSlug": "scripts-physical-reorg",
   "parentChain": [
+    "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "3"
+  "memoryNameHistory": []
 }

@@ -1,17 +1,24 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs",
-  "description": "Phase 1: optin-5dim-scorer-and-skill-docs",
+  "description": "Feature Specification: opt-in 5-dim scorer + sk-doc skill alignment",
   "keywords": [
-    "phase",
-    "optin-5dim-scorer-and-skill-docs"
+    "feature",
+    "specification",
+    "opt-in",
+    "5-dim",
+    "scorer",
+    "sk-doc",
+    "skill",
+    "alignment"
   ],
-  "lastUpdated": "2026-05-28T19:15:45.224Z",
+  "lastUpdated": "2026-05-28T21:38:19.875Z",
   "specId": "005",
   "folderSlug": "optin-5dim-scorer-and-skill-docs",
   "parentChain": [
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

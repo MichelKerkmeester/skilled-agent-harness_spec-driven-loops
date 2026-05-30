@@ -44,6 +44,9 @@ _memory:
 | **Branch** | `main` |
 | **Reviews** | `skilled-agent-orchestration/120-cli-opencode-minimax-optimization` + `121-deep-agent-improvement-benchmark-mode` |
 | **Executors** | cli-codex `gpt-5.5` (reasoning high, tier fast) + cli-opencode `minimax/MiniMax-M2.7`, alternating odd/even |
+| **Phase** | 7 of 18 |
+| **Predecessor** | 006-deep-loop-empty-archive-dir-fix |
+| **Successor** | 008-command-lane-asking |
 <!-- /ANCHOR:metadata -->
 
 ---

@@ -4,38 +4,211 @@
   "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/009-skill-md-two-lane",
   "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-command-lane-asking"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
       "skill-md two-lane",
       "model-benchmark co-equal lane",
-      "smart-router MODEL_BENCHMARK intent"
+      "smart-router MODEL_BENCHMARK intent",
+      "skill-md two-lane plan",
+      "co-equal lane restructure plan",
+      "model-benchmark router intent plan",
+      "skill-md two-lane tasks",
+      "co-equal lane restructure tasks",
+      "model-benchmark router intent tasks",
+      "skill-md two-lane checklist",
+      "co-equal lane restructure checklist",
+      "model-benchmark router intent checklist"
     ],
     "key_topics": [
       "skill-md",
       "two-lane",
       "model-benchmark",
-      "agent-improvement",
+      "co-equal",
+      "lane",
       "smart-router",
-      "model-benchmark-intent"
+      "intent",
+      "plan",
+      "restructure",
+      "router",
+      "tasks",
+      "checklist"
     ],
     "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md","checklist.md"],
-    "entities": [],
-    "causal_summary": "Restructure SKILL.md so model-benchmark is a co-equal Lane B alongside agent-improvement Lane A rather than a Mode 4 bolt-on, fix the lane cross-references, and confirm the smart-router carries a MODEL_BENCHMARK intent with a matching RESOURCE_MAP entry, matching the two-lane command layer shipped in phase 008.",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/deep-agent-improvement/SKILL.md",
+      ".opencode/commands/deep/start-agent-improvement-loop.md",
+      ".opencode/commands/deep/start-model-benchmark-loop.md",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-agent-improvement/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-agent-improvement-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-agent-improvement-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-model-benchmark-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-model-benchmark-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 9** of the two-lane program. Phase 008 made the model-benchmark lane (Lane B) first-class at the command layer (a dedicated `/deep:start-model-benchmark-loop` command, Lane B workflow YAMLs, advisor routing, README). The skill documentation has not caught up: SKILL.md still frames model-benchmark as \"Mode 4\" bolted onto the end of the agent-improvement lane rather than as a co-equal lane. This phase aligns SKILL.md and the smart-router with the two co-equal lanes the command layer already ships.",
     "created_at": "2026-05-29T07:21:46Z",
-    "last_save_at": "2026-05-29T10:00:00Z",
+    "last_save_at": "2026-05-29T19:34:17.157Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md","checklist.md","implementation-summary.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
   }
 }

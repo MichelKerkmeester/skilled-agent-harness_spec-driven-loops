@@ -1,15 +1,19 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research",
-  "description": "Deep research (MiniMax M2.7) on implementing the deep-agent-improvement model-benchmark mode: seam interfaces, dispatch-model generalization, scorer port, loop wiring.",
+  "description": "Feature Specification: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode",
   "keywords": [
-    "deep-research",
+    "feature",
+    "specification",
+    "deep",
+    "research",
     "minimax",
+    "implement",
+    "deep-agent-improvement",
     "model-benchmark",
-    "mode-selector",
-    "implementation",
-    "seams"
+    "mode"
   ],
-  "lastUpdated": "2026-05-28T14:32:17.113Z",
+  "lastUpdated": "2026-05-28T21:38:19.861Z",
   "specId": "002",
   "folderSlug": "implementation-deep-research",
   "parentChain": [
@@ -17,6 +21,5 @@
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

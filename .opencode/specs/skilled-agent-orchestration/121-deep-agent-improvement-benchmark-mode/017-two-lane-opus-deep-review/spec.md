@@ -41,13 +41,13 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-29 |
 | **Branch** | `scaffold/017-two-lane-opus-deep-review` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 17 of 17 |
+| **Phase** | 17 of 18 |
 | **Predecessor** | 016-script-subfolder-readmes |
-| **Successor** | None |
+| **Successor** | 018-fix-opus-review-findings-for-two-lane-code |
 | **Handoff Criteria** | review-report.md verdict + all-findings registry |
 <!-- /ANCHOR:metadata -->
 
@@ -62,7 +62,7 @@ This is **Phase 17** of the 121 deep-agent-improvement benchmark-mode program: a
 
 **Dependencies**:
 - 014-two-lane-deep-review (gpt-5.5 first review, CONDITIONAL: 1 P0 + P1 cluster)
-- 015-two-lane-review-remediation (all 014 findings remediated)
+- 015-fix-deep-review-findings-for-two-lane-code (all 014 findings remediated)
 
 **Deliverables**:
 - Deep-review state packet (config, state log, findings registry, strategy)

@@ -53,7 +53,7 @@ The verdict is **CONDITIONAL**. The build core is sound (TST-1 byte-identity hol
 
 ### Outcome
 
-You can read the full verdict, adjudication note, and the P0/P1/P2 registry in `review/review-report.md`. Every active finding was closed in the follow-on remediation packet `121-deep-agent-improvement-benchmark-mode/015-two-lane-review-remediation` (31 FIXED + 2 DOCUMENT-ACCEPT), verified by vitest 14 files / 163 tests green with TST-1 byte-identity intact and validate --strict passing on 015.
+You can read the full verdict, adjudication note, and the P0/P1/P2 registry in `review/review-report.md`. Every active finding was closed in the follow-on remediation packet `121-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code` (31 FIXED + 2 DOCUMENT-ACCEPT), verified by vitest 14 files / 163 tests green with TST-1 byte-identity intact and validate --strict passing on 015.
 
 ### Files Changed
 

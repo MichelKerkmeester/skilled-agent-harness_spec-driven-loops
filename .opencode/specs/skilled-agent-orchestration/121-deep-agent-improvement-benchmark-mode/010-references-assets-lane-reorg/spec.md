@@ -41,11 +41,11 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Planned |
+| **Status** | Complete |
 | **Created** | 2026-05-29 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Phase** | 10 of 13 |
+| **Phase** | 10 of 18 |
 | **Predecessor** | 009-skill-md-two-lane |
 | **Successor** | 011-agent-lane-note |
 | **Handoff Criteria** | references and assets physically split into the three lane subdirs, every SKILL path literal repointed, skill loads clean |

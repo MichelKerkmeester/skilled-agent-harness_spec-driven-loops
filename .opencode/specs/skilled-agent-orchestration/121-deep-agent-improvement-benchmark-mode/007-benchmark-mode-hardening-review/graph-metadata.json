@@ -4,13 +4,12 @@
   "spec_folder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
   "parent_id": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
-      "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -196,9 +195,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This session shipped real, committed code \u2014 the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits). It passed unit tests and alignment checks during the build, but has not had an independent, adversarial, multi-model review for correctness, security, traceability, and maintainability.",
+    "causal_summary": "This session shipped real, committed code — the deep-agent-improvement `model-benchmark` mode (121/003: `loop-host.cjs`, `dispatch-model.cjs`, a ported 5-dim scorer, mode-aware records) plus the MiniMax provider integration (120: cli-opencode + sk-prompt skill edits). It passed unit tests and alignment checks during the build, but has not had an independent, adversarial, multi-model review for correctness, security, traceability, and maintainability.",
     "created_at": "2026-05-28T17:42:53Z",
-    "last_save_at": "2026-05-29T06:00:53.072Z",
+    "last_save_at": "2026-05-29T19:34:17.154Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

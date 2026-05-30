@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This is a **maintenance phase** under packet 121, fixing a cross-cutting deep-loop defect surfaced while working in this program: empty `research_archive/` and `review_archive/` directories accumulating in spec packets (e.g. `…/122-session-120-121-deep-review/review_archive`).",
     "created_at": "2026-05-29T05:57:34.890Z",
-    "last_save_at": "2026-05-29T06:14:31.376Z",
+    "last_save_at": "2026-05-29T19:34:17.153Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,19 +1,19 @@
 {
   "specFolder": "121-deep-agent-improvement-benchmark-mode",
-  "description": "Build the deep-agent-improvement model-benchmark mode from the 002 research build-delta",
+  "description": "Phase parent (complete, 18 phases): two-arc program adding a model-benchmark mode to deep-agent-improvement (build arc 001-007) and elevating it to a co-equal lane alongside agent-improvement (two-lane arc 008-018).",
   "keywords": [
-    "build",
     "deep-agent-improvement",
     "model-benchmark",
-    "mode",
-    "002",
-    "research",
-    "build-delta"
+    "two-lane",
+    "phase-parent",
+    "benchmark-mode"
   ],
-  "lastUpdated": "2026-05-28T16:24:06.350Z",
+  "lastUpdated": "2026-05-30T00:00:00Z",
   "specId": "121",
   "folderSlug": "deep-agent-improvement-benchmark-mode",
   "parentChain": [],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_17-02__delivered-the-complete-two-lane-experience-for.md"
+  ]
 }

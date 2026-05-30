@@ -1,17 +1,22 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode",
-  "description": "Phase 1: build-benchmark-mode",
+  "description": "Feature Specification: Build the deep-agent-improvement model-benchmark mode",
   "keywords": [
-    "phase",
-    "build-benchmark-mode"
+    "feature",
+    "specification",
+    "build",
+    "deep-agent-improvement",
+    "model-benchmark",
+    "mode"
   ],
-  "lastUpdated": "2026-05-28T16:24:07.279Z",
+  "lastUpdated": "2026-05-28T21:38:19.866Z",
   "specId": "003",
   "folderSlug": "build-benchmark-mode",
   "parentChain": [
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

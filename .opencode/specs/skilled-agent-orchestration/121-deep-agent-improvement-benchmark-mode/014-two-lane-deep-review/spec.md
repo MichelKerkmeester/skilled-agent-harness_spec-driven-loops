@@ -44,6 +44,9 @@ _memory:
 | **Branch** | `main` |
 | **Reviews** | `121-deep-agent-improvement-benchmark-mode` phases 008-013 (curated substantive scope) |
 | **Executor** | cli-codex `gpt-5.5` (reasoning xhigh, tier fast), 10 iterations, read-only sandbox |
+| **Phase** | 14 of 18 |
+| **Predecessor** | 013-scripts-physical-reorg |
+| **Successor** | 015-fix-deep-review-findings-for-two-lane-code |
 <!-- /ANCHOR:metadata -->
 
 ---
