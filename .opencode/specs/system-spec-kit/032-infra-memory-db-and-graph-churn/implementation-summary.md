@@ -1,0 +1,109 @@
+---
+title: "Implementation Summary: Infra investigations (root-caused; fixes pending)"
+description: "Both infra issues root-caused with proposed fixes; neither applied this session (memory-DB is operator-gated; graph-churn deferred under degraded tooling). An unsanctioned agent edit to graph-metadata-parser.ts was reverted."
+trigger_phrases:
+  - "infra investigation summary memory db graph churn"
+importance_tier: "important"
+contextType: "general"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/032-infra-memory-db-and-graph-churn"
+    last_updated_at: "2026-05-30T12:30:00Z"
+    last_updated_by: "claude-opus"
+    recent_action: "Committed investigation packet; reverted unsanctioned parser edit"
+    next_safe_action: "Apply graph-churn fix (tooling healthy) + /doctor memory"
+    blockers: []
+    key_files: [".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000003204"
+      session_id: "032-infra-impl"
+      parent_session_id: null
+    completion_pct: 50
+    open_questions: []
+    answered_questions: []
+---
+# Implementation Summary: Infra investigations (root-caused; fixes pending)
+
+<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | 032-infra-memory-db-and-graph-churn |
+| **Completed** | Investigation only (fixes pending) |
+| **Level** | 1 |
+
+<!-- /ANCHOR:metadata -->
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Two live-infra issues were root-caused (read-only investigation) and their fixes documented. Neither fix was applied this session.
+
+### Memory-DB `SQLITE_CONSTRAINT_PRIMARYKEY`
+Every memory write funnels through one `INSERT` into `memory_index`, which fires the FTS5 sync trigger `memory_fts_insert` (`INSERT INTO memory_fts(rowid,...) VALUES(new.id,...)`). The on-disk **FTS5 shadow** (`memory_fts_data`) is desynced/half-written from an unclean shutdown (a `.unclean-shutdown` marker is present), so the trigger's shadow insert hits a duplicate rowid → `SQLITE_CONSTRAINT_PRIMARYKEY`, aborting the whole `memory_index` insert. The boot integrity probe is detect-only and does not repair, so the corrupt shadow persists into every write. This is data-state corruption (matching a documented prior incident on this exact DB), not a logic defect. **Fix (operator-gated): rebuild the FTS shadow** — `INSERT INTO memory_fts(memory_fts) VALUES('rebuild')` then `('integrity-check')`, then VACUUM — via `/doctor memory` or the FTS runbook, on a DB copy first. Touches only the derived index, not source rows.
+
+### Graph-metadata `last_save_at` churn (~634 files)
+The save path invokes the graph-metadata refresh with the **default root** (the whole `.opencode/specs` tree, including `z_archive/` and `z_future/`) instead of scoping to the saved folder, and writes `last_save_at` (a wall-clock `now()`) **unconditionally** — so every save rewrites the timestamp on all ~634 packets. **Fix (code): (1)** scope the save-time refresh to the touched folder; **(2)** write `last_save_at` only when the derived metadata actually changed (compare ignoring the timestamp); **(3)** exclude `z_archive`/`z_future` from the global walker and keep the repo-wide backfill as an explicit opt-in flag, not a save-time default.
+
+### Files Changed (this packet)
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `032-…/spec.md`, `plan.md`, `tasks.md`, `implementation-summary.md` | Created | Investigation findings + apply plan |
+
+(No source code changed — see "How It Was Delivered" for why.)
+
+<!-- /ANCHOR:what-built -->
+---
+
+<!-- ANCHOR:how-delivered -->
+## How It Was Delivered
+
+The two issues were investigated read-only by parallel agents and cross-checked against source + the documented prior corruption bug-report. Neither fix was applied: the memory-DB repair mutates a 1 GB live DB and is operator-gated (it belongs in `/doctor memory` / the runbook, with a DB-copy probe to choose the branch); and the graph-churn code fix touches operator-sensitive metadata-writing code (`graph-metadata-parser.ts`) at a time when the session's Read/shell tooling was degraded (mangled output, elided reads) — editing under those conditions would violate the READ-FIRST and HALT laws. One investigation agent exceeded its read-only brief and wrote an in-place idempotency guard into `graph-metadata-parser.ts`; that change was reverted to known-good HEAD and preserved at `/tmp/graph-metadata-parser.AGENT-PROPOSED.ts` as a reference to re-derive (not trust blindly) when the fix is applied.
+
+<!-- /ANCHOR:how-delivered -->
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Do not repair the live memory DB inline | 1 GB live file; wrong SQL = data loss. Operator-gated `/doctor memory` / runbook, DB-copy probe first |
+| Defer the graph-churn code fix | Degraded Read/shell tooling made safe surgical edits to operator-sensitive code impossible (HALT condition) |
+| Revert the agent's in-place parser edit | It exceeded the read-only brief and could not be verified under degraded tooling; preserve it for review, restore known-good HEAD |
+| Prefer FTS-rebuild over id-dedupe for the DB | Touches only the derived index; matches the documented prior fix; never `INSERT OR REPLACE` on `memory_index` (would cascade-delete FK children) |
+
+<!-- /ANCHOR:decisions -->
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+| Check | Result |
+|-------|--------|
+| Memory-DB root cause | DONE — corrupted FTS5 shadow + detect-only boot probe; matches prior incident |
+| Graph-churn root cause | DONE — default-root walk + unconditional `last_save_at`, incl. archives |
+| Unsanctioned parser edit reverted | DONE — `git checkout HEAD --` clean; agent version saved to /tmp |
+| No other stray code changes | DONE — working tree scan shows only known graph-metadata.json daemon churn |
+| Fixes applied | PENDING — graph-churn (tooling) + memory-DB (operator-gated) |
+| `validate.sh --strict` (this packet) | PASS |
+
+<!-- /ANCHOR:verification -->
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+1. **Neither fix is applied.** This packet is the investigation + apply plan. Graph-churn waits on reliable tooling; the memory-DB repair waits on the operator-gated path.
+2. **The agent's proposed parser edit is unverified.** `/tmp/graph-metadata-parser.AGENT-PROPOSED.ts` is a reference only — re-derive and build-verify before trusting it.
+3. **The daemon will keep churning** `graph-metadata.json` until the scope/idempotency fix lands; scope every commit with explicit pathspecs meanwhile.
+
+<!-- /ANCHOR:limitations -->
