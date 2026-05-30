@@ -73,7 +73,7 @@ The model-benchmark mode (run via `scripts/shared/loop-host.cjs --mode=model-ben
 | `DEEP_AGENT_ALLOW_CRITERIA_EXEC` | env | Set to `0` to refuse criteria-driven shell execution in the 5-dim scorer. Default permissive. |
 | `DEEP_AGENT_GRADER_CACHE_RAW` | env | Set to `0` to redact raw grader output from the on-disk cache. Default permissive. |
 
-The default agent-improvement path is unaffected when no mode flag is set. See SKILL.md "Mode 4" for the full contract.
+The default agent-improvement path is unaffected when no mode flag is set. See SKILL.md "Lane B" for the full contract.
 
 ---
 

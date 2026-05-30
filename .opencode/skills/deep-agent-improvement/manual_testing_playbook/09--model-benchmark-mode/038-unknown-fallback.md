@@ -71,7 +71,7 @@ Output excerpt:
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Mode 4: Model-Benchmark) |
+| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Lane B: Model-Benchmark) |
 | `../../scripts/shared/loop-host.cjs` | Mode-switching entry point and unknown-mode fallback |
 | `../../scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner and unknown-scorer fallback |
 | `../../assets/model-benchmark/benchmark-profiles/default.json` | Shipped benchmark profile used by this scenario |

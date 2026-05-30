@@ -27,7 +27,7 @@ Canonical package artifacts:
 
 ## 1. OVERVIEW
 
-This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-agent-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08) and the Mode 4 model-benchmark scenarios (09). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
+This playbook provides deterministic scenarios across the categories listed in the canonical package artifacts above, validating the current `deep-agent-improvement` skill surface from the core scoring and loop categories (01-07) through the agent-discipline stress tests (08) and the Lane B model-benchmark scenarios (09). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and command-specific evidence requirements.
 
 ### Lane Note
 
@@ -678,7 +678,7 @@ Desired user-visible outcome: PASS verdict showing benchmark completion has a re
 
 ## 15. MODEL-BENCHMARK MODE
 
-This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Mode 4 (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Mode 4: Model-Benchmark" for the source-of-truth contract.
+This category covers 5 scenario summaries while the linked feature files remain the canonical execution contract. These scenarios validate Lane B (Model-Benchmark): the `loop-host.cjs` mode switch, the default pattern scorer, the opt-in 5-dimension scorer, the unknown-value fallbacks, and the criteria-exec hardening gate. See `SKILL.md` "Lane B: Model-Benchmark" for the source-of-truth contract.
 
 ### MB-035 | Mode Switch Routing via loop-host
 
@@ -774,6 +774,6 @@ The feature catalog root is `.opencode/skills/deep-agent-improvement/feature_cat
 | Reducer Dimensions | `.opencode/skills/deep-agent-improvement/feature_catalog/03--scoring-system/04-dimensional-progress.md` |
 | End-to-End Loop | `.opencode/skills/deep-agent-improvement/feature_catalog/01--evaluation-loop/01-initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
-| Model-Benchmark Mode | No one-to-one catalog file; validate against the Mode 4 contract in `.opencode/skills/deep-agent-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
+| Model-Benchmark Mode | No one-to-one catalog file; validate against the Lane B contract in `.opencode/skills/deep-agent-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

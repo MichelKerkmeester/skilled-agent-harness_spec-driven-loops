@@ -71,7 +71,7 @@ Output excerpt:
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Mode 4: Model-Benchmark) |
+| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Lane B: Model-Benchmark) |
 | `../../scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner and scorer selection |
 | `../../scripts/model-benchmark/scorer/score-model-variant.cjs` | Ported 120/003 five-dimension scorer (D1-D5 plus pluggable grader) |
 | `../../scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer run before scoring |

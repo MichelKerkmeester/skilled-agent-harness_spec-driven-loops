@@ -21,7 +21,8 @@
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/016-script-subfolder-readmes",
     "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/017-two-lane-opus-deep-review",
-    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/018-fix-opus-review-findings-for-two-lane-code"
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/018-fix-opus-review-findings-for-two-lane-code",
+    "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/019-skill-doc-alignment-and-changelog-consolidation"
   ],
   "migrated": true,
   "migration_source": "legacy",

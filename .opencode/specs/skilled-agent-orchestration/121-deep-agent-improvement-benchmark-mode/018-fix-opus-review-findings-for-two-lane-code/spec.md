@@ -51,7 +51,7 @@ The 017 Opus deep review returned a CONDITIONAL verdict against the post-015 two
 | **Parent Spec** | ../spec.md |
 | **Phase** | 18 of 18 |
 | **Predecessor** | 017-two-lane-opus-deep-review |
-| **Successor** | None |
+| **Successor** | 019-skill-doc-alignment-and-changelog-consolidation |
 | **Handoff Criteria** | All 4 P1 fixed-or-document-accepted; all 13 P2 fixed-or-document-accepted; every active finding carries exactly one disposition; the Lane B benchmark-mode promotion path is executable and the docs describe the resolved behavior; vitest green |
 <!-- /ANCHOR:metadata -->
 

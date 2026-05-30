@@ -37,7 +37,7 @@ Mode resolution is closed-set. `VALID_MODES` holds only `agent-improvement` and 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/deep-agent-improvement/scripts/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, the closed `VALID_MODES` set, the two-step model-benchmark plan, and the unknown-mode stderr fallback. |
-| `.opencode/skills/deep-agent-improvement/SKILL.md` | Skill contract | Documents Mode 4 entry-point routing and the unknown-mode fallback as the source of truth. |
+| `.opencode/skills/deep-agent-improvement/SKILL.md` | Skill contract | Documents Lane B entry-point routing and the unknown-mode fallback as the source of truth. |
 
 ---
 

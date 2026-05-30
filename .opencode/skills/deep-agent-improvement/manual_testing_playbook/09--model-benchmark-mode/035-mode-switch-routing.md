@@ -71,7 +71,7 @@ Output excerpt:
 
 | File | Role |
 |---|---|
-| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Mode 4: Model-Benchmark) |
+| `../../SKILL.md` | Skill entry point and operator contract for deep-agent-improvement (Lane B: Model-Benchmark) |
 | `../../scripts/shared/loop-host.cjs` | Mode-switching entry point that resolves `--mode` and plans the invocation |
 | `../../scripts/shared/materialize-benchmark-fixtures.cjs` | Fixture materializer run before scoring on the model-benchmark path |
 | `../../scripts/model-benchmark/run-benchmark.cjs` | Benchmark runner invoked on the model-benchmark path |

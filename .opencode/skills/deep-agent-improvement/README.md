@@ -26,6 +26,17 @@ The skill treats agent improvement as an optimization problem with a paper trail
 
 For packet recovery around an improvement run, `/speckit:resume` stays the canonical surface. Continuity rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs.
 
+### Two Lanes
+
+This skill runs two co-equal lanes that share one evaluator core, journal, and promotion discipline:
+
+| Lane | Use it to | Command |
+|---|---|---|
+| **Lane A — Agent-Improvement** | Improve a bounded agent `.md` file (the default; most of this README) | `/deep:start-agent-improvement-loop` |
+| **Lane B — Model-Benchmark** | Benchmark a model or prompt framework against fixtures | `/deep:start-model-benchmark-loop` |
+
+Lane B (the model-benchmark mode) is documented in `SKILL.md` §4 and `references/model-benchmark/`. To match the two lanes, `references/`, `assets/`, and `scripts/` are each split into `agent-improvement/`, `model-benchmark/`, and `shared/` subdirs.
+
 ### What Changes With This Skill
 
 | Without it | With it |
@@ -154,20 +165,26 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 
 ```text
 .opencode/skills/deep-agent-improvement/
-+-- SKILL.md                    # Router and runtime instructions
++-- SKILL.md                    # Router and runtime instructions (two co-equal lanes)
 +-- README.md                   # This file
-+-- references/                 # operator and policy guides, grouped by topic
-|   +-- scoring/                # score dimensions, evaluator contract, mixed-executor
-|   +-- promotion-gates/        # promotion gate + rules, rollback runbook, no-go conditions
-|   +-- integration/            # integration scanning, mirror drift, profiling audit log
-|   `-- workflow/               # loop protocol, quick reference, proposal format, onboarding, benchmark guide
-+-- assets/                     # Charter, strategy, config, manifest, benchmark fixtures
-+-- scripts/                    # 14 deterministic helpers + lib/ + tests/
-+-- feature_catalog/            # Current-state feature inventory (3 categories)
-`-- manual_testing_playbook/    # 37 manual scenarios across 8 categories
++-- references/                 # operator and policy guides, grouped by lane
+|   +-- agent-improvement/      # Lane A (6): integration, scoring, profiling, onboarding, proposal, mirror drift
+|   +-- model-benchmark/        # Lane B (3): evaluator contract, benchmark operator guide, mixed-executor
+|   `-- shared/                 # both lanes (5): quick reference, loop protocol, promotion rules + gate, rollback
++-- assets/                     # grouped by lane
+|   +-- agent-improvement/      # Lane A: charter, strategy, config, manifest
+|   `-- model-benchmark/        # Lane B: benchmark fixtures + profiles
++-- scripts/                    # grouped by lane (16 helpers) + lib/ + tests/
+|   +-- agent-improvement/      # Lane A (8): scan, profile, score, rollback, drift, trade-off, lineage, stability
+|   +-- model-benchmark/        # Lane B (2): run-benchmark, dispatch-model + scorer/ subtree
+|   `-- shared/                 # both lanes (6): loop-host, reduce-state, promote, journal, coverage, materialize
++-- feature_catalog/            # Current-state feature inventory (4 categories incl. model-benchmark)
+`-- manual_testing_playbook/    # 42 manual scenarios across 9 categories (09 = model-benchmark / Lane B)
 ```
 
-### References (15)
+### References (14, grouped by lane)
+
+Under `references/agent-improvement/` (6), `references/model-benchmark/` (3), and `references/shared/` (5).
 
 | Reference | Purpose |
 |---|---|
@@ -186,10 +203,15 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 | `profiling_audit_log.md` | Profile-selection rationale logging |
 | `mixed_executor_methodology.md` | Mixed-executor and adjudication-iter guidance |
 
-### Scripts (14 + lib)
+### Scripts (16 + lib, grouped by lane)
+
+Under `scripts/agent-improvement/` (8), `scripts/model-benchmark/` (2, plus the `scorer/` subtree), and `scripts/shared/` (6), with `lib/` helpers and `tests/`.
 
 | Script | Purpose |
 |---|---|
+| `shared/loop-host.cjs` | Mode-switch entry point: routes to Lane A or `--mode=model-benchmark` (Lane B) |
+| `model-benchmark/dispatch-model.cjs` | Lane B: run a model against fixtures under prompt-framework variants |
+| `model-benchmark/scorer/**` | Lane B: ported decoupled scorer (deterministic checks + LLM grader harness) |
 | `scan-integration.cjs` | Discover every surface an agent touches |
 | `generate-profile.cjs` | Derive a scoring profile from any agent |
 | `score-candidate.cjs` | Score a candidate across five dimensions |

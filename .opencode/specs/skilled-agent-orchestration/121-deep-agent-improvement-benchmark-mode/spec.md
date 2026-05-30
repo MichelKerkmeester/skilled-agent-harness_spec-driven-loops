@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Renamed 4 phases to convention + reconciled metadata across all 18 phases; added nav docs"
-    next_safe_action: "None — packet complete (18/18 phases)"
+    recent_action: "Closeout 019: one comprehensive v1.9 changelog for 121 + README aligned to two lanes"
+    next_safe_action: "None — packet complete (19/19 phases)"
     blockers: []
     key_files:
       - "context-index.md"
@@ -56,7 +56,7 @@ _memory:
 | **Parent Packet** | `skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode` |
 | **Predecessor** | `skilled-agent-orchestration/120-cli-opencode-minimax-optimization` (the rig + model this generalizes) |
 | **Successor** | None |
-| **Handoff Criteria** | All 18 phases shipped: mode designed (001), researched (002), built (003), hardened by independent review (007) + remediated (004); elevated to a co-equal lane (008-013) and twice reviewed -> remediated (014->015, 017->018). No successor. |
+| **Handoff Criteria** | All 19 phases shipped: mode designed (001), researched (002), built (003), hardened by independent review (007) + remediated (004); elevated to a co-equal lane (008-013) and twice reviewed -> remediated (014->015, 017->018), then a doc + changelog closeout (019). No successor. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -130,6 +130,8 @@ Aggregate scope by arc; per-phase detail (plan/tasks/checklist) lives in each ch
 | 16 | 016-script-subfolder-readmes/ | Add code-folder READMEs to every source script subfolder (sk-doc code template) + audit existing | Complete |
 | 17 | 017-two-lane-opus-deep-review/ | Second deep review with Opus 4.8 agents (workflow format) cross-checking the post-015 two-lane code | Complete |
 | 18 | 018-fix-opus-review-findings-for-two-lane-code/ | Remediate the 017 Opus deep-review findings (4 P1 + 13 P2): materializer fixture-id guard, bundle-gate criteria-exec gate, dead Mode-4 anchors, executable Lane B benchmark-mode promotion + doc truth, with regression tests and per-finding dispositions (Level 3) | Complete |
+| 19 | 019-skill-doc-alignment-and-changelog-consolidation/ | Closeout: one comprehensive v1.9.0.0 changelog covering all of 121 + align the skill README and dead "Mode 4" labels to the two-lane reality | Complete |
+
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -156,6 +158,7 @@ Aggregate scope by arc; per-phase detail (plan/tasks/checklist) lives in each ch
 | 015-fix-deep-review-findings-for-two-lane-code | 016-script-subfolder-readmes | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
 | 016-script-subfolder-readmes | 017-two-lane-opus-deep-review | 014 (gpt-5.5) review + 015 remediation shipped; an independent Opus 4.8 second opinion must confirm the fixes hold and hunt new issues | review-report.md verdict + all-findings.jsonl |
 | 017-two-lane-opus-deep-review | 018-fix-opus-review-findings-for-two-lane-code | Opus deep review returned CONDITIONAL with 4 active P1 plus 13 P2; remediation must close them with one disposition each | review-report.md CONDITIONAL verdict + strict validate on 018 |
+| 018-fix-opus-review-findings-for-two-lane-code | 019-skill-doc-alignment-and-changelog-consolidation | Two-lane program shipped + reviewed/remediated; the skill README and changelog still lagged the post-121 reality | strict validate on 019 + rg "Mode 4" = 0 outside changelog |
 <!-- /ANCHOR:phase-map -->
 
 ---
