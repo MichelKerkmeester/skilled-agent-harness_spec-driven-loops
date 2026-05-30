@@ -6,7 +6,9 @@
   "children_ids": [
     "system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test",
     "system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios",
-    "system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch"
+    "system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch",
+    "system-spec-kit/036-infra-followup-hardening/004-cli-child-marker-propagation",
+    "system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard"
   ],
   "manual": {
     "depends_on": [],
@@ -84,13 +86,13 @@
     ],
     "causal_summary": "Coordinates the three deferred follow-ups surfaced by the 032 (daemon-lifecycle healing) and 035 (worktree-per-session) work and triaged by an Opus scope+verify swarm. This is a CONTROL FILE — each child carries its own spec/plan/tasks and lands as an independent, gated commit.",
     "created_at": "2026-05-30T19:40:11.242Z",
-    "last_save_at": "2026-05-30T20:56:41.885Z",
+    "last_save_at": "2026-05-30T21:45:31.856Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch",
-    "last_active_at": "2026-05-30T23:30:00.000Z"
+    "last_active_child_id": "system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard",
+    "last_active_at": "2026-05-31T00:15:00.000Z"
   }
 }
