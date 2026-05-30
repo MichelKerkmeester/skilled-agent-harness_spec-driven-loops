@@ -213,7 +213,7 @@ Smart Router pseudocode (full implementation): see [`references/smart_routing.md
 1. Detect `.opencode/` context from CWD or target files.
 2. Detect language from file extension first, then keyword scores.
 3. Load shared OpenCode patterns, language standards, quick references, and checklists.
-4. **Phase 1.5 comment hygiene:** Run `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` on each modified file before committing. Zero violations required.
+4. **Phase 1.5 comment hygiene:** Run `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` on each modified file before committing. Zero violations required. Three automatic enforcement gates also run independently: `scripts/hooks/claude-posttooluse.sh` (write-time warning, Claude Code), `.opencode/hooks/pre-commit` (commit-time block, all runtimes), and `.github/workflows/comment-hygiene.yml` (CI gate, all PRs).
 5. Run the alignment verifier and targeted tests before completion claims.
 6. Use `sk-code-review` for formal findings-first review; use this skill for standards evidence.
 
