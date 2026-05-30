@@ -52,7 +52,7 @@ The deep-agent-improvement skill's docs now tell the truth about what packet 121
 
 ### Consolidated changelog
 
-`changelog/v1.9.0.0.md` now covers all 18 phases of packet 121 across both arcs: building the model-benchmark mode (001-007) and elevating it into a co-equal lane (008-018), including both deep-review and remediation cycles. It previously captured only phases 008-013. The version stays 1.9.0.0, and packet 116's `v1.8.0.0.md` is left untouched.
+`changelog/v1.9.0.0.md` now covers the whole 121 program across both arcs (001-018): building the model-benchmark mode (001-007) and elevating it into a co-equal lane (008-018), including both deep-review and remediation cycles. It previously captured only phases 008-013. The version stays 1.9.0.0, and packet 116's `v1.8.0.0.md` is left untouched.
 
 ### README aligned to two lanes
 
