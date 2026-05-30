@@ -1,0 +1,22 @@
+{
+  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity",
+  "description": "Phase 006 — Command surface + docs + final parity",
+  "keywords": [
+    "phase",
+    "006",
+    "command",
+    "surface",
+    "docs",
+    "final",
+    "parity"
+  ],
+  "lastUpdated": "2026-05-30T10:12:00.001Z",
+  "specId": "006",
+  "folderSlug": "command-surface-docs-parity",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

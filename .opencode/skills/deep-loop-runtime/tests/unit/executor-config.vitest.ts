@@ -4,6 +4,8 @@ import {
   ExecutorConfigError,
   parseExecutorConfig,
   resolveExecutorConfig,
+  parseFanoutConfig,
+  expandLineages,
 } from '../../lib/deep-loop/executor-config';
 
 describe('executor-config', () => {
@@ -206,5 +208,73 @@ describe('executor-config', () => {
 
   it('rejects a resolved cli-codex config when no model is available from any source', () => {
     expect(() => resolveExecutorConfig({ cli: { kind: 'cli-codex' } })).toThrow(ExecutorConfigError);
+  });
+});
+
+describe('parseFanoutConfig', () => {
+  it('accepts a multi-executor fan-out config with defaults', () => {
+    const config = parseFanoutConfig({
+      executors: [
+        { kind: 'native', label: 'opus' },
+        { kind: 'cli-codex', model: 'gpt-5.4', label: 'gpt' },
+      ],
+    });
+    expect(config.executors).toHaveLength(2);
+    expect(config.concurrency).toBe(2);
+    expect(config.executors[0].count).toBe(1);
+    expect(config.executors[0].iterations).toBeNull();
+  });
+
+  it('honors explicit concurrency, count, and per-lineage iterations', () => {
+    const config = parseFanoutConfig({
+      concurrency: 3,
+      executors: [{ kind: 'native', label: 'opus', count: 5, iterations: 5 }],
+    });
+    expect(config.concurrency).toBe(3);
+    expect(config.executors[0].count).toBe(5);
+    expect(config.executors[0].iterations).toBe(5);
+  });
+
+  it('reuses per-executor kind validation (cli-codex requires model)', () => {
+    expect(() => parseFanoutConfig({ executors: [{ kind: 'cli-codex', label: 'gpt' }] })).toThrow(ExecutorConfigError);
+  });
+
+  it('reuses per-executor flag-support validation (cli-gemini rejects reasoningEffort)', () => {
+    expect(() =>
+      parseFanoutConfig({ executors: [{ kind: 'cli-gemini', model: 'gemini-3.1-pro-preview', reasoningEffort: 'high', label: 'gem' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+
+  it('rejects an empty executors array', () => {
+    expect(() => parseFanoutConfig({ executors: [] })).toThrow(ExecutorConfigError);
+  });
+
+  it('rejects a label that is not dir-safe', () => {
+    expect(() => parseFanoutConfig({ executors: [{ kind: 'native', label: 'Bad Label' }] })).toThrow(ExecutorConfigError);
+  });
+
+  it('rejects duplicate lineage labels', () => {
+    expect(() =>
+      parseFanoutConfig({ executors: [{ kind: 'native', label: 'a' }, { kind: 'native', label: 'a' }] }),
+    ).toThrow(ExecutorConfigError);
+  });
+});
+
+describe('expandLineages', () => {
+  it('keeps the base label when count is 1', () => {
+    const config = parseFanoutConfig({ executors: [{ kind: 'native', label: 'opus', count: 1 }] });
+    expect(expandLineages(config).map((l) => l.label)).toEqual(['opus']);
+  });
+
+  it('expands count>1 into numbered single-replica lineages', () => {
+    const config = parseFanoutConfig({
+      executors: [
+        { kind: 'cli-opencode', model: 'minimax/MiniMax-M2.7', label: 'minimax', count: 3 },
+        { kind: 'native', label: 'opus', count: 2 },
+      ],
+    });
+    const lineages = expandLineages(config);
+    expect(lineages.map((l) => l.label)).toEqual(['minimax-1', 'minimax-2', 'minimax-3', 'opus-1', 'opus-2']);
+    expect(lineages.every((l) => l.count === 1)).toBe(true);
   });
 });

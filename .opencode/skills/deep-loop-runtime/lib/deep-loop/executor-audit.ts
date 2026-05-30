@@ -103,6 +103,7 @@ type RunAuditedExecutorCommandInput = {
   input?: string;
   guardContext?: ExecutorDispatchGuardContext;
   timeoutGraceMs?: number;
+  lineageId?: string;
 };
 
 // ───── HELPERS ─────
@@ -487,12 +488,13 @@ export function buildExecutorDispatchEnv(
  * @param executor - Executor configuration.
  * @returns Audit record with kind, model, reasoning effort, and service tier.
  */
-export function buildExecutorAuditRecord(executor: ExecutorConfig): Record<string, unknown> {
+export function buildExecutorAuditRecord(executor: ExecutorConfig, lineageId?: string): Record<string, unknown> {
   return {
     kind: getExecutorKind(executor),
     model: executor.model,
     reasoningEffort: executor.reasoningEffort,
     serviceTier: executor.serviceTier,
+    ...(lineageId !== undefined ? { lineageId } : {}),
   };
 }
 

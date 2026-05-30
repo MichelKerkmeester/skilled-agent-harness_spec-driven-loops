@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-research loop: iterative investigation with convergence detection. Modes :auto, :confirm.
-argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<topic> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--executor=<type> [--model=X] [--count=N] [--label=X] ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
@@ -101,6 +101,10 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 | `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
+| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each `--executor` group accepts `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
+| `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
+
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Native fan-out (count N for `native` executor) runs N sequential `@deep-research` agent dispatches with isolated dirs. CLI fan-out runs N headless subprocesses concurrently in the capped pool.
 
 **STATUS: BLOCKED**
 
@@ -127,6 +131,15 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
+   |-- --executor=<type> [--model=X] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
+   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+   |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch for complex configs
+   |-- --concurrency=N -> config.fanout.concurrency (default 2)
+   |
+   |   Fan-out default policy:
+   |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
+   |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
+   |
    +-- Defaults: maxIterations=10, convergenceThreshold=0.05, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
@@ -341,10 +354,30 @@ For code review, see `deep-review` skill (`.opencode/skills/deep-review/SKILL.md
 ## 8. EXAMPLES
 
 ```
+# Single-executor (default — unchanged)
 /deep:start-research-loop:auto "WebSocket reconnection strategies across browsers"
 /deep:start-research-loop:confirm "distributed caching patterns for microservices"
 /deep:start-research-loop:auto "API rate limiting approaches" --max-iterations 5 --convergence 0.10
+
+# Fan-out: two CLI lineages in parallel (cli-codex + cli-claude-code)
+/deep:start-research-loop:auto "caching patterns" \
+  --executor=cli-codex --model=o4-mini --label=codex \
+  --executor=cli-claude-code --model=claude-opus-4-8 --label=claude \
+  --concurrency=2
+
+# Fan-out: native (sequential agent dispatches) + CLI lineages mixed
+/deep:start-research-loop:auto "distributed systems consensus" \
+  --executor=native --count=1 --label=native \
+  --executor=cli-codex --model=o4-mini --count=2 \
+  --concurrency=3
+
+# Fan-out via JSON escape hatch
+/deep:start-research-loop:auto "WebRTC internals" \
+  --executors='[{"kind":"cli-codex","model":"o4-mini","label":"codex","count":3},{"kind":"cli-claude-code","model":"claude-opus-4-8","label":"claude","count":2}]' \
+  --concurrency=4
 ```
+
+> **Note on native fan-out:** `--executor=native --count=N` dispatches N sequential `@deep-research` sub-agents with isolated artifact dirs. Not pooled. Best for count 1–3. For higher parallelism, use CLI executor kinds.
 
 ---
 

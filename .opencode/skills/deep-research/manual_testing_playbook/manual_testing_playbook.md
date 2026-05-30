@@ -19,12 +19,14 @@ Canonical package artifacts:
 - `04--convergence-and-recovery/`
 - `05--pause-resume-and-fault-tolerance/`
 - `06--synthesis-save-and-guardrails/`
+- `07--command-flow-stress-tests/`
+- `08--fanout/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 41 deterministic scenarios across 7 categories validating the current `deep-research` skill surface (35 DR-* feature scenarios + 6 CP-* command-flow stress tests). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 44 deterministic scenarios across 8 categories validating the current `deep-research` skill surface (35 DR-* feature scenarios + 6 CP-* command-flow stress tests + 3 fan-out scenarios). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -623,7 +625,52 @@ Validate that command-dispatched `@deep-research` reads existing state and does 
 
 ---
 
-## 14. AUTOMATED TEST CROSS-REFERENCE
+## 14. FAN-OUT
+
+This category covers 3 scenarios validating the opt-in fan-out dispatch layer added in the research loop: CLI lineage pool dispatch, native sequential agent dispatch, and single-executor parity.
+
+### DR-052 | Fan-out research with two CLI lineages
+
+#### Description
+Validate that a two-CLI-lineage fan-out research config triggers `step_fanout_spawn` → `fanout-run.cjs` pool → two isolated lineages sub-packets → `step_fanout_merge` → canonical `research.md`.
+
+#### Scenario Contract
+Prompt summary: As a manual-testing orchestrator, validate the CLI fan-out path for deep-research: confirm `step_fanout_spawn` and `step_fanout_merge` are present with correct `skip_when` guards, the `--executor` default policy is documented, and `fanout-run.vitest.ts` passes.
+
+Expected signals: YAML steps present with `skip_when`; command docs show 2+ executors → `config.fanout`; 5/5 fanout-run tests pass.
+
+#### Test Execution
+> **Feature File:** [DR-052](08--fanout/052-fanout-cli-lineages-research.md)
+
+### DR-053 | Fan-out native sequential research dispatch
+
+#### Description
+Validate that native fan-out dispatches sequential `agent: deep-research` runs with per-lineage isolated artifact dirs via `config.fanout_lineage_artifact_dir`.
+
+#### Scenario Contract
+Prompt summary: Validate native fan-out for deep-research: confirm `step_fanout_spawn_native` uses `agent: deep-research` and passes the correct lineage artifact dir override.
+
+Expected signals: `agent: deep-research` (not `deep-review`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
+
+#### Test Execution
+> **Feature File:** [DR-053](08--fanout/053-fanout-native-sequential-research.md)
+
+### DR-054 | Fan-out single-executor parity for research loop
+
+#### Description
+Validate all three fan-out YAML steps are fully bypassed in single-executor mode, preserving byte-identical behavior.
+
+#### Scenario Contract
+Prompt summary: Validate single-executor parity for deep-research: confirm the fan-out YAML steps have correct `skip_when` guards, the `if_absent` branch is unchanged, and vitest passes 197/197.
+
+Expected signals: `if_absent` command unchanged; both fan-out steps have `skip_when`; 197/197 vitest.
+
+#### Test Execution
+> **Feature File:** [DR-054](08--fanout/054-fanout-single-executor-parity-research.md)
+
+---
+
+## 15. AUTOMATED TEST CROSS-REFERENCE
 
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts`: runtime mirror alignment, capability matrix coverage, and artifact naming.
 - `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts`: reducer idempotency, question resolution, finding counts, convergence score, and dashboard content.

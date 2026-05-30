@@ -15,7 +15,7 @@ Use this catalog as the canonical inventory for the live `deep-review` feature s
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
-| Loop lifecycle | 7 features | `SKILL.md`, `references/protocol/loop_protocol.md`, deep-review workflows |
+| Loop lifecycle | 9 features | `SKILL.md`, `references/protocol/loop_protocol.md`, deep-review workflows, fan-out runtime primitives |
 | State management | 7 features | `references/state/state_format.md`, review packet files, reducer outputs |
 | Review dimensions | 4 features | `assets/review_mode_contract.yaml`, `assets/deep_review_strategy.md` |
 | Severity system | 7 features | `references/convergence/convergence.md`, `references/state/state_format.md`, review contract |
@@ -151,6 +151,32 @@ Resolves which executor runs each iteration and enforces per-kind flag compatibi
 #### Source Files
 
 See [`01--loop-lifecycle/08-executor-selection-contract.md`](01--loop-lifecycle/08-executor-selection-contract.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out loop dispatch
+
+#### Description
+
+Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch,
+`step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge`
+with strongest-restriction verdict binding at the top of `phase_synthesis`. Single-executor
+path is byte-identical to pre-change behavior.
+
+#### Current Reality
+
+Three new YAML steps gated on `config.fanout` presence. CLI lineages run via `fanout-run.cjs`
+(pool-capped headless subprocesses). Native lineages run as sequential `agent: deep-review`
+dispatches. `step_fanout_merge` produces a consolidated `deep-review-findings-registry.json`
+using strongest-restriction (any active P0 → `mergedVerdict=FAIL`) and binds
+`p0_count/p1_count/p2_count` from the merged result for `step_derive_verdict`. This
+binding is review-specific: without it, `step_derive_verdict` would read zero counts from an
+empty single-executor state log. Command flags: `--executor` (repeatable), `--executors
+<json>`, `--concurrency N`. Review verdict: strongest-restriction across all lineages.
+
+#### Source Files
+
+See [`01--loop-lifecycle/09-fanout-dispatch.md`](01--loop-lifecycle/09-fanout-dispatch.md) for full implementation and validation file listings.
 
 ---
 

@@ -273,3 +273,121 @@ export function resolveExecutorConfig(sources: {
   };
   return parseExecutorConfig(merged);
 }
+
+// ───── FAN-OUT (MULTI-EXECUTOR) CONFIG ─────
+//
+// Opt-in layer ABOVE the single-executor path. When a fan-out config is present,
+// the loop runs N executor "lineages" concurrently (capped), each running the
+// existing sequential loop in its own isolated sub-packet. The single-executor
+// path (executorConfigSchema / parseExecutorConfig) is untouched and remains the
+// default; callers use EITHER a single `executor` OR a `fanout` block, never both.
+
+const LINEAGE_LABEL_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
+
+/**
+ * One fan-out lineage: a single executor config plus fan-out metadata.
+ *
+ * - `label`: directory-safe id for the lineage's isolated sub-packet.
+ * - `count`: number of replicas of THIS config to run (e.g. 5x the same model).
+ * - `iterations`: per-lineage max-iterations override; null = packet default.
+ */
+export const lineageExecutorSchema = executorConfigSchema.extend({
+  label: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
+    message: "label must match /^[a-z0-9][a-z0-9-]*$/ (lowercase, digits, hyphens; dir-safe)",
+  }),
+  count: z.number().int().positive().default(1),
+  iterations: z.number().int().positive().nullable().default(null),
+});
+
+export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
+
+export const fanoutConfigSchema = z.object({
+  executors: z.array(lineageExecutorSchema).min(1),
+  concurrency: z.number().int().positive().default(2),
+});
+
+export type FanoutConfig = z.infer<typeof fanoutConfigSchema>;
+
+/**
+ * Parse and validate a raw fan-out configuration.
+ *
+ * Each entry's executor subset is routed through {@link parseExecutorConfig} so
+ * ALL existing kind/model/flag rules (cli-codex needs model, gemini/devin model
+ * whitelists, per-kind flag support) apply per lineage with zero duplication.
+ * Labels must be unique and base-label (count>1) expansion must not collide.
+ *
+ * @param raw - Raw input to parse (JSON-parsed object).
+ * @returns Validated FanoutConfig.
+ * @throws {@link ExecutorConfigError} If validation fails.
+ */
+export function parseFanoutConfig(raw: unknown): FanoutConfig {
+  const parsed = fanoutConfigSchema.safeParse(raw);
+  if (!parsed.success) {
+    throw new ExecutorConfigError({ issues: parsed.error.issues.map((issue) => ({ path: issue.path, message: issue.message })) });
+  }
+
+  const config = parsed.data;
+
+  // Reuse the canonical single-executor validator per entry (kind/model/flags).
+  config.executors.forEach((entry, index) => {
+    const { label: _label, count: _count, iterations: _iterations, ...executorSubset } = entry;
+    try {
+      parseExecutorConfig(executorSubset);
+    } catch (err) {
+      if (err instanceof ExecutorConfigError) {
+        throw new ExecutorConfigError({
+          issues: err.issues.map((issue) => ({ path: ['executors', index, ...issue.path], message: issue.message })),
+        });
+      }
+      throw err;
+    }
+  });
+
+  // Labels must be unique among the declared lineages.
+  const seenLabels = new Set<string>();
+  config.executors.forEach((entry, index) => {
+    if (seenLabels.has(entry.label)) {
+      throw new ExecutorConfigError({
+        issues: [{ path: ['executors', index, 'label'], message: `duplicate lineage label '${entry.label}'` }],
+      });
+    }
+    seenLabels.add(entry.label);
+  });
+
+  // Expanded labels (count>1 → label-1, label-2, …) must not collide either.
+  const expandedLabels = new Set<string>();
+  for (const lineage of expandLineages(config)) {
+    if (expandedLabels.has(lineage.label)) {
+      throw new ExecutorConfigError({
+        issues: [{ path: ['executors'], message: `expanded lineage label '${lineage.label}' collides; rename base labels` }],
+      });
+    }
+    expandedLabels.add(lineage.label);
+  }
+
+  return config;
+}
+
+/**
+ * Expand a fan-out config into concrete per-replica lineages.
+ *
+ * A `count` of 1 keeps the base label; `count > 1` yields `${label}-1` …
+ * `${label}-N`. Each expanded lineage carries `count: 1` so downstream
+ * consumers see one runnable unit per element.
+ *
+ * @param config - Validated FanoutConfig.
+ * @returns Flat list of single-replica lineages (one runnable unit each).
+ */
+export function expandLineages(config: FanoutConfig): LineageExecutor[] {
+  const lineages: LineageExecutor[] = [];
+  for (const entry of config.executors) {
+    if (entry.count === 1) {
+      lineages.push({ ...entry, count: 1 });
+      continue;
+    }
+    for (let replica = 1; replica <= entry.count; replica += 1) {
+      lineages.push({ ...entry, label: `${entry.label}-${replica}`, count: 1 });
+    }
+  }
+  return lineages;
+}

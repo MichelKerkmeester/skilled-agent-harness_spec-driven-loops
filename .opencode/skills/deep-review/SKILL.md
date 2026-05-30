@@ -1,12 +1,11 @@
 ---
 name: deep-review
 description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query + Grep]
-# Note: Task tool is for the command executor (loop management). The @deep-review agent itself does NOT have Task (LEAF-only).
-# No WebFetch: review is code-only and read-only. No external resource fetching.
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
 argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.10.1.0
+version: 1.10.2.0
 ---
+<!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
 
 <!-- Keywords: deep-review, code-audit, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
 
@@ -47,12 +46,14 @@ Use this skill when:
 This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
 
 **NEVER:**
-- Write a custom bash/shell dispatcher to parallelize iterations
+- Write a custom bash/shell dispatcher to parallelize iterations (ad-hoc shell fan-out)
 - Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
 - Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
 - Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
 - Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
 - Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
+
+**COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:start-review-loop`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage active P0 → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
 
 **ALWAYS:**
 - Invoke via `/deep:start-review-loop :auto` or `/deep:start-review-loop :confirm`

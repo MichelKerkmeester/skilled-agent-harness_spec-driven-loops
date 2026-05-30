@@ -3,7 +3,7 @@ name: deep-research
 description: "Autonomous deep-research loop: iterative investigation, externalized state, convergence detection, fresh context per pass."
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, WebFetch, memory_context, memory_search]
 argument-hint: "[topic] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
-version: 1.13.0.0
+version: 1.13.1.0
 ---
 
 <!-- Keywords: autoresearch, deep-research, iterative-research, autonomous-loop, convergence-detection, externalized-state, fresh-context, research-agent, JSONL-state, strategy-file -->
@@ -400,7 +400,7 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 6. **Modify config after init** -- Config is read-only after initialization
 7. **Overwrite prior findings** -- Append to research/research.md, never replace
 8. **Implement fixes during research** -- Report findings only; implementation is a separate follow-up step.
-9. **Simulate loop dispatch** -- Do not write custom shell loops, nested CLI loops, `/tmp` prompt dispatchers, or direct Task loops for `@deep-research`
+9. **Simulate loop dispatch** -- Do not write custom shell loops, nested CLI loops, `/tmp` prompt dispatchers, or direct Task loops for `@deep-research`. **Command-driven fan-out via `step_fanout_spawn` in the YAML is SUPPORTED** — use `--executor`/`--executors`/`--concurrency` flags on the command; ad-hoc shell fan-out and intra-lineage wave orchestration remain forbidden.
 
 ### Iteration Status Enum
 
@@ -412,10 +412,10 @@ Research continuity is externalized to files, each iteration starts fresh, conve
 ### EXPERIMENTAL / REFERENCE-ONLY FEATURES
 
 These concepts remain documented for future design work, but they are not part of the live executable contract for `/deep:start-research-loop`:
-1. **Wave orchestration** -- parallel question fan-out, pruning, and breakthrough logic
+1. **Wave orchestration** -- parallel question fan-out and pruning within a single lineage remains reference-only (intra-lineage wave)
 2. **Checkpoint commits** -- per-iteration git commits
-3. **Wave orchestration on the same lineage** -- parallel fan-out remains reference-only
-4. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes
+3. **Multi-lineage fan-out** -- SUPPORTED via `--executor`/`--executors` flags on the command (see §8 EXAMPLES). Each lineage is an independent full loop in `{artifact_dir}/lineages/{label}/`, converging independently. This is not "wave orchestration"; it is N independent loops.
+4. **Alternate CLI dispatch** -- process-isolated `claude -p` or similar dispatch modes are used internally by `fanout-run.cjs`; do not write them ad-hoc from within a research session
 
 ### ESCALATE IF
 

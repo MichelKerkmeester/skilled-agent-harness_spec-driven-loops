@@ -15,7 +15,7 @@ Use this catalog as the canonical inventory for the live `deep-research` feature
 
 | Category | Coverage | Primary Runtime Surface |
 |---|---:|---|
-| Loop lifecycle | 5 features | `.opencode/commands/speckit/deep-research.md`, auto and confirm YAML workflows |
+| Loop lifecycle | 6 features | `.opencode/commands/deep/start-research-loop.md`, auto and confirm YAML workflows, fan-out runtime primitives |
 | State management | 3 features | `research/deep-research-*.json`, `research/findings-registry.json`, reducer-owned strategy surfaces |
 | Convergence | 4 features | `references/convergence/convergence.md`, workflow legal-stop gates, graph convergence hooks |
 | Research output | 2 features | `research/research.md`, iteration files, reducer-backed negative knowledge surfaces |
@@ -103,6 +103,30 @@ The save phase calls `generate-context.js` with the spec folder payload and trea
 #### Source Files
 
 See [`01--loop-lifecycle/05-memory-save.md`](01--loop-lifecycle/05-memory-save.md) for full implementation and test file listings.
+
+---
+
+### Fan-out loop dispatch
+
+#### Description
+
+Opt-in fan-out dispatch layer: `step_resolve_artifact_root` artifact-dir override branch,
+`step_fanout_spawn` (CLI pool + native sequential agent dispatch), and `step_fanout_merge`
+at the top of `phase_synthesis`. Single-executor path is byte-identical to pre-change
+behavior.
+
+#### Current Reality
+
+Three new YAML steps gated on `config.fanout` presence. CLI lineages run via `fanout-run.cjs`
+(pool-capped headless subprocesses). Native lineages run as sequential `agent: deep-research`
+dispatches. `step_fanout_merge` produces a consolidated `deep-research-findings-registry.json`
+before `step_compile_research` runs. Command flags: `--executor` (repeatable), `--executors
+<json>`, `--concurrency N`. Default policy: 0–1 executor → `config.executor`; 2+ →
+`config.fanout`.
+
+#### Source Files
+
+See [`01--loop-lifecycle/07-fanout-dispatch.md`](01--loop-lifecycle/07-fanout-dispatch.md) for full implementation and validation file listings.
 
 ---
 

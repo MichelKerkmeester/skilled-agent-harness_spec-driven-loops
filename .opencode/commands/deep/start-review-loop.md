@@ -1,6 +1,6 @@
 ---
 description: Autonomous deep-review loop: iterative code audit with convergence detection. Modes :auto, :confirm.
-argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--spec-folder=PATH] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+argument-hint: "<target> [:auto|:confirm] [--max-iterations=N] [--convergence=N] [--spec-folder=PATH] [--executor=<type> --count=N --label=X ...] [--executors=<json>] [--concurrency=N] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query, code_graph_context
 ---
 
@@ -110,6 +110,10 @@ Rules:
 | `executor_service_tier` | N | flag `--service-tier`, marker `executor_service_tier`, or executor default | none | N |
 | `executor_timeout` | N | flag `--executor-timeout`, marker `executor_timeout`, or default | `900` | N |
 | `resource_map_emit` | N | flag `--no-resource-map`, marker `resource_map_emit`, or default | `true` | N |
+| `fanout_executors` | N | repeatable `--executor=<type>` flags or `--executors=<json>`; each group accepts `--model`, `--reasoning-effort`, `--service-tier`, `--executor-timeout`, `--iters`, `--label`, `--count` | none (single-executor when absent) | N |
+| `fanout_concurrency` | N | flag `--concurrency=N` | `2` | N |
+
+**Fan-out default policy:** 0–1 `--executor` flags and no `--executors` → `config.executor` (single-executor, default, unchanged). 2+ `--executor` flags, `--executors`, or any `--count > 1` → `config.fanout`. Review fan-out uses strongest-restriction: any lineage active P0 → merged FAIL. Native fan-out (count N for `native` executor) runs N sequential `@deep-review` sub-agents; CLI fan-out runs N headless subprocesses in the capped pool.
 
 ### Consolidated Setup Prompt for `:confirm` and No-Suffix Mode
 
@@ -140,6 +144,16 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    |-- --service-tier=<tier> -> config.executor.serviceTier (`priority` | `standard` | `fast`)
    |-- --executor-timeout=<seconds> -> config.executor.timeoutSeconds (positive integer, default `900`)
    |-- --no-resource-map -> config.resource_map.emit = false
+   |-- --executor=<type> [--model=X] [--reasoning-effort=Y] [--service-tier=Z] [--executor-timeout=N] [--iters=N] [--label=X] [--count=N]
+   |     (repeatable; each occurrence adds one entry to config.fanout.executors)
+   |-- --executors=<json> -> config.fanout.executors = parse(json) escape hatch
+   |-- --concurrency=N -> config.fanout.concurrency (default 2)
+   |
+   |   Fan-out default policy:
+   |   - 0 or 1 --executor (no --executors, no count>1): write config.executor (single, unchanged)
+   |   - 2+ --executor flags, --executors, or any count>1: write config.fanout
+   |   - Review fan-out verdict: strongest-restriction (any lineage active P0 → merged FAIL)
+   |
    +-- Defaults: maxIterations=7, convergenceThreshold=0.10, config.executor.type=`native`, config.executor.timeoutSeconds=900, config.resource_map.emit=`true`
 
    Executor precedence for setup resolution:
@@ -385,13 +399,25 @@ Key references:
 ## 9. EXAMPLES
 
 ```
+# Single-executor (default — unchanged)
 /deep:start-review-loop "skill:deep-research"
 /deep:start-review-loop:auto "specs/03--commands-and-skills/030-deep-research-review-mode/"
 /deep:start-review-loop:confirm "agent:deep-research" --max-iterations=5
-/deep:start-review-loop "track:03--commands-and-skills"
-/deep:start-review-loop:auto ".opencode/skills/sk-git/**/*.md" --convergence=0.15
-/deep:start-review-loop:confirm "skill:sk-code router-guidance" --spec-folder=specs/04--quality/041-review-code-router/
+
+# Fan-out: two CLI lineages in parallel
+/deep:start-review-loop:auto "skill:sk-code" \
+  --executor=cli-codex --model=o4-mini --label=codex \
+  --executor=cli-claude-code --model=claude-opus-4-8 --label=claude \
+  --concurrency=2
+
+# Fan-out: native + CLI (mixed)
+/deep:start-review-loop:auto "agent:deep-research" \
+  --executor=native --count=1 --label=native \
+  --executor=cli-codex --model=o4-mini --count=2 \
+  --concurrency=3
 ```
+
+> **Review fan-out verdict:** strongest-restriction applies — if any lineage has an active P0 finding, the merged verdict is FAIL regardless of other lineages' outcomes.
 
 ---
 

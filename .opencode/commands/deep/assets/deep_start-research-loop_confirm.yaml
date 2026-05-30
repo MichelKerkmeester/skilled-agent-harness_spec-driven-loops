@@ -108,14 +108,59 @@ state_paths:
 workflow:
 
   step_resolve_artifact_root:
-    description: "Resolve the local artifact directory for this spec or phase"
+    description: "Resolve artifact directory — use fan-out lineage override when provided, else resolve from spec_folder"
     note: "Root specs keep research artifacts directly in {spec_folder}/research/. Child phases and sub-phases keep local packet directories in {spec_folder}/research/{packet}/, and archives stay local at {spec_folder}/research_archive/{packet}/."
-    command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));\""
-    outputs:
-      - artifact_root_dir: "Resolved local research owner directory"
-      - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
-      - artifact_dir: "Resolved research packet directory for this target"
-      - artifact_archive_root: "Resolved local research archive directory for this target"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        artifact_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_root_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_subfolder: null
+        artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
+    if_absent:
+      command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'research')));\""
+      outputs:
+        - artifact_root_dir: "Resolved local research owner directory"
+        - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
+        - artifact_dir: "Resolved research packet directory for this target"
+        - artifact_archive_root: "Resolved local research archive directory for this target"
+
+  step_fanout_spawn:
+    description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+    skip_when: "config.fanout is absent"
+    instructions: |
+      Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
+      isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      After all lineages complete, jump directly to phase_synthesis — skip phase_init and
+      phase_main_loop entirely (those are the single-executor path). The merge step in
+      phase_synthesis will consolidate results across all lineages.
+    sub_steps:
+      step_fanout_spawn_cli:
+        description: "Spawn all CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors with kind != 'native'"
+        command: |
+          node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
+            --spec-folder {spec_folder} \
+            --loop-type research \
+            --fanout-config-json '{config.fanout_json}' \
+            --base-artifact-dir {artifact_dir}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
+      step_fanout_spawn_native:
+        description: "Dispatch each native lineage as a sequential deep-research sub-agent"
+        skip_when: "no entries in config.fanout.executors with kind == 'native'"
+        for_each: "lineage in expanded native entries of config.fanout"
+        dispatch:
+          agent: deep-research
+          model: opus
+          context: |
+            Execute the deep-research loop with these parameters:
+              spec_folder: {spec_folder}
+              config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}
+              session_id: fanout-{lineage.label}-{fanout_run_id}
+              executor: native
+            Run to convergence. Write all outputs to the override directory.
+        wait_for_completion: true
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 1: INITIALIZATION
@@ -793,6 +838,16 @@ workflow:
   phase_synthesis:
     purpose: Compile all iteration findings into final research/research.md
     steps:
+
+      step_fanout_merge:
+        description: "Merge N lineage registries into one consolidated registry; skip when single-executor"
+        skip_when: "config.fanout is absent"
+        command: |
+          node .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs \
+            --loop-type research \
+            --artifact-dir {artifact_dir}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"

@@ -1,6 +1,6 @@
 ---
 name: deep-loop-runtime
-version: 1.3.0
+version: 1.4.0
 description: "Shared deep-loop runtime: executor + prompt-pack + validation + atomic state + coverage-graph + Bayesian scoring + fallback routing."
 allowed-tools: [Bash, Read, Glob, Grep]
 ---
@@ -162,6 +162,12 @@ Four `.cjs` scripts replace the 4 deleted MCP tools, each honoring the same JSON
 | `scripts/upsert.cjs` | `deep_loop_graph_upsert` | Stores nodes + edges from iteration `graphEvents` | 0=ok, 1=script, 2=DB, 3=input |
 | `scripts/query.cjs` | `deep_loop_graph_query` | Inspects uncovered questions, unverified claims, contradictions | 0=ok, 1=script, 2=DB, 3=input |
 | `scripts/status.cjs` | `deep_loop_graph_status` | Session-scoped health report | 0=ok, 1=script, 2=DB, 3=input |
+| `scripts/fanout-pool.cjs` | n/a (new) | Concurrency-capped worker pool + status ledger for fan-out lineages | exports only (no main) |
+| `scripts/fanout-run.cjs` | n/a (new) | CLI lineage pool driver — spawns N headless CLI subprocesses (codex, claude, opencode, gemini, devin), each running the full loop in `lineages/{label}/`; salvage sweep via fanout-salvage.cjs after each subprocess exits | 0=all ok, 2=some failed, 3=all failed |
+| `scripts/fanout-salvage.cjs` | n/a (new) | Write-failure salvage: recovers missing iteration .md files from captured subprocess stdout; per-sessionId isolation preserved | exports only (no main) |
+| `scripts/fanout-merge.cjs` | n/a (new) | Cross-lineage merge: research (dedup by id + attribution) or review (strongest-restriction P0 rollup) → consolidated registry + fanout-attribution.md | 0=ok, 3=input |
+
+**Fan-out isolation invariant:** each CLI lineage receives its own `{base}/lineages/{label}/` artifact dir (via `config.fanout_lineage_artifact_dir` override in `step_resolve_artifact_root`) and its own `session_id` for `convergence.cjs` + coverage-graph DB writes (PK includes session_id — no schema change, no collision). Same-kind replicas get distinct `SPECKIT_<KIND>_STATE_DIR` values to prevent lockfile contention.
 
 Each script: parses argv → opens `database/deep-loop-graph.sqlite` → calls the lib function → writes JSON to stdout → closes DB in `finally` → exits with the appropriate code.
 

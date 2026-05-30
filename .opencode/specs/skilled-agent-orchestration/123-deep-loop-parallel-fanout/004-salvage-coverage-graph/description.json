@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph",
+  "description": "Phase 004 — Salvage sweep + coverage-graph per-sessionId",
+  "keywords": [
+    "phase",
+    "004",
+    "salvage",
+    "sweep",
+    "coverage-graph",
+    "per-sessionid"
+  ],
+  "lastUpdated": "2026-05-30T10:11:59.491Z",
+  "specId": "004",
+  "folderSlug": "salvage-coverage-graph",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

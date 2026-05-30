@@ -21,12 +21,13 @@ Canonical package artifacts:
 - `06--synthesis-save-and-guardrails/`
 - `07--command-flow-stress-tests/`
 - `08--review-depth-v2-rollout/`
+- `09--fanout/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 45 deterministic scenarios across 8 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), and §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 49 deterministic scenarios across 9 categories validating the current `deep-review` skill surface. The first 6 categories cover dimension/lifecycle review (33 scenarios). §15 covers command-flow stress tests (6 scenarios under CP-052..057), §16 covers the review-depth v2 rollout (6 scenarios under DRV-058..063), and §17 covers fan-out dispatch (4 scenarios under DRV-064..067). Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -781,3 +782,61 @@ Verify ledger-led upserts emit the canonical graph vocabulary (BUG_CLASS, INVARI
 
 #### Test Execution
 > **Feature File:** [DRV-063](08--review-depth-v2-rollout/063-graph-vocabulary.md)
+
+---
+
+## 17. FAN-OUT
+
+This category covers 4 scenarios validating the opt-in fan-out dispatch layer added in the review loop: CLI lineage pool dispatch, strongest-restriction verdict binding, native sequential agent dispatch, and single-executor parity.
+
+### DRV-064 | Fan-out review with two CLI lineages
+
+#### Description
+Validate two-CLI-lineage fan-out review: `step_fanout_spawn` → pool → isolated sub-packets → `step_fanout_merge` with `bind_from_output` for p0/p1/p2 counts → `step_derive_verdict` using merged counts → `review-report.md`.
+
+#### Scenario Contract
+Prompt summary: Validate the CLI fan-out path for deep-review: confirm `step_fanout_merge` has `bind_from_output` mapping `active_p0/p1/p2` → `p0_count/p1_count/p2_count`, that the review YAML dispatches CLI lineages correctly, and that fanout-merge tests pass.
+
+Expected signals: `bind_from_output` present in YAML; 10/10 fanout-merge tests pass.
+
+#### Test Execution
+> **Feature File:** [DRV-064](09--fanout/064-fanout-cli-lineages-review.md)
+
+### DRV-065 | Fan-out review strongest-restriction
+
+#### Description
+Validate that clean lineage A + P0 lineage B → `mergedVerdict=FAIL`; all 5 verdict combinations correct; duplicate `findingId` escalates to highest severity; non-active findings excluded.
+
+#### Scenario Contract
+Prompt summary: Validate the review fan-out strongest-restriction policy and confirm all 5 review unit tests pass covering every verdict combination and the duplicate escalation rule.
+
+Expected signals: 5/5 review strongest-restriction tests pass; `SEVERITY_RANK` confirmed in source; non-active guard confirmed.
+
+#### Test Execution
+> **Feature File:** [DRV-065](09--fanout/065-fanout-strongest-restriction.md)
+
+### DRV-066 | Fan-out native sequential review dispatch
+
+#### Description
+Validate that native fan-out dispatches sequential `agent: deep-review` runs (not `agent: deep-research`) with per-lineage isolated artifact dirs.
+
+#### Scenario Contract
+Prompt summary: Validate native fan-out for deep-review: confirm `step_fanout_spawn_native` uses `agent: deep-review` and passes the correct lineage artifact dir override.
+
+Expected signals: `agent: deep-review` (not `deep-research`) in native dispatch block; `config.fanout_lineage_artifact_dir` in context; correct `skip_when`.
+
+#### Test Execution
+> **Feature File:** [DRV-066](09--fanout/066-fanout-native-sequential-review.md)
+
+### DRV-067 | Fan-out single-executor parity for review loop
+
+#### Description
+Validate all three fan-out YAML steps are fully bypassed in single-executor review mode, and that `step_fanout_merge` without lineage registries cannot produce an incorrect PASS.
+
+#### Scenario Contract
+Prompt summary: Validate single-executor parity for deep-review: confirm the fan-out YAML steps have correct `skip_when` guards, the `if_absent` branch uses `'review'` (not `'research'`), and vitest passes 197/197.
+
+Expected signals: `if_absent` command uses `'review'`; both fan-out steps have `skip_when`; 197/197 vitest.
+
+#### Test Execution
+> **Feature File:** [DRV-067](09--fanout/067-fanout-single-executor-parity-review.md)

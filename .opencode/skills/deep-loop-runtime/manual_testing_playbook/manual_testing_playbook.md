@@ -20,12 +20,14 @@ Canonical package artifacts:
 - `05--scoring/`
 - `06--coverage-graph/`
 - `07--script-entry-points/`
+- `08--council/`
+- `09--fanout/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 22 deterministic scenarios across 8 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
+This playbook provides 29 deterministic scenarios across 9 categories validating the current `deep-loop-runtime` skill surface. Each scenario maps to one feature catalog entry and one dedicated scenario file with objective, prompt, execution steps, source anchors, and verdict criteria.
 
 ### REALISTIC TEST MODEL
 
@@ -411,6 +413,103 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 
 ---
 
+## 13. FAN-OUT
+
+This category covers 7 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
+
+### DLR-023 | Fan-out config schema
+
+#### Description
+Validates `parseFanoutConfig` + `expandLineages`: unique-label enforcement, collision detection, count expansion, per-entry kind validation reuse, and `lineageId` byte-identity when absent.
+
+#### Scenario Contract
+Prompt: `Validate fan-out config schema and confirm the 9 fan-out tests pass and align with the executor-config.ts implementation.`
+
+Expected signals: 36/36 executor-config tests pass; fan-out schema layer does not modify existing `executorConfigSchema`.
+
+#### Test Execution
+> **Feature File:** [DLR-023](09--fanout/023-fanout-config-schema.md)
+
+### DLR-024 | Fan-out worker pool concurrency cap
+
+#### Description
+Validates `runCappedPool` respects the cap, isolates per-item failures, returns ordered results, and emits JSONL ledger events.
+
+#### Scenario Contract
+Prompt: `Validate the fan-out worker pool and confirm the 10 unit tests pass, verifying concurrency cap and per-item failure isolation.`
+
+Expected signals: 10/10 pool tests pass; gated-worker confirms max N in flight; failure-isolation confirms pool continues after one rejection.
+
+#### Test Execution
+> **Feature File:** [DLR-024](09--fanout/024-fanout-pool-concurrency-cap.md)
+
+### DLR-025 | Fan-out CLI lineage driver spawn and isolation
+
+#### Description
+Validates `fanout-run.cjs` creates distinct per-lineage dirs and `.executor-state` paths, saves stdout, and writes orchestration artifacts.
+
+#### Scenario Contract
+Prompt: `Validate the fan-out CLI lineage driver and confirm the 5 integration tests pass, verifying lineage isolation and orchestration artifact creation.`
+
+Expected signals: 5/5 fanout-run tests pass; lineage dirs distinct; orchestration summary present.
+
+#### Test Execution
+> **Feature File:** [DLR-025](09--fanout/025-fanout-run-cli-lineage-spawn.md)
+
+### DLR-026 | Fan-out write-failure salvage
+
+#### Description
+Validates `runSalvageSweep` recovers missing iteration files from stdout, `extractTextFromOpencodeJson` parses opencode JSON text parts, and per-sessionId coverage isolation holds.
+
+#### Scenario Contract
+Prompt: `Validate the fan-out salvage module and confirm the 11 unit tests pass, verifying opencode stdout parsing, iteration recovery, and per-sessionId coverage isolation.`
+
+Expected signals: 11/11 fanout-salvage tests pass.
+
+#### Test Execution
+> **Feature File:** [DLR-026](09--fanout/026-fanout-salvage-recovery.md)
+
+### DLR-027 | Fan-out merge: research dedup and attribution
+
+#### Description
+Validates `mergeResearchRegistries` deduplicates by `findingId`, builds `_lineages` attribution, and aggregates metrics.
+
+#### Scenario Contract
+Prompt: `Validate the research fan-out merge and confirm the 3 research unit tests pass, verifying deduplication, attribution, and metric aggregation.`
+
+Expected signals: Research tests pass; duplicate `findingId` → single entry with `_lineages` array.
+
+#### Test Execution
+> **Feature File:** [DLR-027](09--fanout/027-fanout-merge-research.md)
+
+### DLR-028 | Fan-out merge: review strongest-restriction
+
+#### Description
+Validates `mergeReviewRegistries` strongest-restriction: all 5 verdict combinations correct, duplicate findingId escalates to highest severity, non-active findings excluded.
+
+#### Scenario Contract
+Prompt: `Validate the review fan-out strongest-restriction merge and confirm all 5 review unit tests pass.`
+
+Expected signals: 5/5 review tests pass; clean+P0 → FAIL; all clean → PASS; P1-only → CONDITIONAL.
+
+#### Test Execution
+> **Feature File:** [DLR-028](09--fanout/028-fanout-merge-review-strongest-restriction.md)
+
+### DLR-029 | Artifact-dir override and single-executor parity
+
+#### Description
+Validates the YAML `if_absent` branch is byte-identical to the original resolver and both fan-out steps are fully skipped when `config.fanout` is absent.
+
+#### Scenario Contract
+Prompt: `Validate fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, then run 197/197 vitest.`
+
+Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_fanout_merge` have `skip_when: "config.fanout is absent"`; vitest 197/197.
+
+#### Test Execution
+> **Feature File:** [DLR-029](09--fanout/029-artifact-dir-override-parity.md)
+
+---
+
 ## 14. AUTOMATED TEST CROSS-REFERENCE
 
 | Surface | Tests | Purpose |
@@ -421,6 +520,7 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 | Coverage graph scripts | `tests/integration/{convergence,query,status,upsert}-script.vitest.ts`, `tests/lifecycle/db-open-close.vitest.ts` | Direct script behavior and DB lifecycle. |
 | Review-depth integration | `tests/integration/review-depth-*.vitest.ts` | Review graph, convergence, and validator fixtures. |
 | Council | `tests/council/{multi-seat-dispatch,round-state-jsonl,adjudicator-verdict-scoring,cost-guards,session-state-hierarchy}.vitest.ts` | Council durability primitives: parallel dispatch, JSONL append + repair, verdict-delta scoring, cost guards, state-hierarchy validation. |
+| Fan-Out | `tests/unit/executor-config.vitest.ts` (+9 fan-out tests), `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge. |
 
 ---
 
@@ -450,3 +550,10 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 | DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/03-adjudicator-verdict-scoring.md) | [08--council/020-adjudicator-verdict-scoring.md](08--council/020-adjudicator-verdict-scoring.md) |
 | DLR-021 | [F021 Cost guards](../feature_catalog/08--council/04-cost-guards.md) | [08--council/021-cost-guards.md](08--council/021-cost-guards.md) |
 | DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/05-session-state-hierarchy.md) | [08--council/022-session-state-hierarchy.md](08--council/022-session-state-hierarchy.md) |
+| DLR-023 | [F023 Fan-out config schema](../feature_catalog/09--fanout/01-fanout-config-schema.md) | [09--fanout/023-fanout-config-schema.md](09--fanout/023-fanout-config-schema.md) |
+| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/02-fanout-pool.md) | [09--fanout/024-fanout-pool-concurrency-cap.md](09--fanout/024-fanout-pool-concurrency-cap.md) |
+| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/03-fanout-run.md) | [09--fanout/025-fanout-run-cli-lineage-spawn.md](09--fanout/025-fanout-run-cli-lineage-spawn.md) |
+| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/04-fanout-salvage.md) | [09--fanout/026-fanout-salvage-recovery.md](09--fanout/026-fanout-salvage-recovery.md) |
+| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/05-fanout-merge.md) | [09--fanout/027-fanout-merge-research.md](09--fanout/027-fanout-merge-research.md) |
+| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/05-fanout-merge.md) | [09--fanout/028-fanout-merge-review-strongest-restriction.md](09--fanout/028-fanout-merge-review-strongest-restriction.md) |
+| DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/01-fanout-config-schema.md) | [09--fanout/029-artifact-dir-override-parity.md](09--fanout/029-artifact-dir-override-parity.md) |

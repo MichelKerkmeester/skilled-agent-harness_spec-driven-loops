@@ -113,14 +113,59 @@ state_paths:
 workflow:
 
   step_resolve_artifact_root:
-    description: "Resolve the local artifact directory for this spec or phase"
+    description: "Resolve artifact directory — use fan-out lineage override when provided, else resolve from spec_folder"
     note: "Root specs keep review artifacts directly in {spec_folder}/review/. Child phases and sub-phases keep local packet directories in {spec_folder}/review/{packet}/, and archives stay local at {spec_folder}/review_archive/{packet}/."
-    command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'review')));\""
-    outputs:
-      - artifact_root_dir: "Resolved local review owner directory"
-      - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
-      - artifact_dir: "Resolved review packet directory for this target"
-      - artifact_archive_root: "Resolved local review archive directory for this target"
+    branch_on: "config.fanout_lineage_artifact_dir"
+    if_present:
+      bind:
+        artifact_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_root_dir: "{config.fanout_lineage_artifact_dir}"
+        artifact_subfolder: null
+        artifact_archive_root: "{config.fanout_lineage_artifact_dir}/_archive"
+    if_absent:
+      command: "node -e \"const { resolveArtifactRoot } = require('.opencode/skills/system-spec-kit/shared/review-research-paths.cjs'); console.log(JSON.stringify(resolveArtifactRoot('{spec_folder}', 'review')));\""
+      outputs:
+        - artifact_root_dir: "Resolved local review owner directory"
+        - artifact_subfolder: "Local packet subfolder ({ownerSlug}-pt-{NN}), else null"
+        - artifact_dir: "Resolved review packet directory for this target"
+        - artifact_archive_root: "Resolved local review archive directory for this target"
+
+  step_fanout_spawn:
+    description: "Spawn fan-out lineages; skip and proceed to phase_init normally when single-executor"
+    skip_when: "config.fanout is absent"
+    instructions: |
+      Fan-out mode is active. Spawn all lineages. Each lineage runs the full loop in its own
+      isolated sub-packet under {artifact_dir}/lineages/{label}/.
+      After all lineages complete, jump directly to phase_synthesis — skip phase_init and
+      phase_main_loop entirely (those are the single-executor path). The merge step in
+      phase_synthesis will consolidate results across all lineages.
+    sub_steps:
+      step_fanout_spawn_cli:
+        description: "Spawn all CLI lineages in capped worker pool"
+        skip_when: "no entries in config.fanout.executors with kind != 'native'"
+        command: |
+          node .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs \
+            --spec-folder {spec_folder} \
+            --loop-type review \
+            --fanout-config-json '{config.fanout_json}' \
+            --base-artifact-dir {artifact_dir}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
+      step_fanout_spawn_native:
+        description: "Dispatch each native lineage as a sequential deep-review sub-agent"
+        skip_when: "no entries in config.fanout.executors with kind == 'native'"
+        for_each: "lineage in expanded native entries of config.fanout"
+        dispatch:
+          agent: deep-review
+          model: opus
+          context: |
+            Execute the deep-review loop with these parameters:
+              spec_folder: {spec_folder}
+              config.fanout_lineage_artifact_dir: {artifact_dir}/lineages/{lineage.label}
+              session_id: fanout-{lineage.label}-{fanout_run_id}
+              executor: native
+            Run to convergence. Write all outputs to the override directory.
+        wait_for_completion: true
 
   # ═══════════════════════════════════════════════════════════════
   # PHASE 1: INITIALIZATION
@@ -1075,6 +1120,20 @@ workflow:
   phase_synthesis:
     purpose: Compile all iteration findings into review/review-report.md
     steps:
+
+      step_fanout_merge:
+        description: "Merge N lineage registries with strongest-restriction; bind p0/p1/p2 counts for step_derive_verdict; skip when single-executor"
+        skip_when: "config.fanout is absent"
+        command: |
+          node .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs \
+            --loop-type review \
+            --artifact-dir {artifact_dir}
+        working_directory: "{repo_root}"
+        wait_for_completion: true
+        bind_from_output:
+          p0_count: "active_p0"
+          p1_count: "active_p1"
+          p2_count: "active_p2"
 
       step_hydrate_summary_metrics:
         action: "Hydrate summary metrics before synthesis"

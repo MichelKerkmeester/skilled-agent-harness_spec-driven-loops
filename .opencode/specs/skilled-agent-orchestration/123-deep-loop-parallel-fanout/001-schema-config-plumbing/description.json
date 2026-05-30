@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/001-schema-config-plumbing",
+  "description": "Phase 001 — Fan-out schema + config plumbing",
+  "keywords": [
+    "phase",
+    "001",
+    "fan-out",
+    "schema",
+    "config",
+    "plumbing"
+  ],
+  "lastUpdated": "2026-05-30T10:11:58.747Z",
+  "specId": "001",
+  "folderSlug": "schema-config-plumbing",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "123-deep-loop-parallel-fanout"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

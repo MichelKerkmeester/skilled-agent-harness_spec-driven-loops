@@ -15,7 +15,7 @@ This document combines the current feature inventory for the `deep-loop-runtime`
 
 ## 1. OVERVIEW
 
-Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 22 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
+Use this catalog as the canonical inventory for the live `deep-loop-runtime` feature surface. The 27 entries below cover runtime libraries and direct `.cjs` scripts consumed by deep-* loop consumers (deep-review, deep-research, deep-ai-council, `/doctor`, and adjacent validation docs) per the Runtime Boundary Decision (ADR-001).
 
 | Category | Coverage | Primary Surfaces |
 |---|---:|---|
@@ -27,6 +27,7 @@ Use this catalog as the canonical inventory for the live `deep-loop-runtime` fea
 | [06--coverage-graph](06--coverage-graph/) | 3 features | `lib/coverage-graph/coverage-graph-db.ts`, `lib/coverage-graph/coverage-graph-query.ts`, `lib/coverage-graph/coverage-graph-signals.ts` |
 | [07--script-entry-points](07--script-entry-points/) | 4 features | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | [08--council](08--council/) | 5 features | `lib/council/multi-seat-dispatch.cjs`, `lib/council/round-state-jsonl.cjs`, `lib/council/adjudicator-verdict-scoring.cjs`, `lib/council/cost-guards.cjs`, `lib/council/session-state-hierarchy.cjs` |
+| [09--fanout](09--fanout/) | 5 features | `scripts/fanout-pool.cjs`, `scripts/fanout-run.cjs`, `scripts/fanout-salvage.cjs`, `scripts/fanout-merge.cjs`, config schema in `lib/deep-loop/executor-config.ts` |
 
 ---
 
@@ -391,5 +392,79 @@ Creates and validates the ADR-002 session->topic->round state shape, including s
 #### Source Files
 
 See [`08--council/05-session-state-hierarchy.md`](08--council/05-session-state-hierarchy.md) for full implementation and validation file listings.
+
+---
+
+## 10. FAN-OUT
+
+These entries cover the opt-in multi-executor fan-out layer: config schema extensions, the
+concurrency-capped pool primitive, the CLI lineage driver, write-failure salvage, and the
+cross-lineage merge. Together they generalize the manual multi-model pattern proven in the
+packet-122 prototype into a first-class command-driven feature.
+
+### Fan-out config schema
+
+#### Description
+
+Adds `lineageExecutorSchema`, `fanoutConfigSchema`, `parseFanoutConfig`, and `expandLineages`
+on top of the existing single-executor config without modifying it.
+
+#### Source Files
+
+See [`09--fanout/01-fanout-config-schema.md`](09--fanout/01-fanout-config-schema.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out worker pool
+
+#### Description
+
+Concurrency-capped pool primitive with injected worker, never-throws per-item settlement,
+ordered results, and a JSONL status ledger.
+
+#### Source Files
+
+See [`09--fanout/02-fanout-pool.md`](09--fanout/02-fanout-pool.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out CLI lineage driver
+
+#### Description
+
+TSX-bootstrapped entry point that spawns N headless CLI subprocesses (codex, claude,
+opencode, gemini, devin), each running the full loop in an isolated `lineages/{label}/`
+sub-packet, with per-kind state-dir isolation and a post-subprocess salvage sweep.
+
+#### Source Files
+
+See [`09--fanout/03-fanout-run.md`](09--fanout/03-fanout-run.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out write-failure salvage
+
+#### Description
+
+Post-subprocess salvage that recovers missing or empty iteration `.md` files from captured
+subprocess stdout (opencode `--format json` text parts or raw fallback).
+
+#### Source Files
+
+See [`09--fanout/04-fanout-salvage.md`](09--fanout/04-fanout-salvage.md) for full implementation and validation file listings.
+
+---
+
+### Fan-out cross-lineage merge
+
+#### Description
+
+Cross-lineage merge: research (dedup by `findingId` + cross-model attribution) or review
+(strongest-restriction: any active P0 → merged FAIL). Writes consolidated registry and
+`fanout-attribution.md`.
+
+#### Source Files
+
+See [`09--fanout/05-fanout-merge.md`](09--fanout/05-fanout-merge.md) for full implementation and validation file listings.
 
 ---
