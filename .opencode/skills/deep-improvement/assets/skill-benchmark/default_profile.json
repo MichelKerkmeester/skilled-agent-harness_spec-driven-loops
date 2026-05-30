@@ -1,0 +1,13 @@
+{
+  "profileId": "default",
+  "mode": "skill-benchmark",
+  "traceMode": "router",
+  "weights": { "d1inter": 12, "d1intra": 13, "d2": 20, "d3": 15, "d4": 25, "d5": 15 },
+  "verdictBands": {
+    "PASS": ">=80 and no hard gate",
+    "CONDITIONAL": "50-79 or a non-gating finding",
+    "FAIL": "<50",
+    "BLOCKED-BY-STRUCTURE": "D5 hard-gate failure (dead path / path escape / unparseable router)"
+  },
+  "notes": "Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. D1-inter (advisor) and D4 (usefulness ablation) require live mode and are reported unscored until then. Weights/bands are provisional pending 2-3 pilot calibration per the 002 playbook."
+}

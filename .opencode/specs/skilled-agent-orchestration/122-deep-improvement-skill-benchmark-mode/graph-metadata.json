@@ -69,12 +69,6 @@
         "source": "derived"
       },
       {
-        "name": "Begin Phase",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Purpose Evolve",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -97,17 +91,23 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Skill Benchmark Report",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-05-30T19:40:10.381Z",
+    "last_save_at": "2026-05-30T20:56:41.075Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
+    "last_active_child_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
     "last_active_at": "2026-05-30T00:00:00Z"
   }
 }

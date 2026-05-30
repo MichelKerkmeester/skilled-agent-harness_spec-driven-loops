@@ -13,7 +13,9 @@
     "trigger_phrases": [
       "skill-benchmark mode build",
       "122 phase 004",
-      "Lane C skill benchmark"
+      "Lane C skill benchmark",
+      "122 phase 004 implementation summary",
+      "lane c skill-benchmark build results"
     ],
     "key_topics": [
       "skill-benchmark",
@@ -25,19 +27,39 @@
       "lane",
       "skill",
       "benchmark",
-      "design",
-      "renamed",
-      "deep-improvement"
+      "implementation",
+      "summary",
+      "results"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
-      "spec.md"
+      ".opencode/commands/deep/start-skill-benchmark-loop.md",
+      "spec.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
+        "name": "start-skill-benchmark-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-skill-benchmark-loop.md",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Built Lane",
+        "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
@@ -72,19 +94,38 @@
         "source": "derived"
       },
       {
-        "name": "3. Resources to add",
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. What was done",
         "kind": "heading",
-        "path": "spec.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. Files built (all under `.opencode/skills/deep-improvement/`)",
+        "kind": "heading",
+        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Design and build **Lane C (skill-benchmark)** in the renamed `deep-improvement` skill: a benchmark that measures whether a *skill* is well-structured, well-routed, efficient, and useful **in practice** (how AIs actually discover/use it), and emits actionable, ranked remediation findings.",
     "created_at": "2026-05-30T07:27:05.680Z",
-    "last_save_at": "2026-05-30T16:25:16.896Z",
+    "last_save_at": "2026-05-30T20:56:41.079Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

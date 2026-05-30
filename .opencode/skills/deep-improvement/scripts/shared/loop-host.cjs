@@ -6,10 +6,10 @@
  *
  * Mode-switching entry point for deep-improvement. Routes between the
  * existing `agent-improvement` scoring path and the new `model-benchmark`
- * pipeline. This is the seam host the 002 research identified as missing
+ * pipeline. This is the seam host that was previously missing
  * (deep-improvement has no loop.cjs — orchestration is journal-based).
  *
- * Backward-compat contract (TST-1): with `--mode=agent-improvement` OR no
+ * Backward-compat contract: with `--mode=agent-improvement` OR no
  * `--mode` flag, behavior is identical — both route to score-candidate.cjs with
  * the same arguments, so the produced score/state output is byte-identical.
  *
@@ -21,17 +21,17 @@
  *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>] \
  *        [--scorer=<pattern|5dim>] [--grader=<noop|mock|llm>]
  *
- * Unknown --mode values warn to stderr and fall back to agent-improvement (EC-2).
+ * Unknown --mode values warn to stderr and fall back to agent-improvement.
  */
 
 const path = require('path');
 const { spawnSync } = require('child_process');
 
 const SCRIPTS_ROOT = __dirname;
-const VALID_MODES = new Set(['agent-improvement', 'model-benchmark']);
+const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
 
-// 121/013 lane separation: planInvocation() returns BARE script names (e.g.
-// 'score-candidate.cjs') to keep the TST-1 backward-compat identity plan
+// Lane separation: planInvocation() returns BARE script names (e.g.
+// 'score-candidate.cjs') to keep the backward-compat identity plan
 // byte-identical. The real on-disk lane lives in sibling lane dirs relative to
 // this file (now scripts/shared/). resolveScriptPath maps a bare name to its
 // lane path at SPAWN time so the plan output never carries lane segments.
@@ -49,9 +49,31 @@ const LANE_MODEL_BENCHMARK = new Set([
   'run-benchmark.cjs',
   'dispatch-model.cjs',
 ]);
+// Lane C (skill-benchmark): the orchestrator the run resolves to. Sub-scripts
+// (router-replay, contamination-lint, d5-connectivity, parse-resource-loads,
+// score-skill-benchmark, build-report) are required internally by the
+// orchestrator, so only the entry script needs lane-path resolution here.
+const LANE_SKILL_BENCHMARK = new Set([
+  'run-skill-benchmark.cjs',
+]);
+
+// Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
+// order. --skill and --outputs-dir are required and handled separately. Keep
+// aligned with run-skill-benchmark.cjs's accepted options.
+const SKILL_BENCHMARK_RUN_OPTIONS = [
+  'profile',
+  'fixtures-dir',
+  'output',
+  'state-log',
+  'label',
+  'trace-mode',
+  'grader',
+  'advisor-mode',
+  'k-runs',
+];
 
 // Single source of truth for the optional model-benchmark flags loop-host
-// forwards to run-benchmark.cjs (P2 "Benchmark option schema split"). Order is
+// forwards to run-benchmark.cjs (one shared benchmark option schema). Order is
 // the forwarding order. --profile and --outputs-dir are required and handled
 // separately. Keep this aligned with run-benchmark.cjs's accepted options.
 const BENCHMARK_RUN_OPTIONS = [
@@ -65,7 +87,7 @@ const BENCHMARK_RUN_OPTIONS = [
 ];
 
 // The fixture materializer also needs --profiles-dir so a profile passed by ID
-// (not a path) resolves identically in BOTH steps (F-P1-4b). --profile and
+// (not a path) resolves identically in BOTH steps. --profile and
 // --outputs-dir are forwarded explicitly; this lists the remaining
 // materialize-relevant pass-through flags.
 const BENCHMARK_MATERIALIZE_OPTIONS = [
@@ -78,6 +100,9 @@ function resolveScriptPath(scriptName) {
   }
   if (LANE_MODEL_BENCHMARK.has(scriptName)) {
     return path.join(SCRIPTS_ROOT, '..', 'model-benchmark', scriptName);
+  }
+  if (LANE_SKILL_BENCHMARK.has(scriptName)) {
+    return path.join(SCRIPTS_ROOT, '..', 'skill-benchmark', scriptName);
   }
   // Other shared scripts (materialize-benchmark-fixtures, promote-candidate,
   // reduce-state, improvement-journal, mutation-coverage) live alongside this file.
@@ -92,7 +117,7 @@ function parseArgs(argv) {
     if (!match) continue;
     const key = match[1];
     if (match[2] !== undefined) {
-      // =-form: byte-identical to the original behavior (TST-1 identity).
+      // =-form: byte-identical to the original behavior (identity contract).
       args[key] = match[2];
       continue;
     }
@@ -100,7 +125,7 @@ function parseArgs(argv) {
     // consume it as the space-form value; otherwise it stays a boolean flag.
     // The Lane B command surface invokes loop-host with space-form
     // (--profile {p} --scorer 5dim --grader noop), so these must bind to the
-    // following token rather than parse as booleans (F-P0-1).
+    // following token rather than parse as booleans.
     const next = argv[index + 1];
     if (next !== undefined && !next.startsWith('--')) {
       args[key] = next;
@@ -122,7 +147,7 @@ function resolveMode(rawMode) {
 /**
  * Pure planner: map (mode, args) -> the ordered script invocations to run.
  * Planning is separated from execution so the backward-compat identity gate
- * (TST-1) can assert byte-identical plans for the default and explicit
+ * the identity gate can assert byte-identical plans for the default and explicit
  * agent-improvement routes without spawning anything.
  *
  * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
@@ -132,16 +157,16 @@ function planInvocation(mode, args) {
     if (!args.profile || !args['outputs-dir']) {
       return { ok: false, error: 'model-benchmark: missing required --profile=<path-or-id> and --outputs-dir=<path>' };
     }
-    // EC-5: materialize MUST run (and succeed) before run-benchmark, else scoring
+    // materialize MUST run (and succeed) before run-benchmark, else scoring
     // silently produces all-zero "missing-output" results. These scripts use
     // space-separated args.
     //
     // Both steps share one option schema (BENCHMARK_* lists) so forwarding stays
     // in sync with run-benchmark.cjs and the materializer, instead of a hand-rolled
-    // per-flag chain that silently drifts (P2 "Benchmark option schema split").
+    // per-flag chain that silently drifts.
     // run-benchmark.cjs forwards scorer/grader/integration-report so the journal
     // and report.json agree on the requested method; the materializer forwards
-    // --profiles-dir so a profile-by-ID resolves identically in both steps (F-P1-4b).
+    // --profiles-dir so a profile-by-ID resolves identically in both steps.
     const materializeArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
     for (const opt of BENCHMARK_MATERIALIZE_OPTIONS) {
       if (args[opt] !== undefined) materializeArgs.push(`--${opt}`, String(args[opt]));
@@ -157,6 +182,20 @@ function planInvocation(mode, args) {
         { script: 'run-benchmark.cjs', args: benchArgs },
       ],
     };
+  }
+  if (mode === 'skill-benchmark') {
+    if (!args.skill || !args['outputs-dir']) {
+      return { ok: false, error: 'skill-benchmark: missing required --skill=<skill-root-or-id> and --outputs-dir=<path>' };
+    }
+    // Single orchestrator step: run-skill-benchmark.cjs internally sequences
+    // D5-gate -> router-replay -> (optional live) -> trace-parse -> score ->
+    // report, so the plan stays one step (unlike Lane B's materialize+run pair).
+    // Lane C scripts use space-separated args.
+    const skillArgs = ['--skill', args.skill, '--outputs-dir', args['outputs-dir']];
+    for (const opt of SKILL_BENCHMARK_RUN_OPTIONS) {
+      if (args[opt] !== undefined) skillArgs.push(`--${opt}`, String(args[opt]));
+    }
+    return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
   }
   // agent-improvement (default). score-candidate.cjs uses key=value args.
   if (!args.candidate) {
@@ -200,4 +239,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES };
+module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK };
