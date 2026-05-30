@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-05-30T06:10:46Z"
+    last_updated_at: "2026-05-30T06:28:36Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,12 +21,13 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** 2026-05-30T06:10:46Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-05-30T06:28:36Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
-> recency view). The last-active column shows `YYYY-MM-DD HH:MM` (UTC-offset local) because most
-> folders share one commit day — the time is what orders them. The `born` column is the folder's
-> recorded `created_at` (or first git commit of its `spec.md`), shown at day granularity.
+> recency view), taken from one atomic `git log` snapshot. The last-active column shows
+> `YYYY-MM-DD HH:MM` (committer local offset) because most folders share one commit day — the time
+> is what orders them. The `born` column is the folder's recorded `created_at` (or first git commit
+> of its `spec.md`), shown at day granularity.
 >
 > **Folder numbers are NOT chronology.** Numbers (`000`–`007`, child `NNN-`) encode topical/structural
 > identity assigned across reorg waves. This file is the *only* surface that orders by when work happened.
@@ -86,7 +87,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 Every directory containing `spec.md` under the live tree (excludes `z_archive/` and `.backup-*`
 snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-summary.md` is present
-(a shipped hint).
+(a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
 2026-05-29 22:47  born:2026-05-29  impl  007-mcp-daemon-reliability/013-standalone-save-second-writer-guard

@@ -9,40 +9,109 @@ folder numbers: folder numbers encode topical/structural identity; this file enc
 Chronology source = git commit dates. We do NOT trust graph-metadata `last_save_at`
 because the MCP daemon mass-re-stages those files (they all collapse to one timestamp).
 
+ATOMIC SNAPSHOT (race-immunity): the last-active timestamp for every folder comes from
+a SINGLE `git log` pass, not one subprocess per folder. The repo is committed to by
+background automation; 600+ sequential `git log` calls over ~15s would interleave with
+those commits and produce an internally inconsistent sort (newer rows below older ones).
+One `git log` process reads one ref state, so the resulting order is always consistent.
+
 Regenerate (run from the 026 root):
     python3 scratch/gen-timeline.py > timeline.md
 
 Sort key (primary): git last-commit touching the folder subtree (DESC) = "most recently active".
-Display columns: last-active | born | impl? | path
+Secondary/tertiary: born (created_at) then path, for deterministic tie-breaking.
+Display columns: last-active (YYYY-MM-DD HH:MM) | born (day) | impl? | path
   - born  = graph-metadata derived.created_at when present (folder's recorded creation),
-            else the first git commit of the folder's spec.md. May reflect a reorg stamp.
-  - impl? = "impl" when implementation-summary.md exists in the folder (a shipped hint;
-            the graph-metadata `status` field is uniformly stale and is intentionally NOT used).
+            else the first git commit of the folder's spec.md (--follow, top-level tracks only).
+  - impl? = "impl" when implementation-summary.md exists (a shipped hint; the graph-metadata
+            `status` field is uniformly stale and is intentionally NOT used).
 """
 import json
 import os
 import subprocess
-import sys
 from datetime import datetime, timezone
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
-ROOT26 = os.path.dirname(SCRIPT_DIR)  # scratch/ -> 026 root
+ROOT26 = os.path.dirname(SCRIPT_DIR)  # scratch/ -> 026 root (realpath; resolves the specs/ symlink)
 PACKET = "system-spec-kit/026-graph-and-context-optimization"
+SEP = "\x01"  # commit-line marker unlikely to appear in a path
 
 
 def git(args):
     try:
         out = subprocess.run(
-            ["git"] + args, cwd=ROOT26, capture_output=True, text=True, timeout=30
+            ["git"] + args, cwd=ROOT26, capture_output=True, text=True, timeout=120
         )
         return out.stdout
     except Exception:
         return ""
 
 
-def last_active(relpath):
-    """Most recent commit ISO touching anything under relpath (current path)."""
-    return git(["log", "-1", "--format=%cI", "--", relpath]).strip()
+def repo_prefix():
+    """ROOT26 path relative to the git repo root (e.g. '.opencode/specs/.../026-...')."""
+    top = git(["rev-parse", "--show-toplevel"]).strip()
+    if not top:
+        return ""
+    return os.path.relpath(ROOT26, top).replace(os.sep, "/")
+
+
+def spec_folders():
+    """Set of dir rels (relative to ROOT26) that contain spec.md, plus impl/born inputs."""
+    folders = {}
+    for dirpath, dirnames, filenames in os.walk(ROOT26):
+        # prune dot-dirs (.git, .backup-YYYYMMDD snapshots, etc.)
+        dirnames[:] = [d for d in dirnames if not d.startswith(".")]
+        if "spec.md" not in filenames:
+            continue
+        rel = os.path.relpath(dirpath, ROOT26).replace(os.sep, "/")
+        if rel == ".":
+            continue  # parent root is covered by the §A header, excluded from the flat list
+        folders[rel] = {
+            "rel": rel,
+            "abs": dirpath,
+            "impl": os.path.isfile(os.path.join(dirpath, "implementation-summary.md")),
+            "born": created_at(dirpath),
+            "depth": rel.count("/"),
+        }
+    return folders
+
+
+def build_last_map(folder_rels):
+    """ONE git pass -> {folder_rel: newest-commit ISO touching its subtree}.
+
+    Walks `git log` newest-first; the first commit that touches any path under a
+    spec-folder is that folder's last-active. Subtree semantics: every changed file
+    marks all of its spec-folder ancestors.
+    """
+    prefix = repo_prefix()
+    fset = set(folder_rels)
+    last_map = {}
+    out = git([
+        "-c", "core.quotepath=false",
+        "log", "--format=" + SEP + "%cI", "--name-only", "--",
+        ".",
+    ])
+    cur = None
+    for line in out.splitlines():
+        if line.startswith(SEP):
+            cur = line[1:].strip()
+            continue
+        path = line.strip()
+        if not path or cur is None:
+            continue
+        # normalize to a path relative to ROOT26
+        if prefix and path.startswith(prefix + "/"):
+            path = path[len(prefix) + 1:]
+        d = os.path.dirname(path)
+        # mark every spec-folder ancestor not yet assigned (newest-first => first wins)
+        while d and d != ".":
+            if d in fset and d not in last_map:
+                last_map[d] = cur
+            nd = os.path.dirname(d)
+            if nd == d:
+                break
+            d = nd
+    return last_map
 
 
 def born_follow(rel_specmd):
@@ -64,34 +133,6 @@ def created_at(folder_abs):
     return ""
 
 
-def collect():
-    """Return (live, archived) lists of dicts for every dir containing spec.md."""
-    live, archived = [], []
-    for dirpath, dirnames, filenames in os.walk(ROOT26):
-        # prune noise we never index: dot-dirs (.git, .backup-YYYYMMDD snapshots, etc.)
-        dirnames[:] = [d for d in dirnames if not d.startswith(".")]
-        if "spec.md" not in filenames:
-            continue
-        rel = os.path.relpath(dirpath, ROOT26)
-        if rel == ".":
-            continue  # the parent root itself is covered by §A header, skip from flat list
-        rec = {
-            "rel": rel.replace(os.sep, "/"),
-            "abs": dirpath,
-            "last": last_active(rel),
-            "born": created_at(dirpath),
-            "impl": os.path.isfile(os.path.join(dirpath, "implementation-summary.md")),
-            "depth": rel.count(os.sep),
-        }
-        if not rec["born"]:
-            rec["born"] = born_follow(os.path.join(rel, "spec.md"))
-        if rec["rel"].split("/")[0] == "z_archive":
-            archived.append(rec)
-        else:
-            live.append(rec)
-    return live, archived
-
-
 def fmt_date(iso):
     return (iso or "")[:10] or "??????????"
 
@@ -101,7 +142,7 @@ def fmt_dt(iso):
 
     Day granularity alone cannot order the rows: the vast majority of folders share
     one commit day, so HH:MM is what makes 'which is actually newest' answerable from
-    the file. Falls back to date-only (+ '     ') when no time component is present.
+    the file. Falls back to a padded date when no time component is present.
     """
     iso = iso or ""
     if len(iso) >= 16 and iso[10] in ("T", " "):
@@ -121,7 +162,7 @@ def block(recs):
     return "\n".join(out)
 
 
-def tracks_table():
+def tracks_table(last_map):
     rows = []
     for d in sorted(os.listdir(ROOT26)):
         full = os.path.join(ROOT26, d)
@@ -129,7 +170,7 @@ def tracks_table():
             continue
         if not (len(d) >= 4 and d[:3].isdigit() and d[3] == "-"):
             continue
-        la = last_active(d)
+        la = last_map.get(d, "")
         bn = born_follow(os.path.join(d, "spec.md")) or created_at(full)
         rows.append((la, bn, d))
     rows.sort(reverse=True)
@@ -143,7 +184,13 @@ def tracks_table():
 
 
 def main():
-    live, archived = collect()
+    folders = spec_folders()
+    last_map = build_last_map(folders.keys())
+    live, archived = [], []
+    for rel, rec in folders.items():
+        rec["last"] = last_map.get(rel, "")
+        (archived if rel.split("/")[0] == "z_archive" else live).append(rec)
+
     live_s, arch_s = sort_recs(live), sort_recs(archived)
     gen = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     newest = live_s[0]["rel"] if live_s else "n/a"
@@ -178,9 +225,10 @@ _memory:
 > **Generated:** {gen} — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
-> recency view). The last-active column shows `YYYY-MM-DD HH:MM` (UTC-offset local) because most
-> folders share one commit day — the time is what orders them. The `born` column is the folder's
-> recorded `created_at` (or first git commit of its `spec.md`), shown at day granularity.
+> recency view), taken from one atomic `git log` snapshot. The last-active column shows
+> `YYYY-MM-DD HH:MM` (committer local offset) because most folders share one commit day — the time
+> is what orders them. The `born` column is the folder's recorded `created_at` (or first git commit
+> of its `spec.md`), shown at day granularity.
 >
 > **Folder numbers are NOT chronology.** Numbers (`000`–`007`, child `NNN-`) encode topical/structural
 > identity assigned across reorg waves. This file is the *only* surface that orders by when work happened.
@@ -206,7 +254,7 @@ _memory:
 The eight top-level themed tracks, ordered by most recent git activity. `Born` uses `--follow` so it
 traces through the reorg `git mv` history to each track's true origin.
 
-{tracks_table()}
+{tracks_table(last_map)}
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
 > track), so it sorts first by number but is **not** the oldest by creation — see `Born` above and §B.
@@ -217,7 +265,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 Every directory containing `spec.md` under the live tree (excludes `z_archive/` and `.backup-*`
 snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-summary.md` is present
-(a shipped hint).
+(a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
 {block(live_s)}
