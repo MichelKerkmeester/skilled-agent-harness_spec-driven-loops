@@ -195,3 +195,6 @@ tmp/
 .opencode/skills/deep-loop-runtime/database/*.sqlite-shm
 .opencode/skills/deep-loop-runtime/database/*.sqlite-wal
 .opencode/skills/deep-loop-runtime/database/*.sqlite.bak*
+
+# Per-session AI worktrees (worktree-session.sh) — never tracked
+.worktrees/

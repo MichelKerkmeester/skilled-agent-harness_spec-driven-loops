@@ -47,7 +47,7 @@ _memory:
 |-------|-------|
 | **Level** | 1 |
 | **Priority** | P2 |
-| **Status** | Designed — code deferred to a quiet tree |
+| **Status** | Core built (wrapper + reaper + gitignore + Step-0 gate green); per-runtime wiring pending |
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Handoff Criteria** | Step-0 DB-relocation boot test green; a top-level session launched via the wrapper lands in its own worktree + branch + isolated DBs; an orchestrated child shares its parent's worktree; the reaper prunes merged/empty worktrees + orphaned daemons; verified per-runtime. |
@@ -89,7 +89,7 @@ When a **top-level (human-launched)** AI session starts, it should run in its **
 | .opencode/skills/system-spec-kit/shared/config.ts + mk-spec-memory-launcher.cjs | Verify/Modify | Confirm memory DB + WAL + marker relocate under SPEC_KIT_DB_DIR (Step-0) |
 | cli-codex / cli-opencode / cli-devin dispatch recipes | Modify | Inject AI_SESSION_CHILD=1 into child env |
 | .claude/settings.local.json (+ .codex/.gemini/.devin hooks, .opencode/plugins/) | Modify | Add guard-hook step to existing SessionStart chains |
-| .opencode/scripts/session-cleanup.sh | Modify | Extend reaper: prune worktrees + orphaned daemons |
+| .opencode/bin/worktree-reaper.sh | Create | Reaper: prune merged/clean worktrees + report/kill orphan daemons (session-cleanup.sh from the original design does NOT exist; a focused new script is used instead of wedging into the operator-sensitive orphan-mcp-sweeper.sh) |
 | .gitignore | Modify | Ignore .worktrees/ (currently NOT ignored) |
 
 <!-- /ANCHOR:scope -->
@@ -102,7 +102,7 @@ When a **top-level (human-launched)** AI session starts, it should run in its **
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Step-0 DB-relocation proven | Boot a daemon with SPEC_KIT_DB_DIR + SPECKIT_CODE_GRAPH_DB_DIR set to /tmp dirs; confirm the sqlite file, `-wal`, and `.unclean-shutdown` marker all land there, not in the shared `mcp_server/database/` |
+| REQ-001 | Step-0 DB-relocation proven | DONE: daemon boots against an in-repo SPEC_KIT_DB_DIR; IPC socket relocates; shared DB untouched; clean SIGTERM removes the marker. DB files are lazy-created on first tool call (not boot). Surfaced + fixed the sun_path socket-length blocker via SPECKIT_IPC_SOCKET_DIR (verified end-to-end on a real worktree). |
 | REQ-002 | Top-level isolation | Wrapper-launched session lands in a fresh `.worktrees/<runtime>-*` on a new branch; a commit there does not move main's HEAD |
 | REQ-003 | Child suppression | With AI_SESSION_CHILD=1 (or inside a worktree per git-common-dir), the wrapper exec's in place — no new worktree |
 

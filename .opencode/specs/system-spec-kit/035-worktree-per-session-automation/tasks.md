@@ -49,8 +49,8 @@ _memory:
 
 - [x] T001 Capture the approved design (mechanism, hybrid DBs, 5 runtimes, reaper) as this packet
 - [x] T002 Record Step-0 gate status (getDbDir reads the override + .db-updated derives; WAL/marker relocation still to boot-test)
-- [ ] T003 [B] Step-0 boot test on a quiet tree: confirm sqlite + WAL + .unclean-shutdown relocate under SPEC_KIT_DB_DIR
-- [ ] T004 [B] Add `.worktrees/` to `.gitignore`
+- [x] T003 Step-0 boot test DONE: daemon boots against an in-repo SPEC_KIT_DB_DIR, IPC socket relocates, shared DB untouched, clean SIGTERM removes marker (DB files lazy-created on first tool call, not boot). Surfaced the sun_path socket-length blocker (174-char worktree socket > macOS ~104) and fixed it with SPECKIT_IPC_SOCKET_DIR; verified end-to-end on a real `git worktree add`
+- [x] T004 Added `.worktrees/` to `.gitignore`
 
 <!-- /ANCHOR:phase-1 -->
 ---
@@ -58,10 +58,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T005 [B] worktree-session.sh: root resolve + child guard + allocate + symlink deps + DB env + exec (.opencode/bin/)
-- [ ] T006 [B] Per-runtime entry points (claude/codex/opencode/devin/gemini) + AI_SESSION_CHILD=1 at cli-* dispatch sites
+- [x] T005 worktree-session.sh BUILT + verified: child guard (AI_SESSION_CHILD + structural git-common-dir backstop), allocate worktree + branch, symlink shared deps, per-worktree DB env + SPECKIT_IPC_SOCKET_DIR socket fix, exec. Dry-run tested all three paths; real-worktree daemon boot verified (BOOTED=1, EINVAL=0).
+- [ ] T006 [B] Per-runtime entry points (claude/codex/opencode/devin/gemini) + AI_SESSION_CHILD=1 at cli-* dispatch sites (environment-specific shell wiring — pending operator)
 - [ ] T007 [B] Guard-hook step in each runtime's SessionStart chain (detect-and-warn)
-- [ ] T008 [B] Reaper extension in session-cleanup.sh (prune worktrees + orphaned daemons, session-scoped)
+- [x] T008 worktree-reaper.sh BUILT + verified (NEW focused script, not session-cleanup.sh which does not exist): prune merged/clean worktrees + stale ~/.spk-wt-sock socket dirs, report orphan daemons (--reap-daemons to kill). Dry-run clean.
 
 <!-- /ANCHOR:phase-2 -->
 ---
