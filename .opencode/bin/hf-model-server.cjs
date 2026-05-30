@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const http = require('http');
+const net = require('net');
 const path = require('path');
 const { createRequire } = require('module');
 const { pathToFileURL } = require('url');
@@ -41,6 +42,14 @@ const HEALTH_PATH = '/api/health';
 const EMBED_PATH = '/api/embed';
 const MAX_REQUEST_BYTES = 1024 * 1024;
 const DEFAULT_SELF_WARM_INPUT = 'test warmup query';
+// Loopback hosts we permit binding without an explicit auth token. Any other host
+// exposes the embedding server (which loads + runs arbitrary model inference on
+// caller-supplied text) to the network, so it is refused unless the operator opts
+// in via HF_EMBED_ALLOW_REMOTE_BIND=1 AND supplies HF_EMBED_AUTH_TOKEN.
+const LOOPBACK_BIND_HOSTS = Object.freeze(['127.0.0.1', '::1', 'localhost']);
+// How long the perimeter live-resident probe waits for a UDS connection before
+// concluding the socket is stale. Bounded so a hung peer cannot wedge startup.
+const SOCKET_RESIDENT_PROBE_TIMEOUT_MS = 250;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. PATH AND TRANSPORT HELPERS
@@ -131,7 +140,129 @@ function getListeningEndpoint(server, target) {
   return target;
 }
 
-async function listenOnce(server, target) {
+function isLoopbackHost(host) {
+  if (typeof host !== 'string' || host.trim() === '') {
+    // An empty/missing host defaults to the loopback bind in listenOnce, so it is safe.
+    return true;
+  }
+  return LOOPBACK_BIND_HOSTS.includes(host.trim().toLowerCase());
+}
+
+// DR-002-P1-001: a tcp:// target takes its host verbatim from the operator URL. Binding a
+// non-loopback host would expose model inference to the network. Refuse unless the operator
+// explicitly opts into a remote bind AND provides an auth token. Pure host/env check so it is
+// deterministically testable without opening a socket.
+function assertLoopbackBindAllowed(target, options = {}) {
+  if (typeof target !== 'string' || !target.startsWith('tcp://')) {
+    return;
+  }
+  const url = new URL(target);
+  const host = url.hostname;
+  if (isLoopbackHost(host)) {
+    return;
+  }
+  const env = options.env ?? process.env;
+  const allowRemote = env.HF_EMBED_ALLOW_REMOTE_BIND === '1' || env.HF_EMBED_ALLOW_REMOTE_BIND === 'true';
+  const authToken = typeof env.HF_EMBED_AUTH_TOKEN === 'string' ? env.HF_EMBED_AUTH_TOKEN.trim() : '';
+  if (allowRemote && authToken.length > 0) {
+    return;
+  }
+  const error = new Error(
+    `[hf-model-server] Refusing to bind non-loopback host "${host}" for ${target}. ` +
+    'The embedding server has no transport auth; binding a routable interface would expose ' +
+    'model inference to the network. Use a loopback host (127.0.0.1/::1/localhost), or set ' +
+    'HF_EMBED_ALLOW_REMOTE_BIND=1 together with a non-empty HF_EMBED_AUTH_TOKEN to opt in.',
+  );
+  error.code = 'EPERM_NONLOOPBACK_BIND';
+  throw error;
+}
+
+// DR-001-P2-001 (perimeter guard, part 1): assert the socket directory is owned by the current
+// uid and is not group/world-writable before we are willing to unlink a path inside it. Mirrors
+// the supervised path's assertSocketDirOwnership intent so the direct-startup unlink cannot be
+// tricked into deleting a file in an attacker-controlled directory.
+function assertSocketDirOwnership(target, options = {}) {
+  const fsImpl = options.fs ?? fs;
+  // process.getuid is undefined on platforms without POSIX uids (e.g. Windows); skip there.
+  const getuid = options.getuid ?? (typeof process.getuid === 'function' ? () => process.getuid() : null);
+  if (!getuid) {
+    return;
+  }
+  const dir = path.dirname(target);
+  let stat;
+  try {
+    stat = fsImpl.statSync(dir);
+  } catch (error) {
+    if (error && error.code === 'ENOENT') {
+      // Directory does not exist yet — nothing resident to protect; mkdir happens upstream.
+      return;
+    }
+    throw error;
+  }
+  const currentUid = getuid();
+  if (stat.uid !== currentUid) {
+    const error = new Error(
+      `[hf-model-server] Refusing to reclaim socket "${target}": directory ${dir} is owned by ` +
+      `uid ${stat.uid}, not the current uid ${currentUid}.`,
+    );
+    error.code = 'EPERM_SOCKET_DIR_OWNER';
+    throw error;
+  }
+  // 0o022 == group-write | other-write. A writable-by-others socket dir means another user could
+  // have planted the resident socket, so unlinking it is unsafe.
+  if ((stat.mode & 0o022) !== 0) {
+    const error = new Error(
+      `[hf-model-server] Refusing to reclaim socket "${target}": directory ${dir} is ` +
+      `group/world-writable (mode ${(stat.mode & 0o777).toString(8)}).`,
+    );
+    error.code = 'EPERM_SOCKET_DIR_PERMS';
+    throw error;
+  }
+}
+
+// DR-001-P2-001 (perimeter guard, part 2): probe whether a live process is still listening on the
+// UDS before unlinking it. If a peer accepts the connection the socket is live-resident and we MUST
+// NOT unlink it (that would orphan a healthy server and let two servers race the same path); we
+// re-surface EADDRINUSE instead. ECONNREFUSED/ENOENT means the socket is stale and safe to reclaim.
+// Injectable connector keeps this deterministic in tests (no real socket required).
+async function probeSocketResident(target, options = {}) {
+  const timeoutMs = Number.isFinite(options.probeTimeoutMs)
+    ? options.probeTimeoutMs
+    : SOCKET_RESIDENT_PROBE_TIMEOUT_MS;
+  const connect = options.connect
+    ?? ((connectOptions, onConnect) => net.connect(connectOptions, onConnect));
+  return await new Promise((resolve) => {
+    let settled = false;
+    let socket;
+    const finish = (isResident) => {
+      if (settled) {
+        return;
+      }
+      settled = true;
+      try {
+        socket?.destroy();
+      } catch {
+        // best-effort teardown
+      }
+      resolve(isResident);
+    };
+    try {
+      socket = connect({ path: target }, () => finish(true));
+    } catch {
+      // Synchronous connect failure (e.g. ENOENT) => stale.
+      finish(false);
+      return;
+    }
+    if (socket && typeof socket.once === 'function') {
+      socket.once('error', () => finish(false));
+      if (typeof socket.setTimeout === 'function') {
+        socket.setTimeout(timeoutMs, () => finish(false));
+      }
+    }
+  });
+}
+
+async function listenOnce(server, target, options = {}) {
   await new Promise((resolve, reject) => {
     const onError = (error) => {
       server.off('listening', onListening);
@@ -144,7 +275,16 @@ async function listenOnce(server, target) {
     server.once('error', onError);
     server.once('listening', onListening);
     if (target.startsWith('tcp://')) {
-      const url = new URL(target);
+      let url;
+      try {
+        assertLoopbackBindAllowed(target, options);
+        url = new URL(target);
+      } catch (error) {
+        server.off('listening', onListening);
+        server.off('error', onError);
+        reject(error);
+        return;
+      }
       server.listen(Number.parseInt(url.port, 10), url.hostname || '127.0.0.1');
       return;
     }
@@ -152,29 +292,45 @@ async function listenOnce(server, target) {
   });
 }
 
-async function listenHttpServer(server, target) {
+async function listenHttpServer(server, target, options = {}) {
+  // Filesystem side-effects go through an injectable fs so the EADDRINUSE/perimeter path is
+  // fully testable without touching disk; production leaves options.fs undefined => real fs.
+  const fsImpl = options.fs ?? fs;
   if (!target.startsWith('tcp://')) {
-    fs.mkdirSync(path.dirname(target), { recursive: true, mode: 0o700 });
+    fsImpl.mkdirSync(path.dirname(target), { recursive: true, mode: 0o700 });
   }
 
   try {
-    await listenOnce(server, target);
+    await listenOnce(server, target, options);
   } catch (error) {
     if (error.code !== 'EADDRINUSE' || target.startsWith('tcp://')) {
       throw error;
     }
+    // DR-001-P2-001: apply the same perimeter guard the supervised path uses before unlinking a
+    // resident UDS on the direct-startup path. (1) the dir must be ours and not other-writable;
+    // (2) if a live process still answers on the socket, refuse to unlink and re-surface the
+    // address-in-use error rather than orphaning a healthy server.
+    assertSocketDirOwnership(target, options);
+    const resident = await probeSocketResident(target, options);
+    if (resident) {
+      const liveError = new Error(
+        `[hf-model-server] Socket ${target} is in use by a live resident process; refusing to unlink it.`,
+      );
+      liveError.code = 'EADDRINUSE';
+      throw liveError;
+    }
     try {
-      fs.unlinkSync(target);
+      fsImpl.unlinkSync(target);
     } catch (unlinkError) {
       if (unlinkError.code !== 'ENOENT') {
         throw unlinkError;
       }
     }
-    await listenOnce(server, target);
+    await listenOnce(server, target, options);
   }
 
   if (!target.startsWith('tcp://')) {
-    fs.chmodSync(target, 0o600);
+    fsImpl.chmodSync(target, 0o600);
   }
 
   return getListeningEndpoint(server, target);
@@ -415,6 +571,16 @@ function createHfModelServer(options = {}) {
   };
   const loadModel = options.loadModel || loadHfModel;
   const listenServer = options.listen || listenHttpServer;
+  // Perimeter/loopback guard injection points (DR-001-P2-001, DR-002-P1-001). Tests inject
+  // connect/fs/getuid/env/probeTimeoutMs to exercise the guard deterministically without real
+  // sockets or filesystem ownership. Production leaves these undefined => real net/fs/process/env.
+  const listenGuardOptions = {
+    env: options.env,
+    fs: options.fs,
+    getuid: options.getuid,
+    connect: options.connect,
+    probeTimeoutMs: options.probeTimeoutMs,
+  };
   const selfWarmInput = options.selfWarmInput || DEFAULT_SELF_WARM_INPUT;
   const shouldSelfWarm = options.selfWarm !== false;
   const logger = options.logger || console;
@@ -771,7 +937,7 @@ function createHfModelServer(options = {}) {
 
   async function listen(target = resolveListenTarget(options)) {
     state.listenTarget = target;
-    const endpoint = await listenServer(server, target);
+    const endpoint = await listenServer(server, target, listenGuardOptions);
     state.listenedEndpoint = endpoint;
     void getModel().catch((error) => {
       logger.error?.(`[hf-model-server] Model load failed: ${getErrorMessage(error)}`);
@@ -908,15 +1074,22 @@ module.exports = {
   ALLOWED_HF_LOCAL_DTYPES,
   DEFAULT_MODEL,
   INFERENCE_DRAIN_TIMEOUT_MS,
+  LOOPBACK_BIND_HOSTS,
   MODEL_LOAD_TIMEOUT,
   SOCKET_FILE_NAME,
+  SOCKET_RESIDENT_PROBE_TIMEOUT_MS,
+  assertLoopbackBindAllowed,
   assertSingleSessionBeforeDispose,
+  assertSocketDirOwnership,
   createHfModelServer,
   defaultDbDir,
   getOptimalDevice,
   getSessionCount,
   importTransformers,
+  isLoopbackHost,
+  listenHttpServer,
   loadHfModel,
+  probeSocketResident,
   resolveDtype,
   resolveListenTarget,
   toConnectionOptions,

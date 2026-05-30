@@ -1355,11 +1355,19 @@ export function close_db(): void {
       db.pragma('wal_checkpoint(TRUNCATE)');
       main_checkpoint_succeeded = true;
     } catch (_: unknown) { /* best-effort */ }
+    // DR-011: The clean-shutdown marker semantic is "present == dirty" (it is written
+    // on every open in initialize_db and removed only on a clean close). It must be
+    // deleted ONLY after a confirmed-successful close. detachActiveVectorShard() and
+    // db.close() can both throw; if the marker were removed before they ran (the prior
+    // ordering) and one of them threw, the marker would be gone while the DB did NOT
+    // close cleanly — so the next open would wrongly trust a dirty DB. Detach + close
+    // first (if either throws we never reach the removal, so the marker survives), then
+    // remove the marker inside the checkpoint-success guard.
+    detachActiveVectorShard(db);
+    db.close();
     if (main_checkpoint_succeeded) {
       remove_unclean_shutdown_marker(closing_db_path);
     }
-    detachActiveVectorShard(db);
-    db.close();
     db = null;
   }
 }

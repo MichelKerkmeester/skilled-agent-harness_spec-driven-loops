@@ -3,6 +3,7 @@
 // ───────────────────────────────────────────────────────────────
 
 import { randomUUID } from 'node:crypto';
+import * as fs from 'node:fs';
 import * as path from 'node:path';
 
 import Database from 'better-sqlite3';
@@ -123,6 +124,14 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
+function readJobStatus(db: Database.Database, jobId: string): ReindexJobStatus | null {
+  ensureJobTable(db);
+  const row = db.prepare('SELECT status FROM embedder_jobs WHERE id = ?').get(jobId) as
+    | { status?: ReindexJobStatus }
+    | undefined;
+  return row?.status ?? null;
+}
+
 function getBatchSize(): number {
   return parseBoundedEnv('EMBEDDER_REINDEX_BATCH_SIZE', DEFAULT_BATCH_SIZE, MIN_BATCH_SIZE, MAX_BATCH_SIZE);
 }
@@ -188,6 +197,23 @@ function setJobStatus(
   }
 
   if (typeof processed === 'number') {
+    // DR-001-P1-002: a per-batch progress write must NOT clobber a terminal status set
+    // by a concurrent cancelJob(). The only caller that passes processed without an error
+    // is the in-loop 'running' progress update, which must only apply while the job is
+    // still 'running' (or being re-affirmed as 'running'); never resurrect a 'cancelled'
+    // (or 'completed'/'failed') row back to 'running'. Terminal transitions (completed /
+    // failed) always carry the other branches and stay unconditional.
+    if (status === 'running') {
+      db.prepare(`
+        UPDATE embedder_jobs
+        SET status = @status,
+            updated_at = @updatedAt,
+            processed = @processed
+        WHERE id = @jobId
+          AND status = 'running'
+      `).run(params);
+      return;
+    }
     db.prepare(`
       UPDATE embedder_jobs
       SET status = @status,
@@ -342,10 +368,15 @@ function writeVectorsToShard(
   tableName: string,
   rows: MemoryRow[],
   embeddings: Float32Array[],
+  shardPath?: string,
 ): void {
   const databaseDir = requireDatabaseDir(db, 'vector shard write');
 
-  const shard = new Database(profile.getVectorShardPath(databaseDir));
+  // DR-020: writes target a caller-supplied STAGING shard path (default: the live
+  // active shard for backward compatibility). runJob writes every batch to the staging
+  // path and atomically renames staging -> active on success, so a mid-loop failure can
+  // never leave the live (active) shard half-written.
+  const shard = new Database(shardPath ?? profile.getVectorShardPath(databaseDir));
   try {
     shard.pragma('journal_mode = WAL');
 
@@ -420,10 +451,39 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   const batchSize = getBatchSize();
   let processed = initialJob.processed;
 
+  // DR-020: stage every shard write into a per-job staging file, then atomically
+  // rename it over the live active shard ONLY after the completion transaction commits.
+  // A mid-loop throw (or cancel) leaves the live (active) shard untouched; the partial
+  // staging artifact is unlinked in the catch/cancel paths. databaseDir is guaranteed
+  // file-backed here (startReindexInternal already called requireDatabaseDir).
+  const databaseDir = requireDatabaseDir(db, 'reindex staging');
+  const activeShardPath = targetProfile.getVectorShardPath(databaseDir);
+  const stagingShardPath = `${activeShardPath}.reindex-${jobId}.staging`;
+
+  const cleanupStaging = (): void => {
+    for (const suffix of ['', '-wal', '-shm']) {
+      try {
+        fs.unlinkSync(`${stagingShardPath}${suffix}`);
+      } catch (_err: unknown) {
+        /* best-effort: staging may not exist */
+      }
+    }
+  };
+
   try {
     setJobStatus(db, jobId, 'running');
+    // Start each run from a clean staging slate (a prior crashed run may have left one).
+    cleanupStaging();
 
     while (processed < initialJob.total) {
+      // DR-001-P1-002: re-read the live cancel/status before each batch so cancelJob()
+      // during a run stops the worker before the next write. Abort cleanly: drop the
+      // staging artifact and leave the live shard + active pointer untouched.
+      if (readJobStatus(db, jobId) === 'cancelled') {
+        cleanupStaging();
+        return;
+      }
+
       const rows = selectMemoryBatch(db, processed, batchSize);
       if (rows.length === 0) {
         break;
@@ -435,12 +495,38 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       }
 
       writeVectors(db, tableName, rows, embeddings);
-      writeVectorsToShard(db, targetProfile, tableName, rows, embeddings);
+      writeVectorsToShard(db, targetProfile, tableName, rows, embeddings, stagingShardPath);
       processed += rows.length;
+      // Clobber-safe: only advances while status is still 'running' (never resurrects
+      // a concurrently-set 'cancelled').
       setJobStatus(db, jobId, 'running', processed);
       await new Promise<void>((resolve) => {
         setImmediate(resolve);
       });
+    }
+
+    // DR-001-P1-002: final cancel checkpoint before the irreversible swap/commit.
+    if (readJobStatus(db, jobId) === 'cancelled') {
+      cleanupStaging();
+      return;
+    }
+
+    // DR-020: atomically swap the staged shard over the live active shard BEFORE the
+    // completion transaction flips the active-embedder pointer. rename(2) is atomic on
+    // the same filesystem; the staging file always lives beside the active shard, so the
+    // active shard either is the old file (failure) or the fully-staged new file (success),
+    // never a half-written mix. If no batch produced a staging file (e.g. zero rows), skip.
+    if (fs.existsSync(stagingShardPath)) {
+      // Drop any stale sidecars next to the active shard so the renamed WAL/SHM (already
+      // TRUNCATE-checkpointed at staging close) is the authoritative pair.
+      for (const suffix of ['-wal', '-shm']) {
+        try {
+          fs.unlinkSync(`${activeShardPath}${suffix}`);
+        } catch (_err: unknown) {
+          /* best-effort */
+        }
+      }
+      fs.renameSync(stagingShardPath, activeShardPath);
     }
 
     const complete = db.transaction(() => {
@@ -482,6 +568,10 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       attachActiveVectorShard(db, targetProfile);
     }
   } catch (error: unknown) {
+    // DR-020: a failed run must not leave a half-written shard anywhere. The live active
+    // shard was never mutated (all writes went to staging); discard the partial staging
+    // artifact so the next attempt starts clean and the active shard stays the last-good one.
+    cleanupStaging();
     const message = error instanceof Error ? error.message : String(error);
     setJobStatus(db, jobId, 'failed', processed, message);
     logger.error('embedder reindex job failed', {

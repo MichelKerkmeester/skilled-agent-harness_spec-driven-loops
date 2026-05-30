@@ -22,6 +22,10 @@ export interface SpecMemoryDaemonStatus {
 interface LauncherLease {
   readonly pid?: unknown;
   readonly ownerPid?: unknown;
+  // DR-016: the launcher records the spawned daemon (the real SQLite writer) as `childPid`.
+  // A stale-LOOKING lease (dead launcher pid) whose childPid is still LIVE must NOT be treated
+  // as reclaimable — the writer is still up. Mirrors the launcher's own liveness rule.
+  readonly childPid?: unknown;
 }
 
 // ───────────────────────────────────────────────────────────────────
@@ -48,12 +52,22 @@ function positiveInteger(value: unknown): number | null {
   return Number.isInteger(value) && Number(value) > 0 ? Number(value) : null;
 }
 
-function readLeasePid(leasePath: string): number | null {
+interface LeasePids {
+  /** Primary launcher pid (or legacy ownerPid alias) — reported as status.pid on the common path. */
+  readonly primaryPid: number | null;
+  /** Spawned daemon pid (the real SQLite writer), when recorded by the launcher. */
+  readonly childPid: number | null;
+}
+
+function readLeasePids(leasePath: string): LeasePids {
   try {
     const parsed = JSON.parse(fs.readFileSync(leasePath, 'utf8')) as LauncherLease;
-    return positiveInteger(parsed.pid) ?? positiveInteger(parsed.ownerPid);
+    return {
+      primaryPid: positiveInteger(parsed.pid) ?? positiveInteger(parsed.ownerPid),
+      childPid: positiveInteger(parsed.childPid),
+    };
   } catch {
-    return null;
+    return { primaryPid: null, childPid: null };
   }
 }
 
@@ -104,11 +118,19 @@ export function resolveSpecMemoryDaemonLeasePath(): string {
 export function isSpecMemoryDaemonAlive(
   leasePath: string = resolveSpecMemoryDaemonLeasePath(),
 ): SpecMemoryDaemonStatus {
-  const pid = readLeasePid(leasePath);
-  if (pid === null) {
-    return { alive: false };
-  }
+  const { primaryPid, childPid } = readLeasePids(leasePath);
 
-  return isProcessAlive(pid) ? { alive: true, pid } : { alive: false };
+  // DR-016: the lease is reclaimable only when NEITHER the launcher pid NOR its recorded
+  // childPid (the real writer) is live. Probe the primary first so status.pid stays the
+  // launcher pid on the common path; if the launcher pid is dead/absent but the recorded
+  // childPid is still LIVE, the daemon is up — report alive (pinned to childPid) so the
+  // standalone-save Step-11.5 path does NOT open a second writer on context-index.sqlite.
+  if (primaryPid !== null && isProcessAlive(primaryPid)) {
+    return { alive: true, pid: primaryPid };
+  }
+  if (childPid !== null && isProcessAlive(childPid)) {
+    return { alive: true, pid: childPid };
+  }
+  return { alive: false };
 }
 
