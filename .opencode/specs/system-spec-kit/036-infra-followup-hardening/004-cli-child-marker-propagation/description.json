@@ -1,0 +1,26 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/004-cli-child-marker-propagation",
+  "description": "Feature Specification: Propagate AI_SESSION_CHILD dispatch rule to remaining cli-* skills",
+  "keywords": [
+    "feature",
+    "specification",
+    "propagate",
+    "dispatch",
+    "rule",
+    "remaining",
+    "cli",
+    "skills"
+  ],
+  "lastUpdated": "2026-05-30T21:45:30.196Z",
+  "specId": "004",
+  "folderSlug": "cli-child-marker-propagation",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "036-infra-followup-hardening"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
