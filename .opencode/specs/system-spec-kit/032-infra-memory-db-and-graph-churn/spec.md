@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/032-infra-memory-db-and-graph-churn"
     last_updated_at: "2026-05-30T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Applied + verified the graph-metadata fixes (idempotent write, field + status preservation); memory-DB repair still operator-gated"
-    next_safe_action: "Run /doctor memory for the DB repair; optionally scope the refresh walker (T005)"
+    recent_action: "Applied + verified graph-metadata fixes"
+    next_safe_action: "Run /doctor memory for the DB repair"
     blockers:
       - "Memory-DB repair is operator-gated (1 GB live DB; /doctor memory or FTS runbook)"
     key_files:
