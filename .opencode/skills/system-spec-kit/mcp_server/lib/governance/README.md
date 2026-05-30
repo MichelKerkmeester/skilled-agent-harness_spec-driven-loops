@@ -20,6 +20,7 @@ Current responsibilities:
 - Normalize provenance and retention fields before memory rows are persisted.
 - Persist governance audit records for allow, deny, delete, and conflict decisions.
 - Sweep `memory_index.delete_after` rows when governed retention expires.
+- Re-validate each candidate inside the delete transaction so a concurrent writer that raises or clears `delete_after` between selection and deletion cannot have its row swept.
 
 ---
 
@@ -65,7 +66,7 @@ lib/governance/
 | File | Responsibility |
 |---|---|
 | `scope-governance.ts` | Defines scope types, validates governed ingest, applies query filters, and records governance audit entries. |
-| `memory-retention-sweep.ts` | Selects expired `memory_index` rows, supports dry runs, deletes expired rows, and records retention metadata. |
+| `memory-retention-sweep.ts` | Selects expired `memory_index` rows, supports dry runs, re-validates expiry inside the delete transaction, deletes still-expired rows, records history and audit entries, appends a retention ledger entry, and runs post-delete FTS and WAL maintenance. |
 | `README.md` | Describes governance ownership and safe edit boundaries. |
 
 ---
@@ -76,7 +77,7 @@ lib/governance/
 |---|---|
 | Scope | Tenant, user, agent, and session scope must be normalized before governed operations use it. |
 | Provenance | Governed ingest requires explicit source and actor metadata when scoped ingest validation applies. |
-| Retention | `delete_after` controls lifecycle deletion for governed memory rows. |
+| Retention | `delete_after` controls lifecycle deletion for governed memory rows. Selection and deletion run in separate steps, so deletion re-checks expiry inside the transaction before removing a row. |
 | Audit | Governance decisions write audit entries through the governance table helpers. |
 
 Main flow:
@@ -115,8 +116,9 @@ Main flow:
 |---|---|---|
 | `validateGovernedIngest()` | Function | Normalizes and validates governed-ingest fields before persistence. |
 | `recordGovernanceAudit()` | Function | Persists governance audit rows. |
-| `runMemoryRetentionSweep()` | Function | Runs dry-run or destructive expiration sweeps over `memory_index`. |
+| `runMemoryRetentionSweep()` | Function | Runs dry-run or destructive expiration sweeps over `memory_index`, skipping any candidate that is no longer expired at delete time. |
 | `MemoryRetentionSweepResult` | Type | Returned sweep summary, candidates, deleted IDs, and ledger state. |
+| `__retentionSweepTestables` | Object | Test-only export exposing the in-transaction `isStillExpired` re-validation guard. |
 
 ---
 

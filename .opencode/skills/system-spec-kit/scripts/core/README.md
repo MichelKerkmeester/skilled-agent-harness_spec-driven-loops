@@ -5,23 +5,25 @@ trigger_phrases:
   - "core workflow"
   - "memory workflow"
   - "subfolder resolution"
+  - "daemon detect"
 ---
 
 # Core Scripts: Context Workflow Modules
 
-> TypeScript modules for context-save orchestration, scoring, file output and indexing hooks.
+> TypeScript modules for context-save orchestration, scoring, file output, indexing hooks and daemon detection.
 
 ---
 
 ## 1. OVERVIEW
 
-`scripts/core/` contains the TypeScript workflow modules used by `scripts/dist/memory/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing, indexing hooks and spec-folder path handling.
+`scripts/core/` contains the TypeScript workflow modules used by `scripts/dist/memory/generate-context.js`. The folder owns context-save orchestration, quality scoring, metadata extraction, file writing, indexing hooks, spec-folder path handling and live daemon detection.
 
 Current state:
 
 - Source of truth is `scripts/core/*.ts`.
 - Compiled runtime output is `scripts/dist/core/*.js`.
 - `workflow.ts` composes the save flow and imports focused helpers from this folder.
+- `daemon-detect.ts` decides whether the standalone indexer may open a writer or must defer to the running MCP daemon.
 
 ---
 
@@ -37,17 +39,19 @@ Current state:
 │ dist/memory caller   │      │ save orchestration   │
 └──────────────────────┘      └──────────┬───────────┘
                                           │
-                                          ▼
-┌──────────────────────┐      ┌──────────────────────┐
-│ path + config        │ ◀─── │ workflow helpers     │
-│ config/subfolders    │      │ accessors/path utils │
-└──────────┬───────────┘      └──────────┬───────────┘
-           │                             │
-           ▼                             ▼
-┌──────────────────────┐      ┌──────────────────────┐
-│ metadata + scoring   │ ───▶ │ writers + indexers   │
-│ memory/title/topic   │      │ file/memory hooks    │
-└──────────────────────┘      └──────────────────────┘
+                       ┌──────────────────┼──────────────────┐
+                       ▼                  ▼                  ▼
+              ┌────────────────┐ ┌────────────────┐ ┌────────────────┐
+              │ path + config  │ │ metadata +     │ │ daemon-detect  │
+              │ config/        │ │ scoring        │ │ writer-safety  │
+              │ subfolders     │ │ memory/title/  │ │ gate           │
+              └───────┬────────┘ │ topic/quality  │ └────────────────┘
+                      │          └───────┬────────┘
+                      ▼                  ▼
+              ┌────────────────┐ ┌────────────────┐
+              │ writers +      │ │ post-save      │
+              │ frontmatter    │ │ review/drift   │
+              └────────────────┘ └────────────────┘
 
 Dependency direction:
 workflow.ts -> focused core helpers -> scripts/lib utilities
@@ -64,7 +68,8 @@ scripts/core/
 +-- workflow.ts               # Main context-save orchestration
 +-- workflow-accessors.ts     # Typed accessors for workflow objects
 +-- workflow-path-utils.ts    # Path normalization and key-file discovery
-+-- config.ts                 # Runtime config and constants
++-- config.ts                 # Runtime config, constants and specs-dir resolution
++-- daemon-detect.ts          # MCP-daemon liveness gate (lease + process probe)
 +-- subfolder-utils.ts        # Spec folder and child-folder resolution
 +-- save-context-path.ts      # Save path resolution helpers
 +-- memory-*.ts               # Metadata and indexing support
@@ -95,9 +100,10 @@ runtime callers -> private helper assumptions not exported by index.ts
 
 ```text
 scripts/core/
-+-- alignment-validator.ts       # Spec-folder alignment and tree-thinning checks
-+-- config.ts                    # Shared config loading and path wiring
-+-- content-cleaner.ts           # HTML stripping and anchor escaping
++-- alignment-validator.ts       # Spec-folder alignment and thinning targets
++-- config.ts                    # Config loading, path wiring, specs-dir discovery
++-- content-cleaner.ts           # HTML stripping and literal-anchor escaping
++-- daemon-detect.ts             # MCP-daemon liveness check before standalone indexing
 +-- find-predecessor-memory.ts   # Prior memory lookup support
 +-- frontmatter-editor.ts        # Frontmatter injection and trigger rendering
 +-- index.ts                     # Barrel exports
@@ -123,13 +129,14 @@ scripts/core/
 
 | File | Responsibility |
 |---|---|
-| `workflow.ts` | Runs the context-save flow from parsed input through generated continuity artifacts. |
-| `config.ts` | Centralizes script paths, repository roots and runtime constants. |
+| `workflow.ts` | Runs the context-save flow from parsed input through generated continuity artifacts; serializes runs with an in-process queue plus filesystem lock and gates Step 11.5 auto-indexing on daemon liveness. |
+| `config.ts` | Loads `config.jsonc`, validates and normalizes workflow limits, freezes the `CONFIG` object, and resolves the active specs directories. |
+| `daemon-detect.ts` | Reports whether the `mk-spec-memory` daemon is alive by combining the launcher lease with live process probing, so a standalone save never opens a second SQLite writer. |
 | `subfolder-utils.ts` | Resolves spec folders, child folders and subfolder-aware save targets. |
 | `save-context-path.ts` | Computes canonical save paths for generated context output. |
 | `memory-metadata.ts` | Builds metadata used by memory records, deduplication, causal links and evidence snapshots. |
 | `memory-indexer.ts` | Prepares indexing calls and memory metadata for saved artifacts. |
-| `frontmatter-editor.ts` | Injects metadata and renders trigger phrase frontmatter. |
+| `frontmatter-editor.ts` | Injects quality and spec-doc-health metadata and renders trigger-phrase frontmatter. |
 | `post-save-review.ts` | Compares saved frontmatter with JSON payloads and reports drift findings. |
 | `quality-gates.ts` | Decides whether save and indexing quality gates pass or abort. |
 | `index.ts` | Exposes the modules that callers can import from `core`. |
@@ -140,42 +147,38 @@ scripts/core/
 
 | Boundary | Rule |
 |---|---|
-| Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. |
+| Imports | Source modules import local TypeScript helpers and script libraries, not compiled `dist/` output. `daemon-detect.ts` is stdlib-only (`node:fs`, `node:path`, `node:url`). |
 | Exports | `index.ts` is the public barrel for this folder. Keep one-off helpers private unless another script imports them. |
-| Ownership | This folder owns context-save orchestration helpers. MCP server tools, database code and spec templates belong outside `scripts/core/`. |
+| Ownership | This folder owns context-save orchestration helpers and the writer-safety daemon gate. MCP server tools, database code and spec templates belong outside `scripts/core/`. |
 
-Main flow:
+Daemon-liveness gate:
 
 ```text
 ╭──────────────────────────────────────────╮
-│ dist/memory/generate-context.js          │
+│ standalone save reaches Step 11.5        │
 ╰──────────────────────────────────────────╯
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ workflow.ts                              │
+│ readLeasePids(): primaryPid + childPid   │
+│ from .mk-spec-memory-launcher.json       │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ config + path + subfolder resolution     │
-└──────────────────────────────────────────┘
-                  │
-                  ▼
-┌──────────────────────────────────────────┐
-│ metadata extraction and quality scoring  │
-└──────────────────────────────────────────┘
-                  │
-                  ▼
-┌──────────────────────────────────────────┐
-│ generated files and indexing hooks       │
+│ primaryPid alive?  ──── yes ──▶ ALIVE     │
+│ else childPid alive? ── yes ──▶ ALIVE     │
+│ else ───────────────────────▶ NOT ALIVE   │
 └──────────────────────────────────────────┘
                   │
                   ▼
 ╭──────────────────────────────────────────╮
-│ continuity files, descriptions and graph │
+│ ALIVE -> skip standalone index (use MCP) │
+│ NOT ALIVE -> safe to index in-process    │
 ╰──────────────────────────────────────────╯
 ```
+
+The childPid branch is load-bearing: a launcher pid that looks dead does not make the lease reclaimable while the recorded child (the real SQLite writer) is still live. Reclaiming there would spawn a second writer on `context-index.sqlite`.
 
 ---
 
@@ -183,9 +186,12 @@ Main flow:
 
 | Entrypoint | Type | Purpose |
 |---|---|---|
-| `workflow.ts` | Module | Main source file for the save workflow. |
+| `runWorkflow` | Function (`workflow.ts`) | Main context-save orchestration entry, serialized under the run lock. |
+| `isSpecMemoryDaemonAlive` | Function (`daemon-detect.ts`) | Returns `{ alive, pid }`; the writer-safety gate for standalone indexing. |
+| `isProcessAlive` | Function (`daemon-detect.ts`) | Liveness probe via `process.kill(pid, 0)`, reused by the workflow lock cleanup. |
+| `resolveSpecMemoryDaemonLeasePath` | Function (`daemon-detect.ts`) | Resolves the launcher lease path under `mcp_server/database/`. |
+| `CONFIG` / `findActiveSpecsDir` | Export (`config.ts`) | Frozen runtime config and active specs-directory resolution. |
 | `index.ts` | Module | Public barrel for importing core helpers. |
-| `scripts/dist/core` | Compiled output | Runtime location consumed after `npm run build`. |
 | `scripts/dist/memory/generate-context.js` | CLI script | Primary caller for core workflow behavior. |
 
 ---
@@ -200,16 +206,21 @@ npm --prefix .opencode/skills/system-spec-kit/scripts run build
 
 Expected result: TypeScript compiles and updates `scripts/dist/`.
 
+The sibling Vitest suite lives in `../tests/`. Targeted runs for this folder, from `scripts/`:
+
 ```bash
-node -e "const core=require('./.opencode/skills/system-spec-kit/scripts/dist/core'); console.log(Object.keys(core))"
+npm test
+npx vitest run tests/daemon-detect.vitest.ts
+npx vitest run tests/workflow-step115-daemon-guard.vitest.ts
+npx vitest run tests/workflow-canonical-save-metadata.vitest.ts
 ```
 
-Expected result: Node prints the exported core module names.
+Expected result: Vitest reports the daemon-detection, Step-11.5 guard and canonical-save suites passing.
 
 ---
 
 ## 9. RELATED
 
 - [`../README.md`](../README.md)
-- [`../memory/README.md`](../memory/README.md)
+- [`../tests/README.md`](../tests/README.md)
 - [`../../README.md`](../../README.md)

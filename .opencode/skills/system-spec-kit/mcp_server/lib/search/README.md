@@ -160,6 +160,7 @@ lib/search/
 | `vector-index-schema.ts` | Creates and migrates vector index tables. |
 | `vector-index-queries.ts` | Reads vector index data and similarity matches. |
 | `vector-index-mutations.ts` | Writes, updates, and deletes vector index records. |
+| `vector-index-store.ts` | Owns vector index lifecycle and storage helpers. The unclean-shutdown marker (`.unclean-shutdown`) uses present-means-dirty semantics: the close path runs an explicit WAL checkpoint and `db.close()` first, then removes the marker only inside the checkpoint-success guard, so a checkpoint or close that throws leaves the marker in place. |
 | `bm25-index.ts` | Provides keyword ranking without external runtime dependencies. |
 | `sqlite-fts.ts` | Runs SQLite FTS5 lexical queries when available. |
 | `graph-search-fn.ts` | Produces graph and degree-channel candidates. |
@@ -181,7 +182,7 @@ lib/search/
 |---|---|
 | Public callers | MCP handlers should enter through `hybrid-search.ts`, vector index facades, or named helper exports. |
 | Pipeline stages | Stage modules should keep their single responsibility and pass typed rows forward. |
-| Vector storage | Schema, query, mutation, and store files keep storage rules separate from ranking. |
+| Vector storage | Schema, query, mutation, and store files keep storage rules separate from ranking. The store close path treats the unclean-shutdown marker as a durability signal: WAL checkpoint and close run before the marker is removed, and removal happens only on the success path so a failed checkpoint or close keeps the dirty marker. |
 | Lexical retrieval | BM25 and FTS helpers return candidates, not transport-level responses. |
 | Graph signals | Graph helpers score memory relationships and should not call MCP handlers. |
 | Session context | Session helpers may affect ranking inputs, but they should not own persistence policy outside search state. |
