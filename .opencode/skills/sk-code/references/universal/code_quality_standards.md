@@ -108,6 +108,12 @@ When you reach Phase 1.5 Code Quality Gate:
    bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
    ```
    Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
+
+   The same check is enforced automatically at three gates — manual invocation here is early feedback, not the only safety net:
+   - **Write-time** (Claude Code only): `claude-posttooluse.sh` fires on every Write/Edit tool call and warns inline before the next AI turn
+   - **Commit-time**: `.opencode/hooks/pre-commit` blocks any commit with violations; bypass with `SPECKIT_SKIP_COMMENT_HYGIENE=1 git commit`
+   - **CI**: `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; cannot be bypassed with `--no-verify`
+
 3. Load the matching surface checklist (see §6).
 4. Validate every P0 item — fix any failures before proceeding.
 5. Validate every P1 item — fix or document approved deferral.
