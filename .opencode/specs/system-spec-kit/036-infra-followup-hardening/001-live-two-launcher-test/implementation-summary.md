@@ -52,7 +52,9 @@ _memory:
 The F2 clean-close barrier — the launcher logic that decides whether a possibly-dirty database is handed to a replacement daemon — now has real end-to-end coverage. Until now only its pure helpers were unit-tested; the reap orchestration itself was untested because the one real-process launcher suite is entirely skipped as a "known launcher process lifecycle flake."
 
 ### Direct reap-function coverage (not launcher spawning)
-The new `launcher-clean-close-reap.vitest.ts` imports the real `reapLeaseChildBeforeRespawn` and drives it with throwaway `node -e` children whose SIGTERM behavior selects each branch, plus a real `.unclean-shutdown` marker file whose location is pinned via `MEMORY_DB_PATH`. This deliberately avoids spawning real launcher processes — the exact thing that got the legacy suite skipped — while still exercising the genuine F2 code path: SIGTERM, the SIGKILL escalation after the grace window, and the marker-based clean-close determination. Five cases cover: marker-path resolution, already-dead child, graceful-clean (cleanClose true), graceful-dirty (marker survives → false), and ignore-SIGTERM (SIGKILL → killed → false).
+The new `launcher-clean-close-reap.vitest.ts` imports the real `reapLeaseChildBeforeRespawn` and drives it with throwaway `node -e` children, plus a real `.unclean-shutdown` marker file whose location is pinned via `MEMORY_DB_PATH`. This deliberately avoids spawning real launcher processes — the exact thing that got the legacy suite skipped — while exercising the genuine F2 code path: SIGTERM the live incumbent, then determine clean-vs-unclean from the marker present at reap time. Four deterministic cases: marker-path resolution, already-dead child (cleanClose from marker), graceful exit + no marker (cleanClose true), graceful exit + marker survives (cleanClose false). The marker is owned by the test, so the determination never depends on child-side filesystem timing.
+
+The `killed=true` / SIGKILL-escalation branch is intentionally NOT exercised here: reliably forcing a child to ignore SIGTERM is environment-fragile (the first attempt at it was flaky). That branch is covered deterministically by the pure `cleanCloseAfterReap({killed:true,...})` unit test in `launcher-clean-close-barrier.vitest.ts`.
 
 ### Export-only production change
 `reapLeaseChildBeforeRespawn` and `uncleanMarkerPresent` are added to the launcher's `module.exports`. No reap logic changed. The `require.main === module` guard means importing the launcher never starts a daemon (verified).
@@ -93,7 +95,7 @@ An Opus scope+verify swarm first confirmed the reap seams (CONFIRM_GO) and mappe
 
 | Check | Result |
 |-------|--------|
-| `launcher-clean-close-reap.vitest.ts` | PASS, 5/5 (~8.5s; the SIGKILL case pays the real 7s grace) |
+| `launcher-clean-close-reap.vitest.ts` | PASS, 4/4 deterministic (3 consecutive clean runs; ~0.5s) |
 | `node --check` launcher | PASS |
 | Launcher export introspection (no auto-run) | PASS — reapLeaseChildBeforeRespawn + uncleanMarkerPresent callable; marker path resolves; main() not invoked |
 | Launcher disk == HEAD before edit | PASS — no drift |
@@ -107,5 +109,5 @@ An Opus scope+verify swarm first confirmed the reap seams (CONFIRM_GO) and mappe
 ## Known Limitations
 
 1. **Not a full two-launcher integration test.** This covers the reap function — the safety-critical core of the F2 barrier — but not the full launcher-B-bridges-then-respawns wiring end to end. The bridge respawn-on-dead decision is separately unit-tested in `launcher-ipc-bridge-probe.vitest.ts`; combining both into a real two-process test remains deferred for the same flake reason that skipped the legacy suite.
-2. **One case pays the real grace window.** The ignore-SIGTERM case waits the real 7s `RESPAWN_REAP_GRACE_MS` before the SIGKILL backstop, so the suite runs ~8.5s. Bounded and deterministic, but not instant — acceptable for a single safety-critical case.
+2. **The SIGKILL-escalation branch is not exercised live.** Reliably forcing a child to ignore SIGTERM proved environment-fragile (the first attempt flaked), so the `killed=true` path is covered by the pure `cleanCloseAfterReap` unit test rather than a live reap. The live suite covers SIGTERM-reap + marker-based clean/unclean determination only.
 <!-- /ANCHOR:limitations -->
