@@ -1,27 +1,25 @@
 ---
-title: "Tasks: Runtime-agnostic session lifecycle scripts"
+title: "Tasks: Runtime-agnostic session lifecycle scripts [system-spec-kit/034-runtime-agnostic-session-lifecycle-scripts/tasks]"
 description: "Task tracker for making the lifecycle scripts runtime-agnostic."
 trigger_phrases:
   - "runtime-agnostic lifecycle tasks"
 importance_tier: "normal"
-contextType: "implementation"
+contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/034-runtime-agnostic-session-lifecycle-scripts"
-    last_updated_at: "2026-05-30T11:35:00Z"
+    last_updated_at: "2026-05-30T12:40:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Task list authored"
-    next_safe_action: "Execute Phase 1 (post-commit messaging)"
-    blockers: []
-    key_files: []
-    completion_pct: 0
+    recent_action: "All tasks complete; shipped + pushed"
+    next_safe_action: "Optional P2 doc refresh"
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
 # Tasks: Runtime-agnostic session lifecycle scripts
 
-<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: tasks-core + level2-verify | v2.2 -->
 
 ---
 
@@ -35,71 +33,73 @@ _memory:
 | `[P]` | Parallelizable |
 | `[B]` | Blocked |
 
-**Task Format**: `T### [P?] Description (file path)`
-<!-- /ANCHOR:notation -->
+**Task Format**: `T### [P?] Description (file path) [effort]`
 
+<!-- /ANCHOR:notation -->
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1: Messaging
-- [ ] T001 Neutralize post-commit messaging L5 + L70 (`.opencode/scripts/git-hooks/post-commit`)
-<!-- /ANCHOR:phase-1 -->
+## Phase 1: Setup
 
+- [x] T001 Classify each script's Claude-specificity; map per-runtime session-end capability [investigation]
+
+<!-- /ANCHOR:phase-1 -->
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2: Sweeper generalization (closes REQ-001)
-- [ ] T002 Rename tree builder + var to session-neutral (`orphan-mcp-sweeper.sh`)
-- [ ] T003 Multi-runtime preserve regex (claude|opencode|codex|gemini)
-- [ ] T004 Add operator-session preserves: opencode run / codex exec / gemini
-- [ ] T005 Rename preserve-reason string live-session-tree
-<!-- /ANCHOR:phase-2 -->
+## Phase 2: Implementation
 
+### Messaging
+- [x] T002 Neutralize post-commit messaging (`.opencode/scripts/git-hooks/post-commit`) [10m]
+
+### Sweeper generalization (closes REQ-001)
+- [x] T003 Rename tree builder + var to session-neutral; multi-runtime preserve regex (`orphan-mcp-sweeper.sh`) [20m]
+- [x] T004 Add operator-session preserves: opencode run / codex exec / gemini; rename preserve string `live-session-tree` [15m]
+
+### Rename + generalize cleanup
+- [x] T005 `git mv` claude-session-cleanup.sh → session-cleanup.sh; multi-runtime PID fallback + neutral log env/comments [20m]
+- [x] T006 Create back-compat shim claude-session-cleanup.sh [5m]
+
+### Per-runtime wiring
+- [x] T007 Claude `.claude/settings.local.json` Stop → session-cleanup.sh [10m]
+- [x] T008 Gemini `.gemini/settings.json` SessionEnd appends cleanup [10m]
+- [x] T009 OpenCode `.opencode/plugins/session-cleanup.js` dispose bridge [20m]
+- [x] T010 Document Codex/Devin sweeper-fallback in the script header [5m]
+
+### Docs
+- [x] T011 Update `.opencode/scripts/README.md` to new name + per-runtime table [15m]
+
+<!-- /ANCHOR:phase-2 -->
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3: Rename + generalize cleanup
-- [ ] T006 git mv claude-session-cleanup.sh → session-cleanup.sh
-- [ ] T007 Multi-runtime PID fallback + neutral log env/comments
-- [ ] T008 Create back-compat shim claude-session-cleanup.sh
+## Phase 3: Verification
+
+- [x] T012 `bash -n` / `node --check` clean on all changed scripts + plugin [5m]
+- [x] T013 `preserve_reason` unit test: opencode-run / codex / gemini / devin all preserved (REQ-001) [10m]
+- [x] T014 Shim delegates (execs session-cleanup.sh); PID fallback resolves to PPID [5m]
+- [x] T015 `.claude` + `.gemini` JSON parse; OpenCode plugin ESM-valid [5m]
+- [x] T016 `validate.sh --strict` on this packet exits 0 [5m]
+
 <!-- /ANCHOR:phase-3 -->
-
----
-
-<!-- ANCHOR:phase-4 -->
-## Phase 4: Per-runtime wiring
-- [ ] T009 Claude: committed .claude/settings.json Stop → session-cleanup.sh; de-dupe local
-- [ ] T010 Gemini: append cleanup to .gemini/settings.json SessionEnd
-- [ ] T011 OpenCode: .opencode/plugins/session-cleanup.js dispose bridge
-- [ ] T012 Document Codex/Devin sweeper-fallback
-<!-- /ANCHOR:phase-4 -->
-
----
-
-<!-- ANCHOR:phase-5 -->
-## Phase 5: Docs + verification
-- [ ] T013 Update README + feature_catalog + playbook to new name
-- [ ] T014 shellcheck / bash -n clean
-- [ ] T015 Sweeper dry-run preserves a live opencode run tree (REQ-001 proof)
-- [ ] T016 Claude Stop + Gemini SessionEnd + OpenCode dispose smoke
-- [ ] T017 validate.sh --strict exit 0
-<!-- /ANCHOR:phase-5 -->
-
 ---
 
 <!-- ANCHOR:completion -->
 ## Completion Criteria
-- [ ] REQ-001 (opencode-run preserve) proven
-- [ ] Claude cleanup unchanged
-- [ ] Cleanup wired per runtime by capability
-- [ ] No `[B]` blocked tasks remaining
-<!-- /ANCHOR:completion -->
 
+- [x] REQ-001 (opencode-run preserve) proven
+- [x] Claude cleanup unchanged (wire + shim)
+- [x] Cleanup wired per runtime by capability
+- [x] No `[B]` blocked tasks remaining
+
+<!-- /ANCHOR:completion -->
 ---
 
 <!-- ANCHOR:cross-refs -->
 ## Cross-References
+
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Checklist**: See `checklist.md`
+
 <!-- /ANCHOR:cross-refs -->

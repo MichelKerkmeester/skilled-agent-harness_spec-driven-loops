@@ -147,8 +147,46 @@ Make the shared lifecycle logic runtime-agnostic and stop naming Claude Code whe
 
 ---
 
+<!-- ANCHOR:nfr -->
+## 7. NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: Session cleanup completes well within the runtime hook timeout (Claude Stop 10s, Gemini SessionEnd 10s) — it only walks one session's descendants.
+- **NFR-P02**: The orphan sweeper's per-process `lsof` listener check is bounded; the full sweep stays under a few seconds on a typical process table.
+
+### Reliability / Safety
+- **NFR-S01**: Cleanup is best-effort and never blocks or fails session teardown (`|| true` at every wire; plugin swallows errors).
+- **NFR-S02**: The sweeper NEVER kills a live operator session of any runtime (claude/opencode/codex/gemini/devin) — preserve-tree + explicit command preserves.
+- **NFR-S03**: Renames preserve git history (`git mv`); a back-compat shim keeps any unupdated caller working.
+
+<!-- /ANCHOR:nfr -->
+---
+
+<!-- ANCHOR:edge-cases -->
+## 8. EDGE CASES
+
+### Process / session boundaries
+- **No session PID set**: cleanup falls back to the hook process PPID; if that too is missing it logs `action=skip` and exits 0.
+- **Operator runs `opencode run` with aged MCP children**: preserved via `operator-opencode-preserve` + the live-session tree (was the bug).
+- **Stale orphan from a crashed Codex/Devin session**: no session-end hook fires, but the age-based sweeper reclaims it (the intended fallback).
+
+### Compatibility
+- **Old name still referenced somewhere**: `claude-session-cleanup.sh` shim execs the renamed script, so nothing breaks.
+- **Runtime with no dispose/stop primitive**: documented as sweeper-covered rather than force-wired.
+
+<!-- /ANCHOR:edge-cases -->
+---
+
+<!-- ANCHOR:complexity -->
+## 9. COMPLEXITY ASSESSMENT
+
+Low-to-moderate. The change is mechanical generalization (identifier rename + regex broadening + additive preserve cases) plus three small per-runtime wire edits and one new ~40-line plugin. No new abstractions; logic risk concentrated in the sweeper preserve-tree (covered by the `preserve_reason` unit test) and the live hook-config edits (covered by JSON-parse + syntax gates). Reversible via `git revert`; `git mv` keeps history.
+
+<!-- /ANCHOR:complexity -->
+---
+
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - None blocking. Codex/Devin session-end coverage is intentionally deferred to the sweeper (no safe runtime primitive).
 <!-- /ANCHOR:questions -->

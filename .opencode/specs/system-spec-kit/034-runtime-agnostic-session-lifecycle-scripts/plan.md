@@ -127,6 +127,44 @@ Session ends → runtime fires its session-end event → cleanup walks that sess
 | shellcheck | Tooling | Optional | Fall back to `bash -n` |
 | Parallel-session stability | Environment | Volatile this session | Re-verify HEAD after each scoped commit |
 <!-- /ANCHOR:dependencies -->
+---
+
+<!-- ANCHOR:phase-deps -->
+## 7. PHASE DEPENDENCIES
+
+- Phase 1 (messaging) — independent; no dependants.
+- Phase 2 (sweeper) — independent; closes REQ-001 on its own.
+- Phase 3 (rename + shim) — must precede Phase 4 wiring (the wires point at the renamed script).
+- Phase 4 (per-runtime wiring) — depends on Phase 3.
+- Phase 5 (docs + verify) — depends on Phases 1–4.
+
+<!-- /ANCHOR:phase-deps -->
+---
+
+<!-- ANCHOR:effort -->
+## 8. EFFORT ESTIMATE
+
+| Phase | Estimate |
+|-------|----------|
+| 1 Messaging | ~10m |
+| 2 Sweeper | ~35m |
+| 3 Rename + shim | ~25m |
+| 4 Per-runtime wiring | ~45m |
+| 5 Docs + verify | ~30m |
+| **Total** | **~2.5h** |
+
+<!-- /ANCHOR:effort -->
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## 9. ENHANCED ROLLBACK
+
+- All changes are `git revert`-able as a single commit; no data migration.
+- `git mv` preserves history, so the rename reverses cleanly.
+- The back-compat shim means even a partial rollback (script renamed but a wire missed) keeps cleanup functioning.
+- Per-runtime config edits are isolated JSON additions — revert one runtime's wire without affecting others.
+
+<!-- /ANCHOR:enhanced-rollback -->
 
 ---
 
