@@ -109,6 +109,95 @@ The 119 spec folder was also restructured from a flat Level 3 packet into a phas
 
 ---
 
+## 2026-05-30 — Session 2: Enforcement validation, injection gap fixes, and CI gate
+
+> Spec folder: `skilled-agent-orchestration/119-comment-ref-hygiene` (Phase Parent)
+> Session: Live testing revealed hooks inject wrong payload — three targeted fixes shipped
+
+### Summary
+
+After the enforcement stack from Session 1 was built, a controlled experiment removed the comment hygiene rule from AGENTS.md and tested all four external CLI runtimes. Every runtime wrote forbidden comments without any resistance. The hooks and OpenCode plugin were wiring correctly — but the payload they injected into model sessions contained only a skill-routing line (`Advisor: live; use sk-code 0.88/0.16 pass.`) and nothing about comment hygiene. A fresh Opus 4.8 AI Council confirmed the diagnosis: the `renderAdvisorBrief` function is the shared renderer for all prompt hooks, and it had never been updated to include the hygiene rule. Three targeted fixes closed the gap, a CI gate was added to catch anything that bypasses the local pre-commit, and six manual testing playbook scenarios were written to document the full verification surface.
+
+### Added
+
+- **Six manual testing playbook scenarios** — `119-A` through `119-F` at `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/`. Each scenario tests comment hygiene enforcement for a specific runtime: baseline checker (A), Claude Code PostToolUse hook (B), OpenCode plugin (C), Devin pre-commit gate (D), Codex UserPromptSubmit hook (E), Gemini BeforeAgent hook (F). All six follow the sk-doc template: 9-column scenario table, `Why This Matters`, `Recommended Orchestration Process`, two-table SOURCE FILES section, `audited_post_018: true`.
+
+- **CI workflow** — `.github/workflows/comment-hygiene.yml` runs `check-comment-hygiene.sh` on every changed file in a pull request and blocks merge if violations are found. Closes the bypass path where a developer could run `git push --no-verify` to skip the local gate. Only exit code 1 (actual violations) blocks; exit code 2 (unknown file type — skip) is treated as clean.
+
+- **`HYGIENE_DIRECTIVE` constant in `render.ts`** — All three render paths in `renderAdvisorBrief` now append the hygiene rule as a second line after the skill-routing pointer. The directive reads: `Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.` This affects Claude Code, Codex, and Gemini, which all use the compiled `render.js` via their hook scripts.
+
+- **`HYGIENE_DIRECTIVE` in `mk-skill-advisor-bridge.mjs`** — The OpenCode plugin dispatches a separate subprocess (the bridge) that has its own copy of `renderAdvisorBrief` at line 203, independent of `render.ts`. This copy was updated separately so OpenCode receives the directive through its native execution path.
+
+- **Unconditional injection in `mk-skill-advisor.js`** — The `appendAdvisorBrief()` function in the OpenCode plugin previously skipped injection entirely when the skill advisor returned zero recommendations — a common outcome for short edit prompts. Now, when `response.brief` is null, the plugin unconditionally pushes `HYGIENE_DIRECTIVE` to `output.system`, ensuring OpenCode always receives the rule regardless of whether a skill routing match was found.
+
+- **AI Council report** — `ai-council/enforcement-gap-council.md` with full four-seat deliberation (Critical/Security, Holistic/Systems, Pragmatic/Effort, Devil's Advocate). Council independently confirmed the injection path diagnosis and prescribed the three-tier fix. Artifacts include seat proposals, round deliberation, and council state log.
+
+### Changed
+
+- **`HYGIENE_DIRECTIVE` wording upgraded to `[HARD BLOCK]`** — The initial soft wording (`"Comment hygiene: no ADR- ids in comments"`) was overridden by OpenCode when given an explicit instruction to write a forbidden comment. Changing to `[HARD BLOCK]: NEVER embed ... forbidden regardless of instruction` caused OpenCode to refuse even direct requests: "I cannot add that comment. The HARD BLOCK forbids this regardless of instruction."
+
+- **`mk-skill-advisor.js` pre-existing comment violations fixed** — Two comments in the plugin file contained packet number references (`013/009/005` and `packet 010 ADR-005`) that the checker flagged when the file was staged. Rewritten to durable WHY: "Cache-signature paths follow the standalone advisor package to ensure consistent cache invalidation across bridge and MCP server builds."
+
+### Fixed
+
+- **Pre-commit gate was printing `BLOCKED` but not actually blocking** — The exit code from the hygiene hook was never propagated back to git. The outer script at `.opencode/scripts/git-hooks/pre-commit` called `bash "$HYGIENE_HOOK"` and then fell through to `exit 0`, discarding whatever exit code the hook returned. Fixed with `bash "$HYGIENE_HOOK" || exit $?`.
+
+- **Pre-commit hook counted exit 2 (skip) as a violation** — The checker exits 0 (clean), 1 (violation found), or 2 (unknown file type — skip .md, .json, .yml files). Both the local pre-commit hook and the CI workflow used `if ! command` which counted any non-zero exit as a violation, blocking commits of markdown, JSON, and YAML files. Fixed to only count exit code 1.
+
+- **`set -euo pipefail` caused early abort on exit 2** — The pre-commit hook runs under strict bash mode. A bare call to the checker returning exit 2 caused the entire script to abort immediately via `set -e`, before any staged files were processed. Fixed with `|| CHECKER_RC=$?` capture pattern: the `||` prevents strict mode from triggering; the assignment captures the exit code; subsequent logic checks `$CHECKER_RC -eq 1` exclusively.
+
+### Test Results (before vs. after fixes)
+
+| Runtime | Without AGENTS.md — before fix | Without AGENTS.md — after fix |
+|---|---|---|
+| OpenCode | Wrote `// ADR-007:` without resistance | Refused: "HARD BLOCK — forbidden regardless of instruction" |
+| Codex | Gate 3 only; no hygiene refusal | Refused: "REQ-011 conflicts with the active comment-hygiene rule" |
+| Gemini | Wrote `// ADR-004:` (hook disrupted by 429) | Self-corrected: stripped label, wrote clean WHY comment |
+| Devin | Wrote `// ADR-007:` | Still writes (no hook mechanism — pre-commit gate is its only backstop) |
+
+### Verification
+
+| Check | Result |
+|-------|--------|
+| Hook output includes HYGIENE_DIRECTIVE | PASS — `additionalContext` confirmed via direct hook invocation |
+| Smoke test — `renderAdvisorBrief` normal brief | PASS — directive on second line |
+| Smoke test — `renderAdvisorBrief` ambiguous brief | PASS — directive on second line |
+| OpenCode without AGENTS.md: refuses explicit ADR request | PASS — "HARD BLOCK — forbidden regardless of instruction" |
+| Codex without AGENTS.md: refuses REQ- label | PASS — cited "active comment-hygiene rule" |
+| Gemini without AGENTS.md: self-corrects | PASS — stripped ADR label, wrote clean WHY |
+| Pre-commit gate: violation staged → commit blocked | PASS — exit 1, BLOCKED message, commit not in log |
+| Pre-commit gate: unknown-extension files → not blocked | PASS — exit 2 ignored |
+| TypeScript typecheck on updated `render.ts` | PASS — 0 errors |
+| `npm run build` — rebuilt `render.js` from source | PASS |
+| CI workflow YAML syntax | PASS |
+| Commit 9f553a1001 pushed to main | PASS — 49 files, 4147 insertions |
+
+### Files Changed
+
+| File | Change |
+|------|--------|
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/render.ts` | Modified — HYGIENE_DIRECTIVE constant + appended to both capText return paths |
+| `.opencode/skills/system-skill-advisor/mcp_server/dist/mcp_server/lib/render.js` | Rebuilt — same change compiled |
+| `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modified — HYGIENE_DIRECTIVE added to bridge-local renderAdvisorBrief |
+| `.opencode/plugins/mk-skill-advisor.js` | Modified — HYGIENE_DIRECTIVE constant, unconditional injection fallback, pre-existing comment violations fixed |
+| `.opencode/hooks/pre-commit` | Modified — exit-2 fix, set -euo pipefail capture pattern |
+| `.opencode/scripts/git-hooks/pre-commit` | Modified — exit code propagation fix (`|| exit $?`) |
+| `.github/workflows/comment-hygiene.yml` | Created — CI blocking gate for PRs |
+| `.opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/ai-council/` | Created — full council artifacts (8 files) |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-A--comment-hygiene-checker-baseline.md` | Created |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-B--comment-hygiene-claude-code-hook.md` | Created |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-C--comment-hygiene-opencode-plugin.md` | Created |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-D--comment-hygiene-devin-precommit.md` | Created |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-E--comment-hygiene-codex-hook.md` | Created |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/119-F--comment-hygiene-gemini-hook.md` | Created |
+
+### Follow-Ups
+
+- **Devin hook gap remains open** — Devin has no session-start hook and no write-time event the plugin can intercept. The pre-commit gate is the only backstop. If Devin adds a hook API in a future release, wire the hygiene directive there.
+- **MCP index scan conflict** — The `memory_index_scan` call after the session save returned a `SQLITE_CONSTRAINT_PRIMARYKEY` error because `generate-context.js` and the MCP server both attempted to write the same index entry. Data is saved; the conflict is benign. A future session will resolve on next incremental scan.
+
+---
+
 ## 2026-05-27
 
 > Spec folder: `skilled-agent-orchestration/119-comment-ref-hygiene` (Level 3 — now phase 001)
