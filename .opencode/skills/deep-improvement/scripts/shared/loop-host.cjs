@@ -58,18 +58,15 @@ const LANE_SKILL_BENCHMARK = new Set([
 ]);
 
 // Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
-// order. --skill and --outputs-dir are required and handled separately. Keep
-// aligned with run-skill-benchmark.cjs's accepted options.
+// order. --skill and --outputs-dir are required and handled separately. This
+// list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
+// flag the orchestrator never consumes would be silently absorbed and mislead
+// operators into thinking it has effect.
 const SKILL_BENCHMARK_RUN_OPTIONS = [
-  'profile',
   'fixtures-dir',
   'output',
-  'state-log',
-  'label',
   'trace-mode',
-  'grader',
   'advisor-mode',
-  'k-runs',
 ];
 
 // Single source of truth for the optional model-benchmark flags loop-host

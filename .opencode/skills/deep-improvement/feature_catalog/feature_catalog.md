@@ -274,7 +274,7 @@ Routes loop-host between the agent-improvement scorer and the model-benchmark ma
 
 #### Current Reality
 
-`scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged, while `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`. `VALID_MODES` is a closed two-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
+`scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged; `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`; and `--mode=skill-benchmark` runs `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C). `VALID_MODES` is a closed three-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
 
 #### Source Files
 

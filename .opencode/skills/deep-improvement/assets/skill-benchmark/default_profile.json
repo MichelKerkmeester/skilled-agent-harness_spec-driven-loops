@@ -9,5 +9,5 @@
     "FAIL": "<50",
     "BLOCKED-BY-STRUCTURE": "D5 hard-gate failure (dead path / path escape / unparseable router)"
   },
-  "notes": "Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. D1-inter (advisor) and D4 (usefulness ablation) require live mode and are reported unscored until then. Weights/bands are provisional pending 2-3 pilot calibration per the 002 playbook."
+  "notes": "Reference profile only — NOT yet consumed at runtime. The scorer hardcodes WEIGHTS in scripts/skill-benchmark/score-skill-benchmark.cjs and there is no --profile loader on the Lane C path yet; this weights block is the forward-looking source these will read once profile loading lands. Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (advisor) is built but opt-in via --advisor-mode=python; D4 (usefulness ablation) requires live mode and is reported unscored until then. Weights/bands are provisional pending 2-3 pilot calibration per the 002 playbook."
 }

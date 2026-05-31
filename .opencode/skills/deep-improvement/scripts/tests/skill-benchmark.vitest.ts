@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, afterAll } from 'vitest';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 
@@ -186,8 +186,14 @@ describe('Lane C — D1-inter advisor scoring', () => {
 });
 
 describe('Lane C — end-to-end via run-skill-benchmark', () => {
+  const e2eDirs: string[] = [];
+  afterAll(() => {
+    for (const d of e2eDirs) rmSync(d, { recursive: true, force: true });
+  });
+
   it('emits dual report artifacts for a router-bearing skill', () => {
     const out = mkdtempSync(join(tmpdir(), 'lc-e2e-'));
+    e2eDirs.push(out);
     execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-codex', '--outputs-dir', out], { encoding: 'utf8' });
     const jsonPath = join(out, 'skill-benchmark-report.json');
     const mdPath = join(out, 'skill-benchmark-report.md');
@@ -196,5 +202,21 @@ describe('Lane C — end-to-end via run-skill-benchmark', () => {
     const report = JSON.parse(readFileSync(jsonPath, 'utf8'));
     expect(report.mode).toBe('skill-benchmark');
     expect(report.schemaVersion).toBe('skill-benchmark-report.v1');
+  });
+
+  it('scores at least one real scenario end-to-end (deep-improvement ships a fixture)', () => {
+    // cli-codex ships no fixtures (scenarioRows === 0), so the artifact test
+    // above cannot prove the scenario pipeline runs. deep-improvement ships
+    // agent-improve-001, so this asserts the full lint -> route -> score path
+    // actually produced a scored row.
+    const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
+    e2eDirs.push(out);
+    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'deep-improvement', '--outputs-dir', out], { encoding: 'utf8' });
+    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+    expect(Array.isArray(report.scenarioRows)).toBe(true);
+    expect(report.scenarioRows.length).toBeGreaterThan(0);
+    const scored = report.scenarioRows.find((r: any) => !r.loadError);
+    expect(scored).toBeTruthy();
+    expect(scored.dims?.d1intra).toBeTruthy();
   });
 });

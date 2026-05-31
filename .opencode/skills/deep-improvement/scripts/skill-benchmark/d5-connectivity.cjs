@@ -44,8 +44,11 @@ function scanConnectivity({ skillRoot }) {
   const findings = [];
   const skillMdPath = path.join(skillRoot, 'SKILL.md');
   if (!fs.existsSync(skillMdPath)) {
+    // Score mirrors the normal penalty path (100 - one P0 of 40 = 60) so a
+    // score-comparison consumer sees the same number for the same one-P0
+    // condition; gateFailed is the authoritative verdict signal either way.
     return {
-      score: 0, gateFailed: true, routerParseable: false,
+      score: 60, gateFailed: true, routerParseable: false,
       deadResourcePaths: [], deadIntentKeys: [], orphanReferences: [], pathEscapes: [],
       findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
     };

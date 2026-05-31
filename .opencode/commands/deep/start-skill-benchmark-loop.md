@@ -26,10 +26,10 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
   --mode=skill-benchmark \
   --skill=<skill-id-or-root> \
   --outputs-dir=<path> \
-  [--fixtures-dir=<path>] [--trace-mode=router]
+  [--fixtures-dir=<path>] [--trace-mode=router] [--advisor-mode=python]
 ```
 
-The orchestrator (`scripts/skill-benchmark/run-skill-benchmark.cjs`) runs the D5 hard gate first, then per-scenario contamination-lint → router-replay → score, then writes the dual report.
+`--advisor-mode=python` enables the built-but-opt-in D1-inter advisor probe (deterministic in-repo SQLite advisor, scored out-of-band; off by default and in CI). The orchestrator (`scripts/skill-benchmark/run-skill-benchmark.cjs`) runs the D5 hard gate first, then per-scenario contamination-lint → router-replay → score, then writes the dual report.
 
 ## Output
 
@@ -40,4 +40,4 @@ Lane C is **diagnostic by default** (no target-skill mutation). Findings hand of
 
 ## Scope (current)
 
-Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. D1-inter (advisor) and D4 (usefulness ablation) are live-mode follow-on per the 002 implementation playbook; they report as `unscored-mode-a` until built. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.
+Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. D1-inter (advisor selection) is also built and deterministic, but opt-in via `--advisor-mode=python` (off by default and in CI; scored out-of-band through the in-repo SQLite advisor). Only D4 (usefulness ablation) and the live in-situ trace (Mode B) remain follow-on per the 002 implementation playbook; they report as `unscored-mode-a` until built. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.

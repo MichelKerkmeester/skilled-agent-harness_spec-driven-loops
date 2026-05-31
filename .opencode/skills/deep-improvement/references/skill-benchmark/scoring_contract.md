@@ -1,27 +1,53 @@
-# Lane C — scoring contract
+---
+title: "Lane C Skill-Benchmark Scoring Contract"
+description: "Authoritative D1-D5 computation for the Lane C Skill Benchmark Report: point weights, Mode A deterministic scoring, the opt-in advisor probe for D1-inter, deferred live-mode dimensions, and funnel/bottleneck ranking."
+trigger_phrases:
+  - "skill-benchmark scoring contract"
+  - "Lane C scoring"
+  - "D1 D5 weights"
+  - "skill benchmark dimensions"
+importance_tier: important
+contextType: reference
+---
+
+# Lane C Skill-Benchmark Scoring Contract
 
 Authoritative computation for the Skill Benchmark Report. Source of truth: the converged design in `122-.../001-skill-benchmark-deep-research/research/research.md` §3 and the implementation playbook in `002-implementation-deep-research/research/research.md`.
 
-## Point weights (full / live mode)
+---
+
+## 1. OVERVIEW
+
+Lane C scores a skill across five dimensions (D1-D5) and rolls them into a single verdict. D5 (structural connectivity) is a static hard gate that runs first. Mode A (router-replay) scores everything that needs no live model deterministically; D1-inter is built but opt-in via the in-repo advisor; D4 and the live trace remain follow-on. The aggregate normalizes over the dimensions actually measured so the headline number stays honest about coverage.
+
+## 2. POINT WEIGHTS (FULL / LIVE MODE)
 
 `D1 = 25` (inter 12 + intra 13) · `D2 = 20` · `D3 = 15` · `D4 = 25` · `D5 = 15` (hard gate).
 
-## Mode A (router-replay, deterministic)
+## 3. MODE A (ROUTER-REPLAY, DETERMINISTIC)
 
-Scores only what needs no live model; the aggregate normalizes over the measured weights (D1-intra + D2 + D3) so the number is honest about coverage. D5 is computed statically and gates.
+Scores only what needs no live model; the aggregate normalizes over the measured weights (D1-intra + D2 + D3, plus D1-inter when the advisor probe is enabled) so the number is honest about coverage. D5 is computed statically and gates.
 
 - **D1-intra** = `0.4 * intentRecall + 0.6 * resourceRecall` vs private `expected.intentKeys` / `expected.resources`. Empty expected = not-applicable (treated as 1.0, non-penalizing). Negative-activation scenarios invert: routing the expected resources is a failure.
 - **D2** (Mode A proxy) = recall of expected resources in the routed set. Live mode replaces this with Hit@1 / Hit@3 / Recall@5 / MRR over the observed file-load trace.
 - **D3** (Mode A proxy) = `1 - wastedRouted / totalRouted` (over-routing penalty). Live mode replaces with calls/tokens-to-first-expected.
 - **D5** = `100 - Σ penalties` (P0 40, P1 12, P2 3), floored at 0. Any P0 sets `gateFailed`.
 
-## Deferred to live mode (Mode B)
+## 4. D1-INTER — OPT-IN ADVISOR PROBE (BUILT, DETERMINISTIC)
 
-- **D1-inter** — advisor selection score via the advisor scorer (`scoreAdvisorPrompt` / `skill_advisor.py`), captured out-of-band with the advisor hook disabled so the answer cannot leak.
+D1-inter (does the skill *advisor* select this skill for the scenario?) is built and deterministic, but **opt-in** so the pure-router default stays fast and dependency-free:
+
+- Enable with `--advisor-mode=python`. Off by default and in CI.
+- Scored out-of-band via the deterministic SQLite advisor (`scoreAdvisorPrompt` / `skill_advisor.py`) with the advisor hook disabled so the answer cannot leak into the dispatched prompt.
+- When disabled it reports `status: unscored-mode-a` (never faked); when enabled it contributes its 12 points to the measured aggregate.
+
+## 5. DEFERRED TO LIVE MODE (MODE B)
+
 - **D4** — usefulness via skill-on vs skill-off ablation through the pluggable grader (`noop|mock|llm`). Reuse the Lane B grader harness (claude-graded, single-dimension) per the playbook; namespace its cache dir to avoid Lane B collision.
+- **Live trace (Mode B)** replaces the D2/D3 router-replay proxies with observed file-load telemetry.
 
-Both are reported as `status: unscored-mode-a` until built — never faked.
+Deferred items are reported as `status: unscored-mode-a` until built — never faked.
 
-## Funnel + bottleneck ranking
+## 6. FUNNEL + BOTTLENECK RANKING
 
 Per-scenario `firstFailingStage` ∈ {router-unparseable, routed-intra, discovered}. The headline bottleneck is the stage with the largest first-failure count (attrition). Bottlenecks list D5 findings + the headline funnel finding, each mapped through `assets/skill-benchmark/remediation_taxonomy.json` to (file, locus, one-line fix, handoff lane).
