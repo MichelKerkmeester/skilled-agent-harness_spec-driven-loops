@@ -7,7 +7,7 @@ trigger_phrases:
   - "memory index coalescing E429 fix"
   - "memory_health index freshness surface"
   - "memory index orphan sweep move reconciliation"
-  - "017 memory index implementation packet"
+  - "013 memory index implementation packet"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
@@ -15,7 +15,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
     last_updated_at: "2026-05-31T15:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-3 spec for full 5-angle implementation"
+    recent_action: "Authored Level-2 spec for full 5-angle implementation"
     next_safe_action: "Dispatch Phase 1 (coalescing + health + orphan sweep) via cli-opencode"
     blockers: []
     key_files:
@@ -71,7 +71,7 @@ Implement the **self-maintaining index** design that the 012 deep-research packe
 
 ### In Scope
 The full 5-angle design, delivered in three gated phases:
-- **Phase 1 (A1 + A5-partial):** coalescing caller contract (2nd scan joins the in-flight/recent job instead of raw E429) + `memory_health.index` freshness block + bounded global orphan sweep reusing `delete_memory_from_database()`.
+- **Phase 1 (A1 + A5-partial):** coalescing caller contract (2nd scan joins the in-flight/recent job instead of raw E429) + `memory_health.index` freshness block + bounded global orphan sweep.
 - **Phase 2 (A2 + A4):** phased execution (bounded walk → commit-lexical `pending` → async vector drain) + async-mode scan indexing so lexical always commits; outage-safe drain that checks provider/circuit state before the atomic pending→retry claim.
 - **Phase 3 (A3 + A5-move):** job-layer single-writer via atomic claim-by-update work items + heartbeat/lease-epoch recovery; move reconciliation keyed on `packet_id` + doc role/anchor; auto-reindex triggers (lazy reconcile-on-`File not found`, watcher→queue, post-commit stale marker) feeding the coalescer.
 
@@ -86,7 +86,7 @@ The full 5-angle design, delivered in three gated phases:
 | `mcp_server/handlers/memory-index.ts` | Modify | 1,2 | Coalescing envelope instead of raw E429; phased execution + async-mode indexing |
 | `mcp_server/core/db-state.ts` | Modify | 1,3 | Surface lease reason as coalescable job state; heartbeat/lease-epoch recovery |
 | `mcp_server/handlers/memory-crud-health.ts` | Modify | 1 | Add `index` freshness block (summary enum + counts) |
-| `mcp_server/lib/search/incremental-index.ts` | Modify | 1 | Bounded global orphan sweep (ungated from scan scope) |
+| `mcp_server/lib/storage/incremental-index.ts` | Modify | 1 | Bounded global orphan sweep (ungated from scan scope) |
 | `mcp_server/lib/search/vector-index-mutations.ts` | Reuse | 1,3 | Orphan delete via `delete_memory_from_database()`; move-path update in place |
 | `mcp_server/handlers/save/embedding-pipeline.ts` | Modify | 2 | Async-mode scan indexing path |
 | `mcp_server/lib/providers/retry-manager.ts` | Reuse | 2,3 | Provider/circuit pre-check before pending→retry claim; claim-by-update |
@@ -100,14 +100,14 @@ The full 5-angle design, delivered in three gated phases:
 ## 4. REQUIREMENTS
 
 ### P0 - Blockers (MUST complete)
-- **R1 (A1):** A scan MUST never surface a raw `E429`. A second concurrent/repeat call returns a success envelope joining the in-flight/recent job (`coalesced:true`); the 30s cooldown becomes an internal thrash-guard.
-- **R2 (A2):** A scan/re-embed MUST always complete regardless of corpus size — no `-32001` request-deadline class. Lexical rows commit first (BM25/FTS-searchable as `pending`); vectors drain async after the request returns.
-- **R6 (gate):** Every phase passes `tsc` build + the spec-kit test suite before the next phase is dispatched; no phase claims completion without stack-appropriate verification.
+- R1 (A1): A scan MUST never surface a raw `E429`. A second concurrent/repeat call returns a success envelope joining the in-flight/recent job (`coalesced:true`); the 30s cooldown becomes an internal thrash-guard.
+- R2 (A2): A scan/re-embed MUST always complete regardless of corpus size — no `-32001` request-deadline class. Lexical rows commit first (BM25/FTS-searchable as `pending`); vectors drain async after the request returns.
+- R6 (gate): Every phase passes `tsc` build + the spec-kit test suite before the next phase is dispatched; no phase claims completion without stack-appropriate verification.
 
 ### P1 - Required (complete OR user-approved deferral)
-- **R3 (A3):** Concurrent callers coordinate without index corruption, duplicate embedding work, or a raw error (single-writer via atomic claim-by-update; per-worktree DBs independent domains).
-- **R4 (A4):** Embedder slowness/absence degrades to "indexed + searchable, vectors pending" (`degraded` + `nextVectorAttemptAfter`), never a wholesale scan failure; clean `pending` rows are never burned into `retry` during an outage.
-- **R5 (A5):** Moves/renames and orphaned rows self-heal without manual scans, behind a `memory_health.index` freshness summary; orphan delete reuses `delete_memory_from_database()` (never a raw `memory_index` delete).
+- R3 (A3): Concurrent callers coordinate without index corruption, duplicate embedding work, or a raw error (single-writer via atomic claim-by-update; per-worktree DBs independent domains).
+- R4 (A4): Embedder slowness/absence degrades to "indexed + searchable, vectors pending" (`degraded` + `nextVectorAttemptAfter`), never a wholesale scan failure; clean `pending` rows are never burned into `retry` during an outage.
+- R5 (A5): Moves/renames and orphaned rows self-heal without manual scans, behind a `memory_health.index` freshness summary; orphan delete reuses `delete_memory_from_database()` (never a raw `memory_index` delete).
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -129,8 +129,8 @@ The full 5-angle design, delivered in three gated phases:
 
 | Risk | Severity | Mitigation |
 |------|----------|------------|
-| Build-while-live: daemon (7 procs) running during edits to its own source | High | Edit source only; do not restart/rebuild the live daemon mid-phase; verify with isolated `tsc`; coordinate restart as a discrete step |
-| RM-8 destructive cli-opencode dispatch (precedent: 44 files deleted) | High | Clean recovery baseline commit recorded; BANNED OPS (no move/delete/create outside scope); disjoint file scope per phase; agent does NO git writes; SIGKILL between dispatches |
+| Build-while-live: daemon running during edits to its own source | High | Edit source only; do not restart/rebuild the live daemon mid-phase; verify with isolated `tsc`; coordinate restart as a discrete step |
+| RM-8 destructive cli-opencode dispatch (precedent: 44 files deleted) | High | Clean recovery baseline commit recorded; BANNED OPS (no move/delete/create outside scope); disjoint file scope per phase; agent does NO git writes; isolated worktree; SIGKILL between dispatches |
 | Move-reconciliation false positives (copied/template-identical files) | Medium | Require a *unique* `packet_id` + doc role/anchor match with no competing live path; content hash is confirmation only; else fall back to delete+add |
 | Outage converts clean `pending` backlog into prunable `retry` rows | Medium | Vector drain checks provider/circuit state BEFORE the atomic pending→retry claim (`retry-manager.ts:303`); retention only prunes `retry` (`:493-519`) |
 | Auto-reindex trigger thrash | Medium | All triggers feed the coalescing `scanKey`; rapid commits collapse onto one job |
@@ -141,6 +141,57 @@ The full 5-angle design, delivered in three gated phases:
 - cli-opencode `openai/gpt-5.5 --variant high` executor (per `cli-opencode/SKILL.md`).
 - Canonical design source: `../012-memory-index-scan-ux-hardening/research/research.md`.
 <!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Performance
+- **NFR-P01**: A repeat/coalesced scan call returns in well under the MCP request deadline (no synchronous embedding on the hot path).
+- **NFR-P02**: `memory_health.index` is derived from existing counters/queries; the added block must not add a heavy full-disk walk to every health call (bounded or cached orphan count).
+
+### Reliability
+- **NFR-R01**: Lexical commit has no hard embedder dependency — search stays available when the embedder is slow/absent.
+- **NFR-R02**: An embedder outage never converts clean `pending` rows into prunable `retry` rows (provider/circuit checked before the claim).
+
+### Safety
+- **NFR-S01**: Orphan deletion only goes through `delete_memory_from_database()` (vec + ancillary + BM25 + cache + main row); never a raw `DELETE FROM memory_index`.
+- **NFR-S02**: The orphan sweep checks both `file_path` and `canonical_file_path` on disk before deleting any row, so live rows can never be swept.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Scan Lifecycle
+- Two near-simultaneous scans of the same scope: second coalesces onto the in-flight job (`coalesced:true`), no duplicate work, no raw E429.
+- Scan inside the 30s cooldown after a completed scan: returns the recent job handle, not an error.
+- `force` scan on a very large tree: returns at `lexical_complete` / `complete_with_pending_vectors`; vectors drain after.
+
+### Embedder Trouble
+- Provider cold-load / circuit open during drain: rows stay `pending`, `degraded:true` + `nextVectorAttemptAfter` surfaced; drain resumes when the provider recovers.
+- Main-DB ENOSPC: the only hard per-file index failure (lexical durability point); cache/metadata ENOSPC degrades vectors only.
+
+### Self-Heal
+- Renested folder (old path gone, new path present, same `packet_id`): move reconciliation updates the row path in place, preserving the embedding — no re-embed, no orphan.
+- Copied/template-identical files with the same content hash but different `packet_id`/anchor: NOT merged (unique-match guard); fall back to delete+add.
+- Orphan rows for a folder nobody scanned: removed by the global sweep on the next completed scan regardless of scope.
+<!-- /ANCHOR:edge-cases -->
+
+---
+
+<!-- ANCHOR:complexity -->
+## L2: COMPLEXITY ASSESSMENT
+
+| Dimension | Score | Notes |
+|-----------|-------|-------|
+| Scope | 18/25 | ~6 mcp_server files across 3 gated phases; additive contract |
+| Risk | 20/25 | Highest-blast-radius daemon code; build-while-live + RM-8 dispatch hazards |
+| Research | 8/20 | Design fully resolved in the 012 research packet; implementation-planning questions only |
+| **Total** | **46/70** | **Level 2** (risk-weighted; phased + gated to contain blast radius) |
+<!-- /ANCHOR:complexity -->
 
 ---
 
