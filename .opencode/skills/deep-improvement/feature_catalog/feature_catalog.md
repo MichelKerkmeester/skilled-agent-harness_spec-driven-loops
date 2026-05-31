@@ -348,7 +348,7 @@ Routes loop-host to the skill-benchmark orchestrator with a single additive arm;
 
 #### Source Files
 
-`scripts/shared/loop-host.cjs`, `scripts/skill-benchmark/run-skill-benchmark.cjs`.
+See [`05--skill-benchmark/01-mode-wiring.md`](05--skill-benchmark/01-mode-wiring.md) for full implementation and validation file listings.
 
 ### Hint-free fixtures and contamination gate
 
@@ -362,7 +362,7 @@ Per-skill public/private scenario fixtures keep the expected skill/intents/resou
 
 #### Source Files
 
-`scripts/skill-benchmark/contamination-lint.cjs`, `assets/skill-benchmark/fixtures/`.
+See [`05--skill-benchmark/02-contamination-gate-and-fixtures.md`](05--skill-benchmark/02-contamination-gate-and-fixtures.md) for full implementation and validation file listings.
 
 ### Router-replay and advisor probe (Mode A)
 
@@ -376,7 +376,7 @@ Replays the target skill's own router for in-skill routing and discovery, and pr
 
 #### Source Files
 
-`scripts/skill-benchmark/router-replay.cjs`, `scripts/skill-benchmark/advisor-probe.cjs`.
+See [`05--skill-benchmark/03-router-replay-and-advisor-probe.md`](05--skill-benchmark/03-router-replay-and-advisor-probe.md) for full implementation and validation file listings.
 
 ### D5 structural connectivity hard gate
 
@@ -390,7 +390,7 @@ A static scan runs before any dispatch and caps the verdict on structural failur
 
 #### Source Files
 
-`scripts/skill-benchmark/d5-connectivity.cjs`.
+See [`05--skill-benchmark/04-d5-connectivity-gate.md`](05--skill-benchmark/04-d5-connectivity-gate.md) for full implementation and validation file listings.
 
 ### D1-D5 scoring and funnel
 
@@ -400,11 +400,11 @@ Computes the five dimensions with a funnel whose largest single-stage drop is th
 
 #### Current Reality
 
-`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; weights live in `assets/skill-benchmark/default_profile.json`.
+`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; the weights are hardcoded in the scorer, and `assets/skill-benchmark/default_profile.json` documents them but is a reference asset that is not consumed at runtime.
 
 #### Source Files
 
-`scripts/skill-benchmark/score-skill-benchmark.cjs`, `assets/skill-benchmark/default_profile.json`.
+See [`05--skill-benchmark/05-scoring-and-funnel.md`](05--skill-benchmark/05-scoring-and-funnel.md) for full implementation and validation file listings.
 
 ### Dual report and remediation taxonomy
 
@@ -414,8 +414,8 @@ Emits a machine report plus a human report rendered from it (anti-drift), with r
 
 #### Current Reality
 
-`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json`; bottlenecks map through `assets/skill-benchmark/remediation_taxonomy.json` to a target file, locus, one-line fix, and hand-off lane.
+`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json` (anti-drift). `assets/skill-benchmark/remediation_taxonomy.json` documents how each finding class maps to a target file, locus, one-line fix, and hand-off lane; it is a reference asset (exercised by its own test) and is not yet imported by the report code.
 
 #### Source Files
 
-`scripts/skill-benchmark/build-report.cjs`, `assets/skill-benchmark/remediation_taxonomy.json`.
+See [`05--skill-benchmark/06-dual-report-and-remediation.md`](05--skill-benchmark/06-dual-report-and-remediation.md) for full implementation and validation file listings.

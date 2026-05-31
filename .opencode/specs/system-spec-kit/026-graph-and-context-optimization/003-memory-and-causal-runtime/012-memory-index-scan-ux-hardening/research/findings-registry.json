@@ -1,0 +1,179 @@
+{
+  "sessionId": "012-memidx-1780232259",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-05-31T13:46:29Z"
+  },
+  "openQuestions": [
+    {
+      "id": "question-1-a1-scan-lifecycle-caller-contract-is-the-synchronous-request-response-shape-righ",
+      "text": "A1 SCAN LIFECYCLE & CALLER CONTRACT: Is the synchronous request/response shape right for a scan that holds a global lease AND does unbounded embedding work under a fixed MCP deadline? Compare (i) current sync+lease+30s-cooldown, (ii) async job model (jobId + poll, mirroring embedder_status), (iii) auto-coalescing/idempotent scan returning the in-flight job instead of E429, (iv) streaming progress. Recommend a caller-facing contract where a scan is ALWAYS safe + idempotent and the cooldown is an internal thrash-guard, never a user-visible error.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-2-a2-unbounded-work-timeout-hardening-make-scan-or-re-embed-everything-always-comp",
+      "text": "A2 UNBOUNDED-WORK / TIMEOUT HARDENING: Make \"scan or re-embed everything\" always complete regardless of tree size — chunked/resumable batches, checkpointed work-queue, deferred async vector embedding (commit FTS/text rows immediately, vectors via pending/retry status), per-call work caps with continuation cursors. Eliminate the `force:true`-on-big-root `-32001` timeout class entirely.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-3-a3-concurrency-multi-writer-with-n-agents-sessions-daemons-worktree-per-session-",
+      "text": "A3 CONCURRENCY & MULTI-WRITER: With N agents/sessions/daemons (+ worktree-per-session), define correct lease semantics under contention, single-writer guarantees, and what a 2nd concurrent caller should EXPERIENCE (queue / coalesce / fast-return with retry-after auto-honored) instead of a raw E429. Cover IPC bridge (`SPECKIT_MAX_SECONDARY_CLIENTS`) + cross-session coordination.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-a4-embedder-resilience-degraded-mode-indexing-graceful-degradation-so-a-scan-nev",
+      "text": "A4 EMBEDDER RESILIENCE & DEGRADED-MODE INDEXING: Graceful degradation so a scan NEVER fails wholesale on embedder trouble (cold-load, circuit-breaker cooldown, ENOSPC, model-load wedge, per-row POSTs) — commit lexical/FTS rows first + defer vectors to bounded async retry, optimal batch sizing, circuit-breaker/backoff UX, and surfacing \"embeddings lagging but search still works\" rather than erroring.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-a5-self-healing-observability-close-the-orphan-row-freshness-gap-rename-move-rec",
+      "text": "A5 SELF-HEALING & OBSERVABILITY: Close the orphan-row + freshness gap — rename/move reconciliation (path move vs delete+add so renests don't orphan rows), orphan GC/sweep for File-not-found rows, an index-freshness/health surface (extend memory_health or a /doctor index view: indexed-vs-on-disk counts, stale rows, pending-embedding backlog), and auto-reindex triggers (post-commit hook / mtime watch). Directly closes this session's orphaned old-path rows.",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [],
+  "uncoveredQuestions": [
+    "A1 SCAN LIFECYCLE & CALLER CONTRACT: Is the synchronous request/response shape right for a scan that holds a global lease AND does unbounded embedding work under a fixed MCP deadline? Compare (i) current sync+lease+30s-cooldown, (ii) async job model (jobId + poll, mirroring embedder_status), (iii) auto-coalescing/idempotent scan returning the in-flight job instead of E429, (iv) streaming progress. Recommend a caller-facing contract where a scan is ALWAYS safe + idempotent and the cooldown is an internal thrash-guard, never a user-visible error.",
+    "A2 UNBOUNDED-WORK / TIMEOUT HARDENING: Make \"scan or re-embed everything\" always complete regardless of tree size — chunked/resumable batches, checkpointed work-queue, deferred async vector embedding (commit FTS/text rows immediately, vectors via pending/retry status), per-call work caps with continuation cursors. Eliminate the `force:true`-on-big-root `-32001` timeout class entirely.",
+    "A3 CONCURRENCY & MULTI-WRITER: With N agents/sessions/daemons (+ worktree-per-session), define correct lease semantics under contention, single-writer guarantees, and what a 2nd concurrent caller should EXPERIENCE (queue / coalesce / fast-return with retry-after auto-honored) instead of a raw E429. Cover IPC bridge (`SPECKIT_MAX_SECONDARY_CLIENTS`) + cross-session coordination.",
+    "A4 EMBEDDER RESILIENCE & DEGRADED-MODE INDEXING: Graceful degradation so a scan NEVER fails wholesale on embedder trouble (cold-load, circuit-breaker cooldown, ENOSPC, model-load wedge, per-row POSTs) — commit lexical/FTS rows first + defer vectors to bounded async retry, optimal batch sizing, circuit-breaker/backoff UX, and surfacing \"embeddings lagging but search still works\" rather than erroring.",
+    "A5 SELF-HEALING & OBSERVABILITY: Close the orphan-row + freshness gap — rename/move reconciliation (path move vs delete+add so renests don't orphan rows), orphan GC/sweep for File-not-found rows, an index-freshness/health surface (extend memory_health or a /doctor index view: indexed-vs-on-disk counts, stale rows, pending-embedding backlog), and auto-reindex triggers (post-commit hook / mtime watch). Directly closes this session's orphaned old-path rows."
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-6-memory-index-scan-args-always-returns-a-success-envelope-unless-input-validation",
+      "text": "`memory_index_scan(args)` always returns a success envelope unless input validation fails.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-scankey-is-a-stable-hash-of-normalized-scope-and-options-that-materially-change-",
+      "text": "`scanKey` is a stable hash of normalized scope and options that materially change work: `specFolder`, `force`, `incremental`, `includeSpecDocs`, `includeConstitutional`, governance scope, and active workspace/db profile.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-complexity-requires-a-scan-job-table-state-machine-scan-key-coalescing-job-resum",
+      "text": "Complexity: requires a scan job table/state machine, scan-key coalescing, job resume, and bounded worker steps. This is real complexity, but it maps cleanly onto the embedder job model already present.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-if-a-matching-job-is-queued-running-the-call-returns-that-job-with-coalesced-tru",
+      "text": "If a matching job is queued/running, the call returns that job with `coalesced: true`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-if-no-matching-job-exists-the-call-creates-or-schedules-one-and-returns-immediat",
+      "text": "If no matching job exists, the call creates or schedules one and returns immediately.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-if-the-lease-is-active-or-the-30s-cooldown-would-currently-reject-the-request-th",
+      "text": "If the lease is active or the 30s cooldown would currently reject the request, the caller still receives the active/recent/coalesced job. The cooldown remains an internal guard that prevents duplicate worker starts, not a user-visible error.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-latency-callers-get-a-fast-acknowledgement-and-no-retry-foot-gun-they-may-need-a",
+      "text": "Latency: callers get a fast acknowledgement and no retry foot-gun. They may need a poll loop for completion, but `nextPollAfterMs` can make this mechanical.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-mcp-deadline-safety-strong-the-mcp-request-never-owns-unbounded-tree-walking-ind",
+      "text": "MCP deadline safety: strong. The MCP request never owns unbounded tree walking, indexing, and embedding to completion.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-migration-cost-moderate-the-safest-path-is-additive-keep-current-fields-in-the-e",
+      "text": "Migration cost: moderate. The safest path is additive: keep current fields in the eventual completed response, but wrap them in job metadata and return early for large or contended scans.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-optional-compatibility-allow-waitforcompletionms-with-a-small-default-cap-for-ti",
+      "text": "Optional compatibility: allow `waitForCompletionMs` with a small default cap for tiny scans, but when the cap is reached the response returns the job instead of timing out. Blocking completion should become an optimization, not the contract.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-polling-should-be-done-through-a-scan-status-surface-that-mirrors-embedder-statu",
+      "text": "Polling should be done through a scan status surface that mirrors `embedder_status`; either `memory_index_scan_status({ jobId })` or an additive `memory_index_scan({ jobId })` status mode. I would choose `memory_index_scan_status` for clarity and keep `embedder_status` focused on vector re-index/provider health.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-primary-recommendation-make-memory-index-scan-an-idempotent-async-scan-job-contr",
+      "text": "Primary recommendation: make `memory_index_scan` an idempotent async scan-job contract with automatic coalescing.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-ruled-out-as-primary-contracts-current-sync-cooldown-pure-async-without-coalesci",
+      "text": "Ruled out as primary contracts: current sync+cooldown, pure async without coalescing, and streaming-first progress.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-the-current-request-can-do-unbounded-work-under-one-mcp-deadline",
+      "text": "The current request can do unbounded work under one MCP deadline.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-the-current-scan-contract-is-synchronous-and-exposes-internal-coordination-as-ca",
+      "text": "The current scan contract is synchronous and exposes internal coordination as caller-visible `E429`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-the-embedder-re-index-job-model-is-the-right-reusable-pattern-for-scan-jobs",
+      "text": "The embedder re-index job model is the right reusable pattern for scan jobs.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-the-response-includes-jobid-scankey-status-phase-progress-eta-coalesced-degraded",
+      "text": "The response includes `jobId`, `scanKey`, `status`, `phase`, `progress`, `eta`, `coalesced`, `degraded`, `warnings`, and `nextPollAfterMs`.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-the-system-already-has-the-degraded-mode-pieces-needed-to-separate-scan-indexed-",
+      "text": "The system already has the degraded-mode pieces needed to separate \"scan indexed text\" from \"vectors are caught up.\"",
+      "addedAtIteration": 1,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 5,
+    "resolvedQuestions": 0,
+    "keyFindings": 18,
+    "convergenceScore": 0.62,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "COMPLETE"
+}
