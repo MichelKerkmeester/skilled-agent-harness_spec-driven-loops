@@ -327,3 +327,95 @@ Every state record carries `mode: agent-improvement` or `mode: model-benchmark`,
 #### Source Files
 
 See [`04--model-benchmark-mode/04-mode-records-and-gates.md`](04--model-benchmark-mode/04-mode-records-and-gates.md) for full implementation and validation file listings.
+
+---
+
+## 6. SKILL-BENCHMARK MODE
+
+**Lane:** Lane C (skill-benchmark)
+
+These entries describe the skill-benchmark path that diagnoses how a *skill* is routed-to, discovered, used, and structured in practice — distinct from doc-shape validation and manual testing playbooks. It is diagnostic by default and emits a ranked Skill Benchmark Report. Mode A (router-replay) and D1-inter (advisor probe) are deterministic; D4 usefulness ablation and live trace capture are follow-on.
+
+### Mode wiring and orchestration
+
+#### Description
+
+Routes loop-host to the skill-benchmark orchestrator with a single additive arm; the orchestrator runs the D5 gate, then per-scenario contamination-lint, router-replay, and scoring.
+
+#### Current Reality
+
+`scripts/shared/loop-host.cjs` resolves `--mode=skill-benchmark` to `scripts/skill-benchmark/run-skill-benchmark.cjs` via an additive `VALID_MODES` entry, `LANE_SKILL_BENCHMARK` set, and `planInvocation` arm; the agent-improvement and model-benchmark plans stay byte-identical.
+
+#### Source Files
+
+`scripts/shared/loop-host.cjs`, `scripts/skill-benchmark/run-skill-benchmark.cjs`.
+
+### Hint-free fixtures and contamination gate
+
+#### Description
+
+Per-skill public/private scenario fixtures keep the expected skill/intents/resources scorer-only; a contamination linter rejects public prompts that leak the answer before dispatch.
+
+#### Current Reality
+
+`scripts/skill-benchmark/contamination-lint.cjs` builds banned vocabulary from the target skill's own identity (name, triggers, router keywords, resource path tokens) and treats any leak as a fixture failure, not a skill failure.
+
+#### Source Files
+
+`scripts/skill-benchmark/contamination-lint.cjs`, `assets/skill-benchmark/fixtures/`.
+
+### Router-replay and advisor probe (Mode A)
+
+#### Description
+
+Replays the target skill's own router for in-skill routing and discovery, and probes the advisor out-of-band for inter-skill selection — both deterministic, no LLM.
+
+#### Current Reality
+
+`scripts/skill-benchmark/router-replay.cjs` extracts `INTENT_SIGNALS`/`RESOURCE_MAP` from the target `SKILL.md` and reproduces the substring routing (D1-intra + D2 proxy); `scripts/skill-benchmark/advisor-probe.cjs` runs `skill_advisor.py` over the SQLite graph for the D1-inter signal.
+
+#### Source Files
+
+`scripts/skill-benchmark/router-replay.cjs`, `scripts/skill-benchmark/advisor-probe.cjs`.
+
+### D5 structural connectivity hard gate
+
+#### Description
+
+A static scan runs before any dispatch and caps the verdict on structural failures.
+
+#### Current Reality
+
+`scripts/skill-benchmark/d5-connectivity.cjs` flags dead routed paths, dead intent keys, path escapes, orphan references, and an unparseable router; any P0 sets `gateFailed` and caps the verdict to `BLOCKED-BY-STRUCTURE`.
+
+#### Source Files
+
+`scripts/skill-benchmark/d5-connectivity.cjs`.
+
+### D1-D5 scoring and funnel
+
+#### Description
+
+Computes the five dimensions with a funnel whose largest single-stage drop is the headline bottleneck; the aggregate normalizes over the dimensions actually measured.
+
+#### Current Reality
+
+`scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; weights live in `assets/skill-benchmark/default_profile.json`.
+
+#### Source Files
+
+`scripts/skill-benchmark/score-skill-benchmark.cjs`, `assets/skill-benchmark/default_profile.json`.
+
+### Dual report and remediation taxonomy
+
+#### Description
+
+Emits a machine report plus a human report rendered from it (anti-drift), with ranked bottlenecks mapped to concrete remediations and hand-off lanes.
+
+#### Current Reality
+
+`scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json`; bottlenecks map through `assets/skill-benchmark/remediation_taxonomy.json` to a target file, locus, one-line fix, and hand-off lane.
+
+#### Source Files
+
+`scripts/skill-benchmark/build-report.cjs`, `assets/skill-benchmark/remediation_taxonomy.json`.
