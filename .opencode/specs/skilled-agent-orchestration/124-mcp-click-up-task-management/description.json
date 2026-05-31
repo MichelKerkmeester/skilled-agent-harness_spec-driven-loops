@@ -1,21 +1,11 @@
 {
+  "title": "mcp-click-up — ClickUp Task Management Skill",
+  "level": 3,
   "spec_id": "124",
   "name": "mcp-click-up-task-management",
   "track": "skilled-agent-orchestration",
-  "title": "mcp-click-up — ClickUp Task Management Skill",
-  "description": "Creates the mcp-click-up skill for AI agents to manage ClickUp tasks via cupt CLI (primary) and official ClickUp MCP (secondary). Includes embedded install, operation-based routing, and all critical agent invariants.",
   "version": "1.0.0",
   "status": "complete",
-  "level": 3,
-  "keywords": [
-    "clickup",
-    "cupt",
-    "task-management",
-    "mcp",
-    "skill",
-    "time-tracking",
-    "work-queue"
-  ],
   "trigger_examples": [
     "clickup task management",
     "cupt list tasks",
@@ -23,5 +13,33 @@
     "clickup mcp skill"
   ],
   "created_at": "2026-05-31T00:00:00Z",
-  "last_updated_at": "2026-05-31T00:00:00Z"
+  "last_updated_at": "2026-05-31T00:00:00Z",
+  "specFolder": "124-mcp-click-up-task-management",
+  "description": "Feature Specification: mcp-click-up — ClickUp Skill via cupt CLI + Official MCP",
+  "keywords": [
+    "feature",
+    "specification",
+    "mcp-click-up",
+    "clickup",
+    "skill",
+    "via",
+    "cupt",
+    "cli",
+    "official",
+    "mcp"
+  ],
+  "lastUpdated": "2026-05-31T10:01:10.978Z",
+  "specId": "124",
+  "folderSlug": "mcp-click-up-task-management",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "31-05-26_11-00__created-the-complete-mcp-click-up-skill-from.md",
+    "31-05-26_11-01__created-the-complete-mcp-click-up-skill-from.md"
+  ]
 }

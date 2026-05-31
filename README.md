@@ -7,7 +7,7 @@
 | ⚛️ **Hybrid RAG + Smart Graph** | Retrieval that blends semantic search with graph-aware project context |
 | 🔍 **Code Graph** | Callers, imports, impact paths, and Code Graph + Grep code discovery |
 | 🤖 **11 Specialized Agents** | Focused roles for implementation, review, research, docs, git, and more |
-| 🎯 **21 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
+| 🎯 **22 On-Demand Skills** | Skill Advisor routing for the right workflow at the right time |
 
 **Reasons to try it**
 
@@ -848,7 +848,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 
 ### 🎯 Skills Library
 
-21 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
+22 skills in `.opencode/skills/`, loaded on demand when Gate 2 matches a task (confidence >= 0.8 means the skill must be loaded).
 
 #### SYSTEM
 
@@ -944,6 +944,10 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 **mcp-chrome-devtools**
 - **Drive a real browser from the assistant.** Chrome DevTools with smart 2-mode routing
 - **Fast by default:** CLI mode (`bdg`) runs in the terminal, supports Unix pipes and composes in CI/CD, with MCP mode as the fallback for multi-tool flows
+
+**mcp-click-up**
+- **Manage ClickUp tasks from the assistant.** Routes between `cupt` CLI (daily task ops) and the official ClickUp MCP (documents, goals, bulk ops, webhooks) with operation-based routing
+- **Agent-safe by design:** enforces per-list status resolution, dry-run before batch completion, `--json` output, and empty-queue handling. Embedded install via `mcp-servers/` directory. 96-feature catalog + 76-scenario playbook included
 
 &nbsp;
 #### OTHER
@@ -1224,7 +1228,8 @@ Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` 
 
 - **`chrome_devtools_1`** (MCP/stdio) - Browser automation (instance 1). No env var needed.
 - **`chrome_devtools_2`** (MCP/stdio) - Browser automation (instance 2). No env var needed.
-- **`clickup`** (MCP/stdio) - Task management, goals, docs. Requires `CLICKUP_API_KEY`.
+- **`clickup`** (MCP/stdio) - ClickUp community server (`@taazkareem/clickup-mcp-server`). Requires `CLICKUP_API_KEY`.
+- **`clickup_official`** (MCP/stdio) - Official ClickUp MCP (`@clickup/mcp-server`). Requires `CLICKUP_API_KEY` + `CLICKUP_TEAM_ID`. Used by `mcp-click-up` skill.
 - **`figma`** (MCP/stdio) - Design files, components, exports. Requires `FIGMA_API_KEY`.
 - **`github`** (MCP/stdio) - Issues, pull requests, commits. Requires `GITHUB_PERSONAL_ACCESS_TOKEN`.
 - **`webflow`** (MCP/remote) - Sites, CMS collections. Requires Webflow auth.
@@ -1269,6 +1274,7 @@ This repo ships as a **public template**. Of the skills it ships with, only one 
 | `sk-prompt` / `deep-agent-improvement`              | ✅ Codebase-agnostic                        | Prompt, agent improvement, and model benchmarking frameworks. Work for any project.                                                                                                                                             |
 | `cli-*` (codex/copilot/gemini/claude-code/opencode) | ✅ Codebase-agnostic                        | External CLI orchestrators. Stack-independent.                                                                                                                                                           |
 | `mcp-chrome-devtools`                               | ✅ Codebase-agnostic                        | Browser tooling. Stack-independent.                                                                                                                                                                      |
+| `mcp-click-up`                                      | ✅ Codebase-agnostic                        | ClickUp task management via cupt CLI + official MCP. Requires `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`. Stack-independent.                                                                                |
 
 **Adding your own skills:** the shipped set is intentionally minimal, most teams will add their own skills (project-specific workflows, ops runbooks, domain-specific reviewers, etc.). That's expected and supported. Just drop them into `.opencode/skills/<your-skill>/` and they'll be picked up by the advisor. The shipped skills above are kept agnostic so upstream updates apply cleanly to your fork.
 
@@ -1489,4 +1495,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.13 | Last updated: 2026-05-24 | Framework: 11 agents, 21 skills, 24 commands, 60 MCP tools (35 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.14 | Last updated: 2026-05-31 | Framework: 11 agents, 22 skills, 24 commands, 60 MCP tools (35 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

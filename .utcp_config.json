@@ -47,21 +47,21 @@
       }
     },
     {
-      "name": "clickup",
+      "name": "clickup_official",
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "clickup": {
+          "clickup_official": {
             "transport": "stdio",
             "command": "npx",
             "args": [
-              "@taazkareem/clickup-mcp-server@0.14.4"
+              "-y",
+              "@clickup/mcp-server"
             ],
             "env": {
               "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
               "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
-            },
-            "_note": "ClickUp MCP server for task management. Get API token from ClickUp Settings > Apps > API Token."
+            }
           }
         }
       }

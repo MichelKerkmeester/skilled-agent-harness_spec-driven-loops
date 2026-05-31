@@ -1,45 +1,67 @@
 ---
-title: "03-003: Notes and Comments"
+title: "CU-027 -- Add Comment + List Comments"
+description: "This scenario validates Add Comment + List Comments for `CU-027`. Objective: Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it."
 ---
 
-# 03-003: Add Notes and List Comments
+# CU-027 -- Add Comment + List Comments
 
-**Goal:** Verify cupt note adds a comment and cupt notes lists all comments.
+---
 
-## Test Procedure
+## 1. OVERVIEW
 
-```bash
-TASK_ID="abc123"
+Validates that **Add Comment + List Comments** behaves as defined in the feature catalog.
 
-# Add a comment
-cupt note $TASK_ID "Test comment from mcp-click-up testing playbook — 03-003"
+### Why This Matters
 
-# List all comments
-cupt notes $TASK_ID
-```
+Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it is required for correct agent operation. Failure here means comment missing from `cupt notes` output or exit non-zero.
 
-## Expected Output (cupt notes)
+---
 
-```
-Comments on: Task Name (abc123)
+## 2. SCENARIO CONTRACT
 
-[2026-05-31 10:00] Your Name:
-  Test comment from mcp-click-up testing playbook — 03-003
+- **Objective:** Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it
+- **Real user request:** `Add a comment and list all comments on task TASK_ID.`
+- **Prompt:** `Add a test comment to TASK_ID, then list all comments.`
+- **Expected signals:** Step 1: exit 0. Step 2: comment with text 'Playbook test comment — CU-027' appears with author and timestamp.
+- **Desired user-visible outcome:** Agent reports: comment added. Comment appears in notes list with correct author.
+- **Pass/fail:** PASS if comment text appears in `cupt notes` output; FAIL if comment missing from `cupt notes` output OR exit non-zero
 
-[2026-05-30 09:00] Another User:
-  Previous comment...
-```
+---
 
-## Agent Handoff Pattern
+## 3. TEST EXECUTION
 
-```bash
-# Standard handoff note
-cupt tag remove $TASK_ID ai_ready
-cupt tag add $TASK_ID needs_review
-cupt note $TASK_ID "Processing complete. Removed ai_ready, added needs_review for human review."
-```
+### Recommended Orchestration Process
 
-## Failure Diagnosis
+1. `cupt note TASK_ID 'Playbook test comment — CU-027'`  # → exit 0
+2. `cupt notes TASK_ID`  # → list with comment text visible
 
-- Comment not appearing → Wait 1-2s and re-run; API may have slight delay
-- `403 Forbidden` → Token may not have comment write permission
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| CU-027 | Add Comment + List Comments | Verify `cupt note TASK_ID text` adds a comment and `cup | `Add a test comment to TASK_ID, then list all comments.` | Step 1: exit 0. Step 2: comment with text 'Playbook test comment — CU-027' appea | PASS if comment text appears in `cupt notes` output; FAIL if comment missing from `cupt notes` output OR exit non-ze | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/05--cupt-notes-comments/01-add-comment.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Notes
+- Playbook ID: CU-027
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--time-and-notes/003-note-and-notes.md`

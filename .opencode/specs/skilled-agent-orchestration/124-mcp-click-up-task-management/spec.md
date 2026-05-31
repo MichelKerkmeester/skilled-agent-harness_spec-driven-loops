@@ -56,7 +56,7 @@ This specification covers the creation of the `mcp-click-up` skill under `.openc
 |-------|-------|
 | **Level** | 3 |
 | **Priority** | P0 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-05-31 |
 | **Spec Folder** | `.opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management` |
 | **Skill Target** | `.opencode/skills/mcp-click-up/` |

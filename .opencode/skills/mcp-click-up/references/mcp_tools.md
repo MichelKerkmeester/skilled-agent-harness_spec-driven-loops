@@ -8,7 +8,6 @@ trigger_phrases:
   - "bulk create tasks"
   - "clickup webhooks"
   - "mcp tools"
-importance_tier: "important"
 ---
 
 # Official ClickUp MCP Tools Reference
@@ -20,7 +19,29 @@ importance_tier: "important"
 
 ---
 
-## Authentication
+## 1. OVERVIEW
+
+The official ClickUp MCP server exposes 46 tools across task CRUD, documents, goals, time tracking, webhooks, and enterprise features. It is the secondary surface in mcp-click-up, used for operations that cupt CLI cannot perform: creating documents, managing goals/OKRs, bulk task creation, webhooks, and enterprise audit logs.
+
+Use this reference when:
+- Routing a request to MCP (not cupt) based on the operation table in SKILL.md §2
+- Writing Code Mode `call_tool_chain()` invocations
+- Understanding which priority tier a tool belongs to
+
+---
+
+## 2. PREREQUISITES
+
+- Code Mode MCP configured with `clickup` server in your platform config (opencode.json, .mcp.json, or claude_desktop_config.json)
+- Environment variables set: `CLICKUP_API_KEY` (`pk_` token) and `CLICKUP_TEAM_ID` (numeric workspace ID)
+- OpenCode / AI client restarted after config change
+- Node.js 18+ and npx available (for `@clickup/mcp-server`)
+
+See `INSTALL_GUIDE.md §4` for platform-specific configuration blocks.
+
+---
+
+## 3. AUTHENTICATION
 
 | Environment Variable | Description | Example |
 |---------------------|-------------|---------|
@@ -31,7 +52,7 @@ Get `CLICKUP_TEAM_ID`: run `cupt status` and copy the workspace ID, or run `cupt
 
 ---
 
-## When to Use MCP vs cupt CLI
+## 4. WHEN TO USE MCP VS CUPT CLI
 
 Use the **Official MCP** when you need:
 - Creating or reading ClickUp **Documents**
@@ -48,7 +69,7 @@ Use **cupt CLI** for everything else (see `cupt_commands.md`).
 
 ---
 
-## Tool Priority Table
+## 5. TOOL PRIORITY TABLE
 
 ### HIGH Priority (8 tools — Daily Use)
 
@@ -113,7 +134,7 @@ Use **cupt CLI** for everything else (see `cupt_commands.md`).
 
 ---
 
-## Invocation Pattern (Code Mode)
+## 6. INVOCATION PATTERN (CODE MODE)
 
 All MCP tools are invoked via Code Mode's `call_tool_chain()`:
 
@@ -153,7 +174,7 @@ const result = await call_tool_chain([
 
 ---
 
-## Document Operations
+## 7. DOCUMENT OPERATIONS
 
 ```typescript
 // Create a ClickUp document
@@ -188,7 +209,7 @@ const pages = await call_tool_chain([{
 
 ---
 
-## Goal Management
+## 8. GOAL MANAGEMENT
 
 ```typescript
 // Create a goal
@@ -207,7 +228,7 @@ const goal = await call_tool_chain([{
 
 ---
 
-## Bulk Task Creation
+## 9. BULK TASK CREATION
 
 ```typescript
 // Create multiple tasks in one call (5+ tasks)
@@ -226,7 +247,7 @@ const tasks = await call_tool_chain([{
 
 ---
 
-## Webhook Management
+## 10. WEBHOOK MANAGEMENT
 
 ```typescript
 // Create a webhook
@@ -243,7 +264,7 @@ const webhook = await call_tool_chain([{
 
 ---
 
-## Error Handling
+## 11. ERROR HANDLING
 
 Common error patterns and recovery:
 
@@ -275,7 +296,7 @@ try {
 
 ---
 
-## MCP vs cupt: Quick Decision
+## 12. MCP VS CUPT: QUICK DECISION
 
 | Need | Use | Reason |
 |------|-----|--------|

@@ -1,44 +1,70 @@
 ---
-title: "03-001: Time Start and Stop"
+title: "CU-029 -- Timer Lifecycle — start, status, stop"
+description: "This scenario validates Timer Lifecycle — start, status, stop for `CU-029`. Objective: Verify timer start/status/stop lifecycle: start exits 0, status shows running ti."
 ---
 
-# 03-001: Time Start and Stop
+# CU-029 -- Timer Lifecycle — start, status, stop
 
-**Goal:** Verify timer starts, tracks, and stops correctly.
+---
 
-## Test Procedure
+## 1. OVERVIEW
 
-```bash
-TASK_ID="abc123"
+Validates that **Timer Lifecycle — start, status, stop** behaves as defined in the feature catalog.
 
-# Start timer
-cupt time start $TASK_ID
+### Why This Matters
 
-# Check status
-cupt time status
+Verify timer start/status/stop lifecycle: start exits 0, status shows running timer, stop exits 0 and clears timer is required for correct agent operation. Failure here means any step exits non-zero or final status still shows running timer.
 
-# Wait a few seconds, then stop
-cupt time stop
+---
 
-# Verify final status
-cupt time status
-```
+## 2. SCENARIO CONTRACT
 
-## Expected Output (time status while running)
+- **Objective:** Verify timer start/status/stop lifecycle: start exits 0, status shows running timer, stop exits 0 and clears timer
+- **Real user request:** `Start a timer on task TASK_ID, check status, then stop it.`
+- **Prompt:** `Start timer on TASK_ID, check timer status, then stop it.`
+- **Expected signals:** Step 1: exit 0. Step 2: running timer shown. Step 3: exit 0, elapsed logged. Step 4: 'no timer' message.
+- **Desired user-visible outcome:** Agent reports: timer started, ran for N seconds, stopped. No orphaned timer.
+- **Pass/fail:** PASS if all 4 steps exit 0 AND final status shows no timer; FAIL if any step exits non-zero OR final status still shows running timer
 
-```
-Timer running on: Task Name (abc123)
-Elapsed: 00:00:15
-```
+---
 
-## Expected Output (after stop)
+## 3. TEST EXECUTION
 
-```
-No timer running.
-Last logged: 15s on Task Name
-```
+### Recommended Orchestration Process
 
-## Failure Diagnosis
+PRE: `cupt time status`  # → must show 'no timer running'
+1. `cupt time start TASK_ID`  # → exit 0
+2. `cupt time status`  # → 'Timer running on: Task Name (TASK_ID), Elapsed: 0:00:XX'
+3. `cupt time stop`  # → exit 0, logs elapsed time
+4. `cupt time status`  # → 'No timer running'
 
-- `already running` → Stop first: `cupt time stop`
-- Timer doesn't appear in ClickUp → May need workspace-level time tracking enabled
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| CU-029 | Timer Lifecycle — start, status, stop | Verify timer start/status/stop lifecycle: start exits 0 | `Start timer on TASK_ID, check timer status, then stop i` | Step 1: exit 0. Step 2: running timer shown. Step 3: exit 0, elapsed logged. Ste | PASS if all 4 steps exit 0 AND final status shows no timer; FAIL if any step exits non-zero OR final status still shows run | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/06--cupt-time-tracking/01-start-timer.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Time Tracking
+- Playbook ID: CU-029
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--time-and-notes/001-time-start-stop.md`

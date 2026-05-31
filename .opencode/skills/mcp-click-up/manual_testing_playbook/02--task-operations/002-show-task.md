@@ -1,46 +1,68 @@
 ---
-title: "02-002: Show Task Details"
+title: "CU-017 -- Show Task — cupt show --json"
+description: "This scenario validates Show Task — cupt show --json for `CU-017`. Objective: Verify `cupt show TASK_ID --json` returns a complete task object."
 ---
 
-# 02-002: Show Task Details and Context
+# CU-017 -- Show Task — cupt show --json
 
-**Goal:** Verify cupt show returns full task details and cupt context returns hierarchy.
+---
 
-## Test Procedure
+## 1. OVERVIEW
 
-```bash
-# Replace TASK_ID with a real task ID
-TASK_ID="abc123"
+Validates that **Show Task — cupt show --json** behaves as defined in the feature catalog.
 
-# Basic task details
-cupt show $TASK_ID
+### Why This Matters
 
-# With comments
-cupt show $TASK_ID --notes
+Verify `cupt show TASK_ID --json` returns a complete task object is required for correct agent operation. Failure here means non-json output or `id` field missing or exit non-zero.
 
-# JSON output for agents
-cupt show $TASK_ID --json
+---
 
-# Parent + siblings + subtasks
-cupt context $TASK_ID
-```
+## 2. SCENARIO CONTRACT
 
-## Expected Output (show --json)
+- **Objective:** Verify `cupt show TASK_ID --json` returns a complete task object
+- **Real user request:** `Show all details for task TASK_ID.`
+- **Prompt:** `Show task TASK_ID details in JSON format.`
+- **Expected signals:** JSON object with `id`, `name`, `status`, `assignees` fields; exit 0
+- **Desired user-visible outcome:** Agent reports task name, current status, assignees, and due date.
+- **Pass/fail:** PASS if JSON object returned with `id` field matching TASK_ID; FAIL if non-JSON output OR `id` field missing OR exit non-zero
 
-```json
-{
-  "id": "abc123",
-  "name": "Task name",
-  "description": "Task description...",
-  "status": { "status": "in progress" },
-  "assignees": [...],
-  "tags": [...],
-  "due_date": "1234567890000"
-}
-```
+---
 
-## Failure Diagnosis
+## 3. TEST EXECUTION
 
-- `Task not found` → Verify task ID is correct (copy from ClickUp URL or cupt list)
-- `403 Forbidden` → Task may be in a space you don't have access to
-- `--offline` fails → Run `cupt prefetch` first to populate cache
+### Recommended Orchestration Process
+
+1. `cupt show TASK_ID --json`  # → JSON object
+2. `bash: echo $RESULT | jq .id`  # → quoted task ID
+3. `bash: echo $RESULT | jq .status.status`  # → status string
+
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| CU-017 | Show Task — cupt show --json | Verify `cupt show TASK_ID --json` returns a complete ta | `Show task TASK_ID details in JSON format.` | JSON object with `id`, `name`, `status`, `assignees` fields; exit 0 | PASS if JSON object returned with `id` field matching TASK_ID; FAIL if non-JSON output OR `id` field missing OR exit non-zero | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/03--cupt-task-details/01-show-task.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Task Details
+- Playbook ID: CU-017
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `02--task-operations/002-show-task.md`

@@ -1,40 +1,67 @@
 ---
-title: "03-002: Manual Time Logging"
+title: "CU-030 -- Log Time Manually"
+description: "This scenario validates Log Time Manually for `CU-030`. Objective: Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp."
 ---
 
-# 03-002: Manual Time Logging
+# CU-030 -- Log Time Manually
 
-**Goal:** Verify cupt time add logs time entries with correct duration formats.
+---
 
-## Test Procedure
+## 1. OVERVIEW
 
-```bash
-TASK_ID="abc123"
+Validates that **Log Time Manually** behaves as defined in the feature catalog.
 
-# Log 1 hour 30 minutes
-cupt time add $TASK_ID 1h30m
+### Why This Matters
 
-# Log 45 minutes
-cupt time add $TASK_ID 45m
+Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp is required for correct agent operation. Failure here means exit non-zero or time entry missing from clickup.
 
-# Log 2 hours
-cupt time add $TASK_ID 2h
-```
+---
 
-## Valid Duration Formats
+## 2. SCENARIO CONTRACT
 
-| Format | Meaning |
-|--------|---------|
-| `1h30m` | 1 hour 30 minutes |
-| `45m` | 45 minutes |
-| `2h` | 2 hours |
-| `30m` | 30 minutes |
+- **Objective:** Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp
+- **Real user request:** `Log 1 hour 30 minutes on task TASK_ID.`
+- **Prompt:** `Log 1h30m of work on task TASK_ID.`
+- **Expected signals:** Step 1: confirmation message with duration logged; exit 0. Step 2: ClickUp shows 1h30m in time tracked.
+- **Desired user-visible outcome:** Agent reports: 1h30m logged to task TASK_ID. Time tracked updated in ClickUp.
+- **Pass/fail:** PASS if exit 0 AND time entry appears in ClickUp; FAIL if exit non-zero OR time entry missing from ClickUp
 
-## Verification
+---
 
-Check the task in ClickUp UI under "Time Tracked" — entries should appear.
+## 3. TEST EXECUTION
 
-## Failure Diagnosis
+### Recommended Orchestration Process
 
-- Invalid duration format → Use formats above; no spaces allowed
-- Time not appearing → Check workspace time tracking settings in ClickUp
+1. `cupt time add TASK_ID 1h30m`  # → exit 0 with confirmation
+2. Open ClickUp UI and check Time Tracked on the task
+
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| CU-030 | Log Time Manually | Verify `cupt time add TASK_ID 1h30m` creates a time ent | `Log 1h30m of work on task TASK_ID.` | Step 1: confirmation message with duration logged; exit 0. Step 2: ClickUp shows | PASS if exit 0 AND time entry appears in ClickUp; FAIL if exit non-zero OR time entry missing from ClickUp | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/06--cupt-time-tracking/03-log-manual.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Time Tracking
+- Playbook ID: CU-030
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `03--time-and-notes/002-time-add-manual.md`

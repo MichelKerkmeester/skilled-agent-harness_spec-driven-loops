@@ -8,18 +8,37 @@ trigger_phrases:
   - "cupt statuses"
   - "cupt time"
   - "cupt note"
-importance_tier: "important"
 ---
 
 # cupt CLI Reference
 
 cupt (ClickUP Terminal) — Python CLI for ClickUp task management, purpose-built for AI agents.
 
+---
+
+## 1. OVERVIEW
+
+cupt provides a terminal interface to ClickUp designed for agent-driven workflows. Every read command supports `--json` for machine-readable output. Completion uses automatic per-list status resolution so agents never need to hardcode status names. The `--offline` flag uses a local cache populated by `cupt prefetch`, enabling operation without network access.
+
+**Key agent advantages over direct API calls:**
+- `cupt done` resolves the correct closed status per list automatically
+- `--dry-run` on `cupt done` previews without writing
+- `--offline` enables cached operation after `cupt prefetch`
+- `--json` on all read commands gives structured output
+
+---
+
+## 2. PREREQUISITES
+
+- cupt v0.7.1+ installed: `cupt --version`
+- Authenticated: `cupt status` shows workspace name
+- For agent use: understand the API naming map below (team_id = workspace in UI)
+
 **Install:** `pipx install cupt` | **Verify:** `cupt --version && cupt status`
 
 ---
 
-## API Naming Map (cupt vs ClickUp UI)
+## 3. API NAMING MAP (cupt vs ClickUp UI)
 
 | cupt terminology | ClickUp UI label | ClickUp API field |
 |-----------------|------------------|-------------------|
@@ -32,7 +51,7 @@ cupt (ClickUP Terminal) — Python CLI for ClickUp task management, purpose-buil
 
 ---
 
-## Authentication & Status
+## 4. AUTHENTICATION & STATUS
 
 | Command | Description | Example |
 |---------|-------------|---------|
@@ -49,7 +68,7 @@ cupt (ClickUP Terminal) — Python CLI for ClickUp task management, purpose-buil
 
 ---
 
-## Task Listing
+## 5. TASK LISTING
 
 | Command | Description | Flags |
 |---------|-------------|-------|
@@ -92,7 +111,7 @@ cupt list --team "Engineering" --tag urgent # Combine (slow due to client-side t
 
 ---
 
-## Task Details
+## 6. TASK DETAILS
 
 | Command | Description | Flags |
 |---------|-------------|-------|
@@ -116,7 +135,7 @@ Statuses for list "Sprint Board":
 
 ---
 
-## Task Completion
+## 7. TASK COMPLETION
 
 | Command | Description |
 |---------|-------------|
@@ -150,7 +169,7 @@ done
 
 ---
 
-## Notes & Comments
+## 8. NOTES & COMMENTS
 
 | Command | Description |
 |---------|-------------|
@@ -167,7 +186,7 @@ cupt note TASK_ID "AI processing complete. Output: [summary]. Handing off for hu
 
 ---
 
-## Time Tracking
+## 9. TIME TRACKING
 
 | Command | Description | Example |
 |---------|-------------|---------|
@@ -188,7 +207,7 @@ cupt time status           # Verify no orphaned timer
 
 ---
 
-## Tags
+## 10. TAGS
 
 | Command | Description |
 |---------|-------------|
@@ -207,7 +226,7 @@ cupt tag add TASK_ID needs_review
 
 ---
 
-## Attachments
+## 11. ATTACHMENTS
 
 | Command | Description |
 |---------|-------------|
@@ -217,7 +236,7 @@ cupt tag add TASK_ID needs_review
 
 ---
 
-## Workspace
+## 12. WORKSPACE
 
 | Command | Description |
 |---------|-------------|
@@ -227,7 +246,7 @@ cupt tag add TASK_ID needs_review
 
 ---
 
-## Global Flags
+## 13. GLOBAL FLAGS
 
 | Flag | Applies To | Description |
 |------|-----------|-------------|
@@ -238,7 +257,7 @@ cupt tag add TASK_ID needs_review
 
 ---
 
-## Agent Invariants (MUST FOLLOW)
+## 14. AGENT INVARIANTS (MUST FOLLOW)
 
 ### 1. Status Resolution
 
@@ -300,7 +319,7 @@ cupt done TASK_ID
 
 ---
 
-## Configuration Storage
+## 15. CONFIGURATION STORAGE
 
 - Config file: `~/.cupt/config.yaml`
 - Cache: `~/.cupt/cache/` (encrypted with cryptography library)

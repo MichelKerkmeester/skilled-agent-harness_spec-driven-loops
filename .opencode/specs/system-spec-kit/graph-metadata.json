@@ -5,7 +5,9 @@
   "parent_id": null,
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization",
-    "system-spec-kit/028-mcp-startup-stdio-fix"
+    "system-spec-kit/028-mcp-startup-stdio-fix",
+    "system-spec-kit/037-substrate-skip-not-fail-validation",
+    "system-spec-kit/038-substrate-harness-hardening"
   ],
   "manual": {
     "depends_on": [],
@@ -47,12 +49,12 @@
     "entities": [],
     "causal_summary": "Two-bug fix to mcp-coco-index daemon: (1) idempotent start_daemon() prevents leaked-zombie duplicates, (2) BrokenPipeError-safe error handler stops CP",
     "created_at": "2026-05-07T09:13:37.743Z",
-    "last_save_at": "2026-05-16T06:18:22.242Z",
+    "last_save_at": "2026-05-31T12:23:16.442Z",
     "last_accessed_at": null,
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": "system-spec-kit/028-mcp-startup-stdio-fix",
-    "last_active_at": "2026-05-16T06:18:22.242Z"
+    "last_active_child_id": "system-spec-kit/038-substrate-harness-hardening",
+    "last_active_at": "2026-05-31T12:23:16.442Z"
   }
 }

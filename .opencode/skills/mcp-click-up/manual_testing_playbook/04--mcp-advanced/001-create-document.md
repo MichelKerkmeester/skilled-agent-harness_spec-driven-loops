@@ -1,42 +1,69 @@
 ---
-title: "04-001: Create ClickUp Document via MCP"
+title: "MCP-M015 -- Create Document — CRITICAL PATH"
+description: "This scenario validates Create Document — CRITICAL PATH for `MCP-M015`. Objective: Verify `clickup_create_document` creates a document and returns a doc_id."
 ---
 
-# 04-001: Create ClickUp Document via MCP
+# MCP-M015 -- Create Document — CRITICAL PATH
 
-**Goal:** Verify the official ClickUp MCP can create a document in a ClickUp space/list.
+---
 
-## Prerequisites
+## 1. OVERVIEW
 
-- Code Mode MCP configured with `clickup` in opencode.json
-- `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` set in env block
-- OpenCode restarted after config change
+Validates that **Create Document — CRITICAL PATH** behaves as defined in the feature catalog.
 
-## Test (via Code Mode)
+### Why This Matters
 
-```typescript
-const result = await call_tool_chain([{
-  tool: "clickup.clickup_create_document",
-  input: {
-    name: "Test Document — mcp-click-up 04-001",
-    parent: {
-      type: 7,  // 7 = all (workspace level)
-      id: "WORKSPACE_ID"
-    },
-    content: "# Test Document\n\nCreated by mcp-click-up manual testing playbook.",
-    content_format: "markdown"
-  }
-}]);
-console.log(result);
-```
+Verify `clickup_create_document` creates a document and returns a doc_id is required for correct agent operation. Failure here means `doc_id` missing from response or document not visible in clickup.
 
-## Expected Output
+---
 
-JSON with document ID and metadata.
+## 2. SCENARIO CONTRACT
 
-## Failure Diagnosis
+- **Objective:** Verify `clickup_create_document` creates a document and returns a doc_id
+- **Real user request:** `Create a test document in ClickUp.`
+- **Prompt:** `Create a document named 'Playbook Test Doc' in list LIST_ID with markdown content.`
+- **Expected signals:** MCP call returns JSON with `doc_id`; document visible in ClickUp UI.
+- **Desired user-visible outcome:** Agent reports: document 'Playbook Test Doc' created with ID DOC_ID.
+- **Pass/fail:** PASS if response includes `doc_id` AND document visible in ClickUp; FAIL if `doc_id` missing from response OR document not visible in ClickUp
 
-- `CLICKUP_API_KEY not set` → Check opencode.json env block
-- `tool not found` → Verify tool name: `clickup.clickup_create_document`
-- `403 Forbidden` → Token may need document write permissions
-- MCP not loading → Restart OpenCode after updating opencode.json
+---
+
+## 3. TEST EXECUTION
+
+### Recommended Orchestration Process
+
+PRE: MCP configured with valid CLICKUP_API_KEY and CLICKUP_TEAM_ID.
+1. Code Mode: `clickup.clickup_create_document({name: 'Playbook Test Doc', parent: {type: 4, id: 'LIST_ID'}, content: '# Test\n\nContent.', content_format: 'markdown'})`
+2. Verify response includes `doc_id`
+3. Open ClickUp UI and confirm document exists
+
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| MCP-M015 | Create Document — CRITICAL PATH | Verify `clickup_create_document` creates a document and | `Create a document named 'Playbook Test Doc' in list LIS` | MCP call returns JSON with `doc_id`; document visible in ClickUp UI. | PASS if response includes `doc_id` AND document visible in Clic; FAIL if `doc_id` missing from response OR document not visible  | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/12--mcp-medium-priority/15-create-document.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: MCP Documents
+- Playbook ID: MCP-M015
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `04--mcp-advanced/001-create-document.md`

@@ -1,6 +1,6 @@
 ---
 name: mcp-click-up
-description: ClickUp task management orchestrator: routes between cupt CLI (primary, daily ops) and the official ClickUp MCP server (secondary, advanced ops). Embeds cupt install and all critical agent invariants.
+description: Routes ClickUp between cupt CLI (daily ops) and official MCP (docs, goals, bulk). Embedded install and agent safety invariants.
 allowed-tools: [Bash, Edit, Glob, Grep, mcp__code_mode__call_tool_chain, Read, Write]
 version: 1.0.0.0
 ---
@@ -247,7 +247,7 @@ const result = await call_tool_chain([
 
 ## 4. RULES
 
-### ✅ ALWAYS
+### ALWAYS
 
 1. **Run `cupt statuses <id>` before any `cupt done` call** — each ClickUp list has its own status schema; the closed status varies (Done, Complete, Closed, etc.). Never assume.
 2. **Use `cupt done <id> --dry-run` before batch completion** — verify resolved status for every task before writing. One dry-run per task in a batch loop.
@@ -256,7 +256,7 @@ const result = await call_tool_chain([
 5. **Treat empty `cupt list` results as valid** — an empty queue is not an error. Before escalating: check tag spelling, try `--all` flag, verify team name via `cupt teams`.
 6. **Use `cupt context <id>`** before acting on a task to understand its parent and sibling relationships.
 
-### ❌ NEVER
+### NEVER
 
 1. **Never hardcode status names across tasks** — `"Done"` in one list may not exist in another. Use `cupt statuses <id>` to discover the correct status for each task's list.
 2. **Never run `cupt done` on multiple tasks without per-task dry-run first** — batch status errors are hard to reverse.
@@ -265,7 +265,7 @@ const result = await call_tool_chain([
 5. **Never fabricate tasks** — if `cupt list` returns empty, the queue is genuinely empty. Report this clearly.
 6. **Never use the MCP for daily task ops** — cupt handles these more efficiently and with dry-run safety.
 
-### ⚠️ ESCALATE IF
+### ESCALATE IF
 
 - cupt is not installed and `scripts/install.sh` fails → report Python version and pip issues
 - `cupt status` shows auth failure → direct to `cupt auth` or `cupt config --api-token`
@@ -355,6 +355,11 @@ const result = await call_tool_chain([
 
 **Scripts:**
 - `scripts/install.sh` — Installs cupt + prints MCP config snippet
+
+**Embedded Servers:**
+- `mcp-servers/clickup-mcp/package.json` — Official ClickUp MCP server (`@clickup/mcp-server`). Run `npm install` to vendor locally.
+- `mcp-servers/clickup-cli/requirements.txt` — cupt CLI pip pin (`cupt>=0.7.1`). Run `setup.sh` to install.
+- `mcp-servers/clickup-cli/setup.sh` — cupt install via pipx or pip.
 
 **Install Guide:**
 - `INSTALL_GUIDE.md` — Step-by-step with validation checkpoints

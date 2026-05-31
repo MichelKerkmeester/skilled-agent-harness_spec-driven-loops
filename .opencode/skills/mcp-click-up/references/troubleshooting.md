@@ -8,14 +8,27 @@ trigger_phrases:
   - "mcp connection failed"
   - "cupt done wrong status"
   - "team filter slow"
-importance_tier: "important"
 ---
 
 # mcp-click-up Troubleshooting Guide
 
 ---
 
-## Quick Diagnostics (Run in Order)
+## 1. OVERVIEW
+
+Diagnostic reference for cupt CLI and official ClickUp MCP errors. Start with the Quick Diagnostics sequence (§3) before diving into specific issues. Most failures fall into four categories: installation (cupt not found), authentication (401/no credentials), status resolution (wrong status on completion), and MCP connection (missing env vars or wrong tool name).
+
+---
+
+## 2. PREREQUISITES
+
+- cupt installed: `cupt --version`
+- Network access to ClickUp API
+- For MCP issues: Code Mode MCP configured in platform config with `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID`
+
+---
+
+## 3. QUICK DIAGNOSTICS (Run in Order)
 
 ```bash
 # 1. Is cupt installed?
@@ -36,7 +49,7 @@ cupt statuses TASK_ID
 
 ---
 
-## Installation Issues
+## 4. INSTALLATION ISSUES
 
 ### `command not found: cupt`
 
@@ -94,7 +107,7 @@ sudo apt install python3.12
 
 ---
 
-## Authentication Issues
+## 5. AUTHENTICATION ISSUES
 
 ### `AuthError: No credentials found`
 
@@ -144,7 +157,7 @@ cupt status  # Verify workspace is correct
 
 ---
 
-## Status Resolution Issues
+## 6. STATUS RESOLUTION ISSUES
 
 ### `cupt done` completes with wrong status
 
@@ -187,7 +200,7 @@ cupt statuses TASK_ID   # List available statuses
 
 ---
 
-## Team Filter Performance
+## 7. TEAM FILTER PERFORMANCE
 
 ### `cupt list --team X` is very slow (>10s)
 
@@ -217,7 +230,7 @@ cupt statuses TASK_ID   # List available statuses
 
 ---
 
-## MCP Connection Issues
+## 8. MCP CONNECTION ISSUES
 
 ### `CLICKUP_API_KEY not set` or MCP tools not found
 
@@ -256,7 +269,7 @@ cat .opencode/opencode.json | grep -A5 clickup
 
 ---
 
-## PATH Conflict: `cu` vs `cupt`
+## 9. PATH CONFLICT: `cu` vs `cupt`
 
 **Symptom:** Running `cu` instead of `cupt` opens a UUCP program (or errors)
 
@@ -266,7 +279,7 @@ cat .opencode/opencode.json | grep -A5 clickup
 
 ---
 
-## Empty Results
+## 10. EMPTY RESULTS
 
 ### `cupt list` returns `[]` (empty array)
 
@@ -292,7 +305,7 @@ cupt list --all --tag ai_ready --json  # Remove --today/--week
 
 ---
 
-## cupt Upgrade
+## 11. CUPT UPGRADE
 
 ```bash
 # Upgrade to latest version
@@ -304,7 +317,7 @@ cupt --version
 
 ---
 
-## Getting Help
+## 12. GETTING HELP
 
 - cupt documentation: https://github.com/newz2000/cupt
 - ClickUp API docs: https://clickup.com/api/

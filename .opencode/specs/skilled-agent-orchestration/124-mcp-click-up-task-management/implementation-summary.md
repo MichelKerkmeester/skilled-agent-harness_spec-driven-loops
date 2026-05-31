@@ -11,9 +11,9 @@ _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/124-mcp-click-up-task-management"
     last_updated_at: "2026-05-31T00:00:00Z"
-    last_updated_by: "speckit-complete"
-    recent_action: "Completed mcp-click-up skill — validate.sh passed, skill_advisor returns confidence 0.95"
-    next_safe_action: "Run memory:save to index in continuity DB"
+    last_updated_by: "operator"
+    recent_action: "Closed spec — skill shipped, memory saved"
+    next_safe_action: "None — packet complete"
     blockers: []
     key_files:
       - ".opencode/skills/mcp-click-up/SKILL.md"
@@ -25,6 +25,7 @@ _memory:
       session_id: "speckit-124-mcp-click-up"
       parent_session_id: null
     completion_pct: 100
+    closed: true
     open_questions: []
     answered_questions:
       - "Which CLI? cupt (Python) — NOT @krodak/clickup-cli"

@@ -1,52 +1,68 @@
 ---
-title: "05-003: Status Resolution Error"
+title: "FAIL-003 -- Status Resolution Error"
+description: "This scenario validates Status Resolution Error for `FAIL-003`. Objective: Verify cupt provides a clear error when a list has no closed status defined."
 ---
 
-# 05-003: Status Resolution Error and Recovery
+# FAIL-003 -- Status Resolution Error
 
-**Goal:** Verify handling when a task's list has no closed status defined.
+---
 
-## Test Context
+## 1. OVERVIEW
 
-This error occurs when a ClickUp list has no status marked as "closed type" — rare but possible.
+Validates that **Status Resolution Error** behaves as defined in the feature catalog.
 
-## Reproduction
+### Why This Matters
 
-```bash
-TASK_ID="abc123"  # Task in a list with unusual status config
+Verify cupt provides a clear error when a list has no closed status defined is required for correct agent operation. Failure here means misleading error or silent failure or no guidance on how to fix.
 
-# Check the status schema first
-cupt statuses $TASK_ID
+---
 
-# Attempt dry-run
-cupt done $TASK_ID --dry-run
-```
+## 2. SCENARIO CONTRACT
 
-## Expected Error Output
+- **Objective:** Verify cupt provides a clear error when a list has no closed status defined
+- **Real user request:** `Test status resolution failure for a list with unusual status config.`
+- **Prompt:** `Show status schema for a list and handle the case where no closed status exists.`
+- **Expected signals:** Step 1: status list shown. Step 3 (if no closed status): error message explaining no closed status found; exit non-zero.
+- **Desired user-visible outcome:** Agent reports: status schema shown. If no closed status: error message directs to ClickUp list settings.
+- **Pass/fail:** PASS if step 1 shows status list AND error message is clear when no closed status exists; FAIL if misleading error OR silent failure OR no guidance on how to fix
 
-```
-Error: No closed status found for list "Project Board".
-Use 'cupt statuses <task_id>' to see available statuses.
-```
+---
 
-## Recovery
+## 3. TEST EXECUTION
 
-Option A — Fix in ClickUp UI:
-1. Open ClickUp → List settings → Statuses
-2. Mark one status as "closed" type
-3. Re-run `cupt done $TASK_ID`
+### Recommended Orchestration Process
 
-Option B — Use MCP to set explicit status:
-```typescript
-await call_tool_chain([{
-  tool: "clickup.clickup_update_task",
-  input: {
-    task_id: TASK_ID,
-    status: "complete"  // use the exact status name from cupt statuses output
-  }
-}]);
-```
+1. `cupt statuses TASK_ID`  # → list of statuses
+2. Verify output shows whether a closed status exists
+3. If no closed status: `cupt done TASK_ID --dry-run`  # → clear error message
 
-## Prevention
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| FAIL-003 | Status Resolution Error | Verify cupt provides a clear error when a list has no c | `Show status schema for a list and handle the case where` | Step 1: status list shown. Step 3 (if no closed status): error message explainin | PASS if step 1 shows status list AND error message is clear whe; FAIL if misleading error OR silent failure OR no guidance on ho | See `../references/troubleshooting.md` |
 
-Always run `cupt statuses <id>` before `cupt done` to confirm a closed status exists.
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/03--cupt-task-details/05-status-schema.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Recovery
+- Playbook ID: FAIL-003
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `05--recovery-and-failure/003-status-error.md`

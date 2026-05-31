@@ -1,47 +1,68 @@
 ---
-title: "02-003: Status Discovery and Dry-Run"
+title: "CU-023 -- Status Schema + Dry-Run — CRITICAL PATH"
+description: "This scenario validates Status Schema + Dry-Run — CRITICAL PATH for `CU-023`. Objective: Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` ."
 ---
 
-# 02-003: Status Discovery and Dry-Run Completion
+# CU-023 -- Status Schema + Dry-Run — CRITICAL PATH
 
-**Goal:** Verify cupt statuses discovers list-specific schema and dry-run previews correctly.
+---
 
-## Test Procedure
+## 1. OVERVIEW
 
-```bash
-TASK_ID="abc123"
+Validates that **Status Schema + Dry-Run — CRITICAL PATH** behaves as defined in the feature catalog.
 
-# Step 1: Discover status schema for this task's list
-cupt statuses $TASK_ID
+### Why This Matters
 
-# Step 2: Dry-run completion (no write)
-cupt done $TASK_ID --dry-run
-```
+Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` shows resolved status without writing is required for correct agent operation. Failure here means task status changed in clickup (dry-run wrote) or no dry run message.
 
-## Expected Output (cupt statuses)
+---
 
-```
-Statuses for list "Sprint Board":
-  - to do
-  - in progress
-  - in review
-  - done   ← cupt will use this as the closed status
-```
+## 2. SCENARIO CONTRACT
 
-## Expected Output (dry-run)
+- **Objective:** Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` shows resolved status without writing
+- **Real user request:** `Show status schema and preview task completion.`
+- **Prompt:** `Show the status schema for task TASK_ID and preview completing it.`
+- **Expected signals:** Step 1: status list printed with closed status marked. Step 2: 'DRY RUN' message with resolved status name; exit 0. Step 3: task status in UI unchanged.
+- **Desired user-visible outcome:** Agent reports: status schema for the list shows 4 statuses; closed status is 'done'. Dry-run: would mark task as 'done'. No changes made.
+- **Pass/fail:** PASS if dry-run message printed AND task status unchanged in ClickUp; FAIL if task status changed in ClickUp (dry-run wrote) OR no DRY RUN message
 
-```
-DRY RUN: Task "Fix login bug" (abc123)
-  List: Sprint Board
-  Resolved status: "done"
-  [No changes made]
-```
+---
 
-## Why This Matters
+## 3. TEST EXECUTION
 
-Each ClickUp list has its own status schema. NEVER hardcode status names across lists — "Done" in one list may not exist in another. Always use `cupt statuses <id>` to discover the correct status before completing.
+### Recommended Orchestration Process
 
-## Failure Diagnosis
+1. `cupt statuses TASK_ID`  # → list of statuses, closed status marked
+2. `cupt done TASK_ID --dry-run`  # → DRY RUN message with resolved status
+3. Verify task status in ClickUp UI is UNCHANGED
 
-- `No closed status found` → The list has no status marked as "closed type" in ClickUp settings
-- Dry-run shows wrong status → Use `cupt statuses` to verify and check ClickUp list settings
+| Feature ID | Feature Name | Scenario Objective | Exact Prompt | Expected Signals | Pass/Fail Criteria | Failure Triage |
+|---|---|---|---|---|---|---|
+| CU-023 | Status Schema + Dry-Run — CRITICAL PATH | Verify `cupt statuses TASK_ID` lists statuses and `cupt | `Show the status schema for task TASK_ID and preview com` | Step 1: status list printed with closed status marked. Step 2: 'DRY RUN' message | PASS if dry-run message printed AND task status unchanged in Cl; FAIL if task status changed in ClickUp (dry-run wrote) OR no DR | See `../references/troubleshooting.md` |
+
+---
+
+## 4. SOURCE FILES
+
+### Playbook Sources
+
+| File | Role |
+|------|------|
+| `manual_testing_playbook.md` | Root directory and scenario summary |
+| `../feature_catalog/04--cupt-task-completion/02-dry-run.md` | Feature catalog source |
+
+### Implementation And Test Anchors
+
+| File | Role |
+|------|------|
+| `../references/cupt_commands.md` | cupt command reference |
+| `../references/troubleshooting.md` | Error diagnosis |
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: cupt Task Completion
+- Playbook ID: CU-023
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `02--task-operations/003-statuses-dry-run.md`
