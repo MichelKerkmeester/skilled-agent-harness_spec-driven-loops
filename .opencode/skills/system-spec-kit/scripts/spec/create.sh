@@ -31,7 +31,8 @@ JSON_MODE=false
 SHORT_NAME=""
 BRANCH_NUMBER=""
 DOC_LEVEL=1  # Default to Level 1 (Baseline)
-SKIP_BRANCH=false
+SKIP_BRANCH=true   # Default: stay on the current branch (opt in with --branch). The owner's workflow commits directly to main; auto-branching is unwanted friction.
+TRACK=""           # Optional track segment: places the folder under .opencode/specs/<track>/ with per-track numbering
 SHARDED=false  # Enable sharded spec sections for Level 3
 SUBFOLDER_MODE=false  # Enable versioned sub-folder creation
 SUBFOLDER_BASE=""     # Base folder for sub-folder mode
@@ -109,6 +110,22 @@ while [[ $i -le $# ]]; do
             ;;
         --skip-branch)
             SKIP_BRANCH=true
+            ;;
+        --branch)
+            SKIP_BRANCH=false
+            ;;
+        --track)
+            if [[ $((i + 1)) -gt $# ]]; then
+                echo 'Error: --track requires a value' >&2
+                exit 1
+            fi
+            i=$((i + 1))
+            next_arg="${!i}"
+            if [[ "$next_arg" == --* ]]; then
+                echo 'Error: --track requires a value' >&2
+                exit 1
+            fi
+            TRACK="$next_arg"
             ;;
         --sharded)
             SHARDED=true
@@ -791,7 +808,14 @@ fi
 
 cd "$REPO_ROOT"
 
-SPECS_DIR="$REPO_ROOT/specs"
+# When --track is given, root the spec folder under the canonical
+# .opencode/specs/<track>/ (with per-track numbering); otherwise keep the legacy
+# root. The legacy "$REPO_ROOT/specs" is a symlink to .opencode/specs.
+if [[ -n "$TRACK" ]]; then
+    SPECS_DIR="$REPO_ROOT/.opencode/specs/$TRACK"
+else
+    SPECS_DIR="$REPO_ROOT/specs"
+fi
 mkdir -p "$SPECS_DIR"
 
 # ───────────────────────────────────────────────────────────────
@@ -895,7 +919,9 @@ resolve_branch_name() {
     fi
 
     if [[ -z "$BRANCH_NUMBER" ]]; then
-        if [[ "$HAS_GIT" = true ]]; then
+        # With a track, number from existing folders under .opencode/specs/<track>/
+        # (git-branch numbering is not track-aware and would restart at 001).
+        if [[ "$HAS_GIT" = true && -z "$TRACK" ]]; then
             BRANCH_NUMBER=$(check_existing_branches "$BRANCH_SUFFIX")
         else
             local highest=0
