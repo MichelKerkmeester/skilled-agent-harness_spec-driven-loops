@@ -24,22 +24,24 @@ Evaluator-first workflow for testing whether a bounded agent surface can be impr
 
 ## 1. WHEN TO USE
 
-### Two Co-Equal Lanes
+### Three Co-Equal Lanes
 
-This skill supports two co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
+This skill supports three co-equal use-case lanes that share the same candidate, dispatcher, and scorer seams:
 
 | Lane | Pick when | Command |
 | --- | --- | --- |
 | **Lane A: Agent-Improvement** | You want to improve a bounded agent `.md` file | `/deep:start-agent-improvement-loop` |
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
+| **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Both lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C is detailed in §5. All three lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set. (Section numbers below: §3 Lane A, §4 Lane B, §5 Lane C, §6 Integration Points.)
 
 ### Activation Triggers
 
 Use this skill when:
 - You want to test whether an agent prompt or instruction surface can be improved (Lane A)
 - You want to benchmark a model or prompt framework against repeatable fixtures (Lane B)
+- You want to diagnose whether a skill is well-routed, discoverable, efficient, and useful in practice (Lane C)
 - The mutation boundary is explicit and narrow
 - You need packet-local evidence instead of ad hoc prompt tweaking
 - You need target-specific benchmark or scoring rules before any canonical mutation
@@ -63,6 +65,10 @@ Use this skill when you need to prove that guarded promotion, validation, rollba
 
 Use Lane B (model-benchmark) when the thing under test is a model or prompt framework rather than an agent definition. It runs the same loop shape against a benchmark profile and scores produced outputs, sharing the candidate, dispatcher, and scorer seams with the agent-improvement path. See §4 below.
 
+#### Skill Benchmarking
+
+Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See §5 below.
+
 ### When NOT to Use
 
 Do not use this skill for:
@@ -84,7 +90,7 @@ The router discovers markdown resources recursively from `references/` and `asse
 - `assets/` for reusable runtime templates such as the charter and strategy markdown files
 - `scripts/` for deterministic benchmark, scoring, reduction, promotion, rollback, and drift-check helpers
 
-**Lane awareness**: resources are organized by lane. `references/agent-improvement/` and `assets/agent-improvement/` carry Lane A guidance, while `references/model-benchmark/` and `assets/model-benchmark/` carry Lane B guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` intent to the Lane B references, and `RUNTIME_ASSETS` loads the Lane B benchmark profile only when the `MODEL_BENCHMARK` intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to both lanes.
+**Lane awareness**: resources are organized by lane. `references/agent-improvement/` + `assets/agent-improvement/` carry Lane A guidance, `references/model-benchmark/` + `assets/model-benchmark/` carry Lane B guidance, and `references/skill-benchmark/` + `assets/skill-benchmark/` carry Lane C guidance. `RESOURCE_MAP` routes the `MODEL_BENCHMARK` and `SKILL_BENCHMARK` intents to their lane references, and `RUNTIME_ASSETS` loads each lane's profile only when its intent is selected. The `ALWAYS` and shared `references/shared/` resources apply to all three lanes.
 
 ### Resource Loading Levels
 
@@ -118,6 +124,7 @@ INTENT_SIGNALS = {
     "TARGET_ONBOARDING": {"weight": 4, "keywords": ["new target", "target profile", "onboarding", "second target"]},
     "INTEGRATION_SCAN": {"weight": 4, "keywords": ["integration", "scan surfaces", "mirror sync", "dynamic profile", "5-dimension"]},
     "MODEL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a model", "benchmark a prompt framework", "optimize a model", "model-benchmark", "model benchmark"]},
+    "SKILL_BENCHMARK": {"weight": 5, "keywords": ["benchmark a skill", "skill benchmark", "skill routing", "unprompted discovery", "routing accuracy", "skill-benchmark"]},
     "FULL_SETUP": {"weight": 3, "keywords": ["full setup", "initialize runtime", "charter", "strategy"]},
 }
 
@@ -129,12 +136,14 @@ RESOURCE_MAP = {
     "TARGET_ONBOARDING": ["references/agent-improvement/target_onboarding.md"],
     "INTEGRATION_SCAN": ["references/agent-improvement/integration_scanning.md", "references/model-benchmark/evaluator_contract.md"],
     "MODEL_BENCHMARK": ["references/model-benchmark/benchmark_operator_guide.md", "references/model-benchmark/evaluator_contract.md"],
+    "SKILL_BENCHMARK": ["references/skill-benchmark/operator_guide.md", "references/skill-benchmark/scoring_contract.md", "references/skill-benchmark/scenario_authoring.md"],
     "FULL_SETUP": ["assets/agent-improvement/improvement_charter.md", "assets/agent-improvement/improvement_strategy.md"],
 }
 
 RUNTIME_ASSETS = {
     "ALWAYS": ["assets/agent-improvement/improvement_config.json", "assets/agent-improvement/target_manifest.jsonc"],
     "MODEL_BENCHMARK": ["assets/model-benchmark/benchmark-profiles/default.json"],
+    "SKILL_BENCHMARK": ["assets/skill-benchmark/default_profile.json"],
 }
 
 ON_DEMAND_KEYWORDS = ["target profile", "score candidate", "proposal loop", "benchmark", "promotion gate", "mirror drift"]
