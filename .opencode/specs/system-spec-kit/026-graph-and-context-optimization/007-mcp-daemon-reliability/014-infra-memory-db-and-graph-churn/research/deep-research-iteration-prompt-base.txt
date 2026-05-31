@@ -3,9 +3,9 @@ You are the deep-research LEAF agent, iteration N of 10, for a root-cause invest
 REPO ROOT: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 
 READ FIRST (in this order):
-- .opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md  (the charter: sub-questions SQ1-SQ4, non-goals, stop conditions)
-- .opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-findings-registry.json  (accumulated findings — do NOT repeat known ones)
-- the two most recent .opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/iteration-*.md files if any
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md  (the charter: sub-questions SQ1-SQ4, non-goals, stop conditions)
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-findings-registry.json  (accumulated findings — do NOT repeat known ones)
+- the two most recent .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/iteration-*.md files if any
 
 YOUR JOB THIS ITERATION:
 1. Pick the SINGLE highest-value UNANSWERED sub-question (prefer P0: SQ1 substrate, SQ2 memory-constraint, SQ4 common-cause).
@@ -13,7 +13,7 @@ YOUR JOB THIS ITERATION:
 3. Form evidence-backed conclusions. Distinguish CONFIRMED (file:line proof) from HYPOTHESIS.
 
 PRIMARY OUTPUT — write this file (overwrite if exists), iteration number zero-padded to 3 digits:
-  .opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/iteration-NNN.md
+  .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/iteration-NNN.md
 Structure:
   # Iteration NNN — <sub-question tackled>
   ## Question

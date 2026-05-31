@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/005-substrate-codegraph-2nd-daemon",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon",
   "description": "Feature Specification: Wire a second live code-graph daemon into the substrate stress harness",
   "keywords": [
     "feature",

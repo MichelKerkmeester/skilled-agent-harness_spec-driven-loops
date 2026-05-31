@@ -18,13 +18,13 @@ Final cross-cutting completeness: cross-phase state-machine gaps, error-path dat
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-queries.ts:318`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1325`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:1331`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/spec.md:51`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/spec.md:114`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/spec.md:115`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching/implementation-summary.md:85`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:90`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:91`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:117`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/spec.md:51`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/spec.md:114`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/spec.md:115`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching/implementation-summary.md:85`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:90`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:91`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:117`
 
 ## Findings by Severity
 

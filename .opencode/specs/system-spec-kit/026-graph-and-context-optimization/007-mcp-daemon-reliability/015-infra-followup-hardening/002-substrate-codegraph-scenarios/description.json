@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios",
   "description": "Feature Specification: Substrate Code-Graph scenario tool-contract fix",
   "keywords": [
     "feature",

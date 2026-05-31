@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/004-cli-child-marker-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation"
     last_updated_at: "2026-05-30T23:55:00Z"
     last_updated_by: "claude-opus"
     recent_action: "cli-opencode worker added the rule to 3 skills; verified"
@@ -46,8 +46,8 @@ _memory:
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch |
 | **Successor** | None |
 | **Handoff Criteria** | cli-claude-code + cli-gemini + cli-devin each carry an ALWAYS rule to set AI_SESSION_CHILD=1 on dispatch with the correct per-runtime invocation pattern, referencing the bin/README contract; comment-hygiene clean; one additive hunk per file. |
 

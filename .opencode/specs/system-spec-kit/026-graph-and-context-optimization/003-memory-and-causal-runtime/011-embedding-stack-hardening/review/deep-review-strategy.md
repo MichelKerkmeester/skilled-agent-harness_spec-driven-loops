@@ -32,7 +32,7 @@ scripts: `scripts/core/daemon-detect.ts`, `scripts/core/workflow.ts`.
 
 ## Cross-Reference Targets
 
-- spec_paths: `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/**` (parent + 001–005 children), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/{009,010,012,013}*/**`.
+- spec_paths: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/**` (parent + 001–005 children), `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/{009,010,012,013}*/**`.
 - code_paths: the scope files above.
 - test_paths: `mcp_server/tests/embedders/*`, `mcp_server/tests/embedder-*.vitest.ts`, `mcp_server/tests/context-server.vitest.ts`, `mcp_server/tests/memory-retention-sweep.vitest.ts`, `mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts`, `scripts/tests/{daemon-detect,workflow-step115-daemon-guard}.vitest.ts`.
 

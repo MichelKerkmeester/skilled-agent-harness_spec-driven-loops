@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup",
   "description": "Feature Specification: Comment ephemeral-artifact pointer cleanup",
   "keywords": [
     "feature",

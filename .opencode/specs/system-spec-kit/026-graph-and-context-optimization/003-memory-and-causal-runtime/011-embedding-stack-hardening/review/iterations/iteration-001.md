@@ -26,7 +26,7 @@ Scope class: complex. The configured review target spans 18 code files and 14,67
 - `.opencode/skills/system-spec-kit/mcp_server/context-server.ts:1473`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-reindex.vitest.ts:214`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/embedders/launcher-model-server-live-two-launcher.vitest.ts:159`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:117`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:117`
 
 ## Findings by Severity
 

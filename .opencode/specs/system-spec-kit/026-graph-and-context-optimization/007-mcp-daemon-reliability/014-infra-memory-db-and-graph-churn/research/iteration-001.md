@@ -2,12 +2,12 @@
 
 ## Question
 
-Why does `substrate-runner-harness.vitest.ts` observe 5 TSV rows while asserting 4 for scenarios 403/404/407/410? The charter asks whether this is a fifth scenario, a duplicate row, or a non-deterministic double-write through two real MCP daemons `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:10`.
+Why does `substrate-runner-harness.vitest.ts` observe 5 TSV rows while asserting 4 for scenarios 403/404/407/410? The charter asks whether this is a fifth scenario, a duplicate row, or a non-deterministic double-write through two real MCP daemons `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:10`.
 
 ## Investigation (commands run + what each showed)
 
-- `nl -ba .../deep-research-strategy.md | sed -n '1,260p'`: confirmed SQ1/SQ2/SQ4 are P0s and SQ1's expected evidence sources are the harness, TSV producer, and scenario list `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:9`.
-- `nl -ba .../deep-research-findings-registry.json | sed -n '1,260p'`: confirmed the registry has no accumulated findings to avoid repeating `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-findings-registry.json:1`.
+- `nl -ba .../deep-research-strategy.md | sed -n '1,260p'`: confirmed SQ1/SQ2/SQ4 are P0s and SQ1's expected evidence sources are the harness, TSV producer, and scenario list `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:9`.
+- `nl -ba .../deep-research-findings-registry.json | sed -n '1,260p'`: confirmed the registry has no accumulated findings to avoid repeating `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-findings-registry.json:1`.
 - `find .../research -maxdepth 1 -name 'iteration-*.md'`: no prior top-level iteration file was found, so there was no prior iteration claim to reuse.
 - `nl -ba .opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts`: confirmed the Vitest call passes exactly `--scenarios 403,404,407,410`, then reads the TSV, drops the header, and asserts `rows` length 4 `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts:31`.
 - `nl -ba .opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs`: traced the parser, runner, diagnostic row append, scenario row append, and TSV write path `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs:47`.
@@ -15,7 +15,7 @@ Why does `substrate-runner-harness.vitest.ts` observe 5 TSV rows while asserting
 - `find .../manual_testing_playbook/24--local-llm-query-intelligence -name '403-*.md' ...`: confirmed the four requested scenario files exist.
 - `nl -ba .../403-code-intent-matching.md`, `404-disambiguation-under-context.md`, `407-adversarial-near-miss.md`, and `410-query-latency-and-throughput.md`: confirmed 403/404/407 are Code Graph scenarios using `mcp__mk_code_index__code_graph_query`, while 410 is a Memory MCP latency workload `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/403-code-intent-matching.md:41`.
 - `rg -n "unclean-shutdown|memory_fts_insert|memory_index|..."` plus targeted `nl -ba` reads of `mk-spec-memory-launcher.cjs`, `vector-index-store.ts`, `vector-index-schema.ts`, `vector-index-mutations.ts`, and `context-server.ts`: traced enough daemon/DB lifecycle to separate SQ1's diagnostic row from SQ2's memory write path. The memory insert path still funnels through `INSERT INTO memory_index`, and the FTS trigger still mirrors that insert into `memory_fts` `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:264`.
-- `nl -ba .opencode/specs/system-spec-kit/031-embedding-stack-hardening/009-single-writer-durability-cluster/implementation-summary.md`: confirmed packet 031/009 fixed deterministic single-writer/durability families but leaves live two-launcher integration as a limitation `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/009-single-writer-durability-cluster/implementation-summary.md:111`.
+- `nl -ba .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/implementation-summary.md`: confirmed packet 031/009 fixed deterministic single-writer/durability families but leaves live two-launcher integration as a limitation `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster/implementation-summary.md:111`.
 
 ## Findings (each: CONFIRMED|HYPOTHESIS | the claim | evidence file:line | confidence 0-1 | tag fullyNew|partiallyNew|known)
 
@@ -40,9 +40,9 @@ Why does `substrate-runner-harness.vitest.ts` observe 5 TSV rows while asserting
 
 ## Open questions remaining (which SQ still unanswered)
 
-- SQ2 remains unanswered. The code path for `memory_index` insert plus `memory_fts_insert` is confirmed, but this iteration did not identify why a fresh daemon exits uncleanly after repair. Evidence for the open SQ2 charter: `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:11`.
-- SQ3 remains unanswered in this iteration. The charter asks to confirm graph-metadata churn and daemon-lifecycle interaction, but SQ1 consumed the iteration focus. Evidence for the open SQ3 charter: `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:12`.
-- SQ4 remains partially open. SQ1 is not a two-daemon double-write, but the memory launcher `Connection closed` diagnostic could still be related to SQ2's daemon lifecycle. Evidence for the open SQ4 charter: `.opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:13`.
+- SQ2 remains unanswered. The code path for `memory_index` insert plus `memory_fts_insert` is confirmed, but this iteration did not identify why a fresh daemon exits uncleanly after repair. Evidence for the open SQ2 charter: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:11`.
+- SQ3 remains unanswered in this iteration. The charter asks to confirm graph-metadata churn and daemon-lifecycle interaction, but SQ1 consumed the iteration focus. Evidence for the open SQ3 charter: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:12`.
+- SQ4 remains partially open. SQ1 is not a two-daemon double-write, but the memory launcher `Connection closed` diagnostic could still be related to SQ2's daemon lifecycle. Evidence for the open SQ4 charter: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/research/deep-research-strategy.md:13`.
 
 ## newInfoRatio self-estimate (0-1) + one-line justification
 

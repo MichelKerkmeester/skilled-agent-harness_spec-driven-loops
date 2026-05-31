@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch",
   "description": "Feature Specification: Worktree child-marker dispatch documentation",
   "keywords": [
     "feature",

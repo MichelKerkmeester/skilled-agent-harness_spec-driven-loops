@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/004-cli-child-marker-propagation",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation",
   "description": "Feature Specification: Propagate AI_SESSION_CHILD dispatch rule to remaining cli-* skills",
   "keywords": [
     "feature",

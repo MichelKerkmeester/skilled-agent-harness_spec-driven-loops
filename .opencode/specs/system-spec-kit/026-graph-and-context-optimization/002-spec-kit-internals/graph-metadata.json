@@ -7,7 +7,9 @@
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix",
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor",
     "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels",
-    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names"
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/004-literal-spec-folder-names",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
+    "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity"
   ],
   "manual": {
     "depends_on": [],

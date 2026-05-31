@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/003-worktree-child-marker-dispatch"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch"
     last_updated_at: "2026-05-30T23:25:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Added AI_SESSION_CHILD dispatch rule to cli-codex + cli-opencode"
@@ -45,8 +45,8 @@ _memory:
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/035-worktree-per-session-automation (T006) |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation (T006) |
 | **Successor** | None |
 | **Handoff Criteria** | cli-codex + cli-opencode carry an ALWAYS rule to set AI_SESSION_CHILD=1 on dispatch, referencing the bin/README contract; comment-hygiene clean; strict-validate exit 0. |
 

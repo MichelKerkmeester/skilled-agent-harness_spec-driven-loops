@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/009-single-writer-durability-cluster",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster",
   "description": "Feature Specification: Single-writer / durability cluster (coordinated)",
   "keywords": [
     "feature",

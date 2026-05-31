@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch"
     last_updated_at: "2026-05-29T16:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented 003 observability + model-switch + cold-start; review fixed 1 P1 dim-drift + 3 P2"

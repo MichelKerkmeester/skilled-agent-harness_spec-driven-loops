@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test"
     last_updated_at: "2026-05-30T22:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Built + verified the live reap test; 5/5 green"
@@ -45,8 +45,8 @@ _memory:
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing |
 | **Successor** | None |
 | **Handoff Criteria** | New vitest covers all four reap branches and is green; `node --check` launcher passes; no flaky launcher-process spawning; strict-validate exit 0. |
 

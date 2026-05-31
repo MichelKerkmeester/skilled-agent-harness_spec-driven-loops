@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-05-26T17:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Authored wave-4 migration bridge"
+    last_updated_at: "2026-05-31T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Authored wave-6 bridge: folded 8 sibling packets (029-036) into existing tracks"
     next_safe_action: "Resolve old phase paths via this bridge"
     blockers: []
     key_files:
@@ -40,7 +40,30 @@ history — all of it lives here.
 
 ---
 
-## Latest — Wave 5 (2026-05-29): 8th track adopted + chronology surfaced
+## Latest — Wave 6 (2026-05-31): 8 sibling packets folded in (029–036)
+
+Eight top-level `system-spec-kit/` sibling packets were renested into their best-fit existing
+tracks (in-store `git mv`; each keeps its internal child numbering). The two `032-*` ids no longer
+collide — they landed in different tracks. Historical references to the old top-level paths
+(deep-review / deep-research iteration logs, changelogs in other packets, the global
+`descriptions.json` excepted) are NOT rewritten; resolve them via the bridge below.
+
+| Original Phase | New Home | Status | Notes |
+|----------------|----------|--------|-------|
+| `029-embedding-consolidation-hf-local-server` | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/` | active | Renumbered 029→010; predecessor of 031 |
+| `031-embedding-stack-hardening` | `003-memory-and-causal-runtime/011-embedding-stack-hardening/` | active | Renumbered 031→011; carries its `review/` deep-review tree |
+| `032-infra-memory-db-and-graph-churn` | `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/` | active | Renumbered 032→014; daemon-lifecycle / memory-DB |
+| `036-infra-followup-hardening` | `007-mcp-daemon-reliability/015-infra-followup-hardening/` | active | Renumbered 036→015; continues 032 + 035 follow-ups |
+| `032-validate-recursive-orchestrator-fix` | `002-spec-kit-internals/005-validate-recursive-orchestrator-fix/` | active | Renumbered 032→005; resolves the duplicate `032` id |
+| `033-orchestrator-placeholder-parity` | `002-spec-kit-internals/006-orchestrator-placeholder-parity/` | active | Renumbered 033→006; validator/shell parity |
+| `034-runtime-agnostic-session-lifecycle-scripts` | `006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts/` | active | Renumbered 034→004 |
+| `035-worktree-per-session-automation` | `006-operator-tooling/005-worktree-per-session-automation/` | active | Renumbered 035→005 |
+
+Folder numbers remain topical identity; `timeline.md` is the separate recency view.
+
+---
+
+## Wave 5 (2026-05-29): 8th track adopted + chronology surfaced
 
 No phase folders moved in this wave. Two changes only:
 

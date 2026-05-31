@@ -28,7 +28,7 @@ deep-granularity correctness/security re-examination: line-level review of embed
 - `.opencode/bin/lib/model-server-supervision.cjs:1031` - idle eviction skips live in-flight inference and never reaps a server that has not embedded.
 - `.opencode/bin/lib/model-server-supervision.cjs:1225` - supervised EADDRINUSE reclaim refuses to unlink a live resident socket.
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:415` - documented embedding env surface was checked against the open P2.
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115` - stale file matrix pointer was re-examined for escalation.
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115` - stale file matrix pointer was re-examined for escalation.
 
 ## Findings by Severity
 

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing"
     last_updated_at: "2026-05-30T18:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Rewrote tasks to manifest scaffold"

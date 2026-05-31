@@ -61,7 +61,7 @@
       "id": "DR-003-P2-001",
       "severity": "P2",
       "dimension": "traceability",
-      "file": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115",
       "title": "Phase 005 file-change matrix still points idle eviction at the wrong implementation file",
       "status": "open",
       "firstSeenIteration": 3

@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/031-embedding-stack-hardening/008-deep-review-correctness-edges"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges"
     last_updated_at: "2026-05-29T23:05:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Landed DR-014 + DR-013 + DR-001/015 with regression tests; DR-002-P1-002 documented no-change"

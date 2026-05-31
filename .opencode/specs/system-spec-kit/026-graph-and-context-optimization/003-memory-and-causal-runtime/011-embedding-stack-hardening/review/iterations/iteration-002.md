@@ -33,7 +33,7 @@ Scope class: complex. Code graph and semantic search were unavailable, so this p
 - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:513`
 - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:836`
 - `.opencode/skills/system-spec-kit/scripts/core/workflow.ts:1596`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/001-selector-and-shared-socket/spec.md:101`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket/spec.md:101`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/013-standalone-save-second-writer-guard/spec.md:57`
 - `.opencode/skills/system-spec-kit/mcp_server/tests/embedders/launcher-model-server-cross-launcher.vitest.ts:178`
 

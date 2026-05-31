@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test"
     last_updated_at: "2026-05-30T22:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented + verified; 5/5 green"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

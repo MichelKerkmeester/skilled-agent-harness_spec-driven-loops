@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard"
     last_updated_at: "2026-05-31T00:05:00Z"
     last_updated_by: "claude-opus"
     recent_action: "cli-opencode worker appended guard hook; verified valid JSON"
@@ -45,8 +45,8 @@ _memory:
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/035-worktree-per-session-automation |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation |
 | **Successor** | None |
 | **Handoff Criteria** | `.claude/settings.local.json` SessionStart chain runs session-prime then worktree-guard.sh; JSON valid; guard is non-fatal (exits 0); change is additive (one new hook object). |
 

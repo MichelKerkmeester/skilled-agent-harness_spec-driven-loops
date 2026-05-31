@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard",
   "description": "Feature Specification: Wire worktree-guard into the Claude SessionStart hook chain",
   "keywords": [
     "feature",

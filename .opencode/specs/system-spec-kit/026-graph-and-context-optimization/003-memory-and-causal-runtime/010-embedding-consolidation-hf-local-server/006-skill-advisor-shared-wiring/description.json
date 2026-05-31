@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring",
   "description": "Feature Specification: Wire skill-advisor to the shared hf model server",
   "keywords": [
     "feature",

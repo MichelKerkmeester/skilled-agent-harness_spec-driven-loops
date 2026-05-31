@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation"
     last_updated_at: "2026-05-29T00:00:00Z"
     last_updated_by: "codex"
     recent_action: "Authored plan for nomic-only registry, dimension, provider, and docs cleanup"

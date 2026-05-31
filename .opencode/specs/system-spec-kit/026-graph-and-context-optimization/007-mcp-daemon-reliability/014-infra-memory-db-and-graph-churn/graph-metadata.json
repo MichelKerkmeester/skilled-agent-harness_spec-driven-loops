@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/032-infra-memory-db-and-graph-churn",
-  "spec_folder": "system-spec-kit/032-infra-memory-db-and-graph-churn",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [
-    "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing"
+    "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing"
   ],
   "manual": {
     "depends_on": [],

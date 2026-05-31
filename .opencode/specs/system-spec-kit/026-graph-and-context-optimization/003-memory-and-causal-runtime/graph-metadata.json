@@ -12,7 +12,9 @@
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/006-memory-embedding-reconcile-tool",
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/007-success-vector-coverage-hygiene",
     "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/008-embedder-provider-auto-resolution",
-    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix"
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/009-embedder-auto-resolution-fix",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server",
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening"
   ],
   "manual": {
     "depends_on": [],

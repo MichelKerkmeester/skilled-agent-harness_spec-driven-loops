@@ -7,7 +7,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/032-infra-memory-db-and-graph-churn"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn"
     last_updated_at: "2026-05-30T13:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Repaired the live memory DB via FTS5 shadow rebuild"

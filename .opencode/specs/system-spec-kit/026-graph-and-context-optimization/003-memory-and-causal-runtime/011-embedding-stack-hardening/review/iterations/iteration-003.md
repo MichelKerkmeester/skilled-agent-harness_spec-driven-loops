@@ -6,15 +6,15 @@ traceability
 
 ## Files Reviewed
 
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/review/deep-review-strategy.md:1`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch/plan.md:57`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch/tasks.md:72`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch/implementation-summary.md:102`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching/tasks.md:60`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching/implementation-summary.md:85`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:56`
-- `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:90`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/review/deep-review-strategy.md:1`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch/plan.md:57`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch/tasks.md:72`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch/implementation-summary.md:102`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching/tasks.md:60`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching/implementation-summary.md:85`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:56`
+- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/implementation-summary.md:90`
 - `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:424`
 - `.opencode/bin/mk-skill-advisor-launcher.cjs:296`
 - `.opencode/bin/hf-model-server.cjs:26`
@@ -57,7 +57,7 @@ None.
 
 #### DR-003-P2-001 [P2] Phase 005 file-change matrix still points idle eviction at the wrong implementation file
 
-- File: `.opencode/specs/system-spec-kit/031-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115`
+- File: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening/spec.md:115`
 - Evidence: The phase 005 spec's file matrix says `.opencode/bin/hf-model-server.cjs` will carry "idle eviction on `lastSuccessfulEmbedAt`", but the shipped implementation summary says idle eviction lives in `model-server-supervision.cjs` via `createModelServerControl`, and the reviewed code parses `SPECKIT_HF_MODEL_SERVER_IDLE_TIMEOUT_MIN` in `model-server-supervision.cjs:199`. `hf-model-server.cjs` still only shows the dtype default at `hf-model-server.cjs:26`, which is intentionally unchanged.
 - Finding class: matrix/evidence
 - Scope proof: The same phase 005 summary honestly documents the design correction and gated dtype/flag decisions, so this is localized to the spec file-change matrix rather than a shipped behavior defect.

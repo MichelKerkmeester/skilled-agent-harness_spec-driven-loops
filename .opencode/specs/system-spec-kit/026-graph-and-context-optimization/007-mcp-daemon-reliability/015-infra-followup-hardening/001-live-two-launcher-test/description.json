@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/036-infra-followup-hardening/001-live-two-launcher-test",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test",
   "description": "Feature Specification: Live coverage for the F2 clean-close reap barrier",
   "keywords": [
     "feature",

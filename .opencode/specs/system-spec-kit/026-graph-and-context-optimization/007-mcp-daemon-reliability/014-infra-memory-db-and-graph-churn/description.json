@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/032-infra-memory-db-and-graph-churn",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn",
   "description": "Feature Specification: Infra investigations — memory-DB corruption + graph-metadata churn",
   "keywords": [
     "feature",

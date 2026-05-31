@@ -8,7 +8,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring"
     last_updated_at: "2026-05-29T13:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Extraction + wiring delivered per plan; shared lib + both launchers; review fixes applied"

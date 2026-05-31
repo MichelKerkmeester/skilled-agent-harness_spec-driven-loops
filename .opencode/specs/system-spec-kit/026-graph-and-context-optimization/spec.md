@@ -96,12 +96,12 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 |-------|--------|-------|--------|
 | 000 | `000-release-and-program-cleanup/` | Release readiness, audits, cross-cutting cleanup, stress tests, post-program follow-up | complete |
 | 001 | `001-research-and-baseline/` | External research corpus, adoption decisions, and graph/context baselines | complete |
-| 002 | `002-spec-kit-internals/` | Resource-map/deep-loop plumbing, skill-advisor system, template system, spec-folder naming | in progress |
-| 003 | `003-memory-and-causal-runtime/` | Memory continuity substrate, causal-graph channel routing, embedding architecture | in progress |
+| 002 | `002-spec-kit-internals/` | Resource-map/deep-loop plumbing, skill-advisor system, template system, spec-folder naming, validate/orchestrator parity | in progress |
+| 003 | `003-memory-and-causal-runtime/` | Memory continuity substrate, causal-graph channel routing, embedding architecture + embedding-stack consolidation/hardening | in progress |
 | 004 | `004-code-graph/` | Code-graph structural-indexing package, CocoIndex decoupling, startup fixes, code-graph sub-themes | in progress |
 | 005 | `005-graph-impact-and-affordance/` | External-project adoption uplift: phase runner, edge/impact explanation, affordance + causal-trust display | deferred |
-| 006 | `006-operator-tooling/` | Runtime hook parity, doctor command surface, install-script/doctor realignment | in progress |
-| 007 | `007-mcp-daemon-reliability/` | MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful shutdown + watchdog, provider dispose, at-rest durability | in progress |
+| 006 | `006-operator-tooling/` | Runtime hook parity, doctor command surface, install-script/doctor realignment, session-lifecycle + worktree automation | in progress |
+| 007 | `007-mcp-daemon-reliability/` | MCP daemon lifecycle reliability: IPC socket canonicalization, WAL checkpoint-on-close, graceful shutdown + watchdog, provider dispose, at-rest durability + memory-DB/graph-churn healing + infra follow-up hardening | in progress |
 
 ### Phase Transition Rules
 

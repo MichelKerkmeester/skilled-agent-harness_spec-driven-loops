@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/031-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup"
     last_updated_at: "2026-05-29T20:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Stripped ephemeral-artifact pointers from 27 files; builds + node --check + re-audit all pass"

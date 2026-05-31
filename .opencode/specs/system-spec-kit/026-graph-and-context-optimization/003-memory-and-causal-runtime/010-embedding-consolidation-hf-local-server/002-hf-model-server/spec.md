@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server/002-hf-model-server"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server"
     last_updated_at: "2026-05-29T07:55:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented hf-model-server.cjs; node --check + 7 vitest green; review clean"

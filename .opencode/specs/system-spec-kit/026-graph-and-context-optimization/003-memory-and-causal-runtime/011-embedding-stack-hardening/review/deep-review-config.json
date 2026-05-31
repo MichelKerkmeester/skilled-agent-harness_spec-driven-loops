@@ -52,7 +52,7 @@
   "convergenceThreshold": 0.1,
   "stuckThreshold": 2,
   "maxDurationMinutes": 120,
-  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening",
   "resource_map": {
     "emit": true
   },

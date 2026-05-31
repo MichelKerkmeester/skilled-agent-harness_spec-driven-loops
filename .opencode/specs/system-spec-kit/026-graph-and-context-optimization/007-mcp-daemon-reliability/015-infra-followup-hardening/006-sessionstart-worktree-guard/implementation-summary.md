@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard"
     last_updated_at: "2026-05-31T00:05:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified worker JSON edit; committing"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/036-infra-followup-hardening/006-sessionstart-worktree-guard |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard |
 | **Completed** | 2026-05-30 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

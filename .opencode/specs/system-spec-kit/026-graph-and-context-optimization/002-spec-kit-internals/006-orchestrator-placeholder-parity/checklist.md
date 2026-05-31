@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/033-orchestrator-placeholder-parity"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity"
     last_updated_at: "2026-05-29T12:40:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified parity, rebuilt dist, strict-validate PASSED"
@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/scripts/rules/check-placeholders.sh"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "packet-system-spec-kit/033-orchestrator-placeholder-parity"
+      session_id: "packet-system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity"
       parent_session_id: null
     completion_pct: 100
     open_questions: []

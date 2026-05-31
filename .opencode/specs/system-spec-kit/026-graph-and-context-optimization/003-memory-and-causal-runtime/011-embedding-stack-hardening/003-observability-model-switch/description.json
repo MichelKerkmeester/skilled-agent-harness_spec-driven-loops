@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/003-observability-model-switch",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch",
   "description": "Feature Specification: Observability + safe model-switch + cold-start timeout",
   "keywords": [
     "feature",

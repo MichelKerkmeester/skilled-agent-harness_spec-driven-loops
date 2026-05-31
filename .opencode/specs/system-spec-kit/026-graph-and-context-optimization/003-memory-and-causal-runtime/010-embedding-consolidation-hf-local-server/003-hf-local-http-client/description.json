@@ -1,5 +1,5 @@
 {
-  "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client",
   "description": "Feature Specification: Rewrite hf-local as an HTTP model-server client",
   "keywords": [
     "feature",

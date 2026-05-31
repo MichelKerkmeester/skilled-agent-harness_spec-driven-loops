@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios"
     last_updated_at: "2026-05-30T23:10:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Rewrote 403/404/407 to verified code_graph_context schema; substrate no-regression confirmed"
@@ -45,8 +45,8 @@ _memory:
 | **Created** | 2026-05-30 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing (F3 substrate test) |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing (F3 substrate test) |
 | **Successor** | None |
 | **Handoff Criteria** | Playbooks call the verified tool + schema-valid payload; substrate scenarios SKIP identically before/after (no regression); the deferred daemon-wiring is documented with its reason. |
 

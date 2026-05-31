@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing",
   "description": "Feature Specification: Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test)",
   "keywords": [
     "feature",

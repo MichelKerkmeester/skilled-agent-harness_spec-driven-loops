@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/004-cli-child-marker-propagation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation"
     last_updated_at: "2026-05-30T23:55:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored plan to manifest scaffold"

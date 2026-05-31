@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/035-worktree-per-session-automation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation"
     last_updated_at: "2026-05-30T16:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Captured the approved worktree-automation design as a packet"

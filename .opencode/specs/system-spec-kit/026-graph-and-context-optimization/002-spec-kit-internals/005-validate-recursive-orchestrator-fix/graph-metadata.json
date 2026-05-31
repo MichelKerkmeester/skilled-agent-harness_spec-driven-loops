@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/032-validate-recursive-orchestrator-fix",
-  "spec_folder": "system-spec-kit/032-validate-recursive-orchestrator-fix",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals",
   "children_ids": [],
   "manual": {
     "depends_on": [],

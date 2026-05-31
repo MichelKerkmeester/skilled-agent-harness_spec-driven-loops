@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/005-substrate-codegraph-2nd-daemon"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon"
     last_updated_at: "2026-05-31T05:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Wired 2nd daemon + short socket dirs; vitest 3x green"
@@ -45,8 +45,8 @@ _memory:
 | **Created** | 2026-05-31 |
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
-| **Parent Packet** | system-spec-kit/036-infra-followup-hardening |
-| **Predecessor** | system-spec-kit/036-infra-followup-hardening/002-substrate-codegraph-scenarios |
+| **Parent Packet** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening |
+| **Predecessor** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios |
 | **Successor** | None |
 | **Handoff Criteria** | The substrate harness starts a dedicated mk-code-index daemon, both daemons use short IPC socket dirs, scenarios 403/404/407 execute (PASS), 410 stays PASS/PARTIAL, the vitest passes 3x consecutive, no graph-metadata mass-write, comment-hygiene clean. |
 

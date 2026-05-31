@@ -7,7 +7,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/036-infra-followup-hardening/005-substrate-codegraph-2nd-daemon"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon"
     last_updated_at: "2026-05-31T05:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Verified 3x green + stash-compare + no mass-write; committing"
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | system-spec-kit/036-infra-followup-hardening/005-substrate-codegraph-2nd-daemon |
+| **Spec Folder** | system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon |
 | **Completed** | 2026-05-31 |
 | **Level** | 2 |
 <!-- /ANCHOR:metadata -->

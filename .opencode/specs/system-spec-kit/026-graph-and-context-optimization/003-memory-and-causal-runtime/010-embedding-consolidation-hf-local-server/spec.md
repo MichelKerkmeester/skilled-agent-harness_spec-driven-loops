@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/029-embedding-consolidation-hf-local-server"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server"
     last_updated_at: "2026-05-29T13:30:00Z"
     last_updated_by: "claude-opus"
     recent_action: "All 6 phases shipped; nomic-only + hf-local model server + shared cross-launcher supervision"

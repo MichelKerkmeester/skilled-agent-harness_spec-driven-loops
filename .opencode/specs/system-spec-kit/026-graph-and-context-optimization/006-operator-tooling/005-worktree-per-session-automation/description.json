@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/035-worktree-per-session-automation",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/005-worktree-per-session-automation",
   "description": "Feature Specification: Worktree-per-AI-session automation",
   "keywords": [
     "feature",
