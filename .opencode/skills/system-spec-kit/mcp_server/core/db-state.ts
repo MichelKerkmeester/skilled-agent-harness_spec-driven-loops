@@ -498,6 +498,21 @@ export async function acquireIndexScanLease(options?: {
   }
 }
 
+/**
+ * Refresh the active scan lease timestamp to prevent expiry during long scans.
+ * Call every ~30s during a scan to keep the lease alive.
+ */
+export function refreshScanLease(now?: number): void {
+  try {
+    const db = vectorIndex?.getDb();
+    if (!db) return;
+    db.prepare('INSERT OR REPLACE INTO config (key, value) VALUES (?, ?)')
+      .run(CONFIG_KEY_SCAN_STARTED_AT, String(now ?? Date.now()));
+  } catch {
+    // heartbeat is best-effort
+  }
+}
+
 /** Complete an index scan and convert active lease to last_index_scan timestamp. */
 export async function completeIndexScanLease(time: number): Promise<void> {
   if (!vectorIndex) {
