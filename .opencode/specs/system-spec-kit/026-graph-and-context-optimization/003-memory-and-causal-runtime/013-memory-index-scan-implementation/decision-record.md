@@ -73,86 +73,58 @@ Phase 1, tasks P1.1-P1.2. Touch `handlers/memory-index.ts` (envelope) + read lea
 
 ---
 
-<!-- ANCHOR:adr-002 -->
 ## ADR-002: Lexical-first async-mode indexing (defer vectors, never block the scan)
 
-<!-- ANCHOR:adr-002-context -->
 ### Context
 The scan runs embedding synchronously (`memory-index.ts:489`, default `asyncEmbedding=false`) over the full discovered set under one MCP deadline, so a `force` scan on a large tree blows `-32001`. Async mode already exists: it returns `status:'pending'` without calling the provider (`embedding-pipeline.ts:140`) and `indexMemoryDeferred` makes rows BM25/FTS-searchable immediately (`vector-index-mutations.ts:337`).
-<!-- /ANCHOR:adr-002-context -->
 
-<!-- ANCHOR:adr-002-decision -->
 ### Decision
 Flip scan indexing to async mode and split the job into bounded walk → commit-lexical (rows `pending`, per-tick cap) → async vector drain. The request returns at `lexical_complete` / `complete_with_pending_vectors`. The vector drain checks composed provider/circuit state BEFORE the atomic pending→retry claim (`retry-manager.ts:303`).
-<!-- /ANCHOR:adr-002-decision -->
 
-<!-- ANCHOR:adr-002-alternatives -->
 ### Alternatives Considered
 - **Lower `BATCH_SIZE`** — rejected: reduces concurrency, not total request-bound work; doesn't address the structural cause (research.md §12).
 - **Keep sync, raise the MCP deadline** — rejected: unbounded corpus always re-finds the ceiling.
-<!-- /ANCHOR:adr-002-alternatives -->
 
-<!-- ANCHOR:adr-002-consequences -->
 ### Consequences
 - (+) Eliminates the `-32001` class structurally; lexical search always available.
 - (+) Provider outages never fail a scan; clean `pending` rows are never burned into prunable `retry` (`:493-519`).
 - (−) Vectors are eventually-consistent — surfaced via `degraded` + `nextVectorAttemptAfter`.
-<!-- /ANCHOR:adr-002-consequences -->
 
-<!-- ANCHOR:adr-002-five-checks -->
 ### Five-Lens Check
 - **Clarity:** explicit phase states beat an opaque blocking call.
 - **Systems:** composes the two circuit breakers into one provider-state.
 - **Bias:** targets the measured timeout, not a guess.
 - **Sustainability:** bounded per-tick work caps peak RSS.
 - **Scope:** Phase 2; gated behind Phase 1.
-<!-- /ANCHOR:adr-002-five-checks -->
 
-<!-- ANCHOR:adr-002-impl -->
 ### Implementation Notes
 Phase 2, tasks P2.1-P2.5. Touch `handlers/memory-index.ts`, `handlers/save/embedding-pipeline.ts`; reuse `retry-manager.ts` claim + `reindex.ts` job model.
-<!-- /ANCHOR:adr-002-impl -->
-<!-- /ANCHOR:adr-002 -->
 
 ---
 
-<!-- ANCHOR:adr-003 -->
 ## ADR-003: Move identity = packet_id + doc role/anchor (not path, not content hash alone)
 
-<!-- ANCHOR:adr-003-context -->
 ### Context
 Rows are identified by `spec_folder` + canonical path + anchor (`vector-index-mutations.ts:232-256`), so a `git mv` is delete-old + add-new (orphan + needless re-embed). Stale cleanup is gated to incremental + non-force + zero-failure scans (`memory-index.ts:373-380`,`:600-608`), which is why the renested orphan persisted this session.
-<!-- /ANCHOR:adr-003-context -->
 
-<!-- ANCHOR:adr-003-decision -->
 ### Decision
-Detect a path move by matching vanished→new on `graph-metadata.json.packet_id` (`graph-metadata-schema.ts:61-71`) + doc role/anchor, with a unique-match guard (no competing live path); content hash is confirmation only. On a strong match, update the row's path fields in place (preserve id, vector rowid, embedding, history); otherwise fall back to delete+add. Run a bounded orphan sweep on every completed scan, ungated from scope, via `delete_memory_from_database()`.
-<!-- /ANCHOR:adr-003-decision -->
+Key move-reconciliation on `graph-metadata.json.packet_id` (`graph-metadata-schema.ts:61-71`) + doc role/anchor, with a unique-match guard (no competing live path); content hash is confirmation only. On a strong match, update the row's path fields in place (preserve id, vector rowid, embedding, history); otherwise fall back to delete+add. Run a bounded orphan sweep on every completed scan, ungated from scope, via `delete_memory_from_database()`.
 
-<!-- ANCHOR:adr-003-alternatives -->
 ### Alternatives Considered
 - **Content hash as primary identity** — rejected: copied/template-identical files collide (false-positive merges).
 - **Keep path identity + manual rescans** — rejected: the status-quo orphan foot-gun.
-<!-- /ANCHOR:adr-003-alternatives -->
 
-<!-- ANCHOR:adr-003-consequences -->
 ### Consequences
 - (+) Renests heal automatically without re-embedding; orphans removed regardless of who scanned.
 - (+) `memory_health.index` makes freshness visible.
 - (−) Requires `packet_id` present in `graph-metadata.json` (already a required schema field).
-<!-- /ANCHOR:adr-003-consequences -->
 
-<!-- ANCHOR:adr-003-five-checks -->
 ### Five-Lens Check
 - **Clarity:** identity by stable packet id is more intuitive than path.
 - **Systems:** reuses `delete_memory_from_database()` (vec + BM25 + cache + main row).
 - **Bias:** closes the exact orphan this session hit.
 - **Sustainability:** self-healing index needs no manual scans.
 - **Scope:** Phase 3 (move) + Phase 1 (sweep).
-<!-- /ANCHOR:adr-003-five-checks -->
 
-<!-- ANCHOR:adr-003-impl -->
 ### Implementation Notes
-Phase 1 sweep (P1.4-P1.5) + Phase 3 move reconcile (P3.3). Touch `lib/search/incremental-index.ts`, `lib/search/vector-index-mutations.ts`; read `packet_id` from `graph-metadata.json`.
-<!-- /ANCHOR:adr-003-impl -->
-<!-- /ANCHOR:adr-003 -->
+Phase 3 move reconcile (P3.3) + Phase 1 sweep. Touch `lib/storage/incremental-index.ts`, `lib/search/vector-index-mutations.ts`; read `packet_id` from `graph-metadata.json`.
