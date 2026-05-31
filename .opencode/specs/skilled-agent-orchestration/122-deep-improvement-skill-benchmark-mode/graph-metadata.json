@@ -8,7 +8,8 @@
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/002-implementation-deep-research",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
-    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs"
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/006-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -101,8 +102,8 @@
     ],
     "causal_summary": "Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-05-30T20:56:41.075Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-05-31T06:58:32.670Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
