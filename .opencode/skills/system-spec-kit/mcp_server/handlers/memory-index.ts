@@ -118,6 +118,7 @@ interface ScanResults {
   updated: number;
   unchanged: number;
   failed: number;
+  deferred: number;
   skipped_mtime: number;
   mtimeUpdates: number;
   staleDeleted: number;
@@ -229,12 +230,14 @@ async function indexSingleFile(
   options?: {
     qualityGateMode?: 'enforce' | 'warn-only';
     fromScan?: boolean;
+    asyncEmbedding?: boolean;
   },
 ): Promise<IndexResult> {
   return indexMemoryFile(filePath, {
     force,
     qualityGateMode: options?.qualityGateMode,
     fromScan: options?.fromScan,
+    asyncEmbedding: options?.asyncEmbedding,
   });
 }
 
@@ -517,6 +520,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     updated: 0,
     unchanged: 0,
     failed: 0,
+    deferred: 0,
     skipped_mtime: 0,
     mtimeUpdates: 0,
     staleDeleted: 0,
@@ -598,6 +602,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       return await indexSingleFile(filePath, force, {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
+        asyncEmbedding: true,
       });
     }, scanBatchSize);
 
@@ -645,6 +650,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
           successfullyIndexedFiles.push(filePath);
         } else if (result.status === 'deferred') {
           results.indexed++;
+          results.deferred++;
           successfullyIndexedFiles.push(filePath);
         }
 
@@ -862,7 +868,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     tool: 'memory_index_scan',
     summary,
     data: {
-      status: 'complete',
+      status: results.deferred > 0 ? 'complete_with_pending_vectors' : 'complete',
+      ...(results.deferred > 0 ? { pendingVectors: results.deferred } : {}),
       scanKey,
       batchSize: scanBatchSize,
       ...results,

@@ -904,6 +904,13 @@ async function processRetryQueue(limit = 3, contentLoader: ContentLoader | null 
       break;
     }
 
+    // For items that have never been attempted (pending), check provider state first.
+    // Claiming a pending item promotes it to retry, which is subject to retention pruning.
+    // During an outage, leave pending rows as-is so they are not pruned before the drain can embed them.
+    if (memory.embedding_status === 'pending' && isProviderCircuitOpen()) {
+      continue;
+    }
+
     const claim = claimRetryCandidate(memory);
     if (!claim.claimed) {
       continue;
