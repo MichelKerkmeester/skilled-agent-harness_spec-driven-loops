@@ -42,10 +42,10 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] Clean recovery baseline commit recorded (hash) before any code dispatch.
-- [ ] `cli-opencode/SKILL.md` read; `opencode providers list` confirms `openai` configured.
-- [ ] Daemon source unmodified at phase start; build-while-live hazard acknowledged.
-- [ ] BANNED OPS + disjoint file scope defined for the dispatch; agent performs no git writes.
+- [ ] **[P0]** Clean recovery baseline commit recorded (hash) before any code dispatch.
+- [ ] **[P0]** `cli-opencode/SKILL.md` read; `opencode providers list` confirms `openai` configured.
+- [ ] **[P0]** Daemon source unmodified at phase start; build-while-live hazard acknowledged.
+- [ ] **[P0]** BANNED OPS + disjoint file scope defined for the dispatch; agent performs no git writes (isolated worktree).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,11 +53,11 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] No raw `E429` reachable from `memory_index_scan` (Phase 1).
-- [ ] Orphan deletion goes through `delete_memory_from_database()`; no raw `memory_index` delete.
-- [ ] Contract is additive: existing completed-response fields preserved inside job metadata.
-- [ ] Comment hygiene: no ADR/REQ/task-id/spec-path labels in code comments; durable WHY only.
-- [ ] Reused existing primitives (job model, claim-by-update, deferred upsert) rather than new infra where possible.
+- [ ] **[P0]** No raw `E429` reachable from `memory_index_scan` (Phase 1).
+- [ ] **[P0]** Orphan deletion goes through `delete_memory_from_database()`; no raw `memory_index` delete.
+- [ ] **[P1]** Contract is additive: existing completed-response fields preserved inside job metadata.
+- [ ] **[P0]** Comment hygiene: no ADR/REQ/task-id/spec-path labels in code comments; durable WHY only.
+- [ ] **[P1]** Reused existing primitives (job model, claim-by-update, deferred upsert) rather than new infra where possible.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -65,10 +65,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] **P1 GATE:** `tsc` zero new errors + suite green; repeat-scan coalescing (no E429); `memory_health.index` populated; renested orphan removed.
-- [ ] **P2 GATE:** `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`.
-- [ ] **P3 GATE:** `tsc` + FULL suite green; concurrent callers coordinate; `git mv` path updated in place without re-embed.
-- [ ] New targeted tests added for each phase's behavior.
+- [ ] **[P0]** P1 GATE: `tsc` zero new errors + suite green; repeat-scan coalescing (no E429); `memory_health.index` populated; renested orphan removed.
+- [ ] **[P0]** P2 GATE: `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`.
+- [ ] **[P0]** P3 GATE: `tsc` + FULL suite green; concurrent callers coordinate; `git mv` path updated in place without re-embed.
+- [ ] **[P1]** New targeted tests added for each phase's behavior.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,12 +76,12 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] R1 (no raw E429) met — SC1 verified.
-- [ ] R2 (always completes, no -32001) met — SC2 verified.
-- [ ] R3 (concurrency correct) met — Phase 3.
-- [ ] R4 (degraded-mode, pending-not-retry) met — Phase 2.
-- [ ] R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified.
-- [ ] No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded.
+- [ ] **[P0]** R1 (no raw E429) met — SC1 verified.
+- [ ] **[P0]** R2 (always completes, no -32001) met — SC2 verified.
+- [ ] **[P1]** R3 (concurrency correct) met — Phase 3.
+- [ ] **[P1]** R4 (degraded-mode, pending-not-retry) met — Phase 2.
+- [ ] **[P1]** R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified.
+- [ ] **[P1]** No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -89,10 +89,10 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] No new external network surface; embedding stays on the configured local/provider path.
-- [ ] Orphan sweep cannot delete live rows (on-disk existence checked for both `file_path` and `canonical_file_path`).
-- [ ] Move reconciliation cannot merge distinct packets (unique `packet_id` + doc-anchor match required; content hash confirmation only).
-- [ ] No raw DB mutation outside the daemon/handler path.
+- [ ] **[P1]** No new external network surface; embedding stays on the configured local/provider path.
+- [ ] **[P0]** Orphan sweep cannot delete live rows (on-disk existence checked for both `file_path` and `canonical_file_path`).
+- [ ] **[P0]** Move reconciliation cannot merge distinct packets (unique `packet_id` + doc-anchor match required; content hash confirmation only).
+- [ ] **[P0]** No raw DB mutation outside the daemon/handler path.
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,9 +100,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] `implementation-summary.md` reconciled to final shipped state per phase.
-- [ ] `memory_health.index` field semantics documented in the handler/relevant reference.
-- [ ] Continuity (`_memory.continuity`) updated at each phase boundary via `/memory:save`.
+- [ ] **[P1]** `implementation-summary.md` reconciled to final shipped state per phase.
+- [ ] **[P2]** `memory_health.index` field semantics documented in the handler/relevant reference.
+- [ ] **[P1]** Continuity (`_memory.continuity`) updated at each phase boundary via `/memory:save`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -110,9 +110,9 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] All changes confined to `mcp_server/` files listed in spec.md §3 Files to Change.
-- [ ] Packet docs under `013-memory-index-scan-implementation/`; metadata (`description.json`, `graph-metadata.json`) present.
-- [ ] No scope creep into adjacent handlers or unrelated subsystems.
+- [ ] **[P0]** All changes confined to `mcp_server/` files listed in spec.md §3 Files to Change.
+- [ ] **[P1]** Packet docs under `013-memory-index-scan-implementation/`; metadata (`description.json`, `graph-metadata.json`) present.
+- [ ] **[P1]** No scope creep into adjacent handlers or unrelated subsystems.
 <!-- /ANCHOR:file-org -->
 
 ---
