@@ -235,13 +235,12 @@ but RE-VERIFY each against the .cjs before shipping.
 
 ### NOT DONE (resume work, in priority order)
 
-1. **Playbook landing `manual_testing_playbook.md` still says "two lanes" and
-   has NO Lane C category.** Must: change the lane note two→three; add a
-   `## N. SKILL-BENCHMARK MODE` section mirroring catalog §6 (6 scenario blurbs
-   for SB-040..045 with Description / Scenario Contract / `> **Feature File:**`
-   link into `10--skill-benchmark/`); add a Lane C row to the category-index
-   table. (Blocked this session: the Read tool kept lagging on this 779-line
-   file under the concurrent-session churn — retry with a fresh context.)
+1. **DONE (commit `0f70323e9c`).** Playbook landing now: Lane Note says three
+   lanes, has a `## 16. SKILL-BENCHMARK MODE` section (SB-040..SB-045 with
+   Description / Scenario Contract / Feature-File links into `10--skill-benchmark/`),
+   `10--skill-benchmark/` added to the artifacts list + both cross-reference
+   tables, coverage count bumped 42→48, and the closure wave lists SB-040..045.
+   Verified: 0 residual "two lanes", section present, 6 SB feature-file links.
 2. **Full mirror-renumber (operator's explicit ask)** — regroup BOTH trees into
    the §3 7-category taxonomy. Lane C catalog is ALREADY at its final `05--skill-benchmark`;
    playbook Lane C is at interim `10--skill-benchmark` and must move to `05--skill-benchmark`
