@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Packet 009 excluded `.opencode/skills/**` from default code-graph scans, but adjacent internal-heavy folders remained in the default scan surface. The `includeSkills` argument was also all-or-nothing, which made targeted skill graph work expensive when only one or two `sk-*` folders were relevant.",
     "created_at": "2026-05-09T19:30:52.527Z",
-    "last_save_at": "2026-05-28T06:06:29.244Z",
+    "last_save_at": "2026-05-30T10:12:02.573Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

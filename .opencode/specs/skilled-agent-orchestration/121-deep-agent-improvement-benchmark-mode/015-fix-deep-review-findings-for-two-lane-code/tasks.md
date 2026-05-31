@@ -1,5 +1,5 @@
 ---
-title: "Tasks: two-lane deep-review remediation"
+title: "Tasks: fix deep-review findings for two-lane code"
 description: "Task Format: T### [P?] Description (file path)"
 trigger_phrases:
   - "two-lane remediation tasks"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Start T001 parser fix"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/all-findings.jsonl"
+      - "../014-review-two-lane-workflow-implementation/review/all-findings.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-# Tasks: two-lane deep-review remediation
+# Tasks: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -111,5 +111,5 @@ P1 traceability cluster, P2 dispositions, and the final verification gate.
 - **Specification**: See `spec.md`
 - **Plan**: See `plan.md`
 - **Decision Register**: See `decision-record.md`
-- **Findings source**: See `../014-two-lane-deep-review/review/review-report.md`
+- **Findings source**: See `../014-review-two-lane-workflow-implementation/review/review-report.md`
 <!-- /ANCHOR:cross-refs -->

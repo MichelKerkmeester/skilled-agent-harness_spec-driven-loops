@@ -17,7 +17,7 @@
       "launcher supervision plan",
       "launchModelServer implementation plan",
       "launcher supervision tasks",
-      "launcher-owned model-server supervision spec implementation summary"
+      "launcher-owned model-server supervision implementation summary"
     ],
     "key_topics": [
       "launchmodelserver",
@@ -31,19 +31,38 @@
       "tasks",
       "launcher-owned",
       "model-server",
-      "spec"
+      "summary"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      "mcp_server/tests/embedders/launcher-model-server.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/bin/lib/launcher-ipc-bridge.cjs"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-model-server.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/launcher-model-server.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -66,18 +85,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-spec-memory-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "launcher-ipc-bridge.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
         "source": "derived"
       },
       {
@@ -181,17 +188,11 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 4 of 6** of the embedding-consolidation and hf-local-server decomposition: Lazy-spawn the hf model server as a launcher-supervised sibling child with a second crash-loop guard, generalized RSS watchdog, modelServerPid lease field, health probe, and respawn lock.",
     "created_at": "2026-05-29T05:06:24.639Z",
-    "last_save_at": "2026-05-29T05:06:53.475Z",
+    "last_save_at": "2026-05-30T10:12:02.909Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +200,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

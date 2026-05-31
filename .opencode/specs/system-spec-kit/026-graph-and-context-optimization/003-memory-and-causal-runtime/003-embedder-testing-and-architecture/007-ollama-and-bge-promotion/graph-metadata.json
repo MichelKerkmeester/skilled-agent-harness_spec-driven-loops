@@ -87,11 +87,13 @@
     ],
     "causal_summary": "The 004-extended-bake-off (just shipped) surfaced three follow-ons that this arc addresses:",
     "created_at": "2026-05-18T16:52:17.347Z",
-    "last_save_at": "2026-05-28T06:06:29.031Z",
+    "last_save_at": "2026-05-30T10:12:02.381Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -43,12 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs",
-      ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/003-recommendations/improvement-roadmap.md",
       "implementation-summary.md",
       "plan.md",
@@ -58,42 +52,6 @@
       "spec.md"
     ],
     "entities": [
-      {
-        "name": "promotion-gates.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/lib/promotion-gates.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "score-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/score-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "promote-candidate.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/promote-candidate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-coverage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/mutation-coverage.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "candidate-lineage.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/candidate-lineage.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "reduce-state.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/reduce-state.cjs",
-        "source": "derived"
-      },
       {
         "name": "improvement-roadmap.md",
         "kind": "doc",
@@ -201,11 +159,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Milestone Reference",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Write Commit Handoff",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 126 hardens the `deep-agent-improvement` evaluator after packets 124 and 125 repaired correctness and documentation truth. The packet closes six P1 items: named promotion gates, reproducible score hashing/cache, mutation-signature empty-field safety, evaluator-level runtime mirror coverage warning, candidate proposal content-hash dedup, and dashboard visibility for unscored dimensions.",
     "created_at": "2026-05-23T00:00:00.000Z",
-    "last_save_at": "2026-05-28T06:06:27.770Z",
+    "last_save_at": "2026-05-30T19:40:10.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +209,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

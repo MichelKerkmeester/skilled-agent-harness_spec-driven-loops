@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "packet_id": "anobel.com/003-slider-refactor",
+  "spec_folder": "anobel.com/003-slider-refactor",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "slider refactor",
+      "slider_testimonial",
+      "slider_timeline",
+      "carousel slider variants",
+      "slider generic rebrand",
+      "horizontalLoop",
+      "Motion.dev slider",
+      "slider refactor plan",
+      "slider refactor tasks",
+      "slider refactor summary",
+      "carousel slider complete"
+    ],
+    "key_topics": [
+      "slider",
+      "carousel",
+      "testimonial",
+      "timeline",
+      "refactor",
+      "Motion.dev",
+      "horizontalLoop",
+      "minification",
+      "variant",
+      "data-slider",
+      "ensureStyles",
+      "STYLE_ID",
+      "DECORATED_FLAG",
+      "INIT_FLAG"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js",
+      "a_nobel_en_zn/2_javascript/carousel/slider_timeline.js",
+      "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_testimonial.min.js",
+      "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_timeline.min.js",
+      "src/1_css/button/btn_tab_main.css",
+      "handover.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "slider_testimonial.js",
+        "kind": "file",
+        "path": "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_timeline.js",
+        "kind": "file",
+        "path": "a_nobel_en_zn/2_javascript/carousel/slider_timeline.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_testimonial.min.js",
+        "kind": "file",
+        "path": "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_testimonial.min.js",
+        "source": "derived"
+      },
+      {
+        "name": "slider_timeline.min.js",
+        "kind": "file",
+        "path": "a_nobel_en_zn/2_javascript/z_minified/carousel/slider_timeline.min.js",
+        "source": "derived"
+      },
+      {
+        "name": "btn_tab_main.css",
+        "kind": "file",
+        "path": "src/1_css/button/btn_tab_main.css",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "horizontalLoop",
+        "kind": "function",
+        "path": "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js",
+        "source": "derived"
+      },
+      {
+        "name": "ensureStyles",
+        "kind": "function",
+        "path": "a_nobel_en_zn/2_javascript/carousel/slider_testimonial.js",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The testimonial slider was deeply branded for a single use-case. Genericising it and splitting into two named variants (testimonial with image colour states, timeline without) allows the same animation engine to power different slider patterns on the same page without collision.",
+    "created_at": "2026-05-31T00:00:00Z",
+    "last_save_at": "2026-05-31T00:00:00.000Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "handover.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

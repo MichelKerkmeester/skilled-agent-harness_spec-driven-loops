@@ -55,7 +55,6 @@
       "003-eval-loop/synthesis.md",
       "004-skill-uplift/implementation-summary.md",
       "006-cross-cli-rcaf-propagation/implementation-summary.md",
-      ".opencode/skills/deep-agent-improvement/SKILL.md",
       "spec.md"
     ],
     "entities": [
@@ -158,11 +157,13 @@
     ],
     "causal_summary": "Run a bespoke deep-loop that iteratively mutates cli-devin's prompt scaffolding against documented failure-mode fixtures with actual SWE-1.6 invocations, converges on winning patterns, applies them back to the skill, then closes a file-extraction gap, propagates the cross-CLI applicable findings to the sibling skill cards, and validates the held-back findings against two frontier models (deepseek-v4-pro + kimi-k2.6) before promoting them cross-CLI. The arc moves cli-devin's defaults from \"best guess from documentation\" to \"empirically validated on three measured models with cross-CLI propagation\".",
     "created_at": "2026-05-18T07:49:26.948Z",
-    "last_save_at": "2026-05-28T06:06:27.607Z",
+    "last_save_at": "2026-05-30T19:40:10.250Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

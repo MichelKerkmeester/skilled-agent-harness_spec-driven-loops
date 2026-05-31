@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-reorganize-two-lane-references-assets",
+  "description": "Reorganize references and assets into agent-improvement, model-benchmark, and shared lane folders and update references.",
+  "keywords": [
+    "feature",
+    "specification",
+    "references",
+    "assets",
+    "lane",
+    "reorg"
+  ],
+  "lastUpdated": "2026-05-29T09:27:47.373Z",
+  "specId": "010",
+  "folderSlug": "010-reorganize-two-lane-references-assets",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: reorganize references and assets for two-lane workflow"
+}

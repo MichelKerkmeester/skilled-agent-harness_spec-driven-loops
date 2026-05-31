@@ -89,11 +89,13 @@
     ],
     "causal_summary": "In packet 060/004 we proved that `@improve-agent`'s discipline lives in its command orchestrator (`/deep:start-agent-improvement-loop`), not in the agent body. The 060/002 same-task A/B prepend-body stress scored **0/2/4** because we tested the wrong layer. Restructuring to per-CP layer partition (some scenarios test command-flow, some body-level) produced final composite **PASS 6 / PARTIAL 0 / FAIL 0** by R3.",
     "created_at": "2026-05-18T07:49:27.110Z",
-    "last_save_at": "2026-05-28T06:06:28.002Z",
+    "last_save_at": "2026-05-30T10:12:01.321Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

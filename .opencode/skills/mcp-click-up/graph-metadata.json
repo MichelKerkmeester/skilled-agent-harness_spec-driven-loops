@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "skill_id": "mcp-click-up",
+  "family": "mcp",
+  "category": "mcp-tool",
+  "edges": {
+    "depends_on": [
+      {
+        "target": "mcp-code-mode",
+        "weight": 0.7,
+        "context": "Official ClickUp MCP invoked via Code Mode call_tool_chain for advanced operations"
+      }
+    ],
+    "enhances": [
+      {
+        "target": "sk-code",
+        "weight": 0.3,
+        "context": "Provides task management context for development workflows"
+      }
+    ],
+    "siblings": [],
+    "conflicts_with": [],
+    "prerequisite_for": []
+  },
+  "manual": {
+    "depends_on": ["mcp-code-mode"],
+    "related_to": ["mcp-chrome-devtools"]
+  },
+  "domains": ["task-management", "productivity", "cli", "mcp"],
+  "intent_signals": [
+    "clickup",
+    "cupt",
+    "task management",
+    "work queue",
+    "mark done",
+    "time tracking",
+    "log time",
+    "task list",
+    "clickup task",
+    "complete task",
+    "add note to task",
+    "tag task",
+    "start timer",
+    "stop timer",
+    "process queue",
+    "clickup documents",
+    "clickup goals",
+    "bulk tasks"
+  ],
+  "derived": {
+    "trigger_phrases": [
+      "clickup",
+      "cupt",
+      "task management",
+      "work queue",
+      "mark task done",
+      "log time",
+      "time tracking",
+      "process queue",
+      "clickup documents",
+      "clickup goals"
+    ],
+    "key_topics": [
+      "cupt CLI",
+      "ClickUp MCP",
+      "task operations",
+      "time tracking",
+      "operation-based routing",
+      "agent invariants",
+      "status resolution"
+    ],
+    "intent_signals": [
+      "clickup",
+      "cupt",
+      "task list",
+      "mark done",
+      "add note",
+      "tag task",
+      "time tracking",
+      "documents",
+      "goals",
+      "work queue"
+    ],
+    "key_files": [
+      ".opencode/skills/mcp-click-up/SKILL.md",
+      ".opencode/skills/mcp-click-up/scripts/install.sh",
+      ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+      ".opencode/skills/mcp-click-up/references/mcp_tools.md"
+    ],
+    "entities": [
+      {
+        "name": "mcp-click-up",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-click-up/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "cupt_commands",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp_tools",
+        "kind": "reference",
+        "path": ".opencode/skills/mcp-click-up/references/mcp_tools.md",
+        "source": "derived"
+      },
+      {
+        "name": "install",
+        "kind": "script",
+        "path": ".opencode/skills/mcp-click-up/scripts/install.sh",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "mcp-click-up skill created to give AI agents a structured interface to ClickUp. Routes cupt CLI for daily task ops and official ClickUp MCP for advanced operations. Includes embedded install script, operation-based routing, and cupt agent invariants.",
+    "source_docs": [
+      "SKILL.md",
+      "README.md",
+      "references/cupt_commands.md",
+      "references/mcp_tools.md",
+      "references/troubleshooting.md"
+    ],
+    "created_at": "2026-05-31T00:00:00Z",
+    "last_updated_at": "2026-05-31T00:00:00Z"
+  }
+}

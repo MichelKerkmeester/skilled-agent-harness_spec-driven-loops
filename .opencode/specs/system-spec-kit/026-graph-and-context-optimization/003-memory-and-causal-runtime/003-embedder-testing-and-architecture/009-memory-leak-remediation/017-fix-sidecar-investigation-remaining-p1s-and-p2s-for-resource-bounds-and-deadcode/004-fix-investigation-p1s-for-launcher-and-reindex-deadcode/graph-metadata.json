@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The rerank sidecar launcher still had two P1 process-boundary risks: F15 owner-token publication could leave a partially written or race-observed token, and F49 spawned the sidecar with blanket parent environment inheritance. The embedder reindex loop also kept F105 cancellation polling branches even though production has no cancellation caller, adding dead DB reads and implying a feature that is not wired.",
     "created_at": "2026-05-23T06:45:25Z",
-    "last_save_at": "2026-05-28T06:06:29.116Z",
+    "last_save_at": "2026-05-30T10:12:02.491Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +210,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

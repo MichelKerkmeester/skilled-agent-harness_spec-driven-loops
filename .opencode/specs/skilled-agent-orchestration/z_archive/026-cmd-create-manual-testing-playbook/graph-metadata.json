@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This packet defines the implementation contract for `/create:testing-playbook`, a new create command that must scaffold the current integrated `manual_testing_playbook/` package. The command must honor the post-021 contract: root playbook plus numbered category folders, root-owned review/orchestration guidance, per-feature files that mimic feature-catalog entry structure, and no legacy review or sub-agent ledger sidecars or `snippets/` subtree.",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-05-28T06:06:27.853Z",
+    "last_save_at": "2026-05-30T10:12:01.175Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

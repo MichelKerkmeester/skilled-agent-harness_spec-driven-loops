@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Investigation packet: cli-codex GPT-5.5 xhigh fast investigates why rerank_sidecar uvicorn workers accumulate (25 stale, ~16 GB on this machine), evaluates a three-layer reaper design, and emits ADRs ready for a follow-on implementation packet. No code modified.",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-28T06:06:29.125Z",
+    "last_save_at": "2026-05-30T10:12:02.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "research/research.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

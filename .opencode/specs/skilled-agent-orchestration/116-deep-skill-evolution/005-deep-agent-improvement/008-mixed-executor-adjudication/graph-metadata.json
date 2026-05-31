@@ -49,8 +49,6 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md",
-      ".opencode/skills/deep-agent-improvement/SKILL.md",
-      ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/spec.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/plan.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/tasks.md",
@@ -95,18 +93,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/008-mixed-executor-adjudication/implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "generate-profile.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
         "source": "derived"
       },
       {
@@ -204,11 +190,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 128 brings the methodology patterns proven in arc 119 (deep-research uplift) into deep-agent-improvement: mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter. The 119 research demonstrated a 90%+ false-positive rate on adversarial passes without adjudication, and the mixed-executor pattern (8+2 split) provided better breadth/synthesis balance than single-executor approaches. This packet documents these patterns as recommended methodology for DAI multi-iter sweeps and adds DAI-004 audit logging for dynamic profiling.",
     "created_at": "2026-05-23T08:30:00.000Z",
-    "last_save_at": "2026-05-28T06:06:27.773Z",
+    "last_save_at": "2026-05-30T19:40:10.338Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +216,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

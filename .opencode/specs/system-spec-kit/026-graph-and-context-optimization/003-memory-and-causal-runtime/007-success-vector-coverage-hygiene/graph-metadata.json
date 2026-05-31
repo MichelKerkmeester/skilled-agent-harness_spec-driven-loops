@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Verification during the 005 reconcile found 23 rows marked `embedding_status='success'` that are MISSING from an active vector surface — not present in `active_vec.vec_memories_rowids` OR not present in `active_vec.vec_<dim>`. This is the inverse of the fixed backlog bug (those rows were \"has vector, wrong status\"; these are \"right status, missing vector\", ~0.24% of success rows) and they may not surface correctly in semantic search. The 006 reconcile tool does NOT touch success rows, so this case needs its own detection and repair.",
     "created_at": "2026-05-27T08:49:43.296Z",
-    "last_save_at": "2026-05-28T06:06:29.189Z",
+    "last_save_at": "2026-05-30T10:12:02.533Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

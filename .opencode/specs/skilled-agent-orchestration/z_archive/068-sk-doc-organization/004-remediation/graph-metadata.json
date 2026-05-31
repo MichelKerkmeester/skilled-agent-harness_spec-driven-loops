@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 4** (terminal phase) of the sk-doc reorg packet — added after the 7-iteration deep-review (review-report.md) surfaced 1 P1 + 2 P2 doc-accuracy findings that escaped Phase 2's 4-pattern fixed-string substring sweep.",
     "created_at": "2026-05-05T09:51:15Z",
-    "last_save_at": "2026-05-28T06:06:28.045Z",
+    "last_save_at": "2026-05-30T10:12:01.363Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [
@@ -202,6 +202,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

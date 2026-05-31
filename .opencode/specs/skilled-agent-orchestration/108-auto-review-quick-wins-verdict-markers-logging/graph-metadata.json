@@ -118,11 +118,13 @@
     ],
     "causal_summary": "Packet 106 identified 9 HIGH-impact + 6 MEDIUM-impact reusable patterns from the upstream `dzianisv/opencode-plugins` `auto-review` package. The 5 quick-win teachings (H-1 through H-6, all LOW-cost) can be adopted in 5-8 hours total to deliver CI gate integration, recursion defense, and measurable hook performance improvements across our review skills (sk-code-review, deep-review, deep-research) and OpenCode plugin ecosystem (skill-advisor hooks, code-graph feedback handler). Without adoption, we leave proven mechanisms on the table while our review infrastructure remains weaker than necessary.",
     "created_at": "2026-05-16T07:00:00Z",
-    "last_save_at": "2026-05-28T06:06:27.580Z",
+    "last_save_at": "2026-05-30T10:12:00.869Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

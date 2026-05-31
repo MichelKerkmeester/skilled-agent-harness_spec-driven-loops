@@ -85,11 +85,13 @@
     ],
     "causal_summary": "The rerank-sidecar lifecycle leaks workers. Empirical evidence: on 2026-05-23 a single machine accumulated 25 stale `rerank_sidecar` uvicorn workers consuming ~16 GB RAM. Memory `project_ccc_search_orphan_root_cause` already named the architectural cause — `start_new_session=True` in `client.py:325` is an INTENTIONAL daemon detach for warm-model reuse, but no reaper exists to clean up sidecars whose owner-set has gone empty (terminal closed, ccc dispatch died, machine slept, etc.). Phase 014 (per the memory) shipped lease/cleanup; the orphan reaper is the remaining gap. Today the only cleanup is operator-driven SIGKILL — fragile and reactive.",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-05-28T06:06:29.124Z",
+    "last_save_at": "2026-05-30T10:12:02.495Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

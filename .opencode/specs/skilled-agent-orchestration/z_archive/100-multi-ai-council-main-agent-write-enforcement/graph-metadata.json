@@ -219,7 +219,7 @@
     ],
     "causal_summary": "When the Multi-AI Council is invoked directly as a main agent in opencode (a Depth 0 user-initiated dispatch with no orchestrator wrapper), the council frequently completes its deliberation and returns a chat-form Multi-AI Council Report **without writing any `ai-council/**` artifacts to the spec folder**. The capability is in place — packet 098 shipped scoped-write permissions across all 4 runtime mirrors and the writer library lives at `.opencode/skills/system-spec-kit/scripts/multi-ai-council/lib/persist-artifacts.js`. The protocol is documented — §12 (folder layout), §13 (invocation contract), §14 (state schema), and §16 (persistence protocol) describe what to write and which functions to call. But the agent body has no **enforcement gate** that REQUIRES persistence before completion. Specifically:",
     "created_at": "2026-05-19T13:51:38.813Z",
-    "last_save_at": "2026-05-28T06:06:28.217Z",
+    "last_save_at": "2026-05-30T10:12:01.507Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -228,6 +228,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

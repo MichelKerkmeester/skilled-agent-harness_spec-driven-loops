@@ -195,7 +195,7 @@
     ],
     "causal_summary": "Expose additive per-query diagnostics and index/runtime fingerprints so retrieval behavior can be audited before 023B calibration and later request-budget work.",
     "created_at": "2026-05-19T00:00:00.000Z",
-    "last_save_at": "2026-05-28T06:06:28.970Z",
+    "last_save_at": "2026-05-30T10:12:02.319Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

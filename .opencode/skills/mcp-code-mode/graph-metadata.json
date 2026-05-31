@@ -13,6 +13,11 @@
         "target": "mcp-chrome-devtools",
         "weight": 0.7,
         "context": "devtools MCP fallback via Code Mode"
+      },
+      {
+        "target": "mcp-click-up",
+        "weight": 0.7,
+        "context": "official ClickUp MCP invoked via Code Mode for advanced operations"
       }
     ]
   },

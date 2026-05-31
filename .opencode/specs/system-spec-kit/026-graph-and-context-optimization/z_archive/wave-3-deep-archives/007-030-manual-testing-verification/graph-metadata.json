@@ -41,6 +41,7 @@
     "status": "complete",
     "key_files": [
       ".claude/mcp.json",
+      ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
       ".opencode/bin/mk-code-index-launcher.cjs",
       "implementation-summary.md",
       "spec.md",
@@ -52,6 +53,12 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "code-graph.sqlite",
+        "kind": "file",
+        "path": ".opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite",
         "source": "derived"
       },
       {
@@ -185,17 +192,11 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
-      },
-      {
-        "name": "New Post",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "After the 7-packet code-graph remediation campaign (010-015) shipped, the system-code-graph skill needed end-to-end manual verification: the `mk-code-index` MCP rename, sk-doc alignment work, the tsconfig fix from 009, and the architecture.md content all needed independent observation, not just unit tests. This packet executes the manual_testing_playbook scenarios plus six new post-rename smoke probes to confirm operational soundness before the campaign closes.",
     "created_at": "2026-05-18T08:15:28.162Z",
-    "last_save_at": "2026-05-28T06:06:29.443Z",
+    "last_save_at": "2026-05-30T10:12:02.818Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

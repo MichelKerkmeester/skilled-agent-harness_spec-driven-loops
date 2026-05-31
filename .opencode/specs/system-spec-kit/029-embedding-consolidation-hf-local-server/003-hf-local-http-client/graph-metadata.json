@@ -17,7 +17,7 @@
       "hf-local HTTP client plan",
       "hf-local HTTP client implementation plan",
       "hf-local HTTP client tasks",
-      "hf-local HTTP client rewrite spec implementation summary"
+      "hf-local HTTP client rewrite implementation summary"
     ],
     "key_topics": [
       "hf-local",
@@ -29,22 +29,61 @@
       "implementation",
       "tasks",
       "rewrite",
-      "spec",
       "summary",
-      "phase"
+      "phase",
+      "embedding-consolidation"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "shared/embeddings/providers/hf-local.ts",
+      "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+      "mcp_server/tests/embeddings.vitest.ts",
+      "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+      "shared/embeddings/providers/ollama.ts",
+      "shared/embeddings/factory.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md",
-      "shared/embeddings/providers/hf-local.ts",
-      "shared/embeddings/providers/ollama.ts",
-      "shared/embeddings/factory.ts"
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "health-reporting.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/local-llm-features/health-reporting.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ollama.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/ollama.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -67,24 +106,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "ollama.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/ollama.ts",
-        "source": "derived"
-      },
-      {
-        "name": "factory.ts",
-        "kind": "code",
-        "path": "shared/embeddings/factory.ts",
         "source": "derived"
       },
       {
@@ -170,29 +191,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "an",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3 of 6** of the embedding-consolidation and hf-local-server decomposition: Replace the in-process hf-local pipeline body with an ollama-shaped HTTP/socket client that keeps public provider APIs, client-side prefixes, readiness retry, and runtime dimension adoption.",
     "created_at": "2026-05-29T05:06:24.638Z",
-    "last_save_at": "2026-05-29T05:06:53.474Z",
+    "last_save_at": "2026-05-30T10:12:02.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +203,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The sandbox campaign deferred native cells because it could not access MCP tools, authenticated state, network, or real compaction context. The initial synthesis therefore treated code graph overhead as sandbox-bound. The native rerun produced different evidence: code graph queries blocked under real workflow conditions, scope-mismatched scans wiped the live index to zero nodes, and parser crashes prevented recovery.",
     "created_at": "2026-05-06T00:00:00.000Z",
-    "last_save_at": "2026-05-28T06:06:29.296Z",
+    "last_save_at": "2026-05-30T10:12:02.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

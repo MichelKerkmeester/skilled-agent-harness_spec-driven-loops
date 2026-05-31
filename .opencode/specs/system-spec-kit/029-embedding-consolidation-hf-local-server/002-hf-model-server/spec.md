@@ -26,7 +26,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Architecture dependsOn: none after phase 001 establishes the nomic canonical default."
-      - "Self-warm is best-effort: a warm-up failure must not pin the server to 'error' (load already succeeded)."
+      - "Self-warm is best-effort; a warm-up failure must not pin server state to error"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 # Feature Specification: Build hf-model-server.cjs local HTTP model server

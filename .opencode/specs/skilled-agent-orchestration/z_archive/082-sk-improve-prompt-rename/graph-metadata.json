@@ -61,11 +61,11 @@
       ".opencode/skills/cli-gemini/manual_testing_playbook/07--prompt-templates/002-clear-quality-card-application.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/002-clear-quality-card.md",
-      ".opencode/skills/deep-agent-improvement/SKILL.md",
-      ".opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md",
-      ".opencode/skills/deep-agent-improvement/graph-metadata.json",
       ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md"
+      ".opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md",
+      ".gemini/commands/deep/start-agent-improvement-loop.toml",
+      ".opencode/install_guides/SET-UP - AGENTS.md",
+      ".opencode/install_guides/README.md"
     ],
     "entities": [
       {
@@ -129,18 +129,6 @@
         "source": "derived"
       },
       {
-        "name": "v1.1.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/changelog/v1.1.0.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-agent-improvement/graph-metadata.json",
-        "source": "derived"
-      },
-      {
         "name": "mcp_server_authoring.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/assets/opencode/checklists/mcp_server_authoring.md",
@@ -150,6 +138,24 @@
         "name": "001-advisor-probe-battery.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/manual_testing_playbook/04--skill-advisor-integration/001-advisor-probe-battery.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-agent-improvement-loop.toml",
+        "kind": "file",
+        "path": ".gemini/commands/deep/start-agent-improvement-loop.toml",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - AGENTS.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - AGENTS.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/README.md",
         "source": "derived"
       },
       {
@@ -205,22 +211,18 @@
         "kind": "key_phrase",
         "path": "resource-map.md",
         "source": "derived"
-      },
-      {
-        "name": "historical",
-        "kind": "key_phrase",
-        "path": "resource-map.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skill currently named `sk-improve-prompt` carries a redundant `-improve-` segment that duplicates intent already encoded by its dispatcher command (`/prompt`) and agent (`@improve-prompt`). Sibling skills that surface a single capability use single-word names (`sk-code`, `sk-doc`, `sk-git`). Renaming to `sk-prompt` aligns with that convention while preserving the `sk-` family marker.",
     "created_at": "2026-05-06T10:22:39Z",
-    "last_save_at": "2026-05-28T06:06:28.125Z",
+    "last_save_at": "2026-05-30T19:40:10.551Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

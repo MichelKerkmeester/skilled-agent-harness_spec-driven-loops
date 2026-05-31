@@ -40,7 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/graph-metadata.json",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation/spec.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation/plan.md",
       ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation/tasks.md",
@@ -55,12 +54,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "graph-metadata.json",
-        "kind": "config",
-        "path": ".opencode/skills/deep-agent-improvement/graph-metadata.json",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -95,6 +88,12 @@
         "name": "description.json",
         "kind": "config",
         "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation/description.json",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/005-deep-agent-improvement/005-doc-version-reconciliation/graph-metadata.json",
         "source": "derived"
       },
       {
@@ -202,7 +201,7 @@
     ],
     "causal_summary": "Packet 124 shipped 5 P0 + 3 P1 correctness fixes for deep-agent-improvement, but the skill's documentation has not been brought to the same canonical companion standard as the post-118 deep-loop-runtime, deep-review, and deep-research peer skills. Specifically, deep-agent-improvement is missing 3 key reference docs that exist in the peer skills: formal scoring dimension documentation, promotion gate contract, and candidate proposal format.",
     "created_at": "2026-05-23T07:00:00Z",
-    "last_save_at": "2026-05-28T06:06:27.767Z",
+    "last_save_at": "2026-05-30T19:40:10.335Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +210,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

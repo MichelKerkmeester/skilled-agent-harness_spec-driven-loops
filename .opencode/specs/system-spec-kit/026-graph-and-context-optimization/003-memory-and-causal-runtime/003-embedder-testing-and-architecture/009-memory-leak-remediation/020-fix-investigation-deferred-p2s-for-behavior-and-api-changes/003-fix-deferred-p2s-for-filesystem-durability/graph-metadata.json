@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Nine deferred P2 findings remain in the rerank sidecar launcher durability surface. The current launcher needs stronger rename durability, consistent temp naming, state directory validation, owner-only log permissions, stable log fd stdio, normalized health payloads, caller-consistent `skipIfDisabled` handling, dependency injection seams for tests, and a smaller orchestrator split into focused helpers.",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-05-28T06:06:29.153Z",
+    "last_save_at": "2026-05-30T10:12:02.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Packet 060/003 research synthesized 10 cli-copilot iterations and identified the executable producers + consumers that must be wired before sk-improve-agent's command-flow pipeline can produce honest GREEN evidence. 062 lands those wirings.",
     "created_at": "2026-05-02T14:00:00Z",
-    "last_save_at": "2026-05-28T06:06:27.987Z",
+    "last_save_at": "2026-05-30T10:12:01.308Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,8 @@
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

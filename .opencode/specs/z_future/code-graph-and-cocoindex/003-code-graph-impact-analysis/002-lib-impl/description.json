@@ -1,0 +1,49 @@
+{
+  "title": "027/004/002 Impact Analysis Library",
+  "trigger_phrases": [
+    "027 004 002 lib impl",
+    "code-graph-impact-analysis.ts",
+    "impact analysis library"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00.000Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
+    ]
+  },
+  "derived": {
+    "status": "scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+  "description": "Feature Specification: 027/004/002 Impact Analysis Library",
+  "keywords": [
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "002",
+    "impact",
+    "analysis",
+    "library"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.077Z",
+  "specId": "002",
+  "folderSlug": "lib-impl",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage.",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-05-28T06:14:22.167Z",
+    "last_save_at": "2026-05-30T10:12:02.639Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

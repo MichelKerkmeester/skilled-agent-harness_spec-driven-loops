@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Concrete incident: 2026-05-11 102/004 Stage E first dispatch hung 3 minutes at the setup gate; second dispatch (with pre-bound answers in the prompt) ran the full 5-iteration deep-review and converged.",
     "created_at": "2026-05-11T09:32:52Z",
-    "last_save_at": "2026-05-28T06:06:27.569Z",
+    "last_save_at": "2026-05-30T10:12:00.859Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

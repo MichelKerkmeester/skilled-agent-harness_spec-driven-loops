@@ -195,7 +195,7 @@
     ],
     "causal_summary": "A comprehensive audit combining **20-agent deep analysis** and **System Health Dashboard** findings revealed critical bugs, alignment issues, and UX problems across multiple systems:",
     "created_at": "2026-04-12T09:02:53.522Z",
-    "last_save_at": "2026-05-28T06:06:29.595Z",
+    "last_save_at": "2026-05-30T10:12:02.977Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

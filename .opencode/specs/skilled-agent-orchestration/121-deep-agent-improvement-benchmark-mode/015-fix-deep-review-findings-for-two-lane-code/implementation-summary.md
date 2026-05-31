@@ -1,5 +1,5 @@
 ---
-title: "Implementation Summary: two-lane deep-review remediation"
+title: "Implementation Summary: fix deep-review findings for two-lane code"
 description: "Stub: implementation summary for remediating the 014 two-lane deep-review findings. Filled at packet close."
 trigger_phrases:
   - "two-lane remediation summary"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "None; remediation complete and verified"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/review-report.md"
+      - "../014-review-two-lane-workflow-implementation/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-# Implementation Summary: two-lane deep-review remediation
+# Implementation Summary: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->

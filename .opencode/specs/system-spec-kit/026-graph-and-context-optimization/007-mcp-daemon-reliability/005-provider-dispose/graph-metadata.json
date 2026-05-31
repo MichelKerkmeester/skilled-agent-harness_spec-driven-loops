@@ -11,42 +11,80 @@
   },
   "derived": {
     "trigger_phrases": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec core",
-      "implementation",
-      "plan",
-      "plan core",
-      "tasks",
-      "tasks core",
-      "summary",
-      "impl summary core"
+      "provider dispose native ONNX",
+      "invalidateProviderSingleton leak F2",
+      "embedding provider use-after-free gate",
+      "sidecar provider dispose on swap",
+      "provider dispose plan F2",
+      "native run gate dispose plan",
+      "provider dispose tasks F2",
+      "provider dispose summary F2 implemented"
     ],
     "key_topics": [
-      "feature",
-      "specification",
-      "name",
-      "template",
-      "spec",
-      "core",
-      "implementation",
-      "plan",
-      "tasks",
-      "summary",
-      "impl",
-      "phase"
+      "provider",
+      "dispose",
+      "native",
+      "onnx",
+      "invalidateprovidersingleton",
+      "leak",
+      "embedding",
+      "use-after-free",
+      "gate",
+      "sidecar",
+      "swap",
+      "plan"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "shared/types.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings.ts",
+      "mcp_server/lib/embedders/execution-router.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "mcp_server/tests/embeddings.vitest.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.ts",
+        "kind": "code",
+        "path": "shared/embeddings.ts",
+        "source": "derived"
+      },
+      {
+        "name": "execution-router.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embeddings.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embeddings.vitest.ts",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -78,12 +116,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -108,6 +140,12 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -120,7 +158,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Add",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern In",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -132,21 +176,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Data Flow Swap",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -156,45 +188,15 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "This is **Phase 1** of the MCP daemon reliability: consolidated socket-dir, daemon-lifecycle, build-safety, and embedding-provider memory fixes specification.",
+    "causal_summary": "This is **Phase 5 of 7** of the MCP daemon-reliability decomposition: the embedding-provider memory fix (F2′ in the `003-daemon-reliability-research` roadmap, addressing RC-1).",
     "created_at": "2026-05-28T18:43:48Z",
-    "last_save_at": "2026-05-28T18:48:33.012Z",
+    "last_save_at": "2026-05-30T10:12:02.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

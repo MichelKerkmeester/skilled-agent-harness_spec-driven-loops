@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Two non-blocking follow-ups remained after the 029 remediation. (1) Five active-guidance docs cite a SessionStart-hook compiled-artifact path that does not exist (`system-code-graph/dist/system-spec-kit/mcp_server/hooks/<runtime>/`); the real artifact is the flat `system-spec-kit/mcp_server/dist/hooks/<runtime>/session-start.js`. The documented \"migration to system-code-graph\" was never built. (2) Scenario 022 blast_radius was PARTIAL because the chosen subject had a single importer, so `transitive > nontransitive` could not be demonstrated.",
     "created_at": "2026-05-27T04:03:04.114Z",
-    "last_save_at": "2026-05-28T06:14:22.171Z",
+    "last_save_at": "2026-05-30T10:12:02.645Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

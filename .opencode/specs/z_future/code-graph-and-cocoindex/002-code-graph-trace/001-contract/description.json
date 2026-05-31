@@ -1,0 +1,43 @@
+{
+  "title": "Phase 003.001 — code_graph_trace Contract",
+  "trigger_phrases": [
+    "027 phase 003 contract",
+    "code_graph_trace contract",
+    "TraceTool interface"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
+    ]
+  },
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract",
+  "description": "Feature Specification: code_graph_trace Contract",
+  "keywords": [
+    "feature",
+    "specification",
+    "contract"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.051Z",
+  "specId": "001",
+  "folderSlug": "contract",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "002-code-graph-trace"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

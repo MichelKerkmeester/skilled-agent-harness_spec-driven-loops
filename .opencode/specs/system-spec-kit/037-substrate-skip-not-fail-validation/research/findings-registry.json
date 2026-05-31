@@ -1,0 +1,424 @@
+{
+  "sessionId": "dr-037-1780216339",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "terminalStop": null,
+  "openQuestions": [
+    {
+      "id": "question-3-q3-does-the-evidence-tsv-reproducibly-show-runner-skip-with-owning-pids-and-a-st",
+      "text": "Q3: Does the evidence TSV reproducibly show `runner:* SKIP` with owning pids and a stable explanation?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-4-q4-is-the-1437-graph-metadata-json-churn-pre-existing-operator-background-rescan",
+      "text": "Q4: Is the ~1437 `graph-metadata.json` churn pre-existing + operator background rescans, NOT harness-produced?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    },
+    {
+      "id": "question-5-q5-is-the-speckit-code-graph-maintainer-mode-true-leak-genuinely-sidestepped-by-",
+      "text": "Q5: Is the `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true` leak genuinely sidestepped by skip-not-fail, or merely hidden?",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "question-1-q1-do-genuine-daemon-crashes-still-fail-liveownerforservice-must-return-null-whe",
+      "text": "Q1: Do genuine daemon crashes still FAIL? `liveOwnerForService()` must return null when nothing live owns the lease. Probe: TOCTOU, recycled PID, EPERM-as-alive, foreign-owned ownerPid. → ANSWERED iter 1",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    },
+    {
+      "id": "question-2-q2-does-the-false-green-guard-still-fire-in-a-clean-env-scenario-410-must-be-pas",
+      "text": "Q2: Does the false-green guard still fire in a clean env? Scenario 410 must be PASS/PARTIAL when daemons connect (no `runner:` SKIP rows). Probe: partial/zombie connect producing an all-SKIP set with no runner row. → ANSWERED iter 2",
+      "addedAtIteration": 0,
+      "resolvedAtIteration": 0
+    }
+  ],
+  "uncoveredQuestions": [
+    "Q3: Does the evidence TSV reproducibly show `runner:* SKIP` with owning pids and a stable explanation?",
+    "Q4: Is the ~1437 `graph-metadata.json` churn pre-existing + operator background rescans, NOT harness-produced?",
+    "Q5: Is the `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true` leak genuinely sidestepped by skip-not-fail, or merely hidden?"
+  ],
+  "keyFindings": [
+    {
+      "id": "finding-1-22-ro-001-the-eperm-comment-at-run-substrate-stress-harness-mjs-327-eperm-means-it-",
+      "text": "**RO-001**: The EPERM comment at `run-substrate-stress-harness.mjs:327` (\"EPERM means it exists but is owned elsewhere (still alive)\") is **correct**. EPERM does not indicate a dead process.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-23-ro-002-the-daemon-detect-ts-88-implementation-code-esrch-is-consistent-with-ispi",
+      "text": "**RO-002**: The `daemon-detect.ts:88` implementation (`code !== 'ESRCH'`) is **consistent** with `isPidAlive` (`error.code === 'EPERM'`). Both treat EPERM as alive and ESRCH as dead.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-24-ro-003-toctou-between-connect-failure-and-lease-read-is-not-exploitable-because-",
+      "text": "**RO-003**: TOCTOU between connect failure and lease read is **not exploitable** because `liveOwnerForService` is called synchronously in the catch block with no await separating connect failure from lease read.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-25-ro-004-childpid-not-being-checked-by-the-harness-does-not-create-a-false-green-s",
+      "text": "**RO-004**: `childPid` not being checked by the harness does **not** create a false-green (SKIP masking real crash). The harness correctly FAILs when the launcher is dead, regardless of child aliveness — that is the intended behavior.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-7-childpid-the-spawned-sqlite-writer-daemon-dr-016-addition",
+      "text": "`childPid`: the spawned SQLite writer daemon (DR-016 addition)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-1-liveowner-null-verdict-skip-line-400-404",
+      "text": "`liveOwner !== null` → verdict = SKIP (line 400-404)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-2-liveowner-null-verdict-fail-line-405-410",
+      "text": "`liveOwner === null` → verdict = FAIL (line 405-410)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-12-liveownerforservice-returns-non-null-verdict-is-skip-not-fail",
+      "text": "`liveOwnerForService` returns non-null → verdict is SKIP (not FAIL)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-9-ownerpid-in-lease-is-a-positive-integer-pointing-to-the-crashed-daemon-s-now-rec",
+      "text": "`ownerPid` in lease is a positive integer pointing to the crashed daemon's now-recycled PID",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-6-pid-legacy-alias-ownerpid-the-launcher-process",
+      "text": "`pid` (legacy alias: `ownerPid`): the launcher process",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-13-crashed-daemon-s-lease-not-cleaned-hard-crash",
+      "text": "Crashed daemon's lease not cleaned (hard crash)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-8-daemon-crashes-without-cleaning-up-lease-file-hard-crash-no-graceful-shutdown",
+      "text": "Daemon crashes without cleaning up lease file (hard crash, no graceful shutdown)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-4-eperm-process-exists-owned-by-another-uid-process-kill-pid-0-throws-with-code-ep",
+      "text": "EPERM (process exists, owned by another UID): `process.kill(pid, 0)` throws with code `EPERM`; the catch matches → returns `true` → correctly treated as alive.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-16-eperm-means-the-pid-refers-to-a-real-live-process-owned-by-another-user-or-in-an",
+      "text": "EPERM means the PID refers to a **real, live process** (owned by another user or in another session). The process is legitimately alive.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-3-esrch-no-such-process-process-kill-pid-0-throws-with-code-esrch-the-catch-does-n",
+      "text": "ESRCH (no such process): `process.kill(pid, 0)` throws with code `ESRCH`; the catch does NOT match `error.code === 'EPERM'` → returns `false` → correctly treated as dead.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-11-harness-calls-ispidalive-recycledpid-process-kill-recycledpid-0-succeeds-or-eper",
+      "text": "Harness calls `isPidAlive(recycledPid)` → `process.kill(recycledPid, 0)` succeeds or EPERM-throws → `isPidAlive` returns `true`",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-15-harness-reads-lease-after-pid-is-live-and-assigned",
+      "text": "Harness reads lease **after** PID is live and assigned",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-18-if-that-process-is-an-unrelated-live-process-whose-pid-was-recycled-from-the-cra",
+      "text": "If that process is an **unrelated live process** whose PID was recycled from the crashed daemon: EPERM yields SKIP — this is the same PID-recycling issue as F-005, not a distinct EPERM-specific failure mode.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-17-if-that-process-is-the-original-daemon-never-crashed-eperm-correctly-yields-skip",
+      "text": "If that process is the **original daemon** (never crashed): EPERM correctly yields SKIP — correct behavior.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-19-if-the-process-is-truly-dead-esrch-is-thrown-ispidalive-returns-false-fail",
+      "text": "If the process is **truly dead**: ESRCH is thrown → `isPidAlive` returns `false` → FAIL.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-5-normal-process-exists-we-own-it-no-throw-returns-true-correctly-treated-as-alive",
+      "text": "Normal (process exists, we own it): no throw → returns `true` → correctly treated as alive.",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-10-os-has-reassigned-that-pid-to-a-different-unrelated-live-process",
+      "text": "OS has reassigned that PID to a **different, unrelated live process**",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-14-pid-recycled-to-a-live-unrelated-process-before-harness-reads-lease",
+      "text": "PID recycled to a **live** unrelated process before harness reads lease",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-20-the-original-daemon-s-lease-was-not-cleaned-hard-crash-or-crash-before-unlink",
+      "text": "The original daemon's lease was not cleaned (hard crash or crash before unlink)",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-1-21-the-pid-was-recycled-to-a-live-unrelated-process",
+      "text": "The PID was recycled to a live unrelated process",
+      "addedAtIteration": 1,
+      "sources": []
+    },
+    {
+      "id": "finding-2-5-connectsharedclient-returned-diagnostic-null-for-mk-spec-memory-connect-listtool",
+      "text": "`connectSharedClient` returned `diagnostic: null` for mk-spec-memory (connect + listTools both succeeded), AND",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-8-listtools-throwing-with-a-dead-daemon-liveowner-null-fail-row-correct-daemon-is-",
+      "text": "`listTools()` throwing with a dead daemon → `liveOwner === null` → FAIL row (correct, daemon IS dead)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-7-listtools-throwing-with-a-live-daemon-liveowner-null-skip-row-correct-daemon-is-",
+      "text": "`listTools()` throwing with a live daemon → `liveOwner !== null` → SKIP row (correct, daemon IS alive)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-1-liveowner-null-live-daemon-holds-lease-runner-name-skip-lines-400-404",
+      "text": "`liveOwner !== null` (live daemon holds lease) → `runner:${name}` SKIP (lines 400-404)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-2-liveowner-null-no-live-owner-runner-name-fail-lines-405-410",
+      "text": "`liveOwner === null` (no live owner) → `runner:${name}` FAIL (lines 405-410)",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-3-if-daemon-is-alive-liveowner-null-skip-row-regardless-of-why-the-connect-listtoo",
+      "text": "If daemon is alive (liveOwner !== null) → SKIP row, regardless of WHY the connect/listTools threw.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-10-if-daemon-is-alive-listtools-error-skip-row-memoryownerskipped-true-guard-does-n",
+      "text": "If daemon is alive: listTools error → SKIP row → `memoryOwnerSkipped = true` → guard does NOT fire → 410 is allowed to SKIP (correct, because the harness can't spawn a dedicated child).",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-4-if-daemon-is-dead-liveowner-null-fail-row-regardless-of-why",
+      "text": "If daemon is dead (liveOwner === null) → FAIL row, regardless of WHY.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-11-if-daemon-is-dead-listtools-error-fail-row-test-fails-at-line-58",
+      "text": "If daemon is dead: listTools error → FAIL row → test fails at line 58.",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-6-no-runner-skip-row-was-emitted-for-mk-spec-memory",
+      "text": "No `runner:` SKIP row was emitted for mk-spec-memory",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-2-9-successful-connect-but-empty-toolnames-no-runner-row-guard-fires-on-any-410-skip",
+      "text": "Successful connect but empty toolNames → no runner row → guard fires on any 410 SKIP",
+      "addedAtIteration": 2,
+      "sources": []
+    },
+    {
+      "id": "finding-3-4-verdict-deterministic-per-input",
+      "text": "**VERDICT: DETERMINISTIC per input**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-24-verdict-pid-values-are-not-reproducible-across-sessions-row-structure-is-reprodu",
+      "text": "**VERDICT: pid VALUES are NOT reproducible across sessions; row STRUCTURE is reproducible**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-16-verdict-stale-pid-hazard-confirmed-tsv-can-show-pids-from-a-prior-run-when-eperm",
+      "text": "**VERDICT: STALE PID HAZARD CONFIRMED — TSV can show pids from a prior run when EPERM lock is encountered**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-9-verdict-structure-is-reproducible-pid-value-is-environment-dependent",
+      "text": "**VERDICT: STRUCTURE IS REPRODUCIBLE; pid VALUE is environment-dependent**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-12-verdict-tsv-confirms-reproducible-template-application-with-session-specific-pid",
+      "text": "**VERDICT: TSV CONFIRMS reproducible template application with session-specific pids**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-20-verdict-within-a-run-pid-is-stable-if-the-same-operator-daemon-holds-the-lease-t",
+      "text": "**VERDICT: Within a run, pid is stable IF the same operator daemon holds the lease throughout**",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-8-detail-structured-explanation-template-with-pid-interpolated-twice-then-basedeta",
+      "text": "`detail` = structured explanation template with pid interpolated twice, then `baseDetail` (the connection error message)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-7-key-metric-name-owned-by-live-daemon-pid-liveowner-ownerpid-embeds-the-pid",
+      "text": "`key_metric` = `${name} owned by live daemon pid ${liveOwner.ownerPid}` — embeds the pid",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-5-scenario-runner-mk-spec-memory-or-runner-mk-code-index-deterministic-string",
+      "text": "`scenario` = `runner:mk-spec-memory` or `runner:mk-code-index` — deterministic string",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-6-verdict-skip-constant",
+      "text": "`verdict` = `SKIP` — constant",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-15-a-subsequent-analyst-reading-the-tsv-would-see-wrong-pids",
+      "text": "A subsequent analyst reading the TSV would see wrong pids",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-10-both-rows-follow-the-template-exactly",
+      "text": "Both rows follow the template exactly",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-2-each-field-has-embedded-tabs-newlines-replaced-with-spaces-via-replace-t-g-repla",
+      "text": "Each field has embedded tabs/newlines replaced with spaces via `.replace(/\\t/g, ' ').replace(/\\n/g, ' ')` — so `detail` is sanitized before joining",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-3-given-identical-row-objects-tsv-output-is-byte-for-byte-identical",
+      "text": "Given identical row objects, TSV output is byte-for-byte identical",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-14-if-the-existing-file-contains-pids-from-a-prior-session-e-g-pids-48700-57747-fro",
+      "text": "If the existing file contains pids from a PRIOR session (e.g., pids 48700/57747 from yesterday), and the current run's pids are different (e.g., 51234/60123), the stale pids remain visible in the TSV",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-11-pids-57747-69226-differ-they-are-session-specific-owner-pids",
+      "text": "pids (57747, 69226) differ — they are session-specific owner pids",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-23-prior-iterations-observed-different-pids-mem-57747-code-index-48700-these-change",
+      "text": "Prior iterations observed different pids (mem 57747, code-index 48700) — these changed",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-17-reads-on-disk-lease-file-at-moment-of-connection-failure",
+      "text": "Reads on-disk lease file at moment of connection failure",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-18-returns-the-first-alive-pid-found-from-the-pidfields-array",
+      "text": "Returns the FIRST alive pid found from the pidFields array",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-1-tab-joined-4-field-rows-scenario-verdict-key-metric-detail",
+      "text": "Tab-joined 4-field rows (scenario, verdict, key_metric, detail)",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-21-tsv-line-2-shows-mk-spec-memory-owned-by-live-daemon-pid-57747",
+      "text": "TSV line 2 shows `mk-spec-memory owned by live daemon pid 57747`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-22-tsv-line-3-shows-mk-code-index-owned-by-live-daemon-pid-69226",
+      "text": "TSV line 3 shows `mk-code-index owned by live daemon pid 69226`",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-13-when-tsv-is-locked-eperm-harness-preserves-existing-file-and-warns",
+      "text": "When TSV is locked (EPERM), harness PRESERVES existing file and warns",
+      "addedAtIteration": 3,
+      "sources": []
+    },
+    {
+      "id": "finding-3-19-within-a-single-run-if-the-lease-is-stable-same-owner-holds-across-the-run-the-p",
+      "text": "Within a single run, if the lease is stable (same owner holds across the run), the pid is stable",
+      "addedAtIteration": 3,
+      "sources": []
+    }
+  ],
+  "ruledOutDirections": [],
+  "blockedStopHistory": [],
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "metrics": {
+    "iterationsCompleted": 3,
+    "openQuestions": 3,
+    "resolvedQuestions": 2,
+    "keyFindings": 60,
+    "convergenceScore": 0.95,
+    "coverageBySources": {}
+  },
+  "corruptionWarnings": [],
+  "status": "INITIALIZED"
+}

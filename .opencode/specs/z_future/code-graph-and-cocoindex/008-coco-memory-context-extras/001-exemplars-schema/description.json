@@ -1,0 +1,43 @@
+{
+  "title": "001 Exemplars Schema",
+  "trigger_phrases": [
+    "027 011 001 exemplars schema",
+    "coco exemplars schema",
+    "examples_schema.py"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "draft",
+  "priority": "P2",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork"
+    ]
+  },
+  "derived": {
+    "status": "draft",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
+  "description": "Feature Specification: 001 Exemplars Schema",
+  "keywords": [
+    "feature",
+    "specification",
+    "001",
+    "exemplars",
+    "schema"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.158Z",
+  "specId": "001",
+  "folderSlug": "exemplars-schema",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "008-coco-memory-context-extras"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

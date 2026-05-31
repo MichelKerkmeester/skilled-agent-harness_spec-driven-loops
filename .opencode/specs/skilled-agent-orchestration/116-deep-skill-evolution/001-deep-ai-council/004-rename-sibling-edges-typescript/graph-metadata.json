@@ -39,7 +39,6 @@
     "key_files": [
       "spec.md",
       ".opencode/skills/deep-research/graph-metadata.json",
-      ".opencode/skills/deep-agent-improvement/graph-metadata.json",
       ".opencode/skills/system-spec-kit/graph-metadata.json",
       ".opencode/skills/system-skill-advisor/graph-metadata.json",
       ".opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/explicit.ts",
@@ -197,7 +196,7 @@
     ],
     "causal_summary": "Phase 4 of 6. Parallel-eligible with 002/003/005 after 001 emits rename-plan.json.",
     "created_at": "2026-05-21T06:57:09Z",
-    "last_save_at": "2026-05-28T06:06:27.700Z",
+    "last_save_at": "2026-05-30T19:40:10.301Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

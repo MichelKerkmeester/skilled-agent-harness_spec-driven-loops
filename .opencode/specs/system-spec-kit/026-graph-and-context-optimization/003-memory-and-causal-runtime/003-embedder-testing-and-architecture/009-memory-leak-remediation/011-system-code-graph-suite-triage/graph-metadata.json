@@ -200,7 +200,7 @@
     ],
     "causal_summary": "This is phase 011 of the memory-leak remediation arc. Source baseline lives in `system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/007-code-graph-launcher-and-db-lifecycle/implementation-summary.md` (the Limitations anchor).",
     "created_at": "2026-05-22T18:30:00Z",
-    "last_save_at": "2026-05-28T06:06:29.089Z",
+    "last_save_at": "2026-05-30T10:12:02.459Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

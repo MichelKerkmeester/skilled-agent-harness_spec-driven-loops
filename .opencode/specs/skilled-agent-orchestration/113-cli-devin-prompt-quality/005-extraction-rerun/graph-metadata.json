@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The 113/003 eval-loop run measured prompt-text quality on 7 fixtures, but SWE 1.6's `--print` mode returns markdown rather than files-on-disk. The D2 bundle-gate hard-fired on 4/7 fixtures because acceptance commands (`bash -n`, `npx vitest run`) couldn't find the referenced files. D1 was capped to 0.0 on those fixtures. The RCAF winner (v-004-rcaf-medium @ 0.5796) was selected on D2+D3+D4+D5 text signals alone.",
     "created_at": "2026-05-17T05:35:00Z",
-    "last_save_at": "2026-05-28T06:06:27.618Z",
+    "last_save_at": "2026-05-30T10:12:00.902Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

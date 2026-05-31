@@ -318,6 +318,52 @@ function createNullStderrDrain() {
   };
 }
 
+function isPidAlive(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (error) {
+    // ESRCH means the pid is gone; EPERM means it exists but is owned elsewhere (still alive).
+    return error && typeof error === 'object' && error.code === 'EPERM';
+  }
+}
+
+// A connect failure is only a real substrate failure when nothing legitimately owns the
+// single-writer lease. During an interactive session the operator's daemon holds that lease and
+// the harness disables bridging, so the spawned child can neither acquire the lease nor bridge —
+// it exits with LEASE_HELD_BY and the client sees "Connection closed". That is expected, not a
+// regression, so it must be reported as a tolerated SKIP rather than FAIL. Probe the on-disk owner
+// lease for a live holder to tell the two apart; a genuine startup crash leaves no live owner and
+// stays FAIL.
+function liveOwnerForService(name) {
+  let leasePath;
+  let pidFields;
+  if (name === 'mk-spec-memory') {
+    leasePath = path.join(MEMORY_SERVER_ROOT, 'database', '.mk-spec-memory-launcher.json');
+    pidFields = ['ownerPid', 'pid'];
+  } else if (name === 'mk-code-index') {
+    leasePath = path.join(
+      REPO_ROOT,
+      '.opencode/skills/system-code-graph/mcp_server/database',
+      '.code-graph-owner.json',
+    );
+    pidFields = ['ownerPid'];
+  } else {
+    return null;
+  }
+  try {
+    const lease = JSON.parse(fs.readFileSync(leasePath, 'utf8'));
+    for (const field of pidFields) {
+      const pid = lease?.[field];
+      if (isPidAlive(pid)) return { ownerPid: pid, leasePath };
+    }
+  } catch {
+    // No lease file, unreadable, or unparseable -> treat as no live owner.
+  }
+  return null;
+}
+
 async function connectSharedClient({ name, transportOptions, stderrLog }) {
   const stderr = stderrLog ? createCappedStderrStream(stderrLog) : createNullStderrDrain();
   const transport = new StdioClientTransport({
@@ -347,16 +393,26 @@ async function connectSharedClient({ name, transportOptions, stderrLog }) {
     };
   } catch (error) {
     await client.close().catch(() => {});
+    const baseDetail = error instanceof Error ? error.message : String(error);
+    const liveOwner = liveOwnerForService(name);
+    const diagnostic = liveOwner
+      ? {
+          scenario: `runner:${name}`,
+          verdict: 'SKIP',
+          key_metric: `${name} owned by live daemon pid ${liveOwner.ownerPid}`,
+          detail: `Connection skipped: a live single-writer owner (pid ${liveOwner.ownerPid}) holds the lease and bridging is disabled, so the harness cannot spawn a dedicated child. Expected during an interactive session; stop operator daemons for a fully hermetic exercise. Underlying connect error: ${baseDetail}`,
+        }
+      : {
+          scenario: `runner:${name}`,
+          verdict: 'FAIL',
+          key_metric: `${name} connect failed`,
+          detail: baseDetail,
+        };
     return {
       client: null,
       toolNames: new Set(),
       stderr,
-      diagnostic: {
-        scenario: `runner:${name}`,
-        verdict: 'FAIL',
-        key_metric: `${name} connect failed`,
-        detail: error instanceof Error ? error.message : String(error),
-      },
+      diagnostic,
     };
   }
 }

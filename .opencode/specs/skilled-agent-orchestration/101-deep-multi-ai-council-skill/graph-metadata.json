@@ -112,11 +112,13 @@
     ],
     "causal_summary": "The council workflow currently belongs to `system-spec-kit`, but it is a specialized multi-agent planning workflow with its own agent persona, artifacts, persistence scripts, and future graph needs. Keeping that ownership inside `system-spec-kit` makes the core spec workflow responsible for council behavior that should evolve independently.",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-05-28T06:06:27.538Z",
+    "last_save_at": "2026-05-30T10:12:00.831Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

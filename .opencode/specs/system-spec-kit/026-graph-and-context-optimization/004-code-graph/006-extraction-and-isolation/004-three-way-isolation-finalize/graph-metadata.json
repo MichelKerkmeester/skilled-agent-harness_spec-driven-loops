@@ -140,12 +140,14 @@
     ],
     "causal_summary": "After packet 038 + parallel 058 work, system-code-graph has 1 production cross-skill import (`handlers/query.ts:14`) and system-skill-advisor has 6 (across `lib/freshness.ts`, `lib/prompt-policy.ts`, `lib/render.ts`, `lib/skill-advisor-brief.ts` + 2 `dist/*.d.ts`). Both skills also declare `@spec-kit/shared` as a `file:` dependency in their package.json, where `@spec-kit/shared` physically lives at `.opencode/skills/system-spec-kit/shared/`. Deleting system-spec-kit today kills both other skills.",
     "created_at": "2026-05-18T08:15:53.469Z",
-    "last_save_at": "2026-05-28T06:06:29.275Z",
+    "last_save_at": "2026-05-30T10:12:02.599Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

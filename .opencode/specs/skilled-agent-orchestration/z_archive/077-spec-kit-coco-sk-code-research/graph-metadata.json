@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Three OpenCode skill ecosystem surfaces — system-spec-kit, mcp-coco-index, and sk-code (OpenCode side specifically) — have grown organically and accumulated drift between docs and code, coverage gaps, and missing integration paths. Without a deep audit, remediation work risks chasing symptoms instead of root causes. Specifically: validators may pass on broken graph metadata, semantic search may miss canonical resources due to default exclusion patterns, and sk-code claims OPENCODE authoring scope but ships only language-level checklists. No prior packet has surveyed all three surfaces holistically.",
     "created_at": "2026-05-05T16:28:14Z",
-    "last_save_at": "2026-05-28T06:06:28.095Z",
+    "last_save_at": "2026-05-30T10:12:01.412Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Add a `CANONICAL_RESOURCE_PATHS` default list + per-project `canonical_resource_paths` field on `ProjectSettings`. Paths in this list bypass `**/.*` exclusion (always ingested) AND get a +0.10 ranking boost in `query._ranked_result`. Smoke test in `tests/test_settings.py` asserts `.opencode/skills/sk-code/assets/opencode/` is not excluded under defaults. Document the contract in `mcp-coco-index/SKILL.md`. Closes 3 P1 + 5 P2 findings: F-001-002, F-005-001, F-005-002, F-005-004, F-007-005, F-008-005, F-009-003, F-009-004.",
     "created_at": "2026-05-05T17:36:53Z",
-    "last_save_at": "2026-05-28T06:06:28.103Z",
+    "last_save_at": "2026-05-30T10:12:01.417Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

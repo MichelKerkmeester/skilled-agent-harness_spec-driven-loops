@@ -206,7 +206,7 @@
     ],
     "causal_summary": "The `mcp-clickup` skill is being decommissioned. Its presence in the skill registry, advisor scoring tables, skill graphs, and READMEs creates routing edges and counts that no longer correspond to any executable skill, which would surface broken recommendations to operators.",
     "created_at": "2026-04-30T08:00:00Z",
-    "last_save_at": "2026-05-28T06:06:27.954Z",
+    "last_save_at": "2026-05-30T10:12:01.277Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

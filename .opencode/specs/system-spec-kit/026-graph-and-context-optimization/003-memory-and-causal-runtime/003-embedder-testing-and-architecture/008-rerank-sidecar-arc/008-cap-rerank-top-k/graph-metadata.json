@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Packet 007 found that Qwen3-Reranker-0.6B on Apple Silicon MPS OOMs in attention forwards when spec-memory's local provider sends its default 50-document batch to `/rerank`. The sidecar crashes mid-bench, falls back to positional, gates fail.",
     "created_at": "2026-05-23T11:55:15.621Z",
-    "last_save_at": "2026-05-28T06:06:29.054Z",
+    "last_save_at": "2026-05-30T10:12:02.405Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,0 +1,21 @@
+{
+  "featureDescription": "Create mcp-click-up skill: ClickUp task management via cupt CLI (primary) and official ClickUp MCP (secondary)",
+  "specPath": ".opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management",
+  "executionMode": "auto",
+  "dispatchMode": "single_agent",
+  "memoryChoice": "skip",
+  "researchIntent": "add_feature",
+  "researchIntegration": false,
+  "phaseDecomposition": false,
+  "phaseCount": null,
+  "phaseNames": null,
+  "intake": {
+    "selectedLevel": "3",
+    "startState": "empty-folder",
+    "repairMode": null,
+    "recordRelationships": false,
+    "dependsOn": null,
+    "relatedTo": null,
+    "supersedes": null
+  }
+}

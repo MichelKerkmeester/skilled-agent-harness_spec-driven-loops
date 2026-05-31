@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The code_graph runtime package had README coverage and root skill catalog/playbook entries, but it lacked package-local `feature_catalog/` and `manual_testing_playbook/` directories at the source-of-truth runtime path. That left runtime details scattered and made code_graph weaker than the already documented skill_advisor package.",
     "created_at": "2026-04-29T17:26:00.000Z",
-    "last_save_at": "2026-05-28T06:06:28.304Z",
+    "last_save_at": "2026-05-30T10:12:01.588Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,8 @@
       "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

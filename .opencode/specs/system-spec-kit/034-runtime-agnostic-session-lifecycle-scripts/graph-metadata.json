@@ -18,6 +18,7 @@
       "runtime-agnostic lifecycle plan",
       "runtime-agnostic lifecycle tasks",
       "runtime-agnostic lifecycle checklist",
+      "session-cleanup verification",
       "runtime-agnostic lifecycle summary"
     ],
     "key_topics": [
@@ -35,14 +36,16 @@
       "gap"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
-      ".claude/settings.local.json",
-      ".opencode/scripts/session-cleanup.sh",
       ".opencode/scripts/orphan-mcp-sweeper.sh",
-      ".claude/settings.json",
+      ".opencode/scripts/claude-session-cleanup.sh",
+      ".claude/settings.local.json",
       ".gemini/settings.json",
+      ".opencode/plugins/session-cleanup.js",
       ".opencode/scripts/README.md",
+      ".opencode/scripts/session-cleanup.sh",
+      ".claude/settings.json",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -51,33 +54,45 @@
     ],
     "entities": [
       {
-        "name": "settings.local.json",
-        "kind": "config",
-        "path": ".claude/settings.local.json",
-        "source": "derived"
-      },
-      {
-        "name": "session-cleanup.sh",
-        "kind": "script",
-        "path": ".opencode/scripts/session-cleanup.sh",
-        "source": "derived"
-      },
-      {
         "name": "orphan-mcp-sweeper.sh",
         "kind": "script",
         "path": ".opencode/scripts/orphan-mcp-sweeper.sh",
         "source": "derived"
       },
       {
+        "name": "claude-session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/claude-session-cleanup.sh",
+        "source": "derived"
+      },
+      {
+        "name": "settings.local.json",
+        "kind": "config",
+        "path": ".claude/settings.local.json",
+        "source": "derived"
+      },
+      {
         "name": "settings.json",
         "kind": "config",
-        "path": ".claude/settings.json",
+        "path": ".gemini/settings.json",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.js",
+        "kind": "code",
+        "path": ".opencode/plugins/session-cleanup.js",
         "source": "derived"
       },
       {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/scripts/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "session-cleanup.sh",
+        "kind": "script",
+        "path": ".opencode/scripts/session-cleanup.sh",
         "source": "derived"
       },
       {
@@ -123,12 +138,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -142,6 +151,12 @@
       },
       {
         "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -177,19 +192,7 @@
         "source": "derived"
       },
       {
-        "name": "Execute Phase",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -197,7 +200,7 @@
     ],
     "causal_summary": "The session-lifecycle shell scripts under `.opencode/scripts/` were written for Claude Code only. Three concrete problems:",
     "created_at": "2026-05-30T10:12:02.933Z",
-    "last_save_at": "2026-05-30T10:15:12.666Z",
+    "last_save_at": "2026-05-30T16:25:17.713Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

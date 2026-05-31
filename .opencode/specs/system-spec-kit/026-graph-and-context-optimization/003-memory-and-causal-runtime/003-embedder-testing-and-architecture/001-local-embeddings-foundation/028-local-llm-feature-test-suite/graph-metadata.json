@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The 014-local-embeddings-setup-a phase parent + the 021/022 remediation packets shipped a major change to the local-LLM embedding stack: cascade resolution (Voyage → OpenAI → llama-cpp → hf-local), profile-keyed sqlite filenames, auto-migration between hf-local and llama-cpp, model-keyed prefix registry, q8 default quantization, and Apple-Silicon Metal acceleration via llama-cpp. **No single test artifact verifies that every documented behavior is actually delivered by the runtime.** Without a feature-test suite, regressions in any of these subsystems would land silently and only be discovered via production failures or downstream review.",
     "created_at": "2026-05-13T19:09:45Z",
-    "last_save_at": "2026-05-28T06:06:28.768Z",
+    "last_save_at": "2026-05-30T10:12:02.111Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

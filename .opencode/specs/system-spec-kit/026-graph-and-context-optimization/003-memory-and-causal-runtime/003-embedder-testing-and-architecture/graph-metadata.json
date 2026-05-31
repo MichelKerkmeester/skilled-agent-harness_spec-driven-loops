@@ -137,12 +137,14 @@
     ],
     "causal_summary": "Track the end-to-end embedder and reranker program across the 013 umbrella. The current production posture is no longer the original Jina/mxbai scaffold: mk-spec-memory defaults to the Nomic/CodeRankEmbed local bi-encoder path through the Ollama -> hf-local Nomic cascade, CocoIndex defaults to `sbert/nomic-ai/CodeRankEmbed` for code embeddings, and CocoIndex reranks through `Qwen/Qwen3-Reranker-0.6B` via the shared sidecar by default.",
     "created_at": "2026-05-17T06:35:11.664Z",
-    "last_save_at": "2026-05-28T06:06:28.723Z",
+    "last_save_at": "2026-05-30T10:12:02.070Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

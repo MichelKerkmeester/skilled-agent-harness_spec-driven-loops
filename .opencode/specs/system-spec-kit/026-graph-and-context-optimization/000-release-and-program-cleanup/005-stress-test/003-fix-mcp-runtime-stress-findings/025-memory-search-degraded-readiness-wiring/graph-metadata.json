@@ -207,7 +207,7 @@
     ],
     "causal_summary": "PP-1's behavioral test TC-3 is encoded as `expected_fail` to document this gap (`mcp_server/tests/handler-memory-search-live-envelope.vitest.ts`). The W10 integration test already demonstrates the canonical mapping from a graph readiness payload to `DegradedReadinessTelemetry` (`mcp_server/stress_test/search-quality/w10-degraded-readiness-integration.vitest.ts:46-66`).",
     "created_at": "2026-04-29T09:30:00.000Z",
-    "last_save_at": "2026-05-28T06:06:28.417Z",
+    "last_save_at": "2026-05-30T10:12:01.740Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,8 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

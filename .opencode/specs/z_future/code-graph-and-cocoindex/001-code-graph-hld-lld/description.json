@@ -1,0 +1,55 @@
+{
+  "title": "Phase Parent: 027/002 Code Graph HLD/LLD",
+  "type": "phase-parent",
+  "trigger_phrases": [
+    "027 phase 002",
+    "code-graph hld-lld",
+    "code-graph narrative",
+    "code_graph_hld_lld"
+  ],
+  "level": 2,
+  "name": "027/002 Code Graph HLD/LLD Phase Parent",
+  "purpose": "Coordinate four contract-first child phases that deliver the deterministic HLD/LLD narrative layer for code_graph.",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "phase-parent",
+  "priority": "P1",
+  "createdAt": "2026-05-08T15:00:00Z",
+  "branch": "main",
+  "parent_track": "028-code-graph-and-cocoindex",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "manual": {
+    "depends_on": [],
+    "children": [
+      "001-contract",
+      "002-lib-impl",
+      "003-handler",
+      "004-test"
+    ]
+  },
+  "derived": {
+    "status": "phase-parent",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "description": "Feature Specification: 001 — Code Graph HLD/LLD",
+  "keywords": [
+    "feature",
+    "specification",
+    "001",
+    "code",
+    "graph",
+    "hld",
+    "lld"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.027Z",
+  "specId": "001",
+  "folderSlug": "code-graph-hld-lld",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

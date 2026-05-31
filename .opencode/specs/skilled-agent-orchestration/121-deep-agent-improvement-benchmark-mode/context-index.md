@@ -41,7 +41,7 @@ The packet is one program built in two arcs. Phase numbers are sequential across
 
 ## 2. Why phase 004 precedes phase 007 (the 122 -> 007 fold-in)
 
-The tri-model hardening review of the Arc-1 build was originally scaffolded as a **separate packet, `122-session-120-121-deep-review`**, and run on 2026-05-28. Its findings were remediated the same day in `121/004`. On **2026-05-29** that review packet was **folded into 121** as phase `007-benchmark-mode-hardening-review`.
+The tri-model hardening review of the Arc-1 build was originally scaffolded as a **separate packet, `122-session-120-121-deep-review`**, and run on 2026-05-28. Its findings were remediated the same day in `121/004`. On **2026-05-29** that review packet was **folded into 121** as phase `007-review-model-benchmark-mode-hardening`.
 
 Consequence: the remediation (`004`) carries a **lower phase number than the review it remediates (`007`)**. This is expected — `004` already existed when `122` was renumbered into the `007` slot. The dependency is real and documented in each phase's metadata and history:
 
@@ -58,14 +58,14 @@ Four phase folders were renamed via `git mv` (history preserved) to satisfy the 
 
 | Phase | Old name | New name | Why |
 |------:|----------|----------|-----|
-| 004 | `004-benchmark-mode-remediation` | `004-fix-hardening-review-findings-for-benchmark-mode` | `remediation` is a forbidden standalone token; source = the 007 hardening review, target = benchmark-mode |
-| 012 | `012-catalog-playbook-advisor-fp25` | `012-catalog-playbook-advisor-lane-labels` | `fp25` (an internal finding code) is cryptic jargon, not a subject token |
+| 004 | `004-benchmark-mode-remediation` | `004-fix-hardening-findings-for-model-benchmark` | `remediation` is a forbidden standalone token; source = the 007 hardening review, target = benchmark-mode |
+| 012 | prior lane-label wording | `012-label-catalog-playbook-and-advisor-lanes` | `fp25` (an internal finding code) is cryptic jargon, not a subject token |
 | 015 | `015-two-lane-review-remediation` | `015-fix-deep-review-findings-for-two-lane-code` | `review-remediation` is a forbidden standalone token; source = the 014 gpt-5.5 deep review, target = two-lane code |
-| 018 | `018-opus-review-remediation` | `018-fix-opus-review-findings-for-two-lane-code` | `review-remediation` is a forbidden standalone token; source = the 017 Opus deep review, target = two-lane code |
+| 018 | `018-opus-review-remediation` | `018-fix-opus-findings-for-two-lane-code` | `review-remediation` is a forbidden standalone token; source = the 017 Opus deep review, target = two-lane code |
 
 **Resolving old names:** historical artifacts that predate this reorg (e.g. deep-review `iterations/*`, `deltas/*`, `review-report.md`, prior `decision-record.md` cross-references, and packet 120's `context-index.md`) intentionally keep the **old** names verbatim — they are past-tense provenance and are preserved, not rewritten. Map any old name to its new folder using the table above.
 
-**Considered but kept** (flagged "weak" but not convention violations — left unchanged to limit cross-reference churn): `002-implementation-deep-research` (terse but accurate: it is the deep-research for the implementation design) and `006-deep-loop-empty-archive-dir-fix` (concrete bug subject; `-fix` is a suffix on a real subject, not a standalone token).
+**Considered but kept** (flagged "weak" but not convention violations — left unchanged to limit cross-reference churn): `002-research-model-benchmark-implementation` (terse but accurate: it is the deep-research for the implementation design) and `006-deep-loop-empty-archive-dir` (concrete bug subject; `-fix` is a suffix on a real subject, not a standalone token).
 
 ---
 

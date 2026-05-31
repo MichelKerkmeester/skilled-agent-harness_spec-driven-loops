@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The system-skill-advisor docs need a coordinated audit before any rewrite/alignment work begins. A single-pass scan misses cross-cutting drift; 20 targeted iterations across all 6 doc surfaces (SKILL.md, README.md, ARCHITECTURE.md, INSTALL_GUIDE.md, references/*, feature_catalog/*, manual_testing_playbook/*) plus cross-cutting concerns (HVR compliance, cross-link integrity, source↔doc drift, hook-reference resolution) will produce a complete findings ledger.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-28T06:06:28.619Z",
+    "last_save_at": "2026-05-30T10:12:01.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

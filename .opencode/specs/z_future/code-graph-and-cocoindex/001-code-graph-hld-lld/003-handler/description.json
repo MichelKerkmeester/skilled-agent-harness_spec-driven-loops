@@ -1,0 +1,47 @@
+{
+  "title": "Phase 002.003 — code_graph_hld_lld Handler + MCP Tool Wiring",
+  "trigger_phrases": [
+    "027 phase 002 handler",
+    "handlers/hld-lld.ts",
+    "code_graph_hld_lld MCP tool"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
+    ]
+  },
+  "soft_depends_on": [
+    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler",
+  "description": "Feature Specification: 003 Handler",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "handler"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.039Z",
+  "specId": "003",
+  "folderSlug": "handler",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "001-code-graph-hld-lld"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

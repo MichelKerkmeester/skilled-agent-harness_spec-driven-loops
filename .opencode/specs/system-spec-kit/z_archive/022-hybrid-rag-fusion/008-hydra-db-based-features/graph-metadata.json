@@ -211,7 +211,7 @@
     ],
     "causal_summary": "Feature Specification: 008-hydra-db-based-features",
     "created_at": "2026-04-12T09:02:50.258Z",
-    "last_save_at": "2026-05-28T06:06:29.893Z",
+    "last_save_at": "2026-05-30T10:12:03.267Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -223,6 +223,8 @@
       "implementation-summary.md",
       "research/research.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

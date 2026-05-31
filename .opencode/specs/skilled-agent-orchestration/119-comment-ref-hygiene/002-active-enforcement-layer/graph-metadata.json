@@ -56,6 +56,10 @@
       ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md",
       ".opencode/skills/sk-code/SKILL.md",
       "decision-record.md",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+      ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+      ".opencode/plugins/mk-skill-advisor.js",
+      ".github/workflows/comment-hygiene.yml",
       "plan.md",
       "tasks.md",
       "constitutional/comment-hygiene.md",
@@ -104,6 +108,30 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "render.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/lib/render.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-bridge.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor.js",
+        "kind": "code",
+        "path": ".opencode/plugins/mk-skill-advisor.js",
+        "source": "derived"
+      },
+      {
+        "name": "comment-hygiene.yml",
+        "kind": "config",
+        "path": ".github/workflows/comment-hygiene.yml",
         "source": "derived"
       },
       {
@@ -183,35 +211,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Build",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Hook Input Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Confirm Claude Code",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 119 added the canonical \"no ephemeral-artifact pointers\" rule to `sk-code §4`. Despite that rule, 27 files in the ~100 commits that followed still required cleanup (commit `5040eac9ef`, 2026-05-29). The pattern is consistent: AIs start sessions knowing the rule, then drift into adding spec-folder/packet/phase/ADR/task ids as traceability anchors during long implementation runs. Text rules alone cannot fix attention drift.",
     "created_at": "2026-05-29T00:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.081Z",
+    "last_save_at": "2026-05-30T16:25:16.872Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

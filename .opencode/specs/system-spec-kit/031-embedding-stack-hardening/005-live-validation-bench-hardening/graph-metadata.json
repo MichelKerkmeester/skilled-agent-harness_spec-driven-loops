@@ -17,7 +17,7 @@
       "live validation bench hardening plan",
       "two-launcher test flag flip implementation plan",
       "live validation bench hardening tasks",
-      "live validation bench hardening implementation summary"
+      "live validation bench perimeter implementation summary"
     ],
     "key_topics": [
       "live",
@@ -36,16 +36,63 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "scripts/bench-dtype-q8-fp16.cjs",
+      ".opencode/bin/lib/model-server-supervision.cjs",
+      ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+      "mcp_server/scripts/bench-dtype-q8-fp16.cjs",
+      ".opencode/bin/hf-model-server.cjs",
+      "shared/embeddings/registry.ts",
       "spec.md",
       "plan.md",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      ".opencode/bin/hf-model-server.cjs",
-      ".opencode/bin/lib/model-server-supervision.cjs",
-      "shared/embeddings/registry.ts",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "bench-dtype-q8-fp16.cjs",
+        "kind": "file",
+        "path": "scripts/bench-dtype-q8-fp16.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "model-server-supervision.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/model-server-supervision.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-ipc-bridge.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-ipc-bridge.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "registry.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/shared/embeddings/registry.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,30 +103,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "model-server-supervision.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/lib/model-server-supervision.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "registry.ts",
-        "kind": "code",
-        "path": "shared/embeddings/registry.ts",
         "source": "derived"
       },
       {
@@ -96,12 +119,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -131,7 +148,19 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -165,35 +194,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "status",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 5 of 5** of the embedding-stack hardening decomposition: validate the two-launcher residency live, flip the advisor flag on, benchmark the dtype, and close the perimeter + cleanup. This is the only phase that can close the spawn→bind + cold-load + perf items, and it gates the flag flip.",
     "created_at": "2026-05-29T11:22:57.388Z",
-    "last_save_at": "2026-05-29T16:11:08.752Z",
+    "last_save_at": "2026-05-30T10:12:02.921Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +206,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

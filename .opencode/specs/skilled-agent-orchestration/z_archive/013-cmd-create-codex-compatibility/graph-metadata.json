@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Codex (OpenAI's coding agent) misinterprets agent routing metadata in `/create` command `.md` and `.yaml` files as dispatch instructions, causing unintended agent invocations. This spec applied the same three-pronged compatibility strategy from spec 010 (spec_kit commands) to all 20 create command files, and additionally cleaned up stale emoji optionality language aligned with spec 011.",
     "created_at": "2026-04-12T09:02:50.215Z",
-    "last_save_at": "2026-05-28T06:06:27.826Z",
+    "last_save_at": "2026-05-30T10:12:01.149Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

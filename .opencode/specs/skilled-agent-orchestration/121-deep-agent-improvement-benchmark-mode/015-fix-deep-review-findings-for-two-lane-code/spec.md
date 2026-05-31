@@ -1,8 +1,8 @@
 ---
-title: "Feature Specification: two-lane deep-review remediation"
-description: "Phase 15 of 121: remediate the 014 two-lane deep-review findings - 1 confirmed P0 (Lane B command flag misparse), 16 P1 (security/traceability cluster), and 16 P2 advisories - with regression tests and explicit dispositions."
+title: "Feature Specification: fix deep-review findings for two-lane code"
+description: "Fix the 014 deep-review findings for two-lane code, including the Lane B command parser defect, security hardening, traceability gaps, and dispositions."
 trigger_phrases:
-  - "two-lane review remediation"
+  - "fix deep-review findings for two-lane code"
   - "014 deep-review findings fix"
   - "Lane B command flag misparse fix"
 importance_tier: "important"
@@ -16,8 +16,8 @@ _memory:
     next_safe_action: "Implement F-P0-1 parser fix then P1 cluster"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/review-report.md"
-      - "../014-two-lane-deep-review/review/all-findings.jsonl"
+      - "../014-review-two-lane-workflow-implementation/review/review-report.md"
+      - "../014-review-two-lane-workflow-implementation/review/all-findings.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -27,7 +27,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: two-lane deep-review remediation
+# Feature Specification: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 
@@ -51,8 +51,8 @@ The 014 two-lane deep review returned a CONDITIONAL verdict against the two-lane
 | **Branch** | `main` |
 | **Parent Spec** | ../spec.md |
 | **Phase** | 15 of 19 |
-| **Predecessor** | 014-two-lane-deep-review |
-| **Successor** | 016-script-subfolder-readmes |
+| **Predecessor** | 014-review-two-lane-workflow-implementation |
+| **Successor** | 016-add-readmes-for-script-subfolders |
 | **Handoff Criteria** | P0 fixed + verified end-to-end through the YAML path; all 16 P1 fixed-or-document-accepted; all 16 P2 fixed-or-document-accepted; every finding carries exactly one disposition; vitest green; TST-1 byte-identity holds |
 <!-- /ANCHOR:metadata -->
 
@@ -61,7 +61,7 @@ The 014 two-lane deep review returned a CONDITIONAL verdict against the two-lane
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This is **Phase 15** of packet 121 - remediation of the findings from the 014 two-lane deep review (`014-two-lane-deep-review`, cli-codex gpt-5.5 xhigh + Opus 4.8 adjudication; verdict CONDITIONAL). Source of truth for findings: `../014-two-lane-deep-review/review/review-report.md` and `../014-two-lane-deep-review/review/all-findings.jsonl`.
+This is **Phase 15** of packet 121 - remediation of the findings from the 014 two-lane deep review (`014-review-two-lane-workflow-implementation`, cli-codex gpt-5.5 xhigh + Opus 4.8 adjudication; verdict CONDITIONAL). Source of truth for findings: `../014-review-two-lane-workflow-implementation/review/review-report.md` and `../014-review-two-lane-workflow-implementation/review/all-findings.jsonl`.
 
 The 014 review audited the two-lane program shipped across 121/008-013. Lane A is agent-improvement (`/deep:start-agent-improvement-loop`). Lane B is model-benchmark (`/deep:start-model-benchmark-loop`, runtime loop-host `--mode=model-benchmark` then materialize plus run-benchmark, scorer pattern or 5dim, grader noop or mock or llm). Scripts are lane-separated under `scripts/{shared,agent-improvement,model-benchmark}/` plus `scripts/lib/`.
 
@@ -230,7 +230,7 @@ Level 3. The packet touches multiple lane-separated scripts, two Lane B YAMLs, s
 - **Tasks**: See `tasks.md`
 - **Checklist**: See `checklist.md`
 - **Decision Register**: See `decision-record.md`
-- **Findings source**: See `../014-two-lane-deep-review/review/review-report.md`
+- **Findings source**: See `../014-review-two-lane-workflow-implementation/review/review-report.md`
 - **Parent Spec**: See `../spec.md`
 
 ---

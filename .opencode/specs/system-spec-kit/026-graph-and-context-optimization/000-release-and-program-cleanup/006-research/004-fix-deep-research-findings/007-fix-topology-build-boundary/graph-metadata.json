@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Six P2 findings from packet 046's deep research (D4 phase-topology, D5 build/dist boundary) leak topology drift, cache-signature drift, and stale dist artifacts the existing tooling cannot see:",
     "created_at": "2026-05-01T05:18:48Z",
-    "last_save_at": "2026-05-28T06:06:28.469Z",
+    "last_save_at": "2026-05-30T10:12:01.811Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phase 005 lifecycle scenarios must be executed from scratch. All prior results are invalidated. Ten lifecycle scenarios require fresh manual execution to verify checkpoint create/list/restore/delete, async ingestion job lifecycle, async shutdown, path traversal validation, automatic archival, startup pending-file recovery, and advisory ingest forecast.",
     "created_at": "2026-04-12T09:02:50.292Z",
-    "last_save_at": "2026-05-28T06:06:29.986Z",
+    "last_save_at": "2026-05-30T10:12:03.355Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

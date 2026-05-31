@@ -48,6 +48,7 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
       "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       "mcp_server/stress_test/substrate/README.md",
       "stress_test/substrate/README.md",
@@ -100,6 +101,12 @@
         "name": "vitest.stress.config.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/vitest.stress.config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "run-2026-05-14-shared-daemon.summary.tsv",
+        "kind": "file",
+        "path": "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
         "source": "derived"
       },
       {
@@ -197,17 +204,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The canonical Vitest stress suite in `mcp_server/stress_test/` is provider-agnostic by design. It mocks `executePipeline` and uses synthetic candidates, so substrate paths such as llama-cpp embedding generation, V-rule save behavior, CocoIndex two-client coordination, query-expansion bounds, and token-budget edges had no canonical stress gate. The only substrate-level evidence lived in `_sandbox/24--local-llm-query-intelligence/evidence/run-mcp-direct.mjs` from packet 045.",
     "created_at": "2026-05-14T21:40:55.576Z",
-    "last_save_at": "2026-05-28T06:06:28.814Z",
+    "last_save_at": "2026-05-30T16:25:17.397Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +217,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

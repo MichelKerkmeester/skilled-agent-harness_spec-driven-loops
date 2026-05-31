@@ -196,7 +196,7 @@
     ],
     "causal_summary": "CocoIndex's embedder registry (`cocoindex_code/registered_embedders.py`) lists only `sbert/...` candidates today. Operators running Ollama already (e.g., for chat workloads) can't reuse that daemon for CocoIndex indexing/search without code work.",
     "created_at": "2026-05-18T17:44:39.189Z",
-    "last_save_at": "2026-05-28T06:06:29.034Z",
+    "last_save_at": "2026-05-30T10:12:02.383Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

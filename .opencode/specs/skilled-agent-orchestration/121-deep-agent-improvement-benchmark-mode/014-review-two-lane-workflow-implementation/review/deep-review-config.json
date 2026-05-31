@@ -1,0 +1,28 @@
+{
+  "topic": "Two-lane program deep review (008-013)",
+  "sessionId": "review-014-two-lane",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxMinutesPerIteration": 30,
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "xhigh",
+    "serviceTier": "fast",
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1800
+  },
+  "mode": "review",
+  "reviewTarget": "two-lane program 008-013 curated substantive scope",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "severityThreshold": "P2",
+  "note": "Driver-run (background bash loop dispatching codex exec per iteration). Reviews the 008-013 two-lane authored work."
+}

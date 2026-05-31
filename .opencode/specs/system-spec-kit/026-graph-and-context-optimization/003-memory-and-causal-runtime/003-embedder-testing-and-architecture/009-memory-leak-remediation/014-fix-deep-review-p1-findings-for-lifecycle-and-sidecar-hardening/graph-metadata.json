@@ -52,7 +52,6 @@
       ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       ".opencode/skills/deep-loop-runtime/tests/unit/loop-lock.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/memory-runtime-retention.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/lib/memory/bounded-cache.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/ops/process-sweep.ts",
@@ -62,7 +61,8 @@
       ".opencode/bin/mk-code-index-launcher.cjs",
       ".opencode/skills/system-code-graph/mcp_server/lib/owner-lease.ts",
       "core/config.ts",
-      "decision-record.md"
+      "decision-record.md",
+      "mcp_server/tests/launcher-lease.vitest.ts"
     ],
     "entities": [
       {
@@ -120,12 +120,6 @@
         "source": "derived"
       },
       {
-        "name": "sidecar-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
-        "source": "derived"
-      },
-      {
         "name": "bounded-cache.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/memory/bounded-cache.ts",
@@ -180,6 +174,12 @@
         "source": "derived"
       },
       {
+        "name": "launcher-lease.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-lease.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "Findings Remediation",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Arc 009's deep review returned a CONDITIONAL verdict with P0=0, P1=40, and P2=20. Phase 014 converts those findings into six bounded implementation batches so later dispatches can close correctness races, cleanup gaps, local-service security boundaries, audit/data integrity failures, traceability evidence gaps, and P2 maintainability drift without reopening the review packet itself.",
     "created_at": "2026-05-22T19:00:00Z",
-    "last_save_at": "2026-05-28T06:06:29.094Z",
+    "last_save_at": "2026-05-30T10:12:02.468Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +222,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

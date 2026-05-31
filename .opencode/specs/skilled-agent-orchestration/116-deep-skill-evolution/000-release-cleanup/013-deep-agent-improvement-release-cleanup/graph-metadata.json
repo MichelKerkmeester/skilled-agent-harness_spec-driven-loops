@@ -49,9 +49,6 @@
       "checklist.md",
       "decision-record.md",
       "scripts/lib/README.md",
-      ".opencode/skills/deep-agent-improvement/README.md",
-      ".opencode/skills/deep-agent-improvement/SKILL.md",
-      ".opencode/skills/deep-agent-improvement/changelog/v1.7.0.0.md",
       "schemas/audit-finding.schema.json",
       ".opencode/skills/sk-doc/references/global/hvr_rules.md",
       "feature_catalog/feature_catalog.md",
@@ -62,7 +59,8 @@
       "schemas/iteration-output.schema.json",
       "implementation-summary.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/cli-devin/SKILL.md"
+      ".opencode/skills/cli-devin/SKILL.md",
+      ".opencode/skills/sk-prompt-small-model/SKILL.md"
     ],
     "entities": [
       {
@@ -99,18 +97,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": "scripts/lib/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/SKILL.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.7.0.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-agent-improvement/changelog/v1.7.0.0.md",
         "source": "derived"
       },
       {
@@ -168,6 +154,12 @@
         "source": "derived"
       },
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-devin/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +200,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `deep-agent-improvement` skill (v1.6.0.0) is mature but pre-dates the most recent sk-doc template revisions and has never been audited end-to-end against the current creation standards. Before the broader `116-deep-skill-evolution` arc consumes it, this sub-phase brings the skill's documentation surface to 100% sk-doc conformance, fixes latent bugs, rewrites the README in current marketing-leaning HVR voice, and seeds a deep-research loop on top of a validated baseline.",
     "created_at": "2026-05-23T20:01:44.783Z",
-    "last_save_at": "2026-05-28T06:06:27.688Z",
+    "last_save_at": "2026-05-30T19:40:10.294Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -222,6 +220,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

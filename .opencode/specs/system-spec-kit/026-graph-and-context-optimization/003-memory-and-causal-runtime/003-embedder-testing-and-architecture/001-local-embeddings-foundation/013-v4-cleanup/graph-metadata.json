@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Close the v4 cleanup layer without expanding scope: make provider startup warnings fire before auto-resolution, expose dtype in `memory_health`, let programmatic hf-local callers pass dtype, fix the mutable default, and align 012/parent docs with the shipped 42aa114e3 state.",
     "created_at": "2026-05-13T09:45:00Z",
-    "last_save_at": "2026-05-28T06:06:28.745Z",
+    "last_save_at": "2026-05-30T10:12:02.090Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T09:45:00Z",
     "source_docs": [
@@ -204,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

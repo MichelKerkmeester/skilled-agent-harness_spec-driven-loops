@@ -80,11 +80,13 @@
     ],
     "causal_summary": "Part of the CocoIndex / rerank-sidecar deprecation arc (014). Remove the cocoindex_code MCP registration from opencode.json/.vscode/.gemini/.codex + RERANK env notes + coco from agent/command frontmatter across all 4 runtimes; doctor_update.yaml + Gemini update.toml coco refs.",
     "created_at": "2026-05-25T07:55:14.206Z",
-    "last_save_at": "2026-05-28T06:06:29.211Z",
+    "last_save_at": "2026-05-30T10:12:02.546Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

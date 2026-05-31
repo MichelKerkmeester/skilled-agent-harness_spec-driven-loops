@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-28T19:16:07Z",
+  "generated": "2026-05-29T09:27:48.014Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -552,7 +552,7 @@
         "swe",
         "optimization"
       ],
-      "lastUpdated": "2026-05-21T10:22:37.564Z"
+      "lastUpdated": "2026-05-28T21:38:19.756Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/002-eval-rig",
@@ -610,7 +610,7 @@
         "file-extraction",
         "gap"
       ],
-      "lastUpdated": "2026-05-21T10:22:37.580Z"
+      "lastUpdated": "2026-05-28T21:38:19.763Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/113-cli-devin-prompt-quality/006-cross-cli-rcaf-propagation",
@@ -641,7 +641,7 @@
         "small-ai-model",
         "optimization"
       ],
-      "lastUpdated": "2026-05-23T18:03:58.210Z"
+      "lastUpdated": "2026-05-28T21:38:19.768Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research",
@@ -655,7 +655,7 @@
         "small-model",
         "patterns"
       ],
-      "lastUpdated": "2026-05-23T15:24:58.882Z"
+      "lastUpdated": "2026-05-28T21:38:19.773Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/114-small-ai-model-optimization/002-sentinel-skill-foundation",
@@ -765,7 +765,7 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-26T14:42:53.495Z"
+      "lastUpdated": "2026-05-28T21:38:19.778Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/000-release-cleanup",
@@ -1717,6 +1717,167 @@
       "lastUpdated": "2026-05-26T13:39:54.163431+00:00"
     },
     {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation",
+      "description": "Feature Specification: Deep-Loop Skills Playbook Validation",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-loop",
+        "skills",
+        "playbook",
+        "validation"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.792Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/001-deep-loop-runtime-scenarios",
+      "description": "Feature Specification: Deep-Loop Runtime Scenarios (Deep-Loop Playbook 001)",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-loop",
+        "runtime",
+        "scenarios",
+        "playbook",
+        "001"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.797Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/002-deep-ai-council-scenarios",
+      "description": "Feature Specification: Deep-AI-Council Scenarios (Deep-Loop Playbook 002)",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-ai-council",
+        "scenarios",
+        "deep-loop",
+        "playbook",
+        "002"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.802Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/003-deep-review-scenarios",
+      "description": "Feature Specification: Deep-Review Scenarios (Deep-Loop Playbook 003)",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-review",
+        "scenarios",
+        "deep-loop",
+        "playbook",
+        "003"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.805Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/004-deep-research-scenarios",
+      "description": "Feature Specification: Deep-Research Scenarios (Deep-Loop Playbook 004)",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-research",
+        "scenarios",
+        "deep-loop",
+        "playbook",
+        "004"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.810Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/005-deep-agent-improvement-scenarios",
+      "description": "Feature Specification: Deep-Agent-Improvement Scenarios (Deep-Loop Playbook 005)",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-agent-improvement",
+        "scenarios",
+        "deep-loop",
+        "playbook",
+        "005"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.814Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/006-release-readiness-synthesis",
+      "description": "Feature Specification: Release-Readiness Synthesis (Deep-Loop Playbook 006)",
+      "keywords": [
+        "feature",
+        "specification",
+        "release-readiness",
+        "synthesis",
+        "deep-loop",
+        "playbook",
+        "006"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.819Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/007-cp-sandbox-speckit-path-fix",
+      "description": "Remediation: CP-Sandbox speckit Path Fix (Deep-Loop Playbook 007)",
+      "keywords": [
+        "remediation",
+        "cp-sandbox",
+        "speckit",
+        "path",
+        "fix",
+        "deep-loop",
+        "playbook",
+        "007"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.823Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/008-dai-rulecoherence-inline-fallback",
+      "description": "Remediation: deep-agent-improvement ruleCoherence inline fallback (Playbook 008)",
+      "keywords": [
+        "remediation",
+        "deep-agent-improvement",
+        "rulecoherence",
+        "inline",
+        "fallback",
+        "playbook",
+        "008"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.828Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/009-cp-copilot-to-opencode-swap",
+      "description": "Feature Specification: CP Stress Scenarios — copilot → opencode Executor Swap (007 Phase 009)",
+      "keywords": [
+        "feature",
+        "specification",
+        "stress",
+        "scenarios",
+        "copilot",
+        "opencode",
+        "executor",
+        "swap",
+        "007",
+        "phase",
+        "009"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.831Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/116-deep-skill-evolution/007-deep-stack-playbook-validation/010-resolve-all-partials-and-skip",
+      "description": "Remediation: Resolve all 007 PARTIALs + the DR-032 SKIP (Phase 010, READY push)",
+      "keywords": [
+        "remediation",
+        "resolve",
+        "007",
+        "partials",
+        "dr-032",
+        "skip",
+        "phase",
+        "010",
+        "ready",
+        "push"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.836Z"
+    },
+    {
       "specFolder": "skilled-agent-orchestration/117-skill-anchor-toc-removal",
       "description": "Feature Specification: Skill Anchor + TOC Removal",
       "keywords": [
@@ -1813,6 +1974,265 @@
         "comments"
       ],
       "lastUpdated": "2026-05-27T20:15:05.629Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
+      "description": "Feature Specification: MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model",
+      "keywords": [
+        "feature",
+        "specification",
+        "minimax",
+        "direct-api",
+        "provider",
+        "optimization",
+        "cli-opencode",
+        "sk-prompt-small-model"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.842Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
+      "description": "Feature Specification: Phase 1: minimax-provider-integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "minimax-provider-integration"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.847Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
+      "description": "Feature Specification: Phase 2: minimax-efficiency-deep-research",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "minimax-efficiency-deep-research"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.852Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
+      "description": "MiniMax 2.7 prompt-framework benchmark: TIDD-EC + dense pre-planning won (real MiniMax M2.7 runs, 113 rig); integrated into cli-opencode dispatch path.",
+      "keywords": [
+        "minimax",
+        "prompt-framework",
+        "benchmark",
+        "tidd-ec",
+        "cli-opencode",
+        "eval-rig",
+        "sk-prompt-small-model"
+      ],
+      "lastUpdated": "2026-05-28T11:03:06.616Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
+      "description": "Feature Specification: deep-agent-improvement model-benchmark mode",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-agent-improvement",
+        "model-benchmark",
+        "mode"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.348Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design",
+      "description": "Feature Specification: Design: add a model/prompt-framework benchmark mode to deep-agent-improvement (port the 120/003 rig behind a mode selector)",
+      "keywords": [
+        "feature",
+        "specification",
+        "design",
+        "add",
+        "model",
+        "prompt-framework",
+        "benchmark",
+        "mode",
+        "deep-agent-improvement",
+        "port",
+        "120",
+        "003",
+        "rig",
+        "behind",
+        "selector"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.856Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research",
+      "description": "Feature Specification: Deep research (MiniMax M2.7) on how to implement the deep-agent-improvement model-benchmark mode",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep",
+        "research",
+        "minimax",
+        "implement",
+        "deep-agent-improvement",
+        "model-benchmark",
+        "mode"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.861Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode",
+      "description": "Feature Specification: Build the deep-agent-improvement model-benchmark mode",
+      "keywords": [
+        "feature",
+        "specification",
+        "build",
+        "deep-agent-improvement",
+        "model-benchmark",
+        "mode"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.866Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-review-findings-for-benchmark-mode",
+      "description": "Feature Specification: deep-agent-improvement model-benchmark mode remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "deep-agent-improvement",
+        "model-benchmark",
+        "mode",
+        "remediation"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.355Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs",
+      "description": "Feature Specification: opt-in 5-dim scorer + sk-doc skill alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "opt-in",
+        "5-dim",
+        "scorer",
+        "sk-doc",
+        "skill",
+        "alignment"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.875Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/006-deep-loop-empty-archive-dir-fix",
+      "description": "Deep-loop empty archive-dir fix: research init no longer eagerly creates {mode}_archive; all four deep-loop restart branches archive lazily+guarded; r",
+      "keywords": [
+        "deep-loop",
+        "empty",
+        "archive-dir",
+        "fix",
+        "research",
+        "init",
+        "longer",
+        "eagerly",
+        "creates",
+        "mode",
+        "four",
+        "restart",
+        "branches",
+        "archive",
+        "lazily",
+        "guarded",
+        "regression",
+        "tests",
+        "added",
+        "dirs",
+        "removed"
+      ],
+      "lastUpdated": "2026-05-29T06:14:31.376Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/007-benchmark-mode-hardening-review",
+      "description": "Feature Specification: Dual-executor deep review of session 120+121 work",
+      "keywords": [
+        "feature",
+        "specification",
+        "dual-executor",
+        "deep",
+        "review",
+        "session",
+        "120",
+        "121",
+        "work"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.360Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-command-lane-asking",
+      "description": "Feature Specification: Command lane-asking for the model-benchmark lane",
+      "keywords": [
+        "feature",
+        "specification",
+        "command",
+        "lane-asking",
+        "model-benchmark",
+        "lane"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.365Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/009-skill-md-two-lane",
+      "description": "Feature Specification: SKILL.md two-lane restructure",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill",
+        "two-lane",
+        "restructure"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.369Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/010-references-assets-lane-reorg",
+      "description": "Feature Specification: references + assets lane reorg",
+      "keywords": [
+        "feature",
+        "specification",
+        "references",
+        "assets",
+        "lane",
+        "reorg"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.373Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-agent-lane-note",
+      "description": "Feature Specification: Phase 11: agent-lane-note",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "agent-lane-note"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.377Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/012-catalog-playbook-advisor-lane-labels",
+      "description": "Feature Specification: Phase 1: catalog-playbook-advisor-fp25",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "catalog-playbook-advisor-fp25"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.380Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/013-scripts-physical-reorg",
+      "description": "Feature Specification: scripts physical lane reorg",
+      "keywords": [
+        "feature",
+        "specification",
+        "scripts",
+        "physical",
+        "lane",
+        "reorg"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.385Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -2638,7 +3058,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -5307,7 +5727,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -5333,7 +5753,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -6954,7 +7374,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -7476,7 +7896,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -9090,7 +9510,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -11109,7 +11529,7 @@
         "daemon-config",
         "investigation"
       ],
-      "lastUpdated": "2026-05-26T22:15:44.087Z"
+      "lastUpdated": "2026-05-28T16:22:41.025Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/005-embedding-status-integrity",
@@ -11188,7 +11608,7 @@
         "code",
         "graph"
       ],
-      "lastUpdated": "2026-05-26T16:53:25.644Z"
+      "lastUpdated": "2026-05-28T21:38:19.968Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/001-mcp-shared-dependency-startup-fix",
@@ -11674,7 +12094,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -11900,6 +12320,229 @@
         "rewrite"
       ],
       "lastUpdated": "2026-05-26T17:27:04.025Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/009-system-code-graph-uplift-phase-parent/004-bug-and-misalignment-audit",
+      "description": "Feature Specification: system-code-graph Bug + Misalignment Audit",
+      "keywords": [
+        "feature",
+        "specification",
+        "system-code-graph",
+        "bug",
+        "misalignment",
+        "audit"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.484Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+      "description": "Feature Specification: Code Graph Playbook Validation",
+      "keywords": [
+        "feature",
+        "specification",
+        "code",
+        "graph",
+        "playbook",
+        "validation"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.978Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/001-opencode-runtime-scenarios",
+      "description": "Feature Specification: OpenCode Runtime Scenarios (Code Graph Playbook 001)",
+      "keywords": [
+        "feature",
+        "specification",
+        "opencode",
+        "runtime",
+        "scenarios",
+        "code",
+        "graph",
+        "playbook",
+        "001"
+      ],
+      "lastUpdated": "2026-05-28T06:13:46.657Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/002-devin-static-scenarios",
+      "description": "Feature Specification: Devin Static Scenarios (Code Graph Playbook 002)",
+      "keywords": [
+        "feature",
+        "specification",
+        "devin",
+        "static",
+        "scenarios",
+        "code",
+        "graph",
+        "playbook",
+        "002"
+      ],
+      "lastUpdated": "2026-05-28T06:13:46.936Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/003-release-readiness-synthesis",
+      "description": "Feature Specification: Release-Readiness Synthesis (Code Graph Playbook 003)",
+      "keywords": [
+        "feature",
+        "specification",
+        "release-readiness",
+        "synthesis",
+        "code",
+        "graph",
+        "playbook",
+        "003"
+      ],
+      "lastUpdated": "2026-05-28T06:13:47.188Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/004-hook-and-doc-fixes",
+      "description": "Feature Specification: Hook Registration + Playbook Doc-Sync Fixes (029 Phase 004)",
+      "keywords": [
+        "feature",
+        "specification",
+        "hook",
+        "registration",
+        "playbook",
+        "doc-sync",
+        "fixes",
+        "029",
+        "phase",
+        "004"
+      ],
+      "lastUpdated": "2026-05-28T06:13:47.423Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/005-db-binding-cleanup",
+      "description": "Feature Specification: Legacy DB Cleanup (029 Phase 005)",
+      "keywords": [
+        "feature",
+        "specification",
+        "legacy",
+        "cleanup",
+        "029",
+        "phase",
+        "005"
+      ],
+      "lastUpdated": "2026-05-28T06:13:47.652Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/006-parser-quarantine-recovery",
+      "description": "Feature Specification: Parser Quarantine Recovery (029 Phase 006)",
+      "keywords": [
+        "feature",
+        "specification",
+        "parser",
+        "quarantine",
+        "recovery",
+        "029",
+        "phase",
+        "006"
+      ],
+      "lastUpdated": "2026-05-28T06:13:47.876Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/007-followup-hook-docs-and-022",
+      "description": "Feature Specification: Hook-Doc Reconciliation + 022 Transitive Re-verify (029 Phase 007)",
+      "keywords": [
+        "feature",
+        "specification",
+        "hook-doc",
+        "reconciliation",
+        "022",
+        "transitive",
+        "re-verify",
+        "029",
+        "phase",
+        "007"
+      ],
+      "lastUpdated": "2026-05-28T06:13:48.095Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening/008-blast-radius-transitive-flag",
+      "description": "Feature Specification: blast_radius includeTransitive Flag Fix (029 Phase 008)",
+      "keywords": [
+        "feature",
+        "specification",
+        "includetransitive",
+        "flag",
+        "fix",
+        "029",
+        "phase",
+        "008"
+      ],
+      "lastUpdated": "2026-05-28T06:13:48.341Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-empty-graph-first-time-auto-scan",
+      "description": "Feature Specification: Empty-Graph First-Time Auto-Establish",
+      "keywords": [
+        "feature",
+        "specification",
+        "empty-graph",
+        "first-time",
+        "auto-establish"
+      ],
+      "lastUpdated": "2026-05-29T09:26:03.660Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit",
+      "description": "Feature Specification: Code Graph Source Bug & Misalignment Audit",
+      "keywords": [
+        "feature",
+        "specification",
+        "code",
+        "graph",
+        "source",
+        "bug",
+        "misalignment",
+        "audit"
+      ],
+      "lastUpdated": "2026-05-29T09:27:47.490Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes",
+      "description": "Applied Source & Doc Fixes",
+      "keywords": [
+        "code",
+        "graph",
+        "remediation",
+        "001",
+        "applied",
+        "source",
+        "and",
+        "doc",
+        "fixes"
+      ],
+      "lastUpdated": "2026-05-29T08:30:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings",
+      "description": "Deferred WIP-Overlapping Findings",
+      "keywords": [
+        "code",
+        "graph",
+        "remediation",
+        "002",
+        "deferred",
+        "wip",
+        "overlapping",
+        "findings"
+      ],
+      "lastUpdated": "2026-05-29T08:30:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local",
+      "description": "DB Location Skill-Local (fix #1)",
+      "keywords": [
+        "code",
+        "graph",
+        "db",
+        "location",
+        "skill-local",
+        "spec-kit",
+        "relocation"
+      ],
+      "lastUpdated": "2026-05-29T09:55:00.000Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/005-graph-impact-and-affordance",
@@ -12225,6 +12868,137 @@
         "deferred-followups-and-cleanup"
       ],
       "lastUpdated": "2026-05-27T08:41:18.435Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
+      "description": "Feature Specification: MCP daemon reliability (socket-dir, lifecycle, build-safety, embedding-provider memory)",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "daemon",
+        "reliability",
+        "socket-dir",
+        "lifecycle",
+        "build-safety",
+        "embedding-provider",
+        "memory"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.987Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/001-ipc-socket-dir-canonicalize",
+      "description": "Feature Specification: Canonicalize missing IPC socket dirs in code-graph resolveIpcSocketPath",
+      "keywords": [
+        "feature",
+        "specification",
+        "canonicalize",
+        "missing",
+        "ipc",
+        "socket",
+        "dirs",
+        "code-graph",
+        "resolveipcsocketpath"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.992Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/002-code-graph-initial-scan",
+      "description": "Feature Specification: Populate the empty code graph via an initial code_graph_scan",
+      "keywords": [
+        "feature",
+        "specification",
+        "populate",
+        "empty",
+        "code",
+        "graph",
+        "via",
+        "initial"
+      ],
+      "lastUpdated": "2026-05-28T21:38:19.997Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/003-daemon-reliability-research",
+      "description": "Feature Specification: MCP daemon reliability — root-cause recurring disconnects/OOM and design durable fixes",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "daemon",
+        "reliability",
+        "root-cause",
+        "recurring",
+        "disconnects",
+        "oom",
+        "design",
+        "durable",
+        "fixes"
+      ],
+      "lastUpdated": "2026-05-28T18:48:33.989Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/004-nondestructive-build",
+      "description": "Feature Specification: Non-destructive mcp-server build (stop wiping live dist on rebuild — RC-4)",
+      "keywords": [
+        "feature",
+        "specification",
+        "non-destructive",
+        "mcp-server",
+        "build",
+        "stop",
+        "wiping",
+        "live",
+        "dist",
+        "rebuild",
+        "rc-4"
+      ],
+      "lastUpdated": "2026-05-28T18:48:34.227Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/005-provider-dispose",
+      "description": "Feature Specification: Dispose the embedding provider's native ONNX session on swap (F2′ / RC-1)",
+      "keywords": [
+        "feature",
+        "specification",
+        "dispose",
+        "embedding",
+        "provider",
+        "native",
+        "onnx",
+        "session",
+        "swap",
+        "rc-1"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.001Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/006-graceful-exit-watchdog",
+      "description": "Feature Specification: Launcher RSS-ceiling watchdog + graceful-exit supervision (F1′ / RC-1/RC-2)",
+      "keywords": [
+        "feature",
+        "specification",
+        "launcher",
+        "rss-ceiling",
+        "watchdog",
+        "graceful-exit",
+        "supervision",
+        "rc-1",
+        "rc-2"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.006Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/007-bridge-liveness-reap",
+      "description": "Feature Specification: Liveness-probe-before-bridge + reap-aware respawn (F3′ / RC-3)",
+      "keywords": [
+        "feature",
+        "specification",
+        "liveness-probe-before-bridge",
+        "reap-aware",
+        "respawn",
+        "rc-3"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.010Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening",
@@ -12647,7 +13421,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -12687,482 +13461,551 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Feature Specification: XCE Research-Based Refinement (Phase Parent)",
+      "description": "Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)",
       "keywords": [
         "feature",
         "specification",
-        "xce",
-        "research-based",
+        "xce-derived",
+        "memory",
+        "system",
         "refinement",
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-05-23T15:25:01.034Z"
+      "lastUpdated": "2026-05-28T08:24:14.303Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness",
-      "description": "Feature Specification: Feedback P0 Correctness",
-      "keywords": [
-        "feedback",
-        "correctness",
-        "causal",
-        "retention",
-        "provenance"
-      ],
-      "lastUpdated": "2026-05-11T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memoization-dependency-dag-foundation",
-      "description": "Phase 1: memoization-dependency-dag-foundation",
-      "keywords": [
-        "phase",
-        "memoization-dependency-dag-foundation"
-      ],
-      "lastUpdated": "2026-05-13T09:00:46.059Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
-      "description": "Phase 1: causal-graph-lifecycle-tombstones",
-      "keywords": [
-        "phase",
-        "causal-graph-lifecycle-tombstones"
-      ],
-      "lastUpdated": "2026-05-13T09:00:47.256Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
-      "description": "Phase 1: frontmatter-causal-edge-promoter",
-      "keywords": [
-        "phase",
-        "frontmatter-causal-edge-promoter"
-      ],
-      "lastUpdated": "2026-05-13T09:00:48.530Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
-      "description": "Phase 1: statediff-reconciliation-layer",
-      "keywords": [
-        "phase",
-        "statediff-reconciliation-layer"
-      ],
-      "lastUpdated": "2026-05-13T09:00:49.639Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld",
-      "description": "Phase parent for deterministic HLD/LLD narrative generation over code_graph data.",
-      "keywords": [
-        "phase-parent",
-        "deterministic",
-        "hld",
-        "lld",
-        "narrative",
-        "code_graph"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/001-contract",
-      "description": "TypeScript HldLldClassifier interface and FileRole enum types defining the deterministic HLD/LLD generation contract.",
-      "keywords": [
-        "hld-lld",
-        "contract",
-        "typescript",
-        "interface",
-        "enum"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/002-lib-impl",
-      "description": "code-graph-hld-lld.ts implementation conforming to the published HldLldClassifier contract.",
-      "keywords": [
-        "hld-lld",
-        "library",
-        "typescript",
-        "implementation",
-        "classifier"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/003-handler",
-      "description": "MCP handler handlers/hld-lld.ts wiring the code_graph_hld_lld tool dispatch using the contract interface.",
-      "keywords": [
-        "hld-lld",
-        "handler",
-        "mcp",
-        "tool",
-        "dispatch"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-code-graph-hld-lld/004-test",
-      "description": "code-graph-hld-lld.vitest.ts test suite verifying classifier behavior against the published contract.",
-      "keywords": [
-        "hld-lld",
-        "test",
-        "vitest",
-        "verification",
-        "fixtures"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace",
-      "description": "Lean phase-parent control file for the contract-first decomposition of code_graph_trace.",
-      "keywords": [
-        "phase-parent",
-        "code-graph",
-        "trace",
-        "contract-first"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/001-contract",
-      "description": "TraceTool and trace-result TypeScript interfaces.",
-      "keywords": [
-        "trace",
-        "contract",
-        "typescript",
-        "interface"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/002-lib-impl",
-      "description": "code-graph-trace.ts resolver implementation conforming to the trace contract.",
-      "keywords": [
-        "trace",
-        "resolver",
-        "code-graph",
-        "filePath"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/003-handler",
-      "description": "handlers/trace.ts using the trace contract interface.",
-      "keywords": [
-        "trace",
-        "handler",
-        "mcp",
-        "zod"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-code-graph-trace/004-test",
-      "description": "code-graph-trace.vitest.ts tests against the trace contract.",
-      "keywords": [
-        "trace",
-        "vitest",
-        "coverage",
-        "contract"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis",
-      "description": "Phase-parent control spec for contract-first implementation of risk-scored code graph impact analysis.",
-      "keywords": [
-        "phase-parent",
-        "risk-scored",
-        "impact",
-        "analysis",
-        "code-graph"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/001-contract",
-      "description": "Defines TypeScript interfaces for code_graph_impact_analysis, RiskSignal, RiskScore, and enrichment options.",
-      "keywords": [
-        "contract",
-        "impact",
-        "risk-signal",
-        "risk-score"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/002-lib-impl",
-      "description": "Implements code-graph-impact-analysis.ts with deterministic signals, scoring, and existing impact-mode integration.",
-      "keywords": [
-        "library",
-        "impact",
-        "risk-signals",
-        "scoring"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/003-handler",
-      "description": "Implements the MCP handler and optional LLM risk-enrichment adapter for code_graph_impact_analysis.",
-      "keywords": [
-        "handler",
-        "mcp",
-        "enrichment",
-        "impact"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/009-code-graph-impact-analysis/004-test",
-      "description": "Defines Vitest correctness fixtures for code_graph_impact_analysis.",
-      "keywords": [
-        "tests",
-        "vitest",
-        "fixtures",
-        "impact"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval",
-      "description": "Phase parent for the code-graph adoption evaluation harness: bootstrap the orchestrator, then deliver token measurement, fixtures, reporting, and stress integration as child packets.",
-      "keywords": [
-        "code",
-        "graph",
-        "adoption",
-        "evaluation",
-        "harness",
-        "phase-parent"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/001-harness-skeleton",
-      "description": "Sequential bootstrap child for the code graph adoption eval CLI orchestrator skeleton and module-loader plumbing.",
-      "keywords": [
-        "harness",
-        "skeleton",
-        "cli",
-        "module-loader"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/002-token-measurement",
-      "description": "Token measurement helper for reading session analytics DB rows after eval task sessions complete.",
-      "keywords": [
-        "token",
-        "measurement",
-        "session-analytics"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/003-fixtures",
-      "description": "Labeled eval task JSONL and fixture scaffolds for the code graph adoption harness.",
-      "keywords": [
-        "fixtures",
-        "jsonl",
-        "labeled-tasks"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/004-report-generator",
-      "description": "Markdown report generator for token-reduction and file-reads-avoided eval metrics.",
-      "keywords": [
-        "report",
-        "generator",
-        "token-reduction",
-        "file-reads-avoided"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/010-code-graph-adoption-eval/005-stress-tests-integration",
-      "description": "Integration close child for Vitest stress coverage and stress config wiring for the code graph adoption eval harness.",
-      "keywords": [
-        "stress-tests",
-        "integration",
-        "vitest"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/011-memory-semantic-triggers",
-      "description": "Feature Specification: Memory Backend Semantic Trigger Matching (Hybrid)",
+      "description": "Feature Specification: 002 — Feedback P0 Correctness",
       "keywords": [
         "feature",
         "specification",
+        "002",
+        "feedback",
+        "correctness"
+      ],
+      "lastUpdated": "2026-05-28T08:24:14.565Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-memoization-dependency-dag-foundation",
+      "description": "Feature Specification: 003 — Memoization Dependency DAG Foundation",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "memoization",
+        "dependency",
+        "dag",
+        "foundation"
+      ],
+      "lastUpdated": "2026-05-28T08:24:15.514Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-causal-graph-lifecycle-tombstones",
+      "description": "Feature Specification: 004 — Causal Graph Lifecycle Tombstones",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "causal",
+        "graph",
+        "lifecycle",
+        "tombstones"
+      ],
+      "lastUpdated": "2026-05-28T08:24:15.291Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-frontmatter-causal-edge-promoter",
+      "description": "Feature Specification: 005 — Frontmatter Causal-Edge Promoter",
+      "keywords": [
+        "feature",
+        "specification",
+        "005",
+        "frontmatter",
+        "causal-edge",
+        "promoter"
+      ],
+      "lastUpdated": "2026-05-28T08:24:15.741Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-statediff-reconciliation-layer",
+      "description": "Feature Specification: 006 — Statediff Reconciliation Layer",
+      "keywords": [
+        "feature",
+        "specification",
+        "006",
+        "statediff",
+        "reconciliation",
+        "layer"
+      ],
+      "lastUpdated": "2026-05-28T08:24:15.066Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-memory-semantic-triggers",
+      "description": "Feature Specification: 007 — Memory Backend Semantic Trigger Matching (Hybrid Lexical+Semantic)",
+      "keywords": [
+        "feature",
+        "specification",
+        "007",
         "memory",
         "backend",
         "semantic",
         "trigger",
         "matching",
-        "hybrid"
+        "hybrid",
+        "lexical"
       ],
-      "lastUpdated": "2026-05-10T07:31:26.014Z"
+      "lastUpdated": "2026-05-28T08:24:14.814Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers",
-      "description": "Phase-parent control packet for post-012 learning feedback reducers.",
-      "keywords": [
-        "phase-parent",
-        "feedback",
-        "reducers",
-        "aggregation",
-        "coco",
-        "causal",
-        "retention"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/001-aggregator",
-      "description": "Shared TypeScript feedback aggregation foundation.",
-      "keywords": [
-        "feedback",
-        "aggregation",
-        "weightedHitCount",
-        "TypeScript"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/002-coco-rerank-consumer",
-      "description": "Python coco rerank feedback consumer.",
-      "keywords": [
-        "coco",
-        "rerank",
-        "feedback",
-        "SQLite",
-        "Python"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/003-causal-reducer",
-      "description": "Deferred TypeScript session-trace causal edge reducer.",
-      "keywords": [
-        "causal",
-        "session-trace",
-        "auto-session",
-        "feedback"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/004-retention-reducer",
-      "description": "TypeScript feedback retention learning reducer.",
-      "keywords": [
-        "retention",
-        "feedback",
-        "edge-floor",
-        "shadow"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/012-feedback-reducers/005-env-tests-integration",
-      "description": "Env documentation and integration closeout for feedback reducers.",
-      "keywords": [
-        "env",
-        "tests",
-        "integration",
-        "flags"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00.000Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork",
-      "description": "Phase parent for complete CocoIndex MCP fork topical decomposition across import, scripts, tests, docs, attribution, and integration smoke.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "complete-fork",
-        "phase-parent",
-        "v0.2.33"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/001-import-upstream",
-      "description": "Bootstrap import of the downloaded upstream cocoindex-code v0.2.33 snapshot into the local mcp-coco-index fork root with an import manifest.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "import-upstream",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/002-scripts",
-      "description": "Adapt install, update, and doctor scripts for the spec-kit-owned complete fork lifecycle.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "scripts",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/003-tests-port",
-      "description": "Port upstream tests into the fork test tree and adapt them to spec-kit verification conventions.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "tests-port",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/004-docs",
-      "description": "Author skill, README, install guide, and reference docs for the complete local fork.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "docs",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/005-attribution",
-      "description": "Update NOTICE, CHANGELOG, and package metadata for Apache-2.0 upstream plus spec-kit modifications.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "attribution",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/013-cocoindex-complete-fork/006-integration-smoke",
-      "description": "Wire the fork into opencode configuration and run final install, CLI, MCP, and recursive validation smoke checks.",
-      "keywords": [
-        "027",
-        "cocoindex",
-        "integration-smoke",
-        "phase",
-        "complete-fork"
-      ],
-      "lastUpdated": "2026-05-12T07:20:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/014-coco-intent-steering",
-      "description": "Feature Specification: Coco-Index Intent Steering + Bounded Query Expansion Hard dependency added: Phase 001 must land before this phase modifies mcp-coco-index query expansion, because the complete fork establishes the owned wrapper baseline.",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers",
+      "description": "Feature Specification: 008 — Feedback Reducers (Phase Parent)",
       "keywords": [
         "feature",
         "specification",
+        "008",
+        "feedback",
+        "reducers",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-05-28T08:24:15.979Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/001-aggregator",
+      "description": "Feature Specification: Shared Feedback Aggregation",
+      "keywords": [
+        "feature",
+        "specification",
+        "shared",
+        "feedback",
+        "aggregation"
+      ],
+      "lastUpdated": "2026-05-28T08:24:16.204Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/002-coco-rerank-consumer",
+      "description": "Feature Specification: Coco Rerank Feedback Consumer",
+      "keywords": [
+        "feature",
+        "specification",
+        "coco",
+        "rerank",
+        "feedback",
+        "consumer"
+      ],
+      "lastUpdated": "2026-05-28T08:24:16.458Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/003-causal-reducer",
+      "description": "Feature Specification: Session-Trace Causal Reducer",
+      "keywords": [
+        "feature",
+        "specification",
+        "session-trace",
+        "causal",
+        "reducer"
+      ],
+      "lastUpdated": "2026-05-28T08:24:16.720Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/004-retention-reducer",
+      "description": "Feature Specification: Feedback Retention Reducer",
+      "keywords": [
+        "feature",
+        "specification",
+        "feedback",
+        "retention",
+        "reducer"
+      ],
+      "lastUpdated": "2026-05-28T08:24:16.975Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-feedback-reducers/005-env-tests-integration",
+      "description": "Feature Specification: Feedback Reducer Env and Integration Closeout",
+      "keywords": [
+        "feature",
+        "specification",
+        "feedback",
+        "reducer",
+        "env",
+        "integration",
+        "closeout"
+      ],
+      "lastUpdated": "2026-05-28T08:24:17.252Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex",
+      "description": "Feature Specification: Code Graph + CocoIndex Implementation (XCE-derived)",
+      "keywords": [
+        "feature",
+        "specification",
+        "code",
+        "graph",
+        "cocoindex",
+        "implementation",
+        "xce-derived"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.022Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+      "description": "Feature Specification: 001 — Code Graph HLD/LLD",
+      "keywords": [
+        "feature",
+        "specification",
+        "001",
+        "code",
+        "graph",
+        "hld",
+        "lld"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.027Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract",
+      "description": "Feature Specification: 001 Contract",
+      "keywords": [
+        "feature",
+        "specification",
+        "001",
+        "contract"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.031Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+      "description": "Feature Specification: 002 Library Implementation",
+      "keywords": [
+        "feature",
+        "specification",
+        "002",
+        "library",
+        "implementation"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.034Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler",
+      "description": "Feature Specification: 003 Handler",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "handler"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.039Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/004-test",
+      "description": "Feature Specification: 004 Tests",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "tests"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.042Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
+      "description": "Feature Specification: 002 — Code Graph Trace",
+      "keywords": [
+        "feature",
+        "specification",
+        "002",
+        "code",
+        "graph",
+        "trace"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.047Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract",
+      "description": "Feature Specification: code_graph_trace Contract",
+      "keywords": [
+        "feature",
+        "specification",
+        "contract"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.051Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl",
+      "description": "Feature Specification: code_graph_trace Library Implementation",
+      "keywords": [
+        "feature",
+        "specification",
+        "library",
+        "implementation"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.056Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/003-handler",
+      "description": "Feature Specification: code_graph_trace Handler",
+      "keywords": [
+        "feature",
+        "specification",
+        "handler"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.059Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test",
+      "description": "Feature Specification: code_graph_trace Tests",
+      "keywords": [
+        "feature",
+        "specification",
+        "tests"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.064Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+      "description": "Feature Specification: 003 — Code Graph Impact Analysis",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "code",
+        "graph",
+        "impact",
+        "analysis"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.068Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+      "description": "Feature Specification: 027/004/001 Impact Analysis Contract",
+      "keywords": [
+        "feature",
+        "specification",
+        "027",
+        "004",
+        "001",
+        "impact",
+        "analysis",
+        "contract"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.072Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+      "description": "Feature Specification: 027/004/002 Impact Analysis Library",
+      "keywords": [
+        "feature",
+        "specification",
+        "027",
+        "004",
+        "002",
+        "impact",
+        "analysis",
+        "library"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.077Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+      "description": "Feature Specification: 027/004/003 Impact Analysis Handler",
+      "keywords": [
+        "feature",
+        "specification",
+        "027",
+        "004",
+        "003",
+        "impact",
+        "analysis",
+        "handler"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.081Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test",
+      "description": "Feature Specification: 027/004/004 Impact Analysis Tests",
+      "keywords": [
+        "feature",
+        "specification",
+        "027",
+        "004",
+        "impact",
+        "analysis",
+        "tests"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.085Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+      "description": "Feature Specification: 004 — Code Graph Adoption Evaluation Harness",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "code",
+        "graph",
+        "adoption",
+        "evaluation",
+        "harness"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.089Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+      "description": "Feature Specification: 001 Harness Skeleton",
+      "keywords": [
+        "feature",
+        "specification",
+        "001",
+        "harness",
+        "skeleton"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.094Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+      "description": "Feature Specification: 002 Token Measurement",
+      "keywords": [
+        "feature",
+        "specification",
+        "002",
+        "token",
+        "measurement"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.098Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+      "description": "Feature Specification: 003 Fixtures",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "fixtures"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.102Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator",
+      "description": "Feature Specification: 004 Report Generator",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "report",
+        "generator"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.106Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration",
+      "description": "Feature Specification: 005 Stress Tests Integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "005",
+        "stress",
+        "tests",
+        "integration"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.111Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork",
+      "description": "Feature Specification: 005 — Complete CocoIndex MCP Fork",
+      "keywords": [
+        "feature",
+        "specification",
+        "005",
+        "complete",
+        "cocoindex",
+        "mcp",
+        "fork"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.114Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/001-import-upstream",
+      "description": "Feature Specification: Import Upstream Snapshot",
+      "keywords": [
+        "feature",
+        "specification",
+        "import",
+        "upstream",
+        "snapshot"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.119Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/002-scripts",
+      "description": "Feature Specification: Adapt Lifecycle Scripts",
+      "keywords": [
+        "feature",
+        "specification",
+        "adapt",
+        "lifecycle",
+        "scripts"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.124Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/003-tests-port",
+      "description": "Feature Specification: Port Upstream Tests",
+      "keywords": [
+        "feature",
+        "specification",
+        "port",
+        "upstream",
+        "tests"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.127Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/004-docs",
+      "description": "Feature Specification: Author Fork Documentation",
+      "keywords": [
+        "feature",
+        "specification",
+        "author",
+        "fork",
+        "documentation"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.131Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/005-attribution",
+      "description": "Feature Specification: Update Attribution Metadata",
+      "keywords": [
+        "feature",
+        "specification",
+        "update",
+        "attribution",
+        "metadata"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.135Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/005-cocoindex-complete-fork/006-integration-smoke",
+      "description": "Feature Specification: Integration Smoke Test",
+      "keywords": [
+        "feature",
+        "specification",
+        "integration",
+        "smoke",
+        "test"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.140Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering",
+      "description": "Feature Specification: 006 — Coco-Index Intent Steering + Bounded Query Expansion",
+      "keywords": [
+        "feature",
+        "specification",
+        "006",
         "coco-index",
         "intent",
         "steering",
@@ -13170,103 +14013,106 @@
         "query",
         "expansion"
       ],
-      "lastUpdated": "2026-05-10T10:05:44.449Z"
+      "lastUpdated": "2026-05-28T21:38:20.145Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/015-retrieval-rerank-clients",
-      "description": "Feature Specification: Retrieval Rerank Clients (Shared Interfaces) Dependency added for the Coco adapter path: Phase 001 must land before this phase modifies mcp-coco-index; the memory-only interface extraction can still be reasoned about independently.",
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/007-retrieval-rerank-clients",
+      "description": "Feature Specification: 007 — Retrieval Rerank Clients (Shared RerankClient + EmbeddingCacheClient Interfaces)",
       "keywords": [
         "feature",
         "specification",
+        "007",
         "retrieval",
         "rerank",
         "clients",
         "shared",
+        "rerankclient",
+        "embeddingcacheclient",
         "interfaces"
       ],
-      "lastUpdated": "2026-05-10T10:05:44.449Z"
+      "lastUpdated": "2026-05-28T21:38:20.149Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras",
-      "description": "Phase parent for two independent presentation-layer tracks: Coco exemplars in Python and memory context curation in TypeScript. Child phases own detailed implementation plans and validation.",
-      "keywords": [
-        "phase",
-        "parent",
-        "coco",
-        "exemplars",
-        "memory",
-        "curator",
-        "context",
-        "presentation"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/001-exemplars-schema",
-      "description": "Level 2 child phase for Coco exemplar schema and SQLite migration planning.",
-      "keywords": [
-        "coco",
-        "exemplars",
-        "schema",
-        "sqlite",
-        "vec0"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/002-exemplars-retriever",
-      "description": "Level 2 child phase for Coco exemplar retrieval and separate response output.",
-      "keywords": [
-        "coco",
-        "exemplars",
-        "retriever",
-        "query",
-        "response"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/003-exemplars-maintenance",
-      "description": "Level 2 child phase for Coco exemplar TTL, cap, reconciliation, and clear operation.",
-      "keywords": [
-        "coco",
-        "exemplars",
-        "maintenance",
-        "ttl",
-        "reconciliation"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/004-curator-prompt",
-      "description": "Level 2 child phase for memory context curator prompt, parser, schema validation, and cache extension.",
-      "keywords": [
-        "memory",
-        "curator",
-        "prompt",
-        "schema",
-        "cache"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/016-coco-memory-context-extras/005-curator-integration",
-      "description": "Level 2 child phase for memory-search budget split and curator hook integration.",
-      "keywords": [
-        "memory",
-        "curator",
-        "integration",
-        "budget",
-        "curatedContext"
-      ],
-      "lastUpdated": "2026-05-12T00:00:00Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/017-cocoindex-memory-port-research",
-      "description": "Feature Specification: cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)",
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
+      "description": "Feature Specification: 008 — Coco Memory Context Extras",
       "keywords": [
         "feature",
         "specification",
+        "008",
+        "coco",
+        "memory",
+        "context",
+        "extras"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.153Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/001-exemplars-schema",
+      "description": "Feature Specification: 001 Exemplars Schema",
+      "keywords": [
+        "feature",
+        "specification",
+        "001",
+        "exemplars",
+        "schema"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.158Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/002-exemplars-retriever",
+      "description": "Feature Specification: 002 Exemplars Retriever",
+      "keywords": [
+        "feature",
+        "specification",
+        "002",
+        "exemplars",
+        "retriever"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.162Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/003-exemplars-maintenance",
+      "description": "Feature Specification: 003 Exemplars Maintenance",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "exemplars",
+        "maintenance"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.167Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt",
+      "description": "Feature Specification: 004 Curator Prompt",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "curator",
+        "prompt"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.170Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/005-curator-integration",
+      "description": "Feature Specification: 005 Curator Integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "005",
+        "curator",
+        "integration"
+      ],
+      "lastUpdated": "2026-05-28T21:38:20.175Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research",
+      "description": "Feature Specification: 009 — cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)",
+      "keywords": [
+        "feature",
+        "specification",
+        "009",
         "cocoindex-main",
         "port",
         "mcp",
@@ -13274,10 +14120,10 @@
         "shortening",
         "research"
       ],
-      "lastUpdated": "2026-05-23T15:25:01.041Z"
+      "lastUpdated": "2026-05-28T21:38:20.180Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/external/cocoindex-main/examples/conversation_to_knowledge",
+      "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/external/cocoindex-main/examples/conversation_to_knowledge",
       "description": "We want to convert a bunch of podcast sessions to knowledge base",
       "keywords": [
         "want",
@@ -13288,133 +14134,108 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation",
-      "description": "Feature Specification: Deep-Loop Skills Playbook Validation",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server",
+      "description": "Feature Specification: Embedding consolidation and hf-local model server",
       "keywords": [
         "feature",
         "specification",
-        "deep-loop",
-        "skills",
-        "playbook",
-        "validation"
+        "embedding",
+        "consolidation",
+        "hf-local",
+        "model",
+        "server"
       ],
-      "lastUpdated": "2026-05-27T20:15:05.731Z"
+      "lastUpdated": "2026-05-29T05:07:32.709Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/001-deep-loop-runtime-scenarios",
-      "description": "Feature Specification: Deep-Loop Runtime Scenarios (Deep-Loop Playbook 001)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/001-nomic-only-consolidation",
+      "description": "Feature Specification: Consolidate local embedding models to nomic only",
       "keywords": [
         "feature",
         "specification",
-        "deep-loop",
-        "runtime",
-        "scenarios",
-        "playbook",
-        "001"
+        "consolidate",
+        "local",
+        "embedding",
+        "models",
+        "nomic",
+        "only"
       ],
-      "lastUpdated": "2026-05-27T07:07:07.025Z"
+      "lastUpdated": "2026-05-29T09:27:47.507Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/002-deep-ai-council-scenarios",
-      "description": "Feature Specification: Deep-AI-Council Scenarios (Deep-Loop Playbook 002)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/002-hf-model-server",
+      "description": "Feature Specification: Build hf-model-server.cjs local HTTP model server",
       "keywords": [
         "feature",
         "specification",
-        "deep-ai-council",
-        "scenarios",
-        "deep-loop",
-        "playbook",
-        "002"
+        "build",
+        "hf-model-server",
+        "cjs",
+        "local",
+        "http",
+        "model",
+        "server"
       ],
-      "lastUpdated": "2026-05-27T08:41:18.491Z"
+      "lastUpdated": "2026-05-29T09:27:47.512Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/003-deep-review-scenarios",
-      "description": "Feature Specification: Deep-Review Scenarios (Deep-Loop Playbook 003)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/003-hf-local-http-client",
+      "description": "Feature Specification: Rewrite hf-local as an HTTP model-server client",
       "keywords": [
         "feature",
         "specification",
-        "deep-review",
-        "scenarios",
-        "deep-loop",
-        "playbook",
-        "003"
+        "rewrite",
+        "hf-local",
+        "http",
+        "model-server",
+        "client"
       ],
-      "lastUpdated": "2026-05-27T07:07:08.028Z"
+      "lastUpdated": "2026-05-29T09:27:47.517Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/004-deep-research-scenarios",
-      "description": "Feature Specification: Deep-Research Scenarios (Deep-Loop Playbook 004)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/004-launcher-supervision",
+      "description": "Feature Specification: Add launcher supervision for the hf model server",
       "keywords": [
         "feature",
         "specification",
-        "deep-research",
-        "scenarios",
-        "deep-loop",
-        "playbook",
-        "004"
+        "add",
+        "launcher",
+        "supervision",
+        "model",
+        "server"
       ],
-      "lastUpdated": "2026-05-27T07:07:08.557Z"
+      "lastUpdated": "2026-05-29T09:27:47.521Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/005-deep-agent-improvement-scenarios",
-      "description": "Feature Specification: Deep-Agent-Improvement Scenarios (Deep-Loop Playbook 005)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/005-retire-sidecar",
+      "description": "Feature Specification: Retire the embedding sidecar execution path",
       "keywords": [
         "feature",
         "specification",
-        "deep-agent-improvement",
-        "scenarios",
-        "deep-loop",
-        "playbook",
-        "005"
+        "retire",
+        "embedding",
+        "sidecar",
+        "execution",
+        "path"
       ],
-      "lastUpdated": "2026-05-27T07:07:09.046Z"
+      "lastUpdated": "2026-05-29T09:27:47.525Z"
     },
     {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/006-release-readiness-synthesis",
-      "description": "Feature Specification: Release-Readiness Synthesis (Deep-Loop Playbook 006)",
+      "specFolder": "system-spec-kit/029-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring",
+      "description": "Feature Specification: Wire skill-advisor to the shared hf model server",
       "keywords": [
         "feature",
         "specification",
-        "release-readiness",
-        "synthesis",
-        "deep-loop",
-        "playbook",
-        "006"
+        "wire",
+        "skill-advisor",
+        "shared",
+        "model",
+        "server"
       ],
-      "lastUpdated": "2026-05-27T07:07:09.547Z"
-    },
-    {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/007-cp-sandbox-speckit-path-fix",
-      "description": "Remediation: CP-Sandbox speckit Path Fix (Deep-Loop Playbook 007)",
-      "keywords": [
-        "remediation",
-        "cp-sandbox",
-        "speckit",
-        "path",
-        "fix",
-        "deep-loop",
-        "playbook",
-        "007"
-      ],
-      "lastUpdated": "2026-05-27T20:15:05.739Z"
-    },
-    {
-      "specFolder": "system-spec-kit/030-deep-loop-skills-playbook-validation/008-dai-rulecoherence-inline-fallback",
-      "description": "Remediation: deep-agent-improvement ruleCoherence inline fallback (Playbook 008)",
-      "keywords": [
-        "remediation",
-        "deep-agent-improvement",
-        "rulecoherence",
-        "inline",
-        "fallback",
-        "generate-profile",
-        "008"
-      ],
-      "lastUpdated": "2026-05-27T21:30:00.000Z"
+      "lastUpdated": "2026-05-29T05:07:41.934Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -17673,7 +18494,7 @@
         "obsidian-export",
         "specification"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/001-research-hybrid-rag-fusion-systems/001-engram-main/external/openspec/specs/obsidian-plugin",
@@ -17682,7 +18503,7 @@
         "obsidian-plugin",
         "specification"
       ],
-      "lastUpdated": "2026-05-27T20:15:06.221Z"
+      "lastUpdated": "2026-05-29T09:27:48.014Z"
     },
     {
       "specFolder": "z_future/hybrid-rag-fusion-upgrade/002-hybrid-rag-adoption",
@@ -17905,229 +18726,6 @@
         "layering"
       ],
       "lastUpdated": "2026-04-24T15:56:57.089Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization",
-      "description": "MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model",
-      "keywords": [
-        "minimax",
-        "direct-api",
-        "provider",
-        "optimization",
-        "cli-opencode",
-        "sk-prompt-small-model"
-      ],
-      "lastUpdated": "2026-05-28T08:38:26.288Z",
-      "specId": "120",
-      "folderSlug": "cli-opencode-minimax-optimization",
-      "parentChain": [
-        "skilled-agent-orchestration"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "phase"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/001-minimax-provider-integration",
-      "description": "Phase 1: minimax-provider-integration",
-      "keywords": [
-        "phase",
-        "minimax-provider-integration"
-      ],
-      "lastUpdated": "2026-05-28T08:38:27.134Z",
-      "specId": "001",
-      "folderSlug": "minimax-provider-integration",
-      "parentChain": [
-        "skilled-agent-orchestration",
-        "120-cli-opencode-minimax-optimization"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/002-minimax-efficiency-deep-research",
-      "description": "Phase 2: minimax-efficiency-deep-research",
-      "keywords": [
-        "phase",
-        "minimax-efficiency-deep-research"
-      ],
-      "lastUpdated": "2026-05-28T08:38:28.023Z",
-      "specId": "002",
-      "folderSlug": "minimax-efficiency-deep-research",
-      "parentChain": [
-        "skilled-agent-orchestration",
-        "120-cli-opencode-minimax-optimization"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark",
-      "description": "MiniMax 2.7 prompt-framework benchmark: TIDD-EC + dense pre-planning won (real MiniMax M2.7 runs, 113 rig); integrated into cli-opencode dispatch path.",
-      "keywords": [
-        "minimax",
-        "prompt-framework",
-        "benchmark",
-        "tidd-ec",
-        "cli-opencode",
-        "eval-rig",
-        "sk-prompt-small-model"
-      ],
-      "lastUpdated": "2026-05-28T11:03:06.616Z",
-      "specId": "003",
-      "folderSlug": "minimax-prompt-framework-benchmark",
-      "parentChain": [
-        "skilled-agent-orchestration",
-        "120-cli-opencode-minimax-optimization"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode",
-      "description": "Design: add a model/prompt-framework benchmark mode to deep-agent-improvement via a mode selector, porting the 120/003 rig.",
-      "keywords": [
-        "deep-agent-improvement",
-        "benchmark-mode",
-        "model-benchmark",
-        "prompt-framework",
-        "mode-selector",
-        "design"
-      ],
-      "lastUpdated": "2026-05-28T15:17:22Z",
-      "specId": "121",
-      "folderSlug": "deep-agent-improvement-benchmark-mode",
-      "parentChain": [
-        "skilled-agent-orchestration"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "3"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-mode-selector-design",
-      "description": "Design: add a model/prompt-framework benchmark mode to deep-agent-improvement via a mode selector, porting the 120/003 rig.",
-      "keywords": [
-        "deep-agent-improvement",
-        "benchmark-mode",
-        "model-benchmark",
-        "prompt-framework",
-        "mode-selector",
-        "design"
-      ],
-      "lastUpdated": "2026-05-28T15:17:22Z",
-      "specId": "121",
-      "folderSlug": "deep-agent-improvement-benchmark-mode",
-      "parentChain": [
-        "skilled-agent-orchestration",
-        "121-deep-agent-improvement-benchmark-mode"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "3"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-implementation-deep-research",
-      "description": "Deep research (MiniMax M2.7) on implementing the deep-agent-improvement model-benchmark mode: seam interfaces, dispatch-model generalization, scorer port, loop wiring.",
-      "keywords": [
-        "deep-research",
-        "minimax",
-        "model-benchmark",
-        "mode-selector",
-        "implementation",
-        "seams"
-      ],
-      "lastUpdated": "2026-05-28T15:17:22Z",
-      "specId": "002",
-      "folderSlug": "implementation-deep-research",
-      "parentChain": [
-        "skilled-agent-orchestration",
-        "121-deep-agent-improvement-benchmark-mode"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-benchmark-mode",
-      "description": "Phase 1: build-benchmark-mode",
-      "keywords": [
-        "phase",
-        "build-benchmark-mode"
-      ],
-      "lastUpdated": "2026-05-28T16:24:07.279Z",
-      "specId": "003",
-      "folderSlug": "build-benchmark-mode",
-      "parentChain": [
-        "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/122-session-120-121-deep-review",
-      "description": "Deep review (dual-executor gpt-5.5 + MiniMax M2.7) of session 120+121 work: deep-agent-improvement model-benchmark mode build + MiniMax integration",
-      "keywords": [
-        "deep",
-        "review",
-        "dual-executor",
-        "gpt-5",
-        "minimax",
-        "session",
-        "120",
-        "121",
-        "work",
-        "deep-agent-improvement",
-        "model-benchmark",
-        "mode",
-        "build",
-        "integration"
-      ],
-      "lastUpdated": "2026-05-28T17:42:53.569Z",
-      "specId": "122",
-      "folderSlug": "session-120-121-deep-review",
-      "parentChain": [],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-benchmark-mode-remediation",
-      "description": "Phase 1: benchmark-mode-remediation",
-      "keywords": [
-        "phase",
-        "benchmark-mode-remediation"
-      ],
-      "lastUpdated": "2026-05-28T18:39:19.884Z",
-      "specId": "004",
-      "folderSlug": "benchmark-mode-remediation",
-      "parentChain": [
-        "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/005-optin-5dim-scorer-and-skill-docs",
-      "description": "Phase 1: optin-5dim-scorer-and-skill-docs",
-      "keywords": [
-        "phase",
-        "optin-5dim-scorer-and-skill-docs"
-      ],
-      "lastUpdated": "2026-05-28T19:15:45.224Z",
-      "specId": "005",
-      "folderSlug": "optin-5dim-scorer-and-skill-docs",
-      "parentChain": [
-        "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode"
-      ],
-      "memorySequence": 0,
-      "memoryNameHistory": [],
-      "level": "1"
     }
   ]
 }

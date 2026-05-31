@@ -45,6 +45,9 @@
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/package.json",
       ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
+      "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.daemon.stderr.log",
+      "_sandbox/24--local-llm-query-intelligence/410/workload.json",
       ".opencode/skills/system-spec-kit/mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
       "mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
       "dist/context-server.js",
@@ -66,6 +69,24 @@
         "name": "context-server.js",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "run-2026-05-14-shared-daemon.summary.tsv",
+        "kind": "file",
+        "path": "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.summary.tsv",
+        "source": "derived"
+      },
+      {
+        "name": "run-2026-05-14-shared-daemon.daemon.stderr.log",
+        "kind": "file",
+        "path": "_sandbox/24--local-llm-query-intelligence/evidence/run-2026-05-14-shared-daemon.daemon.stderr.log",
+        "source": "derived"
+      },
+      {
+        "name": "workload.json",
+        "kind": "config",
+        "path": "_sandbox/24--local-llm-query-intelligence/410/workload.json",
         "source": "derived"
       },
       {
@@ -181,29 +202,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scaffold Level",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Run Node",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Packet 043 proved that one `codex exec` child per scenario is the wrong architecture for this suite. Each child starts its own MCP daemon stack, which can contend with the main session's local llama-cpp Metal context before scenario logic runs.",
     "created_at": "2026-05-14T17:20:00Z",
-    "last_save_at": "2026-05-28T06:06:28.807Z",
+    "last_save_at": "2026-05-31T05:02:01.441Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +215,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -37,12 +37,11 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
-      "tasks.md",
-      "implementation-summary.md",
       "shared/embeddings/registry.ts",
       "shared/embeddings/factory.ts",
+      "shared/embeddings/providers/README.md",
+      "mcp_server/database/vectors/README.md",
+      "tests/local-llm-features/prefix-system.vitest.ts",
       "shared/embeddings/providers/ollama.ts",
       "shared/embeddings/providers/hf-local.ts",
       "shared/embeddings/profile.ts",
@@ -50,33 +49,13 @@
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/shared/embeddings/providers/README.md",
-      ".opencode/skills/system-spec-kit/mcp_server/database/vectors/README.md"
+      ".opencode/skills/system-spec-kit/mcp_server/database/vectors/README.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "tasks.md",
-        "kind": "doc",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
       {
         "name": "registry.ts",
         "kind": "code",
@@ -87,6 +66,18 @@
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "shared/embeddings/providers/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "prefix-system.vitest.ts",
+        "kind": "test",
+        "path": "tests/local-llm-features/prefix-system.vitest.ts",
         "source": "derived"
       },
       {
@@ -120,9 +111,27 @@
         "source": "derived"
       },
       {
-        "name": "README.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/README.md",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,17 +199,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Data Flow Provider",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 1 of 6** of the embedding-consolidation and hf-local-server decomposition: the implement-now cleanup that makes nomic the only listed/default local embedding model.",
     "created_at": "2026-05-29T05:06:24.627Z",
-    "last_save_at": "2026-05-29T05:06:53.472Z",
+    "last_save_at": "2026-05-30T10:12:02.904Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +211,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -200,7 +200,7 @@
     ],
     "causal_summary": "This packet adds the validation layer for sibling `001-doctor-commands`: 23 manual testing playbook scenarios for `/doctor:*` commands, a Docker-based sandbox harness, fixture-fetch scaffolding, and root playbook indexing. It gives operators a concrete upgrade and smoke-test trail for spec-kit doctor-command behavior.",
     "created_at": "2026-05-09T14:45:34.083Z",
-    "last_save_at": "2026-05-28T06:06:29.413Z",
+    "last_save_at": "2026-05-30T10:12:02.790Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +212,8 @@
       "implementation-summary.md",
       "handover.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

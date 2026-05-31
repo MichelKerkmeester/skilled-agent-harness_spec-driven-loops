@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: two-lane deep-review remediation"
+title: "Verification Checklist: fix deep-review findings for two-lane code"
 description: "Verification Date: 2026-05-29"
 trigger_phrases:
   - "two-lane remediation checklist"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Verify items as fixes land"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/review-report.md"
+      - "../014-review-two-lane-workflow-implementation/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Verification Checklist: two-lane deep-review remediation
+# Verification Checklist: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->

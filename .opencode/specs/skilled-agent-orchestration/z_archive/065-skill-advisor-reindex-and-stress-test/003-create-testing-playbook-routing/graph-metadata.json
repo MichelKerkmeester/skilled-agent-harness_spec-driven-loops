@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The prompt `create a test playbook for stressing this skill` routed to generic `sk-doc` at 0.866 and did not surface `create:testing-playbook`. This phase exists to make the dedicated testing-playbook creation route win for that intent.",
     "created_at": "2026-05-18T07:49:27.133Z",
-    "last_save_at": "2026-05-28T06:06:28.019Z",
+    "last_save_at": "2026-05-30T10:12:01.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,8 @@
       "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

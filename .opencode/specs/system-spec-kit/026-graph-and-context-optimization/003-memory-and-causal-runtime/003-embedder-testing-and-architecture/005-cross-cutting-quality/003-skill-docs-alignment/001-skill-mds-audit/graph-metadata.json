@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The 016-019 work changed defaults across two MCPs:",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-05-28T06:06:28.993Z",
+    "last_save_at": "2026-05-30T10:12:02.340Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

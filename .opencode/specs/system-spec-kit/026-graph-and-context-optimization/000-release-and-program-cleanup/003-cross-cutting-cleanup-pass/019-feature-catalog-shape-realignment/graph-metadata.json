@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Per-feature feature-catalog snippets had drifted away from the canonical sk-doc shape. The largest drift lived in the `code_graph` and `skill_advisor` catalogs, with additional lint drift in the main `system-spec-kit` catalog.",
     "created_at": "2026-05-18T08:15:53.136Z",
-    "last_save_at": "2026-05-28T06:06:28.319Z",
+    "last_save_at": "2026-05-30T10:12:01.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,6 +203,8 @@
       "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

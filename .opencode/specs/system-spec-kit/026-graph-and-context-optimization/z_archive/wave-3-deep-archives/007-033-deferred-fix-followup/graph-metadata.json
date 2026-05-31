@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Packet 018 fixed 14 of 17 actionable findings from the 017 deep-review, deferring 5 (F001, F006/F011, F012, F017, F018) with documented rationale. The user requested all deferred items be addressed. This packet closes them.",
     "created_at": "2026-05-14T21:35:00Z",
-    "last_save_at": "2026-05-28T06:06:29.447Z",
+    "last_save_at": "2026-05-30T10:12:02.822Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

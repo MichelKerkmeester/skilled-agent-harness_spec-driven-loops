@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "children_ids": [
+    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract",
+    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/002-lib-impl",
+    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+    "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/004-test"
+  ],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 004",
+      "code-graph impact analysis",
+      "code_graph_impact_analysis",
+      "impact analysis"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "004",
+      "code-graph",
+      "impact",
+      "analysis",
+      "five",
+      "deterministic",
+      "risk",
+      "signals",
+      "003",
+      "code"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Impact Analysis",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Primary Dependency",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The five deterministic risk signals are:",
+    "created_at": "2026-05-08T15:00:00Z",
+    "last_save_at": "2026-05-30T10:12:02.864Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

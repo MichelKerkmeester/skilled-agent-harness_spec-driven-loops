@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/014-review-two-lane-workflow-implementation",
+  "description": "Review the two-lane workflow implementation with gpt-5.5 and Opus adjudication, producing findings for follow-up fixes.",
+  "keywords": [
+    "deep",
+    "review",
+    "two-lane",
+    "gpt-5.5",
+    "model-benchmark",
+    "121"
+  ],
+  "lastUpdated": "2026-05-29T10:35:00Z",
+  "specId": "014",
+  "folderSlug": "014-review-two-lane-workflow-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: review two-lane workflow implementation"
+}

@@ -112,25 +112,25 @@ Aggregate scope by arc; per-phase detail (plan/tasks/checklist) lives in each ch
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-mode-selector-design/ | Design: mode selector + 3 pluggable seams + ADRs + build plan (Level 3) | Complete |
-| 2 | 002-implementation-deep-research/ | Deep-research (MiniMax M2.7) deepening the implementation design — converged, 5 evidence iters | Complete |
-| 3 | 003-build-benchmark-mode/ | Build the mode from the 002 research build-delta (loop-host.cjs + dispatch-model.cjs + scorer port + mode-aware records), TST-1 identity gate | Complete |
-| 4 | 004-fix-hardening-review-findings-for-benchmark-mode/ | Remediate the tri-model review (phase 007) findings: 3 unique P1 fixes (cwd propagation, path-guard boundary, criteria-exec gate + grader clamp) + actionable P2s, with regression tests | Complete |
-| 5 | 005-optin-5dim-scorer-and-skill-docs/ | Wire the ported 5-dim scorer as an opt-in run-benchmark scorer (closes review deferral F-P2-1/2) + document the model-benchmark mode in SKILL.md (sk-doc DQI 97) | Complete |
-| 6 | 006-deep-loop-empty-archive-dir-fix/ | Maintenance: deep-research init eagerly created `{mode}_archive` (empty dirs); make all 4 deep-loop restart branches archive lazily+guarded + regression tests; sweep existing empties | Complete |
-| 7 | 007-benchmark-mode-hardening-review/ | Tri-model deep review (gpt-5.5 + MiniMax M2.7 + Opus 4.8 arbiter) of the 120 MiniMax integration + the 121 benchmark-mode build (correctness/security/traceability/maintainability); CONDITIONAL verdict, findings fed phase 004 | Complete |
-| 8 | 008-command-lane-asking/ | Extend `/deep:start-agent-improvement-loop` to ask the use-case lane (improve an agent file vs benchmark a model/prompt) and branch; add model-benchmark workflow YAMLs + a dedicated `/deep:start-model-benchmark-loop` command + gemini mirror + README/advisor registration | Complete |
-| 9 | 009-skill-md-two-lane/ | SKILL.md restructure into two co-equal lanes + smart-router MODEL_BENCHMARK intent | Complete |
-| 10 | 010-references-assets-lane-reorg/ | Physically separate references/ + assets/ into agent-improvement / model-benchmark / shared lanes + update SKILL literals + graph-metadata | Complete |
-| 11 | 011-agent-lane-note/ | Upgrade the agent "Mode awareness" note to "Lane awareness" across all 4 runtime mirrors | Complete |
-| 12 | 012-catalog-playbook-advisor-lane-labels/ | feature_catalog lane legend + playbook note + advisor recompile + F-P2-5 reduce-state mode display + test | Complete |
-| 13 | 013-scripts-physical-reorg/ | Move 16 scripts into agent-improvement / model-benchmark / shared subdirs + rewrite all refs + fix __dirname (high-risk, last) | Complete |
-| 14 | 014-two-lane-deep-review/ | 10-iteration deep review (cli-codex gpt-5.5 + Opus 4.8 adjudication) of the two-lane program; CONDITIONAL verdict; active registry 1 P0 + 16 P1 + 16 P2 | Complete |
-| 15 | 015-fix-deep-review-findings-for-two-lane-code/ | Remediate the 014 deep-review findings (1 P0 + 16 P1 + 16 P2) | Complete |
-| 16 | 016-script-subfolder-readmes/ | Add code-folder READMEs to every source script subfolder (sk-doc code template) + audit existing | Complete |
-| 17 | 017-two-lane-opus-deep-review/ | Second deep review with Opus 4.8 agents (workflow format) cross-checking the post-015 two-lane code | Complete |
-| 18 | 018-fix-opus-review-findings-for-two-lane-code/ | Remediate the 017 Opus deep-review findings (4 P1 + 13 P2): materializer fixture-id guard, bundle-gate criteria-exec gate, dead Mode-4 anchors, executable Lane B benchmark-mode promotion + doc truth, with regression tests and per-finding dispositions (Level 3) | Complete |
-| 19 | 019-skill-doc-alignment-and-changelog-consolidation/ | Closeout: one comprehensive v1.9.0.0 changelog covering all of 121 + align the skill README and dead "Mode 4" labels to the two-lane reality | Complete |
+| 1 | 001-design-model-benchmark-mode-selector/ | Design the model-benchmark mode selector, pluggable seams, architecture decisions, and build plan. | Complete |
+| 2 | 002-research-model-benchmark-implementation/ | Deep-research the build-ready implementation delta for model-benchmark mode. | Complete |
+| 3 | 003-build-model-benchmark-mode-runtime/ | Build the model-benchmark runtime: loop host, model dispatch, scorer port, mode-aware records, and identity gate. | Complete |
+| 4 | 004-fix-hardening-findings-for-model-benchmark/ | Fix the hardening-review findings for model-benchmark mode with regression coverage. | Complete |
+| 5 | 005-add-opt-in-5dim-scorer-and-skill-docs/ | Add the opt-in 5dim scorer path and model-benchmark skill documentation. | Complete |
+| 6 | 006-deep-loop-empty-archive-dir/ | Fix empty archive directory handling for deep-loop restart branches. | Complete |
+| 7 | 007-review-model-benchmark-mode-hardening/ | Review model-benchmark mode hardening with tri-model evidence and remediation findings. | Complete |
+| 8 | 008-add-model-benchmark-lane-selection-prompts/ | Add lane-selection prompts and the dedicated model-benchmark command workflow. | Complete |
+| 9 | 009-restructure-skill-md-two-lane/ | Restructure SKILL.md around co-equal two-lane workflow and routing. | Complete |
+| 10 | 010-reorganize-two-lane-references-assets/ | Reorganize references and assets into two-lane workflow folders. | Complete |
+| 11 | 011-add-agent-lane-awareness-note/ | Add lane-awareness guidance across all agent mirrors. | Complete |
+| 12 | 012-label-catalog-playbook-and-advisor-lanes/ | Label catalog, playbook, and advisor surfaces with two-lane terminology. | Complete |
+| 13 | 013-reorganize-script-lane-folders/ | Reorganize scripts into physical lane folders and update runtime references. | Complete |
+| 14 | 014-review-two-lane-workflow-implementation/ | Review the two-lane workflow implementation and produce actionable findings. | Complete |
+| 15 | 015-fix-deep-review-findings-for-two-lane-code/ | Fix the 014 deep-review findings for two-lane code. | Complete |
+| 16 | 016-add-readmes-for-script-subfolders/ | Add code-folder READMEs to every source script subfolder. | Complete |
+| 17 | 017-review-two-lane-workflow-with-opus/ | Review the post-fix two-lane workflow implementation with Opus. | Complete |
+| 18 | 018-fix-opus-findings-for-two-lane-code/ | Fix the 017 Opus review findings for two-lane code. | Complete |
+| 19 | 019-align-skill-docs-and-consolidate-changelog/ | Align skill docs to the two-lane workflow and consolidate the packet changelog. | Complete |
 
 ### Phase Transition Rules
 
@@ -143,22 +143,22 @@ Aggregate scope by arc; per-phase detail (plan/tasks/checklist) lives in each ch
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-mode-selector-design | 002-implementation-deep-research | Design ADRs + build plan authored | strict validate on 001 |
-| 002-implementation-deep-research | 003-build-benchmark-mode | Research converged with a verified, build-ready delta | strict validate on 002 + ground-truth verification |
-| 003-build-benchmark-mode | 004-fix-hardening-review-findings-for-benchmark-mode | Build shipped + tri-model review (phase 007) surfaced findings | review-report.md CONDITIONAL verdict |
-| 004-fix-hardening-review-findings-for-benchmark-mode | 005-optin-5dim-scorer-and-skill-docs | Remediation closed; the substantive deferral (5-dim scorer not wired) warranted a follow-on | review-report §11 + 004 dispositions |
-| 007-benchmark-mode-hardening-review | 008-command-lane-asking | Two-lane UX gap identified: no command asks the use-case lane and the mode is a bolt-on | strict validate on 008 + CMD-1 behavioral identity |
-| 008-command-lane-asking | 009-skill-md-two-lane | Command layer shipped; SKILL.md must catch up to two co-equal lanes | DQI excellent + validate strict on 009 |
-| 010-references-assets-lane-reorg | 011-agent-lane-note | references/assets lane split shipped; agent note must catch up to Lane awareness | strict validate on 011 + 4-mirror parity check |
-| 011-agent-lane-note | 012-catalog-playbook-advisor-lane-labels | Agent Lane note shipped across 4 mirrors; remaining catalog/playbook/advisor surfaces follow | strict validate on 012 + advisor recompile + F-P2-5 test |
-| 010-references-assets-lane-reorg | 013-scripts-physical-reorg | references and assets lane split shipped, so the scripts physical reorg can follow on the same lane layout | strict validate on 010 + SKILL literal sweep returns zero stale paths |
-| 012-catalog-playbook-advisor-lane-labels | 013-scripts-physical-reorg | Doc/catalog/advisor lane surfaces shipped; the scripts tree is the last on-disk surface still flat | strict validate on 012 + script lane subdirs hold all 16 movers + test suite green |
-| 013-scripts-physical-reorg | 014-two-lane-deep-review | Scripts lane reorg shipped; the full two-lane program (008-013) is reviewable as one unit | strict validate on 013 + vitest 133/133 + both-lane smokes |
-| 014-two-lane-deep-review | 015-fix-deep-review-findings-for-two-lane-code | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
-| 015-fix-deep-review-findings-for-two-lane-code | 016-script-subfolder-readmes | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
-| 016-script-subfolder-readmes | 017-two-lane-opus-deep-review | 014 (gpt-5.5) review + 015 remediation shipped; an independent Opus 4.8 second opinion must confirm the fixes hold and hunt new issues | review-report.md verdict + all-findings.jsonl |
-| 017-two-lane-opus-deep-review | 018-fix-opus-review-findings-for-two-lane-code | Opus deep review returned CONDITIONAL with 4 active P1 plus 13 P2; remediation must close them with one disposition each | review-report.md CONDITIONAL verdict + strict validate on 018 |
-| 018-fix-opus-review-findings-for-two-lane-code | 019-skill-doc-alignment-and-changelog-consolidation | Two-lane program shipped + reviewed/remediated; the skill README and changelog still lagged the post-121 reality | strict validate on 019 + rg "Mode 4" = 0 outside changelog |
+| 001-design-model-benchmark-mode-selector | 002-research-model-benchmark-implementation | Design ADRs + build plan authored | strict validate on 001 |
+| 002-research-model-benchmark-implementation | 003-build-model-benchmark-mode-runtime | Research converged with a verified, build-ready delta | strict validate on 002 + ground-truth verification |
+| 003-build-model-benchmark-mode-runtime | 004-fix-hardening-findings-for-model-benchmark | Build shipped + tri-model review (phase 007) surfaced findings | review-report.md CONDITIONAL verdict |
+| 004-fix-hardening-findings-for-model-benchmark | 005-add-opt-in-5dim-scorer-and-skill-docs | Remediation closed; the substantive deferral (5-dim scorer not wired) warranted a follow-on | review-report §11 + 004 dispositions |
+| 007-review-model-benchmark-mode-hardening | 008-add-model-benchmark-lane-selection-prompts | Two-lane UX gap identified: no command asks the use-case lane and the mode is a bolt-on | strict validate on 008 + CMD-1 behavioral identity |
+| 008-add-model-benchmark-lane-selection-prompts | 009-restructure-skill-md-two-lane | Command layer shipped; SKILL.md must catch up to two co-equal lanes | DQI excellent + validate strict on 009 |
+| 010-reorganize-two-lane-references-assets | 011-add-agent-lane-awareness-note | references/assets lane split shipped; agent note must catch up to Lane awareness | strict validate on 011 + 4-mirror parity check |
+| 011-add-agent-lane-awareness-note | 012-label-catalog-playbook-and-advisor-lanes | Agent Lane note shipped across 4 mirrors; remaining catalog/playbook/advisor surfaces follow | strict validate on 012 + advisor recompile + F-P2-5 test |
+| 010-reorganize-two-lane-references-assets | 013-reorganize-script-lane-folders | references and assets lane split shipped, so the scripts physical reorg can follow on the same lane layout | strict validate on 010 + SKILL literal sweep returns zero stale paths |
+| 012-label-catalog-playbook-and-advisor-lanes | 013-reorganize-script-lane-folders | Doc/catalog/advisor lane surfaces shipped; the scripts tree is the last on-disk surface still flat | strict validate on 012 + script lane subdirs hold all 16 movers + test suite green |
+| 013-reorganize-script-lane-folders | 014-review-two-lane-workflow-implementation | Scripts lane reorg shipped; the full two-lane program (008-013) is reviewable as one unit | strict validate on 013 + vitest 133/133 + both-lane smokes |
+| 014-review-two-lane-workflow-implementation | 015-fix-deep-review-findings-for-two-lane-code | Deep review returned CONDITIONAL with a confirmed P0 plus a P1/P2 cluster; remediation must close them before Lane B ships | review-report.md CONDITIONAL verdict + all-findings.jsonl |
+| 015-fix-deep-review-findings-for-two-lane-code | 016-add-readmes-for-script-subfolders | Lane reorg shipped and stable; lane subfolders still lack local code-folder READMEs | strict validate on 016 + README in every source script subfolder |
+| 016-add-readmes-for-script-subfolders | 017-review-two-lane-workflow-with-opus | 014 (gpt-5.5) review + 015 remediation shipped; an independent Opus 4.8 second opinion must confirm the fixes hold and hunt new issues | review-report.md verdict + all-findings.jsonl |
+| 017-review-two-lane-workflow-with-opus | 018-fix-opus-findings-for-two-lane-code | Opus deep review returned CONDITIONAL with 4 active P1 plus 13 P2; remediation must close them with one disposition each | review-report.md CONDITIONAL verdict + strict validate on 018 |
+| 018-fix-opus-findings-for-two-lane-code | 019-align-skill-docs-and-consolidate-changelog | Two-lane program shipped + reviewed/remediated; the skill README and changelog still lagged the post-121 reality | strict validate on 019 + rg "Mode 4" = 0 outside changelog |
 <!-- /ANCHOR:phase-map -->
 
 ---

@@ -1,4 +1,5 @@
 {
+  "level": "1",
   "specFolder": ".opencode/specs/system-spec-kit/031-embedding-stack-hardening/004-perf-instrumentation-batching",
   "description": "Feature Specification: Perf instrumentation + batching (measure-first)",
   "keywords": [
@@ -9,7 +10,7 @@
     "batching",
     "measure-first"
   ],
-  "lastUpdated": "2026-05-29T11:22:34.098Z",
+  "lastUpdated": "2026-05-29T15:06:08.095Z",
   "specId": "004",
   "folderSlug": "perf-instrumentation-batching",
   "parentChain": [
@@ -18,7 +19,8 @@
     "system-spec-kit",
     "031-embedding-stack-hardening"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_16-06__waiter-b6hk2n2ud-is-set-it-completes-when-codex.md"
+  ]
 }

@@ -1,0 +1,48 @@
+{
+  "title": "Phase 002.004 — code-graph-hld-lld.vitest.ts Test Suite",
+  "trigger_phrases": [
+    "027 phase 002 test",
+    "code-graph-hld-lld.vitest.ts",
+    "HLD/LLD test suite"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "spec-scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/001-contract"
+    ]
+  },
+  "soft_depends_on": [
+    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/002-lib-impl",
+    "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/003-handler"
+  ],
+  "derived": {
+    "status": "spec-scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld/004-test",
+  "description": "Feature Specification: 004 Tests",
+  "keywords": [
+    "feature",
+    "specification",
+    "004",
+    "tests"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.042Z",
+  "specId": "004",
+  "folderSlug": "test",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "001-code-graph-hld-lld"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,26 @@
+{
+  "specFolder": "121-deep-agent-improvement-benchmark-mode/018-fix-opus-findings-for-two-lane-code",
+  "description": "Fix the 017 Opus review findings for two-lane code, including materializer fixture-id safety, criteria-exec gating, live documentation anchors, benchmark-mode promotion, and dispositions.",
+  "keywords": [
+    "opus",
+    "review",
+    "remediation",
+    "017",
+    "findings",
+    "materializer",
+    "fixture-id",
+    "bundle-gate",
+    "benchmark-mode",
+    "promotion"
+  ],
+  "lastUpdated": "2026-05-29T17:10:00.000Z",
+  "specId": "018",
+  "folderSlug": "018-fix-opus-findings-for-two-lane-code",
+  "parentChain": [
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3",
+  "title": "Feature Specification: fix Opus review findings for two-lane code"
+}

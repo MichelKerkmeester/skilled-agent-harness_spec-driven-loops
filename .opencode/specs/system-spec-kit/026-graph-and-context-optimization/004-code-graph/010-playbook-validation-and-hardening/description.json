@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/010-playbook-validation-and-hardening",
   "description": "Feature Specification: Code Graph Playbook Validation",
   "keywords": [
     "feature",
@@ -9,12 +9,10 @@
     "playbook",
     "validation"
   ],
-  "lastUpdated": "2026-05-28T06:13:46.366Z",
+  "lastUpdated": "2026-05-28T21:38:19.978Z",
   "specId": "010",
   "folderSlug": "playbook-validation-and-hardening",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "004-code-graph"

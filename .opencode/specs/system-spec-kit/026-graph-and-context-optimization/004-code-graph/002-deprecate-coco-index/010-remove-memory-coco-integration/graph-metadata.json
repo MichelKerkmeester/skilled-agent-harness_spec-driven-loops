@@ -89,11 +89,13 @@
     ],
     "causal_summary": "Excise memory's vestigial CocoIndex coupling and repair the 002 cross-skill type break, with `npm run typecheck` AND full `npm run test` (vitest) green as the hard gate. No change to actual memory search results.",
     "created_at": "2026-05-25T00:00:00.000Z",
-    "last_save_at": "2026-05-28T06:06:29.213Z",
+    "last_save_at": "2026-05-30T10:12:02.548Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Phase 1 turned a research recommendation into runtime code by introducing one shared payload/provenance contract across startup, recovery, and compaction. The Level 3 repair keeps that same shipped scope intact and adds the architecture context needed for future recovery and review.",
     "created_at": "2026-04-12T09:02:53.436Z",
-    "last_save_at": "2026-05-28T06:06:30.134Z",
+    "last_save_at": "2026-05-30T10:12:03.513Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -216,6 +216,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

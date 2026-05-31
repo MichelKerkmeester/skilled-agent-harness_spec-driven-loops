@@ -1,0 +1,2287 @@
+user
+You are a senior code reviewer performing ONE iteration (iteration 2) of an autonomous deep-review loop over the remediated work in packet 122 (the deep-improvement skill's Lane C skill-benchmark, the deep-agent-improvement->deep-improvement rename, and three-lane docs). A prior review already fixed 4 P1 + 6 P2; THIS pass independently confirms the remediation held and looks for anything missed.
+Repo root (your workdir): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+
+REVIEW ONLY THIS ITERATION'S DIMENSION. Be strictly READ-ONLY: inspect files; do NOT modify anything, just report. Be efficient: target 6 to 11 file reads, breadth over exhaustive depth.
+
+THIS ITERATION'S FOCUS:
+DIMENSION: Lane C code spot-check. Review .opencode/skills/deep-improvement/scripts/skill-benchmark/{d5-connectivity,score-skill-benchmark,run-skill-benchmark}.cjs and scripts/shared/loop-host.cjs. Confirm the d5 missing-SKILL.md early-return score is 60 (matches penalty path), SKILL_BENCHMARK_RUN_OPTIONS forwards only consumed flags, and find any real logic bug.
+
+Rules:
+- Cite EVERY finding with an exact repo-relative file path and line number. Re-read the cited line before recording a P0.
+- Classify each finding: P0 (correctness/security/contradiction that breaks behavior), P1 (degraded/incomplete/missing validation), P2 (style/naming/docs/polish).
+- Be skeptical and precise. Do NOT invent line numbers. If you cannot confirm an issue from the actual file, do not report it.
+- A clean dimension is a valid result. Report zero findings rather than padding.
+
+OUTPUT (exactly this structure):
+## Focus
+<one line: the dimension>
+## Findings
+<for each: severity, file:line, issue (1-2 sentences), one-line fix. If none: "No findings.">
+## Verdict
+<one line>
+Then a line that is EXACTLY one of: Review verdict: PASS | Review verdict: CONDITIONAL | Review verdict: FAIL
+
+Then, AFTER the verdict line, emit the machine block:
+===FINDINGS_JSON===
+[{"id":"f-p122-i2-01","severity":"P0|P1|P2","file":"relative/path","line":123,"issue":"...","fix":"..."}]
+===END_FINDINGS===
+(emit [] between the markers if there are no findings)
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: SessionStart Completed
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+hook: UserPromptSubmit Completed
+codex
+SKILL ROUTING: User’s request is a read-only deep-review iteration, so I’m using `deep-review` for the loop constraints and `sk-code-review` for the findings-first review format. I’ll keep this to the Lane C files and report only confirmed issues.
+exec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/deep-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/SKILL.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+name: sk-code-review
+description: "Stack-agnostic code-review baseline: findings-first severity, mandatory security/correctness minimums, sk-code evidence."
+allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
+version: 1.2.0.0
+---
+
+<!-- Keywords: sk-code-review, code-review, pull-request, findings-first, security-review, quality-gate, stack-agnostic, baseline-surface, sk-code -->
+
+# Code Review Baseline - Stack-Agnostic Findings-First Review
+
+Universal findings-first review baseline paired with `sk-code` surface standards evidence for the detected code surface.
+
+## 1. WHEN TO USE
+
+### Activation Triggers
+
+Use this skill when:
+- A user asks for code review, PR review, quality gate, or merge readiness.
+- A workflow dispatches `@review` for pre-commit or gate validation.
+- A user requests security/correctness risk analysis before merge.
+- A user wants severity-ranked findings with file:line evidence.
+
+### Keyword Triggers
+
+`review`, `code review`, `pr review`, `audit`, `security review`, `quality gate`, `request changes`, `findings`, `blocking issues`, `merge readiness`
+
+### Use Cases
+
+1. Review-only pass: findings-first output with no code edits.
+2. Gate validation: score + pass/fail recommendation for orchestrated workflows.
+3. Focused risk pass: security, concurrency, correctness, or removal-focused review.
+
+### When NOT to Use
+
+- Feature implementation without review intent.
+- Pure documentation editing where code behavior is not being assessed.
+- Git-only workflow tasks (branching, rebasing, commit hygiene) without code-quality evaluation intent.
+
+---
+
+## 2. SMART ROUTING
+
+
+### Primary Detection Signal
+
+Review behavior follows a baseline+surface-evidence model:
+
+- Baseline (always): `sk-code-review` findings-first doctrine.
+- Surface standards evidence (when available): `sk-code` detected surface resources.
+- Unknown surfaces: review against baseline security/correctness only and disclose uncertainty.
+
+### Phase Detection
+
+```text
+TASK CONTEXT
+    |
+    +- STEP 0: Load `sk-code-review` baseline + `sk-code` surface evidence. The dispatcher / agent assembling the sk-code-review prompt MUST prepend `CODE-REVIEW\n\n` as the first two lines of the rendered prompt before the reviewer LLM sees it. Reference resources stay unchanged.
+    +- STEP 1: Score intents (top-2 when ambiguity delta <= 1.0)
+    +- Phase 1: Scope and baseline checks
+    +- Phase 2: Overlay alignment
+    +- Phase 3: Findings-first analysis
+    +- Phase 4: Output contract and next action
+```
+
+### Resource Domains
+
+The router discovers markdown resources recursively from `references/` and `assets/`, then applies weighted intent scoring.
+
+Knowledge is organized by domain mapping:
+
+```text
+references/review_core.md
+references/review_ux_single_pass.md
+references/*_checklist.md
+assets/review/...
+```
+
+- `references/review_core.md` for shared doctrine consumed by both `@review` and `@deep-review`.
+- `references/review_ux_single_pass.md` for interactive single-pass review behavior.
+- `references/` for baseline review flow, severity contracts, and risk checklists.
+- `assets/` for optional reusable templates/checklists (if present in this skill).
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+| --- | --- | --- |
+| ALWAYS | Every invocation, including security/correctness reviews | `references/review_core.md`, `references/review_ux_single_pass.md`, `references/security_checklist.md`, `references/code_quality_checklist.md`, `references/fix-completeness-checklist.md` |
+| CONDITIONAL | Intent score indicates need | `references/solid_checklist.md`, `references/code_quality_checklist.md`, `references/removal_plan.md`, `references/test_quality_checklist.md` |
+| ON_DEMAND | Explicit deep-dive request | Full mapped reference set |
+
+### Precedence Matrix
+
+| Rule Type | Source of Truth | Behavior |
+| --- | --- | --- |
+| Security/correctness minimums | `sk-code-review` baseline | Always enforced; never relaxed by surface guidance |
+| Surface style/process conventions | `sk-code` detected surface | Surface guidance overrides baseline generic style/process advice |
+| Verification/build/test commands | `sk-code` detected surface | Surface commands are authoritative for the detected surface |
+| Ambiguous conflicts | Escalation | Ask for clarification; do not guess |
+
+### Unknown Fallback Checklist
+
+If intent/stack detection is unclear, request:
+
+1. Review target scope (full diff, staged files, commit range, or explicit file list).
+2. Primary risk class (security, correctness, performance, maintainability).
+3. Architecture lens priority (KISS/DRY/SOLID strict or optional).
+4. Stack/context (system code, web/frontend, or other/full-stack).
+5. Desired output mode (findings-only or findings + gated fix follow-up).
+
+### Smart Router Pseudocode
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+# Discover resources recursively across references and assets.
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCES = [
+    "references/review_core.md",
+    "references/review_ux_single_pass.md",
+    "references/security_checklist.md",
+    "references/code_quality_checklist.md",
+    "references/fix-completeness-checklist.md",
+]
+
+INTENT_SIGNALS = {
+    "SECURITY": {"weight": 5, "keywords": ["security", "auth", "injection", "vulnerability", "race"]},
+    "QUALITY": {"weight": 4, "keywords": ["correctness", "bug", "regression", "performance", "boundary", "contract", "breaking change", "backward compatible", "compatibility"]},
+    "KISS": {"weight": 3, "keywords": ["kiss", "simple", "simplicity", "over-engineer", "overengineering"]},
+    "DRY": {"weight": 3, "keywords": ["dry", "duplication", "duplicate", "copy-paste", "repeated logic"]},
+    "SOLID": {"weight": 3, "keywords": ["solid", "architecture", "design", "coupling", "cohesion", "module", "adapter", "interface", "abstraction", "responsibility", "dependency", "boundary"]},
+    "REMOVAL": {"weight": 3, "keywords": ["remove", "dead code", "cleanup", "deprecate"]},
+    "TESTING": {"weight": 3, "keywords": ["test", "tests", "testing", "coverage", "assertion", "mock", "stub", "fixture", "test quality", "brittle"]},
+}
+
+RESOURCE_MAP = {
+    "SECURITY": ["references/security_checklist.md"],
+    "QUALITY": ["references/code_quality_checklist.md"],
+    "KISS": ["references/code_quality_checklist.md"],
+    "DRY": ["references/code_quality_checklist.md"],
+    "SOLID": ["references/solid_checklist.md"],
+    "REMOVAL": ["references/removal_plan.md"],
+    "TESTING": ["references/test_quality_checklist.md"],
+}
+
+ON_DEMAND_KEYWORDS = ["deep review", "full review", "all checks", "comprehensive", "flag false positives", "blocking regressions", "list findings", "read-only only", "underrepresented", "scope correctly"]
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm review scope (diff/staged/files/commit range)",
+    "Confirm risk priority (security/correctness/performance/maintainability/test quality/contract safety)",
+    "Confirm architecture lens (KISS/DRY/SOLID required or optional)",
+    "Confirm stack context (system-code/web/full-stack)",
+    "Confirm findings-only vs findings+fix follow-up",
+]
+
+def _task_text(task) -> str:
+    return " ".join([
+        str(getattr(task, "text", "")),
+        str(getattr(task, "query", "")),
+        str(getattr(task, "description", "")),
+        " ".join(getattr(task, "keywords", []) or []),
+    ]).lower()
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def score_intents(task) -> dict[str, float]:
+    text = _task_text(task)
+    scores = {intent: 0.0 for intent in INTENT_SIGNALS}
+    for intent, cfg in INTENT_SIGNALS.items():
+        for keyword in cfg["keywords"]:
+            if keyword in text:
+                scores[intent] += cfg["weight"]
+    return scores
+
+def select_intents(scores: dict[str, float], ambiguity_delta: float = 1.0, max_intents: int = 2) -> list[str]:
+    ranked = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    if not ranked or ranked[0][1] <= 0:
+        return ["QUALITY"]
+    selected = [ranked[0][0]]
+    if len(ranked) > 1 and ranked[1][1] > 0 and (ranked[0][1] - ranked[1][1]) <= ambiguity_delta:
+        selected.append(ranked[1][0])
+    return selected[:max_intents]
+
+def detect_surface_evidence(task, workspace_files=None, changed_files=None) -> str:
+    text = _task_text(task)
+    files = " ".join((workspace_files or []) + (changed_files or [])).lower()
+
+    if ".opencode/" in files or "jsonc" in text or "mcp" in text:
+        return "sk-code:<surface>"
+    if any(term in text for term in ["frontend", "web", "css", "dom", "browser"]) or any(
+        marker in files for marker in ["next.config", "vite.config", "package.json", "src/"]
+    ):
+        return "sk-code:<surface>"
+    return "sk-code:<surface>"
+
+def route_review_resources(task, workspace_files=None, changed_files=None):
+    inventory = discover_markdown_resources()
+    text = _task_text(task)
+    scores = score_intents(task)
+    intents = select_intents(scores, ambiguity_delta=1.0)
+
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+
+ succeeded in 0ms:
+---
+name: deep-review
+description: "Autonomous iterative code-review loop with externalized state, convergence detection, P0/P1/P2 findings, fresh context per pass."
+allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, code_graph_query]
+argument-hint: "[target] [:auto|:confirm] [--max-iterations=N] [--convergence=N]"
+version: 1.10.2.0
+---
+<!-- Note: Task is for the command executor (loop management); @deep-review agent is LEAF-only (no Task). No WebFetch: review is code-only. -->
+
+<!-- Keywords: deep-review, code-audit, iterative-review, review-loop, convergence-detection, externalized-state, fresh-context, review-agent, JSONL-state, severity-findings, P0-P1-P2, release-readiness, spec-alignment -->
+
+# Autonomous Deep Review Loop
+
+Iterative code review and quality auditing protocol with fresh context per iteration, externalized state, convergence detection, and severity-weighted findings (P0/P1/P2).
+
+Runtime path resolution:
+- OpenCode/Copilot runtime: `.opencode/agents/*.md`
+- Claude runtime: `.claude/agents/*.md`
+- Codex runtime: `.codex/agents/*.toml`
+
+Convergence threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 0.05 vs deep-ai-council 0.20) live in `references/convergence/convergence.md` §1 under "Threshold Semantics and Sibling Parity".
+
+## 1. WHEN TO USE
+
+### When to Use This Skill
+
+Use this skill when:
+- Code quality audit requiring multiple rounds across different review dimensions
+- Spec folder validation requiring cross-reference checks between docs and implementation
+- Release readiness check before shipping a feature or component
+- Finding misalignments between spec documents and actual code
+- Verifying cross-references across documentation, agents, commands, and code
+- Iterative review where each dimension's findings inform subsequent dimensions
+- Unattended or overnight audit sessions
+
+### When NOT to Use
+
+- Simple single-pass code review (use `sk-code-review` instead)
+- Known issues that just need fixing (go directly to implementation)
+- Implementation tasks (use `sk-code` or `/speckit:implement`)
+- Quick one-file checks (use direct Grep/Read)
+- Fewer than 2 review dimensions needed (single-pass suffices)
+
+### FORBIDDEN INVOCATION PATTERNS
+
+This skill is invoked EXCLUSIVELY through the `/deep:start-review-loop` command. The command's YAML workflow owns state, dispatch, and convergence.
+
+**NEVER:**
+- Write a custom bash/shell dispatcher to parallelize iterations (ad-hoc shell fan-out)
+- Invoke cli-codex / cli-gemini / cli-claude-code directly in a loop to simulate iterations
+- Manually write iteration prompts to `/tmp` and dispatch them via `copilot -p`
+- Dispatch the `@deep-review` LEAF agent via the Task tool for iteration loops (the agent is LEAF, a single iteration, and MUST be driven by the command's workflow)
+- Skip the state machine: `deep-review-state.jsonl`, `deep-review-config.json`, `deltas/`, `prompts/`, `logs/`
+- Manage iteration state outside the resolved local review packet under `{spec_folder}/review/`
+
+**COMMAND-DRIVEN FAN-OUT IS SUPPORTED:** use `--executor`/`--executors`/`--concurrency` flags on `/deep:start-review-loop`. The command's YAML `step_fanout_spawn` owns multi-lineage dispatch; `fanout-merge.cjs` applies strongest-restriction (any lineage active P0 → merged FAIL). This is not ad-hoc shell dispatch — it is the canonical fan-out path. Intra-lineage wave orchestration remains deferred.
+
+**ALWAYS:**
+- Invoke via `/deep:start-review-loop :auto` or `/deep:start-review-loop :confirm`
+- Let the command's YAML workflow own dispatch (auto: `.opencode/commands/deep/assets/deep_start-review-loop_auto.yaml`)
+- Let `scripts/reduce-state.cjs` be the SINGLE state writer
+- Require every iteration to produce BOTH the markdown narrative AND the JSONL delta (dispatch scripts must fail if either is missing)
+- Use `resolveArtifactRoot(specFolder, 'review')` from `.opencode/skills/system-spec-kit/shared/review-research-paths.cjs` to locate the canonical review root
+
+### Trigger Phrases
+
+- "review code quality" / "audit this code"
+- "audit spec folder" / "validate spec completeness"
+- "release readiness check" / "pre-release review"
+- "find misalignments" (between spec and implementation)
+- "verify cross-references" (across docs and code)
+- "deep review" / "iterative review" / "review loop"
+- "quality audit" / "convergence detection"
+
+### Keyword Triggers
+
+`deep review`, `code audit`, `iterative review`, `review loop`, `release readiness`, `spec folder review`, `convergence detection`, `quality audit`, `find misalignments`, `verify cross-references`, `pre-release review`, `audit spec folder`
+
+---
+
+## 2. SMART ROUTING
+
+
+### Resource Loading Levels
+
+| Level | When to Load | Resources |
+|-------|-------------|-----------|
+| ALWAYS | Every skill invocation | `references/protocol/quick_reference.md` |
+| CONDITIONAL | If intent signals match | Loop protocol, convergence, state format, review contract |
+| ON_DEMAND | Only on explicit request | Full protocol docs, detailed specifications |
+
+### Smart Router Pseudocode
+
+- Pattern 1: Runtime Discovery - `discover_markdown_resources()` recursively inventories `references/` and `assets/`.
+- Pattern 2: Existence-Check Before Load - `load_if_available()` guards markdown paths, checks `inventory`, and uses `seen`.
+- Pattern 3: Extensible Routing Key - `get_routing_key()` derives the review phase from dispatch context.
+- Pattern 4: Multi-Tier Graceful Fallback - `UNKNOWN_FALLBACK` returns review disambiguation and missing phases return a "no review resources" notice.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/protocol/quick_reference.md"
+
+INTENT_SIGNALS = {
+    "REVIEW_SETUP":       {"weight": 4, "keywords": ["deep review", "review mode", "code audit", "iterative review", ":review", "audit spec"]},
+    "REVIEW_ITERATION":   {"weight": 4, "keywords": ["review iteration", "dimension review", "review findings", "P0", "P1", "P2"]},
+    "REVIEW_CONVERGENCE": {"weight": 3, "keywords": ["review convergence", "coverage gate", "verdict", "binary gate", "all dimensions"]},
+    "REVIEW_REPORT":      {"weight": 3, "keywords": ["review report", "remediation", "verdict", "release readiness", "planning packet"]},
+}
+
+NOISY_SYNONYMS = {
+    "REVIEW_SETUP":       {"audit code": 2.0, "review spec folder": 1.8, "release readiness": 1.5, "pre-release": 1.5},
+    "REVIEW_ITERATION":   {"review dimension": 1.5, "check correctness": 1.4, "check security": 1.4, "check alignment": 1.4},
+    "REVIEW_CONVERGENCE": {"all dimensions covered": 1.6, "coverage complete": 1.5, "stop review": 1.4},
+    "REVIEW_REPORT":      {"review results": 1.5, "what to fix": 1.4, "ship decision": 1.6, "final report": 1.5},
+}
+
+# RESOURCE_MAP: local markdown assets + local review-specific protocol docs
+RESOURCE_MAP = {
+    "REVIEW_SETUP":       [
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "assets/deep_review_strategy.md",
+    ],
+    "REVIEW_ITERATION":   [
+        "references/protocol/loop_protocol.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+    ],
+    "REVIEW_CONVERGENCE": [
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
+    ],
+    "REVIEW_REPORT":      [
+        "references/state/state_format.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+        "assets/deep_review_dashboard.md",
+    ],
+}
+
+LOADING_LEVELS = {
+    "ALWAYS":            [DEFAULT_RESOURCE],
+    "ON_DEMAND_KEYWORDS": ["full protocol", "all templates", "complete reference", "resume deep review", "deep-review wave", "review artifact", "release-readiness audit", "convergence-tracked", "same session lineage", "P0"],
+    "ON_DEMAND":         [
+        "references/protocol/loop_protocol.md",
+        "references/state/state_format.md",
+        "references/convergence/convergence.md",
+        "references/convergence/convergence_signals.md",
+        "references/state/state_outputs.md",
+        "references/state/state_reducer_registry.md",
+    ],
+}
+
+PHASE_RESOURCE_MAP = {
+    "init": ["references/protocol/loop_protocol.md", "references/state/state_format.md", "references/state/state_outputs.md"],
+    "iteration": ["references/protocol/loop_protocol.md", "references/convergence/convergence.md", "references/convergence/convergence_signals.md"],
+    "stuck": ["references/convergence/convergence.md", "references/convergence/convergence_signals.md", "references/protocol/loop_protocol.md", "references/state/state_reducer_registry.md"],
+    "synthesis": ["references/state/state_format.md", "references/state/state_outputs.md", "references/state/state_reducer_registry.md", "assets/deep_review_dashboard.md"],
+}
+
+NON_MARKDOWN_REFERENCES = {
+    "review_contract": "assets/review_mode_contract.yaml",
+}
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Confirm the review target or spec folder",
+    "Confirm the review phase",
+    "Provide one concrete file, diff range, or expected finding class",
+    "Confirm the verification command set before final review",
+]
+
+def _guard_in_skill(relative_path: str) -> str:
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources() -> set[str]:
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():
+            docs.extend(path for path in base.rglob("*.md") if path.is_file())
+    return {doc.relative_to(SKILL_ROOT).as_posix() for doc in docs}
+
+def get_routing_key(dispatch_context) -> str:
+    phase = str(getattr(dispatch_context, "phase", "")).strip().lower()
+    if phase:
+        return phase
+    text = str(getattr(dispatch_context, "text", "")).lower()
+    if "recovery" in text:
+        return "stuck"
+    if "convergence" in text or "synthesis" in text:
+        return "synthesis"
+    if "iteration" in text or "dimension" in text:
+        return "iteration"
+    return "init"
+
+def route_review_resources(task, dispatch_context):
+    inventory = discover_markdown_resources()
+    routing_key = get_routing_key(dispatch_context)
+    scores = score_intents(task, INTENT_SIGNALS, NOISY_SYNONYMS)
+    intents = select_intents(scores, ambiguity_delta=1.0)
+
+    loaded = []
+    seen = set()
+
+    def load_if_available(relative_path: str) -> None:
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded)
+            loaded.append(guarded)
+            seen.add(guarded)
+
+
+codex
+The review contract here is narrow: verify the specific remediation points first, then look for actual behavior breaks in the same execution path. I’m going to read the loop/review references lightly and then line-number the four target scripts.
+exec
+/bin/zsh -lc "sed -n '1,220p' .opencode/skills/sk-code-review/references/review_core.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/sk-code-review/references/security_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+title: Review Core Doctrine
+description: Shared findings-first review doctrine for both single-pass and deep-review workflows.
+---
+
+# Review Core Doctrine
+
+Shared doctrine consumed by both `@review` and `@deep-review`.
+
+---
+
+## 1. OVERVIEW
+
+Shared findings-first review doctrine for both single-pass and deep-review workflows.
+
+---
+
+## 2. SEVERITY DEFINITIONS
+
+| Level | Meaning | Handling |
+| --- | --- | --- |
+| P0 | Blocker: exploitable security issue, auth bypass, destructive data loss | Block merge |
+| P1 | Required: correctness bug, spec mismatch, must-fix gate issue | Fix before merge |
+| P2 | Suggestion: non-blocking improvement, documentation polish, style or maintainability follow-up | Optional or schedule follow-up |
+
+Escalation rule: if confidence is low but impact is high, classify toward the higher severity and state the uncertainty explicitly.
+
+---
+
+## 3. EVIDENCE REQUIREMENTS
+
+- Every `P0` and `P1` finding must include a concrete `file:line` citation.
+- Evidence must tie the finding to observed code behavior, not just a general concern.
+- `P2` findings should still include specific evidence when available, even if impact is advisory.
+- If evidence is incomplete, state the assumption and why the risk still matters.
+
+---
+
+## 4. FINDINGS OUTPUT ORDERING
+
+- Present findings before summary or praise sections.
+- Order findings by severity first: `P0`, then `P1`, then `P2`.
+- Keep ordering stable within a severity bucket by impact and confidence.
+- Separate required fixes from optional suggestions so merge decisions stay clear.
+
+---
+
+## 5. BASELINE + SURFACE PRECEDENCE
+
+Apply this skill as the baseline first, then pair it with `sk-code` surface evidence when available:
+
+- Detected code surface -> `sk-code:<surface>`
+- Unclear surfaces -> baseline-only plus explicit uncertainty
+
+Precedence rules:
+
+- Baseline security and correctness minimums are always enforced.
+- Surface style, process, build, and test conventions override generic baseline guidance.
+- Unclear conflicts must be escalated rather than guessed.
+
+---
+
+## 6. BASELINE CHECK FAMILIES
+
+Mandatory baseline families:
+
+- Correctness minimums: regression risk, contract safety, spec mismatch, destructive side effects, and boundary handling.
+- Security minimums: auth and authorization gaps, injection exposure, unsafe secrets handling, privilege misuse, and reliability risks with security impact.
+
+These minimums cannot be relaxed by surface guidance.
+
+---
+
+## 7. FINDING SCHEMA
+
+Each finding should provide:
+
+| Field | Requirement |
+| --- | --- |
+| `id` | Stable label within the review report, such as `P1-001` |
+| `severity` | One of `P0`, `P1`, `P2` |
+| `title` | Short, risk-oriented summary |
+| `file` | Primary `path:line` location |
+| `evidence` | Plain-language explanation tied to observed code |
+| `findingClass` | One of `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation` |
+| `scopeProof` | Grep/test/audit evidence that the recommendation covers same-class sites and consumers, or proves the finding is instance-only |
+| `affectedSurfaceHints` | Optional string array of producer/consumer surfaces the fix should address; recommended for actionable findings, required for cross-consumer findings. Use free-form short strings, max about 5 entries. Optional for instance-only findings. |
+| `recommendation` | Specific, scope-proportional fix or follow-up |
+
+Suggested shape:
+
+```markdown
+### P1-001 [P1] Missing authorization check
+- File: path/to/file.ts:42
+- Evidence: Request handling reaches the write path before role validation.
+- Finding class: cross-consumer
+- Scope proof: `rg -n "permission guard|write path" path/to` shows the write handler is the only unchecked consumer.
+- Affected surface hints: ["request handler", "write path", "permission guard"]
+- Recommendation: Enforce the existing permission guard before mutation.
+```
+
+---
+
+## 8. RELATED RESOURCES
+
+- [review_ux_single_pass.md](./review_ux_single_pass.md) - Interactive single-pass report flow and next-step prompts.
+- [quick_reference.md](./quick_reference.md) - Lightweight index across baseline review references.
+- [security_checklist.md](./security_checklist.md) - Security and reliability checks.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, KISS, DRY, and maintainability checks.
+
+---
+
+ succeeded in 0ms:
+---
+title: Security and Reliability Checklist
+description: Structured risk checklist for security vulnerabilities, runtime reliability issues, and concurrent-behavior defects.
+---
+
+# Security and Reliability Checklist
+
+Structured risk checklist for security vulnerabilities, runtime reliability issues, and concurrent-behavior defects.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Help reviewers prioritize exploitability and business impact, not just code style.
+
+### Core Principle
+
+When impact is unclear, prefer conservative classification and state uncertainty explicitly.
+
+---
+
+## 2. INPUT/OUTPUT SAFETY
+
+Check for:
+- XSS via unsafe HTML rendering or template interpolation.
+- SQL/NoSQL/command injection via string concatenation.
+- SSRF through unvalidated user-controlled URLs.
+- Path traversal from unchecked path input (`../`).
+- Prototype pollution from unsafe object merge operations.
+
+Review prompts:
+- "What untrusted input reaches this sink?"
+- "Is validation context-aware for this output channel?"
+
+---
+
+## 3. AUTHENTICATION AND AUTHORIZATION
+
+Check for:
+- Missing auth guards on newly added entry points.
+- Missing ownership/tenant checks for read/write actions.
+- Trust in client-supplied role flags or user IDs.
+- IDOR patterns where entity IDs are accepted without authorization.
+- Weak token/session validation (`exp`, `iss`, `aud`, algorithm checks).
+
+High-impact rule: any missing authz control on data mutation is at least P1 and often P0.
+
+---
+
+## 4. SECRETS AND PRIVACY
+
+Check for:
+- Hardcoded credentials, API keys, tokens, private keys.
+- Sensitive logs exposing PII or operational secrets.
+- Internal stack traces or environment details in user-facing errors.
+- Client-side exposure of server-only configuration values.
+
+Quick command ideas:
+
+```bash
+rg -n -i "api[_-]?key|secret|token|password|BEGIN .* PRIVATE KEY"
+```
+
+---
+
+## 5. RUNTIME RELIABILITY
+
+Check for:
+- Missing timeouts/retries for network dependencies.
+- Unbounded loops, recursion, or memory growth.
+- Blocking I/O on hot request paths.
+- Regex patterns vulnerable to catastrophic backtracking (ReDoS).
+- Missing idempotency keys for retry-prone write operations.
+
+Review prompt:
+- "What fails under load or partial network failure?"
+
+---
+
+## 6. CONCURRENCY AND RACE CONDITIONS
+
+Flag patterns:
+- Check-then-act without atomicity.
+- Read-modify-write on shared state without lock/transaction.
+- File/system operations split into non-atomic checks and actions.
+- Counter updates without atomic increment semantics.
+- Distributed coordination without lock/lease guarantees.
+
+Examples:
+
+```text
+if not exists(key):
+    create(key)
+
+value = get(key)
+value += 1
+set(key, value)
+```
+
+Reviewer questions:
+- "What happens if two requests hit this path at the same time?"
+- "Is this update atomic across all failure modes?"
+
+---
+
+## 7. RATE LIMITING AND ABUSE PREVENTION
+
+Check for:
+- Missing rate limits on authentication endpoints (login, signup, password reset).
+- Unthrottled API endpoints accepting expensive operations.
+- Missing abuse vectors: account enumeration, credential stuffing, brute force.
+- Lack of per-user or per-IP request budgets on public-facing routes.
+
+Review prompt:
+- "What stops an attacker from calling this endpoint 10,000 times per second?"
+
+---
+
+## 8. CONTENT SECURITY POLICY AND HEADERS
+
+Check for:
+- Missing or overly permissive CSP headers (`unsafe-inline`, `unsafe-eval`, wildcard sources).
+- Missing security headers: `X-Content-Type-Options`, `X-Frame-Options`, `Strict-Transport-Security`.
+- CORS misconfiguration: wildcard origins, credentials with broad origins.
+- Missing `SameSite` attribute on sensitive cookies.
+
+Review prompt:
+- "Could an attacker embed, frame, or inject scripts into this page?"
+
+---
+
+## 9. DEPENDENCY AND SUPPLY CHAIN SECURITY
+
+Check for:
+- Known vulnerabilities in dependencies (`npm audit`, `pip-audit`, `cargo audit`).
+- Unpinned or loosely pinned dependency versions (major version ranges).
+- Dependencies with no maintainer activity or known compromises.
+- Post-install scripts in untrusted packages.
+- Lock file integrity (committed and consistent with manifest).
+
+Review prompt:
+- "Are all dependencies pinned, audited, and from trusted sources?"
+
+---
+
+## 10. AUDIT LOGGING AND OBSERVABILITY
+
+Check for:
+- Missing audit logs for security-sensitive operations (auth, permission changes, data deletion).
+- Insufficient context in logs (who, what, when, from where).
+- Logging sensitive data (passwords, tokens, PII) in plain text.
+- Missing alerting for anomalous patterns (repeated auth failures, privilege escalation).
+
+Review prompt:
+- "If this action were abused, would we know about it from the logs?"
+
+---
+
+## 11. PRIVACY AND DATA HANDLING
+
+Check for:
+- PII stored without encryption at rest or purpose limitation.
+- Missing data retention policies or deletion mechanisms.
+- Cross-border data transfer without adequate safeguards.
+- Excessive data collection beyond stated purpose.
+- Missing consent mechanisms for user data processing.
+
+Review prompt:
+- "Does this code collect, store, or transmit personal data - and is that justified and protected?"
+
+---
+
+## 12. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Findings-first review flow, severity model, and output contract.
+- [code_quality_checklist.md](./code_quality_checklist.md) - Correctness, scaling, and maintainability checks.
+- [solid_checklist.md](./solid_checklist.md) - Architecture cohesion and coupling checks.
+- [removal_plan.md](./removal_plan.md) - Safe deletion and deferred removal planning.
+
+exec
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/sk-code-review/references/code_quality_checklist.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+title: Code Quality Checklist
+description: Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+---
+
+# Code Quality Checklist
+
+Correctness, performance, and boundary-condition checklist for identifying production-impacting quality defects.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Provide a systematic pass for non-security defects that still cause outages, regressions, or high maintenance cost.
+
+### Core Principle
+
+Prioritize silent-failure and data-corruption risks above stylistic concerns.
+
+---
+
+## 2. ERROR HANDLING
+
+Flag:
+- Swallowed exceptions (`catch {}` or log-only catches).
+- Overly broad exception handling hiding root causes.
+- Missing async error propagation.
+- User-facing leakage of internal stack traces.
+- Missing fallback behavior for recoverable failures.
+
+Review prompts:
+- "Will callers know this failed?"
+- "Is there enough context to debug without exposing internals?"
+
+---
+
+## 3. PERFORMANCE AND SCALING
+
+Flag:
+- N+1 query patterns.
+- Per-item network/database calls that should be batched.
+- Expensive work in hot loops without memoization/cache.
+- Synchronous blocking work in request paths.
+- Unbounded collections and memory growth risks.
+
+Review prompts:
+- "How does this behave with 10x data volume?"
+- "Can this call path be batched or cached safely?"
+
+---
+
+## 4. BOUNDARY CONDITIONS
+
+Check:
+- Null/undefined handling and optional chaining misuse.
+- Empty collection behavior for first/last/indexed access.
+- Numeric boundaries (division by zero, overflow, negative values).
+- String boundaries (empty, whitespace-only, very long input, unicode).
+- Off-by-one errors in loops, pagination, and slicing.
+
+Common risky patterns:
+
+```javascript
+const first = items[0]              // no empty check
+const avg = total / count           // count may be zero
+if (value) { /* skips valid 0 */ }  // truthy trap
+```
+
+---
+
+## 5. DATA FLOW AND CONTRACT SAFETY
+
+Flag:
+- Function or method signature changes that break existing callers (added required parameters, removed parameters, changed return types).
+- New null or undefined return paths introduced where callers expect a value.
+- Data transformation functions that silently drop fields, truncate values, or lose type precision.
+- Default parameter value changes that alter behavior for existing callers without updating call sites.
+- Implicit behavioral contract changes (sort order, iteration order, timing guarantees) not documented in the diff.
+- Public API response shape changes without versioning or migration path.
+
+Review prompts:
+- "If an existing caller is not updated, will it still work correctly after this change?"
+- "Does any data transformation lose information that downstream consumers need?"
+- "Are implicit behavioral guarantees (ordering, timing, idempotency) preserved?"
+
+Severity guidance:
+- P0 for breaking changes to public APIs or shared interfaces with no migration path.
+- P1 for new null returns or type changes that existing callers do not handle.
+- P2 for implicit contract changes with low blast radius.
+
+---
+
+## 6. MAINTAINABILITY SIGNALS
+
+Watch for:
+- Repeated logic with inconsistent behavior.
+- Magic literals where domain constants are expected.
+- Overly nested control flow reducing readability.
+- Hidden coupling through global/shared mutable state.
+- Tests missing for newly introduced edge cases.
+- Functions exceeding 20 lines or 4+ nesting levels without structural justification.
+- Deep method chaining across more than two object boundaries (Law of Demeter: a.b().c().d()).
+- Functions that produce side effects not implied by their name or signature (Principle of Least Astonishment).
+- Error messages that lack actionable context for debugging (missing what failed and what to try).
+- TODO, FIXME, or HACK comments in production code paths without an associated tracking reference (issue link or ticket number).
+- Hardcoded environment-specific values (URLs, ports, timeout thresholds) that should be externalized for deployment flexibility.
+
+Decision cue: if reviewers cannot explain intent quickly, maintenance risk is likely at least P2.
+
+---
+
+## 7. KISS / DRY ENFORCEMENT
+
+### KISS Checks
+
+Flag:
+- New abstraction layers without a current behavior need.
+- Generic helpers used in only one place.
+- Workflow complexity introduced "for future flexibility" without evidence.
+- Features, parameters, or configuration options added for speculative future use without a current requirement (YAGNI).
+
+### DRY Checks
+
+Flag:
+- Duplicated constants/rules across modules.
+- Copy-paste branches with minor name changes.
+- Repeated validation/parsing blocks that can share one source.
+- Abstractions extracted from only two instances without evidence of a shared concept. Apply the Rule of Three before consolidating to avoid premature generalization (AHA).
+
+Severity guidance:
+- P2 default for stylistic duplication/complexity.
+- Escalate to P1 if duplication or complexity introduces behavior/regression risk.
+
+---
+
+## 8. RELATED RESOURCES
+
+- [quick_reference.md](./quick_reference.md) - Baseline review flow and severity output contract.
+- [security_checklist.md](./security_checklist.md) - Security, authz, abuse, and privacy risk checks.
+- [solid_checklist.md](./solid_checklist.md) - SOLID (SRP/OCP/LSP/ISP/DIP) and architecture risk prompts.
+- [removal_plan.md](./removal_plan.md) - Removal candidate classification and migration planning.
+- [test_quality_checklist.md](./test_quality_checklist.md) - Test quality, coverage, and anti-pattern checks.
+
+Surface portability: pair this baseline with surface-specific quality guidance from `sk-code`.
+
+exec
+/bin/zsh -lc "sed -n '1,180p' .opencode/skills/deep-review/references/protocol/quick_reference.md" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+---
+title: Deep Review Quick Reference
+description: One-page cheat sheet for the autonomous deep review loop.
+---
+
+# Deep Review Quick Reference
+
+One-page cheat sheet for the autonomous deep review loop.
+
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+Use this quick reference when you need the command shape, artifact names, convergence rules, and synthesis outputs for the autonomous deep-review loop without loading the full protocol references.
+
+### When to Use
+
+- Looking up the canonical `/deep:start-review-loop` invocation without re-reading the full SKILL.md.
+- Confirming default thresholds, verdicts, or release-readiness states at a glance.
+- Refreshing the artifact-name and packet-file checklist before a manual orchestration pass.
+- Triaging a stuck loop and need the fastest path to convergence semantics.
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `/deep:start-review-loop:auto "target"` | Run autonomous review (no approval gates) |
+| `/deep:start-review-loop:confirm "target"` | Run review with approval gates at each iteration |
+| `/deep:start-review-loop "target"` | Ask which mode to use |
+
+### Parameters
+
+| Parameter | Default | Description |
+|-----------|---------|-------------|
+| `--max-iterations` | 7 | Maximum review iterations |
+| `--convergence` | 0.10 | Base sensitivity for review convergence |
+| `--spec-folder` | auto | Target spec folder path |
+| `--severity-threshold` | P2 | Minimum severity to report |
+
+---
+
+## 2. WHEN TO USE
+
+| Scenario | Use |
+|----------|-----|
+| Multi-pass code quality audit | `/deep:start-review-loop` |
+| Simple single-pass code review | `sk-code-review` |
+| Pre-release readiness check | `/deep:start-review-loop:auto "spec folder"` |
+| Spec/implementation alignment check | `/deep:start-review-loop:auto "skill sk-name"` |
+| Deep technical investigation | `/deep:start-research-loop` (different skill) |
+
+---
+
+## 3. ARCHITECTURE
+
+```
+/deep:start-review-loop  -->  YAML workflow  -->  @deep-review agent (LEAF)
+    |                    |                      |
+    |                    |                      +-- Read state
+    |                    |                      +-- Review (3-5 actions)
+    |                    |                      +-- Write findings (P0/P1/P2)
+    |                    |                      +-- Update state
+    |                    |
+    |                    +-- Init (config, strategy, state)
+    |                    +-- Loop (dispatch, evaluate, decide)
+    |                    +-- Synthesize (review-report.md)
+    |                    +-- Save (memory context)
+```
+
+---
+
+## 4. STATE FILES
+
+Review mode stores its packet under the resolved local review path rooted at `{spec_folder}/review/`:
+
+| File | Location | Format | Purpose |
+|------|----------|--------|---------|
+| Config | `review/deep-review-config.json` | JSON | Review parameters (immutable) |
+| State | `review/deep-review-state.jsonl` | JSONL | Iteration log (append-only) |
+| Registry | `review/deep-review-findings-registry.json` | JSON | Reducer-owned finding registry |
+| Strategy | `review/deep-review-strategy.md` | Markdown | Dimensions, findings, next focus |
+| Dashboard | `review/deep-review-dashboard.md` | Markdown | Auto-generated review dashboard |
+| Iterations | `review/iterations/iteration-NNN.md` | Markdown | Per-iteration findings (write-once) |
+| Report | `review/review-report.md` | Markdown | Final 9-section review report |
+| Pause | `review/.deep-review-pause` | Sentinel | Pause between iterations |
+
+### Lifecycle Modes
+
+| Mode | Effect |
+|------|--------|
+| `resume` | Continue the current review lineage without resetting generation |
+| `restart` | Archive current review state and start a new generation |
+| `fork` (deferred) | Reserved. Start a sibling lineage branch with explicit parent linkage. Not runtime-wired. |
+| `completed-continue` (deferred) | Reserved. Snapshot the completed review and reopen it for amendment-only review deltas. Not runtime-wired. |
+
+---
+
+## 5. REVIEW DIMENSIONS
+
+| ID | Dimension | Priority | Description |
+|----|-----------|----------|-------------|
+| D1 | Correctness | 1 | Logic errors, off-by-one, wrong return types, broken invariants |
+| D2 | Security | 2 | Injection, auth bypass, secrets exposure, unsafe deserialization |
+| D3 | Traceability | 3 | Spec/code alignment, checklist evidence, cross-reference integrity |
+| D4 | Maintainability | 4 | Patterns, clarity, documentation quality, ease of safe follow-on changes |
+
+---
+
+## 6. REVIEW VERDICTS
+
+| Verdict | Condition | Meaning | Next Command |
+|---------|-----------|---------|--------------|
+| FAIL | Active P0 findings remain OR any binary gate fails | Does not meet quality standards | `/speckit:plan` for remediation |
+| CONDITIONAL | No P0, but active P1 findings remain | Meets threshold but has required fixes | `/speckit:plan` for fixes |
+| PASS | No active P0/P1 findings | Shippable, set `hasAdvisories=true` when P2 findings remain | `/create:changelog` |
+
+### Release Readiness
+
+`releaseReadinessState` is the canonical config/report field for review readiness tracking.
+
+| State | Meaning |
+|-------|---------|
+| `in-progress` | Review still running or required coverage incomplete |
+| `converged` | All 4 dimensions covered and the stabilization pass found no new P0/P1 findings |
+| `release-blocking` | At least one unresolved P0 remains active |
+
+---
+
+## 7. REVIEW QUALITY GUARDS
+
+| Gate | Rule |
+|------|------|
+| Evidence | Every active finding has file:line evidence and is not inference-only |
+| Scope | Findings and reviewed files stay within declared review scope |
+| Coverage | Configured dimensions plus required traceability protocols are covered before STOP |
+
+---
+
+## 8. REVIEW CONVERGENCE
+
+| Signal | Weight | Description |
+|--------|--------|-------------|
+| Rolling Average | 0.30 | Last 2 severity-weighted `newFindingsRatio` values average below `0.08` |
+| MAD Noise Floor | 0.25 | Latest ratio within noise floor |
+| Dimension Coverage | 0.45 | All 4 dimensions plus required traceability protocols covered, with `minStabilizationPasses >= 1` |
+
+**Key defaults:** `maxIterations=7`, `convergenceThreshold=0.10`, `rollingStopThreshold=0.08`, `noProgressThreshold=0.05`, `stuckThreshold=2`, `minStabilizationPasses=1`
+
+**P0 override:** Any new P0 finding sets `newFindingsRatio >= 0.50`, blocking convergence.
+
+---
+
+## 9. AGENT ITERATION CHECKLIST
+
+Each @deep-review iteration:
+1. Read `deep-review-state.jsonl`, `deep-review-findings-registry.json`, and `deep-review-strategy.md`
+2. Determine focus dimension from strategy "Next Focus"
+3. Execute 3-5 review actions (Read, Grep, Glob, code_graph_query + Grep)
+4. Write `review/iterations/iteration-NNN.md` with P0/P1/P2 findings
+5. Run adversarial self-check on any P0 findings (Hunter/Skeptic/Referee)
+6. Update `deep-review-strategy.md` (findings, coverage, next focus)
+7. Append iteration record to `deep-review-state.jsonl`
+
+---
+
+## 10. REVIEW REPORT SECTIONS
+
+| # | Section | Purpose |
+|---|---------|---------|
+| 1 | Executive Summary | Verdict, active P0/P1/P2 counts, scope, `hasAdvisories` |
+| 2 | Planning Trigger | Why the verdict routes to planning or changelog follow-up |
+| 3 | Active Finding Registry | Deduped active findings with evidence and final severity |
+| 4 | Remediation Workstreams | Grouped action lanes derived from active findings |
+| 5 | Spec Seed | Minimal spec delta derived from review results |
+| 6 | Plan Seed | Action-ready plan starter for remediation |
+| 7 | Traceability Status | Core vs overlay protocol status and unresolved gaps |
+| 8 | Deferred Items | P2 advisories, blocked checks, and follow-up items |
+| 9 | Audit Appendix | Coverage, replay validation, and convergence evidence |
+
+codex
+The required remediation checks are concrete enough that line-numbered reads should settle most of it. I’ll start with the three benchmark scripts and the shared loop host, then use `rg` only where a caller/flag contract needs confirmation.
+exec
+/bin/zsh -lc 'nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc 'nl -ba .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc 'nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+exec
+/bin/zsh -lc 'nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	#!/usr/bin/env node
+     2	'use strict';
+     3	
+     4	/**
+     5	 * d5-connectivity.cjs — static structural scan, the D5 hard gate.
+     6	 *
+     7	 * Runs BEFORE any dispatch and caps the verdict regardless of weighted score.
+     8	 * Catches the failure class that makes a skill structurally unusable: a
+     9	 * RESOURCE_MAP path that does not exist (dead route), a RESOURCE_MAP key absent
+    10	 * from INTENT_SIGNALS (dead intent key), a routed path escaping the skill root,
+    11	 * and references present on disk but never reachable from any RESOURCE_MAP entry
+    12	 * (orphans — reported, not gated). A router that cannot be parsed at all is the
+    13	 * strongest gate failure.
+    14	 */
+    15	
+    16	const fs = require('fs');
+    17	const path = require('path');
+    18	const { parseRouter } = require('./router-replay.cjs');
+    19	
+    20	function listMarkdownRefs(skillRoot) {
+    21	  const out = [];
+    22	  for (const dir of ['references', 'assets']) {
+    23	    const base = path.join(skillRoot, dir);
+    24	    if (!fs.existsSync(base)) continue;
+    25	    const stack = [base];
+    26	    while (stack.length) {
+    27	      const cur = stack.pop();
+    28	      for (const entry of fs.readdirSync(cur, { withFileTypes: true })) {
+    29	        const full = path.join(cur, entry.name);
+    30	        if (entry.isDirectory()) stack.push(full);
+    31	        else if (entry.isFile() && /\.md$/.test(entry.name)) out.push(path.relative(skillRoot, full));
+    32	      }
+    33	    }
+    34	  }
+    35	  return out;
+    36	}
+    37	
+    38	/**
+    39	 * @returns {{ score:number, gateFailed:boolean, findings:Array,
+    40	 *   deadResourcePaths:string[], deadIntentKeys:string[], orphanReferences:string[],
+    41	 *   pathEscapes:string[], routerParseable:boolean }}
+    42	 */
+    43	function scanConnectivity({ skillRoot }) {
+    44	  const findings = [];
+    45	  const skillMdPath = path.join(skillRoot, 'SKILL.md');
+    46	  if (!fs.existsSync(skillMdPath)) {
+    47	    // Score mirrors the normal penalty path (100 - one P0 of 40 = 60) so a
+    48	    // score-comparison consumer sees the same number for the same one-P0
+    49	    // condition; gateFailed is the authoritative verdict signal either way.
+    50	    return {
+    51	      score: 60, gateFailed: true, routerParseable: false,
+    52	      deadResourcePaths: [], deadIntentKeys: [], orphanReferences: [], pathEscapes: [],
+    53	      findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
+    54	    };
+    55	  }
+    56	  const router = parseRouter(fs.readFileSync(skillMdPath, 'utf8'));
+    57	  const intentKeys = new Set(Object.keys(router.intentSignals));
+    58	  const deadResourcePaths = [];
+    59	  const deadIntentKeys = [];
+    60	  const pathEscapes = [];
+    61	  const routedRefs = new Set();
+    62	
+    63	  for (const [intent, resources] of Object.entries(router.resourceMap)) {
+    64	    if (!intentKeys.has(intent)) {
+    65	      deadIntentKeys.push(intent);
+    66	      findings.push({ class: 'dead_intent_key', severity: 'P1', locus: `RESOURCE_MAP.${intent}`, detail: `${intent} has no INTENT_SIGNALS entry` });
+    67	    }
+    68	    for (const r of resources) {
+    69	      routedRefs.add(r);
+    70	      const resolved = path.resolve(skillRoot, r);
+    71	      if (!resolved.startsWith(path.resolve(skillRoot))) {
+    72	        pathEscapes.push(r);
+    73	        findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root` });
+    74	      } else if (!fs.existsSync(resolved)) {
+    75	        deadResourcePaths.push(r);
+    76	        findings.push({ class: 'dead_resource_path', severity: 'P0', locus: r, detail: `routed path ${r} does not exist` });
+    77	      }
+    78	    }
+    79	  }
+    80	
+    81	  const orphanReferences = listMarkdownRefs(skillRoot).filter((ref) => !routedRefs.has(ref));
+    82	  for (const orphan of orphanReferences) {
+    83	    findings.push({ class: 'orphan_reference', severity: 'P2', locus: orphan, detail: `${orphan} is not reachable from any RESOURCE_MAP intent` });
+    84	  }
+    85	
+    86	  // Hard gate: any P0 (dead path / escape / unparseable). Dead intent keys (P1)
+    87	  // and orphans (P2) lower the score but do not gate by themselves.
+    88	  const p0 = findings.filter((f) => f.severity === 'P0').length;
+    89	  const gateFailed = p0 > 0 || !router.parseable;
+    90	  if (!router.parseable) {
+    91	    findings.push({ class: 'router_unparseable', severity: 'P0', detail: 'INTENT_SIGNALS / RESOURCE_MAP could not be parsed from SKILL.md' });
+    92	  }
+    93	  // Score: start at 100, subtract per finding by severity, floor 0.
+    94	  const penalty = findings.reduce((acc, f) => acc + ({ P0: 40, P1: 12, P2: 3 }[f.severity] || 0), 0);
+    95	  const score = Math.max(0, 100 - penalty);
+    96	
+    97	  return { score, gateFailed, routerParseable: router.parseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
+    98	}
+    99	
+   100	module.exports = { scanConnectivity, listMarkdownRefs };
+   101	
+   102	if (require.main === module) {
+   103	  const args = require('./_args.cjs').parse(process.argv.slice(2));
+   104	  if (!args.skill) {
+   105	    process.stderr.write('usage: d5-connectivity.cjs --skill <skill-root>\n');
+   106	    process.exit(2);
+   107	  }
+   108	  const res = scanConnectivity({ skillRoot: args.skill });
+   109	  process.stdout.write(JSON.stringify(res, null, 2) + '\n');
+   110	  process.exit(res.gateFailed ? 1 : 0);
+   111	}
+
+ succeeded in 0ms:
+     1	#!/usr/bin/env node
+     2	'use strict';
+     3	
+     4	/**
+     5	 * run-skill-benchmark.cjs — Lane C orchestrator (loop-host --mode=skill-benchmark).
+     6	 *
+     7	 * Post-run join: private gold never crosses the dispatch boundary. Sequence:
+     8	 *   1. resolve the target skill root (path or bare id under .opencode/skills/)
+     9	 *   2. D5 static connectivity scan (the hard gate) — runs first, before any dispatch
+    10	 *   3. load public/private fixture pairs
+    11	 *   4. per scenario: contamination-lint the PUBLIC prompt (a leak is a fixture
+    12	 *      failure), then router-replay (Mode A), then join with private gold to score
+    13	 *   5. aggregate -> write report.json, then render report.md FROM it
+    14	 *
+    15	 * Mode A (router-replay) is the deterministic default and the CI gate. Live
+    16	 * dispatch (Mode B) + D1-inter advisor scoring + D4 ablation are follow-on; this
+    17	 * orchestrator emits a complete, honest Mode A report today.
+    18	 */
+    19	
+    20	const fs = require('fs');
+    21	const path = require('path');
+    22	const { routeSkillResources } = require('./router-replay.cjs');
+    23	const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
+    24	const { scanConnectivity } = require('./d5-connectivity.cjs');
+    25	const { scoreScenario, aggregate } = require('./score-skill-benchmark.cjs');
+    26	const { probeAdvisor } = require('./advisor-probe.cjs');
+    27	const { renderReport } = require('./build-report.cjs');
+    28	
+    29	const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
+    30	
+    31	function resolveSkillRoot(skillArg) {
+    32	  if (skillArg.includes('/') || skillArg.startsWith('.')) return path.resolve(skillArg);
+    33	  return path.join(SKILLS_DIR, skillArg);
+    34	}
+    35	
+    36	function resolveSkillId(skillRoot) {
+    37	  return path.basename(skillRoot);
+    38	}
+    39	
+    40	// Fixtures: assets/skill-benchmark/fixtures/<skill-id>/ with <id>.public.json +
+    41	// <id>.private.json pairs. Falls back to the --fixtures-dir override.
+    42	function loadFixtures(fixturesDir) {
+    43	  const out = [];
+    44	  if (!fs.existsSync(fixturesDir)) return out;
+    45	  const publics = fs.readdirSync(fixturesDir).filter((f) => f.endsWith('.public.json'));
+    46	  for (const pf of publics) {
+    47	    const id = pf.replace(/\.public\.json$/, '');
+    48	    // A malformed fixture is operator error this tool exists to surface, not a
+    49	    // reason to crash the whole run. Degrade: record a load error and skip.
+    50	    let pub; let priv;
+    51	    try {
+    52	      pub = JSON.parse(fs.readFileSync(path.join(fixturesDir, pf), 'utf8'));
+    53	      const privPath = path.join(fixturesDir, `${id}.private.json`);
+    54	      priv = fs.existsSync(privPath) ? JSON.parse(fs.readFileSync(privPath, 'utf8')) : { expected: {} };
+    55	    } catch (err) {
+    56	      out.push({ scenarioId: id, loadError: err.message });
+    57	      continue;
+    58	    }
+    59	    out.push({ scenarioId: pub.scenarioId || id, tier: pub.tier || 'T1', public: pub.public || {}, expected: priv.expected || {}, rubric: priv.rubric });
+    60	  }
+    61	  return out;
+    62	}
+    63	
+    64	function run(args) {
+    65	  const skillRoot = resolveSkillRoot(args.skill);
+    66	  const skillId = resolveSkillId(skillRoot);
+    67	  const outputsDir = path.resolve(args['outputs-dir']);
+    68	  fs.mkdirSync(outputsDir, { recursive: true });
+    69	  // D1-inter advisor probing is opt-in so the pure-router default stays fast +
+    70	  // dependency-free. --advisor-mode=python enables the deterministic probe.
+    71	  const advisorMode = args['advisor-mode'] || 'off';
+    72	
+    73	  if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
+    74	    process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
+    75	    return 2;
+    76	  }
+    77	
+    78	  // 2. D5 hard gate first.
+    79	  const connectivity = scanConnectivity({ skillRoot });
+    80	
+    81	  // 3. fixtures.
+    82	  const fixturesDir = args['fixtures-dir']
+    83	    ? path.resolve(args['fixtures-dir'])
+    84	    : path.join(skillRoot, 'assets', 'skill-benchmark', 'fixtures', skillId);
+    85	  const fixtures = loadFixtures(fixturesDir);
+    86	
+    87	  // 4. per-scenario.
+    88	  const scenarioRows = [];
+    89	  for (const fx of fixtures) {
+    90	    if (fx.loadError) {
+    91	      scenarioRows.push({
+    92	        scenarioId: fx.scenarioId, tier: 'unknown', modeAScore: 0,
+    93	        firstFailingStage: 'unparseable-fixture',
+    94	        dims: { d1intra: { score: 0 }, d2: { score: 0 }, d3: { score: 0 }, d1inter: { score: null }, d4: { score: null } },
+    95	        loadError: fx.loadError,
+    96	      });
+    97	      continue;
+    98	    }
+    99	    const bannedVocab = buildBannedVocab({ skillRoot, skillId, privateExpected: fx.expected });
+   100	    const lint = lintFixture({ publicText: fx.public.prompt || '', bannedVocab });
+   101	    if (!lint.passed) {
+   102	      scenarioRows.push({
+   103	        scenarioId: fx.scenarioId, tier: fx.tier, modeAScore: 0,
+   104	        firstFailingStage: 'contaminated-fixture',
+   105	        dims: { d1intra: { score: 0 }, d2: { score: 0 }, d3: { score: 0 }, d1inter: { score: null }, d4: { score: null } },
+   106	        contamination: lint.hardLeaks,
+   107	      });
+   108	      continue;
+   109	    }
+   110	    const routerResult = routeSkillResources({ skillRoot, taskText: fx.public.prompt || '' });
+   111	    // D1-inter (opt-in): probe the advisor out-of-band with the public prompt.
+   112	    // Deterministic (the Python advisor reads SQLite), so it stays in Mode A.
+   113	    const advisorResult = advisorMode === 'python'
+   114	      ? probeAdvisor({ prompt: fx.public.prompt || '' })
+   115	      : undefined;
+   116	    scenarioRows.push(scoreScenario({ scenarioId: fx.scenarioId, tier: fx.tier, routerResult, expected: fx.expected, advisorResult }));
+   117	  }
+   118	
+   119	  // 5. aggregate + emit.
+   120	  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode: args['trace-mode'] || 'router' });
+   121	  const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
+   122	  const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
+   123	  fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
+   124	  fs.writeFileSync(reportMdPath, renderReport(report));
+   125	
+   126	  process.stdout.write(`skill-benchmark: ${skillId} verdict=${report.verdict} aggregate=${report.aggregateScore} scenarios=${scenarioRows.length}\n`);
+   127	  process.stdout.write(`  report.json -> ${reportJsonPath}\n  report.md   -> ${reportMdPath}\n`);
+   128	  return 0;
+   129	}
+   130	
+   131	module.exports = { run, resolveSkillRoot, loadFixtures };
+   132	
+   133	if (require.main === module) {
+   134	  const args = require('./_args.cjs').parse(process.argv.slice(2));
+   135	  if (!args.skill || !args['outputs-dir']) {
+   136	    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--output <report.json>] [--trace-mode router|live]\n');
+   137	    process.exit(2);
+   138	  }
+   139	  process.exit(run(args));
+   140	}
+
+ succeeded in 0ms:
+     1	#!/usr/bin/env node
+     2	'use strict';
+     3	
+     4	/**
+     5	 * scripts/loop-host.cjs
+     6	 *
+     7	 * Mode-switching entry point for deep-improvement. Routes between the
+     8	 * existing `agent-improvement` scoring path and the new `model-benchmark`
+     9	 * pipeline. This is the seam host that was previously missing
+    10	 * (deep-improvement has no loop.cjs — orchestration is journal-based).
+    11	 *
+    12	 * Backward-compat contract: with `--mode=agent-improvement` OR no
+    13	 * `--mode` flag, behavior is identical — both route to score-candidate.cjs with
+    14	 * the same arguments, so the produced score/state output is byte-identical.
+    15	 *
+    16	 * Usage:
+    17	 *   agent-improvement (default):
+    18	 *     node loop-host.cjs [--mode=agent-improvement] --candidate=<path> [--baseline=<path>] [--output=<path>]
+    19	 *   model-benchmark:
+    20	 *     node loop-host.cjs --mode=model-benchmark --profile=<path-or-id> --outputs-dir=<path> \
+    21	 *        [--output=<path>] [--state-log=<path>] [--label=<string>] [--profiles-dir=<path>] \
+    22	 *        [--scorer=<pattern|5dim>] [--grader=<noop|mock|llm>]
+    23	 *
+    24	 * Unknown --mode values warn to stderr and fall back to agent-improvement.
+    25	 */
+    26	
+    27	const path = require('path');
+    28	const { spawnSync } = require('child_process');
+    29	
+    30	const SCRIPTS_ROOT = __dirname;
+    31	const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
+    32	
+    33	// Lane separation: planInvocation() returns BARE script names (e.g.
+    34	// 'score-candidate.cjs') to keep the backward-compat identity plan
+    35	// byte-identical. The real on-disk lane lives in sibling lane dirs relative to
+    36	// this file (now scripts/shared/). resolveScriptPath maps a bare name to its
+    37	// lane path at SPAWN time so the plan output never carries lane segments.
+    38	const LANE_A = new Set([
+    39	  'score-candidate.cjs',
+    40	  'generate-profile.cjs',
+    41	  'rollback-candidate.cjs',
+    42	  'candidate-lineage.cjs',
+    43	  'scan-integration.cjs',
+    44	  'check-mirror-drift.cjs',
+    45	  'trade-off-detector.cjs',
+    46	  'benchmark-stability.cjs',
+    47	]);
+    48	const LANE_MODEL_BENCHMARK = new Set([
+    49	  'run-benchmark.cjs',
+    50	  'dispatch-model.cjs',
+    51	]);
+    52	// Lane C (skill-benchmark): the orchestrator the run resolves to. Sub-scripts
+    53	// (router-replay, contamination-lint, d5-connectivity, parse-resource-loads,
+    54	// score-skill-benchmark, build-report) are required internally by the
+    55	// orchestrator, so only the entry script needs lane-path resolution here.
+    56	const LANE_SKILL_BENCHMARK = new Set([
+    57	  'run-skill-benchmark.cjs',
+    58	]);
+    59	
+    60	// Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
+    61	// order. --skill and --outputs-dir are required and handled separately. This
+    62	// list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
+    63	// flag the orchestrator never consumes would be silently absorbed and mislead
+    64	// operators into thinking it has effect.
+    65	const SKILL_BENCHMARK_RUN_OPTIONS = [
+    66	  'fixtures-dir',
+    67	  'output',
+    68	  'trace-mode',
+    69	  'advisor-mode',
+    70	];
+    71	
+    72	// Single source of truth for the optional model-benchmark flags loop-host
+    73	// forwards to run-benchmark.cjs (one shared benchmark option schema). Order is
+    74	// the forwarding order. --profile and --outputs-dir are required and handled
+    75	// separately. Keep this aligned with run-benchmark.cjs's accepted options.
+    76	const BENCHMARK_RUN_OPTIONS = [
+    77	  'output',
+    78	  'state-log',
+    79	  'label',
+    80	  'profiles-dir',
+    81	  'integration-report',
+    82	  'scorer',
+    83	  'grader',
+    84	];
+    85	
+    86	// The fixture materializer also needs --profiles-dir so a profile passed by ID
+    87	// (not a path) resolves identically in BOTH steps. --profile and
+    88	// --outputs-dir are forwarded explicitly; this lists the remaining
+    89	// materialize-relevant pass-through flags.
+    90	const BENCHMARK_MATERIALIZE_OPTIONS = [
+    91	  'profiles-dir',
+    92	];
+    93	
+    94	function resolveScriptPath(scriptName) {
+    95	  if (LANE_A.has(scriptName)) {
+    96	    return path.join(SCRIPTS_ROOT, '..', 'agent-improvement', scriptName);
+    97	  }
+    98	  if (LANE_MODEL_BENCHMARK.has(scriptName)) {
+    99	    return path.join(SCRIPTS_ROOT, '..', 'model-benchmark', scriptName);
+   100	  }
+   101	  if (LANE_SKILL_BENCHMARK.has(scriptName)) {
+   102	    return path.join(SCRIPTS_ROOT, '..', 'skill-benchmark', scriptName);
+   103	  }
+   104	  // Other shared scripts (materialize-benchmark-fixtures, promote-candidate,
+   105	  // reduce-state, improvement-journal, mutation-coverage) live alongside this file.
+   106	  return path.join(SCRIPTS_ROOT, scriptName);
+   107	}
+   108	
+   109	function parseArgs(argv) {
+   110	  const args = {};
+   111	  for (let index = 0; index < argv.length; index += 1) {
+   112	    const entry = argv[index];
+   113	    const match = /^--([a-z][a-z0-9-]*)(?:=(.*))?$/.exec(entry);
+   114	    if (!match) continue;
+   115	    const key = match[1];
+   116	    if (match[2] !== undefined) {
+   117	      // =-form: byte-identical to the original behavior (identity contract).
+   118	      args[key] = match[2];
+   119	      continue;
+   120	    }
+   121	    // Bare --key: if the next token is a value (does not start with '--'),
+   122	    // consume it as the space-form value; otherwise it stays a boolean flag.
+   123	    // The Lane B command surface invokes loop-host with space-form
+   124	    // (--profile {p} --scorer 5dim --grader noop), so these must bind to the
+   125	    // following token rather than parse as booleans.
+   126	    const next = argv[index + 1];
+   127	    if (next !== undefined && !next.startsWith('--')) {
+   128	      args[key] = next;
+   129	      index += 1;
+   130	    } else {
+   131	      args[key] = true;
+   132	    }
+   133	  }
+   134	  return args;
+   135	}
+   136	
+   137	function resolveMode(rawMode) {
+   138	  if (rawMode === undefined) return 'agent-improvement';
+   139	  if (VALID_MODES.has(rawMode)) return rawMode;
+   140	  process.stderr.write(`loop-host: unknown mode '${rawMode}', defaulting to 'agent-improvement'\n`);
+   141	  return 'agent-improvement';
+   142	}
+   143	
+   144	/**
+   145	 * Pure planner: map (mode, args) -> the ordered script invocations to run.
+   146	 * Planning is separated from execution so the backward-compat identity gate
+   147	 * the identity gate can assert byte-identical plans for the default and explicit
+   148	 * agent-improvement routes without spawning anything.
+   149	 *
+   150	 * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
+   151	 */
+   152	function planInvocation(mode, args) {
+   153	  if (mode === 'model-benchmark') {
+   154	    if (!args.profile || !args['outputs-dir']) {
+   155	      return { ok: false, error: 'model-benchmark: missing required --profile=<path-or-id> and --outputs-dir=<path>' };
+   156	    }
+   157	    // materialize MUST run (and succeed) before run-benchmark, else scoring
+   158	    // silently produces all-zero "missing-output" results. These scripts use
+   159	    // space-separated args.
+   160	    //
+   161	    // Both steps share one option schema (BENCHMARK_* lists) so forwarding stays
+   162	    // in sync with run-benchmark.cjs and the materializer, instead of a hand-rolled
+   163	    // per-flag chain that silently drifts.
+   164	    // run-benchmark.cjs forwards scorer/grader/integration-report so the journal
+   165	    // and report.json agree on the requested method; the materializer forwards
+   166	    // --profiles-dir so a profile-by-ID resolves identically in both steps.
+   167	    const materializeArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
+   168	    for (const opt of BENCHMARK_MATERIALIZE_OPTIONS) {
+   169	      if (args[opt] !== undefined) materializeArgs.push(`--${opt}`, String(args[opt]));
+   170	    }
+   171	    const benchArgs = ['--profile', args.profile, '--outputs-dir', args['outputs-dir']];
+   172	    for (const opt of BENCHMARK_RUN_OPTIONS) {
+   173	      if (args[opt] !== undefined) benchArgs.push(`--${opt}`, String(args[opt]));
+   174	    }
+   175	    return {
+   176	      ok: true,
+   177	      steps: [
+   178	        { script: 'materialize-benchmark-fixtures.cjs', args: materializeArgs },
+   179	        { script: 'run-benchmark.cjs', args: benchArgs },
+   180	      ],
+   181	    };
+   182	  }
+   183	  if (mode === 'skill-benchmark') {
+   184	    if (!args.skill || !args['outputs-dir']) {
+   185	      return { ok: false, error: 'skill-benchmark: missing required --skill=<skill-root-or-id> and --outputs-dir=<path>' };
+   186	    }
+   187	    // Single orchestrator step: run-skill-benchmark.cjs internally sequences
+   188	    // D5-gate -> router-replay -> (optional live) -> trace-parse -> score ->
+   189	    // report, so the plan stays one step (unlike Lane B's materialize+run pair).
+   190	    // Lane C scripts use space-separated args.
+   191	    const skillArgs = ['--skill', args.skill, '--outputs-dir', args['outputs-dir']];
+   192	    for (const opt of SKILL_BENCHMARK_RUN_OPTIONS) {
+   193	      if (args[opt] !== undefined) skillArgs.push(`--${opt}`, String(args[opt]));
+   194	    }
+   195	    return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
+   196	  }
+   197	  // agent-improvement (default). score-candidate.cjs uses key=value args.
+   198	  if (!args.candidate) {
+   199	    return { ok: false, error: 'agent-improvement: missing required --candidate=<path>' };
+   200	  }
+   201	  const scoreArgs = [`--candidate=${args.candidate}`];
+   202	  if (args.baseline) scoreArgs.push(`--baseline=${args.baseline}`);
+   203	  if (args.output) scoreArgs.push(`--output=${args.output}`);
+   204	  return { ok: true, steps: [{ script: 'score-candidate.cjs', args: scoreArgs }] };
+   205	}
+   206	
+   207	function runNode(scriptName, scriptArgs) {
+   208	  const scriptPath = resolveScriptPath(scriptName);
+   209	  const res = spawnSync('node', [scriptPath, ...scriptArgs], {
+   210	    stdio: 'inherit',
+   211	    encoding: 'utf8',
+   212	  });
+   213	  return res.status == null ? 1 : res.status;
+   214	}
+   215	
+   216	function runPlan(plan) {
+   217	  if (!plan.ok) {
+   218	    process.stderr.write(`loop-host: ${plan.error}\n`);
+   219	    return 2;
+   220	  }
+   221	  for (const step of plan.steps) {
+   222	    const exit = runNode(step.script, step.args);
+   223	    if (exit !== 0) {
+   224	      process.stderr.write(`loop-host: ${step.script} failed (exit ${exit}); aborting remaining steps\n`);
+   225	      return exit;
+   226	    }
+   227	  }
+   228	  return 0;
+   229	}
+   230	
+   231	function main() {
+   232	  const args = parseArgs(process.argv.slice(2));
+   233	  const mode = resolveMode(args.mode);
+   234	  process.exit(runPlan(planInvocation(mode, args)));
+   235	}
+   236	
+   237	if (require.main === module) main();
+   238	
+   239	module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK };
+
+ succeeded in 0ms:
+     1	#!/usr/bin/env node
+     2	'use strict';
+     3	
+     4	/**
+     5	 * score-skill-benchmark.cjs — compute Lane C dimensions for one scenario and
+     6	 * aggregate across a scenario set.
+     7	 *
+     8	 * Mode A (router-replay, deterministic) scores the dimensions that need no live
+     9	 * model: D1-intra (in-skill routing), D2 (unprompted discovery proxy), D3
+    10	 * (efficiency proxy), D5 (structural connectivity, hard gate). D1-inter (advisor
+    11	 * selection) and D4 (usefulness ablation) require live dispatch / the advisor
+    12	 * scorer and are reported as unscored in Mode A rather than faked — the
+    13	 * aggregate is normalized over the dimensions actually measured so a Mode A
+    14	 * score is honest about its coverage.
+    15	 *
+    16	 * Converged point weights (for reference / live mode): D1=25 (inter12+intra13),
+    17	 * D2=20, D3=15, D4=25, D5=15 (gate).
+    18	 */
+    19	
+    20	const { scoreD1Inter } = require('./advisor-probe.cjs');
+    21	
+    22	const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
+    23	
+    24	function setRecall(expected, actual) {
+    25	  if (!expected || expected.length === 0) return null; // not applicable
+    26	  const have = new Set(actual || []);
+    27	  const hit = expected.filter((e) => have.has(e)).length;
+    28	  return hit / expected.length;
+    29	}
+    30	
+    31	/**
+    32	 * Score a single scenario from its router-replay result joined with private gold.
+    33	 * @returns {{ scenarioId, dims, firstFailingStage, modeAScore, applicable }}
+    34	 */
+    35	function scoreScenario({ scenarioId, tier, routerResult, expected, advisorResult }) {
+    36	  const dims = {};
+    37	  const negative = expected && expected.negativeActivation === true;
+    38	
+    39	  // D1-intra: did the in-skill router select the expected intents + resources?
+    40	  const intentRecall = setRecall(expected && expected.intentKeys, routerResult.intents);
+    41	  const resourceRecall = setRecall(expected && expected.resources, routerResult.resources);
+    42	  if (negative) {
+    43	    // For a should-not-activate scenario, routing nothing relevant is success.
+    44	    const leakedExpected = (expected.resources || []).some((r) => routerResult.resources.includes(r));
+    45	    dims.d1intra = { score: leakedExpected ? 0 : 1, intentRecall, resourceRecall, negative: true };
+    46	  } else {
+    47	    const ir = intentRecall == null ? 1 : intentRecall;
+    48	    const rr = resourceRecall == null ? 1 : resourceRecall;
+    49	    dims.d1intra = { score: 0.4 * ir + 0.6 * rr, intentRecall, resourceRecall, negative: false };
+    50	  }
+    51	
+    52	  // D2 proxy (Mode A): recall of expected resources in the routed set. In live
+    53	  // mode this is replaced by Hit@k/Recall@k/MRR over the observed load trace.
+    54	  dims.d2 = {
+    55	    score: negative ? (dims.d1intra.score) : (resourceRecall == null ? 1 : resourceRecall),
+    56	    proxy: 'router-replay-recall',
+    57	    note: 'Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR',
+    58	  };
+    59	
+    60	  // D3 efficiency proxy (Mode A): penalize over-routing — resources routed that
+    61	  // are not in the expected set are "wasted loads". Live mode uses tool-call /
+    62	  // token cost to first expected resource.
+    63	  const routed = routerResult.resources.length;
+    64	  const wasted = expected && expected.resources
+    65	    ? routerResult.resources.filter((r) => !expected.resources.includes(r)).length
+    66	    : 0;
+    67	  // For a negative scenario the "expected" resources are the ones that must NOT
+    68	  // be routed, so the over-routing math inverts (routing them reads as zero
+    69	  // waste). Couple D3 to the suppression outcome instead, mirroring D2.
+    70	  dims.d3 = negative
+    71	    ? { score: dims.d1intra.score, routedCount: routed, wastedCount: routed, proxy: 'negative-activation', note: 'negative scenario: D3 tracks the suppression outcome, not over-routing' }
+    72	    : {
+    73	        score: routed === 0 ? 1 : Math.max(0, 1 - wasted / routed),
+    74	        routedCount: routed, wastedCount: wasted,
+    75	        proxy: 'router-overload', note: 'Mode A proxy; live-mode replaces with calls/tokens-to-first-expected',
+    76	      };
+    77	
+    78	  // D1-inter: scored deterministically when an advisor probe is supplied (the
+    79	  // Python advisor reads the SQLite graph, no LLM), else left unscored.
+    80	  if (advisorResult) {
+    81	    const inter = scoreD1Inter({ advisorResult, expectedSkillId: expected && expected.skillId, negative });
+    82	    dims.d1inter = inter.ok
+    83	      ? { score: inter.score, rank: inter.rank, topSkill: inter.topSkill }
+    84	      : { score: null, unscored: 'advisor probe failed', error: advisorResult.error };
+    85	  } else {
+    86	    dims.d1inter = { score: null, unscored: 'no advisor probe (run with --advisor-mode=python)' };
+    87	  }
+    88	  // D4 usefulness ablation: still needs live skill-on/off dispatch (follow-on).
+    89	  dims.d4 = { score: null, unscored: 'requires skill-on/off ablation (live mode)' };
+    90	
+    91	  // First failing stage (funnel): advisor activate -> router parse -> intra -> discovery.
+    92	  let firstFailingStage = null;
+    93	  if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) firstFailingStage = 'activated-inter';
+    94	  else if (!routerResult.parseable) firstFailingStage = 'router-unparseable';
+    95	  else if (dims.d1intra.score < 0.5) firstFailingStage = 'routed-intra';
+    96	  else if (dims.d2.score < 0.5) firstFailingStage = 'discovered';
+    97	
+    98	  // Mode A scenario score: weight the measured dims, normalize over their weights.
+    99	  // D1-inter joins the measured set only when an advisor probe produced a score.
+   100	  const measured = [
+   101	    [dims.d1intra.score, WEIGHTS.d1intra],
+   102	    [dims.d2.score, WEIGHTS.d2],
+   103	    [dims.d3.score, WEIGHTS.d3],
+   104	  ];
+   105	  if (dims.d1inter.score !== null) measured.push([dims.d1inter.score, WEIGHTS.d1inter]);
+   106	  const wsum = measured.reduce((a, [, w]) => a + w, 0);
+   107	  const modeAScore = Math.round((measured.reduce((a, [s, w]) => a + s * w, 0) / wsum) * 100);
+   108	
+   109	  return { scenarioId, tier, dims, firstFailingStage, modeAScore, applicable: true };
+   110	}
+   111	
+   112	/**
+   113	 * Aggregate scenario rows + the D5 connectivity result into a report object.
+   114	 */
+   115	function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }) {
+   116	  const rows = scenarioRows.filter(Boolean);
+   117	  const avg = (sel) => {
+   118	    const vals = rows.map(sel).filter((v) => typeof v === 'number');
+   119	    return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+   120	  };
+   121	  // Funnel attrition: count first-failing-stage occurrences.
+   122	  const funnel = {};
+   123	  for (const r of rows) {
+   124	    const stage = r.firstFailingStage || 'passed';
+   125	    funnel[stage] = (funnel[stage] || 0) + 1;
+   126	  }
+   127	  const headlineBottleneck = Object.entries(funnel)
+   128	    .filter(([k]) => k !== 'passed')
+   129	    .sort((a, b) => b[1] - a[1])[0] || null;
+   130	
+   131	  const d5 = connectivity.score;
+   132	  const aggregateScore = avg((r) => r.modeAScore);
+   133	  // D1-inter is scored only when advisor probes ran; avg() returns null if no row
+   134	  // carried a numeric D1-inter score, so the dimension self-reports its coverage.
+   135	  const d1interAvg = avg((r) => (r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
+   136	    ? Math.round(r.dims.d1inter.score * 100) : null));
+   137	  const gateFailed = connectivity.gateFailed;
+   138	  let verdict;
+   139	  if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
+   140	  else if (aggregateScore == null) verdict = 'NO-SCENARIOS';
+   141	  else if (aggregateScore >= 80) verdict = 'PASS';
+   142	  else if (aggregateScore >= 50) verdict = 'CONDITIONAL';
+   143	  else verdict = 'FAIL';
+   144	
+   145	  // Bottlenecks: D5 findings + any scenario stage failures, ranked by severity.
+   146	  const bottlenecks = [...connectivity.findings];
+   147	  if (headlineBottleneck) {
+   148	    bottlenecks.unshift({
+   149	      class: 'funnel_attrition', severity: 'P1', stage: headlineBottleneck[0],
+   150	      detail: `${headlineBottleneck[1]} scenario(s) first fail at stage '${headlineBottleneck[0]}'`,
+   151	    });
+   152	  }
+   153	
+   154	  return {
+   155	    schemaVersion: 'skill-benchmark-report.v1',
+   156	    status: 'skill-benchmark-complete',
+   157	    mode: 'skill-benchmark',
+   158	    scoringMethod: 'mode-a-router-replay',
+   159	    traceMode: traceMode || 'router',
+   160	    targetSkill: { id: skillId, root: skillRoot },
+   161	    verdict,
+   162	    aggregateScore,
+   163	    gate: { d5Score: d5, gateFailed, reason: gateFailed ? 'D5 structural hard-gate failure' : null },
+   164	    dimensionScores: {
+   165	      D1inter: d1interAvg === null
+   166	        ? { points: WEIGHTS.d1inter, score: null, status: 'unscored-mode-a' }
+   167	        : { points: WEIGHTS.d1inter, score: d1interAvg },
+   168	      D1intra: { points: WEIGHTS.d1intra, score: avg((r) => Math.round(r.dims.d1intra.score * 100)) },
+   169	      D2: { points: WEIGHTS.d2, score: avg((r) => Math.round(r.dims.d2.score * 100)) },
+   170	      D3: { points: WEIGHTS.d3, score: avg((r) => Math.round(r.dims.d3.score * 100)) },
+   171	      D4: { points: WEIGHTS.d4, score: null, status: 'unscored-mode-a' },
+   172	      D5: { points: WEIGHTS.d5, score: d5, hardGate: true },
+   173	    },
+   174	    unscoredDimensions: d1interAvg === null ? ['D1inter', 'D4'] : ['D4'],
+   175	    funnel,
+   176	    headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,
+   177	    bottlenecks,
+   178	    scenarioRows: rows,
+   179	    runQuality: {
+   180	      scenarioCount: rows.length,
+   181	      traceMode: traceMode || 'router',
+   182	      note: 'Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode.',
+   183	    },
+   184	  };
+   185	}
+   186	
+   187	module.exports = { scoreScenario, aggregate, WEIGHTS };
+
+codex
+The first remediation point held inside `d5-connectivity`: the missing `SKILL.md` score is exactly 60. One potential mismatch is upstream: the orchestrator appears to return before reaching that D5 path, so I’m checking the argument parser/entry boundary before deciding whether that is a real finding.
+exec
+/bin/zsh -lc 'nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/_args.cjs' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	'use strict';
+     2	
+     3	/**
+     4	 * Shared space-form arg parser for Lane C scripts. Lane C is invoked by
+     5	 * loop-host with space-separated flags (--skill <v> --outputs-dir <v> ...),
+     6	 * matching the Lane B run surface. Bare flags with no following value (or a
+     7	 * following --flag) become boolean true.
+     8	 */
+     9	function parse(argv) {
+    10	  const args = {};
+    11	  for (let i = 0; i < argv.length; i += 1) {
+    12	    const entry = argv[i];
+    13	    const eq = /^--([a-z][a-z0-9-]*)=(.*)$/.exec(entry);
+    14	    if (eq) { args[eq[1]] = eq[2]; continue; }
+    15	    const bare = /^--([a-z][a-z0-9-]*)$/.exec(entry);
+    16	    if (!bare) continue;
+    17	    const next = argv[i + 1];
+    18	    if (next !== undefined && !next.startsWith('--')) { args[bare[1]] = next; i += 1; }
+    19	    else args[bare[1]] = true;
+    20	  }
+    21	  return args;
+    22	}
+    23	
+    24	module.exports = { parse };
+
+exec
+/bin/zsh -lc "rg -n \"missing_skill_md|scanConnectivity|SKILL_BENCHMARK_RUN_OPTIONS|pathEscapes|startsWith\\(path\\.resolve\" .opencode/skills/deep-improvement" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:65:const SKILL_BENCHMARK_RUN_OPTIONS = [
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:192:    for (const opt of SKILL_BENCHMARK_RUN_OPTIONS) {
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:41: *   pathEscapes:string[], routerParseable:boolean }}
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:43:function scanConnectivity({ skillRoot }) {
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:52:      deadResourcePaths: [], deadIntentKeys: [], orphanReferences: [], pathEscapes: [],
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:53:      findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:60:  const pathEscapes = [];
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:71:      if (!resolved.startsWith(path.resolve(skillRoot))) {
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:72:        pathEscapes.push(r);
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:97:  return { score, gateFailed, routerParseable: router.parseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:100:module.exports = { scanConnectivity, listMarkdownRefs };
+.opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:108:  const res = scanConnectivity({ skillRoot: args.skill });
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:24:const { scanConnectivity } = require('./d5-connectivity.cjs');
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:79:  const connectivity = scanConnectivity({ skillRoot });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:23:const { scanConnectivity } = require(join(SB, 'd5-connectivity.cjs'));
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:95:    const res = scanConnectivity({ skillRoot: makeRouterlessSkill() });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:101:    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-codex') });
+
+exec
+/bin/zsh -lc 'rg -n "skill-benchmark" .opencode/skills/deep-improvement/scripts .opencode/skills/deep-improvement/test .opencode/skills/deep-improvement/tests' in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ exited 2 in 0ms:
+rg: .opencode/skills/deep-improvement/test: No such file or directory (os error 2)
+rg: .opencode/skills/deep-improvement/tests: No such file or directory (os error 2)
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:31:const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:52:// Lane C (skill-benchmark): the orchestrator the run resolves to. Sub-scripts
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:54:// score-skill-benchmark, build-report) are required internally by the
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:57:  'run-skill-benchmark.cjs',
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:60:// Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:62:// list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:102:    return path.join(SCRIPTS_ROOT, '..', 'skill-benchmark', scriptName);
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:183:  if (mode === 'skill-benchmark') {
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:185:      return { ok: false, error: 'skill-benchmark: missing required --skill=<skill-root-or-id> and --outputs-dir=<path>' };
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:187:    // Single orchestrator step: run-skill-benchmark.cjs internally sequences
+.opencode/skills/deep-improvement/scripts/shared/loop-host.cjs:195:    return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
+.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:5: * score-skill-benchmark.cjs — compute Lane C dimensions for one scenario and
+.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:155:    schemaVersion: 'skill-benchmark-report.v1',
+.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:156:    status: 'skill-benchmark-complete',
+.opencode/skills/deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs:157:    mode: 'skill-benchmark',
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:5: * run-skill-benchmark.cjs — Lane C orchestrator (loop-host --mode=skill-benchmark).
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:25:const { scoreScenario, aggregate } = require('./score-skill-benchmark.cjs');
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:40:// Fixtures: assets/skill-benchmark/fixtures/<skill-id>/ with <id>.public.json +
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:74:    process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:84:    : path.join(skillRoot, 'assets', 'skill-benchmark', 'fixtures', skillId);
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:121:  const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:126:  process.stdout.write(`skill-benchmark: ${skillId} verdict=${report.verdict} aggregate=${report.aggregateScore} scenarios=${scenarioRows.length}\n`);
+.opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:136:    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--output <report.json>] [--trace-mode router|live]\n');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:8:const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:24:const { scoreScenario, aggregate } = require(join(SB, 'score-skill-benchmark.cjs'));
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:30:  it('registers skill-benchmark as a valid mode without disturbing Lane A/B', () => {
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:31:    expect(loopHost.VALID_MODES.has('skill-benchmark')).toBe(true);
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:36:  it('plans a single skill-benchmark orchestrator step', () => {
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:37:    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex', 'outputs-dir': '/tmp/x' });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:40:    expect(plan.steps[0].script).toBe('run-skill-benchmark.cjs');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:43:  it('fails closed when required skill-benchmark args are missing', () => {
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:44:    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex' });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:135:    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:141:    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:188:describe('Lane C — end-to-end via run-skill-benchmark', () => {
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:197:    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-codex', '--outputs-dir', out], { encoding: 'utf8' });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:198:    const jsonPath = join(out, 'skill-benchmark-report.json');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:199:    const mdPath = join(out, 'skill-benchmark-report.md');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:203:    expect(report.mode).toBe('skill-benchmark');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:204:    expect(report.schemaVersion).toBe('skill-benchmark-report.v1');
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:214:    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'deep-improvement', '--outputs-dir', out], { encoding: 'utf8' });
+.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts:215:    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts | sed -n '1,230p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+     1	import { describe, it, expect, afterAll } from 'vitest';
+     2	import { execFileSync } from 'node:child_process';
+     3	import { mkdtempSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
+     4	import { tmpdir } from 'node:os';
+     5	import { join, resolve } from 'node:path';
+     6	
+     7	const SKILL_ROOT = resolve(__dirname, '..', '..');
+     8	const SB = join(SKILL_ROOT, 'scripts', 'skill-benchmark');
+     9	const REPO_SKILLS = resolve(SKILL_ROOT, '..');
+    10	
+    11	// A genuinely router-less skill dir (no INTENT_SIGNALS/RESOURCE_MAP). The
+    12	// deep-improvement skill itself now HAS a router (Lane B), so it cannot serve as
+    13	// the negative fixture — build a throwaway one.
+    14	function makeRouterlessSkill(): string {
+    15	  const dir = mkdtempSync(join(tmpdir(), 'lc-norouter-'));
+    16	  writeFileSync(join(dir, 'SKILL.md'), '---\nname: throwaway\n---\n# Throwaway\nNo smart router here.\n');
+    17	  return dir;
+    18	}
+    19	
+    20	// router-replay is a pure module — exercise it directly.
+    21	const { routeSkillResources, scoreIntents, selectIntents } = require(join(SB, 'router-replay.cjs'));
+    22	const { buildBannedVocab, lintFixture } = require(join(SB, 'contamination-lint.cjs'));
+    23	const { scanConnectivity } = require(join(SB, 'd5-connectivity.cjs'));
+    24	const { scoreScenario, aggregate } = require(join(SB, 'score-skill-benchmark.cjs'));
+    25	const { renderReport } = require(join(SB, 'build-report.cjs'));
+    26	const { scoreD1Inter, probeAdvisor } = require(join(SB, 'advisor-probe.cjs'));
+    27	const loopHost = require(join(SKILL_ROOT, 'scripts', 'shared', 'loop-host.cjs'));
+    28	
+    29	describe('Lane C — loop-host wiring (non-regression)', () => {
+    30	  it('registers skill-benchmark as a valid mode without disturbing Lane A/B', () => {
+    31	    expect(loopHost.VALID_MODES.has('skill-benchmark')).toBe(true);
+    32	    expect(loopHost.VALID_MODES.has('agent-improvement')).toBe(true);
+    33	    expect(loopHost.VALID_MODES.has('model-benchmark')).toBe(true);
+    34	  });
+    35	
+    36	  it('plans a single skill-benchmark orchestrator step', () => {
+    37	    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex', 'outputs-dir': '/tmp/x' });
+    38	    expect(plan.ok).toBe(true);
+    39	    expect(plan.steps).toHaveLength(1);
+    40	    expect(plan.steps[0].script).toBe('run-skill-benchmark.cjs');
+    41	  });
+    42	
+    43	  it('fails closed when required skill-benchmark args are missing', () => {
+    44	    const plan = loopHost.planInvocation('skill-benchmark', { skill: 'cli-codex' });
+    45	    expect(plan.ok).toBe(false);
+    46	  });
+    47	
+    48	  it('keeps the Lane A default plan byte-identical (TST-1)', () => {
+    49	    const a = loopHost.planInvocation('agent-improvement', { candidate: '/c.md' });
+    50	    const def = loopHost.planInvocation('agent-improvement', { candidate: '/c.md' });
+    51	    expect(a).toEqual(def);
+    52	    expect(a.steps[0].script).toBe('score-candidate.cjs');
+    53	  });
+    54	});
+    55	
+    56	describe('Lane C — router-replay (Mode A)', () => {
+    57	  it('routes a REVIEW task on cli-codex to the expected resources', () => {
+    58	    const res = routeSkillResources({
+    59	      skillRoot: join(REPO_SKILLS, 'cli-codex'),
+    60	      taskText: 'review this diff for security vulnerabilities and give a second opinion',
+    61	    });
+    62	    expect(res.parseable).toBe(true);
+    63	    expect(res.intents).toContain('REVIEW');
+    64	    expect(res.resources.length).toBeGreaterThan(0);
+    65	    expect(res.missingResources).toEqual([]);
+    66	  });
+    67	
+    68	  it('selectIntents keeps near-tied intents within the ambiguity delta', () => {
+    69	    const scores = [{ intent: 'A', score: 4 }, { intent: 'B', score: 3 }, { intent: 'C', score: 1 }];
+    70	    expect(selectIntents(scores)).toEqual(['A', 'B']);
+    71	  });
+    72	
+    73	  it('reports parseable:false for a skill with no INTENT_SIGNALS router', () => {
+    74	    const res = routeSkillResources({ skillRoot: makeRouterlessSkill(), taskText: 'anything' });
+    75	    expect(res.parseable).toBe(false);
+    76	  });
+    77	});
+    78	
+    79	describe('Lane C — contamination linter', () => {
+    80	  it('flags a public prompt that leaks the skill name', () => {
+    81	    const vocab = buildBannedVocab({ skillRoot: join(REPO_SKILLS, 'cli-codex'), skillId: 'cli-codex' });
+    82	    const res = lintFixture({ publicText: 'use the cli-codex skill to review', bannedVocab: vocab });
+    83	    expect(res.passed).toBe(false);
+    84	    expect(res.hardLeaks.length).toBeGreaterThan(0);
+    85	  });
+    86	
+    87	  it('passes a domain-language prompt with no skill identifiers', () => {
+    88	    const res = lintFixture({ publicText: 'please double check my code for bugs', bannedVocab: ['cli-codex', 'second opinion'] });
+    89	    expect(res.passed).toBe(true);
+    90	  });
+    91	});
+    92	
+    93	describe('Lane C — D5 connectivity gate', () => {
+    94	  it('hard-gates a skill whose router cannot be parsed', () => {
+    95	    const res = scanConnectivity({ skillRoot: makeRouterlessSkill() });
+    96	    expect(res.gateFailed).toBe(true);
+    97	    expect(res.routerParseable).toBe(false);
+    98	  });
+    99	
+   100	  it('does not hard-gate a router-bearing skill with valid paths', () => {
+   101	    const res = scanConnectivity({ skillRoot: join(REPO_SKILLS, 'cli-codex') });
+   102	    expect(res.routerParseable).toBe(true);
+   103	    // cli-codex routed paths exist, so no P0 dead-path gate.
+   104	    expect(res.deadResourcePaths).toEqual([]);
+   105	  });
+   106	});
+   107	
+   108	describe('Lane C — scorer + report render', () => {
+   109	  it('scores a scenario and renders report.md from report.json', () => {
+   110	    const routerResult = { parseable: true, intents: ['REVIEW'], resources: ['references/a.md'], missingResources: [], scores: [] };
+   111	    const row = scoreScenario({ scenarioId: 's1', tier: 'T2', routerResult, expected: { intentKeys: ['REVIEW'], resources: ['references/a.md'] } });
+   112	    expect(row.dims.d1intra.score).toBeGreaterThan(0.9);
+   113	    const report = aggregate({
+   114	      skillId: 'x', skillRoot: '/x', scenarioRows: [row],
+   115	      connectivity: { score: 90, gateFailed: false, findings: [] }, traceMode: 'router',
+   116	    });
+   117	    expect(report.verdict).toBe('PASS');
+   118	    const md = renderReport(report);
+   119	    expect(md).toContain('Skill Benchmark Report');
+   120	    expect(md).toContain('Verdict: PASS');
+   121	  });
+   122	});
+   123	
+   124	describe('Lane C — negative-activation scoring', () => {
+   125	  it('does not credit D3 for routing a resource that should be suppressed', () => {
+   126	    const routerResult = { parseable: true, intents: ['X'], resources: ['references/leak.md'], missingResources: [], scores: [] };
+   127	    const row = scoreScenario({ scenarioId: 'neg', tier: 'T3', routerResult, expected: { negativeActivation: true, resources: ['references/leak.md'] } });
+   128	    expect(row.dims.d1intra.score).toBe(0); // leaked the suppressed resource
+   129	    expect(row.dims.d3.score).toBe(0);      // D3 tracks the suppression failure, not over-routing
+   130	  });
+   131	});
+   132	
+   133	describe('Lane C — malformed-fixture degradation', () => {
+   134	  it('degrades to an unparseable-fixture row instead of crashing', () => {
+   135	    const { run } = require(join(SB, 'run-skill-benchmark.cjs'));
+   136	    const fixDir = mkdtempSync(join(tmpdir(), 'lc-badfix-'));
+   137	    writeFileSync(join(fixDir, 'broken.public.json'), '{ not valid json');
+   138	    const out = mkdtempSync(join(tmpdir(), 'lc-badout-'));
+   139	    const code = run({ skill: 'cli-codex', 'outputs-dir': out, 'fixtures-dir': fixDir });
+   140	    expect(code).toBe(0); // did not crash
+   141	    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+   142	    const row = (report.scenarioRows || []).find((r: any) => r.firstFailingStage === 'unparseable-fixture');
+   143	    expect(row).toBeTruthy();
+   144	    expect(row.loadError).toBeTruthy();
+   145	  });
+   146	});
+   147	
+   148	describe('Lane C — D1-inter advisor scoring', () => {
+   149	  const probe = (recs: any[]) => ({ ok: true, recommendations: recs, topSkill: recs[0]?.skill ?? null });
+   150	
+   151	  it('scores top-1 advisor selection as full credit', () => {
+   152	    const res = scoreD1Inter({ advisorResult: probe([{ skill: 'deep-improvement', confidence: 0.9 }]), expectedSkillId: 'deep-improvement', negative: false });
+   153	    expect(res.score).toBe(1);
+   154	    expect(res.rank).toBe(1);
+   155	  });
+   156	
+   157	  it('rank-weights a lower advisor placement', () => {
+   158	    const res = scoreD1Inter({ advisorResult: probe([{ skill: 'a' }, { skill: 'b' }, { skill: 'deep-improvement' }]), expectedSkillId: 'deep-improvement', negative: false });
+   159	    expect(res.score).toBe(0.75); // rank 3
+   160	  });
+   161	
+   162	  it('scores 0 when the expected skill is absent', () => {
+   163	    const res = scoreD1Inter({ advisorResult: probe([{ skill: 'x' }]), expectedSkillId: 'deep-improvement', negative: false });
+   164	    expect(res.score).toBe(0);
+   165	  });
+   166	
+   167	  it('inverts for a negative scenario (target must NOT be recommended)', () => {
+   168	    const absent = scoreD1Inter({ advisorResult: probe([{ skill: 'x' }]), expectedSkillId: 'deep-improvement', negative: true });
+   169	    expect(absent.score).toBe(1);
+   170	    const present = scoreD1Inter({ advisorResult: probe([{ skill: 'deep-improvement' }]), expectedSkillId: 'deep-improvement', negative: true });
+   171	    expect(present.score).toBe(0);
+   172	  });
+   173	
+   174	  it('returns unscored when the advisor probe failed', () => {
+   175	    const res = scoreD1Inter({ advisorResult: { ok: false, recommendations: [] }, expectedSkillId: 'deep-improvement', negative: false });
+   176	    expect(res.score).toBeNull();
+   177	    expect(res.ok).toBe(false);
+   178	  });
+   179	
+   180	  it('probes the real advisor deterministically (SQLite, no LLM)', () => {
+   181	    const res = probeAdvisor({ prompt: 'evaluate and score a bounded agent definition file then propose one guarded revision' });
+   182	    // The advisor is in-repo + deterministic; it should return a ranked list.
+   183	    expect(res.ok).toBe(true);
+   184	    expect(Array.isArray(res.recommendations)).toBe(true);
+   185	  });
+   186	});
+   187	
+   188	describe('Lane C — end-to-end via run-skill-benchmark', () => {
+   189	  const e2eDirs: string[] = [];
+   190	  afterAll(() => {
+   191	    for (const d of e2eDirs) rmSync(d, { recursive: true, force: true });
+   192	  });
+   193	
+   194	  it('emits dual report artifacts for a router-bearing skill', () => {
+   195	    const out = mkdtempSync(join(tmpdir(), 'lc-e2e-'));
+   196	    e2eDirs.push(out);
+   197	    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'cli-codex', '--outputs-dir', out], { encoding: 'utf8' });
+   198	    const jsonPath = join(out, 'skill-benchmark-report.json');
+   199	    const mdPath = join(out, 'skill-benchmark-report.md');
+   200	    expect(existsSync(jsonPath)).toBe(true);
+   201	    expect(existsSync(mdPath)).toBe(true);
+   202	    const report = JSON.parse(readFileSync(jsonPath, 'utf8'));
+   203	    expect(report.mode).toBe('skill-benchmark');
+   204	    expect(report.schemaVersion).toBe('skill-benchmark-report.v1');
+   205	  });
+   206	
+   207	  it('scores at least one real scenario end-to-end (deep-improvement ships a fixture)', () => {
+   208	    // cli-codex ships no fixtures (scenarioRows === 0), so the artifact test
+   209	    // above cannot prove the scenario pipeline runs. deep-improvement ships
+   210	    // agent-improve-001, so this asserts the full lint -> route -> score path
+   211	    // actually produced a scored row.
+   212	    const out = mkdtempSync(join(tmpdir(), 'lc-e2e-scored-'));
+   213	    e2eDirs.push(out);
+   214	    execFileSync('node', [join(SB, 'run-skill-benchmark.cjs'), '--skill', 'deep-improvement', '--outputs-dir', out], { encoding: 'utf8' });
+   215	    const report = JSON.parse(readFileSync(join(out, 'skill-benchmark-report.json'), 'utf8'));
+   216	    expect(Array.isArray(report.scenarioRows)).toBe(true);
+   217	    expect(report.scenarioRows.length).toBeGreaterThan(0);
+   218	    const scored = report.scenarioRows.find((r: any) => !r.loadError);
+   219	    expect(scored).toBeTruthy();
+   220	    expect(scored.dims?.d1intra).toBeTruthy();
+   221	  });
+   222	});
+
+codex
+Two things are now separate. The flag-forwarding remediation looks held: each forwarded Lane C option is consumed by `run-skill-benchmark`. The remaining concern is structural: one D5 validation path and one orchestrator path both have evidence of real missed behavior.
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs | sed -n '43,77p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+    43	function scanConnectivity({ skillRoot }) {
+    44	  const findings = [];
+    45	  const skillMdPath = path.join(skillRoot, 'SKILL.md');
+    46	  if (!fs.existsSync(skillMdPath)) {
+    47	    // Score mirrors the normal penalty path (100 - one P0 of 40 = 60) so a
+    48	    // score-comparison consumer sees the same number for the same one-P0
+    49	    // condition; gateFailed is the authoritative verdict signal either way.
+    50	    return {
+    51	      score: 60, gateFailed: true, routerParseable: false,
+    52	      deadResourcePaths: [], deadIntentKeys: [], orphanReferences: [], pathEscapes: [],
+    53	      findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
+    54	    };
+    55	  }
+    56	  const router = parseRouter(fs.readFileSync(skillMdPath, 'utf8'));
+    57	  const intentKeys = new Set(Object.keys(router.intentSignals));
+    58	  const deadResourcePaths = [];
+    59	  const deadIntentKeys = [];
+    60	  const pathEscapes = [];
+    61	  const routedRefs = new Set();
+    62	
+    63	  for (const [intent, resources] of Object.entries(router.resourceMap)) {
+    64	    if (!intentKeys.has(intent)) {
+    65	      deadIntentKeys.push(intent);
+    66	      findings.push({ class: 'dead_intent_key', severity: 'P1', locus: `RESOURCE_MAP.${intent}`, detail: `${intent} has no INTENT_SIGNALS entry` });
+    67	    }
+    68	    for (const r of resources) {
+    69	      routedRefs.add(r);
+    70	      const resolved = path.resolve(skillRoot, r);
+    71	      if (!resolved.startsWith(path.resolve(skillRoot))) {
+    72	        pathEscapes.push(r);
+    73	        findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root` });
+    74	      } else if (!fs.existsSync(resolved)) {
+    75	        deadResourcePaths.push(r);
+    76	        findings.push({ class: 'dead_resource_path', severity: 'P0', locus: r, detail: `routed path ${r} does not exist` });
+    77	      }
+
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs | sed -n '60,70p;183,195p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+    60	// Optional flags loop-host forwards to run-skill-benchmark.cjs, in forwarding
+    61	// order. --skill and --outputs-dir are required and handled separately. This
+    62	// list is exactly the set run-skill-benchmark.cjs's run() reads; forwarding a
+    63	// flag the orchestrator never consumes would be silently absorbed and mislead
+    64	// operators into thinking it has effect.
+    65	const SKILL_BENCHMARK_RUN_OPTIONS = [
+    66	  'fixtures-dir',
+    67	  'output',
+    68	  'trace-mode',
+    69	  'advisor-mode',
+    70	];
+   183	  if (mode === 'skill-benchmark') {
+   184	    if (!args.skill || !args['outputs-dir']) {
+   185	      return { ok: false, error: 'skill-benchmark: missing required --skill=<skill-root-or-id> and --outputs-dir=<path>' };
+   186	    }
+   187	    // Single orchestrator step: run-skill-benchmark.cjs internally sequences
+   188	    // D5-gate -> router-replay -> (optional live) -> trace-parse -> score ->
+   189	    // report, so the plan stays one step (unlike Lane B's materialize+run pair).
+   190	    // Lane C scripts use space-separated args.
+   191	    const skillArgs = ['--skill', args.skill, '--outputs-dir', args['outputs-dir']];
+   192	    for (const opt of SKILL_BENCHMARK_RUN_OPTIONS) {
+   193	      if (args[opt] !== undefined) skillArgs.push(`--${opt}`, String(args[opt]));
+   194	    }
+   195	    return { ok: true, steps: [{ script: 'run-skill-benchmark.cjs', args: skillArgs }] };
+
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs | sed -n '64,84p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+    64	function run(args) {
+    65	  const skillRoot = resolveSkillRoot(args.skill);
+    66	  const skillId = resolveSkillId(skillRoot);
+    67	  const outputsDir = path.resolve(args['outputs-dir']);
+    68	  fs.mkdirSync(outputsDir, { recursive: true });
+    69	  // D1-inter advisor probing is opt-in so the pure-router default stays fast +
+    70	  // dependency-free. --advisor-mode=python enables the deterministic probe.
+    71	  const advisorMode = args['advisor-mode'] || 'off';
+    72	
+    73	  if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
+    74	    process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
+    75	    return 2;
+    76	  }
+    77	
+    78	  // 2. D5 hard gate first.
+    79	  const connectivity = scanConnectivity({ skillRoot });
+    80	
+    81	  // 3. fixtures.
+    82	  const fixturesDir = args['fixtures-dir']
+    83	    ? path.resolve(args['fixtures-dir'])
+    84	    : path.join(skillRoot, 'assets', 'skill-benchmark', 'fixtures', skillId);
+
+exec
+/bin/zsh -lc "nl -ba .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs | sed -n '69,72p;81,84p;119,122p'" in /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
+ succeeded in 0ms:
+    69	  // D1-inter advisor probing is opt-in so the pure-router default stays fast +
+    70	  // dependency-free. --advisor-mode=python enables the deterministic probe.
+    71	  const advisorMode = args['advisor-mode'] || 'off';
+    72	
+    81	  // 3. fixtures.
+    82	  const fixturesDir = args['fixtures-dir']
+    83	    ? path.resolve(args['fixtures-dir'])
+    84	    : path.join(skillRoot, 'assets', 'skill-benchmark', 'fixtures', skillId);
+   119	  // 5. aggregate + emit.
+   120	  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode: args['trace-mode'] || 'router' });
+   121	  const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
+   122	  const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
+
+codex
+## Focus
+Lane C code spot-check: D5 connectivity, skill-benchmark orchestration/scoring, and loop-host flag forwarding.
+## Findings
+P1, .opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:71, The root containment check uses plain `startsWith`, so a routed `../deep-improvement-sibling/...` path can resolve outside the skill root while still sharing the same string prefix. Fix: compare `path.relative(root, resolved)` and reject paths that start with `..` or are absolute.
+
+P1, .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:73, The orchestrator returns before `scanConnectivity`, so the remediated missing-`SKILL.md` D5 score of 60 is never surfaced in the normal Lane C report path. Fix: remove this pre-D5 return and let `scanConnectivity` produce the gated report.
+## Verdict
+D5’s direct missing-`SKILL.md` score is 60 and `SKILL_BENCHMARK_RUN_OPTIONS` forwards consumed flags only, but two structural validation gaps remain.
+Review verdict: CONDITIONAL
+
+===FINDINGS_JSON===
+[{"id":"f-p122-i2-01","severity":"P1","file":".opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs","line":71,"issue":"The root containment check uses plain startsWith, so a routed ../deep-improvement-sibling/... path can resolve outside the skill root while still sharing the same string prefix.","fix":"Compare path.relative(root, resolved) and reject paths that start with .. or are absolute."},{"id":"f-p122-i2-02","severity":"P1","file":".opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs","line":73,"issue":"The orchestrator returns before scanConnectivity, so the remediated missing-SKILL.md D5 score of 60 is never surfaced in the normal Lane C report path.","fix":"Remove this pre-D5 return and let scanConnectivity produce the gated report."}]
+===END_FINDINGS===
+hook: Stop
+hook: Stop Completed
+tokens used
+67,323
+## Focus
+Lane C code spot-check: D5 connectivity, skill-benchmark orchestration/scoring, and loop-host flag forwarding.
+## Findings
+P1, .opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs:71, The root containment check uses plain `startsWith`, so a routed `../deep-improvement-sibling/...` path can resolve outside the skill root while still sharing the same string prefix. Fix: compare `path.relative(root, resolved)` and reject paths that start with `..` or are absolute.
+
+P1, .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs:73, The orchestrator returns before `scanConnectivity`, so the remediated missing-`SKILL.md` D5 score of 60 is never surfaced in the normal Lane C report path. Fix: remove this pre-D5 return and let `scanConnectivity` produce the gated report.
+## Verdict
+D5’s direct missing-`SKILL.md` score is 60 and `SKILL_BENCHMARK_RUN_OPTIONS` forwards consumed flags only, but two structural validation gaps remain.
+Review verdict: CONDITIONAL
+
+===FINDINGS_JSON===
+[{"id":"f-p122-i2-01","severity":"P1","file":".opencode/skills/deep-improvement/scripts/skill-benchmark/d5-connectivity.cjs","line":71,"issue":"The root containment check uses plain startsWith, so a routed ../deep-improvement-sibling/... path can resolve outside the skill root while still sharing the same string prefix.","fix":"Compare path.relative(root, resolved) and reject paths that start with .. or are absolute."},{"id":"f-p122-i2-02","severity":"P1","file":".opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs","line":73,"issue":"The orchestrator returns before scanConnectivity, so the remediated missing-SKILL.md D5 score of 60 is never surfaced in the normal Lane C report path.","fix":"Remove this pre-D5 return and let scanConnectivity produce the gated report."}]
+===END_FINDINGS===

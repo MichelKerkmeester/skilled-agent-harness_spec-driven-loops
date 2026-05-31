@@ -26,14 +26,14 @@
       "speckit",
       "path",
       "fix",
-      "030",
-      "phase",
       "007",
+      "phase",
       "remediation",
       "setup-cp-sandbox",
       "plan",
       "tasks",
-      "summary"
+      "summary",
+      "implementation"
     ],
     "importance_tier": "normal",
     "status": "complete",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Update the 3 stale references to `speckit` so both CP-stress sandboxes build, unblocking the 12 CP scenarios. Scope is the path rename only.",
     "created_at": "2026-05-27T20:00:00.000Z",
-    "last_save_at": "2026-05-28T06:08:17.308Z",
+    "last_save_at": "2026-05-30T10:12:01.066Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

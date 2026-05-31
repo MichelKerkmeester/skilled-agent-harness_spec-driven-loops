@@ -25,7 +25,7 @@
       "rulecoherence",
       "inline",
       "fallback",
-      "030",
+      "007",
       "phase",
       "008",
       "remediation",
@@ -38,19 +38,12 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "generate-profile.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-agent-improvement/scripts/generate-profile.cjs",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -188,11 +181,17 @@
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 surfaced one confirmed code bug and four stale-scenario expectations. CODE BUG: `generate-profile.cjs` `deriveRules()` extracted ALWAYS/NEVER rules ONLY from a dedicated `## RULES` / `## OPERATING RULES` section with `### ALWAYS`/`### NEVER` subheadings — it had no inline fallback, so it yielded 0 rules for agents (debug, orchestrate) that carry inline `- NEVER ...` bullets without a dedicated section. This failed PG-007 (inline NEVER fallback) and 5D-012 (debug ruleCoherence non-empty). STALE SCENARIOS (implementation correct, scenario expectation outdated): PG-005 (`≥3 ALWAYS` for debug, which has 0), BI-014/015 (`--profile=debug` — only generic `default.json` ships), 5D-013 (expects `profile-generation-failure`; correct label is `candidate-read-failure`), DR-031 (`SOURCE_DIVERSITY_THRESHOLD=0.4`; code intentionally `1.5`).",
     "created_at": "2026-05-27T21:30:00.000Z",
-    "last_save_at": "2026-05-28T06:08:17.310Z",
+    "last_save_at": "2026-05-30T10:12:01.067Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +199,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

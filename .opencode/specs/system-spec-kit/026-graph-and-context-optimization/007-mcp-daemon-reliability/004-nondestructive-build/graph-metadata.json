@@ -198,7 +198,7 @@
     ],
     "causal_summary": "The `@spec-kit/mcp-server` build runs `prebuild` → `clean` → `rmSync('dist', {recursive,force})`, deleting the **live** `dist/` before `tsc --build` repopulates it over several seconds. Any running daemon that lazy-imports a module during that window hits `MODULE_NOT_FOUND` and crashes (RC-4 in packet 030). The wipe also deletes `dist/tsconfig.tsbuildinfo`, forcing a full (slow) recompile every time instead of an incremental one.",
     "created_at": "2026-05-28T18:15:02Z",
-    "last_save_at": "2026-05-28T18:48:33.011Z",
+    "last_save_at": "2026-05-30T10:12:02.744Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -210,7 +210,7 @@
     ],
     "causal_summary": "This packet implements the ten P1/P2 items deferred from 003 Gate 7 because they required policy decisions, broader validation architecture work, or cross-script CLI contract changes. It keeps the 003 template contract intact while delivering performance, manifest, migration, save-lock, and lineage semantics in a sibling packet.",
     "created_at": "2026-05-01T20:32:55Z",
-    "last_save_at": "2026-05-28T06:06:28.673Z",
+    "last_save_at": "2026-05-30T10:12:02.021Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -220,6 +220,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

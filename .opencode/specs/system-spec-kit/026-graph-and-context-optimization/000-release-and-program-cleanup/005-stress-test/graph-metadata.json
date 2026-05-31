@@ -91,11 +91,13 @@
     ],
     "causal_summary": "This phase parent coordinates stress testing and coverage validation work across 7 child packets. The children collectively address test pattern documentation, MCP runtime stress remediation, stress test folder completion, expansion and alignment, coverage audit and run, and gap remediation to ensure comprehensive stress test coverage for the MCP runtime environment.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-28T06:06:28.365Z",
+    "last_save_at": "2026-05-30T10:12:01.649Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

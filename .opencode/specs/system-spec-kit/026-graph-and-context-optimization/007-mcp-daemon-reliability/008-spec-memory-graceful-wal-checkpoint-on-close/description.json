@@ -10,7 +10,7 @@
     "checkpoint",
     "close"
   ],
-  "lastUpdated": "2026-05-29T12:05:55.377Z",
+  "lastUpdated": "2026-05-29T13:12:03.758Z",
   "specId": "008",
   "folderSlug": "spec-memory-graceful-wal-checkpoint-on-close",
   "parentChain": [
@@ -20,6 +20,8 @@
     "026-graph-and-context-optimization",
     "007-mcp-daemon-reliability"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_14-12__diagnosed-recovered-documented-and-prevented-a.md"
+  ]
 }

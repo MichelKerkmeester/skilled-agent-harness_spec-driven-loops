@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Define the foundational types every other phase will build on. The `EmbedderAdapter` interface abstracts backend differences (prefix tokens, dimensions, batch sizes, error formats). The `EmbedderRegistry` provides name-based lookup. Pure types + small registry — no actual inference runtime wiring in this phase.",
     "created_at": "2026-05-17T06:35:17.033Z",
-    "last_save_at": "2026-05-28T06:06:28.833Z",
+    "last_save_at": "2026-05-30T10:12:02.175Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

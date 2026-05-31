@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The post-013/009 Skill Advisor extraction needed end-to-end manual validation from the OpenCode runtime, not only package-level tests. The manual playbook covered 42 scenarios across native MCP tools, hooks and plugin behavior, compatibility controls, daemon behavior, indexing, lifecycle routing, scorer fusion, and Python compatibility.",
     "created_at": "2026-05-18T08:53:20.215Z",
-    "last_save_at": "2026-05-28T06:06:28.546Z",
+    "last_save_at": "2026-05-30T10:12:01.897Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

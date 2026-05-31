@@ -36,15 +36,103 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
+      "mcp_server/handlers/embedder-status.ts",
+      "shared/embeddings/providers/hf-local.ts",
+      "shared/embeddings/factory.ts",
+      "shared/types.ts",
+      ".opencode/bin/mk-skill-advisor-launcher.cjs",
+      ".opencode/commands/doctor/_routes.yaml",
+      ".opencode/commands/doctor/assets/doctor_embeddings.yaml",
+      ".opencode/commands/doctor/speckit.md",
+      "mcp_server/ENV_REFERENCE.md",
+      "mcp_server/INSTALL_GUIDE.md",
+      "mcp_server/tests/embedder-status.vitest.ts",
+      "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+      ".opencode/bin/hf-model-server.cjs",
       "spec.md",
       "plan.md",
-      ".opencode/bin/mk-skill-advisor-launcher.cjs",
-      "shared/embeddings/providers/hf-local.ts",
-      ".opencode/bin/hf-model-server.cjs",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "embedder-status.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/embedder-status.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local.ts",
+        "kind": "code",
+        "path": "shared/embeddings/providers/hf-local.ts",
+        "source": "derived"
+      },
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-skill-advisor-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "_routes.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/_routes.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_embeddings.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_embeddings.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "speckit.md",
+        "kind": "doc",
+        "path": ".opencode/commands/doctor/speckit.md",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": "mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "embedder-status.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedder-status.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-local-client.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/embedders/hf-local-client.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "hf-model-server.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/hf-model-server.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -55,24 +143,6 @@
         "name": "plan.md",
         "kind": "doc",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "mk-skill-advisor-launcher.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/mk-skill-advisor-launcher.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "hf-local.ts",
-        "kind": "code",
-        "path": "shared/embeddings/providers/hf-local.ts",
-        "source": "derived"
-      },
-      {
-        "name": "hf-model-server.cjs",
-        "kind": "file",
-        "path": ".opencode/bin/hf-model-server.cjs",
         "source": "derived"
       },
       {
@@ -89,12 +159,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -124,75 +188,21 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement Operators",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Make",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Read",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "first-embed",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "model-server",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3 of 5** of the embedding-stack hardening decomposition: give operators a read-only view of embedder state, make model switches safe, and stop the client from declaring a healthy-but-downloading server dead.",
     "created_at": "2026-05-29T11:22:57.379Z",
-    "last_save_at": "2026-05-29T13:33:41.134Z",
+    "last_save_at": "2026-05-30T10:12:02.917Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -200,6 +210,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

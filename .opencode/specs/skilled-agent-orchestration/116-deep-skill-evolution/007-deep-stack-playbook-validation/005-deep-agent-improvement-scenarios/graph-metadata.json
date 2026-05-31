@@ -32,7 +32,7 @@
       "improvement",
       "playbook",
       "run",
-      "030",
+      "007",
       "phase",
       "005",
       "plan",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Execute all 37 `deep-agent-improvement` scenarios via `cli-devin` SWE-1.6 (deterministic `node` script invocation piped to `python3` JSON assertions, with exit-code corroboration), record a verdict + evidence per scenario, and surface the runtime-truth category (07) release gate so no downstream false-green is recorded for the packet's release-readiness synthesis.",
     "created_at": "2026-05-27T07:08:08.397Z",
-    "last_save_at": "2026-05-28T06:08:17.306Z",
+    "last_save_at": "2026-05-30T10:12:01.063Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +209,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

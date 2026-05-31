@@ -1,0 +1,154 @@
+{
+  "openQuestions": [
+    {
+      "id": "Q3",
+      "question": "Does the evidence TSV reproducibly show runner:* SKIP with owning pids and a stable explanation?",
+      "iteration": 3
+    },
+    {
+      "id": "Q4",
+      "question": "Is the ~1437 graph-metadata.json churn pre-existing + operator background rescans, NOT harness-produced?",
+      "iteration": null
+    },
+    {
+      "id": "Q5",
+      "question": "Is the SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true leak genuinely sidestepped by skip-not-fail, or merely hidden?",
+      "iteration": null
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "question": "Do genuine daemon crashes still FAIL via liveOwnerForService null path?",
+      "iteration": 1,
+      "answer": "Yes. Null path at run-substrate-stress-harness.mjs:364 catches genuine crashes when OS has not recycled the PID. Residual risk is PID recycling (F-005)."
+    },
+    {
+      "id": "Q2",
+      "question": "Does the false-green guard still fire in a clean env?",
+      "iteration": 2,
+      "answer": "Yes. Guard at substrate-runner-harness.vitest.ts:79-83 fires when no runner:mk-spec-memory SKIP row (daemons connected cleanly) and asserts 410 must be PASS/PARTIAL. If 410 SKIPs due to missing memory_search, the assertion fails. Only bypass is PID recycling F-005."
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F-001",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "Null-return from liveOwnerForService is sole FAIL arbiter; genuine crash FAILs only when isPidAlive returns false for all lease pids",
+      "file": "run-substrate-stress-harness.mjs:358-364"
+    },
+    {
+      "id": "F-002",
+      "iteration": 1,
+      "severity": "P2",
+      "label": "isPidAlive: ESRCH->false (dead), EPERM->true (alive), no-error->true (alive) — correctly implemented",
+      "file": "run-substrate-stress-harness.mjs:321-330"
+    },
+    {
+      "id": "F-003",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "DR-016 childPid not checked by harness: launcher crash with live child -> harness returns null -> FAIL (correct for harness purpose, but not a false-green)",
+      "file": "run-substrate-stress-harness.mjs:343-344"
+    },
+    {
+      "id": "F-004",
+      "iteration": 1,
+      "severity": "P3",
+      "label": "TOCTOU window not exploitable: liveOwnerForService called synchronously in catch block with no await between client.close() and lease read",
+      "file": "run-substrate-stress-harness.mjs:394-397"
+    },
+    {
+      "id": "F-005",
+      "iteration": 1,
+      "severity": "P1",
+      "label": "PID-recycling attack: if daemon crashes without cleaning lease AND OS recycles ownerPid to a live unrelated process, isPidAlive returns true and verdict becomes SKIP instead of FAIL — residual risk",
+      "file": "run-substrate-stress-harness.mjs:339-365"
+    },
+    {
+      "id": "F-008",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "runner: rows ONLY on connect/listTools throw; diagnostic:null only when both succeed without throwing; SKIP row means liveOwner!=null (daemon alive at PID level), not that connect succeeded",
+      "file": "run-substrate-stress-harness.mjs:376-416"
+    },
+    {
+      "id": "F-009",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Guard catches all-SKIP false green: when no runner:mk-spec-memory SKIP row (both connect cleanly), guard asserts 410 must be PASS/PARTIAL; if 410 SKIPs (missing memory_search), assertion fails and test fails — guard is effective",
+      "file": "substrate-runner-harness.vitest.ts:79-83"
+    },
+    {
+      "id": "F-010",
+      "iteration": 2,
+      "severity": "P1",
+      "label": "Only bypass of guard is PID recycling F-005: dead daemon's lease not cleaned + ownerPid recycled to live unrelated process -> isPidAlive returns true -> liveOwner!=null -> SKIP row -> guard bypassed. No other mechanism.",
+      "file": "run-substrate-stress-harness.mjs:358-365"
+    },
+    {
+      "id": "F-011",
+      "iteration": 2,
+      "severity": "P2",
+      "label": "listTools() failure is NOT independent false-green path: both connect-throw and listTools-throw enter same catch block and are classified by liveOwnerForService only; zombie daemon -> SKIP (correct, PID IS alive); dead daemon -> FAIL (correct)",
+      "file": "run-substrate-stress-harness.mjs:376-416"
+    },
+    {
+      "id": "F-012",
+      "iteration": 2,
+      "severity": "P2",
+      "label": "410 guard is specifically about tool availability not harness infra: guards against 'daemon connects but silently exposes no memory_search tools' scenario; this is correct behavior for a clean-env validation",
+      "file": "substrate-runner-harness.vitest.ts:75-83"
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "id": "RO-001",
+      "iteration": 1,
+      "direction": "EPERM false-green independent of PID recycling",
+      "reason": "EPERM always means process is alive; EPERM cannot cause false-green except via the PID-recycling path (F-005) which requires a dead daemon's PID to be live-reassigned"
+    },
+    {
+      "id": "RO-002",
+      "iteration": 1,
+      "direction": "TOCTOU between connect failure and lease read",
+      "reason": "liveOwnerForService is called synchronously in catch block with no await between client.close() and lease read; no meaningful race window"
+    },
+    {
+      "id": "RO-003",
+      "iteration": 1,
+      "direction": "childPid omission creates false-green SKIP",
+      "reason": "childPid not checked means harness FAILs when launcher is dead even if child is alive; not a false-green, but the harness purpose is launcher's ability to spawn a dedicated child"
+    },
+    {
+      "id": "RO-004",
+      "iteration": 2,
+      "direction": "listTools zombie/unresponsive produces false-green SKIP without PID recycling",
+      "reason": "isPidAlive only checks if PID is alive (process exists), not if daemon is responsive; zombie daemon -> liveOwner!=null -> SKIP is correct (PID IS alive, harness cannot spawn child)"
+    },
+    {
+      "id": "RO-005",
+      "iteration": 2,
+      "direction": "empty toolNames Set silently bypasses guard",
+      "reason": "empty toolNames -> memory_search absent -> 410 SKIPs -> guard fires -> assertion fails (not silent pass)"
+    },
+    {
+      "id": "RO-006",
+      "iteration": 2,
+      "direction": "memoryScenario undefined (missing 410 row) silently bypasses guard",
+      "reason": "undefined verdict -> expect(['PASS','PARTIAL']).toContain(undefined) throws -> test fails, not silent pass"
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 2,
+    "openQuestions": 3,
+    "resolvedQuestions": 2,
+    "keyFindings": 10,
+    "convergenceScore": 0.4,
+    "coverageBySources": {
+      "run-substrate-stress-harness.mjs": "complete",
+      "substrate-runner-harness.vitest.ts": "complete"
+    }
+  }
+}

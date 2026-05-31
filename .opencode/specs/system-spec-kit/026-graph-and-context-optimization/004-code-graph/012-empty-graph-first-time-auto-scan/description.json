@@ -8,7 +8,7 @@
     "first-time",
     "auto-establish"
   ],
-  "lastUpdated": "2026-05-29T10:44:31.957Z",
+  "lastUpdated": "2026-05-29T11:03:06.701Z",
   "specId": "012",
   "folderSlug": "empty-graph-first-time-auto-scan",
   "parentChain": [
@@ -18,6 +18,8 @@
     "026-graph-and-context-optimization",
     "004-code-graph"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "29-05-26_12-03__audited-the-system-code-graph-skill-with-two.md"
+  ]
 }

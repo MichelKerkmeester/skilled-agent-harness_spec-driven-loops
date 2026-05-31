@@ -156,13 +156,15 @@
     ],
     "causal_summary": "Implement a comprehensive 3-layer defense system to prevent memory saves to incorrect spec folders.",
     "created_at": "2026-04-12T09:02:53.520Z",
-    "last_save_at": "2026-05-28T06:06:29.587Z",
+    "last_save_at": "2026-05-30T10:12:02.972Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "checklist.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

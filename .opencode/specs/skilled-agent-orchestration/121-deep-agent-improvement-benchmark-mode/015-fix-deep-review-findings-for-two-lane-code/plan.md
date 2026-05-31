@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: two-lane deep-review remediation"
+title: "Implementation Plan: fix deep-review findings for two-lane code"
 description: "Remediate the 014 two-lane deep-review findings: fix the Lane B command parser P0, harden the security and traceability P1 cluster, and disposition every P2, with regression tests and TST-1 byte-identity preserved."
 trigger_phrases:
   - "two-lane remediation plan"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Implement F-P0-1 parser fix then P1 cluster"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/review-report.md"
+      - "../014-review-two-lane-workflow-implementation/review/review-report.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -26,7 +26,7 @@ _memory:
     answered_questions: []
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-# Implementation Plan: two-lane deep-review remediation
+# Implementation Plan: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 

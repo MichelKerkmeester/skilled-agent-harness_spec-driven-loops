@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Discovery against the live tree (2026-05-15) shows the system-skill-advisor README gap is smaller than the original 4-phase plan estimated:",
     "created_at": "2026-05-15T11:55:00Z",
-    "last_save_at": "2026-05-28T06:06:28.614Z",
+    "last_save_at": "2026-05-30T10:12:01.963Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +218,8 @@
       "tasks.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

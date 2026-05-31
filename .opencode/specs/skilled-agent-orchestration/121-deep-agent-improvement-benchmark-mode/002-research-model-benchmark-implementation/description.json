@@ -1,0 +1,26 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/002-research-model-benchmark-implementation",
+  "description": "Use MiniMax M2.7 deep-research to produce the build-ready implementation delta for model-benchmark mode.",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep",
+    "research",
+    "minimax",
+    "implement",
+    "deep-agent-improvement",
+    "model-benchmark",
+    "mode"
+  ],
+  "lastUpdated": "2026-05-28T21:38:19.861Z",
+  "specId": "002",
+  "folderSlug": "002-research-model-benchmark-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: implement model-benchmark mode for deep-research"
+}

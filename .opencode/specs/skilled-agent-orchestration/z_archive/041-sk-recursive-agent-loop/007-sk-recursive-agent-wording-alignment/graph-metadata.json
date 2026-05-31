@@ -195,7 +195,7 @@
     ],
     "causal_summary": "After phase `006`, the agent-improver program was structurally aligned, but several current surfaces still had awkward phrasing, inconsistent terminology, or minor wording bugs across the source skill package, runtime mirrors, wrapper prompts, and parent packet docs.",
     "created_at": "2026-04-12T09:02:50.188Z",
-    "last_save_at": "2026-05-28T06:06:27.899Z",
+    "last_save_at": "2026-05-30T10:12:01.221Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

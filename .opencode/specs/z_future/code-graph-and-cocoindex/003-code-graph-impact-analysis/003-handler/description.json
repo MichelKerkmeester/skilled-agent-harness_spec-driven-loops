@@ -1,0 +1,48 @@
+{
+  "title": "027/004/003 Impact Analysis Handler",
+  "trigger_phrases": [
+    "027 004 003 handler",
+    "impact analysis handler",
+    "code-graph-llm-risk-enrich"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "scaffolded",
+  "priority": "P1",
+  "createdAt": "2026-05-12T00:00:00.000Z",
+  "branch": "main",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/001-contract"
+    ]
+  },
+  "derived": {
+    "status": "scaffolded",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/003-code-graph-impact-analysis/003-handler",
+  "description": "Feature Specification: 027/004/003 Impact Analysis Handler",
+  "keywords": [
+    "feature",
+    "specification",
+    "027",
+    "004",
+    "003",
+    "impact",
+    "analysis",
+    "handler"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.081Z",
+  "specId": "003",
+  "folderSlug": "handler",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "003-code-graph-impact-analysis"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -36,29 +36,19 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "plan.md",
       ".opencode/bin/hf-model-server.cjs",
       "shared/embeddings/providers/hf-local.ts",
+      "shared/types.ts",
       "mcp_server/lib/embedders/execution-router.ts",
+      "mcp_server/ENV_REFERENCE.md",
       "mcp_server/lib/embedders/reindex.ts",
       "mcp_server/lib/cache/embedding-cache.ts",
+      "spec.md",
+      "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "spec.md",
-        "kind": "doc",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
-        "source": "derived"
-      },
       {
         "name": "hf-model-server.cjs",
         "kind": "file",
@@ -72,9 +62,21 @@
         "source": "derived"
       },
       {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "shared/types.ts",
+        "source": "derived"
+      },
+      {
         "name": "execution-router.ts",
         "kind": "code",
         "path": "mcp_server/lib/embedders/execution-router.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
         "source": "derived"
       },
       {
@@ -87,6 +89,18 @@
         "name": "embedding-cache.ts",
         "kind": "code",
         "path": "mcp_server/lib/cache/embedding-cache.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -103,12 +117,6 @@
       },
       {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -138,7 +146,19 @@
         "source": "derived"
       },
       {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -172,29 +192,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "lazy",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 4 of 5** of the embedding-stack hardening decomposition: turn the perf items from guesses into measured wins. Instrumentation comes FIRST — it is the gate that turns the next three changes from speculation into evidence.",
     "created_at": "2026-05-29T11:22:57.383Z",
-    "last_save_at": "2026-05-29T15:06:08.095Z",
+    "last_save_at": "2026-05-30T10:12:02.919Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

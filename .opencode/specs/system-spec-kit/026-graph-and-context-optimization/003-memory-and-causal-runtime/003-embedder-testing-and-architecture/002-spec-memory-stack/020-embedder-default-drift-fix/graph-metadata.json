@@ -47,7 +47,6 @@
       "shared/embeddings/providers/hf-local.ts",
       "shared/embeddings/providers/ollama.ts",
       "shared/embeddings/factory.ts",
-      "mcp_server/lib/embedders/sidecar-worker.ts",
       "shared/embeddings/registry.test.ts",
       "shared/predicates/boolean-expr.test.ts",
       "decision-record.md",
@@ -89,12 +88,6 @@
         "name": "factory.ts",
         "kind": "code",
         "path": "shared/embeddings/factory.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-worker.ts",
-        "kind": "code",
-        "path": "mcp_server/lib/embedders/sidecar-worker.ts",
         "source": "derived"
       },
       {
@@ -204,11 +197,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "ADR-013 (operator override) and ADR-014 (cascade reorder + nomic hf-local default) migrated the canonical embedder to `nomic-ai/nomic-embed-text-v1.5` via the registry MANIFESTS + `vec_metadata.active_embedder_name`. In practice 5 hardcoded string constants survived ADR-013/014 and continued to point at pre-ADR models:",
     "created_at": "2026-05-23T11:24:22.644243Z",
-    "last_save_at": "2026-05-28T06:06:28.871Z",
+    "last_save_at": "2026-05-30T10:12:02.233Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -218,6 +217,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

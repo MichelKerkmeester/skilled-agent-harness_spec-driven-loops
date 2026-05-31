@@ -210,7 +210,7 @@
     ],
     "causal_summary": "After the 026 spec-folder reorganization, a bulk re-embed of the mk-spec-memory store (~17k of ~27k rows unembedded) will not converge to a clean state. Pending embeddings are parked as `failed` by two retry-retention limits (`SPECKIT_RETRY_QUEUE_MAX_PENDING` default 1000, `SPECKIT_RETRY_QUEUE_MAX_AGE_MS` default 24h) in `retry-manager.js`; `reindex --force` is content-driven and skips rows already marked `failed`; `embedder_set` writes vectors but statuses do not stick because stale-config daemon workers re-park them; and the persistent multi-process daemon does not reload env config on `/mcp` reconnect, so config fixes and worker kills do not take effect cleanly. The result is a backlog that cannot be driven to `0 failed / 0 pending`.",
     "created_at": "2026-05-26T22:10:31.718Z",
-    "last_save_at": "2026-05-28T16:22:41.025Z",
+    "last_save_at": "2026-05-30T10:12:02.527Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,8 @@
       "tasks.md",
       "implementation-summary.md",
       "research/research.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

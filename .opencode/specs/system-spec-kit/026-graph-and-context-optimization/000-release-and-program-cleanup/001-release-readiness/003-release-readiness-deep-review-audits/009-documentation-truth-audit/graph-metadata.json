@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The documentation surface needs a release-readiness truth audit after recent refresh work. Claims about automation, tool counts, feature coverage, and operator validation must match the live runtime and schema sources.",
     "created_at": "2026-05-18T08:15:52.981Z",
-    "last_save_at": "2026-05-28T06:06:28.242Z",
+    "last_save_at": "2026-05-30T10:12:01.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -199,6 +199,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

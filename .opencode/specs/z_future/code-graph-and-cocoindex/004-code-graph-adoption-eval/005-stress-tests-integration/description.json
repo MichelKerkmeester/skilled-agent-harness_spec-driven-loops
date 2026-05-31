@@ -1,0 +1,47 @@
+{
+  "title": "005 Stress Tests Integration",
+  "trigger_phrases": [
+    "027 006 005 stress tests integration",
+    "code graph adoption eval vitest"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "planned",
+  "priority": "P0",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/002-token-measurement",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/004-report-generator"
+    ]
+  },
+  "derived": {
+    "status": "planned",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/005-stress-tests-integration",
+  "description": "Feature Specification: 005 Stress Tests Integration",
+  "keywords": [
+    "feature",
+    "specification",
+    "005",
+    "stress",
+    "tests",
+    "integration"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.111Z",
+  "specId": "005",
+  "folderSlug": "stress-tests-integration",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "004-code-graph-adoption-eval"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Install guides and root docs still cite singular paths or stale inventory; `.opencode/skills/sk-code/` has a dead Copilot target-authority guard branch; two cli-opencode playbooks have nested-backtick prompts that render incorrectly.",
     "created_at": "2026-05-18T07:49:27.245Z",
-    "last_save_at": "2026-05-28T06:06:28.197Z",
+    "last_save_at": "2026-05-30T10:12:01.486Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

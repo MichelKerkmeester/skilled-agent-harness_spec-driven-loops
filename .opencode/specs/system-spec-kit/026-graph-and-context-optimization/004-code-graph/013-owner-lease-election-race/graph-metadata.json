@@ -170,19 +170,19 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Investigation (COMPLETE)",
-        "kind": "heading",
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Fix (DEFERRED — pending owner decision)",
-        "kind": "heading",
+        "name": "All Phase",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification (DEFERRED)",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The launcher (`mk-code-index-launcher.cjs`) elects the single writer through several gates before spawning the daemon, but two of them are non-atomic: the owner-lease reclaim (`acquireOwnerLeaseFile`, lines 373-386) and the `writeLeaseFile()` + `readLeaseFile()` reprobe (lines 948-954) both detect only *overlapping* concurrent writes via a read-after-write, not *sequential* ones. Worse, `writeLeaseFile()` runs **outside** the `if (lockHeld)` bootstrap-lock branch, so both the bootstrap-lock winner and loser reach it. Under two launchers concurrently reclaiming a stale-heartbeat lease, two daemon children can briefly both `launchServer()`, and the PID lease flips last-writer-wins. The daemon does not re-elect atomically; it only refreshes on a heartbeat timer (`index.ts:46-55`, interval `TTL/3`) and self-shuts-down when it finds the lease no longer holds its pid — so the double-daemon window persists up to one heartbeat tick (Agent A's observed \"~12 s both alive\").",
     "created_at": "2026-05-29T16:10:52.725Z",
-    "last_save_at": "2026-05-29T16:11:08.617Z",
+    "last_save_at": "2026-05-30T10:12:02.656Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

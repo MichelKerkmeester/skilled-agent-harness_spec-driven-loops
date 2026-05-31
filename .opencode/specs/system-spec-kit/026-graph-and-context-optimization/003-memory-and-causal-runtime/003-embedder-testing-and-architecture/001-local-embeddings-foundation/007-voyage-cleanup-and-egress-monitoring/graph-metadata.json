@@ -201,7 +201,7 @@
     ],
     "causal_summary": "After 003 purged `VOYAGE_API_KEY` from every shell-propagating source and 004 rebuilt the memory vec store under hf-local, three sqlite files at `.opencode/skills/system-spec-kit/mcp_server/database/` were stale: `context-index__voyage__voyage-4__1024.sqlite` (318MB main + 32K shm + 4MB wal) and the older generic-name `context-index.sqlite` (141MB) from before filename-keying. Disk space aside, the leftover files make \"is Voyage still in use?\" a slower question to answer.",
     "created_at": "2026-05-12T16:27:51Z",
-    "last_save_at": "2026-05-28T06:06:28.735Z",
+    "last_save_at": "2026-05-30T10:12:02.081Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T22:00:00Z",
     "source_docs": [
@@ -209,6 +209,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

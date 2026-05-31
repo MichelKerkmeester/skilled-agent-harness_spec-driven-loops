@@ -192,7 +192,7 @@
     ],
     "causal_summary": "Spec-memory had inline provider model defaults duplicated across 4 sites (providers/voyage.ts, providers/openai.ts, auto-select.ts, cross-encoder.ts) despite registry.ts already exporting `getCanonicalFallback(provider)` since packet 020. Reranker side had no canonical helper at all — `cross-encoder/ms-marco-MiniLM-L-6-v2` was inline in PROVIDER_CONFIG.local.",
     "created_at": "2026-05-23T18:10:00.000000Z",
-    "last_save_at": "2026-05-28T06:06:28.880Z",
+    "last_save_at": "2026-05-30T10:12:02.248Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

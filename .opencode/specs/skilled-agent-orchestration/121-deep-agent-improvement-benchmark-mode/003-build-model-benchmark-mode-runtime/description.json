@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/003-build-model-benchmark-mode-runtime",
+  "description": "Build the model-benchmark runtime from the research delta, including loop host, model dispatch, scorer port, mode-aware records, and identity verification.",
+  "keywords": [
+    "feature",
+    "specification",
+    "build",
+    "deep-agent-improvement",
+    "model-benchmark",
+    "mode"
+  ],
+  "lastUpdated": "2026-05-28T21:38:19.866Z",
+  "specId": "003",
+  "folderSlug": "003-build-model-benchmark-mode-runtime",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: build model-benchmark mode runtime"
+}

@@ -48,7 +48,6 @@
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/mcp-chrome-devtools/SKILL.md",
       ".opencode/skills/deep-review/SKILL.md",
-      ".opencode/skills/deep-agent-improvement/SKILL.md",
       ".opencode/skills/sk-code-review/SKILL.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/deep-research/SKILL.md",
@@ -56,7 +55,8 @@
       ".opencode/commands/memory/manage.md",
       ".opencode/commands/speckit/complete.md",
       ".opencode/commands/speckit/implement.md",
-      ".opencode/commands/speckit/resume.md"
+      ".opencode/commands/speckit/resume.md",
+      ".opencode/commands/speckit/plan.md"
     ],
     "entities": [
       {
@@ -206,7 +206,7 @@
     ],
     "causal_summary": "Claude Code's status line reports `15 skill descriptions dropped`. The harness caps total skill metadata at `SLASH_COMMAND_TOOL_CHAR_BUDGET` (default 8,000 chars). This repo's 16 SKILL.md frontmatters + 23 command frontmatters total ~7,646 chars — combined with bundled Claude Code built-ins (~2,400 chars: `claude-api`, `update-config`, `loop`, `schedule`, etc.) the harness sees ~10,050 chars and drops the longest 15 alphabetically. Dropped skills still work when invoked explicitly (`/skill-name`) but lose model auto-discovery.",
     "created_at": "2026-05-06T12:38:24.302Z",
-    "last_save_at": "2026-05-28T06:06:28.146Z",
+    "last_save_at": "2026-05-30T19:40:10.558Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

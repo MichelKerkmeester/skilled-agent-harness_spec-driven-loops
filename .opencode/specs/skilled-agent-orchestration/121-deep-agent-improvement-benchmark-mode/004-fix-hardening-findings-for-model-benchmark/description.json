@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/004-fix-hardening-findings-for-model-benchmark",
+  "description": "Fix the hardening-review findings for model-benchmark mode, including cwd propagation, path boundary checks, criteria-exec gating, grader clamping, and regression tests.",
+  "keywords": [
+    "feature",
+    "specification",
+    "deep-agent-improvement",
+    "model-benchmark",
+    "mode",
+    "remediation"
+  ],
+  "lastUpdated": "2026-05-29T09:27:47.355Z",
+  "specId": "004",
+  "folderSlug": "004-fix-hardening-findings-for-model-benchmark",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: fix hardening-review findings for model-benchmark mode"
+}

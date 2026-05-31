@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Operators currently can't tell whether drift is \"fresh\" vs \"needs full scan\" vs \"needs selective reindex\" — they have to invoke `code_graph_scan` (mutating) just to find out. This is the exact pathology research §5.2 identified.",
     "created_at": "2026-04-27T19:54:00.000Z",
-    "last_save_at": "2026-05-28T06:06:28.397Z",
+    "last_save_at": "2026-05-30T10:12:01.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

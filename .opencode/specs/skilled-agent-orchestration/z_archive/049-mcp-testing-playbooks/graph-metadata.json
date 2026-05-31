@@ -204,7 +204,7 @@
     ],
     "causal_summary": "Three of the four MCP skills (`mcp-chrome-devtools`, `mcp-clickup`, `mcp-code-mode`) currently ship without any deterministic operator-facing test surface — operators have no shared way to verify install health or to confirm a regression. This spec authors three new manual testing playbooks (BDG ~22 scenarios, CU ~25 scenarios, CM ~26 scenarios) plus a coverage audit of the existing `mcp-coco-index` playbook. All playbooks follow the canonical sk-doc playbook contract: per-skill `manual_testing_playbook/` folder containing a root `manual_testing_playbook.md` plus numbered category folders with one per-feature file per scenario.",
     "created_at": "2026-04-26T09:17:15.287Z",
-    "last_save_at": "2026-05-28T06:06:27.944Z",
+    "last_save_at": "2026-05-30T10:12:01.267Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,8 @@
       "decision-record.md",
       "implementation-summary.md",
       "research.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

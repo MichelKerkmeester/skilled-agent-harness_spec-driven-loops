@@ -1,10 +1,5 @@
 {
   "title": "Active enforcement layer for comment hygiene",
-  "description": "119 produced the text rule in sk-code §4. AIs still added 27-file worth of violations in the next 100 commits. This phase builds write-time hooks (Claude Code, OpenCode), a runtime-agnostic git pre-commit gate, a shared checker script, a sk-code router step, and optional CLAUDE.md / constitutional memory reinforcement — layered defense that catches violations before they land.",
-  "status": "in_progress",
-  "priority": "p1",
-  "level": 2,
-  "created_at": "2026-05-29T00:00:00.000Z",
   "trigger_phrases": [
     "comment hygiene enforcement",
     "pre-commit hook ephemeral",
@@ -14,6 +9,10 @@
     "comment hygiene hook",
     "active enforcement layer"
   ],
+  "level": 2,
+  "status": "in_progress",
+  "priority": "p1",
+  "created_at": "2026-05-29T00:00:00.000Z",
   "key_topics": [
     "comment",
     "hygiene",
@@ -35,5 +34,30 @@
     ".opencode/hooks/install-hooks.sh",
     ".opencode/skills/sk-code/SKILL.md",
     "CLAUDE.md"
+  ],
+  "specFolder": "002-active-enforcement-layer",
+  "description": "Feature Specification: Active Enforcement Layer for Comment Hygiene",
+  "keywords": [
+    "feature",
+    "specification",
+    "active",
+    "enforcement",
+    "layer",
+    "comment",
+    "hygiene"
+  ],
+  "lastUpdated": "2026-05-30T11:45:59.164Z",
+  "specId": "002",
+  "folderSlug": "active-enforcement-layer",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "119-comment-ref-hygiene"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "30-05-26_12-45__three-tiers-1-write-time-posttooluse-hook-for.md"
   ]
 }

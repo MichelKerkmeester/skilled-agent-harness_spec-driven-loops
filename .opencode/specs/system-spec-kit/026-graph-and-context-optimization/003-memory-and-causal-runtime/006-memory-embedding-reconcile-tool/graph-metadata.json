@@ -210,7 +210,7 @@
     ],
     "causal_summary": "The one-time backlog repair — vector-present rows whose `embedding_status` is stale at `failed`/`pending`/`retry`, which must be flipped to `success` — was executed via hand-written guarded SQL (\"emergency fallback\" in 004 `research/research.md` §7-§8). That path is manual, easy to misapply against the wrong shard, and unsafe to re-run by an operator without re-deriving every predicate by hand. 004 `research.md` §7 and §13 call for a first-class, guarded MCP tool so the repair is repeatable instead of a copy-pasted transaction.",
     "created_at": "2026-05-27T08:49:42.820Z",
-    "last_save_at": "2026-05-28T06:06:29.186Z",
+    "last_save_at": "2026-05-30T10:12:02.531Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -219,6 +219,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

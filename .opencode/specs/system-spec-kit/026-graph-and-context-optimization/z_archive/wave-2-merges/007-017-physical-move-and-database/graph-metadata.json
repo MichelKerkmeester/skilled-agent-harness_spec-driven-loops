@@ -195,7 +195,7 @@
     ],
     "causal_summary": "ADR-001 accepted `.opencode/skills/system-code-graph/` as the new owner of the code-graph source tree and database. Phase 002 created the empty skill scaffold. The live implementation still resides under `.opencode/skills/system-spec-kit/mcp_server/code_graph/`, which prevents the new skill from owning its runtime source.",
     "created_at": "2026-05-14T08:06:12Z",
-    "last_save_at": "2026-05-28T06:06:29.399Z",
+    "last_save_at": "2026-05-30T10:12:02.773Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T08:06:12Z",
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -89,11 +89,13 @@
     ],
     "causal_summary": "Validate release readiness through deep review programs, synthesis of findings, and systematic P1/P2 remediation. This phase parent coordinates 6 children that address skill-advisor fail-open issues, tier2 remediation, deep-review program execution, synthesis of readiness findings, remaining P1/P2 backlog, and stress-test coverage gaps to ensure a clean release state.",
     "created_at": "2026-05-16T09:00:00Z",
-    "last_save_at": "2026-05-28T06:06:28.221Z",
+    "last_save_at": "2026-05-30T10:12:01.511Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

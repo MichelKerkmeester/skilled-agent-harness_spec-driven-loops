@@ -186,7 +186,7 @@
     ],
     "causal_summary": "Improvement focus: **Prompt engineering; framework selection; CLEAR validation**. Companion to /prompt command. Smallest agent in fleet.",
     "created_at": "2026-05-18T07:49:27.107Z",
-    "last_save_at": "2026-05-28T06:06:27.998Z",
+    "last_save_at": "2026-05-30T10:12:01.318Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -194,6 +194,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

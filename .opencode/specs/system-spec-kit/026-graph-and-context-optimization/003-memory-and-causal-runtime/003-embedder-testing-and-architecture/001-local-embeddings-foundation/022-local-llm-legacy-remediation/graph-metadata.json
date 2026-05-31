@@ -212,7 +212,7 @@
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-05-28T06:06:28.763Z",
+    "last_save_at": "2026-05-30T10:12:02.106Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [
@@ -221,6 +221,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

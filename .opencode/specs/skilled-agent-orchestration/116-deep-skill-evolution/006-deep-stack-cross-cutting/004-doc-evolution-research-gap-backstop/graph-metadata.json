@@ -196,7 +196,7 @@
     ],
     "causal_summary": "The 008 doc-evolution pass reworked the 5 deep-* skills extensively. A focused deep-research backstop is needed to confirm no residual documentation or reference-structure gaps remain (stale paths, mis-placements, structure mismatches) beyond what the manual passes already caught.",
     "created_at": "2026-05-25T18:28:40.767Z",
-    "last_save_at": "2026-05-28T06:06:27.785Z",
+    "last_save_at": "2026-05-30T10:12:01.054Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

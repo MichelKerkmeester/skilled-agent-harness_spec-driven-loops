@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`. The parent phase 015/009 extracts it into a first-class `.opencode/skills/system-skill-advisor/` skill folder, subject to two HARD operator constraints:",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-05-28T06:06:28.523Z",
+    "last_save_at": "2026-05-30T10:12:01.873Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [
@@ -215,6 +215,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

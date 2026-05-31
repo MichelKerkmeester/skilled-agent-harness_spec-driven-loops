@@ -234,13 +234,15 @@
     ],
     "causal_summary": "The `024-compact-code-graph` packet spans a large phased workstream, but the parent folder originally had metadata without a canonical root `spec.md`. Without that lean parent manifest, validation and resume flows had to infer intent from child packets and graph metadata instead of a stable root spec.",
     "created_at": "2026-04-12T09:02:50.341Z",
-    "last_save_at": "2026-05-28T06:06:30.080Z",
+    "last_save_at": "2026-05-30T10:12:03.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "research/research.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Purpose: ship a skill-advisor-local `mcp_server/lib/embedders/` module that mirrors 016 mk-spec-memory: `EmbedderAdapter` interface, `MANIFESTS` registry, dim-tagged schema, `vec_metadata` pointer. Operator can then swap embedders via env var + daemon restart (or eventually MCP tool).",
     "created_at": "2026-05-18T08:07:25.979Z",
-    "last_save_at": "2026-05-28T06:06:28.899Z",
+    "last_save_at": "2026-05-30T10:12:02.272Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/008-add-model-benchmark-lane-selection-prompts",
+  "description": "Add command prompts that ask for the agent-improvement or model-benchmark lane and route into the dedicated model-benchmark workflow.",
+  "keywords": [
+    "feature",
+    "specification",
+    "command",
+    "lane-asking",
+    "model-benchmark",
+    "lane"
+  ],
+  "lastUpdated": "2026-05-29T09:27:47.365Z",
+  "specId": "008",
+  "folderSlug": "008-add-model-benchmark-lane-selection-prompts",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "121-deep-agent-improvement-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "title": "Feature Specification: add model-benchmark lane selection prompts"
+}

@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Currently, reviewing spec folders, code changes, skills, and their cross-references for release readiness is a manual, single-pass process. There is no iterative, convergence-driven review flow that systematically checks all dimensions such as correctness, security, patterns, spec alignment, completeness, and cross-reference integrity across a review target.",
     "created_at": "2026-04-12T09:02:50.177Z",
-    "last_save_at": "2026-05-28T06:06:27.860Z",
+    "last_save_at": "2026-05-30T10:12:01.183Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -213,6 +213,8 @@
       "implementation-summary.md",
       "research/research.md",
       "handover.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

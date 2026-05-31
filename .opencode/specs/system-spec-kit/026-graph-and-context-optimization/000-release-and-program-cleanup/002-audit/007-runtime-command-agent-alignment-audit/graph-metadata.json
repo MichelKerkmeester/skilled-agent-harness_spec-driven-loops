@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Runtime command and agent docs can drift when tool names, paths, hook contracts, and MCP surfaces change quickly. This packet audits OpenCode commands, OpenCode agents, Claude agents, Codex agents, Gemini agents, and GitHub hook-only coverage for stale claims.",
     "created_at": "2026-05-18T08:15:53.029Z",
-    "last_save_at": "2026-05-28T06:06:28.267Z",
+    "last_save_at": "2026-05-30T10:12:01.555Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -206,6 +206,8 @@
       "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -34,7 +34,7 @@
       "playbook",
       "dispatch",
       "runbook",
-      "030",
+      "007",
       "phase",
       "006"
     ],
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The validation run spans 177 scenarios across five per-skill children (001-005), each maintaining its own verdict ledger. Without (a) a single documented dispatch methodology and (b) a cross-skill rollup, the run cannot be executed consistently or assert release readiness for the deep-loop family.",
     "created_at": "2026-05-27T07:08:08.399Z",
-    "last_save_at": "2026-05-28T06:08:17.307Z",
+    "last_save_at": "2026-05-30T10:12:01.065Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

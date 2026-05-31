@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Spec-memory's `SPECKIT_CROSS_ENCODER=true` path stays default-off because Qwen3-Reranker-0.6B on Apple Silicon CPU is too slow under the MCP rerank-gate timeout:",
     "created_at": "2026-05-23T11:55:15.619Z",
-    "last_save_at": "2026-05-28T06:06:29.052Z",
+    "last_save_at": "2026-05-30T10:12:02.404Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -201,6 +201,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

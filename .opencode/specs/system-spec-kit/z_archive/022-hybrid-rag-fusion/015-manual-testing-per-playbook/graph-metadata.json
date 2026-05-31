@@ -233,7 +233,7 @@
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-05-28T06:06:29.975Z",
+    "last_save_at": "2026-05-30T10:12:03.344Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -243,6 +243,8 @@
       "checklist.md",
       "implementation-summary.md",
       "resource-map.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -201,7 +201,7 @@
     ],
     "causal_summary": "The 015 investigation found 68 P2 findings. Arcs 017/005 (cleanup sweep) + 020/001-006 (deferred-P2 remediation) closed 65. Three remain. Their exact IDs are not pre-confirmed — explorer's high-confidence guess is F103 + F104 + one of F106/F107/F108 but codex must verify before any code touched.",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-28T06:06:29.168Z",
+    "last_save_at": "2026-05-30T10:12:02.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -211,6 +211,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

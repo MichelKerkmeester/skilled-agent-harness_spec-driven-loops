@@ -36,9 +36,7 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -48,21 +46,9 @@
     ],
     "entities": [
       {
-        "name": "sidecar-client.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-        "source": "derived"
-      },
-      {
         "name": "types.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/types.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
         "source": "derived"
       },
       {
@@ -190,11 +176,23 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The registry's P1 `drift|python|cjs|parity` selection contains nine findings where TypeScript, CJS, and Python sidecar contracts disagree or their canonical source is unclear.",
     "created_at": "2026-05-23T03:50:22.752Z",
-    "last_save_at": "2026-05-28T06:06:29.106Z",
+    "last_save_at": "2026-05-30T10:12:02.482Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +202,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

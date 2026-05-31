@@ -46,7 +46,6 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.testables.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-sidecar.vitest.ts",
       "checklist.md",
       "implementation-summary.md",
       "spec.md",
@@ -71,12 +70,6 @@
         "name": "execution-router.vitest.ts",
         "kind": "test",
         "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/execution-router.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedder-sidecar.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-sidecar.vitest.ts",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Close F6, F31, F52, F53, F58, F61, and F74 with surgical router edits, isolate test-only seams in a test-only module, add fixture coverage for the fallback/shutdown behavior, and keep the child packet independently verifiable.",
     "created_at": "2026-05-23T06:21:18Z",
-    "last_save_at": "2026-05-28T06:06:29.111Z",
+    "last_save_at": "2026-05-30T10:12:02.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -212,6 +211,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

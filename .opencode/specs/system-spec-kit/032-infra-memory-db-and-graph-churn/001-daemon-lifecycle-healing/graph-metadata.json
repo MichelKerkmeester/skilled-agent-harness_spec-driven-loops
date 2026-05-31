@@ -13,7 +13,16 @@
     "trigger_phrases": [
       "daemon lifecycle healing fts auto-heal",
       "boot fts rebuild clean-close barrier",
-      "substrate stress test diagnostic row fix"
+      "substrate stress test diagnostic row fix",
+      "daemon lifecycle healing plan",
+      "boot fts rebuild clean-close barrier plan",
+      "substrate stress test fix plan",
+      "daemon lifecycle healing tasks",
+      "boot fts rebuild tasks",
+      "substrate test fix tasks",
+      "daemon lifecycle healing checklist",
+      "boot fts rebuild checklist",
+      "substrate test fix checklist"
     ],
     "key_topics": [
       "daemon",
@@ -41,11 +50,12 @@
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-barrier.vitest.ts",
-      "implementation-summary.md",
-      "checklist.md",
+      "dist/context-server.js",
       "spec.md",
       "plan.md",
-      "tasks.md"
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -79,15 +89,9 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
-        "kind": "doc",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "checklist.md",
-        "kind": "doc",
-        "path": "checklist.md",
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
         "source": "derived"
       },
       {
@@ -103,25 +107,25 @@
         "source": "derived"
       },
       {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Parent Spec",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Handoff Criteria",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -145,57 +149,63 @@
         "source": "derived"
       },
       {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "an",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "a",
-        "kind": "key_phrase",
+        "name": "Overview Three",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "1. APPROACH",
-        "kind": "heading",
+        "name": "Pattern Defense",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "2. AFFECTED SURFACES",
-        "kind": "heading",
+        "name": "Key Components",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "3. KEY DESIGN DECISIONS",
-        "kind": "heading",
+        "name": "Data Flow Unclean",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "scoped",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Tasks",
-        "kind": "heading",
+        "name": "Task Format",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`→`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch **without verifying the DB closed cleanly** (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal). The result is a divergent FTS5 shadow (`memory_fts_data`); the next `memory_index` insert fires the `memory_fts_insert` trigger into the bad shadow and aborts with `SQLITE_CONSTRAINT_PRIMARYKEY` (SQ2). The same wedged incumbent also surfaces the SQ1 substrate `Connection closed` diagnostic row that makes a stale test assert 5-vs-4. The boot FTS integrity probe currently only **detects** corruption (logs DETECT-ONLY) and never repairs it, so the failure recurs after every unclean exit.",
+    "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal). The result is a divergent FTS5 shadow (`memory_fts_data`); the next `memory_index` insert fires the `memory_fts_insert` trigger into the bad shadow and aborts with `SQLITE_CONSTRAINT_PRIMARYKEY` (SQ2). The same wedged incumbent surfaces the SQ1 substrate `Connection closed` diagnostic row that makes a stale test assert 5-vs-4. The boot FTS integrity probe currently only detects corruption and never repairs it, so the failure recurs after every unclean exit.",
     "created_at": "2026-05-30T16:25:17.710Z",
-    "last_save_at": "2026-05-30T16:25:17.710Z",
+    "last_save_at": "2026-05-30T19:40:11.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

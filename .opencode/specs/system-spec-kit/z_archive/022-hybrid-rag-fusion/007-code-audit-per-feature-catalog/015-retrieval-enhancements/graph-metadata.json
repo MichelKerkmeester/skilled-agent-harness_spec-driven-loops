@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Systematic code audit of 9 Retrieval Enhancements features in the Spec Kit Memory MCP server. Each feature from `feature_catalog/15--retrieval-enhancements/` was verified against source code implementation to confirm accuracy, completeness, and catalog alignment.",
     "created_at": "2026-04-12T09:02:50.253Z",
-    "last_save_at": "2026-05-28T06:06:29.879Z",
+    "last_save_at": "2026-05-30T10:12:03.253Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The agent body now contains five substantial council subsystems with no focused skill references: scoring and synthesis, depth-aware dispatch, failure handling, anti-pattern detection, and expanded seat-diversity guidance. The manual testing playbook also has six coverage gaps around writer-library sequence, depth detection, scoring, adversarial critique, scoped-write rejection, and interrupted-state resume.",
     "created_at": "2026-05-10T10:34:50Z",
-    "last_save_at": "2026-05-28T06:06:27.541Z",
+    "last_save_at": "2026-05-30T10:12:00.834Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -207,6 +207,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

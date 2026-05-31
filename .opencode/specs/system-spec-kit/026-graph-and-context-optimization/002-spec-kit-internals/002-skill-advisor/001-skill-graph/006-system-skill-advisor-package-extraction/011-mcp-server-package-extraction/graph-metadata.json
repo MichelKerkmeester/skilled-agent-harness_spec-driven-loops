@@ -207,7 +207,7 @@
     ],
     "causal_summary": "This packet completes D2a of the council-recommended clean cut: the skill graph DB/query library and startup lifecycle move from `spec_kit_memory` into `system_skill_advisor`. The public tool ids stay unchanged, but the writer lifecycle now has one owner.",
     "created_at": "2026-05-18T08:53:19.871Z",
-    "last_save_at": "2026-05-28T06:06:28.541Z",
+    "last_save_at": "2026-05-30T10:12:01.892Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -217,6 +217,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

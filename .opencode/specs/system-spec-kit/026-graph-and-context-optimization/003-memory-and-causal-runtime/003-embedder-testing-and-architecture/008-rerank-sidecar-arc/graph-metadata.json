@@ -104,11 +104,13 @@
     ],
     "causal_summary": "The mk-spec-memory MCP server has a fully-built Stage 3 reranker pipeline (`lib/search/cross-encoder.ts`, `lib/search/pipeline/stage3-rerank.ts`) with three provider slots: Voyage (cloud), Cohere (cloud), and **local at `http://localhost:8765/rerank`**. The local slot is the project's preferred path (local-first per ADR-014) but **no sidecar runs there today**. Result: every `memory_search` falls back to positional scoring capped at ~0.5, never crosses the `HIGH_THRESHOLD=0.7` quality gate, and reports `requestQuality: 'weak'` even on clean retrievals. The `WEIGHT_RERANKER=0.20` confidence factor is BOOLEAN (`hasReranker ? 1.0 : 0`), so the missing reranker drops max achievable result confidence from 1.00 to 0.80 across the board.",
     "created_at": "2026-05-23T11:55:15.599Z",
-    "last_save_at": "2026-05-28T06:06:29.040Z",
+    "last_save_at": "2026-05-30T10:12:02.389Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

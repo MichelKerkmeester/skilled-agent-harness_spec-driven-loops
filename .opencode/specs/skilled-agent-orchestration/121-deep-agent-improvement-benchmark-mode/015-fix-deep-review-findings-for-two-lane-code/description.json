@@ -1,6 +1,6 @@
 {
   "specFolder": "121-deep-agent-improvement-benchmark-mode/015-fix-deep-review-findings-for-two-lane-code",
-  "description": "Phase 15 of 121: remediate the 014 two-lane deep-review findings (1 P0 + 16 P1 + 16 P2) with regression tests and a per-finding disposition register.",
+  "description": "Fix the 014 deep-review findings for two-lane code, including the Lane B command parser defect, security hardening, traceability gaps, and dispositions.",
   "keywords": [
     "two-lane-review-remediation",
     "014-findings",
@@ -10,11 +10,12 @@
   ],
   "lastUpdated": "2026-05-29T12:50:00.000Z",
   "specId": "015",
-  "folderSlug": "fix-deep-review-findings-for-two-lane-code",
+  "folderSlug": "015-fix-deep-review-findings-for-two-lane-code",
   "parentChain": [
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],
-  "level": "3"
+  "level": "3",
+  "title": "Feature Specification: fix deep-review findings for two-lane code"
 }

@@ -39,11 +39,7 @@
     "importance_tier": "critical",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-worker.vitest.ts",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -52,33 +48,9 @@
     ],
     "entities": [
       {
-        "name": "sidecar-client.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-worker.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
-        "source": "derived"
-      },
-      {
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-worker.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-worker.vitest.ts",
         "source": "derived"
       },
       {
@@ -194,11 +166,35 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names. The affected findings are F12, F13, and F47.",
     "created_at": "2026-05-23T03:50:22.749Z",
-    "last_save_at": "2026-05-28T06:06:29.101Z",
+    "last_save_at": "2026-05-30T10:12:02.476Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +204,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

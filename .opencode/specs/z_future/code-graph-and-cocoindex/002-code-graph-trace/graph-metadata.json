@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
+  "spec_folder": "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex",
+  "children_ids": [
+    "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/001-contract",
+    "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/002-lib-impl",
+    "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/003-handler",
+    "system-spec-kit/028-code-graph-and-cocoindex/002-code-graph-trace/004-test"
+  ],
+  "manual": {
+    "depends_on": [
+      {
+        "packet_id": "system-spec-kit/028-code-graph-and-cocoindex/001-code-graph-hld-lld",
+        "reason": "Phase 003 trace uses Phase 002 HLD/LLD classification for architectural-role output.",
+        "source": "manual"
+      }
+    ],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "027 phase 003",
+      "code-graph trace",
+      "code_graph_trace",
+      "trace tool"
+    ],
+    "key_topics": [
+      "027",
+      "phase",
+      "003",
+      "code-graph",
+      "trace",
+      "tool",
+      "work",
+      "combines",
+      "public",
+      "mcp",
+      "contract",
+      "resolver"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Graph Trace",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Parent",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The trace tool work combines a public MCP contract, a resolver library, handler wiring, and verification fixtures. Keeping those concerns in one populated packet made parallel execution harder and let implementation details drift across docs.",
+    "created_at": "2026-05-08T15:00:00Z",
+    "last_save_at": "2026-05-30T10:12:02.858Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

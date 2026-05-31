@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: two-lane deep-review remediation"
+title: "Decision Record: fix deep-review findings for two-lane code"
 description: "Architecture decisions and per-finding disposition register for remediating the 014 two-lane deep review: space-form parser, read-only grader sandbox, fixture-id sanitization, criteria-exec fail-closed default, packet-local candidate-keyed cache."
 trigger_phrases:
   - "two-lane remediation decisions"
@@ -16,7 +16,7 @@ _memory:
     next_safe_action: "Implement per the ADRs then fill dispositions"
     blockers: []
     key_files:
-      - "../014-two-lane-deep-review/review/all-findings.jsonl"
+      - "../014-review-two-lane-workflow-implementation/review/all-findings.jsonl"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "remediation-20260529"
@@ -25,7 +25,7 @@ _memory:
     open_questions: []
     answered_questions: []
 ---
-# Decision Record: two-lane deep-review remediation
+# Decision Record: fix deep-review findings for two-lane code
 
 <!-- SPECKIT_LEVEL: 3 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: decision-record | v2.2 -->

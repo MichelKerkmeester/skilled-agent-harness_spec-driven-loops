@@ -1,0 +1,42 @@
+{
+  "title": "003 Fixtures",
+  "trigger_phrases": [
+    "027 006 003 fixtures",
+    "labeled eval tasks"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "planned",
+  "priority": "P0",
+  "createdAt": "2026-05-12T00:00:00Z",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/001-harness-skeleton"
+    ]
+  },
+  "derived": {
+    "status": "planned",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval/003-fixtures",
+  "description": "Feature Specification: 003 Fixtures",
+  "keywords": [
+    "feature",
+    "specification",
+    "003",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.102Z",
+  "specId": "003",
+  "folderSlug": "fixtures",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "004-code-graph-adoption-eval"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

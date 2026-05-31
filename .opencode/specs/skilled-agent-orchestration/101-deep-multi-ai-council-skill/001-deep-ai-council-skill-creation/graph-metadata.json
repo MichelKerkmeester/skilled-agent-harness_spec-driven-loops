@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This is **Phase 1** of the Deep AI Council skill extraction specification.",
     "created_at": "2026-05-10T06:35:39Z",
-    "last_save_at": "2026-05-28T06:06:27.539Z",
+    "last_save_at": "2026-05-30T10:12:00.832Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,6 +204,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

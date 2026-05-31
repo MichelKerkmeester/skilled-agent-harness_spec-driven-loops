@@ -3,7 +3,9 @@
   "packet_id": "system-spec-kit/032-infra-memory-db-and-graph-churn",
   "spec_folder": "system-spec-kit/032-infra-memory-db-and-graph-churn",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/032-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -38,7 +40,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md",
-      "spec.md"
+      "spec.md",
+      "research/research.md"
     ],
     "entities": [
       {
@@ -63,6 +66,12 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -156,6 +165,12 @@
         "source": "derived"
       },
       {
+        "name": "no",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
         "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
@@ -168,19 +183,7 @@
         "source": "derived"
       },
       {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Implementation Summary",
-        "kind": "proper_noun",
-        "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "implementation-summary.md",
         "source": "derived"
@@ -188,14 +191,17 @@
     ],
     "causal_summary": "Two live-infra issues degrade the spec-memory subsystem. (1) The spec-memory MCP throws `SQLITE_CONSTRAINT_PRIMARYKEY` on `memory_match_triggers`, `memory_index_scan`, and `memory_save`, blocking every memory write/index path — present since session start, caused by corrupted on-disk DB state after an unclean shutdown, not a logic defect. (2) The daemon (and any save path) rewrites ~634 `graph-metadata.json` `last_save_at` timestamps repo-wide — including `z_archive/` and `z_future/` — on essentially every save, burying real changes in working-tree noise and forcing wide manual git scoping on every commit.",
     "created_at": "2026-05-30T08:17:54.064Z",
-    "last_save_at": "2026-05-30T08:17:54.064Z",
+    "last_save_at": "2026-05-30T19:40:11.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "implementation-summary.md"
-    ]
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -204,7 +204,7 @@
     ],
     "causal_summary": "The 10 `/doctor:*` markdown commands in `.opencode/commands/doctor/` share ~50 lines of duplicated boilerplate per file. The 10 YAML workflow assets are self-sufficient and own all execution semantics; the markdown's only real job is to parse `$ARGUMENTS`, resolve setup variables, and hand off to the right YAML. This is a routing problem that today is solved by 10 near-identical .md files instead of one router plus a manifest. Maintenance cost compounds across 4 runtime mirrors (40 total .md files) and a 23-scenario manual playbook that hard-codes the per-command surface.",
     "created_at": "2026-05-11T16:00:00.000Z",
-    "last_save_at": "2026-05-28T06:06:29.372Z",
+    "last_save_at": "2026-05-30T10:12:02.700Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -214,6 +214,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

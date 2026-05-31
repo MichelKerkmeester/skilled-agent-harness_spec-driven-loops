@@ -144,11 +144,13 @@
     ],
     "causal_summary": "The deep-research audit (packet 021) found **94 hardcoded-default findings** that survived packet 020's `getCanonicalFallback()` migration. Critically:",
     "created_at": "2026-05-23T13:27:06.924499Z",
-    "last_save_at": "2026-05-28T06:06:28.874Z",
+    "last_save_at": "2026-05-30T10:12:02.237Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

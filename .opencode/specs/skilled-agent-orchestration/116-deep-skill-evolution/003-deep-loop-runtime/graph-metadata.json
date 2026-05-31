@@ -95,11 +95,13 @@
     ],
     "causal_summary": "This cluster groups 9 sub-phases that share a single thematic focus. Before restructuring, these existed as flat siblings at the root of `116-deep-skill-evolution/`. Nesting them under this thematic phase parent reduces root-level fan-out and makes the cluster's internal arc easier to follow.",
     "created_at": "2026-05-23T09:52:56.265976Z",
-    "last_save_at": "2026-05-28T06:06:27.733Z",
+    "last_save_at": "2026-05-30T10:12:01.002Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

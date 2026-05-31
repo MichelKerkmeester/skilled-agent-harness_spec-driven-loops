@@ -205,7 +205,7 @@
     ],
     "causal_summary": "JSON-mode saves became the safe path for multi-spec sessions, but the implementation that actually shipped in this tree is narrower than the original phase design. The code now accepts richer structured JSON summaries such as `toolCalls` and `exchanges`, but it does not ship the full file-backed hybrid enrichment path originally described here.",
     "created_at": "2026-04-12T09:02:50.277Z",
-    "last_save_at": "2026-05-28T06:06:29.945Z",
+    "last_save_at": "2026-05-30T10:12:03.316Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,6 +215,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

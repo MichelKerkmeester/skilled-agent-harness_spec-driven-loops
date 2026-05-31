@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Add parity tests, cost guard tests, documentation, changelog, and final validation.",
     "created_at": "2026-05-23T10:21:00Z",
-    "last_save_at": "2026-05-28T06:06:27.715Z",
+    "last_save_at": "2026-05-30T10:12:00.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -196,6 +196,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

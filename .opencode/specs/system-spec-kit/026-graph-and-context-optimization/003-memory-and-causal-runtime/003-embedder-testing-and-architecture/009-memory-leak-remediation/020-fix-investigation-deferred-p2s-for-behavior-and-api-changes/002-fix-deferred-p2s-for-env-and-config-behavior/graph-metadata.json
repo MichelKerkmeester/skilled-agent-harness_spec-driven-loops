@@ -41,8 +41,6 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
       ".opencode/bin/lib/sidecar-env-allowlist.cjs",
       "checklist.md",
       "decision-record.md",
@@ -52,18 +50,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "sidecar-client.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-client.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
-        "source": "derived"
-      },
       {
         "name": "sidecar-env-allowlist.cjs",
         "kind": "file",
@@ -195,11 +181,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Finding Registry",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Four deferred P2 findings remain in the rerank sidecar env/config surface. F17 allows malformed config values to enter the canonical hash. F16 and F40 report env allowlist drift between launcher and in-process sidecar clients. F46 requires a documented config-prefix precedence rule where `SPECKIT_*` and `RERANK_*` can express the same sidecar intent.",
     "created_at": "2026-05-23T10:01:51Z",
-    "last_save_at": "2026-05-28T06:06:29.146Z",
+    "last_save_at": "2026-05-30T10:12:02.509Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -209,6 +207,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

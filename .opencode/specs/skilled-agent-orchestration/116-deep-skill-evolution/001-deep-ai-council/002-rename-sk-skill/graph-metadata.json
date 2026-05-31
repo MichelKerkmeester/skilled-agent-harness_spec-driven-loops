@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 2 of 6 in 115. Sibling-parallel with 003/004/005 after 001.",
     "created_at": "2026-05-21T06:57:08Z",
-    "last_save_at": "2026-05-28T06:06:27.696Z",
+    "last_save_at": "2026-05-30T10:12:00.969Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -202,6 +202,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

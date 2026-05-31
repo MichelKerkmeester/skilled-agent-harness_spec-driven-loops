@@ -1,0 +1,79 @@
+{
+  "schema_version": 2,
+  "spec_id": "124",
+  "spec_name": "mcp-click-up-task-management",
+  "track": "skilled-agent-orchestration",
+  "edges": {
+    "depends_on": [],
+    "related_to": [
+      {
+        "target": "mcp-chrome-devtools",
+        "weight": 0.7,
+        "context": "mcp-chrome-devtools is the structural template this skill was modeled on"
+      }
+    ],
+    "supersedes": [],
+    "manual": {
+      "depends_on": [],
+      "related_to": ["mcp-chrome-devtools"]
+    }
+  },
+  "derived": {
+    "status": "complete",
+    "last_active_child_id": null,
+    "trigger_phrases": [
+      "clickup",
+      "cupt",
+      "task management skill",
+      "mcp-click-up",
+      "clickup skill"
+    ],
+    "key_topics": [
+      "cupt CLI",
+      "official ClickUp MCP",
+      "task management",
+      "operation-based routing",
+      "agent invariants",
+      "embedded install"
+    ],
+    "intent_signals": [
+      "clickup",
+      "cupt",
+      "task management",
+      "work queue",
+      "mark done",
+      "time tracking",
+      "clickup skill"
+    ],
+    "key_files": [
+      ".opencode/skills/mcp-click-up/SKILL.md",
+      ".opencode/skills/mcp-click-up/scripts/install.sh",
+      ".opencode/skills/mcp-click-up/references/cupt_commands.md",
+      ".opencode/skills/mcp-click-up/references/mcp_tools.md"
+    ],
+    "entities": [
+      {
+        "name": "124-mcp-click-up-task-management",
+        "kind": "spec",
+        "path": ".opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "mcp-click-up skill",
+        "kind": "skill",
+        "path": ".opencode/skills/mcp-click-up/SKILL.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Created mcp-click-up skill to give AI agents a structured interface to ClickUp. Routes cupt CLI for daily task ops and official ClickUp MCP for advanced operations. Includes embedded install script, operation-based routing, and cupt agent invariants.",
+    "source_docs": [
+      ".opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management/plan.md",
+      ".opencode/specs/skilled-agent-orchestration/124-mcp-click-up-task-management/implementation-summary.md"
+    ],
+    "created_at": "2026-05-31T00:00:00Z",
+    "last_save_at": "2026-05-31T00:00:00Z",
+    "last_updated_at": "2026-05-31T00:00:00Z",
+    "completion_pct": 95
+  }
+}

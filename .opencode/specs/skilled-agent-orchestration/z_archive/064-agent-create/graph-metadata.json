@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The 6 `/create:*` commands (agent, sk-skill, feature-catalog, testing-playbook, folder_readme, changelog) need a dedicated executor agent that's tightly coupled to sk-doc templates + standards. Currently they gate on @general (post-062 cleanup) — too broad. Create `@create` agent: LEAF, caller-restricted to /create:* commands, loads sk-doc on every dispatch, produces deterministic output contracts.",
     "created_at": "2026-05-18T07:49:27.117Z",
-    "last_save_at": "2026-05-28T06:06:28.008Z",
+    "last_save_at": "2026-05-30T10:12:01.327Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -198,6 +198,8 @@
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

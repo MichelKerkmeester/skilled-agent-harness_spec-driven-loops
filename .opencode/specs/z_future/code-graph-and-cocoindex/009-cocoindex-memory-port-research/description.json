@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/009-cocoindex-memory-port-research",
+  "description": "Feature Specification: 009 — cocoindex-main → spec_kit_memory port + MCP namespace shortening (research)",
+  "keywords": [
+    "feature",
+    "specification",
+    "009",
+    "cocoindex-main",
+    "port",
+    "mcp",
+    "namespace",
+    "shortening",
+    "research"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.180Z",
+  "specId": "009",
+  "folderSlug": "cocoindex-memory-port-research",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "13-05-26_09-30__manual-context-save.md"
+  ]
+}

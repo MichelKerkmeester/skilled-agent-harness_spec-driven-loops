@@ -1,0 +1,41 @@
+{
+  "title": "004 Curator Prompt",
+  "trigger_phrases": [
+    "027 011 004 curator prompt",
+    "memory curator prompt",
+    "context_curator.ts"
+  ],
+  "level": 2,
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "draft",
+  "priority": "P2",
+  "parent_id": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras",
+  "manual": {
+    "depends_on": []
+  },
+  "derived": {
+    "status": "draft",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/028-code-graph-and-cocoindex/008-coco-memory-context-extras/004-curator-prompt",
+  "description": "Feature Specification: 004 Curator Prompt",
+  "keywords": [
+    "feature",
+    "specification",
+    "004",
+    "curator",
+    "prompt"
+  ],
+  "lastUpdated": "2026-05-28T21:38:20.170Z",
+  "specId": "004",
+  "folderSlug": "curator-prompt",
+  "parentChain": [
+    "system-spec-kit",
+    "028-code-graph-and-cocoindex",
+    "008-coco-memory-context-extras"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

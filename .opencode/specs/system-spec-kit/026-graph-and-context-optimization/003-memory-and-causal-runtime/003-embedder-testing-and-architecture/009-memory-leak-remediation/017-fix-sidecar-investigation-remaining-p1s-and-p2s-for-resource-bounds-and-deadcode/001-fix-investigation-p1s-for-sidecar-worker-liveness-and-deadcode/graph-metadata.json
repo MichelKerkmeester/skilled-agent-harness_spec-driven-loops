@@ -47,8 +47,6 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
       "implementation-summary.md",
       "spec.md"
     ],
@@ -75,18 +73,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-worker.ts",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/sidecar-worker.ts",
-        "source": "derived"
-      },
-      {
-        "name": "sidecar-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/embedders/sidecar-hardening.vitest.ts",
         "source": "derived"
       },
       {
@@ -196,11 +182,23 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Close all 7 P1 findings with surgical edits, add fixture tests for F14 (parent-liveness), F94 (pre-parse failure id), F95 (rejected-promise eviction), and verify no regressions in sidecar-hardening.vitest.ts.",
     "created_at": "2026-05-26T16:49:55.587Z",
-    "last_save_at": "2026-05-28T06:06:29.109Z",
+    "last_save_at": "2026-05-30T10:12:02.485Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -210,6 +208,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

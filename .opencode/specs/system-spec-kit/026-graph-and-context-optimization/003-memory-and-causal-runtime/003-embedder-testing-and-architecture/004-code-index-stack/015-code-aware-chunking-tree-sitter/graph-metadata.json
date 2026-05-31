@@ -199,7 +199,7 @@
     ],
     "causal_summary": "The current `RecursiveSplitter` (indexer.py:33-39, defaults chunk_size=1500, overlap=200, min=250) produces chunks by line-window, ignoring code structure. For `structural-indexer.ts` (2,234 lines, 67 chunks), the chunk that surfaces at dense rank 1 for the probe \"filesystem walker that emits typed structural symbols and import edges\" is **chunk 44683 = lines 1-9** — the import header — not the `findFiles` function (1391-1465) or the class body (anywhere). The reranker is starved of content.",
     "created_at": "2026-05-19T12:33:28.231Z",
-    "last_save_at": "2026-05-28T06:06:28.955Z",
+    "last_save_at": "2026-05-30T10:12:02.306Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -208,6 +208,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

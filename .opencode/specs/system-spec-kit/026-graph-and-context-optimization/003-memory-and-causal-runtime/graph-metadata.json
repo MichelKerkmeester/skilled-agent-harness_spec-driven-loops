@@ -40,7 +40,7 @@
       "deliver"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "spec.md"
     ],
@@ -90,13 +90,13 @@
     ],
     "causal_summary": "Harden the memory continuity substrate, deliver causal-graph channel routing, and validate the embedding architecture. The memory store is a distinct surface from the code graph and cross-links to it.",
     "created_at": "2026-05-26T16:35:26.649Z",
-    "last_save_at": "2026-05-29T19:34:17.932Z",
+    "last_save_at": "2026-05-30T10:12:02.033Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/004-embedding-backlog-drain-investigation",
-    "last_active_at": "2026-05-28T18:34:00+02:00"
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }
