@@ -42,10 +42,10 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] **[P0]** Clean recovery baseline commit recorded (hash) before any code dispatch.
-- [ ] **[P0]** `cli-opencode/SKILL.md` read; `opencode providers list` confirms `openai` configured.
-- [ ] **[P0]** Daemon source unmodified at phase start; build-while-live hazard acknowledged.
-- [ ] **[P0]** BANNED OPS + disjoint file scope defined for the dispatch; agent performs no git writes (isolated worktree).
+- [ ] CHK-001 [P0] Clean recovery baseline commit recorded (hash) before any code dispatch.
+- [ ] CHK-002 [P0] `cli-opencode/SKILL.md` read; `opencode providers list` confirms `openai` configured.
+- [ ] CHK-003 [P0] Daemon source unmodified at phase start; build-while-live hazard acknowledged.
+- [ ] CHK-004 [P0] BANNED OPS + disjoint file scope defined for the dispatch; agent performs no git writes (isolated worktree).
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -53,11 +53,11 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] **[P0]** No raw `E429` reachable from `memory_index_scan` (Phase 1).
-- [ ] **[P0]** Orphan deletion goes through `delete_memory_from_database()`; no raw `memory_index` delete.
-- [ ] **[P1]** Contract is additive: existing completed-response fields preserved inside job metadata.
-- [ ] **[P0]** Comment hygiene: no ADR/REQ/task-id/spec-path labels in code comments; durable WHY only.
-- [ ] **[P1]** Reused existing primitives (job model, claim-by-update, deferred upsert) rather than new infra where possible.
+- [ ] CHK-010 [P0] No raw `E429` reachable from `memory_index_scan` (Phase 1).
+- [ ] CHK-011 [P0] Orphan deletion goes through `delete_memory_from_database()`; no raw `memory_index` delete.
+- [ ] CHK-012 [P1] Contract is additive: existing completed-response fields preserved inside job metadata.
+- [ ] CHK-013 [P0] Comment hygiene: no ADR/REQ/task-id/spec-path labels in code comments; durable WHY only.
+- [ ] CHK-014 [P1] Reused existing primitives (job model, claim-by-update, deferred upsert) rather than new infra where possible.
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -65,10 +65,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] **[P0]** P1 GATE: `tsc` zero new errors + suite green; repeat-scan coalescing (no E429); `memory_health.index` populated; renested orphan removed.
-- [ ] **[P0]** P2 GATE: `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`.
-- [ ] **[P0]** P3 GATE: `tsc` + FULL suite green; concurrent callers coordinate; `git mv` path updated in place without re-embed.
-- [ ] **[P1]** New targeted tests added for each phase's behavior.
+- [ ] CHK-020 [P0] P1 GATE: `tsc` zero new errors + suite green; repeat-scan coalescing (no E429); `memory_health.index` populated; renested orphan removed.
+- [ ] CHK-021 [P0] P2 GATE: `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`.
+- [ ] CHK-022 [P0] P3 GATE: `tsc` + FULL suite green; concurrent callers coordinate; `git mv` path updated in place without re-embed.
+- [ ] CHK-023 [P1] New targeted tests added for each phase's behavior.
 <!-- /ANCHOR:testing -->
 
 ---
@@ -76,12 +76,12 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] **[P0]** R1 (no raw E429) met — SC1 verified.
-- [ ] **[P0]** R2 (always completes, no -32001) met — SC2 verified.
-- [ ] **[P1]** R3 (concurrency correct) met — Phase 3.
-- [ ] **[P1]** R4 (degraded-mode, pending-not-retry) met — Phase 2.
-- [ ] **[P1]** R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified.
-- [ ] **[P1]** No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded.
+- [ ] CHK-030 [P0] R1 (no raw E429) met — SC1 verified.
+- [ ] CHK-031 [P0] R2 (always completes, no -32001) met — SC2 verified.
+- [ ] CHK-032 [P1] R3 (concurrency correct) met — Phase 3.
+- [ ] CHK-033 [P1] R4 (degraded-mode, pending-not-retry) met — Phase 2.
+- [ ] CHK-034 [P1] R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified.
+- [ ] CHK-035 [P1] No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded.
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -89,10 +89,10 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] **[P1]** No new external network surface; embedding stays on the configured local/provider path.
-- [ ] **[P0]** Orphan sweep cannot delete live rows (on-disk existence checked for both `file_path` and `canonical_file_path`).
-- [ ] **[P0]** Move reconciliation cannot merge distinct packets (unique `packet_id` + doc-anchor match required; content hash confirmation only).
-- [ ] **[P0]** No raw DB mutation outside the daemon/handler path.
+- [ ] CHK-040 [P1] No new external network surface; embedding stays on the configured local/provider path.
+- [ ] CHK-041 [P0] Orphan sweep cannot delete live rows (on-disk existence checked for both `file_path` and `canonical_file_path`).
+- [ ] CHK-042 [P0] Move reconciliation cannot merge distinct packets (unique `packet_id` + doc-anchor match required; content hash confirmation only).
+- [ ] CHK-043 [P0] No raw DB mutation outside the daemon/handler path.
 <!-- /ANCHOR:security -->
 
 ---
@@ -100,9 +100,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] **[P1]** `implementation-summary.md` reconciled to final shipped state per phase.
-- [ ] **[P2]** `memory_health.index` field semantics documented in the handler/relevant reference.
-- [ ] **[P1]** Continuity (`_memory.continuity`) updated at each phase boundary via `/memory:save`.
+- [ ] CHK-050 [P1] `implementation-summary.md` reconciled to final shipped state per phase.
+- [ ] CHK-051 [P2] `memory_health.index` field semantics documented in the handler/relevant reference.
+- [ ] CHK-052 [P1] Continuity (`_memory.continuity`) updated at each phase boundary via `/memory:save`.
 <!-- /ANCHOR:docs -->
 
 ---
@@ -110,9 +110,9 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] **[P0]** All changes confined to `mcp_server/` files listed in spec.md §3 Files to Change.
-- [ ] **[P1]** Packet docs under `013-memory-index-scan-implementation/`; metadata (`description.json`, `graph-metadata.json`) present.
-- [ ] **[P1]** No scope creep into adjacent handlers or unrelated subsystems.
+- [ ] CHK-060 [P0] All changes confined to `mcp_server/` files listed in spec.md §3 Files to Change.
+- [ ] CHK-061 [P1] Packet docs under `013-memory-index-scan-implementation/`; metadata (`description.json`, `graph-metadata.json`) present.
+- [ ] CHK-062 [P1] No scope creep into adjacent handlers or unrelated subsystems.
 <!-- /ANCHOR:file-org -->
 
 ---
