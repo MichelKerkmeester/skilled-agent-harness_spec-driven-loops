@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/038-substrate-harness-hardening",
-  "spec_folder": "system-spec-kit/038-substrate-harness-hardening",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -41,14 +41,26 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "research/research.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+      ".opencode/bin/mk-code-index-launcher.cjs",
+      "research/iterations/iteration-001.md",
+      "research/resource-map.md",
       "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -77,6 +89,30 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-runner-harness.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "mk-code-index-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-code-index-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-001.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-001.md",
         "source": "derived"
       },
       {
@@ -162,41 +198,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 3: Verification",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Verification Checklist",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
-    "causal_summary": "The deep-research validation (packet 037) confirmed the \"skip-not-fail on live owner\" substrate-harness fix is sound, but surfaced three residual risks, all in `run-substrate-stress-harness.mjs`. This spec closes all three: a PID-recycling false-SKIP, a stale-pid TSV evidence hazard, and a maintainer-mode INDEX-scan leak that lets a clean-env / CI run rewrite `graph-metadata.json` tree-wide.",
+    "causal_summary": "The deep-research validation in this packet's `research/` (see `research/research.md`) confirmed the \"skip-not-fail on live owner\" substrate-harness fix is sound, but surfaced three residual risks, all in `run-substrate-stress-harness.mjs`. This spec closes all three: a PID-recycling false-SKIP, a stale-pid TSV evidence hazard, and a maintainer-mode INDEX-scan leak that lets a clean-env / CI run rewrite `graph-metadata.json` tree-wide.",
     "created_at": "2026-05-31T10:01:17.891Z",
-    "last_save_at": "2026-05-31T12:23:16.356Z",
+    "last_save_at": "2026-05-31T13:23:17.064Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -205,7 +211,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null
