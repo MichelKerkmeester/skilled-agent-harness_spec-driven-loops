@@ -64,6 +64,7 @@ This generalizes the pattern proven manually in packet `122-deep-improvement-ski
 | **004** | `004-salvage-coverage-graph/` | Salvage sweep (reuse post-dispatch-validate; recover stdout→md) + per-lineage session_id coverage-graph isolation (no-collision test). | 003 |
 | **005** | `005-consumer-merges-synthesis/` | New `scripts/fanout-merge.cjs` (research: dedup+attribution; review: severity rollup + strongest-restriction) + `step_fanout_merge` atop both `phase_synthesis`; `fanout-attribution.md`. | 003, 004 |
 | **006** | `006-command-surface-docs-parity/` | Command flag parsing (`--executor` repeatable, `--executors`, `--concurrency`) + default policy; SKILL/convergence/runtime doc updates (permit command-driven fan-out, keep wave deferred); final byte-identical parity gate. | 001–005 |
+| **007** | `007-native-per-iteration-model-schedule/` | **Design-only (added after the 001–006 build arc).** Per-iteration model schedule: a fixed-count heterogeneous band sequence (e.g. 9× MiniMax then 1× Opus) modeled as ordered single-executor lineages over the fan-out built in 001–006; closes the contract gap that forced a hand-rolled worker pool in the 122 review. Implementation deferred to the phase's own future work. | 001–006 |
 
 Resume policy: follow `graph-metadata.json.derived.last_active_child_id`; else list children with statuses.
 
