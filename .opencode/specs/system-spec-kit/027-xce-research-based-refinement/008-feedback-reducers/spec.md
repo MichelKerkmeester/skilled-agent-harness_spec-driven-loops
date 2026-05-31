@@ -56,11 +56,13 @@ The pt-04 audit boundary is preserved here as a scope rule: this packet does not
 
 | Child | Scope | LOC | Depends On | Language |
 |-------|-------|-----|------------|----------|
-| `001-aggregator` | Shared `feedback-aggregation.ts` foundation. | ~70 | `system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness` | TS |
+| `001-aggregator` | Shared `feedback-aggregation.ts` foundation. Reads `feedback_events` from `feedback-ledger.ts` (SQLite-backed). | ~70 | `system-spec-kit/027-xce-research-based-refinement/002-feedback-p0-correctness` | TS |
 | `002-coco-rerank-consumer` | `cocoindex_code/feedback_reducer.py` and `feedback_rerank_weights` SQLite table. | ~370 | `001-aggregator` | Python |
-| `003-causal-reducer` | `session-trace-causal-reducer.ts`. | ~265 | `001-aggregator` | TS |
-| `004-retention-reducer` | `feedback-retention-reducer.ts`. | ~385 | `001-aggregator` | TS |
+| `003-causal-reducer` | `session-trace-causal-reducer.ts`. **Amendment A (iteration-036):** check candidate edges against `relation-coverage.ts` `DEFAULT_RELATION_TARGETS` (`mcp_server/lib/causal/relation-coverage.ts:L36-L45`) before insertion; skip edges whose relation type is already at or above its `minimumShare` floor (~+20 LOC). | ~285 | `001-aggregator` | TS |
+| `004-retention-reducer` | `feedback-retention-reducer.ts`. **Amendment B (iteration-036):** import `STATE_LIMITS` from `stage4-filter.ts` (`mcp_server/lib/search/pipeline/stage4-filter.ts:L64-L80`) rather than redeclaring tier priority constants; reducer's tier-basement decay decisions must remain consistent with pipeline filter caps (~+5 LOC). | ~390 | `001-aggregator` | TS |
 | `005-env-tests-integration` | ENV_REFERENCE flags and integration tests across all three consumers. | ~100 | `001`, `002`, `003`, `004` | TS + docs |
+
+> **Note (iteration-036):** The P0 correctness split prescribed by pt-04 is already resolved architecturally — correctness fixes live in sibling packet `002-feedback-p0-correctness` (hard dependency), not as a child of this phase. The `ccc-feedback.ts` JSONL handler cited in older research has been superseded by the SQLite-backed `feedback-ledger.ts`; `001-aggregator` correctly references `feedback_events` from that table.
 <!-- /ANCHOR:phase-map -->
 
 ---

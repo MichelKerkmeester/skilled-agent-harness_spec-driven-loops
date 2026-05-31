@@ -194,6 +194,8 @@ Route every causal-edge deletion through a single sweep helper that writes a tom
 | Risk | Delete paths may be missed. | High | Use `rg` for `deleteMemory`, `deleteEdgesForMemory`, `deleteEdge`, and raw `DELETE FROM causal_edges` before implementation. |
 | Risk | Tombstone writes inside transactions can fail and block deletes. | Medium | Make sweep helper transactional and return explicit failure counts to callers. |
 | Risk | Restore metadata may grow large. | Low | Store compact JSON only for fields needed to recreate the edge. |
+| Risk | `causal-edges.ts:L269-L288` checks `createdBy === 'auto'` only; a session-trace reducer emitting `created_by='auto-session'` bypasses the 0.5 strength cap. The auto-provenance broadening fix (`isAutoEdgeCreator`) is a P0 precondition that must land in 002-feedback-p0-correctness before session-trace reducer ships. | High | Confirmed by NF-1 synthesis finding (iteration-039). Phase 004 must coordinate with 002. |
+| Risk | `causal-edges.ts:L313-L338` upserts `created_by` on conflict; a reducer without a pre-insert ownership query silently overwrites manual edges. Fix is in 002 P0-2. | High | Confirmed by NF-2 synthesis finding (iteration-039). Manual-edge overwrite guard in 002 must land before any reducer-style insertEdge call. |
 | Dependency | Packet 005 generated edges need reliable cleanup. | High | Ship this packet before frontmatter auto-promotion unless promoter is report-only. |
 | Dependency | Cache invalidation must follow sweep actions. | Medium | Clear graph and degree caches after active edge deletes. |
 <!-- /ANCHOR:risks -->

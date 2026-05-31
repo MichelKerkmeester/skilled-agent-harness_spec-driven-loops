@@ -1,0 +1,10 @@
+{"type":"iteration","iteration":2,"focus":"IRQ2","status":"complete","newInfoRatio":0.74,"summary":"Cross-validated Phase 002 CONTAINS edge population and found the current indexer emits only class-to-method containment, not symbol-to-file/module chains across all supported languages."}
+{"type":"finding","id":"f-iter002-001","severity":"P0","label":"CONTAINS is not a symbol-to-file/module chain","verdict":"BLOCKING","iteration":2}
+{"type":"finding","id":"f-iter002-002","severity":"P0","label":"CONTAINS is not emitted for all supported languages","verdict":"BLOCKING","iteration":2}
+{"type":"finding","id":"f-iter002-003","severity":"P2","label":"Go and Rust WASMs are present but not runtime-supported languages","verdict":"CONFIRMED","iteration":2}
+{"type":"finding","id":"f-iter002-004","severity":"P1","label":"Nested classes can break upward containment selection","verdict":"BLOCKING","iteration":2}
+{"type":"finding","id":"f-iter002-005","severity":"P2","label":"Python decorators do not affect CONTAINS, but decorator edges are separate","verdict":"CONFIRMED","iteration":2}
+{"type":"finding","id":"f-iter002-006","severity":"P1","label":"Anonymous functions inside classes and export-default classes are sparse trace cases","verdict":"BLOCKING","iteration":2}
+{"type":"finding","id":"f-iter002-007","severity":"P2","label":"TypeScript namespace, Go interface methods, and Rust impl blocks are out of current parser scope","verdict":"NO-CHANGE-NEEDED","iteration":2}
+{"type":"finding","id":"f-iter002-008","severity":"P0","label":"The fq_name prefix fallback is specified but not robust enough as written","verdict":"BLOCKING","iteration":2}
+{"type":"finding","id":"f-iter002-009","severity":"P2","label":"Empty CONTAINS chains are specified, but implementation tests must enforce the shape","verdict":"CONFIRMED","iteration":2}

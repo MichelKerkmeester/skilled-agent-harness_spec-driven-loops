@@ -133,6 +133,23 @@ Read structured spec relationship metadata during indexing and promote it into i
 - Dedupe auto edges by source, target, relation, source anchor, and target anchor.
 - Document relation direction semantics for each supported field before promotion.
 
+### Concrete Field Inventory (iteration-033 evidence)
+
+The following fields have confirmed HIGH promotion confidence with file:line references:
+
+| Field | Source File:Line | Promotion Edge | Already Wired? |
+|-------|-----------------|----------------|----------------|
+| `manual.depends_on[*].packet_id` | `graph-metadata-parser.ts:1338` | `this → ENABLED (blocks reverse) → target` | Yes — via `packetReferencesToCausalLinks()` → `causal-links-processor.ts:67-73` |
+| `manual.supersedes[*].packet_id` | `graph-metadata-parser.ts:1342` | `this → SUPERSEDES → target` | Yes — same pipeline |
+| `manual.related_to[*].packet_id` | `graph-metadata-parser.ts:1343` | `this → SUPPORTS → target` | Yes — same pipeline |
+| `graph-metadata.json.parent_id` | `graph-metadata-schema.ts:34-71` | `child → DERIVED_FROM → parent` | **No — gap. New promoter required.** |
+| `graph-metadata.json.children_ids[*]` | `graph-metadata-schema.ts:34-71` | `parent → ENABLES → child` | **No — gap. Infer from parent_id promotion.** |
+| `description.json.parentChain[*]` | `memory-parser.ts:513` | `this → DERIVED_FROM → ancestor chain` | **No — gap. Complements parent_id for older packets.** |
+
+Fields already wired need a deduplication guard (`insertEdgesBatch` upsert semantics) to become idempotent on re-index. Fields marked as gaps are the primary new work for this phase.
+
+Fields excluded from Phase 005 scope: `derived.last_active_child_id` (MEDIUM confidence, recency semantics need weight decision), `derived.entities` (LLM-derived, not manually authored), `description.json.memoryNameHistory` (not cross-referenceable as memory IDs).
+
 ### Out of Scope
 
 - LLM-based causal extraction from prose.

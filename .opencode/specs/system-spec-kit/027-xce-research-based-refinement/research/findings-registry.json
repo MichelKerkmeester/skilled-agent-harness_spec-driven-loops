@@ -1,0 +1,29 @@
+{
+  "pt01": {"openQuestions":["RQ1","RQ2","RQ3","RQ4","RQ5","RQ6","RQ7","RQ8","RQ9"],"resolvedQuestions":[],"keyFindings":[],"ruledOutDirections":[],"metrics":{"iterationsCompleted":0,"openQuestions":9,"resolvedQuestions":0,"keyFindings":0,"convergenceScore":0,"coverageBySources":{}}},
+  "pt02": {"openQuestions":["IRQ1","IRQ2","IRQ3","IRQ4","IRQ5","IRQ6","IRQ7","IRQ8","IRQ9","IRQ10"],"resolvedQuestions":[],"keyFindings":[],"ruledOutDirections":[],"metrics":{"iterationsCompleted":0,"openQuestions":10,"resolvedQuestions":0,"keyFindings":0,"convergenceScore":0,"coverageBySources":{}}},
+  "pt03": {
+  "openQuestions": [
+    {"id": "RQ-A1", "label": "Coco-index intent steering + query expansion"},
+    {"id": "RQ-A2", "label": "Coco-index rerank fusion with code-graph HLD/LLD"},
+    {"id": "RQ-A3", "label": "ccc_feedback JSONL graduation to active rerank loop"},
+    {"id": "RQ-A4", "label": "Few-shot example-bank retrieval for coco-index"},
+    {"id": "RQ-A5", "label": "Cross-cutting: coco+graph fused rerank stage"},
+    {"id": "RQ-B1", "label": "Memory backend semantic trigger matching"},
+    {"id": "RQ-B2", "label": "Memory backend LLM-curated context assembly"},
+    {"id": "RQ-B3", "label": "Session-trace bounded causal-edge inference"},
+    {"id": "RQ-B4", "label": "Feedback-ledger-driven learned retention/decay"},
+    {"id": "RQ-B5", "label": "Cross-cutting: shared embedding cache + rerank infra"}
+  ],
+  "resolvedQuestions": [],
+  "keyFindings": [],
+  "ruledOutDirections": [],
+  "metrics": {
+    "iterationsCompleted": 0,
+    "openQuestions": 10,
+    "resolvedQuestions": 0,
+    "keyFindings": 0,
+    "convergenceScore": 0,
+    "coverageBySources": {}
+  }
+}
+}
