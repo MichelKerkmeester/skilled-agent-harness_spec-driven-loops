@@ -12,16 +12,19 @@ import { resolve } from 'node:path';
 import type Database from 'better-sqlite3';
 
 import { checkDatabaseUpdated } from '../core/index.js';
+import { INDEX_SCAN_COOLDOWN } from '../core/config.js';
+import { getLastScanTime } from '../core/db-state.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { isMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import * as embeddings from '../lib/providers/embeddings.js';
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
+import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import { createMCPSuccessResponse, createMCPErrorResponse } from '../lib/response/envelope.js';
 import { toErrorMessage } from '../utils/index.js';
 
 import { summarizeAliasConflicts } from './memory-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
-import { getCircuitFlapState, getEmbeddingRetryStats } from '../lib/providers/retry-manager.js';
+import { getCircuitFlapState, getEmbeddingRetryStats, getRetryStats } from '../lib/providers/retry-manager.js';
 import {
   getSnapshot as getRoutingTelemetrySnapshot,
   WINDOW_SIZE as ROUTING_TELEMETRY_WINDOW_SIZE,
@@ -106,6 +109,29 @@ const DEFAULT_DIVERGENT_ALIAS_LIMIT = 20;
 const MAX_DIVERGENT_ALIAS_LIMIT = 200;
 const DOT_OPENCODE_SPECS_SEGMENT = '/.opencode/specs/';
 const SPECS_SEGMENT = '/specs/';
+const INDEX_HEALTH_STALENESS_MS = 24 * 60 * 60 * 1000;
+const INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT = 200;
+const INDEX_SCAN_LEASE_EXPIRY_MS = INDEX_SCAN_COOLDOWN * 2;
+
+type IndexHealthSummary =
+  | 'healthy_fresh'
+  | 'healthy_lagging_vectors'
+  | 'stale_needs_scan'
+  | 'degraded_needs_repair'
+  | 'unavailable';
+
+interface IndexHealthBlock {
+  summary: IndexHealthSummary;
+  indexedRows: number;
+  pendingVectors: number;
+  retryVectors: number;
+  failedVectors: number;
+  orphanFiles: number | null;
+  lastScanAgeMs: number | null;
+  activeScanJob: boolean;
+  activeEmbedderJob: boolean;
+  note?: string;
+}
 
 interface AliasConflictDbRow {
   file_path: string;
@@ -333,6 +359,138 @@ function getFullMemoryReport(
   };
 }
 
+function parseConfigTimestamp(value: unknown): number {
+  const parsed = typeof value === 'string' ? Number.parseInt(value, 10) : 0;
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getConfigTimestamp(database: Database.Database, key: string): number {
+  try {
+    const row = database.prepare('SELECT value FROM config WHERE key = ?').get(key) as { value?: string } | undefined;
+    return parseConfigTimestamp(row?.value);
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function hasActiveScanJob(database: Database.Database, now: number): boolean {
+  const scanStartedAt = getConfigTimestamp(database, 'scan_started_at');
+  return scanStartedAt > 0 && now - scanStartedAt < INDEX_SCAN_LEASE_EXPIRY_MS;
+}
+
+function hasActiveEmbedderJob(database: Database.Database): boolean {
+  try {
+    const table = database.prepare(`
+      SELECT name
+      FROM sqlite_master
+      WHERE type = 'table' AND name = 'embedder_jobs'
+      LIMIT 1
+    `).get() as { name?: string } | undefined;
+    if (!table) {
+      return false;
+    }
+
+    const row = database.prepare(`
+      SELECT COUNT(*) AS count
+      FROM embedder_jobs
+      WHERE status IN ('queued', 'running')
+    `).get() as { count?: number } | undefined;
+    return (row?.count ?? 0) > 0;
+  } catch (_error: unknown) {
+    return false;
+  }
+}
+
+async function getIndexHealthBlock(
+  database: Database.Database | null,
+  indexedRows: number,
+  vectorSearchAvailable: boolean,
+  now: number,
+): Promise<IndexHealthBlock> {
+  let pendingVectors = 0;
+  let retryVectors = 0;
+  let failedVectors = 0;
+  let orphanFiles: number | null = null;
+  let lastScanAgeMs: number | null = null;
+  let activeScanJob = false;
+  let activeEmbedderJob = false;
+  const notes: string[] = [];
+
+  if (!database || !vectorSearchAvailable) {
+    return {
+      summary: 'unavailable',
+      indexedRows,
+      pendingVectors,
+      retryVectors,
+      failedVectors,
+      orphanFiles,
+      lastScanAgeMs,
+      activeScanJob,
+      activeEmbedderJob,
+      note: 'Database or vector index is unavailable.',
+    };
+  }
+
+  try {
+    const retryStats = getRetryStats();
+    pendingVectors = retryStats.pending;
+    retryVectors = retryStats.retry;
+    failedVectors = retryStats.failed;
+  } catch (error: unknown) {
+    const retrySnapshot = getEmbeddingRetryStats();
+    pendingVectors = retrySnapshot.pending;
+    retryVectors = Math.max(0, retrySnapshot.queueDepth - retrySnapshot.pending);
+    failedVectors = retrySnapshot.failed;
+    notes.push(`Embedding retry counts fell back to in-memory telemetry: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+  }
+
+  try {
+    const lastScanTime = await getLastScanTime();
+    lastScanAgeMs = lastScanTime > 0 ? Math.max(0, now - lastScanTime) : null;
+  } catch (error: unknown) {
+    notes.push(`Last scan timestamp unavailable: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+  }
+
+  activeScanJob = hasActiveScanJob(database, now);
+  activeEmbedderJob = hasActiveEmbedderJob(database);
+
+  try {
+    incrementalIndex.init(database);
+    const orphanSweep = incrementalIndex.sweepOrphanIndexRows({ limit: INDEX_HEALTH_ORPHAN_SAMPLE_LIMIT });
+    orphanFiles = orphanSweep.swept;
+    if (orphanSweep.nextCursor !== null) {
+      notes.push(`orphanFiles is a bounded count over ${orphanSweep.scannedRows} sampled row(s); more rows may exist.`);
+    }
+  } catch (error: unknown) {
+    orphanFiles = null;
+    notes.push(`Orphan file count unavailable: ${sanitizeErrorForHint(toErrorMessage(error))}`);
+  }
+
+  let summary: IndexHealthSummary;
+  if (failedVectors > 0 || (orphanFiles ?? 0) > 0) {
+    summary = 'degraded_needs_repair';
+  } else if (lastScanAgeMs === null || lastScanAgeMs > INDEX_HEALTH_STALENESS_MS) {
+    summary = 'stale_needs_scan';
+  } else if (pendingVectors > 0 || retryVectors > 0) {
+    summary = 'healthy_lagging_vectors';
+  } else {
+    summary = 'healthy_fresh';
+  }
+
+  return {
+    summary,
+    indexedRows,
+    pendingVectors,
+    retryVectors,
+    failedVectors,
+    orphanFiles,
+    lastScanAgeMs,
+    activeScanJob,
+    activeEmbedderJob,
+    ...(notes.length > 0 ? { note: notes.join(' ') } : {}),
+  };
+}
+
 /* ───────────────────────────────────────────────────────────────
    CORE LOGIC
 ──────────────────────────────────────────────────────────────── */
@@ -491,6 +649,13 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
     console.warn(`[memory-health] Failed to get memory count [requestId=${requestId}]:`, message);
   }
 
+  const indexHealth = await getIndexHealthBlock(
+    database,
+    memoryCount,
+    vectorIndex.isVectorSearchAvailable(),
+    Date.now(),
+  );
+
   if (reportMode === DIVERGENT_ALIAS_REPORT_MODE) {
     const hints: string[] = [];
     if (!database) {
@@ -515,6 +680,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         runtime_initialized: runtimeInitialized,
         databaseConnected: !!database,
         process: processHealth,
+        index: indexHealth,
         embeddingRetry,
         specFolder: specFolder ?? null,
         limit: safeLimit,
@@ -632,6 +798,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
         needsConfirmation: true,
         actions: repairActions,
         process: processHealth,
+        index: indexHealth,
         embeddingRetry,
         ...(fullMemoryReport ?? {}),
       },
@@ -799,6 +966,7 @@ async function handleMemoryHealth(args: HealthArgs): Promise<MCPResponse> {
       memoryCount,
       uptime: process.uptime(),
       process: processHealth,
+      index: indexHealth,
       version: SERVER_VERSION,
       reportMode: 'full',
       aliasConflicts,

@@ -172,7 +172,7 @@ describe('handler-memory-index cooldown behavior', () => {
     });
   });
 
-  it('does not set cooldown timestamp when request is rate-limited', async () => {
+  it('coalesces instead of erroring when a scan is already active', async () => {
     mocks.mockAcquireIndexScanLease.mockResolvedValue({
       acquired: false,
       reason: 'cooldown',
@@ -191,7 +191,8 @@ describe('handler-memory-index cooldown behavior', () => {
     expect(mocks.mockCompleteIndexScanLease).not.toHaveBeenCalled();
 
     const envelope = JSON.parse(result.content[0].text);
-    expect(envelope.error).toBe('Rate limited');
+    expect(envelope.data.coalesced).toBe(true);
+    expect(envelope.data.status).toBe('coalesced');
   });
 
   it('sets cooldown timestamp after successful scan response', async () => {

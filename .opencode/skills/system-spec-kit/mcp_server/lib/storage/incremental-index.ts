@@ -18,6 +18,7 @@ import { getCanonicalPathKey } from '../utils/canonical-path.js';
 ----------------------------------------------------------------*/
 
 const MTIME_FAST_PATH_MS = 1000; // Skip if mtime within 1 second
+const DEFAULT_ORPHAN_SWEEP_LIMIT = 200;
 
 /* ───────────────────────────────────────────────────────────────
    2. INTERFACES
@@ -54,6 +55,18 @@ interface IndexedPathRow {
 
 interface IndexedRecordRow extends IndexedPathRow {
   id: number;
+}
+
+interface OrphanSweepOptions {
+  limit?: number;
+  cursor?: number;
+}
+
+interface OrphanSweepResult {
+  swept: number;
+  nextCursor: number | null;
+  scannedRows: number;
+  orphanRecordIds: number[];
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -385,6 +398,79 @@ function listIndexedRecordIdsForDeletedPaths(filePaths: string[]): number[] {
   return Array.from(ids).sort((a, b) => a - b);
 }
 
+function normalizeOrphanSweepLimit(limit?: number): number {
+  if (typeof limit !== 'number' || !Number.isFinite(limit) || limit <= 0) {
+    return DEFAULT_ORPHAN_SWEEP_LIMIT;
+  }
+
+  return Math.max(1, Math.floor(limit));
+}
+
+function indexedRecordIsAbsent(row: IndexedRecordRow): boolean {
+  const rowFileExists = typeof row.file_path === 'string' && row.file_path.length > 0
+    ? getFileMetadata(row.file_path).exists
+    : false;
+  const rowCanonicalExists = typeof row.canonical_file_path === 'string' && row.canonical_file_path.length > 0
+    ? getFileMetadata(row.canonical_file_path).exists
+    : false;
+
+  return !rowFileExists && !rowCanonicalExists;
+}
+
+function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResult {
+  if (!db) {
+    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] };
+  }
+
+  const limit = normalizeOrphanSweepLimit(options.limit);
+  const cursor = typeof options.cursor === 'number' && Number.isFinite(options.cursor) && options.cursor > 0
+    ? Math.floor(options.cursor)
+    : 0;
+
+  try {
+    const rows = hasCanonicalPathColumn()
+      ? (db.prepare(`
+          SELECT id, file_path, canonical_file_path
+          FROM memory_index
+          WHERE id > ?
+            AND file_path IS NOT NULL
+            AND file_path != ''
+          ORDER BY id ASC
+          LIMIT ?
+        `) as Database.Statement).all(cursor, limit) as IndexedRecordRow[]
+      : (db.prepare(`
+          SELECT id, file_path
+          FROM memory_index
+          WHERE id > ?
+            AND file_path IS NOT NULL
+            AND file_path != ''
+          ORDER BY id ASC
+          LIMIT ?
+        `) as Database.Statement).all(cursor, limit) as IndexedRecordRow[];
+
+    const orphanRecordIds: number[] = [];
+    for (const row of rows) {
+      if (!row || typeof row.id !== 'number') {
+        continue;
+      }
+      if (indexedRecordIsAbsent(row)) {
+        orphanRecordIds.push(row.id);
+      }
+    }
+
+    return {
+      swept: orphanRecordIds.length,
+      nextCursor: rows.length === limit ? rows[rows.length - 1]?.id ?? null : null,
+      scannedRows: rows.length,
+      orphanRecordIds,
+    };
+  } catch (error: unknown) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[incremental-index] sweepOrphanIndexRows error: ${msg}`);
+    return { swept: 0, nextCursor: null, scannedRows: 0, orphanRecordIds: [] };
+  }
+}
+
 function batchUpdateMtimes(filePaths: string[]): { updated: number; failed: number } {
   if (!db) return { updated: 0, failed: filePaths.length };
 
@@ -427,6 +513,7 @@ export {
   categorizeFilesForIndexing,
   listStaleIndexedPaths,
   listIndexedRecordIdsForDeletedPaths,
+  sweepOrphanIndexRows,
   batchUpdateMtimes,
 };
 
@@ -438,4 +525,6 @@ export type {
   StoredMetadata,
   IndexDecision,
   CategorizedFiles,
+  OrphanSweepOptions,
+  OrphanSweepResult,
 };
