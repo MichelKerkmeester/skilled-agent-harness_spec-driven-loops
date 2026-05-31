@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import { pathToFileURL } from 'node:url';
@@ -24,6 +25,24 @@ const MEMORY_DAEMON_STDERR_LOG = path.join(
   SANDBOX_EVIDENCE_DIR,
   'run-2026-05-14-shared-daemon.daemon.stderr.log',
 );
+const CODE_INDEX_DAEMON_STDERR_LOG = path.join(
+  SANDBOX_EVIDENCE_DIR,
+  'run-2026-05-14-shared-daemon.code-index.stderr.log',
+);
+// Each spawned daemon needs a SHORT, EXISTING IPC socket directory. The default
+// in-database socket path (under mcp_server/database/, ~134 chars from this repo
+// root) blows past the macOS sun_path limit (~104 bytes), so the daemon's listen()
+// fails with EINVAL and the child dies before the client can connect. os.tmpdir()
+// is a short socket root allowed by both daemons (the code-graph server's allowlist
+// is cwd / os.tmpdir() / /tmp) and is portable to Linux CI. Each daemon gets its
+// own subdir so two daemons never collide on the same daemon-ipc.sock filename, and
+// the dir is created up front because listen() on a missing directory also fails
+// with EINVAL. Done here so the suite is green without the caller exporting any env.
+function shortSocketDir(slug) {
+  const dir = path.join(os.tmpdir(), `spk-substrate-${slug}`);
+  fs.mkdirSync(dir, { recursive: true });
+  return dir;
+}
 const DAEMON_STDERR_CAP_BYTES = 200000;
 const CONNECT_TIMEOUT_MS = 60000;
 export const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
@@ -138,6 +157,9 @@ export function normalizeArguments(toolName, args) {
 export function selectClientForServer(clients, server) {
   if (server === 'mk_spec_memory' || server === 'mk-spec-memory') {
     return clients.mk_spec_memory ?? clients['mk-spec-memory'] ?? null;
+  }
+  if (server === 'mk_code_index' || server === 'mk-code-index') {
+    return clients.mk_code_index ?? clients['mk-code-index'] ?? null;
   }
   return null;
 }
@@ -617,11 +639,34 @@ async function main() {
           // when the default bridge socket path exceeds 104 chars (the default
           // path under mcp_server/database/ is ~134 chars from this repo root).
           SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
+          SPECKIT_IPC_SOCKET_DIR: shortSocketDir('mem'),
         }),
       },
       stderrLog: options.stderrLog ? MEMORY_DAEMON_STDERR_LOG : null,
     });
     connections.push(memoryConnection);
+
+    // Second real daemon: the code-graph index. Scenarios 403, 404 and 407 call
+    // mcp__mk_code_index__code_graph_context, so they only execute against a real
+    // daemon when this is connected — otherwise they SKIP. Dedicated child (bridge
+    // disabled, its own short socket dir). Maintainer mode is intentionally NOT
+    // enabled: a forced INDEX_* full scan would rewrite graph-metadata across the
+    // tree. The graph must already be populated (run code_graph_scan once) for the
+    // scenarios to resolve nodes; an empty graph yields tolerated SKIP/blocked.
+    const codeIndexConnection = await connectSharedClient({
+      name: 'mk-code-index',
+      transportOptions: {
+        command: process.execPath,
+        args: ['.opencode/bin/mk-code-index-launcher.cjs'],
+        cwd: REPO_ROOT,
+        env: buildDaemonEnv({
+          SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
+          SPECKIT_IPC_SOCKET_DIR: shortSocketDir('cg'),
+        }),
+      },
+      stderrLog: options.stderrLog ? CODE_INDEX_DAEMON_STDERR_LOG : null,
+    });
+    connections.push(codeIndexConnection);
 
     for (const connection of connections) {
       if (connection.diagnostic) {
@@ -632,9 +677,11 @@ async function main() {
 
     const clients = {
       mk_spec_memory: memoryConnection.client,
+      mk_code_index: codeIndexConnection.client,
     };
     const toolNameSets = {
       mk_spec_memory: memoryConnection.toolNames,
+      mk_code_index: codeIndexConnection.toolNames,
     };
     for (const scenario of options.scenarios) {
       const row = await runScenario(clients, toolNameSets, scenario);

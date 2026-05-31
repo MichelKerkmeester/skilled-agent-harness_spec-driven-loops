@@ -29,7 +29,7 @@ const TSV_PATH = path.join(
 );
 
 describe('substrate stress harness (045 promoted)', () => {
-  it('runs scenarios 403/404/407/410 against the real mk-spec-memory daemon with no connection or scenario failures', async () => {
+  it('runs scenarios 403/404/407/410 against the real mk-spec-memory and mk-code-index daemons with no connection or scenario failures', async () => {
     await execFileAsync('node', [HARNESS, '--no-stderr-log', '--scenarios', '403,404,407,410'], {
       cwd: REPO_ROOT,
       timeout: 180_000,
@@ -47,10 +47,9 @@ describe('substrate stress harness (045 promoted)', () => {
         return { scenario, verdict };
       });
 
-    // A `runner:<name>` row is a shared-daemon client diagnostic. A FAIL means the client could not
-    // connect — a real substrate failure that must not occur. A SKIP (e.g. an optional Code Graph
-    // daemon not started by this single-daemon runner) is informational and tolerated, mirroring the
-    // Code-Graph scenario SKIPs below.
+    // A `runner:<name>` row is a shared-daemon client diagnostic. A FAIL means a client could not
+    // connect — a real substrate failure that must not occur. The runner starts two real daemons
+    // (mk-spec-memory and mk-code-index), so a connect failure on either surfaces here.
     const diagnostics = rows.filter((row) => row.scenario.startsWith('runner:'));
     const failedConnections = diagnostics.filter((row) => row.verdict === 'FAIL');
     expect(failedConnections, `shared-daemon connection failures: ${JSON.stringify(failedConnections)}`).toHaveLength(0);
@@ -60,9 +59,10 @@ describe('substrate stress harness (045 promoted)', () => {
     expect(scenarioRows).toHaveLength(4);
     expect(new Set(scenarioRows.map((row) => row.scenario))).toEqual(new Set(['403', '404', '407', '410']));
 
-    // The promoted runner starts only the mk-spec-memory daemon, so the Code-Graph-backed scenarios
-    // legitimately SKIP when no Code Graph client is connected. No scenario may FAIL; SKIP and
-    // PARTIAL are tolerated.
+    // The runner starts the mk-code-index daemon alongside mk-spec-memory, so the Code-Graph-backed
+    // scenarios (403, 404 and 407) execute against it rather than SKIPping — provided the code-graph
+    // DB is populated. No scenario may FAIL; SKIP is still tolerated as a fallback (e.g. an empty
+    // graph or a code-graph client that cannot start), and PARTIAL is tolerated.
     for (const { scenario, verdict } of scenarioRows) {
       expect(['PASS', 'SKIP', 'PARTIAL'], `${scenario} verdict ${verdict} must not be FAIL`).toContain(verdict);
     }
