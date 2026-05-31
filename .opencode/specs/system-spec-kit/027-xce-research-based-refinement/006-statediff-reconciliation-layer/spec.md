@@ -135,6 +135,11 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 - Convert `handlers/memory-save.ts` single-doc upsert to use statediff after semantic policy decisions.
 - Convert alias conflict detection, divergence reconciliation, retention sweep, and cache invalidation into subscribers where practical.
 - Preserve the safety rule that stale deletes are deferred when replacement indexing fails.
+- Remove `invalidateEntityDensityCacheAfterSave()` inline call at `memory-save.ts:2637`; entity-density invalidation becomes a statediff subscriber to `insert`/`delete` action batches.
+- Remove `invalidateEntityDensityCacheAfterBulkDelete()` inline calls at `memory-bulk-delete.ts:151,258`; entity-density invalidation becomes a statediff subscriber.
+- Convert `clearDegreeCache()` and `clearRelatedCache()` in `mutation-hooks.ts:70-71,83-95` from blanket post-call clears to typed subscribers on specific action kinds.
+- Close entity-density cache scan-path gap: `memory-index.ts:361-366` `runPostMutationHooks('scan')` does not call `invalidateEntityDensityCache`; statediff `delete` actions on `memory_index` rows must notify the entity-density subscriber regardless of handler origin.
+- Update `mutation-feedback.ts` feedback shape to reflect subscriber-based reporting rather than direct hook enumeration.
 
 ### Out of Scope
 
@@ -152,8 +157,10 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Build and apply scan action plans instead of scattered index/update/delete branches. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts` | Modify | Reconcile single-doc storage targets after dedup, embedding, and semantic policy decisions. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/*target*.ts` | Create | Target sinks for memory index, embedding, lexical rows, graph edges, and cache notifications. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts` | Modify | Convert hook bundle into action-batch subscribers. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts` | Modify | Convert hook bundle into action-batch subscribers; move `clearDegreeCache()`, `clearRelatedCache()`, `clearGraphSignalsCache()` to typed subscribers. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modify | Support generated edge-set reconciliation once frontmatter promoter emits desired edges. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modify | Remove inline `invalidateEntityDensityCacheAfterBulkDelete()` calls at lines 151 and 258; subscribe via action batch. Added by 012-causal-routing. |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts` | Modify | Update feedback shape to reflect subscriber-based reporting; `coactivationCacheCleared` field introduced by 012 must be preserved. |
 <!-- /ANCHOR:scope -->
 
 ---

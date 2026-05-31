@@ -195,6 +195,7 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 | Risk | Manual-edge guard could block legitimate manual corrections if call sites reuse `insertEdge`. | Medium | Guard only blocks automatic/reducer overwrites of existing non-auto rows; manual writer path remains explicit. |
 | Risk | Retention sweep query may join or select fields that are nullable in older rows. | Medium | Treat missing tier as normal/unknown and preserve existing behavior unless tier is protected. |
 | Risk | Pinned and high-tier policies overlap. | Low | The immediate packet only prevents unsafe delete; learned extension policy remains in 009. |
+| Risk | `render.ts:124-133` short-circuits numeric uncertainty check when `passes_threshold === true`, allowing high-uncertainty advisor records to render mandate wording. Tracked separately — this gap belongs in the advisor contract packet, not this P0 phase. | Medium | Noted here as a related correctness surface; fix is scoped to the next advisor contract packet alongside REQ-007 uncertainty guard. |
 | Dependency | None. | None | This packet intentionally ships before all code_graph phases and before 009 reducers. |
 <!-- /ANCHOR:risks -->
 
