@@ -45,10 +45,18 @@ _memory:
 <!-- /ANCHOR:metadata -->
 ---
 
+<!-- ANCHOR:exec-summary -->
+## EXECUTIVE SUMMARY
+
+This phase will fix the 14 verified findings from the packet-123 deep review (2 P0, 1 latent-P0, 8 P1, 3 P2). The headline fixes make CLI fan-out genuinely concurrent (C-01) and the review gate fail-closed (C-02), backed by the two tests the original 72-test suite lacked. No code is written yet — this scaffold records the design and the verification gates the future build must satisfy.
+
+<!-- /ANCHOR:exec-summary -->
+---
+
 <!-- ANCHOR:what-built -->
 ## WHAT WAS BUILT
 
-NOTHING YET — documentation scaffold only. Six Level-3 docs + `description.json` + `graph-metadata.json` + `resource-map.md` authored under this folder; parent wiring updated. No source/YAML/test files modified. When implemented, this phase fixes all 14 verified findings from the 008 deep review (2 P0, 1 latent-P0, 8 P1, 3 P2), making CLI fan-out genuinely concurrent, the review gate fail-closed, and the runtime hardened.
+NOTHING YET — documentation scaffold only. Six Level-3 docs + `description.json` + `graph-metadata.json` + `resource-map.md` authored under this folder; parent wiring updated. No source/YAML/test files modified.
 
 ### Files Planned to Change (the implement-time edit set)
 
@@ -85,7 +93,7 @@ NOT YET DELIVERED. The planned delivery sequence is gate-honest-before-concurren
 | ADR-004 | Full-anchor Level-3 docs | Accepted |
 | ADR-005 | Single-executor byte-identical parity gate | Accepted |
 
-Implementation ordering: C-02 before C-01 (honest gate first); inner-worker-only spawn change (protect parity); `content_hash` dedup key (matches the reducer contract). See `decision-record.md`.
+Implementation ordering: C-02 before C-01 (honest gate first); inner-worker-only spawn change (protect parity); `content_hash` dedup key (matches the reducer contract). See `decision-record.md` for full ADRs.
 
 <!-- /ANCHOR:decisions -->
 ---

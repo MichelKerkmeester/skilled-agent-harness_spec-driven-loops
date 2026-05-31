@@ -151,18 +151,8 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 <!-- /ANCHOR:risks -->
 ---
 
-<!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
-
-- U-01: does the YAML runner write the loader's normalized config back before the `.kind` predicate? **RESOLVED for spec purposes: standardize on `.kind` across docs + predicates so the answer doesn't matter (ADR-002).**
-- C-03: verbatim vs prompt-synthesis for CLI kinds? **RESOLVED: implement true verbatim (ADR-001).**
-- ENV-LEAK: allowlist vs denylist? **RESOLVED: reuse the existing allowlist `buildExecutorDispatchEnv` (ADR-003).**
-
-<!-- /ANCHOR:questions -->
----
-
 <!-- ANCHOR:nfr -->
-## 8. NON-FUNCTIONAL REQUIREMENTS
+## 7. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
 - **NFR-P01**: Fan-out wall-clock for N lineages at concurrency K approximates ceil(N/K)×per-lineage, not N×per-lineage (the point of fixing C-01).
@@ -179,7 +169,7 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 ---
 
 <!-- ANCHOR:edge-cases -->
-## 9. EDGE CASES
+## 8. EDGE CASES
 
 ### Data Boundaries
 - **Zero readable registries**: merge returns non-PASS (fail-closed), not PASS.
@@ -198,7 +188,7 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 ---
 
 <!-- ANCHOR:complexity -->
-## 10. COMPLEXITY ASSESSMENT
+## 9. COMPLEXITY ASSESSMENT
 
 Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code files + 6 command files + tests, decomposed into independent fixes with one genuinely hard item (C-03 verbatim, L/High) and one hot-path item (C-01 async spawn) gated by the byte-identical parity requirement. Risk concentrates in two places: the C-01 spawn rewrite (mitigated by reusing `runAuditedExecutorCommandAsync` and touching the inner worker only) and the U-01 field rename (mitigated by an atomic `.kind` change across both consumers). The remaining 10 fixes are S/M, mostly local, individually testable. Reusing three existing helpers (async spawn, env allowlist, pad) keeps net new logic small.
 
@@ -206,7 +196,7 @@ Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code fi
 ---
 
 <!-- ANCHOR:risk-matrix -->
-## 11. RISK MATRIX
+## 10. RISK MATRIX
 
 | Risk ID | Description | Impact | Likelihood | Mitigation |
 |---------|-------------|--------|------------|------------|
@@ -220,7 +210,7 @@ Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code fi
 ---
 
 <!-- ANCHOR:user-stories -->
-## 12. USER STORIES
+## 11. USER STORIES
 
 ### US-001: Genuinely parallel fan-out (Priority: P0)
 **As an** operator running a multi-model fan-out review, **I want** the lineages to actually run concurrently, **so that** N models finish in roughly one model's time, not N×.
@@ -235,6 +225,16 @@ Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code fi
 **Acceptance Criteria**: Given a default (native) run, When dispatch resolves, Then the native branch is taken; given a CLI lineage, When it runs, Then it invokes the existing command verbatim with `lineage.iterations` as the iteration cap.
 
 <!-- /ANCHOR:user-stories -->
+---
+
+<!-- ANCHOR:questions -->
+## 12. OPEN QUESTIONS
+
+- U-01: does the YAML runner write the loader's normalized config back before the `.kind` predicate? **RESOLVED for spec purposes: standardize on `.kind` across docs + predicates so the answer doesn't matter (ADR-002).**
+- C-03: verbatim vs prompt-synthesis for CLI kinds? **RESOLVED: implement true verbatim (ADR-001).**
+- ENV-LEAK: allowlist vs denylist? **RESOLVED: reuse the existing allowlist `buildExecutorDispatchEnv` (ADR-003).**
+
+<!-- /ANCHOR:questions -->
 ---
 
 <!-- ANCHOR:related-docs -->
