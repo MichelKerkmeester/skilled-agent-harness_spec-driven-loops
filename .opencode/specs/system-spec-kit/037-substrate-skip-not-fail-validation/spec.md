@@ -123,6 +123,20 @@ Run a bounded deep-research loop that interrogates the five claims with file:lin
 - Can a partial/zombie connect defeat the 410 false-green guard?
 - Is the maintainer-mode leak truly sidestepped, or merely hidden in interactive sessions?
 
+<!-- BEGIN GENERATED: deep-research/spec-findings -->
+### Deep-research findings (5/5 iterations, stop: maxIterationsReached)
+
+All five claims **PROVEN** via cli-opencode + MiniMax M2.7-highspeed. Canonical synthesis: `research/research.md`.
+
+- **Q1 — crashes still FAIL: PROVEN.** Null-vs-non-null branch on `liveOwnerForService` is the sole FAIL arbiter; `isPidAlive` ESRCH→dead/EPERM→alive correct; TOCTOU not exploitable (synchronous lease read). Caveat **F-005**: PID-recycling can mask a hard crash as SKIP (narrow, real).
+- **Q2 — false-green guard fires: PROVEN.** Guard at `substrate-runner-harness.vitest.ts:79-83` catches an all-SKIP 410; the only bypass is the same F-005 path.
+- **Q3 — TSV reproducible: PROVEN.** Structure deterministic; pid *values* are session-specific; EPERM-locked-TSV fallback is a stale-pid hazard.
+- **Q4 — churn non-harness: PROVEN.** Harness writes zero graph-metadata; child exits before the INDEX scan (`mk-code-index-launcher.cjs:864` < `:944`); operator maintainer-mode daemon is the writer.
+- **Q5 — maintainer-mode leak: PROVEN, refined.** "Merely hidden" in interactive sessions (child exits before scan), **live in clean env / CI**; orthogonal to skip-not-fail. `.env.local:4` + unscrubbed env propagation (`buildChildEnv`, `buildDaemonEnv`).
+
+Recommendations: optional PID-identity check for F-005; run-id stamp on the TSV; scrub `SPECKIT_CODE_GRAPH_MAINTAINER_MODE` / temp `SPECKIT_CODE_GRAPH_DB_DIR` for hermetic CI.
+<!-- END GENERATED: deep-research/spec-findings -->
+
 <!-- /ANCHOR:questions -->
 
 ---

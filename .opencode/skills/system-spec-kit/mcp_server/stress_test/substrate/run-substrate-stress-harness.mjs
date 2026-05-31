@@ -5,6 +5,7 @@ import path from 'node:path';
 import { performance } from 'node:perf_hooks';
 import { pathToFileURL } from 'node:url';
 import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, '../../../../../..');
@@ -47,6 +48,28 @@ const DAEMON_STDERR_CAP_BYTES = 200000;
 const CONNECT_TIMEOUT_MS = 60000;
 export const DEFAULT_SCENARIOS = Array.from({ length: 15 }, (_, index) => 401 + index);
 const DAEMON_ENV_DENYLIST = /^(GITHUB_TOKEN|GITLAB_TOKEN|NPM_TOKEN|GH_TOKEN|AWS_|GCP_|GOOGLE_|AZURE_|SLACK_|DISCORD_|TWILIO_|STRIPE_|SSH_|GPG_|GNUPGHOME|PASSWORD|SECRET)/i;
+
+// Stable id for this harness run. Stamped into the summary TSV and used to name the
+// fallback sidecar so a reader can always tell which run produced a given evidence file.
+export const RUN_ID = new Date().toISOString().replace(/[:.]/g, '-');
+
+// A live PID alone does not prove ownership: after a hard crash the OS can recycle the
+// crashed daemon's PID. Accept an owner only when its real start time matches the lease's
+// recorded start time within this tolerance (clock granularity + write lag).
+const LEASE_START_TOLERANCE_MS = 2000;
+
+// Forced OFF in the spawned code-index child. The launcher loads .env.local and, when
+// SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true is set there, runs a full INDEX_* scan that rewrites
+// graph-metadata across the tree. The launcher's env loader is set-if-absent, so these explicit
+// values win — a clean-env / CI harness run can no longer mutate the working tree.
+export const CODE_INDEX_INDEX_SUPPRESSION = {
+  SPECKIT_CODE_GRAPH_MAINTAINER_MODE: 'false',
+  SPECKIT_CODE_GRAPH_INDEX_SKILLS: 'false',
+  SPECKIT_CODE_GRAPH_INDEX_AGENTS: 'false',
+  SPECKIT_CODE_GRAPH_INDEX_COMMANDS: 'false',
+  SPECKIT_CODE_GRAPH_INDEX_SPECS: 'false',
+  SPECKIT_CODE_GRAPH_INDEX_PLUGINS: 'false',
+};
 
 const sdkRequire = createRequire(path.join(MEMORY_SERVER_ROOT, 'package.json'));
 const { Client } = await import(pathToFileURL(sdkRequire.resolve('@modelcontextprotocol/sdk/client/index.js')));
@@ -329,6 +352,32 @@ function isPidAlive(pid) {
   }
 }
 
+// Wall-clock start time of a process, in epoch ms, or null when unknowable. `ps -o lstart=`
+// is portable across macOS/BSD and Linux procps; the PID is integer-validated so no untrusted
+// value reaches the argv. Returns null (not throw) on any failure so callers can fall back.
+export function processStartedAt(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  const result = spawnSync('ps', ['-o', 'lstart=', '-p', String(pid)], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  if (result.status !== 0 || !result.stdout) return null;
+  const parsed = Date.parse(result.stdout.trim());
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+// True only when `pid` is alive AND provably the same process that wrote the lease. A live PID
+// whose start time differs from the lease's recorded start (beyond tolerance) is a recycled PID,
+// not the owner. When the lease has no start time, or the process start time is unreadable, fall
+// back to liveness-only so behavior never regresses below the prior check.
+export function leaseOwnerMatch(pid, leaseStartMs) {
+  if (!isPidAlive(pid)) return false;
+  if (!Number.isFinite(leaseStartMs)) return true;
+  const procStart = processStartedAt(pid);
+  if (procStart === null) return true;
+  return Math.abs(procStart - leaseStartMs) <= LEASE_START_TOLERANCE_MS;
+}
+
 // A connect failure is only a real substrate failure when nothing legitimately owns the
 // single-writer lease. During an interactive session the operator's daemon holds that lease and
 // the harness disables bridging, so the spawned child can neither acquire the lease nor bridge —
@@ -339,9 +388,11 @@ function isPidAlive(pid) {
 function liveOwnerForService(name) {
   let leasePath;
   let pidFields;
+  let startedAtField;
   if (name === 'mk-spec-memory') {
     leasePath = path.join(MEMORY_SERVER_ROOT, 'database', '.mk-spec-memory-launcher.json');
     pidFields = ['ownerPid', 'pid'];
+    startedAtField = 'startedAt';
   } else if (name === 'mk-code-index') {
     leasePath = path.join(
       REPO_ROOT,
@@ -349,14 +400,18 @@ function liveOwnerForService(name) {
       '.code-graph-owner.json',
     );
     pidFields = ['ownerPid'];
+    startedAtField = 'startedAtIso';
   } else {
     return null;
   }
   try {
     const lease = JSON.parse(fs.readFileSync(leasePath, 'utf8'));
+    const leaseStartMs = Date.parse(lease?.[startedAtField]);
     for (const field of pidFields) {
       const pid = lease?.[field];
-      if (isPidAlive(pid)) return { ownerPid: pid, leasePath };
+      // Liveness + start-time identity: a recycled PID (alive, but a different process than the
+      // one that wrote the lease) must NOT be accepted, or it would mask a genuine crash as SKIP.
+      if (leaseOwnerMatch(pid, leaseStartMs)) return { ownerPid: pid, leasePath };
     }
   } catch {
     // No lease file, unreadable, or unparseable -> treat as no live owner.
@@ -657,23 +712,68 @@ async function runScenario(clients, toolNameSets, scenario) {
   return runGenericScenario(clients, toolNameSets, scenario, markdown);
 }
 
-function writeSummary(rows) {
-  const header = 'scenario\tverdict\tkey_metric\tdetail\n';
+// Render the summary TSV. A `run_id` column lets a reader confirm which run produced the rows;
+// it is the trailing column so existing readers that take only scenario/verdict are unaffected.
+export function renderSummaryTsv(rows, runId = RUN_ID) {
+  const header = 'scenario\tverdict\tkey_metric\tdetail\trun_id\n';
   const body = rows
-    .map((row) => [row.scenario, row.verdict, row.key_metric, row.detail]
+    .map((row) => [row.scenario, row.verdict, row.key_metric, row.detail, runId]
       .map((value) => String(value).replace(/\t/g, ' ').replace(/\n/g, ' '))
       .join('\t'))
     .join('\n');
+  return `${header}${body}\n`;
+}
+
+// Run-id-suffixed fallback path used when the canonical TSV is locked.
+export function summarySidecarPath(runId = RUN_ID) {
+  return `${SUMMARY_TSV}.${runId}.tsv`;
+}
+
+// Write the payload to the canonical TSV. On EPERM (another writer holds a lock) the prior file
+// must NOT be silently kept — a reader would mistake a prior run's pids/verdicts for this run's.
+// Current evidence is redirected to a run-id sidecar so nothing is lost and stale data stays
+// distinguishable. `write`/`warn` are injectable so the EPERM branch is testable without a real
+// locked file. Returns the resolved target path and whether the fallback fired.
+export function writeSummaryWithFallback(payload, { write = (p, d) => fs.writeFileSync(p, d), warn = console.warn } = {}) {
   try {
-    fs.writeFileSync(SUMMARY_TSV, `${header}${body}\n`);
+    write(SUMMARY_TSV, payload);
+    return { target: SUMMARY_TSV, fallback: false };
   } catch (error) {
     const code = error && typeof error === 'object' && 'code' in error ? error.code : null;
-    if (code === 'EPERM' && fs.existsSync(SUMMARY_TSV)) {
-      console.warn(`[substrate-stress-harness] summary TSV is locked; preserving existing evidence at ${SUMMARY_TSV}`);
-      return;
+    if (code === 'EPERM') {
+      const sidecar = summarySidecarPath();
+      try {
+        write(sidecar, payload);
+        warn(`[substrate-stress-harness] summary TSV is locked; wrote this run's evidence to ${sidecar}`);
+        return { target: sidecar, fallback: true };
+      } catch (sidecarError) {
+        const detail = sidecarError instanceof Error ? sidecarError.message : String(sidecarError);
+        warn(`[substrate-stress-harness] summary TSV locked and sidecar write failed: ${detail}`);
+        return { target: null, fallback: true };
+      }
     }
     throw error;
   }
+}
+
+function writeSummary(rows) {
+  return writeSummaryWithFallback(renderSummaryTsv(rows));
+}
+
+// Opt-in full isolation for clean-env / CI verification: when SPECKIT_SUBSTRATE_HERMETIC=1, give
+// the code-index child its own throwaway DB dir (within repo root, required by the launcher's path
+// guard) so it acquires its OWN lease instead of contending with a live operator daemon. Default
+// (unset) keeps the normal skip-not-fail behavior unchanged. Returns the dir path or null.
+export function hermeticCodeIndexDbDir(runId = RUN_ID) {
+  if (process.env.SPECKIT_SUBSTRATE_HERMETIC !== '1') return null;
+  return path.join(REPO_ROOT, '_sandbox/24--local-llm-query-intelligence/.tmp-cg-db', runId);
+}
+
+function hermeticCodeIndexExtras() {
+  const dir = hermeticCodeIndexDbDir();
+  if (!dir) return {};
+  fs.mkdirSync(dir, { recursive: true });
+  return { SPECKIT_CODE_GRAPH_DB_DIR: dir };
 }
 
 async function main() {
@@ -705,10 +805,11 @@ async function main() {
     // Second real daemon: the code-graph index. Scenarios 403, 404 and 407 call
     // mcp__mk_code_index__code_graph_context, so they only execute against a real
     // daemon when this is connected — otherwise they SKIP. Dedicated child (bridge
-    // disabled, its own short socket dir). Maintainer mode is intentionally NOT
-    // enabled: a forced INDEX_* full scan would rewrite graph-metadata across the
-    // tree. The graph must already be populated (run code_graph_scan once) for the
-    // scenarios to resolve nodes; an empty graph yields tolerated SKIP/blocked.
+    // disabled, its own short socket dir). Maintainer mode and all INDEX_* flags are
+    // explicitly forced OFF: the launcher would otherwise load .env.local and run a
+    // full INDEX_* scan that rewrites graph-metadata across the tree. The graph must
+    // already be populated (run code_graph_scan once) for the scenarios to resolve
+    // nodes; an empty graph yields tolerated SKIP/blocked.
     const codeIndexConnection = await connectSharedClient({
       name: 'mk-code-index',
       transportOptions: {
@@ -718,6 +819,8 @@ async function main() {
         env: buildDaemonEnv({
           SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1',
           SPECKIT_IPC_SOCKET_DIR: shortSocketDir('cg'),
+          ...CODE_INDEX_INDEX_SUPPRESSION,
+          ...hermeticCodeIndexExtras(),
         }),
       },
       stderrLog: options.stderrLog ? CODE_INDEX_DAEMON_STDERR_LOG : null,

@@ -1,0 +1,24 @@
+{
+  "specFolder": "038-substrate-harness-hardening",
+  "description": "Feature Specification: Substrate stress-harness hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "substrate",
+    "stress-harness",
+    "hardening"
+  ],
+  "lastUpdated": "2026-05-31T10:01:17.891Z",
+  "specId": "038",
+  "folderSlug": "substrate-harness-hardening",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "31-05-26_11-01__authored-full-level-3-packet-spec-plan-tasks.md"
+  ]
+}

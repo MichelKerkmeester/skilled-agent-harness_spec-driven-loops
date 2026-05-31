@@ -4,7 +4,13 @@
   "lineageMode": "new",
   "generation": 1,
   "continuedFromRun": null,
-  "terminalStop": null,
+  "terminalStop": {
+    "stopReason": "maxIterationsReached",
+    "totalIterations": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "timestamp": "2026-05-31T08:58:12Z"
+  },
   "openQuestions": [
     {
       "id": "question-3-q3-does-the-evidence-tsv-reproducibly-show-runner-skip-with-owning-pids-and-a-st",
@@ -404,6 +410,156 @@
       "text": "Within a single run, if the lease is stable (same owner holds across the run), the pid is stable",
       "addedAtIteration": 3,
       "sources": []
+    },
+    {
+      "id": "finding-4-5-zero-graph-metadata-json-writes-anywhere-in-the-harness",
+      "text": "**Zero graph-metadata.json writes anywhere in the harness**",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-3-code-index-daemon-stderr-log-at-lines-28-31",
+      "text": "`CODE_INDEX_DAEMON_STDERR_LOG` at lines 28-31",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-2-memory-daemon-stderr-log-at-lines-24-27",
+      "text": "`MEMORY_DAEMON_STDERR_LOG` at lines 24-27",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-1-summary-tsv-at-lines-20-23-written-at-line-668",
+      "text": "`SUMMARY_TSV` at lines 20-23, written at line 668",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-4-workload-json-at-line-477-scenario-410-only",
+      "text": "`workload.json` at line 477 (scenario 410 only)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-12-not-the-harness-child-exits-before-scan-maintainer-mode-off-in-harness-env",
+      "text": "NOT the harness (child exits before scan, maintainer mode OFF in harness env)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-11-operator-s-own-maintainer-mode-daemon-background-rescans-independent-of-harness",
+      "text": "Operator's own maintainer-mode daemon background rescans (independent of harness)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-10-pre-existing-modified-working-tree-files-unrelated-to-any-stress-run",
+      "text": "Pre-existing modified working-tree files (unrelated to any stress run)",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-8-the-harness-writes-summary-tsv-at-sandbox-evidence-dir-run-2026-05-14-shared-dae",
+      "text": "The harness writes SUMMARY_TSV at `SANDBOX_EVIDENCE_DIR/...run-2026-05-14-shared-daemon.summary.tsv` — also outside scan scope",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-7-the-harness-writes-workload-json-at-sandbox-410-workload-json-outside-the-daemon",
+      "text": "The harness writes workload.json at `_sandbox/.../410/workload.json` — outside the daemon's scan scope",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-9-the-operator-daemon-scans-only-the-skill-owned-directories-listed-above-it-does-",
+      "text": "The operator daemon scans only the skill-owned directories listed above; it does not recursively scan arbitrary user directories",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-4-6-the-operator-daemon-s-index-scan-targets-opencode-skills-opencode-specs-opencode",
+      "text": "The operator daemon's INDEX scan targets `.opencode/skills/`, `.opencode/specs/`, `.opencode/agents/`, `.opencode/commands/`, `.opencode/plugins/` — **NOT** `_sandbox/`",
+      "addedAtIteration": 4,
+      "sources": []
+    },
+    {
+      "id": "finding-5-1-acquireownerleasefile-returns-acquired-false-at-cjs-850-854",
+      "text": "`acquireOwnerLeaseFile()` returns `acquired: false` at cjs:850-854",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-5-acquireownerleasefile-returns-acquired-true-at-cjs-859-870",
+      "text": "`acquireOwnerLeaseFile()` returns `acquired: true` at cjs:859-870",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-6-buildifneeded-actions-is-reached-at-cjs-944",
+      "text": "`buildIfNeeded(actions)` is reached at **cjs:944**",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-2-child-exits-at-cjs-864-via-return-before-ever-reaching-buildifneeded-at-cjs-944",
+      "text": "Child exits at **cjs:864** via `return;` — before ever reaching `buildIfNeeded` at **cjs:944**",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-12-in-clean-env-ci-no-operator-daemon-the-child-does-reach-buildifneeded-with-index",
+      "text": "In clean env (CI, no operator daemon), the child **DOES** reach `buildIfNeeded` with `INDEX_*='true'` forced, and the forced scan fires — the leak is **live**",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-11-in-interactive-sessions-the-child-exits-at-cjs-864-before-the-env-var-can-cause-",
+      "text": "In interactive sessions, the child exits at cjs:864 before the env var can cause any effect — the leak is **untriggered**, not neutralized",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-3-no-index-scan-occurs-speckit-code-graph-maintainer-mode-true-has-no-effect-in-th",
+      "text": "No INDEX scan occurs; `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true` has **no effect** in this scenario",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-13-skip-not-fail-is-orthogonal-it-converts-a-different-failure-mode-live-owner-cont",
+      "text": "skip-not-fail is **orthogonal** — it converts a different failure mode (live-owner contention) from FAIL→SKIP, but does nothing to prevent the maintainer-mode scan in clean env",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-8-the-child-spawns-cjs-771-775-and-attempts-a-forced-full-index-scan-of-opencode-s",
+      "text": "The child spawns (cjs:771-775) and attempts a **forced full INDEX scan** of `.opencode/{skills,agents,commands,specs,plugins}`",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-10-the-env-var-is-never-scrubbed-it-propagates-from-env-local-launcher-child-daemon",
+      "text": "The env var is **never scrubbed** — it propagates from `.env.local` → launcher → child daemon",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-4-the-leak-is-effectively-sidestepped-in-interactive-sessions-but-only-because-the",
+      "text": "The leak is **effectively sidestepped in interactive sessions**, but only because the child daemon never starts — not because the env var was neutralized",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-9-this-rewrites-graph-metadata-json-across-the-entire-skill-ecosystem",
+      "text": "This rewrites `graph-metadata.json` across the entire skill ecosystem",
+      "addedAtIteration": 5,
+      "sources": []
+    },
+    {
+      "id": "finding-5-7-with-speckit-code-graph-maintainer-mode-true-already-set-in-the-launcher-s-env-f",
+      "text": "With `SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true` already set in the launcher's env (from `.env.local` loading at cjs:65-71), the child daemon inherits all 5 `INDEX_* = 'true'` flags",
+      "addedAtIteration": 5,
+      "sources": []
     }
   ],
   "ruledOutDirections": [],
@@ -412,13 +568,13 @@
   "graphDecision": null,
   "graphBlockers": [],
   "metrics": {
-    "iterationsCompleted": 3,
+    "iterationsCompleted": 5,
     "openQuestions": 3,
     "resolvedQuestions": 2,
-    "keyFindings": 60,
+    "keyFindings": 85,
     "convergenceScore": 0.95,
     "coverageBySources": {}
   },
   "corruptionWarnings": [],
-  "status": "INITIALIZED"
+  "status": "COMPLETE"
 }

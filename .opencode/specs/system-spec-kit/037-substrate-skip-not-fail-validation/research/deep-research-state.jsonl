@@ -9,3 +9,7 @@
 {"type":"iteration","iteration":3,"newInfoRatio":0.95,"status":"insight","focus":"Q3 TSV reproducibility","graphEvents":[]}
 {"type":"event","event":"executor_dispatch","mode":"research","run":4,"executor":{"kind":"cli-opencode","model":"minimax/MiniMax-M2.7-highspeed"},"timestamp":"2026-05-31T08:50:56Z"}
 {"type":"iteration","iteration":4,"newInfoRatio":0.95,"status":"insight","focus":"Q4 graph-metadata attribution","graphEvents":[]}
+{"type":"event","event":"executor_dispatch","mode":"research","run":5,"executor":{"kind":"cli-opencode","model":"minimax/MiniMax-M2.7-highspeed"},"timestamp":"2026-05-31T08:54:13Z"}
+{"type":"iteration","iteration":5,"newInfoRatio":0.95,"status":"insight","focus":"Q5 maintainer-mode leak","graphEvents":[]}
+{"type":"event","event":"synthesis_complete","totalIterations":5,"answeredCount":5,"totalQuestions":5,"stopReason":"maxIterationsReached","timestamp":"2026-05-31T08:58:12Z"}
+{"type":"event","event":"lock_released","path":".opencode/specs/system-spec-kit/037-substrate-skip-not-fail-validation/research/.deep-research.lock","releasePhase":"save","timestamp":"2026-05-31T09:00:55Z"}

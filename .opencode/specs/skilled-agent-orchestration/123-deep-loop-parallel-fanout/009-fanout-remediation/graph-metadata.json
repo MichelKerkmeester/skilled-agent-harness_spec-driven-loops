@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation",
+  "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation",
+  "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "009-fanout-remediation",
+      "fix fanout serial spawnSync false-pass",
+      "deep-loop fanout remediation 14 findings"
+    ],
+    "key_topics": [
+      "serial spawnSync fix",
+      "review gate fail-closed",
+      "executor field kind canonicalization",
+      "timeout orphan process group kill",
+      "env dispatch allowlist reuse",
+      "fanout bounds caps",
+      "executor fanout xor validator",
+      "content-hash merge dedup",
+      "salvage filename padding",
+      "single-executor byte-identical parity gate"
+    ],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
+      ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "causal_summary": "Level-3 remediation phase that fixes the 14 verified findings from the 008 deep review: makes CLI fan-out genuinely concurrent (replace blocking spawnSync in the pool worker with async spawn via runAuditedExecutorCommandAsync), makes the review merge fail-closed (a crashed/unreadable lineage can no longer yield a false PASS), standardizes the executor field on kind, and hardens bounds/env/dedup/xor/salvage — reusing existing runtime helpers and holding the single-executor byte-identical parity gate. Implementation is deferred to this phase's future work."
+  }
+}

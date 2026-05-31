@@ -9,7 +9,7 @@
   "progressiveSynthesis": true,
   "specFolder": ".opencode/specs/system-spec-kit/037-substrate-skip-not-fail-validation",
   "createdAt": "2026-05-31T08:32:19Z",
-  "status": "initialized",
+  "status": "complete",
   "executionMode": "auto",
   "executor": {
     "kind": "cli-opencode",
