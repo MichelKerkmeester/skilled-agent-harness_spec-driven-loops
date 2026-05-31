@@ -6,6 +6,7 @@
 // Node stdlib
 import { createHash } from 'node:crypto';
 import * as fs from 'fs';
+import * as path from 'path';
 
 // External packages
 import type Database from 'better-sqlite3';
@@ -471,6 +472,121 @@ function sweepOrphanIndexRows(options: OrphanSweepOptions = {}): OrphanSweepResu
   }
 }
 
+/* ───────────────────────────────────────────────────────────────
+   7b. MOVE RECONCILIATION
+----------------------------------------------------------------*/
+
+interface MoveReconcileCandidate {
+  oldPath: string;
+  newPath: string;
+  rowId: number;
+  docType: string;
+}
+
+interface ReconcileMovesResult {
+  reconciled: MoveReconcileCandidate[];
+  filteredToDelete: string[];
+  filteredToIndex: string[];
+}
+
+function reconcileMoves(
+  toDelete: string[],
+  toIndex: string[],
+): ReconcileMovesResult {
+  if (!db || toDelete.length === 0 || toIndex.length === 0) {
+    return { reconciled: [], filteredToDelete: toDelete, filteredToIndex: toIndex };
+  }
+
+  // Build a map: packet_id → [{newPath, docType, newGrandparent}] from the toIndex files.
+  // Reads graph-metadata.json from the NEW location only — the old one may be gone after a move.
+  const newByPacketId = new Map<string, Array<{ newPath: string; docType: string; newGrandparent: string }>>();
+  for (const newPath of toIndex) {
+    try {
+      const newSpecFolder = path.dirname(newPath);
+      const graphMetaPath = path.join(newSpecFolder, 'graph-metadata.json');
+      if (!fs.existsSync(graphMetaPath)) continue;
+      const raw = fs.readFileSync(graphMetaPath, 'utf-8');
+      const meta = JSON.parse(raw) as { packet_id?: string };
+      const packetId = meta?.packet_id;
+      if (typeof packetId !== 'string' || packetId.length === 0) continue;
+      const docType = path.basename(newPath, path.extname(newPath));
+      const newGrandparent = path.dirname(newSpecFolder);
+      if (!newByPacketId.has(packetId)) newByPacketId.set(packetId, []);
+      newByPacketId.get(packetId)!.push({ newPath, docType, newGrandparent });
+    } catch {
+      // skip unreadable or non-JSON graph-metadata
+    }
+  }
+
+  if (newByPacketId.size === 0) {
+    return { reconciled: [], filteredToDelete: toDelete, filteredToIndex: toIndex };
+  }
+
+  const reconciledOldPaths = new Set<string>();
+  const reconciledNewPaths = new Set<string>();
+  const reconciled: MoveReconcileCandidate[] = [];
+
+  // Iterate from the NEW side: for each packet_id we know about, find the corresponding
+  // old path in toDelete by matching grandparent directory + basename (folder rename within
+  // the same parent). This avoids reading the old graph-metadata.json which may be gone.
+  for (const [, newCandidates] of newByPacketId) {
+    for (const { newPath, docType, newGrandparent } of newCandidates) {
+      if (reconciledNewPaths.has(newPath)) continue;
+
+      const newBasename = path.basename(newPath);
+
+      // Find toDelete paths that are sibling renames: same grandparent dir, same basename.
+      // A sibling rename means only the immediate spec folder name changed (e.g. 012-old → 012-new).
+      const siblingDeleted = toDelete.filter(oldPath =>
+        !reconciledOldPaths.has(oldPath) &&
+        path.basename(oldPath) === newBasename &&
+        path.dirname(path.dirname(oldPath)) === newGrandparent
+      );
+
+      if (siblingDeleted.length !== 1) continue; // uniqueness required
+
+      const oldPath = siblingDeleted[0];
+      const canonicalOld = getCanonicalPathKey(oldPath);
+
+      // Verify in DB: exactly one live row for this old path (uniqueness guard).
+      const rows = db!.prepare(
+        `SELECT id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`
+      ).all(oldPath, canonicalOld) as Array<{ id: number }>;
+      if (rows.length !== 1) continue;
+
+      const rowId = rows[0].id;
+      const newCanonical = getCanonicalPathKey(newPath);
+      const newMtime = (() => {
+        try { return fs.statSync(newPath).mtimeMs; } catch { return null; }
+      })();
+
+      // Update the row's path in place (preserves embedding, id, history).
+      const updated = db!.prepare(`
+        UPDATE memory_index
+        SET file_path = ?,
+            canonical_file_path = ?,
+            file_mtime_ms = ?,
+            updated_at = datetime('now')
+        WHERE id = ?
+          AND embedding_status != 'failed'
+      `).run(newPath, newCanonical, newMtime, rowId);
+
+      if ((updated as { changes: number }).changes !== 1) continue;
+
+      reconciledOldPaths.add(oldPath);
+      reconciledNewPaths.add(newPath);
+      reconciled.push({ oldPath, newPath, rowId, docType });
+      console.error(`[incremental-index] Move reconciled: ${newBasename} ${oldPath} → ${newPath} (row ${rowId}, embedding preserved)`);
+    }
+  }
+
+  return {
+    reconciled,
+    filteredToDelete: toDelete.filter(p => !reconciledOldPaths.has(p)),
+    filteredToIndex: toIndex.filter(p => !reconciledNewPaths.has(p)),
+  };
+}
+
 function batchUpdateMtimes(filePaths: string[]): { updated: number; failed: number } {
   if (!db) return { updated: 0, failed: filePaths.length };
 
@@ -514,6 +630,7 @@ export {
   listStaleIndexedPaths,
   listIndexedRecordIdsForDeletedPaths,
   sweepOrphanIndexRows,
+  reconcileMoves,
   batchUpdateMtimes,
 };
 
@@ -527,4 +644,6 @@ export type {
   CategorizedFiles,
   OrphanSweepOptions,
   OrphanSweepResult,
+  MoveReconcileCandidate,
+  ReconcileMovesResult,
 };

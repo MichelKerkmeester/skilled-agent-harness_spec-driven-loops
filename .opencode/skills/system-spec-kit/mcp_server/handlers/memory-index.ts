@@ -10,7 +10,7 @@ import { createHash } from 'node:crypto';
 
 import { checkDatabaseUpdated } from '../core/index.js';
 import { INDEX_SCAN_COOLDOWN, DEFAULT_BASE_PATH, BATCH_SIZE } from '../core/config.js';
-import { acquireIndexScanLease, completeIndexScanLease } from '../core/db-state.js';
+import { acquireIndexScanLease, completeIndexScanLease, refreshScanLease } from '../core/db-state.js';
 import { processBatches, requireDb, toErrorMessage, type RetryErrorResult } from '../utils/index.js';
 import { ensureMemoryRuntimeInitialized } from '../lib/runtime/memory-runtime-guard.js';
 import { getCanonicalPathKey } from '../lib/utils/canonical-path.js';
@@ -127,6 +127,7 @@ interface ScanResults {
   orphanSweepFailed: number;
   orphanSweepScanned: number;
   orphanSweepNextCursor: number | null;
+  moveReconciled?: number;
   files: ScanFileEntry[];
   constitutional: {
     found: number;
@@ -577,6 +578,18 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     console.error(`[memory-index-scan] Fast-path skips: ${results.incremental.fast_path_skips}, Mtime changed: ${results.incremental.mtime_changed}`);
   }
 
+  // Attempt move reconciliation before full delete+reindex cycle.
+  // Matches vanished paths to new paths by packet_id + doc type; updates in place.
+  if (filesToDelete.length > 0 && filesToIndex.length > 0) {
+    const moveResult = incrementalIndex.reconcileMoves(filesToDelete, filesToIndex);
+    if (moveResult.reconciled.length > 0) {
+      results.moveReconciled = moveResult.reconciled.length;
+      filesToDelete = moveResult.filteredToDelete;
+      filesToIndex = moveResult.filteredToIndex;
+      console.error(`[memory-index-scan] Move reconciled ${moveResult.reconciled.length} path(s) in place`);
+    }
+  }
+
   // Track successfully indexed files for post-indexing mtime update.
   // SAFETY INVARIANT: mtime markers are updated ONLY after indexing succeeds.
   // Failed files keep their old mtime so shouldReindex() returns 'modified'
@@ -700,6 +713,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         });
       }
     }
+
+    // Heartbeat: refresh lease after batch processing to prevent expiry on long scans.
+    refreshScanLease();
   }
 
   // Update mtimes ONLY for successfully indexed files, not before indexing.
