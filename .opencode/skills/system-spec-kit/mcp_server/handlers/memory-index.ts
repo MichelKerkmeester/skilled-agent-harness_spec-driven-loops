@@ -2,6 +2,7 @@
 // MODULE: Memory Index
 // ───────────────────────────────────────────────────────────────
 import path from 'path';
+import { createHash } from 'node:crypto';
 
 /* ───────────────────────────────────────────────────────────────
    1. CORE AND UTILS IMPORTS
@@ -121,6 +122,10 @@ interface ScanResults {
   mtimeUpdates: number;
   staleDeleted: number;
   staleDeleteFailed: number;
+  orphanSwept: number;
+  orphanSweepFailed: number;
+  orphanSweepScanned: number;
+  orphanSweepNextCursor: number | null;
   files: ScanFileEntry[];
   constitutional: {
     found: number;
@@ -148,6 +153,50 @@ interface CategorizedFiles {
   toUpdate: string[];
   toSkip: string[];
   toDelete: string[];
+}
+
+interface ScanKeyOptions {
+  spec_folder: string | null;
+  force: boolean;
+  incremental: boolean;
+  include_constitutional: boolean;
+  include_spec_docs: boolean;
+}
+
+interface RecordDeleteResult {
+  deleted: number;
+  failed: number;
+}
+
+interface OrphanSweepDeleteResult {
+  swept: number;
+  failed: number;
+  scannedRows: number;
+  nextCursor: number | null;
+}
+
+interface OrphanSweepCandidates {
+  swept: number;
+  nextCursor: number | null;
+  scannedRows: number;
+  orphanRecordIds?: number[];
+}
+
+const ORPHAN_SWEEP_LIMIT = 200;
+
+function createScanKey(options: ScanKeyOptions): string {
+  const normalized = {
+    spec_folder: options.spec_folder ?? null,
+    force: !!options.force,
+    incremental: !!options.incremental,
+    include_constitutional: !!options.include_constitutional,
+    include_spec_docs: !!options.include_spec_docs,
+  };
+
+  return createHash('sha256')
+    .update(JSON.stringify(normalized))
+    .digest('hex')
+    .slice(0, 16);
 }
 
 interface ScanArgs {
@@ -217,6 +266,13 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     includeSpecDocs: include_spec_docs = true,
     incremental = true
   } = args;
+  const scanKey = createScanKey({
+    spec_folder,
+    force,
+    incremental,
+    include_constitutional,
+    include_spec_docs,
+  });
   const governanceDecision = validateGovernedIngest(args);
   if (!governanceDecision.allowed) {
     throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
@@ -243,20 +299,23 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     cooldownMs: INDEX_SCAN_COOLDOWN,
   });
   if (!lease.acquired) {
-    const waitTime = Math.max(lease.waitSeconds, 1);
-    return createMCPErrorResponse({
+    const message = lease.reason === 'lease_active'
+      ? 'A scan is already in progress; this call coalesced onto it.'
+      : 'A scan recently completed; this call coalesced onto the recent scan window.';
+    return createMCPSuccessResponse({
       tool: 'memory_index_scan',
-      error: 'Rate limited',
-      code: 'E429',
-      details: {
-        waitSeconds: waitTime,
+      summary: message,
+      data: {
+        success: true,
+        coalesced: true,
+        status: 'coalesced',
         reason: lease.reason,
+        scanKey,
+        waitSeconds: lease.waitSeconds,
+        nextPollAfterMs: lease.waitSeconds * 1000,
+        message,
       },
-      recovery: {
-        hint: `Please wait ${waitTime} seconds before scanning again`,
-        actions: ['Wait for cooldown period', 'Consider using incremental=true for faster subsequent scans'],
-        severity: 'warning'
-      }
+      hints: [message],
     });
   }
 
@@ -317,16 +376,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     console.error(`[memory-index-scan] Canonical dedup skipped ${dedupDuplicatesSkipped} alias path(s) (${mergedFiles.length} -> ${files.length})`);
   }
 
-  const deleteStaleIndexedRecords = (paths: string[]): { deleted: number; failed: number } => {
-    if (paths.length === 0) {
+  const deleteIndexedRecordIds = (recordIds: number[]): RecordDeleteResult => {
+    if (recordIds.length === 0) {
       return { deleted: 0, failed: 0 };
     }
 
-    const staleRecordIds = incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths);
     let deleted = 0;
     let failed = 0;
 
-    for (const staleRecordId of staleRecordIds) {
+    for (const staleRecordId of recordIds) {
       try {
         const staleSnapshot = vectorIndex.getDb()?.prepare(
           'SELECT spec_folder, file_path FROM memory_index WHERE id = ?'
@@ -358,6 +416,37 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     return { deleted, failed };
   };
 
+  const deleteStaleIndexedRecords = (paths: string[]): RecordDeleteResult => {
+    if (paths.length === 0) {
+      return { deleted: 0, failed: 0 };
+    }
+
+    return deleteIndexedRecordIds(incrementalIndex.listIndexedRecordIdsForDeletedPaths(paths));
+  };
+
+  const runGlobalOrphanSweep = (): OrphanSweepDeleteResult => {
+    if (!('sweepOrphanIndexRows' in incrementalIndex)) {
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+    }
+
+    const sweepOrphanIndexRows = (incrementalIndex as {
+      sweepOrphanIndexRows?: (options?: { limit?: number; cursor?: number }) => OrphanSweepCandidates;
+    }).sweepOrphanIndexRows;
+
+    if (typeof sweepOrphanIndexRows !== 'function') {
+      return { swept: 0, failed: 0, scannedRows: 0, nextCursor: null };
+    }
+
+    const sweep = sweepOrphanIndexRows({ limit: ORPHAN_SWEEP_LIMIT });
+    const deleteResult = deleteIndexedRecordIds(sweep.orphanRecordIds ?? []);
+    return {
+      swept: deleteResult.deleted,
+      failed: deleteResult.failed,
+      scannedRows: sweep.scannedRows,
+      nextCursor: sweep.nextCursor,
+    };
+  };
+
   const runScanInvalidationHooks = (context: Record<string, unknown>): void => {
     try {
       runPostMutationHooks('scan', context);
@@ -369,6 +458,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
+    const orphanSweepResult = runGlobalOrphanSweep();
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -380,12 +470,21 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       }
     }
 
+    if (orphanSweepResult.swept > 0) {
+      runScanInvalidationHooks({
+        orphanSwept: orphanSweepResult.swept,
+        orphanSweepFailed: orphanSweepResult.failed,
+        operation: 'orphan-sweep',
+      });
+    }
+
     await releaseScanLease();
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: 'No memory files found',
       data: {
         status: 'complete',
+        scanKey,
         scanned: 0,
         indexed: 0,
         updated: 0,
@@ -393,11 +492,17 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         failed: 0,
         staleDeleted,
         staleDeleteFailed,
+        orphanSwept: orphanSweepResult.swept,
+        orphanSweepFailed: orphanSweepResult.failed,
+        orphanSweepScanned: orphanSweepResult.scannedRows,
+        orphanSweepNextCursor: orphanSweepResult.nextCursor,
         warnings: walkerWarnings,
         capExceeded: walkerCapExceeded,
       },
       hints: [
         ...(staleDeleted > 0 ? [`Removed ${staleDeleted} stale index record(s) for deleted files`] : []),
+        ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
+        ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
         'Indexable files are canonical spec documents under specs/**/ (spec.md, plan.md, decision-record.md, implementation-summary.md, handover.md, etc.)',
         'Constitutional files go in .opencode/skills/*/constitutional/'
       ]
@@ -416,6 +521,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     mtimeUpdates: 0,
     staleDeleted: 0,
     staleDeleteFailed: 0,
+    orphanSwept: 0,
+    orphanSweepFailed: 0,
+    orphanSweepScanned: 0,
+    orphanSweepNextCursor: null,
     files: [],
     constitutional: {
       found: constitutionalFiles.length,
@@ -607,6 +716,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
+  const orphanSweepResult = runGlobalOrphanSweep();
+  results.orphanSwept = orphanSweepResult.swept;
+  results.orphanSweepFailed = orphanSweepResult.failed;
+  results.orphanSweepScanned = orphanSweepResult.scannedRows;
+  results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
+
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
   if (include_spec_docs) {
@@ -677,19 +792,25 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
-  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0) {
+  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0) {
     runScanInvalidationHooks({
       indexed: results.indexed,
       updated: results.updated,
       staleDeleted: results.staleDeleted,
       staleDeleteFailed: results.staleDeleteFailed,
+      ...(results.orphanSwept > 0 || results.orphanSweepFailed > 0
+        ? {
+            orphanSwept: results.orphanSwept,
+            orphanSweepFailed: results.orphanSweepFailed,
+          }
+        : {}),
     });
   }
 
   results.aliasConflicts = detectAliasConflictsFromIndex();
   results.divergenceReconcile = runDivergenceReconcileHooks(results.aliasConflicts);
 
-  const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.failed} failed`;
+  const summary = `Scan complete: ${results.indexed} indexed, ${results.updated} updated, ${results.unchanged} unchanged, ${results.staleDeleted} deleted, ${results.orphanSwept} orphan swept, ${results.failed} failed`;
 
   const hints: string[] = [];
   if (results.failed > 0) {
@@ -703,6 +824,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.staleDeleteFailed > 0) {
     hints.push(`${results.staleDeleteFailed} stale index record(s) could not be removed`);
+  }
+  if (results.orphanSwept > 0) {
+    hints.push(`Swept ${results.orphanSwept} orphan index record(s)`);
+  }
+  if (results.orphanSweepFailed > 0) {
+    hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);
   }
   if (results.dedup.duplicatesSkipped > 0) {
     hints.push(`Canonical dedup skipped ${results.dedup.duplicatesSkipped} alias path(s)`);
@@ -736,6 +863,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     summary,
     data: {
       status: 'complete',
+      scanKey,
       batchSize: scanBatchSize,
       ...results,
       ...(process.env.SPECKIT_DEBUG_INDEX_SCAN === 'true'
