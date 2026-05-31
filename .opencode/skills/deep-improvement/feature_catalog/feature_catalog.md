@@ -1,6 +1,6 @@
 ---
 title: "deep-improvement: Feature Catalog"
-description: "Unified reference combining the evaluation loop, integration scanning, scoring, and model-benchmark mode surfaces that currently ship in deep-improvement."
+description: "Unified reference combining the evaluation loop, integration scanning, scoring, model-benchmark mode, and skill-benchmark mode surfaces that currently ship in deep-improvement."
 ---
 
 # deep-improvement: Feature Catalog
@@ -15,13 +15,14 @@ Use this catalog as the canonical inventory for the live `deep-improvement` feat
 
 ### Lane Legend
 
-The skill runs two lanes through one agent. Each category and feature below is tagged with the lane it serves.
+The skill runs three lanes through one agent. Each category and feature below is tagged with the lane it serves.
 
 | Lane | Meaning | Entry Point |
 |---|---|---|
 | **Lane A** | Agent-improvement: evaluate and improve an agent markdown file via guarded promotion | `/deep:start-agent-improvement-loop`, `loop-host --mode=agent-improvement` |
 | **Lane B** | Model-benchmark: benchmark a model or prompt framework, no agent mutation | `/deep:start-model-benchmark-loop`, `loop-host --mode=model-benchmark` |
-| **Shared** | Surface used by both lanes (reducer, dashboard, profiling, command scaffolding) | reached from either lane |
+| **Lane C** | Skill-benchmark: diagnose a skill's routing, discovery, efficiency, and usefulness, no skill mutation | `/deep:start-skill-benchmark-loop`, `loop-host --mode=skill-benchmark` |
+| **Shared** | Surface used by all lanes (reducer, dashboard, profiling, command scaffolding) | reached from any lane |
 
 | Category | Coverage | Lane | Primary Runtime Surface |
 |---|---:|---|---|
@@ -29,6 +30,7 @@ The skill runs two lanes through one agent. Each category and feature below is t
 | Integration scanning | 3 features | Lane A | `scan-integration.cjs`, `/deep:start-agent-improvement-loop`, `.opencode/agents/deep-improvement.md` |
 | Scoring system | 4 features | Shared | `generate-profile.cjs`, `score-candidate.cjs`, `reduce-state.cjs` |
 | Model-benchmark mode | 4 features | Lane B | `loop-host.cjs`, `dispatch-model.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs` |
+| Skill-benchmark mode | 6 features | Lane C | `loop-host.cjs --mode=skill-benchmark`, `scripts/skill-benchmark/*.cjs` |
 
 ---
 
