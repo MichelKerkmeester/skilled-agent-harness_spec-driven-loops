@@ -5,7 +5,7 @@ description: "Unified reference combining the evaluation loop, integration scann
 
 # deep-improvement: Feature Catalog
 
-This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, and the model-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
+This document combines the current feature inventory for the `deep-improvement` system into a single reference. The root catalog acts as the system-level directory: it summarizes the evaluation loop, the integration scanner, the deterministic scoring stack, the model-benchmark mode, and the skill-benchmark mode, then points to the per-feature files that carry the deeper implementation and validation anchors.
 
 ---
 
