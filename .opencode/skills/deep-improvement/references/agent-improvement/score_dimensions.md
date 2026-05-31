@@ -225,4 +225,4 @@ weightedScore = (
 | `scripts/agent-improvement/generate-profile.cjs` | Dynamic profile generation |
 | `scripts/agent-improvement/scan-integration.cjs` | Integration surface discovery |
 | `references/model-benchmark/evaluator_contract.md` | Evaluator policy contract |
-| `feature_catalog/03--scoring-system/01-five-dimension-rubric.md` | Feature catalog entry |
+| `feature_catalog/03--scoring-system/010-five-dimension-rubric.md` | Feature catalog entry |

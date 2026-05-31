@@ -60,7 +60,7 @@ Inspect `mcp_server/handlers/memory-crud-health.ts`, `mcp_server/lib/parsing/tri
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [20--remediation-revalidation/02-memory-health-auto-repair.md](../../feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md)
+- Feature catalog: [20--remediation-revalidation/286-memory-health-auto-repair.md](../../feature_catalog/20--remediation-revalidation/286-memory-health-auto-repair.md)
 
 ---
 

@@ -57,7 +57,7 @@ Inspect `handlers/memory-context.ts`, `handlers/memory-search.ts`, and `lib/sear
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/01-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md)
+- Feature catalog: [01--retrieval/001-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md)
 
 ---
 

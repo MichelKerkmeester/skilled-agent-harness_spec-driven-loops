@@ -80,7 +80,7 @@ Stored response payloads from steps 3, 5, 9, 10, 13; the diff texts from steps 2
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [03--discovery/04-detect-changes-preflight.md](../../feature_catalog/03--discovery/04-detect-changes-preflight.md)
+- Feature catalog: [03--discovery/030-detect-changes-preflight.md](../../feature_catalog/03--discovery/030-detect-changes-preflight.md)
 
 ---
 

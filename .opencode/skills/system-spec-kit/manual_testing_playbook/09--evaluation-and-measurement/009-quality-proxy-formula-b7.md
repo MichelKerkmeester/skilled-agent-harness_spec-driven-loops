@@ -57,7 +57,7 @@ Check formula component extraction from logs → Verify coefficient weights → 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/05-quality-proxy-formula.md](../../feature_catalog/09--evaluation-and-measurement/05-quality-proxy-formula.md)
+- Feature catalog: [09--evaluation-and-measurement/072-quality-proxy-formula.md](../../feature_catalog/09--evaluation-and-measurement/072-quality-proxy-formula.md)
 
 ---
 

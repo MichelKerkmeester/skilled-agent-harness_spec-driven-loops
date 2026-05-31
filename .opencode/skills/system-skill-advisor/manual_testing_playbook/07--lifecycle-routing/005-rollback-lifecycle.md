@@ -58,7 +58,7 @@ Validate that `lib/lifecycle/rollback.ts` can revert lifecycle changes (superses
 ## 4. SOURCE FILES
 
 - Scenario [LC-004](./004-schema-migration.md), schema migration rollback.
-- Feature [`03--lifecycle-routing/05-rollback.md`](../../feature_catalog/03--lifecycle-routing/05-rollback.md).
+- Feature [`03--lifecycle-routing/018-rollback.md`](../../feature_catalog/03--lifecycle-routing/018-rollback.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/rollback.ts`.
 
 ---

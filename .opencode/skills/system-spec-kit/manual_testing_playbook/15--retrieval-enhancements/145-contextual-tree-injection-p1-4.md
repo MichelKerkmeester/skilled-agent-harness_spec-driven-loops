@@ -60,7 +60,7 @@ Inspect `lib/search/hybrid-search.ts` `injectContextualTree`, `lib/search/search
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/09-contextual-tree-injection.md](../../feature_catalog/15--retrieval-enhancements/09-contextual-tree-injection.md)
+- Feature catalog: [15--retrieval-enhancements/197-contextual-tree-injection.md](../../feature_catalog/15--retrieval-enhancements/197-contextual-tree-injection.md)
 
 ---
 

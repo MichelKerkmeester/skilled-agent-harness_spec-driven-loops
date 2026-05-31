@@ -58,7 +58,7 @@ Verify shared normalization function is used by both paths; check unicode handli
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/13-entity-normalization-consolidation.md](../../feature_catalog/13--memory-quality-and-indexing/13-entity-normalization-consolidation.md)
+- Feature catalog: [13--memory-quality-and-indexing/145-entity-normalization-consolidation.md](../../feature_catalog/13--memory-quality-and-indexing/145-entity-normalization-consolidation.md)
 
 ---
 

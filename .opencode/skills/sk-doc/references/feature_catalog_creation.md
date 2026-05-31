@@ -20,12 +20,13 @@ Feature catalogs are the canonical inventory for what a system does today. They 
 - [feature_catalog_snippet_template.md](../assets/feature_catalog/feature_catalog_snippet_template.md)
 - `.opencode/skills/system-spec-kit/feature_catalog/`
 
-**Current Reality Highlights**:
-- feature catalogs use frontmatter and a short H1 intro
+**Package Highlights**:
+- feature catalogs use frontmatter (including `trigger_phrases`) and a short H1 intro
 - no Table of Contents and no `<!-- ANCHOR -->` navigation comments
 - numbered H2 sections begin with `## 1. OVERVIEW`
 - per-feature files live in numbered root-level category folders
-- per-feature files describe shipped or current-reality behavior, not vague aspirations
+- per-feature files describe shipped behavior, not speculative aspirations
+- long `## 2. HOW IT WORKS` sections (>3 paragraphs) use H3 sub-headings for navigation
 
 ## 2. WHEN TO CREATE A FEATURE CATALOG
 
@@ -56,18 +57,18 @@ The current catalog contract is:
 
 ```text
 feature_catalog/
-├── FEATURE_CATALOG.md
+├── feature_catalog.md
 ├── 01--category-name/
-│   ├── 01-feature-name.md
-│   └── 02-feature-name.md
+│   ├── 001-feature-name.md
+│   └── 002-feature-name.md
 └── 02--another-category/
-    └── 01-feature-name.md
+    └── 003-feature-name.md          # numbers continue across categories
 ```
 
 **Invariants**:
-- root file is always `FEATURE_CATALOG.md`
+- root file is always `feature_catalog.md` (lowercase)
 - category directories use `NN--category-name`
-- per-feature files use `NN-feature-name.md`
+- per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** per skill (does not reset per category — matches manual testing playbook convention)
 - one root entry maps to one per-feature file
 - slugs should remain stable after publication
 
@@ -104,19 +105,24 @@ Each per-feature file is the detailed reference entry for one catalog item.
 
 Required structure:
 1. `## 1. OVERVIEW`
-2. `## 2. CURRENT REALITY`
+2. `## 2. HOW IT WORKS`
 3. `## 3. SOURCE FILES`
 4. `## 4. SOURCE METADATA`
 
 **Per-feature files must include**:
-- frontmatter with stable title and one-line description
+- frontmatter with stable `title`, one-line `description`, and `trigger_phrases` list
 - a concise overview of the feature
-- current-reality behavior description
-- implementation source tables
-- validation or test anchors where relevant
-- metadata including group and canonical file path
+- HOW IT WORKS behavior description (see sub-heading rule below)
+- implementation source tables with `File | Layer | Role` columns
+- validation or test anchors with `File | Type | Role` columns
+- metadata including group, canonical file path, and related references
 
-**Current-reality rule**:
+**HOW IT WORKS sub-heading rule**:
+- ≤3 paragraphs: write plain prose, no sub-headings needed
+- >3 paragraphs: break into H3 sub-headings (e.g. `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`, `### Async & Safety`)
+- describe behavior from the caller's perspective, not the implementation
+
+**Content rule**:
 - describe behavior that exists now
 - if a rollout or compatibility layer is documented, label it explicitly
 - avoid roadmap or speculative wording unless the feature itself is a documented compatibility or feature-flag surface
@@ -126,12 +132,13 @@ Required structure:
 Recommended workflow:
 
 1. Decide the category taxonomy.
-2. Create `feature_catalog/FEATURE_CATALOG.md`.
+2. Create `feature_catalog/feature_catalog.md`.
 3. Create numbered category folders.
-4. Create one per-feature file for each root entry.
+4. Create one per-feature file for each root entry using the snippet template.
 5. Write concise root summaries and link each feature file.
-6. Fill per-feature source-file and metadata sections.
-7. Validate the root document and manually verify feature-file links.
+6. Fill per-feature `HOW IT WORKS` — use plain prose for short features, H3 sub-headings for long ones.
+7. Fill source-file tables and SOURCE METADATA (including `Related references`).
+8. Validate the root document and manually verify feature-file links.
 
 **Authoring order matters**:
 - stabilize names and slugs before polishing prose
@@ -173,6 +180,8 @@ Feature catalogs and manual testing playbooks serve different purposes:
 | Missing source anchors | Catalog claims become hard to audit | Add implementation and validation file references in the per-feature file |
 | Writing execution-heavy scenario detail in the catalog | Blurs the boundary with playbooks | Keep execution matrices in playbooks, not the catalog |
 | Playbook cross-references drifting from catalog names | Inventory and validation no longer match | Update catalog and playbook links together when a feature name changes |
+| Wall of prose in HOW IT WORKS | Long unbroken sections lose scannability and navigation anchors | Add H3 sub-headings whenever the section exceeds 3 paragraphs |
+| Missing `trigger_phrases` in frontmatter | Feature is invisible to skill-advisor routing and memory search | Add at least 3 trigger phrases matching the H3 heading in the root catalog |
 
 ## 9. RELATED RESOURCES
 

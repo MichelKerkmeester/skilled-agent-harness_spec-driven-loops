@@ -64,7 +64,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 - Scenario [AI-001](./001-derived-extraction.md), deterministic extraction.
 - Scenario [SC-004](../08--scorer-fusion/004-lane-attribution.md), lane attribution on the read side.
-- Feature [`02--auto-indexing/03-provenance-and-trust-lanes.md`](../../feature_catalog/02--auto-indexing/03-provenance-and-trust-lanes.md).
+- Feature [`02--auto-indexing/010-provenance-and-trust-lanes.md`](../../feature_catalog/02--auto-indexing/010-provenance-and-trust-lanes.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/provenance.ts` and `lib/derived/trust-lanes.ts`.
 
 ---

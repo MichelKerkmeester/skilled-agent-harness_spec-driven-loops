@@ -59,7 +59,7 @@ Inspect transaction wrapper implementation; verify rollback cleans up all partia
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/06-transaction-wrappers-on-mutation-handlers.md](../../feature_catalog/02--mutation/06-transaction-wrappers-on-mutation-handlers.md)
+- Feature catalog: [02--mutation/021-transaction-wrappers-on-mutation-handlers.md](../../feature_catalog/02--mutation/021-transaction-wrappers-on-mutation-handlers.md)
 
 ---
 

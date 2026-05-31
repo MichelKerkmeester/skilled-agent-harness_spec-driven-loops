@@ -114,7 +114,7 @@ Ensure test clears all runtime-related env vars before assertion
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/06-runtime-detection.md](../../feature_catalog/22--context-preservation/06-runtime-detection.md)
+- Feature catalog: [22--context-preservation/298-runtime-detection.md](../../feature_catalog/22--context-preservation/298-runtime-detection.md)
 
 ---
 

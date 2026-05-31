@@ -13,13 +13,13 @@ _memory:
     packet_pointer: "anobel.com/002-link-card-button-and-mobile-animation"
     last_updated_at: "2026-05-31T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Rev 2: removed JS transform/scale on the desktop image (Webflow owns it); re-minified + verified; handover updated"
+    recent_action: "Flattened ALL 2_javascript .js to root + regenerated z_minified flat (58 files); AST 58/58 + runtime 58/58 PASS. (Prior: Rev 2 desktop image transform.)"
     next_safe_action: "User RE-PUBLISHES latest 3_staging/* + z_minified .min.js to Webflow (live still runs the older dissolve build); then re-verify on the published /nl/drafts URL"
     blockers: []
     key_files:
-      - "a_nobel_en_zn/2_javascript/molecules/link_card_collapse_expand.js"
+      - "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js  (FLAT — moved molecules/ -> link/ -> root)"
       - "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css"
-      - "a_nobel_en_zn/2_javascript/z_minified/molecules/link_card_collapse_expand.min.js"
+      - "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js  (FLAT)"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.js"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.css"
     completion_pct: 100
@@ -133,6 +133,7 @@ There are **two repos that share the same files** (hardlinked tree — same inod
 10. **Content-padding question:** user said desktop expanded padding "seems wrong, should be 2rem" + asked if I touched it. Investigated → I did NOT touch padding; verified live that `.card--content.is--card-expandable` already = **2rem desktop / 1.5rem mobile / 1.5rem + 1.25rem bottom portrait** (exactly the spec). No code change.
 11. **User renamed** the combo class `.is--card-collapse-expand` → `.is--card-expandable` (already reflected in the CSS file + live).
 12. **Revision 2 — desktop image transform:** user asked to "remove the image scale effect on desktop." Confirmed via `bdg` the desktop image was already `scale(1)`/`none` (even under real hover). Per the user's choice, `set_image_state` now omits `transform` from the desktop image_target and clears any inline transform so Webflow owns the desktop image transform; mobile keeps `scale(1)`. Re-minified (55,694 B → 18,401 B); AST + runtime PASS; staging synced.
+13. **Repo-wide flatten (separate task, no spec folder):** ungrouped ALL `.js` in `2_javascript/` to the root (58 active sources), dropped the stray `navigation/nav_notifications.min.js`, kept `form/z_archive/` archived, regenerated `z_minified/` flat (58 `.min.js`, no subfolders). `link_card` source is now `2_javascript/link_card_collapse_expand.js`. AST 58/58 + runtime 58/58 PASS. ⚠️ This tree is under MEGA cloud-sync and was observed changing between commands (the `z_archive` file briefly auto-moved to root, then I restored it) — re-verify structure before relying on it. Stray `slider/.opencode/skills/.advisor-state/*.json` left in place (misplaced advisor cache; safe to delete).
 <!-- /ANCHOR:chronology -->
 
 ---

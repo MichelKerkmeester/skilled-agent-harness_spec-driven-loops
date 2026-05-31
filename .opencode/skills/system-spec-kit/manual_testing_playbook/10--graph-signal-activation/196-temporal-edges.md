@@ -64,7 +64,7 @@ Inspect `mcp_server/lib/graph/temporal-edges.ts` for the `invalidateEdge` and `g
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/17-temporal-edges.md](../../feature_catalog/10--graph-signal-activation/17-temporal-edges.md)
+- Feature catalog: [10--graph-signal-activation/099-temporal-edges.md](../../feature_catalog/10--graph-signal-activation/099-temporal-edges.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/graph/temporal-edges.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/temporal-edges.vitest.ts`
 

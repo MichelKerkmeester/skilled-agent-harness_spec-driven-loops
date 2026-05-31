@@ -57,7 +57,7 @@ Inspect hooks/index.ts exports and hooks/README.md for missing entries
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/12-hooks-readme-and-export-alignment.md](../../feature_catalog/18--ux-hooks/12-hooks-readme-and-export-alignment.md)
+- Feature catalog: [18--ux-hooks/264-hooks-readme-and-export-alignment.md](../../feature_catalog/18--ux-hooks/264-hooks-readme-and-export-alignment.md)
 
 ---
 

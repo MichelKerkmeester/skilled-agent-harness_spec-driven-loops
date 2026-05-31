@@ -58,7 +58,7 @@ Retry with allowPartialUpdate if embedding fails
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/02-memory-metadata-update-memoryupdate.md](../../feature_catalog/02--mutation/02-memory-metadata-update-memoryupdate.md)
+- Feature catalog: [02--mutation/017-memory-metadata-update-memoryupdate.md](../../feature_catalog/02--mutation/017-memory-metadata-update-memoryupdate.md)
 
 ---
 

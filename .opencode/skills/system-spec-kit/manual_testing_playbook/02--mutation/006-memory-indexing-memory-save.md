@@ -61,7 +61,7 @@ Validate file path/type, rendered anchor/frontmatter shape, and content quality
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/01-memory-indexing-memorysave.md](../../feature_catalog/02--mutation/01-memory-indexing-memorysave.md)
+- Feature catalog: [02--mutation/016-memory-indexing-memorysave.md](../../feature_catalog/02--mutation/016-memory-indexing-memorysave.md)
 
 ---
 

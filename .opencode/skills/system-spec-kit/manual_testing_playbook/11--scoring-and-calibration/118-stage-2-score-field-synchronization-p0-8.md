@@ -61,7 +61,7 @@ Inspect stage-2 intent weighting logic; verify Math.max sync placement; check re
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/13-scoring-and-fusion-corrections.md](../../feature_catalog/11--scoring-and-calibration/13-scoring-and-fusion-corrections.md)
+- Feature catalog: [11--scoring-and-calibration/113-scoring-and-fusion-corrections.md](../../feature_catalog/11--scoring-and-calibration/113-scoring-and-fusion-corrections.md)
 
 ---
 

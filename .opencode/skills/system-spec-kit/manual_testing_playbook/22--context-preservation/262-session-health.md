@@ -143,7 +143,7 @@ Check `hooks/memory-surface.ts` `recordToolCall()` usage and confirm `session_he
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/17-session-health-tool.md](../../feature_catalog/22--context-preservation/17-session-health-tool.md)
+- Feature catalog: [22--context-preservation/304-session-health-tool.md](../../feature_catalog/22--context-preservation/304-session-health-tool.md)
 
 ---
 

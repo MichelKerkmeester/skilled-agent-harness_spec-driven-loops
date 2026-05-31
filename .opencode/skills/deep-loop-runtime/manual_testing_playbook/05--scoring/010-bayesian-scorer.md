@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/05--scoring/01-bayesian-scorer.md`.
+- Feature catalog entry exists at `feature_catalog/05--scoring/010-bayesian-scorer.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Bayesian scorer matches the documented current reality, the source anchors are a
 
 - Group: Scoring
 - Playbook ID: DLR-010
-- Feature catalog entry: `feature_catalog/05--scoring/01-bayesian-scorer.md`
+- Feature catalog entry: `feature_catalog/05--scoring/010-bayesian-scorer.md`
 - Scenario file path: `manual_testing_playbook/05--scoring/010-bayesian-scorer.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

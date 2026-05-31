@@ -62,7 +62,7 @@ advisor_validate({"skillSlug":null})
 ## 4. SOURCE FILES
 
 - Scenario [SC-001](./001-five-lane-fusion.md), fusion baseline.
-- Feature [`04--scorer-fusion/05-ablation.md`](../../feature_catalog/04--scorer-fusion/05-ablation.md).
+- Feature [`04--scorer-fusion/023-ablation.md`](../../feature_catalog/04--scorer-fusion/023-ablation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ablation.ts`.
 
 ---

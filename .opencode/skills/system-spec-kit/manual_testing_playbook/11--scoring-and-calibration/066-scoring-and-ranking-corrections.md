@@ -58,7 +58,7 @@ Inspect scoring formula changes; verify normalization bounds; check for edge-cas
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/11-scoring-and-ranking-corrections.md](../../feature_catalog/11--scoring-and-calibration/11-scoring-and-ranking-corrections.md)
+- Feature catalog: [11--scoring-and-calibration/111-scoring-and-ranking-corrections.md](../../feature_catalog/11--scoring-and-calibration/111-scoring-and-ranking-corrections.md)
 
 ---
 

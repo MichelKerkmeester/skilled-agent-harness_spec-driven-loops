@@ -49,7 +49,7 @@ Verify `cupt show TASK_ID --json` returns a complete task object is required for
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/03--cupt-task-details/01-show-task.md` | Feature catalog source |
+| `../feature_catalog/03--cupt-task-details/023-show-task.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

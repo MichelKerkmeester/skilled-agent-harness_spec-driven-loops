@@ -4,44 +4,214 @@
   "spec_folder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation",
   "parent_id": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review"
-    ]
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
-      "009-fanout-remediation",
-      "fix fanout serial spawnSync false-pass",
-      "deep-loop fanout remediation 14 findings"
+      "123 phase 009 fanout remediation",
+      "fix fanout serial spawnSync",
+      "fanout false pass review gate",
+      "123 phase 009 plan",
+      "fanout remediation plan",
+      "fix fanout concurrency plan",
+      "123 phase 009 tasks",
+      "fanout remediation tasks",
+      "fanout fix task list",
+      "123 phase 009 checklist",
+      "fanout remediation checklist",
+      "fanout fix verification"
     ],
     "key_topics": [
-      "serial spawnSync fix",
-      "review gate fail-closed",
-      "executor field kind canonicalization",
-      "timeout orphan process group kill",
-      "env dispatch allowlist reuse",
-      "fanout bounds caps",
-      "executor fanout xor validator",
-      "content-hash merge dedup",
-      "salvage filename padding",
-      "single-executor byte-identical parity gate"
+      "123",
+      "phase",
+      "009",
+      "fanout",
+      "remediation",
+      "fix",
+      "serial",
+      "spawnsync",
+      "false",
+      "pass",
+      "review",
+      "gate"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs",
-      ".opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
-      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts",
-      ".opencode/skills/deep-loop-runtime/lib/council/session-state-hierarchy.cjs",
+      "resource-map.md",
+      "decision-record.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "implementation-summary.md"
     ],
-    "causal_summary": "Level-3 remediation phase that fixes the 14 verified findings from the 008 deep review: makes CLI fan-out genuinely concurrent (replace blocking spawnSync in the pool worker with async spawn via runAuditedExecutorCommandAsync), makes the review merge fail-closed (a crashed/unreadable lineage can no longer yield a false PASS), standardizes the executor field on kind, and hardens bounds/env/dedup/xor/salvage — reusing existing runtime helpers and holding the single-executor byte-identical parity gate. Implementation is deferred to this phase's future work."
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implement Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "dependencies",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "async",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "verbatim",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The packet-123 deep review (16× GPT-5.5 xhigh + 2× Opus-4.8 verification, every finding re-read against source) found the deep-loop parallel fan-out **CONDITIONAL — not a clean pass**: **2 confirmed P0**, **1 latent-P0**, **8 P1**, **3 P2**. The feature's headline capability (\"run N executor lineages concurrently, capped\") does not work — the pool worker blocks on `spawnSync`, so CLI fan-out is fully serial and `--concurrency` is inert. Worse, a fan-out review whose lineages all crash returns a **false PASS**. The 72-test suite is green but structurally cannot catch either P0 (it injects an async mock worker and never runs the real spawn path; the salvage test enshrines a filename bug).",
+    "created_at": "2026-05-31T14:05:02.650Z",
+    "last_save_at": "2026-05-31T14:05:02.650Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "resource-map.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

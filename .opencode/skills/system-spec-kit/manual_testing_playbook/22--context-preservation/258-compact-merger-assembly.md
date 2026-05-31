@@ -114,7 +114,7 @@ Check `deduplicateFilePaths()` and metadata construction
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/12-compact-merger.md](../../feature_catalog/22--context-preservation/12-compact-merger.md)
+- Feature catalog: [22--context-preservation/301-compact-merger.md](../../feature_catalog/22--context-preservation/301-compact-merger.md)
 
 ---
 

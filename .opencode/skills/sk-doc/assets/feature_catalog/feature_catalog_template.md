@@ -7,6 +7,8 @@ description: Templates for creating feature-catalog-style inventories with a roo
 
 Templates for creating feature catalogs that combine top-level capability inventory with per-feature reference files.
 
+> **Need the scaffold?** Jump to [§4 Root Catalog Scaffold](#4-root-catalog-scaffold) or [§5 Per-Feature File Scaffold](#5-per-feature-file-scaffold).
+
 ---
 
 ## 1. OVERVIEW
@@ -30,10 +32,10 @@ Canonical layout:
 feature_catalog/
 ├── feature_catalog.md                 # Root inventory and summary catalog
 ├── 01--category-name/                 # Required per-feature files for category 1
-│   ├── 01-feature-name.md
-│   └── 02-feature-name.md
+│   ├── 001-feature-name.md
+│   └── 002-feature-name.md
 └── 02--another-category/              # Required per-feature files for category 2
-    └── 01-feature-name.md
+    └── 003-feature-name.md            # numbers continue across categories
 ```
 
 **Existing Example**:
@@ -43,16 +45,12 @@ feature_catalog/
 
 ## 2. WHEN TO CREATE FEATURE CATALOGS
 
-**Create a feature catalog when**:
-- A skill or system has enough surface area that a flat README no longer gives a trustworthy inventory.
-- You need a stable, reviewable list of current capabilities.
-- Operators, reviewers, or agents need one place to map features to implementation and test anchors.
-- Manual playbooks, install guides, or specs need a canonical feature reference to link back to.
-
-**Keep simpler when**:
-- The system has only a handful of features.
-- A README or install guide already provides an accurate full inventory.
-- The system is too early and volatile for a maintained catalog to be worth the overhead.
+| Create a catalog when | Keep simpler when |
+|---|---|
+| Surface area is too large for a flat README to be trustworthy | System has only a handful of features |
+| You need a stable, reviewable list of current capabilities | An existing README or install guide already gives an accurate full inventory |
+| Operators, reviewers, or agents need one place to map features to implementation and test anchors | The system is too early or volatile for a maintained catalog to be worth the overhead |
+| Manual playbooks, install guides, or specs need a canonical feature reference to link back to | |
 
 ---
 
@@ -62,19 +60,19 @@ Each category groups related features under a numbered directory.
 
 | Category Purpose | Example Directory | Example File |
 |---|---|---|
-| Retrieval | `01--retrieval` | `01-unified-context-retrieval-memorycontext.md` |
-| Mutation | `02--mutation` | `01-memory-indexing-memorysave.md` |
-| Tooling and scripts | `17--tooling-and-scripts` | `01-admin-cli-bootstrap.md` |
+| Retrieval | `01--retrieval` | `001-unified-context-retrieval-memorycontext.md` |
+| Mutation | `02--mutation` | `016-memory-indexing-memorysave.md` (continues from retrieval) |
+| Tooling and scripts | `17--tooling-and-scripts` | `145-admin-cli-bootstrap.md` (continues from prior cats) |
 
 Directory and file rules:
 - Category directories use `NN--category-name`.
-- Per-feature files use `NN-feature-name.md`.
-- The numeric prefix should match the order in the root catalog section.
+- Per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** that continues across all categories (does not reset per category). This matches the manual testing playbook convention.
+- Assign numbers by sorting categories in directory order, then files within each category.
 - Published slugs should remain stable unless the feature is intentionally renamed.
 
 Per-feature file shape:
 1. `## 1. OVERVIEW`
-2. `## 2. CURRENT REALITY`
+2. `## 2. HOW IT WORKS`
 3. `## 3. SOURCE FILES`
 4. `## 4. SOURCE METADATA`
 
@@ -88,6 +86,11 @@ Copy this scaffold to create `{SKILL_PATH}/feature_catalog/feature_catalog.md`:
 ---
 title: "{SYSTEM_NAME}: Feature Catalog"
 description: "Unified reference combining the complete feature inventory and current-reality reference for the {SYSTEM_NAME} system."
+trigger_phrases:
+  - "{system name}"
+  - "{primary capability phrase}"
+  - "feature catalog"
+last_updated: "{YYYY-MM-DD}"
 ---
 
 # {SYSTEM_NAME}: Feature Catalog
@@ -163,9 +166,17 @@ Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}
 ---
 title: "{FEATURE_NAME}"
 description: "{OVERVIEW_ONE_LINE}"
+trigger_phrases:
+  - "{primary trigger phrase}"
+  - "{alternate phrasing}"
+  - "{tool or command name}"
+  - "{user-visible label if different}"
+# importance_tier: "important"   # uncomment only for Tier 1 critical features
 ---
 
-# {FEATURE_NAME}
+# {FEATURE_NAME} ({tool_name_or_command})
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
 
 ## 1. OVERVIEW
 
@@ -175,9 +186,21 @@ description: "{OVERVIEW_ONE_LINE}"
 
 ---
 
-## 2. CURRENT REALITY
+## 2. HOW IT WORKS
 
-{CURRENT_REALITY_PARAGRAPHS}
+<!-- Short section (≤3 paragraphs): write plain prose and delete the sub-headings below.
+     Long section (>3 paragraphs): keep or rename sub-headings and delete this comment. -->
+
+### {PRIMARY_BEHAVIOR_ASPECT}
+
+{Description of the core behavior from the caller's perspective.}
+
+### {SECONDARY_BEHAVIOR_ASPECT}
+
+{Description of a distinct aspect — quality gates, routing logic, async behavior, etc.}
+
+<!-- Add further H3 sub-headings as needed. Common ones:
+     Configuration | Quality Gates | Edge Cases | Async & Safety | Post-Action Behavior -->
 
 ---
 
@@ -187,15 +210,15 @@ description: "{OVERVIEW_ONE_LINE}"
 
 | File | Layer | Role |
 |---|---|---|
-| `{IMPLEMENTATION_FILE_1}` | {LAYER_1} | {ROLE_1} |
-| `{IMPLEMENTATION_FILE_2}` | {LAYER_2} | {ROLE_2} |
+| `{IMPLEMENTATION_FILE_1}` | {Handler\|Shared\|Script} | {ROLE_1} |
+| `{IMPLEMENTATION_FILE_2}` | {Handler\|Shared\|Script} | {ROLE_2} |
 
 ### Validation And Tests
 
 | File | Type | Role |
 |---|---|---|
-| `{TEST_FILE_1}` | {TEST_TYPE_1} | {TEST_ROLE_1} |
-| `{TEST_FILE_2}` | {TEST_TYPE_2} | {TEST_ROLE_2} |
+| `{TEST_FILE_1}` | {Automated test\|Manual playbook} | {TEST_ROLE_1} |
+| `{TEST_FILE_2}` | {Automated test\|Manual playbook} | {TEST_ROLE_2} |
 
 ---
 
@@ -204,6 +227,10 @@ description: "{OVERVIEW_ONE_LINE}"
 - Group: {CATEGORY_NAME}
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`
+
+Related references:
+- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}
+- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}
 ```
 
 ---
@@ -211,6 +238,9 @@ description: "{OVERVIEW_ONE_LINE}"
 ## 6. AUTHORING NOTES
 
 - Add frontmatter to both the root catalog and per-feature files.
+- Add `trigger_phrases` to every per-feature file frontmatter. Phrases must match the H3 feature heading in the root catalog, plus natural-language alternates and the tool or command name.
+- Add `importance_tier: "important"` only for Tier 1 critical features that must always surface in search routing. Omit for standard catalog entries.
+- In per-feature files, if `HOW IT WORKS` exceeds 3 paragraphs, break it into H3 sub-headings — e.g. `### Core Behavior`, `### Quality Gates`, `### Configuration`, `### Edge Cases`. Long unbroken prose sections should always have navigation anchors.
 - Keep the root catalog readable by summarizing behavior instead of dumping raw source-file tables there.
 - Put implementation and test anchor detail in the per-feature files.
 - Preserve stable file paths once other docs start linking to them.
@@ -228,12 +258,13 @@ Structure:
 - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
 - [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
 - [ ] Category directories use `NN--category-name`
+- [ ] Per-feature file numbers are globally sequential across categories (not per-category), 3-digit zero-padded
 - [ ] Every root catalog entry links to exactly one per-feature file
 - [ ] Every per-feature file includes frontmatter with `title` and `description`
 
 Content:
 - [ ] Every root catalog entry has Description, Current Reality, and Source Files callout
-- [ ] Every per-feature file has `OVERVIEW`, `CURRENT REALITY`, `SOURCE FILES`, and `SOURCE METADATA`
+- [ ] Every per-feature file has `OVERVIEW`, `HOW IT WORKS`, `SOURCE FILES`, and `SOURCE METADATA`
 - [ ] Source-file tables are specific and meaningful
 - [ ] Current reality text describes shipped behavior honestly
 

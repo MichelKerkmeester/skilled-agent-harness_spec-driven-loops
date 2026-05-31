@@ -56,7 +56,7 @@ Re-run `npm test -- --run tests/vector-index-schema-compatibility.vitest.ts -t c
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/10-schema-compatibility-validation.md](../../feature_catalog/16--tooling-and-scripts/10-schema-compatibility-validation.md)
+- Feature catalog: [16--tooling-and-scripts/213-schema-compatibility-validation.md](../../feature_catalog/16--tooling-and-scripts/213-schema-compatibility-validation.md)
 
 ---
 

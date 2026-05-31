@@ -56,7 +56,7 @@ Expand query terms
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/02-2-session-and-cache.md](../../feature_catalog/19--feature-flag-reference/02-2-session-and-cache.md)
+- Feature catalog: [19--feature-flag-reference/274-2-session-and-cache.md](../../feature_catalog/19--feature-flag-reference/274-2-session-and-cache.md)
 
 ---
 

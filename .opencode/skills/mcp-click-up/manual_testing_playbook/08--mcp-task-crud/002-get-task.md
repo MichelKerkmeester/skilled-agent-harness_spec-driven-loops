@@ -48,7 +48,7 @@ Verify `clickup_get_task` returns full task object for a known task ID is requir
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/02-get-task.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/052-get-task.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

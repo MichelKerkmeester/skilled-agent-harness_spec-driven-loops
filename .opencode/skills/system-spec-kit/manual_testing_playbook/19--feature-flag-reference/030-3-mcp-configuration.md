@@ -56,7 +56,7 @@ Verify in config files directly
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/03-3-mcp-configuration.md](../../feature_catalog/19--feature-flag-reference/03-3-mcp-configuration.md)
+- Feature catalog: [19--feature-flag-reference/275-3-mcp-configuration.md](../../feature_catalog/19--feature-flag-reference/275-3-mcp-configuration.md)
 
 ---
 

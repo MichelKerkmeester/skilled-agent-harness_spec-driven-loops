@@ -46,13 +46,13 @@ These entries cover the session lifecycle from fresh runtime setup through propo
 
 Sets up a fresh packet-local deep-improvement session before any candidate work begins.
 
-#### Current Reality
+#### How It Works
 
 The shipped workflow only supports fresh `new` sessions. Both YAML workflows create `{spec_folder}/improvement/`, scan the target integration surface, generate a dynamic profile when requested, copy the config, strategy, charter, and manifest templates, record baseline state, and emit a `session_start` journal row before iteration one.
 
 #### Source Files
 
-See [`01--evaluation-loop/01-initialization.md`](01--evaluation-loop/01-initialization.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/001-initialization.md`](01--evaluation-loop/001-initialization.md) for full implementation and validation file listings.
 
 ---
 
@@ -62,13 +62,13 @@ See [`01--evaluation-loop/01-initialization.md`](01--evaluation-loop/01-initiali
 
 Writes one bounded packet-local candidate without mutating the canonical target.
 
-#### Current Reality
+#### How It Works
 
 Candidate generation is delegated to the `deep-improvement` subagent. That agent must read the copied charter and manifest first, must write only under the packet-local runtime area, returns structured metadata, and stops before scoring, benchmarking, promotion, or mirror synchronization begins.
 
 #### Source Files
 
-See [`01--evaluation-loop/02-candidate-generation.md`](01--evaluation-loop/02-candidate-generation.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/002-candidate-generation.md`](01--evaluation-loop/002-candidate-generation.md) for full implementation and validation file listings.
 
 ---
 
@@ -78,13 +78,13 @@ See [`01--evaluation-loop/02-candidate-generation.md`](01--evaluation-loop/02-ca
 
 Routes a generated candidate through scoring, evidence recording, and state reduction.
 
-#### Current Reality
+#### How It Works
 
 The loop dispatches `score-candidate.cjs`, records mutation coverage, writes journal events, and refreshes the dashboard with `reduce-state.cjs`. Benchmark stability and trade-off checks are wired as concrete commands, while the benchmark runner itself still appears as an action placeholder in the YAML workflows, so fully automatic benchmark execution depends on operator wiring or wrapper logic outside the YAML text.
 
 #### Source Files
 
-See [`01--evaluation-loop/03-scoring-dispatch.md`](01--evaluation-loop/03-scoring-dispatch.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/003-scoring-dispatch.md`](01--evaluation-loop/003-scoring-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -94,13 +94,13 @@ See [`01--evaluation-loop/03-scoring-dispatch.md`](01--evaluation-loop/03-scorin
 
 Defines the narrow conditions under which a packet-local candidate can become promotion-eligible.
 
-#### Current Reality
+#### How It Works
 
 The policy surface requires explicit approval, benchmark pass, repeatability pass, manifest compliance, and a meaningful improvement threshold. The promotion helper is stricter than the current scorer output: it still requires `candidate-better` plus `score.delta`, while `score-candidate.cjs` currently emits `candidate-acceptable` or `needs-improvement` and does not add a delta field.
 
 #### Source Files
 
-See [`01--evaluation-loop/04-promotion-gates.md`](01--evaluation-loop/04-promotion-gates.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/004-promotion-gates.md`](01--evaluation-loop/004-promotion-gates.md) for full implementation and validation file listings.
 
 ---
 
@@ -110,13 +110,13 @@ See [`01--evaluation-loop/04-promotion-gates.md`](01--evaluation-loop/04-promoti
 
 Restores the archived canonical target after a guarded promotion has already happened.
 
-#### Current Reality
+#### How It Works
 
 Rollback is a separate helper, not an implicit part of promotion. The shipped rollback script validates the runtime config target and the single canonical target in the manifest, then copies the saved backup over the canonical file; journal emission, mirror review, and post-rollback re-scoring remain separate orchestration steps.
 
 #### Source Files
 
-See [`01--evaluation-loop/05-rollback.md`](01--evaluation-loop/05-rollback.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/005-rollback.md`](01--evaluation-loop/005-rollback.md) for full implementation and validation file listings.
 
 ---
 
@@ -126,13 +126,13 @@ See [`01--evaluation-loop/05-rollback.md`](01--evaluation-loop/05-rollback.md) f
 
 Stops the loop when repeated runs no longer produce useful movement.
 
-#### Current Reality
+#### How It Works
 
 Two stop models are live. `reduce-state.cjs` can stop when all tracked dimensions plateau with exact repeated scores across the configured plateau window, while `mutation-coverage.cjs`, `trade-off-detector.cjs`, and `benchmark-stability.cjs` separately gate convergence, trade-off analysis, and replay stability behind a minimum of three scored samples.
 
 #### Source Files
 
-See [`01--evaluation-loop/06-plateau-detection.md`](01--evaluation-loop/06-plateau-detection.md) for full implementation and validation file listings.
+See [`01--evaluation-loop/006-plateau-detection.md`](01--evaluation-loop/006-plateau-detection.md) for full implementation and validation file listings.
 
 ---
 
@@ -148,13 +148,13 @@ These entries describe how deep-improvement discovers the full agent surface acr
 
 Builds the inventory of files and references that define an agent beyond its canonical markdown file.
 
-#### Current Reality
+#### How It Works
 
 `scan-integration.cjs` scans the canonical agent file, three runtime mirrors, improve command markdown, YAML workflow assets, skill references, global docs, and a skill-advisor path constant. That path now points at `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`, so the consolidated skill-advisor surface is included in the integration map.
 
 #### Source Files
 
-See [`02--integration-scanning/01-surface-discovery.md`](02--integration-scanning/01-surface-discovery.md) for full implementation and validation file listings.
+See [`02--integration-scanning/007-surface-discovery.md`](02--integration-scanning/007-surface-discovery.md) for full implementation and validation file listings.
 
 ---
 
@@ -164,13 +164,13 @@ See [`02--integration-scanning/01-surface-discovery.md`](02--integration-scannin
 
 Checks whether the runtime-specific mirrors still reflect the canonical agent body closely enough.
 
-#### Current Reality
+#### How It Works
 
 Mirror parity is signal-based, not byte-for-byte. The scanner strips frontmatter, extracts up to three emphasized signal strings from the canonical body, and marks a mirror `aligned` when at least two signals appear in the mirror body. It checks `.claude/agents`, `.codex/agents`, and `.gemini/agents` against the canonical `.opencode/agents`.
 
 #### Source Files
 
-See [`02--integration-scanning/02-runtime-mirrors.md`](02--integration-scanning/02-runtime-mirrors.md) for full implementation and validation file listings.
+See [`02--integration-scanning/008-runtime-mirrors.md`](02--integration-scanning/008-runtime-mirrors.md) for full implementation and validation file listings.
 
 ---
 
@@ -180,13 +180,13 @@ See [`02--integration-scanning/02-runtime-mirrors.md`](02--integration-scanning/
 
 Owns the command-driven orchestration path that turns the deep-improvement skill into a runnable loop.
 
-#### Current Reality
+#### How It Works
 
 The `/deep:start-agent-improvement-loop` command collects setup inputs, selects `:auto` or `:confirm` execution, and points the operator at the matching YAML workflow. The actual loop dispatch lives in the YAML assets, which rescan integration, dispatch `@deep-improvement`, emit journal events, and call score and reducer helpers, while the command markdown explicitly says not to dispatch agents from the command file itself.
 
 #### Source Files
 
-See [`02--integration-scanning/03-command-dispatch.md`](02--integration-scanning/03-command-dispatch.md) for full implementation and validation file listings.
+See [`02--integration-scanning/009-command-dispatch.md`](02--integration-scanning/009-command-dispatch.md) for full implementation and validation file listings.
 
 ---
 
@@ -202,13 +202,13 @@ These entries describe the dynamic scoring stack that derives evaluation structu
 
 Defines the weighted evaluation model used to judge prompt-surface quality.
 
-#### Current Reality
+#### How It Works
 
 Dynamic scoring uses five weighted dimensions: structural integrity, rule coherence, integration consistency, output quality, and system fitness. Each dimension has a concrete checker in `score-candidate.cjs`, with integration itself delegated to the integration scanner and output quality penalized when placeholder strings remain in the candidate.
 
 #### Source Files
 
-See [`03--scoring-system/01-five-dimension-rubric.md`](03--scoring-system/01-five-dimension-rubric.md) for full implementation and validation file listings.
+See [`03--scoring-system/010-five-dimension-rubric.md`](03--scoring-system/010-five-dimension-rubric.md) for full implementation and validation file listings.
 
 ---
 
@@ -218,13 +218,13 @@ See [`03--scoring-system/01-five-dimension-rubric.md`](03--scoring-system/01-fiv
 
 Generates a target-specific evaluation profile directly from the agent being scored.
 
-#### Current Reality
+#### How It Works
 
 No static evaluation profiles ship in the current release. `generate-profile.cjs` parses frontmatter, sections, rules, output checklists, related-resource tables, and denied permissions to build a derived profile on the fly, while `target_manifest.jsonc` keeps `targets` empty and points runtime consumers at the dynamic-profile script instead of a fixed catalog.
 
 #### Source Files
 
-See [`03--scoring-system/02-dynamic-profiling.md`](03--scoring-system/02-dynamic-profiling.md) for full implementation and validation file listings.
+See [`03--scoring-system/011-dynamic-profiling.md`](03--scoring-system/011-dynamic-profiling.md) for full implementation and validation file listings.
 
 ---
 
@@ -234,13 +234,13 @@ See [`03--scoring-system/02-dynamic-profiling.md`](03--scoring-system/02-dynamic
 
 Produces the score and benchmark evidence that later gates consume.
 
-#### Current Reality
+#### How It Works
 
 `score-candidate.cjs` always runs in `dynamic-5d` mode, regenerates the profile every run, allows optional weight overrides, and emits structured dimension details plus `candidate-acceptable` or `needs-improvement`. `run-benchmark.cjs` is also deterministic, but it still expects a profile JSON and fixture directory under `assets/agent-improvement/target-profiles`, so benchmark gating only becomes runnable when that profile-specific artifact set exists.
 
 #### Source Files
 
-See [`03--scoring-system/03-deterministic-scoring.md`](03--scoring-system/03-deterministic-scoring.md) for full implementation and validation file listings.
+See [`03--scoring-system/012-deterministic-scoring.md`](03--scoring-system/012-deterministic-scoring.md) for full implementation and validation file listings.
 
 ---
 
@@ -250,13 +250,13 @@ See [`03--scoring-system/03-deterministic-scoring.md`](03--scoring-system/03-det
 
 Reduces raw run records into trends, best-known state, and operator-facing stop guidance.
 
-#### Current Reality
+#### How It Works
 
 `reduce-state.cjs` aggregates the JSONL ledger into `experiment-registry.json` and `agent-improvement-dashboard.md`, records latest and best values per dimension, adds sample-quality, journal, lineage, and mutation-coverage summaries, and computes stop status. It treats both `candidate-acceptable` and `candidate-better` as accepted candidates when building the registry.
 
 #### Source Files
 
-See [`03--scoring-system/04-dimensional-progress.md`](03--scoring-system/04-dimensional-progress.md) for full implementation and validation file listings.
+See [`03--scoring-system/013-dimensional-progress.md`](03--scoring-system/013-dimensional-progress.md) for full implementation and validation file listings.
 
 ---
 
@@ -272,13 +272,13 @@ These entries describe the model-benchmark path that benchmarks a model or promp
 
 Routes loop-host between the agent-improvement scorer and the model-benchmark materialize-then-run pipeline.
 
-#### Current Reality
+#### How It Works
 
 `scripts/shared/loop-host.cjs` resolves `--mode` before any work begins. `--mode=agent-improvement`, or no flag, routes to `scripts/agent-improvement/score-candidate.cjs` unchanged; `--mode=model-benchmark` runs `scripts/shared/materialize-benchmark-fixtures.cjs` then `scripts/model-benchmark/run-benchmark.cjs`; and `--mode=skill-benchmark` runs `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C). `VALID_MODES` is a closed three-value set, and an unknown mode warns to stderr and falls back to `agent-improvement`.
 
 #### Source Files
 
-See [`04--model-benchmark-mode/01-mode-switch.md`](04--model-benchmark-mode/01-mode-switch.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/014-mode-switch.md`](04--model-benchmark-mode/014-mode-switch.md) for full implementation and validation file listings.
 
 ---
 
@@ -288,13 +288,13 @@ See [`04--model-benchmark-mode/01-mode-switch.md`](04--model-benchmark-mode/01-m
 
 Model-agnostic dispatcher that routes prompts across executor CLIs only on the model-benchmark path.
 
-#### Current Reality
+#### How It Works
 
 `scripts/model-benchmark/dispatch-model.cjs` routes through an executor map across cli-opencode, cli-claude-code, cli-codex, cli-gemini, and cli-devin, and is loaded only on the model-benchmark path, never in agent-improvement mode. It forwards `cwd` to every executor and applies rate-limit backoff using a non-busy `Atomics` sleep.
 
 #### Source Files
 
-See [`04--model-benchmark-mode/02-model-dispatcher.md`](04--model-benchmark-mode/02-model-dispatcher.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/015-model-dispatcher.md`](04--model-benchmark-mode/015-model-dispatcher.md) for full implementation and validation file listings.
 
 ---
 
@@ -304,13 +304,13 @@ See [`04--model-benchmark-mode/02-model-dispatcher.md`](04--model-benchmark-mode
 
 Selects the pattern matcher by default or the opt-in five-dimension scorer for model-benchmark outputs.
 
-#### Current Reality
+#### How It Works
 
 `run-benchmark.cjs --scorer pattern` is the default byte-identical heading and pattern matcher, while `--scorer 5dim` routes materialized outputs through `scripts/model-benchmark/scorer/score-model-variant.cjs`, the ported five-dimension scorer. `--grader noop` is the default deterministic grader with no model dispatch, with `--grader mock` and `--grader llm` selecting the stub or real grader, and the report carries `scoringMethod: pattern` or `scoringMethod: 5dim`.
 
 #### Source Files
 
-See [`04--model-benchmark-mode/03-opt-in-5dim-scorer.md`](04--model-benchmark-mode/03-opt-in-5dim-scorer.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/016-opt-in-5dim-scorer.md`](04--model-benchmark-mode/016-opt-in-5dim-scorer.md) for full implementation and validation file listings.
 
 ---
 
@@ -320,13 +320,13 @@ See [`04--model-benchmark-mode/03-opt-in-5dim-scorer.md`](04--model-benchmark-mo
 
 Stamps a mode field on every state record and exposes two env gates that harden the 5-dim scorer.
 
-#### Current Reality
+#### How It Works
 
 Every state record carries `mode: agent-improvement` or `mode: model-benchmark`, and benchmark reports plus `benchmark_run` records carry `scoringMethod: pattern|5dim`. `DEEP_AGENT_ALLOW_CRITERIA_EXEC=0` refuses criteria-driven shell execution in the 5-dim scorer, and `DEEP_AGENT_GRADER_CACHE_RAW=0` redacts raw grader output from the on-disk cache. Both default to the permissive value for backward-compat.
 
 #### Source Files
 
-See [`04--model-benchmark-mode/04-mode-records-and-gates.md`](04--model-benchmark-mode/04-mode-records-and-gates.md) for full implementation and validation file listings.
+See [`04--model-benchmark-mode/017-mode-records-and-gates.md`](04--model-benchmark-mode/017-mode-records-and-gates.md) for full implementation and validation file listings.
 
 ---
 
@@ -342,13 +342,13 @@ These entries describe the skill-benchmark path that diagnoses how a *skill* is 
 
 Routes loop-host to the skill-benchmark orchestrator with a single additive arm; the orchestrator runs the D5 gate, then per-scenario contamination-lint, router-replay, and scoring.
 
-#### Current Reality
+#### How It Works
 
 `scripts/shared/loop-host.cjs` resolves `--mode=skill-benchmark` to `scripts/skill-benchmark/run-skill-benchmark.cjs` via an additive `VALID_MODES` entry, `LANE_SKILL_BENCHMARK` set, and `planInvocation` arm; the agent-improvement and model-benchmark plans stay byte-identical.
 
 #### Source Files
 
-See [`05--skill-benchmark/01-mode-wiring.md`](05--skill-benchmark/01-mode-wiring.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/018-mode-wiring.md`](05--skill-benchmark/018-mode-wiring.md) for full implementation and validation file listings.
 
 ### Hint-free fixtures and contamination gate
 
@@ -356,13 +356,13 @@ See [`05--skill-benchmark/01-mode-wiring.md`](05--skill-benchmark/01-mode-wiring
 
 Per-skill public/private scenario fixtures keep the expected skill/intents/resources scorer-only; a contamination linter rejects public prompts that leak the answer before dispatch.
 
-#### Current Reality
+#### How It Works
 
 `scripts/skill-benchmark/contamination-lint.cjs` builds banned vocabulary from the target skill's own identity (name, triggers, router keywords, resource path tokens) and treats any leak as a fixture failure, not a skill failure.
 
 #### Source Files
 
-See [`05--skill-benchmark/02-contamination-gate-and-fixtures.md`](05--skill-benchmark/02-contamination-gate-and-fixtures.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/019-contamination-gate-and-fixtures.md`](05--skill-benchmark/019-contamination-gate-and-fixtures.md) for full implementation and validation file listings.
 
 ### Router-replay and advisor probe (Mode A)
 
@@ -370,13 +370,13 @@ See [`05--skill-benchmark/02-contamination-gate-and-fixtures.md`](05--skill-benc
 
 Replays the target skill's own router for in-skill routing and discovery, and probes the advisor out-of-band for inter-skill selection — both deterministic, no LLM.
 
-#### Current Reality
+#### How It Works
 
 `scripts/skill-benchmark/router-replay.cjs` extracts `INTENT_SIGNALS`/`RESOURCE_MAP` from the target `SKILL.md` and reproduces the substring routing (D1-intra + D2 proxy); `scripts/skill-benchmark/advisor-probe.cjs` runs `skill_advisor.py` over the SQLite graph for the D1-inter signal.
 
 #### Source Files
 
-See [`05--skill-benchmark/03-router-replay-and-advisor-probe.md`](05--skill-benchmark/03-router-replay-and-advisor-probe.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/020-router-replay-and-advisor-probe.md`](05--skill-benchmark/020-router-replay-and-advisor-probe.md) for full implementation and validation file listings.
 
 ### D5 structural connectivity hard gate
 
@@ -384,13 +384,13 @@ See [`05--skill-benchmark/03-router-replay-and-advisor-probe.md`](05--skill-benc
 
 A static scan runs before any dispatch and caps the verdict on structural failures.
 
-#### Current Reality
+#### How It Works
 
 `scripts/skill-benchmark/d5-connectivity.cjs` flags dead routed paths, dead intent keys, path escapes, orphan references, and an unparseable router; any P0 sets `gateFailed` and caps the verdict to `BLOCKED-BY-STRUCTURE`.
 
 #### Source Files
 
-See [`05--skill-benchmark/04-d5-connectivity-gate.md`](05--skill-benchmark/04-d5-connectivity-gate.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/021-d5-connectivity-gate.md`](05--skill-benchmark/021-d5-connectivity-gate.md) for full implementation and validation file listings.
 
 ### D1-D5 scoring and funnel
 
@@ -398,13 +398,13 @@ See [`05--skill-benchmark/04-d5-connectivity-gate.md`](05--skill-benchmark/04-d5
 
 Computes the five dimensions with a funnel whose largest single-stage drop is the headline bottleneck; the aggregate normalizes over the dimensions actually measured.
 
-#### Current Reality
+#### How It Works
 
 `scripts/skill-benchmark/score-skill-benchmark.cjs` scores D1 inter+intra, D2 discovery, D3 efficiency, D5 connectivity, and reports D4 usefulness as `unscored` until live mode; the weights are hardcoded in the scorer, and `assets/skill-benchmark/default_profile.json` documents them but is a reference asset that is not consumed at runtime.
 
 #### Source Files
 
-See [`05--skill-benchmark/05-scoring-and-funnel.md`](05--skill-benchmark/05-scoring-and-funnel.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/022-scoring-and-funnel.md`](05--skill-benchmark/022-scoring-and-funnel.md) for full implementation and validation file listings.
 
 ### Dual report and remediation taxonomy
 
@@ -412,10 +412,10 @@ See [`05--skill-benchmark/05-scoring-and-funnel.md`](05--skill-benchmark/05-scor
 
 Emits a machine report plus a human report rendered from it (anti-drift), with ranked bottlenecks mapped to concrete remediations and hand-off lanes.
 
-#### Current Reality
+#### How It Works
 
 `scripts/skill-benchmark/build-report.cjs` renders `skill-benchmark-report.md` FROM `skill-benchmark-report.json` (anti-drift). `assets/skill-benchmark/remediation_taxonomy.json` documents how each finding class maps to a target file, locus, one-line fix, and hand-off lane; it is a reference asset (exercised by its own test) and is not yet imported by the report code.
 
 #### Source Files
 
-See [`05--skill-benchmark/06-dual-report-and-remediation.md`](05--skill-benchmark/06-dual-report-and-remediation.md) for full implementation and validation file listings.
+See [`05--skill-benchmark/023-dual-report-and-remediation.md`](05--skill-benchmark/023-dual-report-and-remediation.md) for full implementation and validation file listings.

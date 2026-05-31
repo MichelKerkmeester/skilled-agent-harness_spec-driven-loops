@@ -64,7 +64,7 @@ Inspect `mcp_server/hooks/gemini/session-prime.ts` and sibling scripts for the S
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/21-gemini-cli-hooks.md](../../feature_catalog/22--context-preservation/21-gemini-cli-hooks.md)
+- Feature catalog: [22--context-preservation/308-gemini-cli-hooks.md](../../feature_catalog/22--context-preservation/308-gemini-cli-hooks.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-prime.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-inject.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/compact-cache.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/session-stop.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/shared.ts`
 
 ---

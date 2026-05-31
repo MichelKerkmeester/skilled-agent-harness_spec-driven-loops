@@ -35,7 +35,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/04--state-safety/04-permissions-gate.md`.
+- Feature catalog entry exists at `feature_catalog/04--state-safety/009-permissions-gate.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Permissions gate matches the documented current reality, the source anchors are 
 
 - Group: State safety
 - Playbook ID: DLR-009
-- Feature catalog entry: `feature_catalog/04--state-safety/04-permissions-gate.md`
+- Feature catalog entry: `feature_catalog/04--state-safety/009-permissions-gate.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/009-permissions-gate.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -56,7 +56,7 @@ Search CI scripts and runtime helpers
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/07-7-ci-and-build-informational.md](../../feature_catalog/19--feature-flag-reference/07-7-ci-and-build-informational.md)
+- Feature catalog: [19--feature-flag-reference/279-7-ci-and-build-informational.md](../../feature_catalog/19--feature-flag-reference/279-7-ci-and-build-informational.md)
 
 ---
 

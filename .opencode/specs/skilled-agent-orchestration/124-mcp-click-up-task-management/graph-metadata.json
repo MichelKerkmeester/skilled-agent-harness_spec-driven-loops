@@ -192,12 +192,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Spec Folder",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,6 +199,12 @@
       },
       {
         "name": "Skill Target",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement No",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -218,7 +218,7 @@
     ],
     "causal_summary": "This specification covers the creation of the `mcp-click-up` skill under `.opencode/skills/mcp-click-up/`. The skill gives AI agents a structured, orchestrated interface to ClickUp using two complementary tools: the `cupt` Python CLI for daily task operations, and the official ClickUp MCP server for advanced features. The skill follows the `mcp-chrome-devtools` structural template and embeds its own installation logic.",
     "created_at": "2026-05-31T00:00:00Z",
-    "last_save_at": "2026-05-31T10:01:10.978Z",
+    "last_save_at": "2026-05-31T14:05:02.653Z",
     "save_lineage": "same_pass",
     "last_accessed_at": "2026-05-31T10:00:00Z",
     "source_docs": [

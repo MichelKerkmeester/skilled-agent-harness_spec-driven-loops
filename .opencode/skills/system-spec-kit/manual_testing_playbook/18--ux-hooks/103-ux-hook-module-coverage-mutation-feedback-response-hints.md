@@ -55,7 +55,7 @@ Inspect hook exports and fixture payloads if assertion fails
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/05-dedicated-ux-hook-modules.md](../../feature_catalog/18--ux-hooks/05-dedicated-ux-hook-modules.md)
+- Feature catalog: [18--ux-hooks/257-dedicated-ux-hook-modules.md](../../feature_catalog/18--ux-hooks/257-dedicated-ux-hook-modules.md)
 
 ---
 

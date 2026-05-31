@@ -60,7 +60,7 @@ Verify control content satisfies structural checks -> Inspect coherence penalty 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md](../../feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md)
+- Feature catalog: [11--scoring-and-calibration/116-temporal-structural-coherence-scoring.md](../../feature_catalog/11--scoring-and-calibration/116-temporal-structural-coherence-scoring.md)
 
 ---
 

@@ -79,7 +79,7 @@ Saved scan output excerpt showing zero constitutional rejections, ripgrep output
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md](../../feature_catalog/13--memory-quality-and-indexing/30-constitutional-sufficiency-gate-exemption.md)
+- Feature catalog: [13--memory-quality-and-indexing/160-constitutional-sufficiency-gate-exemption.md](../../feature_catalog/13--memory-quality-and-indexing/160-constitutional-sufficiency-gate-exemption.md)
 - Source files: `mcp_server/handlers/memory-index.ts`, `shared/parsing/memory-sufficiency.ts`, `mcp_server/handlers/memory-save.ts`
 - Shipping packet: `016/002/018-constitutional-quality-gate-exemption`
 

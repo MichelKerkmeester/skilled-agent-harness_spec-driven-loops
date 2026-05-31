@@ -71,7 +71,7 @@ Saved `rg` output, static diff output for the protected files, the final Vitest 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/28-memory-causal-trust-display.md](../../feature_catalog/13--memory-quality-and-indexing/28-memory-causal-trust-display.md)
+- Feature catalog: [13--memory-quality-and-indexing/158-memory-causal-trust-display.md](../../feature_catalog/13--memory-quality-and-indexing/158-memory-causal-trust-display.md)
 - Source files: `mcp_server/formatters/search-results.ts`, `mcp_server/lib/response/profile-formatters.ts`
 - Regression tests: `mcp_server/tests/memory/trust-badges.test.ts`, `mcp_server/tests/response-profile-formatters.vitest.ts`
 
@@ -82,6 +82,6 @@ Saved `rg` output, static diff output for the protected files, the final Vitest 
 - Group: Memory quality and indexing
 - Playbook ID: 203
 - Canonical root source: `manual_testing_playbook.md`
-- Feature file path: `13--memory-quality-and-indexing/28-memory-causal-trust-display.md`
+- Feature file path: `13--memory-quality-and-indexing/158-memory-causal-trust-display.md`
 - Phase / sub-phase: `026-graph-and-context-optimization/004-external-project-adoption/005-memory-causal-trust-display` (baseline) + `026/004-external-project-adoption/007-fix-external-project-adoption-deep-review-findings` T-E (DI rig + bind-type fix R-007-13) + T-F (cache invalidation R-007-12)
 - Coverage extension: 010/011-manual-testing-playbook-coverage-and-run (Block B added)

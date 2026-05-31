@@ -67,7 +67,7 @@ Inspect the Level contract resolver, inline gate renderer, scaffolder output, an
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/30-template-composition-system.md](../../feature_catalog/16--tooling-and-scripts/30-template-composition-system.md)
+- Feature catalog: [16--tooling-and-scripts/233-template-composition-system.md](../../feature_catalog/16--tooling-and-scripts/233-template-composition-system.md)
 
 ---
 

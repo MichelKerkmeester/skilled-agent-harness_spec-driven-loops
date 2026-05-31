@@ -57,7 +57,7 @@ Retry with higher-quality trigger phrase -> inspect trigger-cache clear/reload i
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md](../../feature_catalog/01--retrieval/03-trigger-phrase-matching-memorymatchtriggers.md)
+- Feature catalog: [01--retrieval/003-trigger-phrase-matching-memorymatchtriggers.md](../../feature_catalog/01--retrieval/003-trigger-phrase-matching-memorymatchtriggers.md)
 
 ---
 

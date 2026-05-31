@@ -176,7 +176,7 @@ Inspect `completeIndexScanLease()` in `core/db-state.ts` and the post-response c
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [04--maintenance/01-workspace-scanning-and-indexing-memoryindexscan.md](../../feature_catalog/04--maintenance/01-workspace-scanning-and-indexing-memoryindexscan.md)
+- Feature catalog: [04--maintenance/034-workspace-scanning-and-indexing-memoryindexscan.md](../../feature_catalog/04--maintenance/034-workspace-scanning-and-indexing-memoryindexscan.md)
 
 ---
 

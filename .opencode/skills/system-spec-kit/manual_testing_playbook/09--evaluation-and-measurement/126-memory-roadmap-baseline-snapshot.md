@@ -56,7 +56,7 @@ Re-run `npx vitest run tests/memory-state-baseline.vitest.ts -t persist`; inspec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/17-memory-roadmap-baseline-snapshot.md](../../feature_catalog/09--evaluation-and-measurement/17-memory-roadmap-baseline-snapshot.md)
+- Feature catalog: [09--evaluation-and-measurement/083-memory-roadmap-baseline-snapshot.md](../../feature_catalog/09--evaluation-and-measurement/083-memory-roadmap-baseline-snapshot.md)
 
 ---
 

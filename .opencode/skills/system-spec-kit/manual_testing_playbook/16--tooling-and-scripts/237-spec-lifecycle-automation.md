@@ -59,7 +59,7 @@ Inspect `scripts/spec/recommend-level.sh`, `scripts/tests/test-upgrade-level.sh`
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/23-spec-lifecycle-automation.md](../../feature_catalog/16--tooling-and-scripts/23-spec-lifecycle-automation.md)
+- Feature catalog: [16--tooling-and-scripts/226-spec-lifecycle-automation.md](../../feature_catalog/16--tooling-and-scripts/226-spec-lifecycle-automation.md)
 
 ---
 

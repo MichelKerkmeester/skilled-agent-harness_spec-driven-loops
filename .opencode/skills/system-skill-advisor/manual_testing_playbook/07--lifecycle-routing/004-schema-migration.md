@@ -68,7 +68,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 - Scenario [LC-005](./005-rollback-lifecycle.md), lifecycle rollback.
 - Scenario [AU-005](../05--auto-update-daemon/005-rebuild-from-source.md), rebuild-from-source.
-- Feature [`03--lifecycle-routing/04-schema-migration.md`](../../feature_catalog/03--lifecycle-routing/04-schema-migration.md).
+- Feature [`03--lifecycle-routing/017-schema-migration.md`](../../feature_catalog/03--lifecycle-routing/017-schema-migration.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/schema-migration.ts`.
 
 ---

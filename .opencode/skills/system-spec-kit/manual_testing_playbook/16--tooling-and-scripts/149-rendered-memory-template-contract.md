@@ -58,7 +58,7 @@ Inspect `shared/parsing/memory-template-contract.ts`, `scripts/core/workflow.ts`
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/12-session-capturing-pipeline-quality.md](../../feature_catalog/16--tooling-and-scripts/12-session-capturing-pipeline-quality.md)
+- Feature catalog: [16--tooling-and-scripts/215-session-capturing-pipeline-quality.md](../../feature_catalog/16--tooling-and-scripts/215-session-capturing-pipeline-quality.md)
 
 ---
 

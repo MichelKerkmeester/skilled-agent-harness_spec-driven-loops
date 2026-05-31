@@ -1,0 +1,23 @@
+{
+  "id": "125-feature-catalog-template-improvements",
+  "title": "Feature Catalog Standards — Templates & Retroactive Rework",
+  "description": "Phase parent: establish new feature catalog standards then retroactively apply them across all 370 catalog files in three skills.",
+  "status": "complete",
+  "level": 1,
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "derived": {
+    "last_active_child_id": "001-template-improvements",
+    "child_ids": [
+      "001-template-improvements",
+      "002-mechanical-sweep",
+      "003-trigger-phrases-spec-kit",
+      "004-trigger-phrases-advisor-codegraph",
+      "005-subheadings-spec-kit",
+      "006-subheadings-advisor-codegraph",
+      "007-related-references",
+      "008-master-catalog-enrichment",
+      "009-validation-sweep"
+    ]
+  }
+}

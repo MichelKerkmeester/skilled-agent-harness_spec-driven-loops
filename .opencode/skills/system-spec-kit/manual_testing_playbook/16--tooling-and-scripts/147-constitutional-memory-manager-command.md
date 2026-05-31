@@ -60,7 +60,7 @@ Inspect the `/memory:learn` command flow and the active documentation files list
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/13-constitutional-memory-manager-command.md](../../feature_catalog/16--tooling-and-scripts/13-constitutional-memory-manager-command.md)
+- Feature catalog: [16--tooling-and-scripts/216-constitutional-memory-manager-command.md](../../feature_catalog/16--tooling-and-scripts/216-constitutional-memory-manager-command.md)
 
 ---
 

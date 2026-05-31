@@ -65,7 +65,7 @@ Inspect `mcp_server/lib/search/community-search.ts:searchCommunities` for the wo
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/14-community-search-fallback.md](../../feature_catalog/15--retrieval-enhancements/14-community-search-fallback.md)
+- Feature catalog: [15--retrieval-enhancements/202-community-search-fallback.md](../../feature_catalog/15--retrieval-enhancements/202-community-search-fallback.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/community-search.vitest.ts`
 

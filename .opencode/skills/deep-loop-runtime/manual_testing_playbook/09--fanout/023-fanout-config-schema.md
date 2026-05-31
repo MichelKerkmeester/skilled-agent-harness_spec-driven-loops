@@ -78,7 +78,7 @@ salvage, and merge primitives receive malformed lineage descriptors.
 
 - Group: Fan-Out
 - Playbook ID: DLR-023
-- Feature catalog entry: `feature_catalog/09--fanout/01-fanout-config-schema.md`
+- Feature catalog entry: `feature_catalog/09--fanout/023-fanout-config-schema.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/023-fanout-config-schema.md`
 - Expected verdict mode: GREEN when 36/36 pass and source anchors agree
 - Wall-time estimate: 5-10 min

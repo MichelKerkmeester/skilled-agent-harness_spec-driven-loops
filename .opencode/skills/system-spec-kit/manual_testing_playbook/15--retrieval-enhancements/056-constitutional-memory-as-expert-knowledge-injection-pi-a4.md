@@ -58,7 +58,7 @@ Verify constitutional/ directory contains valid directives; check tier classific
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/02-constitutional-memory-as-expert-knowledge-injection.md](../../feature_catalog/15--retrieval-enhancements/02-constitutional-memory-as-expert-knowledge-injection.md)
+- Feature catalog: [15--retrieval-enhancements/190-constitutional-memory-as-expert-knowledge-injection.md](../../feature_catalog/15--retrieval-enhancements/190-constitutional-memory-as-expert-knowledge-injection.md)
 
 ---
 

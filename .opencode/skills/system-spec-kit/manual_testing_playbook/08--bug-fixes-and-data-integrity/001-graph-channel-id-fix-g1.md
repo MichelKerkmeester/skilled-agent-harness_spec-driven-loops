@@ -58,7 +58,7 @@ Verify causal edges exist via `memory_causal_stats()` → Check graph channel ID
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md](../../feature_catalog/08--bug-fixes-and-data-integrity/01-graph-channel-id-fix.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/056-graph-channel-id-fix.md](../../feature_catalog/08--bug-fixes-and-data-integrity/056-graph-channel-id-fix.md)
 
 ---
 

@@ -60,7 +60,7 @@ Inspect `context-server.ts`, `lib/providers/embeddings.ts`, and `../shared/embed
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md](../../feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md)
+- Feature catalog: [21--implement-and-remove-deprecated-features/289-lazy-loading-migration-and-warmup-compatibility.md](../../feature_catalog/21--implement-and-remove-deprecated-features/289-lazy-loading-migration-and-warmup-compatibility.md)
 
 ---
 

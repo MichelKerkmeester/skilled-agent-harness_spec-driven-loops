@@ -59,8 +59,8 @@ Verify isResultExplainEnabled() → Inspect extractSignals() for PipelineRow →
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/14-result-explainability.md](../../feature_catalog/18--ux-hooks/14-result-explainability.md)
-- Feature flag reference: [19--feature-flag-reference/01-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
+- Feature catalog: [18--ux-hooks/266-result-explainability.md](../../feature_catalog/18--ux-hooks/266-result-explainability.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/result-explainability.ts`
 
 ---

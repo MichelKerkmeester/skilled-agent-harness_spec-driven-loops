@@ -58,7 +58,7 @@ Search for V1 symbols across all files; check for conditional V1/V2 routing; ver
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/10-legacy-v1-pipeline-removal.md](../../feature_catalog/14--pipeline-architecture/10-legacy-v1-pipeline-removal.md)
+- Feature catalog: [14--pipeline-architecture/171-legacy-v1-pipeline-removal.md](../../feature_catalog/14--pipeline-architecture/171-legacy-v1-pipeline-removal.md)
 
 ---
 

@@ -69,7 +69,7 @@ Inspect `mcp_server/lib/search/causal-boost.ts` for the seed selection, weighted
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/11-causal-boost-graduated.md](../../feature_catalog/15--retrieval-enhancements/11-causal-boost-graduated.md)
+- Feature catalog: [15--retrieval-enhancements/199-causal-boost-graduated.md](../../feature_catalog/15--retrieval-enhancements/199-causal-boost-graduated.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/causal-boost.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/causal-boost.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts`
 

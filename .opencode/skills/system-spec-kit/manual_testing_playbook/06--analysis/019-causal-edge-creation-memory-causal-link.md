@@ -60,7 +60,7 @@ Validate IDs and relation type -> normalize path references before indexing -> i
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/01-causal-edge-creation-memorycausallink.md](../../feature_catalog/06--analysis/01-causal-edge-creation-memorycausallink.md)
+- Feature catalog: [06--analysis/046-causal-edge-creation-memorycausallink.md](../../feature_catalog/06--analysis/046-causal-edge-creation-memorycausallink.md)
 
 ---
 

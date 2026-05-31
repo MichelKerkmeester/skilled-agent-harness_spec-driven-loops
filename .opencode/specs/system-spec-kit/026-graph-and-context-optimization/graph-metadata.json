@@ -48,6 +48,8 @@
     "status": "in_progress",
     "key_files": [
       "spec.md",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
       "resource-map.md"
     ],
     "entities": [
@@ -55,6 +57,18 @@
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-substrate-stress-harness.mjs",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
+        "source": "derived"
+      },
+      {
+        "name": "substrate-harness-hardening.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
         "source": "derived"
       },
       {
@@ -132,7 +146,7 @@
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes. This packet is the root coordination surface that decomposes that program into eight independently executable themed phase tracks.",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-30T08:24:54.681Z",
+    "last_save_at": "2026-05-31T14:05:02.985Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

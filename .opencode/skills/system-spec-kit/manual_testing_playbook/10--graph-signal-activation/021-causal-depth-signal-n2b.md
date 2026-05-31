@@ -58,7 +58,7 @@ Verify normalization formula → Check SCC condensation / longest-path traversal
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/06-causal-depth-signal.md](../../feature_catalog/10--graph-signal-activation/06-causal-depth-signal.md)
+- Feature catalog: [10--graph-signal-activation/089-causal-depth-signal.md](../../feature_catalog/10--graph-signal-activation/089-causal-depth-signal.md)
 
 ---
 

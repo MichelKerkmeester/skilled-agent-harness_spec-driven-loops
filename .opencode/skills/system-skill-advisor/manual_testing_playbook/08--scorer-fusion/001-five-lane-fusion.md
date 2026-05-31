@@ -68,7 +68,7 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 ## 4. SOURCE FILES
 
 - Scenario [SC-004](./004-lane-attribution.md), lane attribution metadata.
-- Feature [`04--scorer-fusion/01-five-lane-fusion.md`](../../feature_catalog/04--scorer-fusion/01-five-lane-fusion.md).
+- Feature [`04--scorer-fusion/019-five-lane-fusion.md`](../../feature_catalog/04--scorer-fusion/019-five-lane-fusion.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/fusion.ts` and `lib/scorer/weights-config.ts`.
 
 ---

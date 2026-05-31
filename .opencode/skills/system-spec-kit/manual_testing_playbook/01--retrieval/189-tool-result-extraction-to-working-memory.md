@@ -61,7 +61,7 @@ Verify after-tool callback registration in `context-server.ts` -> inspect `extra
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/09-tool-result-extraction-to-working-memory.md](../../feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md)
+- Feature catalog: [01--retrieval/009-tool-result-extraction-to-working-memory.md](../../feature_catalog/01--retrieval/009-tool-result-extraction-to-working-memory.md)
 
 ---
 

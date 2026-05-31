@@ -126,7 +126,7 @@ RESOURCE_MAP = {
         "references/scoring/advisor_scorer.md",
         "references/scoring/lane_weight_tuning.md",
         "references/scoring/validation_baselines.md",
-        "feature_catalog/04--scorer-fusion/06-weights-config.md",
+        "feature_catalog/04--scorer-fusion/024-weights-config.md",
     ],
     "GRAPH": [
         "references/graph/skill_graph_query_cookbook.md",

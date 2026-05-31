@@ -58,7 +58,7 @@ Verify entity extraction pipeline → Check normalization rules → Inspect deny
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/10-auto-entity-extraction.md](../../feature_catalog/13--memory-quality-and-indexing/10-auto-entity-extraction.md)
+- Feature catalog: [13--memory-quality-and-indexing/143-auto-entity-extraction.md](../../feature_catalog/13--memory-quality-and-indexing/143-auto-entity-extraction.md)
 
 ---
 

@@ -51,13 +51,13 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Chokidar narrow-scope watcher | [01--daemon-and-freshness/01-watcher.md](./01--daemon-and-freshness/01-watcher.md) |
-| Workspace single-writer lease | [01--daemon-and-freshness/02-lease.md](./01--daemon-and-freshness/02-lease.md) |
-| Daemon lifecycle and health | [01--daemon-and-freshness/03-lifecycle.md](./01--daemon-and-freshness/03-lifecycle.md) |
-| Generation-tagged snapshot publication | [01--daemon-and-freshness/04-generation.md](./01--daemon-and-freshness/04-generation.md) |
-| Live / stale / absent / unavailable trust state | [01--daemon-and-freshness/05-trust-state.md](./01--daemon-and-freshness/05-trust-state.md) |
-| Rebuild from source on corrupt SQLite | [01--daemon-and-freshness/06-rebuild-from-source.md](./01--daemon-and-freshness/06-rebuild-from-source.md) |
-| Generation-tied cache invalidation | [01--daemon-and-freshness/07-cache-invalidation.md](./01--daemon-and-freshness/07-cache-invalidation.md) |
+| Chokidar narrow-scope watcher | [01--daemon-and-freshness/001-watcher.md](./01--daemon-and-freshness/001-watcher.md) |
+| Workspace single-writer lease | [01--daemon-and-freshness/002-lease.md](./01--daemon-and-freshness/002-lease.md) |
+| Daemon lifecycle and health | [01--daemon-and-freshness/003-lifecycle.md](./01--daemon-and-freshness/003-lifecycle.md) |
+| Generation-tagged snapshot publication | [01--daemon-and-freshness/004-generation.md](./01--daemon-and-freshness/004-generation.md) |
+| Live / stale / absent / unavailable trust state | [01--daemon-and-freshness/005-trust-state.md](./01--daemon-and-freshness/005-trust-state.md) |
+| Rebuild from source on corrupt SQLite | [01--daemon-and-freshness/006-rebuild-from-source.md](./01--daemon-and-freshness/006-rebuild-from-source.md) |
+| Generation-tied cache invalidation | [01--daemon-and-freshness/007-cache-invalidation.md](./01--daemon-and-freshness/007-cache-invalidation.md) |
 
 ---
 
@@ -65,12 +65,12 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Deterministic derived extraction | [02--auto-indexing/01-derived-extraction.md](./02--auto-indexing/01-derived-extraction.md) |
-| A7 sanitizer at every write boundary | [02--auto-indexing/02-sanitizer.md](./02--auto-indexing/02-sanitizer.md) |
-| Provenance fingerprints and trust lanes | [02--auto-indexing/03-provenance-and-trust-lanes.md](./02--auto-indexing/03-provenance-and-trust-lanes.md) |
-| Graph-metadata derived sync | [02--auto-indexing/04-sync.md](./02--auto-indexing/04-sync.md) |
-| Anti-stuffing and cardinality caps | [02--auto-indexing/05-anti-stuffing.md](./02--auto-indexing/05-anti-stuffing.md) |
-| DF/IDF corpus stats (active-only) | [02--auto-indexing/06-df-idf-corpus.md](./02--auto-indexing/06-df-idf-corpus.md) |
+| Deterministic derived extraction | [02--auto-indexing/008-derived-extraction.md](./02--auto-indexing/008-derived-extraction.md) |
+| A7 sanitizer at every write boundary | [02--auto-indexing/009-sanitizer.md](./02--auto-indexing/009-sanitizer.md) |
+| Provenance fingerprints and trust lanes | [02--auto-indexing/010-provenance-and-trust-lanes.md](./02--auto-indexing/010-provenance-and-trust-lanes.md) |
+| Graph-metadata derived sync | [02--auto-indexing/011-sync.md](./02--auto-indexing/011-sync.md) |
+| Anti-stuffing and cardinality caps | [02--auto-indexing/012-anti-stuffing.md](./02--auto-indexing/012-anti-stuffing.md) |
+| DF/IDF corpus stats (active-only) | [02--auto-indexing/013-df-idf-corpus.md](./02--auto-indexing/013-df-idf-corpus.md) |
 
 ---
 
@@ -78,11 +78,11 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Derived-lane-only age haircut | [03--lifecycle-routing/01-age-haircut.md](./03--lifecycle-routing/01-age-haircut.md) |
-| Asymmetric supersession routing | [03--lifecycle-routing/02-supersession.md](./03--lifecycle-routing/02-supersession.md) |
-| Archive and future skills indexed but not routed | [03--lifecycle-routing/03-archive-handling.md](./03--lifecycle-routing/03-archive-handling.md) |
-| Schema v1 to v2 additive backfill | [03--lifecycle-routing/04-schema-migration.md](./03--lifecycle-routing/04-schema-migration.md) |
-| Atomic lifecycle rollback | [03--lifecycle-routing/05-rollback.md](./03--lifecycle-routing/05-rollback.md) |
+| Derived-lane-only age haircut | [03--lifecycle-routing/014-age-haircut.md](./03--lifecycle-routing/014-age-haircut.md) |
+| Asymmetric supersession routing | [03--lifecycle-routing/015-supersession.md](./03--lifecycle-routing/015-supersession.md) |
+| Archive and future skills indexed but not routed | [03--lifecycle-routing/016-archive-handling.md](./03--lifecycle-routing/016-archive-handling.md) |
+| Schema v1 to v2 additive backfill | [03--lifecycle-routing/017-schema-migration.md](./03--lifecycle-routing/017-schema-migration.md) |
+| Atomic lifecycle rollback | [03--lifecycle-routing/018-rollback.md](./03--lifecycle-routing/018-rollback.md) |
 
 ---
 
@@ -90,12 +90,12 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Five-lane analytical fusion | [04--scorer-fusion/01-five-lane-fusion.md](./04--scorer-fusion/01-five-lane-fusion.md) |
-| Skill-nodes / skill-edges projection | [04--scorer-fusion/02-projection.md](./04--scorer-fusion/02-projection.md) |
-| Top-2 ambiguity window | [04--scorer-fusion/03-ambiguity.md](./04--scorer-fusion/03-ambiguity.md) |
-| Lane contribution attribution | [04--scorer-fusion/04-attribution.md](./04--scorer-fusion/04-attribution.md) |
-| Lane-by-lane ablation protocol | [04--scorer-fusion/05-ablation.md](./04--scorer-fusion/05-ablation.md) |
-| Lane weights configuration | [04--scorer-fusion/06-weights-config.md](./04--scorer-fusion/06-weights-config.md) |
+| Five-lane analytical fusion | [04--scorer-fusion/019-five-lane-fusion.md](./04--scorer-fusion/019-five-lane-fusion.md) |
+| Skill-nodes / skill-edges projection | [04--scorer-fusion/020-projection.md](./04--scorer-fusion/020-projection.md) |
+| Top-2 ambiguity window | [04--scorer-fusion/021-ambiguity.md](./04--scorer-fusion/021-ambiguity.md) |
+| Lane contribution attribution | [04--scorer-fusion/022-attribution.md](./04--scorer-fusion/022-attribution.md) |
+| Lane-by-lane ablation protocol | [04--scorer-fusion/023-ablation.md](./04--scorer-fusion/023-ablation.md) |
+| Lane weights configuration | [04--scorer-fusion/024-weights-config.md](./04--scorer-fusion/024-weights-config.md) |
 
 ---
 
@@ -103,15 +103,15 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| `advisor_recommend` MCP tool | [06--mcp-surface/01-advisor-recommend.md](./06--mcp-surface/01-advisor-recommend.md) |
-| `advisor_rebuild` MCP tool | [06--mcp-surface/05-advisor-rebuild.md](./06--mcp-surface/05-advisor-rebuild.md) |
-| `advisor_status` MCP tool | [06--mcp-surface/02-advisor-status.md](./06--mcp-surface/02-advisor-status.md) |
-| `advisor_validate` MCP tool | [06--mcp-surface/03-advisor-validate.md](./06--mcp-surface/03-advisor-validate.md) |
-| Stable `compat/index.ts` entrypoint | [06--mcp-surface/04-compat-entrypoint.md](./06--mcp-surface/04-compat-entrypoint.md) |
-| `skill_graph_scan` MCP tool | [06--mcp-surface/06-skill-graph-scan.md](./06--mcp-surface/06-skill-graph-scan.md) |
-| `skill_graph_query` MCP tool | [06--mcp-surface/07-skill-graph-query.md](./06--mcp-surface/07-skill-graph-query.md) |
-| `skill_graph_status` MCP tool | [06--mcp-surface/08-skill-graph-status.md](./06--mcp-surface/08-skill-graph-status.md) |
-| `skill_graph_validate` MCP tool | [06--mcp-surface/09-skill-graph-validate.md](./06--mcp-surface/09-skill-graph-validate.md) |
+| `advisor_recommend` MCP tool | [06--mcp-surface/025-advisor-recommend.md](./06--mcp-surface/025-advisor-recommend.md) |
+| `advisor_rebuild` MCP tool | [06--mcp-surface/029-advisor-rebuild.md](./06--mcp-surface/029-advisor-rebuild.md) |
+| `advisor_status` MCP tool | [06--mcp-surface/026-advisor-status.md](./06--mcp-surface/026-advisor-status.md) |
+| `advisor_validate` MCP tool | [06--mcp-surface/027-advisor-validate.md](./06--mcp-surface/027-advisor-validate.md) |
+| Stable `compat/index.ts` entrypoint | [06--mcp-surface/028-compat-entrypoint.md](./06--mcp-surface/028-compat-entrypoint.md) |
+| `skill_graph_scan` MCP tool | [06--mcp-surface/030-skill-graph-scan.md](./06--mcp-surface/030-skill-graph-scan.md) |
+| `skill_graph_query` MCP tool | [06--mcp-surface/031-skill-graph-query.md](./06--mcp-surface/031-skill-graph-query.md) |
+| `skill_graph_status` MCP tool | [06--mcp-surface/032-skill-graph-status.md](./06--mcp-surface/032-skill-graph-status.md) |
+| `skill_graph_validate` MCP tool | [06--mcp-surface/033-skill-graph-validate.md](./06--mcp-surface/033-skill-graph-validate.md) |
 
 ---
 
@@ -119,10 +119,10 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/01-claude-hook.md](./07--hooks-and-plugin/01-claude-hook.md) |
-| Gemini CLI `user-prompt-submit` hook | [07--hooks-and-plugin/03-gemini-hook.md](./07--hooks-and-plugin/03-gemini-hook.md) |
-| Codex CLI native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/04-codex-hook.md](./07--hooks-and-plugin/04-codex-hook.md) |
-| OpenCode plugin bridge | [07--hooks-and-plugin/05-opencode-plugin-bridge.md](./07--hooks-and-plugin/05-opencode-plugin-bridge.md) |
+| Claude Code `user-prompt-submit` hook | [07--hooks-and-plugin/034-claude-hook.md](./07--hooks-and-plugin/034-claude-hook.md) |
+| Gemini CLI `user-prompt-submit` hook | [07--hooks-and-plugin/035-gemini-hook.md](./07--hooks-and-plugin/035-gemini-hook.md) |
+| Codex CLI native SessionStart/UserPromptSubmit hooks with prompt-wrapper fallback | [07--hooks-and-plugin/036-codex-hook.md](./07--hooks-and-plugin/036-codex-hook.md) |
+| OpenCode plugin bridge | [07--hooks-and-plugin/037-opencode-plugin-bridge.md](./07--hooks-and-plugin/037-opencode-plugin-bridge.md) |
 
 ---
 
@@ -130,6 +130,6 @@ Baseline numbers (remediation SHA `97a318d83`):
 
 | Feature | File |
 | --- | --- |
-| Python CLI shim (`skill_advisor.py`) | [08--python-compat/01-cli-shim.md](./08--python-compat/01-cli-shim.md) |
-| Python regression dataset | [08--python-compat/02-regression-suite.md](./08--python-compat/02-regression-suite.md) |
-| Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/03-bench-runner.md](./08--python-compat/03-bench-runner.md) |
+| Python CLI shim (`skill_advisor.py`) | [08--python-compat/038-cli-shim.md](./08--python-compat/038-cli-shim.md) |
+| Python regression dataset | [08--python-compat/039-regression-suite.md](./08--python-compat/039-regression-suite.md) |
+| Python bench runner (`skill_advisor_bench.py`) | [08--python-compat/040-bench-runner.md](./08--python-compat/040-bench-runner.md) |

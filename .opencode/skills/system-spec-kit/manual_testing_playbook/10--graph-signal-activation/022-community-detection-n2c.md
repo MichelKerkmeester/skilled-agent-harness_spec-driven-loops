@@ -58,7 +58,7 @@ Verify community detection algorithm → Check boost injection point in pipeline
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/07-community-detection.md](../../feature_catalog/10--graph-signal-activation/07-community-detection.md)
+- Feature catalog: [10--graph-signal-activation/090-community-detection.md](../../feature_catalog/10--graph-signal-activation/090-community-detection.md)
 
 ---
 

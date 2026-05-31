@@ -11,13 +11,13 @@ _memory:
     packet_pointer: "anobel.com/002-link-card-button-and-mobile-animation"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude"
-    recent_action: "Rev 2: removed JS-applied transform/scale on the DESKTOP image (Webflow owns it); mobile keeps scale(1); re-minified + verified"
+    recent_action: "Flattened all 2_javascript .js to root + regenerated z_minified flat (58 files, AST+runtime 58/58 PASS); link_card source now at 2_javascript/link_card_collapse_expand.js. (Prior: Rev 2 desktop image transform.)"
     next_safe_action: "User re-publishes 3_staging/* + z_minified link_card .min.js to Webflow/CDN (incl. Rev 1 + Rev 2), then re-verify on the published URL"
     blockers: []
     key_files:
-      - "a_nobel_en_zn/2_javascript/molecules/link_card_collapse_expand.js"
+      - "a_nobel_en_zn/2_javascript/link_card_collapse_expand.js  (flat root)"
       - "a_nobel_en_zn/1_css/link/link_card_collapse_expand.css"
-      - "a_nobel_en_zn/2_javascript/z_minified/molecules/link_card_collapse_expand.min.js"
+      - "a_nobel_en_zn/2_javascript/z_minified/link_card_collapse_expand.min.js  (flat)"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.js"
       - "a_nobel_en_zn/3_staging/link_card_collapse_expand.css"
     completion_pct: 100

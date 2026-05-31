@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/governance/scope-governance.ts`, the four documented cal
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/12-scope-normalizer-canonicalization-and-lint.md](../../feature_catalog/08--bug-fixes-and-data-integrity/12-scope-normalizer-canonicalization-and-lint.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/068-scope-normalizer-canonicalization-and-lint.md](../../feature_catalog/08--bug-fixes-and-data-integrity/068-scope-normalizer-canonicalization-and-lint.md)
 
 ---
 

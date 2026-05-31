@@ -49,7 +49,7 @@ refine query terms; use focused mode.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/02-semantic-and-lexical-search-memorysearch.md](../../feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md)
+- Feature catalog: [01--retrieval/002-semantic-and-lexical-search-memorysearch.md](../../feature_catalog/01--retrieval/002-semantic-and-lexical-search-memorysearch.md)
 
 ---
 

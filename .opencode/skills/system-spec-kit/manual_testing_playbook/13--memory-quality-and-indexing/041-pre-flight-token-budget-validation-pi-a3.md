@@ -58,7 +58,7 @@ Verify `preflight.ts` token counting math → Check `MCP_CHARS_PER_TOKEN`, `MCP_
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/03-pre-flight-token-budget-validation.md](../../feature_catalog/13--memory-quality-and-indexing/03-pre-flight-token-budget-validation.md)
+- Feature catalog: [13--memory-quality-and-indexing/136-pre-flight-token-budget-validation.md](../../feature_catalog/13--memory-quality-and-indexing/136-pre-flight-token-budget-validation.md)
 
 ---
 

@@ -49,7 +49,7 @@ Verify `clickup_create_document` creates a document and returns a doc_id is requ
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/12--mcp-medium-priority/15-create-document.md` | Feature catalog source |
+| `../feature_catalog/12--mcp-medium-priority/073-create-document.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

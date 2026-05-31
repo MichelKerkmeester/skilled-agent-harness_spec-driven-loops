@@ -77,7 +77,7 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page, integrated research protocol, and scenario summary |
-| `feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` | Matching feature entry for the convergence-time emission contract |
+| `feature_catalog/01--loop-lifecycle/006-resource-map-emission.md` | Matching feature entry for the convergence-time emission contract |
 
 ### IMPLEMENTATION AND RUNTIME ANCHORS
 
@@ -98,4 +98,4 @@ Privilege the YAML synthesis step and reducer behavior over secondary docs if th
 - Playbook ID: DR-035
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `06--synthesis-save-and-guardrails/035-resource-map-emission.md`
-- Feature catalog entry: `feature_catalog/01--loop-lifecycle/06-resource-map-emission.md`
+- Feature catalog entry: `feature_catalog/01--loop-lifecycle/006-resource-map-emission.md`

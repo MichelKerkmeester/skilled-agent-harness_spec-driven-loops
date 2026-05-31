@@ -61,8 +61,8 @@ Verify isTypedTraversalEnabled() → Confirm flag is not forced off → Check SP
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/16-typed-traversal.md](../../feature_catalog/10--graph-signal-activation/16-typed-traversal.md)
-- Feature flag reference: [19--feature-flag-reference/01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md)
+- Feature catalog: [10--graph-signal-activation/098-typed-traversal.md](../../feature_catalog/10--graph-signal-activation/098-typed-traversal.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/causal-boost.ts`
 
 ---

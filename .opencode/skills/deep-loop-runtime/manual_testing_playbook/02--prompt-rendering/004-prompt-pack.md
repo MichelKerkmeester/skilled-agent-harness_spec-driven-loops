@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/02--prompt-rendering/01-prompt-pack.md`.
+- Feature catalog entry exists at `feature_catalog/02--prompt-rendering/004-prompt-pack.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Prompt pack matches the documented current reality, the source anchors are accur
 
 - Group: Prompt rendering
 - Playbook ID: DLR-004
-- Feature catalog entry: `feature_catalog/02--prompt-rendering/01-prompt-pack.md`
+- Feature catalog entry: `feature_catalog/02--prompt-rendering/004-prompt-pack.md`
 - Scenario file path: `manual_testing_playbook/02--prompt-rendering/004-prompt-pack.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

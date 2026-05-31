@@ -278,4 +278,4 @@ node .opencode/skills/deep-improvement/scripts/agent-improvement/rollback-candid
 | `scripts/agent-improvement/benchmark-stability.cjs` | Repeatability analysis |
 | `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
 | `references/shared/promotion_rules.md` | Promotion policy documentation |
-| `feature_catalog/01--evaluation-loop/04-promotion-gates.md` | Feature catalog entry |
+| `feature_catalog/01--evaluation-loop/004-promotion-gates.md` | Feature catalog entry |

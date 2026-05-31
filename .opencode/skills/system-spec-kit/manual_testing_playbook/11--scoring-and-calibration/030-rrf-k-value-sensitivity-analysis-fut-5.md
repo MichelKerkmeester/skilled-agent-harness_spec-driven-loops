@@ -58,7 +58,7 @@ Verify K-grid configuration → Check metric computation per K → Inspect sensi
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/08-rrf-k-value-sensitivity-analysis.md](../../feature_catalog/11--scoring-and-calibration/08-rrf-k-value-sensitivity-analysis.md)
+- Feature catalog: [11--scoring-and-calibration/108-rrf-k-value-sensitivity-analysis.md](../../feature_catalog/11--scoring-and-calibration/108-rrf-k-value-sensitivity-analysis.md)
 
 ---
 

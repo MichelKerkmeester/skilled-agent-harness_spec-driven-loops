@@ -1,0 +1,58 @@
+---
+title: "Command dispatch"
+description: "Routes deep-improvement execution from the slash command into the auto and confirm workflow assets."
+trigger_phrases:
+  - "command dispatch"
+  - "start-agent-improvement-loop.md"
+  - "route improvement command"
+  - "workflow asset routing"
+  - "slash command entrypoint"
+---
+
+# Command dispatch
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+Routes deep-improvement execution from the slash command into the auto and confirm workflow assets.
+
+This feature covers the operator-facing command surface and the workflow assets that actually run the deep-improvement loop.
+
+---
+
+## 2. HOW IT WORKS
+
+`.opencode/commands/deep/start-agent-improvement-loop.md` is the command entrypoint. It resolves the target agent, spec folder, and execution mode, then tells the caller to load either the autonomous or interactive YAML workflow. The command markdown explicitly says not to dispatch agents from the command file itself.
+
+The real dispatch authority lives in the YAML assets. Both workflow files rescan integration, dispatch `@deep-improvement` to write candidates, emit journal events with `improvement-journal.cjs`, and call the scoring, coverage, trade-off, and reducer helpers. Confirm mode adds approval gates around candidate generation and post-score review, while auto mode runs the same stages without those gates.
+
+---
+
+## 3. SOURCE FILES
+
+### Implementation
+
+| File | Layer | Role |
+|---|---|---|
+| `.opencode/commands/deep/start-agent-improvement-loop.md` | Command | Entry surface that gathers inputs and routes execution into the matching YAML workflow. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Workflow | Runs the full loop autonomously and emits session-end journal events after synthesis. |
+| `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml` | Workflow | Runs the same loop with approval gates before candidate generation and after scoring. |
+| `.opencode/agents/deep-improvement.md` | Proposal agent | Leaf agent that the workflows dispatch for bounded candidate generation. |
+
+### Validation And Tests
+
+| File | Type | Role |
+|---|---|---|
+| `.opencode/skills/deep-improvement/references/shared/loop_protocol.md` | Workflow reference | Documents the expected propose, score, benchmark, reduce, and promote sequence. |
+| `.opencode/skills/deep-improvement/references/shared/quick_reference.md` | Operator reference | Provides the shortest command surface and runtime-path reminder for the loop. |
+
+---
+
+## 4. SOURCE METADATA
+
+- Group: Integration scanning
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `02--integration-scanning/009-command-dispatch.md`
+Related references:
+- [008-runtime-mirrors.md](008-runtime-mirrors.md) — Runtime mirrors

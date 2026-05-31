@@ -58,7 +58,7 @@ Verify anchor detection logic → Check thinning priority ordering → Inspect m
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/08-anchor-aware-chunk-thinning.md](../../feature_catalog/13--memory-quality-and-indexing/08-anchor-aware-chunk-thinning.md)
+- Feature catalog: [13--memory-quality-and-indexing/141-anchor-aware-chunk-thinning.md](../../feature_catalog/13--memory-quality-and-indexing/141-anchor-aware-chunk-thinning.md)
 
 ---
 

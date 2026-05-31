@@ -100,7 +100,7 @@ Saved baseline + follow-up scan responses, dry-run + real-run + idempotency-chec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md](../../feature_catalog/13--memory-quality-and-indexing/31-graph-metadata-and-lineage-repair-runner.md)
+- Feature catalog: [13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runner.md](../../feature_catalog/13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runner.md)
 - Source files: `mcp_server/scripts/repair-graph-metadata.mjs`, `mcp_server/lib/graph/graph-metadata-schema.ts`, `shared/embeddings/factory.ts`
 - Shipping packet: `016/002/019-lineage-and-metadata-repair-runner`
 

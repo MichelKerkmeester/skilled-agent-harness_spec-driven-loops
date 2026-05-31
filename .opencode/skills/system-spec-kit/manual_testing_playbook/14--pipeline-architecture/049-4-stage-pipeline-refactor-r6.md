@@ -58,7 +58,7 @@ Verify stage ordering enforcement → Check verbose metadata emission → Inspec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/01-4-stage-pipeline-refactor.md](../../feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md)
+- Feature catalog: [14--pipeline-architecture/163-4-stage-pipeline-refactor.md](../../feature_catalog/14--pipeline-architecture/163-4-stage-pipeline-refactor.md)
 
 ---
 

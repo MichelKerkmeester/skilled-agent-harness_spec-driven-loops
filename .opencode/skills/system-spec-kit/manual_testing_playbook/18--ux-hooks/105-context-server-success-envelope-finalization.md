@@ -58,7 +58,7 @@ Inspect `context-server.ts` success-path assembly and expected envelope fields
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/08-context-server-success-hint-append.md](../../feature_catalog/18--ux-hooks/08-context-server-success-hint-append.md)
+- Feature catalog: [18--ux-hooks/260-context-server-success-hint-append.md](../../feature_catalog/18--ux-hooks/260-context-server-success-hint-append.md)
 
 ---
 

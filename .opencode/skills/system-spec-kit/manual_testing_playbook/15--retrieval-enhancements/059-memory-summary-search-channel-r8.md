@@ -58,7 +58,7 @@ Verify corpus size counting logic; check threshold configuration; inspect channe
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/05-memory-summary-search-channel.md](../../feature_catalog/15--retrieval-enhancements/05-memory-summary-search-channel.md)
+- Feature catalog: [15--retrieval-enhancements/193-memory-summary-search-channel.md](../../feature_catalog/15--retrieval-enhancements/193-memory-summary-search-channel.md)
 
 ---
 

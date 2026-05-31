@@ -58,7 +58,7 @@ Verify expansion trigger threshold → Check dedup logic → Inspect simple-quer
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/06-query-expansion.md](../../feature_catalog/12--query-intelligence/06-query-expansion.md)
+- Feature catalog: [12--query-intelligence/127-query-expansion.md](../../feature_catalog/12--query-intelligence/127-query-expansion.md)
 
 ---
 

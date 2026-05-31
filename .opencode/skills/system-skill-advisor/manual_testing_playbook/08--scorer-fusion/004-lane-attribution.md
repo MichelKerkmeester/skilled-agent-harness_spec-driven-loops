@@ -62,7 +62,7 @@ advisor_recommend({"prompt":"review this pull request","options":{"topK":1,"incl
 
 - Scenario [SC-001](./001-five-lane-fusion.md), fusion weights sanity.
 - Scenario [SC-005](./005-ablation.md), ablation protocol.
-- Feature [`04--scorer-fusion/04-attribution.md`](../../feature_catalog/04--scorer-fusion/04-attribution.md).
+- Feature [`04--scorer-fusion/022-attribution.md`](../../feature_catalog/04--scorer-fusion/022-attribution.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/attribution.ts`.
 
 ---

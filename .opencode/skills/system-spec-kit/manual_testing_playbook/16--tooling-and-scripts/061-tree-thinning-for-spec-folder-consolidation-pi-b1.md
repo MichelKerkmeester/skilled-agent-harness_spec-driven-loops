@@ -57,7 +57,7 @@ Verify file size thresholds; inspect per-parent merge caps; check overflow promo
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md](../../feature_catalog/16--tooling-and-scripts/01-tree-thinning-for-spec-folder-consolidation.md)
+- Feature catalog: [16--tooling-and-scripts/204-tree-thinning-for-spec-folder-consolidation.md](../../feature_catalog/16--tooling-and-scripts/204-tree-thinning-for-spec-folder-consolidation.md)
 
 ---
 

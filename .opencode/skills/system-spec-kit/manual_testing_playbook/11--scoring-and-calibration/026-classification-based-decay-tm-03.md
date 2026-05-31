@@ -59,7 +59,7 @@ Verify decay matrix configuration → Check classification assignment → Inspec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/04-classification-based-decay.md](../../feature_catalog/11--scoring-and-calibration/04-classification-based-decay.md)
+- Feature catalog: [11--scoring-and-calibration/104-classification-based-decay.md](../../feature_catalog/11--scoring-and-calibration/104-classification-based-decay.md)
 
 ---
 

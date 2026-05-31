@@ -58,7 +58,7 @@ Inspect `tests/memory-save-ux-regressions.vitest.ts` and handler save-path wirin
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/09-duplicate-save-no-op-feedback-hardening.md](../../feature_catalog/18--ux-hooks/09-duplicate-save-no-op-feedback-hardening.md)
+- Feature catalog: [18--ux-hooks/261-duplicate-save-no-op-feedback-hardening.md](../../feature_catalog/18--ux-hooks/261-duplicate-save-no-op-feedback-hardening.md)
 
 ---
 

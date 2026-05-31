@@ -60,7 +60,7 @@ Inspect canonical ID resolution logic → Check format normalization rules → V
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md](../../feature_catalog/08--bug-fixes-and-data-integrity/07-canonical-id-dedup-hardening.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/063-canonical-id-dedup-hardening.md](../../feature_catalog/08--bug-fixes-and-data-integrity/063-canonical-id-dedup-hardening.md)
 
 ---
 

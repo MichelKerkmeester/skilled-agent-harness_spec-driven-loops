@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/01--executor/03-fallback-router.md`.
+- Feature catalog entry exists at `feature_catalog/01--executor/003-fallback-router.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Fallback router matches the documented current reality, the source anchors are a
 
 - Group: Executor
 - Playbook ID: DLR-003
-- Feature catalog entry: `feature_catalog/01--executor/03-fallback-router.md`
+- Feature catalog entry: `feature_catalog/01--executor/003-fallback-router.md`
 - Scenario file path: `manual_testing_playbook/01--executor/003-fallback-router.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

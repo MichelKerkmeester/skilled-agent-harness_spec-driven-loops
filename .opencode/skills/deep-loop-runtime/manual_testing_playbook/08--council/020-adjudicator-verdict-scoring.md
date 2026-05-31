@@ -35,7 +35,7 @@ This is the council convergence saturation primitive. If the weights drift from 
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/08--council/03-adjudicator-verdict-scoring.md`.
+- Feature catalog entry exists at `feature_catalog/08--council/020-adjudicator-verdict-scoring.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Adjudicator verdict scoring matches the documented current reality, the weights 
 
 - Group: Council
 - Playbook ID: DLR-020
-- Feature catalog entry: `feature_catalog/08--council/03-adjudicator-verdict-scoring.md`
+- Feature catalog entry: `feature_catalog/08--council/020-adjudicator-verdict-scoring.md`
 - Scenario file path: `manual_testing_playbook/08--council/020-adjudicator-verdict-scoring.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

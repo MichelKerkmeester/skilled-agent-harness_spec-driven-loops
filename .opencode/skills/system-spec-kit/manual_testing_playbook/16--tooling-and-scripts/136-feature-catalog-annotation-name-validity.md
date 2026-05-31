@@ -58,7 +58,7 @@ Inspect the extracted annotation comments and the catalog H3 headings if any nam
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/11-feature-catalog-code-references.md](../../feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md)
+- Feature catalog: [16--tooling-and-scripts/214-feature-catalog-code-references.md](../../feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md)
 
 ---
 

@@ -114,7 +114,7 @@ Check Step 3 trim logic with reversed PRIORITY_ORDER
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/10-budget-allocator.md](../../feature_catalog/22--context-preservation/10-budget-allocator.md)
+- Feature catalog: [22--context-preservation/299-budget-allocator.md](../../feature_catalog/22--context-preservation/299-budget-allocator.md)
 
 ---
 

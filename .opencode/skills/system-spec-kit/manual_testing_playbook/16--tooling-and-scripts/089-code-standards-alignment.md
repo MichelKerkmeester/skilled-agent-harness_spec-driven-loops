@@ -57,7 +57,7 @@ Inspect code standards definition; verify linter rules cover the standards; chec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/05-code-standards-alignment.md](../../feature_catalog/16--tooling-and-scripts/05-code-standards-alignment.md)
+- Feature catalog: [16--tooling-and-scripts/208-code-standards-alignment.md](../../feature_catalog/16--tooling-and-scripts/208-code-standards-alignment.md)
 
 ---
 

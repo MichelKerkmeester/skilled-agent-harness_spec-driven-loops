@@ -35,7 +35,7 @@ Cost guards bound council session cost a priori. If they drift, sessions can blo
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/08--council/04-cost-guards.md`.
+- Feature catalog entry exists at `feature_catalog/08--council/021-cost-guards.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Cost guards match the documented current reality, the defaults agree with ADR-00
 
 - Group: Council
 - Playbook ID: DLR-021
-- Feature catalog entry: `feature_catalog/08--council/04-cost-guards.md`
+- Feature catalog entry: `feature_catalog/08--council/021-cost-guards.md`
 - Scenario file path: `manual_testing_playbook/08--council/021-cost-guards.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

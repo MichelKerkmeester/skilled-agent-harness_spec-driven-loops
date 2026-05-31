@@ -59,7 +59,7 @@ Restore `pre-ex008-delete`; verify sandbox folder
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/03-single-and-folder-delete-memorydelete.md](../../feature_catalog/02--mutation/03-single-and-folder-delete-memorydelete.md)
+- Feature catalog: [02--mutation/018-single-and-folder-delete-memorydelete.md](../../feature_catalog/02--mutation/018-single-and-folder-delete-memorydelete.md)
 
 ---
 

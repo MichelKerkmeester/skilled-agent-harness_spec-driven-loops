@@ -59,8 +59,8 @@ Verify isGraphCalibrationEnabled() → Check loadCalibrationProfile() env overri
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/15-graph-calibration-profiles.md](../../feature_catalog/10--graph-signal-activation/15-graph-calibration-profiles.md)
-- Feature flag reference: [19--feature-flag-reference/01-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
+- Feature catalog: [10--graph-signal-activation/097-graph-calibration-profiles.md](../../feature_catalog/10--graph-signal-activation/097-graph-calibration-profiles.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/graph-calibration.ts`
 
 ---

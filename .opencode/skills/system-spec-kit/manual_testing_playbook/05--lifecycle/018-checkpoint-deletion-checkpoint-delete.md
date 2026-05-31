@@ -57,7 +57,7 @@ Validate name, `confirmName`, and sandbox scope; retry
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/04-checkpoint-deletion-checkpointdelete.md](../../feature_catalog/05--lifecycle/04-checkpoint-deletion-checkpointdelete.md)
+- Feature catalog: [05--lifecycle/041-checkpoint-deletion-checkpointdelete.md](../../feature_catalog/05--lifecycle/041-checkpoint-deletion-checkpointdelete.md)
 
 ---
 

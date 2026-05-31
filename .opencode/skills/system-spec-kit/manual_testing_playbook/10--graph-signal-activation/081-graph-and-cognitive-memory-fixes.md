@@ -58,7 +58,7 @@ Inspect self-loop guard logic; verify depth clamp constants; check cache invalid
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md](../../feature_catalog/10--graph-signal-activation/08-graph-and-cognitive-memory-fixes.md)
+- Feature catalog: [10--graph-signal-activation/091-graph-and-cognitive-memory-fixes.md](../../feature_catalog/10--graph-signal-activation/091-graph-and-cognitive-memory-fixes.md)
 
 ---
 

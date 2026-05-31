@@ -58,7 +58,7 @@ Inspect `scripts/setup/check-prerequisites.sh`, `check-native-modules.sh`, `rebu
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md](../../feature_catalog/16--tooling-and-scripts/29-setup-native-module-health-and-mcp-installation.md)
+- Feature catalog: [16--tooling-and-scripts/232-setup-native-module-health-and-mcp-installation.md](../../feature_catalog/16--tooling-and-scripts/232-setup-native-module-health-and-mcp-installation.md)
 
 ---
 

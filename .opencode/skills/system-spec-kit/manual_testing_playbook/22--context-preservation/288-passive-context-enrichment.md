@@ -65,7 +65,7 @@ Inspect `mcp_server/hooks/memory-surface.ts` for the surfacing logic. Check `mcp
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/20-passive-context-enrichment.md](../../feature_catalog/22--context-preservation/20-passive-context-enrichment.md)
+- Feature catalog: [22--context-preservation/307-passive-context-enrichment.md](../../feature_catalog/22--context-preservation/307-passive-context-enrichment.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/hooks/memory-surface.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/response-hints.ts`, `.opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts`
 
 ---

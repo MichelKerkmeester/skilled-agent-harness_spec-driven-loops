@@ -35,7 +35,7 @@ Consumer YAML depends on this direct script interface. A drift in args, stdout J
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/07--script-entry-points/01-convergence-script.md`.
+- Feature catalog entry exists at `feature_catalog/07--script-entry-points/014-convergence-script.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ convergence.cjs matches the documented current reality, the source anchors are a
 
 - Group: Script entry points
 - Playbook ID: DLR-014
-- Feature catalog entry: `feature_catalog/07--script-entry-points/01-convergence-script.md`
+- Feature catalog entry: `feature_catalog/07--script-entry-points/014-convergence-script.md`
 - Scenario file path: `manual_testing_playbook/07--script-entry-points/014-convergence-script.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

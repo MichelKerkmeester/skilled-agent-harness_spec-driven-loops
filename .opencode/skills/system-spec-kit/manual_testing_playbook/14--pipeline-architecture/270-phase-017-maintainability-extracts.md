@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/utils/exhaustiveness.ts`, `mcp_server/handlers/save/post
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/24-phase-017-maintainability-extracts.md](../../feature_catalog/14--pipeline-architecture/24-phase-017-maintainability-extracts.md)
+- Feature catalog: [14--pipeline-architecture/185-phase-017-maintainability-extracts.md](../../feature_catalog/14--pipeline-architecture/185-phase-017-maintainability-extracts.md)
 
 ---
 

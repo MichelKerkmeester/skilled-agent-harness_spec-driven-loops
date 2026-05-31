@@ -57,7 +57,7 @@ Verify the re-index gate detects trigger mutations, confirm BM25 enablement stat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/06-bm25-trigger-phrase-re-index-gate.md](../../feature_catalog/01--retrieval/06-bm25-trigger-phrase-re-index-gate.md)
+- Feature catalog: [01--retrieval/006-bm25-trigger-phrase-re-index-gate.md](../../feature_catalog/01--retrieval/006-bm25-trigger-phrase-re-index-gate.md)
 
 ---
 

@@ -9,7 +9,9 @@
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/003-skill-rename-deep-improvement",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/004-skill-benchmark-mode",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
-    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/006-deep-review"
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/006-deep-review",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run"
   ],
   "manual": {
     "depends_on": [],
@@ -102,13 +104,13 @@
     ],
     "causal_summary": "Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-05-31T06:58:32.670Z",
+    "last_save_at": "2026-05-31T17:50:44.632Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
-    "last_active_at": "2026-05-30T00:00:00Z"
+    "last_active_child_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
+    "last_active_at": "2026-05-31T17:50:44.632Z"
   }
 }

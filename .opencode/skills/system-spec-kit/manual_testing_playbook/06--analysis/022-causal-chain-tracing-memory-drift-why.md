@@ -56,7 +56,7 @@ Lower depth/rel filters if empty
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/04-causal-chain-tracing-memorydriftwhy.md](../../feature_catalog/06--analysis/04-causal-chain-tracing-memorydriftwhy.md)
+- Feature catalog: [06--analysis/049-causal-chain-tracing-memorydriftwhy.md](../../feature_catalog/06--analysis/049-causal-chain-tracing-memorydriftwhy.md)
 
 ---
 

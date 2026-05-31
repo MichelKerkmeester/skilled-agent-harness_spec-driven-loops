@@ -60,7 +60,7 @@ Profile the heavy retrieval path; check whether enrichment helpers are re-entere
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/08-performance-improvements.md](../../feature_catalog/14--pipeline-architecture/08-performance-improvements.md)
+- Feature catalog: [14--pipeline-architecture/170-performance-improvements.md](../../feature_catalog/14--pipeline-architecture/170-performance-improvements.md)
 
 ---
 

@@ -853,14 +853,14 @@ The feature catalog root is `.opencode/skills/deep-improvement/feature_catalog/f
 
 | Playbook Category | Feature Catalog Cross-Reference |
 |---|---|
-| Integration Scanner | `.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/01-surface-discovery.md`, `02-runtime-mirrors.md`, `03-command-dispatch.md` |
-| Profile Generator | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/02-dynamic-profiling.md` |
-| 5-Dimension Scorer | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/01-five-dimension-rubric.md`, `03-deterministic-scoring.md` |
+| Integration Scanner | `.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/007-surface-discovery.md`, `02-runtime-mirrors.md`, `03-command-dispatch.md` |
+| Profile Generator | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/011-dynamic-profiling.md` |
+| 5-Dimension Scorer | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/010-five-dimension-rubric.md`, `03-deterministic-scoring.md` |
 | Benchmark Integration | No one-to-one catalog file; validate against the script anchors in the per-feature files and the scoring-system catalog root. |
-| Reducer Dimensions | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/04-dimensional-progress.md` |
-| End-to-End Loop | `.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/01-initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
+| Reducer Dimensions | `.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/013-dimensional-progress.md` |
+| End-to-End Loop | `.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/001-initialization.md`, `02-candidate-generation.md`, `03-scoring-dispatch.md`, `04-promotion-gates.md`, `05-rollback.md`, `06-plateau-detection.md` |
 | Runtime Truth | No single catalog category owns all runtime-truth scenarios; use the per-feature source anchors plus the evaluation-loop and scoring-system catalog files above. |
 | Model-Benchmark Mode | No one-to-one catalog file; validate against the Lane B contract in `.opencode/skills/deep-improvement/SKILL.md` and the script anchors in the per-feature files (`loop-host.cjs`, `run-benchmark.cjs`, `scorer/score-model-variant.cjs`). |
-| Skill-Benchmark Mode | `.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/01-mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
+| Skill-Benchmark Mode | `.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/018-mode-wiring.md`, `02-contamination-gate-and-fixtures.md`, `03-router-replay-and-advisor-probe.md`, `04-d5-connectivity-gate.md`, `05-scoring-and-funnel.md`, `06-dual-report-and-remediation.md` |
 
 Additional skill references remain anchored from the per-feature files: `SKILL.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, and `references/shared/quick_reference.md`.

@@ -58,7 +58,7 @@ Verify nested hierarchy exists; check hierarchy scoring weights; inspect folder-
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/03-spec-folder-hierarchy-as-retrieval-structure.md](../../feature_catalog/15--retrieval-enhancements/03-spec-folder-hierarchy-as-retrieval-structure.md)
+- Feature catalog: [15--retrieval-enhancements/191-spec-folder-hierarchy-as-retrieval-structure.md](../../feature_catalog/15--retrieval-enhancements/191-spec-folder-hierarchy-as-retrieval-structure.md)
 
 ---
 

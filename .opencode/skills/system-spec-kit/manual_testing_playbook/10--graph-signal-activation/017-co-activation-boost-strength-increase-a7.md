@@ -59,7 +59,7 @@ Verify strength parameter propagation → Check co-activation hydration query sh
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/02-co-activation-boost-strength-increase.md](../../feature_catalog/10--graph-signal-activation/02-co-activation-boost-strength-increase.md)
+- Feature catalog: [10--graph-signal-activation/085-co-activation-boost-strength-increase.md](../../feature_catalog/10--graph-signal-activation/085-co-activation-boost-strength-increase.md)
 
 ---
 

@@ -59,7 +59,7 @@ Inspect `handlers/memory-ingest.ts`, `lib/ops/job-queue.ts`, and `lib/telemetry/
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/05-async-ingestion-job-lifecycle.md](../../feature_catalog/05--lifecycle/05-async-ingestion-job-lifecycle.md)
+- Feature catalog: [05--lifecycle/042-async-ingestion-job-lifecycle.md](../../feature_catalog/05--lifecycle/042-async-ingestion-job-lifecycle.md)
 
 ---
 

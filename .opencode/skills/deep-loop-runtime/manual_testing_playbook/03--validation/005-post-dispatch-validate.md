@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/03--validation/01-post-dispatch-validate.md`.
+- Feature catalog entry exists at `feature_catalog/03--validation/005-post-dispatch-validate.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Post-dispatch validate matches the documented current reality, the source anchor
 
 - Group: Validation
 - Playbook ID: DLR-005
-- Feature catalog entry: `feature_catalog/03--validation/01-post-dispatch-validate.md`
+- Feature catalog entry: `feature_catalog/03--validation/005-post-dispatch-validate.md`
 - Scenario file path: `manual_testing_playbook/03--validation/005-post-dispatch-validate.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

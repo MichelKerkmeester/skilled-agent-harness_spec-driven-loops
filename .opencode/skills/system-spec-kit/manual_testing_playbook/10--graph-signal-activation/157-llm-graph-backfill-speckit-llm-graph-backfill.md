@@ -60,8 +60,8 @@ Check isLlmGraphBackfillEnabled() → Verify registerLlmBackfillFn() was called 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/14-llm-graph-backfill.md](../../feature_catalog/10--graph-signal-activation/14-llm-graph-backfill.md)
-- Feature flag reference: [19--feature-flag-reference/01-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
+- Feature catalog: [10--graph-signal-activation/096-llm-graph-backfill.md](../../feature_catalog/10--graph-signal-activation/096-llm-graph-backfill.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/028-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/graph-lifecycle.ts`
 
 ---

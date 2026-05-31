@@ -1,0 +1,233 @@
+{
+  "status": "scored",
+  "rubricVersion": "dynamic-5d/p126-reproducibility-v1",
+  "inputHash": "634cc3c41c9de4bff0986ee9b118ba26a74581e75fe7a851dc2f8e3fd45681e1",
+  "profileId": "orchestrate",
+  "family": "orchestrate",
+  "evaluationMode": "dynamic-5d",
+  "mode": "agent-improvement",
+  "target": ".opencode/agents/orchestrate.md",
+  "candidate": ".opencode/agents/orchestrate.md",
+  "baseline": null,
+  "score": null,
+  "baselineScore": null,
+  "delta": null,
+  "thresholdDelta": 2,
+  "dimensions": [
+    {
+      "name": "structural",
+      "score": 100,
+      "weight": 0.2,
+      "details": [
+        {
+          "id": "has-core-workflow",
+          "pass": true,
+          "weight": 10
+        },
+        {
+          "id": "has-output-verification",
+          "pass": true,
+          "weight": 10
+        },
+        {
+          "id": "has-anti-patterns",
+          "pass": true,
+          "weight": 5
+        },
+        {
+          "id": "has-rules",
+          "pass": true,
+          "weight": 10
+        }
+      ],
+      "maxPossible": 35
+    },
+    {
+      "name": "ruleCoherence",
+      "score": null,
+      "weight": 0.25,
+      "details": [],
+      "maxPossible": 0
+    },
+    {
+      "name": "integration",
+      "score": 80,
+      "weight": 0.25,
+      "details": [
+        {
+          "id": "mirror-parity",
+          "pass": true,
+          "score": 100
+        },
+        {
+          "id": "command-coverage",
+          "pass": false,
+          "count": 0
+        },
+        {
+          "id": "skill-coverage",
+          "pass": true,
+          "count": 8
+        },
+        {
+          "id": "runtime-mirror-coverage-considered",
+          "pass": true,
+          "checkpoint": "runtime-mirror-coverage-considered",
+          "expectedCount": 4,
+          "consideredCount": 4,
+          "passed": true,
+          "paths": [
+            ".opencode/agents/orchestrate.md",
+            ".claude/agents/orchestrate.md",
+            ".codex/agents/orchestrate.toml",
+            ".gemini/agents/orchestrate.md"
+          ],
+          "warning": null
+        }
+      ],
+      "maxPossible": 100
+    },
+    {
+      "name": "outputQuality",
+      "score": 70,
+      "weight": 0.15,
+      "details": [
+        {
+          "id": "checklist-0",
+          "pass": true,
+          "check": "Output matches requested scope (no scope drift or additions)"
+        },
+        {
+          "id": "checklist-1",
+          "pass": true,
+          "check": "Files claimed to be created/modified actually exist"
+        },
+        {
+          "id": "checklist-2",
+          "pass": true,
+          "check": "Content quality meets standards (no placeholder text like [TODO], [PLACEHOLDER])"
+        },
+        {
+          "id": "checklist-3",
+          "pass": true,
+          "check": "No hallucinated paths or references (verify file paths exist)"
+        },
+        {
+          "id": "checklist-4",
+          "pass": true,
+          "check": "Evidence provided for claims (sources cited, not fabricated)"
+        },
+        {
+          "id": "checklist-5",
+          "pass": true,
+          "check": "Quality score ≥ 70 (see Scoring Dimensions below)"
+        },
+        {
+          "id": "checklist-6",
+          "pass": true,
+          "check": "Success criteria met (from task decomposition)"
+        },
+        {
+          "id": "checklist-7",
+          "pass": true,
+          "check": "Pre-Delegation Reasoning documented for each task dispatch"
+        },
+        {
+          "id": "checklist-8",
+          "pass": true,
+          "check": "Context Package includes all 6 sections (if from @context — includes Nested Dispatch Status section)"
+        }
+      ],
+      "maxPossible": 45
+    },
+    {
+      "name": "systemFitness",
+      "score": 100,
+      "weight": 0.15,
+      "details": [
+        {
+          "id": "perm-capability-align",
+          "pass": true
+        },
+        {
+          "id": "resource-refs-valid",
+          "pass": true,
+          "valid": 0,
+          "total": 0
+        },
+        {
+          "id": "frontmatter-complete",
+          "pass": true,
+          "score": 30
+        }
+      ],
+      "maxPossible": 100
+    }
+  ],
+  "unscoredDimensions": [
+    "ruleCoherence"
+  ],
+  "runtimeMirrorCoverage": {
+    "checkpoint": "runtime-mirror-coverage-considered",
+    "expectedCount": 4,
+    "consideredCount": 4,
+    "passed": true,
+    "paths": [
+      ".opencode/agents/orchestrate.md",
+      ".claude/agents/orchestrate.md",
+      ".codex/agents/orchestrate.toml",
+      ".gemini/agents/orchestrate.md"
+    ],
+    "warning": null
+  },
+  "promotionGates": {
+    "passed": false,
+    "thresholds": {
+      "structural": 80,
+      "ruleCoherence": 85,
+      "integration": 90,
+      "outputQuality": 75,
+      "systemFitness": 80
+    },
+    "results": {
+      "structural": {
+        "score": 100,
+        "minimumScore": 80,
+        "passed": true
+      },
+      "ruleCoherence": {
+        "score": null,
+        "minimumScore": 85,
+        "passed": false
+      },
+      "integration": {
+        "score": 80,
+        "minimumScore": 90,
+        "passed": false
+      },
+      "outputQuality": {
+        "score": 70,
+        "minimumScore": 75,
+        "passed": false
+      },
+      "systemFitness": {
+        "score": 100,
+        "minimumScore": 80,
+        "passed": true
+      }
+    },
+    "failed": [
+      "integration",
+      "outputQuality"
+    ],
+    "unscored": [
+      "ruleCoherence"
+    ]
+  },
+  "legacyScore": null,
+  "recommendation": "needs-improvement",
+  "warnings": [],
+  "failureModes": [
+    "unscored-ruleCoherence"
+  ]
+}

@@ -88,7 +88,7 @@ Inspect `mcp_server/handlers/memory/context.ts` token-budget enforcement path an
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/01-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md)
+- Feature catalog: [01--retrieval/001-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md)
 
 ---
 

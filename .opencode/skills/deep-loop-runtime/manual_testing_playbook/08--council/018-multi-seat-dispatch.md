@@ -35,7 +35,7 @@ This is the per-round parallel-dispatch primitive that deep-ai-council consumes.
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/08--council/01-multi-seat-dispatch.md`.
+- Feature catalog entry exists at `feature_catalog/08--council/018-multi-seat-dispatch.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Multi-seat dispatch matches the documented current reality, the source anchors a
 
 - Group: Council
 - Playbook ID: DLR-018
-- Feature catalog entry: `feature_catalog/08--council/01-multi-seat-dispatch.md`
+- Feature catalog entry: `feature_catalog/08--council/018-multi-seat-dispatch.md`
 - Scenario file path: `manual_testing_playbook/08--council/018-multi-seat-dispatch.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

@@ -60,7 +60,7 @@ Inspect `preferredMemoryTask` selection in workflow orchestration; verify sessio
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md](../../feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md)
+- Feature catalog: [13--memory-quality-and-indexing/144-content-aware-memory-filename-generation.md](../../feature_catalog/13--memory-quality-and-indexing/144-content-aware-memory-filename-generation.md)
 
 ---
 

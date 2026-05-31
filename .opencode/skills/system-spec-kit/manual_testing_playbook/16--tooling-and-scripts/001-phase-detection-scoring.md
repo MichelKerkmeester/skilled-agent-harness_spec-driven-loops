@@ -59,7 +59,7 @@ Verify spec folder path exists and contains spec.md; check script has execute pe
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/03-progressive-validation-for-spec-documents.md](../../feature_catalog/16--tooling-and-scripts/03-progressive-validation-for-spec-documents.md)
+- Feature catalog: [16--tooling-and-scripts/206-progressive-validation-for-spec-documents.md](../../feature_catalog/16--tooling-and-scripts/206-progressive-validation-for-spec-documents.md)
 
 ---
 

@@ -60,7 +60,7 @@ Inspect `context-server.ts` `buildServerInstructions`, `startup-checks.ts`, and 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/14-dynamic-server-instructions-at-mcp-initialization.md](../../feature_catalog/14--pipeline-architecture/14-dynamic-server-instructions-at-mcp-initialization.md)
+- Feature catalog: [14--pipeline-architecture/175-dynamic-server-instructions-at-mcp-initialization.md](../../feature_catalog/14--pipeline-architecture/175-dynamic-server-instructions-at-mcp-initialization.md)
 
 ---
 

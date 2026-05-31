@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/context/caller-context.ts`, `mcp_server/context-server.t
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [17--governance/06-session-resume-caller-binding-and-unicode-sanitization.md](../../feature_catalog/17--governance/06-session-resume-caller-binding-and-unicode-sanitization.md)
+- Feature catalog: [17--governance/252-session-resume-caller-binding-and-unicode-sanitization.md](../../feature_catalog/17--governance/252-session-resume-caller-binding-and-unicode-sanitization.md)
 
 ---
 

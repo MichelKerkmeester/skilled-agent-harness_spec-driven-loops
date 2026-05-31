@@ -81,7 +81,7 @@ touch .opencode/skills/sk-doc/SKILL.md
 
 - Scenario [AU-002](./002-lease-single-writer.md), single-writer lease semantics.
 - Scenario [AU-004](./004-generation-publication.md), generation bump publication.
-- Feature [`01--daemon-and-freshness/01-watcher.md`](../../feature_catalog/01--daemon-and-freshness/01-watcher.md).
+- Feature [`01--daemon-and-freshness/001-watcher.md`](../../feature_catalog/01--daemon-and-freshness/001-watcher.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/watcher.ts`.
 
 ---

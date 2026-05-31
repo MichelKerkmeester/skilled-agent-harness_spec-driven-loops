@@ -66,7 +66,7 @@ Inspect `.opencode/skills/system-code-graph/mcp_server/lib/query-intent-classifi
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/14-query-intent-classifier.md](../../feature_catalog/22--context-preservation/14-query-intent-classifier.md)
+- Feature catalog: [22--context-preservation/302-query-intent-classifier.md](../../feature_catalog/22--context-preservation/302-query-intent-classifier.md)
 - Source: `.opencode/skills/system-code-graph/mcp_server/lib/query-intent-classifier.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts`
 
 ---

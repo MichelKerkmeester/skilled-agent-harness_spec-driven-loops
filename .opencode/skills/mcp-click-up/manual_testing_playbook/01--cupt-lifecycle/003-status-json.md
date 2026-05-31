@@ -53,7 +53,7 @@ Operators run the exact prompt and command sequence for `CU-007` and confirm the
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/01--cupt-authentication/07-auth-status.md` | Feature catalog source |
+| `../feature_catalog/01--cupt-authentication/007-auth-status.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

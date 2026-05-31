@@ -48,7 +48,7 @@ Verify `cupt note TASK_ID text` adds a comment and `cupt notes TASK_ID` lists it
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/05--cupt-notes-comments/01-add-comment.md` | Feature catalog source |
+| `../feature_catalog/05--cupt-notes-comments/033-add-comment.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

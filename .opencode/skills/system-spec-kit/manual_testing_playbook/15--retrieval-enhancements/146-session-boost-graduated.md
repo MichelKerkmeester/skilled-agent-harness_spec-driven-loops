@@ -67,7 +67,7 @@ Inspect `mcp_server/lib/search/session-boost.ts` for the 0.15 multiplier and cei
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/10-session-boost-graduated.md](../../feature_catalog/15--retrieval-enhancements/10-session-boost-graduated.md)
+- Feature catalog: [15--retrieval-enhancements/198-session-boost-graduated.md](../../feature_catalog/15--retrieval-enhancements/198-session-boost-graduated.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/session-boost.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/stage2-fusion.vitest.ts`
 

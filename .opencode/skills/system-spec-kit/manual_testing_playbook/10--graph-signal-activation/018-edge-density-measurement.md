@@ -58,7 +58,7 @@ Verify edge/node count queries → Check threshold configuration → Inspect gat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/03-edge-density-measurement.md](../../feature_catalog/10--graph-signal-activation/03-edge-density-measurement.md)
+- Feature catalog: [10--graph-signal-activation/086-edge-density-measurement.md](../../feature_catalog/10--graph-signal-activation/086-edge-density-measurement.md)
 
 ---
 

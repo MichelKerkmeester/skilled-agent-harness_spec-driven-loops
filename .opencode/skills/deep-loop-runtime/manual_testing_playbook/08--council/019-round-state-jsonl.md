@@ -35,7 +35,7 @@ Council rounds must survive partial-write crashes. If round-state-jsonl drifts, 
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/08--council/02-round-state-jsonl.md`.
+- Feature catalog entry exists at `feature_catalog/08--council/019-round-state-jsonl.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Round-state JSONL matches the documented current reality, the source anchors are
 
 - Group: Council
 - Playbook ID: DLR-019
-- Feature catalog entry: `feature_catalog/08--council/02-round-state-jsonl.md`
+- Feature catalog entry: `feature_catalog/08--council/019-round-state-jsonl.md`
 - Scenario file path: `manual_testing_playbook/08--council/019-round-state-jsonl.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

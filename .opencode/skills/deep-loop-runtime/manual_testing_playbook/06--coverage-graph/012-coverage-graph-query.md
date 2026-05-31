@@ -35,7 +35,7 @@ Graph state is the convergence evidence layer for deep-review and deep-research.
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/06--coverage-graph/02-coverage-graph-query.md`.
+- Feature catalog entry exists at `feature_catalog/06--coverage-graph/012-coverage-graph-query.md`.
 
 ### Steps
 
@@ -79,7 +79,7 @@ Coverage graph query matches the documented current reality, the source anchors 
 
 - Group: Coverage graph
 - Playbook ID: DLR-012
-- Feature catalog entry: `feature_catalog/06--coverage-graph/02-coverage-graph-query.md`
+- Feature catalog entry: `feature_catalog/06--coverage-graph/012-coverage-graph-query.md`
 - Scenario file path: `manual_testing_playbook/06--coverage-graph/012-coverage-graph-query.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

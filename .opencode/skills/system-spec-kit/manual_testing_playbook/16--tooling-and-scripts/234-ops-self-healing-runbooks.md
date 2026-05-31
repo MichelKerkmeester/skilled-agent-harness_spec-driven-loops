@@ -60,7 +60,7 @@ Inspect `runbook.sh`, `ops-common.sh`, and the individual `heal-*.sh` runners if
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/20-ops-self-healing-runbooks.md](../../feature_catalog/16--tooling-and-scripts/20-ops-self-healing-runbooks.md)
+- Feature catalog: [16--tooling-and-scripts/223-ops-self-healing-runbooks.md](../../feature_catalog/16--tooling-and-scripts/223-ops-self-healing-runbooks.md)
 
 ---
 

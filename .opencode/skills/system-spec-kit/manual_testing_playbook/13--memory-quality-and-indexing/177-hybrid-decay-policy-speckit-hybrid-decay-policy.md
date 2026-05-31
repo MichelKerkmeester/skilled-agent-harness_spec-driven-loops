@@ -58,8 +58,8 @@ If the source grep misses a symbol, inspect `mcp_server/lib/cognitive/fsrs-sched
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/23-hybrid-decay-policy.md](../../feature_catalog/13--memory-quality-and-indexing/23-hybrid-decay-policy.md)
-- Feature flag reference: [19--feature-flag-reference/01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md)
+- Feature catalog: [13--memory-quality-and-indexing/153-hybrid-decay-policy.md](../../feature_catalog/13--memory-quality-and-indexing/153-hybrid-decay-policy.md)
+- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
 - Source files: `mcp_server/lib/cognitive/fsrs-scheduler.ts`, `mcp_server/lib/search/search-flags.ts`
 - Regression tests: `mcp_server/tests/hybrid-decay-policy.vitest.ts`, `mcp_server/tests/fsrs-hybrid-decay.vitest.ts`
 

@@ -114,7 +114,7 @@ Check compact-inject.ts buildMergedContext() codeGraph input
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/11-working-set-tracker.md](../../feature_catalog/22--context-preservation/11-working-set-tracker.md)
+- Feature catalog: [22--context-preservation/300-working-set-tracker.md](../../feature_catalog/22--context-preservation/300-working-set-tracker.md)
 
 ---
 

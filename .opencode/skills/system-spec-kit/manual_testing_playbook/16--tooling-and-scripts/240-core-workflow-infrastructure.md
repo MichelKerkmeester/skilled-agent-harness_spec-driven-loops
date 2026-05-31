@@ -55,7 +55,7 @@ Inspect `scripts/core/memory-indexer.ts`, `post-save-review.ts`, `quality-scorer
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/26-core-workflow-infrastructure.md](../../feature_catalog/16--tooling-and-scripts/26-core-workflow-infrastructure.md)
+- Feature catalog: [16--tooling-and-scripts/229-core-workflow-infrastructure.md](../../feature_catalog/16--tooling-and-scripts/229-core-workflow-infrastructure.md)
 
 ---
 

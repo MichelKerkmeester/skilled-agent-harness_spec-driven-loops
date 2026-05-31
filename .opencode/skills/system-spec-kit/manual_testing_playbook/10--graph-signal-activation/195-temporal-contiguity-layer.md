@@ -62,7 +62,7 @@ Verify clamped-window configuration and default 3600-second behavior -> inspect 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/11-temporal-contiguity-layer.md](../../feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md)
+- Feature catalog: [10--graph-signal-activation/093-temporal-contiguity-layer.md](../../feature_catalog/10--graph-signal-activation/093-temporal-contiguity-layer.md)
 
 ---
 

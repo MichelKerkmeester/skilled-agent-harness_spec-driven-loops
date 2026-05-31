@@ -63,7 +63,7 @@ Inspect similarity threshold constants; verify contradiction detection logic; ch
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/08-prediction-error-save-arbitration.md](../../feature_catalog/02--mutation/08-prediction-error-save-arbitration.md)
+- Feature catalog: [02--mutation/022-prediction-error-save-arbitration.md](../../feature_catalog/02--mutation/022-prediction-error-save-arbitration.md)
 
 ---
 

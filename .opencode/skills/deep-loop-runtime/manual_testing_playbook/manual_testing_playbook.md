@@ -528,32 +528,32 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 
 | Scenario | Feature Catalog Entry | Scenario File |
 |---|---|---|
-| DLR-001 | [F001 Executor config](../feature_catalog/01--executor/01-executor-config.md) | [01--executor/001-executor-config.md](01--executor/001-executor-config.md) |
-| DLR-002 | [F002 Executor audit](../feature_catalog/01--executor/02-executor-audit.md) | [01--executor/002-executor-audit.md](01--executor/002-executor-audit.md) |
-| DLR-003 | [F003 Fallback router](../feature_catalog/01--executor/03-fallback-router.md) | [01--executor/003-fallback-router.md](01--executor/003-fallback-router.md) |
-| DLR-004 | [F004 Prompt pack](../feature_catalog/02--prompt-rendering/01-prompt-pack.md) | [02--prompt-rendering/004-prompt-pack.md](02--prompt-rendering/004-prompt-pack.md) |
-| DLR-005 | [F005 Post-dispatch validate](../feature_catalog/03--validation/01-post-dispatch-validate.md) | [03--validation/005-post-dispatch-validate.md](03--validation/005-post-dispatch-validate.md) |
-| DLR-006 | [F006 Atomic state](../feature_catalog/04--state-safety/01-atomic-state.md) | [04--state-safety/006-atomic-state.md](04--state-safety/006-atomic-state.md) |
-| DLR-007 | [F007 JSONL repair](../feature_catalog/04--state-safety/02-jsonl-repair.md) | [04--state-safety/007-jsonl-repair.md](04--state-safety/007-jsonl-repair.md) |
-| DLR-008 | [F008 Loop lock](../feature_catalog/04--state-safety/03-loop-lock.md) | [04--state-safety/008-loop-lock.md](04--state-safety/008-loop-lock.md) |
-| DLR-009 | [F009 Permissions gate](../feature_catalog/04--state-safety/04-permissions-gate.md) | [04--state-safety/009-permissions-gate.md](04--state-safety/009-permissions-gate.md) |
-| DLR-010 | [F010 Bayesian scorer](../feature_catalog/05--scoring/01-bayesian-scorer.md) | [05--scoring/010-bayesian-scorer.md](05--scoring/010-bayesian-scorer.md) |
-| DLR-011 | [F011 Coverage graph DB](../feature_catalog/06--coverage-graph/01-coverage-graph-db.md) | [06--coverage-graph/011-coverage-graph-db.md](06--coverage-graph/011-coverage-graph-db.md) |
-| DLR-012 | [F012 Coverage graph query](../feature_catalog/06--coverage-graph/02-coverage-graph-query.md) | [06--coverage-graph/012-coverage-graph-query.md](06--coverage-graph/012-coverage-graph-query.md) |
-| DLR-013 | [F013 Coverage graph signals](../feature_catalog/06--coverage-graph/03-coverage-graph-signals.md) | [06--coverage-graph/013-coverage-graph-signals.md](06--coverage-graph/013-coverage-graph-signals.md) |
-| DLR-014 | [F014 convergence.cjs](../feature_catalog/07--script-entry-points/01-convergence-script.md) | [07--script-entry-points/014-convergence-script.md](07--script-entry-points/014-convergence-script.md) |
-| DLR-015 | [F015 upsert.cjs](../feature_catalog/07--script-entry-points/02-upsert-script.md) | [07--script-entry-points/015-upsert-script.md](07--script-entry-points/015-upsert-script.md) |
-| DLR-016 | [F016 query.cjs](../feature_catalog/07--script-entry-points/03-query-script.md) | [07--script-entry-points/016-query-script.md](07--script-entry-points/016-query-script.md) |
-| DLR-017 | [F017 status.cjs](../feature_catalog/07--script-entry-points/04-status-script.md) | [07--script-entry-points/017-status-script.md](07--script-entry-points/017-status-script.md) |
-| DLR-018 | [F018 Multi-seat dispatch](../feature_catalog/08--council/01-multi-seat-dispatch.md) | [08--council/018-multi-seat-dispatch.md](08--council/018-multi-seat-dispatch.md) |
-| DLR-019 | [F019 Round-state JSONL](../feature_catalog/08--council/02-round-state-jsonl.md) | [08--council/019-round-state-jsonl.md](08--council/019-round-state-jsonl.md) |
-| DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/03-adjudicator-verdict-scoring.md) | [08--council/020-adjudicator-verdict-scoring.md](08--council/020-adjudicator-verdict-scoring.md) |
-| DLR-021 | [F021 Cost guards](../feature_catalog/08--council/04-cost-guards.md) | [08--council/021-cost-guards.md](08--council/021-cost-guards.md) |
-| DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/05-session-state-hierarchy.md) | [08--council/022-session-state-hierarchy.md](08--council/022-session-state-hierarchy.md) |
-| DLR-023 | [F023 Fan-out config schema](../feature_catalog/09--fanout/01-fanout-config-schema.md) | [09--fanout/023-fanout-config-schema.md](09--fanout/023-fanout-config-schema.md) |
-| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/02-fanout-pool.md) | [09--fanout/024-fanout-pool-concurrency-cap.md](09--fanout/024-fanout-pool-concurrency-cap.md) |
-| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/03-fanout-run.md) | [09--fanout/025-fanout-run-cli-lineage-spawn.md](09--fanout/025-fanout-run-cli-lineage-spawn.md) |
-| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/04-fanout-salvage.md) | [09--fanout/026-fanout-salvage-recovery.md](09--fanout/026-fanout-salvage-recovery.md) |
-| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/05-fanout-merge.md) | [09--fanout/027-fanout-merge-research.md](09--fanout/027-fanout-merge-research.md) |
-| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/05-fanout-merge.md) | [09--fanout/028-fanout-merge-review-strongest-restriction.md](09--fanout/028-fanout-merge-review-strongest-restriction.md) |
-| DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/01-fanout-config-schema.md) | [09--fanout/029-artifact-dir-override-parity.md](09--fanout/029-artifact-dir-override-parity.md) |
+| DLR-001 | [F001 Executor config](../feature_catalog/01--executor/001-executor-config.md) | [01--executor/001-executor-config.md](01--executor/001-executor-config.md) |
+| DLR-002 | [F002 Executor audit](../feature_catalog/01--executor/002-executor-audit.md) | [01--executor/002-executor-audit.md](01--executor/002-executor-audit.md) |
+| DLR-003 | [F003 Fallback router](../feature_catalog/01--executor/003-fallback-router.md) | [01--executor/003-fallback-router.md](01--executor/003-fallback-router.md) |
+| DLR-004 | [F004 Prompt pack](../feature_catalog/02--prompt-rendering/004-prompt-pack.md) | [02--prompt-rendering/004-prompt-pack.md](02--prompt-rendering/004-prompt-pack.md) |
+| DLR-005 | [F005 Post-dispatch validate](../feature_catalog/03--validation/005-post-dispatch-validate.md) | [03--validation/005-post-dispatch-validate.md](03--validation/005-post-dispatch-validate.md) |
+| DLR-006 | [F006 Atomic state](../feature_catalog/04--state-safety/006-atomic-state.md) | [04--state-safety/006-atomic-state.md](04--state-safety/006-atomic-state.md) |
+| DLR-007 | [F007 JSONL repair](../feature_catalog/04--state-safety/007-jsonl-repair.md) | [04--state-safety/007-jsonl-repair.md](04--state-safety/007-jsonl-repair.md) |
+| DLR-008 | [F008 Loop lock](../feature_catalog/04--state-safety/008-loop-lock.md) | [04--state-safety/008-loop-lock.md](04--state-safety/008-loop-lock.md) |
+| DLR-009 | [F009 Permissions gate](../feature_catalog/04--state-safety/009-permissions-gate.md) | [04--state-safety/009-permissions-gate.md](04--state-safety/009-permissions-gate.md) |
+| DLR-010 | [F010 Bayesian scorer](../feature_catalog/05--scoring/010-bayesian-scorer.md) | [05--scoring/010-bayesian-scorer.md](05--scoring/010-bayesian-scorer.md) |
+| DLR-011 | [F011 Coverage graph DB](../feature_catalog/06--coverage-graph/011-coverage-graph-db.md) | [06--coverage-graph/011-coverage-graph-db.md](06--coverage-graph/011-coverage-graph-db.md) |
+| DLR-012 | [F012 Coverage graph query](../feature_catalog/06--coverage-graph/012-coverage-graph-query.md) | [06--coverage-graph/012-coverage-graph-query.md](06--coverage-graph/012-coverage-graph-query.md) |
+| DLR-013 | [F013 Coverage graph signals](../feature_catalog/06--coverage-graph/013-coverage-graph-signals.md) | [06--coverage-graph/013-coverage-graph-signals.md](06--coverage-graph/013-coverage-graph-signals.md) |
+| DLR-014 | [F014 convergence.cjs](../feature_catalog/07--script-entry-points/014-convergence-script.md) | [07--script-entry-points/014-convergence-script.md](07--script-entry-points/014-convergence-script.md) |
+| DLR-015 | [F015 upsert.cjs](../feature_catalog/07--script-entry-points/015-upsert-script.md) | [07--script-entry-points/015-upsert-script.md](07--script-entry-points/015-upsert-script.md) |
+| DLR-016 | [F016 query.cjs](../feature_catalog/07--script-entry-points/016-query-script.md) | [07--script-entry-points/016-query-script.md](07--script-entry-points/016-query-script.md) |
+| DLR-017 | [F017 status.cjs](../feature_catalog/07--script-entry-points/017-status-script.md) | [07--script-entry-points/017-status-script.md](07--script-entry-points/017-status-script.md) |
+| DLR-018 | [F018 Multi-seat dispatch](../feature_catalog/08--council/018-multi-seat-dispatch.md) | [08--council/018-multi-seat-dispatch.md](08--council/018-multi-seat-dispatch.md) |
+| DLR-019 | [F019 Round-state JSONL](../feature_catalog/08--council/019-round-state-jsonl.md) | [08--council/019-round-state-jsonl.md](08--council/019-round-state-jsonl.md) |
+| DLR-020 | [F020 Adjudicator verdict scoring](../feature_catalog/08--council/020-adjudicator-verdict-scoring.md) | [08--council/020-adjudicator-verdict-scoring.md](08--council/020-adjudicator-verdict-scoring.md) |
+| DLR-021 | [F021 Cost guards](../feature_catalog/08--council/021-cost-guards.md) | [08--council/021-cost-guards.md](08--council/021-cost-guards.md) |
+| DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/022-session-state-hierarchy.md) | [08--council/022-session-state-hierarchy.md](08--council/022-session-state-hierarchy.md) |
+| DLR-023 | [F023 Fan-out config schema](../feature_catalog/09--fanout/023-fanout-config-schema.md) | [09--fanout/023-fanout-config-schema.md](09--fanout/023-fanout-config-schema.md) |
+| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/024-fanout-pool.md) | [09--fanout/024-fanout-pool-concurrency-cap.md](09--fanout/024-fanout-pool-concurrency-cap.md) |
+| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/025-fanout-run.md) | [09--fanout/025-fanout-run-cli-lineage-spawn.md](09--fanout/025-fanout-run-cli-lineage-spawn.md) |
+| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/026-fanout-salvage.md) | [09--fanout/026-fanout-salvage-recovery.md](09--fanout/026-fanout-salvage-recovery.md) |
+| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/027-fanout-merge.md) | [09--fanout/027-fanout-merge-research.md](09--fanout/027-fanout-merge-research.md) |
+| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/027-fanout-merge.md) | [09--fanout/028-fanout-merge-review-strongest-restriction.md](09--fanout/028-fanout-merge-review-strongest-restriction.md) |
+| DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/023-fanout-config-schema.md) | [09--fanout/029-artifact-dir-override-parity.md](09--fanout/029-artifact-dir-override-parity.md) |

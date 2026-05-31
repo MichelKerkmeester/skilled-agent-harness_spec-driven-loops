@@ -77,7 +77,7 @@ weak executor cancels all other lineages.
 
 - Group: Fan-Out
 - Playbook ID: DLR-024
-- Feature catalog entry: `feature_catalog/09--fanout/02-fanout-pool.md`
+- Feature catalog entry: `feature_catalog/09--fanout/024-fanout-pool.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md`
 - Expected verdict mode: GREEN when 10/10 pass and source anchors agree
 - Wall-time estimate: 5-10 min

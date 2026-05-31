@@ -58,7 +58,7 @@ Verify edgeId exists; restore `pre-ex021-causal-unlink` if wrong edge removed
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/03-causal-edge-deletion-memorycausalunlink.md](../../feature_catalog/06--analysis/03-causal-edge-deletion-memorycausalunlink.md)
+- Feature catalog: [06--analysis/048-causal-edge-deletion-memorycausalunlink.md](../../feature_catalog/06--analysis/048-causal-edge-deletion-memorycausalunlink.md)
 
 ---
 

@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/validation/spec-doc-structure.ts` rule dispatch, validat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/26-spec-doc-structure-validator.md](../../feature_catalog/13--memory-quality-and-indexing/26-spec-doc-structure-validator.md)
+- Feature catalog: [13--memory-quality-and-indexing/156-spec-doc-structure-validator.md](../../feature_catalog/13--memory-quality-and-indexing/156-spec-doc-structure-validator.md)
 - Source files: `mcp_server/lib/validation/spec-doc-structure.ts`, `scripts/spec/validate.sh`
 
 ## 5. SOURCE METADATA

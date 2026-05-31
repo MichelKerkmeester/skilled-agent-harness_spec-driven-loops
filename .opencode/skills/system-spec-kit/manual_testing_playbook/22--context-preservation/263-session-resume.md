@@ -174,7 +174,7 @@ Check `caller-context.ts`, `context-server.ts`, and the strict-vs-permissive bra
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/18-session-resume-tool.md](../../feature_catalog/22--context-preservation/18-session-resume-tool.md)
+- Feature catalog: [22--context-preservation/305-session-resume-tool.md](../../feature_catalog/22--context-preservation/305-session-resume-tool.md)
 
 ---
 

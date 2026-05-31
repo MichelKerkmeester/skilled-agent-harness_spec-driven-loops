@@ -57,7 +57,7 @@ Identify orphaned dist file -> check if source was deleted/renamed -> either res
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/14-source-dist-alignment-enforcement.md](../../feature_catalog/16--tooling-and-scripts/14-source-dist-alignment-enforcement.md)
+- Feature catalog: [16--tooling-and-scripts/217-source-dist-alignment-enforcement.md](../../feature_catalog/16--tooling-and-scripts/217-source-dist-alignment-enforcement.md)
 
 ---
 

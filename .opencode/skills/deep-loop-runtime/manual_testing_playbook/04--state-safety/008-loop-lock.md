@@ -35,7 +35,7 @@ Deep loops mutate long-lived packet state across iterations. The state-safety pr
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/04--state-safety/03-loop-lock.md`.
+- Feature catalog entry exists at `feature_catalog/04--state-safety/008-loop-lock.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Loop lock matches the documented current reality, the source anchors are accurat
 
 - Group: State safety
 - Playbook ID: DLR-008
-- Feature catalog entry: `feature_catalog/04--state-safety/03-loop-lock.md`
+- Feature catalog entry: `feature_catalog/04--state-safety/008-loop-lock.md`
 - Scenario file path: `manual_testing_playbook/04--state-safety/008-loop-lock.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

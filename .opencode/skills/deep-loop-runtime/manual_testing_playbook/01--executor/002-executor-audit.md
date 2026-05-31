@@ -35,7 +35,7 @@ This feature is a shared runtime primitive. If it drifts, both deep-review and d
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/01--executor/02-executor-audit.md`.
+- Feature catalog entry exists at `feature_catalog/01--executor/002-executor-audit.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Executor audit matches the documented current reality, the source anchors are ac
 
 - Group: Executor
 - Playbook ID: DLR-002
-- Feature catalog entry: `feature_catalog/01--executor/02-executor-audit.md`
+- Feature catalog entry: `feature_catalog/01--executor/002-executor-audit.md`
 - Scenario file path: `manual_testing_playbook/01--executor/002-executor-audit.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

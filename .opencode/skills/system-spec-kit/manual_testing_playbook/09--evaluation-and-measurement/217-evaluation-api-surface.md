@@ -58,7 +58,7 @@ Check for missing re-exports in `mcp_server/api/eval.ts` -> verify the internal 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/15-evaluation-api-surface.md](../../feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md)
+- Feature catalog: [09--evaluation-and-measurement/081-evaluation-api-surface.md](../../feature_catalog/09--evaluation-and-measurement/081-evaluation-api-surface.md)
 
 ---
 

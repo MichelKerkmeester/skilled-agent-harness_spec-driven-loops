@@ -58,7 +58,7 @@ Identify stale entry -> update MODULE_MAP.md -> re-verify
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/15-module-boundary-map.md](../../feature_catalog/16--tooling-and-scripts/15-module-boundary-map.md)
+- Feature catalog: [16--tooling-and-scripts/218-module-boundary-map.md](../../feature_catalog/16--tooling-and-scripts/218-module-boundary-map.md)
 
 ---
 

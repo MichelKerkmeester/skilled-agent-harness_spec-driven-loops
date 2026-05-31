@@ -59,7 +59,7 @@ Inspect `collectRawCandidates()` stop-after-fusion behavior, `checkDegradation()
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/08-quality-aware-3-tier-search-fallback.md](../../feature_catalog/01--retrieval/08-quality-aware-3-tier-search-fallback.md)
+- Feature catalog: [01--retrieval/008-quality-aware-3-tier-search-fallback.md](../../feature_catalog/01--retrieval/008-quality-aware-3-tier-search-fallback.md)
 
 ---
 

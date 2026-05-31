@@ -56,7 +56,7 @@ Check feature flag governance section
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/06-6-debug-and-telemetry.md](../../feature_catalog/19--feature-flag-reference/06-6-debug-and-telemetry.md)
+- Feature catalog: [19--feature-flag-reference/278-6-debug-and-telemetry.md](../../feature_catalog/19--feature-flag-reference/278-6-debug-and-telemetry.md)
 
 ---
 

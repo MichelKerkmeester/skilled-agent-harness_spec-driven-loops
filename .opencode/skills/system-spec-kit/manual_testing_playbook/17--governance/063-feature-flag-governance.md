@@ -58,7 +58,7 @@ Verify flag enumeration covers all source files; check governance policy definit
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [17--governance/01-feature-flag-governance.md](../../feature_catalog/17--governance/01-feature-flag-governance.md)
+- Feature catalog: [17--governance/249-feature-flag-governance.md](../../feature_catalog/17--governance/249-feature-flag-governance.md)
 
 ---
 

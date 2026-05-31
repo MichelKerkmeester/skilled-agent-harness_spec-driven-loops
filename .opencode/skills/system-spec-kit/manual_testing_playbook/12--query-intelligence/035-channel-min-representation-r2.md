@@ -58,7 +58,7 @@ Verify min-representation algorithm → Check quality floor threshold → Inspec
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/03-channel-min-representation.md](../../feature_catalog/12--query-intelligence/03-channel-min-representation.md)
+- Feature catalog: [12--query-intelligence/124-channel-min-representation.md](../../feature_catalog/12--query-intelligence/124-channel-min-representation.md)
 
 ---
 

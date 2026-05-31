@@ -66,7 +66,7 @@ Inspect `mcp_server/handlers/memory-search.ts` for the `retrievalLevel` dispatch
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/15-dual-level-retrieval.md](../../feature_catalog/15--retrieval-enhancements/15-dual-level-retrieval.md)
+- Feature catalog: [15--retrieval-enhancements/203-dual-level-retrieval.md](../../feature_catalog/15--retrieval-enhancements/203-dual-level-retrieval.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts`
 
 ---

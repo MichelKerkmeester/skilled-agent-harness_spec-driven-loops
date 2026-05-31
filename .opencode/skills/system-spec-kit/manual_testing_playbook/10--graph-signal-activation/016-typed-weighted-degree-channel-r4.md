@@ -60,7 +60,7 @@ Verify edge type taxonomy → Check cap configuration → Inspect cached global 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/01-typed-weighted-degree-channel.md](../../feature_catalog/10--graph-signal-activation/01-typed-weighted-degree-channel.md)
+- Feature catalog: [10--graph-signal-activation/084-typed-weighted-degree-channel.md](../../feature_catalog/10--graph-signal-activation/084-typed-weighted-degree-channel.md)
 
 ---
 

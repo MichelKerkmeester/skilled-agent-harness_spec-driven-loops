@@ -61,7 +61,7 @@ Inspect DB_UPDATED_FILE marker path and detection logic; verify DB reinitializat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/17-cross-process-db-hot-rebinding.md](../../feature_catalog/14--pipeline-architecture/17-cross-process-db-hot-rebinding.md)
+- Feature catalog: [14--pipeline-architecture/177-cross-process-db-hot-rebinding.md](../../feature_catalog/14--pipeline-architecture/177-cross-process-db-hot-rebinding.md)
 
 ---
 

@@ -59,8 +59,8 @@ Verify isLlmReformulationEnabled() → Check LLM_REFORMULATION_ENDPOINT configur
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/07-llm-query-reformulation.md](../../feature_catalog/12--query-intelligence/07-llm-query-reformulation.md)
-- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md)
+- Feature catalog: [12--query-intelligence/128-llm-query-reformulation.md](../../feature_catalog/12--query-intelligence/128-llm-query-reformulation.md)
+- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/llm-reformulation.ts`
 
 ---

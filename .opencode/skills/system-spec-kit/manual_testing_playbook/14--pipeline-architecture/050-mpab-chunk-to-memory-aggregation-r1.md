@@ -58,7 +58,7 @@ Verify MPAB formula implementation → Check child chunk linkage → Inspect agg
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/02-mpab-chunk-to-memory-aggregation.md](../../feature_catalog/14--pipeline-architecture/02-mpab-chunk-to-memory-aggregation.md)
+- Feature catalog: [14--pipeline-architecture/164-mpab-chunk-to-memory-aggregation.md](../../feature_catalog/14--pipeline-architecture/164-mpab-chunk-to-memory-aggregation.md)
 
 ---
 

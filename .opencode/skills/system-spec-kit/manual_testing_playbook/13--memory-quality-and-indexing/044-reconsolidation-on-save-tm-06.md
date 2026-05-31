@@ -126,7 +126,7 @@ Verify BM25 error path after commit → Check `setBm25RepairNeededFlag()` execut
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/06-reconsolidation-on-save.md](../../feature_catalog/13--memory-quality-and-indexing/06-reconsolidation-on-save.md)
+- Feature catalog: [13--memory-quality-and-indexing/139-reconsolidation-on-save.md](../../feature_catalog/13--memory-quality-and-indexing/139-reconsolidation-on-save.md)
 
 ---
 

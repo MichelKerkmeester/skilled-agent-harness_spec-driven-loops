@@ -35,7 +35,7 @@ This is the council state-shape contract. If it drifts, downstream tools that tr
 
 - Working directory is repository root.
 - `deep-loop-runtime` source tree is present.
-- Feature catalog entry exists at `feature_catalog/08--council/05-session-state-hierarchy.md`.
+- Feature catalog entry exists at `feature_catalog/08--council/022-session-state-hierarchy.md`.
 
 ### Steps
 
@@ -78,7 +78,7 @@ Session state hierarchy matches the documented current reality, the id shape rul
 
 - Group: Council
 - Playbook ID: DLR-022
-- Feature catalog entry: `feature_catalog/08--council/05-session-state-hierarchy.md`
+- Feature catalog entry: `feature_catalog/08--council/022-session-state-hierarchy.md`
 - Scenario file path: `manual_testing_playbook/08--council/022-session-state-hierarchy.md`
 - Expected verdict mode: GREEN when current tests and source anchors agree
 - Wall-time estimate: 5-15 min

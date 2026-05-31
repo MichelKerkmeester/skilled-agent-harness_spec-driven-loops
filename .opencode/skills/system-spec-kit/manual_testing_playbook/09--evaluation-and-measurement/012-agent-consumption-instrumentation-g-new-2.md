@@ -57,7 +57,7 @@ Verify logger gate configuration → Check handler registration → Inspect iner
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/08-agent-consumption-instrumentation.md](../../feature_catalog/09--evaluation-and-measurement/08-agent-consumption-instrumentation.md)
+- Feature catalog: [09--evaluation-and-measurement/075-agent-consumption-instrumentation.md](../../feature_catalog/09--evaluation-and-measurement/075-agent-consumption-instrumentation.md)
 
 ---
 

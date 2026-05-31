@@ -49,7 +49,7 @@ Verify `clickup_manage_comments` creates and lists comments is required for corr
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/07-manage-comments.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/057-manage-comments.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

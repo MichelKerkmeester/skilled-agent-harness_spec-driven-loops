@@ -84,7 +84,7 @@ Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps s
 
 - Group: Fan-Out
 - Playbook ID: DLR-029
-- Feature catalog entry: `feature_catalog/09--fanout/01-fanout-config-schema.md`
+- Feature catalog entry: `feature_catalog/09--fanout/023-fanout-config-schema.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md`
 - Expected verdict mode: GREEN when source inspection confirms guards and 197/197 vitest passes
 - Wall-time estimate: 10-15 min

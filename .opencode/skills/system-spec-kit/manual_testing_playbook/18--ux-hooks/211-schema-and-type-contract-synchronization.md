@@ -57,7 +57,7 @@ Inspect `handlers/checkpoints.ts`, `schemas/tool-input-schemas.ts`, `tool-schema
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/04-schema-and-type-contract-synchronization.md](../../feature_catalog/18--ux-hooks/04-schema-and-type-contract-synchronization.md)
+- Feature catalog: [18--ux-hooks/256-schema-and-type-contract-synchronization.md](../../feature_catalog/18--ux-hooks/256-schema-and-type-contract-synchronization.md)
 
 ---
 
@@ -68,4 +68,4 @@ Inspect `handlers/checkpoints.ts`, `schemas/tool-input-schemas.ts`, `tool-schema
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `18--ux-hooks/211-schema-and-type-contract-synchronization.md`
 - audited_post_018: true
-- Feature catalog back-ref: `18--ux-hooks/04-schema-and-type-contract-synchronization.md`
+- Feature catalog back-ref: `18--ux-hooks/256-schema-and-type-contract-synchronization.md`

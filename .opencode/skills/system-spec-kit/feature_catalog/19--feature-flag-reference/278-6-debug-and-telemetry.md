@@ -1,0 +1,71 @@
+---
+title: "6. Debug and Telemetry"
+description: "This document captures the implemented behavior, source references, and validation scope for 6. Debug and Telemetry."
+trigger_phrases:
+  - "debug and telemetry"
+  - "log level configuration"
+  - "speckit debug flags"
+  - "retrieval telemetry settings"
+---
+
+# 6. Debug and Telemetry
+
+<!-- sk-doc-template: skill_asset_feature_catalog -->
+
+## 1. OVERVIEW
+
+This document captures the implemented behavior, source references, and validation scope for 6. Debug and Telemetry.
+
+These settings control diagnostic visibility. They adjust log verbosity and optional telemetry so you can inspect runtime behavior during debugging while keeping production output stable by default.
+
+---
+
+## 2. HOW IT WORKS
+
+| Name | Default | Type | Source File | Description |
+|---|---|---|---|---|
+| `DEBUG_TRIGGER_MATCHER` | _(unset)_ | string | `lib/parsing/trigger-matcher.ts` | When set to any non-empty value, emits debug-level output for trigger phrase matching operations. Useful for diagnosing why a particular memory is or is not matching a given prompt. |
+| `LOG_LEVEL` | `'info'` | string | `lib/utils/logger.ts` | Minimum log severity level. Messages below this level are suppressed. Valid values: `'debug'`, `'info'`, `'warn'`, `'error'`. All log output goes to stderr (stdout is reserved for JSON-RPC). |
+| `SPECKIT_EVAL_LOGGING` | `false` | boolean | `lib/eval/eval-logger.ts` | (Also listed under Search Pipeline.) Enables writes to the eval database during retrieval operations. Must be explicitly `'true'`. See category 1 for full description. |
+| `SPECKIT_DEBUG_INDEX_SCAN` | `false` | boolean | `handlers/memory-index.ts` | (Also listed under Search Pipeline.) Enables verbose file-count diagnostics during index scans. Must be explicitly `'true'`. See category 1 for full description. |
+| `SPECKIT_EXTENDED_TELEMETRY` | `false` | boolean | `lib/telemetry/retrieval-telemetry.ts` | (Also listed under Search Pipeline.) Opt-in retrieval telemetry. Detailed latency/mode/fallback/quality metrics and architecture updates are recorded only when this is explicitly `'true'`. |
+| `SPECKIT_RESULT_EXPLAIN_DEBUG` | `false` | boolean | `mcp_server/formatters/search-results.ts` | Enables debug-tier explainability fields. It does not turn explainability on by itself. |
+| `SPECKIT_HYDE_LOG` | `false` | boolean | `mcp_server/lib/search/hyde.ts` | Logs HyDE shadow-run details, including pseudo-document length, for debugging. It has no retrieval effect. |
+| `SPECKIT_CONSUMPTION_LOG` | `true` | boolean | `lib/telemetry/consumption-logger.ts` | (Also listed under Search Pipeline.) **Default ON (graduated via rollout policy).** `isConsumptionLogEnabled()` delegates to `isFeatureEnabled('SPECKIT_CONSUMPTION_LOG')`, so consumption logging stays active unless explicitly disabled or rollout policy gates it off. |
+
+### Operational and validation controls
+
+| Name | Default | Type | Source File | Description |
+|---|---|---|---|---|
+| `SPECKIT_MEMORY_ADAPTIVE_MODE` | `shadow` | string | `mcp_server/lib/cognitive/adaptive-ranking.ts` | Selects the effective adaptive-ranking mode once adaptive ranking is enabled. Only `promoted` elevates the shadow proposal to promoted mode; unset and any other value resolve to `shadow`. |
+| `SPECKIT_RECENCY_DECAY_DAYS` | `90` | number | `mcp_server/lib/storage/access-tracker.ts` | Positive day-count override for the linear recency decay window used in popularity scoring. Invalid or non-positive values fall back to 90 days. |
+| `SPECKIT_RULES` | _(unset)_ | string | `scripts/spec/validate.sh` | Comma-separated subset of validation rules to run. Each entry is canonicalized; unrecognized names produce a warning and are skipped. |
+| `SPECKIT_SKIP_POST_VALIDATE` | _(unset)_ | string | `scripts/spec/create.sh` | When set to `1`, skips the automatic post-create or post-phase validation pass in spec creation flows. Any other value leaves post-validation enabled. |
+| `SPECKIT_SKIP_VALIDATION` | _(unset)_ | string | `scripts/spec/validate.sh` | When set to any non-empty value, the validator exits early with code 0 after logging that validation was skipped. |
+| `SPECKIT_STRICT` | `false` | boolean | `scripts/spec/validate.sh` | Enables strict validation mode, treating warnings as errors. Equivalent to passing `--strict`. |
+| `SPECKIT_VALIDATION` | `true` | boolean | `scripts/spec/validate.sh` | Master on/off switch for spec validation. When set to `false`, validation is disabled and the script exits successfully without running rules. |
+
+### Output and diagnostics controls
+
+| Name | Default | Type | Source File | Description |
+|---|---|---|---|---|
+| `SPECKIT_JSON` | `false` | boolean | `scripts/spec/validate.sh` | Enables JSON output mode for spec validation. Equivalent to passing `--json`. |
+| `SPECKIT_QUIET` | `false` | boolean | `scripts/spec/validate.sh` | Suppresses non-essential validator output and keeps results terse. Equivalent to passing `--quiet`. |
+| `SPECKIT_VALIDATE_LINKS` | `false` | boolean | `scripts/rules/check-links.sh` | Enables wikilink validation across skill markdown files during the `LINKS_VALID` rule. When unset or false, the rule reports a skipped pass. |
+| `SPECKIT_VERBOSE` | `false` | boolean | `scripts/spec/validate.sh` | Enables detailed validator output. Equivalent to passing `--verbose`. |
+
+---
+
+## 3. SOURCE FILES
+
+Source file references are included in the flag tables above.
+
+---
+
+## 4. SOURCE METADATA
+- Group: Feature Flag Reference
+- Canonical catalog source: `feature_catalog.md`
+- Feature file path: `19--feature-flag-reference/278-6-debug-and-telemetry.md`
+Related references:
+- [277-5-embedding-and-api.md](277-5-embedding-and-api.md) — 5. Embedding and API
+- [279-7-ci-and-build-informational.md](279-7-ci-and-build-informational.md) — 7. CI and Build (informational)

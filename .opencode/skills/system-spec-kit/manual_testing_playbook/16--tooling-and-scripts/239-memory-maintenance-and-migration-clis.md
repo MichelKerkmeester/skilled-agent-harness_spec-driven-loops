@@ -60,7 +60,7 @@ Inspect `scripts/memory/backfill-frontmatter.ts`, `cleanup-orphaned-vectors.ts`,
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/25-memory-maintenance-and-migration-clis.md](../../feature_catalog/16--tooling-and-scripts/25-memory-maintenance-and-migration-clis.md)
+- Feature catalog: [16--tooling-and-scripts/228-memory-maintenance-and-migration-clis.md](../../feature_catalog/16--tooling-and-scripts/228-memory-maintenance-and-migration-clis.md)
 
 ---
 

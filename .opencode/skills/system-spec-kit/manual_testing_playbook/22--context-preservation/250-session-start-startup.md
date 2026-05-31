@@ -173,7 +173,7 @@ Check `shared.ts` SESSION_PRIME_TOKEN_BUDGET constant
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/03-session-start-priming.md](../../feature_catalog/22--context-preservation/03-session-start-priming.md)
+- Feature catalog: [22--context-preservation/295-session-start-priming.md](../../feature_catalog/22--context-preservation/295-session-start-priming.md)
 
 ---
 

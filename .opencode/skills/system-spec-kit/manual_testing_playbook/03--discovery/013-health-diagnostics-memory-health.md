@@ -56,7 +56,7 @@ Run index_scan(force) if FTS mismatch
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [03--discovery/03-health-diagnostics-memoryhealth.md](../../feature_catalog/03--discovery/03-health-diagnostics-memoryhealth.md)
+- Feature catalog: [03--discovery/029-health-diagnostics-memoryhealth.md](../../feature_catalog/03--discovery/029-health-diagnostics-memoryhealth.md)
 
 ---
 

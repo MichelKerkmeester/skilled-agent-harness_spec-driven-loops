@@ -159,7 +159,7 @@ Check env var detection for GEMINI_CLI or GOOGLE_GENAI_USE_VERTEXAI
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/05-cross-runtime-fallback.md](../../feature_catalog/22--context-preservation/05-cross-runtime-fallback.md)
+- Feature catalog: [22--context-preservation/297-cross-runtime-fallback.md](../../feature_catalog/22--context-preservation/297-cross-runtime-fallback.md)
 
 ---
 

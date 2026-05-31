@@ -114,7 +114,7 @@ Check `hook-state.ts` for state directory path and atomic write logic
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/02-precompact-hook.md](../../feature_catalog/22--context-preservation/02-precompact-hook.md)
+- Feature catalog: [22--context-preservation/294-precompact-hook.md](../../feature_catalog/22--context-preservation/294-precompact-hook.md)
 
 ---
 

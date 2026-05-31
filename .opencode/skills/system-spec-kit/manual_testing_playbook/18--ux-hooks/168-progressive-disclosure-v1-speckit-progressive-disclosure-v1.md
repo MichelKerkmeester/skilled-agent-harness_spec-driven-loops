@@ -60,8 +60,8 @@ Verify SPECKIT_PROGRESSIVE_DISCLOSURE_V1 env → Check DEFAULT_PAGE_SIZE (5) →
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/16-progressive-disclosure.md](../../feature_catalog/18--ux-hooks/16-progressive-disclosure.md)
-- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/01-1-search-pipeline-features-speckit.md)
+- Feature catalog: [18--ux-hooks/268-progressive-disclosure.md](../../feature_catalog/18--ux-hooks/268-progressive-disclosure.md)
+- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/progressive-disclosure.ts`
 
 ---

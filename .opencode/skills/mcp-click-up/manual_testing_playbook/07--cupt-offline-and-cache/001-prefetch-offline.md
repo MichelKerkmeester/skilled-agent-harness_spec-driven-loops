@@ -49,7 +49,7 @@ Verify `cupt prefetch` populates cache and `cupt show TASK_ID --offline` succeed
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/09--cupt-workspace/03-prefetch.md` | Feature catalog source |
+| `../feature_catalog/09--cupt-workspace/046-prefetch.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

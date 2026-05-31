@@ -57,7 +57,7 @@ Verify ground truth corpus is seeded → Check metric computation functions → 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/02-core-metric-computation.md](../../feature_catalog/09--evaluation-and-measurement/02-core-metric-computation.md)
+- Feature catalog: [09--evaluation-and-measurement/070-core-metric-computation.md](../../feature_catalog/09--evaluation-and-measurement/070-core-metric-computation.md)
 
 ---
 

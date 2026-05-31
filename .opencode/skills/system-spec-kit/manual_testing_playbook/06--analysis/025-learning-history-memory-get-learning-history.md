@@ -56,7 +56,7 @@ Remove filter if no results
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/07-learning-history-memorygetlearninghistory.md](../../feature_catalog/06--analysis/07-learning-history-memorygetlearninghistory.md)
+- Feature catalog: [06--analysis/052-learning-history-memorygetlearninghistory.md](../../feature_catalog/06--analysis/052-learning-history-memorygetlearninghistory.md)
 
 ---
 

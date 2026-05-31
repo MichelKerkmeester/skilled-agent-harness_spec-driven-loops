@@ -68,7 +68,7 @@ Check memory epilogue in prompt template → Verify generate-context.js JSON mod
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md](../../feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md)
+- Feature catalog: [13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md](../../feature_catalog/13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md)
 
 ---
 

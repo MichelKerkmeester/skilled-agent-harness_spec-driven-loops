@@ -56,7 +56,7 @@ Validate folder and naming rules
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/01-checkpoint-creation-checkpointcreate.md](../../feature_catalog/05--lifecycle/01-checkpoint-creation-checkpointcreate.md)
+- Feature catalog: [05--lifecycle/038-checkpoint-creation-checkpointcreate.md](../../feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md)
 
 ---
 

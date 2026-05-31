@@ -65,7 +65,7 @@ Inspect `mcp_server/lib/session/context-metrics.ts` for the four-factor computat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/22-context-preservation-metrics.md](../../feature_catalog/22--context-preservation/22-context-preservation-metrics.md)
+- Feature catalog: [22--context-preservation/309-context-preservation-metrics.md](../../feature_catalog/22--context-preservation/309-context-preservation-metrics.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/session/context-metrics.ts`, `.opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts`
 
 ---
