@@ -9,16 +9,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T19:35:00Z"
+    last_updated_at: "2026-05-31T20:15:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 1 merged to main — coalescing contract + health.index + orphan sweep"
-    next_safe_action: "Dispatch Phase 2 — timeout fix (background vector drain)"
+    recent_action: "Phase 2 merged to main — async scan + drain circuit guard"
+    next_safe_action: "Dispatch Phase 3 — single-writer concurrency + move reconciliation"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts"
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions: []
 ---
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-memory-index-scan-implementation |
-| **Status** | Phase 1 shipped; Phase 2 next |
+| **Status** | Phase 2 shipped; Phase 3 next |
 | **Level** | 2 |
 | **Created** | 2026-05-31 |
 | **Research Source** | `../012-memory-index-scan-ux-hardening/research/research.md` |
@@ -58,7 +58,7 @@ Planned deliverable (full 5-angle self-maintaining index, research.md §6), in t
 | Phase | Shipped? | Evidence |
 |-------|----------|----------|
 | Phase 1 | Yes | tsc 0 errors; 14/14 tests; merged 2026-05-31 |
-| Phase 2 | No | pending Phase 1 |
+| Phase 2 | Yes | tsc 0 errors; 17/17 tests; merged 2026-05-31 |
 | Phase 3 | No | pending Phase 2 |
 <!-- /ANCHOR:what-built -->
 
@@ -93,7 +93,7 @@ Docs authored by claude-opus-4-8 from the 012 research synthesis using the canon
 | Level-3 docs authored (spec/plan/tasks/checklist/decision-record/impl-summary) | DONE |
 | `validate.sh <folder> --strict` | pending (run after metadata generated) |
 | Phase 1 `tsc` + tests | PASSED (tsc 0 errors; 14/14 on 2026-05-31) |
-| Phase 2 `tsc` + tests | pending |
+| Phase 2 `tsc` + tests | PASSED (tsc 0 errors; 17/17 on 2026-05-31) |
 | Phase 3 `tsc` + full suite | pending |
 | SC1-SC5 (spec.md §5) | pending |
 <!-- /ANCHOR:verification -->

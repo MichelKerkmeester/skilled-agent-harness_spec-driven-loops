@@ -11,12 +11,12 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
     last_updated_at: "2026-05-31T15:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 1 merged to main; test fixed + checklist updated"
-    next_safe_action: "Dispatch Phase 2 — timeout fix (background vector drain)"
+    recent_action: "Phase 2 merged to main — async scan + drain circuit guard"
+    next_safe_action: "Dispatch Phase 3 — single-writer concurrency + move reconciliation"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
-    completion_pct: 33
+    completion_pct: 67
     open_questions: []
     answered_questions: []
 ---
@@ -66,7 +66,7 @@ _memory:
 ## Testing
 
 - [x] CHK-020 [P0] P1 GATE: `tsc` zero new errors + suite green; repeat-scan coalescing (no E429); `memory_health.index` populated; renested orphan removed. <!-- tsc 0 errors; Tests 14 passed (14) on 2026-05-31 -->
-- [ ] CHK-021 [P0] P2 GATE: `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`.
+- [x] CHK-021 [P0] P2 GATE: `tsc` + suite green; `force` scan returns within deadline (`complete_with_pending_vectors`); outage leaves rows `pending` not `retry`. <!-- tsc 0 errors; 17/17 tests (handler-memory-index-async-scan + handler-memory-index-cooldown + incremental-index); merged 2026-05-31 -->
 - [ ] CHK-022 [P0] P3 GATE: `tsc` + FULL suite green; concurrent callers coordinate; `git mv` path updated in place without re-embed.
 - [x] CHK-023 [P1] New targeted tests added for each phase's behavior. <!-- cooldown test renamed + assertions updated for coalescing contract -->
 <!-- /ANCHOR:testing -->
@@ -77,7 +77,7 @@ _memory:
 ## Fix Completeness
 
 - [x] CHK-030 [P0] R1 (no raw E429) met — SC1 verified. <!-- coalescing contract in memory-index.ts -->
-- [ ] CHK-031 [P0] R2 (always completes, no -32001) met — SC2 verified.
+- [x] CHK-031 [P0] R2 (always completes, no -32001) met — SC2 verified. <!-- R2 met; complete_with_pending_vectors status returned; background drain decoupled from request path -->
 - [ ] CHK-032 [P1] R3 (concurrency correct) met — Phase 3.
 - [ ] CHK-033 [P1] R4 (degraded-mode, pending-not-retry) met — Phase 2.
 - [ ] CHK-034 [P1] R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified.
@@ -123,7 +123,7 @@ _memory:
 | Phase | Build (tsc) | Tests | Success Criteria | Status |
 |-------|-------------|-------|------------------|--------|
 | Phase 1 | PASSED (tsc 0 errors) | PASSED (14/14) | SC1 ✓, SC3 ✓, SC4(orphan) ✓ | complete |
-| Phase 2 | pending | pending | SC2 | not started |
+| Phase 2 | PASSED (tsc 0 errors) | PASSED (17/17) | SC2 ✓, R4 ✓ | complete |
 | Phase 3 | pending | pending | SC4(move), R3 | not started |
 | Packet | pending | pending | SC1-SC5 | not started |
 <!-- /ANCHOR:summary -->
