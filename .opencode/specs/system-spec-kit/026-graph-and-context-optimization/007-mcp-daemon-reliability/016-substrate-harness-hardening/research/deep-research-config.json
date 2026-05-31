@@ -7,7 +7,7 @@
   "maxToolCallsPerIteration": 12,
   "maxMinutesPerIteration": 10,
   "progressiveSynthesis": true,
-  "specFolder": ".opencode/specs/system-spec-kit/037-substrate-skip-not-fail-validation",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
   "createdAt": "2026-05-31T08:32:19Z",
   "status": "complete",
   "executionMode": "auto",

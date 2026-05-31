@@ -99,6 +99,7 @@ None — all five key questions resolved with file:line evidence.
 - newInfoRatio: 0.85 → 0.25 → 0.95 → 0.95 → 0.95 (rolling avg ≫ threshold 0.05; no early convergence)
 - Corruption count: 0 across all reducer runs
 
+<!-- ANCHOR:references -->
 ## 11. References
 - `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs`
 - `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-runner-harness.vitest.ts`
@@ -106,6 +107,7 @@ None — all five key questions resolved with file:line evidence.
 - `.env.local`
 - Iteration narratives: `research/iterations/iteration-001.md` … `iteration-005.md`
 - Resource map: `research/resource-map.md`
+<!-- /ANCHOR:references -->
 
 <!-- BEGIN GENERATED: deep-research/spec-findings -->
 <!-- placeholder; replaced by step_writeback_spec_findings -->

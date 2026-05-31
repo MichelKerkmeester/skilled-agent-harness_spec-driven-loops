@@ -39,8 +39,8 @@ _memory:
 <!-- ANCHOR:summary -->
 ## Summary
 
-- **Total references**: 52
-- **By category**: READMEs=0, Documents=21, Commands=0, Agents=0, Skills=0, Specs=26, Scripts=0, Tests=0, Config=5, Meta=0
+- **Total references**: 61
+- **By category**: READMEs=0, Documents=28, Commands=0, Agents=0, Skills=0, Specs=28, Scripts=0, Tests=0, Config=5, Meta=0
 - **Missing on disk**: 0
 - **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization` covering the phase parent root plus its then-current direct phase children (HISTORICAL 2026-04-27 snapshot; current top-level = 8 tracks — see `timeline.md`)
 - **Generated**: 2026-04-27T15:14:08Z
@@ -79,6 +79,13 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/HANDOVER-deferred.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/context-index.md | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/spec.md | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/spec.md | Created | OK | phase child (Level 3); substrate stress-harness hardening — PID-identity, run-id TSV+EPERM sidecar, maintainer-mode suppression, hermetic lever |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/plan.md | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/tasks.md | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/checklist.md | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/decision-record.md | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/implementation-summary.md | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/research/research.md | Created | OK | phase child research (folded-in deep-research VALIDATION) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md | Cited | OK | phase parent root |
 <!-- /ANCHOR:documents -->
 
@@ -115,6 +122,8 @@ _memory:
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/description.json | Cited | OK | phase child root (nested phase parent) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/003-fix-mcp-runtime-stress-findings/graph-metadata.json | Cited | OK | phase child root (nested phase parent) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/description.json | Created | OK | phase child (Level 3) |
+| .opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening/graph-metadata.json | Created | OK | phase child (Level 3) |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/description.json | Cited | OK | phase parent root |
 | .opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json | Cited | OK | phase parent root |
 <!-- /ANCHOR:specs -->
@@ -215,3 +224,17 @@ _memory:
 This resource-map predates the Wave 1-3 restructure shipped by packet 107. The active 026 top-level children are now 15 (down from 16; 004 absorbed into 003). Renamed packets: 002, 006, 014, 015. Full target-state map: see `999-spec-026-restructure-research/resource-map.md` §3 (council-approved reduced variant).
 
 A follow-on packet will refresh THIS resource-map per iter 039's proposed 14-section structure with PHASE-TO-ARTIFACT MAP and DOMAIN-TO-PHASE CROSS-REFERENCE.
+
+---
+
+## Post-Restructure Note (2026-05-31, packet 016)
+
+New phase child added under `007-mcp-daemon-reliability/`: `016-substrate-harness-hardening` (Level 3). Rows for its 6 Level-3 docs were appended to §Documents, its `research/research.md` to §Documents, and its `description.json`/`graph-metadata.json` to §Specs above. Note: this stale catalog does not otherwise enumerate the `007-mcp-daemon-reliability` track's phase children (001–016) — it predates that track's current naming and lists only the pre-wave-4 `007-hook-parity` rows; 016 is added here as a targeted addition pending the deferred full regeneration.
+
+**Provenance**: 016 is a merge of former packet `037-substrate-skip-not-fail-validation` (a deep-research VALIDATION packet, 5 MiniMax iterations — now folded into `016/research/`, with former 037 `spec.md` preserved as `016/research/research-spec.md`) and former packet `038-substrate-harness-hardening` (the Level 3 IMPLEMENTATION packet whose docs live at the top of 016).
+
+**Purpose**: substrate stress-harness hardening — three fixes: (1) process-start-time identity (closes PID-recycling false-SKIP), (2) run-id-stamped TSV + non-clobbering EPERM sidecar, (3) maintainer-mode/INDEX suppression in the code-index child env — plus an opt-in hermetic lever (`SPECKIT_SUBSTRATE_HERMETIC`). Verified: full stress suite 24 files / 90 tests green; clean-env hermetic run confirmed.
+
+**Code it governs** (not re-cataloged in §Scripts/§Tests — those remain TODO stubs):
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs`
+- `.opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts`

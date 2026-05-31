@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-05-31T09:23:26Z"
+    last_updated_at: "2026-05-31T12:59:42Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** 2026-05-31T09:23:26Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-05-31T12:59:42Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -35,29 +35,29 @@ _memory:
 > in [`spec.md`](./spec.md).
 >
 > **Most recent live spec folder:** `007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon`
-> **Oldest live spec folder:** `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs`
-> **Counts:** 634 live spec folders · 34 archived (`z_archive/`).
+> **Oldest live spec folder:** `007-mcp-daemon-reliability/016-substrate-harness-hardening`
+> **Counts:** 635 live spec folders · 34 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
- 2. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
- 3. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
- 4. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
- 5. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
- 6. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
- 7. 2026-05-31 11:22  007-mcp-daemon-reliability/015-infra-followup-hardening
- 8. 2026-05-31 11:22  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
- 9. 2026-05-31 11:22  006-operator-tooling/005-worktree-per-session-automation
-10. 2026-05-31 11:22  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
-11. 2026-05-31 11:22  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
-12. 2026-05-31 11:22  003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster
-13. 2026-05-31 11:22  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
-14. 2026-05-31 11:22  003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
-15. 2026-05-31 11:22  003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
+ 1. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
+ 2. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
+ 3. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
+ 4. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
+ 5. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
+ 6. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
+ 7. 2026-05-31 12:16  007-mcp-daemon-reliability/015-infra-followup-hardening
+ 8. 2026-05-31 12:16  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
+ 9. 2026-05-31 12:16  006-operator-tooling/005-worktree-per-session-automation
+10. 2026-05-31 12:16  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
+11. 2026-05-31 12:16  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
+12. 2026-05-31 12:16  003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster
+13. 2026-05-31 12:16  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
+14. 2026-05-31 12:16  003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
+15. 2026-05-31 12:16  003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
 ```
 
 ---
@@ -69,10 +69,10 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-05-31 11:22 | 2026-05-28 | `007-mcp-daemon-reliability/` |
-| 2 | 2026-05-31 11:22 | 2026-05-26 | `006-operator-tooling/` |
-| 3 | 2026-05-31 11:22 | 2026-05-26 | `003-memory-and-causal-runtime/` |
-| 4 | 2026-05-31 11:22 | 2026-05-26 | `002-spec-kit-internals/` |
+| 1 | 2026-05-31 12:16 | 2026-05-28 | `007-mcp-daemon-reliability/` |
+| 2 | 2026-05-31 12:16 | 2026-05-26 | `006-operator-tooling/` |
+| 3 | 2026-05-31 12:16 | 2026-05-26 | `003-memory-and-causal-runtime/` |
+| 4 | 2026-05-31 12:16 | 2026-05-26 | `002-spec-kit-internals/` |
 | 5 | 2026-05-31 10:53 | 2026-05-26 | `005-graph-impact-and-affordance/` |
 | 6 | 2026-05-31 10:53 | 2026-04-27 | `000-release-and-program-cleanup/` |
 | 7 | 2026-05-31 10:53 | 2026-04-21 | `004-code-graph/` |
@@ -90,40 +90,40 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-05-31 11:22  born:2026-05-31  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
-2026-05-31 11:22  born:2026-05-30        007-mcp-daemon-reliability/015-infra-followup-hardening
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
-2026-05-31 11:22  born:2026-05-30  impl  006-operator-tooling/005-worktree-per-session-automation
-2026-05-31 11:22  born:2026-05-30  impl  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
-2026-05-31 11:22  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
-2026-05-31 11:22  born:2026-05-29  impl  002-spec-kit-internals/006-orchestrator-placeholder-parity
-2026-05-31 11:22  born:2026-05-29  impl  002-spec-kit-internals/005-validate-recursive-orchestrator-fix
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket
-2026-05-31 11:22  born:2026-05-29        003-memory-and-causal-runtime/011-embedding-stack-hardening
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server
-2026-05-31 11:22  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation
-2026-05-31 11:22  born:2026-05-29        003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
-2026-05-31 11:22  born:2026-05-28        007-mcp-daemon-reliability
-2026-05-31 11:22  born:2026-05-26        006-operator-tooling
-2026-05-31 11:22  born:2026-05-26        003-memory-and-causal-runtime
-2026-05-31 11:22  born:2026-05-26        002-spec-kit-internals
+2026-05-31 12:16  born:2026-05-31  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
+2026-05-31 12:16  born:2026-05-30        007-mcp-daemon-reliability/015-infra-followup-hardening
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
+2026-05-31 12:16  born:2026-05-30  impl  006-operator-tooling/005-worktree-per-session-automation
+2026-05-31 12:16  born:2026-05-30  impl  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
+2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
+2026-05-31 12:16  born:2026-05-29  impl  002-spec-kit-internals/006-orchestrator-placeholder-parity
+2026-05-31 12:16  born:2026-05-29  impl  002-spec-kit-internals/005-validate-recursive-orchestrator-fix
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket
+2026-05-31 12:16  born:2026-05-29        003-memory-and-causal-runtime/011-embedding-stack-hardening
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server
+2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation
+2026-05-31 12:16  born:2026-05-29        003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
+2026-05-31 12:16  born:2026-05-28        007-mcp-daemon-reliability
+2026-05-31 12:16  born:2026-05-26        006-operator-tooling
+2026-05-31 12:16  born:2026-05-26        003-memory-and-causal-runtime
+2026-05-31 12:16  born:2026-05-26        002-spec-kit-internals
 2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/013-owner-lease-election-race
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/013-standalone-save-second-writer-guard
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/012-boot-integrity-retention-probe
@@ -724,6 +724,7 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-26 19:29  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/002b-cocoindex-reranker-doc-prose
 2026-05-26 19:29  born:2026-05-22  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/024-cli-deep-research-memory-leak-audit/packet-docs
 2026-05-26 19:29  born:2026-05-22  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs
+??????????       born:2026-05-31  impl  007-mcp-daemon-reliability/016-substrate-harness-hardening
 ```
 
 ---

@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
     last_updated_at: "2026-05-31T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored wave-6 bridge: folded 8 sibling packets (029-036) into existing tracks"
+    recent_action: "Authored wave-7 bridge: merged substrate harness packets 037+038 into 007/016-substrate-harness-hardening"
     next_safe_action: "Resolve old phase paths via this bridge"
     blockers: []
     key_files:
@@ -40,7 +40,28 @@ history — all of it lives here.
 
 ---
 
-## Latest — Wave 6 (2026-05-31): 8 sibling packets folded in (029–036)
+## Latest — Wave 7 (2026-05-31): substrate harness packets merged into 007 daemon-reliability
+
+Two top-level `system-spec-kit/` sibling packets — a deep-research VALIDATION packet (`037`) and a
+Level 3 IMPLEMENTATION packet (`038`) — were merged and relocated into a single packet under the
+`007-mcp-daemon-reliability/` track. The Level 3 docs (spec/plan/tasks/checklist/decision-record/
+implementation-summary) live at the top of `016-substrate-harness-hardening/`; the former `037`
+research is folded in at `016-.../research/` (with the former `037` spec preserved as
+`research/research-spec.md`). Historical references to the old top-level paths are NOT rewritten;
+resolve them via the bridge below.
+
+| Original Phase | New Home | Status | Notes |
+|----------------|----------|--------|-------|
+| `037-substrate-skip-not-fail-validation` | `007-mcp-daemon-reliability/016-substrate-harness-hardening/research/` | active | Deep-research validation packet; research folded in (former spec preserved as `research/research-spec.md`) |
+| `038-substrate-harness-hardening` | `007-mcp-daemon-reliability/016-substrate-harness-hardening/` | active | Level 3 implementation docs at packet root; merged with former `037` into one packet |
+
+Both former top-level packets were merged into the single `016-substrate-harness-hardening` packet
+under the `007` daemon-reliability phase. Folder numbers remain topical identity; `timeline.md` is
+the separate recency view.
+
+---
+
+## Wave 6 (2026-05-31): 8 sibling packets folded in (029–036)
 
 Eight top-level `system-spec-kit/` sibling packets were renested into their best-fit existing
 tracks (in-store `git mv`; each keeps its internal child numbering). The two `032-*` ids no longer

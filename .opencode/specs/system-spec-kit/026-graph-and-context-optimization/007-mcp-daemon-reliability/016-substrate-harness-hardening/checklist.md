@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/038-substrate-harness-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening"
     last_updated_at: "2026-05-31T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Marked all checklist items with evidence after green suite"
@@ -231,7 +231,7 @@ _memory:
 - [x] CHK-142 [P2] User-facing documentation updated
   - **Evidence**: N/A — no user-facing surface
 - [x] CHK-143 [P2] Knowledge transfer documented
-  - **Evidence**: source research linked (packet 037)
+  - **Evidence**: source research folded in locally (`research/research.md`)
 <!-- /ANCHOR:docs-verify -->
 
 ---

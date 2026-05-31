@@ -10,7 +10,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/038-substrate-harness-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening"
     last_updated_at: "2026-05-31T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored three ADRs (Accepted)"
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-31 |
-| **Deciders** | Maintainer, deep-research validation (packet 037) |
+| **Deciders** | Maintainer, the deep-research validation in `research/` |
 
 ---
 
@@ -131,7 +131,7 @@ A lease PID is accepted as owner only if it is alive AND its real start time mat
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-31 |
-| **Deciders** | Maintainer, deep-research validation (packet 037) |
+| **Deciders** | Maintainer, the deep-research validation in `research/` |
 
 ---
 
@@ -188,7 +188,7 @@ Stamp each run's TSV with a trailing `run_id` column, and on EPERM write current
 
 | # | Check | Result | Evidence |
 |---|-------|--------|----------|
-| 1 | **Necessary?** | PASS | Stale-pid hazard confirmed in packet 037 |
+| 1 | **Necessary?** | PASS | Stale-pid hazard confirmed in this packet's `research/` |
 | 2 | **Beyond Local Maxima?** | PASS | Throw and overwrite-force rejected |
 | 3 | **Sufficient?** | PASS | Run-id + sidecar covers the failure mode |
 | 4 | **Fits Goal?** | PASS | Serves non-misleading evidence |
@@ -220,7 +220,7 @@ Stamp each run's TSV with a trailing `run_id` column, and on EPERM write current
 |-------|-------|
 | **Status** | Accepted |
 | **Date** | 2026-05-31 |
-| **Deciders** | Maintainer, deep-research validation (packet 037) |
+| **Deciders** | Maintainer, the deep-research validation in `research/` |
 
 ---
 

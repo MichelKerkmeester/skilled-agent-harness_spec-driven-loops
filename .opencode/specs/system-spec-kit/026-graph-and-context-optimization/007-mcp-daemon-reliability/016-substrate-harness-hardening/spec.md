@@ -11,7 +11,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/038-substrate-harness-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening"
     last_updated_at: "2026-05-31T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Authored Level 3 spec for the three harness fixes"
@@ -37,7 +37,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-The deep-research validation (packet 037) confirmed the "skip-not-fail on live owner" substrate-harness fix is sound, but surfaced three residual risks, all in `run-substrate-stress-harness.mjs`. This spec closes all three: a PID-recycling false-SKIP, a stale-pid TSV evidence hazard, and a maintainer-mode INDEX-scan leak that lets a clean-env / CI run rewrite `graph-metadata.json` tree-wide.
+The deep-research validation in this packet's `research/` (see `research/research.md`) confirmed the "skip-not-fail on live owner" substrate-harness fix is sound, but surfaced three residual risks, all in `run-substrate-stress-harness.mjs`. This spec closes all three: a PID-recycling false-SKIP, a stale-pid TSV evidence hazard, and a maintainer-mode INDEX-scan leak that lets a clean-env / CI run rewrite `graph-metadata.json` tree-wide.
 
 **Key Decisions**: process-start-time identity check for lease owners (ADR-001), run-id-stamped TSV with non-clobbering EPERM fallback (ADR-002), explicit maintainer-mode/INDEX suppression in the harness child env (ADR-003).
 
@@ -168,7 +168,7 @@ Make the harness trustworthy under adversarial and clean-env conditions: a SKIP 
 |-----------|-------|----------|
 | Scope | 8/25 | Files: 2, LOC: ~170, Systems: 1 |
 | Risk | 10/25 | Auth: N, API: N, Breaking: N (test-only surface) |
-| Research | 6/20 | Source research already complete (packet 037) |
+| Research | 6/20 | Source research already complete (this packet's `research/`) |
 | Multi-Agent | 0/15 | Workstreams: 1 |
 | Coordination | 4/15 | Dependencies: launcher env semantics |
 | **Total** | **28/100** | **Level 3 (user-directed for governance, not score)** |

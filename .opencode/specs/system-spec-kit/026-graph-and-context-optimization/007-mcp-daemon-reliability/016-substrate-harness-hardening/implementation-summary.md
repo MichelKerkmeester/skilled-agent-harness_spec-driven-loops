@@ -9,7 +9,7 @@ importance_tier: "normal"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/038-substrate-harness-hardening"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening"
     last_updated_at: "2026-05-31T12:00:00Z"
     last_updated_by: "claude-opus"
     recent_action: "Implemented all three harness fixes + tests; full stress suite green (24 files / 87 tests)."
@@ -38,7 +38,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | 038-substrate-harness-hardening |
+| **Spec Folder** | 026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening |
 | **Completed** | 2026-05-31 |
 | **Level** | 3 |
 | **Actual Effort** | ~2.5 hours |
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Closed the three residual risks from packet 037, all in `run-substrate-stress-harness.mjs`, with new behavioral tests.
+Closed the three residual risks from this packet's `research/` (see `research/research.md`), all in `run-substrate-stress-harness.mjs`, with new behavioral tests.
 
 ### Process-start-time identity
 A lease PID is accepted as owner only if alive AND its start time matches the lease within 2s (`processStartedAt`, `leaseOwnerMatch`); liveness-only fallback when start time is unreadable.
