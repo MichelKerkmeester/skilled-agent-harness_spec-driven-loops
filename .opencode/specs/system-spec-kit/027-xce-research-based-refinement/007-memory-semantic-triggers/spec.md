@@ -116,6 +116,7 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 - `memory-triggers.ts` 2-stage handler (~70-110 LOC additions):
   - Stage 1: existing lexical match (unchanged path).
   - Stage 2 (gated by flag): if lexical empty OR weak (no `passes_threshold`), embed prompt → cosine search → merge with lexical, lexical precedence preserved.
+  - **Insertion point (iter-035):** add the Stage 2 branch immediately after `.slice(0, limit)` at `trigger-matcher.ts:855` — zero-cost on lexical hits because the branch is never reached when `results.length > 0`.
   - Strong lexical command matches short-circuit Stage 2 (no embed).
 - Activation guards in `memory-triggers.ts:360-380`:
   - Semantic-only hits: `attention = min(0.85, semanticScore)`, `matchSource: "semantic"`.

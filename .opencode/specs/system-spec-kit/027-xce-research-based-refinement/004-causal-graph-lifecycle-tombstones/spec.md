@@ -105,6 +105,13 @@ The `causal_edges` table is a flat active-edge table with no lifecycle record. W
 
 This creates two operational problems. Orphan edges can accumulate when some delete paths bypass causal cleanup, and successful cleanup can erase the evidence needed to debug or reverse an incorrect deletion.
 
+Three active call sites perform hard edge deletes with no tombstone today (confirmed iter-032):
+- `handlers/memory-crud-delete.ts:117-118` — single memory delete, within SQLite transaction
+- `handlers/memory-bulk-delete.ts:248-252` — bulk delete loop; cache invalidation was added by d232da4ee but edge tombstoning was not
+- `handlers/memory-crud-health.ts:701-714` → `causal-edges.ts:836` — autoRepair orphan sweep via `cleanupOrphanedEdges()`; previously inactive, now live
+
+Both delete implementations (`causal-edges.ts:764-775` for bulk, `causal-edges.ts:743-759` for single) issue unconditional `DELETE FROM causal_edges` with no prior snapshot.
+
 ### Purpose
 
 Route every causal-edge deletion through a single sweep helper that writes a tombstone audit row, increments a lifecycle generation, hard-deletes the active edge, and gives health auto-repair a safe orphan-cleanup path.
