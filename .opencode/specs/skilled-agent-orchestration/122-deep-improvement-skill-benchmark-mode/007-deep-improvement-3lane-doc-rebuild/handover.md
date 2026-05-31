@@ -94,7 +94,7 @@ Exact Command Sequence | Expected Signals | Evidence | Pass/Fail | Failure
 Triage), `## 4. SOURCE FILES` (Playbook Sources + Implementation/Test Anchors),
 `## 5. SOURCE METADATA`. Dirs `NN--category`, files `NNN-name.md`.
 Exemplars to mirror: `feature_catalog/04--model-benchmark-mode/01-mode-switch.md`
-and `manual_testing_playbook/09--model-benchmark-mode/035-mode-switch-routing.md`.
+and `manual_testing_playbook/09--model-benchmark-mode/038-mode-switch-routing.md`.
 
 **Best whole-tree exemplar of a clean multi-mode layout:** `deep-loop-runtime`
 (`.opencode/skills/deep-loop-runtime/feature_catalog/` — 9 categories, coverage
@@ -221,7 +221,7 @@ but RE-VERIFY each against the .cjs before shipping.
   04-d5-connectivity-gate, 05-scoring-and-funnel, 06-dual-report-and-remediation).
   Authored by subagent, source-verified against `scripts/skill-benchmark/*.cjs`.
 - **Lane C playbook subdir** `manual_testing_playbook/10--skill-benchmark/` — 6
-  scenarios SB-040..SB-045. Live-verified (subagent ran the real scripts). File
+  scenarios SB-043..SB-048. Live-verified (subagent ran the real scripts). File
   043's `printf '%s\n'` is intentional shell, NOT a defect.
 - **Stale fixes:** `feature_catalog/04--model-benchmark-mode/01-mode-switch.md`
   now says `VALID_MODES` = three modes (was "only agent-improvement and
@@ -236,10 +236,10 @@ but RE-VERIFY each against the .cjs before shipping.
 ### NOT DONE (resume work, in priority order)
 
 1. **DONE (commit `0f70323e9c`).** Playbook landing now: Lane Note says three
-   lanes, has a `## 16. SKILL-BENCHMARK MODE` section (SB-040..SB-045 with
+   lanes, has a `## 16. SKILL-BENCHMARK MODE` section (SB-043..SB-048 with
    Description / Scenario Contract / Feature-File links into `10--skill-benchmark/`),
    `10--skill-benchmark/` added to the artifacts list + both cross-reference
-   tables, coverage count bumped 42→48, and the closure wave lists SB-040..045.
+   tables, coverage count bumped 42→48, and the closure wave lists SB-043..048.
    Verified: 0 residual "two lanes", section present, 6 SB feature-file links.
 2. **Full mirror-renumber (operator's explicit ask)** — regroup BOTH trees into
    the §3 7-category taxonomy. Lane C catalog is ALREADY at its final `05--skill-benchmark`;
