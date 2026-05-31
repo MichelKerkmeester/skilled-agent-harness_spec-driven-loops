@@ -190,9 +190,35 @@ function backfillActiveProfileKey(db: Database.Database): void {
     return;
   }
 
-  (db.prepare(
-    `UPDATE ${cacheTable(db)} SET profile_key = ? WHERE profile_key = ''`,
-  ) as Database.Statement).run(profileKey);
+  // Converge the table in two steps. A legacy profile_key='' row whose target
+  // (content_hash, active profile_key, input_kind, model_id, dimensions) primary
+  // key is already occupied by the canonical active-profile sibling cannot be
+  // relabeled — a plain UPDATE would move it onto the occupied PK and raise a
+  // UNIQUE constraint, aborting DB init for every memory tool call (and crashing
+  // the daemon on reconnect). First DELETE those redundant duplicates (the
+  // sibling already holds an equivalent content-addressed embedding, so nothing
+  // retrievable is lost), then relabel the remaining unique '' rows. Done in a
+  // transaction so a failure leaves the table unchanged. This also converges the
+  // table in-migration rather than leaving duplicates to accumulate across boots.
+  const table = cacheTable(db);
+  const converge = db.transaction((activeProfileKey: string) => {
+    (db.prepare(
+      `DELETE FROM ${table}
+         WHERE profile_key = ''
+           AND EXISTS (
+             SELECT 1 FROM ${table} AS occupied
+             WHERE occupied.content_hash = ${table}.content_hash
+               AND occupied.input_kind = ${table}.input_kind
+               AND occupied.model_id = ${table}.model_id
+               AND occupied.dimensions = ${table}.dimensions
+               AND occupied.profile_key = ?
+           )`,
+    ) as Database.Statement).run(activeProfileKey);
+    (db.prepare(
+      `UPDATE ${table} SET profile_key = ? WHERE profile_key = ''`,
+    ) as Database.Statement).run(activeProfileKey);
+  });
+  converge(profileKey);
 }
 
 function migrateEmbeddingCacheSchema(db: Database.Database): void {

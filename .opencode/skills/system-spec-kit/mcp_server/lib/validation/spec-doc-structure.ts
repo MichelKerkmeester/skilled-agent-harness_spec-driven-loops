@@ -719,7 +719,7 @@ function validateFrontmatterMemoryBlock(folder: string, level: string): RuleResu
         continue;
       }
       const looksNarrative = /\n|(^|\s)(?:because|so that|which means|the reason|details|summary)\b/i.test(fieldValue)
-        || /(?:[.!?].*){2,}/.test(fieldValue)
+        || (fieldValue.match(/[.!?](?=\s+[A-Z]|\s*$)/g) ?? []).length >= 2
         || /^[#>*-]/.test(fieldValue)
         || /\bhttps?:\/\//.test(fieldValue);
       if (looksNarrative || fieldValue.length > 96) {
