@@ -120,8 +120,8 @@ describe('substrate harness — EPERM sidecar fallback', () => {
   });
 });
 
-// Hermetic lever (ADR-003 deeper option): opt-in via SPECKIT_SUBSTRATE_HERMETIC=1, giving the
-// code-index child its own within-repo throwaway DB dir so it never contends with a live owner.
+// Hermetic lever: opt-in via SPECKIT_SUBSTRATE_HERMETIC=1, giving the code-index child its own
+// within-repo throwaway DB dir so it never contends with a live owner during clean-env runs.
 describe('substrate harness — hermetic code-index DB dir', () => {
   it('returns null unless hermetic mode is explicitly enabled', () => {
     const prev = process.env.SPECKIT_SUBSTRATE_HERMETIC;
