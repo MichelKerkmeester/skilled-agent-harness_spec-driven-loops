@@ -30,7 +30,7 @@ _memory:
 # Feature Specification: memory_index_scan Self-Maintaining Index Implementation
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Level** | 3 |
+| **Level** | 2 |
 | **Priority** | P1 |
 | **Status** | In Progress (Phase 1 starting) |
 | **Created** | 2026-05-31 |
@@ -145,7 +145,7 @@ The full 5-angle design, delivered in three gated phases:
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 10. OPEN QUESTIONS
 
 - Q1 (Phase 2/3): new `index_scan_jobs` / `index_scan_work_items` tables vs reusing the embedder job table with a type discriminator (research.md §9). **Resolved at Phase 2 plan** — default to reuse-with-discriminator to minimize migration surface; revisit if the job semantics diverge.
 - Q2 (Phase 1): exact `memory_health.index` field names — fixed by this spec's SC3 enum; counts derive from existing `memory_stats` / `embedder_status` / retry telemetry.

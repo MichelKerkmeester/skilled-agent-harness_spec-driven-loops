@@ -24,12 +24,12 @@ _memory:
 # Tasks: memory_index_scan Self-Maintaining Index
 
 <!-- SPECKIT_TEMPLATE_SOURCE: tasks-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
 <!-- ANCHOR:notation -->
-## Notation
+## Task Notation
 
 - `[ ]` not started · `[~]` in progress · `[x]` complete (with evidence) · `[!]` blocked
 - Each task names its target file(s) and the verification that closes it.
@@ -40,7 +40,9 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-1 -->
-## Phase 1 — Coalescing Contract + Health + Orphan Sweep
+## Phase 1: Setup
+
+**Phase theme — Coalescing Contract + Health + Orphan Sweep.**
 
 - [ ] **P1.1** Replace the raw `E429` return (`handlers/memory-index.ts:245-260`) with a success envelope that joins the in-flight/recent job: `{jobId, scanKey, status, phase, coalesced:true, reason, nextPollAfterMs}`, derived from the existing lease reason (`lease_active` / `cooldown`). Cooldown becomes internal-only.
 - [ ] **P1.2** Compute `scanKey` = stable hash of normalized scope (`spec_folder`) + options (`force`, `incremental`, includes) + DB identity. Same key ⇒ coalesce.
@@ -54,7 +56,9 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-2 -->
-## Phase 2 — Phased Async Execution + Degraded-Mode
+## Phase 2: Implementation
+
+**Phase theme — Phased Async Execution + Degraded-Mode.**
 
 - [ ] **P2.1** Flip scan indexing to async mode (`handlers/save/embedding-pipeline.ts:140` path; scan currently sync `memory-index.ts:489`) so lexical rows commit `pending` (BM25/FTS-searchable) without the provider.
 - [ ] **P2.2** Implement the 3-phase job: bounded walk (manifest by mtime+hash) → commit-lexical (per-tick cap) → async vector drain; request returns at `phase:'lexical_complete'`, `status:'complete_with_pending_vectors'`.
@@ -68,7 +72,9 @@ _memory:
 ---
 
 <!-- ANCHOR:phase-3 -->
-## Phase 3 — Single-Writer Concurrency + Move Reconciliation
+## Phase 3: Verification
+
+**Phase theme — Single-Writer Concurrency + Move Reconciliation.**
 
 - [ ] **P3.1** Job-layer single-writer: serialize lexical workers per DB + atomic claim-by-update for file/vector work items (`retry-manager.ts:303` pattern); per-worktree DBs are independent domains.
 - [ ] **P3.2** Heartbeat + lease-epoch recovery for stale/dead workers (steal after ~60s expiry, `DEFAULT_SCAN_LEASE_EXPIRY_MS`).
@@ -81,7 +87,7 @@ _memory:
 ---
 
 <!-- ANCHOR:completion -->
-## Completion
+## Completion Criteria
 
 - [ ] All Phase 1-3 gates passed with recorded evidence.
 - [ ] spec.md §5 success criteria SC1-SC5 demonstrably met.

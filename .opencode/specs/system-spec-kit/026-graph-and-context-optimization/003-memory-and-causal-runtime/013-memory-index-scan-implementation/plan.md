@@ -27,7 +27,7 @@ _memory:
 # Implementation Plan: memory_index_scan Self-Maintaining Index
 
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 

@@ -26,7 +26,7 @@ _memory:
 # Implementation Summary
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
-<!-- SPECKIT_LEVEL: 3 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
@@ -37,7 +37,7 @@ _memory:
 |-------|-------|
 | **Spec Folder** | 013-memory-index-scan-implementation |
 | **Status** | Docs complete; implementation NOT started (Phase 1 next) |
-| **Level** | 3 |
+| **Level** | 2 |
 | **Created** | 2026-05-31 |
 | **Research Source** | `../012-memory-index-scan-ux-hardening/research/research.md` |
 <!-- /ANCHOR:metadata -->
