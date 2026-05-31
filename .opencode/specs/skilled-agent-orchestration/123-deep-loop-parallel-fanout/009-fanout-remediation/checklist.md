@@ -127,3 +127,64 @@ _memory:
 **Status**: PLANNED — implementation not started. No completion claims until items verified with evidence. Architecture parity gate (CHK-025) and the two P0-catching tests (CHK-020, CHK-021) are the non-negotiable gates; performance target (fan-out wall-clock ≈ ceil(N/K)×per-lineage, NFR-P01) verified via the real-spawn test.
 
 <!-- /ANCHOR:summary -->
+---
+
+<!-- ANCHOR:arch-verify -->
+## L3: ARCHITECTURE VERIFICATION
+
+- [ ] CHK-100 [P0] Single-executor path byte-identical to `main` (parity gate, ADR-005)
+  - **Evidence**: diff of config/state(modulo timestamps)/iteration md/final report = empty
+- [ ] CHK-101 [P0] ADRs documented in decision-record.md with status Accepted (ADR-001..005)
+- [ ] CHK-102 [P1] C-01 rewrite confined to the inner fan-out worker (TSX self-respawn left synchronous, N-02)
+
+<!-- /ANCHOR:arch-verify -->
+---
+
+<!-- ANCHOR:perf-verify -->
+## L3: PERFORMANCE VERIFICATION
+
+- [ ] CHK-110 [P1] Fan-out wall-clock ≈ ceil(N/K)×per-lineage, not N× (NFR-P01)
+  - **Evidence**: timed real-spawn test or manual 2-lineage run
+- [ ] CHK-111 [P2] No measurable regression on the single-executor path
+
+<!-- /ANCHOR:perf-verify -->
+---
+
+<!-- ANCHOR:deploy-ready -->
+## L3: DEPLOYMENT READINESS
+
+- [ ] CHK-120 [P0] Rollback procedure documented (plan.md §7/§10) — fan-out is opt-in, revert restores prior behavior
+- [ ] CHK-121 [P1] Fanout suite count recorded before/after (regression floor 72)
+- [ ] CHK-122 [P2] `validate.sh --strict` green on 009
+
+<!-- /ANCHOR:deploy-ready -->
+---
+
+<!-- ANCHOR:compliance-verify -->
+## L3: COMPLIANCE VERIFICATION
+
+- [ ] CHK-130 [P1] All changes hold packet 123 §2's byte-identical parity contract (ADR-005)
+- [ ] CHK-131 [P1] Comment-hygiene gate passes on every touched code file (no spec/phase/finding ids in comments)
+- [ ] CHK-132 [P2] No new external dependency introduced (reuse-first per ADR-003)
+
+<!-- /ANCHOR:compliance-verify -->
+---
+
+<!-- ANCHOR:docs-verify -->
+## L3: DOCUMENTATION VERIFICATION
+
+- [ ] CHK-140 [P1] U-01 executor field aligned to `.kind` across docs + YAML
+- [ ] CHK-141 [P2] Children 003-006 have impl-summaries + fresh graph-metadata (DOC-STALENESS)
+- [ ] CHK-142 [P2] Parent `spec.md` continuity refreshed (no stale completion_pct:33)
+
+<!-- /ANCHOR:docs-verify -->
+---
+
+<!-- ANCHOR:sign-off -->
+## L3: SIGN-OFF
+
+- [ ] CHK-150 [P0] All 14 findings fixed + tested; full fanout suite green; parity gate green
+- [ ] CHK-151 [P0] Implementation-summary updated from PLANNED to actual with verification evidence
+- [ ] CHK-152 [P1] Operator review of the merged remediation before closing the phase
+
+<!-- /ANCHOR:sign-off -->

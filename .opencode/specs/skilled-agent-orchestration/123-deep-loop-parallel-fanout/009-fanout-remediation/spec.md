@@ -137,8 +137,32 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 <!-- /ANCHOR:success-criteria -->
 ---
 
+<!-- ANCHOR:risks -->
+## 6. RISKS & DEPENDENCIES
+
+| Type | Item | Impact | Mitigation |
+|------|------|--------|------------|
+| Dependency | `runAuditedExecutorCommandAsync` (executor-audit.ts:663) | C-01/TIMEOUT-ORPHANS reuse target | Already async + detached + SIGTERM→SIGKILL; verify signature before wiring |
+| Dependency | `buildExecutorDispatchEnv` (executor-audit.ts:466) | ENV-LEAK reuse target | Confirm it carries every CLI auth prefix the lineages need |
+| Risk | C-01 changes the dispatch hot path | Could perturb single-executor parity | Touch the INNER worker only; leave the TSX self-respawn `spawnSync` (N-02); run the parity gate |
+| Risk | U-01 field rename touches 6 command files | Could break research path while fixing review | Change both consumers to `.kind` atomically; native-run trace both loops |
+| Risk | C-03 verbatim is L/High | Largest change, last in order | Sequenced last; behind the parity gate; its own task cluster |
+
+<!-- /ANCHOR:risks -->
+---
+
+<!-- ANCHOR:questions -->
+## 7. OPEN QUESTIONS
+
+- U-01: does the YAML runner write the loader's normalized config back before the `.kind` predicate? **RESOLVED for spec purposes: standardize on `.kind` across docs + predicates so the answer doesn't matter (ADR-002).**
+- C-03: verbatim vs prompt-synthesis for CLI kinds? **RESOLVED: implement true verbatim (ADR-001).**
+- ENV-LEAK: allowlist vs denylist? **RESOLVED: reuse the existing allowlist `buildExecutorDispatchEnv` (ADR-003).**
+
+<!-- /ANCHOR:questions -->
+---
+
 <!-- ANCHOR:nfr -->
-## 6. NON-FUNCTIONAL REQUIREMENTS
+## 8. NON-FUNCTIONAL REQUIREMENTS
 
 ### Performance
 - **NFR-P01**: Fan-out wall-clock for N lineages at concurrency K approximates ceil(N/K)×per-lineage, not N×per-lineage (the point of fixing C-01).
@@ -155,7 +179,7 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 ---
 
 <!-- ANCHOR:edge-cases -->
-## 7. EDGE CASES
+## 9. EDGE CASES
 
 ### Data Boundaries
 - **Zero readable registries**: merge returns non-PASS (fail-closed), not PASS.
@@ -174,35 +198,43 @@ Make the fan-out feature do what packet 123 promised — genuinely concurrent, c
 ---
 
 <!-- ANCHOR:complexity -->
-## 8. COMPLEXITY ASSESSMENT
+## 10. COMPLEXITY ASSESSMENT
 
-Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code files + 6 command files + tests, decomposed into independent fixes with one genuinely hard item (C-03 verbatim, L/High) and one hot-path item (C-01 async spawn) gated by the byte-identical parity requirement. Risk concentrates in two places: the C-01 spawn rewrite (mitigated by reusing `runAuditedExecutorCommandAsync` and touching the inner worker only) and the U-01 field rename (mitigated by an atomic `.kind` change across both consumers). The remaining 10 fixes are S/M, mostly local, individually testable. Reusing three existing helpers (async spawn, env allowlist, pad) keeps net new logic small, lowering the complexity that would otherwise come from hand-rolling concurrency + env filtering.
+Overall complexity: **Medium-High**. The change set is ~400 LOC across 5 code files + 6 command files + tests, decomposed into independent fixes with one genuinely hard item (C-03 verbatim, L/High) and one hot-path item (C-01 async spawn) gated by the byte-identical parity requirement. Risk concentrates in two places: the C-01 spawn rewrite (mitigated by reusing `runAuditedExecutorCommandAsync` and touching the inner worker only) and the U-01 field rename (mitigated by an atomic `.kind` change across both consumers). The remaining 10 fixes are S/M, mostly local, individually testable. Reusing three existing helpers (async spawn, env allowlist, pad) keeps net new logic small.
 
 <!-- /ANCHOR:complexity -->
 ---
 
-<!-- ANCHOR:risks -->
-## 9. RISKS & DEPENDENCIES
+<!-- ANCHOR:risk-matrix -->
+## 11. RISK MATRIX
 
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | `runAuditedExecutorCommandAsync` (executor-audit.ts:663) | C-01/TIMEOUT-ORPHANS reuse target | Already async + detached + SIGTERM→SIGKILL; verify signature before wiring |
-| Dependency | `buildExecutorDispatchEnv` (executor-audit.ts:466) | ENV-LEAK reuse target | Confirm it carries every CLI auth prefix the lineages need |
-| Risk | C-01 changes the dispatch hot path | Could perturb single-executor parity | Touch the INNER worker only; leave the TSX self-respawn `spawnSync` (N-02); run the parity gate |
-| Risk | U-01 field rename touches 6 command files | Could break research path while fixing review | Change both consumers to `.kind` atomically; native-run trace both loops |
-| Risk | C-03 verbatim is L/High | Largest change, last in order | Sequenced last; behind the parity gate; its own task cluster |
+| Risk ID | Description | Impact | Likelihood | Mitigation |
+|---------|-------------|--------|------------|------------|
+| R-001 | C-01 async rewrite perturbs single-executor parity | H | L | Inner-worker-only change + parity gate (ADR-005) |
+| R-002 | U-01 fix breaks research while fixing review | M | M | Atomic `.kind` change across both consumers + native trace |
+| R-003 | C-03 verbatim invoke regresses a CLI kind | M | M | Sequenced last, behind parity gate, per-kind test |
+| R-004 | ENV allowlist drops a var a CLI needs | M | L | Reuse the proven single-executor allowlist (carries auth prefixes) |
+| R-005 | Daemon graph-metadata churn pollutes commits | M | H | Scope every commit by explicit pathspec; never `git add -A` |
 
-<!-- /ANCHOR:risks -->
+<!-- /ANCHOR:risk-matrix -->
 ---
 
-<!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+<!-- ANCHOR:user-stories -->
+## 12. USER STORIES
 
-- U-01: does the YAML runner write the loader's normalized config back before the `.kind` predicate? **RESOLVED for spec purposes: standardize on `.kind` across docs + predicates so the answer doesn't matter (ADR-002).**
-- C-03: verbatim vs prompt-synthesis for CLI kinds? **RESOLVED: implement true verbatim (ADR-001).**
-- ENV-LEAK: allowlist vs denylist? **RESOLVED: reuse the existing allowlist `buildExecutorDispatchEnv` (ADR-003).**
+### US-001: Genuinely parallel fan-out (Priority: P0)
+**As an** operator running a multi-model fan-out review, **I want** the lineages to actually run concurrently, **so that** N models finish in roughly one model's time, not N×.
+**Acceptance Criteria**: Given `--concurrency 2` and 4 CLI lineages, When fan-out runs, Then at most 2 subprocesses are alive at once and wall-clock ≈ 2× per-lineage, not 4×.
 
-<!-- /ANCHOR:questions -->
+### US-002: Trustworthy fan-out verdict (Priority: P0)
+**As an** operator, **I want** a fan-out review to fail when its lineages fail, **so that** I never get a green light on a review that produced nothing.
+**Acceptance Criteria**: Given every lineage exits non-zero, When the merge runs, Then the merged verdict is non-PASS and `summary.failed > 0`; a lineage with an unreadable registry is surfaced as failed, not silently skipped.
+
+### US-003: Honest, consistent contract (Priority: P1)
+**As a** maintainer, **I want** one executor field name and a verbatim lineage command, **so that** the native default path branches correctly and lineages run the real loop.
+**Acceptance Criteria**: Given a default (native) run, When dispatch resolves, Then the native branch is taken; given a CLI lineage, When it runs, Then it invokes the existing command verbatim with `lineage.iterations` as the iteration cap.
+
+<!-- /ANCHOR:user-stories -->
 ---
 
 <!-- ANCHOR:related-docs -->

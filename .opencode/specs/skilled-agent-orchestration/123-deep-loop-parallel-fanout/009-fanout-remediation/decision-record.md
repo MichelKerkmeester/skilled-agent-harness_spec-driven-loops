@@ -26,6 +26,7 @@ _memory:
 
 ---
 
+<!-- ANCHOR:adr-001 -->
 ## ADR-001: CLI lineage execution — verbatim command vs synthesized prompt
 
 | Field | Value |
@@ -85,6 +86,7 @@ Implement true verbatim per-CLI-lineage execution — replace prompt synthesis w
 **Affected**: `scripts/fanout-run.cjs:122-146,315` (`buildLoopPrompt` → verbatim command + config; iteration cap forwarding). **Test**: a CLI lineage invokes the real command with the iteration cap, not a synthesized prompt. **Rollback**: revert to prompt synthesis.
 
 <!-- /ANCHOR:adr-001-impl -->
+<!-- /ANCHOR:adr-001 -->
 
 ---
 

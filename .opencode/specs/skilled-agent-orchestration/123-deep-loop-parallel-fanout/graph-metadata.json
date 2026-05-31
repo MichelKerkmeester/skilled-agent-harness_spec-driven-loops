@@ -10,7 +10,9 @@
     "skilled-agent-orchestration/123-deep-loop-parallel-fanout/004-salvage-coverage-graph",
     "skilled-agent-orchestration/123-deep-loop-parallel-fanout/005-consumer-merges-synthesis",
     "skilled-agent-orchestration/123-deep-loop-parallel-fanout/006-command-surface-docs-parity",
-    "skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule"
+    "skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule",
+    "skilled-agent-orchestration/123-deep-loop-parallel-fanout/008-deep-review",
+    "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation"
   ],
   "manual": {
     "depends_on": [],
