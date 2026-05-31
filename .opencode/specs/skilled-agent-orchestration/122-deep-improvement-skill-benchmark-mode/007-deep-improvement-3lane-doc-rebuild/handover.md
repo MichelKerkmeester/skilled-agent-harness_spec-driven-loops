@@ -209,3 +209,61 @@ but RE-VERIFY each against the .cjs before shipping.
   write verdicts to a temp file and Read it; blank output is NOT success.
 - Verify before completion claims — gate every "done" on a positive check you
   actually read.
+
+---
+
+## 7. SESSION 2 STATUS (resume from here)
+
+### DONE + COMMITTED (one commit on `main`, message `docs(122): add Lane C (skill-benchmark) coverage to feature-catalog + testing-playbook`; confirm exact hash via `git log --oneline -8 | grep "add Lane C"`)
+
+- **Lane C catalog subdir** `feature_catalog/05--skill-benchmark/` — 6 entries
+  (01-mode-wiring, 02-contamination-gate-and-fixtures, 03-router-replay-and-advisor-probe,
+  04-d5-connectivity-gate, 05-scoring-and-funnel, 06-dual-report-and-remediation).
+  Authored by subagent, source-verified against `scripts/skill-benchmark/*.cjs`.
+- **Lane C playbook subdir** `manual_testing_playbook/10--skill-benchmark/` — 6
+  scenarios SB-040..SB-045. Live-verified (subagent ran the real scripts). File
+  043's `printf '%s\n'` is intentional shell, NOT a defect.
+- **Stale fixes:** `feature_catalog/04--model-benchmark-mode/01-mode-switch.md`
+  now says `VALID_MODES` = three modes (was "only agent-improvement and
+  model-benchmark"). Landing `feature_catalog.md` §6: two aspirational claims
+  corrected (`default_profile.json` weights are hardcoded/reference-only;
+  `remediation_taxonomy.json` is a reference asset NOT imported by report code —
+  both verified by grep), and the six §6 "Source Files" lines now link into
+  `05--skill-benchmark/*.md` (matching §2–§5).
+- 14 files in that commit. Verify in HEAD:
+  `git ls-tree --name-only HEAD .opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/ | wc -l` → 6.
+
+### NOT DONE (resume work, in priority order)
+
+1. **Playbook landing `manual_testing_playbook.md` still says "two lanes" and
+   has NO Lane C category.** Must: change the lane note two→three; add a
+   `## N. SKILL-BENCHMARK MODE` section mirroring catalog §6 (6 scenario blurbs
+   for SB-040..045 with Description / Scenario Contract / `> **Feature File:**`
+   link into `10--skill-benchmark/`); add a Lane C row to the category-index
+   table. (Blocked this session: the Read tool kept lagging on this 779-line
+   file under the concurrent-session churn — retry with a fresh context.)
+2. **Full mirror-renumber (operator's explicit ask)** — regroup BOTH trees into
+   the §3 7-category taxonomy. Lane C catalog is ALREADY at its final `05--skill-benchmark`;
+   playbook Lane C is at interim `10--skill-benchmark` and must move to `05--skill-benchmark`
+   during the renumber. This is the large remaining piece (git mv existing cats,
+   continuous playbook ID renumber, SOURCE METADATA path + cross-ref updates,
+   rewrite both landings to the taxonomy). See §3 + §5.
+3. **Spec folder `007` is untracked** — it was excluded from the Lane C commit to
+   isolate it (the combined `git add` hit a transient pathspec error). Commit it
+   separately: `git add <007 path> && git commit`. Optionally complete it to
+   Level 2 (add plan/tasks/checklist) before `validate.sh --strict`.
+4. **Validation:** run the sk-doc validator (§2) on both landings (exit 0) once
+   the landings are final.
+
+### ENVIRONMENT HAZARDS THIS SESSION (carry forward)
+
+- 4 concurrent `claude --dangerously-skip-permissions` sessions (on packets 026
+  & 123, not these docs) + a daemon rewriting `graph-metadata.json` → a hook
+  emits "the state has changed!" that CLOBBERS bash stdout and intermittently
+  delays/eats Read-tool results. Mitigations that worked: write command output to
+  a UNIQUE `/tmp` file then Read it; Writes/Edits/commits EXECUTE even when their
+  stdout doesn't render (verify via `git ls-tree HEAD` / re-Read the file);
+  blank/garbled output is NOT proof of failure — re-verify on disk.
+- Engine note: I authored Lane C via Opus subagents (each verified vs source),
+  not cli-opencode GPT-5.5, because the stdout-clobbering made capturing dispatch
+  JSON unreliable. Operator was told and can request the cli-opencode path.
