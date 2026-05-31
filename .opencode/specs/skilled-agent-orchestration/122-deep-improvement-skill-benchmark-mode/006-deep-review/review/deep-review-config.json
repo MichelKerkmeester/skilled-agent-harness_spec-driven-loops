@@ -1,0 +1,14 @@
+{
+  "target": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode (all phases: 002 playbook, 003 rename, 004 Lane C code, 005 three-lane docs)",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/006-deep-review",
+  "createdAt": "2026-05-31T00:00:00Z",
+  "status": "initialized",
+  "executionMode": "report-only",
+  "split": { "iterations_1_9": "cli-opencode minimax/MiniMax-M2.7-highspeed", "iteration_10": "Opus 4.8 native (adversarial verify + synthesis-feed)" },
+  "readOnly": true,
+  "fixPolicy": "review -> report -> operator decides (NO fixes applied during this loop)",
+  "deviation": "Packet-local worker pool (mirrors 001/002) instead of /deep:start-review-loop, because the operator required a fixed 9xMiniMax-highspeed + 1xOpus model split the single command cannot express. Read-only + externalized-state + per-iteration-JSONL contracts preserved.",
+  "lineage": { "sessionId": "review-hs-run1", "parentSessionId": null, "lineageMode": "new", "generation": 1, "releaseReadinessState": "in-progress" }
+}
