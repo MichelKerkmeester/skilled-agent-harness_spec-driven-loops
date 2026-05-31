@@ -12,10 +12,10 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs"
     last_updated_at: "2026-05-30T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "SKILL.md updated to three lanes (router verified); rest of docs + hardening pending"
-    next_safe_action: "Update README + feature catalog + advisor metadata; run hardening deep-review gate"
+    recent_action: "SKILL.md + README three-lane committed; advisor routing verified"
+    next_safe_action: "Follow-on: feature_catalog Lane C entry + formal deep-review loop"
     blockers: []
-    completion_pct: 30
+    completion_pct: 75
     open_questions: []
     answered_questions: []
 ---
@@ -26,7 +26,7 @@ _memory:
 
 **Parent:** `122-deep-improvement-skill-benchmark-mode`
 **Type:** Docs + hardening/validation
-**Status:** In progress — SKILL.md three-lane done; README/catalog/advisor/hardening follow-on
+**Status:** In progress (~75%) — SKILL.md + README + advisor done; catalog entry + formal review follow-on
 
 ---
 
