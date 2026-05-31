@@ -165,7 +165,7 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 
 ```text
 .opencode/skills/deep-improvement/
-+-- SKILL.md                    # Router and runtime instructions (two co-equal lanes)
++-- SKILL.md                    # Router and runtime instructions (three co-equal lanes)
 +-- README.md                   # This file
 +-- references/                 # operator and policy guides, grouped by lane
 |   +-- agent-improvement/      # Lane A (6): integration, scoring, profiling, onboarding, proposal, mirror drift
