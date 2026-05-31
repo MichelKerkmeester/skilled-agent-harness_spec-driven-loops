@@ -175,7 +175,7 @@ The fallback chain (`searchWithFallback()`) provides resilience. When `SPECKIT_S
 
 #### Source Files
 
-See [`01--retrieval/004-hybrid-search-pipeline.md`](01--retrieval/004-hybrid-search-pipeline.md) for full implementation and test file listings.
+See [`01--retrieval/006-hybrid-search-pipeline.md`](01--retrieval/006-hybrid-search-pipeline.md) for full implementation and test file listings.
 
 ---
 
@@ -201,7 +201,7 @@ The pipeline is the sole runtime path. The legacy `postSearchPipeline` is no lon
 
 #### Source Files
 
-See [`01--retrieval/005-4-stage-pipeline-architecture.md`](01--retrieval/005-4-stage-pipeline-architecture.md) for full implementation and test file listings.
+See [`01--retrieval/007-4-stage-pipeline-architecture.md`](01--retrieval/007-4-stage-pipeline-architecture.md) for full implementation and test file listings.
 
 ---
 
@@ -655,7 +655,7 @@ Manual validation is covered by playbook scenario `EX-035`, which runs the targe
 
 #### Source Files
 
-See [`04--maintenance/035-startup-runtime-compatibility-guards.md`](04--maintenance/035-startup-runtime-compatibility-guards.md) for full implementation and test file listings.
+See [`04--maintenance/036-startup-runtime-compatibility-guards.md`](04--maintenance/036-startup-runtime-compatibility-guards.md) for full implementation and test file listings.
 
 ---
 
@@ -3945,7 +3945,7 @@ The orphan MCP sweeper gives operators a dry-run-first way to inspect and later 
 
 See [`16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md`](16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md) for full implementation and validation listings.
 
-> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/419-orphan-mcp-runtime-lifecycle-guardrails.md)
+> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md)
 
 ---
 
@@ -4043,7 +4043,7 @@ The value defaults to `30` minutes. Fractional values are allowed for tests, and
 
 See [`19--feature-flag-reference/284-launcher-idle-timeout.md`](19--feature-flag-reference/284-launcher-idle-timeout.md) for implementation and validation listings.
 
-> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/419-orphan-mcp-runtime-lifecycle-guardrails.md)
+> **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md)
 
 ---
 

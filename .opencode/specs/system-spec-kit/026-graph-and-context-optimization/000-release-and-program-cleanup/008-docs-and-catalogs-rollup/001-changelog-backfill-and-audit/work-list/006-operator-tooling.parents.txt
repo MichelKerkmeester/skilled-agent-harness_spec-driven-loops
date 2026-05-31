@@ -1,0 +1,4 @@
+006-operator-tooling
+006-operator-tooling/001-hook-parity
+006-operator-tooling/002-doctor-update-orchestrator
+006-operator-tooling/003-install-scripts-doctor-realignment

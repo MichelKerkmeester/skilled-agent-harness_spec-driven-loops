@@ -1,0 +1,72 @@
+---
+title: "229 -- Lazy-loading migration and warmup compatibility"
+description: "This scenario validates Lazy-loading migration and warmup compatibility for `229`. It focuses on confirming lazy embedding initialization is the only live startup path while the old warmup flags remain deprecated compatibility surfaces."
+audited_post_018: true
+phase_018_change: "Validated against phase-018 canonical continuity refactor; confirms lazy startup is canonical and warmup flags remain compatibility-only."
+---
+
+# 229 -- Lazy-loading migration and warmup compatibility
+
+## 1. OVERVIEW
+
+This scenario validates Lazy-loading migration and warmup compatibility for `229`. It focuses on confirming lazy embedding initialization is the only live startup path while the old warmup flags remain deprecated compatibility surfaces.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm lazy embedding initialization is the only live startup path while the old warmup flags remain deprecated compatibility surfaces.
+- Real user request: `` Please validate Lazy-loading migration and warmup compatibility against the documented validation surface and tell me whether the expected signals are present: The targeted lazy-loading and context-server tests pass, `shouldEagerWarmup()` stays false by default, startup logs say lazy loading is enabled, and the deprecated warmup flags are only acknowledged in compatibility messaging. ``
+- Prompt: `Validate lazy-loading migration and warmup compatibility against the documented validation surface.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: The targeted lazy-loading and context-server tests pass, `shouldEagerWarmup()` stays false by default, startup logs say lazy loading is enabled, and the deprecated warmup flags are only acknowledged in compatibility messaging
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if the targeted checks confirm startup always follows the lazy path and the legacy warmup flags do not restore eager initialization behavior
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate that embedding startup now stays on lazy initialization and that the legacy warmup flags only remain as deprecated compatibility surfaces. Run the targeted checks, capture the evidence that proves lazy startup is the shipped behavior, and return a concise pass/fail verdict with the main reason.
+```
+
+### Commands
+
+1. `cd .opencode/skills/system-spec-kit/mcp_server`
+2. `npx vitest run tests/lazy-loading.vitest.ts tests/context-server.vitest.ts`
+3. `sed -n '840,890p' context-server.ts`
+4. `rg -n "shouldEagerWarmup|getLazyLoadingStats|preWarmModel|SPECKIT_EAGER_WARMUP|SPECKIT_LAZY_LOADING" lib/providers/embeddings.ts ../shared/embeddings.ts context-server.ts tests/lazy-loading.vitest.ts`
+
+### Expected
+
+The targeted lazy-loading and context-server tests pass, `shouldEagerWarmup()` stays false by default, startup logs say lazy loading is enabled, and the deprecated warmup flags are only acknowledged in compatibility messaging
+
+### Evidence
+
+Vitest transcript plus the source excerpts showing the lazy startup branch and deprecated-flag references
+
+### Pass / Fail
+
+- **Pass**: the targeted checks confirm startup always follows the lazy path and the legacy warmup flags do not restore eager initialization behavior
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect `context-server.ts`, `lib/providers/embeddings.ts`, and `../shared/embeddings.ts`; confirm no test setup or shell environment is forcing legacy warmup behavior
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [21--implement-and-remove-deprecated-features/289-lazy-loading-migration-and-warmup-compatibility.md](../../feature_catalog/21--implement-and-remove-deprecated-features/289-lazy-loading-migration-and-warmup-compatibility.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Implement and Remove Deprecated Features
+- Playbook ID: 229
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `21--implement-and-remove-deprecated-features/318-lazy-loading-migration.md`

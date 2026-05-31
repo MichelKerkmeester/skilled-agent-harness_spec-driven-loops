@@ -275,7 +275,7 @@ Desired user-visible outcome: Confirmation that the documented default is safe b
 
 #### Test Execution
 
-> **Feature File:** [DV-005](02--permission-modes/001-auto-mode.md)
+> **Feature File:** [DV-005](02--permission-modes/005-auto-mode.md)
 
 ### DV-006 | dangerous mode (operator-approved)
 
@@ -293,7 +293,7 @@ Desired user-visible outcome: A working output the operator can inspect, plus ev
 
 #### Test Execution
 
-> **Feature File:** [DV-006](02--permission-modes/002-dangerous-mode.md)
+> **Feature File:** [DV-006](02--permission-modes/006-dangerous-mode.md)
 
 ### DV-007 | `--sandbox` flag (OS-level process sandboxing, Research Preview)
 
@@ -311,7 +311,7 @@ Desired user-visible outcome: A working sandboxed write plus OS-level evidence t
 
 #### Test Execution
 
-> **Feature File:** [DV-007](02--permission-modes/003-sandbox-flag.md)
+> **Feature File:** [DV-007](02--permission-modes/007-sandbox-flag.md)
 
 ---
 
@@ -335,7 +335,7 @@ Desired user-visible outcome: A working utility function that the operator can d
 
 #### Test Execution
 
-> **Feature File:** [DV-008](03--model-presets/001-swe-1-6-default.md)
+> **Feature File:** [DV-008](03--model-presets/008-swe-1-6-default.md)
 
 ### DV-009 | DeepSeek v4 (primary for complex tasks)
 
@@ -371,7 +371,7 @@ Desired user-visible outcome: A working agentic plan that the operator can revie
 
 #### Test Execution
 
-> **Feature File:** [DV-010](03--model-presets/003-glm-5-1-complex-fallback.md)
+> **Feature File:** [DV-010](03--model-presets/010-glm-5-1-complex-fallback.md)
 
 ### DV-026 | Kimi k2.6 (complex-task fallback — large context)
 
@@ -389,7 +389,7 @@ Desired user-visible outcome: A working consolidated analysis that demonstrates 
 
 #### Test Execution
 
-> **Feature File:** [DV-026](03--model-presets/004-kimi-k2-6-complex-fallback.md)
+> **Feature File:** [DV-026](03--model-presets/011-kimi-k2-6-complex-fallback.md)
 
 ### DV-028 | SWE-1.6 dispatch via sk-prompt-small-model + sk-prompt (triple-skill flow)
 
@@ -407,7 +407,7 @@ Desired user-visible outcome: A working debounce function plus evidence that the
 
 #### Test Execution
 
-> **Feature File:** [DV-028](03--model-presets/005-swe16-via-sk-prompt-small-model-and-sk-prompt.md)
+> **Feature File:** [DV-028](03--model-presets/012-swe16-via-sk-prompt-small-model-and-sk-prompt.md)
 
 ### DV-029 | DeepSeek-v4-pro via cli-devin Cognition Pro through sk-prompt-small-model + sk-prompt
 
@@ -425,7 +425,7 @@ Desired user-visible outcome: A working implementation that demonstrates the mod
 
 #### Test Execution
 
-> **Feature File:** [DV-029](03--model-presets/006-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md)
+> **Feature File:** [DV-029](03--model-presets/013-deepseek-v4-via-sk-prompt-small-model-and-sk-prompt.md)
 
 ---
 
@@ -449,7 +449,7 @@ Desired user-visible outcome: An operator-visible inventory of installed rules s
 
 #### Test Execution
 
-> **Feature File:** [DV-011](04--devin-surfaces/001-devin-rules-list.md)
+> **Feature File:** [DV-011](04--devin-surfaces/014-devin-rules-list.md)
 
 ### DV-012 | `devin skills list` / `devin skills show`
 
@@ -467,7 +467,7 @@ Desired user-visible outcome: An operator-visible inventory of installed skills 
 
 #### Test Execution
 
-> **Feature File:** [DV-012](04--devin-surfaces/002-devin-skills-show.md)
+> **Feature File:** [DV-012](04--devin-surfaces/015-devin-skills-show.md)
 
 ### DV-013 | `devin mcp` lifecycle
 
@@ -485,7 +485,7 @@ Desired user-visible outcome: A working MCP-server registration end-to-end so op
 
 #### Test Execution
 
-> **Feature File:** [DV-013](04--devin-surfaces/003-devin-mcp-lifecycle.md)
+> **Feature File:** [DV-013](04--devin-surfaces/016-devin-mcp-lifecycle.md)
 
 ---
 
@@ -509,7 +509,7 @@ Desired user-visible outcome: A working two-turn task plus evidence that `--cont
 
 #### Test Execution
 
-> **Feature File:** [DV-014](05--session-continuity/001-continue-last-session.md)
+> **Feature File:** [DV-014](05--session-continuity/017-continue-last-session.md)
 
 ### DV-015 | `devin --resume <id>` (specific session)
 
@@ -527,7 +527,7 @@ Desired user-visible outcome: Operators can revisit older Devin sessions out of 
 
 #### Test Execution
 
-> **Feature File:** [DV-015](05--session-continuity/002-resume-by-session-id.md)
+> **Feature File:** [DV-015](05--session-continuity/018-resume-by-session-id.md)
 
 ### DV-016 | `devin list` (session inventory)
 
@@ -545,7 +545,7 @@ Desired user-visible outcome: An operator-visible session inventory the calling 
 
 #### Test Execution
 
-> **Feature File:** [DV-016](05--session-continuity/003-devin-list.md)
+> **Feature File:** [DV-016](05--session-continuity/019-devin-list.md)
 
 ---
 
@@ -569,7 +569,7 @@ Desired user-visible outcome: Evidence that inferred consent is rejected — clo
 
 #### Test Execution
 
-> **Feature File:** [DV-017](06--cloud-handoff/001-five-check-gate-negative.md)
+> **Feature File:** [DV-017](06--cloud-handoff/020-five-check-gate-negative.md)
 
 ### DV-018 | Cloud handoff round-trip (LIVE, requires entitlement)
 
@@ -587,7 +587,7 @@ Desired user-visible outcome: A working PR on a feature branch produced by the c
 
 #### Test Execution
 
-> **Feature File:** [DV-018](06--cloud-handoff/002-cloud-handoff-roundtrip.md)
+> **Feature File:** [DV-018](06--cloud-handoff/021-cloud-handoff-roundtrip.md)
 
 ---
 
@@ -611,7 +611,7 @@ Desired user-visible outcome: Evidence that the self-invocation guard fails clos
 
 #### Test Execution
 
-> **Feature File:** [DV-019](07--self-invocation-guard/001-self-invocation-refused.md)
+> **Feature File:** [DV-019](07--self-invocation-guard/023-self-invocation-refused.md)
 
 ### DV-020 | Cloud-handoff exception allowed (explicit keywords)
 
@@ -629,7 +629,7 @@ Desired user-visible outcome: Evidence that the documented exception works — o
 
 #### Test Execution
 
-> **Feature File:** [DV-020](07--self-invocation-guard/002-cloud-handoff-exception.md)
+> **Feature File:** [DV-020](07--self-invocation-guard/024-cloud-handoff-exception.md)
 
 ---
 
@@ -653,7 +653,7 @@ Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-code
 
 #### Test Execution
 
-> **Feature File:** [DV-021](08--cross-ai-dispatch/001-from-cli-codex.md)
+> **Feature File:** [DV-021](08--cross-ai-dispatch/025-from-cli-codex.md)
 
 ### DV-022 | Dispatch from cli-claude-code
 
@@ -671,7 +671,7 @@ Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-clau
 
 #### Test Execution
 
-> **Feature File:** [DV-022](08--cross-ai-dispatch/002-from-cli-claude-code.md)
+> **Feature File:** [DV-022](08--cross-ai-dispatch/026-from-cli-claude-code.md)
 
 ### DV-023 | Dispatch from cli-opencode
 
@@ -689,7 +689,7 @@ Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-open
 
 #### Test Execution
 
-> **Feature File:** [DV-023](08--cross-ai-dispatch/003-from-cli-opencode.md)
+> **Feature File:** [DV-023](08--cross-ai-dispatch/027-from-cli-opencode.md)
 
 ### DV-024 | Dispatch from cli-gemini
 
@@ -707,7 +707,7 @@ Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-gemi
 
 #### Test Execution
 
-> **Feature File:** [DV-024](08--cross-ai-dispatch/004-from-cli-gemini.md)
+> **Feature File:** [DV-024](08--cross-ai-dispatch/028-from-cli-gemini.md)
 
 ---
 
@@ -731,7 +731,7 @@ Desired user-visible outcome: A working `devin acp` server validated end-to-end 
 
 #### Test Execution
 
-> **Feature File:** [DV-025](09--acp-bridge/001-devin-acp-server.md)
+> **Feature File:** [DV-025](09--acp-bridge/029-devin-acp-server.md)
 
 ---
 
@@ -762,47 +762,47 @@ There is no automated coverage for default-dispatch, permission-mode, model-pres
 
 ### PERMISSION MODES
 
-- DV-005: [auto mode (default — auto-approves read-only, prompts on write/exec)](02--permission-modes/001-auto-mode.md)
-- DV-006: [dangerous mode (operator-approved)](02--permission-modes/002-dangerous-mode.md)
-- DV-007: [`--sandbox` flag (OS-level process sandboxing, Research Preview)](02--permission-modes/003-sandbox-flag.md)
+- DV-005: [auto mode (default — auto-approves read-only, prompts on write/exec)](02--permission-modes/005-auto-mode.md)
+- DV-006: [dangerous mode (operator-approved)](02--permission-modes/006-dangerous-mode.md)
+- DV-007: [`--sandbox` flag (OS-level process sandboxing, Research Preview)](02--permission-modes/007-sandbox-flag.md)
 
 ### MODEL PRESETS
 
-- DV-008: [SWE-1.6 (default — context gathering / tool use / simple-medium tasks)](03--model-presets/001-swe-1-6-default.md)
+- DV-008: [SWE-1.6 (default — context gathering / tool use / simple-medium tasks)](03--model-presets/008-swe-1-6-default.md)
 - DV-009: [DeepSeek v4 (primary for complex tasks)](03--model-presets/002-deepseek-v4-complex.md)
-- DV-010: [GLM 5.1 (complex-task fallback — agentic / tool-use)](03--model-presets/003-glm-5-1-complex-fallback.md)
-- DV-026: [Kimi k2.6 (complex-task fallback — large context)](03--model-presets/004-kimi-k2-6-complex-fallback.md)
+- DV-010: [GLM 5.1 (complex-task fallback — agentic / tool-use)](03--model-presets/010-glm-5-1-complex-fallback.md)
+- DV-026: [Kimi k2.6 (complex-task fallback — large context)](03--model-presets/011-kimi-k2-6-complex-fallback.md)
 
 ### DEVIN SURFACES
 
-- DV-011: [`devin rules list`](04--devin-surfaces/001-devin-rules-list.md)
-- DV-012: [`devin skills list` / `devin skills show`](04--devin-surfaces/002-devin-skills-show.md)
-- DV-013: [`devin mcp` lifecycle](04--devin-surfaces/003-devin-mcp-lifecycle.md)
+- DV-011: [`devin rules list`](04--devin-surfaces/014-devin-rules-list.md)
+- DV-012: [`devin skills list` / `devin skills show`](04--devin-surfaces/015-devin-skills-show.md)
+- DV-013: [`devin mcp` lifecycle](04--devin-surfaces/016-devin-mcp-lifecycle.md)
 
 ### SESSION CONTINUITY
 
-- DV-014: [`devin --continue` (resume last)](05--session-continuity/001-continue-last-session.md)
-- DV-015: [`devin --resume <id>` (specific session)](05--session-continuity/002-resume-by-session-id.md)
-- DV-016: [`devin list` (session inventory)](05--session-continuity/003-devin-list.md)
+- DV-014: [`devin --continue` (resume last)](05--session-continuity/017-continue-last-session.md)
+- DV-015: [`devin --resume <id>` (specific session)](05--session-continuity/018-resume-by-session-id.md)
+- DV-016: [`devin list` (session inventory)](05--session-continuity/019-devin-list.md)
 
 ### CLOUD HANDOFF
 
-- DV-017: [5-check operator-confirmation gate (NEGATIVE)](06--cloud-handoff/001-five-check-gate-negative.md)
-- DV-018: [Cloud handoff round-trip (LIVE — operator-driven manual)](06--cloud-handoff/002-cloud-handoff-roundtrip.md)
-- DV-027: [Cloud surface accessibility (shell-runnable surface check)](06--cloud-handoff/003-cloud-surface-accessibility.md)
+- DV-017: [5-check operator-confirmation gate (NEGATIVE)](06--cloud-handoff/020-five-check-gate-negative.md)
+- DV-018: [Cloud handoff round-trip (LIVE — operator-driven manual)](06--cloud-handoff/021-cloud-handoff-roundtrip.md)
+- DV-027: [Cloud surface accessibility (shell-runnable surface check)](06--cloud-handoff/022-cloud-surface-accessibility.md)
 
 ### SELF-INVOCATION GUARD
 
-- DV-019: [Self-invocation refused (DEVIN_* env or ancestry)](07--self-invocation-guard/001-self-invocation-refused.md)
-- DV-020: [Cloud-handoff exception allowed (explicit keywords)](07--self-invocation-guard/002-cloud-handoff-exception.md)
+- DV-019: [Self-invocation refused (DEVIN_* env or ancestry)](07--self-invocation-guard/023-self-invocation-refused.md)
+- DV-020: [Cloud-handoff exception allowed (explicit keywords)](07--self-invocation-guard/024-cloud-handoff-exception.md)
 
 ### CROSS-AI DISPATCH
 
-- DV-021: [Dispatch from cli-codex (gpt-5.5 medium)](08--cross-ai-dispatch/001-from-cli-codex.md)
-- DV-022: [Dispatch from cli-claude-code](08--cross-ai-dispatch/002-from-cli-claude-code.md)
-- DV-023: [Dispatch from cli-opencode](08--cross-ai-dispatch/003-from-cli-opencode.md)
-- DV-024: [Dispatch from cli-gemini](08--cross-ai-dispatch/004-from-cli-gemini.md)
+- DV-021: [Dispatch from cli-codex (gpt-5.5 medium)](08--cross-ai-dispatch/025-from-cli-codex.md)
+- DV-022: [Dispatch from cli-claude-code](08--cross-ai-dispatch/026-from-cli-claude-code.md)
+- DV-023: [Dispatch from cli-opencode](08--cross-ai-dispatch/027-from-cli-opencode.md)
+- DV-024: [Dispatch from cli-gemini](08--cross-ai-dispatch/028-from-cli-gemini.md)
 
 ### ACP BRIDGE
 
-- DV-025: [`devin acp` server lifecycle](09--acp-bridge/001-devin-acp-server.md)
+- DV-025: [`devin acp` server lifecycle](09--acp-bridge/029-devin-acp-server.md)

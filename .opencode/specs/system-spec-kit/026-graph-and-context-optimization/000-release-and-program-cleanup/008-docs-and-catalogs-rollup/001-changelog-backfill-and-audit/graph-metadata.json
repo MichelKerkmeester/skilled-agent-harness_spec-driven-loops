@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-changelog-backfill-and-audit",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-changelog-backfill-and-audit",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 changelog backfill",
+      "changelog audit 026",
+      "phase changelog coverage",
+      "nested changelog backfill",
+      "026 work audit",
+      "changelog swarm",
+      "scaffold then enrich changelog",
+      "reorg residue canonicalization"
+    ],
+    "key_topics": [
+      "changelog",
+      "backfill",
+      "audit",
+      "026",
+      "nested",
+      "phase",
+      "coverage",
+      "canonicalization",
+      "enrichment",
+      "hvr",
+      "rollup",
+      "swarm"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "references/stage-b-enrichment-contract.md",
+      "references/verification-gate.md",
+      "references/recon-coverage-matrix.md",
+      ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js",
+      ".opencode/skills/system-spec-kit/templates/changelog/phase.md",
+      ".opencode/skills/system-spec-kit/templates/changelog/root.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "stage-b-enrichment-contract.md",
+        "kind": "doc",
+        "path": "references/stage-b-enrichment-contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "verification-gate.md",
+        "kind": "doc",
+        "path": "references/verification-gate.md",
+        "source": "derived"
+      },
+      {
+        "name": "recon-coverage-matrix.md",
+        "kind": "doc",
+        "path": "references/recon-coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "nested-changelog.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js",
+        "source": "derived"
+      },
+      {
+        "name": "Changelog Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Work Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Spec 026 has 633 phase packets but only 103 packet-local changelogs, so about 441 shipped phases have no changelog. This packet backfills every missing changelog with the generator-scaffold then agent-enrich pipeline, canonicalizes reorg residue (stale paths, 9 dangling symlinks, 2 non-canonical files, scattered 003 directories), and produces a program-wide work audit. No fabrication: about 47 thin or unshipped packets are logged in the audit instead of authored.",
+    "created_at": "2026-05-31T19:00:00.000Z",
+    "last_save_at": "2026-05-31T19:00:00.000Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

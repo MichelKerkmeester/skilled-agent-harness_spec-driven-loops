@@ -272,7 +272,7 @@ Desired user-visible outcome: An analysis output with provable safety: the opera
 
 #### Test Execution
 
-> **Feature File:** [CX-005](02--sandbox-modes/001-read-only-sandbox.md)
+> **Feature File:** [CX-005](02--sandbox-modes/005-read-only-sandbox.md)
 
 ### CX-006 | workspace-write sandbox (generation)
 
@@ -290,7 +290,7 @@ Desired user-visible outcome: A real generated file the operator can inspect and
 
 #### Test Execution
 
-> **Feature File:** [CX-006](02--sandbox-modes/002-workspace-write-sandbox.md)
+> **Feature File:** [CX-006](02--sandbox-modes/006-workspace-write-sandbox.md)
 
 ### CX-007 | danger-full-access sandbox **(DESTRUCTIVE)**
 
@@ -308,7 +308,7 @@ Desired user-visible outcome: Evidence that destructive sandbox usage is gated b
 
 #### Test Execution
 
-> **Feature File:** [CX-007](02--sandbox-modes/003-danger-full-access-sandbox.md)
+> **Feature File:** [CX-007](02--sandbox-modes/007-danger-full-access-sandbox.md)
 
 ### CX-008 | --full-auto vs explicit approval policies
 
@@ -326,7 +326,7 @@ Desired user-visible outcome: A verified mapping of approval-policy flags to obs
 
 #### Test Execution
 
-> **Feature File:** [CX-008](02--sandbox-modes/004-approval-policies.md)
+> **Feature File:** [CX-008](02--sandbox-modes/008-approval-policies.md)
 
 ---
 
@@ -350,7 +350,7 @@ Desired user-visible outcome: Confirmation that low-end reasoning levels are rea
 
 #### Test Execution
 
-> **Feature File:** [CX-009](03--reasoning-effort/001-low-minimal-none-baseline.md)
+> **Feature File:** [CX-009](03--reasoning-effort/009-low-minimal-none-baseline.md)
 
 ### CX-010 | medium reasoning (skill default)
 
@@ -368,7 +368,7 @@ Desired user-visible outcome: Confirmation that `medium` is the load-bearing def
 
 #### Test Execution
 
-> **Feature File:** [CX-010](03--reasoning-effort/002-medium-skill-default.md)
+> **Feature File:** [CX-010](03--reasoning-effort/010-medium-skill-default.md)
 
 ### CX-011 | high / xhigh override
 
@@ -386,7 +386,7 @@ Desired user-visible outcome: An audit-quality output the operator can hand to a
 
 #### Test Execution
 
-> **Feature File:** [CX-011](03--reasoning-effort/003-high-xhigh-override.md)
+> **Feature File:** [CX-011](03--reasoning-effort/011-high-xhigh-override.md)
 
 ---
 
@@ -410,7 +410,7 @@ Desired user-visible outcome: A reviewer-quality output that demonstrates the `r
 
 #### Test Execution
 
-> **Feature File:** [CX-012](04--agent-routing/001-review-profile.md)
+> **Feature File:** [CX-012](04--agent-routing/012-review-profile.md)
 
 ### CX-013 | @context profile (architecture mapping)
 
@@ -428,7 +428,7 @@ Desired user-visible outcome: A structural map the operator can use to onboard a
 
 #### Test Execution
 
-> **Feature File:** [CX-013](04--agent-routing/002-context-profile.md)
+> **Feature File:** [CX-013](04--agent-routing/013-context-profile.md)
 
 ### CX-014 | @debug profile (workspace-write fix)
 
@@ -446,7 +446,7 @@ Desired user-visible outcome: A working corrected file plus a root-cause sentenc
 
 #### Test Execution
 
-> **Feature File:** [CX-014](04--agent-routing/003-debug-profile.md)
+> **Feature File:** [CX-014](04--agent-routing/014-debug-profile.md)
 
 ### CX-015 | @ai-council profile (multi-strategy planning)
 
@@ -482,7 +482,7 @@ Desired user-visible outcome: A citation-backed comparison brief the operator ca
 
 #### Test Execution
 
-> **Feature File:** [CX-026](04--agent-routing/005-research-profile.md)
+> **Feature File:** [CX-026](04--agent-routing/016-research-profile.md)
 
 ## 11. SESSION CONTINUITY (`CX-016..CX-017`)
 
@@ -504,7 +504,7 @@ Desired user-visible outcome: Evidence that Spec Kit Memory's startup context an
 
 #### Test Execution
 
-> **Feature File:** [CX-016](05--session-continuity/001-full-auto-hooks.md)
+> **Feature File:** [CX-016](05--session-continuity/017-full-auto-hooks.md)
 
 ### CX-017 | session resume / fork
 
@@ -522,7 +522,7 @@ Desired user-visible outcome: A working multi-turn task plus a forked session ID
 
 #### Test Execution
 
-> **Feature File:** [CX-017](05--session-continuity/002-session-resume-fork.md)
+> **Feature File:** [CX-017](05--session-continuity/018-session-resume-fork.md)
 
 ---
 
@@ -546,7 +546,7 @@ Desired user-visible outcome: A working middleware with input validation, demons
 
 #### Test Execution
 
-> **Feature File:** [CX-018](06--integration-patterns/001-generate-review-fix-cycle.md)
+> **Feature File:** [CX-018](06--integration-patterns/019-generate-review-fix-cycle.md)
 
 ### CX-019 | Web search via --search
 
@@ -564,7 +564,7 @@ Desired user-visible outcome: A version-and-source summary the operator can past
 
 #### Test Execution
 
-> **Feature File:** [CX-019](06--integration-patterns/002-web-search.md)
+> **Feature File:** [CX-019](06--integration-patterns/020-web-search.md)
 
 ### CX-020 | Image input via --image
 
@@ -582,7 +582,7 @@ Desired user-visible outcome: Confirmation that the image-input surface works en
 
 #### Test Execution
 
-> **Feature File:** [CX-020](06--integration-patterns/003-image-input.md)
+> **Feature File:** [CX-020](06--integration-patterns/021-image-input.md)
 
 ---
 
@@ -606,7 +606,7 @@ Desired user-visible outcome: A real working health-check server generated from 
 
 #### Test Execution
 
-> **Feature File:** [CX-021](07--prompt-templates/001-prompt-templates-inventory.md)
+> **Feature File:** [CX-021](07--prompt-templates/022-prompt-templates-inventory.md)
 
 ### CX-022 | CLEAR scoring via prompt_quality_card.md
 
@@ -624,7 +624,7 @@ Desired user-visible outcome: An auditable trail showing the prompt-quality disc
 
 #### Test Execution
 
-> **Feature File:** [CX-022](07--prompt-templates/002-clear-scoring-quality-card.md)
+> **Feature File:** [CX-022](07--prompt-templates/023-clear-scoring-quality-card.md)
 
 ---
 
@@ -648,7 +648,7 @@ Desired user-visible outcome: A pre-commit review summary the operator can quote
 
 #### Test Execution
 
-> **Feature File:** [CX-023](08--built-in-tools/001-review-tui-command.md)
+> **Feature File:** [CX-023](08--built-in-tools/024-review-tui-command.md)
 
 ### CX-024 | --search live browsing in exec
 
@@ -666,7 +666,7 @@ Desired user-visible outcome: Operator-visible proof that `--search` is wired in
 
 #### Test Execution
 
-> **Feature File:** [CX-024](08--built-in-tools/002-search-exec-mode.md)
+> **Feature File:** [CX-024](08--built-in-tools/025-search-exec-mode.md)
 
 ### CX-025 | codex mcp server registration
 
@@ -684,7 +684,7 @@ Desired user-visible outcome: Confirmation that the MCP integration surface is r
 
 #### Test Execution
 
-> **Feature File:** [CX-025](08--built-in-tools/003-mcp-server-registration.md)
+> **Feature File:** [CX-025](08--built-in-tools/026-mcp-server-registration.md)
 
 ---
 
@@ -708,7 +708,7 @@ Desired user-visible outcome: Confirmation that the cloud subcommand is reachabl
 
 #### Test Execution
 
-> **Feature File:** [CX-028](09--codex-cloud/001-codex-cloud-dispatch.md)
+> **Feature File:** [CX-028](09--codex-cloud/027-codex-cloud-dispatch.md)
 
 ---
 
@@ -738,47 +738,47 @@ There is no automated coverage for default-invocation, sandbox-mode, reasoning-e
 
 ### SANDBOX MODES
 
-- CX-005: [read-only sandbox (analysis)](02--sandbox-modes/001-read-only-sandbox.md)
-- CX-006: [workspace-write sandbox (generation)](02--sandbox-modes/002-workspace-write-sandbox.md)
-- CX-007: [danger-full-access sandbox **(DESTRUCTIVE)**](02--sandbox-modes/003-danger-full-access-sandbox.md)
-- CX-008: [--full-auto vs explicit approval policies](02--sandbox-modes/004-approval-policies.md)
+- CX-005: [read-only sandbox (analysis)](02--sandbox-modes/005-read-only-sandbox.md)
+- CX-006: [workspace-write sandbox (generation)](02--sandbox-modes/006-workspace-write-sandbox.md)
+- CX-007: [danger-full-access sandbox **(DESTRUCTIVE)**](02--sandbox-modes/007-danger-full-access-sandbox.md)
+- CX-008: [--full-auto vs explicit approval policies](02--sandbox-modes/008-approval-policies.md)
 
 ### REASONING EFFORT
 
-- CX-009: [low / minimal / none reasoning baseline](03--reasoning-effort/001-low-minimal-none-baseline.md)
-- CX-010: [medium reasoning (skill default)](03--reasoning-effort/002-medium-skill-default.md)
-- CX-011: [high / xhigh override](03--reasoning-effort/003-high-xhigh-override.md)
+- CX-009: [low / minimal / none reasoning baseline](03--reasoning-effort/009-low-minimal-none-baseline.md)
+- CX-010: [medium reasoning (skill default)](03--reasoning-effort/010-medium-skill-default.md)
+- CX-011: [high / xhigh override](03--reasoning-effort/011-high-xhigh-override.md)
 
 ### AGENT ROUTING
 
-- CX-012: [@review profile (read-only)](04--agent-routing/001-review-profile.md)
-- CX-013: [@context profile (architecture mapping)](04--agent-routing/002-context-profile.md)
-- CX-014: [@debug profile (workspace-write fix)](04--agent-routing/003-debug-profile.md)
+- CX-012: [@review profile (read-only)](04--agent-routing/012-review-profile.md)
+- CX-013: [@context profile (architecture mapping)](04--agent-routing/013-context-profile.md)
+- CX-014: [@debug profile (workspace-write fix)](04--agent-routing/014-debug-profile.md)
 - CX-015: [@ai-council profile (multi-strategy planning)](04--agent-routing/004-ai-council-profile.md)
-- CX-026: [@research profile (web-grounded investigation)](04--agent-routing/005-research-profile.md)
+- CX-026: [@research profile (web-grounded investigation)](04--agent-routing/016-research-profile.md)
 
 ### SESSION CONTINUITY
 
-- CX-016: [--full-auto + native hook integration](05--session-continuity/001-full-auto-hooks.md)
-- CX-017: [session resume / fork](05--session-continuity/002-session-resume-fork.md)
+- CX-016: [--full-auto + native hook integration](05--session-continuity/017-full-auto-hooks.md)
+- CX-017: [session resume / fork](05--session-continuity/018-session-resume-fork.md)
 
 ### INTEGRATION PATTERNS
 
-- CX-018: [Cross-AI generate-review-fix cycle](06--integration-patterns/001-generate-review-fix-cycle.md)
-- CX-019: [Web search via --search](06--integration-patterns/002-web-search.md)
-- CX-020: [Image input via --image](06--integration-patterns/003-image-input.md)
+- CX-018: [Cross-AI generate-review-fix cycle](06--integration-patterns/019-generate-review-fix-cycle.md)
+- CX-019: [Web search via --search](06--integration-patterns/020-web-search.md)
+- CX-020: [Image input via --image](06--integration-patterns/021-image-input.md)
 
 ### PROMPT TEMPLATES
 
-- CX-021: [Use prompt_templates.md inventory](07--prompt-templates/001-prompt-templates-inventory.md)
-- CX-022: [CLEAR scoring via prompt_quality_card.md](07--prompt-templates/002-clear-scoring-quality-card.md)
+- CX-021: [Use prompt_templates.md inventory](07--prompt-templates/022-prompt-templates-inventory.md)
+- CX-022: [CLEAR scoring via prompt_quality_card.md](07--prompt-templates/023-clear-scoring-quality-card.md)
 
 ### BUILT-IN TOOLS
 
-- CX-023: [/review TUI command](08--built-in-tools/001-review-tui-command.md)
-- CX-024: [--search live browsing in exec](08--built-in-tools/002-search-exec-mode.md)
-- CX-025: [codex mcp server registration](08--built-in-tools/003-mcp-server-registration.md)
+- CX-023: [/review TUI command](08--built-in-tools/024-review-tui-command.md)
+- CX-024: [--search live browsing in exec](08--built-in-tools/025-search-exec-mode.md)
+- CX-025: [codex mcp server registration](08--built-in-tools/026-mcp-server-registration.md)
 
 ### CODEX CLOUD
 
-- CX-028: [codex cloud dispatch](09--codex-cloud/001-codex-cloud-dispatch.md)
+- CX-028: [codex cloud dispatch](09--codex-cloud/027-codex-cloud-dispatch.md)

@@ -1,0 +1,2 @@
+006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
+006-operator-tooling/005-worktree-per-session-automation

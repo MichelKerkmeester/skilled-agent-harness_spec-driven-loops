@@ -163,7 +163,7 @@ Prompt summary: As a manual-testing orchestrator, call the ClickUp `get_teams` t
 Expected signals: Step 1: tool call returns without error; Step 2: response contains team objects with `id` and `name` fields; Step 3: at least one team present.
 
 #### Test Execution
-> **Feature File:** [CM-005](02--manual-namespace-contract/001-correct-manual-tool-form.md)
+> **Feature File:** [CM-005](02--manual-namespace-contract/005-correct-manual-tool-form.md)
 
 ### CM-006 | Wrong-form call returns "tool not found" error
 
@@ -176,7 +176,7 @@ Prompt summary: As a manual-testing orchestrator, call ClickUp `get_teams` using
 Expected signals: Step 1: tool call throws or returns an error; Step 2: error message contains "tool" and "not found" or similar; Step 3: error references the wrong-form name.
 
 #### Test Execution
-> **Feature File:** [CM-006](02--manual-namespace-contract/002-wrong-form-error.md)
+> **Feature File:** [CM-006](02--manual-namespace-contract/006-wrong-form-error.md)
 
 ### CM-007 | list_tools returns dot form, calling syntax uses underscore
 
@@ -189,7 +189,7 @@ Prompt summary: As a manual-testing orchestrator, enumerate ClickUp tools then t
 Expected signals: Step 1: at least one `list_tools` entry contains 2+ dots; Step 2: dot-form direct call fails with "tool not found"; Step 3: underscore-form call succeeds.
 
 #### Test Execution
-> **Feature File:** [CM-007](02--manual-namespace-contract/003-list-tools-dot-vs-underscore.md)
+> **Feature File:** [CM-007](02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md)
 
 ---
 
@@ -208,7 +208,7 @@ Prompt summary: As a manual-testing orchestrator, set `clickup_CLICKUP_API_KEY` 
 Expected signals: Step 2: ClickUp auth call returns 200/OK or workspace data; Step 3: no "missing API key" error.
 
 #### Test Execution
-> **Feature File:** [CM-008](03--env-var-prefixing/001-prefixed-env-load.md)
+> **Feature File:** [CM-008](03--env-var-prefixing/008-prefixed-env-load.md)
 
 ### CM-009 | Unprefixed env var returns "credential not found"
 
@@ -221,7 +221,7 @@ Prompt summary: As a manual-testing orchestrator, set only `CLICKUP_API_KEY` (no
 Expected signals: Step 2: ClickUp tool returns auth error; Step 3: error message references missing/invalid API key.
 
 #### Test Execution
-> **Feature File:** [CM-009](03--env-var-prefixing/002-unprefixed-env-not-found.md)
+> **Feature File:** [CM-009](03--env-var-prefixing/009-unprefixed-env-not-found.md)
 
 ### CM-010 | validate_config.py reports missing required env vars
 
@@ -234,7 +234,7 @@ Prompt summary: As a manual-testing orchestrator, run the validation script with
 Expected signals: Step 1: script exits with non-zero status; Step 2: stderr/stdout contains the missing prefixed key name; Step 3: removing the missing-key scenario and re-running gives exit 0.
 
 #### Test Execution
-> **Feature File:** [CM-010](03--env-var-prefixing/003-validate-config-script.md)
+> **Feature File:** [CM-010](03--env-var-prefixing/010-validate-config-script.md)
 
 ---
 
@@ -253,7 +253,7 @@ Prompt summary: As a manual-testing orchestrator, call `clickup_get_teams` then 
 Expected signals: Step 1: chain returns object with both call results; Step 2: spaces array references the first team id.
 
 #### Test Execution
-> **Feature File:** [CM-011](04--multi-tool-workflows/001-sequential-chain.md)
+> **Feature File:** [CM-011](04--multi-tool-workflows/011-sequential-chain.md)
 
 ### CM-012 | Promise.all parallelizes independent tool calls
 
@@ -266,7 +266,7 @@ Prompt summary: As a manual-testing orchestrator, run three independent read-onl
 Expected signals: Step 1: chain returns an array of length 3; Step 2: each entry is a non-error response; Step 3: total wall time < sum of individual times (parallel evidence).
 
 #### Test Execution
-> **Feature File:** [CM-012](04--multi-tool-workflows/002-promise-all-parallel.md)
+> **Feature File:** [CM-012](04--multi-tool-workflows/012-promise-all-parallel.md)
 
 ### CM-013 | try/catch catches a tool failure without aborting the chain
 
@@ -279,7 +279,7 @@ Prompt summary: As a manual-testing orchestrator, run a chain where the first ca
 Expected signals: Step 1: chain returns object with `error` and `fallback` keys; Step 2: error is structured (not a runtime exception that aborts the chain).
 
 #### Test Execution
-> **Feature File:** [CM-013](04--multi-tool-workflows/003-try-catch-error-path.md)
+> **Feature File:** [CM-013](04--multi-tool-workflows/013-try-catch-error-path.md)
 
 ---
 
@@ -298,7 +298,7 @@ Prompt summary: As a manual-testing orchestrator, create a throwaway test task i
 Expected signals: Step 1: create returns task with `id`; Step 2: get returns task with same `id` and matching `name`; Step 3: delete returns success.
 
 #### Test Execution
-> **Feature File:** [CM-014](05--clickup-and-chrome-via-cm/001-clickup-create-read-delete.md)
+> **Feature File:** [CM-014](05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md)
 
 ### CM-015 | Chrome DevTools via CM — navigate + screenshot
 
@@ -311,7 +311,7 @@ Prompt summary: As a manual-testing orchestrator, navigate Chrome to https://exa
 Expected signals: Step 1: navigate returns success; Step 2: screenshot returns base64 string of length > 1000; Step 3: decoded bytes start with PNG magic header `89 50 4E 47`.
 
 #### Test Execution
-> **Feature File:** [CM-015](05--clickup-and-chrome-via-cm/002-chrome-navigate-screenshot.md)
+> **Feature File:** [CM-015](05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md)
 
 ### CM-016 | Sibling-pair handover — Chrome screenshot triggers ClickUp task
 
@@ -324,7 +324,7 @@ Prompt summary: As a manual-testing orchestrator, navigate Chrome to a target UR
 Expected signals: Step 1: chain returns object with both `screenshot_id` and `task_id`; Step 2: created task description contains the screenshot reference; Step 3: cleanup deletes both.
 
 #### Test Execution
-> **Feature File:** [CM-016](05--clickup-and-chrome-via-cm/003-sibling-pair-handover.md)
+> **Feature File:** [CM-016](05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md)
 
 ---
 
@@ -343,7 +343,7 @@ Prompt summary: As a manual-testing orchestrator, fetch metadata for a public Fi
 Expected signals: Step 1: response is an object; Step 2: response has `name` (string) and `lastModified` (ISO date); Step 3: response has `document` with at least one child.
 
 #### Test Execution
-> **Feature File:** [CM-017](06--third-party-via-cm/001-figma-file-metadata.md)
+> **Feature File:** [CM-017](06--third-party-via-cm/017-figma-file-metadata.md)
 
 ### CM-018 | MyService via CM — list sites
 
@@ -356,7 +356,7 @@ Prompt summary: As a manual-testing orchestrator, list all MyService sites visib
 Expected signals: Step 1: response is an array; Step 2: each entry has `id` and `displayName` or equivalent; Step 3: array length >= 0 (empty is valid for fresh accounts).
 
 #### Test Execution
-> **Feature File:** [CM-018](06--third-party-via-cm/002-myservice-list-sites.md)
+> **Feature File:** [CM-018](06--third-party-via-cm/018-myservice-list-sites.md)
 
 ### CM-019 | GitHub via CM — list user repos
 
@@ -369,7 +369,7 @@ Prompt summary: As a manual-testing orchestrator, list repos owned by the authen
 Expected signals: Step 1: response is an array; Step 2: each entry has `name`, `owner.login`, and `private` fields; Step 3: array length > 0 for accounts with at least one repo.
 
 #### Test Execution
-> **Feature File:** [CM-019](06--third-party-via-cm/003-github-list-user-repos.md)
+> **Feature File:** [CM-019](06--third-party-via-cm/019-github-list-user-repos.md)
 
 ### CM-020 | Notion via CM — search workspace
 
@@ -382,7 +382,7 @@ Prompt summary: As a manual-testing orchestrator, search the Notion workspace fo
 Expected signals: Step 1: response has `results` array; Step 2: each result has `object` (page/database) and `id`; Step 3: array length >= 0.
 
 #### Test Execution
-> **Feature File:** [CM-020](06--third-party-via-cm/004-notion-search-workspace.md)
+> **Feature File:** [CM-020](06--third-party-via-cm/020-notion-search-workspace.md)
 
 ---
 
@@ -401,7 +401,7 @@ Prompt summary: As a manual-testing orchestrator, back up `.utcp_config.json`, c
 Expected signals: Step 2: Code Mode startup fails with JSON parse error referencing `.utcp_config.json`; Step 4: after restore, `list_tools()` succeeds again.
 
 #### Test Execution
-> **Feature File:** [CM-021](07--recovery-and-config/001-invalid-config-error.md)
+> **Feature File:** [CM-021](07--recovery-and-config/021-invalid-config-error.md)
 
 ### CM-022 | Disabled server is omitted from list_tools
 
@@ -414,7 +414,7 @@ Prompt summary: As a manual-testing orchestrator, set `disabled: true` for the G
 Expected signals: Step 2: `list_tools()` returns no entries beginning with `github.`; Step 4: after revert, GitHub tools reappear.
 
 #### Test Execution
-> **Feature File:** [CM-022](07--recovery-and-config/002-disabled-server-omitted.md)
+> **Feature File:** [CM-022](07--recovery-and-config/022-disabled-server-omitted.md)
 
 ### CM-023 | Timeout escalation — long-running chain respects timeout argument
 
@@ -427,7 +427,7 @@ Prompt summary: As a manual-testing orchestrator, run a deliberately slow chain 
 Expected signals: Step 1: response includes timeout/abort error; Step 2: wall-clock time approximately 5 seconds (within ±1s).
 
 #### Test Execution
-> **Feature File:** [CM-023](07--recovery-and-config/003-timeout-escalation.md)
+> **Feature File:** [CM-023](07--recovery-and-config/023-timeout-escalation.md)
 
 ### CM-024 | Deregister manual then re-register cycle **(DESTRUCTIVE)**
 
@@ -440,7 +440,7 @@ Prompt summary: As a manual-testing orchestrator, deregister the GitHub manual, 
 Expected signals: Step 1: deregister returns success; Step 2: `list_tools()` shows no `github.` entries; Step 3: re-register returns success; Step 4: GitHub tools reappear.
 
 #### Test Execution
-> **Feature File:** [CM-024](07--recovery-and-config/004-deregister-reregister-cycle.md)
+> **Feature File:** [CM-024](07--recovery-and-config/024-deregister-reregister-cycle.md)
 
 ### CM-025 | Partial-chain rollback — failure mid-chain leaves ClickUp clean
 
@@ -453,7 +453,7 @@ Prompt summary: As a manual-testing orchestrator, run a chain that creates a Cli
 Expected signals: Step 1: chain returns object with `created_task_id` and `error`; Step 2: `clickup_get_task({id})` returns the task; Step 3: `clickup_delete_task({id})` succeeds.
 
 #### Test Execution
-> **Feature File:** [CM-025](07--recovery-and-config/005-partial-chain-rollback.md)
+> **Feature File:** [CM-025](07--recovery-and-config/025-partial-chain-rollback.md)
 
 ### CM-026 | Missing manual entry returns "manual not found" on tool call
 
@@ -466,7 +466,7 @@ Prompt summary: As a manual-testing orchestrator, call `nonexistent.nonexistent_
 Expected signals: Step 1: call returns error; Step 2: error message contains "manual" or "not found" or "registry"; Step 3: error references `nonexistent`.
 
 #### Test Execution
-> **Feature File:** [CM-026](07--recovery-and-config/006-missing-manual-entry.md)
+> **Feature File:** [CM-026](07--recovery-and-config/026-missing-manual-entry.md)
 
 ---
 
@@ -493,40 +493,40 @@ Expected signals: Step 1: call returns error; Step 2: error message contains "ma
 
 ### MANUAL NAMESPACE CONTRACT
 
-- CM-005: [Correct manual.tool form](02--manual-namespace-contract/001-correct-manual-tool-form.md)
-- CM-006: [Wrong-form error](02--manual-namespace-contract/002-wrong-form-error.md)
-- CM-007: [list_tools dot vs underscore](02--manual-namespace-contract/003-list-tools-dot-vs-underscore.md)
+- CM-005: [Correct manual.tool form](02--manual-namespace-contract/005-correct-manual-tool-form.md)
+- CM-006: [Wrong-form error](02--manual-namespace-contract/006-wrong-form-error.md)
+- CM-007: [list_tools dot vs underscore](02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md)
 
 ### ENV VAR PREFIXING
 
-- CM-008: [Prefixed env load](03--env-var-prefixing/001-prefixed-env-load.md)
-- CM-009: [Unprefixed env not found](03--env-var-prefixing/002-unprefixed-env-not-found.md)
-- CM-010: [validate_config script](03--env-var-prefixing/003-validate-config-script.md)
+- CM-008: [Prefixed env load](03--env-var-prefixing/008-prefixed-env-load.md)
+- CM-009: [Unprefixed env not found](03--env-var-prefixing/009-unprefixed-env-not-found.md)
+- CM-010: [validate_config script](03--env-var-prefixing/010-validate-config-script.md)
 
 ### MULTI-TOOL WORKFLOWS
 
-- CM-011: [Sequential chain](04--multi-tool-workflows/001-sequential-chain.md)
-- CM-012: [Promise.all parallel](04--multi-tool-workflows/002-promise-all-parallel.md)
-- CM-013: [try/catch error path](04--multi-tool-workflows/003-try-catch-error-path.md)
+- CM-011: [Sequential chain](04--multi-tool-workflows/011-sequential-chain.md)
+- CM-012: [Promise.all parallel](04--multi-tool-workflows/012-promise-all-parallel.md)
+- CM-013: [try/catch error path](04--multi-tool-workflows/013-try-catch-error-path.md)
 
 ### CLICKUP AND CHROME VIA CM
 
-- CM-014: [ClickUp create-read-delete](05--clickup-and-chrome-via-cm/001-clickup-create-read-delete.md)
-- CM-015: [Chrome navigate + screenshot](05--clickup-and-chrome-via-cm/002-chrome-navigate-screenshot.md)
-- CM-016: [Sibling-pair handover](05--clickup-and-chrome-via-cm/003-sibling-pair-handover.md)
+- CM-014: [ClickUp create-read-delete](05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md)
+- CM-015: [Chrome navigate + screenshot](05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md)
+- CM-016: [Sibling-pair handover](05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md)
 
 ### THIRD-PARTY VIA CM
 
-- CM-017: [Figma file metadata](06--third-party-via-cm/001-figma-file-metadata.md)
-- CM-018: [MyService list sites](06--third-party-via-cm/002-myservice-list-sites.md)
-- CM-019: [GitHub list user repos](06--third-party-via-cm/003-github-list-user-repos.md)
-- CM-020: [Notion search workspace](06--third-party-via-cm/004-notion-search-workspace.md)
+- CM-017: [Figma file metadata](06--third-party-via-cm/017-figma-file-metadata.md)
+- CM-018: [MyService list sites](06--third-party-via-cm/018-myservice-list-sites.md)
+- CM-019: [GitHub list user repos](06--third-party-via-cm/019-github-list-user-repos.md)
+- CM-020: [Notion search workspace](06--third-party-via-cm/020-notion-search-workspace.md)
 
 ### RECOVERY AND CONFIG
 
-- CM-021: [Invalid config error **(DESTRUCTIVE)**](07--recovery-and-config/001-invalid-config-error.md)
-- CM-022: [Disabled server omitted](07--recovery-and-config/002-disabled-server-omitted.md)
-- CM-023: [Timeout escalation](07--recovery-and-config/003-timeout-escalation.md)
-- CM-024: [Deregister/re-register cycle **(DESTRUCTIVE)**](07--recovery-and-config/004-deregister-reregister-cycle.md)
-- CM-025: [Partial-chain rollback](07--recovery-and-config/005-partial-chain-rollback.md)
-- CM-026: [Missing manual entry](07--recovery-and-config/006-missing-manual-entry.md)
+- CM-021: [Invalid config error **(DESTRUCTIVE)**](07--recovery-and-config/021-invalid-config-error.md)
+- CM-022: [Disabled server omitted](07--recovery-and-config/022-disabled-server-omitted.md)
+- CM-023: [Timeout escalation](07--recovery-and-config/023-timeout-escalation.md)
+- CM-024: [Deregister/re-register cycle **(DESTRUCTIVE)**](07--recovery-and-config/024-deregister-reregister-cycle.md)
+- CM-025: [Partial-chain rollback](07--recovery-and-config/025-partial-chain-rollback.md)
+- CM-026: [Missing manual entry](07--recovery-and-config/026-missing-manual-entry.md)

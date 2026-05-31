@@ -1,0 +1,2 @@
+002-spec-kit-internals/005-validate-recursive-orchestrator-fix
+002-spec-kit-internals/006-orchestrator-placeholder-parity

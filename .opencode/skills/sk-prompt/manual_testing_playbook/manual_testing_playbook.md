@@ -265,7 +265,7 @@ Desired user-visible outcome: Two routing traces showing intent + resource list.
 
 #### Test Execution
 
-> **Feature File:** [SP-005](02--smart-routing/001-intent-model-keyword-scoring.md)
+> **Feature File:** [SP-005](02--smart-routing/005-intent-model-keyword-scoring.md)
 
 ### SP-006 | ON_DEMAND keyword loading
 
@@ -283,7 +283,7 @@ Desired user-visible outcome: Routing trace listing all of `references/depth_fra
 
 #### Test Execution
 
-> **Feature File:** [SP-006](02--smart-routing/002-on-demand-keyword-loading.md)
+> **Feature File:** [SP-006](02--smart-routing/006-on-demand-keyword-loading.md)
 
 ### SP-007 | AMBIGUITY_DELTA top-2 tiebreaker
 
@@ -301,7 +301,7 @@ Desired user-visible outcome: Routing trace listing resources from both branches
 
 #### Test Execution
 
-> **Feature File:** [SP-007](02--smart-routing/003-ambiguity-delta-tiebreaker.md)
+> **Feature File:** [SP-007](02--smart-routing/007-ambiguity-delta-tiebreaker.md)
 
 ### SP-008 | UNKNOWN_FALLBACK with disambiguation checklist
 
@@ -319,7 +319,7 @@ Desired user-visible outcome: Routing trace showing default = TEXT_ENHANCE, plus
 
 #### Test Execution
 
-> **Feature File:** [SP-008](02--smart-routing/004-unknown-fallback-checklist.md)
+> **Feature File:** [SP-008](02--smart-routing/008-unknown-fallback-checklist.md)
 
 ---
 
@@ -341,7 +341,7 @@ Desired user-visible outcome: Transparency report including a 5-line per-phase l
 
 #### Test Execution
 
-> **Feature File:** [SP-009](03--depth-clear-loop/001-depth-five-phases-order.md)
+> **Feature File:** [SP-009](03--depth-clear-loop/009-depth-five-phases-order.md)
 
 ### SP-010 | Discover phase blocks below 3 perspectives
 
@@ -359,7 +359,7 @@ Desired user-visible outcome: Transparency report stating either "Discover phase
 
 #### Test Execution
 
-> **Feature File:** [SP-010](03--depth-clear-loop/002-perspectives-floor-three.md)
+> **Feature File:** [SP-010](03--depth-clear-loop/010-perspectives-floor-three.md)
 
 ### SP-011 | Iteration cap at 3 CLEAR re-score loops
 
@@ -377,7 +377,7 @@ Desired user-visible outcome: Enhanced prompt + transparency report stating "Ite
 
 #### Test Execution
 
-> **Feature File:** [SP-011](03--depth-clear-loop/003-depth-iteration-cap.md)
+> **Feature File:** [SP-011](03--depth-clear-loop/011-depth-iteration-cap.md)
 
 ### SP-012 | RICCE validation gate
 
@@ -395,7 +395,7 @@ Desired user-visible outcome: Transparency report listing each RICCE element wit
 
 #### Test Execution
 
-> **Feature File:** [SP-012](03--depth-clear-loop/004-ricce-validation-gate.md)
+> **Feature File:** [SP-012](03--depth-clear-loop/012-ricce-validation-gate.md)
 
 ### SP-013 | Mechanism-first prototype (WHY before WHAT)
 
@@ -413,7 +413,7 @@ Desired user-visible outcome: Enhanced prompt whose first 1-2 sentences establis
 
 #### Test Execution
 
-> **Feature File:** [SP-013](03--depth-clear-loop/005-mechanism-first-prototype.md)
+> **Feature File:** [SP-013](03--depth-clear-loop/013-mechanism-first-prototype.md)
 
 ### SP-014 | Phase exit gates block advancement until met
 
@@ -431,7 +431,7 @@ Desired user-visible outcome: Transparency report listing each phase with `gate:
 
 #### Test Execution
 
-> **Feature File:** [SP-014](03--depth-clear-loop/006-phase-exit-gate-blocking.md)
+> **Feature File:** [SP-014](03--depth-clear-loop/014-phase-exit-gate-blocking.md)
 
 ---
 
@@ -453,7 +453,7 @@ Desired user-visible outcome: Transparency report containing `CLEAR_SCORE: <n>/5
 
 #### Test Execution
 
-> **Feature File:** [SP-015](04--clear-scoring/001-clear-five-dimensions.md)
+> **Feature File:** [SP-015](04--clear-scoring/015-clear-five-dimensions.md)
 
 ### SP-016 | Per-dimension floors trigger re-score
 
@@ -471,7 +471,7 @@ Desired user-visible outcome: Transparency report listing `re-score reason: dime
 
 #### Test Execution
 
-> **Feature File:** [SP-016](04--clear-scoring/002-dimension-floors-block.md)
+> **Feature File:** [SP-016](04--clear-scoring/016-dimension-floors-block.md)
 
 ### SP-017 | Total below 40/50 triggers improvement cycle (max 3)
 
@@ -489,7 +489,7 @@ Desired user-visible outcome: Transparency report showing iteration count >= 2, 
 
 #### Test Execution
 
-> **Feature File:** [SP-017](04--clear-scoring/003-forty-of-fifty-threshold.md)
+> **Feature File:** [SP-017](04--clear-scoring/017-forty-of-fifty-threshold.md)
 
 ### SP-018 | Per-dimension rationale included
 
@@ -507,7 +507,7 @@ Desired user-visible outcome: Transparency report containing five lines of the f
 
 #### Test Execution
 
-> **Feature File:** [SP-018](04--clear-scoring/004-dimension-drilldown-rationale.md)
+> **Feature File:** [SP-018](04--clear-scoring/018-dimension-drilldown-rationale.md)
 
 ---
 
@@ -529,7 +529,7 @@ Desired user-visible outcome: Three transparency reports each naming the selecte
 
 #### Test Execution
 
-> **Feature File:** [SP-019](05--framework-selection/001-framework-by-complexity.md)
+> **Feature File:** [SP-019](05--framework-selection/019-framework-by-complexity.md)
 
 ### SP-020 | User-named framework override wins
 
@@ -547,7 +547,7 @@ Desired user-visible outcome: Transparency report containing `Framework: COSTAR 
 
 #### Test Execution
 
-> **Feature File:** [SP-020](05--framework-selection/002-user-named-framework-override.md)
+> **Feature File:** [SP-020](05--framework-selection/020-user-named-framework-override.md)
 
 ### SP-021 | Selection rationale required
 
@@ -565,7 +565,7 @@ Desired user-visible outcome: Transparency report containing `Framework: <name>;
 
 #### Test Execution
 
-> **Feature File:** [SP-021](05--framework-selection/003-framework-rationale-required.md)
+> **Feature File:** [SP-021](05--framework-selection/021-framework-rationale-required.md)
 
 ### SP-022 | Mid-flight framework switch on Test-phase failure
 
@@ -583,7 +583,7 @@ Desired user-visible outcome: Transparency report containing `Framework switch: 
 
 #### Test Execution
 
-> **Feature File:** [SP-022](05--framework-selection/004-framework-switch-mid-flight.md)
+> **Feature File:** [SP-022](05--framework-selection/022-framework-switch-mid-flight.md)
 
 ---
 
@@ -605,7 +605,7 @@ Desired user-visible outcome: Notice "Fast-path: 5/5 CLEAR questions passed; dis
 
 #### Test Execution
 
-> **Feature File:** [SP-023](06--escalation-tiers/001-cli-card-five-question-fast-path.md)
+> **Feature File:** [SP-023](06--escalation-tiers/023-cli-card-five-question-fast-path.md)
 
 ### SP-024 | Escalation triggers (complexity / compliance / multi-stakeholder / ambiguity)
 
@@ -623,7 +623,7 @@ Desired user-visible outcome: Four routing decisions logged as `Escalation: @pro
 
 #### Test Execution
 
-> **Feature File:** [SP-024](06--escalation-tiers/002-escalation-trigger-thresholds.md)
+> **Feature File:** [SP-024](06--escalation-tiers/024-escalation-trigger-thresholds.md)
 
 ### SP-025 | `@prompt-improver` input payload contract
 
@@ -641,7 +641,7 @@ Desired user-visible outcome: Structured output block listing FRAMEWORK / CLEAR_
 
 #### Test Execution
 
-> **Feature File:** [SP-025](06--escalation-tiers/003-prompt-improver-input-payload.md)
+> **Feature File:** [SP-025](06--escalation-tiers/025-prompt-improver-input-payload.md)
 
 ### SP-026 | `@prompt-improver` structured output block
 
@@ -659,7 +659,7 @@ Desired user-visible outcome: Five labelled fields present, ENHANCED_PROMPT mult
 
 #### Test Execution
 
-> **Feature File:** [SP-026](06--escalation-tiers/004-prompt-improver-output-block.md)
+> **Feature File:** [SP-026](06--escalation-tiers/026-prompt-improver-output-block.md)
 
 ---
 
@@ -681,7 +681,7 @@ Desired user-visible outcome: Three enhanced prompts that parse as valid JSON, Y
 
 #### Test Execution
 
-> **Feature File:** [SP-027](07--format-modes/001-format-mode-delivery.md)
+> **Feature File:** [SP-027](07--format-modes/027-format-mode-delivery.md)
 
 ### SP-028 | Format-guide assets loaded only on demand
 
@@ -699,7 +699,7 @@ Desired user-visible outcome: Routing trace listing `format_guide_json.md` only 
 
 #### Test Execution
 
-> **Feature File:** [SP-028](07--format-modes/002-format-guide-on-demand.md)
+> **Feature File:** [SP-028](07--format-modes/028-format-guide-on-demand.md)
 
 ---
 
@@ -721,27 +721,27 @@ Desired user-visible outcome: Routing trace listing `format_guide_json.md` only 
 | SP-002 | `$raw` passthrough | Mode Detection | [SP-002](01--mode-detection/002-raw-mode-passthrough.md) |
 | SP-003 | `$short` 3-round DEPTH | Mode Detection | [SP-003](01--mode-detection/003-short-mode-three-rounds.md) |
 | SP-004 | Mode prefix vs keyword collision | Mode Detection | [SP-004](01--mode-detection/004-mode-prefix-keyword-collision.md) |
-| SP-005 | INTENT_MODEL keyword scoring | Smart Routing | [SP-005](02--smart-routing/001-intent-model-keyword-scoring.md) |
-| SP-006 | ON_DEMAND keyword loading | Smart Routing | [SP-006](02--smart-routing/002-on-demand-keyword-loading.md) |
-| SP-007 | AMBIGUITY_DELTA tiebreaker | Smart Routing | [SP-007](02--smart-routing/003-ambiguity-delta-tiebreaker.md) |
-| SP-008 | UNKNOWN_FALLBACK checklist | Smart Routing | [SP-008](02--smart-routing/004-unknown-fallback-checklist.md) |
-| SP-009 | DEPTH 5-phase order | DEPTH+CLEAR Loop | [SP-009](03--depth-clear-loop/001-depth-five-phases-order.md) |
-| SP-010 | Perspectives floor (3) | DEPTH+CLEAR Loop | [SP-010](03--depth-clear-loop/002-perspectives-floor-three.md) |
-| SP-011 | DEPTH iteration cap (3) | DEPTH+CLEAR Loop | [SP-011](03--depth-clear-loop/003-depth-iteration-cap.md) |
-| SP-012 | RICCE validation gate | DEPTH+CLEAR Loop | [SP-012](03--depth-clear-loop/004-ricce-validation-gate.md) |
-| SP-013 | Mechanism-first prototype | DEPTH+CLEAR Loop | [SP-013](03--depth-clear-loop/005-mechanism-first-prototype.md) |
-| SP-014 | Phase exit gate blocking | DEPTH+CLEAR Loop | [SP-014](03--depth-clear-loop/006-phase-exit-gate-blocking.md) |
-| SP-015 | CLEAR five dimensions | CLEAR Scoring | [SP-015](04--clear-scoring/001-clear-five-dimensions.md) |
-| SP-016 | Dimension floors block | CLEAR Scoring | [SP-016](04--clear-scoring/002-dimension-floors-block.md) |
-| SP-017 | 40/50 threshold + 3-cap | CLEAR Scoring | [SP-017](04--clear-scoring/003-forty-of-fifty-threshold.md) |
-| SP-018 | Per-dimension rationale | CLEAR Scoring | [SP-018](04--clear-scoring/004-dimension-drilldown-rationale.md) |
-| SP-019 | Framework by complexity | Framework Selection | [SP-019](05--framework-selection/001-framework-by-complexity.md) |
-| SP-020 | User-named framework override | Framework Selection | [SP-020](05--framework-selection/002-user-named-framework-override.md) |
-| SP-021 | Framework rationale required | Framework Selection | [SP-021](05--framework-selection/003-framework-rationale-required.md) |
-| SP-022 | Framework switch mid-flight | Framework Selection | [SP-022](05--framework-selection/004-framework-switch-mid-flight.md) |
-| SP-023 | CLI card 5-question fast path | Escalation Tiers | [SP-023](06--escalation-tiers/001-cli-card-five-question-fast-path.md) |
-| SP-024 | Escalation trigger thresholds | Escalation Tiers | [SP-024](06--escalation-tiers/002-escalation-trigger-thresholds.md) |
-| SP-025 | `@prompt-improver` input payload | Escalation Tiers | [SP-025](06--escalation-tiers/003-prompt-improver-input-payload.md) |
-| SP-026 | `@prompt-improver` output block | Escalation Tiers | [SP-026](06--escalation-tiers/004-prompt-improver-output-block.md) |
-| SP-027 | Format mode delivery | Format Modes | [SP-027](07--format-modes/001-format-mode-delivery.md) |
-| SP-028 | Format guide on-demand | Format Modes | [SP-028](07--format-modes/002-format-guide-on-demand.md) |
+| SP-005 | INTENT_MODEL keyword scoring | Smart Routing | [SP-005](02--smart-routing/005-intent-model-keyword-scoring.md) |
+| SP-006 | ON_DEMAND keyword loading | Smart Routing | [SP-006](02--smart-routing/006-on-demand-keyword-loading.md) |
+| SP-007 | AMBIGUITY_DELTA tiebreaker | Smart Routing | [SP-007](02--smart-routing/007-ambiguity-delta-tiebreaker.md) |
+| SP-008 | UNKNOWN_FALLBACK checklist | Smart Routing | [SP-008](02--smart-routing/008-unknown-fallback-checklist.md) |
+| SP-009 | DEPTH 5-phase order | DEPTH+CLEAR Loop | [SP-009](03--depth-clear-loop/009-depth-five-phases-order.md) |
+| SP-010 | Perspectives floor (3) | DEPTH+CLEAR Loop | [SP-010](03--depth-clear-loop/010-perspectives-floor-three.md) |
+| SP-011 | DEPTH iteration cap (3) | DEPTH+CLEAR Loop | [SP-011](03--depth-clear-loop/011-depth-iteration-cap.md) |
+| SP-012 | RICCE validation gate | DEPTH+CLEAR Loop | [SP-012](03--depth-clear-loop/012-ricce-validation-gate.md) |
+| SP-013 | Mechanism-first prototype | DEPTH+CLEAR Loop | [SP-013](03--depth-clear-loop/013-mechanism-first-prototype.md) |
+| SP-014 | Phase exit gate blocking | DEPTH+CLEAR Loop | [SP-014](03--depth-clear-loop/014-phase-exit-gate-blocking.md) |
+| SP-015 | CLEAR five dimensions | CLEAR Scoring | [SP-015](04--clear-scoring/015-clear-five-dimensions.md) |
+| SP-016 | Dimension floors block | CLEAR Scoring | [SP-016](04--clear-scoring/016-dimension-floors-block.md) |
+| SP-017 | 40/50 threshold + 3-cap | CLEAR Scoring | [SP-017](04--clear-scoring/017-forty-of-fifty-threshold.md) |
+| SP-018 | Per-dimension rationale | CLEAR Scoring | [SP-018](04--clear-scoring/018-dimension-drilldown-rationale.md) |
+| SP-019 | Framework by complexity | Framework Selection | [SP-019](05--framework-selection/019-framework-by-complexity.md) |
+| SP-020 | User-named framework override | Framework Selection | [SP-020](05--framework-selection/020-user-named-framework-override.md) |
+| SP-021 | Framework rationale required | Framework Selection | [SP-021](05--framework-selection/021-framework-rationale-required.md) |
+| SP-022 | Framework switch mid-flight | Framework Selection | [SP-022](05--framework-selection/022-framework-switch-mid-flight.md) |
+| SP-023 | CLI card 5-question fast path | Escalation Tiers | [SP-023](06--escalation-tiers/023-cli-card-five-question-fast-path.md) |
+| SP-024 | Escalation trigger thresholds | Escalation Tiers | [SP-024](06--escalation-tiers/024-escalation-trigger-thresholds.md) |
+| SP-025 | `@prompt-improver` input payload | Escalation Tiers | [SP-025](06--escalation-tiers/025-prompt-improver-input-payload.md) |
+| SP-026 | `@prompt-improver` output block | Escalation Tiers | [SP-026](06--escalation-tiers/026-prompt-improver-output-block.md) |
+| SP-027 | Format mode delivery | Format Modes | [SP-027](07--format-modes/027-format-mode-delivery.md) |
+| SP-028 | Format guide on-demand | Format Modes | [SP-028](07--format-modes/028-format-guide-on-demand.md) |

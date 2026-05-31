@@ -68,8 +68,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-060 [P1] All findings resolved or explicitly deferred: N/A, research-only packet with no runtime code changes. [EVIDENCE: implementation-summary.md]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
-## Security
+## SECURITY
 
 - [x] CHK-030 [P0] No hardcoded secrets. [EVIDENCE: implementation-summary.md]
 - [x] CHK-031 [P0] Input validation implemented: N/A, no executable input path added. [EVIDENCE: implementation-summary.md]
@@ -79,7 +87,7 @@ _memory:
 ---
 
 <!-- ANCHOR:docs -->
-## Documentation
+## DOCUMENTATION
 
 - [x] CHK-040 [P1] Spec/plan/tasks synchronized. [EVIDENCE: implementation-summary.md]
 - [x] CHK-041 [P1] Code comments adequate: N/A, no code changes. [EVIDENCE: implementation-summary.md]
@@ -89,7 +97,7 @@ _memory:
 ---
 
 <!-- ANCHOR:file-org -->
-## File Organization
+## FILE ORGANIZATION
 
 - [x] CHK-050 [P1] Temp files in scratch only: no temp files created under packet root. [EVIDENCE: implementation-summary.md]
 - [x] CHK-051 [P1] scratch cleaned before completion: N/A, no scratch directory used. [EVIDENCE: implementation-summary.md]
@@ -103,7 +111,7 @@ _memory:
 | Category | Total | Verified |
 |----------|-------|----------|
 | P0 Items | 7 | 7/7 |
-| P1 Items | 8 | 8/8 |
+| P1 Items | 9 | 9/9 |
 | P2 Items | 1 | 1/1 |
 
 **Verification Date**: 2026-04-29

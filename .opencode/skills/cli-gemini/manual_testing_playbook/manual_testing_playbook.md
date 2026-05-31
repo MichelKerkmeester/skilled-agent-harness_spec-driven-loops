@@ -245,7 +245,7 @@ Expected signals: `EXIT=0`, `/tmp/cg-004-sandbox/hello.md` exists with the expec
 Desired user-visible outcome: PASS verdict reporting the absolute sandbox path and approximate file size.
 
 #### Test Execution
-> **Feature File:** [CG-004](02--auto-approve-yolo/001-yolo-flag-sandboxed-write.md)
+> **Feature File:** [CG-004](02--auto-approve-yolo/004-yolo-flag-sandboxed-write.md)
 
 ### CG-005 | Approval mode comparison (default vs never)
 
@@ -262,7 +262,7 @@ Expected signals: both calls exit 0, both outputs name `gemini-3.1-pro-preview` 
 Desired user-visible outcome: PASS verdict + a one-line comparison noting default and never produced equivalent read-only behaviour.
 
 #### Test Execution
-> **Feature File:** [CG-005](02--auto-approve-yolo/002-approval-mode-comparison.md)
+> **Feature File:** [CG-005](02--auto-approve-yolo/005-approval-mode-comparison.md)
 
 ---
 
@@ -285,7 +285,7 @@ Expected signals: `EXIT=0`, `.toolCalls[].name` includes `google_web_search`, `.
 Desired user-visible outcome: PASS verdict + the LTS version string + the cited URL.
 
 #### Test Execution
-> **Feature File:** [CG-006](03--built-in-tools/001-google-web-search-grounding.md)
+> **Feature File:** [CG-006](03--built-in-tools/006-google-web-search-grounding.md)
 
 ### CG-007 | Codebase investigator
 
@@ -302,7 +302,7 @@ Expected signals: `EXIT=0`, `.toolCalls[].name` includes `codebase_investigator`
 Desired user-visible outcome: PASS verdict + a 3-5 line summary identifying SKILL.md as the entry point, references catalog and assets catalog.
 
 #### Test Execution
-> **Feature File:** [CG-007](03--built-in-tools/002-codebase-investigator.md)
+> **Feature File:** [CG-007](03--built-in-tools/007-codebase-investigator.md)
 
 ### CG-008 | save_memory persistence **(DESTRUCTIVE, sandboxed `HOME`)**
 
@@ -319,7 +319,7 @@ Expected signals: `EXIT_SAVE=0`, `/tmp/cg-008-sandbox/.gemini/memory.json` exist
 Desired user-visible outcome: PASS verdict reporting the marker was both written and recalled inside the sandbox + the recalled marker text.
 
 #### Test Execution
-> **Feature File:** [CG-008](03--built-in-tools/003-save-memory-persistence.md)
+> **Feature File:** [CG-008](03--built-in-tools/008-save-memory-persistence.md)
 
 ### CG-009 | File reference syntax (`@` prefix)
 
@@ -336,7 +336,7 @@ Expected signals: `EXIT=0`, the response contains the literal string `gemini-3.1
 Desired user-visible outcome: PASS verdict + a one-line quote naming the supported model.
 
 #### Test Execution
-> **Feature File:** [CG-009](03--built-in-tools/004-file-reference-syntax.md)
+> **Feature File:** [CG-009](03--built-in-tools/009-file-reference-syntax.md)
 
 ---
 
@@ -359,7 +359,7 @@ Expected signals: `EXIT=0`, response names at least 3 of (`cli_reference.md`, `i
 Desired user-visible outcome: PASS verdict + a 3-5 line summary listing the cited reference files and their purposes.
 
 #### Test Execution
-> **Feature File:** [CG-010](04--agent-routing/001-context-agent-exploration.md)
+> **Feature File:** [CG-010](04--agent-routing/010-context-agent-exploration.md)
 
 ### CG-011 | @review agent for cross-AI second opinion
 
@@ -376,7 +376,7 @@ Expected signals: `EXIT=0`, response contains at least one severity classifier, 
 Desired user-visible outcome: PASS verdict + the highest-severity finding line.
 
 #### Test Execution
-> **Feature File:** [CG-011](04--agent-routing/002-review-agent-second-opinion.md)
+> **Feature File:** [CG-011](04--agent-routing/011-review-agent-second-opinion.md)
 
 ### CG-012 | @deep-research agent with web grounding
 
@@ -393,7 +393,7 @@ Expected signals: `EXIT=0`, `.toolCalls[].name` includes `google_web_search`, `.
 Desired user-visible outcome: PASS verdict + a 2-3 sentence comparison + the cited URLs.
 
 #### Test Execution
-> **Feature File:** [CG-012](04--agent-routing/003-deep-research-agent-grounding.md)
+> **Feature File:** [CG-012](04--agent-routing/012-deep-research-agent-grounding.md)
 
 ### CG-019 | @debug agent fresh-perspective root cause
 
@@ -410,7 +410,7 @@ Expected signals: dispatch exits 0, response ranks >= 2 hypotheses, each carries
 Desired user-visible outcome: PASS verdict plus the highest-ranked hypothesis and the diagnostic step count.
 
 #### Test Execution
-> **Feature File:** [CG-019](04--agent-routing/005-debug-agent-root-cause.md)
+> **Feature File:** [CG-019](04--agent-routing/013-debug-agent-root-cause.md)
 
 ---
 
@@ -433,7 +433,7 @@ Expected signals: both calls exit 0, v1 and v2 sandbox artifacts both exist, `di
 Desired user-visible outcome: PASS verdict + the diff line count + a 2-3 line snippet showing the empty-list handling.
 
 #### Test Execution
-> **Feature File:** [CG-014](06--integration-patterns/001-generate-review-fix-cycle.md)
+> **Feature File:** [CG-014](06--integration-patterns/014-generate-review-fix-cycle.md)
 
 ### CG-015 | JSON output processing pipeline (jq)
 
@@ -450,7 +450,7 @@ Expected signals: `EXIT=0`, `.response` contains parseable embedded JSON with a 
 Desired user-visible outcome: PASS verdict + the high count + the first high finding's description.
 
 #### Test Execution
-> **Feature File:** [CG-015](06--integration-patterns/002-json-output-processing-pipeline.md)
+> **Feature File:** [CG-015](06--integration-patterns/015-json-output-processing-pipeline.md)
 
 ### CG-016 | Background execution parallel dispatch
 
@@ -467,7 +467,7 @@ Expected signals: both background processes exit 0 (`EXIT1=0` AND `EXIT2=0`), bo
 Desired user-visible outcome: PASS verdict + a one-line summary from each file.
 
 #### Test Execution
-> **Feature File:** [CG-016](06--integration-patterns/003-background-execution-parallel.md)
+> **Feature File:** [CG-016](06--integration-patterns/016-background-execution-parallel.md)
 
 ---
 
@@ -490,7 +490,7 @@ Expected signals: `EXIT=0`, coverage count across the 5 categories is >= 3 and a
 Desired user-visible outcome: PASS verdict + the count of covered categories + a one-line example finding.
 
 #### Test Execution
-> **Feature File:** [CG-017](07--prompt-templates/001-template-substitution.md)
+> **Feature File:** [CG-017](07--prompt-templates/017-template-substitution.md)
 
 ### CG-018 | CLEAR quality card application
 
@@ -507,7 +507,7 @@ Expected signals: `EXIT=0`, response is a JSON object with exactly the requested
 Desired user-visible outcome: PASS verdict + a one-line note such as `framework=RCAF; format honoured (JSON keys: name, signature, purpose)`.
 
 #### Test Execution
-> **Feature File:** [CG-018](07--prompt-templates/002-clear-quality-card-application.md)
+> **Feature File:** [CG-018](07--prompt-templates/018-clear-quality-card-application.md)
 
 ---
 
@@ -537,30 +537,30 @@ If automated tests for cli-gemini's smart-router pseudocode are added in a futur
 
 ### AUTO-APPROVE / YOLO
 
-- CG-004: [YOLO flag with sandboxed file write **(DESTRUCTIVE)**](02--auto-approve-yolo/001-yolo-flag-sandboxed-write.md)
-- CG-005: [Approval mode comparison (default vs never)](02--auto-approve-yolo/002-approval-mode-comparison.md)
+- CG-004: [YOLO flag with sandboxed file write **(DESTRUCTIVE)**](02--auto-approve-yolo/004-yolo-flag-sandboxed-write.md)
+- CG-005: [Approval mode comparison (default vs never)](02--auto-approve-yolo/005-approval-mode-comparison.md)
 
 ### BUILT-IN TOOLS
 
-- CG-006: [Google web search grounding](03--built-in-tools/001-google-web-search-grounding.md)
-- CG-007: [Codebase investigator](03--built-in-tools/002-codebase-investigator.md)
-- CG-008: [save_memory persistence **(DESTRUCTIVE, sandboxed `HOME`)**](03--built-in-tools/003-save-memory-persistence.md)
-- CG-009: [File reference syntax (`@` prefix)](03--built-in-tools/004-file-reference-syntax.md)
+- CG-006: [Google web search grounding](03--built-in-tools/006-google-web-search-grounding.md)
+- CG-007: [Codebase investigator](03--built-in-tools/007-codebase-investigator.md)
+- CG-008: [save_memory persistence **(DESTRUCTIVE, sandboxed `HOME`)**](03--built-in-tools/008-save-memory-persistence.md)
+- CG-009: [File reference syntax (`@` prefix)](03--built-in-tools/009-file-reference-syntax.md)
 
 ### AGENT ROUTING
 
-- CG-010: [@context agent for codebase exploration](04--agent-routing/001-context-agent-exploration.md)
-- CG-011: [@review agent for cross-AI second opinion](04--agent-routing/002-review-agent-second-opinion.md)
-- CG-012: [@deep-research agent with web grounding](04--agent-routing/003-deep-research-agent-grounding.md)
-- CG-019: [@debug agent fresh-perspective root cause](04--agent-routing/005-debug-agent-root-cause.md)
+- CG-010: [@context agent for codebase exploration](04--agent-routing/010-context-agent-exploration.md)
+- CG-011: [@review agent for cross-AI second opinion](04--agent-routing/011-review-agent-second-opinion.md)
+- CG-012: [@deep-research agent with web grounding](04--agent-routing/012-deep-research-agent-grounding.md)
+- CG-019: [@debug agent fresh-perspective root cause](04--agent-routing/013-debug-agent-root-cause.md)
 
 ### INTEGRATION PATTERNS
 
-- CG-014: [Generate-review-fix cycle **(SANDBOXED)**](06--integration-patterns/001-generate-review-fix-cycle.md)
-- CG-015: [JSON output processing pipeline (jq)](06--integration-patterns/002-json-output-processing-pipeline.md)
-- CG-016: [Background execution parallel dispatch](06--integration-patterns/003-background-execution-parallel.md)
+- CG-014: [Generate-review-fix cycle **(SANDBOXED)**](06--integration-patterns/014-generate-review-fix-cycle.md)
+- CG-015: [JSON output processing pipeline (jq)](06--integration-patterns/015-json-output-processing-pipeline.md)
+- CG-016: [Background execution parallel dispatch](06--integration-patterns/016-background-execution-parallel.md)
 
 ### PROMPT TEMPLATES
 
-- CG-017: [Prompt template substitution](07--prompt-templates/001-template-substitution.md)
-- CG-018: [CLEAR quality card application](07--prompt-templates/002-clear-quality-card-application.md)
+- CG-017: [Prompt template substitution](07--prompt-templates/017-template-substitution.md)
+- CG-018: [CLEAR quality card application](07--prompt-templates/018-clear-quality-card-application.md)

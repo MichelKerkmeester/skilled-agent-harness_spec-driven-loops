@@ -35,7 +35,7 @@ The estimated 7.1 MB storage savings (3.9% of 180 MB total DB) did not justify 5
 
 | File | Type | Role |
 |------|------|------|
-| `manual_testing_playbook/09--evaluation-and-measurement/090-int8-quantization-evaluation-r5.md` | Manual revalidation | Re-checks the NO-GO thresholds against current corpus size, p95 latency, and embedding dimensions |
+| `manual_testing_playbook/09--evaluation-and-measurement/085-int8-quantization-evaluation-r5.md` | Manual revalidation | Re-checks the NO-GO thresholds against current corpus size, p95 latency, and embedding dimensions |
 | `feature_catalog/09--evaluation-and-measurement/083-memory-roadmap-baseline-snapshot.md` | Supporting measurement source | Documents the nearby baseline snapshot machinery used when evaluating rollout and storage thresholds |
 
 ---

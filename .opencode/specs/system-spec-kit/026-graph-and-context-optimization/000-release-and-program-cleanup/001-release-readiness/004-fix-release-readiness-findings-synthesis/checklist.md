@@ -77,6 +77,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. [EVIDENCE: `remediation-log.md` classifies each P0/P1 finding]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. [EVIDENCE: P0 fixes applied to all affected handlers and schemas]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers and schema fields. [EVIDENCE: `tool-schemas.ts` and related tests updated]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 

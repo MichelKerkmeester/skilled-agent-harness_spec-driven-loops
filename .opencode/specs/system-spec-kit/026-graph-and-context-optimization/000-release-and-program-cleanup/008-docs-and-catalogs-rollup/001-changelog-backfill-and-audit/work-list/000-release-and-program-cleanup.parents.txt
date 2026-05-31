@@ -1,0 +1,14 @@
+000-release-and-program-cleanup
+000-release-and-program-cleanup/001-release-readiness
+000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits
+000-release-and-program-cleanup/002-audit
+000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
+000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation
+000-release-and-program-cleanup/004-followup-post-program
+000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass
+000-release-and-program-cleanup/005-stress-test
+000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
+000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook
+000-release-and-program-cleanup/006-research
+000-release-and-program-cleanup/006-research/004-fix-deep-research-findings
+000-release-and-program-cleanup/008-docs-and-catalogs-rollup

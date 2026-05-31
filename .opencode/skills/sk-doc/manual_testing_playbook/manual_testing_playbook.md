@@ -42,29 +42,29 @@ The sk-doc manual testing playbook validates smart-router behavior through deter
 - **SD-017** — `01--intent-detection/005-install-guide.md` — INSTALL_GUIDE: scaffold install guide for an MCP server. (added in 076)
 
 ### 02 — Resource Loading
-- **SD-004** — `02--resource-loading/001-references-global-only.md` — HVR loads only `references/global/hvr_rules.md`.
-- **SD-005** — `02--resource-loading/002-assets-only.md` — FLOWCHART loads only `assets/flowcharts/*`.
-- **SD-006** — `02--resource-loading/003-mixed-references-assets.md` — README_CREATION loads mixed references + assets.
+- **SD-004** — `02--resource-loading/006-references-global-only.md` — HVR loads only `references/global/hvr_rules.md`.
+- **SD-005** — `02--resource-loading/007-assets-only.md` — FLOWCHART loads only `assets/flowcharts/*`.
+- **SD-006** — `02--resource-loading/008-mixed-references-assets.md` — README_CREATION loads mixed references + assets.
 
 ### 03 — Unknown Fallback
-- **SD-007** — `03--unknown-fallback/001-ambiguous-multi-intent.md` — DOC_QUALITY + FLOWCHART tie within AMBIGUITY_DELTA=1.
-- **SD-008** — `03--unknown-fallback/002-no-keyword-match.md` — Zero-keyword prompt → UNKNOWN_FALLBACK_CHECKLIST.
-- **SD-009** — `03--unknown-fallback/003-disambiguation-required.md` — FEATURE_CATALOG ↔ PLAYBOOK tie disambiguation.
+- **SD-007** — `03--unknown-fallback/009-ambiguous-multi-intent.md` — DOC_QUALITY + FLOWCHART tie within AMBIGUITY_DELTA=1.
+- **SD-008** — `03--unknown-fallback/010-no-keyword-match.md` — Zero-keyword prompt → UNKNOWN_FALLBACK_CHECKLIST.
+- **SD-009** — `03--unknown-fallback/011-disambiguation-required.md` — FEATURE_CATALOG ↔ PLAYBOOK tie disambiguation.
 
 ### 04 — Cross-CLI Dispatch
-- **SD-010** — `04--cross-cli-dispatch/001-short-prompt-baseline.md` — Short-prompt CHANGELOG baseline across all 3 CLIs.
-- **SD-011** — `04--cross-cli-dispatch/002-large-prompt-stress.md` — ~3000-char prompt; cli-codex stdin-redirection mitigation.
-- **SD-012** — `04--cross-cli-dispatch/003-multi-step-dispatch.md` — 3 sequential sk-doc invocations with shared session context.
+- **SD-010** — `04--cross-cli-dispatch/012-short-prompt-baseline.md` — Short-prompt CHANGELOG baseline across all 3 CLIs.
+- **SD-011** — `04--cross-cli-dispatch/013-large-prompt-stress.md` — ~3000-char prompt; cli-codex stdin-redirection mitigation.
+- **SD-012** — `04--cross-cli-dispatch/014-multi-step-dispatch.md` — 3 sequential sk-doc invocations with shared session context.
 
 ### 05 — Token Cost Baseline
-- **SD-013** — `05--token-cost-baseline/001-minimal-load.md` — Floor: 1 reference (HVR).
-- **SD-014** — `05--token-cost-baseline/002-medium-load.md` — Median: 4 resources (SKILL_CREATION).
-- **SD-015** — `05--token-cost-baseline/003-max-load.md` — Ceiling: ON_DEMAND load-all RESOURCE_MAP.
+- **SD-013** — `05--token-cost-baseline/015-minimal-load.md` — Floor: 1 reference (HVR).
+- **SD-014** — `05--token-cost-baseline/016-medium-load.md` — Median: 4 resources (SKILL_CREATION).
+- **SD-015** — `05--token-cost-baseline/017-max-load.md` — Ceiling: ON_DEMAND load-all RESOURCE_MAP.
 
 ### 06 — Agent Dispatch
-- **SD-018** — `06--agent-dispatch/001-markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
-- **SD-019** — `06--agent-dispatch/002-markdown-agent-cli-codex.md` — `@markdown` agent inline-contract execution via cli-codex (gpt-5.5/xhigh/fast). Verifies codex follows `.codex/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
-- **SD-020** — `06--agent-dispatch/003-markdown-agent-cli-opencode.md` — `@markdown` agent dispatch via cli-opencode with DeepSeek v4 Pro through the DIRECT DeepSeek API.
+- **SD-018** — `06--agent-dispatch/018-markdown-agent-cli-claude-code.md` — `@markdown` agent dispatch via cli-claude-code; `/create:changelog` for stub `sk-test-dummy`.
+- **SD-019** — `06--agent-dispatch/019-markdown-agent-cli-codex.md` — `@markdown` agent inline-contract execution via cli-codex (gpt-5.5/xhigh/fast). Verifies codex follows `.codex/agents/markdown.toml` developer_instructions itself (no SpawnAgent) because the SpawnAgent runtime allowlist upstream-blocks user-defined agents — rubric differs from SD-018/020; see scenario header.
+- **SD-020** — `06--agent-dispatch/020-markdown-agent-cli-opencode.md` — `@markdown` agent dispatch via cli-opencode with DeepSeek v4 Pro through the DIRECT DeepSeek API.
 
 ---
 

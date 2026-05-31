@@ -60,7 +60,7 @@ The protocol pairs with the standalone install path documented in `16--tooling-a
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md` | Manual playbook | Playbook scenario 278 covering source diff, targeted vitest, dist marker check, runtime restart, and live probe verification |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/267-mcp-daemon-rebuild-restart-live-probe.md` | Manual playbook | Playbook scenario 278 covering source diff, targeted vitest, dist marker check, runtime restart, and live probe verification |
 
 ---
 

@@ -71,6 +71,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Research scope covers all RQs from spec.md. [EVIDENCE: REQ-001 through REQ-009 each map to an iteration focus and a research-report section.]
+- [x] CHK-FIX-002 [P0] No runtime or prior-packet files were modified. [EVIDENCE: research-only packet; all writes confined to the 022 packet folder.]
+- [x] CHK-FIX-003 [P1] Findings carry file:line citations or are labeled speculation. [EVIDENCE: iteration files and research-report.md include file:line citations for all P0/P1 findings; P2 tuning candidates carry speculation label.]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 

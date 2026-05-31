@@ -9,10 +9,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T20:30:00Z"
+    last_updated_at: "2026-05-31T19:45:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "All 3 phases merged to main; implementation complete"
-    next_safe_action: "Restart daemon, re-index 012/013 packets"
+    recent_action: "Deployed: dist rebuilt, daemon restarted (pid 23371, ollama), 012/013 reindexed, dups repaired"
+    next_safe_action: "None (deployed); optional: re-embed 6 residual pre-existing failed index rows"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -36,7 +36,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 013-memory-index-scan-implementation |
-| **Status** | Phase 3 shipped; implementation complete |
+| **Status** | Shipped & deployed — dist rebuilt, daemon restarted onto new code, 012/013 reindexed |
 | **Level** | 2 |
 | **Created** | 2026-05-31 |
 | **Research Source** | `../012-memory-index-scan-ux-hardening/research/research.md` |
@@ -91,11 +91,14 @@ Docs authored by claude-opus-4-8 from the 012 research synthesis using the canon
 | Check | Result |
 |-------|--------|
 | Level-3 docs authored (spec/plan/tasks/checklist/decision-record/impl-summary) | DONE |
-| `validate.sh <folder> --strict` | pending (run after metadata generated) |
+| `validate.sh <folder> --strict` | PASSED — Errors 0, Warnings 0 |
 | Phase 1 `tsc` + tests | PASSED (tsc 0 errors; 14/14 on 2026-05-31) |
 | Phase 2 `tsc` + tests | PASSED (tsc 0 errors; 17/17 on 2026-05-31) |
 | Phase 3 `tsc` + tests | PASSED (tsc 0 errors; 19/19 on 2026-05-31) |
 | SC1-SC5 (spec.md §5) | PASSED — all 3 phases shipped |
+| Daemon rebuild + restart (new code live) | DONE — pid 23371; `index.orphanFiles` numeric + `sweepOrphanIndexRows` live + `scanKey` present |
+| Embedder after restart | ollama `nomic-embed-text-v1.5`, healthy (auto-cascade re-selected on restart) |
+| 012/013 reindex + dup repair | DONE — 012 fresh; 013 = 6 clean success rows; `failedVectors` 36→6 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -105,5 +108,8 @@ Docs authored by claude-opus-4-8 from the 012 research synthesis using the canon
 
 1. **Implementation not yet started at authoring time** — this summary is a living document reconciled per phase (Completion Verification Rule).
 2. **Full 5-angle scope is multi-phase** — Phase 2/3 (async job machine, move reconciliation) are larger than Phase 1; each is gated and independently revertable.
-3. **Build-while-live** — the daemon runs during development; behavioral smoke tests require a deliberate restart, not the live process.
+3. **Build-while-live** — the daemon runs during development; behavioral smoke tests require a deliberate restart, not the live process. On deploy, `dist/` was stale (the launcher auto-builds only when artifacts are missing, never on source staleness), so it was rebuilt before the restart.
+4. **Residual failed index rows (pre-existing, not from this packet)** — 6 genuinely-failed-embedding rows remain (4 in `008-playbook-manual-test-run`, 2 in `026 resource-map.md`); they have no success counterpart, so they were excluded from the duplicate-row repair. Re-embed via `memory_embedding_reconcile` or a forced re-index.
+5. **`checkpoint_create` fails on the full index** (`Invalid string length`) — pre-existing serializer limit on the ~33k-row state; surfaced when attempting a pre-repair checkpoint.
+6. **Re-index of edited spec-docs did not refresh (observed at deploy)** — after the ollama re-index, `memory_index_scan` (both incremental and `force: true`) reported the 6 indexed 013 docs as `alreadyIndexed` and did NOT re-process them; their `file_mtime_ms` is NULL and `handover.md` stayed unindexed. On-disk docs are authoritative; the index lags at the 19:26 snapshot. Warrants a code-level follow-up in this subsystem (force/incremental path not refreshing existing spec-doc rows that carry NULL mtime).
 <!-- /ANCHOR:limitations -->

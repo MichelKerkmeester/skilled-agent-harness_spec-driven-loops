@@ -56,7 +56,7 @@ The two workflow YAMLs that drive the offer flow are `spec_kit_implement_auto.ya
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md` | Manual playbook | Playbook scenario DBG-SCAF-001 covering scaffold generation, versioned filenames, schema parity with the debug agent, and absence of autonomous routing |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/225-debug-delegation-scaffold-generator.md` | Manual playbook | Playbook scenario DBG-SCAF-001 covering scaffold generation, versioned filenames, schema parity with the debug agent, and absence of autonomous routing |
 
 ---
 

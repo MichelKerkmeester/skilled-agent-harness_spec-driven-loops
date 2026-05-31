@@ -1,0 +1,17 @@
+003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants
+003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/010-daemon-resilience
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/001-nomic-only-consolidation
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
+003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
+003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket
+003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision
+003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch
+003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching
+003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening
+003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
+003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
+003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
+003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster

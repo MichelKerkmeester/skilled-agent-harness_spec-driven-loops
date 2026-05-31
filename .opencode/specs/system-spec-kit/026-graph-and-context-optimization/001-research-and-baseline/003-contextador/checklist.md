@@ -76,6 +76,20 @@ template_source_hint: "<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->"
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] N/A — research-only phase, no implementation fixes produced
+- [x] CHK-FIX-002 [P0] N/A — research-only phase
+- [x] CHK-FIX-003 [P0] N/A — research-only phase
+- [x] CHK-FIX-004 [P0] N/A — research-only phase
+- [x] CHK-FIX-005 [P1] N/A — research-only phase
+- [x] CHK-FIX-006 [P1] N/A — research-only phase
+- [x] CHK-FIX-007 [P1] N/A — research-only phase
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 <!-- For this research-only phase, "security" maps to safety and constraint compliance (no edits outside phase folder, no secrets in artifacts). -->

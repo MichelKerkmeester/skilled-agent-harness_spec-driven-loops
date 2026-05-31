@@ -93,7 +93,7 @@ The fallback chain (`searchWithFallback()`) provides resilience. When `SPECKIT_S
 ## 4. SOURCE METADATA
 - Group: Retrieval
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `01--retrieval/004-hybrid-search-pipeline.md`
+- Feature file path: `01--retrieval/006-hybrid-search-pipeline.md`
 - Source list updated 2026-03-26 per audit remediation
 Related references:
 - [003-trigger-phrase-matching-memorymatchtriggers.md](003-trigger-phrase-matching-memorymatchtriggers.md) — Trigger phrase matching (memory_match_triggers)

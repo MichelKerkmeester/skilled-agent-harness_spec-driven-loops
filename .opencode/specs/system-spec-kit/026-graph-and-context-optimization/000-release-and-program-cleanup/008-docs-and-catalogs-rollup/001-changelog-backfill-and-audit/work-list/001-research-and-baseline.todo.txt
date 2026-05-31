@@ -1,0 +1,6 @@
+001-research-and-baseline/001-claude-optimization-settings
+001-research-and-baseline/002-codesight
+001-research-and-baseline/003-contextador
+001-research-and-baseline/004-graphify
+001-research-and-baseline/005-claudest
+001-research-and-baseline/006-research-memory-redundancy

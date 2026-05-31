@@ -1,0 +1,28 @@
+{
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-changelog-backfill-and-audit",
+  "description": "Feature Specification: Changelog Backfill and Work Audit for Spec 026",
+  "keywords": [
+    "feature",
+    "specification",
+    "changelog",
+    "backfill",
+    "work",
+    "audit",
+    "spec",
+    "026"
+  ],
+  "lastUpdated": "2026-05-31T19:01:19.237Z",
+  "specId": "001",
+  "folderSlug": "changelog-backfill-and-audit",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "008-docs-and-catalogs-rollup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

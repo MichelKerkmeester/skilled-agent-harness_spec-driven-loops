@@ -75,6 +75,14 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] All known adapter gaps from packet 035 RUNNER_MISSING cells are addressed. [EVIDENCE: five CLI adapters created and smoke-tested; 42 previously missing cells now have typed runners]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 

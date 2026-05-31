@@ -216,7 +216,7 @@ Per-feature files: see `03--routing-disambiguation/`.
 |---|---|---|---|---|---|---|---|---|
 | `SA-001` | Advisor Probe Battery | Verify sk-code wins ≥80% of positive controls and loses 100% of negative controls | (multi-prompt battery — see per-feature file) | run `skill_advisor.py` for each prompt at threshold 0.8; tabulate top-1 and score | sk-code wins ≥12 of 15 positives at score ≥ 0.80; sk-code loses all 5 negatives | `/tmp/skc-SA001-advisor-results.jsonl` | PASS iff positive accuracy ≥ 0.80 AND negative-control false-positive rate == 0 | If positive accuracy < 0.80, propose `signals` array additions to skill-graph.json (Phase E5) |
 
-Per-feature file: see `04--skill-advisor-integration/001-advisor-probe-battery.md`.
+Per-feature file: see `04--skill-advisor-integration/010-advisor-probe-battery.md`.
 
 ---
 
@@ -295,27 +295,27 @@ Tests NOT covered by automation (manual playbook is the only validation):
 | Surface Detection | SD-001 | `01--surface-detection/001-webflow-detection.md` | Yes |
 | Surface Detection | SD-002 | `01--surface-detection/002-opencode-detection.md` | Yes |
 | Surface Detection | SD-003 | `01--surface-detection/003-unknown-fallback.md` | Yes |
-| Language Sub-Detection | LS-001 | `02--language-sub-detection/001-opencode-typescript.md` | No |
-| Language Sub-Detection | LS-002 | `02--language-sub-detection/002-opencode-python.md` | No |
-| Language Sub-Detection | LS-003 | `02--language-sub-detection/003-opencode-shell.md` | No |
-| Language Sub-Detection | LS-004 | `02--language-sub-detection/004-opencode-config.md` | No |
-| Routing Disambiguation | RD-001 | `03--routing-disambiguation/001-mixed-marker-ambiguity.md` | No |
-| Routing Disambiguation | RD-002 | `03--routing-disambiguation/002-skcode-vs-skdoc.md` | Yes |
-| Skill Advisor Integration | SA-001 | `04--skill-advisor-integration/001-advisor-probe-battery.md` | Yes |
-| Motion.dev And Animation Regression | MR-001 | `05--motion-dev-and-animation-regression/001-motion-api-smoke.md` | Yes |
-| Motion.dev And Animation Regression | MR-002 | `05--motion-dev-and-animation-regression/002-cdn-bundle-version-pin.md` | Yes |
-| Motion.dev And Animation Regression | MR-003 | `05--motion-dev-and-animation-regression/003-prefers-reduced-motion.md` | Yes |
-| Motion.dev And Animation Regression | MR-004 | `05--motion-dev-and-animation-regression/004-animation-regression-baseline.md` | Yes |
-| Cross-Browser And Performance Gates | CB-001 | `06--cross-browser-and-performance-gates/001-cross-browser-animate.md` | Yes |
-| Cross-Browser And Performance Gates | CB-002 | `06--cross-browser-and-performance-gates/002-cwv-gates.md` | Yes |
-| Cross-Browser And Performance Gates | CB-003 | `06--cross-browser-and-performance-gates/003-gpu-compositing.md` | Yes |
-| Cross-Stack Routing | CS-001 | `07--cross-stack-routing/001-webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-002 | `07--cross-stack-routing/002-non-webflow-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-003 | `07--cross-stack-routing/003-opencode-plus-motion-dev.md` | Yes |
-| Cross-Stack Routing | CS-004 | `07--cross-stack-routing/004-decision-matrix-routing.md` | No |
-| Cross-Stack Routing | CS-005 | `07--cross-stack-routing/005-snippet-reuse-cross-stack.md` | No |
-| Cross-Stack Routing | CS-006 | `07--cross-stack-routing/006-cwv-gates-animation-heavy.md` | No |
-| Cross-Stack Routing | CS-007 | `07--cross-stack-routing/007-prefers-reduced-motion.md` | No |
+| Language Sub-Detection | LS-001 | `02--language-sub-detection/004-opencode-typescript.md` | No |
+| Language Sub-Detection | LS-002 | `02--language-sub-detection/005-opencode-python.md` | No |
+| Language Sub-Detection | LS-003 | `02--language-sub-detection/006-opencode-shell.md` | No |
+| Language Sub-Detection | LS-004 | `02--language-sub-detection/007-opencode-config.md` | No |
+| Routing Disambiguation | RD-001 | `03--routing-disambiguation/008-mixed-marker-ambiguity.md` | No |
+| Routing Disambiguation | RD-002 | `03--routing-disambiguation/009-skcode-vs-skdoc.md` | Yes |
+| Skill Advisor Integration | SA-001 | `04--skill-advisor-integration/010-advisor-probe-battery.md` | Yes |
+| Motion.dev And Animation Regression | MR-001 | `05--motion-dev-and-animation-regression/011-motion-api-smoke.md` | Yes |
+| Motion.dev And Animation Regression | MR-002 | `05--motion-dev-and-animation-regression/012-cdn-bundle-version-pin.md` | Yes |
+| Motion.dev And Animation Regression | MR-003 | `05--motion-dev-and-animation-regression/013-prefers-reduced-motion.md` | Yes |
+| Motion.dev And Animation Regression | MR-004 | `05--motion-dev-and-animation-regression/014-animation-regression-baseline.md` | Yes |
+| Cross-Browser And Performance Gates | CB-001 | `06--cross-browser-and-performance-gates/015-cross-browser-animate.md` | Yes |
+| Cross-Browser And Performance Gates | CB-002 | `06--cross-browser-and-performance-gates/016-cwv-gates.md` | Yes |
+| Cross-Browser And Performance Gates | CB-003 | `06--cross-browser-and-performance-gates/017-gpu-compositing.md` | Yes |
+| Cross-Stack Routing | CS-001 | `07--cross-stack-routing/018-webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-002 | `07--cross-stack-routing/019-non-webflow-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-003 | `07--cross-stack-routing/020-opencode-plus-motion-dev.md` | Yes |
+| Cross-Stack Routing | CS-004 | `07--cross-stack-routing/021-decision-matrix-routing.md` | No |
+| Cross-Stack Routing | CS-005 | `07--cross-stack-routing/022-snippet-reuse-cross-stack.md` | No |
+| Cross-Stack Routing | CS-006 | `07--cross-stack-routing/023-cwv-gates-animation-heavy.md` | No |
+| Cross-Stack Routing | CS-007 | `07--cross-stack-routing/024-prefers-reduced-motion.md` | No |
 
 **Total scenarios**: 24
 **Critical-path scenarios**: approximately 15 (SD-001, SD-002, SD-003, RD-002, SA-001, MR-001, MR-002, MR-003, MR-004, CB-001, CB-002, CB-003, CS-001, CS-002, CS-003)

@@ -1,0 +1,75 @@
+---
+title: "185 -- /memory:search command routing"
+description: "This scenario validates /memory:search command routing for `185`. It focuses on Verify the command's routing logic: no args prompts intent, query triggers retrieval mode, and analysis subcommands route correctly."
+audited_post_018: true
+---
+
+# 185 -- /memory:search command routing
+
+## 1. OVERVIEW
+
+This scenario validates /memory:search command routing for `185`. It focuses on Verify the command's routing logic: no args prompts intent, query triggers retrieval mode, and analysis subcommands route correctly.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Verify `/memory:search` command routing logic covers no-args interactive prompt, query-based retrieval mode with intent detection, and all analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard).
+- Real user request: `Please validate /memory:search command routing against /memory:search and tell me whether the expected signals are present: No-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard) each route to the correct tool.`
+- Prompt: `Validate /memory:search routing and confirm interactive, retrieval, and analysis subcommands reach the correct paths.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: No-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands (preflight, postflight, history, causal, link, unlink, causal-stats, ablation, dashboard) each route to the correct tool
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS: No-args prompts for intent, retrieval returns intent-weighted results, each analysis subcommand invokes its dedicated tool; FAIL: No-args proceeds without prompt, retrieval ignores intent, or an analysis subcommand routes to the wrong tool
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+`Validate /memory:search routing and confirm interactive, retrieval, and analysis subcommands reach the correct paths.`
+
+### Commands
+
+1. Invoke `/memory:search` with no arguments and verify the interactive intent selection prompt appears (Add feature, Fix bug, Refactor, Security audit, Understand, Find spec, Find decision, Analysis tools)
+2. Invoke `/memory:search "implement auth"` and verify retrieval mode activates with auto-detected `add_feature` intent and appropriate weight boosts (implementation 1.5x, architecture 1.3x, patterns 1.2x)
+3. Invoke `/memory:search "auth bug" --intent:fix_bug` and verify the explicit intent override is respected
+4. Invoke `/memory:search preflight specs/007-test T1` and verify `task_preflight()` is called
+5. Invoke `/memory:search postflight specs/007-test T1` and verify `task_postflight()` is called
+6. Invoke `/memory:search history specs/007-test` and verify `memory_get_learning_history()` is called
+7. Invoke `/memory:search causal 42` and verify `memory_drift_why()` is called
+8. Invoke `/memory:search ablation` and verify `eval_run_ablation()` is called
+9. Invoke `/memory:search dashboard` and verify `eval_reporting_dashboard()` is called
+
+### Expected
+
+No-args triggers interactive intent prompt; query text triggers retrieval mode with intent detection; analysis subcommands each route to the correct tool
+
+### Evidence
+
+Tool invocation logs for each subcommand; intent detection output for retrieval queries; interactive prompt display for no-args case
+
+### Pass / Fail
+
+- **Pass**: No-args prompts for intent, retrieval returns intent-weighted results, each analysis subcommand invokes its dedicated tool
+- **Fail**: No-args proceeds without prompt, retrieval ignores intent, or an analysis subcommand routes to the wrong tool
+
+### Failure Triage
+
+Verify argument routing logic in Section 4 of search.md → Check intent detection keywords → Confirm analysis subcommand first-token matching → Inspect tool coverage matrix for correct tool-to-subcommand mapping
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [01--retrieval/001-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md)
+- Command file: [.opencode/commands/memory/search.md](../../../../command/memory/search.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Retrieval
+- Playbook ID: 185
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `01--retrieval/012-memory-search-command-routing.md`

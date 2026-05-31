@@ -35,7 +35,7 @@ The playbook-side viewpoint lives in `manual_testing_playbook/14--stress-testing
 
 | File | Layer | Role |
 |------|-------|------|
-| `manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` | Playbook | Canonical operator flow for one full stress-test cycle |
+| `manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md` | Playbook | Canonical operator flow for one full stress-test cycle |
 | `manual_testing_playbook/14--stress-testing/README.md` | Playbook | Package map and ownership guide for the stress-test category |
 | `templates/stress_test/findings.template.md` | Template | Report scaffold copied into the active packet as `findings.md` |
 | `templates/stress_test/findings-rubric.template.json` | Template | Machine-readable sidecar scaffold copied as `findings-rubric.json` |

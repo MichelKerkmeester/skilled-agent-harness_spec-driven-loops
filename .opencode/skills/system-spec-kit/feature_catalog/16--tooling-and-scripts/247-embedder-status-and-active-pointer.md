@@ -47,7 +47,7 @@ The handler is the third member of the embedder swap trio (`embedder_list`, `emb
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-status.vitest.ts` | Automated test | Handler-level coverage for no-args active pointer, jobId polling, and unknown-job-id NOT_FOUND shape |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/283-embedder-status-job-and-active-pointer.md` | Manual playbook | Playbook scenario 283 covering active pointer output and unknown job ID handling |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/272-embedder-status-job-and-active-pointer.md` | Manual playbook | Playbook scenario 283 covering active pointer output and unknown job ID handling |
 
 ---
 

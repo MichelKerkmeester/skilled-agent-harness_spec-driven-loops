@@ -49,8 +49,8 @@ Together these surfaces close the loop with the create.sh fallback. The fallback
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/008-spec-folder-literal-naming-cli-driven-slug.md` | Manual playbook | Playbook scenario PHASE-008 rotating the Generate LITERAL phase names prompt through multiple external CLIs |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/009-spec-folder-literal-naming-remediation-rule.md` | Manual playbook | Playbook scenario PHASE-009 rotating the rule-20 remediation prompt through multiple external CLIs |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/220-spec-folder-literal-naming-cli-driven-slug.md` | Manual playbook | Playbook scenario PHASE-008 rotating the Generate LITERAL phase names prompt through multiple external CLIs |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/221-spec-folder-literal-naming-remediation-rule.md` | Manual playbook | Playbook scenario PHASE-009 rotating the rule-20 remediation prompt through multiple external CLIs |
 
 ---
 

@@ -75,6 +75,16 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. [EVIDENCE: documentation-only pass, no code bug findings.]
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed. [EVIDENCE: not applicable, no bug class identified.]
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for changed helpers and docs. [EVIDENCE: not applicable, no helper or schema changes.]
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 

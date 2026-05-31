@@ -1,0 +1,69 @@
+---
+title: "089 -- Code standards alignment"
+description: "This scenario validates Code standards alignment for `089`. It focuses on Confirm standards conformance."
+---
+
+# 089 -- Code standards alignment
+
+## 1. OVERVIEW
+
+This scenario validates Code standards alignment for `089`. It focuses on Confirm standards conformance.
+
+---
+
+## 2. SCENARIO CONTRACT
+
+
+- Objective: Confirm standards conformance.
+- Real user request: `Please validate Code standards alignment against the documented validation surface and tell me whether the expected signals are present: Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found.`
+- Prompt: `Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.`
+- Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
+- Expected signals: Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if all affected files conform to naming, commenting, and import order standards with zero mismatches
+
+---
+
+## 3. TEST EXECUTION
+
+### Prompt
+
+```
+Validate Code standards alignment against the documented validation surface and report cited pass/fail evidence.
+```
+
+### Commands
+
+1. inspect affected files
+2. verify naming/comments/import order
+3. record mismatches
+
+### Expected
+
+Affected files follow naming conventions; comments are meaningful (not boilerplate); import order matches standard; no mismatches found
+
+### Evidence
+
+File inspection evidence showing naming/comments/import compliance + mismatch list (if any)
+
+### Pass / Fail
+
+- **Pass**: all affected files conform to naming, commenting, and import order standards with zero mismatches
+- **Fail**: Any contradicting evidence appears or the pass condition is not met.
+
+### Failure Triage
+
+Inspect code standards definition; verify linter rules cover the standards; check for files missed by alignment pass
+
+## 4. SOURCE FILES
+- Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
+- Feature catalog: [16--tooling-and-scripts/208-code-standards-alignment.md](../../feature_catalog/16--tooling-and-scripts/208-code-standards-alignment.md)
+
+---
+
+## 5. SOURCE METADATA
+
+- Group: Tooling and Scripts
+- Playbook ID: 089
+- Canonical root source: `manual_testing_playbook.md`
+- Feature file path: `16--tooling-and-scripts/226-code-standards-alignment.md`

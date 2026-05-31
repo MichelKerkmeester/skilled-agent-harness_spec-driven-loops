@@ -89,6 +89,17 @@ _memory:
 
 ---
 
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class. F-001 and F-003 are class-of-bug (same fallthrough pattern in two handlers). F-009 is instance-only (missing fixture in one test file). F-002 and F-008 are cross-consumer (vocabulary divergence across handlers).
+- [x] CHK-FIX-002 [P0] Producer inventory complete. Both crash-path handlers (context.ts, status.ts) reviewed. code_graph_query already ships the canonical vocabulary and was excluded from scope.
+- [x] CHK-FIX-003 [P0] Consumer inventory complete. Callers reading `data.readiness`, `data.canonicalReadiness`, `data.trustState` and `data.fallbackDecision` identified. Backward-compatibility confirmed: new envelope is a strict superset of the prior shape.
+- [x] CHK-FIX-007 [P1] Evidence pinned to commit 32761a0fa5 (feat: close CONDITIONAL deep-review verdict).
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
 <!-- ANCHOR:security -->
 ## Security
 - [x] CHK-040 [P1] No new secrets, env vars, or credentials introduced [EVIDENCE: see retained verification text in this checklist item.]

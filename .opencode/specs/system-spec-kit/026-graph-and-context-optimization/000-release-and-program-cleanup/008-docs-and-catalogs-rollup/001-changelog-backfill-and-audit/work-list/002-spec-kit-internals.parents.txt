@@ -1,0 +1,13 @@
+002-spec-kit-internals
+002-spec-kit-internals/001-resource-map-deep-loop-fix
+002-spec-kit-internals/002-skill-advisor
+002-spec-kit-internals/002-skill-advisor/001-skill-graph
+002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction
+002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine
+002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine
+002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening
+002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation
+002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor
+002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation
+002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation
+002-spec-kit-internals/003-template-levels

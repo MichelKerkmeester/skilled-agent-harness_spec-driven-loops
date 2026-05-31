@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T20:35:00Z"
-    last_updated_by: "claude-sonnet-4-6"
-    recent_action: "All 3 phases merged to main; checklist complete; validate.sh PASSED"
-    next_safe_action: "Restart daemon, re-index 012/013 packets"
+    last_updated_at: "2026-05-31T19:45:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Deployed: dist rebuilt, daemon restarted (pid 23371, ollama), 012/013 reindexed, dups repaired"
+    next_safe_action: "None — shipped and deployed; index clean (6 residual pre-existing failed rows are out of scope)"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -29,7 +29,7 @@ _memory:
 
 # Handover: memory_index_scan Self-Maintaining Index
 
-> **One-line state:** All 3 phases merged to main, `validate.sh --strict` PASSED, checklist 100% checked. The daemon source is updated but the running process is still on old code. Two post-implementation steps remain: restart the daemon and re-index the 012/013 spec packets.
+> **One-line state:** Fully shipped AND deployed (2026-05-31). `dist/` rebuilt, daemon restarted onto new code (pid 23371, ollama embedder healthy), 012/013 reindexed. Duplicate index rows from the hf-local→ollama migration repaired (30 rows; `failedVectors` 36→6). No steps remain.
 
 ---
 
@@ -37,7 +37,7 @@ _memory:
 
 | Item | State | Location / Hash |
 |------|-------|-----------------|
-| `main` branch HEAD | clean | `1390d8be05` |
+| `main` branch HEAD | clean | `50e21d48f8` |
 | 012 research packet | committed, strict PASSED | `…/012-memory-index-scan-ux-hardening/` |
 | 013 implementation | **all phases shipped** | `…/013-memory-index-scan-implementation/` |
 | Phase 1 code | merged `98330d18fc` | coalescing + health.index + orphan sweep |
@@ -45,8 +45,8 @@ _memory:
 | Phase 3 code | merged `9156d60cc3` (then merge commit) | move reconciliation + scan heartbeat |
 | 013 docs | reconciled, strict PASSED | checklist 100%, impl-summary final |
 | Worktrees / branches | **none** | all cleaned up |
-| Daemon running | old source (pre-013) | restart needed |
-| 012/013 reindex | deferred | run `memory_index_scan` after daemon restart |
+| Daemon running | NEW source (013) live | `dist/` rebuilt + restarted; pid 23371; ollama embedder healthy |
+| 012/013 reindex | DONE | 012 fresh; 013 = 6 clean success rows; dup cruft repaired (`failedVectors` 36→6) |
 
 ---
 
@@ -87,6 +87,8 @@ Files: `lib/storage/incremental-index.ts`, `handlers/memory-index.ts`, `core/db-
 ---
 
 ## 3. IMMEDIATE NEXT STEPS
+
+> ✅ **COMPLETED 2026-05-31** — all steps below were executed: `dist/` rebuilt (it was stale), daemon restarted (pid 23371, ollama embedder healthy), 012/013 reindexed, and 30 duplicate index rows from the provider migration repaired. Steps retained below for the record.
 
 ### 3a. Restart the daemon (loads new source)
 The daemon has been running throughout this session — build-while-live was avoided by never touching `dist/`. The new source in `mcp_server/` only takes effect after a restart.

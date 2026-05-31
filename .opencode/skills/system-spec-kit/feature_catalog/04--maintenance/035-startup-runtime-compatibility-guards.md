@@ -54,7 +54,7 @@ Manual validation is covered by playbook scenario `EX-035`, which runs the targe
 ## 4. SOURCE METADATA
 - Group: Maintenance
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `04--maintenance/035-startup-runtime-compatibility-guards.md`
+- Feature file path: `04--maintenance/036-startup-runtime-compatibility-guards.md`
 - Manual playbook scenario: EX-035
 Related references:
 - [034-workspace-scanning-and-indexing-memoryindexscan.md](034-workspace-scanning-and-indexing-memoryindexscan.md) — Workspace scanning and indexing (memory_index_scan)

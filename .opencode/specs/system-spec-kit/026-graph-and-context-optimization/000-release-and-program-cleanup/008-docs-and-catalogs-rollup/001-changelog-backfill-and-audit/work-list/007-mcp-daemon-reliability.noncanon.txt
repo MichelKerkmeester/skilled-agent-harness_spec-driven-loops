@@ -1,0 +1,7 @@
+007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
+007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
+007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
+007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
+007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
+007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
+007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard

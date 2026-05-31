@@ -1,0 +1,6 @@
+005-graph-impact-and-affordance/001-code-graph-phase-runner
+005-graph-impact-and-affordance/002-edge-explanation-impact-uplift
+005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence
+005-graph-impact-and-affordance/004-memory-causal-trust-display
+005-graph-impact-and-affordance/005-deep-review-findings
+005-graph-impact-and-affordance/006-deep-research-review

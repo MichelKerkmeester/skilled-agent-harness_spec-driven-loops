@@ -253,7 +253,7 @@ Expected signals: Output describes proposed changes in prose or markdown but doe
 
 #### Test Execution
 
-> **Feature File:** [CC-005](02--permission-modes/001-plan-mode-read-only-enforcement.md)
+> **Feature File:** [CC-005](02--permission-modes/005-plan-mode-read-only-enforcement.md)
 
 ### CC-006 | AcceptEdits mode auto-approve writes **(SANDBOXED)**
 
@@ -269,7 +269,7 @@ Expected signals: Run exits 0. The scratch file's mtime advances. The file's con
 
 #### Test Execution
 
-> **Feature File:** [CC-006](02--permission-modes/002-accept-edits-auto-approve-writes-sandboxed.md)
+> **Feature File:** [CC-006](02--permission-modes/006-accept-edits-auto-approve-writes-sandboxed.md)
 
 ### CC-007 | BypassPermissions guard rail **(SANDBOXED)**
 
@@ -285,7 +285,7 @@ Expected signals: Skill rule lookup surfaces the explicit "NEVER use --permissio
 
 #### Test Execution
 
-> **Feature File:** [CC-007](02--permission-modes/003-bypass-permissions-guard-rail-sandboxed.md)
+> **Feature File:** [CC-007](02--permission-modes/007-bypass-permissions-guard-rail-sandboxed.md)
 
 ---
 
@@ -307,7 +307,7 @@ Expected signals: Response weighs at least 4 trade-off dimensions explicitly. Pr
 
 #### Test Execution
 
-> **Feature File:** [CC-008](03--reasoning-and-models/001-opus-extended-thinking.md)
+> **Feature File:** [CC-008](03--reasoning-and-models/008-opus-extended-thinking.md)
 
 ### CC-009 | Sonnet balanced default
 
@@ -323,7 +323,7 @@ Expected signals: Response either flags concrete issues with line references OR 
 
 #### Test Execution
 
-> **Feature File:** [CC-009](03--reasoning-and-models/002-sonnet-balanced-default.md)
+> **Feature File:** [CC-009](03--reasoning-and-models/009-sonnet-balanced-default.md)
 
 ### CC-010 | Haiku fast classification
 
@@ -339,7 +339,7 @@ Expected signals: Every input error message receives a category label. Response 
 
 #### Test Execution
 
-> **Feature File:** [CC-010](03--reasoning-and-models/003-haiku-fast-classification.md)
+> **Feature File:** [CC-010](03--reasoning-and-models/010-haiku-fast-classification.md)
 
 ---
 
@@ -361,7 +361,7 @@ Expected signals: Response identifies entry points and key modules by name. Desc
 
 #### Test Execution
 
-> **Feature File:** [CC-011](04--agent-routing/001-context-agent-codebase-exploration.md)
+> **Feature File:** [CC-011](04--agent-routing/011-context-agent-codebase-exploration.md)
 
 ### CC-012 | Debug agent fresh-perspective root cause
 
@@ -377,7 +377,7 @@ Expected signals: Response lists at least 2 distinct ranked root causes. For eac
 
 #### Test Execution
 
-> **Feature File:** [CC-012](04--agent-routing/002-debug-agent-fresh-perspective-root-cause.md)
+> **Feature File:** [CC-012](04--agent-routing/012-debug-agent-fresh-perspective-root-cause.md)
 
 ### CC-013 | Review agent security audit
 
@@ -393,7 +393,7 @@ Expected signals: Each checklist item (XSS, CSRF, injection, auth bypass, hardco
 
 #### Test Execution
 
-> **Feature File:** [CC-013](04--agent-routing/003-review-agent-security-audit.md)
+> **Feature File:** [CC-013](04--agent-routing/013-review-agent-security-audit.md)
 
 ### CC-014 | Ultra-think multi-strategy planning
 
@@ -425,7 +425,7 @@ Expected signals: Response names the active task. Lists at least 2 modified or r
 
 #### Test Execution
 
-> **Feature File:** [CC-021](04--agent-routing/005-handover-agent-context-transfer.md)
+> **Feature File:** [CC-021](04--agent-routing/015-handover-agent-context-transfer.md)
 
 ### CC-022 | Orchestrate agent multi-step coordination
 
@@ -441,7 +441,7 @@ Expected signals: Response names at least 3 distinct Claude Code agents. Sequenc
 
 #### Test Execution
 
-> **Feature File:** [CC-022](04--agent-routing/006-orchestrate-agent-multi-step.md)
+> **Feature File:** [CC-022](04--agent-routing/016-orchestrate-agent-multi-step.md)
 
 ### CC-023 | Research agent deep investigation
 
@@ -457,7 +457,7 @@ Expected signals: Response names both candidates explicitly. Compares them acros
 
 #### Test Execution
 
-> **Feature File:** [CC-023](04--agent-routing/007-research-agent-investigation.md)
+> **Feature File:** [CC-023](04--agent-routing/017-research-agent-investigation.md)
 
 ### CC-024 | Speckit agent spec folder workflow
 
@@ -473,7 +473,7 @@ Expected signals: Response names a documentation level explicitly. Lists at leas
 
 #### Test Execution
 
-> **Feature File:** [CC-024](04--agent-routing/008-speckit-agent-spec-folder.md)
+> **Feature File:** [CC-024](04--agent-routing/018-speckit-agent-spec-folder.md)
 
 ### CC-025 | Write agent doc generation
 
@@ -511,7 +511,7 @@ Expected signals: First call exits 0 and returns architecture analysis. Second c
 
 #### Test Execution
 
-> **Feature File:** [CC-015](05--session-continuity/001-continue-previous-conversation.md)
+> **Feature File:** [CC-015](05--session-continuity/019-continue-previous-conversation.md)
 
 ### CC-016 | Resume specific session by ID
 
@@ -527,7 +527,7 @@ Expected signals: First call's JSON output includes a non-empty `session_id`. Re
 
 #### Test Execution
 
-> **Feature File:** [CC-016](05--session-continuity/002-resume-specific-session-by-id.md)
+> **Feature File:** [CC-016](05--session-continuity/020-resume-specific-session-by-id.md)
 
 ---
 
@@ -549,7 +549,7 @@ Expected signals: Step 1 produces a generated file with at least one intentional
 
 #### Test Execution
 
-> **Feature File:** [CC-017](06--integration-patterns/001-generate-review-fix-cycle.md)
+> **Feature File:** [CC-017](06--integration-patterns/021-generate-review-fix-cycle.md)
 
 ### CC-018 | Structured output with json-schema
 
@@ -565,7 +565,7 @@ Expected signals: Response is valid JSON parseable by `jq`. The inner `result` p
 
 #### Test Execution
 
-> **Feature File:** [CC-018](06--integration-patterns/002-structured-output-with-json-schema.md)
+> **Feature File:** [CC-018](06--integration-patterns/022-structured-output-with-json-schema.md)
 
 ---
 
@@ -587,7 +587,7 @@ Expected signals: Template file is readable and contains the labeled template (S
 
 #### Test Execution
 
-> **Feature File:** [CC-019](07--prompt-templates/001-prompt-template-usage-from-assets.md)
+> **Feature File:** [CC-019](07--prompt-templates/023-prompt-template-usage-from-assets.md)
 
 ### CC-020 | CLEAR quality card 5-check
 
@@ -603,7 +603,7 @@ Expected signals: Card lists all 5 CLEAR criteria explicitly. Framework selectio
 
 #### Test Execution
 
-> **Feature File:** [CC-020](07--prompt-templates/002-clear-quality-card-5-check.md)
+> **Feature File:** [CC-020](07--prompt-templates/024-clear-quality-card-5-check.md)
 
 ---
 
@@ -625,7 +625,7 @@ Expected signals: Dispatch exits 0. JSON output is parseable via `jq`. JSON outp
 
 #### Test Execution
 
-> **Feature File:** [CC-026](08--cost-and-background/001-max-budget-usd-cap.md)
+> **Feature File:** [CC-026](08--cost-and-background/025-max-budget-usd-cap.md)
 
 ### CC-027 | Background execution
 
@@ -641,7 +641,7 @@ Expected signals: `wait` returns exit 0. Captured stdout file is non-empty. Pare
 
 #### Test Execution
 
-> **Feature File:** [CC-027](08--cost-and-background/002-background-execution.md)
+> **Feature File:** [CC-027](08--cost-and-background/026-background-execution.md)
 
 ---
 
@@ -670,44 +670,44 @@ Validator support: the shared `validate_document.py` validates this root playboo
 
 ### PERMISSION MODES
 
-- CC-005: [Plan mode read-only enforcement](02--permission-modes/001-plan-mode-read-only-enforcement.md)
-- CC-006: [AcceptEdits mode auto-approve writes **(SANDBOXED)**](02--permission-modes/002-accept-edits-auto-approve-writes-sandboxed.md)
-- CC-007: [BypassPermissions guard rail **(SANDBOXED)**](02--permission-modes/003-bypass-permissions-guard-rail-sandboxed.md)
+- CC-005: [Plan mode read-only enforcement](02--permission-modes/005-plan-mode-read-only-enforcement.md)
+- CC-006: [AcceptEdits mode auto-approve writes **(SANDBOXED)**](02--permission-modes/006-accept-edits-auto-approve-writes-sandboxed.md)
+- CC-007: [BypassPermissions guard rail **(SANDBOXED)**](02--permission-modes/007-bypass-permissions-guard-rail-sandboxed.md)
 
 ### REASONING AND MODELS
 
-- CC-008: [Opus extended thinking](03--reasoning-and-models/001-opus-extended-thinking.md)
-- CC-009: [Sonnet balanced default](03--reasoning-and-models/002-sonnet-balanced-default.md)
-- CC-010: [Haiku fast classification](03--reasoning-and-models/003-haiku-fast-classification.md)
+- CC-008: [Opus extended thinking](03--reasoning-and-models/008-opus-extended-thinking.md)
+- CC-009: [Sonnet balanced default](03--reasoning-and-models/009-sonnet-balanced-default.md)
+- CC-010: [Haiku fast classification](03--reasoning-and-models/010-haiku-fast-classification.md)
 
 ### AGENT ROUTING
 
-- CC-011: [Context agent codebase exploration](04--agent-routing/001-context-agent-codebase-exploration.md)
-- CC-012: [Debug agent fresh-perspective root cause](04--agent-routing/002-debug-agent-fresh-perspective-root-cause.md)
-- CC-013: [Review agent security audit](04--agent-routing/003-review-agent-security-audit.md)
+- CC-011: [Context agent codebase exploration](04--agent-routing/011-context-agent-codebase-exploration.md)
+- CC-012: [Debug agent fresh-perspective root cause](04--agent-routing/012-debug-agent-fresh-perspective-root-cause.md)
+- CC-013: [Review agent security audit](04--agent-routing/013-review-agent-security-audit.md)
 - CC-014: [Ultra-think multi-strategy planning](04--agent-routing/004-ai-council-multi-strategy-planning.md)
-- CC-021: [Handover agent context transfer](04--agent-routing/005-handover-agent-context-transfer.md)
-- CC-022: [Orchestrate agent multi-step coordination](04--agent-routing/006-orchestrate-agent-multi-step.md)
-- CC-023: [Research agent deep investigation](04--agent-routing/007-research-agent-investigation.md)
-- CC-024: [Speckit agent spec folder workflow](04--agent-routing/008-speckit-agent-spec-folder.md)
+- CC-021: [Handover agent context transfer](04--agent-routing/015-handover-agent-context-transfer.md)
+- CC-022: [Orchestrate agent multi-step coordination](04--agent-routing/016-orchestrate-agent-multi-step.md)
+- CC-023: [Research agent deep investigation](04--agent-routing/017-research-agent-investigation.md)
+- CC-024: [Speckit agent spec folder workflow](04--agent-routing/018-speckit-agent-spec-folder.md)
 - CC-025: [Write agent doc generation](04--agent-routing/009-write-agent-doc-generation.md)
 
 ### SESSION CONTINUITY
 
-- CC-015: [Continue previous conversation](05--session-continuity/001-continue-previous-conversation.md)
-- CC-016: [Resume specific session by ID](05--session-continuity/002-resume-specific-session-by-id.md)
+- CC-015: [Continue previous conversation](05--session-continuity/019-continue-previous-conversation.md)
+- CC-016: [Resume specific session by ID](05--session-continuity/020-resume-specific-session-by-id.md)
 
 ### INTEGRATION PATTERNS
 
-- CC-017: [Generate-review-fix cycle](06--integration-patterns/001-generate-review-fix-cycle.md)
-- CC-018: [Structured output with json-schema](06--integration-patterns/002-structured-output-with-json-schema.md)
+- CC-017: [Generate-review-fix cycle](06--integration-patterns/021-generate-review-fix-cycle.md)
+- CC-018: [Structured output with json-schema](06--integration-patterns/022-structured-output-with-json-schema.md)
 
 ### PROMPT TEMPLATES
 
-- CC-019: [Prompt template usage from assets](07--prompt-templates/001-prompt-template-usage-from-assets.md)
-- CC-020: [CLEAR quality card 5-check](07--prompt-templates/002-clear-quality-card-5-check.md)
+- CC-019: [Prompt template usage from assets](07--prompt-templates/023-prompt-template-usage-from-assets.md)
+- CC-020: [CLEAR quality card 5-check](07--prompt-templates/024-clear-quality-card-5-check.md)
 
 ### COST AND BACKGROUND
 
-- CC-026: [Max budget USD cap behavior](08--cost-and-background/001-max-budget-usd-cap.md)
-- CC-027: [Background execution](08--cost-and-background/002-background-execution.md)
+- CC-026: [Max budget USD cap behavior](08--cost-and-background/025-max-budget-usd-cap.md)
+- CC-027: [Background execution](08--cost-and-background/026-background-execution.md)
