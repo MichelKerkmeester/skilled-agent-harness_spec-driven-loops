@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening"
     last_updated_at: "2026-05-31T14:06:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Completed 5/5 deep-research iterations (cli-codex iter1 xhigh + cli-opencode iters2-5 gpt-5.5 high); synthesized research/research.md + resource-map.md; reconciled the synthesis against real iteration-5 evidence (corrected a prematurely-written A5 section and the iter-5 ratio 0.71->0.62)."
-    next_safe_action: "Run /speckit:plan against this packet to implement the minimal first slice."
+    recent_action: "Synthesized research.md + resource-map.md from 5 iterations"
+    next_safe_action: "Run /speckit:plan for the minimal first slice"
     blockers: []
     key_files:
       - "research/research.md"
@@ -68,6 +68,20 @@ A design-research deliverable, not code. Five convergence-gated iterations (exec
 
 The `/deep:start-research-loop:auto` workflow with `--iterations 5`. Iteration 1 ran on cli-codex `gpt-5.5` reasoning xhigh; iterations 2-5 ran on cli-opencode `openai/gpt-5.5 --variant high` (operator directive). Each iteration was a fresh executor context that read the actual `mcp_server/` source, wrote an iteration narrative + JSONL state record + delta file, and the reducer refreshed registry/dashboard/strategy. newInfoRatio trend: 0.92 → 0.86 → 0.78 → 0.74 → 0.62 (monotonic; healthy). Stop reason: maxIterationsReached with all five angles answered. The synthesis was reconciled against the real iteration-5 output after a premature-write was caught and corrected.
 <!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+| Decision | Why |
+|----------|-----|
+| Reuse the existing `embedder_status` async job model for scans rather than invent a new surface | Lowest-risk path; the jobId/progress/eta pattern already exists and is caller-friendly |
+| Make the 30s cooldown an internal coalescing key, not a caller error | Removes the E429 foot-gun while preserving thrash protection |
+| Commit lexical rows first, defer vectors via existing `pending`/`retry` status | Decouples search availability from the fragile embedder; eliminates the timeout class |
+| Key move-reconciliation on `packet_id` + doc role/anchor, content-hash as confirmation only | Avoids false-positive merges of copied/template-identical files |
+| Design research only — no production code changed | Scope discipline; implementation is a separate gated `/speckit:plan` |
+<!-- /ANCHOR:decisions -->
 
 ---
 
