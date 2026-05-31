@@ -1,7 +1,7 @@
 ---
 iteration: 034
 rq: RQ-N5
-phase_target: 006-write-path-reconciliation
+phase_target: 005-write-path-reconciliation
 newInfoRatio: 0.72
 verdict: ADAPT
 ---
@@ -60,7 +60,7 @@ After 012 + remediation, two new scattered invalidation sites were added **outsi
 
 ### C. Interaction with the Desired/Prior Statediff Model
 
-The 006 spec at `006-write-path-reconciliation/spec.md:83` states: "Cache invalidation, alias feedback, retention sweep, and graph cache clearing become subscribers to the applied action batch; they are not themselves statediff targets."
+The 006 spec at `005-write-path-reconciliation/spec.md:83` states: "Cache invalidation, alias feedback, retention sweep, and graph cache clearing become subscribers to the applied action batch; they are not themselves statediff targets."
 
 The 012 commit strengthened the case for this boundary in two ways:
 
@@ -80,7 +80,7 @@ The 012 remediation wired `invalidateEntityDensityCache()` into `memory-save` an
 
 ## Revised Scope for Phase 006
 
-The original `006-write-path-reconciliation/spec.md` scope at lines 147–157 lists `mutation-hooks.ts` as a "Modify" target (convert hook bundle into action-batch subscribers). The 012 additions expand this in the following concrete ways:
+The original `005-write-path-reconciliation/spec.md` scope at lines 147–157 lists `mutation-hooks.ts` as a "Modify" target (convert hook bundle into action-batch subscribers). The 012 additions expand this in the following concrete ways:
 
 **Additions to "Files to Change":**
 

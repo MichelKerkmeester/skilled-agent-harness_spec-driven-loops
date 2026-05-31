@@ -1,7 +1,7 @@
 ---
 iteration: 033
 rq: RQ-N4
-phase_target: 005-metadata-edge-promoter
+phase_target: 004-metadata-edge-promoter
 newInfoRatio: 0.82
 verdict: ADAPT
 ---
@@ -16,7 +16,7 @@ What specific fields in `description.json` and `graph-metadata.json` can be dete
 
 ## Context Files Read
 
-- `005-metadata-edge-promoter/spec.md` (lines 1-60): Phase spec. Predecessor is 004, successor is 006. Handoff criterion: "Indexing a packet with structured relationship metadata creates idempotent auto causal edges with deterministic provenance."
+- `004-metadata-edge-promoter/spec.md` (lines 1-60): Phase spec. Predecessor is 004, successor is 006. Handoff criterion: "Indexing a packet with structured relationship metadata creates idempotent auto causal edges with deterministic provenance."
 - `lib/graph/graph-metadata-schema.ts`: Zod schema defining the canonical `GraphMetadata` type.
 - `lib/graph/graph-metadata-parser.ts`: Parser that populates `GraphMetadata` from on-disk JSON; exports `packetReferencesToCausalLinks()` at line 1338.
 - `lib/parsing/memory-parser.ts`: Calls `extractCausalLinksFromGraphMetadata()` at line 318 when document type is `graph_metadata`; imports `packetReferencesToCausalLinks` from graph-metadata-parser at line 28.
@@ -53,7 +53,7 @@ Schema enforced by `perFolderDescriptionSchema` via `parseDescriptionMetadataCon
 | Field | Promotion target | Determinism confidence | Notes |
 |---|---|---|---|
 | `parentChain[*]` | `this_packet → child_of → parentChain[-1]` (structural DERIVED_FROM) | **HIGH** | `027/description.json` has `parentChain: ["system-spec-kit"]`. `028/005/description.json` has `parentChain: ["system-spec-kit", "028-code-graph-and-cocoindex"]`. Unambiguous hierarchy; each element is a resolvable spec folder. Overlaps with `graph-metadata.json.parent_id` but description.json carries the full ancestor chain, enabling multi-hop structural edges. No promotion today — gap confirmed. |
-| `children[*]` (some description.json files only) | `this_packet → parent_of → child` | **HIGH** | Present in `027/description.json` as `children: ["001-release-cleanup", ...]`. Redundant with `graph-metadata.json.children_ids` but description.json uses relative slugs only. If both files are canonical, description.json `children` could be omitted from promotion to avoid double-insertion. |
+| `children[*]` (some description.json files only) | `this_packet → parent_of → child` | **HIGH** | Present in `027/description.json` as `children: ["000-release-cleanup", ...]`. Redundant with `graph-metadata.json.children_ids` but description.json uses relative slugs only. If both files are canonical, description.json `children` could be omitted from promotion to avoid double-insertion. |
 | `specId` | ID disambiguation only | **N/A** | Numeric string like `"027"`. Useful for lookup key but not a relationship edge. |
 | `keywords[*]` | topic tag on packet node | **N/A — not an edge** | Flat text tokens; no directional relationship. |
 | `memoryNameHistory[*]` | `this_packet → iteration_artifact → filename` (DERIVED_FROM, weak) | **LOW** | History of prior session save filenames. Not cross-referenceable in the graph DB as memory IDs. Skip for Phase 005. |

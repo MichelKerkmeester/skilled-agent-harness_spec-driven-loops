@@ -29,8 +29,8 @@ Sub-packet amendments: Phase 004 needs REQ-007 (high-uncertainty guard), REQ-008
 See: [027-xce-research-pt-03/research.md](./027-xce-research-pt-03/research.md)
 **Key outcomes**: 56 findings; unanimous bounded-ADAPT stance; proposed 5 new phases:
 - 006-coco-intent-steering (L2, ~250-350 LOC) — pre-embedding query expansion
-- 007-semantic-trigger-fallback (L2/L3, ~350-520 LOC) — hybrid lexical+semantic trigger matcher
-- 008-learning-feedback-reducers (L3, ~400-650 LOC) — shared bounded reducer
+- 006-semantic-trigger-fallback (L2/L3, ~350-520 LOC) — hybrid lexical+semantic trigger matcher
+- 007-learning-feedback-reducers (L3, ~400-650 LOC) — shared bounded reducer
 - 009-retrieval-rerank-clients (L2, ~250-420 LOC) — extract RerankClient
 - 010-coco-memory-context-extras (L3, ~500-800 LOC) — few-shot bank + LLM curator
 

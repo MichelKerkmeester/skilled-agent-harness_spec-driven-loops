@@ -21,14 +21,14 @@
   "created_at": "2026-05-08T00:00:00Z",
   "is_phase_parent": true,
   "children": [
-    "001-release-cleanup",
-    "002-memory-write-safety",
-    "003-incremental-index-foundation",
-    "004-causal-edge-tombstones",
-    "005-metadata-edge-promoter",
-    "006-write-path-reconciliation",
-    "007-semantic-trigger-fallback",
-    "008-learning-feedback-reducers"
+    "000-release-cleanup",
+    "001-memory-write-safety",
+    "002-incremental-index-foundation",
+    "003-causal-edge-tombstones",
+    "004-metadata-edge-promoter",
+    "005-write-path-reconciliation",
+    "006-semantic-trigger-fallback",
+    "007-learning-feedback-reducers"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)",

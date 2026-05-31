@@ -4,14 +4,14 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/001-release-cleanup",
-    "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
-    "system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation",
-    "system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones",
-    "system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter",
-    "system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation",
-    "system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback",
-    "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers"
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+    "system-spec-kit/027-xce-research-based-refinement/001-memory-write-safety",
+    "system-spec-kit/027-xce-research-based-refinement/002-incremental-index-foundation",
+    "system-spec-kit/027-xce-research-based-refinement/003-causal-edge-tombstones",
+    "system-spec-kit/027-xce-research-based-refinement/004-metadata-edge-promoter",
+    "system-spec-kit/027-xce-research-based-refinement/005-write-path-reconciliation",
+    "system-spec-kit/027-xce-research-based-refinement/006-semantic-trigger-fallback",
+    "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers"
   ],
   "migrated": true,
   "migration_source": "legacy",
@@ -51,13 +51,13 @@
     "status": "planned",
     "key_files": [
       "research/027-xce-research-pt-04/research.md",
-      "002-memory-write-safety/spec.md",
-      "003-incremental-index-foundation/spec.md",
-      "004-causal-edge-tombstones/spec.md",
-      "005-metadata-edge-promoter/spec.md",
-      "006-write-path-reconciliation/spec.md",
-      "007-semantic-trigger-fallback/spec.md",
-      "008-learning-feedback-reducers/spec.md",
+      "001-memory-write-safety/spec.md",
+      "002-incremental-index-foundation/spec.md",
+      "003-causal-edge-tombstones/spec.md",
+      "004-metadata-edge-promoter/spec.md",
+      "005-write-path-reconciliation/spec.md",
+      "006-semantic-trigger-fallback/spec.md",
+      "007-learning-feedback-reducers/spec.md",
       "spec.md"
     ],
     "entities": [

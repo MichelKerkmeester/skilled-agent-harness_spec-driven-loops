@@ -1,7 +1,7 @@
 ---
 iteration: 031
 rq: RQ-N2
-phase_target: 003-incremental-index-foundation
+phase_target: 002-incremental-index-foundation
 newInfoRatio: 0.72
 verdict: ADAPT
 ---
@@ -10,7 +10,7 @@ verdict: ADAPT
 
 ## Research Question
 
-What memoization and fingerprint primitives are (A) already present in the current memory indexer/MCP code and (B) still missing per the spec for phase `003-incremental-index-foundation`? Produce a revised scope table.
+What memoization and fingerprint primitives are (A) already present in the current memory indexer/MCP code and (B) still missing per the spec for phase `002-incremental-index-foundation`? Produce a revised scope table.
 
 ---
 
