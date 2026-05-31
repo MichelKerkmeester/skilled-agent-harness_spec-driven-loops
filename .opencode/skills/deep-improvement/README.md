@@ -26,16 +26,17 @@ The skill treats agent improvement as an optimization problem with a paper trail
 
 For packet recovery around an improvement run, `/speckit:resume` stays the canonical surface. Continuity rebuilds from `handover.md`, then `_memory.continuity`, then the remaining spec docs.
 
-### Two Lanes
+### Three Lanes
 
-This skill runs two co-equal lanes that share one evaluator core, journal, and promotion discipline:
+This skill runs three co-equal lanes that share one evaluator core, journal, and promotion discipline:
 
 | Lane | Use it to | Command |
 |---|---|---|
 | **Lane A — Agent-Improvement** | Improve a bounded agent `.md` file (the default; most of this README) | `/deep:start-agent-improvement-loop` |
 | **Lane B — Model-Benchmark** | Benchmark a model or prompt framework against fixtures | `/deep:start-model-benchmark-loop` |
+| **Lane C — Skill-Benchmark** | Diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
 
-Lane B (the model-benchmark mode) is documented in `SKILL.md` §4 and `references/model-benchmark/`. To match the two lanes, `references/`, `assets/`, and `scripts/` are each split into `agent-improvement/`, `model-benchmark/`, and `shared/` subdirs.
+Lane B (the model-benchmark mode) is documented in `SKILL.md` §4 and `references/model-benchmark/`; Lane C (the skill-benchmark mode) in `references/skill-benchmark/`. To match the three lanes, `references/`, `assets/`, and `scripts/` are each split into `agent-improvement/`, `model-benchmark/`, `skill-benchmark/`, and `shared/` subdirs.
 
 ### What Changes With This Skill
 
