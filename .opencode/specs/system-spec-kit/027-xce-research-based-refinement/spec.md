@@ -25,13 +25,13 @@ _memory:
     key_files:
       - "spec.md"
       - "research/027-xce-research-pt-04/research.md"
-      - "002-feedback-p0-correctness/spec.md"
-      - "003-memoization-dependency-dag-foundation/spec.md"
-      - "004-causal-graph-lifecycle-tombstones/spec.md"
-      - "005-frontmatter-causal-edge-promoter/spec.md"
-      - "006-statediff-reconciliation-layer/spec.md"
-      - "007-memory-semantic-triggers/spec.md"
-      - "008-feedback-reducers/spec.md"
+      - "002-memory-write-safety/spec.md"
+      - "003-incremental-index-foundation/spec.md"
+      - "004-causal-edge-tombstones/spec.md"
+      - "005-metadata-edge-promoter/spec.md"
+      - "006-write-path-reconciliation/spec.md"
+      - "007-semantic-trigger-fallback/spec.md"
+      - "008-learning-feedback-reducers/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "2026-05-28-027-memory-root-rewrite"
@@ -53,18 +53,18 @@ _memory:
 | Phase | Title | Level | Depends on |
 |-------|-------|------:|-----------|
 | **[001-release-cleanup](./001-release-cleanup/)** | Release Cleanup Placeholder | n/a | none |
-| **[002-feedback-p0-correctness](./002-feedback-p0-correctness/spec.md)** | Feedback P0 Correctness | 2 | none |
-| **[003-memoization-dependency-dag-foundation](./003-memoization-dependency-dag-foundation/spec.md)** | Memoization Dependency DAG Foundation | 1 | none |
-| **[004-causal-graph-lifecycle-tombstones](./004-causal-graph-lifecycle-tombstones/spec.md)** | Causal Graph Lifecycle Tombstones | 1 | 003 |
-| **[005-frontmatter-causal-edge-promoter](./005-frontmatter-causal-edge-promoter/spec.md)** | Frontmatter Causal-Edge Promoter | 1 | 004 |
-| **[006-statediff-reconciliation-layer](./006-statediff-reconciliation-layer/spec.md)** | Statediff Reconciliation Layer | 1 | 003, 005 |
-| **[007-memory-semantic-triggers](./007-memory-semantic-triggers/spec.md)** | Memory Backend Semantic Trigger Matching | 3 | none |
-| **[008-feedback-reducers](./008-feedback-reducers/spec.md)** | Feedback Reducers | phase-parent | 002 |
+| **[002-memory-write-safety](./002-memory-write-safety/spec.md)** | Memory Write Safety | 2 | none |
+| **[003-incremental-index-foundation](./003-incremental-index-foundation/spec.md)** | Incremental Index Foundation | 1 | none |
+| **[004-causal-edge-tombstones](./004-causal-edge-tombstones/spec.md)** | Causal Edge Tombstones | 1 | 003 |
+| **[005-metadata-edge-promoter](./005-metadata-edge-promoter/spec.md)** | Metadata Edge Promoter | 1 | 004 |
+| **[006-write-path-reconciliation](./006-write-path-reconciliation/spec.md)** | Write-Path Reconciliation | 1 | 003, 005 |
+| **[007-semantic-trigger-fallback](./007-semantic-trigger-fallback/spec.md)** | Semantic Trigger Fallback | 3 | none |
+| **[008-learning-feedback-reducers](./008-learning-feedback-reducers/spec.md)** | Learning Feedback Reducers | phase-parent | 002 |
 
 ## Cross-packet dependencies -> 028
 
-- `027/007-memory-semantic-triggers` soft-needs shadow-eval evidence from `028/004-code-graph-adoption-eval` before live-mode semantic trigger promotion.
-- `027/008-feedback-reducers` soft-depends on `028/004-code-graph-adoption-eval` and consumes telemetry from `028/007-retrieval-rerank-clients`.
+- `027/007-semantic-trigger-fallback` soft-needs shadow-eval evidence from `028/004-code-graph-adoption-eval` before live-mode semantic trigger promotion.
+- `027/008-learning-feedback-reducers` soft-depends on `028/004-code-graph-adoption-eval` and consumes telemetry from `028/007-retrieval-rerank-clients`.
 
 ---
 
@@ -129,13 +129,13 @@ Coordinate the remaining memory-system phases so they can ship independently whi
 
 ### In Scope
 
-- `002-feedback-p0-correctness`: auto-provenance cap, manual-edge overwrite guard, retention tier basement.
-- `003-memoization-dependency-dag-foundation`: canonical fingerprints, memo records, dependency edges, chunk fingerprints.
-- `004-causal-graph-lifecycle-tombstones`: tombstone audit rows and unified causal-edge sweep behavior.
-- `005-frontmatter-causal-edge-promoter`: deterministic causal edges from `description.json` and `graph-metadata.json`.
-- `006-statediff-reconciliation-layer`: desired/prior diff model and storage target sinks.
-- `007-memory-semantic-triggers`: hybrid lexical plus semantic trigger matching.
-- `008-feedback-reducers`: learning reducer phase parent after P0 feedback correctness.
+- `002-memory-write-safety`: auto-provenance cap, manual-edge overwrite guard, retention tier basement.
+- `003-incremental-index-foundation`: canonical fingerprints, memo records, dependency edges, chunk fingerprints.
+- `004-causal-edge-tombstones`: tombstone audit rows and unified causal-edge sweep behavior.
+- `005-metadata-edge-promoter`: deterministic causal edges from `description.json` and `graph-metadata.json`.
+- `006-write-path-reconciliation`: desired/prior diff model and storage target sinks.
+- `007-semantic-trigger-fallback`: hybrid lexical plus semantic trigger matching.
+- `008-learning-feedback-reducers`: learning reducer phase parent after P0 feedback correctness.
 - `001-release-cleanup`: placeholder folder retained on disk.
 
 ### Out of Scope
@@ -148,13 +148,13 @@ Coordinate the remaining memory-system phases so they can ship independently whi
 | Path | Purpose |
 |------|---------|
 | `research/027-xce-research-pt-04/research.md` | Research provenance and audit boundary |
-| `002-feedback-p0-correctness/spec.md` | P0 feedback correctness scope |
-| `003-memoization-dependency-dag-foundation/spec.md` | Memoization/indexing phase scope |
-| `004-causal-graph-lifecycle-tombstones/spec.md` | Causal lifecycle phase scope |
-| `005-frontmatter-causal-edge-promoter/spec.md` | Metadata edge promotion phase scope |
-| `006-statediff-reconciliation-layer/spec.md` | Statediff phase scope |
-| `007-memory-semantic-triggers/spec.md` | Semantic trigger phase scope |
-| `008-feedback-reducers/spec.md` | Feedback reducer phase-parent scope |
+| `002-memory-write-safety/spec.md` | P0 feedback correctness scope |
+| `003-incremental-index-foundation/spec.md` | Memoization/indexing phase scope |
+| `004-causal-edge-tombstones/spec.md` | Causal lifecycle phase scope |
+| `005-metadata-edge-promoter/spec.md` | Metadata edge promotion phase scope |
+| `006-write-path-reconciliation/spec.md` | Statediff phase scope |
+| `007-semantic-trigger-fallback/spec.md` | Semantic trigger phase scope |
+| `008-learning-feedback-reducers/spec.md` | Feedback reducer phase-parent scope |
 
 ### Files Created or Updated
 
@@ -204,7 +204,7 @@ Coordinate the remaining memory-system phases so they can ship independently whi
 - **RQ-M4 - Structured Edge Promotion**: Which packet metadata fields can be deterministically promoted into causal edges without LLM extraction?
 - **RQ-M5 - Reconciliation Model**: Where should desired/prior statediff planning replace scattered handler branches and post-mutation hooks?
 - **RQ-M6 - Trigger Recall**: How can semantic trigger fallback improve paraphrase recall without weakening lexical command precision?
-- **RQ-M7 - Feedback Reducers**: Which reducer consumers should be enabled only after aggregation, P0 correctness, and external eval evidence are available?
+- **RQ-M7 - Learning Feedback Reducers**: Which reducer consumers should be enabled only after aggregation, P0 correctness, and external eval evidence are available?
 <!-- /ANCHOR:research-questions -->
 
 ---
@@ -227,9 +227,9 @@ Coordinate the remaining memory-system phases so they can ship independently whi
 |------|------|--------|------------|
 | Risk | Child specs still contain historical references from before the split. | Medium. Readers may see old numbering inside child docs. | Root table resolves by current disk folder; child refresh is explicitly out of scope for this edit. |
 | Risk | 028 evidence or telemetry is unavailable when 011/012 need it. | Medium. Live promotion or reducer tuning may block. | Keep 028 links soft and document standalone phase scope in child specs. |
-| Dependency | `002-feedback-p0-correctness` | Hard prerequisite for `008-feedback-reducers`. | Ship P0 correctness before reducer consumers. |
-| Dependency | `003-memoization-dependency-dag-foundation` | Foundation for chunk identity and statediff keys. | Keep 006 dependent on 003. |
-| Dependency | `004-causal-graph-lifecycle-tombstones` | Foundation for generated edge cleanup. | Keep 005 dependent on 004. |
+| Dependency | `002-memory-write-safety` | Hard prerequisite for `008-learning-feedback-reducers`. | Ship P0 correctness before reducer consumers. |
+| Dependency | `003-incremental-index-foundation` | Foundation for chunk identity and statediff keys. | Keep 006 dependent on 003. |
+| Dependency | `004-causal-edge-tombstones` | Foundation for generated edge cleanup. | Keep 005 dependent on 004. |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -309,13 +309,13 @@ REQ-008
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 001 | `001-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
-| 002 | `002-feedback-p0-correctness/` | P0 feedback correctness fixes | Spec-scaffolded |
-| 003 | `003-memoization-dependency-dag-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
-| 004 | `004-causal-graph-lifecycle-tombstones/` | Causal edge tombstone lifecycle | Draft |
-| 005 | `005-frontmatter-causal-edge-promoter/` | Deterministic frontmatter causal edges | Draft |
-| 006 | `006-statediff-reconciliation-layer/` | Desired/prior statediff reconciliation | Draft |
-| 011 | `007-memory-semantic-triggers/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
-| 012 | `008-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
+| 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
+| 003 | `003-incremental-index-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
+| 004 | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle | Draft |
+| 005 | `005-metadata-edge-promoter/` | Deterministic frontmatter causal edges | Draft |
+| 006 | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
+| 011 | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
+| 012 | `008-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
 
 ### Phase Transition Rules
 
@@ -328,8 +328,8 @@ REQ-008
 
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
-| 002-feedback-p0-correctness | 008-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
-| 003-memoization-dependency-dag-foundation | 004-causal-graph-lifecycle-tombstones | Incremental indexing foundation available before lifecycle expansion. | 003 implementation summary. |
-| 004-causal-graph-lifecycle-tombstones | 005-frontmatter-causal-edge-promoter | Generated edge cleanup has tombstone support. | 004 validation evidence. |
-| 005-frontmatter-causal-edge-promoter | 006-statediff-reconciliation-layer | Generated edge sets are available as statediff target candidates. | 005 implementation summary. |
+| 002-memory-write-safety | 008-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
+| 003-incremental-index-foundation | 004-causal-edge-tombstones | Incremental indexing foundation available before lifecycle expansion. | 003 implementation summary. |
+| 004-causal-edge-tombstones | 005-metadata-edge-promoter | Generated edge cleanup has tombstone support. | 004 validation evidence. |
+| 005-metadata-edge-promoter | 006-write-path-reconciliation | Generated edge sets are available as statediff target candidates. | 005 implementation summary. |
 <!-- /ANCHOR:phase-map -->

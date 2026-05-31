@@ -1,8 +1,0 @@
-{"type":"iteration","iteration":3,"focus":"IRQ3","status":"complete","newInfoRatio":0.68,"summary":"Cross-validated Phase 003 risk formula and found the default weights are documented design intuition, but normalization, file-level aggregation, TESTED_BY absence semantics, and 3-hop BFS implementation details must be specified before scores are reproducible."}
-{"type":"finding","id":"f-iter003-001","severity":"P0","label":"Weight defaults are design intuition, not empirically defensible yet","verdict":"BLOCKING","iteration":3}
-{"type":"finding","id":"f-iter003-002","severity":"P0","label":"normalize() is unspecified, making scores non-reproducible across graph sizes","verdict":"BLOCKING","iteration":3}
-{"type":"finding","id":"f-iter003-003","severity":"P0","label":"Phase 003 describes file-level signals using symbol-level edge APIs","verdict":"BLOCKING","iteration":3}
-{"type":"finding","id":"f-iter003-004","severity":"P1","label":"Additive scoring is the right MVP shape; multiplicative scoring fails stated edge cases","verdict":"CONFIRMED","iteration":3}
-{"type":"finding","id":"f-iter003-005","severity":"P1","label":"The 3-hop transitive-depth cap is specified, but the data path and rationale are not","verdict":"BLOCKING","iteration":3}
-{"type":"finding","id":"f-iter003-006","severity":"P1","label":"Missing TESTED_BY edges bridge into IRQ7 because absence is overloaded as risk","verdict":"CONFIRMED","iteration":3}
-{"type":"finding","id":"f-iter003-007","severity":"P2","label":"Phase 001 layer criticality should stay optional for MVP, not hidden inside the base formula","verdict":"NO-CHANGE-NEEDED","iteration":3}

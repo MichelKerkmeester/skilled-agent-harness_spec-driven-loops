@@ -22,13 +22,13 @@
   "is_phase_parent": true,
   "children": [
     "001-release-cleanup",
-    "002-feedback-p0-correctness",
-    "003-memoization-dependency-dag-foundation",
-    "004-causal-graph-lifecycle-tombstones",
-    "005-frontmatter-causal-edge-promoter",
-    "006-statediff-reconciliation-layer",
-    "007-memory-semantic-triggers",
-    "008-feedback-reducers"
+    "002-memory-write-safety",
+    "003-incremental-index-foundation",
+    "004-causal-edge-tombstones",
+    "005-metadata-edge-promoter",
+    "006-write-path-reconciliation",
+    "007-semantic-trigger-fallback",
+    "008-learning-feedback-reducers"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
   "description": "Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)",

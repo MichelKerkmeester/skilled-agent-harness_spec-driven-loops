@@ -1,0 +1,60 @@
+{
+  "title": "Phase Parent — 009 Learning Feedback Reducers",
+  "trigger_phrases": [
+    "027 phase 009",
+    "009 feedback reducers",
+    "feedback reducer phase parent",
+    "learning reducers",
+    "feedback aggregation"
+  ],
+  "level": "phase-parent",
+  "importance_tier": "important",
+  "contextType": "implementation",
+  "status": "phase-parent",
+  "priority": "P0",
+  "createdAt": "2026-05-09T11:00:00Z",
+  "branch": "main",
+  "parent_track": "027-xce-research-based-refinement",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety"
+    ],
+    "children": [
+      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator",
+      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer",
+      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer",
+      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer",
+      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration"
+    ]
+  },
+  "soft_depends_on": [
+    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
+    "system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
+  ],
+  "derived": {
+    "status": "phase-parent",
+    "completion_pct": 0,
+    "last_active_child_id": null
+  },
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers",
+  "description": "Feature Specification: 008 — Learning Feedback Reducers (Phase Parent)",
+  "keywords": [
+    "feature",
+    "specification",
+    "008",
+    "feedback",
+    "reducers",
+    "phase",
+    "parent"
+  ],
+  "lastUpdated": "2026-05-28T08:24:15.979Z",
+  "specId": "008",
+  "folderSlug": "feedback-reducers",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -117,8 +117,8 @@ Verdict diversity target is met: ADOPT appears as an RQ-B3 signal-source decisio
 ### Suggested Phase 006+ Scaffolds
 
 1. `006-coco-intent-steering` - L2, ~250-350 LOC, ADAPT. Depends on RQ-A1. Build rule-based intent classifier, bounded query expansion, path-class priors, caps, and telemetry.
-2. `007-memory-semantic-triggers` - L2/L3, ~350-520 LOC, ADAPT. Depends on RQ-B1. Add semantic trigger fallback, trigger embedding backfill, lexical precedence, threshold telemetry, and shadow mode.
-3. `008-feedback-reducers` - L3, ~400-650 LOC, ADAPT. Combines RQ-A3, RQ-B3, and RQ-B4 at the aggregation layer only. Keep rerank weights, causal-edge inference, and retention decisions as separate reducers after shared feedback aggregation.
+2. `007-semantic-trigger-fallback` - L2/L3, ~350-520 LOC, ADAPT. Depends on RQ-B1. Add semantic trigger fallback, trigger embedding backfill, lexical precedence, threshold telemetry, and shadow mode.
+3. `008-learning-feedback-reducers` - L3, ~400-650 LOC, ADAPT. Combines RQ-A3, RQ-B3, and RQ-B4 at the aggregation layer only. Keep rerank weights, causal-edge inference, and retention decisions as separate reducers after shared feedback aggregation.
 4. `009-retrieval-rerank-clients` - L2, ~250-420 LOC, ADAPT. Depends on RQ-B5 and existing `cross-encoder.ts`. Extract `RerankClient`, add candidate adapters, flags, cache telemetry, and a CocoIndex shadow rerank adapter.
 5. `010-coco-memory-context-extras` - L3, ~500-800 LOC, ADAPT/DEFER split. Covers RQ-A4 exemplars and RQ-B2 curator shadow mode as separate presentation layers, not ranking authorities.
 

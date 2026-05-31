@@ -1,8 +1,0 @@
-{"type":"iteration","iteration":1,"focus":"IRQ1","status":"complete","newInfoRatio":0.62,"summary":"Cross-validated Phase 001 HLD/LLD determinism and edge cases against spec, schema, graph types, capture behavior, and pass-1 synthesis."}
-{"type":"finding","id":"f-iter001-001","severity":"P0","label":"Truncation determinism needs an explicit stable sort before slicing","verdict":"BLOCKING","iteration":1}
-{"type":"finding","id":"f-iter001-002","severity":"P2","label":"Empty file behavior is coherent with current indexer behavior","verdict":"CONFIRMED","iteration":1}
-{"type":"finding","id":"f-iter001-003","severity":"P0","label":"Dangling edges can leak nondeterministic or invalid dependencies","verdict":"BLOCKING","iteration":1}
-{"type":"finding","id":"f-iter001-004","severity":"P2","label":"Missing docstrings have an explicit fallback","verdict":"CONFIRMED","iteration":1}
-{"type":"finding","id":"f-iter001-005","severity":"P1","label":"Multiple module symbols need a primary-module selection rule","verdict":"BLOCKING","iteration":1}
-{"type":"finding","id":"f-iter001-006","severity":"P2","label":"Mixed embedded language content should not expand Phase 001 scope","verdict":"NO-CHANGE-NEEDED","iteration":1}
-{"type":"finding","id":"f-iter001-007","severity":"P2","label":"Stale db output is deterministic but should surface staleness at the handler boundary","verdict":"CONFIRMED","iteration":1}

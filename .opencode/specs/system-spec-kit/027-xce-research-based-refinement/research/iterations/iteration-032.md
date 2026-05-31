@@ -1,7 +1,7 @@
 ---
 iteration: 032
 rq: RQ-N3
-phase_target: 004-causal-graph-lifecycle-tombstones
+phase_target: 004-causal-edge-tombstones
 newInfoRatio: 0.72
 verdict: ADAPT
 ---
