@@ -118,17 +118,42 @@ PROMPTEOF
   else
     printf '## Focus\n%s\n## Findings\nNO OUTPUT (codex produced no stdout; exit=%s).\n## Verdict\nReview verdict: CONDITIONAL\n' "$focus" "$ec" > "$md"
   fi
-  awk '/^===FINDINGS_JSON===$/{f=1;next} /^===END_FINDINGS===$/{f=0} f{print}' "$md" > "$dj.raw" 2>/dev/null
-  if [ -s "$dj.raw" ]; then
-    node -e 'try{const a=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));if(Array.isArray(a)){for(const x of a)process.stdout.write(JSON.stringify({type:"finding",...x})+"\n");}}catch(e){process.stderr.write("parse-fail\n")}' "$dj.raw" > "$dj" 2>/dev/null
-    rm -f "$dj.raw"
-  else
-    : > "$dj"; rm -f "$dj.raw"
-  fi
-  local fcount verdict
-  fcount=$(wc -l < "$dj" | tr -d ' ')
-  verdict=$(grep -oE 'Review verdict: (PASS|CONDITIONAL|FAIL)' "$md" | tail -1 | sed 's/Review verdict: //')
-  [ -z "$verdict" ] && verdict="UNKNOWN"
+  # codex echoes the prompt back (so the transcript contains the FINDINGS_JSON
+  # template with its literal "P0|P1|P2" placeholder and the instruction line
+  # that names all three verdicts) AND reprints its final message — multiple
+  # marker blocks per file. A between-markers awk concatenates them into invalid
+  # JSON, and a global verdict grep matches the echoed instruction line. So:
+  # collect every fenced block, parse each independently, drop the placeholder
+  # echo, dedup, and derive the verdict from the surviving real findings.
+  local fcount verdict parsed
+  parsed=$(node -e '
+    const fs = require("fs");
+    const txt = fs.readFileSync(process.argv[1], "utf8");
+    const re = /===FINDINGS_JSON===\s*([\s\S]*?)\s*===END_FINDINGS===/g;
+    const seen = new Map();
+    let m;
+    while ((m = re.exec(txt)) !== null) {
+      let arr;
+      try { arr = JSON.parse(m[1].trim()); } catch { continue; }
+      if (!Array.isArray(arr)) continue;
+      for (const f of arr) {
+        if (!f || typeof f !== "object") continue;
+        if (f.severity === "P0|P1|P2") continue;
+        if (!["P0", "P1", "P2"].includes(f.severity)) continue;
+        const k = f.id || (f.file + ":" + f.line + ":" + f.issue);
+        if (!seen.has(k)) seen.set(k, f);
+      }
+    }
+    const out = [...seen.values()];
+    fs.writeFileSync(process.argv[2], out.map((f) => JSON.stringify({ type: "finding", ...f })).join("\n") + (out.length ? "\n" : ""));
+    const s = new Set(out.map((f) => f.severity));
+    const v = s.has("P0") ? "FAIL" : s.has("P1") ? "CONDITIONAL" : "PASS";
+    process.stdout.write(out.length + " " + v);
+  ' "$md" "$dj" 2>/dev/null)
+  fcount=${parsed%% *}
+  verdict=${parsed#* }
+  [ -z "$fcount" ] && fcount=0
+  { [ -z "$verdict" ] || [ "$verdict" = "$parsed" ]; } && verdict="UNKNOWN"
   printf '{"type":"iteration","target":"%s","iteration":%s,"model":"gpt-5.5-xhigh","status":"complete","verdict":"%s","findings":%s,"exit":%s}\n' "$target" "$iter" "$verdict" "$fcount" "$ec" > "$sp"
 
   end=$(date +%s)
