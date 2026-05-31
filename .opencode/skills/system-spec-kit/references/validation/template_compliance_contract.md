@@ -226,6 +226,33 @@ Phase-parent `spec.md` content discipline is enforced by the advisory `PHASE_PAR
 
 ---
 
+## 8.5. DISCOVERING A LEVEL'S CONTRACT (DO NOT GUESS)
+
+Before authoring (or fixing) a spec folder to pass `validate.sh --strict`, ask the contract engine directly rather than copying `templates/examples/level_N/` (whose anchor ids and section order **differ** from what the validator enforces). Two checks are independent: **required anchors** (presence) and **header order** — a doc can have every anchor yet still fail on ordering.
+
+```bash
+cd .opencode/skills/system-spec-kit/scripts/utils
+
+# Required anchors + section gates for a level (the ANCHORS_VALID source of truth):
+node template-structure.js level-contract 3
+
+# Required headers + their ORDER + required anchors for ONE doc type:
+node template-structure.js contract 3 spec.md
+
+# Compare an in-progress doc against the contract (missing / out-of-order / extras):
+node template-structure.js compare 3 spec.md <abs-path-to>/spec.md all
+```
+
+Notes that bite if ignored:
+- **Two sources, both must pass.** Required anchors come from `templates/manifest/spec-kit-docs.json` (`levels.<N>.sectionGates`); required-header *order* comes from `template-structure.js` against `templates/manifest/<doc>.md.tmpl`. They are checked separately.
+- **Section numbering is cosmetic** — the checker strips a leading `N. ` before matching, so renumbering headers never fixes (or breaks) order; only the relative sequence matters.
+- **Level-3 spec.md ordering gotcha:** `OPEN QUESTIONS` comes LAST (after `RISK MATRIX` and `USER STORIES`), even though the `questions` anchor is listed earlier in the gate set.
+- **decision-record.md** needs an `adr-001` wrapper anchor enclosing the per-ADR sub-anchors (`adr-001-context/-decision/-alternatives/-consequences/-five-checks/-impl`).
+- Put a `_memory.continuity` frontmatter block in **every** doc (plan/tasks/checklist included) or `FRONTMATTER_VALID` warns.
+- If a header looks correct yet still flags as out-of-order with the same message repeated, the file likely has hidden duplicated content — overwrite the whole doc with one clean write instead of chasing edits.
+
+---
+
 ## 9. SYNC PROTOCOL
 
 When templates in `templates/manifest/` change:
@@ -257,7 +284,7 @@ When templates in `templates/manifest/` change:
 
 ### Scripts
 - [validate.sh](../../scripts/spec/validate.sh) — Validation orchestrator enforcing these contracts
-- [template-structure.js](../../scripts/utils/template-structure.js) — Contract extraction engine (`loadTemplateContract()`)
+- [template-structure.js](../../scripts/utils/template-structure.js) — Contract extraction engine; run `level-contract`, `contract`, or `compare` (see §8.5) to discover required anchors + header order instead of guessing
 
 ### Templates
 - [template_guide.md](../templates/template_guide.md) — Template usage and composition rules
