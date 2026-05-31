@@ -52,4 +52,3 @@ This, plus the Phase 004 adversarial code review (which found + fixed 2 P0 + 2 P
 ## 4. Notes
 
 - Commits were scoped by explicit pathspec throughout (daemon graph-metadata churn + a parallel session racing git were both active across this multi-session campaign).
-- A corrupted frontmatter line (`completion_pct: 75"`) from an earlier edit was repaired in this rewrite.
