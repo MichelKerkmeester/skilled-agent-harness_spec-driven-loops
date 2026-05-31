@@ -34,7 +34,7 @@ This skill supports three co-equal use-case lanes that share the same candidate,
 | **Lane B: Model-Benchmark** | You want to benchmark a model or prompt framework | `/deep:start-model-benchmark-loop` |
 | **Lane C: Skill-Benchmark** | You want to diagnose a skill's real-world routing, discovery, efficiency, and usefulness | `/deep:start-skill-benchmark-loop` |
 
-Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C is detailed in §5. All three lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set. (Section numbers below: §3 Lane A, §4 Lane B, §5 Lane C, §6 Integration Points.)
+Lane A is detailed in §3 (Runtime Initialization, Proposal and Evaluation, Promotion and Recovery). Lane B is detailed in §4. Lane C (skill-benchmark) is documented in `references/skill-benchmark/` (operator guide, scoring contract, scenario authoring) and run via `loop-host.cjs --mode=skill-benchmark`. All three lanes run the same loop shape and keep the agent-improvement path byte-identical when no mode flag is set.
 
 ### Activation Triggers
 
@@ -67,7 +67,7 @@ Use Lane B (model-benchmark) when the thing under test is a model or prompt fram
 
 #### Skill Benchmarking
 
-Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See §5 below.
+Use Lane C (skill-benchmark) when the thing under test is a *skill* — to measure whether AIs actually get routed to it, discover its references/assets unprompted, use it efficiently, and benefit from it. It emits a ranked, remediable Skill Benchmark Report and is diagnostic by default (it does not mutate the target skill). See `references/skill-benchmark/operator_guide.md`.
 
 ### When NOT to Use
 
