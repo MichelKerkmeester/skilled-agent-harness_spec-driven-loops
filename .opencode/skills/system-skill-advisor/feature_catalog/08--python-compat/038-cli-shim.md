@@ -46,7 +46,7 @@ Keep pre-Phase-027 Python consumers working while moving routing to the native a
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/shim.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/python/` | Automated test | Python unit test |
-| `Playbook scenarios [PC-001](../../manual_testing_playbook/10--python-compat/001-stdin-mode.md), [PC-002](../../manual_testing_playbook/10--python-compat/002-force-native-force-local.md), [PC-003](../../manual_testing_playbook/10--python-compat/003-threshold-flag.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
+| `Playbook scenarios [PC-001](../../manual_testing_playbook/10--python-compat/042-stdin-mode.md), [PC-002](../../manual_testing_playbook/10--python-compat/043-force-native-force-local.md), [PC-003](../../manual_testing_playbook/10--python-compat/044-threshold-flag.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

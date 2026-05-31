@@ -35,7 +35,7 @@ Make reindex transitions observable and atomic. Every snapshot is tagged with a 
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | generation bump atomicity |
-| `Playbook scenario [AU-004](../../manual_testing_playbook/05--auto-update-daemon/004-generation-publication.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-004](../../manual_testing_playbook/05--auto-update-daemon/025-generation-publication.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

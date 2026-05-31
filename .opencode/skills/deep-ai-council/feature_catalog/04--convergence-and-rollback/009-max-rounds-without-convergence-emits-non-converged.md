@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Tell me what happens if the
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-009.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-009.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md`, which the scenario identifies as escape hatch guidance. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/convergence/convergence_signals.md`, which the scenario identifies as escape hatch guidance. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify non-converged completion behavior. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify non-converged completion behavior.
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,7 +55,7 @@ The user-visible contract is concrete: Verify non-converged completion behavior.
 - Feature ID: DAC-009
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md`
-- Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/002-max-rounds-without-convergence-emits-non-converged.md`
+- Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md`
 Related references:
 - [008-two-of-three-agree-triggers-convergence.md](008-two-of-three-agree-triggers-convergence.md) — Two-of-three agree triggers convergence
 - [010-rollback-failed-round-preserves-forensic-trail.md](010-rollback-failed-round-preserves-forensic-trail.md) — Rollback failed round preserves forensic trail

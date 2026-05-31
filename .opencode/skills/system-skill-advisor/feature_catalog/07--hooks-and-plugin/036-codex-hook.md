@@ -37,7 +37,7 @@ Support Codex CLI sessions with native startup-context and prompt-time advisor i
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [CL-004](../../manual_testing_playbook/02--cli-hooks-and-plugin/004-codex-hook-and-wrapper.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-004](../../manual_testing_playbook/02--cli-hooks-and-plugin/012-codex-hook-and-wrapper.md).` | Manual playbook | Source reference |
 | `tests/codex-session-start-hook.vitest.ts` | Automated test | Validation reference |
 | `tests/codex-user-prompt-submit-hook.vitest.ts` | Automated test | Validation reference |
 

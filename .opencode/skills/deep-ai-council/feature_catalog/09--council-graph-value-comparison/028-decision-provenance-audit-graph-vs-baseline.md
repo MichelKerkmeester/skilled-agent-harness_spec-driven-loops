@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Tell me exactly what eviden
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-028.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-028.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/query.cjs`, which the scenario identifies as runtime CLI script. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts`, covering automated test name: dac-028 graph beats no-graph baseline.
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Demonstrate measurable audit-quality impr
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-028 graph beats no-graph baseline |
 
 ---
@@ -57,7 +57,7 @@ The user-visible contract is concrete: Demonstrate measurable audit-quality impr
 - Feature ID: DAC-028
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md`
-- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/002-decision-provenance-audit-graph-vs-baseline.md`
+- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md`
 Related references:
 - [027-unresolved-disagreement-triage-graph-vs-baseline.md](027-unresolved-disagreement-triage-graph-vs-baseline.md) — Unresolved disagreement triage: graph vs baseline
 - [029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md](029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md) — Convergence safety under critical disagreement

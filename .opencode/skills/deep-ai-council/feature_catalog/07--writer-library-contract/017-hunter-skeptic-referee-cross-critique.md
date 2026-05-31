@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Apply the Hunter / Skeptic 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-016.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-016.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/scoring/scoring_rubric.md`, which the scenario identifies as cross-critique reference. Validation is anchored by `manual_testing_playbook/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles are documented with the score adjustment rule and comparison-table treatment. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,7 +55,7 @@ The user-visible contract is concrete: Verify Hunter, Skeptic, and Referee roles
 - Feature ID: DAC-016
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md`
-- Playbook scenario: `manual_testing_playbook/07--writer-library-contract/003-hunter-skeptic-referee-cross-critique.md`
+- Playbook scenario: `manual_testing_playbook/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md`
 Related references:
 - [016-five-dimension-scoring-rubric-application.md](016-five-dimension-scoring-rubric-application.md) — Five-dimension scoring rubric application
 - [018-out-of-scope-write-rejection.md](018-out-of-scope-write-rejection.md) — OUT_OF_SCOPE_WRITE rejection

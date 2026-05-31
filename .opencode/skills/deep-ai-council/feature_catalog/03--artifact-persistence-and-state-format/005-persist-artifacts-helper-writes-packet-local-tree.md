@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Persist this council report
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `03--artifact-persistence-and-state-format/001-persist-artifacts-helper-writes-packet-local-tree.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-005.
+The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-005.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`, which the scenario identifies as cli wrapper. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/001-persist-artifacts-helper-writes-packet-local-tree.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/scripts/persist-artifacts.cjs`, which the scenario identifies as cli wrapper. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify helper-created artifact layout. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--artifact-persistence-and-state-format/001-persist-artifacts-helper-writes-packet-local-tree.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,6 +55,6 @@ The user-visible contract is concrete: Verify helper-created artifact layout. Th
 - Feature ID: DAC-005
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md`
-- Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/001-persist-artifacts-helper-writes-packet-local-tree.md`
+- Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md`
 Related references:
 - [006-state-jsonl-records-council-complete-event.md](006-state-jsonl-records-council-complete-event.md) — State JSONL records council_complete event

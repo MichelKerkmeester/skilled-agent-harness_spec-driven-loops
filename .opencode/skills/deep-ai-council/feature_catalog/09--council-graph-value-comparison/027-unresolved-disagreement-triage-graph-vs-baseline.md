@@ -25,7 +25,7 @@ Operators use this feature when the real request is: After this 3-round council 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-027.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-027.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/query.cjs`, which the scenario identifies as runtime CLI script for `runtime query CLI`. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering "upserts prompt-safe council graph data and queries unresolved disagreements and decision support".
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Demonstrate measurable effort reduction b
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | "upserts prompt-safe council graph data and queries unresolved disagreements and decision support" |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-027 graph beats no-graph baseline |
 
@@ -58,6 +58,6 @@ The user-visible contract is concrete: Demonstrate measurable effort reduction b
 - Feature ID: DAC-027
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md`
-- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/001-unresolved-disagreement-triage-graph-vs-baseline.md`
+- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md`
 Related references:
 - [028-decision-provenance-audit-graph-vs-baseline.md](028-decision-provenance-audit-graph-vs-baseline.md) — Decision provenance audit: graph vs baseline

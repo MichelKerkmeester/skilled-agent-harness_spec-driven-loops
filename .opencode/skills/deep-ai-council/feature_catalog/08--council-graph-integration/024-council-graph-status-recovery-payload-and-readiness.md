@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Tell me whether the council
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-024.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-024.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/status.cjs`, which the scenario identifies as runtime CLI script: counts/schema/signals + recovery payload (p2-001 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "blocks convergence for empty derived graphs instead of returning false-safe success".
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Verify runtime status CLI returns readine
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "blocks convergence for empty derived graphs instead of returning false-safe success" |
 
 ---
@@ -57,7 +57,7 @@ The user-visible contract is concrete: Verify runtime status CLI returns readine
 - Feature ID: DAC-024
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/006-council-graph-status-recovery-payload-and-readiness.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md`
 Related references:
 - [023-council-graph-convergence-three-state-decision-matrix.md](023-council-graph-convergence-three-state-decision-matrix.md) — runtime convergence CLI three-state decision matrix
 - [025-council-graph-derived-projection-rebuilds-from-artifacts.md](025-council-graph-derived-projection-rebuilds-from-artifacts.md) — Derived projection rebuilds from artifacts

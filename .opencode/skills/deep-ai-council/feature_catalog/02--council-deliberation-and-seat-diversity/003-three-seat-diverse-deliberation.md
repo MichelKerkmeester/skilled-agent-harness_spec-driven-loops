@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Run a deep AI council to co
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `02--council-deliberation-and-seat-diversity/001-three-seat-diverse-deliberation.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-003.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-003.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/patterns/seat_diversity_patterns.md`, which the scenario identifies as seat diversity contract. Validation is anchored by `manual_testing_playbook/02--council-deliberation-and-seat-diversity/001-three-seat-diverse-deliberation.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/patterns/seat_diversity_patterns.md`, which the scenario identifies as seat diversity contract. Validation is anchored by `manual_testing_playbook/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify three distinct seat lenses are required. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify three distinct seat lenses are req
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/02--council-deliberation-and-seat-diversity/001-three-seat-diverse-deliberation.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,6 +55,6 @@ The user-visible contract is concrete: Verify three distinct seat lenses are req
 - Feature ID: DAC-003
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md`
-- Playbook scenario: `manual_testing_playbook/02--council-deliberation-and-seat-diversity/001-three-seat-diverse-deliberation.md`
+- Playbook scenario: `manual_testing_playbook/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md`
 Related references:
 - [004-cross-seat-critique-blocks-premature-convergence.md](004-cross-seat-critique-blocks-premature-convergence.md) — Cross-seat critique blocks premature convergence

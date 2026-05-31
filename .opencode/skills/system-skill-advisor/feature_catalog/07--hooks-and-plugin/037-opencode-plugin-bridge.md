@@ -35,7 +35,7 @@ Give OpenCode a first-class plugin that surfaces advisor output at prompt time w
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenario [CL-005](../../manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-005](../../manual_testing_playbook/02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

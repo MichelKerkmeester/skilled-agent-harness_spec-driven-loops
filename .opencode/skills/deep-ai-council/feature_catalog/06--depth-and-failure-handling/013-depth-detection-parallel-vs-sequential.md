@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Check whether a nested coun
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-014.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-014.
 
-Current behavior is grounded in `.opencode/agents/ai-council.md`, which the scenario identifies as authoritative depth 0 and depth 1 source. Validation is anchored by `manual_testing_playbook/06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/agents/ai-council.md`, which the scenario identifies as authoritative depth 0 and depth 1 source. Validation is anchored by `manual_testing_playbook/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch detection and confirm sequential_thinking inline mode is selected for an explicit Depth: 1 marker. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch de
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,6 +55,6 @@ The user-visible contract is concrete: Verify Depth 0 versus Depth 1 dispatch de
 - Feature ID: DAC-014
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md`
-- Playbook scenario: `manual_testing_playbook/06--depth-and-failure-handling/001-depth-detection-parallel-vs-sequential.md`
+- Playbook scenario: `manual_testing_playbook/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md`
 Related references:
 - [014-resume-after-interrupted-state.md](014-resume-after-interrupted-state.md) — Resume after interrupted state

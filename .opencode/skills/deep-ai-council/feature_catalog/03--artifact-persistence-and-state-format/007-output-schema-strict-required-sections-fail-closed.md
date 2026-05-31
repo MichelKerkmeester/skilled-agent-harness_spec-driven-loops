@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Try to persist this incompl
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `03--artifact-persistence-and-state-format/003-output-schema-strict-required-sections-fail-closed.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-007.
+The shipped surface is anchored by `persist-artifacts.cjs`, `deep-ai-council`. The playbook scenario `03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-007.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/references/structure/output_schema.md`, which the scenario identifies as requiredness contract. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/003-output-schema-strict-required-sections-fail-closed.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/references/structure/output_schema.md`, which the scenario identifies as requiredness contract. Validation is anchored by `manual_testing_playbook/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify missing required report sections exit 1. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify missing required report sections e
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--artifact-persistence-and-state-format/003-output-schema-strict-required-sections-fail-closed.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,6 +55,6 @@ The user-visible contract is concrete: Verify missing required report sections e
 - Feature ID: DAC-007
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md`
-- Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/003-output-schema-strict-required-sections-fail-closed.md`
+- Playbook scenario: `manual_testing_playbook/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md`
 Related references:
 - [006-state-jsonl-records-council-complete-event.md](006-state-jsonl-records-council-complete-event.md) — State JSONL records council_complete event

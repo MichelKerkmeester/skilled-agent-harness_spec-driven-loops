@@ -36,7 +36,7 @@ Make the fusion score auditable by exposing each lane's contribution per recomme
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | attribution shape |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | no prompt leakage |
-| `Playbook scenario [SC-004](../../manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-004](../../manual_testing_playbook/08--scorer-fusion/040-lane-attribution.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

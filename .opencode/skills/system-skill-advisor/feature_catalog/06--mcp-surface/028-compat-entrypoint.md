@@ -47,7 +47,7 @@ The OpenCode plugin bridge imports the compiled equivalent at `dist/mcp_server/c
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/daemon-probe.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/compat/plugin-bridge.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenarios [CL-005](../../manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
+| `Playbook scenarios [CL-005](../../manual_testing_playbook/02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md) and [CP-001..CP-004](../../manual_testing_playbook/03--compat-and-disable/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

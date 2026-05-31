@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Try to upsert nothing into 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-020.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-020.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs`, which the scenario identifies as runtime CLI script: explicit empty-input no-op branch (p1-001 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "treats empty upsert as an explicit no-op success".
 
@@ -45,7 +45,7 @@ The user-visible contract is concrete: Verify runtime upsert CLI returns explici
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "treats empty upsert as an explicit no-op success" |
 | Internal design notes | Automated test | CHK-020 lists this behavior |
 
@@ -56,7 +56,7 @@ The user-visible contract is concrete: Verify runtime upsert CLI returns explici
 - Feature ID: DAC-020
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/002-council-graph-upsert-empty-input-no-op-success.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md`
 Related references:
 - [019-council-graph-upsert-idempotency-and-self-loop-rejection.md](019-council-graph-upsert-idempotency-and-self-loop-rejection.md) — runtime upsert CLI idempotency and self-loop rejection
 - [021-council-graph-query-hostile-metadata-redaction.md](021-council-graph-query-hostile-metadata-redaction.md) — runtime query CLI hostile metadata redaction

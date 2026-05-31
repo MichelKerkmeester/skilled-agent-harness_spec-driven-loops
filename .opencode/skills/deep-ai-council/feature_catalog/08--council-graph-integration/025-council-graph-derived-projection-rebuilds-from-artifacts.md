@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Wipe the council graph for 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-025.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-025.
 
-Current behavior is grounded in internal design notes for adr-001 derived-projection contract. Validation is anchored by `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`, covering manual scenario contract.
+Current behavior is grounded in internal design notes for adr-001 derived-projection contract. Validation is anchored by `manual_testing_playbook/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify deleting derived graph rows for one session and replaying from artifacts restores graph state without modifying artifacts. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md` | Automated test | Manual scenario contract |
 | Internal design notes | Automated test | CHK-028 rollback path |
 
 ---
@@ -57,7 +57,7 @@ The user-visible contract is concrete: Verify deleting derived graph rows for on
 - Feature ID: DAC-025
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/007-council-graph-derived-projection-rebuilds-from-artifacts.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md`
 Related references:
 - [024-council-graph-status-recovery-payload-and-readiness.md](024-council-graph-status-recovery-payload-and-readiness.md) — runtime status CLI recovery payload and readiness
 - [026-council-graph-tools-registered-separately-from-deep-loop.md](026-council-graph-tools-registered-separately-from-deep-loop.md) — Council graph MCP surface retired

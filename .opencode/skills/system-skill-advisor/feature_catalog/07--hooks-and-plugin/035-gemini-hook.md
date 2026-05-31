@@ -33,7 +33,7 @@ Integrate the advisor into Gemini CLI sessions without introducing a Gemini-spec
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [CL-003](../../manual_testing_playbook/02--cli-hooks-and-plugin/003-gemini-user-prompt-submit.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-003](../../manual_testing_playbook/02--cli-hooks-and-plugin/011-gemini-user-prompt-submit.md).` | Manual playbook | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | runtime-parity checks |
 
 ## 4. SOURCE METADATA

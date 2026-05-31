@@ -34,7 +34,7 @@ Keep the advisor graph fresh without incurring the cost of watching the whole wo
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | watcher bring-up, scope assertions, debounce checks |
-| `Playbook scenario [AU-001](../../manual_testing_playbook/05--auto-update-daemon/001-watcher-narrow-scope.md)` | Manual playbook | manual scope validation |
+| `Playbook scenario [AU-001](../../manual_testing_playbook/05--auto-update-daemon/022-watcher-narrow-scope.md)` | Manual playbook | manual scope validation |
 
 ## 4. SOURCE METADATA
 

@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Confirm council graph opera
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs --loop-type council`, plus `deep-ai-council/scripts/replay-graph-from-artifacts.cjs` for artifact replay. The playbook scenario `08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-026.
+The shipped surface is anchored by `deep-loop-runtime/scripts/{upsert,query,status,convergence}.cjs --loop-type council`, plus `deep-ai-council/scripts/replay-graph-from-artifacts.cjs` for artifact replay. The playbook scenario `08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-026.
 
 Current behavior is grounded in `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, where the live registry now imports at 35 tools and has no council graph entries. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering runtime script behavior for upsert, query, status, convergence, and error contracts.
 
@@ -49,7 +49,7 @@ The user-visible contract is concrete: council graph behavior remains available,
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Runtime council CLI coverage |
 
 ---
@@ -60,6 +60,6 @@ The user-visible contract is concrete: council graph behavior remains available,
 - Feature ID: DAC-026
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/008-council-graph-tools-registered-separately-from-deep-loop.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md`
 Related references:
 - [025-council-graph-derived-projection-rebuilds-from-artifacts.md](025-council-graph-derived-projection-rebuilds-from-artifacts.md) — Derived projection rebuilds from artifacts

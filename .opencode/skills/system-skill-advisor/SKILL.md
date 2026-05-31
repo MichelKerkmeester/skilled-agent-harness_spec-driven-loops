@@ -146,8 +146,8 @@ RESOURCE_MAP = {
     ],
     "HOOKS": [
         "references/hooks/skill_advisor_hook.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/005-opencode-plugin-bridge.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/006-devin-user-prompt-submit.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/014-devin-user-prompt-submit.md",
     ],
     "DECISIONS": [
         "references/decisions/deferred_decisions.md",

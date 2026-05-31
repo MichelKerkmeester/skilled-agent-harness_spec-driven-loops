@@ -34,7 +34,7 @@ Prevent stale cache reads after a graph reindex. Every cache entry is tagged wit
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-prompt-cache.vitest.ts` | Automated test | prompt cache TTL and invalidation |
-| `Playbook scenario [AU-004](../../manual_testing_playbook/05--auto-update-daemon/004-generation-publication.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-004](../../manual_testing_playbook/05--auto-update-daemon/025-generation-publication.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

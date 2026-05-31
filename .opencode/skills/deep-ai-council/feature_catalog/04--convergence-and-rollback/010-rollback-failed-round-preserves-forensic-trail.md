@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Roll back this failed counc
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-010.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-010.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/scripts/lib/rollback.js`, which the scenario identifies as rollback behavior. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/scripts/lib/rollback.js`, which the scenario identifies as rollback behavior. Validation is anchored by `manual_testing_playbook/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify failed rounds move under failed/ and state records rollback events. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -56,6 +56,6 @@ The user-visible contract is concrete: Verify failed rounds move under failed/ a
 - Feature ID: DAC-010
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md`
-- Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/003-rollback-failed-round-preserves-forensic-trail.md`
+- Playbook scenario: `manual_testing_playbook/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md`
 Related references:
 - [009-max-rounds-without-convergence-emits-non-converged.md](009-max-rounds-without-convergence-emits-non-converged.md) — Max rounds without convergence emits non-converged

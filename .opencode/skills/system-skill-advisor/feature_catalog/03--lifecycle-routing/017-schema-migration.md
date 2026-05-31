@@ -34,7 +34,7 @@ Evolve graph metadata without breaking existing snapshots. Additive-only migrati
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | migration and rollback invariants |
-| `Playbook scenario [LC-004](../../manual_testing_playbook/07--lifecycle-routing/004-schema-migration.md).` | Manual playbook | Source reference |
+| `Playbook scenario [LC-004](../../manual_testing_playbook/07--lifecycle-routing/035-schema-migration.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

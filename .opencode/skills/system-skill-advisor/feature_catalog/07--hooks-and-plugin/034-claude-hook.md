@@ -32,7 +32,7 @@ Surface skill recommendations in Claude Code sessions at prompt time, without bl
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [CL-001](../../manual_testing_playbook/02--cli-hooks-and-plugin/001-claude-user-prompt-submit.md).` | Manual playbook | Source reference |
+| `Playbook scenario [CL-001](../../manual_testing_playbook/02--cli-hooks-and-plugin/010-claude-user-prompt-submit.md).` | Manual playbook | Source reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-runtime-parity.vitest.ts` | Automated test | parity across hooks |
 
 ## 4. SOURCE METADATA

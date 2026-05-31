@@ -45,7 +45,7 @@ The scorer consumes the lane tag in `lib/scorer/lanes/derived.ts` and weights ev
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | lane assignment and fingerprint stability |
-| `Playbook scenario [AI-003](../../manual_testing_playbook/06--auto-indexing/003-provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-003](../../manual_testing_playbook/06--auto-indexing/029-provenance-and-trust-lanes.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

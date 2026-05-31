@@ -25,7 +25,7 @@ Operators use this feature when the real request is: This council process got ki
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/006-mid-run-interruption-recovery-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-032.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime status CLI`, `deep-ai-council`. The playbook scenario `09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-032.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/status.cjs`, which the scenario identifies as runtime CLI script with `recovery` field (p2-001 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts`, covering automated test name: dac-032 graph beats no-graph baseline.
 
@@ -48,7 +48,7 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/09--council-graph-value-comparison/006-mid-run-interruption-recovery-graph-vs-baseline.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-value-scenarios.vitest.ts` | Automated test | Automated test name: DAC-032 graph beats no-graph baseline |
 
 ---
@@ -58,6 +58,6 @@ The user-visible contract is concrete: Demonstrate runtime status CLI returns st
 - Feature ID: DAC-032
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md`
-- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/006-mid-run-interruption-recovery-graph-vs-baseline.md`
+- Playbook scenario: `manual_testing_playbook/09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md`
 Related references:
 - [031-hot-topic-discovery-graph-vs-baseline.md](031-hot-topic-discovery-graph-vs-baseline.md) — Hot-topic discovery: graph vs baseline

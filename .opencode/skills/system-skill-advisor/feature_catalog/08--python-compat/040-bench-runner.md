@@ -33,7 +33,7 @@ Keep latency visible from the Python surface so routing performance regressions 
 
 | File | Type | Role |
 |---|---|---|
-| `Playbook scenario [PC-005](../../manual_testing_playbook/10--python-compat/005-bench-runner.md).` | Manual playbook | Source reference |
+| `Playbook scenario [PC-005](../../manual_testing_playbook/10--python-compat/046-bench-runner.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

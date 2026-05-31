@@ -40,7 +40,7 @@ If either gap is within margin, the response carries an ambiguity signal that th
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | ambiguity window behavior |
-| `Playbook scenarios [SC-003](../../manual_testing_playbook/08--scorer-fusion/003-ambiguity.md) and [NC-004](../../manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
+| `Playbook scenarios [SC-003](../../manual_testing_playbook/08--scorer-fusion/039-ambiguity.md) and [NC-004](../../manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

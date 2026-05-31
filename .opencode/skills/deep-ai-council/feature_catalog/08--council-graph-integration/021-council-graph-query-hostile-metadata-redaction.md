@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Query the council graph aft
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-021.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime query CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-021.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/lib/council/council-graph-query.ts`, which the scenario identifies as allowlist + length bounds (p1-003 remediation). Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering test: "redacts arbitrary metadata from prompt-safe query output".
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Test: "redacts arbitrary metadata from prompt-safe query output" |
 
 ---
@@ -57,7 +57,7 @@ The user-visible contract is concrete: Verify runtime query CLI redacts arbitrar
 - Feature ID: DAC-021
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/003-council-graph-query-hostile-metadata-redaction.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md`
 Related references:
 - [020-council-graph-upsert-empty-input-no-op-success.md](020-council-graph-upsert-empty-input-no-op-success.md) — runtime upsert CLI empty input no-op success
 - [022-council-graph-query-five-modes-prompt-safe-context.md](022-council-graph-query-five-modes-prompt-safe-context.md) — runtime query CLI five modes return prompt-safe context

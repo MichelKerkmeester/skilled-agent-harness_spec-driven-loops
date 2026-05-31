@@ -25,9 +25,9 @@ Operators use this feature when the real request is: Have the council pick a pla
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `deep-ai-council`. The playbook scenario `05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-012.
+The shipped surface is anchored by `deep-ai-council`. The playbook scenario `05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-012.
 
-Current behavior is grounded in `.opencode/skills/deep-ai-council/SKILL.md`, which the scenario identifies as skill rules and integration points. Validation is anchored by `manual_testing_playbook/05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md`, covering manual scenario contract.
+Current behavior is grounded in `.opencode/skills/deep-ai-council/SKILL.md`, which the scenario identifies as skill rules and integration points. Validation is anchored by `manual_testing_playbook/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md`, covering manual scenario contract.
 
 The user-visible contract is concrete: Verify the council writes only packet-local ai-council/** artifacts. The catalog entry mirrors that contract so reviewers can move from feature inventory to the exact playbook scenario and source files without guessing.
 
@@ -46,7 +46,7 @@ The user-visible contract is concrete: Verify the council writes only packet-loc
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md` | Automated test | Manual scenario contract |
 
 ---
 
@@ -55,6 +55,6 @@ The user-visible contract is concrete: Verify the council writes only packet-loc
 - Feature ID: DAC-012
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md`
-- Playbook scenario: `manual_testing_playbook/05--scope-boundaries/002-planning-only-boundary-rejects-implementation-writes.md`
+- Playbook scenario: `manual_testing_playbook/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md`
 Related references:
 - [011-graph-support-derived-and-scoped.md](011-graph-support-derived-and-scoped.md) — Graph support stays derived and scoped

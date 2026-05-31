@@ -25,7 +25,7 @@ Operators use this feature when the real request is: Decide whether the council 
 
 ## 2. HOW IT WORKS
 
-The shipped surface is anchored by `runtime upsert CLI`, `runtime convergence CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-023.
+The shipped surface is anchored by `runtime upsert CLI`, `runtime convergence CLI`, `deep-ai-council`. The playbook scenario `08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md` defines the operator prompt, command sequence, expected signals, evidence, and pass/fail criteria for DAC-023.
 
 Current behavior is grounded in `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs`, which the scenario identifies as runtime CLI script: three-state decision logic. Validation is anchored by `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts`, covering tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs...".
 
@@ -47,7 +47,7 @@ The user-visible contract is concrete: Verify runtime convergence CLI returns th
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md` | Automated test | Manual scenario contract |
+| `manual_testing_playbook/08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md` | Automated test | Manual scenario contract |
 | `.opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts` | Automated test | Tests: "allows convergence when ... thresholds are met", "continues convergence when non-blocking thresholds are not met", "blocks convergence for empty derived graphs..." |
 
 ---
@@ -57,7 +57,7 @@ The user-visible contract is concrete: Verify runtime convergence CLI returns th
 - Feature ID: DAC-023
 - Canonical catalog source: `FEATURE_CATALOG.md`
 - Feature file path: `feature_catalog/08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md`
-- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/005-council-graph-convergence-three-state-decision-matrix.md`
+- Playbook scenario: `manual_testing_playbook/08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md`
 Related references:
 - [022-council-graph-query-five-modes-prompt-safe-context.md](022-council-graph-query-five-modes-prompt-safe-context.md) — runtime query CLI five modes return prompt-safe context
 - [024-council-graph-status-recovery-payload-and-readiness.md](024-council-graph-status-recovery-payload-and-readiness.md) — runtime status CLI recovery payload and readiness
