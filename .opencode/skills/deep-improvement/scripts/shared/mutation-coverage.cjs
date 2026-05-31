@@ -392,3 +392,46 @@ module.exports = {
   getTrajectory,
   checkConvergenceEligibility,
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLI support: node mutation-coverage.cjs --record-mutation --coverage=<path> ...
+//              node mutation-coverage.cjs --record-trajectory --coverage=<path> ...
+// ─────────────────────────────────────────────────────────────────────────────
+
+if (require.main === module) {
+  const argv = process.argv.slice(2);
+  const get = (flag) => {
+    const entry = argv.find((a) => a.startsWith(`--${flag}=`));
+    return entry ? entry.slice(flag.length + 3) : null;
+  };
+
+  if (argv.includes('--record-mutation')) {
+    const coveragePath = get('coverage');
+    if (!coveragePath) {
+      process.stderr.write('mutation-coverage: --coverage path required\n');
+      process.exit(1);
+    }
+    recordMutation(coveragePath, {
+      dimension: get('dimension') || 'composite',
+      mutationType: get('mutation-type') || 'candidate-proposal',
+      candidateId: get('candidate-id'),
+      iteration: Number(get('iteration') || 0),
+      outcome: get('outcome') || 'scored',
+    });
+  } else if (argv.includes('--record-trajectory')) {
+    const coveragePath = get('coverage');
+    const scoreFile = get('score-file');
+    if (!coveragePath || !scoreFile) {
+      process.stderr.write('mutation-coverage: --coverage and --score-file required\n');
+      process.exit(1);
+    }
+    const score = JSON.parse(require('node:fs').readFileSync(scoreFile, 'utf8'));
+    const dimensions = Array.isArray(score.dimensions) ? score.dimensions : [];
+    const scores = Object.fromEntries(dimensions.map((e) => [e.name, e.score]));
+    recordTrajectory(coveragePath, {
+      iteration: Number(get('iteration') || 0),
+      scores,
+      weightedScore: Number(get('weighted-score') || score.score || 0),
+    });
+  }
+}

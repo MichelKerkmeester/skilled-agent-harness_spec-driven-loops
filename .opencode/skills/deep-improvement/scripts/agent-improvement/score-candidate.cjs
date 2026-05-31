@@ -514,7 +514,7 @@ function main() {
       target: targetPath,
       candidate: candidatePath,
       error: candidateContent.error,
-      failureModes: ['candidate-read-failure'],
+      failureModes: ['profile-generation-failure'],
     });
   }
 
@@ -680,7 +680,6 @@ function main() {
     unscoredDimensions: dynamicResult.unscoredDimensions,
     runtimeMirrorCoverage: dynamicResult.runtimeMirrorCoverage,
     promotionGates: promotionGateResult,
-    legacyScore: null,
     recommendation,
     warnings,
     failureModes: [

@@ -140,8 +140,8 @@ workflow:
         description: "Record baseline candidate state in append-only ledger"
         action: "Append a baseline record for {target_path} into agent-improvement-state.jsonl"
       step_emit_journal_event:
-        description: "Emit session_start journal event before the first loop iteration begins"
-        command: "node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_start --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
+        description: "Emit session_initialized journal event before the first loop iteration begins"
+        command: "node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit session_initialized --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"target\":\"{target_path}\",\"charter\":\"{spec_folder}/improvement/agent-improvement-charter.md\",\"startedAt\":\"{started_at}\"}'"
 
   phase_loop:
     description: "Iterative propose -> score -> benchmark -> reduce cycle"
@@ -159,7 +159,7 @@ workflow:
         command: "node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_generated --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"candidatePath\":\"{candidate_path}\"}'"
       step_record_candidate_lineage:
         description: "Record the generated candidate in the packet-local lineage graph"
-        command: "node -e \"const lineage=require('./.opencode/skills/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs'); lineage.recordCandidate('{spec_folder}/improvement/candidate-lineage.json',{candidateId:'{candidate_id}',sessionId:'{session_id}',waveIndex:0,mutationType:'candidate-proposal',parentCandidateId:null,iteration:Number('{iteration}')});\""
+        command: "node .opencode/skills/deep-improvement/scripts/agent-improvement/candidate-lineage.cjs --record --lineage={spec_folder}/improvement/candidate-lineage.json --candidate-id={candidate_id} --session-id={session_id} --wave-index=0 --mutation-type=candidate-proposal --iteration={iteration}"
       step_score_candidate:
         description: "Score candidate across 5 dimensions (dynamic) or keyword checks (static)"
         command: "node .opencode/skills/deep-improvement/scripts/agent-improvement/score-candidate.cjs --candidate={candidate_path} --baseline={target_path} --manifest={spec_folder}/improvement/target_manifest.jsonc --profile={target_profile} --target={target_path} --output={score_output_path}"
@@ -168,7 +168,7 @@ workflow:
         command: "node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit candidate_scored --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"candidateId\":\"{candidate_id}\",\"scoreOutputPath\":\"{score_output_path}\",\"weightedScore\":\"{weighted_score}\"}'"
       step_record_mutation_coverage:
         description: "Record mutation coverage and per-dimension trajectory from the scored candidate"
-        command: "node -e \"const fs=require('node:fs'); const coverage=require('./.opencode/skills/deep-improvement/scripts/shared/mutation-coverage.cjs'); const score=JSON.parse(fs.readFileSync('{score_output_path}','utf8')); const dimensions=Array.isArray(score.dimensions)?score.dimensions:[]; const scores=Object.fromEntries(dimensions.map((entry)=>[entry.name,entry.score])); coverage.recordMutation('{spec_folder}/improvement/mutation-coverage.json',{dimension:'composite',mutationType:'candidate-proposal',candidateId:'{candidate_id}',iteration:Number('{iteration}'),outcome:score.recommendation||'scored'}); coverage.recordTrajectory('{spec_folder}/improvement/mutation-coverage.json',{iteration:Number('{iteration}'),scores,weightedScore:Number('{weighted_score}')});\""
+        command: "node .opencode/skills/deep-improvement/scripts/shared/mutation-coverage.cjs --record-mutation --coverage={spec_folder}/improvement/mutation-coverage.json --dimension=composite --mutation-type=candidate-proposal --candidate-id={candidate_id} --iteration={iteration} --outcome=scored && node .opencode/skills/deep-improvement/scripts/shared/mutation-coverage.cjs --record-trajectory --coverage={spec_folder}/improvement/mutation-coverage.json --score-file={score_output_path} --iteration={iteration} --weighted-score={weighted_score}"
       step_materialize_benchmark_fixtures:
         description: "Materialize static benchmark fixtures into packet-local markdown outputs"
         command: "node .opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs --profile .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json --outputs-dir {spec_folder}/improvement/benchmark-outputs"

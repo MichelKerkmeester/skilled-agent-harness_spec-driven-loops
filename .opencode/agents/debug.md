@@ -584,3 +584,21 @@ PRE-DELIVERY VERIFICATION:
 │  └─► Do not claim resolved status without test evidence                 │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## 11. RULES
+
+### ✅ ALWAYS
+- Start only when explicitly invoked by the user or via an operator-approved Task-tool handoff.
+- Execute all 5 phases in documented order before claiming resolution — never skip Hypothesize or Validate.
+- Challenge prior hypotheses in Phase 4 with adversarial evidence before writing any Phase 5 fix.
+- Write all findings and evidence to `debug-delegation.md`; never modify source files without phase authorization.
+- Report a concrete reproduction step and the exact error before proposing any root-cause hypothesis.
+
+### ❌ NEVER
+- Auto-dispatch @debug because a failure counter or heuristic threshold was reached — operator opt-in is required.
+- Make changes without understanding the root cause; symptom-fixing leads to recurring bugs.
+- Inherit assumptions from prior failed attempts; start with fresh observation.
+- Make multiple unrelated changes in one fix; one change at a time.
+- Claim resolution without showing verification evidence (test output or error no longer reproducing).

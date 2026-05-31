@@ -243,3 +243,31 @@ module.exports = {
   getRootCandidates,
   getChildren,
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CLI support: node candidate-lineage.cjs --record --lineage=<path> ...
+// ─────────────────────────────────────────────────────────────────────────────
+
+if (require.main === module) {
+  const argv = process.argv.slice(2);
+  const get = (flag) => {
+    const entry = argv.find((a) => a.startsWith(`--${flag}=`));
+    return entry ? entry.slice(flag.length + 3) : null;
+  };
+
+  if (argv.includes('--record')) {
+    const lineagePath = get('lineage');
+    if (!lineagePath) {
+      process.stderr.write('candidate-lineage: --lineage path required\n');
+      process.exit(1);
+    }
+    recordCandidate(lineagePath, {
+      candidateId: get('candidate-id'),
+      sessionId: get('session-id'),
+      waveIndex: Number(get('wave-index') || 0),
+      mutationType: get('mutation-type') || 'candidate-proposal',
+      parentCandidateId: get('parent-candidate-id') || null,
+      iteration: Number(get('iteration') || 0),
+    });
+  }
+}
