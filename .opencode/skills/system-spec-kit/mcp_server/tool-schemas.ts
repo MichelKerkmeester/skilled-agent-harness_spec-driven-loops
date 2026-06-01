@@ -358,6 +358,7 @@ const checkpointCreate: ToolDefinition = {
       tenantId: { type: 'string', minLength: 1, description: 'Tenant boundary for governed checkpoint scope.' },
       userId: { type: 'string', minLength: 1, description: 'Scope to this user (optional, defense-in-depth)' },
       agentId: { type: 'string', minLength: 1, description: 'Scope to this agent (optional, defense-in-depth)' },
+      includeEmbeddings: { type: 'boolean', default: true, description: 'When false, the snapshot excludes vector embedding tables (vec_memories/vec_metadata) for a smaller, faster checkpoint.' },
       metadata: { type: 'object', description: 'Additional metadata' }
     },
     required: ['name']

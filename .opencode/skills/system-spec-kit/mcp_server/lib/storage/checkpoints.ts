@@ -193,6 +193,8 @@ interface CheckpointEntry {
   git_branch: string | null;
   memory_snapshot: Buffer | null;
   file_snapshot: Buffer | null;
+  snapshot_format?: string | null;
+  snapshot_path?: string | null;
   metadata: string | null;
 }
 
@@ -1547,7 +1549,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
   const {
     name = `checkpoint-${Date.now()}`,
     specFolder = null,
-    includeEmbeddings: _includeEmbeddings = true,
+    includeEmbeddings = true,
     metadata = {},
     scope = {},
   } = options;
@@ -1567,7 +1569,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
     const tables: Record<string, TableSnapshot> = {};
 
     for (const tableName of CHECKPOINT_MANIFEST.snapshot) {
-      if (!_includeEmbeddings && (tableName === 'vec_memories' || tableName === 'vec_metadata')) {
+      if (!includeEmbeddings && (tableName === 'vec_memories' || tableName === 'vec_metadata')) {
         continue;
       }
 
@@ -1612,7 +1614,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
       ...(normalizedScope.agentId ? { agentId: normalizedScope.agentId } : {}),
       memoryCount: memories.length,
       vectorCount: vectors.length,
-      includeEmbeddings: _includeEmbeddings,
+      includeEmbeddings,
       manifest,
     };
 
@@ -1710,9 +1712,16 @@ function listCheckpoints(
     const folderFilter = specFolder ? 'WHERE spec_folder = ?' : '';
     const params: Array<string | number> = specFolder ? [specFolder] : [];
     params.push(limit);
+    const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+    const snapshotFormatSelect = checkpointColumns.has('snapshot_format')
+      ? 'snapshot_format'
+      : "'v1' AS snapshot_format";
+    const snapshotPathSelect = checkpointColumns.has('snapshot_path')
+      ? 'snapshot_path'
+      : 'NULL AS snapshot_path';
 
     const rows = database.prepare(`
-      SELECT id, name, created_at, spec_folder, git_branch, LENGTH(memory_snapshot) as snapshot_size, metadata
+      SELECT id, name, created_at, spec_folder, git_branch, LENGTH(memory_snapshot) as snapshot_size, ${snapshotFormatSelect}, ${snapshotPathSelect}, metadata
       FROM checkpoints ${folderFilter}
       ORDER BY created_at DESC
       LIMIT ?
@@ -1721,13 +1730,15 @@ function listCheckpoints(
     return rows
       .filter((row) => checkpointMetadataMatchesScope(row.metadata, scope))
       .map(row => ({
-      id: row.id as number,
-      name: row.name as string,
-      createdAt: row.created_at as string,
-      specFolder: row.spec_folder as string | null,
-      gitBranch: row.git_branch as string | null,
-      snapshotSize: (row.snapshot_size as number) || 0,
-      metadata: row.metadata ? JSON.parse(row.metadata as string) : {},
+        id: row.id as number,
+        name: row.name as string,
+        createdAt: row.created_at as string,
+        specFolder: row.spec_folder as string | null,
+        gitBranch: row.git_branch as string | null,
+        snapshotSize: (row.snapshot_size as number) || 0,
+        snapshotFormat: (row.snapshot_format as string | null | undefined) ?? 'v1',
+        snapshotPath: (row.snapshot_path as string | null | undefined) ?? null,
+        metadata: row.metadata ? JSON.parse(row.metadata as string) : {},
       }));
   } catch (error: unknown) {
     const msg = toErrorMessage(error);

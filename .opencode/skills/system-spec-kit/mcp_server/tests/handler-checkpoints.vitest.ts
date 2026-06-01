@@ -225,6 +225,34 @@ describe('Handler Checkpoints (T521, T102) [deferred - requires DB test fixtures
       }
     });
 
+    it('forwards includeEmbeddings false into checkpoint creation', async () => {
+      const checkpoint: CheckpointInfo = {
+        id: 9,
+        name: 'without-embeddings',
+        specFolder: null,
+        createdAt: '2026-06-01T00:00:00.000Z',
+        gitBranch: null,
+        snapshotSize: 0,
+        metadata: {},
+      };
+      const spy = vi.spyOn(checkpointStorageMod, 'createCheckpoint').mockReturnValue(checkpoint);
+      try {
+        await handler.handleCheckpointCreate({
+          name: 'without-embeddings',
+          includeEmbeddings: false,
+        });
+        expect(spy).toHaveBeenCalledWith({
+          name: 'without-embeddings',
+          specFolder: undefined,
+          includeEmbeddings: false,
+          metadata: {},
+          scope: {},
+        });
+      } finally {
+        spy.mockRestore();
+      }
+    });
+
     it('T521-C8: Governed checkpoint create requires tenant scope when actor scope is provided', async () => {
       const response = await handler.handleCheckpointCreate({
         name: 'missing-tenant',

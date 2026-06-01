@@ -43,6 +43,7 @@ interface CheckpointCreateArgs {
   tenantId?: string;
   userId?: string;
   agentId?: string;
+  includeEmbeddings?: boolean;
   metadata?: Record<string, unknown>;
 }
 
@@ -398,6 +399,7 @@ async function handleCheckpointCreate(args: CheckpointCreateArgs): Promise<MCPRe
     result = checkpoints.createCheckpoint({
       name,
       specFolder: spec_folder,
+      ...(args.includeEmbeddings !== undefined ? { includeEmbeddings: args.includeEmbeddings } : {}),
       metadata: mergeCheckpointScopeMetadata(metadata, scope),
       scope,
     });

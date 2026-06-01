@@ -424,7 +424,7 @@ function getMigrationAllowedBasePaths(): string[] {
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 28;
+export const SCHEMA_VERSION = 29;
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
@@ -1353,6 +1353,24 @@ export function run_migrations(database: Database.Database, from_version: number
     logger.info('Migration v28: Created active-row logical-key unique index');
   };
 
+  migrations[29] = () => {
+    if (!hasTable(database, 'checkpoints')) {
+      ensureCompanionTables(database);
+      logger.info('Migration v29: Created checkpoints table with snapshot columns');
+      return;
+    }
+
+    const columns = new Set(getTableColumns(database, 'checkpoints'));
+    if (!columns.has('snapshot_format')) {
+      database.exec("ALTER TABLE checkpoints ADD COLUMN snapshot_format TEXT DEFAULT 'v1'");
+      logger.info('Migration v29: Added checkpoints.snapshot_format column');
+    }
+    if (!columns.has('snapshot_path')) {
+      database.exec('ALTER TABLE checkpoints ADD COLUMN snapshot_path TEXT');
+      logger.info('Migration v29: Added checkpoints.snapshot_path column');
+    }
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2245,6 +2263,8 @@ export function ensureCompanionTables(database: Database.Database): void {
       git_branch TEXT,
       memory_snapshot BLOB,
       file_snapshot BLOB,
+      snapshot_format TEXT DEFAULT 'v1',
+      snapshot_path TEXT,
       metadata TEXT
     )
   `);
