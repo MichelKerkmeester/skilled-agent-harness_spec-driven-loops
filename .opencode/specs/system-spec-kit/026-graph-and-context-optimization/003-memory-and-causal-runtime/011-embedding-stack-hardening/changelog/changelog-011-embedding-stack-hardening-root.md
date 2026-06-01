@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: embedding stack hardening"
-description: "Top-level rollup of 9 child phase groups under 011-embedding-stack-hardening. Each child group is itself a phase parent with its own rollup and child changelogs."
+description: "Rollup of 9 child phase changelogs under 011-embedding-stack-hardening. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
 trigger_phrases:
   - "011-embedding-stack-hardening rollup"
   - "011-embedding-stack-hardening phase parent"
@@ -14,25 +14,25 @@ contextType: "implementation"
 
 ## 2026-06-01
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening` (Phase Parent)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/011-embedding-stack-hardening` (Level 2, Phase Parent)
 
 ### Summary
 
-This top-level phase parent groups 9 child phase groups spanning 2026-06-01 to 2026-06-01. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group rollup.
+This phase parent groups 9 child phases spanning 2026-06-01 to 2026-06-01. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
-| Child group | Latest date | Notes |
-|-------------|-------------|-------|
-| [001-selector-and-shared-socket](./../001-selector-and-shared-socket/changelog/) | n/a | child phase group |
-| [002-server-liveness-supervision](./../002-server-liveness-supervision/changelog/) | n/a | child phase group |
-| [003-observability-model-switch](./../003-observability-model-switch/changelog/) | n/a | child phase group |
-| [004-perf-instrumentation-batching](./../004-perf-instrumentation-batching/changelog/) | n/a | child phase group |
-| [005-live-validation-bench-hardening](./../005-live-validation-bench-hardening/changelog/) | n/a | child phase group |
-| [006-comment-ephemeral-pointer-cleanup](./../006-comment-ephemeral-pointer-cleanup/changelog/) | n/a | child phase group |
-| [007-ephemeral-pointer-guard-and-sweep](./../007-ephemeral-pointer-guard-and-sweep/changelog/) | n/a | child phase group |
-| [008-deep-review-correctness-edges](./../008-deep-review-correctness-edges/changelog/) | n/a | child phase group |
-| [009-single-writer-durability-cluster](./../009-single-writer-durability-cluster/changelog/) | n/a | child phase group |
+| Changelog | Date | Title |
+|-----------|------|-------|
+| [changelog-011-001-selector-and-shared-socket.md](./changelog-011-001-selector-and-shared-socket.md) | n/a | changelog-011-001-selector-and-shared-socket.md |
+| [changelog-011-002-server-liveness-supervision.md](./changelog-011-002-server-liveness-supervision.md) | n/a | changelog-011-002-server-liveness-supervision.md |
+| [changelog-011-003-observability-model-switch.md](./changelog-011-003-observability-model-switch.md) | n/a | changelog-011-003-observability-model-switch.md |
+| [changelog-011-004-perf-instrumentation-batching.md](./changelog-011-004-perf-instrumentation-batching.md) | n/a | changelog-011-004-perf-instrumentation-batching.md |
+| [changelog-011-005-live-validation-bench-hardening.md](./changelog-011-005-live-validation-bench-hardening.md) | n/a | changelog-011-005-live-validation-bench-hardening.md |
+| [changelog-011-006-comment-ephemeral-pointer-cleanup.md](./changelog-011-006-comment-ephemeral-pointer-cleanup.md) | n/a | changelog-011-006-comment-ephemeral-pointer-cleanup.md |
+| [changelog-011-007-ephemeral-pointer-guard-and-sweep.md](./changelog-011-007-ephemeral-pointer-guard-and-sweep.md) | n/a | changelog-011-007-ephemeral-pointer-guard-and-sweep.md |
+| [changelog-011-008-deep-review-correctness-edges.md](./changelog-011-008-deep-review-correctness-edges.md) | n/a | changelog-011-008-deep-review-correctness-edges.md |
+| [changelog-011-009-single-writer-durability-cluster.md](./changelog-011-009-single-writer-durability-cluster.md) | n/a | changelog-011-009-single-writer-durability-cluster.md |
 
 ### Added
 
@@ -48,13 +48,13 @@ This top-level phase parent groups 9 child phase groups spanning 2026-06-01 to 2
 
 ### Verification
 
-- Each child phase group was verified independently. See each child group rollup and its per-phase changelogs.
+- All 9 child phases were verified independently. See each child changelog for per-phase verification evidence.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening/` (child groups) | n/a | Top-level rollup, no direct source changes at this parent level |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening/` (child phases) | n/a | Rollup of 9 child phase changelogs, no direct source changes at the parent level |
 
 ### Follow-Ups
 

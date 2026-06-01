@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: operator tooling"
-description: "Top-level rollup of 5 child phase groups under 006-operator-tooling. Each child group is itself a phase parent with its own rollup and child changelogs."
+description: "Top-level rollup of 5 child phase groups under 006-operator-tooling. Each child group is a phase parent with its own rollup and child changelogs."
 trigger_phrases:
   - "006-operator-tooling rollup"
   - "006-operator-tooling phase parent"
@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2026-05-26. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group rollup.
+This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2026-05-26. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group.
 
 ### Included Phases
 
