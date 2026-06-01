@@ -1,14 +1,14 @@
+
+
 ---
-title: "sk-doc Type Validation Alignment for Skill Advisor Docs"
-description: "Skeleton phase gated by 001 synthesis. Per-file 1:1 sk-doc template alignment for system-skill-advisor doc surfaces is pending."
+title: "004-sk-doc-type-validation-alignment"
+description: "Per-file 1:1 sk-doc template alignment phase for system-skill-advisor surfaces. Blocked pending parent completion, no implementation shipped."
 trigger_phrases:
   - "skill-advisor sk-doc alignment"
   - "004 1:1 alignment phase"
   - "sk-doc template alignment skill-advisor"
-  - "skill-advisor documentation quality"
-  - "sk-doc type validation alignment"
 importance_tier: "normal"
-contextType: "implementation"
+contextType: "research"
 ---
 # Changelog
 
@@ -21,36 +21,33 @@ contextType: "implementation"
 
 ### Summary
 
-This phase is gated by completion of the 001 research synthesis. Its scope covers per-file alignment of every system-skill-advisor doc surface with the sk-doc template that owns it. The manual testing playbook was identified as PARTIAL in the audit while other surfaces PASS structurally. No production changes have shipped at this stage.
+This phase targets 1:1 alignment of system-skill-advisor documentation surfaces against sk-doc templates. The scaffold and specification are in place. No implementation has shipped because this phase is blocked by the parent not being complete.
 
 ### Added
 
-- None.
+- None. Research-only phase.
 
 ### Changed
 
-- None.
+- None. Research-only phase.
 
 ### Fixed
 
-- None.
+- None. Research-only phase.
 
 ### Verification
 
-- sk-doc validate per surface: [PENDING]
-- Playbook PARTIAL to PASS: [PENDING]
+- None.
 
 ### Files Changed
 
-| File | Action | What changed |
-|------|--------|--------------|
-| None | N/A | Phase is gated by 001 synthesis. No files modified. |
+- None.
 
 ### Follow-Ups
 
-- Extract per-file action list from 001 research synthesis
-- Align SKILL.md, ARCHITECTURE.md, and INSTALL_GUIDE.md
-- Align all 7 references files
-- Align the feature catalog parent plus all 7 group files
-- Align the manual testing playbook parent plus all 9 category files
-- Run sk-doc validate on every surface after alignment
+- Extract per-file action list from 001 research
+- SKILL.md, ARCHITECTURE.md, INSTALL_GUIDE.md alignment
+- references/* alignment (7 files)
+- feature_catalog/* alignment (parent plus 7 groups)
+- manual_testing_playbook/* alignment (parent plus 9 categories)
+- sk-doc validate per surface

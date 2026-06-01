@@ -1,15 +1,13 @@
-
-
 ---
-title: "Rename Skill Advisor MCP server to mk_skill_advisor"
-description: "The Skill Advisor MCP runtime identity is now mk_skill_advisor, matching the custom MCP snake_case naming pattern."
+title: "Changelog: Rename system_skill_advisor MCP server to mk_skill_advisor"
+description: "Renames the Skill Advisor MCP runtime identity from system_skill_advisor to mk_skill_advisor, aligning it with the mk_ custom MCP naming pattern."
 trigger_phrases:
-  - "mk_skill_advisor"
-  - "system_skill_advisor rename"
-  - "skill advisor mcp rename"
-  - "mcp server identity rename"
-  - "skill advisor package extraction"
-importance_tier: "normal"
+  - "mk_skill_advisor rename"
+  - "skill advisor MCP identity"
+  - "system_skill_advisor to mk_skill_advisor"
+  - "mk-skill-advisor-launcher"
+  - "advisor server rename"
+importance_tier: "important"
 contextType: "implementation"
 ---
 # Changelog
@@ -23,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-The Skill Advisor MCP runtime identity is now mk_skill_advisor, matching the custom MCP snake_case naming pattern established by mk_code_index. The launcher moved to .opencode/bin/mk-skill-advisor-launcher.cjs and its state file moved to .mk-skill-advisor-launcher.json. All four runtime configs now register the mk-prefixed server and live namespace consumers use mcp__mk_skill_advisor__*. Tool ids and skill folder structure remain unchanged to preserve caller stability.
+The Skill Advisor MCP server was registered as `system_skill_advisor`, which no longer matched the `mk_` custom MCP naming pattern used by other servers like `mk_code_index`. The runtime identity, launcher, state file, and all live consumer references were renamed to `mk_skill_advisor` following the established rename precedent. The skill folder and public tool ids were preserved to maintain caller stability.
 
 ### Added
 
@@ -31,38 +29,38 @@ The Skill Advisor MCP runtime identity is now mk_skill_advisor, matching the cus
 
 ### Changed
 
-- Launcher renamed from system-skill-advisor-launcher.cjs to mk-skill-advisor-launcher.cjs in .opencode/bin with updated logs, lockdir, state path, and payload command.
-- Launcher state file moved to .mk-skill-advisor-launcher.json.
-- Four runtime configs updated to register mk_skill_advisor server.
-- Live namespace references updated from mcp__system_skill_advisor__* to mcp__mk_skill_advisor__*.
-- Doctor commands, YAMLs, plugin bridge, install guides, feature catalog, playbooks, and package docs updated with new server identity.
-- Parent handover.md and graph-metadata.json updated to reflect child 015 completion.
+- MCP server registration in `advisor-server.ts` now advertises as `mk_skill_advisor` with mk-prefixed startup logs.
+- Launcher renamed to `.opencode/bin/mk-skill-advisor-launcher.cjs` with mk-prefixed logs, lock directory, and state file path.
+- Launcher state file renamed to `.mk-skill-advisor-launcher.json` to match the new binary name.
+- Runtime configs in `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, and `.gemini/settings.json` updated to the mk-prefixed server key and launcher path.
+- Live consumer references across doctor commands, YAMLs, the plugin bridge, install guides, the feature catalog, playbooks, and package docs updated from `mcp__system_skill_advisor__*` to `mcp__mk_skill_advisor__*`.
 
 ### Fixed
 
-- Runtime identity mismatch resolved. The Skill Advisor MCP server now uses the mk_skill_advisor naming pattern instead of system_skill_advisor, aligning with the custom MCP snake_case convention.
+- None.
 
 ### Verification
 
-- Advisor package typecheck - PASS: npm run typecheck in .opencode/skills/system-skill-advisor/mcp_server.
-- Spec-kit MCP typecheck - PASS: npx tsc --noEmit in .opencode/skills/system-spec-kit/mcp_server.
-- Launcher smoke - PASS: timeout 8 node .opencode/bin/mk-skill-advisor-launcher.cjs; mk-prefixed logs and skill graph scan observed.
-- OpenCode MCP list - PASS: mk_skill_advisor connected.
-- Old namespace grep - PASS: mcp__system_skill_advisor__ live count is 0 outside specs/changelog/dist/node_modules.
-- Strict validation - PASS: packet 015 strict validation.
+- Advisor package typecheck: PASS via `npm run typecheck` in `.opencode/skills/system-skill-advisor/mcp_server`.
+- Spec-kit MCP typecheck: PASS via `npx tsc --noEmit` in `.opencode/skills/system-spec-kit/mcp_server`.
+- Launcher smoke: PASS via `timeout 8 node .opencode/bin/mk-skill-advisor-launcher.cjs`, mk-prefixed logs and skill graph scan observed.
+- OpenCode MCP list: PASS, `mk_skill_advisor` shows as connected.
+- Old namespace grep: PASS, zero live references to `mcp__system_skill_advisor__` outside specs, changelogs, dist, and node_modules.
+- Strict validation: PASS for packet 015.
+- 28 task items completed.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Renamed | Launcher renamed to mk-prefixed name with updated logs, lockdir, state path, and payload command. |
-| `.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json` | Renamed | State file renamed to mk-prefixed identity. |
-| `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts` | Modified | MCP server registers as mk_skill_advisor with mk launcher prefix in startup logs. |
-| `opencode.json, .claude/mcp.json, .codex/config.toml, .gemini/settings.json` | Modified | MCP config key, launcher path, and namespace note updated to mk-prefixed values. |
-| `Doctor commands, YAMLs, plugin bridge, install guides, feature catalog, playbooks, package docs` | Modified | Live server-id and namespace references updated to mk_skill_advisor. |
-| `Parent 013/009/handover.md and graph-metadata.json` | Modified | Child 015 added and marked active. |
+| `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json` | Modified | MCP config key, launcher path, and namespace note renamed to mk_skill_advisor. |
+| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Renamed/Modified | Launcher filename, log prefix, lock directory, state path, and payload command updated to mk prefix. |
+| `.opencode/skills/system-skill-advisor/mcp_server/database/.mk-skill-advisor-launcher.json` | Renamed/Modified | State file identity renamed to mk prefix. |
+| `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts` | Modified | Server registers as `mk_skill_advisor`, startup logs use mk launcher prefix. |
+| Doctor commands, YAMLs, plugin bridge, install guides, feature catalog, playbooks, and package docs | Modified | Live server-id and namespace references updated. |
+| Parent `013/009/handover.md` and `graph-metadata.json` | Modified | Child packet 015 added and marked active. |
 
 ### Follow-Ups
 
-- Existing long-lived MCP sessions may need restart or reconnect to drop cached system_skill_advisor entries.
-- Generated SQLite and runtime state files were dirtied by local MCP smoke/list commands. Unrelated database churn was kept out of the scoped commit.
+- Long-lived MCP sessions may need a restart or reconnect to drop cached `system_skill_advisor` entries.
+- Generated SQLite and runtime state files were dirtied by local MCP smoke and list commands, unrelated database churn was excluded from the scoped commit.

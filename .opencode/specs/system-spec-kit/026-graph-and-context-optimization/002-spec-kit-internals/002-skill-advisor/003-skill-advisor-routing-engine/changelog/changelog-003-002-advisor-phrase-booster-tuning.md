@@ -1,12 +1,12 @@
 ---
-title: "Advisor Phrase-Booster Tailoring"
-description: "The skill advisor's multi-word phrase routing was broken because the tokenizer splits on whitespace before dictionary lookup, turning 24 INTENT_BOOSTERS entries into no-ops. Broken entries were migrated to PHRASE_INTENT_BOOSTERS and 15 new phrase routes were added for under-covered identifiers."
+title: "Skill Advisor Multi-Word Phrase Routing Fix"
+description: "Multi-word booster keys that the tokenizer silently ignored are now active phrase routes. The 5-dimension agent scoring query, previously misrouted, now reaches the correct skill at 0.95 confidence."
 trigger_phrases:
-  - "advisor phrase booster tailoring"
-  - "intent boosters migration"
-  - "skill advisor routing optimization"
-  - "tokenizer multi-word fix"
-  - "5-dimension agent scoring routing"
+  - "advisor phrase booster"
+  - "phrase intent booster migration"
+  - "skill advisor routing fix"
+  - "tokenizer multi-word bug"
+  - "gate 2 routing optimization"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,41 +21,44 @@ contextType: "implementation"
 
 ### Summary
 
-The skill advisor's tokenizer split multi-word keys on whitespace before dictionary lookup, making 24 `INTENT_BOOSTERS` entries silent no-ops. All 36 affected entries (including 12 hyphenated-token keys found later) were migrated to `PHRASE_INTENT_BOOSTERS` which matches substrings against the raw prompt. An additional 15 phrase routes were added for under-covered Public identifiers across six skills. The regression fixture holds at 1.0 top-1 accuracy and P0 pass rate with the headline query "5-dimension agent scoring" now routing to `sk-improve-agent` at 0.95 confidence instead of misrouting to `sk-improve-prompt` at 0.77.
+The skill advisor ship quality routing engine had 36 multi-word keys in its INTENT_BOOSTERS dictionary that the tokenizer silently split into single tokens before lookup, making every one of them a dead entry. These entries were migrated to PHRASE_INTENT_BOOSTERS which matches substrings against the raw prompt. The headline fix: "5-dimension agent scoring" was misrouting to sk-improve-prompt at 0.77 confidence and now routes correctly to sk-improve-agent at 0.95.
 
 ### Added
-- Phrase-based routing entries for 15 under-covered Public identifiers across six skills: `system-spec-kit`, `sk-code-opencode`, `sk-code-full-stack`, `sk-code-web`, `mcp-code-mode` and `sk-code-review`
-- 8 new P1 regression fixture cases validating newly-routed multi-word phrases (suite grew from 44 to 52 cases)
-- Inline comment block near `PHRASE_INTENT_BOOSTERS` warning future contributors against whitespace- or hyphen-containing keys in `INTENT_BOOSTERS`
+
+- Phrase routes for 15 under-covered multi-word identifiers across the system spec kit, sk-code-web, sk-code-full-stack, sk-code-opencode, mcp-code-mode and sk-code-review skills.
+- Two hyphenated-token phrase entries ("5-dimension" and "5-dimension agent scoring") to fix a tokenizer blind spot where hyphens split the same way whitespace does.
+- An inline comment block near PHRASE_INTENT_BOOSTERS warning contributors never to place whitespace or hyphen keys inside INTENT_BOOSTERS.
 
 ### Changed
-- 36 multi-word and hyphenated `INTENT_BOOSTERS` entries removed and migrated to `PHRASE_INTENT_BOOSTERS` so the tokenizer and the dictionary are fully aligned
-- The "5-dimension agent scoring" query now routes to `sk-improve-agent` at 0.95 confidence instead of misrouting to `sk-improve-prompt` at 0.77
+
+- All 36 dead multi-word entries (24 whitespace, 12 hyphenated) removed from INTENT_BOOSTERS, leaving only single-token keys that the tokenizer can match during lookup.
+- PHRASE_INTENT_BOOSTERS expanded with 33 new entries across six skills, closing coverage gaps for multi-word routing queries.
+- The regression fixture grew from 44 to 52 cases with 8 new P1 phrase-routing test scenarios.
 
 ### Fixed
-- Multi-word phrase routing in the skill advisor no longer silently dead because of tokenizer whitespace splitting before dictionary lookup
-- Hyphenated token keys (`proposal-only`, `openai-cli`, `claude-code` and 9 others) no longer split and ignored by the tokenizer
+
+- A routing bug where 36 multi-word keys in INTENT_BOOSTERS were silently dead because the tokenizer splits on whitespace and hyphens before dictionary lookup, making every affected booster entry a no-op with no warning.
+- The "5-dimension agent scoring" query misrouted to sk-improve-prompt at 0.77 confidence through a weak single-token match on "scoring". It now routes correctly to sk-improve-agent at 0.95.
 
 ### Verification
-- REQ-001 — Zero multi-word INTENT keys (whitespace strict): PASS (grep returned 0)
-- REQ-003 — Regression harness exit 0 with `--min-top1-accuracy 0.92`: PASS (`overall_pass: true`)
-- REQ-004 — P0 pass rate ≥ baseline: PASS (1.0 → 1.0, no regression)
-- REQ-005 — Python AST parses: PASS (exit 0)
-- REQ-010 — 5 target queries meet confidence thresholds: PASS (all 5 at 0.95, "5-dimension agent scoring" uplift 0.77 to 0.95 with correct-skill correction)
-- REQ-011 — 5+ new PHRASE entries for under-covered identifiers: PASS (15 new entries from iteration-003 plus 2 hyphenated adds)
-- REQ-012 — 8 new P1 fixture cases: PASS (fixture went 44 to 52)
-- Regression fixture pass rate: 52 of 52 (100%)
-- Per-key disposition documented in `scratch/phrase-boost-delta.md`
-- Cumulative totals: 36 INTENT entries deleted, 33 PHRASE entries added, 8 fixture cases appended
+
+- Zero multi-word INTENT keys remaining in whitespace scope (grep confirmed 0 matches). PASS
+- Per-key migration disposition documented with full before-and-after table. PASS
+- Regression harness exited 0 with minimum top-1 accuracy of 0.92. PASS
+- P0 fixture pass rate held at 1.0 with no regression. PASS
+- Python AST parsed cleanly with exit 0. PASS
+- All 5 REQ-010 target queries met or exceeded 0.95 confidence, including the headline uplift from 0.77 to 0.95 on the 5-dimension agent scoring query. PASS
+- 8 new P1 fixture cases appended, growing the suite from 44 to 52 cases. PASS
+- Regression fixture passed 52 out of 52 cases (100 percent). PASS
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modified | Removed 36 multi-word and hyphenated INTENT entries, added 33 PHRASE entries and an inline comment block |
-| `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Modified | Appended 8 new P1 fixture cases (44 to 52 total) |
+| `.opencode/skills/skill-advisor/scripts/skill_advisor.py` | Modified | Deleted 36 INTENT entries, added 33 PHRASE entries and an inline comment block near PHRASE_INTENT_BOOSTERS |
+| `.opencode/skills/skill-advisor/scripts/fixtures/skill_advisor_regression_cases.jsonl` | Modified | Appended 8 P1 phrase-routing fixture cases (44 to 52 total) |
 
 ### Follow-Ups
-- Barter repo advisor is out of sync with this Public-canonical migration and needs its own independent pass using the same pattern
-- Bench latency (REQ-020) not re-measured after the data-only change. Measure `skill_advisor_bench.py` p95 if a downstream consumer reports perceived slowdown.
-- None.
+
+- Benchmark harness p95 latency measurement was deferred. The change is data-only with no scoring logic modifications so latency impact is unlikely to exceed 5 percent. Re-measure only if a downstream user reports perceived slowdown.
+- The Barter repository skill advisor is out of sync with these Public-canonical changes. Barter has independent drift that needs a separate migration pass applying the same pattern.

@@ -1,12 +1,14 @@
+
+
 ---
-title: "Template System Consolidation Research — PARTIAL Recommendation"
-description: "A 10-iteration deep-research loop produced a PARTIAL consolidation plan for the spec-kit templates folder, with a 4-phase gated implementation roadmap and concrete metrics: 25 duplicate markdown files and 4,087 lines of rendered output identified for eventual deletion."
+title: "Template System Consolidation Research"
+description: "Deep-research loop converged on PARTIAL consolidation recommendation for spec-kit templates, producing a 4-phase implementation plan and identifying 25 files / 4,087 LOC of duplicate rendered output for eventual deletion."
 trigger_phrases:
-  - "template consolidation research"
+  - "template consolidation"
   - "spec-kit template levels"
-  - "core addendum generator"
-  - "template consolidation PARTIAL recommendation"
-  - "template compose.sh byte-equivalence"
+  - "deep research convergence"
+  - "partial consolidation recommendation"
+  - "template system"
 importance_tier: "normal"
 contextType: "research"
 ---
@@ -21,7 +23,7 @@ contextType: "research"
 
 ### Summary
 
-An autonomous 10-iteration deep-research loop converged on a PARTIAL consolidation recommendation for the spec-kit templates folder. The investigation replaced months of guesswork with a 4-phase gated implementation plan and concrete numbers: 25 duplicate markdown files and 4,087 lines of rendered output across the `templates/level_{1,2,3,3+}/` directories are now cataloged for eventual deletion. The 29.7 KB synthesis in `research/research.md` (17 sections) feeds directly into a follow-on implementation packet. No further investigation is needed.
+An autonomous 10-iteration deep-research loop converged on a PARTIAL consolidation recommendation for the spec-kit templates folder, replacing months of guesswork with a 4-phase gated implementation plan and concrete numbers (25 markdown files / 4,087 LOC of duplicate rendered output identified for eventual deletion). The synthesis sits in research/research.md (29.7 KB, 17 sections) and feeds directly into a follow-on implementation packet , , ,  no further investigation needed.
 
 ### Added
 
@@ -37,34 +39,39 @@ An autonomous 10-iteration deep-research loop converged on a PARTIAL consolidati
 
 ### Verification
 
-- Deep-research convergence at iteration 10 with newInfoRatio 0.04, below the 0.05 threshold
-- 17-section synthesis written to research/research.md (29.7 KB)
-- Resource map emitted to research/resource-map.md (5.3 KB)
-- All 10 key questions answered with cited evidence across Q1 through Q10
-- ADR-001 finalized with Five Checks passing 5 out of 5
-- Implementation plan Phases 1 through 4 populated with concrete refactor steps, gates, and rollback procedures
-- 868 spec-folder marker count validated against the rough estimate of about 800
-- Deletion budget measured at exactly 25 markdown files and 4,087 lines of code across the level directories
-- ADR scoring: PARTIAL recommendation scored 9/10 versus 4/10 for full consolidation and 3/10 for status quo
+- Deep-research convergence - PASS , , ,  converged at iteration 10, newInfoRatio 0.04 below threshold 0.05
+- 17-section synthesis written - PASS , , ,  research/research.md 29.7 KB
+- Resource map emitted - PASS , , ,  research/resource-map.md 5.3 KB
+- All 10 key questions answered - PASS , , ,  Q1-Q10 closed with cited evidence
+- ADR-001 finalized - PASS , , ,  Five Checks 5/5
+- Plan Phases 1-4 populated with concrete refactor steps - PASS , , ,  files, gates, rollback documented
+- 868 spec-folder marker count validated - PASS , , ,  exactly 868 directories with SPECKIT_TEMPLATE_SOURCE markers
+- Deletion budget measured - PASS , , ,  exactly 25 markdown files / 4,087 LOC across templates/level_1/, level_2/, level_3/, and level_3+/
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| Packet docs (spec, plan, tasks, checklist, implementation-summary) | Created | Scoped research packet documentation |
-| research/research.md | Created | 17-section deep-research synthesis with PARTIAL recommendation |
-| research/resource-map.md | Created | Resource map of all investigation artifacts |
-| research/iterations/iteration-001.md through iteration-010.md | Created | Per-iteration investigation narratives with externalized state |
-| research/deep-research-state.jsonl | Created | Atomic state log tracking convergence across all 10 iterations |
-| research/deltas/ | Created | Per-iteration delta records |
-| research/findings-registry.json | Created | Consolidated findings from all iterations |
-| research/deep-research-strategy.md | Created | Evolving strategy document refreshed after each iteration |
-| research/deep-research-dashboard.md | Created | Dashboard tracking convergence metrics across all iterations |
+| research/research.md | Created | 29.7 KB, 17-section synthesis with PARTIAL consolidation recommendation and 4-phase implementation plan |
+| research/resource-map.md | Created | 5.3 KB, resource tracking map for follow-on implementation |
+| research/deep-research-state.jsonl | Created | Deep-research loop externalized state log |
+| research/deep-research-strategy.md | Created | Strategy document refreshed by reducer after each iteration |
+| research/findings-registry.json | Created | Findings registry refreshed by reducer after each iteration |
+| research/deep-research-dashboard.md | Created | Dashboard refreshed by reducer after each iteration |
+| research/iterations/iteration-001.md | Created | Iteration 1 baseline analysis (newInfoRatio 0.82) |
+| research/iterations/iteration-002.md | Created | Iteration 2 (newInfoRatio 0.76) |
+| research/iterations/iteration-003.md | Created | Iteration 3 (newInfoRatio 0.68) |
+| research/iterations/iteration-004.md | Created | Iteration 4 (newInfoRatio 0.61) |
+| research/iterations/iteration-005.md | Created | Iteration 5 re-dispatch after prompt-pack path fix (newInfoRatio 0.52) |
+| research/iterations/iteration-006.md | Created | Iteration 6 (newInfoRatio 0.44) |
+| research/iterations/iteration-007.md | Created | Iteration 7 (newInfoRatio 0.36) |
+| research/iterations/iteration-008.md | Created | Iteration 8 (newInfoRatio 0.28) |
+| research/iterations/iteration-009.md | Created | Iteration 9 (newInfoRatio 0.18) |
+| research/iterations/iteration-010.md | Created | Iteration 10 convergence (newInfoRatio 0.04) |
 
 ### Follow-Ups
 
-- Phase 1 implementation: repair `compose.sh` byte-equivalence against the 25 golden files, the first of four gated phases in the PARTIAL plan
-- Phase 2 implementation: build the thin TypeScript resolver wrapper exposing path, content, and metadata modes
-- Phase 3 implementation: migrate consumers (create.sh, check-files.sh, wrap-all-templates.ts) to the resolver and enable strict-mode CI
-- Phase 4 implementation (optional): delete the 25 rendered markdown files and 4,087 lines of code from `templates/level_{1,2,3,3+}/` directories, gated on byte-parity tests passing
-- Scaffold the follow-on implementation packet to own Phases 1 through 4
+- Implement Phase 1 of the 4-phase plan in a follow-on packet (compose.sh byte-equivalence repair)
+- Phase 2: resolver wrapper with path, content, metadata modes
+- Phase 3: consumer migration with strict-mode CI
+- Phase 4: deletion of 25 markdown files / 4,087 LOC from templates/level_1/, level_2/, level_3/, level_3+/ (optional, gated on Phase 3 success)

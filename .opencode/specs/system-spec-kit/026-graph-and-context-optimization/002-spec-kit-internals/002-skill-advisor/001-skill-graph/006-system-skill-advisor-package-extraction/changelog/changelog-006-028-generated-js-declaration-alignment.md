@@ -1,12 +1,12 @@
-
-
 ---
 title: "Generated JS and Declaration Alignment"
-description: "Closed 28 sk-code audit findings by adding boxed JS/ESM headers, canonical use strict directives, declaration MODULE headers, and repairing one malformed docblock quote across 25 audited files."
+description: "Aligned audited JavaScript, ESM, CJS, and declaration header and strict-mode outputs with sk-code conventions after the packet 026 README coverage sweep."
 trigger_phrases:
-  - "028"
   - "generated js declaration alignment"
-  - "sk-code follow-on"
+  - "sk-code follow-on ledger"
+  - "028 audit findings"
+  - "boxed js esm headers"
+  - "declaration module header alignment"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,38 +21,42 @@ contextType: "implementation"
 
 ### Summary
 
-Packet 026 recorded 28 unresolved sk-code violations after the README coverage sweep. This packet closed its assigned ledger slice by adding boxed JS/ESM headers, canonical JS/CJS `use strict` directives, declaration `MODULE:` headers, and repairing a malformed leading quote in one audited JS docblock. Surgical annotation-only edits avoided broader generated-output churn.
+The packet 026 README coverage audit recorded unresolved sk-code violations across generated JavaScript, ESM, CJS, and declaration files. This phase closed the assigned ledger slice by applying surgical header and strict-mode annotation edits without tool renames, subsystem topology changes, or unrelated file modifications. All 28 assigned audit findings were resolved, with zero failures and zero silent skips.
 
 ### Added
 
-- Boxed JS/ESM prologue headers for audited JavaScript and ESM modules.
-- Canonical `use strict` directives for audited CommonJS files.
+- Boxed JS and ESM headers applied to audited JavaScript and ECMAScript module (ESM) files to satisfy sk-code convention requirements.
+- Canonical `use strict` directives added to audited JavaScript and CommonJS (CJS) files.
+- Declaration `MODULE:` headers applied to audited TypeScript declaration (`.d.ts`) files.
 
 ### Changed
 
-- Declaration MODULE headers aligned with sk-code conventions across audited `.d.ts` files.
-- Malformed leading quote in one audited JS docblock repaired.
+- None.
 
 ### Fixed
 
-- None.
+- A malformed leading quote repaired in one audited JavaScript docblock.
+- All 28 assigned audit findings from the packet 026 ledger closed with no remaining failures or silent skips.
 
 ### Verification
 
-- Ledger closure: 028 fixed=28, na=0, fail=0.
-- Advisor typecheck: PASS in `system-skill-advisor/mcp_server`.
-- Spec-kit typecheck: PASS with `npx tsc --noEmit` in `system-spec-kit/mcp_server`.
-- Advisor vitest: 371 passed, 4 skipped.
-- Memory vitest: Pre-existing stale baseline failure in `tests/memory-tools.vitest.ts` (expects removed `memory_quick_search`); unrelated to this packet.
-- Strict validation: PASS with exit 0.
+- Ledger closure check passed: 28 findings fixed, 0 not applicable, 0 failures, `node --check` passed for sampled changed JS and MJS files.
+- Skill advisor typecheck passed: `npm run typecheck` in `system-skill-advisor/mcp_server`.
+- Spec Kit typecheck passed: `npx tsc --noEmit` in `system-spec-kit/mcp_server`.
+- Skill advisor vitest passed: 371 passed, 4 skipped.
+- Language spot checks passed: Python compile and JS syntax checks passed where applicable.
+- Strict validation passed: `validate.sh <packet> --strict` returned exit 0.
+- Memory vitest baseline failure: `tests/memory-tools.vitest.ts` still expects the removed `memory_quick_search` tool. This is a pre-existing stale-test failure in untouched code and is unrelated to the header or type edits in this phase.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| Packet docs | Created | Level 2 spec, plan, tasks, checklist, and implementation-summary documentation. |
+| Audited code and evidence files (25 `.js`, `.mjs`, `.cjs`, `.d.ts` files) | Modified | Boxed headers, `use strict` directives, `MODULE:` declaration headers added and a malformed docblock quote repaired |
+| Packet docs (spec, plan, tasks, checklist, implementation-summary) | Created | Level 2 packet documentation and metadata authored |
 
 ### Follow-Ups
 
-- Memory vitest has an existing stale-test baseline failure unrelated to header or type edits.
-- Additional alignment warnings outside packet 026 remain out of scope for this dispatch.
+- A full generated-output rebuild was deferred because the audited files are mixed first-party assets and sidecar emitted stubs. Surgical sync avoided broader distribution churn.
+- The memory vitest stale-test baseline failure should be addressed in a separate packet. It is unrelated to this phase.
+- Additional alignment warnings outside the packet 026 audit remain out of scope for this dispatch.

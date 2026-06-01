@@ -1,12 +1,12 @@
 ---
-title: "Fix skill-advisor documentation bugs (skeleton, pending 001 synthesis)"
-description: "Skeleton phase for P0 documentation bug fixes in the system-skill-advisor package. Specifics are gated on completion of the 001 documentation quality audit research synthesis."
+title: "Skill Advisor Documentation Bug Fixes (Pending)"
+description: "Scaffolded phase for P0 documentation bug fixes in system-skill-advisor. Gated by 001 research synthesis."
 trigger_phrases:
-  - "skill-advisor documentation bug fixes"
-  - "002-fix-documentation-bugs phase"
-  - "system-skill-advisor P0 bug fixes"
-  - "documentation quality refactor bug fixes"
-  - "skill-advisor broken links ADR-001 fix"
+  - "skill-advisor documentation bugs"
+  - "fix documentation bugs phase"
+  - "P0 skill-advisor bug catalog"
+  - "skill-advisor link integrity fixes"
+  - "documentation quality refactor bugs"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -21,35 +21,33 @@ contextType: "implementation"
 
 ### Summary
 
-Audit-confirmed P0 bugs exist in the system-skill-advisor documentation: a broken ADR-001 path missing the `001-skill-graph/` segment, a broken hook reference link in the README and install guide, an incorrect build-command path in the architecture document, and stale audit-packet rows across nine nested READMEs. This skeleton phase is gated on the 001 documentation quality audit research synthesis. No bug fixes have shipped yet.
+Audit-confirmed P0 documentation bugs were identified in system-skill-advisor through the 001 research phase: a broken ADR-001 path missing the `001-skill-graph/` segment, a broken hook reference link in README and INSTALL_GUIDE, an incorrect build-command path in ARCHITECTURE section 8, and stale audit-packet rows across 9 nested READMEs. This phase is scaffolded pending the 001 synthesis. No fixes have been applied yet.
 
 ### Added
 
-- None.
+- None. Blocked pending 001 research synthesis.
 
 ### Changed
 
-- None.
+- None. Blocked pending 001 research synthesis.
 
 ### Fixed
 
-- None.
+- None. Blocked pending 001 research synthesis.
 
 ### Verification
 
-- None. Pending completion of 001 research synthesis.
+- validate.sh --strict: PENDING
+- grep stale paths returns 0: PENDING
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| Packet docs (spec, implementation-summary) | Created | Scaffolded skeleton phase documentation, gated on 001 synthesis |
+| Packet docs (spec, implementation-summary) | Created | Scaffolded phase skeleton gated by 001 synthesis |
 
 ### Follow-Ups
 
-- Complete the 001 documentation quality audit research synthesis
-- Build a per-file edit list from the P0 catalog in the research report
-- Apply P0 bug fixes: restore ADR-001 path, fix hook reference link, correct build-command path, and refresh stale audit-packet rows
-- Verify no stale paths remain via grep
-- Run validate.sh in strict mode
-- Update implementation summary after fixes ship
+- Apply P0 bug fixes from 001 research.md catalog
+- Verify link integrity with grep stale paths check
+- Run validate.sh --strict after fixes land

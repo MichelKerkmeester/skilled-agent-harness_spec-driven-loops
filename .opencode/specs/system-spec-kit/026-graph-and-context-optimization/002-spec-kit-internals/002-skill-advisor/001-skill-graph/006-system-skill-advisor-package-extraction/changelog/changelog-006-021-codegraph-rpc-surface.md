@@ -1,12 +1,12 @@
 ---
-title: "Code Graph RPC Classifier Surface"
-description: "Spec-kit carried a duplicated local classifier heuristic because the canonical code-graph classifier had no MCP surface. mk-code-index now exposes query-intent classification as code_graph_classify_query_intent, and spec-kit calls it across the MCP boundary."
+title: "Changelog: Code Graph RPC Classifier Surface"
+description: "mk-code-index now exposes query-intent classification through a new MCP tool, and spec-kit no longer carries a local classifier shim."
 trigger_phrases:
-  - "code_graph_classify_query_intent"
-  - "classifier RPC surface"
-  - "query intent classification MCP"
-  - "code-graph boundary classifier"
-  - "spec-kit classifier shim replacement"
+  - "021 codegraph rpc surface"
+  - "code graph classify query intent"
+  - "replace spec-kit classifier shim"
+  - "codegraph rpc surface phase"
+  - "classifier RPC summary"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,27 +21,34 @@ contextType: "implementation"
 
 ### Summary
 
-mk-code-index now exposes query-intent classification through the code_graph_classify_query_intent MCP tool. Spec-kit no longer duplicates classifier keywords and patterns locally. The memory_context handler reaches across the same MCP boundary used for graph context. The canonical classifier logic in query-intent-classifier.ts was left unchanged; only the RPC surface was added.
+mk-code-index now exposes query-intent classification through code_graph_classify_query_intent. Spec-kit no longer duplicates classifier keywords and patterns locally. memory_context reaches across the same MCP boundary used for graph context, so code-graph now owns the canonical classifier surface.
 
 ### Added
-- code_graph_classify_query_intent MCP tool on mk-code-index.
-- MCP handler wrapping the existing query intent classifier for external dispatch.
-- Focused test coverage for the new classifier dispatch behavior.
+
+- code_graph_classify_query_intent MCP tool descriptor in mk-code-index.
+- classify-query-intent handler that wraps the canonical query-intent-classifier logic.
+- Focused MCP dispatch test for the new classifier tool.
 
 ### Changed
-- Spec-kit code-graph boundary replaced the local classifier heuristic with an async RPC call to mk-code-index.
-- Spec-kit memory-context.ts now awaits the async classifier boundary call.
+
+- spec-kit code-graph-boundary.ts now calls the MCP boundary instead of a local heuristic shim.
+- memory-context.ts awaits the async classifier call through the RPC boundary.
 
 ### Fixed
+
 - None.
 
 ### Verification
-- Code-graph typecheck: PASS
-- Spec-kit typecheck: PASS
-- Focused code-graph tests: PASS (2 files, 15 tests)
-- Focused spec-kit runtime-routing test: PASS (1 file, 26 tests)
-- Advisor full Vitest: PASS (53 files, 368 passed, 4 skipped)
-- Strict validate: PASS on packet and parent phase folder
+
+- Code-graph typecheck - PASS: node node_modules/typescript/bin/tsc -p tsconfig.json --noEmit.
+- Spec-kit typecheck - PASS: npx tsc -p tsconfig.json --noEmit.
+- Focused code-graph tests - PASS: 2 files, 15 tests.
+- Focused spec-kit runtime-routing test - PASS: 1 file, 26 tests.
+- Code-graph full Vitest - FAIL baseline-class: 50 files passed, 1 skipped, 2 failed, 514 passed, 9 skipped, 5 failed. Failures are unrelated code_graph_context shared-schema registration checks and symlink hardening.
+- Advisor full Vitest - PASS: 53 files, 368 passed, 4 skipped.
+- Spec-kit full Vitest - FAIL baseline-class: 566 files passed, 15 skipped, 22 failed, 10,909 passed, 87 skipped, 105 failed. Expected baseline was around 114 failures, focused classifier path is green.
+- Live MCP list - PASS: opencode mcp list shows mk_code_index connected.
+- Live MCP tools - PASS via direct MCP SDK listTools(): 11 tools confirmed including code_graph_classify_query_intent.
 
 ### Files Changed
 
@@ -57,5 +64,6 @@ mk-code-index now exposes query-intent classification through the code_graph_cla
 | `.opencode/skills/system-spec-kit/mcp_server/tests/runtime-routing.vitest.ts` | Modified | Assert classifier behavior through the async boundary. |
 
 ### Follow-Ups
-- Checked-in code-graph root .js siblings are still used by some tests and were updated alongside TypeScript for parity.
+
+- The checked-in code-graph root .js siblings were updated alongside TypeScript for parity with the new handler.
 - opencode mcp tools mk_code_index is unavailable in the installed CLI, so live tool listing used a direct MCP SDK client against the same launcher.

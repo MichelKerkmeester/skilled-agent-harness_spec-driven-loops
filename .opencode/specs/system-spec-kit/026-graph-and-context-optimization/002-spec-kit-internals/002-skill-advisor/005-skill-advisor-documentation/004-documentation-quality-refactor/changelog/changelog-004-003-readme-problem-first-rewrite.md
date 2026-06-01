@@ -1,14 +1,12 @@
-
-
 ---
-title: "Changelog: 003-readme-problem-first-rewrite [004-documentation-quality-refactor/003-readme-problem-first-rewrite]"
-description: "Chronological changelog for the 003-readme-problem-first-rewrite phase."
+title: "Skill Advisor README Marketing Rewrite (Pending)"
+description: "Skeleton specification for a full marketing-voice README rewrite of system-skill-advisor, gated on parent research synthesis. Nine-section, HVR-compliant, peer-anchored on system-code-graph README."
 trigger_phrases:
-  - "phase changelog"
-  - "nested changelog"
-  - "phase completion"
-importance_tier: "normal"
-contextType: "research"
+  - "skill-advisor readme rewrite"
+  - "003 marketing readme phase"
+  - "system-skill-advisor marketing readme"
+importance_tier: "important"
+contextType: "implementation"
 ---
 # Changelog
 
@@ -21,38 +19,36 @@ contextType: "research"
 
 ### Summary
 
-This phase was scaffolded to rewrite the system-skill-advisor README in marketing style. The rewrite was planned as a 2000-word 9-section document anchored on the peer system-code-graph README. The implementation was blocked by upstream dependencies and the phase was not shipped.
+The system-skill-advisor README read as a structural reference but lacked the marketing voice found in the project root README and the peer system-code-graph README. A skeleton specification defined a full rewrite into 9 numbered sections at approximately 2000 words, with Hard Voice Rules (HVR) compliance and eight unique selling points surfaced prominently. Implementation is gated on completion of the parent research synthesis and has not yet shipped.
 
 ### Added
 
-- None. Research-only phase.
+- None.
 
 ### Changed
 
-- None. Research-only phase.
+- None.
 
 ### Fixed
 
-- None. Research-only phase.
+- None.
 
 ### Verification
 
-- HVR grep clean: `rg -niE '\b(delve|leverage|robust|seamless|holistic|synergy|utilize)\b' .opencode/skills/system-skill-advisor/README.md` (expect 0 matches)
-- sk-doc validate: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/003-readme-problem-first-rewrite --strict`
-- Word count check: `wc -w .opencode/skills/system-skill-advisor/README.md` (expect 1800-2200)
-- User read-through: Manual side-by-side with peer system-code-graph/README.md
+- HVR grep clean: `rg -niE '\b(delve` (command truncated in scaffold) | PENDING
+- sk-doc validate: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict` | PENDING
+- Word count: `wc -w .opencode/skills/system-skill-advisor/README.md` (expect 1800-2200) | PENDING
+- User read-through: Manual side-by-side with peer system-code-graph/README.md | PENDING
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| Packet docs (spec.md, plan.md, tasks.md, checklist.md, implementation-summary.md) | Created | Scoped packet documentation |
+| `.opencode/skills/system-skill-advisor/README.md` | Modified | Target for marketing-style rewrite (pending) |
 
 ### Follow-Ups
 
-- Read 001 iter 02 README gap findings
-- Re-read peer system-code-graph/README.md for voice ceiling
-- Author OVERVIEW plus key stats plus how-this-compares plus features tables
-- Author QUICK START with copyable commands
-- Author FEATURES (3.1 highlights, 3.2 tool table, 3.3 scorer lanes, 3.4 freshness)
-- Author STRUCTURE, CONFIGURATION, USAGE EXAMPLES
+- Complete the 9-section README rewrite after parent research synthesizes
+- Run HVR compliance check on final text
+- Validate against sk-doc skill_readme template
+- Compare voice density with peer system-code-graph README

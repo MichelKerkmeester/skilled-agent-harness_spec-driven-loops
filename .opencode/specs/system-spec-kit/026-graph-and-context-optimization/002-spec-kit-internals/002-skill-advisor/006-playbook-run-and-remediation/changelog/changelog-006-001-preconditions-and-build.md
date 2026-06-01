@@ -1,12 +1,12 @@
 ---
-title: "Preconditions and Build (Playbook Run Phase 001)"
-description: "Brought the playbook environment to a known-good state. Both MCP servers build clean, evidence workspaces exist, and CLI executors are authenticated so the 46-scenario run measures the real system."
+title: "Changelog: Preconditions and Build (Playbook Run Phase 001)"
+description: "Both MCP servers were built and verified, environment flags confirmed, evidence workspaces created, and CLI executors authenticated, establishing a known-good baseline for the 46-scenario playbook run."
 trigger_phrases:
-  - "playbook preconditions"
+  - "playbook preconditions changelog"
   - "skill advisor build precondition"
-  - "playbook preconditions summary"
-  - "preconditions and build phase"
-  - "MCP server build precondition"
+  - "028 phase 001 changelog"
+  - "MCP server build verification"
+  - "playbook run environment setup"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -21,13 +21,11 @@ contextType: "implementation"
 
 ### Summary
 
-This phase brought the environment to a known-good state before any scenario ran. Both MCP servers compile clean, the hook-disable flag is unset, evidence workspaces exist, and both CLI executors are authenticated so the 46-scenario run that follows measures the real system, not a stale build.
+This phase brought the environment to a known-good state before any scenario ran. Both MCP servers compile clean, the hook-disable flag is unset, evidence workspaces exist, and both CLI executors are authenticated. The 46-scenario run that follows will measure the real system instead of a stale build.
 
 ### Added
 
-- Evidence workspaces created under /tmp for playbook run artifact storage
-- System-spec-kit MCP server built with dist/api/index.js, dist/cli.js, and dist/context-server.js emitted
-- System-skill-advisor MCP server built with devin hook artifact (dist/hooks/devin/user-prompt-submit.js) emitted
+- Both MCP servers built from source, producing current dist artifacts with devin hook runtime present for the advisor
 
 ### Changed
 
@@ -39,24 +37,22 @@ This phase brought the environment to a known-good state before any scenario ran
 
 ### Verification
 
-- system-spec-kit build: PASS (dist/api/index.js + cli.js + context-server.js emitted)
+- system-spec-kit build: PASS (dist/api/index.js, dist/cli.js, dist/context-server.js emitted)
 - system-skill-advisor build: PASS (exit 0, dist/hooks/devin/user-prompt-submit.js present)
-- Hook disable flag: PASS (SPECKIT_SKILL_ADVISOR_HOOK_DISABLED unset)
+- Hook disable flag: PASS (unset)
 - advisor_status: PASS (live, generation 4463, skillCount 23)
-- devin auth: PASS ("Logged in")
-- opencode providers: PASS (DeepSeek + OpenCode Go + OpenAI configured)
-- Tasks complete: 13 completed task items recorded
+- devin auth: PASS (Logged in)
+- opencode providers: PASS (DeepSeek, OpenCode Go, OpenAI configured)
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
 | `system-spec-kit/mcp_server/dist/**` | Build artifact | Compiled runtime (untracked) |
-| `system-skill-advisor/mcp_server/dist/**` | Build artifact | Advisor runtime with hooks (untracked) |
-| `/tmp/skill-advisor-playbook/`, `/tmp/devin-hook-playbook/` | Created | Evidence workspaces for playbook artifacts |
-| Packet docs (spec, plan, tasks, checklist, implementation-summary) | Created | Scoped phase documentation |
+| `system-skill-advisor/mcp_server/dist/**` | Build artifact | Advisor runtime plus hooks (untracked) |
+| `/tmp/skill-advisor-playbook/`, `/tmp/devin-hook-playbook/` | Created | Evidence workspaces |
 
 ### Follow-Ups
 
-- Shell DEEPSEEK_API_KEY is unset. Dispatch works because opencode reads its own credential store. A raw-shell DeepSeek call would still need the environment variable.
-- skill_graph_status reports 21 skills vs advisor_status 23. The graph database indexes 21 while the advisor counts 23 discovered graph-metadata.json files (2 extra are non-graph entries). Expected and documented in phase 002.
+- Shell `DEEPSEEK_API_KEY` is unset. Dispatch works because opencode reads its own credential store, but a raw-shell DeepSeek call would still need the env var.
+- `skill_graph_status` reports 21 skills versus `advisor_status` 23. The graph DB indexes 21 while the advisor counts 23 discovered `graph-metadata.json` files (2 extra are non-graph entries). This is expected and documented in phase 002.

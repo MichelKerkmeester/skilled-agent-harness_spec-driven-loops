@@ -1,14 +1,12 @@
-
-
 ---
-title: "semantic_shadow Doc/Comment Sync (F3)"
-description: "The stale SC-004/SC-005 scenarios, feature-catalog attribution doc, and a stale lane comment now match the verified live semantic_shadow lane (weight 0.05, live:true, shadowOnly:false). The weight was NOT changed."
+title: "Semantic Shadow Documentation and Comment Sync"
+description: "Stale SC-004 and SC-005 test scenarios, feature catalog documentation, and a code comment were synced to match the verified live semantic_shadow lane configuration."
 trigger_phrases:
   - "semantic_shadow doc sync"
   - "F3 lane weight doc fix"
   - "SC-004 SC-005 stale"
-  - "semantic-shadow shadowOnly"
-  - "lane attribution sync"
+  - "lane attribution documentation update"
+  - "semantic shadow comment correction"
 importance_tier: "normal"
 contextType: "implementation"
 ---
@@ -23,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-The stale SC-004 and SC-005 test scenarios, the feature-catalog attribution doc, and a stale code comment in semantic-shadow.ts were synced to match the verified live lane. The live lane runs at weight 0.05 with live:true and fused shadowOnly:false. This was a documentation and comment-only sync; no behavior or weight was changed. The sync clears the SC-004 PARTIAL flag from the 028 run.
+The SC-004 and SC-005 scenario documentation, the feature catalog attribution document, and a stale code comment in the semantic_shadow lane source file were out of sync with the verified live lane configuration. Each was updated to reflect the actual lane behavior (weight 0.05, live set to true, fused shadowOnly set to false). The lane weight was intentional and was not changed. This documentation and comment sync clears the SC-004 PARTIAL finding from the 028 remediation run.
 
 ### Added
 
@@ -31,29 +29,30 @@ The stale SC-004 and SC-005 test scenarios, the feature-catalog attribution doc,
 
 ### Changed
 
-- The SC-004 lane-attribution doc now expects shadowOnly:false for the live semantic_shadow lane.
-- The SC-005 ablation doc now treats semantic_shadow as a non-zero ablation lane.
-- The feature-catalog 04-attribution doc now matches the live lane behavior.
+- SC-004 lane-attribution scenario updated to expect shadowOnly set to false for the live semantic_shadow lane
+- SC-005 ablation scenario updated to treat semantic_shadow as a non-zero ablation lane
+- Feature catalog attribution document synced to match the live lane behavior
 
 ### Fixed
 
-- The stale comment in lanes/semantic-shadow.ts was rewritten to clarify the raw shadowOnly flag semantics while keeping the weight unchanged.
+- Stale code comment in the semantic_shadow lane source file corrected to clarify the raw shadowOnly flag
 
 ### Verification
 
-- SC-004 and SC-005 docs match the live lane.
-- Lane weight unchanged at 0.05.
-- semantic-shadow vitest green.
+- SC-004 and SC-005 scenario documentation verified against live lane configuration: pass
+- Lane weight confirmed unchanged at 0.05
+- Semantic shadow vitest suite ran green: pass
+- 11 task items completed with full verification chain
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly:false for the live semantic_shadow lane |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/005-ablation.md` | Modify | Treat semantic_shadow as a non-zero ablation lane |
-| `.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/04-attribution.md` | Modify | Match the live lane behavior |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/lanes/semantic-shadow.ts` | Modify | Rewrote stale comment to clarify raw shadowOnly flag |
+| `.../08--scorer-fusion/004-lane-attribution.md` | Modify | Expect shadowOnly set to false for the live lane |
+| `.../08--scorer-fusion/005-ablation.md` | Modify | Treat semantic_shadow as a non-zero ablation lane |
+| `.../feature_catalog/04--scorer-fusion/04-attribution.md` | Modify | Match the live lane behavior |
+| `.../lib/scorer/lanes/semantic-shadow.ts` | Modify | Corrected stale comment about the raw shadowOnly flag |
 
 ### Follow-Ups
 
-- None. Documentation and comment sync only; no behavior change.
+- None.

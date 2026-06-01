@@ -1,12 +1,12 @@
 ---
-title: "OpenCode Bridge Native Route Fix (F4)"
-description: "The skill advisor OpenCode plugin bridge failed open to the python route even when the native advisor compatibility module existed. The bridge now imports the compat module directly, restoring native route service."
+title: "Changelog: OpenCode Bridge Native Route Fix (F4)"
+description: "The bridge failed open to python even when the native compat module was available. This shipped a direct compat import path so the OpenCode plugin returns route:native with an Advisor brief instead of silent python fail-open."
 trigger_phrases:
   - "opencode bridge native route fix"
   - "F4 mk-skill-advisor-bridge"
-  - "native advisor route"
-  - "skill advisor bridge compat import"
-  - "launcher lease staleness"
+  - "loadNativeAdvisorModules direct compat"
+  - "route native Advisor brief"
+  - "launcher lease stale socket"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,31 +21,36 @@ contextType: "implementation"
 
 ### Summary
 
-The skill advisor OpenCode plugin bridge (mk-skill-advisor-bridge) failed open to the python route even though the native advisor compatibility module existed on disk. A stale launcher lease with a missing IPC (Inter-Process Communication) socket broke the MCP (Model Context Protocol) handshake, and a blanket catch hid the error. The bridge now imports the native advisor compat module directly as its primary path, with the launcher subprocess kept only as a fallback. The probe is gated on reader-usable trustState so a degraded but usable daemon still serves a native route.
+The bridge was failing open to the python route even though the native compat module was available, because it spawned a launcher subprocess and a stale lease with a missing IPC socket caused the MCP handshake to fail silently. The bridge now imports `dist/mcp_server/compat/index.js` directly as the primary native path, keeping the launcher subprocess only as a fallback. The probe is gated on a reader-usable trustState so a usable-but-degraded daemon still serves a native route. With this, the OpenCode plugin returns `route:"native"` with an `Advisor:` brief instead of silent python fail-open. A cold-environment residual where the bridge can still fall to python remains flagged for follow-up.
 
 ### Added
+
 - None.
 
 ### Changed
-- The bridge loadNativeAdvisorModules function imports the native advisor compat module directly as the primary path, keeping the launcher subprocess as a fallback.
-- The probeNativeAdvisor function is gated on reader-usable trustState so a usable-but-degraded daemon still serves a native route.
+
+- Bridge `loadNativeAdvisorModules()` now imports `dist/mcp_server/compat/index.js` directly as the primary native path, with the launcher subprocess kept only as fallback.
+- `probeNativeAdvisor` is now gated on a reader-usable `trustState` so a usable-but-degraded daemon still serves a native route instead of failing open to python.
 
 ### Fixed
+
 - None.
 
 ### Verification
-- Bridge returns route:native plus advisor brief on warm path: pass
-- Direct compat import and status succeeds: pass
-- Cold-environment daemon-freshness path: residual, can still fall to python, flagged
+
+- Bridge returns `route:"native"` with `Advisor:` brief (warm path) - pass
+- Direct compat import plus `readAdvisorStatus` succeeds - pass
+- Cold-environment daemon-freshness path - RESIDUAL: bridge can still fall to python in cold environments, flagged for follow-up
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modify | Direct compat import, reader-usable trustState gate, launcher fallback |
+| `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | Modified | Direct compat import as primary path, launcher subprocess retained as fallback, probe gated on reader-usable trustState |
 
 ### Follow-Ups
-- Confirm the compat module exports all four required functions for the bridge.
-- Fix the launcher so a held lease without a daemon socket is reclaimed instead of emitting an error to MCP stdout.
-- Replace the blanket fail-open catch in the bridge with an accurate diagnostic message.
-- Close the cold-environment daemon-freshness residual where the bridge can fall to the python route.
+
+- Close the cold-environment daemon-freshness path so the bridge does not fall to python when the daemon is not yet reader-usable
+- Fix the launcher so a held lease without `daemon-ipc.sock` is treated as stale and reclaimable instead of emitting `LEASE_HELD_BY... (no-bridge-socket)` to MCP stdout
+- Replace the blanket fail-open catch with an accurate diagnostic
+- Confirm compat/index.js exports `probeAdvisorDaemon`, `readAdvisorStatus`, `handleAdvisorRecommend`, and `buildSkillAdvisorBrief`

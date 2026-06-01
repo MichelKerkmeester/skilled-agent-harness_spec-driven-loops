@@ -1,13 +1,15 @@
+
+
 ---
-title: "TypeScript Header Normalization"
-description: "Added or normalized sk-code MODULE header blocks across 78 TypeScript source files to close assigned findings from the packet 026 sk-code audit, with no logic or import changes."
+title: "Changelog: TypeScript Header Normalization"
+description: "Normalized sk-code MODULE: header blocks across 78 TypeScript source files without adding TypeScript use strict or changing imports/logic."
 trigger_phrases:
-  - "027"
   - "ts header normalization"
-  - "sk-code follow-on"
+  - "027"
+  - "sk-code header"
   - "MODULE header block"
-  - "packet 026 ledger"
-importance_tier: "important"
+  - "header normalization phase"
+importance_tier: "normal"
 contextType: "implementation"
 ---
 # Changelog
@@ -21,12 +23,11 @@ contextType: "implementation"
 
 ### Summary
 
-Packet 026 recorded unresolved sk-code violations in TypeScript source files after a README coverage sweep. This packet closed its assigned ledger slice by adding or normalizing `MODULE:` header blocks to 78 existing `.ts`, `.tsx`, and `.mts` files across system-skill-advisor, system-spec-kit, system-code-graph, and deep-agent-improvement. No `use strict` directives, imports, or logic were changed.
+Packet 026 recorded 79 unresolved sk-code violations after the README coverage sweep. This packet closed its assigned ledger slice by adding or normalizing sk-code MODULE: header blocks across 78 TypeScript source files without introducing use strict directives or changing imports or logic. Surgical annotation-only edits avoided unrelated verifier warnings and kept unrelated dirty files unstaged.
 
 ### Added
 
-- sk-code `MODULE:` header blocks on 78 TypeScript source files that were missing or had non-conforming module-level documentation.
-- One audit row classified as not applicable for a deleted source path (`budget-allocator.ts`) that no longer exists on main.
+- None.
 
 ### Changed
 
@@ -34,28 +35,27 @@ Packet 026 recorded unresolved sk-code violations in TypeScript source files aft
 
 ### Fixed
 
-- 78 sk-code audit findings from the packet 026 ledger resolved with annotation-only header edits. The ledger closure script confirmed zero remaining failures across the assigned row set.
+- None.
 
 ### Verification
 
-- Ledger closure: PASS (027 fixed=78, na=1, fail=0)
-- Advisor typecheck: PASS (`npm run typecheck` in `system-skill-advisor/mcp_server`)
-- Spec-kit typecheck: PASS (`npx tsc --noEmit` in `system-spec-kit/mcp_server`)
-- Advisor vitest: PASS (371 passed, 4 skipped)
-- Memory vitest: BASELINE FAIL (`tests/memory-tools.vitest.ts` expects removed `memory_quick_search`; 1/1 failure in untouched code, unrelated to header edits)
-- Language spot checks: PASS where applicable (Python compile and JS syntax checks passed)
-- Strict validation: PASS (`validate.sh <packet> --strict` returned exit 0)
-- Tasks: 12 completed task items recorded
+- Ledger closure - PASS: ledger closure script reports 027 fixed=78, na=1, fail=0.
+- Advisor typecheck - PASS: npm run typecheck in system-skill-advisor/mcp_server.
+- Spec-kit typecheck - PASS: npx tsc --noEmit in system-spec-kit/mcp_server.
+- Advisor vitest - PASS: 371 passed, 4 skipped.
+- Memory vitest - BASELINE FAIL: tests/memory-tools.vitest.ts still expects removed memory_quick_search, rerun reproduces 1/1 failure in untouched code.
+- Language spot checks - PASS where applicable: Python compile and JS syntax checks passed.
+- Strict validation - PASS: validate.sh returned exit 0.
+- Tasks complete - 12 completed task items recorded.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| 78 TypeScript source files across system-skill-advisor, system-spec-kit, system-code-graph, and deep-agent-improvement | Modified | Added or normalized sk-code `MODULE:` header blocks without changing `use strict`, imports, or logic |
-| Packet docs (spec, plan, tasks, checklist, implementation-summary) | Created | Level 2 packet documentation and metadata |
+| Packet docs (spec, plan, tasks, checklist, implementation-summary) | Created | scoped packet documentation |
 
 ### Follow-Ups
 
-- One audit row (`budget-allocator.ts`) is marked not applicable because the file no longer exists on main and requires no further action.
-- Memory vitest has an existing stale-test baseline failure unrelated to header or type edits; it is named rather than hidden.
-- Additional alignment warnings outside the packet 026 audit scope remain out of scope for this dispatch.
+- budget-allocator.ts under system-spec-kit/mcp_server/lib/context no longer exists on main and is recorded as not applicable.
+- Memory vitest has an existing stale-test baseline failure unrelated to header or type edits, it is named rather than hidden.
+- Additional alignment warnings outside packet 026 remain out of scope for this dispatch.

@@ -1,12 +1,12 @@
 ---
 title: "P2 remediation for 015 deep-review advisories"
-description: "Closes nine P2 advisories from the 015 deep review and documents two shared-seam follow-ups without changing locked advisor identities."
+description: "The cleanup packet closes the 015 deep-review P2 advisories with small, targeted changes. The advisor still registers as mk_skill_advisor, the public tool ids stay stable and the package folder remains system-skill-advisor."
 trigger_phrases:
-  - "013/009/016"
+  - "013/009/016 implementation"
   - "p2 remediation 015"
   - "mk_skill_advisor deep-review cleanup"
-  - "advisor rename invariants"
-  - "skill advisor database override"
+  - "MK_SKILL_ADVISOR_DB_DIR environment variable"
+  - "skill advisor rename invariants test"
 importance_tier: "important"
 contextType: "implementation"
 ---
@@ -21,46 +21,41 @@ contextType: "implementation"
 
 ### Summary
 
-The 015 deep review passed the rename from `system_skill_advisor` to `mk_skill_advisor` but left nine P2 advisories open. This cleanup closed stale parent graph metadata, added a preferred `MK_SKILL_ADVISOR_DB_DIR` environment variable with legacy fallback, added rename-invariant tests, and documented acceptance of two shared seams that need future extraction.
+The deep-review of the skill advisor rename (015) left nine P2 advisories and D2b flagged two shared seams for extraction or acceptance. This cleanup packet refreshed the stale parent phase metadata, introduced a mk-prefixed database environment variable as the preferred override, added automated rename-invariant tests and fixed outdated validation paths in the package documentation. The two shared utility seams were documented as accepted-as-is pending a future dedicated extraction packet.
 
 ### Added
-
-- `MK_SKILL_ADVISOR_DB_DIR` environment variable as the preferred database directory override, with `SYSTEM_SKILL_ADVISOR_DB_DIR` as a legacy fallback.
-- Rename-invariant Vitest suite that asserts `mk_skill_advisor` server registration identity, launcher state value, and runtime configuration parity across OpenCode, Claude, Codex and Gemini runtimes.
+- A `MK_SKILL_ADVISOR_DB_DIR` preferred environment variable with `SYSTEM_SKILL_ADVISOR_DB_DIR` fallback for database path override.
+- `rename-invariants.vitest.ts` test suite asserting rename invariants for server registration, launcher identity and runtime config parity across OpenCode, Claude, Codex and Gemini runtimes.
 
 ### Changed
-
-- Parent graph metadata updated to reference the mk-prefixed launcher path and entity instead of the stale system-prefixed entries.
-- Database override environment variable order documented across runtime configuration files and advisor package documentation.
+- The database path override order now prefers `MK_SKILL_ADVISOR_DB_DIR` across the launcher, advisor-status handler, projector and skill graph database resolver.
+- Two shared seams (`sqlite-integrity.ts` and `skill-label-sanitizer.ts`) documented as accepted-as-is with rationale for future extraction.
 
 ### Fixed
-
-- Stale parent metadata entries including launcher path, launcher entity, trigger phrase and active child pointer corrected.
-- Stale standalone advisor validation command paths in documentation corrected to run the advisor package checks directly.
+- Stale parent phase metadata now uses mk-prefixed values for the launcher path, launcher entity, trigger phrase and active child pointer in `013/009/graph-metadata.json`.
+- Stale standalone advisor validation commands in `README.md` and `SET-UP_GUIDE.md` now run the advisor package checks instead of the old spec-kit package test path.
 
 ### Verification
-
-- `npm run build` in `.opencode/skills/system-skill-advisor/mcp_server` — PASS
-- `npm test` in `.opencode/skills/system-skill-advisor/mcp_server` — PASS, 41 files and 294 tests
-- Parent stale launcher grep — PASS, zero matches for old launcher path, entity or trigger phrase in parent metadata
-- README and SET-UP stale vitest path grep — PASS, zero matches in targeted docs
-- Packet 016 strict validation — PASS, 0 errors and 0 warnings
-- Parent 013/009 strict validation — PASS, 0 errors and 0 warnings
-- `verify_alignment_drift.py --root .opencode/skills/system-skill-advisor` — PASS, 182 files scanned, 0 findings
-- `git push origin main` — PASS, pushed `c7c56cf9f` to `origin/main`
+- `npm run build` in `.opencode/skills/system-skill-advisor/mcp_server`: PASS
+- `npm test` in `.opencode/skills/system-skill-advisor/mcp_server`: PASS, 41 files and 294 tests
+- Parent stale launcher grep: PASS, zero matches for old launcher path, entity or trigger in parent metadata
+- README and SET-UP stale vitest path grep: PASS, zero matches in targeted docs
+- Packet 016 strict validation: PASS, 0 errors and 0 warnings
+- Parent 013/009 strict validation: PASS, 0 errors and 0 warnings
+- `verify_alignment_drift.py --root .opencode/skills/system-skill-advisor`: PASS, 182 files scanned and 0 findings
+- `git push origin main`: PASS, pushed `c7c56cf9f` to `origin/main`
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/specs/.../013/009/graph-metadata.json` | Modified | Fix stale parent metadata and active child |
-| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Modified | Prefer mk-prefixed DB override environment variable |
-| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts` | Modified | Align status database path override order |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts` | Modified | Align projection database path override order |
-| `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts` | Modified | Align canonical skill graph database resolver |
+| `.opencode/bin/mk-skill-advisor-launcher.cjs` | Modified | Prefer mk-prefixed DB override env var |
+| `.opencode/skills/system-skill-advisor/mcp_server/handlers/advisor-status.ts` | Modified | Align status DB path override order |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts` | Modified | Align projection DB path override order |
+| `.opencode/skills/system-skill-advisor/mcp_server/lib/skill-graph/skill-graph-db.ts` | Modified | Align canonical skill graph DB resolver |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/rename-invariants.vitest.ts` | Created | Assert rename invariants in Vitest |
 
 ### Follow-Ups
-
-- Runtime database files remain dirty in the worktree and are intentionally excluded from the commit.
-- Shared seam extraction is deferred. The two seams are documented as accepted-as-is in this packet, and moving source into `@spec-kit/shared` remains a separate future package-boundary change.
+- Runtime database files remain dirty in the worktree. They were already dirty at session start and are intentionally excluded from the commit.
+- Shared seam extraction is deferred. The two seams are documented as accepted-as-is. Moving source into a shared package remains a separate future change.
