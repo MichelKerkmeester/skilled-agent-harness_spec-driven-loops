@@ -34,6 +34,8 @@ import { storeCommunities } from '../graph/community-storage.js';
 import { snapshotDegrees } from '../graph/graph-signals.js';
 import { runLineageBackfill } from './lineage-state.js';
 import { isIndexableConstitutionalMemoryPath, shouldIndexForMemory } from '../utils/index-scope.js';
+import { reopenActiveDatabase } from '../search/vector-index-store.js';
+import { SCHEMA_VERSION } from '../search/vector-index-schema.js';
 
 function batchedInQuery<T>(db: Database.Database, sql: string, ids: (number | string)[], batchSize = 500): T[] {
   const results: T[] = [];
@@ -227,6 +229,14 @@ type CheckpointCreateErrorCode =
   | 'CHECKPOINT_CREATE_PERMISSION_DENIED'
   | 'CHECKPOINT_CREATE_FAILED';
 
+type CheckpointRestoreErrorCode =
+  | 'CHECKPOINT_RESTORE_MANIFEST_INVALID'
+  | 'CHECKPOINT_RESTORE_DOWNGRADE_UNSAFE'
+  | 'CHECKPOINT_RESTORE_EMBEDDER_MISMATCH'
+  | 'CHECKPOINT_RESTORE_FILE_MISSING'
+  | 'CHECKPOINT_RESTORE_PATH_UNRESOLVED'
+  | 'CHECKPOINT_RESTORE_SWAP_FAILED';
+
 class CheckpointCreateError extends Error {
   public readonly code: CheckpointCreateErrorCode;
   public readonly originalCode: string | null;
@@ -245,6 +255,21 @@ class CheckpointCreateError extends Error {
     this.originalCode = typeof details.originalCode === 'string' ? details.originalCode : null;
     this.details = details;
   }
+}
+
+class CheckpointRestoreError extends Error {
+  public readonly code: CheckpointRestoreErrorCode;
+
+  constructor(code: CheckpointRestoreErrorCode, message: string, cause?: unknown) {
+    super(message, { cause });
+    Object.setPrototypeOf(this, CheckpointRestoreError.prototype);
+    this.name = 'CheckpointRestoreError';
+    this.code = code;
+  }
+}
+
+interface RestoreCheckpointV2Options {
+  reopen?: (targetMainPath: string, swapFn: () => void) => Database.Database;
 }
 
 interface RestoreResult {
@@ -622,6 +647,56 @@ function readCheckpointV2Manifest(snapshotPath: string | null): CheckpointV2Mani
     return parsed.formatVersion === 2 ? parsed as CheckpointV2Manifest : null;
   } catch (_error: unknown) {
     return null;
+  }
+}
+
+function loadCheckpointV2Manifest(snapshotPath: string | null): CheckpointV2Manifest {
+  if (!snapshotPath) {
+    throw new CheckpointRestoreError(
+      'CHECKPOINT_RESTORE_MANIFEST_INVALID',
+      'Checkpoint v2 restore failed because snapshot_path is missing.',
+    );
+  }
+
+  const manifestPath = path.join(snapshotPath, 'manifest.json');
+  try {
+    const raw = fs.readFileSync(manifestPath, 'utf-8');
+    const parsed = JSON.parse(raw) as Partial<CheckpointV2Manifest>;
+    if (
+      parsed.formatVersion !== 2
+      || typeof parsed.includeEmbeddings !== 'boolean'
+      || !Array.isArray(parsed.mainTables)
+      || !Array.isArray(parsed.vecTables)
+      || typeof parsed.memoryCount !== 'number'
+      || typeof parsed.vectorCount !== 'number'
+    ) {
+      throw new Error('manifest shape is invalid');
+    }
+    return parsed as CheckpointV2Manifest;
+  } catch (error: unknown) {
+    throw new CheckpointRestoreError(
+      'CHECKPOINT_RESTORE_MANIFEST_INVALID',
+      `Checkpoint v2 restore failed because manifest.json could not be read: ${toErrorMessage(error)}`,
+      error,
+    );
+  }
+}
+
+function resolveMainDatabasePath(database: Database.Database): string {
+  const mainRow = getDatabaseList(database).find((row) => row.name === 'main');
+  const mainFile = mainRow?.file;
+  if (!mainFile || mainFile === ':memory:') {
+    throw new CheckpointRestoreError(
+      'CHECKPOINT_RESTORE_PATH_UNRESOLVED',
+      'Checkpoint v2 restore failed because the live main database path could not be resolved.',
+    );
+  }
+  return mainFile;
+}
+
+function removeSqliteSidecars(databasePath: string): void {
+  for (const sidecarPath of [`${databasePath}-wal`, `${databasePath}-shm`]) {
+    fs.rmSync(sidecarPath, { force: true });
   }
 }
 
@@ -2079,6 +2154,167 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
   }
 }
 
+function restoreCheckpointV2(
+  database: Database.Database,
+  checkpoint: CheckpointEntry,
+  _scope: ScopeContext = {},
+  opts: RestoreCheckpointV2Options = {},
+): RestoreResult {
+  const result: RestoreResult = {
+    restored: 0,
+    skipped: 0,
+    errors: [],
+    workingMemoryRestored: 0,
+    partialFailure: false,
+    rolledBackTables: [],
+  };
+  const reopen = opts.reopen ?? reopenActiveDatabase;
+  let backupMainPath: string | null = null;
+  let backupShardPath: string | null = null;
+  let mainBackedUp = false;
+  let shardBackedUp = false;
+
+  const restoreBackups = (liveMainPath: string, liveShardPath: string | null): void => {
+    removeSqliteSidecars(liveMainPath);
+    if (mainBackedUp && backupMainPath && fs.existsSync(backupMainPath)) {
+      fs.rmSync(liveMainPath, { force: true });
+      fs.renameSync(backupMainPath, liveMainPath);
+      mainBackedUp = false;
+    }
+
+    if (liveShardPath) {
+      removeSqliteSidecars(liveShardPath);
+      if (shardBackedUp && backupShardPath && fs.existsSync(backupShardPath)) {
+        fs.rmSync(liveShardPath, { force: true });
+        fs.renameSync(backupShardPath, liveShardPath);
+        shardBackedUp = false;
+      }
+    }
+  };
+
+  acquireRestoreBarrier();
+  try {
+    const snapshotDir = checkpoint.snapshot_path ?? null;
+    const manifest = loadCheckpointV2Manifest(snapshotDir);
+    if (typeof manifest.schemaVersion === 'number' && manifest.schemaVersion > SCHEMA_VERSION) {
+      throw new CheckpointRestoreError(
+        'CHECKPOINT_RESTORE_DOWNGRADE_UNSAFE',
+        `Checkpoint v2 restore refused because snapshot schema version ${manifest.schemaVersion} is newer than runtime schema version ${SCHEMA_VERSION}.`,
+      );
+    }
+
+    const liveMainPath = resolveMainDatabasePath(database);
+    const liveShardPath = getActiveVectorShardPath(database);
+    const liveEmbedderSlug = deriveEmbedderSlug(liveShardPath);
+    if (manifest.embedderSlug !== null && manifest.embedderSlug !== liveEmbedderSlug) {
+      throw new CheckpointRestoreError(
+        'CHECKPOINT_RESTORE_EMBEDDER_MISMATCH',
+        `Checkpoint v2 restore refused because snapshot embedder ${manifest.embedderSlug} does not match active embedder ${liveEmbedderSlug ?? 'none'}.`,
+      );
+    }
+
+    const snapshotMainPath = path.join(snapshotDir as string, 'snapshot-main.sqlite');
+    const snapshotVecPath = path.join(snapshotDir as string, 'snapshot-vec.sqlite');
+    if (!fs.existsSync(snapshotMainPath)) {
+      throw new CheckpointRestoreError(
+        'CHECKPOINT_RESTORE_FILE_MISSING',
+        'Checkpoint v2 restore failed because snapshot-main.sqlite is missing.',
+      );
+    }
+    const shouldRestoreVec = manifest.vecTables.length > 0;
+    if (shouldRestoreVec) {
+      if (!liveShardPath) {
+        throw new CheckpointRestoreError(
+          'CHECKPOINT_RESTORE_PATH_UNRESOLVED',
+          'Checkpoint v2 restore failed because the live vector shard path could not be resolved.',
+        );
+      }
+      if (!fs.existsSync(snapshotVecPath)) {
+        throw new CheckpointRestoreError(
+          'CHECKPOINT_RESTORE_FILE_MISSING',
+          'Checkpoint v2 restore failed because snapshot-vec.sqlite is missing.',
+        );
+      }
+    }
+
+    backupMainPath = `${liveMainPath}.bak`;
+    backupShardPath = liveShardPath ? `${liveShardPath}.bak` : null;
+
+    const swapFn = (): void => {
+      fs.rmSync(backupMainPath as string, { force: true });
+      removeSqliteSidecars(liveMainPath);
+      fs.renameSync(liveMainPath, backupMainPath as string);
+      mainBackedUp = true;
+      fs.copyFileSync(snapshotMainPath, liveMainPath);
+      removeSqliteSidecars(liveMainPath);
+
+      if (shouldRestoreVec && liveShardPath && backupShardPath) {
+        fs.rmSync(backupShardPath, { force: true });
+        removeSqliteSidecars(liveShardPath);
+        if (fs.existsSync(liveShardPath)) {
+          fs.renameSync(liveShardPath, backupShardPath);
+          shardBackedUp = true;
+        }
+        fs.copyFileSync(snapshotVecPath, liveShardPath);
+        removeSqliteSidecars(liveShardPath);
+      }
+    };
+
+    let newDb: Database.Database;
+    try {
+      newDb = reopen(liveMainPath, swapFn);
+    } catch (error: unknown) {
+      try {
+        reopen(liveMainPath, () => restoreBackups(liveMainPath, liveShardPath));
+      } catch (rollbackError: unknown) {
+        result.errors.push(`Checkpoint v2 rollback failed: ${toErrorMessage(rollbackError)}`);
+      }
+      throw new CheckpointRestoreError(
+        'CHECKPOINT_RESTORE_SWAP_FAILED',
+        `Checkpoint v2 restore failed during file swap: ${toErrorMessage(error)}`,
+        error,
+      );
+    }
+
+    try {
+      init(newDb);
+      runPostRestoreRebuilds(newDb, null);
+      result.restored = manifest.memoryCount;
+      result.workingMemoryRestored = countTableRows(newDb, 'working_memory');
+      if (backupMainPath) {
+        fs.rmSync(backupMainPath, { force: true });
+      }
+      if (backupShardPath) {
+        fs.rmSync(backupShardPath, { force: true });
+      }
+      mainBackedUp = false;
+      shardBackedUp = false;
+      console.error(`[checkpoints] Restored v2 checkpoint "${checkpoint.name}" with ${result.restored} memories`);
+    } catch (error: unknown) {
+      try {
+        const rolledBackDb = reopen(liveMainPath, () => restoreBackups(liveMainPath, liveShardPath));
+        init(rolledBackDb);
+      } catch (rollbackError: unknown) {
+        result.errors.push(`Checkpoint v2 rollback failed: ${toErrorMessage(rollbackError)}`);
+      }
+      throw error;
+    }
+  } catch (error: unknown) {
+    const typedMessage = error instanceof CheckpointRestoreError
+      ? `${error.code}: ${error.message}`
+      : toErrorMessage(error);
+    result.restored = 0;
+    result.workingMemoryRestored = 0;
+    result.partialFailure = true;
+    result.errors.push(typedMessage);
+    console.warn(`[checkpoints] restoreCheckpoint v2 error: ${typedMessage}`);
+  } finally {
+    releaseRestoreBarrier();
+  }
+
+  return result;
+}
+
 function listCheckpoints(
   specFolder: string | null = null,
   limit: number = 50,
@@ -2155,6 +2391,7 @@ function restoreCheckpoint(
   nameOrId: string | number,
   clearExisting: boolean = false,
   scope: ScopeContext = {},
+  opts: RestoreCheckpointV2Options = {},
 ): RestoreResult {
   const database = getDatabase();
   const result: RestoreResult = {
@@ -2172,6 +2409,10 @@ function restoreCheckpoint(
 
   try {
     const checkpoint = getCheckpoint(nameOrId, scope);
+    if (checkpoint?.snapshot_format === 'v2' && checkpoint.snapshot_path) {
+      return restoreCheckpointV2(database, checkpoint, scope, opts);
+    }
+
     if (!checkpoint || !checkpoint.memory_snapshot) {
       result.errors.push('Checkpoint not found or empty');
       return result;
@@ -2533,8 +2774,10 @@ export {
   listCheckpoints,
   getCheckpoint,
   restoreCheckpoint,
+  restoreCheckpointV2,
   deleteCheckpoint,
   CheckpointCreateError,
+  CheckpointRestoreError,
   RESTORE_IN_PROGRESS_ERROR_CODE,
   RESTORE_IN_PROGRESS_ERROR_MESSAGE,
   // Snapshot schema exposed for direct shape testing.
@@ -2548,6 +2791,8 @@ export type {
   CheckpointEntry,
   CheckpointInfo,
   CheckpointCreateErrorCode,
+  CheckpointRestoreErrorCode,
   CreateCheckpointOptions,
+  RestoreCheckpointV2Options,
   RestoreResult,
 };

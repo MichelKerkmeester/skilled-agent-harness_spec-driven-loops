@@ -1385,6 +1385,27 @@ export function close_db(): void {
   }
 }
 
+/**
+ * Reopens the active database around a caller-owned on-disk file swap.
+ *
+ * @param targetMainPath - Main SQLite database file to reopen after the swap.
+ * @param swapFn - Synchronous file swap that must run with no open connection.
+ * @returns The reopened active database handle.
+ */
+export function reopenActiveDatabase(targetMainPath: string, swapFn: () => void): Database.Database {
+  const currentDb = db ?? db_connections.get(path.resolve(targetMainPath)) ?? null;
+
+  if (currentDb) {
+    try { currentDb.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch (_: unknown) { /* best-effort */ }
+    try { currentDb.pragma('wal_checkpoint(TRUNCATE)'); } catch (_: unknown) { /* best-effort */ }
+    detachActiveVectorShard(currentDb);
+  }
+
+  close_db();
+  swapFn();
+  return initialize_db(targetMainPath);
+}
+
 export function checkpointAllWal(): void {
   if (!db) return;
   try { db.pragma(`${ACTIVE_VECTOR_SCHEMA}.wal_checkpoint(TRUNCATE)`); } catch { /* best-effort */ }
@@ -1670,6 +1691,7 @@ export class SQLiteVectorStore extends IVectorStore {
 // CamelCase aliases for backward compatibility (functions already exported above)
 export { initialize_db as initializeDb };
 export { close_db as closeDb };
+export { reopenActiveDatabase as reopen_active_database };
 export { get_db as getDb };
 export { try_get_db as tryGetDb };
 export { get_db_path as getDbPath };
