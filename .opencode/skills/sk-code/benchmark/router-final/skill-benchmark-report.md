@@ -2,7 +2,7 @@
 
 > Rendered from report.json (do not hand-edit). Scoring: `mode-a-router-replay` · trace mode: `router`.
 
-**Verdict: FAIL** · aggregate 40/100
+**Verdict: FAIL** · aggregate 41/100
 
 ## Coverage
 
@@ -16,7 +16,7 @@
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
 | D1 intra (router) | 13pts | 57/100 |
 | D2 discovery | 20pts | 44/100 |
-| D3 efficiency | 15pts | 19/100 |
+| D3 efficiency | 15pts | 23/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
@@ -41,11 +41,11 @@ _Unscored in this run (need live mode): D1inter, D4._
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
 | SD-001 | routing | 53/100 | discovered |
-| SD-002 | routing | 62/100 | passed |
+| SD-002 | routing | 66/100 | passed |
 | SD-003 | routing | 0/100 | routed-intra |
-| LS-001 | routing | 49/100 | passed |
-| LS-002 | routing | 49/100 | passed |
-| LS-003 | routing | 49/100 | passed |
+| LS-001 | routing | 51/100 | passed |
+| LS-002 | routing | 51/100 | passed |
+| LS-003 | routing | 51/100 | passed |
 | LS-004 | routing | 11/100 | routed-intra |
 | RD-001 | routing | 100/100 | passed |
 | RD-002 | advisor | 69/100 | passed |
@@ -57,13 +57,13 @@ _Unscored in this run (need live mode): D1inter, D4._
 | CB-001 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-002 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
 | CB-003 | browser | _routed-out_ | browser scenario — run in live mode (needs bdg) |
-| CS-001 | routing | 30/100 | discovered |
+| CS-001 | routing | 31/100 | discovered |
 | CS-002 | routing | 0/100 | routed-intra |
-| CS-003 | routing | 46/100 | passed |
+| CS-003 | routing | 50/100 | passed |
 | CS-004 | routing | 0/100 | routed-intra |
 | CS-005 | routing | 0/100 | routed-intra |
-| CS-006 | routing | 41/100 | discovered |
-| CS-007 | routing | 44/100 | discovered |
+| CS-006 | routing | 43/100 | discovered |
+| CS-007 | routing | 46/100 | discovered |
 
 ## Contamination findings (router mode — drift, not failures)
 

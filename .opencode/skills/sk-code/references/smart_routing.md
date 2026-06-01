@@ -290,9 +290,8 @@ This is the single machine-readable projection of the prose Intent Model (§2) a
 
 A drift guard (`.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.opencode/skills/deep-improvement/scripts`.
 
-This projection is intentionally lossy in three documented ways the flat dictionary cannot express, all of which stay enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
+This projection is intentionally lossy in two documented ways the flat dictionary cannot express, both enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
 
-- **Surface is flattened.** Webflow, Motion.dev, and OpenCode resources for a shared intent are unioned under one key. Real routing detects the surface first (CWD + target paths) and loads only that surface's slice, so a replay that sees prompt text alone will over-route relative to a single surface — read a low efficiency signal as a projection artifact, not a routing defect.
 - **No phase boosts.** The `+5` unambiguous-phase boost from the §2 scoring algorithm is not represented; every keyword carries unit weight here.
 - **No doc-only anti-signals.** The `sk-code -2 / sk-doc +3` anti-signals (§2) that route prose-only edits away from this skill are a pre-filter the flat model does not carry.
 
@@ -447,3 +446,14 @@ RESOURCE_MAP = {
     ],
 }
 ```
+
+### Surface-aware loading (route-time)
+
+The router does NOT load the whole matched-intent union. After surface detection (§1, `stack_detection.md`), a route loads:
+
+- the always-loaded `DEFAULT_RESOURCE` preamble (stack/phase detection, the router, the universal quality baseline), plus
+- the surface-agnostic `references/universal/*` tier, plus
+- only the **detected surface's** slice (`references/<surface>/*`) for the matched intents, plus
+- the Motion.dev overlay (`references/motion_dev/*`) when a `MOTION_DEV` intent fires.
+
+It does not load the other surface's resources, and it defers `assets/*` (checklists, recipes, templates) to on-demand rather than the first slice. A task that genuinely spans both surfaces (mixed `.opencode/` and Webflow markers) keeps both surface slices; an `UNKNOWN` surface falls back to the preamble plus the universal tier and the Motion overlay only. This is what stops a routine single-surface task from pulling the full cross-surface set. The deterministic router-replay enforces the same rule, so the benchmark measures it.

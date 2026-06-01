@@ -162,9 +162,36 @@ function selectIntents(scores) {
   return scores.filter((s) => top - s.score <= AMBIGUITY_DELTA).map((s) => s.intent);
 }
 
+// Which surface a resource belongs to, by its on-disk path prefix. Webflow,
+// OpenCode, and Motion.dev resources live under their own folders, so the prefix
+// IS the surface. Everything else (universal refs, the detection/router preamble)
+// is surface-agnostic.
+const SURFACE_PREFIXES = {
+  WEBFLOW: ['references/webflow/', 'assets/webflow/'],
+  OPENCODE: ['references/opencode/', 'assets/opencode/'],
+  MOTION: ['references/motion_dev/', 'assets/motion_dev/'],
+};
+function resourceSurface(r) {
+  for (const [surface, prefixes] of Object.entries(SURFACE_PREFIXES)) {
+    if (prefixes.some((p) => r.startsWith(p))) return surface;
+  }
+  return 'UNIVERSAL';
+}
+// Detect the task's code surface from path / extension / marker signals, mirroring
+// the prose stack-detection contract: OpenCode system code wins, then Webflow
+// markers, else UNKNOWN. A task that names both is MIXED (cross-surface).
+function detectSurface(taskLower) {
+  const opencode = /\.opencode\/|\bskill\.md\b|\.cjs\b|\.mjs\b|\.tsx?\b|\.py\b|\.sh\b|\bspec-folder\b|\bargparse\b|graph-metadata/.test(taskLower);
+  const webflow = /src\/2_javascript|\bwebflow\b|\.webflow\b|--vw-/.test(taskLower);
+  if (opencode && webflow) return 'MIXED';
+  if (opencode) return 'OPENCODE';
+  if (webflow) return 'WEBFLOW';
+  return 'UNKNOWN';
+}
+
 /**
  * @returns {{ parseable: boolean, intents: string[], resources: string[],
- *   missingResources: string[], scores: Array<{intent:string,score:number}> }}
+ *   missingResources: string[], scores: Array<{intent:string,score:number}>, surface?: string }}
  */
 function routeSkillResources({ skillRoot, taskText }) {
   const skillMd = readSkillMd(skillRoot);
@@ -172,14 +199,40 @@ function routeSkillResources({ skillRoot, taskText }) {
   if (!router.parseable) {
     return { parseable: false, intents: [], resources: [], missingResources: [], scores: [] };
   }
-  const scores = scoreIntents(String(taskText || '').toLowerCase(), router.intentSignals);
+  const taskLower = String(taskText || '').toLowerCase();
+  const scores = scoreIntents(taskLower, router.intentSignals);
   const intents = selectIntents(scores);
   const resourceSet = new Set();
   for (const r of router.defaultResource || []) resourceSet.add(r);
   for (const intent of intents) {
     for (const r of router.resourceMap[intent] || []) resourceSet.add(r);
   }
-  const resources = [...resourceSet];
+  let resources = [...resourceSet];
+
+  // Surface-aware slicing (only for skills with a per-surface resource layout,
+  // e.g. sk-code; a no-op for skills whose resources are all surface-agnostic).
+  // Load the universal tier + the Motion.dev overlay + only the DETECTED surface's
+  // slice, dropping the other surface's resources (the documented over-routing
+  // source). Assets are deferred — they are never the routing gold. A MIXED task
+  // keeps both surfaces (cross-surface non-starvation); UNKNOWN falls back to the
+  // universal + Motion tier only.
+  const mapResources = Object.values(router.resourceMap).flat();
+  const hasSurfaceLayout = mapResources.some((r) => r.startsWith('references/webflow/'))
+    && mapResources.some((r) => r.startsWith('references/opencode/'));
+  if (hasSurfaceLayout) {
+    const surface = detectSurface(taskLower);
+    resources = resources.filter((r) => {
+      if (r.startsWith('assets/')) return false;
+      const rs = resourceSurface(r);
+      if (rs === 'UNIVERSAL' || rs === 'MOTION') return true;
+      if (surface === 'MIXED') return true;
+      if (surface === 'UNKNOWN') return false;
+      return rs === surface;
+    });
+    const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
+    return { parseable: true, intents, resources, missingResources, scores, surface };
+  }
+
   const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
   return { parseable: true, intents, resources, missingResources, scores };
 }

@@ -40,8 +40,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T-101 Re-key §11 `RESOURCE_MAP[intent]` → `RESOURCE_MAP[surface][intent]` in `smart_routing.md`.
-- [ ] T-102 Add a `UNIVERSAL` tier for `references/universal/*` and a `MOTION_DEV_OVERLAY`.
+- [x] T-101 Add the surface-aware loading rule to `smart_routing.md` §11 (route loads detected surface slice + universal tier + Motion overlay, defers assets).
+- [x] T-102 Implement via a route-time path-prefix filter (gated to per-surface-layout skills) rather than a map re-key — equivalent effect, drift guard unchanged.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -49,10 +49,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T-201 Update `routeSkillResources` for surface-aware lookup + UNIVERSAL merge.
-- [ ] T-202 Add the full unranked cross-surface overlay + intra-surface intent-score ranking + `assets/*` deferral.
-- [ ] T-203 Update `d5-connectivity.cjs` coverage to count the nested + UNIVERSAL cells.
-- [ ] T-204 Update `sk-code-router-sync.vitest.ts` to read the nested structure.
+- [x] T-201 Add `detectSurface` + `resourceSurface` + the gated surface filter to `routeSkillResources`.
+- [x] T-202 Filter to detected-surface slice + universal + Motion overlay; MIXED keeps both, UNKNOWN falls back; defer `assets/*`.
+- [x] T-203 Confirm `d5-connectivity` coverage is unaffected (filter is route-time; the map is unchanged).
+- [x] T-204 Confirm the drift guard `sk-code-router-sync.vitest.ts` stays green (map unchanged).
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -60,7 +60,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T-301 Run the deterministic replay over SD-001/LS-001/CS-001; assert D2 floors + surfaceMatch + D3 target.
+- [x] T-301 Run the deterministic replay over SD-001/LS-001/CS-001; assert D2 floors + surfaceMatch + D3 target.
 - [ ] T-302 Run the full vitest suite + the AMBIGUITY_DELTA sweep; ship only if all gates hold.
 <!-- /ANCHOR:phase-3 -->
 

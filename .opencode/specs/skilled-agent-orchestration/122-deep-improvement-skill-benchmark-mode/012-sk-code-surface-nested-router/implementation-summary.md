@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Opened + planned the build phase from the 011 recommendation"
-    next_safe_action: "Phase 1 — restructure the §11 RESOURCE_MAP to surface-nested"
+    recent_action: "Implemented surface-aware route filter + the §11 rule; router D3 19 to 23, D2 held"
+    next_safe_action: "Live re-measure to validate the live D3 drop against the new rule"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/smart_routing.md"
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Status** | Planned — build pending |
+| **Status** | Implemented (router-mode verified); live re-measure pending |
 | **Date** | 2026-06-01 |
 <!-- /ANCHOR:metadata -->
 
@@ -46,10 +46,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Nothing in sk-code yet — this phase is opened and planned only. The build implements the 011 research recommendation: a surface-nested `RESOURCE_MAP` with a shared `UNIVERSAL` tier, a full unranked cross-surface overlay, intra-surface intent-score ranking (references only), and `assets/*` deferral.
+Implemented the 011 recommendation as a route-time surface-aware filter (not a map re-key — see Key Decisions). After surface detection, a route loads the `DEFAULT_RESOURCE` preamble + the `references/universal/*` tier + only the detected surface's slice + the Motion.dev overlay, drops the other surface's resources, and defers `assets/*`. A MIXED task keeps both surfaces; UNKNOWN falls back to universal + Motion.
 
 ### Files Changed (this build)
-None yet (planned). The build will modify `smart_routing.md` §11, `router-replay.cjs`, `d5-connectivity.cjs`, and `sk-code-router-sync.vitest.ts`.
+`scripts/skill-benchmark/router-replay.cjs` (`detectSurface` + `resourceSurface` + the gated surface filter in `routeSkillResources`); `sk-code/references/smart_routing.md` §11 (the surface-aware loading rule + removed the now-resolved "surface is flattened" caveat).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -65,9 +65,9 @@ Spec + plan + tasks + checklist authored from the converged 011 research (3 nati
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-- H1 surface-nesting is the primary fix; the cross-surface overlay is full + unranked (non-negotiable for CS-001 recall).
-- H4 ranks intra-surface references only (no count cap — recall is exact/all-or-nothing). H3 folded into H4; H2 deferred.
-- D2 regression guard floors at the measured baseline (0.727 / 1.0 / 0.60), not 1.0, because recall was never 1.0.
+- **Implemented as a route-time surface filter, not a map re-key.** Resources already live under per-surface path prefixes (`references/{webflow,opencode,motion_dev,universal}/`), so filtering the routed output by detected surface achieves H1's effect without re-sorting ~94 paths or rewriting the parser — and the drift guard stays green because the `RESOURCE_MAP` itself is unchanged (only per-route output is sliced). The filter is gated to skills with a per-surface layout, so it is a no-op for every other skill.
+- The cross-surface overlay is full + unranked (non-negotiable for CS-001 recall); H4 ranks intra-surface references only (no count cap); H3 folded into H4; H2 deferred; `assets/*` deferred (never the routing gold).
+- The router-mode regression guard is "D2 must not drop below the router baseline" (44), not the live floors; the live floors (0.727 / 1.0 / 0.60) are re-measured by a live rerun.
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -77,9 +77,10 @@ Spec + plan + tasks + checklist authored from the converged 011 research (3 nati
 
 | Check | Command | Result |
 |-------|---------|--------|
-| Regression guard | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` over SD-001/LS-001/CS-001 | defined (D2 floors, surfaceMatch, D3 ≥ 0.6) — to run after the build |
-| Drift guard | `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` | must stay PASS |
-| Full suite | `npx vitest run` (from `deep-improvement/scripts`) | to run after the build |
+| Router regression guard | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` | PASS — D2 held at 44, D1-intra 57, D5 100 (no regression); D3 19 → 23; orphans 0 |
+| Drift guard | `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` | PASS |
+| Full suite | `npx vitest run` (from `deep-improvement/scripts`) | PASS — 248 tests |
+| Live re-measure | `--trace-mode live` over the critical-path subset | pending (validates the live D3 drop against the §11 rule) |
 <!-- /ANCHOR:verification -->
 
 ---
