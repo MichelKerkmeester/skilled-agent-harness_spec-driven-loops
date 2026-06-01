@@ -24,9 +24,9 @@ This top-level phase parent groups 6 child phase groups spanning 2026-05-02 to 2
 
 | Child group | Latest date | Notes |
 |-------------|-------------|-------|
-| [001-resource-map-deep-loop-fix](./001-resource-map-deep-loop-fix/changelog-001-resource-map-deep-loop-fix-root.md) | 2026-05-02 | child phase group |
-| [002-skill-advisor](./002-skill-advisor/changelog-002-skill-advisor-root.md) | 2026-06-01 | child phase group |
-| [003-template-levels](./003-template-levels/changelog-003-template-levels-root.md) | 2026-06-01 | child phase group |
+| [001-resource-map-deep-loop-fix](./changelog-001-resource-map-deep-loop-fix-root.md) | 2026-05-02 | child phase group |
+| [002-skill-advisor](./changelog-002-skill-advisor-root.md) | 2026-06-01 | child phase group |
+| [003-template-levels](./changelog-003-template-levels-root.md) | 2026-06-01 | child phase group |
 | [004-literal-spec-folder-names](./../004-literal-spec-folder-names/changelog/) | n/a | child phase group |
 | [005-validate-recursive-orchestrator-fix](./../005-validate-recursive-orchestrator-fix/changelog/) | n/a | child phase group |
 | [006-orchestrator-placeholder-parity](./../006-orchestrator-placeholder-parity/changelog/) | n/a | child phase group |

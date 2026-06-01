@@ -24,7 +24,7 @@ This phase parent groups 1 child phases spanning 2026-04-25 to 2026-04-25. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-000-007-clean-room-license-audit.md](./007-clean-room-license-audit/changelog-000-007-clean-room-license-audit.md) | 2026-04-25 | Clean-Room License Audit: Deep Review Report |
+| [changelog-000-007-clean-room-license-audit.md](./changelog-000-007-clean-room-license-audit.md) | 2026-04-25 | Clean-Room License Audit: Deep Review Report |
 
 ### Added
 

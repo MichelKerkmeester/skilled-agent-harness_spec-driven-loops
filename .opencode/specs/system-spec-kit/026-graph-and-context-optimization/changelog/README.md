@@ -34,8 +34,8 @@ Each track rollup has an Included Phases table linking to its child phase rollup
 
 These changelogs cover work that spans multiple tracks. Each lives in its home track folder and is cross-linked here:
 
-- [mk-spec-memory rename](./003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename/changelog-001-052-mk-spec-memory-rename.md)
-- [substrate harness hardening](./007-mcp-daemon-reliability/016-substrate-harness-hardening/changelog-007-016-substrate-harness-hardening.md)
+- [mk-spec-memory rename](./003-memory-and-causal-runtime/changelog-001-052-mk-spec-memory-rename.md)
+- [substrate harness hardening](./007-mcp-daemon-reliability/changelog-007-016-substrate-harness-hardening.md)
 
 ## Conventions
 
