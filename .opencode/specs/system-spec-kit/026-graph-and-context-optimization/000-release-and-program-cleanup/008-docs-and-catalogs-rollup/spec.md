@@ -13,15 +13,15 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Converted 008 to a phase parent with two child phases"
-    next_safe_action: "Resume a child phase folder"
+    recent_action: "Both child phases complete: umbrella docs rollup (001) and changelog backfill plus audit (002)"
+    next_safe_action: "Owner sign-off on 002"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000010"
       session_id: "008-phase-parent-2026-06-01"
       parent_session_id: null
-    completion_pct: 50
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -45,7 +45,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-01 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
@@ -100,7 +100,7 @@ Deliver complete, accurate documentation for spec 026: rolled-up umbrella docs a
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-docs-and-catalogs-rollup/` | Umbrella docs and catalogs rollup for 026 | In Progress |
+| 001 | `001-docs-and-catalogs-rollup/` | Umbrella docs and catalogs rollup for 026 | Complete |
 | 002 | `002-changelog-backfill-and-audit/` | Program-wide changelog backfill, rollups, and work audit | Complete |
 
 ### Phase Transition Rules

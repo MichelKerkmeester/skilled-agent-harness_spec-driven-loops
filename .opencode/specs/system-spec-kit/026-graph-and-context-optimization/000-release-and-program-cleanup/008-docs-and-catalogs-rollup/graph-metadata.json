@@ -33,7 +33,7 @@
       "umbrella"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md",
       "001-docs-and-catalogs-rollup/spec.md",

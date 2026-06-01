@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit"
     last_updated_at: "2026-05-31T19:00:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Authored task breakdown"
-    next_safe_action: "Build and dry-run the per-track enrichment workflow"
+    recent_action: "All tasks complete and verified against shipped work"
+    next_safe_action: "Owner sign-off"
     blockers: []
     key_files:
       - "spec.md"
@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000003"
       session_id: "changelog-backfill-2026-05-31"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -55,10 +55,10 @@ _memory:
 - [x] T002 Generate per-track work-lists (work-list/*.txt)
 - [x] T003 Author governance docs (spec, plan, tasks, checklist, decision-record)
 - [x] T004 Persist reference docs (enrichment contract, verification gate, coverage matrix)
-- [ ] T005 Generate description.json and graph-metadata.json
-- [ ] T006 Pass `validate.sh --strict` on this packet
-- [ ] T007 [P] Build the reusable enrichment workflow script
-- [ ] T008 Dry-run the workflow on 2-3 packets, compare to 004 gold standard
+- [x] T005 Generate description.json and graph-metadata.json
+- [x] T006 Pass `validate.sh --strict` on this packet
+- [x] T007 [P] Build the reusable enrichment workflow script
+- [x] T008 Dry-run the workflow on 2-3 packets, compare to 004 gold standard
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -68,15 +68,15 @@ _memory:
 
 _Backfill, full send per track._
 
-- [ ] T010 [P] Backfill 001-research-and-baseline (7)
-- [ ] T011 [P] Backfill 005-graph-impact-and-affordance (7)
-- [ ] T012 [P] Backfill 007-mcp-daemon-reliability (14)
-- [ ] T013 [P] Backfill 006-operator-tooling (11)
-- [ ] T014 Backfill 004-code-graph (41)
-- [ ] T015 Backfill 002-spec-kit-internals (13, thematic grouping)
-- [ ] T016 Backfill 000-release-and-program-cleanup (131)
-- [ ] T017 Backfill 003-memory-and-causal-runtime (217)
-- [ ] T018 Sampled GPT-5.5 adversarial fidelity check per track
+- [x] T010 [P] Backfill 001-research-and-baseline
+- [x] T011 [P] Backfill 005-graph-impact-and-affordance
+- [x] T012 [P] Backfill 007-mcp-daemon-reliability
+- [x] T013 [P] Backfill 006-operator-tooling
+- [x] T014 Backfill 004-code-graph
+- [x] T015 Backfill 002-spec-kit-internals (small-model dispatch, per-leaf)
+- [x] T016 Backfill 000-release-and-program-cleanup
+- [x] T017 Backfill 003-memory-and-causal-runtime
+- [x] T018 Adversarial fidelity check (deterministic 10-check gate plus whole-file external sweep substituted the per-track sampling, and GPT-5.5 high audited the later timeline pass)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -86,13 +86,13 @@ _Backfill, full send per track._
 
 _Rollups, indexes, canonicalization, and audit._
 
-- [ ] T020 Author root.md rollups for phase parents lacking one
-- [ ] T021 Build or update every changelog/README.md index
-- [ ] T022 Fix stale spec-folder paths in the 103 existing changelogs
-- [ ] T023 Repair the 9 dangling symlinks in 026/changelog
-- [ ] T024 Rename the 2 non-canonical changelog.md files
-- [ ] T025 Migrate 003 per-child changelog dirs to parent-level (move, never delete)
-- [ ] T026 Rebuild the 026/changelog symlink aggregation
+- [x] T020 Author root.md rollups for phase parents lacking one (72 rollups)
+- [x] T021 Authoritative per-directory index built: rollups plus program README (per-dir READMEs superseded by the flatten, owner decision)
+- [x] T022 Fix stale spec-folder paths in existing changelogs (audit section 6, 0 stale remain)
+- [x] T023 Remove dangling symlinks in 026/changelog (audit section 5, 85 removed)
+- [x] T024 Remove non-canonical legacy changelog files (audit section 6, 5 removed)
+- [x] T025 Migrate per-child changelog dirs to a flat layout (subsumed by the flatten to one subdir level per track, git mv, never delete)
+- [x] T026 Symlink aggregation superseded: the central tree now holds flat real files per track, not a symlink farm
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -100,10 +100,10 @@ _Rollups, indexes, canonicalization, and audit._
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All in-scope shipped phases have a changelog or an audit entry
-- [ ] Zero verification-gate failures on new files
-- [ ] audit-report.md written; completion metadata reconciled
-- [ ] Final `validate.sh --strict` clean; context saved
+- [x] All in-scope shipped phases have a changelog or an audit entry
+- [x] Zero verification-gate failures on new files
+- [x] audit-report.md written, completion metadata reconciled
+- [x] Final `validate.sh --strict` clean, memory updated
 <!-- /ANCHOR:completion -->
 
 ---
