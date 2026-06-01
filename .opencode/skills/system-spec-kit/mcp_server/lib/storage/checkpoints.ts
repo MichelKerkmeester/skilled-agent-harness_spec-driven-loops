@@ -2472,6 +2472,20 @@ function restoreCheckpointV2(
       shardBackedUp = false;
       console.error(`[checkpoints] Restored v2 checkpoint "${checkpoint.name}" with ${result.restored} memories`);
     } catch (error: unknown) {
+      // Demote the journal from swap-done back to swap-pending BEFORE the in-process
+      // revert. Boot crash recovery rolls back ONLY while the journal is swap-pending
+      // (it keeps a swap-done snapshot as committed), so without this demotion an
+      // in-process failure here would revert the live DB while an identically-timed
+      // crash would keep it — divergent outcomes for the same post-swap fault. Writing
+      // the swap-pending journal makes both paths roll back from .bak deterministically.
+      if (restoreJournalPath) {
+        try {
+          writeRestoreJournal(restoreJournalPath, { ...restoreJournal, liveShardPreexisted });
+        } catch (_demoteError: unknown) {
+          // Best-effort: if the demotion write fails, the in-process revert below still
+          // restores from .bak; only the crash-vs-in-process symmetry is at risk.
+        }
+      }
       try {
         const rolledBackDb = reopen(liveMainPath, () => {
           restoreBackups(liveMainPath, liveShardPath);
