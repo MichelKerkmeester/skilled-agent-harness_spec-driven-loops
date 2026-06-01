@@ -9,13 +9,13 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T15:00:00Z"
+    last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 3 merged to main — move reconciliation + scan heartbeat"
-    next_safe_action: "Restart daemon, re-index 012/013 packets, final validate"
+    recent_action: "Phase 4 verified live (v28, 9614/9614); P1 checklist items checked"
+    next_safe_action: "None binding; optional D/E scaffolds; CHK-051 P2 health doc"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -79,9 +79,11 @@ _memory:
 - [x] CHK-030 [P0] R1 (no raw E429) met — SC1 verified. <!-- coalescing contract in memory-index.ts -->
 - [x] CHK-031 [P0] R2 (always completes, no -32001) met — SC2 verified. <!-- R2 met; complete_with_pending_vectors status returned; background drain decoupled from request path -->
 - [x] CHK-032 [P1] R3 (concurrency correct) met — Phase 3. <!-- R3 met; coalescing (P1) + single-writer lease (P3) coordinate concurrent callers -->
-- [ ] CHK-033 [P1] R4 (degraded-mode, pending-not-retry) met — Phase 2.
+- [x] CHK-033 [P1] R4 (degraded-mode, pending-not-retry) met — Phase 2. <!-- R4 verified via CHK-021 P2 gate ("outage leaves rows pending not retry") + handler-memory-index-async-scan.vitest.ts circuit-guard tests; processRetryQueue guards pending→retry with isProviderCircuitOpen() -->
+- [x] CHK-036 [P1] Phase 4 (council follow-up) shipped + verified. <!-- deprecate-before-insert + v28 unique index (idx_memory_logical_key_active_unique) + scope isolation; commit 942ad78d9c; schema_version=28 live; 9614 rows hold under unique index (0 collisions); memory_health healthy_fresh (9614/9614/9614, mismatchedIds []); deep-review R5 SAFE TO DEPLOY -->
+- [x] CHK-037 [P1] Phase 4 missing-vector drain (item A) → 0. <!-- real missing-vector=0 via direct rowid anti-join + memory_health consistency; 4 residual startup-seed rows (NULL embedding_model) deleted via sanctioned memory_delete + rescanned → re-embedded as 9615-9618 -->
 - [x] CHK-034 [P1] R5 (orphan/move self-heal + health surface) met — SC3/SC4 verified. <!-- R5 met; orphan sweep (P1) + move reconciliation (P3) + health surface (P1) complete -->
-- [ ] CHK-035 [P1] No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded.
+- [x] CHK-035 [P1] No partial-fix left as silent "future work"; deferrals (if any) are user-approved and recorded. <!-- Phase-4 deferrals D (checkpoint-v2) + E (MCP front-proxy) are operator-approved + recorded in handover §8 D/E + impl-summary §6; follow-up bugs (reconcile wrong-join-column, schema-downgrade P2) documented; A/B/C/F shipped -->
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -125,5 +127,6 @@ _memory:
 | Phase 1 | PASSED (tsc 0 errors) | PASSED (14/14) | SC1 ✓, SC3 ✓, SC4(orphan) ✓ | complete |
 | Phase 2 | PASSED (tsc 0 errors) | PASSED (17/17) | SC2 ✓, R4 ✓ | complete |
 | Phase 3 | PASSED (tsc 0 errors) | PASSED (19/19) | SC4(move) ✓, R3 ✓, R5 ✓ | complete |
-| Packet | PASSED (all phases) | PASSED (19/19) | SC1-SC5 ✓ | complete |
+| Phase 4 (council follow-up) | PASSED (tsc 0 errors) | PASSED (full suite) | uniqueness guard + v28 + scope isolation; deep-review R5 SAFE | complete (D,E re-deferred) |
+| Packet | PASSED (all phases) | PASSED | SC1-SC5 ✓ + Phase-4 follow-ups | complete |
 <!-- /ANCHOR:summary -->

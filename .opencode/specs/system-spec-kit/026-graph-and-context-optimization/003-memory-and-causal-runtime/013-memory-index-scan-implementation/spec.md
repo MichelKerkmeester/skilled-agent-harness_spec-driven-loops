@@ -13,16 +13,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T15:00:00Z"
+    last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored Level-2 spec for full 5-angle implementation"
-    next_safe_action: "Dispatch Phase 1 (coalescing + health + orphan sweep) via cli-opencode"
+    recent_action: "Phases 1-3 + Phase-4 follow-up shipped (942ad78d9c, v28, rebuild 9614/9614)"
+    next_safe_action: "None binding; optional checkpoint-v2 and MCP front-proxy scaffolds"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
-    completion_pct: 0
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -41,7 +41,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress (Phase 1 starting) |
+| **Status** | Shipped & deployed — Phases 1-3 merged 2026-05-31 (SC1-SC5 met); Phase-4 council follow-up shipped 2026-06-01 (active-row uniqueness guard + multi-tenant scope isolation, commit `942ad78d9c`, schema v28). Follow-up detail in `handover.md` §6-8 + `implementation-summary.md`. |
 | **Created** | 2026-05-31 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (003-memory-and-causal-runtime) |

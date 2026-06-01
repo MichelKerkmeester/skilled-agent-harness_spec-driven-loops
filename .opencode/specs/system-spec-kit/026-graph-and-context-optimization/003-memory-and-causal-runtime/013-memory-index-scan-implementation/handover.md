@@ -1,6 +1,6 @@
 ---
-title: "Handover: memory_index_scan self-maintaining index — all 3 phases shipped, daemon restart + reindex pending [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/handover]"
-description: "Session handover for 013. All 3 implementation phases merged to main and validated. Daemon source updated but not yet restarted. 012/013 packets need reindexing. No worktrees or branches pending."
+title: "Handover: memory_index_scan self-maintaining index — Phases 1-3 + Phase-4 follow-up shipped & deployed [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/handover]"
+description: "Session handover for 013. Phases 1-3 plus the Phase-4 council follow-up (active-row uniqueness guard + multi-tenant scope isolation) shipped, committed (942ad78d9c, schema v28), and deployed via a clean rebuild (9614/9614, 0 missing-vector). Deep-review R5 SAFE TO DEPLOY (no P0/P1). Checkpoint-v2 + MCP front-proxy re-deferred (non-binding). No worktrees or branches pending."
 trigger_phrases:
   - "memory index implementation handover"
   - "013 handover whats next"
@@ -11,17 +11,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-06-01T06:50:00Z"
+    last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 4 CHECKPOINT: #2-A shipped+committed (26fca5d1b2) + live-verified; #2-C cleanup DONE 29830->~9703 rows (committed 952dd1e1e1, backup taken); #2-B deferred; #4 bulk re-embed triggered (2192 draining); legacy vector shards deleted"
-    next_safe_action: "Fresh session per handover.md SECTION 8 runbook: verify #4 drain -> #4 5 provider-failures -> #2-B rework+index -> #3/#5 scaffolds -> deep-review -> doc reconcile + validate.sh --strict"
+    recent_action: "Phase 4 complete; shipped 942ad78d9c, rebuild 9614/9614, deep-review R5 SAFE"
+    next_safe_action: "None binding; optional D/E scaffolds and reconcile join-bug fix"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/core/db-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts"
+      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/hybrid-search.ts"
     completion_pct: 100
     open_questions: []
     answered_questions: []
@@ -29,7 +28,7 @@ _memory:
 
 # Handover: memory_index_scan Self-Maintaining Index
 
-> **One-line state:** Fully shipped AND deployed (2026-05-31). `dist/` rebuilt, daemon restarted onto new code (pid 23371, ollama embedder healthy), 012/013 reindexed. Duplicate index rows from the hf-local→ollama migration repaired (30 rows; `failedVectors` 36→6). **Phase 4 (council follow-up):** specFolder-normalization fix shipped + deployed (pid 47588); #2 dup-prevention, #3 checkpoint-v2, #4 ~5.4k-row hf→ollama re-embed, #5 MCP front-proxy deferred to a focused session — see `ai-council/council-report-followups-mcp-stability.md`.
+> **One-line state:** Fully shipped AND deployed. Phases 1-3 (2026-05-31) + **Phase 4 council follow-up (2026-06-01) COMPLETE**: active-row uniqueness guard (deprecate-before-insert + v28 partial unique index) + multi-tenant scope isolation shipped (commit `942ad78d9c`, `schema_version`=28 live); full clean index rebuild → **9614 rows / 9614 vectors / 0 missing-vector** (`memory_health` `healthy_fresh`, `mismatchedIds: []`); 5-round deep-review R5 = **SAFE TO DEPLOY** (no P0/P1). Re-deferred (non-binding): #3 checkpoint-v2 (D), #5 MCP front-proxy (E). Full Phase-4 outcome in §8 "Final status".
 
 ---
 
@@ -37,7 +36,7 @@ _memory:
 
 | Item | State | Location / Hash |
 |------|-------|-----------------|
-| `main` branch HEAD | clean | `50e21d48f8` |
+| `main` branch HEAD | clean | `942ad78d9c` (Phase-4 code); Phase 1-3 deploy snapshot was `50e21d48f8` — see §8 "Final status" for current state |
 | 012 research packet | committed, strict PASSED | `…/012-memory-index-scan-ux-hardening/` |
 | 013 implementation | **all phases shipped** | `…/013-memory-index-scan-implementation/` |
 | Phase 1 code | merged `98330d18fc` | coalescing + health.index + orphan sweep |
@@ -242,7 +241,27 @@ A → re-index the lagging 013 docs cleanly → B + C → #4 re-embed → #3 che
 - **One-shot migration scripts (untracked):** `mcp_server/scripts/dedup-cleanup-bc.mjs` (Phase-C cleanup), `mcp_server/scripts/dedup-index-b.mjs` (collision resolve + index). Dry-run by default; `--apply` to mutate. Reusable/auditable.
 - **Legacy vector shards DELETED** this session (hf-local bge-base, hf-local nomic, ollama-1024 + sidecars + a 0B stray). `database/test-context-index.sqlite` (468K) intentionally left — operator decision.
 
-### Open items (priority order)
+### Final status (2026-06-01 — Phase 4 COMPLETE)
+
+> ✅ **All binding items (A, B, C, F, G) DONE; D, E re-deferred (non-binding).** The A-G entries further below are the *executed* runbook, retained for the D/E design notes (also in §6). Key divergences from the original plan: #2-B shipped as **deprecate-before-insert** (preserve `memory_lineage`/causal/drift history — NOT delete-before-insert); #4 was resolved by a **full operator-authorized clean rebuild**, not an incremental drain.
+
+- **A — DONE.** Real missing-vector = **0**. The 4 residual startup-seed rows (ids 1-4, NULL `embedding_model`, marked success but never embedded) were deleted via sanctioned `memory_delete` + rescanned → re-embedded (9615-9618). Verified by `memory_health` consistency (rowsTotal=ftsRowsTotal=vecRowsTotal=**9614**, `mismatchedIds: []`, pending/retry/failed=0) AND a direct `rowid` anti-join. ⚠️ `memory_embedding_reconcile`'s `coverage.successMissingActiveVector` is **buggy** (joins the active shard on the always-NULL `vec_memories_rowids.id` column instead of `rowid` → reported 9614; the authoritative checks above are 0 — do NOT run `apply(repairSuccessCoverage:true)`, it would reset all 9614 to retry).
+- **B — DONE.** 5 provider-failures (50257-50261) re-indexed under ollama.
+- **C — DONE (reworked + shipped).** Deprecate-before-insert + **v28 partial unique index** `idx_memory_logical_key_active_unique` (scope-aware tenant/user/agent/session, anchor-normalized `TRIM`+`NULLIF`, excludes constitutional+deprecated; legacy table UNIQUE removed) + multi-tenant scope isolation + BM25 deprecated-filter. Commit `942ad78d9c` (24 files, +763/-117). Clean rebuild = **0 logical-key collisions**. Verified live: `schema_version`=28, index present, 9614 rows hold under it. The ~2,257 dangling projection pointers + 1 orphan vector were cleared by the rebuild.
+- **D — RE-DEFERRED (non-binding).** Checkpoint-v2 not scaffolded; design in §6 + §8-D below. Larger surface needing its own deep-review cycle.
+- **E — RE-DEFERRED (non-binding).** MCP front-proxy/reconnect not scaffolded; design in §6 + §8-E below. Recycle pathology observed live again this session (mk_code_index + mk_skill_advisor severed during this very reconciliation).
+- **F — DONE.** 5-round deep-review (cli-codex gpt-5.5); R5 = **SAFE TO DEPLOY**, P0 none / P1 none. Only P2: `schema-downgrade.ts` recreates the legacy UNIQUE on downgrade (downgrade-only).
+- **G — DONE.** `spec.md` / `checklist.md` / `implementation-summary.md` / this handover reconciled; `validate.sh --strict` run; `/memory:save` executed.
+
+#### Carried-forward follow-ups (optional, next session)
+- Checkpoint-v2 (D) + MCP front-proxy/reconnect (E) — designs retained in §6 + §8-D/§8-E.
+- Fix `memory_embedding_reconcile` coverage join (`id`→`rowid`) so `successMissingActiveVector` is accurate (it joins the active shard on the always-NULL `vec_memories_rowids.id` instead of `rowid`).
+- Embedder-factory false-positive: `generate-context.js` (and the standalone embedder factory) checks `vec_768` emptiness instead of the real vec0 store `vec_memories_vector_chunks00`, logging a spurious provider-cascade on a healthy ollama shard (9618 vectors present). Cosmetic, but makes the standalone save tool unreliable while the daemon is live — prefer `memory_index_scan`/`memory_save` (daemon-routed) for saves.
+- `schema-downgrade.ts` P2 (recreates legacy UNIQUE on downgrade).
+- Purge the 1 GB rebuild backup `database/backups/context-index-PRE-REBUILD-20260601-161614/` once satisfied.
+- ~105 pre-existing repo-wide metadata validation failures (importance_tier CHECK + malformed graph-metadata.json) — separate cleanup, not 013.
+
+### Open items (executed runbook — retained for D/E design detail)
 
 **A. Verify the #4 re-embed drain finished.** 2,192 success-coverage rows were reset to `retry` to re-embed into the ollama shard; daemon recycles likely paused it. Check `memory_health` → `index.retryVectors` trending to 0, and `memory_embedding_reconcile({mode:'dry-run'})` → `coverage.successMissingActiveVector` == 0. If stalled, re-run `memory_embedding_reconcile({mode:'apply', repairSuccessCoverage:true})`. The drain load is what trips the recycle (see E) — consider pacing.
 
