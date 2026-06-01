@@ -1,0 +1,2 @@
+{"event":"loop_init","executor":"native","model":"claude-opus-4-8","maxIterations":3,"convergenceThreshold":0.05}
+{"event":"converged","iterations":3,"stopReason":"max_iterations(planned)","newInfoRatio":[0.70,0.62,0.18],"recommendation":"H1 surface-nested map + full cross-surface overlay + H4 intra-surface ranking + asset deferral","synthesis":"research/research.md"}

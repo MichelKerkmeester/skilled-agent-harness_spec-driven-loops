@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":2,"newInfoRatio":0.62,"status":"complete","focus":"H3+H4+frontier"}
+{"type":"finding","id":"f-i2-09","label":"Scorer gold for D3/D2 is expectedResources ONLY; expectedAssets parsed but never scored, so every routed assets/* path counts as waste","iteration":2}
+{"type":"finding","id":"f-i2-10","label":"D3/D2 use exact string set-membership; per-path recall is all-or-nothing, so dropping any gold path is a hard D2 hit","iteration":2}
+{"type":"finding","id":"f-i2-11","label":"Frontier quantified: recovered gold sets (LS-001=5, SD-001~11, CS-001~11 refs) vs routed 16-20; waste = cross-surface + asset bloat","iteration":2}
+{"type":"finding","id":"f-i2-12","label":"NEW: D2 recall already broken today (SD-001=0.727, CS-001=0.60), so the REQ-003 guard floor is the measured baseline, NOT 1.0","iteration":2}
+{"type":"finding","id":"f-i2-13","label":"H3 lazy loading has no trigger surface in the stateless replay; its only measurable effect collapses into H4's smaller-first-slice, real cost (extra round-trip) is invisible to the metric","iteration":2}
+{"type":"finding","id":"f-i2-14","label":"H4 is the only dynamic lever that moves scored D3; two ranking signals exist (intent score, surface match); rank references intra-surface, never cap by raw count","iteration":2}
+{"type":"finding","id":"f-i2-15","label":"H1xH4 boundary resolved: cross-surface overlay must be FULL secondary-surface slice (unranked); H4 ranking applies only intra-surface to protect CS-001 D2=0.60","iteration":2}
+{"type":"finding","id":"f-i2-16","label":"RD-002 is a negative advisor scenario (sk-code-vs-sk-doc); out of the D3 frontier and must be left untouched by H1/H4","iteration":2}

@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-code routing efficiency remediation",
+      "sk-code over-routing",
+      "surface-slice loading",
+      "D3 D4 sk-code remediation",
+      "sk-code remediation plan",
+      "surface-slice research plan"
+    ],
+    "key_topics": [
+      "sk-code",
+      "routing",
+      "efficiency",
+      "remediation",
+      "over-routing",
+      "surface-slice",
+      "loading",
+      "plan",
+      "research",
+      "live",
+      "benchmark",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Usefulness Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Reduce",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Token Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "D3",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. APPROACH",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The live sk-code benchmark (phase 010) showed strong routing (D1-intra 92, D2 87, surfaces correct 3/3) but two weak dimensions with converging evidence: D3 efficiency 42 (the model loads ~16-20 resources where the gold is ~5-8) and D4 usefulness about 49 (skill-on beat skill-off on a domain-pattern task but lost on a routine language refactor). Both point at the same behavior: sk-code loads a broad resource slice, which pays off when a domain pattern matters and adds noise on simple tasks.",
+    "created_at": "2026-06-01T18:29:41.530Z",
+    "last_save_at": "2026-06-01T18:29:41.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

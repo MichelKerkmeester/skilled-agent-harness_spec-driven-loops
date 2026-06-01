@@ -1,0 +1,9 @@
+{
+  "researchTopic": "sk-code routing-efficiency and usefulness remediation: how to load a tighter task-appropriate resource slice that cuts D3 over-routing and lifts D4 routine-task usefulness without regressing D1 routing or D2 discovery",
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "maxIterations": 3,
+  "convergenceThreshold": 0.05,
+  "executionMode": "auto",
+  "resource_map": { "emit": true },
+  "config": { "executor": { "type": "native", "model": "claude-opus-4-8" } }
+}

@@ -210,12 +210,13 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   }
 
   if (kind === 'cli-opencode') {
+    // No --agent: current opencode treats `general` as a subagent and rejects it
+    // on a top-level `run`. The default agent runs when none is named, and a
+    // specific agent profile can be requested in the prompt body instead.
     const args = [
       'run',
       '--model',
       lineage.model || 'anthropic/claude-opus-4-8',
-      '--agent',
-      'general',
       '--format',
       'json',
       '--dangerously-skip-permissions',

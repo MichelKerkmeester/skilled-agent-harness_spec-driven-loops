@@ -1,0 +1,9 @@
+{"type":"iteration","iteration":1,"newInfoRatio":0.7,"status":"complete","focus":"root-cause+H1+H2"}
+{"type":"finding","id":"f-i1-01","label":"Root cause is RESOURCE_MAP cross-surface UNION (intent-only key), not a routing-accuracy defect","iteration":1}
+{"type":"finding","id":"f-i1-02","label":"Waste is large and concentrated in unioned IMPLEMENTATION/LANGUAGE_STANDARDS keys: SD-001 20/12, LS-001 16/11, CS-001 16/10","iteration":1}
+{"type":"finding","id":"f-i1-03","label":"D4 ablation: over-routed slice net-negative on routine task (LS-001 0.82 vs 0.95), net-positive on domain task (CS-001 0.88 vs 0.78) — harm is cross-surface half","iteration":1}
+{"type":"finding","id":"f-i1-04","label":"Surface detection already produces the exact key needed to slice the union (surfaceMatch true 3/3); H1 is structurally cheap","iteration":1}
+{"type":"finding","id":"f-i1-05","label":"H1 mechanism: nest RESOURCE_MAP under (surface,intent); Motion.dev stays additive peer overlay","iteration":1}
+{"type":"finding","id":"f-i1-06","label":"H1 breaks on genuinely cross-surface tasks; union currently masks this — needs explicit non-starvation overlay (D2 guard)","iteration":1}
+{"type":"finding","id":"f-i1-07","label":"H2 phase-gating is lower-leverage; phase detection is weakest signal and implementation trio is a hard contract against deferral","iteration":1}
+{"type":"finding","id":"f-i1-08","label":"H2 attacks a smaller within-surface waste share than H1; sequence H2 after H1 as complementary","iteration":1}

@@ -5,7 +5,7 @@ allowed-tools: [Bash, Read, Glob, Grep]
 version: 1.3.4.0
 ---
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai -->
+<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai, minimax, minimax-coding-plan, minimax-m3, minimax-m3-highspeed, token-plan -->
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 
@@ -236,11 +236,13 @@ Which would you like to set up? Confirm when login finishes; the skill will retr
 
 ### Default Invocation (Skill Default)
 
-**Default model + variant + agent + format + dir**: `opencode-go/deepseek-v4-pro` · `--variant high` · `--agent general` · `--format json` · `--dir <repo-root>`. The repo root pin avoids CWD ambiguity. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single gateway and gives elevated reasoning at low cost for routine cli-opencode dispatches.
+**Default model + variant + format + dir**: `opencode-go/deepseek-v4-pro` · `--variant high` · `--format json` · `--dir <repo-root>`. The repo root pin avoids CWD ambiguity. OpenCode Go is the default provider — it routes DeepSeek and other open models through a single gateway and gives elevated reasoning at low cost for routine cli-opencode dispatches.
 
-Use `opencode run --model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root> "<prompt>"`.
+Use `opencode run --model opencode-go/deepseek-v4-pro --variant high --format json --dir <repo-root> "<prompt>"`.
 
-Honor explicit user model, agent, port, and handback phrasing verbatim; otherwise use the default invocation above.
+> **The `--agent` flag (read this):** Do NOT pass `--agent` on a top-level `opencode run`. Current opencode treats named agents like `general` as **subagents** and rejects them at the top level, so `--agent general` fails the dispatch outright. When no `--agent` is given, the default agent runs — which is what you want for almost every dispatch. **To run as a specific agent profile, describe the role in the prompt body** (for example, open the prompt with "Act as a code-review agent: …"), not via `--agent`. Only pass `--agent <name>` if you have confirmed against `opencode run --help` on the installed version that it accepts that agent at the top level.
+
+Honor explicit user model, port, and handback phrasing verbatim; otherwise use the default invocation above.
 
 ### Core Invocation Pattern
 
@@ -260,7 +262,7 @@ The calling AI is the conductor. OpenCode distinguishes **primary agents** (dire
 
 #### Primary agents — directly invokable via `--agent`
 
-Direct agents are `general`, `plan`, `orchestrate`, and `ai-council`. Pin one explicitly when the task needs planning, orchestration, or multi-strategy planning.
+OpenCode defines `general`, `plan`, `orchestrate`, and `ai-council` as primary agents. **Caveat — never pass `--agent general`:** the current opencode treats `general` as a subagent and rejects it at the top level, and the default agent (used when no `--agent` is given) already covers that case. Pin `--agent plan|orchestrate|ai-council` only when the task needs that profile AND `opencode run --help` on the installed version confirms top-level acceptance; otherwise state the role in the prompt body.
 
 #### Subagents — dispatched as Task subagents from a primary
 
@@ -295,7 +297,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli_reference.md` §9).
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive — refuse unless prompt has explicit parallel-session keywords.
-3. Pin model + agent + variant + format + dir explicitly. Default: `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `minimax-coding-plan/MiniMax-M3-highspeed`, `openai/gpt-5.5-pro`).
+3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model opencode-go/deepseek-v4-pro --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `minimax-coding-plan/MiniMax-M3-highspeed`, `openai/gpt-5.5-pro`).
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
 5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration_patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.
