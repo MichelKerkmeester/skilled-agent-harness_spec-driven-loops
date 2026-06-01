@@ -30,11 +30,12 @@ Spec 026 (graph-and-context-optimization) shipped across 8 tracks and about 634 
 
 Each track rollup has an Included Phases table linking to its child phase rollups and leaf changelogs. Every leaf changelog follows the canonical phase template: Summary, Added, Changed, Fixed, Verification, Files Changed, Follow-Ups. Research-only and review-only phases mark Added, Changed, and Fixed as None and put artifact paths under Verification. Each phase parent rollup follows the root template with an Included Phases table.
 
-## Program-level entries in this directory
+## Program-spanning entries
 
-- [changelog-026-graph-and-context-optimization.md](./changelog-026-graph-and-context-optimization.md) program-level changelog
-- [changelog-026-014-052-mk-spec-memory-rename.md](./changelog-026-014-052-mk-spec-memory-rename.md) mk-spec-memory rename
-- [changelog-026-007-016-substrate-harness-hardening.md](./changelog-026-007-016-substrate-harness-hardening.md) substrate harness hardening
+These changelogs cover work that spans multiple tracks. Each lives in its home track folder and is cross-linked here:
+
+- [mk-spec-memory rename](./003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/052-mk-spec-memory-rename/changelog-001-052-mk-spec-memory-rename.md)
+- [substrate harness hardening](./007-mcp-daemon-reliability/016-substrate-harness-hardening/changelog-007-016-substrate-harness-hardening.md)
 
 ## Conventions
 
