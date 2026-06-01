@@ -50,6 +50,25 @@ export interface ScoringStats {
 // 3. DATABASE HANDLE (module-scoped, set via initScoringObservability)
 let _db: Database.Database | null = null;
 
+function initializeScoringTable(db: Database.Database): void {
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS scoring_observations (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      memory_id INTEGER,
+      query_id TEXT,
+      timestamp TEXT DEFAULT (datetime('now')),
+      memory_age_days REAL DEFAULT 0,
+      interference_applied INTEGER DEFAULT 0,
+      interference_score REAL DEFAULT 0,
+      interference_penalty REAL DEFAULT 0,
+      score_before REAL,
+      score_after REAL,
+      score_delta REAL
+    )
+  `);
+  _db = db;
+}
+
 // ───────────────────────────────────────────────────────────────
 // 3. INITIALIZATION
 
@@ -62,28 +81,16 @@ let _db: Database.Database | null = null;
  */
 export function initScoringObservability(db: Database.Database): void {
   try {
-    db.exec(`
-      CREATE TABLE IF NOT EXISTS scoring_observations (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        memory_id INTEGER,
-        query_id TEXT,
-        timestamp TEXT DEFAULT (datetime('now')),
-        memory_age_days REAL DEFAULT 0,
-        interference_applied INTEGER DEFAULT 0,
-        interference_score REAL DEFAULT 0,
-        interference_penalty REAL DEFAULT 0,
-        score_before REAL,
-        score_after REAL,
-        score_delta REAL
-      )
-    `);
-    // Only set _db after successful schema creation
-    _db = db;
+    initializeScoringTable(db);
   } catch (e: unknown) {
     _db = null;
     const msg = e instanceof Error ? e.message : String(e);
     console.error('[scoring-observability] initScoringObservability failed:', msg);
   }
+}
+
+export function rebindScoringObservability(db: Database.Database): void {
+  initializeScoringTable(db);
 }
 
 // ───────────────────────────────────────────────────────────────

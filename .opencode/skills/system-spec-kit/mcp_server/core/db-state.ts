@@ -23,7 +23,7 @@ export interface VectorIndexLike {
   getDb(): DatabaseLike | null;
   closeDb?(): void;
   vectorSearch?: VectorSearchFn;
-  onDatabaseConnectionChange?: (listener: (database: DatabaseLike) => void) => (() => void);
+  onDatabaseConnectionChange?: (listener: (database: DatabaseLike) => boolean | void) => (() => void);
 }
 
 /** Canonical DB type shared across MCP runtime modules */
@@ -113,15 +113,18 @@ export function registerDatabaseRebindListener(listener: DatabaseRebindListener)
   };
 }
 
-function notifyDatabaseRebindListeners(database: DatabaseLike): void {
+function notifyDatabaseRebindListeners(database: DatabaseLike): boolean {
+  let succeeded = true;
   for (const listener of databaseRebindListeners) {
     try {
       listener(database);
     } catch (error: unknown) {
+      succeeded = false;
       const message = error instanceof Error ? error.message : String(error);
       console.error(`[db-state] Database rebind listener failed: ${message}`);
     }
   }
+  return succeeded;
 }
 
 function registerVectorIndexListener(nextVectorIndex: VectorIndexLike): void {
@@ -144,15 +147,12 @@ function registerVectorIndexListener(nextVectorIndex: VectorIndexLike): void {
       return;
     }
 
-    try {
-      const rebound = rebindDatabaseConsumers(database);
-      if (!rebound) {
-        console.error('[db-state] Database consumer listener rebind returned false');
-      }
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      console.error(`[db-state] Database consumer listener rebind failed: ${message}`);
+    const rebound = rebindDatabaseConsumers(database);
+    if (!rebound) {
+      console.error('[db-state] Database consumer listener rebind returned false');
+      return false;
     }
+    return true;
   });
 }
 
@@ -177,8 +177,7 @@ function rebindDatabaseConsumers(database: DatabaseLike): boolean {
   for (const consumer of dbConsumersRef) {
     consumer.init(database);
   }
-  notifyDatabaseRebindListeners(database);
-  return true;
+  return notifyDatabaseRebindListeners(database);
 }
 
 function getDbUpdatedFilePath(): string {
@@ -319,7 +318,7 @@ export async function reinitializeDatabase(updatedMarkerTime?: number): Promise<
     return true;
   } finally {
     lastReinitializeSucceeded = rebindSucceeded;
-    // P4-13 FIX: Resolve the mutex BEFORE clearing the reference.
+    // Resolve the mutex BEFORE clearing the reference.
     // If we set reinitializeMutex = null first, a concurrent caller could
     // See null and start a new reinitialization before resolve is called.
     // WHY non-null: resolveMutex is always assigned in the Promise constructor callback above (synchronous)

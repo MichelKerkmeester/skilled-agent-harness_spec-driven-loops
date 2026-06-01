@@ -24,6 +24,7 @@ import { getEmbedderAdapter, teardownEmbedderAfterSwap } from './execution-route
 import { getManifest } from './registry.js';
 import { parseBoundedEnv } from '../util/env.js';
 import { createLogger } from '../utils/logger.js';
+import { getRestoreBarrierStatus } from '../storage/checkpoints.js';
 
 // ───────────────────────────────────────────────────────────────
 // 1. TYPE DEFINITIONS
@@ -74,6 +75,7 @@ interface MemoryRow {
 const DEFAULT_BATCH_SIZE = 50;
 const MIN_BATCH_SIZE = 1;
 const MAX_BATCH_SIZE = 1_000;
+const RESTORE_REQUEUE_DELAY_MS = 100;
 const logger = createLogger('embedder-reindex');
 const JOB_TABLE_SQL = `
   CREATE TABLE IF NOT EXISTS embedder_jobs (
@@ -311,6 +313,45 @@ function getDatabaseDir(db: Database.Database): string | null {
   return path.dirname(row.file);
 }
 
+function getDatabasePath(db: Database.Database): string | null {
+  try {
+    const row = (db.prepare('PRAGMA database_list').all() as Array<{ name?: string; file?: string }>)
+      .find((entry) => entry.name === 'main');
+    if (!row?.file || row.file === ':memory:') {
+      return null;
+    }
+    return row.file;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function isClosedDatabaseHandleError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : String(error);
+  return /database connection is not open|closed database|database handle is closed/i.test(message);
+}
+
+function scheduleJobAfterRestore(jobId: string, dbPath: string | null): void {
+  setTimeout(() => {
+    // Do not re-open the database while a checkpoint restore is still in
+    // progress: initialize_db runs interrupted-restore recovery, which would
+    // roll back the in-flight restore. Wait for the barrier to clear.
+    if (getRestoreBarrierStatus()) {
+      scheduleJobAfterRestore(jobId, dbPath);
+      return;
+    }
+    try {
+      enqueueJob(dbPath ? initializeDb(dbPath) : initializeDb(), jobId);
+    } catch (error: unknown) {
+      logger.warn('embedder reindex restore retry skipped', {
+        event: 'embedder_reindex_restore_retry_skipped',
+        jobId,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }, RESTORE_REQUEUE_DELAY_MS).unref?.();
+}
+
 function requireDatabaseDir(db: Database.Database, operation: string): string {
   const databaseDir = getDatabaseDir(db);
   if (!databaseDir) {
@@ -427,14 +468,30 @@ function enqueueJob(db: Database.Database, jobId: string): void {
 }
 
 async function runJob(db: Database.Database, jobId: string): Promise<void> {
-  const initialJob = selectJob(db, jobId);
+  const dbPath = getDatabasePath(db);
+  let jobDb = db;
+  if (getRestoreBarrierStatus()) {
+    scheduleJobAfterRestore(jobId, dbPath);
+    return;
+  }
+  const resolveJobDb = (): Database.Database => {
+    const barrierStatus = getRestoreBarrierStatus();
+    if (barrierStatus) {
+      const error = new Error(barrierStatus.message);
+      error.name = barrierStatus.code;
+      throw error;
+    }
+    return jobDb;
+  };
+  jobDb = resolveJobDb();
+  const initialJob = selectJob(jobDb, jobId);
   if (!initialJob || initialJob.status === 'completed' || initialJob.status === 'failed' || initialJob.status === 'cancelled') {
     return;
   }
 
   const manifest = getManifest(initialJob.toName);
   if (!manifest) {
-    setJobStatus(db, jobId, 'failed', undefined, `UNKNOWN_EMBEDDER: ${initialJob.toName}`);
+    setJobStatus(jobDb, jobId, 'failed', undefined, `UNKNOWN_EMBEDDER: ${initialJob.toName}`);
     return;
   }
   const adapter = getEmbedderAdapter(manifest.backend, initialJob.toName, initialJob.toDim);
@@ -446,7 +503,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     baseUrl: null,
   });
 
-  ensureVecTableForDim(db, initialJob.toDim);
+  ensureVecTableForDim(jobDb, initialJob.toDim);
   const tableName = vecTableNameForDim(initialJob.toDim);
   const batchSize = getBatchSize();
   let processed = initialJob.processed;
@@ -456,7 +513,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   // A mid-loop throw (or cancel) leaves the live (active) shard untouched; the partial
   // staging artifact is unlinked in the catch/cancel paths. databaseDir is guaranteed
   // file-backed here (startReindexInternal already called requireDatabaseDir).
-  const databaseDir = requireDatabaseDir(db, 'reindex staging');
+  const databaseDir = requireDatabaseDir(jobDb, 'reindex staging');
   const activeShardPath = targetProfile.getVectorShardPath(databaseDir);
   const stagingShardPath = `${activeShardPath}.reindex-${jobId}.staging`;
 
@@ -471,42 +528,45 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
   };
 
   try {
-    setJobStatus(db, jobId, 'running');
+    setJobStatus(jobDb, jobId, 'running');
     // Start each run from a clean staging slate (a prior crashed run may have left one).
     cleanupStaging();
 
     while (processed < initialJob.total) {
+      jobDb = resolveJobDb();
       // DR-001-P1-002: re-read the live cancel/status before each batch so cancelJob()
       // during a run stops the worker before the next write. Abort cleanly: drop the
       // staging artifact and leave the live shard + active pointer untouched.
-      if (readJobStatus(db, jobId) === 'cancelled') {
+      if (readJobStatus(jobDb, jobId) === 'cancelled') {
         cleanupStaging();
         return;
       }
 
-      const rows = selectMemoryBatch(db, processed, batchSize);
+      const rows = selectMemoryBatch(jobDb, processed, batchSize);
       if (rows.length === 0) {
         break;
       }
 
       const embeddings = await adapter.embed(rows.map(memoryText));
+      jobDb = resolveJobDb();
       if (embeddings.length !== rows.length) {
         throw new Error(`Embedder returned ${embeddings.length} embeddings for ${rows.length} memories`);
       }
 
-      writeVectors(db, tableName, rows, embeddings);
-      writeVectorsToShard(db, targetProfile, tableName, rows, embeddings, stagingShardPath);
+      writeVectors(jobDb, tableName, rows, embeddings);
+      writeVectorsToShard(jobDb, targetProfile, tableName, rows, embeddings, stagingShardPath);
       processed += rows.length;
       // Clobber-safe: only advances while status is still 'running' (never resurrects
       // a concurrently-set 'cancelled').
-      setJobStatus(db, jobId, 'running', processed);
+      setJobStatus(jobDb, jobId, 'running', processed);
       await new Promise<void>((resolve) => {
         setImmediate(resolve);
       });
     }
 
     // DR-001-P1-002: final cancel checkpoint before the irreversible swap/commit.
-    if (readJobStatus(db, jobId) === 'cancelled') {
+    jobDb = resolveJobDb();
+    if (readJobStatus(jobDb, jobId) === 'cancelled') {
       cleanupStaging();
       return;
     }
@@ -529,7 +589,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
       fs.renameSync(stagingShardPath, activeShardPath);
     }
 
-    const complete = db.transaction(() => {
+    const complete = jobDb.transaction(() => {
       // Persist the active-embedder provider pointer too; omitting it leaves the pointer empty,
       // which readActiveEmbedderIfValid coerces to undefined and the next boot loses provider
       // identity. 'api' backends are ambiguous (openai vs voyage) from the manifest alone, so
@@ -539,14 +599,14 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
         : manifest.backend === 'sentence-transformers'
           ? 'hf-local'
           : undefined;
-      setActiveEmbedder(db, initialJob.toName, initialJob.toDim, activeProvider);
+      setActiveEmbedder(jobDb, initialJob.toName, initialJob.toDim, activeProvider);
       // Commit embedding_status for rows now backed by an active-profile vector.
       // A vector-only reindex previously wrote vectors but left memory_index.embedding_status
       // stale, so a "completed" bulk re-embed never raised the success count. Reconcile the
       // status for every row present in the just-written vec_<dim> table, inside the same
       // atomic completion transaction so vectors and status flip together.
       const completedAt = nowIso();
-      db.prepare(`
+      jobDb.prepare(`
         UPDATE memory_index
         SET embedding_status = 'success',
             embedding_generated_at = COALESCE(embedding_generated_at, @ts),
@@ -555,7 +615,7 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
         WHERE embedding_status != 'success'
           AND id IN (SELECT id FROM ${tableName})
       `).run({ ts: completedAt });
-      setJobStatus(db, jobId, 'completed', initialJob.total);
+      setJobStatus(jobDb, jobId, 'completed', initialJob.total);
     });
     complete();
     // The active-embedder pointer just flipped; drop the cached provider singleton so the
@@ -564,16 +624,26 @@ async function runJob(db: Database.Database, jobId: string): Promise<void> {
     void teardownEmbedderAfterSwap(manifest.backend, initialJob.toName).catch((error: unknown) => {
       console.warn(`[embedder-reindex] embedder teardown after swap failed: ${error instanceof Error ? error.message : String(error)}`);
     });
-    if (getDatabaseDir(db)) {
-      attachActiveVectorShard(db, targetProfile);
+    if (getDatabaseDir(jobDb)) {
+      attachActiveVectorShard(jobDb, targetProfile);
     }
   } catch (error: unknown) {
+    if (getRestoreBarrierStatus() || isClosedDatabaseHandleError(error)) {
+      cleanupStaging();
+      scheduleJobAfterRestore(jobId, dbPath);
+      logger.warn('embedder reindex paused for checkpoint restore', {
+        event: 'embedder_reindex_restore_paused',
+        jobId,
+        processed,
+      });
+      return;
+    }
     // DR-020: a failed run must not leave a half-written shard anywhere. The live active
     // shard was never mutated (all writes went to staging); discard the partial staging
     // artifact so the next attempt starts clean and the active shard stays the last-good one.
     cleanupStaging();
     const message = error instanceof Error ? error.message : String(error);
-    setJobStatus(db, jobId, 'failed', processed, message);
+    setJobStatus(jobDb, jobId, 'failed', processed, message);
     logger.error('embedder reindex job failed', {
       event: 'embedder_reindex_failed',
       jobId,

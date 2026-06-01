@@ -5,6 +5,7 @@ import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import * as checkpoints from '../lib/storage/checkpoints';
+import { closeDb, initializeDb, recoverInterruptedCheckpointRestore } from '../lib/search/vector-index-store';
 
 let tempDir = '';
 let dbPath = '';
@@ -110,6 +111,61 @@ function writeManifest(name: string, manifest: Record<string, unknown>): void {
   );
 }
 
+function getRestoreJournalPath(): string {
+  return path.join(tempDir, 'checkpoints', '.restore-journal.json');
+}
+
+function createMarkerDatabase(targetPath: string, value: string): void {
+  const markerDb = new Database(targetPath);
+  markerDb.exec('CREATE TABLE marker (value TEXT NOT NULL)');
+  markerDb.prepare('INSERT INTO marker (value) VALUES (?)').run(value);
+  markerDb.close();
+}
+
+function readMarkerValue(targetPath: string): string {
+  const markerDb = new Database(targetPath, { readonly: true });
+  try {
+    return (markerDb.prepare('SELECT value FROM marker').get() as { value: string }).value;
+  } finally {
+    markerDb.close();
+  }
+}
+
+function writeRestoreJournal(name: string, backupMainPath: string): void {
+  writeRestoreJournalForPath(name, dbPath, backupMainPath, getRestoreJournalPath());
+}
+
+function writeRestoreJournalForPath(
+  name: string,
+  liveMainPath: string,
+  backupMainPath: string,
+  journalPath: string,
+  overrides: Partial<{
+    phase: 'swap-pending' | 'swap-done';
+    liveShardPath: string | null;
+    backupShardPath: string | null;
+    snapshotVecPath: string | null;
+    shouldRestoreVec: boolean;
+    liveShardPreexisted: boolean;
+  }> = {},
+): void {
+  fs.mkdirSync(path.dirname(journalPath), { recursive: true, mode: 0o700 });
+  fs.writeFileSync(journalPath, `${JSON.stringify({
+    formatVersion: 1,
+    phase: overrides.phase ?? 'swap-pending',
+    createdAt: new Date().toISOString(),
+    checkpointName: name,
+    liveMainPath,
+    backupMainPath,
+    snapshotMainPath: path.join(path.dirname(journalPath), name, 'snapshot-main.sqlite'),
+    liveShardPath: overrides.liveShardPath ?? null,
+    backupShardPath: overrides.backupShardPath ?? null,
+    snapshotVecPath: overrides.snapshotVecPath ?? null,
+    shouldRestoreVec: overrides.shouldRestoreVec ?? false,
+    liveShardPreexisted: overrides.liveShardPreexisted ?? false,
+  }, null, 2)}\n`);
+}
+
 beforeEach(() => {
   tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'checkpoints-v2-restore-'));
   dbPath = path.join(tempDir, 'memory.sqlite');
@@ -120,6 +176,7 @@ beforeEach(() => {
 
 afterEach(() => {
   checkpoints.setRestoreBarrierHooks(null);
+  closeDb();
   try { database.close(); } catch {}
   fs.rmSync(tempDir, { recursive: true, force: true });
 });
@@ -169,6 +226,206 @@ describe('checkpoint v2 restore', () => {
     expect(checkpoints.isRestoreInProgress()).toBe(false);
   });
 
+  it('recovers an interrupted v2 restore from the boot journal', () => {
+    checkpoints.createCheckpoint({ name: 'restore-crash', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Live mutation before crash', 1);
+    database.close();
+
+    const checkpointDir = path.join(tempDir, 'checkpoints', 'restore-crash');
+    const snapshotMainPath = path.join(checkpointDir, 'snapshot-main.sqlite');
+    const journalPath = getRestoreJournalPath();
+    const backupMainPath = `${dbPath}.bak`;
+
+    writeRestoreJournal('restore-crash', backupMainPath);
+    fs.renameSync(dbPath, backupMainPath);
+    fs.copyFileSync(snapshotMainPath, dbPath);
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+    database = new Database(dbPath);
+    checkpoints.init(database);
+
+    expect(captureMemories(database)[0]?.title).toBe('Live mutation before crash');
+    expect(fs.existsSync(journalPath)).toBe(false);
+    expect(fs.existsSync(backupMainPath)).toBe(false);
+  });
+
+  it('keeps the restored database for a swap-done restore journal', () => {
+    database.close();
+    const backupMainPath = `${dbPath}.bak`;
+    const journalPath = getRestoreJournalPath();
+    fs.rmSync(dbPath, { force: true });
+    createMarkerDatabase(dbPath, 'restored-live');
+    createMarkerDatabase(backupMainPath, 'original-live');
+    writeRestoreJournalForPath('swap-done-recovery', dbPath, backupMainPath, journalPath, {
+      phase: 'swap-done',
+    });
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+
+    expect(readMarkerValue(dbPath)).toBe('restored-live');
+    expect(fs.existsSync(journalPath)).toBe(false);
+    expect(fs.existsSync(backupMainPath)).toBe(false);
+  });
+
+  it('rolls back the database for a swap-pending restore journal', () => {
+    database.close();
+    const backupMainPath = `${dbPath}.bak`;
+    const journalPath = getRestoreJournalPath();
+    fs.rmSync(dbPath, { force: true });
+    createMarkerDatabase(dbPath, 'snapshot-live');
+    createMarkerDatabase(backupMainPath, 'original-live');
+    writeRestoreJournalForPath('swap-pending-recovery', dbPath, backupMainPath, journalPath, {
+      phase: 'swap-pending',
+    });
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+
+    expect(readMarkerValue(dbPath)).toBe('original-live');
+    expect(fs.existsSync(journalPath)).toBe(false);
+    expect(fs.existsSync(backupMainPath)).toBe(false);
+  });
+
+  it('does not touch a stale shard backup when embeddings were not restored', () => {
+    database.close();
+    const backupMainPath = `${dbPath}.bak`;
+    const journalPath = getRestoreJournalPath();
+    const liveShardPath = path.join(tempDir, 'vectors', 'context-vectors__test.sqlite');
+    const staleShardBackupPath = `${liveShardPath}.bak`;
+    fs.mkdirSync(path.dirname(liveShardPath), { recursive: true, mode: 0o700 });
+    fs.rmSync(dbPath, { force: true });
+    createMarkerDatabase(dbPath, 'snapshot-live');
+    createMarkerDatabase(backupMainPath, 'original-live');
+    createMarkerDatabase(liveShardPath, 'current-shard');
+    createMarkerDatabase(staleShardBackupPath, 'stale-shard');
+    writeRestoreJournalForPath('main-only-recovery', dbPath, backupMainPath, journalPath, {
+      phase: 'swap-pending',
+      shouldRestoreVec: false,
+      liveShardPath: null,
+      backupShardPath: null,
+      snapshotVecPath: null,
+      liveShardPreexisted: false,
+    });
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+
+    expect(readMarkerValue(dbPath)).toBe('original-live');
+    expect(readMarkerValue(liveShardPath)).toBe('current-shard');
+    expect(readMarkerValue(staleShardBackupPath)).toBe('stale-shard');
+  });
+
+  it('removes a restored shard on rollback when no live shard preexisted', () => {
+    database.close();
+    const backupMainPath = `${dbPath}.bak`;
+    const journalPath = getRestoreJournalPath();
+    const liveShardPath = path.join(tempDir, 'vectors', 'context-vectors__test.sqlite');
+    const backupShardPath = `${liveShardPath}.bak`;
+    fs.mkdirSync(path.dirname(liveShardPath), { recursive: true, mode: 0o700 });
+    fs.rmSync(dbPath, { force: true });
+    createMarkerDatabase(dbPath, 'snapshot-live');
+    createMarkerDatabase(backupMainPath, 'original-live');
+    createMarkerDatabase(liveShardPath, 'snapshot-shard');
+    writeRestoreJournalForPath('new-shard-rollback', dbPath, backupMainPath, journalPath, {
+      phase: 'swap-pending',
+      shouldRestoreVec: true,
+      liveShardPath,
+      backupShardPath,
+      snapshotVecPath: path.join(tempDir, 'checkpoints', 'new-shard-rollback', 'snapshot-vec.sqlite'),
+      liveShardPreexisted: false,
+    });
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+
+    expect(readMarkerValue(dbPath)).toBe('original-live');
+    expect(fs.existsSync(liveShardPath)).toBe(false);
+    expect(fs.existsSync(backupShardPath)).toBe(false);
+  });
+
+  it('skips boot restore recovery only for the intentional reopen path', () => {
+    database.close();
+    const restoreDbPath = path.join(tempDir, 'restore-skip.sqlite');
+    const backupMainPath = `${restoreDbPath}.bak`;
+    const journalPath = path.join(tempDir, 'checkpoints', '.restore-journal.json');
+    for (const [targetPath, value] of [[restoreDbPath, 'snapshot-live'], [backupMainPath, 'backup-original']] as const) {
+      createMarkerDatabase(targetPath, value);
+    }
+    writeRestoreJournalForPath('skip-recovery', restoreDbPath, backupMainPath, journalPath);
+
+    database = initializeDb(restoreDbPath, { skipRestoreRecovery: true });
+    expect((database.prepare('SELECT value FROM marker').get() as { value: string }).value).toBe('snapshot-live');
+    expect(fs.existsSync(journalPath)).toBe(true);
+    expect(fs.existsSync(backupMainPath)).toBe(true);
+
+    closeDb();
+    database = initializeDb(restoreDbPath);
+
+    expect((database.prepare('SELECT value FROM marker').get() as { value: string }).value).toBe('backup-original');
+    expect(fs.existsSync(journalPath)).toBe(false);
+    expect(fs.existsSync(backupMainPath)).toBe(false);
+  });
+
+  it('clears the restore journal before best-effort backup cleanup', () => {
+    checkpoints.createCheckpoint({ name: 'cleanup-order', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
+    const backupMainPath = `${dbPath}.bak`;
+    const cleanupFailingReopen = (targetPath: string, swapFn: () => void): Database.Database => {
+      try { database.close(); } catch {}
+      swapFn();
+      fs.unlinkSync(backupMainPath);
+      fs.mkdirSync(backupMainPath, { mode: 0o700 });
+      database = new Database(targetPath);
+      checkpoints.init(database);
+      return database;
+    };
+
+    const result = checkpoints.restoreCheckpoint('cleanup-order', false, {}, { reopen: cleanupFailingReopen });
+
+    expect(result.errors).toEqual([]);
+    expect(captureMemories(database)[0]?.title).toBe('Memory A');
+    expect(fs.existsSync(getRestoreJournalPath())).toBe(false);
+    expect(fs.existsSync(backupMainPath)).toBe(true);
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(false);
+    expect(captureMemories(database)[0]?.title).toBe('Memory A');
+  });
+
+  it('writes the restore journal atomically and clears it after success', () => {
+    checkpoints.createCheckpoint({ name: 'atomic-journal', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
+    const journalPath = getRestoreJournalPath();
+    let inspectedJournal = false;
+    const inspectingReopen = (targetPath: string, swapFn: () => void): Database.Database => {
+      try { database.close(); } catch {}
+      swapFn();
+      const parsed = JSON.parse(fs.readFileSync(journalPath, 'utf-8')) as Record<string, unknown>;
+      expect(parsed.formatVersion).toBe(1);
+      expect(fs.realpathSync(parsed.liveMainPath as string)).toBe(fs.realpathSync(dbPath));
+      expect(fs.existsSync(`${journalPath}.tmp`)).toBe(false);
+      inspectedJournal = true;
+      database = new Database(targetPath);
+      checkpoints.init(database);
+      return database;
+    };
+
+    const result = checkpoints.restoreCheckpoint('atomic-journal', false, {}, { reopen: inspectingReopen });
+
+    expect(result.errors).toEqual([]);
+    expect(inspectedJournal).toBe(true);
+    expect(fs.existsSync(journalPath)).toBe(false);
+  });
+
+  it('ignores malformed or temporary restore journals during recovery', () => {
+    const journalPath = getRestoreJournalPath();
+    fs.mkdirSync(path.dirname(journalPath), { recursive: true, mode: 0o700 });
+    fs.writeFileSync(`${journalPath}.tmp`, '{"formatVersion":1');
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(false);
+
+    fs.writeFileSync(journalPath, '{"formatVersion":');
+
+    expect(() => recoverInterruptedCheckpointRestore(dbPath)).not.toThrow();
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(false);
+    expect(fs.existsSync(journalPath)).toBe(true);
+  });
+
   it('keeps v1 checkpoint rows on the JSON restore path', () => {
     checkpoints.createCheckpoint({ name: 'scoped-v1', specFolder: 'test-spec' });
     database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
@@ -193,6 +450,31 @@ describe('checkpoint v2 restore', () => {
 
     expect(result.errors.join('\n')).toContain('CHECKPOINT_RESTORE_DOWNGRADE_UNSAFE');
     expect(checkpoints.isRestoreInProgress()).toBe(false);
+  });
+
+  it('refuses manifests with a missing schema version', () => {
+    checkpoints.createCheckpoint({ name: 'missing-schema', includeEmbeddings: false });
+    const manifest = readManifest('missing-schema');
+    const withoutSchemaVersion = { ...manifest };
+    delete withoutSchemaVersion.schemaVersion;
+    writeManifest('missing-schema', withoutSchemaVersion);
+
+    const result = checkpoints.restoreCheckpoint('missing-schema', false, {}, { reopen: flatReopen });
+
+    expect(result.errors.join('\n')).toContain('CHECKPOINT_RESTORE_MANIFEST_INVALID');
+    expect(checkpoints.isRestoreInProgress()).toBe(false);
+  });
+
+  it('preserves the restored checkpoint catalog row after v2 restore', () => {
+    const checkpointInfo = checkpoints.createCheckpoint({ name: 'catalog-preserved', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
+
+    const result = checkpoints.restoreCheckpoint('catalog-preserved', false, {}, { reopen: flatReopen });
+
+    expect(result.errors).toEqual([]);
+    expect(checkpoints.listCheckpoints().some((checkpoint) => checkpoint.name === 'catalog-preserved')).toBe(true);
+    expect(typeof checkpointInfo.snapshotPath).toBe('string');
+    expect(fs.existsSync(checkpointInfo.snapshotPath as string)).toBe(true);
   });
 
   it('refuses manifests with an embedder slug mismatch', () => {

@@ -288,6 +288,11 @@ function initExtractionAdapter(database: Database.Database, registerCallback: Re
   registerCallback(handleAfterTool);
 }
 
+function rebindExtractionAdapter(database: Database.Database): void {
+  db = database;
+  validateExtractionRules(RULES);
+}
+
 /** Returns current extraction metrics including match counts and processing stats. */
 function getExtractionMetrics(): ExtractionMetrics {
   return { ...metrics };
@@ -304,6 +309,7 @@ function resetExtractionMetrics(): void {
 export {
   RULES,
   initExtractionAdapter,
+  rebindExtractionAdapter,
   applySummarizer,
   matchRule,
   getExtractionMetrics,

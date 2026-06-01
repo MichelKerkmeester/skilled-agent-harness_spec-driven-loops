@@ -114,6 +114,7 @@ const MAX_CHECKPOINTS = 10;
 const CHECKPOINT_CREATE_MAX_ATTEMPTS = 3;
 const CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS = 50;
 const CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS = 200;
+const RESTORE_JOURNAL_NAME = '.restore-journal.json';
 
 const CHECKPOINT_MANIFEST = Object.freeze({
   snapshot: [
@@ -235,6 +236,7 @@ type CheckpointRestoreErrorCode =
   | 'CHECKPOINT_RESTORE_EMBEDDER_MISMATCH'
   | 'CHECKPOINT_RESTORE_FILE_MISSING'
   | 'CHECKPOINT_RESTORE_PATH_UNRESOLVED'
+  | 'CHECKPOINT_RESTORE_JOURNAL_FAILED'
   | 'CHECKPOINT_RESTORE_SWAP_FAILED';
 
 class CheckpointCreateError extends Error {
@@ -322,11 +324,28 @@ interface CheckpointV2Manifest {
   includeEmbeddings: boolean;
   mainTables: string[];
   vecTables: string[];
-  schemaVersion: number | null;
+  schemaVersion: number;
   memoryCount: number;
   vectorCount: number;
   mainBytes: number;
   vecBytes: number;
+}
+
+type RestoreJournalPhase = 'swap-pending' | 'swap-done';
+
+interface RestoreJournalFile {
+  formatVersion: 1;
+  phase: RestoreJournalPhase;
+  createdAt: string;
+  checkpointName: string;
+  liveMainPath: string;
+  backupMainPath: string;
+  snapshotMainPath: string;
+  liveShardPath: string | null;
+  backupShardPath: string | null;
+  snapshotVecPath: string | null;
+  shouldRestoreVec: boolean;
+  liveShardPreexisted: boolean;
 }
 
 // Validate the decompressed checkpoint snapshot before
@@ -667,6 +686,7 @@ function loadCheckpointV2Manifest(snapshotPath: string | null): CheckpointV2Mani
       || typeof parsed.includeEmbeddings !== 'boolean'
       || !Array.isArray(parsed.mainTables)
       || !Array.isArray(parsed.vecTables)
+      || typeof parsed.schemaVersion !== 'number'
       || typeof parsed.memoryCount !== 'number'
       || typeof parsed.vectorCount !== 'number'
     ) {
@@ -697,6 +717,104 @@ function resolveMainDatabasePath(database: Database.Database): string {
 function removeSqliteSidecars(databasePath: string): void {
   for (const sidecarPath of [`${databasePath}-wal`, `${databasePath}-shm`]) {
     fs.rmSync(sidecarPath, { force: true });
+  }
+}
+
+function getRestoreJournalPath(liveMainPath: string): string {
+  return path.join(path.dirname(liveMainPath), 'checkpoints', RESTORE_JOURNAL_NAME);
+}
+
+function fsyncFileIfPossible(filePath: string): void {
+  let fd: number | null = null;
+  try {
+    fd = fs.openSync(filePath, 'r');
+    fs.fsyncSync(fd);
+  } catch (_error: unknown) {
+    // Best-effort durability; the next boot still treats any visible journal as authoritative.
+  } finally {
+    if (fd !== null) {
+      try { fs.closeSync(fd); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function fsyncDirectoryIfPossible(dirPath: string): void {
+  let fd: number | null = null;
+  try {
+    fd = fs.openSync(dirPath, 'r');
+    fs.fsyncSync(fd);
+  } catch (_error: unknown) {
+    // Directory fsync is unavailable on some platforms/filesystems.
+  } finally {
+    if (fd !== null) {
+      try { fs.closeSync(fd); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function writeRestoreJournal(journalPath: string, journal: RestoreJournalFile): void {
+  const journalDir = path.dirname(journalPath);
+  const tempJournalPath = `${journalPath}.tmp`;
+  fs.mkdirSync(journalDir, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(tempJournalPath, `${JSON.stringify(journal, null, 2)}\n`, { mode: 0o600 });
+  fsyncFileIfPossible(tempJournalPath);
+  fs.renameSync(tempJournalPath, journalPath);
+  fsyncDirectoryIfPossible(journalDir);
+}
+
+function clearRestoreJournal(journalPath: string): void {
+  fs.rmSync(journalPath, { force: true });
+  fsyncDirectoryIfPossible(path.dirname(journalPath));
+}
+
+function removeRestoreBackupIfPossible(backupPath: string): void {
+  try {
+    fs.rmSync(backupPath, { force: true });
+  } catch (error: unknown) {
+    console.warn(`[checkpoints] restore backup cleanup skipped for ${backupPath}: ${toErrorMessage(error)}`);
+  }
+}
+
+function readCheckpointCatalogRows(database: Database.Database): Array<Record<string, unknown>> {
+  if (!tableExists(database, 'checkpoints')) {
+    return [];
+  }
+  return database.prepare('SELECT * FROM checkpoints ORDER BY id ASC').all() as Array<Record<string, unknown>>;
+}
+
+function mergeCheckpointCatalogRows(database: Database.Database, rows: Array<Record<string, unknown>>): void {
+  if (rows.length === 0 || !tableExists(database, 'checkpoints')) {
+    return;
+  }
+
+  const targetColumns = new Set(getTableColumns(database, 'checkpoints'));
+  for (const row of rows) {
+    const name = row.name;
+    if (typeof name !== 'string' || name.length === 0) {
+      continue;
+    }
+    const existingByName = database.prepare('SELECT id FROM checkpoints WHERE name = ?').get(name) as { id?: number } | undefined;
+    if (existingByName?.id) {
+      continue;
+    }
+
+    let columns = Object.keys(row).filter((column) => targetColumns.has(column));
+    const id = row.id;
+    if (typeof id === 'number') {
+      const existingById = database.prepare('SELECT name FROM checkpoints WHERE id = ?').get(id) as { name?: string } | undefined;
+      if (existingById?.name && existingById.name !== name) {
+        columns = columns.filter((column) => column !== 'id');
+      }
+    }
+    if (columns.length === 0) {
+      continue;
+    }
+
+    const placeholders = columns.map(() => '?').join(', ');
+    database.prepare(`
+      INSERT OR IGNORE INTO checkpoints (${columns.join(', ')})
+      VALUES (${placeholders})
+    `).run(...columns.map((column) => row[column]));
   }
 }
 
@@ -831,7 +949,7 @@ function tableExists(database: Database.Database, tableName: string): boolean {
   }
 }
 
-// F04-005: Static allowlist for dynamic table name interpolation
+// Static allowlist for dynamic table name interpolation
 const ALLOWED_TABLE_NAMES = new Set([
   // Core tables
   'memory_index', 'memory_fts', 'vec_memories', 'vec_metadata', 'causal_edges',
@@ -1922,7 +2040,7 @@ function createCheckpointV2(
       includeEmbeddings: options.includeEmbeddings,
       mainTables: CHECKPOINT_MANIFEST.snapshot.filter((tableName) => tableName !== 'vec_memories' && tableName !== 'vec_metadata'),
       vecTables: vecIncluded ? ['vec_memories', 'vec_metadata'] : [],
-      schemaVersion: readSchemaVersion(database),
+      schemaVersion: readSchemaVersion(database) ?? SCHEMA_VERSION,
       memoryCount: countTableRows(database, 'memory_index'),
       vectorCount: vecIncluded ? countActiveVectorRows(database) : 0,
       mainBytes,
@@ -2171,14 +2289,18 @@ function restoreCheckpointV2(
   const reopen = opts.reopen ?? reopenActiveDatabase;
   let backupMainPath: string | null = null;
   let backupShardPath: string | null = null;
+  let restoreJournalPath: string | null = null;
   let mainBackedUp = false;
   let shardBackedUp = false;
+  let shouldRestoreVec = false;
+  let liveShardPreexisted = false;
 
   const restoreBackups = (liveMainPath: string, liveShardPath: string | null): void => {
     removeSqliteSidecars(liveMainPath);
     if (mainBackedUp && backupMainPath && fs.existsSync(backupMainPath)) {
       fs.rmSync(liveMainPath, { force: true });
       fs.renameSync(backupMainPath, liveMainPath);
+      fsyncDirectoryIfPossible(path.dirname(liveMainPath));
       mainBackedUp = false;
     }
 
@@ -2187,7 +2309,11 @@ function restoreCheckpointV2(
       if (shardBackedUp && backupShardPath && fs.existsSync(backupShardPath)) {
         fs.rmSync(liveShardPath, { force: true });
         fs.renameSync(backupShardPath, liveShardPath);
+        fsyncDirectoryIfPossible(path.dirname(liveShardPath));
         shardBackedUp = false;
+      } else if (shouldRestoreVec && !liveShardPreexisted) {
+        fs.rmSync(liveShardPath, { force: true });
+        fsyncDirectoryIfPossible(path.dirname(liveShardPath));
       }
     }
   };
@@ -2196,7 +2322,7 @@ function restoreCheckpointV2(
   try {
     const snapshotDir = checkpoint.snapshot_path ?? null;
     const manifest = loadCheckpointV2Manifest(snapshotDir);
-    if (typeof manifest.schemaVersion === 'number' && manifest.schemaVersion > SCHEMA_VERSION) {
+    if (manifest.schemaVersion > SCHEMA_VERSION) {
       throw new CheckpointRestoreError(
         'CHECKPOINT_RESTORE_DOWNGRADE_UNSAFE',
         `Checkpoint v2 restore refused because snapshot schema version ${manifest.schemaVersion} is newer than runtime schema version ${SCHEMA_VERSION}.`,
@@ -2205,6 +2331,7 @@ function restoreCheckpointV2(
 
     const liveMainPath = resolveMainDatabasePath(database);
     const liveShardPath = getActiveVectorShardPath(database);
+    const liveCheckpointCatalogRows = readCheckpointCatalogRows(database);
     const liveEmbedderSlug = deriveEmbedderSlug(liveShardPath);
     if (manifest.embedderSlug !== null && manifest.embedderSlug !== liveEmbedderSlug) {
       throw new CheckpointRestoreError(
@@ -2221,7 +2348,7 @@ function restoreCheckpointV2(
         'Checkpoint v2 restore failed because snapshot-main.sqlite is missing.',
       );
     }
-    const shouldRestoreVec = manifest.vecTables.length > 0;
+    shouldRestoreVec = manifest.vecTables.length > 0;
     if (shouldRestoreVec) {
       if (!liveShardPath) {
         throw new CheckpointRestoreError(
@@ -2238,26 +2365,57 @@ function restoreCheckpointV2(
     }
 
     backupMainPath = `${liveMainPath}.bak`;
-    backupShardPath = liveShardPath ? `${liveShardPath}.bak` : null;
+    backupShardPath = shouldRestoreVec && liveShardPath ? `${liveShardPath}.bak` : null;
+    restoreJournalPath = getRestoreJournalPath(liveMainPath);
+
+    const restoreJournal: RestoreJournalFile = {
+      formatVersion: 1,
+      phase: 'swap-pending',
+      createdAt: new Date().toISOString(),
+      checkpointName: checkpoint.name,
+      liveMainPath,
+      backupMainPath,
+      snapshotMainPath,
+      liveShardPath: shouldRestoreVec ? liveShardPath : null,
+      backupShardPath,
+      snapshotVecPath: shouldRestoreVec ? snapshotVecPath : null,
+      shouldRestoreVec,
+      liveShardPreexisted: false,
+    };
 
     const swapFn = (): void => {
+      // Clear any stale backups from a prior restore BEFORE writing the journal,
+      // so a crash in the write window can never make boot recovery roll back
+      // from a backup that does not belong to this restore.
       fs.rmSync(backupMainPath as string, { force: true });
+      if (shouldRestoreVec && backupShardPath) {
+        fs.rmSync(backupShardPath, { force: true });
+      }
+      liveShardPreexisted = shouldRestoreVec && liveShardPath ? fs.existsSync(liveShardPath) : false;
+      const swapPendingJournal = { ...restoreJournal, liveShardPreexisted };
+      writeRestoreJournal(restoreJournalPath as string, swapPendingJournal);
       removeSqliteSidecars(liveMainPath);
       fs.renameSync(liveMainPath, backupMainPath as string);
       mainBackedUp = true;
+      fsyncDirectoryIfPossible(path.dirname(liveMainPath));
       fs.copyFileSync(snapshotMainPath, liveMainPath);
       removeSqliteSidecars(liveMainPath);
+      fsyncFileIfPossible(liveMainPath);
+      fsyncDirectoryIfPossible(path.dirname(liveMainPath));
 
       if (shouldRestoreVec && liveShardPath && backupShardPath) {
-        fs.rmSync(backupShardPath, { force: true });
         removeSqliteSidecars(liveShardPath);
-        if (fs.existsSync(liveShardPath)) {
+        if (liveShardPreexisted) {
           fs.renameSync(liveShardPath, backupShardPath);
           shardBackedUp = true;
+          fsyncDirectoryIfPossible(path.dirname(liveShardPath));
         }
         fs.copyFileSync(snapshotVecPath, liveShardPath);
         removeSqliteSidecars(liveShardPath);
+        fsyncFileIfPossible(liveShardPath);
+        fsyncDirectoryIfPossible(path.dirname(liveShardPath));
       }
+      writeRestoreJournal(restoreJournalPath as string, { ...swapPendingJournal, phase: 'swap-done' });
     };
 
     let newDb: Database.Database;
@@ -2265,7 +2423,12 @@ function restoreCheckpointV2(
       newDb = reopen(liveMainPath, swapFn);
     } catch (error: unknown) {
       try {
-        reopen(liveMainPath, () => restoreBackups(liveMainPath, liveShardPath));
+        reopen(liveMainPath, () => {
+          restoreBackups(liveMainPath, liveShardPath);
+          if (restoreJournalPath) {
+            clearRestoreJournal(restoreJournalPath);
+          }
+        });
       } catch (rollbackError: unknown) {
         result.errors.push(`Checkpoint v2 rollback failed: ${toErrorMessage(rollbackError)}`);
       }
@@ -2278,21 +2441,30 @@ function restoreCheckpointV2(
 
     try {
       init(newDb);
+      mergeCheckpointCatalogRows(newDb, liveCheckpointCatalogRows);
       runPostRestoreRebuilds(newDb, null);
       result.restored = manifest.memoryCount;
       result.workingMemoryRestored = countTableRows(newDb, 'working_memory');
+      if (restoreJournalPath) {
+        clearRestoreJournal(restoreJournalPath);
+      }
       if (backupMainPath) {
-        fs.rmSync(backupMainPath, { force: true });
+        removeRestoreBackupIfPossible(backupMainPath);
       }
       if (backupShardPath) {
-        fs.rmSync(backupShardPath, { force: true });
+        removeRestoreBackupIfPossible(backupShardPath);
       }
       mainBackedUp = false;
       shardBackedUp = false;
       console.error(`[checkpoints] Restored v2 checkpoint "${checkpoint.name}" with ${result.restored} memories`);
     } catch (error: unknown) {
       try {
-        const rolledBackDb = reopen(liveMainPath, () => restoreBackups(liveMainPath, liveShardPath));
+        const rolledBackDb = reopen(liveMainPath, () => {
+          restoreBackups(liveMainPath, liveShardPath);
+          if (restoreJournalPath) {
+            clearRestoreJournal(restoreJournalPath);
+          }
+        });
         init(rolledBackDb);
       } catch (rollbackError: unknown) {
         result.errors.push(`Checkpoint v2 rollback failed: ${toErrorMessage(rollbackError)}`);
@@ -2553,7 +2725,7 @@ function restoreCheckpoint(
 
       for (const memory of memoryRows) {
         try {
-          // P4-11 FIX: When clearExisting=false, check for duplicate logical key
+          // When clearExisting=false, check for duplicate logical key
           // (spec_folder + file_path + anchor_id) before inserting.
           if (!clearExisting) {
             const existingByPath = database.prepare(

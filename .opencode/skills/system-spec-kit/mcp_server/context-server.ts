@@ -6,6 +6,7 @@
 // Shutdown, and main orchestration only.
 import fs from 'fs';
 import path from 'path';
+import type Database from 'better-sqlite3';
 
 /* ───────────────────────────────────────────────────────────────
    1. MODULE IMPORTS
@@ -25,6 +26,7 @@ import {
   checkDatabaseUpdated,
   init as initDbState
 } from './core/index.js';
+import { registerDatabaseRebindListener } from './core/db-state.js';
 
 // Tool schemas and dispatch
 import { TOOL_DEFINITIONS } from './tool-schemas.js';
@@ -99,6 +101,7 @@ import {
   clearDirtyNodes,
   recomputeLocal,
   cancelScheduledRefresh,
+  scheduleGlobalRefresh,
 } from './lib/search/graph-lifecycle.js';
 import {
   isDegreeBoostEnabled,
@@ -122,6 +125,7 @@ import * as workingMemory from './lib/cognitive/working-memory.js';
 import * as attentionDecay from './lib/cognitive/attention-decay.js';
 import * as coActivation from './lib/cognitive/co-activation.js';
 import { initScoringObservability } from './lib/telemetry/scoring-observability.js';
+import { rebindScoringObservability } from './lib/telemetry/scoring-observability.js';
 // Retry manager for background embedding retry job
 import * as retryManager from './lib/providers/retry-manager.js';
 import { buildErrorResponse, getDefaultErrorCodeForTool, getRecoveryHint } from './lib/errors.js';
@@ -137,7 +141,7 @@ import * as incrementalIndex from './lib/storage/incremental-index.js';
 import * as transactionManager from './lib/storage/transaction-manager.js';
 // KL-4: Tool cache cleanup on shutdown
 import * as toolCache from './lib/cache/tool-cache.js';
-import { initExtractionAdapter } from './lib/extraction/extraction-adapter.js';
+import { initExtractionAdapter, rebindExtractionAdapter } from './lib/extraction/extraction-adapter.js';
 import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
 import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback.js';
 import { initIngestJobQueue } from './lib/ops/job-queue.js';
@@ -1793,6 +1797,38 @@ async function main(): Promise<void> {
       console.warn('[context-server] Scoring observability init failed (non-fatal):', message);
     }
 
+    const installGraphRefresh = (refreshDb: Database.Database): void => {
+      registerGlobalRefreshFn(() => {
+        const dirtyNodeIds = Array.from(getDirtyNodes().nodeIds);
+        if (dirtyNodeIds.length === 0) {
+          return;
+        }
+
+        const updatedEdges = recomputeLocal(refreshDb, dirtyNodeIds);
+        clearDirtyNodes();
+        console.error(
+          '[context-server] Scheduled graph refresh applied: dirty_nodes=%d, updated_edges=%d',
+          dirtyNodeIds.length,
+          updatedEdges,
+        );
+      });
+    };
+
+    registerDatabaseRebindListener((nextDatabase) => {
+      const reboundDatabase = nextDatabase as Database.Database;
+      rebindScoringObservability(reboundDatabase);
+      rebindExtractionAdapter(reboundDatabase);
+
+      cancelScheduledRefresh();
+      installGraphRefresh(reboundDatabase);
+      if (getDirtyNodes().nodeIds.size > 0) {
+        scheduleGlobalRefresh();
+      }
+
+      shadowEvaluationRuntime.stopShadowEvaluationScheduler();
+      shadowEvaluationRuntime.startShadowEvaluationScheduler(reboundDatabase);
+    });
+
     if (isLearnedFeedbackEnabled()) {
       try {
         const migrated = migrateLearnedTriggers(database);
@@ -1850,25 +1886,7 @@ async function main(): Promise<void> {
     initDbState({ graphSearchFn });
     sessionBoost.init(database);
     causalBoost.init(database);
-    registerGlobalRefreshFn(() => {
-      const dirtyNodeIds = Array.from(getDirtyNodes().nodeIds);
-      if (dirtyNodeIds.length === 0) {
-        return;
-      }
-
-      try {
-        const updatedEdges = recomputeLocal(database, dirtyNodeIds);
-        clearDirtyNodes();
-        console.error(
-          '[context-server] Scheduled graph refresh applied: dirty_nodes=%d, updated_edges=%d',
-          dirtyNodeIds.length,
-          updatedEdges,
-        );
-      } catch (graphRefreshErr: unknown) {
-        const message = graphRefreshErr instanceof Error ? graphRefreshErr.message : String(graphRefreshErr);
-        console.warn('[context-server] Scheduled graph refresh failed:', message);
-      }
-    });
+    installGraphRefresh(database);
     console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
 
     // P3-04/014: Warm in-memory BM25 only when the selected lexical engine needs it.

@@ -60,6 +60,29 @@ type SearchWeightsConfig = {
   };
 };
 
+type RestoreJournalPhase = 'swap-pending' | 'swap-done';
+
+type RestoreJournalFile = {
+  formatVersion: 1;
+  phase: RestoreJournalPhase;
+  createdAt: string;
+  checkpointName: string;
+  liveMainPath: string;
+  backupMainPath: string;
+  snapshotMainPath: string;
+  liveShardPath: string | null;
+  backupShardPath: string | null;
+  snapshotVecPath: string | null;
+  shouldRestoreVec: boolean;
+  liveShardPreexisted: boolean;
+};
+
+type InitializeDbOptions = {
+  skipRestoreRecovery?: boolean;
+};
+
+const RESTORE_JOURNAL_NAME = '.restore-journal.json';
+
 function loadSearchWeights(): SearchWeightsConfig {
   // SERVER_DIR points to dist/ at runtime; configs/ lives at the package root (dist/..)
   const candidates = [
@@ -688,7 +711,7 @@ type DatabaseConnectionListener = (
     previousPath: string;
     nextPath: string;
   },
-) => void;
+) => boolean | void;
 const database_connection_listeners = new Set<DatabaseConnectionListener>();
 
 function set_active_database_connection(
@@ -705,16 +728,25 @@ function set_active_database_connection(
   if (previousDb !== connection || previousPath !== target_path) {
     clear_constitutional_cache();
 
+    const listenerErrors: string[] = [];
     for (const listener of database_connection_listeners) {
       try {
-        listener(connection, {
+        const listenerResult = listener(connection, {
           previousDb,
           previousPath,
           nextPath: target_path,
         });
+        if (listenerResult === false) {
+          listenerErrors.push('listener returned false');
+        }
       } catch (error: unknown) {
-        console.warn(`[vector-index] Database connection listener failed: ${get_error_message(error)}`);
+        const message = get_error_message(error);
+        listenerErrors.push(message);
+        console.warn(`[vector-index] Database connection listener failed: ${message}`);
       }
+    }
+    if (listenerErrors.length > 0) {
+      throw new Error(`Database connection listener rebind failed: ${listenerErrors.join('; ')}`);
     }
   }
 
@@ -764,6 +796,132 @@ function remove_unclean_shutdown_marker(target_path: string): void {
   } catch (_error: unknown) {
     // Best-effort: marker cleanup must not block DB close.
   }
+}
+
+function remove_sqlite_sidecars(database_path: string): void {
+  for (const sidecar_path of [`${database_path}-wal`, `${database_path}-shm`]) {
+    fs.rmSync(sidecar_path, { force: true });
+  }
+}
+
+function fsync_file_if_possible(file_path: string): void {
+  let fd: number | null = null;
+  try {
+    fd = fs.openSync(file_path, 'r');
+    fs.fsyncSync(fd);
+  } catch (_error: unknown) {
+    // Recovery remains journal-driven when the platform cannot flush explicitly.
+  } finally {
+    if (fd !== null) {
+      try { fs.closeSync(fd); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function fsync_directory_if_possible(dir_path: string): void {
+  let fd: number | null = null;
+  try {
+    fd = fs.openSync(dir_path, 'r');
+    fs.fsyncSync(fd);
+  } catch (_error: unknown) {
+    // Directory fsync is unavailable on some platforms/filesystems.
+  } finally {
+    if (fd !== null) {
+      try { fs.closeSync(fd); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
+function get_restore_journal_path(target_path: string): string | null {
+  if (target_path === ':memory:') {
+    return null;
+  }
+  return path.join(path.dirname(target_path), 'checkpoints', RESTORE_JOURNAL_NAME);
+}
+
+function read_restore_journal(journal_path: string): RestoreJournalFile | null {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(journal_path, 'utf-8')) as Partial<RestoreJournalFile>;
+    const phase = parsed.phase === 'swap-done' ? 'swap-done' : 'swap-pending';
+    if (
+      parsed.formatVersion !== 1
+      || typeof parsed.createdAt !== 'string'
+      || typeof parsed.checkpointName !== 'string'
+      || typeof parsed.liveMainPath !== 'string'
+      || typeof parsed.backupMainPath !== 'string'
+      || typeof parsed.snapshotMainPath !== 'string'
+      || (parsed.liveShardPath !== null && typeof parsed.liveShardPath !== 'string')
+      || (parsed.backupShardPath !== null && typeof parsed.backupShardPath !== 'string')
+      || (parsed.snapshotVecPath !== null && typeof parsed.snapshotVecPath !== 'string')
+      || typeof parsed.shouldRestoreVec !== 'boolean'
+      || (
+        parsed.liveShardPreexisted !== undefined
+        && typeof parsed.liveShardPreexisted !== 'boolean'
+      )
+    ) {
+      throw new Error('restore journal shape is invalid');
+    }
+    return {
+      ...parsed,
+      phase,
+      liveShardPreexisted: parsed.liveShardPreexisted
+        ?? (parsed.shouldRestoreVec && typeof parsed.backupShardPath === 'string' && fs.existsSync(parsed.backupShardPath)),
+    } as RestoreJournalFile;
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Ignoring unreadable checkpoint restore journal: ${get_error_message(error)}`);
+    return null;
+  }
+}
+
+export function recover_interrupted_checkpoint_restore(target_path: string): boolean {
+  const journal_path = get_restore_journal_path(target_path);
+  if (!journal_path || !fs.existsSync(journal_path)) {
+    return false;
+  }
+
+  const journal = read_restore_journal(journal_path);
+  if (!journal) {
+    return false;
+  }
+
+  if (journal.phase === 'swap-done') {
+    fs.rmSync(journal.backupMainPath, { force: true });
+    fsync_directory_if_possible(path.dirname(journal.backupMainPath));
+    if (journal.shouldRestoreVec && journal.backupShardPath) {
+      fs.rmSync(journal.backupShardPath, { force: true });
+      fsync_directory_if_possible(path.dirname(journal.backupShardPath));
+    }
+    fs.rmSync(journal_path, { force: true });
+    fsync_directory_if_possible(path.dirname(journal_path));
+    console.warn('[vector-index] Finalized completed checkpoint restore from rollback journal');
+    return true;
+  }
+
+  remove_sqlite_sidecars(journal.liveMainPath);
+  if (fs.existsSync(journal.backupMainPath)) {
+    fs.rmSync(journal.liveMainPath, { force: true });
+    fs.renameSync(journal.backupMainPath, journal.liveMainPath);
+    fsync_file_if_possible(journal.liveMainPath);
+    fsync_directory_if_possible(path.dirname(journal.liveMainPath));
+  }
+
+  if (journal.shouldRestoreVec && journal.liveShardPath) {
+    remove_sqlite_sidecars(journal.liveShardPath);
+    if (journal.liveShardPreexisted && journal.backupShardPath && fs.existsSync(journal.backupShardPath)) {
+      fs.rmSync(journal.liveShardPath, { force: true });
+      fs.renameSync(journal.backupShardPath, journal.liveShardPath);
+      fsync_file_if_possible(journal.liveShardPath);
+      fsync_directory_if_possible(path.dirname(journal.liveShardPath));
+    } else if (!journal.liveShardPreexisted) {
+      fs.rmSync(journal.liveShardPath, { force: true });
+      fsync_directory_if_possible(path.dirname(journal.liveShardPath));
+    }
+  }
+
+  fs.rmSync(journal_path, { force: true });
+  fsync_directory_if_possible(path.dirname(journal_path));
+  console.warn('[vector-index] Recovered interrupted checkpoint restore from rollback journal');
+  return true;
 }
 
 export function migrate_active_legacy_profile_database(
@@ -1212,7 +1370,7 @@ export function refresh_interference_scores_for_folder(database: Database.Databa
  * const database = initialize_db();
  * ```
  */
-export function initialize_db(custom_path: string | null = null): Database.Database {
+export function initialize_db(custom_path: string | null = null, options: InitializeDbOptions = {}): Database.Database {
   if (db && !custom_path) {
     return db;
   }
@@ -1220,6 +1378,9 @@ export function initialize_db(custom_path: string | null = null): Database.Datab
   const target_path = custom_path || resolve_database_path();
   const startupProfile = getStartupEmbeddingProfile();
   if (target_path !== ':memory:') {
+    if (!options.skipRestoreRecovery) {
+      recover_interrupted_checkpoint_restore(target_path);
+    }
     migrate_active_legacy_profile_database(target_path, startupProfile);
   }
 
@@ -1368,7 +1529,7 @@ export function close_db(): void {
       db.pragma('wal_checkpoint(TRUNCATE)');
       main_checkpoint_succeeded = true;
     } catch (_: unknown) { /* best-effort */ }
-    // DR-011: The clean-shutdown marker semantic is "present == dirty" (it is written
+    // The clean-shutdown marker semantic is "present == dirty" (it is written
     // on every open in initialize_db and removed only on a clean close). It must be
     // deleted ONLY after a confirmed-successful close. detachActiveVectorShard() and
     // db.close() can both throw; if the marker were removed before they ran (the prior
@@ -1403,7 +1564,7 @@ export function reopenActiveDatabase(targetMainPath: string, swapFn: () => void)
 
   close_db();
   swapFn();
-  return initialize_db(targetMainPath);
+  return initialize_db(targetMainPath, { skipRestoreRecovery: true });
 }
 
 export function checkpointAllWal(): void {
@@ -1692,6 +1853,7 @@ export class SQLiteVectorStore extends IVectorStore {
 export { initialize_db as initializeDb };
 export { close_db as closeDb };
 export { reopenActiveDatabase as reopen_active_database };
+export { recover_interrupted_checkpoint_restore as recoverInterruptedCheckpointRestore };
 export { get_db as getDb };
 export { try_get_db as tryGetDb };
 export { get_db_path as getDbPath };
