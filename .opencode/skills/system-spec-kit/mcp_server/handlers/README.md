@@ -16,7 +16,9 @@ trigger_phrases:
 
 Current state:
 
-- Memory context, search, trigger, save, CRUD, lifecycle, checkpoint, causal graph, session learning, and evaluation handlers live here.
+- Memory context, search, trigger, save, CRUD, indexing, ingestion, embedder management, embedding reconcile, lifecycle, checkpoint, causal graph, session bootstrap, session health, session resume, session learning, and evaluation handlers live here.
+- `memory-crud.ts` is a stable facade over the decomposed `memory-crud-*` submodules (list, delete, update, stats, health, plus shared utils and types).
+- `memory-index.ts` owns scan and re-index work with concurrent-scan coalescing and orphan sweep, while `memory-index-discovery.ts` and `memory-index-alias.ts` hold the spec-discovery and alias-reconcile helpers it depends on.
 - `memory-save.ts` is the public save entrypoint and delegates to the decomposed `save/` pipeline.
 - `mutation-hooks.ts` coordinates post-mutation cache invalidation for index and update flows.
 - Packet continuity remains owned by resume tools and spec docs rather than handler-local state.
@@ -56,29 +58,44 @@ Dependency direction: tool dispatch ───▶ handler registry ───▶ f
 
 ```text
 mcp_server/handlers/
-├── memory-context.ts              # L1 intent-aware context assembly
-├── memory-search.ts               # L2 hybrid search with telemetry and profiles
-├── memory-triggers.ts             # L2 trigger matching and tiered content injection
-├── memory-save.ts                 # Public save entrypoint into save/
-├── memory-crud.ts                 # Stable CRUD facade into focused submodules
-├── memory-crud-health.ts          # memory_health endpoint + data.routing telemetry block
-├── memory-bulk-delete.ts          # Bulk delete by importance tier
-├── memory-retention-sweep.ts      # Expired record retention enforcement
-├── memory-index.ts                # Scan, re-index, and alias discovery
-├── memory-ingest.ts               # Async ingestion lifecycle
-├── checkpoints.ts                 # Checkpoint create, list, restore, delete, validate
-├── session-learning.ts            # Preflight, postflight, and learning history
-├── causal-graph.ts                # Causal link, unlink, stats, and drift why
-├── eval-reporting.ts              # Ablation analysis and dashboard reports
 ├── index.ts                       # Lazy-loading handler registry
 ├── types.ts                       # Shared handler types
 ├── handler-utils.ts               # Shared response helpers
 ├── mutation-hooks.ts              # Post-mutation cache invalidation
+├── memory-context.ts              # L1 intent-aware context assembly
+├── memory-search.ts               # L2 hybrid search with telemetry and profiles
+├── memory-triggers.ts             # L2 trigger matching and tiered content injection
+├── memory-save.ts                 # Public save entrypoint into save/
+├── memory-crud.ts                 # Stable CRUD facade over the focused submodules
+├── memory-crud-list.ts            # CRUD list submodule
+├── memory-crud-delete.ts          # CRUD delete submodule
+├── memory-crud-update.ts          # CRUD update submodule
+├── memory-crud-stats.ts           # CRUD stats submodule
+├── memory-crud-health.ts          # memory_health endpoint + data.routing telemetry block
+├── memory-crud-utils.ts           # Shared CRUD helpers
+├── memory-crud-types.ts           # Shared CRUD types
+├── memory-bulk-delete.ts          # Bulk delete by importance tier
+├── memory-retention-sweep.ts      # Expired record retention enforcement
+├── memory-index.ts                # Scan and re-index with coalescing and orphan sweep
+├── memory-index-discovery.ts      # Spec document discovery and spec-level detection
+├── memory-index-alias.ts          # Alias conflict and divergence reconcile summaries
+├── memory-ingest.ts               # Async ingestion lifecycle
+├── memory-embedding-reconcile.ts  # memory_embedding_reconcile tool handler
+├── embedder-list.ts               # embedder_list tool handler
+├── embedder-set.ts                # embedder_set tool handler
+├── embedder-status.ts             # embedder_status tool handler
+├── checkpoints.ts                 # Checkpoint create, list, restore, delete, validate
+├── session-bootstrap.ts           # session_bootstrap tool handler
+├── session-health.ts              # session_health tool handler
+├── session-resume.ts              # session_resume tool handler
+├── session-learning.ts            # Preflight, postflight, and learning history
+├── causal-graph.ts                # Causal link, unlink, stats, and drift why
+├── causal-links-processor.ts      # Save-time causal edge processing
+├── chunking-orchestrator.ts       # Save and index chunking orchestration
+├── eval-reporting.ts              # Ablation analysis and dashboard reports
 ├── pe-gating.ts                   # Prediction-error save arbitration
 ├── quality-loop.ts                # Verify-fix-verify scoring loop
 ├── v-rule-bridge.ts               # Validation script bridge
-├── causal-links-processor.ts      # Save-time causal edge processing
-├── chunking-orchestrator.ts       # Save and index chunking orchestration
 ├── save/                          # Decomposed save pipeline modules
 └── README.md
 ```
@@ -98,6 +115,13 @@ mcp_server/handlers/
 | `memory-crud-health.ts` | `memory_health` handler. Exposes auto-repair, FTS rebuild stats, orphan cleanup, and `data.routing` telemetry block surfacing `graphChannelInvocationRate` and per-channel counts from `routing-telemetry.ts`. |
 | `memory-bulk-delete.ts` | Bulk delete by importance tier. Invalidates entity-density cache after successful bulk commit (also fires on partial-failure bulk paths to be safe). |
 | `mutation-hooks.ts` | Clears trigger, constitutional, graph, co-activation, tool, and degree caches after mutations. |
+| `memory-index.ts` | Runs `memory_index_scan` work. Coalesces concurrent scans onto an in-flight or recent scan, re-indexes changed spec docs, and runs a global orphan sweep over stale index rows. |
+| `memory-index-discovery.ts` | Discovers spec documents under a workspace and detects spec level through `findSpecDocuments` and `detectSpecLevel`. |
+| `memory-index-alias.ts` | Builds alias-conflict and divergence-reconcile summaries used by index scan. |
+| `memory-crud-*.ts` | Focused CRUD submodules (`memory-crud-list`, `memory-crud-delete`, `memory-crud-update`, `memory-crud-stats`, `memory-crud-utils`, `memory-crud-types`) behind the `memory-crud.ts` facade. |
+| `memory-embedding-reconcile.ts` | `memory_embedding_reconcile` tool handler. Reconciles stored embeddings against the active embedder shard. |
+| `embedder-list.ts`, `embedder-set.ts`, `embedder-status.ts` | `embedder_list`, `embedder_set`, and `embedder_status` tool handlers for embedder selection and health. |
+| `session-bootstrap.ts`, `session-health.ts`, `session-resume.ts` | `session_bootstrap`, `session_health`, and `session_resume` tool handlers for session context and continuity recovery. |
 | `save/` | Contains the decomposed save pipeline modules. |
 
 ---

@@ -82,7 +82,7 @@ Use `rg --files tests -g '*.vitest.ts'` for the full live inventory.
 | Search and routing | `hybrid-search.vitest.ts`, `query-plan-emission.vitest.ts`, `intent-routing.vitest.ts` | Query planning, ranking, fusion, and routing behavior. |
 | Hybrid routing + graph-channel preservation | `query-router.vitest.ts`, `entity-density.vitest.ts`, `routing-telemetry-stress.vitest.ts`, `integration/entity-density-commit-hooks.vitest.ts` | Covers intent gate, entity-density override, telemetry rolling window, post-commit cache invalidation, and env-flag parsing. |
 | Handler and protocol surface | `handler-memory-search.vitest.ts`, `mcp-tool-dispatch.vitest.ts`, `mcp-error-format.vitest.ts` | MCP dispatch and response contracts. |
-| Save and index regressions | `memory-save-integration.vitest.ts`, `handler-memory-index.vitest.ts`, `content-router-cache.vitest.ts` | Save, scan, cache, and indexing behavior. |
+| Save and index regressions | `memory-save-integration.vitest.ts`, `handler-memory-index.vitest.ts`, `handler-memory-index-async-scan.vitest.ts`, `handler-memory-index-cooldown.vitest.ts`, `incremental-index-move-reconcile.vitest.ts`, `index-scope.vitest.ts`, `memory-save-supersede-reindex.vitest.ts`, `content-router-cache.vitest.ts` | Save, scan coalescing and cooldown, move reconciliation, scoped index, supersede reindex, cache, and indexing behavior. |
 | Governance and scope | `governance-e2e.vitest.ts`, `memory-governance.vitest.ts`, `scope-governance-normalizer-parity.vitest.ts` | Scope enforcement and governed lifecycle behavior. |
 | Public API and docs parity | `api-public-surfaces.vitest.ts`, `feature-flag-reference-docs.vitest.ts` | Export and documentation alignment. |
 

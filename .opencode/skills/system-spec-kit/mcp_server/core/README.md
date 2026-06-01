@@ -20,7 +20,8 @@ Current responsibilities:
 - Resolve database paths from runtime environment variables with allowed-path checks.
 - Export server path constants, batch settings, input limits, and cache timing values.
 - Initialize and rebind database-backed consumers when the vector index connection changes.
-- Track persistent index-scan timing and constitutional cache state.
+- Coordinate the index-scan lease lifecycle (acquire, refresh, complete) and persist last-scan timing.
+- Track constitutional cache state.
 
 ---
 
@@ -67,7 +68,7 @@ core/
 | File | Responsibility |
 |---|---|
 | `config.ts` | Resolves database paths, validates allowed filesystem boundaries, and exports runtime constants. |
-| `db-state.ts` | Coordinates vector index initialization, database consumer rebinding, persistent scan timing, and constitutional cache access. |
+| `db-state.ts` | Coordinates vector index initialization, database consumer rebinding, the index-scan lease lifecycle, persistent scan timing, and constitutional cache access. |
 | `index.ts` | Re-exports the public core surface for server modules. |
 
 ---
@@ -120,6 +121,8 @@ Main flow:
 | `checkDatabaseUpdated()` | Function | Detects external database update markers. |
 | `reinitializeDatabase()` | Function | Reopens the vector index and rebinds DB consumers. |
 | `registerDatabaseRebindListener()` | Function | Lets modules react after the shared DB handle changes. |
+| `acquireIndexScanLease()` | Function | Acquires the single-writer index-scan lease, honoring cooldown and stale-lease expiry. |
+| `completeIndexScanLease()` | Function | Releases the scan lease and records the last-scan time. |
 
 ---
 

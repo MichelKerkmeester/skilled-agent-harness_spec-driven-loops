@@ -70,7 +70,7 @@ lib/storage/
 +-- consolidation.ts           # Maintenance for stale and contradictory links
 +-- document-helpers.ts        # Document classification and weighting helpers
 +-- history.ts                 # Append-only history events
-+-- incremental-index.ts       # Content-hash and embedding-health reindex checks
++-- incremental-index.ts       # Content-hash, embedding-health, and move-reconcile reindex checks
 +-- learned-triggers-schema.ts # Learned trigger schema checks
 +-- lineage-state.ts           # Append-first lineage state and projections
 +-- mutation-ledger.ts         # Hash-chained mutation audit log
@@ -132,7 +132,7 @@ lib/storage/
 | `consolidation.ts` | Runs maintenance for contradiction, Hebbian and stale-edge consolidation paths. |
 | `document-helpers.ts` | Classifies spec documents and calculates document-aware weighting for save/update flows. |
 | `history.ts` | Records higher-level history events and resolves lineage anchors for reporting. |
-| `incremental-index.ts` | Compares stored file metadata, content hashes and embedding status to decide whether reindexing is needed. |
+| `incremental-index.ts` | Compares stored file metadata, content hashes and embedding status to decide whether reindexing is needed. Reconciles moved spec docs by remapping the existing row to the new path so the embedding is preserved instead of being deleted and rebuilt. |
 | `learned-triggers-schema.ts` | Maintains learned-trigger column and FTS isolation schema checks. |
 | `lineage-state.ts` | Records append-first lineage transitions, active projections, integrity checks and backfill state. |
 | `mutation-ledger.ts` | Writes mutation-audit rows with hash-chain continuity for low-level provenance. |
