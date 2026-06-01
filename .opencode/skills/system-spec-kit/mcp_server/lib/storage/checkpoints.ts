@@ -2395,8 +2395,15 @@ function restoreCheckpointV2(
       // so a crash in the write window can never make boot recovery roll back
       // from a backup that does not belong to this restore.
       fs.rmSync(backupMainPath as string, { force: true });
+      // Persist the stale-.bak removal before the journal records its .bak slot,
+      // so a crash between here and the journal write cannot leave boot recovery
+      // rolling back from a half-removed backup that does not belong to this restore.
+      fsyncDirectoryIfPossible(path.dirname(liveMainPath));
       if (shouldRestoreVec && backupShardPath) {
         fs.rmSync(backupShardPath, { force: true });
+        if (liveShardPath) {
+          fsyncDirectoryIfPossible(path.dirname(liveShardPath));
+        }
       }
       liveShardPreexisted = shouldRestoreVec && liveShardPath ? fs.existsSync(liveShardPath) : false;
       const swapPendingJournal = { ...restoreJournal, liveShardPreexisted };
