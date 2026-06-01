@@ -1,0 +1,24 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-checkpoint-v2-file-snapshot",
+  "description": "Feature Specification: Checkpoint v2 File-Based Full-DB Snapshots",
+  "keywords": [
+    "feature",
+    "specification",
+    "checkpoint",
+    "file-based",
+    "full-db",
+    "snapshots"
+  ],
+  "lastUpdated": "2026-06-01T16:03:30.858Z",
+  "specId": "001",
+  "folderSlug": "checkpoint-v2-file-snapshot",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "013-memory-index-scan-implementation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

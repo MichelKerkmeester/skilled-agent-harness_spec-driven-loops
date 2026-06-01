@@ -3,7 +3,9 @@
   "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
-  "children_ids": [],
+  "children_ids": [
+    "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-checkpoint-v2-file-snapshot"
+  ],
   "manual": {
     "depends_on": [
       "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening"
@@ -39,7 +41,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-checkpoint-v2-file-snapshot",
+    "last_active_at": "2026-06-01T15:10:00.000Z"
   }
 }
