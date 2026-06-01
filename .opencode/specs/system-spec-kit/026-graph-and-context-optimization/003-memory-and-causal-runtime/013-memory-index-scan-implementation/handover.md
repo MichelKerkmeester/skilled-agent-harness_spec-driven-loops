@@ -189,6 +189,33 @@ The full P3.4 trigger set (lazy reconcile-on-File-not-found in `search-results.t
 
 ---
 
+## 6. Phase 4 — Deferred fix plan
+
+> Full per-finding analysis + file:line evidence: `ai-council/council-report-followups-mcp-stability.md`. Below is the execution plan; do **A before re-indexing** the lagging docs, **B+C before** calling the index clean.
+
+### #2 Reindexing / dup-on-reindex — the blocker for clean re-index
+Mechanism (verified in code): `memory_index` enforces `UNIQUE(spec_folder, file_path, anchor_id)` (`vector-index-schema.ts:2419`), but whole-file rows carry `anchor_id = NULL` and SQLite treats NULLs as distinct, so duplicate whole-file rows are allowed. `active_memory_projection` already keys the right logical identity — `specFolder::canonicalFilePath::COALESCE(anchor,'_')` (`vector-index-mutations.ts:154`) — and repoints to the new row on re-index, but the prior row is never retired (`lineage-state.ts:494` inserts a fresh row; nothing supersedes the old `active_memory_id`), so duplicates accumulate.
+
+- **A — Supersede-on-reindex (bounded code; unblocks clean re-index).** In `upsert_active_projection` / its save-path caller, read the prior `active_memory_id` for the logical key before repointing; if it differs from the new id, retire the old row through `deleteMemory()` (never raw SQL — orphan-sweep precedent). A content change then replaces in place. Once A ships, the lagging 013 docs (and all future edits) re-index without duplicating.
+- **B — Logical-key uniqueness (DB guard).** Add a stored `logical_key` / expression unique index = `spec_folder || '::' || canonical_file_path || '::' || COALESCE(anchor_id,'_')`. Closes the NULL-anchor and file_path-vs-canonical gaps.
+- **C — Cleanup migration (existing cruft).** For each logical key with >1 row: keep the projection-active/newest, delete the rest (+ their vectors/FTS) via `deleteMemory()`, repoint projection. Must run BEFORE B (unique-index creation fails while dupes exist).
+- **Migration safety:** run B+C as a daemon-owned boot migration (single-writer, once on restart), or daemon-stopped with a `cp` backup of the sqlite files first; verify row counts before/after; restart + live-probe.
+
+### #4 Re-embed
+- 6 provider-failures (no vector): verify each source file exists + no newer success for its logical key, then re-index its file via a correctly-scoped scan (re-embeds under ollama).
+- ~5.4k success rows missing an active-shard vector (hf-local→ollama migration cost): `memory_embedding_reconcile({ mode: 'apply', repairSuccessCoverage: true })` resets them to retry → retry-manager re-embeds under ollama (large background drain; watch GPU/queue depth).
+
+### #3 Checkpoint v2
+`createCheckpoint` serializes the whole ~33k-row DB in one `JSON.stringify` (`checkpoints.ts:1604`) → V8 max-string. Add a v2 chunked/streaming snapshot (PK-windowed compressed chunks or SQLite `VACUUM INTO`); keep v1 restore; expose `includeEmbeddings` through the handler.
+
+### #5 MCP front-proxy / reconnect
+Launcher spawns `context-server.js` with `stdio:'inherit'`; RSS self-exit, crash-loop give-up, child relaunch (no re-handshake), and bridge-socket close all sever the client with no transparent recovery. Short-term: on worker death, close the client transport with an explicit reconnect-required error. Medium-term: a stable front proxy owns MCP session state and treats `context-server` as a restartable backend; RSS recycle restarts only the backend.
+
+### Order
+A → re-index the lagging 013 docs cleanly → B + C → #4 re-embed → #3 checkpoint v2 → #5 MCP proxy → post-implementation deep-review before any completion claim.
+
+---
+
 ## RELATED DOCUMENTS
 - **Design source**: `../012-memory-index-scan-ux-hardening/research/research.md`
 - **This packet**: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`
