@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-06-01T04:33:00Z"
+    last_updated_at: "2026-06-01T06:50:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 4: shipped specFolder-normalization fix (deployed, pid 47588, 8/8 tests)"
-    next_safe_action: "Fresh session: #2 dup-prevention migration + deploy + 5406 re-embed; scaffold #3/#5"
+    recent_action: "Phase 4: #2-A supersede shipped+deployed+live-verified (pid 45861); #2-C live cleanup DONE 29830->9689 rows (20141 dup deletes, backup taken); #2-B index DEFERRED (incompatible with #2-A insert-then-delete)"
+    next_safe_action: "Restart daemon (stale caches after external delete) -> verify -> #4 re-embed (re-scoped small) -> #3/#5 scaffolds -> deep-review -> doc reconcile"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -213,6 +213,24 @@ Launcher spawns `context-server.js` with `stdio:'inherit'`; RSS self-exit, crash
 
 ### Order
 A → re-index the lagging 013 docs cleanly → B + C → #4 re-embed → #3 checkpoint v2 → #5 MCP proxy → post-implementation deep-review before any completion claim.
+
+---
+
+## 7. Phase 4 — EXECUTION RESULTS (2026-06-01)
+
+**#2-A supersede-on-reindex — SHIPPED + COMMITTED + LIVE-VERIFIED.** Commit `26fca5d1b2`. Scoped to the same-path content-change branch in `memory-save.ts` `processPreparedMemory` (retire predecessor via `delete_memory_from_database` after lineage bookkeeping; PE-gate/reconsolidation path untouched). 18 vitest suites green (incl. new `memory-save-supersede-reindex.vitest.ts`), tsc 0 errors, built + daemon-restarted. Live proof: impl-summary `50290`→`50293` SUPERSEDE with `50290` deleted (not left deprecated).
+
+**#2-C cleanup — DONE on live DB.** 29,830 → **9,689 rows** (20,093 deprecated dups + 48 rename-collision deprecated dups deleted via sanctioned per-row `delete_memory`; constitutional preserved = 17; FTS consistent; 1 residual orphan vector). Verified backup: `database/backups/context-index-PRE-BC-20260601-083145.sqlite` (`integrity_check ok`, 29,830 rows). One-shot scripts (untracked): `mcp_server/scripts/dedup-cleanup-bc.mjs`, `mcp_server/scripts/dedup-index-b.mjs`.
+
+**#2-B unique index — DEFERRED (correctness blocker found).** A partial unique index on `(spec_folder, canonical_file_path, COALESCE(anchor_id,'_'))` is enforced at INSERT, which collides with #2-A's insert-then-delete ordering and would break every same-path re-index. Created then DROPPED. Needs #2-A reworked to delete-before-insert (or update-in-place) first. Also pending: ~2,257 dangling projection pointers + 3 constitutional-bearing collision keys.
+
+**#4 re-embed — bulk triggered.** `memory_embedding_reconcile({mode:'apply', repairSuccessCoverage:true})` reset **2,192** success-coverage rows → retry (re-embedding into the ollama 768 shard, background drain). Still pending: 5 genuine provider-failures (ids 50257–50261: a `…manual-test-run` folder + `026/resource-map.md`) — need targeted force re-index of their folders.
+
+**#5 MCP recycle — observed live.** Daemon recycled `55572`→`79922` under the re-embed load (RSS watchdog self-exit → launcher relaunch → client severed, no transparent reconnect). The retry rows persist; the drain resumes on the new daemon. This is the exact pathology #5 must fix.
+
+**Legacy vector shards (inert, safe to archive after #4 drain):** `hf-local__baai_bge-base-en-v1.5__768__q8` (52K), `hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8` (3.2M), `ollama__nomic-embed-text-v1.5__1024` (52K). Active shard = `ollama__nomic-embed-text-v1.5__768` (258M).
+
+**REMAINING (recommended fresh session):** #4 provider-failure re-index (5 rows) · #3 checkpoint-v2 scaffold · #5 MCP front-proxy scaffold · #2-B rework (delete-before-insert + index) · mandatory post-implementation deep-review · final doc reconciliation + `validate.sh --strict`.
 
 ---
 
