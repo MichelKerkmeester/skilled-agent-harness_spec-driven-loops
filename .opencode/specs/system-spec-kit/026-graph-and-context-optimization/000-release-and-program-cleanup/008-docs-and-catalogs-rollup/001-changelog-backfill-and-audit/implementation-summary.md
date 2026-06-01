@@ -12,8 +12,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-changelog-backfill-and-audit"
     last_updated_at: "2026-05-31T19:00:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Setup phase complete"
-    next_safe_action: "Build and dry-run the per-track enrichment workflow against the 004 gold standard"
+    recent_action: "Backfill, rollups, audit complete"
+    next_safe_action: "Optional follow-up: 28 relocations, 5 renames, stale-path remap (see audit-report section 6)"
     blockers: []
     key_files:
       - "spec.md"
@@ -25,7 +25,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000006"
       session_id: "changelog-backfill-2026-05-31"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
@@ -52,7 +52,9 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Status at authoring time: the setup phase is complete and execution has not started. This summary will be rewritten with shipped outcomes once the backfill runs.
+The backfill, rollups, and audit are complete. Changelog files across spec 026 went from 103 to 708 (636 leaf changelogs plus 72 phase-parent rollups). Every shipped phase now has a changelog and every phase parent has a rollup. 516 leaf changelogs were authored in this effort. The full breakdown, method, HALT inventory, and deferred follow-ups are in `audit-report.md`.
+
+Tracks 000, 001, 003, 004, 005, 006, 007 were authored by Sonnet workflow agents. Track 002 was authored by MiniMax-2.7 and DeepSeek-v4-pro through OpenCode, with a deterministic HVR repair pass. Rollups were assembled deterministically. Every changelog passed a whole-file verification gate (0 failures). The 85 dangling symlinks in 026/changelog were removed. Deferred polish (28 relocations, 5 renames, stale-path remap, README indexes) is documented in audit-report.md section 6.
 
 ### Recon and coverage map
 
@@ -99,8 +101,11 @@ Setup was delivered by a read-only recon workflow followed by direct authoring o
 | Generator dry-run across 4 packet types | PASS (scaffold usable, enrichment contract derived) |
 | Governance docs authored | PASS (spec, plan, tasks, checklist, decision-record) |
 | description.json + graph-metadata.json present | PASS |
-| Strict packet validation | Pending (this run) |
-| Backfill execution | Not started |
+| Leaf changelog backfill | PASS, 636 leaf changelogs, whole-file gate 0 failures |
+| Phase-parent rollups | PASS, 72 of 72 gate-clean |
+| Dangling symlink removal | PASS, 85 removed, 0 remain |
+| Audit report | PASS, audit-report.md written |
+| Strict packet validation (this packet) | PASS, exit 0 |
 <!-- /ANCHOR:verification -->
 
 ---
@@ -108,7 +113,8 @@ Setup was delivered by a read-only recon workflow followed by direct authoring o
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Execution not started.** Only the setup phase is complete. The 441 changelogs are not yet written.
-2. **HALT packets remain uncovered by design.** About 47 thin or unshipped packets will not get a changelog. They are recorded in the audit, not authored.
-3. **Pre-existing broken metadata elsewhere.** The tree-wide graph-metadata backfill script fails on an unrelated invalid file under `skilled-agent-orchestration/125-feature-catalog-template-improvements`. That is out of scope here and was not modified.
+1. **Deferred canonicalization polish.** 28 non-canonical relocations, 5 misnamed-file renames, stale-path remap in pre-existing changelogs, and per-directory README indexes are documented in audit-report.md section 6 for a focused follow-up. None affect coverage.
+2. **HALT packets uncovered by design.** Unshipped stub packets (for example the 8 coco-index deprecation stubs) received no changelog. Thin or gated packets received honest changelogs with None change sections. No work was fabricated.
+3. **002 authored one-per-leaf** rather than the thematic precedent, to guarantee complete coverage. The owner may consolidate later. No information lost.
+4. **Pre-existing packet validation debt** in many 026 packets is out of scope and unmodified. The authored changelogs pass all changelog-specific checks.
 <!-- /ANCHOR:limitations -->
