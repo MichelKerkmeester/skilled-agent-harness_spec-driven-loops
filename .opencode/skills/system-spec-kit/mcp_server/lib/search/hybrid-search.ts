@@ -131,6 +131,11 @@ interface HybridSearchResult {
   [key: string]: unknown;
 }
 
+type Bm25MemoryMetadata = {
+  specFolder: string | null;
+  importanceTier: string | null;
+};
+
 /** Non-enumerable shadow metadata attached to result arrays via Object.defineProperty. */
 interface ShadowMetaArray {
   _s4shadow?: unknown;
@@ -366,40 +371,42 @@ function bm25Search(
     // Numeric memory IDs (e.g., "42"), not spec folder paths. The old filter compared
     // R.id against specFolder which never matched. Use DB lookup to resolve spec_folder.
 
-    // Batch-resolve spec folders for all result IDs (was N+1 individual queries)
+    // Batch-resolve metadata for all result IDs (was N+1 individual queries)
     // SECURITY: Spec-folder scope MUST fail closed — any error in scope
     // resolution returns [] rather than leaking unscoped BM25 candidates.
-    let specFolderMap: Map<number, string | null> | null = null;
-    if (specFolder) {
+    let memoryMetadataMap: Map<number, Bm25MemoryMetadata> | null = null;
+    if (results.length > 0) {
       if (!db) {
-        const error = new Error('Database unavailable for spec-folder scope lookup');
-        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-        return [];
-      }
-
-      try {
-        const ids = results.map((r: { id: string }) => Number(r.id));
-        if (ids.length === 0) {
+        if (specFolder) {
+          const error = new Error('Database unavailable for spec-folder scope lookup');
+          console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
           return [];
         }
-        const placeholders = ids.map(() => '?').join(',');
-        const rows = db.prepare(
-          `SELECT id, spec_folder FROM memory_index WHERE id IN (${placeholders})`
-        ).all(...ids) as Array<{ id: number; spec_folder: string | null }>;
-        specFolderMap = new Map();
-        for (const row of rows) {
-          specFolderMap.set(row.id, row.spec_folder);
+      } else {
+        try {
+          const ids = results.map((r: { id: string }) => Number(r.id));
+          const placeholders = ids.map(() => '?').join(',');
+          const rows = db.prepare(
+            `SELECT id, spec_folder, importance_tier FROM memory_index WHERE id IN (${placeholders})`
+          ).all(...ids) as Array<{ id: number; spec_folder: string | null; importance_tier: string | null }>;
+          memoryMetadataMap = new Map();
+          for (const row of rows) {
+            memoryMetadataMap.set(row.id, {
+              specFolder: row.spec_folder,
+              importanceTier: row.importance_tier,
+            });
+          }
+        } catch (error: unknown) {
+          console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
+          return [];
         }
-      } catch (error: unknown) {
-        console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
-        return [];
       }
 
-      // DEFENSE-IN-DEPTH: If specFolder was requested but specFolderMap
+      // DEFENSE-IN-DEPTH: If specFolder was requested but metadata resolution
       // is still null after the resolution block, something unexpected happened.
       // Fail closed rather than falling through to unscoped results.
-      if (!specFolderMap) {
-        const error = new Error('specFolderMap unexpectedly null after scope resolution');
+      if (specFolder && !memoryMetadataMap) {
+        const error = new Error('memoryMetadataMap unexpectedly null after scope resolution');
         console.warn('[BM25] Spec-folder scope lookup failed, returning empty scoped results:', error);
         return [];
       }
@@ -407,9 +414,11 @@ function bm25Search(
 
     return results
       .filter((r: { id: string }) => {
+        const metadata = memoryMetadataMap?.get(Number(r.id));
+        if (metadata?.importanceTier === 'deprecated') return false;
         if (!specFolder) return true;
-        if (!specFolderMap) return false;
-        const folder = specFolderMap.get(Number(r.id));
+        if (!metadata) return false;
+        const folder = metadata.specFolder;
         if (!folder) return false;
         return folder === specFolder || folder.startsWith(specFolder + '/');
       })

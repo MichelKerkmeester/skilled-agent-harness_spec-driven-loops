@@ -95,6 +95,13 @@ export interface MemoryRow {
   [key: string]: unknown;
 }
 
+export interface MemoryScopeParams {
+  tenantId?: string | null;
+  userId?: string | null;
+  agentId?: string | null;
+  sessionId?: string | null;
+}
+
 /** Describes the inputs required to index a memory. */
 export interface IndexMemoryParams {
   specFolder: string;
@@ -111,6 +118,7 @@ export interface IndexMemoryParams {
   contentText?: string | null;
   qualityScore?: number;
   qualityFlags?: string[];
+  scope?: MemoryScopeParams;
 }
 
 /** Describes the fields that can be updated for a memory. */

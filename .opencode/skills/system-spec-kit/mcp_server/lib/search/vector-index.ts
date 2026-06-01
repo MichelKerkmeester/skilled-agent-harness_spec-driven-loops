@@ -13,6 +13,7 @@ export {
 } from './vector-index-types.js';
 export type {
   MemoryIndexRow,
+  MemoryScopeParams,
   IndexMemoryParams,
   UpdateMemoryParams,
   VectorSearchOptions,

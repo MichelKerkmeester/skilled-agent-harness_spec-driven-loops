@@ -969,7 +969,16 @@ type PreparedStatements = {
   count_by_folder: Database.Statement<[string], { count: number }>;
   get_by_id: Database.Statement<[number], MemoryRow | undefined>;
   get_by_path: Database.Statement<[string], MemoryRow | undefined>;
-  get_by_folder_and_path: Database.Statement<[string, string, string, string | null, string | null], { id: number } | undefined>;
+  get_by_folder_and_path: Database.Statement<[
+    string,
+    string,
+    string,
+    string | null,
+    string | null,
+    string | null,
+    string | null,
+    string | null,
+  ], { id: number } | undefined>;
   get_stats: Database.Statement<[], { total: number; complete: number; pending: number; failed: number }>;
   list_base: Database.Statement<[number, number], MemoryRow[]>;
 };
@@ -1012,7 +1021,11 @@ export function init_prepared_statements(database: Database.Database): PreparedS
       JOIN active_memory_projection p ON p.active_memory_id = m.id
       WHERE m.spec_folder = ?
         AND (m.canonical_file_path = ? OR m.file_path = ?)
-        AND (m.anchor_id = ? OR (m.anchor_id IS NULL AND ? IS NULL))
+        AND COALESCE(NULLIF(TRIM(m.anchor_id), ''), '_') = COALESCE(NULLIF(TRIM(?), ''), '_')
+        AND COALESCE(m.tenant_id,'') = COALESCE(?, '')
+        AND COALESCE(m.user_id,'') = COALESCE(?, '')
+        AND COALESCE(m.agent_id,'') = COALESCE(?, '')
+        AND COALESCE(m.session_id,'') = COALESCE(?, '')
       ORDER BY m.id DESC
       LIMIT 1
     `),

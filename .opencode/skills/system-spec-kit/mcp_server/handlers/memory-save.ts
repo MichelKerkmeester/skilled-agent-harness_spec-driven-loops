@@ -34,7 +34,7 @@ import * as checkpoints from '../lib/storage/checkpoints.js';
 import * as preflight from '../lib/validation/preflight.js';
 import { requireDb } from '../utils/index.js';
 import type { MCPResponse } from './types.js';
-import { createAppendOnlyMemoryRecord, recordLineageVersion } from '../lib/storage/lineage-state.js';
+import { createAppendOnlyMemoryRecord, recordLineageVersion, retirePredecessorForActiveReindex } from '../lib/storage/lineage-state.js';
 import { determineAction } from '../lib/storage/reconsolidation.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 
@@ -2395,6 +2395,7 @@ async function processPreparedMemory(
       const chunkedInsertTracker = createChunkedInsertTracker();
       const chunkedResult = await indexChunkedMemoryFile(routedFilePath, routedParsed, {
         force,
+        scope,
         applyPostInsertMetadata: (db, memoryId, fields) => {
           applyPostInsertMetadata(db, memoryId, fields);
           trackChunkedInsert(chunkedInsertTracker, memoryId, fields as Record<string, unknown>);
@@ -2544,6 +2545,14 @@ async function processPreparedMemory(
       const samePathSupersededPredecessorId =
         existing && existing.content_hash !== routedParsed.contentHash ? existing.id : null;
 
+      // Retire the same-path predecessor before inserting the new version so the
+      // active-row uniqueness guard holds at insert time. Deprecating (not deleting)
+      // keeps the predecessor row, its lineage chain, and its history intact while
+      // removing it from the active-row guard; the new version supersedes it in place.
+      if (samePathSupersededPredecessorId != null) {
+        retirePredecessorForActiveReindex(database, samePathSupersededPredecessorId);
+      }
+
       const memoryId = samePathSupersededPredecessorId != null
         ? createAppendOnlyMemoryRecord({
             database,
@@ -2552,6 +2561,11 @@ async function processPreparedMemory(
             embedding,
             embeddingFailureReason,
             predecessorMemoryId: samePathSupersededPredecessorId,
+            anchorId: recordIdentity.targetAnchorId,
+            tenantId: scope.tenantId,
+            userId: scope.userId,
+            agentId: scope.agentId,
+            sessionId: scope.sessionId,
             actor: 'mcp:memory_save',
           })
         : createMemoryRecord(
@@ -2581,19 +2595,6 @@ async function processPreparedMemory(
         actor: 'mcp:memory_save',
         transitionEvent: samePathSupersededPredecessorId != null ? 'SUPERSEDE' : 'CREATE',
       });
-
-      // Retire the superseded predecessor for a same-path content change so the
-      // active index holds a single row per logical key. Runs last, after
-      // markMemorySuperseded and recordLineageVersion have finished reading the
-      // predecessor; delete_memory_from_database nests via SAVEPOINT and clears
-      // the row's vector / FTS / lineage / causal residue (never raw SQL), while
-      // the memory_history audit trail is preserved by design.
-      if (
-        samePathSupersededPredecessorId != null
-        && samePathSupersededPredecessorId !== memoryId
-      ) {
-        delete_memory_from_database(database, samePathSupersededPredecessorId);
-      }
 
       return memoryId;
     });

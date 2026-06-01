@@ -5,7 +5,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import * as fsrsScheduler from '../lib/cognitive/fsrs-scheduler.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import { recordHistory } from '../lib/storage/history.js';
-import { recordLineageTransition } from '../lib/storage/lineage-state.js';
+import { recordLineageTransition, retirePredecessorForActiveReindex } from '../lib/storage/lineage-state.js';
 import { classifyEncodingIntent } from '../lib/search/encoding-intent.js';
 import { isEncodingIntentEnabled } from '../lib/search/search-flags.js';
 import { calculateDocumentWeight, isSpecDocumentType } from '../lib/storage/document-helpers.js';
@@ -263,7 +263,12 @@ function markMemorySuperseded(memoryId: number): boolean {
 }
 
 /** Append a new immutable version and advance the active projection. */
-function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding: Float32Array): IndexResult {
+function updateExistingMemory(
+  memoryId: number,
+  parsed: ParsedMemory,
+  embedding: Float32Array,
+  scope: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null } = {},
+): IndexResult {
   const database = requireDb();
 
   // Keep document-type-aware weighting and metadata on update.
@@ -292,6 +297,10 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
   const encodingIntent = isEncodingIntentEnabled() ? classifyEncodingIntent(parsed.content) : undefined;
 
   const appendVersion = database.transaction(() => {
+    // Retire the predecessor before the append insert so the active-row uniqueness
+    // guard holds at insert time; lineage and history persist.
+    retirePredecessorForActiveReindex(database, memoryId);
+
     const nextMemoryId = vectorIndex.indexMemory({
       specFolder: parsed.specFolder,
       filePath: parsed.filePath,
@@ -306,6 +315,7 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
       qualityScore: parsed.qualityScore,
       qualityFlags: parsed.qualityFlags,
       appendOnly: true,
+      scope,
     });
 
     applyPostInsertMetadata(database, nextMemoryId, {
@@ -319,13 +329,6 @@ function updateExistingMemory(memoryId: number, parsed: ParsedMemory, embedding:
       quality_score: parsed.qualityScore ?? 0,
       quality_flags: JSON.stringify(parsed.qualityFlags ?? []),
     });
-
-    database.prepare(`
-      UPDATE memory_index
-      SET importance_tier = 'deprecated',
-          updated_at = ?
-      WHERE id = ?
-    `).run(new Date().toISOString(), memoryId);
 
     recordLineageTransition(database, nextMemoryId, {
       actor: 'mcp:memory_save',

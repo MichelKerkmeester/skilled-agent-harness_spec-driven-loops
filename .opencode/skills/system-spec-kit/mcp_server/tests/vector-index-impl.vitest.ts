@@ -488,6 +488,139 @@ describe('Vector Index Implementation [deferred - requires DB test fixtures]', (
       expect(mem?.title).toBe('Updated Title Alpha');
     });
 
+    it('keeps scoped same-path saves isolated from other scopes', () => {
+      const filePath = path.join(TMP_DIR, 'scoped-same-path.md');
+      const specFolder = 'specs/test-scoped-same-path';
+
+      const tenantAId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Tenant A first',
+        scope: { tenantId: 'tenant-a', userId: 'user-a', agentId: 'agent-a', sessionId: 'session-a' },
+      });
+      const tenantBId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Tenant B first',
+        scope: { tenantId: 'tenant-b', userId: 'user-b', agentId: 'agent-b', sessionId: 'session-b' },
+      });
+
+      expect(tenantBId).not.toBe(tenantAId);
+      expect(mod.getMemory(tenantAId)?.title).toBe('Tenant A first');
+
+      const tenantBUpdatedId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Tenant B updated',
+        scope: { tenantId: 'tenant-b', userId: 'user-b', agentId: 'agent-b', sessionId: 'session-b' },
+      });
+
+      expect(tenantBUpdatedId).toBe(tenantBId);
+      expect(mod.getMemory(tenantAId)?.title).toBe('Tenant A first');
+      expect(mod.getMemory(tenantBId)?.title).toBe('Tenant B updated');
+    });
+
+    it('preserves null-scope identity and logical key format', () => {
+      const filePath = path.join(TMP_DIR, 'null-scope-key.md');
+      const specFolder = 'specs/test-null-scope-key';
+
+      const firstId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Null scope first',
+      });
+      const secondId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Null scope updated',
+      });
+
+      expect(secondId).toBe(firstId);
+
+      const row = mod.getDb().prepare(`
+        SELECT canonical_file_path, tenant_id, user_id, agent_id, session_id
+        FROM memory_index
+        WHERE id = ?
+      `).get(firstId) as {
+        canonical_file_path: string;
+        tenant_id: string | null;
+        user_id: string | null;
+        agent_id: string | null;
+        session_id: string | null;
+      };
+      const projection = mod.getDb().prepare(`
+        SELECT logical_key
+        FROM active_memory_projection
+        WHERE active_memory_id = ?
+      `).get(firstId) as { logical_key: string };
+
+      expect(row).toMatchObject({
+        tenant_id: null,
+        user_id: null,
+        agent_id: null,
+        session_id: null,
+      });
+      expect(projection.logical_key).toBe(`${specFolder}::${row.canonical_file_path}::_`);
+    });
+
+    it('inserts a scoped row next to an existing null-scope row at the same path', () => {
+      const filePath = path.join(TMP_DIR, 'mixed-scope-same-path.md');
+      const specFolder = 'specs/test-mixed-scope-same-path';
+
+      const nullScopeId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Null scope row',
+      });
+      const scopedId = mod.indexMemoryDeferred({
+        specFolder,
+        filePath,
+        title: 'Scoped row',
+        scope: { tenantId: 'tenant-scoped' },
+      });
+
+      expect(scopedId).not.toBe(nullScopeId);
+
+      const rows = mod.getDb().prepare(`
+        SELECT id, title, tenant_id
+        FROM memory_index
+        WHERE id IN (?, ?)
+        ORDER BY id ASC
+      `).all(nullScopeId, scopedId) as Array<{ id: number; title: string; tenant_id: string | null }>;
+
+      expect(rows).toEqual([
+        expect.objectContaining({ id: nullScopeId, title: 'Null scope row', tenant_id: null }),
+        expect.objectContaining({ id: scopedId, title: 'Scoped row', tenant_id: 'tenant-scoped' }),
+      ]);
+    });
+
+    it('collapses blank and null anchors in the active-row uniqueness guard', () => {
+      const specFolder = 'specs/test-anchor-normalization';
+      const filePath = path.join(TMP_DIR, 'anchor-normalization.md');
+      const now = '2026-03-13T14:00:00.000Z';
+      const insert = mod.getDb().prepare(`
+        INSERT INTO memory_index (
+          spec_folder,
+          file_path,
+          canonical_file_path,
+          anchor_id,
+          title,
+          trigger_phrases,
+          importance_weight,
+          created_at,
+          updated_at,
+          embedding_status,
+          importance_tier
+        ) VALUES (?, ?, ?, ?, ?, '[]', 0.5, ?, ?, 'pending', 'normal')
+      `);
+
+      insert.run(specFolder, filePath, filePath, null, 'Null anchor row', now, now);
+
+      expect(() => {
+        insert.run(specFolder, filePath, filePath, '', 'Blank anchor row', now, now);
+      }).toThrow();
+    });
+
     it('upserts existing memory across symlink alias paths', () => {
       const canonicalDir = path.join(TMP_DIR, 'canonical-specs');
       fs.mkdirSync(canonicalDir, { recursive: true });

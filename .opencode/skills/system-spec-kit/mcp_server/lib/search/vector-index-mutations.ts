@@ -8,10 +8,12 @@
 import * as embeddingsProvider from '../providers/embeddings.js';
 import {
   buildGovernanceLogicalKey,
+  normalizeScopeValue,
   recordTierDowngradeAudit,
 } from '../governance/scope-governance.js';
 import { clearGraphSignalsCache } from '../graph/graph-signals.js';
 import { recordHistory } from '../storage/history.js';
+import { buildMemoryLogicalKey } from '../storage/lineage-state.js';
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
 import { isIndexableConstitutionalMemoryPath } from '../utils/index-scope.js';
 import { createLogger } from '../utils/logger.js';
@@ -38,6 +40,7 @@ import {
 } from './vector-index-store.js';
 import type {
   IndexMemoryParams as SharedIndexMemoryParams,
+  MemoryScopeParams,
   UpdateMemoryParams as SharedUpdateMemoryParams,
 } from './vector-index-types.js';
 import type Database from 'better-sqlite3';
@@ -150,8 +153,15 @@ function upsert_active_projection(
   anchorId: string | null,
   memoryId: number,
   updatedAt: string,
+  scope: NormalizedMemoryScope,
 ): void {
-  const logicalKey = `${specFolder}::${canonicalFilePath}::${anchorId && anchorId.trim().length > 0 ? anchorId : '_'}`;
+  const logicalKey = buildMemoryLogicalKey({
+    specFolder,
+    filePath: canonicalFilePath,
+    canonicalFilePath,
+    anchorId,
+    ...scope,
+  });
   // Evict any stale projection row that maps a *different* logical_key to the
   // same active_memory_id — prevents UNIQUE constraint violation on re-index
   // when the logical_key changes (e.g. anchor or path normalization drift).
@@ -179,6 +189,22 @@ type IndexMemoryDeferredParams = Omit<IndexMemoryParams, 'embedding'> & {
 type UpdateMemoryParams = Readonly<SharedUpdateMemoryParams> & {
   readonly canonicalFilePath?: string;
 };
+
+type NormalizedMemoryScope = {
+  tenant_id: string | null;
+  user_id: string | null;
+  agent_id: string | null;
+  session_id: string | null;
+};
+
+function normalizeMemoryScope(scope?: MemoryScopeParams): NormalizedMemoryScope {
+  return {
+    tenant_id: normalizeScopeValue(scope?.tenantId),
+    user_id: normalizeScopeValue(scope?.userId),
+    agent_id: normalizeScopeValue(scope?.agentId),
+    session_id: normalizeScopeValue(scope?.sessionId),
+  };
+}
 
 /**
  * Indexes a memory with an embedding payload.
@@ -215,6 +241,7 @@ export function index_memory(
     qualityFlags = [],
     appendOnly = false,
   } = params;
+  const scope = normalizeMemoryScope(params.scope);
 
   if (!embedding) {
     throw new VectorIndexError('Embedding is required', VectorIndexErrorCode.EMBEDDING_VALIDATION);
@@ -237,7 +264,16 @@ export function index_memory(
   const stmts = init_prepared_statements(database);
   const existing = appendOnly
     ? null
-    : stmts.get_by_folder_and_path.get(specFolder, canonicalFilePath, filePath, anchorId, anchorId);
+    : stmts.get_by_folder_and_path.get(
+        specFolder,
+        canonicalFilePath,
+        filePath,
+        anchorId,
+        scope.tenant_id,
+        scope.user_id,
+        scope.agent_id,
+        scope.session_id,
+      );
 
   if (existing && !appendOnly) {
     return update_memory({
@@ -266,18 +302,20 @@ export function index_memory(
         spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_model,
         embedding_generated_at, embedding_status, encoding_intent, document_type, spec_level,
-        content_text, quality_score, quality_flags, parent_id
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        content_text, quality_score, quality_flags, parent_id,
+        tenant_id, user_id, agent_id, session_id
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
       importanceWeight, now, now, embeddingsProvider.getModelName(), now, embedding_status,
-      encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), parentId
+      encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), parentId,
+      scope.tenant_id, scope.user_id, scope.agent_id, scope.session_id
     );
 
     const row_id = BigInt(result.lastInsertRowid);
     const metadata_id = Number(row_id);
 
-    upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, metadata_id, now);
+    upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, metadata_id, now, scope);
 
     if (sqlite_vec) {
       // Remove orphaned vec_memories entry before insert
@@ -324,6 +362,7 @@ export function index_memory_deferred(
     qualityFlags = [],
     appendOnly = false,
   } = params;
+  const scope = normalizeMemoryScope(params.scope);
 
   const now = new Date().toISOString();
   const triggers_json = JSON.stringify(triggerPhrases);
@@ -332,7 +371,16 @@ export function index_memory_deferred(
   const stmts = init_prepared_statements(database);
   const existing = appendOnly
     ? null
-    : stmts.get_by_folder_and_path.get(specFolder, canonicalFilePath, filePath, anchorId, anchorId);
+    : stmts.get_by_folder_and_path.get(
+        specFolder,
+        canonicalFilePath,
+        filePath,
+        anchorId,
+        scope.tenant_id,
+        scope.user_id,
+        scope.agent_id,
+        scope.session_id,
+      );
 
   const index_memory_deferred_tx = database.transaction(() => {
     if (existing && !appendOnly) {
@@ -355,7 +403,7 @@ export function index_memory_deferred(
             last_retry_at = NULL
         WHERE id = ?
       `).run(title, triggers_json, importanceWeight, canonicalFilePath, failureReason, now, encodingIntent, documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), existing.id);
-      upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, existing.id, now);
+      upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, existing.id, now, scope);
       refresh_interference_scores_for_folder(database, specFolder);
       return existing.id;
     }
@@ -365,15 +413,17 @@ export function index_memory_deferred(
         spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases,
         importance_weight, created_at, updated_at, embedding_status,
         failure_reason, retry_count, encoding_intent, document_type, spec_level,
-        content_text, quality_score, quality_flags, parent_id
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?, ?, ?)
+        content_text, quality_score, quality_flags, parent_id,
+        tenant_id, user_id, agent_id, session_id
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       specFolder, filePath, canonicalFilePath, anchorId, title, triggers_json,
-      importanceWeight, now, now, failureReason, encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), parentId
+      importanceWeight, now, now, failureReason, encodingIntent ?? 'document', documentType, specLevel, contentText, qualityScore, JSON.stringify(qualityFlags), parentId,
+      scope.tenant_id, scope.user_id, scope.agent_id, scope.session_id
     );
 
     const row_id = BigInt(result.lastInsertRowid);
-    upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, Number(row_id), now);
+    upsert_active_projection(database, specFolder, canonicalFilePath, anchorId, Number(row_id), now, scope);
     refresh_interference_scores_for_folder(database, specFolder);
     logger.info(`Deferred indexing: Memory ${Number(row_id)} saved without embedding (BM25/FTS5 searchable)`);
 
@@ -417,7 +467,8 @@ export function update_memory(
 
   const update_memory_tx = database.transaction(() => {
     const existingRow = database.prepare(`
-      SELECT spec_folder, anchor_id, canonical_file_path, file_path, importance_tier
+      SELECT spec_folder, anchor_id, canonical_file_path, file_path, importance_tier,
+             tenant_id, user_id, agent_id, session_id
       FROM memory_index
       WHERE id = ?
     `).get(id) as {
@@ -426,6 +477,10 @@ export function update_memory(
       canonical_file_path: string | null;
       file_path: string | null;
       importance_tier: string | null;
+      tenant_id: string | null;
+      user_id: string | null;
+      agent_id: string | null;
+      session_id: string | null;
     } | undefined;
     const updates = ['updated_at = ?'];
     const values: unknown[] = [now];
@@ -549,7 +604,12 @@ export function update_memory(
       const projectionPath = canonicalFilePath
         ?? existingRow.canonical_file_path
         ?? getCanonicalPathKey(existingRow.file_path ?? '');
-      upsert_active_projection(database, existingRow.spec_folder, projectionPath, existingRow.anchor_id ?? null, id, now);
+      upsert_active_projection(database, existingRow.spec_folder, projectionPath, existingRow.anchor_id ?? null, id, now, {
+        tenant_id: existingRow.tenant_id,
+        user_id: existingRow.user_id,
+        agent_id: existingRow.agent_id,
+        session_id: existingRow.session_id,
+      });
     }
 
     if (existingRow?.spec_folder) {

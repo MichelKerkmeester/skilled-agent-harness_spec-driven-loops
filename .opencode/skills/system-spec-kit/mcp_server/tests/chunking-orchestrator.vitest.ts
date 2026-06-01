@@ -224,7 +224,14 @@ describe('chunking orchestrator deferred anchor identity', () => {
       .mockImplementationOnce(async () => null as unknown as Float32Array);
 
     const parsed = createParsedMemory(filePath);
-    const result = await indexChunkedMemoryFile(filePath, parsed);
+    const result = await indexChunkedMemoryFile(filePath, parsed, {
+      scope: {
+        tenantId: 'tenant-chunk',
+        userId: 'user-chunk',
+        agentId: 'agent-chunk',
+        sessionId: 'session-chunk',
+      },
+    });
 
     expect(result.status).toBe('indexed');
 
@@ -270,10 +277,29 @@ describe('chunking orchestrator deferred anchor identity', () => {
       childRows.map((row) => row.id).sort((a, b) => a - b),
     );
     expect(projectionRows.map((row) => row.logical_key)).toEqual([
-      `${parsed.specFolder}::${parentRow.canonical_file_path}::chunk-a`,
-      `${parsed.specFolder}::${parentRow.canonical_file_path}::chunk-b`,
-      `${parsed.specFolder}::${parentRow.canonical_file_path}::chunk-c`,
+      expect.stringMatching(new RegExp(`^${parsed.specFolder}::scope-sha256:[a-f0-9]{24}::${parentRow.canonical_file_path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}::chunk-a$`)),
+      expect.stringMatching(new RegExp(`^${parsed.specFolder}::scope-sha256:[a-f0-9]{24}::${parentRow.canonical_file_path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}::chunk-b$`)),
+      expect.stringMatching(new RegExp(`^${parsed.specFolder}::scope-sha256:[a-f0-9]{24}::${parentRow.canonical_file_path.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}::chunk-c$`)),
     ]);
+
+    const scopedRows = requireTestDb().prepare(`
+      SELECT tenant_id, user_id, agent_id, session_id
+      FROM memory_index
+      WHERE id IN (?, ?, ?, ?)
+      ORDER BY id ASC
+    `).all(parentId, ...childRows.map((row) => row.id)) as Array<{
+      tenant_id: string | null;
+      user_id: string | null;
+      agent_id: string | null;
+      session_id: string | null;
+    }>;
+    expect(scopedRows).toHaveLength(4);
+    expect(scopedRows).toEqual(scopedRows.map(() => ({
+      tenant_id: 'tenant-chunk',
+      user_id: 'user-chunk',
+      agent_id: 'agent-chunk',
+      session_id: 'session-chunk',
+    })));
   });
 
   it('routes fallback metadata through the constitutional tier guard', async () => {

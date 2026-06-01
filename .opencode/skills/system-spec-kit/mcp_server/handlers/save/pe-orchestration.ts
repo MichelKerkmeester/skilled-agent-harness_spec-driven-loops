@@ -166,7 +166,7 @@ export function evaluateAndApplyPeDecision(
           );
           break;
         }
-        const updated = updateExistingMemory(existingId, parsed, embedding);
+        const updated = updateExistingMemory(existingId, parsed, embedding, scope);
         updated.pe_action = 'UPDATE';
         updated.pe_reason = peDecision.reason;
         updated.warnings = validationWarnings;

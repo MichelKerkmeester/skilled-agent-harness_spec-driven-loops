@@ -587,6 +587,7 @@ export async function runReconsolidationIfEnabled(
                   contentText: memory.content,
                   qualityScore: parsed.qualityScore,
                   qualityFlags: parsed.qualityFlags,
+                  scope,
                 });
 
                 applyPostInsertMetadata(database, id, {

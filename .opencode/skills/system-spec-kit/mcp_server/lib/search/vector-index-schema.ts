@@ -424,7 +424,7 @@ function getMigrationAllowedBasePaths(): string[] {
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 27;
+export const SCHEMA_VERSION = 28;
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
@@ -1320,6 +1320,37 @@ export function run_migrations(database: Database.Database, from_version: number
     database.exec('CREATE INDEX IF NOT EXISTS idx_causal_edges_source_anchor ON causal_edges(source_anchor)');
     database.exec('CREATE INDEX IF NOT EXISTS idx_causal_edges_target_anchor ON causal_edges(target_anchor)');
     logger.info('Migration v27: Rebuilt causal_edges with anchor-aware uniqueness');
+  };
+
+  migrations[28] = () => {
+    // Active-row uniqueness guard: at most one non-deprecated, non-constitutional
+    // row per logical key (spec_folder + canonical_file_path + anchor + scope, where
+    // scope is the tenant/user/agent/session tuple the lineage logical key also
+    // isolates on — so distinct-scope rows for one path stay independent). Deprecated
+    // predecessors are excluded so supersede-on-reindex retires the prior version by
+    // tier rather than by deletion, and constitutional rows are exempt so always-
+    // surfaced rules can carry intentional duplicates. COALESCE keeps NULL-tier rows
+    // (treated as active everywhere else) inside the guard and groups unscoped rows
+    // together. Requires zero duplicate active logical keys at build time (a fresh
+    // reindex satisfies this); the build fails loudly otherwise rather than silently
+    // advancing the schema.
+    createRequiredIndex(
+      database,
+      'idx_memory_logical_key_active_unique',
+      `CREATE UNIQUE INDEX IF NOT EXISTS idx_memory_logical_key_active_unique
+         ON memory_index (
+           spec_folder,
+           COALESCE(NULLIF(canonical_file_path, ''), file_path),
+           COALESCE(NULLIF(TRIM(anchor_id), ''), '_'),
+           COALESCE(tenant_id, ''),
+           COALESCE(user_id, ''),
+           COALESCE(agent_id, ''),
+           COALESCE(session_id, '')
+         )
+         WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated')`,
+      'Migration v28',
+    );
+    logger.info('Migration v28: Created active-row logical-key unique index');
   };
 
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
@@ -2415,8 +2446,7 @@ export function create_schema(
       chunk_label TEXT,
       encoding_intent TEXT DEFAULT 'document',
       learned_triggers TEXT DEFAULT '[]',
-      interference_score REAL DEFAULT 0,
-      UNIQUE(spec_folder, file_path, anchor_id)
+      interference_score REAL DEFAULT 0
     )
   `);
 

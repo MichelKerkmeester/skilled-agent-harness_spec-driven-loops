@@ -5,17 +5,20 @@ import { createSchema, ensureSchemaVersion, validateLineageSchemaSupport } from 
 import { recordHistory } from '../lib/storage/history';
 import {
   benchmarkLineageWritePath,
+  createAppendOnlyMemoryRecord,
   getActiveMemoryProjection,
   getActiveProjectionRow,
   getLatestLineageForMemory,
   inspectLineageChain,
   recordLineageVersion,
+  retirePredecessorForActiveReindex,
   resolveActiveLineageSnapshot,
   resolveLineageAsOf,
   resolveMemoryAsOf,
   summarizeLineageInspection,
   validateLineageIntegrity,
 } from '../lib/storage/lineage-state';
+import type { ParsedMemory } from '../lib/parsing/memory-parser';
 
 function insertMemory(
   database: Database.Database,
@@ -32,6 +35,11 @@ function insertMemory(
     sessionId?: string | null;
   },
 ): void {
+  // Mirror production's deprecate-before-insert: retire any same-key (same scope)
+  // active row so raw multi-version fixtures respect the active-row uniqueness guard.
+  database.prepare(
+    "UPDATE memory_index SET importance_tier = 'deprecated' WHERE spec_folder = ? AND canonical_file_path = ? AND COALESCE(tenant_id,'') = COALESCE(?,'') AND COALESCE(user_id,'') = COALESCE(?,'') AND COALESCE(agent_id,'') = COALESCE(?,'') AND COALESCE(session_id,'') = COALESCE(?,'') AND COALESCE(importance_tier,'normal') NOT IN ('constitutional','deprecated')",
+  ).run(params.specFolder, params.filePath, params.tenantId ?? null, params.userId ?? null, params.agentId ?? null, params.sessionId ?? null);
   database.prepare(`
     INSERT INTO memory_index (
       id,
@@ -66,6 +74,40 @@ function insertMemory(
     params.agentId ?? null,
     params.sessionId ?? null,
   );
+}
+
+function parsedMemory(
+  filePath: string,
+  specFolder: string,
+  title: string,
+  contentHash: string,
+): ParsedMemory {
+  return {
+    filePath,
+    specFolder,
+    title,
+    triggerPhrases: [],
+    contextType: 'general',
+    importanceTier: 'normal',
+    contentHash,
+    content: `${title} body`,
+    fileSize: title.length,
+    lastModified: '2026-03-13T00:00:00.000Z',
+    memoryType: 'semantic',
+    memoryTypeSource: 'manual',
+    memoryTypeConfidence: 1,
+    causalLinks: {
+      caused_by: [],
+      supersedes: [],
+      derived_from: [],
+      blocks: [],
+      related_to: [],
+    },
+    hasCausalLinks: false,
+    documentType: 'memory',
+    qualityScore: 1,
+    qualityFlags: [],
+  };
 }
 
 describe('Memory lineage state', () => {
@@ -253,6 +295,106 @@ describe('Memory lineage state', () => {
     });
 
     expect(recorded.logicalKey).toBe('specs/015-memory-state::/tmp/specs/015-memory-state/memory/unscoped.md::_');
+  });
+
+  it('records scoped append-only re-index rows under scoped logical keys', () => {
+    const filePath = '/tmp/specs/015-memory-state/memory/scoped-append.md';
+    insertMemory(database, {
+      id: 91,
+      specFolder: 'specs/015-memory-state',
+      filePath,
+      title: 'Null scope baseline',
+      createdAt: '2026-03-13T13:30:00.000Z',
+    });
+    recordLineageVersion(database, {
+      memoryId: 91,
+      actor: 'ops:scoped-append',
+      effectiveAt: '2026-03-13T13:30:00.000Z',
+    });
+
+    insertMemory(database, {
+      id: 92,
+      specFolder: 'specs/015-memory-state',
+      filePath,
+      title: 'Scoped baseline',
+      createdAt: '2026-03-13T13:35:00.000Z',
+      tenantId: 'tenant-a',
+    });
+    const scopedBaseline = recordLineageVersion(database, {
+      memoryId: 92,
+      actor: 'ops:scoped-append',
+      effectiveAt: '2026-03-13T13:35:00.000Z',
+    });
+
+    retirePredecessorForActiveReindex(database, 92);
+    const appendedId = createAppendOnlyMemoryRecord({
+      database,
+      parsed: parsedMemory(filePath, 'specs/015-memory-state', 'Scoped append', 'hash-scoped-append-v2'),
+      filePath,
+      embedding: null,
+      embeddingFailureReason: null,
+      predecessorMemoryId: 92,
+      tenantId: ' tenant-a ',
+      actor: 'ops:scoped-append',
+    });
+    const appended = database.prepare(`
+      SELECT logical_key AS logicalKey
+      FROM memory_lineage
+      WHERE memory_id = ?
+    `).get(appendedId) as { logicalKey: string };
+
+    expect(appended.logicalKey).toBe(scopedBaseline.logicalKey);
+    expect(appended.logicalKey).toContain('scope-sha256:');
+
+    const row = database.prepare(`
+      SELECT tenant_id
+      FROM memory_index
+      WHERE id = ?
+    `).get(appendedId) as { tenant_id: string | null };
+    expect(row.tenant_id).toBe('tenant-a');
+
+    const activeTargets = database.prepare(`
+      SELECT active_memory_id
+      FROM active_memory_projection
+      ORDER BY logical_key
+    `).all() as Array<{ active_memory_id: number }>;
+    expect(activeTargets.map((target) => target.active_memory_id).sort((a, b) => a - b)).toEqual([91, appendedId]);
+  });
+
+  it('preserves null-scope append-only logical key identity', () => {
+    const filePath = '/tmp/specs/015-memory-state/memory/unscoped-append.md';
+    insertMemory(database, {
+      id: 96,
+      specFolder: 'specs/015-memory-state',
+      filePath,
+      title: 'Unscoped append v1',
+      createdAt: '2026-03-13T13:45:00.000Z',
+    });
+    const first = recordLineageVersion(database, {
+      memoryId: 96,
+      actor: 'ops:unscoped-append',
+      effectiveAt: '2026-03-13T13:45:00.000Z',
+    });
+
+    retirePredecessorForActiveReindex(database, 96);
+    const appendedId = createAppendOnlyMemoryRecord({
+      database,
+      parsed: parsedMemory(filePath, 'specs/015-memory-state', 'Unscoped append v2', 'hash-unscoped-append-v2'),
+      filePath,
+      embedding: null,
+      embeddingFailureReason: null,
+      predecessorMemoryId: 96,
+      actor: 'ops:unscoped-append',
+    });
+    const appended = database.prepare(`
+      SELECT logical_key AS logicalKey, version_number AS versionNumber
+      FROM memory_lineage
+      WHERE memory_id = ?
+    `).get(appendedId) as { logicalKey: string; versionNumber: number };
+
+    expect(first.logicalKey).toBe('specs/015-memory-state::/tmp/specs/015-memory-state/memory/unscoped-append.md::_');
+    expect(appended.logicalKey).toBe(first.logicalKey);
+    expect(appended.versionNumber).toBe(2);
   });
 
   it('builds an operator-facing lineage summary for append-first chains', () => {
@@ -679,5 +821,44 @@ describe('Memory lineage state', () => {
       { memory_id: 92, version_number: 2, predecessor_memory_id: 91 },
       { memory_id: 93, version_number: 3, predecessor_memory_id: 91 },
     ]);
+  });
+
+  it('retirePredecessorForActiveReindex deprecates normal predecessors but preserves constitutional ones', () => {
+    const insertRaw = (id: number, filePath: string, tier: string): void => {
+      database.prepare(
+        "INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, title, trigger_phrases, importance_weight, created_at, updated_at, embedding_status, importance_tier, context_type, content_text) VALUES (?, ?, ?, ?, ?, '[]', 0.5, ?, ?, 'pending', ?, 'general', ?)",
+      ).run(id, 'specs/099-retire', filePath, filePath, `v${id}`, '2026-03-13T08:00:00.000Z', '2026-03-13T08:00:00.000Z', tier, `body ${id}`);
+    };
+
+    insertRaw(951, '/tmp/retire-normal.md', 'normal');
+    retirePredecessorForActiveReindex(database, 951);
+    expect(
+      (database.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(951) as { importance_tier: string }).importance_tier,
+    ).toBe('deprecated');
+
+    insertRaw(952, '/tmp/retire-constitutional.md', 'constitutional');
+    retirePredecessorForActiveReindex(database, 952);
+    expect(
+      (database.prepare('SELECT importance_tier FROM memory_index WHERE id = ?').get(952) as { importance_tier: string }).importance_tier,
+    ).toBe('constitutional');
+  });
+
+  it('allows anchored deprecate-before-insert without a legacy table-constraint collision', () => {
+    const insertAnchored = (id: number, anchor: string, tier: string): void => {
+      database.prepare(
+        "INSERT INTO memory_index (id, spec_folder, file_path, canonical_file_path, anchor_id, title, trigger_phrases, importance_weight, created_at, updated_at, embedding_status, importance_tier, context_type, content_text) VALUES (?, ?, ?, ?, ?, ?, '[]', 0.5, ?, ?, 'pending', ?, 'general', ?)",
+      ).run(id, 'specs/099-anchored', '/tmp/anchored.md', '/tmp/anchored.md', anchor, `v${id}`, '2026-03-13T08:00:00.000Z', '2026-03-13T08:00:00.000Z', tier, `body ${id}`);
+    };
+
+    // Retire an anchored predecessor, then re-insert an active row at the SAME
+    // (path, anchor). The active-row guard excludes the deprecated predecessor, and
+    // no legacy table-level uniqueness must block the new version.
+    insertAnchored(971, 'sec-1', 'normal');
+    retirePredecessorForActiveReindex(database, 971);
+    expect(() => insertAnchored(972, 'sec-1', 'normal')).not.toThrow();
+    const active = database.prepare(
+      "SELECT id FROM memory_index WHERE file_path = '/tmp/anchored.md' AND anchor_id = 'sec-1' AND importance_tier != 'deprecated'",
+    ).all() as Array<{ id: number }>;
+    expect(active.map((r) => r.id)).toEqual([972]);
   });
 });

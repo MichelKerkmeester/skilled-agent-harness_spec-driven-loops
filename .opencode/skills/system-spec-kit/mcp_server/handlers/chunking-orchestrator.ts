@@ -24,6 +24,7 @@ import { appendMutationLedgerSafe } from './memory-crud-utils.js';
 import { calculateDocumentWeight, isSpecDocumentType } from './pe-gating.js';
 import { detectSpecLevelFromParsed } from './handler-utils.js';
 import { applyPostInsertMetadata as applyGuardedPostInsertMetadata } from '../lib/storage/post-insert-metadata.js';
+import type { MemoryScopeMatch } from './save/types.js';
 
 // Feature catalog: Chunking Orchestrator Safe Swap
 // Feature catalog: Memory indexing (memory_save)
@@ -80,6 +81,7 @@ interface PostInsertMetadataFields {
 
 interface ChunkingOptions {
   force?: boolean;
+  scope?: MemoryScopeMatch;
   applyPostInsertMetadata?: (
     db: BetterSqlite3.Database,
     memoryId: number,
@@ -136,7 +138,7 @@ export function shouldUseChunkedIndexing(
 async function indexChunkedMemoryFile(
   filePath: string,
   parsed: ParsedMemory,
-  { force = false, applyPostInsertMetadata }: ChunkingOptions = {},
+  { force = false, scope, applyPostInsertMetadata }: ChunkingOptions = {},
 ): Promise<IndexResult> {
   const database = requireDb();
   const applyMetadata = applyPostInsertMetadata ?? applyPostInsertMetadataFallback;
@@ -220,6 +222,7 @@ async function indexChunkedMemoryFile(
         contentText: chunkResult.parentSummary,
         qualityScore: parsed.qualityScore,
         qualityFlags: parsed.qualityFlags,
+        scope,
       });
 
       const fileMetadata = incrementalIndex.getFileMetadata(filePath);
@@ -304,6 +307,7 @@ async function indexChunkedMemoryFile(
             encodingIntent: chunkEncodingIntent,
             documentType: parsed.documentType || 'memory',
             contentText: chunk.content,
+            scope,
           }, database);
         } else {
           childId = vectorIndex.indexMemoryDeferred({
@@ -318,6 +322,7 @@ async function indexChunkedMemoryFile(
             encodingIntent: chunkEncodingIntent,
             documentType: parsed.documentType || 'memory',
             contentText: chunk.content,
+            scope,
           }, database);
         }
 

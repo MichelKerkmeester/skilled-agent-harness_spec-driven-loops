@@ -190,7 +190,12 @@ describe('create-record identity helpers', () => {
         action: 'CREATE',
         similarity: 0,
       },
-      {},
+      {
+        tenantId: 'tenant-create',
+        userId: 'user-create',
+        agentId: 'agent-create',
+        sessionId: 'session-create',
+      },
       {
         targetDocPath: '/tmp/specs/026/implementation-summary.md',
         targetAnchorId: CONTINUITY_ANCHOR_ID,
@@ -202,7 +207,13 @@ describe('create-record identity helpers', () => {
     expect(indexSpy).toHaveBeenCalledWith(expect.objectContaining({
       filePath: '/tmp/specs/026/implementation-summary.md',
       anchorId: CONTINUITY_ANCHOR_ID,
-      appendOnly: true,
+      appendOnly: false,
+      scope: {
+        tenantId: 'tenant-create',
+        userId: 'user-create',
+        agentId: 'agent-create',
+        sessionId: 'session-create',
+      },
     }));
 
     db.close();

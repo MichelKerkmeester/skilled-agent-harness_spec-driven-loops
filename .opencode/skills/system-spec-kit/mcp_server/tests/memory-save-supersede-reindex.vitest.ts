@@ -193,7 +193,7 @@ afterAll(() => {
 });
 
 describe('memory_index_scan same-path re-index supersede', () => {
-  it('replaces a changed doc in place without leaving a duplicate index row', async () => {
+  it('supersedes a changed doc by deprecating the predecessor, leaving one active row', async () => {
     writeFixtureDoc('v1', 'Initial fixture body describing the original handover state.');
     // Spec docs index under warn-only during scan/force reindex (memory-index.ts),
     // so the sufficiency floor is advisory here — matching real scan behavior.
@@ -210,20 +210,23 @@ describe('memory_index_scan same-path re-index supersede', () => {
     await handler.index_memory_file_from_scan(FIXTURE_DOC_PATH, { force: true, qualityGateMode: 'warn-only' });
 
     const afterSecond = fixtureRows();
-    // Core regression: exactly one row survives for this logical key.
-    expect(afterSecond).toHaveLength(1);
+    const active = afterSecond.filter((row) => row.importance_tier !== 'deprecated');
+    const deprecated = afterSecond.filter((row) => row.importance_tier === 'deprecated');
+    // Core regression: exactly one ACTIVE row per logical key (the active-row guard).
+    // The predecessor is retired by deprecation BEFORE the new insert — kept for
+    // lineage/history, removed from the active-row guard — so it coexists with the
+    // partial unique index instead of colliding (insert-then-delete would throw).
+    expect(active).toHaveLength(1);
+    expect(deprecated).toHaveLength(1);
+    expect(deprecated[0].id).toBe(firstId);
 
-    const survivor = afterSecond[0];
-    // The surviving row is the NEW version (append happened), and the prior
-    // predecessor row was retired rather than left behind.
+    const survivor = active[0];
+    // The active row is the NEW version (append happened), not the predecessor.
     expect(survivor.id).not.toBe(firstId);
-    // No deprecated predecessor cruft remains.
-    expect(survivor.importance_tier).not.toBe('deprecated');
-    expect(afterSecond.filter((row) => row.importance_tier === 'deprecated')).toHaveLength(0);
-    // Surviving content reflects v2.
+    // Surviving active content reflects v2.
     expect(survivor.content_text ?? '').toContain('superseding handover state');
 
-    // The active projection points at the surviving row only.
+    // The active projection points at the surviving active row only.
     expect(activeProjectionTargets()).toEqual([survivor.id]);
   });
 });

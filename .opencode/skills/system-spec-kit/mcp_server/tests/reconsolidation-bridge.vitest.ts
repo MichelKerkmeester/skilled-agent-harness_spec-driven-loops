@@ -389,6 +389,14 @@ describe('Reconsolidation Bridge', () => {
 
     expect(bridgeMocks.bm25AddDocument).toHaveBeenCalledTimes(2);
     expect(bridgeMocks.bm25RemoveDocument).toHaveBeenCalledWith('901');
+    expect(bridgeMocks.indexMemory).toHaveBeenCalledWith(expect.objectContaining({
+      scope: {
+        tenantId: 'tenant-a',
+        userId: 'user-a',
+        agentId: 'agent-a',
+        sessionId: 'session-a',
+      },
+    }));
     expect(bridgeMocks.applyPostInsertMetadata).toHaveBeenCalledWith(
       expect.anything(),
       901,

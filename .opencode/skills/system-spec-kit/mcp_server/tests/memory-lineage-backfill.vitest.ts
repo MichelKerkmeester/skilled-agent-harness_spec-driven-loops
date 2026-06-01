@@ -19,6 +19,11 @@ function insertMemory(
     createdAt: string;
   },
 ): void {
+  // Mirror production's deprecate-before-insert: retire any same-key active row so
+  // raw multi-version fixtures respect the active-row uniqueness guard.
+  database.prepare(
+    "UPDATE memory_index SET importance_tier = 'deprecated' WHERE spec_folder = ? AND canonical_file_path = ? AND COALESCE(importance_tier,'normal') NOT IN ('constitutional','deprecated')",
+  ).run(params.specFolder, params.filePath);
   database.prepare(`
     INSERT INTO memory_index (
       id,

@@ -21,7 +21,7 @@ import { refresh_interference_scores_for_folder } from '../search/vector-index-s
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
 import { assertNever } from '../utils/exhaustiveness.js';
 import { delete_memory_from_database } from '../search/vector-index-mutations.js';
-import { recordLineageTransition } from './lineage-state.js';
+import { recordLineageTransition, retirePredecessorForActiveReindex } from './lineage-state.js';
 import {
   applyPostInsertMetadata,
   type PostInsertMetadataFields,
@@ -324,6 +324,10 @@ export async function executeMerge(
         created_at: now,
         updated_at: now,
       }, memoryIndexColumns);
+      // Retire the merged-from predecessor before inserting the merged row so the
+      // active-row uniqueness guard holds at insert time; lineage and history persist.
+      retirePredecessorForActiveReindex(db, existingMemory.id);
+
       const insertColumns = Object.keys(insertValues);
       const insertSql = `
         INSERT INTO memory_index (${insertColumns.join(', ')})

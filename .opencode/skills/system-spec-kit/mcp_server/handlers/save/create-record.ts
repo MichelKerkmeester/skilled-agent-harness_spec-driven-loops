@@ -13,7 +13,7 @@ import * as causalEdges from '../../lib/storage/causal-edges.js';
 import type * as memoryParser from '../../lib/parsing/memory-parser.js';
 import { sanitizeEmbeddingFailureMessage } from '../../lib/providers/retry-manager.js';
 import { getCanonicalPathKey } from '../../lib/utils/canonical-path.js';
-import { recordLineageTransition } from '../../lib/storage/lineage-state.js';
+import { recordLineageTransition, retirePredecessorForActiveReindex } from '../../lib/storage/lineage-state.js';
 import { toErrorMessage } from '../../utils/index.js';
 
 import { recordHistory } from '../../lib/storage/history.js';
@@ -307,6 +307,12 @@ export function createMemoryRecord(
     const predecessorMemoryId = lineageRouting.predecessorMemoryId;
     const transitionEvent = lineageRouting.transitionEvent;
 
+    // Retire the same-key predecessor before inserting the new active version so the
+    // active-row uniqueness guard holds at insert time; lineage and history persist.
+    if (predecessorMemoryId != null) {
+      retirePredecessorForActiveReindex(database, predecessorMemoryId);
+    }
+
     const memory_id: number = embedding
       ? vectorIndex.indexMemory({
           specFolder: parsed.specFolder,
@@ -323,6 +329,7 @@ export function createMemoryRecord(
           qualityScore: parsed.qualityScore,
           qualityFlags: parsed.qualityFlags,
           appendOnly: predecessorMemoryId != null,
+          scope,
         })
       : vectorIndex.indexMemoryDeferred({
           specFolder: parsed.specFolder,
@@ -339,6 +346,7 @@ export function createMemoryRecord(
           qualityScore: parsed.qualityScore,
           qualityFlags: parsed.qualityFlags,
           appendOnly: predecessorMemoryId != null,
+          scope,
         });
 
     const fileMetadata = incrementalIndex.getFileMetadata(recordIdentity.targetDocPath);
@@ -372,15 +380,6 @@ export function createMemoryRecord(
         const message = toErrorMessage(err);
         console.error('[PE-Gate] Could not store related memories:', message);
       }
-    }
-
-    if (predecessorMemoryId != null) {
-      database.prepare(`
-        UPDATE memory_index
-        SET importance_tier = 'deprecated',
-            updated_at = ?
-        WHERE id = ?
-      `).run(new Date().toISOString(), predecessorMemoryId);
     }
 
     recordLineageTransition(database, memory_id, {

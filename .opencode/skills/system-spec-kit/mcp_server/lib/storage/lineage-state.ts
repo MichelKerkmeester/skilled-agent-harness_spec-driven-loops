@@ -167,6 +167,11 @@ interface CreateAppendOnlyMemoryRecordParams {
   embedding: Float32Array | null;
   embeddingFailureReason: string | null;
   predecessorMemoryId: number;
+  anchorId?: string | null;
+  tenantId?: string | null;
+  userId?: string | null;
+  agentId?: string | null;
+  sessionId?: string | null;
   actor?: string;
 }
 
@@ -201,7 +206,12 @@ function getSafeHistoryEvents(database: Database.Database, memoryId: number): Hi
 // Return shape preserved as `string | null` — the downstream `!= null` filter
 // at `scopeTuple` tolerates both null and undefined, so semantics are identical.
 
-function buildScopePrefix(row: MemoryIndexRow): string | null {
+function buildScopePrefix(row: {
+  tenant_id?: unknown;
+  user_id?: unknown;
+  agent_id?: unknown;
+  session_id?: unknown;
+}): string | null {
   const scopeTuple = [
     ['tenant', normalizeScopeValue(row.tenant_id)],
     ['user', normalizeScopeValue(row.user_id)],
@@ -244,21 +254,27 @@ function buildHashedLogicalKey(parts: {
   return `logical-sha256:${digest}`;
 }
 
-function buildLogicalKey(row: MemoryIndexRow): string {
-  const canonicalPath = typeof row.canonical_file_path === 'string' && row.canonical_file_path.trim().length > 0
-    ? row.canonical_file_path.trim()
-    : getCanonicalPathKey(row.file_path);
-  const anchorId = typeof row.anchor_id === 'string' && row.anchor_id.trim().length > 0
-    ? row.anchor_id.trim()
+export function buildMemoryLogicalKey(parts: {
+  specFolder: string;
+  filePath: string;
+  canonicalFilePath?: string | null;
+  anchorId?: string | null;
+  tenant_id?: string | null;
+  user_id?: string | null;
+  agent_id?: string | null;
+  session_id?: string | null;
+}): string {
+  const canonicalPath = typeof parts.canonicalFilePath === 'string' && parts.canonicalFilePath.trim().length > 0
+    ? parts.canonicalFilePath.trim()
+    : getCanonicalPathKey(parts.filePath);
+  const anchorId = typeof parts.anchorId === 'string' && parts.anchorId.trim().length > 0
+    ? parts.anchorId.trim()
     : '_';
-  const scopePrefix = buildScopePrefix(row);
+  const scopePrefix = buildScopePrefix(parts);
 
-  if (hasLogicalKeySeparatorCollision(row.spec_folder, canonicalPath, anchorId)) {
-    logger.warn(
-      `[lineage-state] Logical key component contains '::'; using hashed structured key for spec_folder=${row.spec_folder}, path=${canonicalPath}, anchor=${anchorId}`,
-    );
+  if (hasLogicalKeySeparatorCollision(parts.specFolder, canonicalPath, anchorId)) {
     return buildHashedLogicalKey({
-      specFolder: row.spec_folder,
+      specFolder: parts.specFolder,
       scopePrefix,
       canonicalPath,
       anchorId,
@@ -266,9 +282,22 @@ function buildLogicalKey(row: MemoryIndexRow): string {
   }
 
   if (!scopePrefix) {
-    return `${row.spec_folder}::${canonicalPath}::${anchorId}`;
+    return `${parts.specFolder}::${canonicalPath}::${anchorId}`;
   }
-  return `${row.spec_folder}::${scopePrefix}::${canonicalPath}::${anchorId}`;
+  return `${parts.specFolder}::${scopePrefix}::${canonicalPath}::${anchorId}`;
+}
+
+function buildLogicalKey(row: MemoryIndexRow): string {
+  return buildMemoryLogicalKey({
+    specFolder: row.spec_folder,
+    filePath: row.file_path,
+    canonicalFilePath: row.canonical_file_path,
+    anchorId: row.anchor_id,
+    tenant_id: row.tenant_id,
+    user_id: row.user_id,
+    agent_id: row.agent_id,
+    session_id: row.session_id,
+  });
 }
 
 function getLineageRow(database: Database.Database, memoryId: number): MemoryLineageRow | null {
@@ -438,6 +467,10 @@ function insertAppendOnlyMemoryIndexRow(params: CreateAppendOnlyMemoryRecordPara
   const { database, parsed, filePath, embedding, embeddingFailureReason } = params;
   const now = new Date().toISOString();
   const canonicalFilePath = getCanonicalPathKey(filePath);
+  const tenantId = normalizeScopeValue(params.tenantId);
+  const userId = normalizeScopeValue(params.userId);
+  const agentId = normalizeScopeValue(params.agentId);
+  const sessionId = normalizeScopeValue(params.sessionId);
   const importanceWeight = calculateDocumentWeight(filePath, parsed.documentType);
   const specLevel = isSpecDocumentType(parsed.documentType)
     ? detectSpecLevelFromParsed(filePath)
@@ -454,6 +487,7 @@ function insertAppendOnlyMemoryIndexRow(params: CreateAppendOnlyMemoryRecordPara
       spec_folder,
       file_path,
       canonical_file_path,
+      anchor_id,
       title,
       trigger_phrases,
       importance_weight,
@@ -468,12 +502,17 @@ function insertAppendOnlyMemoryIndexRow(params: CreateAppendOnlyMemoryRecordPara
       spec_level,
       content_text,
       quality_score,
-      quality_flags
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      quality_flags,
+      tenant_id,
+      user_id,
+      agent_id,
+      session_id
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `).run(
     parsed.specFolder,
     filePath,
     canonicalFilePath,
+    params.anchorId ?? null,
     parsed.title,
     JSON.stringify(parsed.triggerPhrases),
     importanceWeight,
@@ -489,6 +528,10 @@ function insertAppendOnlyMemoryIndexRow(params: CreateAppendOnlyMemoryRecordPara
     parsed.content,
     parsed.qualityScore ?? 0,
     JSON.stringify(parsed.qualityFlags ?? []),
+    tenantId,
+    userId,
+    agentId,
+    sessionId,
   );
 
   const memoryId = Number(result.lastInsertRowid);
@@ -1297,6 +1340,45 @@ export function recordLineageVersion(
     transitionEvent: params.transitionEvent,
     validFrom: params.effectiveAt,
   });
+}
+
+/**
+ * Retire a predecessor row before its same-key successor is inserted, preserving
+ * lineage and history.
+ *
+ * Seeds the predecessor's lineage from its still-active state (idempotent — a no-op
+ * when lineage already exists), then marks the row `deprecated` so it leaves the
+ * active-row uniqueness guard. The row, its lineage chain, and its audit history are
+ * all retained; only the active-tier classification changes. Seeding before the tier
+ * change keeps the seed snapshot anchored to the predecessor's active identity.
+ *
+ * Call inside the caller's write transaction, immediately before inserting the new
+ * version, so the new active row never collides with a still-active predecessor.
+ *
+ * @param database - Database connection that stores lineage and index state.
+ * @param predecessorMemoryId - Memory id being superseded by a same-key successor.
+ */
+export function retirePredecessorForActiveReindex(
+  database: Database.Database,
+  predecessorMemoryId: number,
+): void {
+  const predecessor = database
+    .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
+    .get(predecessorMemoryId) as { importance_tier: string | null } | undefined;
+  if (!predecessor) {
+    return;
+  }
+  // Constitutional rows are exempt from the active-row guard and must keep their
+  // always-surface tier — deprecating one would declassify it. Leave it active and
+  // let the lineage transition supersede it without a tier change.
+  if (predecessor.importance_tier === 'constitutional') {
+    return;
+  }
+
+  seedLineageFromCurrentState(database, predecessorMemoryId, { transitionEvent: 'BACKFILL' });
+  database
+    .prepare("UPDATE memory_index SET importance_tier = 'deprecated', updated_at = ? WHERE id = ?")
+    .run(normalizeTimestamp(null), predecessorMemoryId);
 }
 
 /**

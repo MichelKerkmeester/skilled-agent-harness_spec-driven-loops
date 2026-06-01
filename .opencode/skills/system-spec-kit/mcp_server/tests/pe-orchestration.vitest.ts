@@ -220,6 +220,12 @@ describe('PE orchestration lineage guard', () => {
           specFolder: 'system-spec-kit/026-graph-and-context-optimization/010-memory-indexer-lineage-and-concurrency-fix',
         }),
         expect.any(Float32Array),
+        {
+          tenantId: 'tenant-scan',
+          userId: 'user-scan',
+          agentId: 'agent-scan',
+          sessionId: 'session-scan',
+        },
       );
       expect(mocks.findSimilarMemoriesMock).toHaveBeenCalledWith(
         expect.any(Float32Array),

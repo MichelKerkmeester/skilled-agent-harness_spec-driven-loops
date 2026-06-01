@@ -394,7 +394,7 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
             };
           }
 
-          if (sql.includes('SELECT id, spec_folder FROM memory_index')) {
+          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
             return {
               all() {
                 throw new Error('scope lookup failed');
@@ -426,6 +426,58 @@ describe('Hybrid Search Unit Tests (T031+)', () => {
         '[BM25] Spec-folder scope lookup failed, returning empty scoped results:',
         expect.any(Error),
       );
+    });
+
+    it('T031-BM25-08: bm25_search() excludes deprecated memory rows', () => {
+      const metadataDb = {
+        prepare(sql: string) {
+          if (sql.includes('memory_fts')) {
+            return {
+              get() {
+                return { count: 1 };
+              },
+            };
+          }
+
+          if (sql.includes('SELECT id, spec_folder, importance_tier FROM memory_index')) {
+            return {
+              all(...ids: unknown[]) {
+                return ids.map((id) => ({
+                  id: Number(id),
+                  spec_folder: 'specs/auth',
+                  importance_tier: Number(id) === 2 ? 'deprecated' : 'normal',
+                }));
+              },
+            };
+          }
+
+          return {
+            get() {
+              return null;
+            },
+            all() {
+              return [];
+            },
+          };
+        },
+      } as unknown as Database.Database;
+
+      hybridSearch.init(metadataDb, mockVectorSearch, mockGraphSearch);
+      const bm25 = bm25Index.getIndex();
+      bm25.addDocument(
+        '1',
+        'shared transaction filter regression candidate active document with enough words for indexing',
+      );
+      bm25.addDocument(
+        '2',
+        'shared transaction filter regression candidate deprecated document with enough words for indexing',
+      );
+
+      const results = hybridSearch.bm25Search('transaction filter regression candidate', { limit: 10 });
+      const ids = results.map((result) => String(result.id));
+
+      expect(ids).toContain('1');
+      expect(ids).not.toContain('2');
     });
   });
 
