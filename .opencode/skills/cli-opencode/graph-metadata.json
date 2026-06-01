@@ -81,8 +81,11 @@
       "cli-opencode",
       "cli opencode",
       "minimax",
+      "minimax-coding-plan",
+      "minimax token plan",
       "minimax-2.7",
-      "minimax/MiniMax-M2.7",
+      "minimax-m3",
+      "minimax-coding-plan/MiniMax-M3-highspeed",
       "minimax dispatch",
       "tidd-ec framework"
     ],

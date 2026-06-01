@@ -5,7 +5,7 @@
  * scripts/dispatch-model.cjs
  *
  * Model-agnostic CLI dispatcher for the deep-improvement model-benchmark
- * mode. Generalized from 120/003's dispatch-minimax.cjs: same interface and the
+ * mode. Generalized from the original MiniMax-only dispatcher: same interface and the
  * same rate-limit / backoff / pause-sentinel machinery, but the invocation layer
  * routes through an executor map keyed on `opts.executor` instead of being
  * hardcoded to `opencode run`.
@@ -19,7 +19,7 @@
  *     holds it constant (omits it); model-benchmark may vary it as the axis.
  *   - Config (model/agent/executor/timeout/backoff) is read from
  *     improvement_config.json -> modelBenchmarkConfig when present; opts override.
- *   - Mock outputs are model-agnostic and shared with the 120/003 rig shapes.
+ *   - Mock outputs are model-agnostic and shared with the model-benchmark rig shapes.
  *   - Read-only by default (F-P1-1): executors run in their non-write mode;
  *     write-capable evaluation requires DEEP_AGENT_DISPATCH_WRITE=1.
  *   - Pause sentinel is run-scoped (F-P1-14): opts.state_dir / --state-dir /
@@ -33,7 +33,7 @@ const path = require('path');
 const crypto = require('crypto');
 const { spawnSync, execSync } = require('child_process');
 
-// 121/013: this file now lives in scripts/model-benchmark/, one level deeper
+// This file lives in scripts/model-benchmark/, one level deeper
 // than the original scripts/ root. SCRIPTS_ROOT is __dirname (model-benchmark/),
 // so every path that reaches the skill root needs an extra '..' versus the
 // pre-move scripts/-root depth. state/ and assets/ live at the skill root
@@ -248,7 +248,7 @@ function dispatchReal(opts) {
   const backoff = Array.isArray(opts._backoff) ? opts._backoff : BACKOFF_MS;
   const promptText = fs.readFileSync(opts.prompt_file, 'utf8');
   const resolved = {
-    model: opts.model || TARGET.model || 'minimax/MiniMax-M2.7',
+    model: opts.model || TARGET.model || 'minimax-coding-plan/MiniMax-M2.7-highspeed',
     agent: opts.agent || TARGET.agent || 'general',
     variant: opts.variant || null,
     dir,

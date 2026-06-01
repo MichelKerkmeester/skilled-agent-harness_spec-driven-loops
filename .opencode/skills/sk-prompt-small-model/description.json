@@ -1,7 +1,7 @@
 {
   "name": "sk-prompt-small-model",
-  "description": "Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 across cli-devin and cli-opencode (DeepSeek API + opencode-go provider) dispatch paths. Points at real patterns in cli-devin/references/ and cli-opencode/references/ while giving the skill advisor one discoverable routing anchor for small-model dispatch.",
-  "version": "0.2.0",
+  "description": "Sentinel for small-model optimization patterns covering SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax across cli-devin and cli-opencode (DeepSeek API + opencode-go + MiniMax Token Plan minimax-coding-plan default / MiniMax Direct API minimax) dispatch paths. Points at real patterns in cli-devin/references/ and cli-opencode/references/ while giving the skill advisor one discoverable routing anchor for small-model dispatch.",
+  "version": "0.2.1",
   "importance_tier": "important",
   "keywords": [
     "sk-prompt-small-model",
@@ -16,6 +16,11 @@
     "kimi-k2.6",
     "qwen3.6",
     "glm-5.1",
+    "minimax",
+    "minimax-m3",
+    "minimax-2.7",
+    "minimax-coding-plan",
+    "minimax token plan",
     "opencode-go",
     "cognition free",
     "cognition pro",
@@ -36,8 +41,9 @@
     "route Kimi-k2.6 through cli-opencode opencode-go with a context budget",
     "dispatch DeepSeek-v4-pro through DeepSeek API direct",
     "run GLM-5.1 via cli-devin Cognition Pro with structured permissions",
-    "check structured permissions before DeepSeek-v4-pro dispatch"
+    "check structured permissions before DeepSeek-v4-pro dispatch",
+    "dispatch MiniMax via the Token Plan minimax-coding-plan default"
   ],
-  "lastUpdated": "2026-05-18T00:00:00Z",
+  "lastUpdated": "2026-06-01T00:00:00Z",
   "pattern_index": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"
 }

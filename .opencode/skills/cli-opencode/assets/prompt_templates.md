@@ -448,16 +448,15 @@ The calling AI extracts this block via regex
 and feeds it to generate-context.js.
 ```
 
-## 15. TEMPLATE 14 — MINIMAX M2.7 (EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
+## 15. TEMPLATE 14 — MINIMAX (TOKEN PLAN; EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
 
-**When**: dispatching to `minimax/MiniMax-M2.7` (direct MiniMax.io API). The 120/003 benchmark (real MiniMax runs) found this model diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback). `--variant` is omitted by default (unverified). Hold this contract for MiniMax dispatches.
+**When**: dispatching to the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; pay-per-token alternative `minimax/MiniMax-M2.7` via the Direct API). The 120/003 benchmark (real MiniMax M2.7 runs) found MiniMax diverges from the cross-model defaults: **TIDD-EC** framework + **dense** pre-planning wins (RCAF + medium is the fallback) — carry this contract forward to M3 until re-benchmarked. `--variant` is omitted by default (unverified). **Omit `--agent`** (rejected on opencode 1.15.13).
 
 **Invocation**:
 
 ```bash
 opencode run \
-  --model minimax/MiniMax-M2.7 \
-  --agent general \
+  --model minimax-coding-plan/MiniMax-M3-highspeed \
   --dir "$REPO_ROOT" \
   "$(cat prompt.md)" \
   </dev/null

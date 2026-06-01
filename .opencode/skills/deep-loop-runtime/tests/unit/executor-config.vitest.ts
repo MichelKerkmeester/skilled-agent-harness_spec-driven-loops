@@ -269,7 +269,7 @@ describe('expandLineages', () => {
   it('expands count>1 into numbered single-replica lineages', () => {
     const config = parseFanoutConfig({
       executors: [
-        { kind: 'cli-opencode', model: 'minimax/MiniMax-M2.7', label: 'minimax', count: 3 },
+        { kind: 'cli-opencode', model: 'minimax-coding-plan/MiniMax-M2.7-highspeed', label: 'minimax', count: 3 },
         { kind: 'native', label: 'opus', count: 2 },
       ],
     });

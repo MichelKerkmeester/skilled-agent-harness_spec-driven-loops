@@ -55,7 +55,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Executor / Skill | Owns | Surface |
 | --- | --- | --- |
 | `cli-devin` | SWE-1.6 (free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 via Cognition Pro | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
-| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax-M2.7 via MiniMax.io direct API | Permissions matrix, budget propagation mirror, MiniMax prompt-framework template (TIDD-EC + dense) |
+| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) | Permissions matrix, budget propagation mirror, MiniMax prompt-framework template (TIDD-EC + dense) |
 | `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json (each entry has `executors` array), cli_prompt_quality_card.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 | `sk-prompt-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |

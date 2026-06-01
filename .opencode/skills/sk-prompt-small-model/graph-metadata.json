@@ -77,7 +77,11 @@
       "tool scoring",
       "small-model optimization",
       "minimax",
+      "minimax-coding-plan",
+      "minimax token plan",
       "minimax-2.7",
+      "minimax-m3",
+      "minimax-token-plan",
       "minimax-api",
       "minimax.io",
       "minimax direct api"
