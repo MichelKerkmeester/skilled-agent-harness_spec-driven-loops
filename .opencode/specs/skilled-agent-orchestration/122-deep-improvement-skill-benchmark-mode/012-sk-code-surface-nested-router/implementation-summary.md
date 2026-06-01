@@ -1,6 +1,6 @@
 ---
-title: "Implementation Summary: sk-code Surface-Nested Router (planned)"
-description: "Progress record for the surface-nested router build. Phase opened and planned from the 011 research recommendation; no router change made yet."
+title: "Implementation Summary: sk-code Surface-Nested Router"
+description: "Surface-aware routing implemented as a route-time filter + §11 rule and live-validated: aggregate 71 to 79, D3 42 to 50, no recall regression."
 trigger_phrases:
   - "sk-code surface-nested router summary"
 importance_tier: "normal"
@@ -20,11 +20,11 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-code-surface-nested-router"
       parent_session_id: null
-    completion_pct: 5
+    completion_pct: 90
     open_questions: []
     answered_questions: []
 ---
-# Implementation Summary: sk-code Surface-Nested Router (planned)
+# Implementation Summary: sk-code Surface-Nested Router
 
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
