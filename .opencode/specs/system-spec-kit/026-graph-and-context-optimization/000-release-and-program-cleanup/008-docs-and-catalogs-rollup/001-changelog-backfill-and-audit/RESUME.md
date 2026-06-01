@@ -38,6 +38,15 @@ Any FAIL -> run the repair workflow on those files -> re-sweep until zero.
 8. Phase 3c: canonicalize residue — relocate 28 noncanon (move, never delete), fix stale spec-folder paths in the 103 pre-existing changelogs, repair 9 dangling symlinks in 026/changelog, rename 2 non-canonical changelog.md files, migrate 003 per-child changelog dirs to parent-level, rebuild 026/changelog symlink aggregation.
 9. Phase 4: write audit-report.md (coverage before/after, HALT inventory ~47, residue inventory, thin-completion flags) + sampled GPT-5.5 adversarial fidelity check via cli-opencode (read cli-opencode/SKILL.md first). Reconcile completion metadata. Final validate.sh --strict. /memory:save.
 
+## Small-model pivot (owner directive 2026-06-01: use MiniMax-2.7 + DeepSeek from here, very strict prompts)
+
+- Executor changed from Sonnet workflow agents to MiniMax-2.7 + DeepSeek via `opencode run` (cli-opencode). Providers confirmed configured (pre-flight passed).
+- Tooling: `/tmp/sm-author.sh <pkt> <model>` authors ONE changelog (content-return, no FS-write by the model, so no RM-8 risk; driver writes + gates). `/tmp/sm-batch.sh <todo-file> <parallelism>` loops with limited parallelism, alternating minimax/deepseek, logs `<todo>.results.txt`.
+- Hardened prompt is REQUIRED: small models leak generator task/CHK noise into Added/Changed/Fixed. The prompt forbids task-verb/CHK-/REQ-/[P]/packet-doc bullets and the gate adds a `leak=` semantic check (grep for those patterns). GATE_RESULT=PASS requires dash=0 semi=0 marker>=1 secs=7 date=1 leak=0.
+- Ship date: sm-author computes real date from `git log -1 --date=short -- <pkt>` (small models default to today otherwise).
+- After each sm-batch: read `<todo>.results.txt`, re-run FAIL/UNKNOWN packets (delete partial file first, retry other model), then run the external sweep. Spot-READ a few outputs for faithfulness (gate is mechanical + leak only, not semantic depth).
+- Rollups (Phase 3a) need a root-mode variant of the prompt (Included Phases table). Canonicalization (3c) is deterministic shell (no model). Audit (4) synthesis.
+
 ## Invariants
 
 - No fabrication. HALT (no file) on unshipped/thin packets; log them in the audit.
