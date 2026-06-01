@@ -1,0 +1,23 @@
+{
+  "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
+  "description": "Feature Specification: sk-code Surface-Nested Router (D3/D4 remediation build)",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-code",
+    "surface-nested",
+    "router",
+    "remediation",
+    "build"
+  ],
+  "lastUpdated": "2026-06-01T19:25:23.681Z",
+  "specId": "012",
+  "folderSlug": "sk-code-surface-nested-router",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "122-deep-improvement-skill-benchmark-mode"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

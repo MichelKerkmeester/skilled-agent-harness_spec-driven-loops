@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
-  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+  "packet_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
+  "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
   "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
   "manual": {
@@ -11,37 +11,31 @@
   },
   "derived": {
     "trigger_phrases": [
-      "sk-code routing efficiency remediation",
-      "sk-code over-routing",
-      "surface-slice loading",
-      "D3 D4 sk-code remediation",
-      "sk-code remediation plan",
-      "surface-slice research plan",
-      "sk-code remediation tasks",
-      "sk-code remediation checklist",
-      "sk-code remediation summary"
+      "sk-code surface-nested router",
+      "RESOURCE_MAP surface nesting",
+      "sk-code D3 D4 build",
+      "sk-code surface-nested router plan",
+      "sk-code surface-nested router tasks",
+      "sk-code surface-nested router checklist",
+      "sk-code surface-nested router summary"
     ],
     "key_topics": [
       "sk-code",
-      "routing",
-      "efficiency",
-      "remediation",
-      "over-routing",
-      "surface-slice",
-      "loading",
+      "surface-nested",
+      "router",
+      "surface",
+      "nesting",
+      "build",
       "plan",
-      "research",
       "tasks",
       "checklist",
-      "summary"
+      "summary",
+      "phase",
+      "011"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
-      "research/research.md",
-      "research/iterations/iteration-001.md",
-      "research/deep-research-strategy.md",
-      "research/deep-research-state.jsonl",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -49,30 +43,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -110,9 +80,9 @@
         "source": "derived"
       },
       {
-        "name": "Usefulness Remediation",
+        "name": "Nested Router",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -128,7 +98,7 @@
         "source": "derived"
       },
       {
-        "name": "Purpose Reduce",
+        "name": "Purpose Cut",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -146,7 +116,7 @@
         "source": "derived"
       },
       {
-        "name": "Overview Four",
+        "name": "Overview Load",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -158,15 +128,21 @@
         "source": "derived"
       },
       {
-        "name": "Pattern Evaluator",
+        "name": "Pattern Surface",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Key Components The",
+        "name": "Key Components",
         "kind": "proper_noun",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Start Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -176,13 +152,13 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria Research",
+        "name": "Completion Criteria Done",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "its",
+        "name": "the",
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
@@ -192,11 +168,29 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Quality",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "The live sk-code benchmark (phase 010) showed strong routing (D1-intra 92, D2 87, surfaces correct 3/3) but two weak dimensions with converging evidence: D3 efficiency 42 (the model loads ~16-20 resources where the gold is ~5-8) and D4 usefulness about 49 (skill-on beat skill-off on a domain-pattern task but lost on a routine language refactor). Both point at the same behavior: sk-code loads a broad resource slice, which pays off when a domain pattern matters and adds noise on simple tasks.",
-    "created_at": "2026-06-01T18:29:41.530Z",
-    "last_save_at": "2026-06-01T19:56:49.039Z",
+    "causal_summary": "Phase 011's 3-iteration deep research recommended a concrete remediation for sk-code's over-routing (D3 42) and task-dependent usefulness (D4 ~49): the `RESOURCE_MAP` keys on intent only and unions resources across all surfaces, so a single-surface task pulls the cross-surface half too. This phase implements the fix — a surface-nested `RESOURCE_MAP` with a shared `UNIVERSAL` tier, a full unranked cross-surface overlay, intra-surface intent-score ranking, and asset deferral — and proves it holds D1/D2 via a baseline-floor regression guard.",
+    "created_at": "2026-06-01T19:25:23.863Z",
+    "last_save_at": "2026-06-01T19:56:49.041Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -204,8 +198,7 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "implementation-summary.md",
-      "research/research.md"
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

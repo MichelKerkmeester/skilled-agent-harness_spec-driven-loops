@@ -1,6 +1,6 @@
 ---
 title: "Plan: sk-code Routing-Efficiency and Usefulness Remediation"
-description: "Research plan and candidate remediation hypotheses for sk-code over-routing (D3) and task-dependent usefulness (D4), to be investigated by a 5-iteration MiniMax deep-research pass before any router change."
+description: "Research plan and candidate remediation hypotheses for sk-code over-routing (D3) and task-dependent usefulness (D4), investigated by a 3-iteration native-Opus deep-research pass before any router change."
 trigger_phrases:
   - "sk-code remediation plan"
   - "surface-slice research plan"
@@ -11,82 +11,138 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Drafted research plan + candidate remediation hypotheses"
-    next_safe_action: "Run the 5-iteration MiniMax deep-research loop"
+    recent_action: "Research converged; recommendation recorded"
+    next_safe_action: "Implement in the follow-on BUILD phase 012"
     blockers: []
     key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-code-routing-efficiency-remediation"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
 # Plan: sk-code Routing-Efficiency and Usefulness Remediation
 
-<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: plan-core | v2.2 -->
+<!-- SPECKIT_LEVEL: 2 -->
 
 ---
 
-<!-- ANCHOR:approach -->
-## 1. APPROACH
+<!-- ANCHOR:summary -->
+## 1. SUMMARY
 
-Research first, change second. A 5-iteration deep-research pass investigates how to tighten sk-code's resource loading before any router edit. The research consumes the live benchmark evidence and the documented surface-flattening tradeoff, then recommends one approach with a recall-vs-efficiency frontier and a D1/D2 regression guard.
+Research first, change second. A 3-iteration native-Opus deep-research pass investigated how to tighten sk-code's resource loading before any router edit, then recommended one approach with a recall-vs-efficiency frontier and a D1/D2 regression guard. The build is the follow-on phase 012.
 
-The research is dispatched through `cli-opencode` to `minimax-coding-plan/MiniMax-M2.7-highspeed` (omit `--agent`, Token Plan quota pool), prompted per `sk-prompt-small-model` (bounded context budget, explicit output contract, output verification).
-<!-- /ANCHOR:approach -->
+### Technical Context
+The research consumes the live benchmark evidence (`sk-code/benchmark/live-final/`) and the documented surface-flattening tradeoff in `smart_routing.md` §11. It dispatched native `@deep-research` (Opus) iterations and externalized state under `research/`.
 
----
-
-<!-- ANCHOR:research-question -->
-## 2. RESEARCH QUESTION
-
-How can sk-code load a tighter, task-appropriate resource slice — cutting over-routing (D3) and lifting routine-task usefulness (D4) — without regressing routing recall (D1) or discovery (D2)?
-
-### Candidate hypotheses for the loop to weigh
-
-| # | Approach | Premise | Risk |
-|---|----------|---------|------|
-| H1 | Surface×concern slicing | Load only the detected surface's slice for the matched concern, not the unioned set | May starve cross-surface tasks |
-| H2 | Phase-gated loading | Gate heavy implementation refs behind the routing phase the §2 algorithm already detects | Phase detection must be reliable |
-| H3 | Lazy / progressive loading | Load the preamble plus the top-ranked slice first, fetch more only on demand | Adds a round-trip on genuinely broad tasks |
-| H4 | Anti-over-routing heuristic | Cap or rank resources per intent, drop low-signal docs for narrow tasks | Risk of dropping a needed doc (recall hit) |
-<!-- /ANCHOR:research-question -->
+### Overview
+Four hypotheses were weighed; the converged recommendation is a surface-nested `RESOURCE_MAP` (H1) with a full unranked cross-surface overlay, intra-surface intent-score ranking (H4), and asset deferral.
+<!-- /ANCHOR:summary -->
 
 ---
 
-<!-- ANCHOR:evidence -->
-## 3. EVIDENCE BASELINE
+<!-- ANCHOR:quality-gates -->
+## 2. QUALITY GATES
 
-| Signal | Value | Source |
-|--------|-------|--------|
-| D3 efficiency (live) | 42 | `benchmark/live-final/skill-benchmark-report.md` |
-| Routed vs gold | ~16-20 vs ~5-8 | live scenario rows |
-| D4 usefulness (approximate) | ~49 | `benchmark/live-final/d4-ablation.json` |
-| D4 split | CS-001 helped (0.88 vs 0.78), LS-001 hurt (0.82 vs 0.95) | d4-ablation.json |
-| D1-intra / D2 (must not regress) | 92 / 87 | live report |
-<!-- /ANCHOR:evidence -->
+### Definition of Ready
+The live benchmark D3/D4 evidence exists and the §11 router + its flattening tradeoff are read.
+
+### Definition of Done
+`research/research.md` ranks the approaches, names one recommendation with its tradeoff against the surface-flattening behavior, and states a D1/D2 regression guard + a cross-surface non-starvation safeguard.
+<!-- /ANCHOR:quality-gates -->
 
 ---
 
-<!-- ANCHOR:verification -->
-## 4. VERIFICATION
+<!-- ANCHOR:architecture -->
+## 3. ARCHITECTURE
 
-- Research converges or completes 5 iterations with a ranked approach set and one recommendation.
-- The recommendation states a D1/D2 regression guard and the cross-surface non-starvation safeguard.
-- A follow-on phase implements the recommended approach and re-runs the live subset to confirm D3 improves while D1/D2 hold.
-<!-- /ANCHOR:verification -->
+### Pattern
+Evaluator-first research: rank candidate remediations against D3-reduction, D1/D2 preservation, cross-surface non-starvation, and cost/risk.
+
+### Key Components
+The four hypotheses — H1 surface×concern slicing, H2 phase-gated loading, H3 lazy/progressive loading, H4 anti-over-routing heuristic — plus the live evidence and the §11 router.
+
+### Data Flow
+Read evidence → weigh hypotheses per iteration → synthesize a ranked recommendation + regression guard → hand off to the BUILD phase.
+<!-- /ANCHOR:architecture -->
 
 ---
 
-<!-- ANCHOR:risks -->
-## 5. RISKS
+<!-- ANCHOR:affected-surfaces -->
+## FIX ADDENDUM: AFFECTED SURFACES
 
-| Risk | Mitigation |
-|------|------------|
-| Tighter slicing drops a needed doc (recall regression) | the frontier + regression guard are research deliverables, gating the code change |
-| Thin D4 signal (n=2) | corroborate with D3 over-routing; treat D4 as directional |
-| MiniMax dispatch compatibility on the local opencode | use `minimax-coding-plan/MiniMax-M2.7-highspeed`, omit `--agent`; the loop degrades to recorded errors on failure |
-<!-- /ANCHOR:risks -->
+- Research only — no surface is modified. The eventual change targets the sk-code OpenCode surface (`smart_routing.md` §11) + the skill-benchmark route builder.
+<!-- /ANCHOR:affected-surfaces -->
+
+---
+
+<!-- ANCHOR:phases -->
+## 4. IMPLEMENTATION PHASES
+
+### Phase 1: Setup
+Initialize the research state (config, strategy charter, iteration dirs) from the live benchmark evidence.
+
+### Phase 2: Core Implementation
+Run the 3 native-Opus deep-research iterations (root cause + structural H1/H2; dynamic H3/H4 + the frontier; synthesis + recommendation).
+
+### Phase 3: Verification
+Confirm convergence, the ranked recommendation, and the D1/D2 regression guard in `research/research.md`; hand off to the BUILD phase 012.
+<!-- /ANCHOR:phases -->
+
+---
+
+<!-- ANCHOR:testing -->
+## 5. TESTING STRATEGY
+
+The research is validated by convergence (newInfoRatio trend 0.70 → 0.62 → 0.18) and by every finding citing a `file:line` or prior finding. The recommendation is testable: the BUILD phase re-runs the deterministic replay against the D2 baseline floors.
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:dependencies -->
+## 6. DEPENDENCIES
+
+The live benchmark baseline (`sk-code/benchmark/live-final/`) and the §11 router doc.
+<!-- /ANCHOR:dependencies -->
+
+---
+
+<!-- ANCHOR:rollback -->
+## 7. ROLLBACK PLAN
+
+Not applicable — this phase is research only and mutates nothing outside its own `research/` artifacts. The eventual router change carries its own rollback (phase 012).
+<!-- /ANCHOR:rollback -->
+
+---
+
+<!-- ANCHOR:phase-deps -->
+## L2: PHASE DEPENDENCIES
+
+Phase 1 → 2 (iterations read the initialized state) → 3 (synthesis reads the iterations). The BUILD phase 012 depends on this phase's recommendation.
+<!-- /ANCHOR:phase-deps -->
+
+---
+
+<!-- ANCHOR:effort -->
+## L2: EFFORT ESTIMATION
+
+Small: 3 native-Opus iterations + a synthesis pass. No code written this phase.
+<!-- /ANCHOR:effort -->
+
+---
+
+<!-- ANCHOR:enhanced-rollback -->
+## L2: ENHANCED ROLLBACK
+
+### Pre-deployment Checklist
+Not applicable — nothing is deployed; the deliverable is `research/research.md`.
+
+### Rollback Procedure
+Delete the `research/` artifacts to discard the research; no other state is touched.
+
+### Data Reversal
+None — no persisted state or migration.
+<!-- /ANCHOR:enhanced-rollback -->

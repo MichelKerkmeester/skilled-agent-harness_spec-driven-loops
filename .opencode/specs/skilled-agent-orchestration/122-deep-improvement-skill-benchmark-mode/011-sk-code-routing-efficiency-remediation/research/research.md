@@ -92,6 +92,10 @@ Run the deterministic `router-replay.cjs` + `score-skill-benchmark.cjs` harness 
 3. Reconcile playbook gold ↔ RESOURCE_MAP: are the SD-001/CS-001 recall misses gold errors or map coverage gaps?
 4. Decide the asset seam: defer-only (this remediation) vs fold `expectedAssets` into scored gold (separate packet).
 
+<!-- ANCHOR:findings -->
 ## 11. Sources
 
-`sk-code/references/smart_routing.md` (§2 scoring, §3 tiers, §11 router + drift-guard note), `sk-code/SKILL.md` §2 (surface/phase detection), `sk-code/references/{stack_detection,phase_detection}.md`, `sk-code/benchmark/live-final/{skill-benchmark-report.json,d4-ablation.json}`, `sk-code/manual_testing_playbook/{01--surface-detection/001,02--language-sub-detection/004,07--cross-stack-routing/018}`, `deep-improvement/scripts/skill-benchmark/{router-replay,score-skill-benchmark,load-playbook-scenarios}.cjs`.
+Findings across `iteration-001.md`, `iteration-002.md`, and `iteration-003.md` cite these:
+
+`sk-code/references/smart_routing.md` (§2 scoring, §3 tiers, §11 router + drift-guard note), `sk-code/SKILL.md` §2 (surface/phase detection), `sk-code/references/stack_detection.md`, `sk-code/references/phase_detection.md`, `sk-code/benchmark/live-final/skill-benchmark-report.json`, `sk-code/benchmark/live-final/d4-ablation.json`, `sk-code/manual_testing_playbook/01--surface-detection/001-webflow-detection.md`, `sk-code/manual_testing_playbook/07--cross-stack-routing/018-webflow-plus-motion-dev.md`, `deep-improvement/scripts/skill-benchmark/router-replay.cjs`, `deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs`.
+<!-- /ANCHOR:findings -->
