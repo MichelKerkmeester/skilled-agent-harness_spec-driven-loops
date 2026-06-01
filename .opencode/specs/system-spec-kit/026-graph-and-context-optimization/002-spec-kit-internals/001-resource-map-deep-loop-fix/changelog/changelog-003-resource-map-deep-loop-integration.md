@@ -52,7 +52,7 @@ This phase built a shared evidence extractor under `scripts/resource-map/extract
 
 - Typecheck (`npm run typecheck` inside mcp_server/): exit 0.
 - Review-shape extractor dry run: output contained READMEs, Skills categories plus findings notes (P0=0 P1=1 P2=0).
-- Research-shape extractor dry run: output contained Commands, Skills categories plus citation notes (Citations=3; Iterations=3).
+- Research-shape extractor dry run: output contained Commands, Skills categories plus citation notes (Citations=3, Iterations=3).
 - Opt-out path: reducer returned `resourceMapSkipped: true` and wrote no file.
 - Zero/max iteration edge cases: dry run returned correct zero-state and max-citation markers.
 - Malformed-row degradation: dry run returned `degraded: true` without crashing.

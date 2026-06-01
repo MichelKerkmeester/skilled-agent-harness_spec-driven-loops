@@ -1,21 +1,53 @@
-# Changelog , , ,  001: Live coverage for the F2 clean-close reap barrier
+---
+title: "Live F2 clean-close reap barrier coverage"
+description: "The F2 clean-close barrier (reapLeaseChildBeforeRespawn) now has real end-to-end coverage against actual child processes and a real marker file, closing the live-coverage gap without the flaky launcher-spawn pattern that skipped the legacy suite."
+trigger_phrases:
+  - "live two-launcher reap test"
+  - "F2 clean-close barrier coverage"
+  - "reapLeaseChildBeforeRespawn test"
+  - "launcher reap coverage"
+  - "clean-close reap barrier test"
+importance_tier: "important"
+contextType: "implementation"
+---
+# Changelog
 
-**Shipped**: 2026-05-30
-**Commit**: 4b2c5de6a3
+<!-- SPECKIT_TEMPLATE_SOURCE: changelog/phase.md | v1.0 -->
 
-## What Changed
-- Modified `.opencode/bin/mk-spec-memory-launcher.cjs` to export reapLeaseChildBeforeRespawn and uncleanMarkerPresent (export-only, no logic change)
-- Created `mcp_server/tests/launcher-clean-close-reap.vitest.ts` with live reap-barrier test covering 4 deterministic cases: marker-path resolution, already-dead child, graceful exit + no marker, graceful exit + marker survives
-- Test uses real throwaway node -e children and real .unclean-shutdown marker file pinned via MEMORY_DB_PATH
-- SIGKILL-escalation branch covered by pure unit test in launcher-clean-close-barrier.vitest.ts
+## 2026-06-01
 
-## Why
-The F2 clean-close barrier that decides whether a reaped context-server child handed off the DB cleanly had zero live coverage. The only real-process launcher suite is entirely skipped as a "known launcher process lifecycle flake," so the safety-critical path was untested.
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test` (Level 2)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/015-infra-followup-hardening`
 
-## Verification
-- launcher-clean-close-reap.vitest.ts: PASS, 4/4 deterministic (3 consecutive clean runs, ~0.5s)
-- node --check launcher: PASS
-- Launcher export introspection (no auto-run): PASS , , ,  reapLeaseChildBeforeRespawn + uncleanMarkerPresent callable, marker path resolves, main() not invoked
-- Launcher disk == HEAD before edit: PASS , , ,  no drift
-- Comment-hygiene audit: PASS, 0 violations
-- Packet strict-validate: PASS
+### Summary
+
+The F2 clean-close barrier (`reapLeaseChildBeforeRespawn`) decides whether a daemon database is clean after a child context server exits, but only its pure helpers had unit tests. The reap orchestration itself had zero live coverage because the only real-process launcher suite was entirely skipped as a known flake. This packet exported the reap function for testability and added a deterministic test suite that drives it against real child processes and a real marker file, avoiding the flaky launcher-spawn pattern entirely.
+
+### Added
+- Live reap-barrier test suite that drives the real `reapLeaseChildBeforeRespawn` function against throwaway child processes and a real `.unclean-shutdown` marker file, covering marker-path resolution, already-dead child, graceful clean exit, and graceful dirty exit branches
+- Unknown-eperm liveness guard that skips the test with a reason when a hardened sandbox hides process liveness, preventing a false assertion on the wrong branch
+
+### Changed
+- Launcher now exports `reapLeaseChildBeforeRespawn` and `uncleanMarkerPresent` so tests can invoke the reap function directly (export-only, no behavior change, `require.main` guard keeps importing side-effect-free)
+
+### Fixed
+- None.
+
+### Verification
+- `launcher-clean-close-reap.vitest.ts`, PASS, 4 of 4 deterministic (3 consecutive clean runs, ~0.5s)
+- `node --check` launcher, PASS
+- Launcher export introspection (no auto-run), PASS, `reapLeaseChildBeforeRespawn` and `uncleanMarkerPresent` callable, marker path resolves, `main()` not invoked
+- Launcher disk vs HEAD before edit, PASS, no drift
+- Comment-hygiene audit, PASS, 0 violations
+- Packet strict-validate, PASS
+
+### Files Changed
+
+| File | Action | What changed |
+|------|--------|--------------|
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | Modified | Exported `reapLeaseChildBeforeRespawn` and `uncleanMarkerPresent` for test access |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/launcher-clean-close-reap.vitest.ts` | Created | Live reap-barrier test covering the four reap branches with real child processes and a real marker file |
+
+### Follow-Ups
+- Not a full two-launcher integration test. The reap function, the safety-critical core of the F2 barrier, is covered but the full launcher-B-bridges-then-respawns wiring is not. The bridge respawn-on-dead decision is separately unit-tested in `launcher-ipc-bridge-probe.vitest.ts`. Combining both into a real two-process test remains deferred for the same flake reason that skipped the legacy suite.
+- The SIGKILL-escalation branch is not exercised live. Reliably forcing a child to ignore SIGTERM proved environment-fragile (the first attempt flaked), so the `killed=true` path is covered by the pure `cleanCloseAfterReap` unit test rather than a live reap. The live suite covers SIGTERM-reap and marker-based clean/unclean determination only.

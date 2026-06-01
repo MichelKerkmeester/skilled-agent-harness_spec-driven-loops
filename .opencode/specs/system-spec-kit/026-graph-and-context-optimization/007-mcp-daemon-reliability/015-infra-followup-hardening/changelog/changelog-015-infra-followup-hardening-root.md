@@ -24,12 +24,12 @@ This phase parent groups 7 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-015-001-live-two-launcher-test.md](./changelog-015-001-live-two-launcher-test.md) | n/a | changelog-015-001-live-two-launcher-test.md |
-| [changelog-015-002-substrate-codegraph-scenarios.md](./changelog-015-002-substrate-codegraph-scenarios.md) | n/a | changelog-015-002-substrate-codegraph-scenarios.md |
-| [changelog-015-003-worktree-child-marker-dispatch.md](./changelog-015-003-worktree-child-marker-dispatch.md) | n/a | changelog-015-003-worktree-child-marker-dispatch.md |
-| [changelog-015-004-cli-child-marker-propagation.md](./changelog-015-004-cli-child-marker-propagation.md) | n/a | changelog-015-004-cli-child-marker-propagation.md |
-| [changelog-015-005-substrate-codegraph-2nd-daemon.md](./changelog-015-005-substrate-codegraph-2nd-daemon.md) | n/a | changelog-015-005-substrate-codegraph-2nd-daemon.md |
-| [changelog-015-006-sessionstart-worktree-guard.md](./changelog-015-006-sessionstart-worktree-guard.md) | n/a | changelog-015-006-sessionstart-worktree-guard.md |
+| [changelog-015-001-live-two-launcher-test.md](./changelog-015-001-live-two-launcher-test.md) | 2026-06-01 | Live F2 clean-close reap barrier coverage |
+| [changelog-015-002-substrate-codegraph-scenarios.md](./changelog-015-002-substrate-codegraph-scenarios.md) | 2026-06-01 | Changelog: Substrate Code-Graph scenario tool-contract fix [015-infra-followup-hardening/002-substrate-codegraph-scenarios] |
+| [changelog-015-003-worktree-child-marker-dispatch.md](./changelog-015-003-worktree-child-marker-dispatch.md) | 2026-06-01 | Worktree child-marker dispatch documentation |
+| [changelog-015-004-cli-child-marker-propagation.md](./changelog-015-004-cli-child-marker-propagation.md) | 2026-06-01 | Propagate AI_SESSION_CHILD dispatch rule to remaining cli-* skills |
+| [changelog-015-005-substrate-codegraph-2nd-daemon.md](./changelog-015-005-substrate-codegraph-2nd-daemon.md) | 2026-06-01 | Wire a Second Live Code-Graph Daemon into the Substrate Stress Harness |
+| [changelog-015-006-sessionstart-worktree-guard.md](./changelog-015-006-sessionstart-worktree-guard.md) | 2026-06-01 | Wire worktree-guard into the Claude SessionStart hook chain |
 | [changelog-015-infra-followup-hardening.md](./changelog-015-infra-followup-hardening.md) | n/a | changelog-015-infra-followup-hardening.md |
 
 ### Added

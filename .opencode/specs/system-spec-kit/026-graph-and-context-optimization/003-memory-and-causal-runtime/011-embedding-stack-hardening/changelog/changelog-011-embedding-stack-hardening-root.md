@@ -24,15 +24,15 @@ This phase parent groups 9 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-011-001-selector-and-shared-socket.md](./changelog-011-001-selector-and-shared-socket.md) | n/a | changelog-011-001-selector-and-shared-socket.md |
-| [changelog-011-002-server-liveness-supervision.md](./changelog-011-002-server-liveness-supervision.md) | n/a | changelog-011-002-server-liveness-supervision.md |
-| [changelog-011-003-observability-model-switch.md](./changelog-011-003-observability-model-switch.md) | n/a | changelog-011-003-observability-model-switch.md |
-| [changelog-011-004-perf-instrumentation-batching.md](./changelog-011-004-perf-instrumentation-batching.md) | n/a | changelog-011-004-perf-instrumentation-batching.md |
-| [changelog-011-005-live-validation-bench-hardening.md](./changelog-011-005-live-validation-bench-hardening.md) | n/a | changelog-011-005-live-validation-bench-hardening.md |
-| [changelog-011-006-comment-ephemeral-pointer-cleanup.md](./changelog-011-006-comment-ephemeral-pointer-cleanup.md) | n/a | changelog-011-006-comment-ephemeral-pointer-cleanup.md |
-| [changelog-011-007-ephemeral-pointer-guard-and-sweep.md](./changelog-011-007-ephemeral-pointer-guard-and-sweep.md) | n/a | changelog-011-007-ephemeral-pointer-guard-and-sweep.md |
-| [changelog-011-008-deep-review-correctness-edges.md](./changelog-011-008-deep-review-correctness-edges.md) | n/a | changelog-011-008-deep-review-correctness-edges.md |
-| [changelog-011-009-single-writer-durability-cluster.md](./changelog-011-009-single-writer-durability-cluster.md) | n/a | changelog-011-009-single-writer-durability-cluster.md |
+| [changelog-011-001-selector-and-shared-socket.md](./changelog-011-001-selector-and-shared-socket.md) | 2026-06-01 | Embedder selector fix, shared socket pinning, and client resilience hardening |
+| [changelog-011-002-server-liveness-supervision.md](./changelog-011-002-server-liveness-supervision.md) | 2026-06-01 | Server liveness + supervision hardening |
+| [changelog-011-003-observability-model-switch.md](./changelog-011-003-observability-model-switch.md) | 2026-06-01 | Embedding stack observability, safe model-switch and cold-start timeout |
+| [changelog-011-004-perf-instrumentation-batching.md](./changelog-011-004-perf-instrumentation-batching.md) | 2026-06-01 | Changelog: Perf instrumentation + batching (measure-first) |
+| [changelog-011-005-live-validation-bench-hardening.md](./changelog-011-005-live-validation-bench-hardening.md) | 2026-06-01 | Live validation, bench, and perimeter hardening for the embedding stack |
+| [changelog-011-006-comment-ephemeral-pointer-cleanup.md](./changelog-011-006-comment-ephemeral-pointer-cleanup.md) | 2026-06-01 | Changelog: Comment ephemeral-artifact pointer cleanup [011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup] |
+| [changelog-011-007-ephemeral-pointer-guard-and-sweep.md](./changelog-011-007-ephemeral-pointer-guard-and-sweep.md) | 2026-06-01 | Ephemeral-pointer guard and comprehensive comment sweep |
+| [changelog-011-008-deep-review-correctness-edges.md](./changelog-011-008-deep-review-correctness-edges.md) | 2026-06-01 | Deep-review correctness edges (re-validated) |
+| [changelog-011-009-single-writer-durability-cluster.md](./changelog-011-009-single-writer-durability-cluster.md) | 2026-06-01 | Single-writer durability cluster (coordinated remediation) |
 
 ### Added
 

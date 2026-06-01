@@ -49,7 +49,7 @@ Gate A removed template blockers and proved backup readiness. Gate B advanced th
 - Missing metadata anchor openers in level_3 and level_3+ spec templates.
 - Governance anchors added to Level 3+ template.
 - Archived-hit observability: post-cleanup, 0 stale memory-file rows exist with 1 baseline archived row preserved.
-- 183 stale memory-path rows in memory_index deleted; 1141 dependent causal_edges deleted first to prevent orphan references.
+- 183 stale memory-path rows in memory_index deleted, 1141 dependent causal_edges deleted first to prevent orphan references.
 
 ### Verification
 

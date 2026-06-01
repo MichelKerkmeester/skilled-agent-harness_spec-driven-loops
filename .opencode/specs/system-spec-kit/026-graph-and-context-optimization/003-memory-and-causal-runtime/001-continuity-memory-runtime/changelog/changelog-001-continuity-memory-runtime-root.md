@@ -12,13 +12,13 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
-## 2026-05-16
+## 2026-06-01
 
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime` (Level 1, Phase Parent)
 
 ### Summary
 
-This phase parent groups 15 child phases spanning 2026-04-08 to 2026-05-16. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
+This phase parent groups 15 child phases spanning 2026-04-08 to 2026-06-01. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
@@ -32,7 +32,7 @@ This phase parent groups 15 child phases spanning 2026-04-08 to 2026-05-16. Each
 | [changelog-001-007-foundational-runtime.md](./changelog-001-007-foundational-runtime.md) | 2026-04-17 | Foundational Runtime Remediation: H-56-1 Canonical Save Metadata Fix and 27-Task Hardening Pass |
 | [changelog-001-008-sk-deep-cli-runtime-execution.md](./changelog-001-008-sk-deep-cli-runtime-execution.md) | 2026-04-18 | CLI Runtime Executors for Iterative Skills |
 | [changelog-001-009-system-hardening.md](./changelog-001-009-system-hardening.md) | 2026-04-19 | System Hardening: Post-Consolidation Research and Remediation Train |
-| [changelog-001-010-memory-indexer-invariants.md](./changelog-001-010-memory-indexer-invariants.md) | 2026-04-29 | Code Graph Phase 005-pt-01: Memory indexer invariants review |
+| [changelog-001-010-memory-indexer-invariants.md](./changelog-001-010-memory-indexer-invariants.md) | 2026-06-01 | Memory Indexer Invariants: Lineage, Concurrency, Index Scope, and Constitutional Tier Enforcement |
 | [changelog-001-011-z-archive-memory-indexing.md](./changelog-001-011-z-archive-memory-indexing.md) | 2026-05-16 | Continuity Memory Runtime Phase 011: z_archive Memory Indexing Fix |
 | [changelog-001-cache-warning-hooks.md](./changelog-001-cache-warning-hooks.md) | 2026-04-08 | Continuity Memory Runtime Phase 001: Cache-warning hooks |
 | [changelog-002-memory-quality-remediation.md](./changelog-002-memory-quality-remediation.md) | 2026-04-08 | Continuity Memory Runtime Phase 002: Memory quality remediation |
