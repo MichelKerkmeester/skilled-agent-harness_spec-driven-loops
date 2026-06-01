@@ -895,11 +895,18 @@ function supportsCheckpointV2(database: Database.Database): boolean {
 
 function hasMainVectorPayloadTables(database: Database.Database): boolean {
   try {
+    // Gate v2 selection on vec_memories ONLY — the actual vector payload that the
+    // shard-attach slimming removes from main. vec_metadata is a tiny key/value
+    // config table that the same slimming intentionally RETAINS in main as a
+    // dimension fallback, so its presence does NOT mean vector payload lives in
+    // main. Including it here made full-DB create always observe "payload in main"
+    // on a sharded runtime and silently fall back to the v1 whole-snapshot path
+    // that overflows V8's single-string ceiling — the exact failure v2 prevents.
     const row = database.prepare(`
       SELECT 1 AS found
       FROM sqlite_master
       WHERE type IN ('table', 'view')
-        AND name IN ('vec_memories', 'vec_metadata')
+        AND name = 'vec_memories'
       LIMIT 1
     `).get() as { found?: number } | undefined;
     return row?.found === 1;

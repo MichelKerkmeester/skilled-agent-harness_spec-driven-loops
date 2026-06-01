@@ -126,6 +126,32 @@ describe('checkpoint v2 create', () => {
     });
   });
 
+  it('selects v2 when main retains the vec_metadata config table (daemon post-slim state)', () => {
+    // The shard-attach slimming drops vec_memories from main but intentionally
+    // keeps the small vec_metadata config table as a dimension fallback. v2
+    // selection must not treat that retained config table as vector payload in
+    // main, or full-DB create regresses to the v1 string-ceiling path on every
+    // sharded production runtime.
+    database.exec(`
+      CREATE TABLE IF NOT EXISTS vec_metadata (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL,
+        created_at TEXT DEFAULT (datetime('now'))
+      );
+      INSERT OR REPLACE INTO vec_metadata (key, value) VALUES ('embedding_dim', '768'), ('dim', '768');
+    `);
+
+    checkpoints.createCheckpoint({ name: 'v2-with-main-vec-metadata' });
+    const row = database.prepare(`
+      SELECT snapshot_format, snapshot_path
+      FROM checkpoints
+      WHERE name = ?
+    `).get('v2-with-main-vec-metadata') as { snapshot_format: string; snapshot_path: string | null };
+
+    expect(row.snapshot_format).toBe('v2');
+    expect(row.snapshot_path).not.toBeNull();
+  });
+
   it('skips vector snapshot files when embeddings are excluded or no shard is attached', () => {
     checkpoints.createCheckpoint({ name: 'no-embeddings', includeEmbeddings: false });
     const snapshotDir = path.join(tempDir, 'checkpoints', 'no-embeddings');
