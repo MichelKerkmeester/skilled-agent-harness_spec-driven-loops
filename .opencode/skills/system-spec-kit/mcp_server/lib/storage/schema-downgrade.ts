@@ -156,8 +156,8 @@ function createMemoryIndexV15(database: Database.Database): void {
       spec_level INTEGER,
       content_text TEXT,
       quality_score REAL DEFAULT 0,
-      quality_flags TEXT,
-      UNIQUE(spec_folder, file_path, anchor_id)
+      quality_flags TEXT
+      -- Preserve append-only lineage rows that can share the same path and anchor.
     )
   `);
 }

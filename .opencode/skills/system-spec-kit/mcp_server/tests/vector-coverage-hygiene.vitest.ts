@@ -76,22 +76,22 @@ describe('success-vector-coverage hygiene (007)', () => {
     if (dir) fs.rmSync(dir, { recursive: true, force: true });
   });
 
-  // Detect success rows missing a vector surface (incl. partial coverage).
-  it('counts success rows missing either active vector surface', () => {
+  // Detect success rows missing the active vector rowid presence marker.
+  it('counts success rows missing active vector rowids', () => {
     ({ db, dir } = createFixture());
     addRow(db, { id: 1, status: 'success', hasVec768: true, hasVecMemories: true });   // fully covered
     addRow(db, { id: 2, status: 'success', hasVec768: false, hasVecMemories: false });  // missing both
-    addRow(db, { id: 3, status: 'success', hasVec768: false, hasVecMemories: true });   // missing dim table only
+    addRow(db, { id: 3, status: 'success', hasVec768: false, hasVecMemories: true });   // covered by rowids
     addRow(db, { id: 4, status: 'success', hasVec768: true, hasVecMemories: false });   // missing rowids only
 
     const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
     expect(dry.safety.activeShardVerified).toBe(true);
-    expect(dry.coverage?.successMissingActiveVector).toBe(3);
+    expect(dry.coverage?.successMissingActiveVector).toBe(2);
     // dry-run mutates nothing
     expect(rowStatus(db, 2).embedding_status).toBe('success');
   });
 
-  // Apply with repairSuccessCoverage resets missing-coverage success rows to retry.
+  // Apply with repairSuccessCoverage resets rowid-missing success rows to retry.
   it('repairs missing-coverage success rows to retry only when repairSuccessCoverage is set', () => {
     ({ db, dir } = createFixture());
     addRow(db, { id: 1, status: 'success', hasVec768: true, hasVecMemories: true });

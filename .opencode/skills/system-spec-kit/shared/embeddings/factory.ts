@@ -468,10 +468,10 @@ function readActiveOllamaEmbedderFromDb(sqlitePath: string): ActiveOllamaEmbedde
     return null;
   }
 
-  const rowCount = countRowsInSqliteTable(tableSource, expectedTable);
+  const rowCount = countRowsInSqliteTable(tableSource, 'vec_memories_rowids');
   if (rowCount === null || rowCount <= 0) {
     warnActiveOllamaFallback(
-      `Active embedder ${name} points to ${expectedTable}, but that table is empty in ${tableSource}; continuing provider cascade.`,
+      `Active embedder ${name} points to ${expectedTable}, but vec_memories_rowids is empty or missing in ${tableSource}; continuing provider cascade.`,
     );
     return null;
   }

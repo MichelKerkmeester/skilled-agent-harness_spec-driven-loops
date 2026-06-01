@@ -274,18 +274,15 @@ function computeBuckets(database: Database.Database, dimTable: string): Reconcil
 }
 
 /**
- * Count `success` rows MISSING an active vector surface — the
- * inverse hazard of status-stale rows. `dimTable` is a validated `vec_<int>`
- * name, so interpolation is safe.
+ * Count `success` rows MISSING an active vector rowid — the
+ * inverse hazard of status-stale rows. The dimension table is already validated
+ * by the active-shard guard, but the rowids table is the vector-presence source.
  */
-function computeSuccessCoverage(database: Database.Database, dimTable: string): number {
+function computeSuccessCoverage(database: Database.Database, _dimTable: string): number {
   return (database.prepare(`
     SELECT COUNT(*) AS n FROM memory_index m
     WHERE m.embedding_status = 'success'
-      AND (
-        NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
-        OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)
-      )
+      AND NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
   `).get() as { n: number }).n;
 }
 
