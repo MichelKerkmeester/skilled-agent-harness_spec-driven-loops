@@ -114,3 +114,46 @@ describe('code-graph scope policy helper', () => {
     expect(indexedPaths).toEqual(['active.ts']);
   });
 });
+
+describe('scoped spec discovery normalizes the specFolder argument', () => {
+  // Regression: a scoped scan must resolve the same nested packet whether the
+  // caller passes the specs-root-relative form, the workspace path that still
+  // carries the .opencode/specs/ segment, an absolute path, or a bare leaf
+  // folder name. A prior mismatch silently scoped every file out, so a packet's
+  // handover.md (and edited docs) never indexed under a scoped scan.
+  const rel = 'system-spec-kit/026-graph/003-runtime/013-impl';
+
+  it('matches a nested packet across root-relative, prefixed, absolute, and leaf forms', () => {
+    const tempRoot = createTempRoot();
+    writeFixture(tempRoot, `.opencode/specs/${rel}/handover.md`);
+    writeFixture(tempRoot, `.opencode/specs/${rel}/spec.md`);
+    writeFixture(tempRoot, '.opencode/specs/system-spec-kit/026-graph/003-runtime/099-other/spec.md');
+
+    const expected = [
+      `.opencode/specs/${rel}/handover.md`,
+      `.opencode/specs/${rel}/spec.md`,
+    ];
+    const forms = [
+      rel,
+      `.opencode/specs/${rel}`,
+      join(tempRoot, '.opencode/specs', rel),
+      '013-impl',
+    ];
+    for (const specFolder of forms) {
+      const found = findSpecDocuments(tempRoot, { specFolder })
+        .map((filePath) => relative(tempRoot, filePath).replace(/\\/g, '/'))
+        .sort();
+      expect(found, `specFolder form: ${specFolder}`).toEqual(expected);
+    }
+  });
+
+  it('does not over-match an unrelated sibling packet for a path-shaped scope', () => {
+    const tempRoot = createTempRoot();
+    writeFixture(tempRoot, `.opencode/specs/${rel}/spec.md`);
+    writeFixture(tempRoot, '.opencode/specs/system-spec-kit/026-graph/003-runtime/099-other/spec.md');
+
+    const found = findSpecDocuments(tempRoot, { specFolder: rel })
+      .map((filePath) => relative(tempRoot, filePath).replace(/\\/g, '/'));
+    expect(found).toEqual([`.opencode/specs/${rel}/spec.md`]);
+  });
+});

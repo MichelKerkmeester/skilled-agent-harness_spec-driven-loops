@@ -89,17 +89,42 @@ function attachDiscoveryMetadata(results: string[], state: DiscoveryWalkState): 
   });
 }
 
+// Callers pass the scope in several natural shapes: the specs-root-relative
+// form, the workspace path that still carries the `.opencode/specs/` segment,
+// an absolute filesystem path, or a bare leaf folder name. Reduce all of them
+// to the specs-root-relative form so the comparison against relativePath is
+// stable regardless of which shape the caller used.
+function normalizeSpecFolderScope(specFolder: string, specsRoot: string): string {
+  let scope = specFolder.replace(/\\/g, '/').replace(/\/+$/, '').replace(/^\.\//, '');
+  if (path.isAbsolute(scope)) {
+    const rel = path.relative(specsRoot, scope).replace(/\\/g, '/');
+    return rel && !rel.startsWith('..') ? rel : scope;
+  }
+  const marker = '.opencode/specs/';
+  const markerIdx = scope.indexOf(marker);
+  if (markerIdx !== -1) {
+    scope = scope.slice(markerIdx + marker.length);
+  }
+  return scope;
+}
+
 function matchesScopedSpecFolder(candidatePath: string, specsRoot: string, specFolder?: string | null): boolean {
   if (!specFolder) {
     return true;
   }
 
-  const normalizedSpecFolder = specFolder.replace(/\\/g, '/').replace(/\/+$/, '');
+  const scope = normalizeSpecFolderScope(specFolder, specsRoot);
   const relativePath = path.relative(specsRoot, candidatePath).replace(/\\/g, '/');
-  return (
-    relativePath === normalizedSpecFolder
-    || relativePath.startsWith(`${normalizedSpecFolder}/`)
-  );
+  if (relativePath === scope || relativePath.startsWith(`${scope}/`)) {
+    return true;
+  }
+  // A single-segment scope (a bare folder name) matches any file nested under a
+  // directory of that name, preserving the documented leaf-name scoping form.
+  if (scope.length > 0 && !scope.includes('/')) {
+    const parentSegments = relativePath.split('/').slice(0, -1);
+    return parentSegments.includes(scope);
+  }
+  return false;
 }
 
 /**

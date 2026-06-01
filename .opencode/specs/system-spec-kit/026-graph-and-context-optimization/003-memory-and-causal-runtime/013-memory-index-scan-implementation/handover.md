@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-05-31T19:45:00Z"
+    last_updated_at: "2026-06-01T04:33:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Deployed: dist rebuilt, daemon restarted (pid 23371, ollama), 012/013 reindexed, dups repaired"
-    next_safe_action: "None — shipped and deployed; index clean (6 residual pre-existing failed rows are out of scope)"
+    recent_action: "Phase 4: shipped specFolder-normalization fix (deployed, pid 47588, 8/8 tests)"
+    next_safe_action: "Fresh session: #2 dup-prevention migration + deploy + 5406 re-embed; scaffold #3/#5"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -29,7 +29,7 @@ _memory:
 
 # Handover: memory_index_scan Self-Maintaining Index
 
-> **One-line state:** Fully shipped AND deployed (2026-05-31). `dist/` rebuilt, daemon restarted onto new code (pid 23371, ollama embedder healthy), 012/013 reindexed. Duplicate index rows from the hf-local→ollama migration repaired (30 rows; `failedVectors` 36→6). No steps remain.
+> **One-line state:** Fully shipped AND deployed (2026-05-31). `dist/` rebuilt, daemon restarted onto new code (pid 23371, ollama embedder healthy), 012/013 reindexed. Duplicate index rows from the hf-local→ollama migration repaired (30 rows; `failedVectors` 36→6). **Phase 4 (council follow-up):** specFolder-normalization fix shipped + deployed (pid 47588); #2 dup-prevention, #3 checkpoint-v2, #4 ~5.4k-row hf→ollama re-embed, #5 MCP front-proxy deferred to a focused session — see `ai-council/council-report-followups-mcp-stability.md`.
 
 ---
 
