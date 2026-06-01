@@ -86,3 +86,20 @@ Per code phase: implement in `cp-v2-worktree` (RM-8 + the 3 node_modules symlink
 4. **E implementation**: gpt-5.5 phased from `003/plan.md` + multi-lens review + RSS-recycle live-verify.
 5. (optional) fix the 4 D P2 fast-follows.
 6. Final `/memory:save`.
+
+## Execution-ready commands (grounded this session)
+Run build/test inside `.opencode/skills/system-spec-kit/mcp_server/`.
+- **Rebuild dist (the DELIBERATE deploy step — never mid-implementation):** `npm run build` (= `tsc --build && node scripts/finalize-dist.mjs`; `npm run rebuild` for clean+build).
+- **Typecheck only (safe, no emit):** `npm run typecheck`. **Core tests:** `npm run test:core`, or targeted `npx vitest run tests/checkpoints-v2-create.vitest.ts tests/checkpoints-v2-restore.vitest.ts tests/checkpoints-schema-v29.vitest.ts tests/handler-checkpoints.vitest.ts tests/embedder-reindex.vitest.ts`.
+- **Daemon (live; handle with care):** launcher `.opencode/bin/mk-spec-memory-launcher.cjs` (this session: pids 21133/52362/82711) supervises the child `dist/context-server.js` (pid 23849). The launcher respawns its child, so deploy = rebuild dist → recycle the context-server child (or `/mcp reconnect` from the client). **CONFIRM the exact safe recycle at execution time — do NOT blanket-kill; concurrent parallel sessions share these launchers.**
+
+**D live-verify (MCP calls, after rebuild + restart):**
+1. `checkpoint_create({ name: "v2-liveproof", includeEmbeddings: true })` → MUST succeed, NO `Invalid string length`; writes `database/checkpoints/v2-liveproof/{snapshot-main.sqlite, snapshot-vec.sqlite, manifest.json}`.
+2. `checkpoint_list()` → new row has `snapshot_format: "v2"` + `snapshot_path`.
+3. (integrity, low-risk) `PRAGMA integrity_check` on the snapshot files; then a guarded `checkpoint_restore({ name: "v2-liveproof" })` round-trip (now protected by the two-phase journal + `.bak`).
+4. `memory_health()` → `rowsTotal == ftsRowsTotal == vecRowsTotal`, `mismatchedIds: []`.
+5. Reconcile 002 docs (spec status / checklist evidence / implementation-summary) + `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <002-path> --strict`.
+
+**G cleanups (ONLY after D live-verified good):**
+- Reconcile degraded index: `memory_health()` to list `mismatchedIds` (old-path orphans from the 013 restructure; ~28, alignment not data loss) → sanctioned per-row `memory_delete()` — NEVER raw SQL.
+- Purge the 1 GB backup: `rm -rf .opencode/skills/system-spec-kit/mcp_server/database/backups/context-index-PRE-REBUILD-20260601-161614/` (only once checkpoint-v2 is the proven safety net).
