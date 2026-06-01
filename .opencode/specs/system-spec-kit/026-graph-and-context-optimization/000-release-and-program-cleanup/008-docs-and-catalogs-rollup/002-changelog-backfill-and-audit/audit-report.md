@@ -16,28 +16,31 @@ Date: 2026-06-01
 
 ## 1. Summary
 
-Spec 026 (`026-graph-and-context-optimization`) is the largest program in the repo: 8 tracks, about 634 phase packets, 553 of them with a shipped implementation summary. At the start of this effort only 103 packet-local changelogs existed, so roughly 80 percent of shipped phases had no changelog.
+Spec 026 (`026-graph-and-context-optimization`) is the largest program in the repo: 8 tracks and 639 live spec folders, most with a shipped implementation summary. At the start of this effort only 103 packet-local changelogs existed, so roughly 80 percent of shipped phases had no changelog.
 
-This effort backfilled a changelog for every shipped phase, authored a rollup for every phase parent, removed broken aggregation residue, and produced this audit. Changelog files went from 103 to 708 (636 leaf changelogs plus 72 phase-parent rollups). Every changelog passed a whole-file verification gate.
+This effort backfilled a changelog for every shipped phase, authored a rollup for every phase parent and produced this audit. The backfill brought changelog files from 103 to about 708. Later dedup, a flatten to one subdir level per track and a 5-folder gap backfill settled the tree at 696 changelog files (624 leaf changelogs plus 72 phase-parent rollups) alongside 2 README indexes. Every changelog passed a whole-file verification gate. The post-backfill reconciliation is detailed in section 9.
 
 ## 2. Coverage before and after
 
-| Metric | Before | After |
-|--------|--------|-------|
-| Leaf changelogs | ~103 | 636 |
+| Metric | Before | After (current) |
+|--------|--------|-----------------|
+| Leaf changelogs | ~103 | 624 |
 | Phase-parent rollups | ~3 | 72 |
-| Total changelog files | ~103 | 708 |
+| Total changelog files | ~103 | 696 |
+| README indexes | 0 | 2 |
 | Leaf changelogs authored this effort | n/a | 516 |
 | Dangling symlinks in 026/changelog | 85 | 0 |
+
+The "After" column reflects the current final state. The backfill pass itself peaked at about 708 files before dedup, the flatten and the gap backfill settled it at 696 (see section 9).
 
 ### Per-track coverage (final)
 
 | Track | Phase packets | Leaf changelogs | Rollups |
 |-------|---------------|-----------------|---------|
-| 000-release-and-program-cleanup | 134 | 121 | 13 |
+| 000-release-and-program-cleanup | 134 | 122 | 13 |
 | 001-research-and-baseline | 7 | 6 | 1 |
 | 002-spec-kit-internals | 107 | 120 | 13 |
-| 003-memory-and-causal-runtime | 267 | 239 | 27 |
+| 003-memory-and-causal-runtime | 267 | 243 | 27 |
 | 004-code-graph | 69 | 76 | 10 |
 | 005-graph-impact-and-affordance | 7 | 6 | 1 |
 | 006-operator-tooling | 19 | 27 | 4 |
@@ -104,3 +107,13 @@ A follow-up pass closed the remaining residue.
 - Per-batch whole-file sweeps: 0 hard failures across tracks 000, 003, 004, 007 (Sonnet) and 002 (small-model plus deterministic repair).
 - Rollup sweep: 72 of 72 pass the structural and HVR gate.
 - Governance packet: `validate.sh --strict` exits 0 (this packet).
+
+## 9. Post-backfill reconciliation (2026-06-01)
+
+After the original backfill, three follow-on passes reconciled the tree to its current state. All were verified with a tree-wide broken-link check returning 0.
+
+- **Flatten to one subdir level.** Every changelog now lives as a flat file directly in its track folder (`000-...` through `007-...`). The earlier `_root/` and per-phase subfolders were removed (621 emptied directories). The 6 nested sub-parent README indexes were deleted, leaving the top-level program `README.md` and the `004-code-graph/README.md` narrative. All rollup and index links were remapped, with 0 broken links across the tree.
+- **5 confirmed-Complete gap backfills.** A coverage sweep found spec folders with shipped work but no changelog. Status was verified per folder, and only 5 were Complete and shipped, so only those were authored: `008/001-docs-and-catalogs-rollup`, `006/001-concurrent-daemon-corruption-fix`, `022/002b-cocoindex-reranker-doc-prose`, `022/004a-skill-advisor-compat-contract-consolidation` and `022/004b-skill-advisor-interface-and-env-vars`. Planned, Scaffolded, research or meta folders were correctly left without a changelog (for example `004-code-index-stack/005-declarative-registry` is Planned, and `008-rerank-sidecar-arc/010` is Scaffolded). The 006 and 022-arc parent rollups were updated to list the new entries (006 went from 11 to 12 and the arc from 13 to 16).
+- **Timeline link index.** `timeline.md` gained a generated section D that maps every live spec folder to its packet changelog(s), built by inverting each changelog's Spec folder line. 17 live folders show no changelog because they are docs-only, research or work consolidated into a parent rollup.
+
+**Current final state:** 696 changelog files (624 leaf changelogs plus 72 phase-parent rollups) plus 2 README indexes, with 0 broken links tree-wide. This supersedes the intermediate 708 and 694 figures cited above.
