@@ -1,5 +1,5 @@
 ---
-title: "Handover: memory_index_scan self-maintaining index — Phases 1-3 + Phase-4 follow-up shipped & deployed [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/handover]"
+title: "Handover: memory_index_scan self-maintaining index — Phases 1-3 + Phase-4 follow-up shipped & deployed [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/handover]"
 description: "Session handover for 013. Phases 1-3 plus the Phase-4 council follow-up (active-row uniqueness guard + multi-tenant scope isolation) shipped, committed (942ad78d9c, schema v28), and deployed via a clean rebuild (9614/9614, 0 missing-vector). Deep-review R5 SAFE TO DEPLOY (no P0/P1). Checkpoint-v2 + MCP front-proxy re-deferred (non-binding). No worktrees or branches pending."
 trigger_phrases:
   - "memory index implementation handover"
@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 4 complete; shipped 942ad78d9c, rebuild 9614/9614, deep-review R5 SAFE"

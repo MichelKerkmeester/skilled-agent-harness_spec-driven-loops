@@ -10,7 +10,7 @@ importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-checkpoint-v2-file-snapshot"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "markdown-agent"
     recent_action: "Authored checkpoint-v2 child packet docs"
@@ -53,7 +53,7 @@ The memory daemon's `checkpoint_create` safety feature is broken on the producti
 | **Priority** | P1 |
 | **Status** | Draft |
 | **Created** | 2026-06-01 |
-| **Branch** | `001-checkpoint-v2-file-snapshot` |
+| **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
 
 ---

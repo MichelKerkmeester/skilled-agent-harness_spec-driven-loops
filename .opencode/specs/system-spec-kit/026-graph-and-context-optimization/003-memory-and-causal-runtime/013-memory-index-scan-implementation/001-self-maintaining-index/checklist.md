@@ -1,5 +1,5 @@
 ---
-title: "Verification Checklist: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/checklist]"
+title: "Verification Checklist: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/checklist]"
 description: "Per-phase verification checklist for the memory_index_scan implementation: build/test gates, code quality, fix completeness, security, docs, and file organization. Marked with evidence as each phase closes."
 trigger_phrases:
   - "memory index scan implementation checklist"
@@ -8,7 +8,7 @@ importance_tier: "normal"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-06-01T14:55:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Phase 4 verified live (v28, 9614/9614); P1 checklist items checked"

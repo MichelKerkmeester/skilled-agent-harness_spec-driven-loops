@@ -1,5 +1,5 @@
 ---
-title: "Implementation Plan: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/plan]"
+title: "Implementation Plan: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/plan]"
 description: "Phased implementation plan for the full 5-angle self-maintaining index design: Phase 1 coalescing contract + health/orphan sweep, Phase 2 phased async execution + degraded-mode, Phase 3 single-writer concurrency + move reconciliation. Each phase gated by tsc build + tests."
 trigger_phrases:
   - "memory index scan implementation plan"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-05-31T15:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored phased Level-2 plan"

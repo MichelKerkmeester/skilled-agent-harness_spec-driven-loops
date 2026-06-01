@@ -1,5 +1,5 @@
 ---
-title: "Decision Record: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/decision-record]"
+title: "Decision Record: memory_index_scan self-maintaining index [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/decision-record]"
 description: "Architecture decisions for the memory_index_scan implementation: the coalescing async job contract, lexical-first async-mode indexing, and packet-identity move reconciliation — each with alternatives, consequences, and a five-lens check."
 trigger_phrases:
   - "memory index scan implementation decisions"
@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index"
     last_updated_at: "2026-05-31T15:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored ADRs for the implementation design"

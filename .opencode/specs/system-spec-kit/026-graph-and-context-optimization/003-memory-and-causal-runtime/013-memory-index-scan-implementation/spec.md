@@ -1,33 +1,28 @@
 ---
-title: "Feature Specification: memory_index_scan self-maintaining index implementation [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/spec]"
-description: "Implement the full 5-angle self-maintaining index design from the 012 deep-research packet: idempotent coalescing async scan job, phased lexical-first execution, single-writer concurrency, degraded-mode embedding, and self-healing orphan/move reconciliation behind a memory_health.index freshness surface."
+title: "Feature Specification: memory_index_scan Self-Maintaining Index Program [system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/spec]"
+description: "Phase-parent root for the memory_index_scan self-maintaining index program: a coalescing async scan job with self-healing orphan/move reconciliation behind a memory_health freshness surface, plus the durability work that protects the index DB it maintains."
 trigger_phrases:
   - "memory index scan implementation"
-  - "memory_index_scan async scan job implementation"
-  - "memory index coalescing E429 fix"
-  - "memory_health index freshness surface"
-  - "memory index orphan sweep move reconciliation"
-  - "013 memory index implementation packet"
+  - "memory_index_scan self-maintaining index program"
+  - "013 memory index phase parent"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    last_updated_at: "2026-06-01T14:55:00Z"
-    last_updated_by: "claude-opus-4-8"
-    recent_action: "Phases 1-3 + Phase-4 follow-up shipped (942ad78d9c, v28, rebuild 9614/9614)"
-    next_safe_action: "None binding; optional checkpoint-v2 and MCP front-proxy scaffolds"
+    last_updated_at: "2026-06-01T16:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Authored phase-parent root spec and child map"
+    next_safe_action: "Resume 002-checkpoint-v2-file-snapshot child phase"
     blockers: []
     key_files:
-      - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/lineage-state.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts"
-    completion_pct: 100
+      - "spec.md"
+    completion_pct: 60
     open_questions: []
     answered_questions: []
 ---
 
-# Feature Specification: memory_index_scan Self-Maintaining Index Implementation
+# Feature Specification: memory_index_scan Self-Maintaining Index Program
 
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
@@ -41,11 +36,10 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Shipped & deployed — Phases 1-3 merged 2026-05-31 (SC1-SC5 met); Phase-4 council follow-up shipped 2026-06-01 (active-row uniqueness guard + multi-tenant scope isolation, commit `942ad78d9c`, schema v28). Follow-up detail in `handover.md` §6-8 + `implementation-summary.md`. |
+| **Status** | In Progress |
 | **Created** | 2026-05-31 |
 | **Branch** | `main` |
-| **Parent Spec** | `../spec.md` (003-memory-and-causal-runtime) |
-| **Research Source** | `../012-memory-index-scan-ux-hardening/research/research.md` (17 sections, file:line-cited) |
+| **Parent Spec** | `../spec.md` |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -54,14 +48,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-`memory_index_scan` couples scope discovery, lexical indexing, and synchronous vector embedding inside one MCP request under a global lease. That coupling produces three observed, reproduced-this-session failure classes:
-
-1. **Raw `E429` foot-gun** — a second scan inside the hardcoded 30s lease window returns a caller-visible rate-limit error (`handlers/memory-index.ts:245-260`), even though the lease already distinguishes the two internal reasons `lease_active` (`core/db-state.ts:443`) and `cooldown` (`core/db-state.ts:456`).
-2. **`-32001` request-deadline timeout** — a `force:true` scan on a large tree (~674 docs) re-embeds everything synchronously inside one MCP request (`memory-index.ts:476`), structurally exceeding the deadline; `BATCH_SIZE=5` (`core/config.ts:117`) caps concurrency, not total request work.
-3. **Orphan index rows after moves** — stale cleanup is gated to incremental + non-force + zero-failure scans (`memory-index.ts:373-380`, `:600-608`) and identity is path-based with no move reconciliation, so a renested folder leaves `File not found` rows.
+The memory index must stay correct without operator intervention: new and changed spec docs need indexing, orphaned rows need sweeping, and packet renames/moves need reconciliation, all without flooding writers or stalling the daemon. The same index database also needs a durable rollback net so a corrupt or oversized state can be recovered.
 
 ### Purpose
-Implement the **self-maintaining index** design that the 012 deep-research packet converged on (research.md §6): `memory_index_scan` becomes an **idempotent, coalescing, phased async scan job** that always commits lexical rows first, drains vectors in the background without ever failing the scan on embedder trouble, and self-heals moves/orphans behind a `memory_health.index` freshness surface. The 30s cooldown stays but becomes an internal worker-start guard, never a caller-visible error. Almost every building block already exists (async/deferred embedding path, `embedder_status` job model, atomic claim-by-update, batch chunking, two circuit breakers) — the work is mostly composition and contract change.
+Own navigation, the child-phase map, and aggregate status for the memory_index_scan self-maintaining index program. Each child phase folder owns its own planning, execution, and verification: the index runtime itself in `001-self-maintaining-index`, and the file-based checkpoint durability layer that protects it in `002-checkpoint-v2-file-snapshot`.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -70,143 +62,61 @@ Implement the **self-maintaining index** design that the 012 deep-research packe
 ## 3. SCOPE
 
 ### In Scope
-The full 5-angle design, delivered in three gated phases:
-- **Phase 1 (A1 + A5-partial):** coalescing caller contract (2nd scan joins the in-flight/recent job instead of raw E429) + `memory_health.index` freshness block + bounded global orphan sweep.
-- **Phase 2 (A2 + A4):** phased execution (bounded walk → commit-lexical `pending` → async vector drain) + async-mode scan indexing so lexical always commits; outage-safe drain that checks provider/circuit state before the atomic pending→retry claim.
-- **Phase 3 (A3 + A5-move):** job-layer single-writer via atomic claim-by-update work items + heartbeat/lease-epoch recovery; move reconciliation keyed on `packet_id` + doc role/anchor; auto-reindex triggers (lazy reconcile-on-`File not found`, watcher→queue, post-commit stale marker) feeding the coalescer.
+- Coordinate the child phase folders for the self-maintaining index program and their aggregate status.
+- Provide the navigation map from this program to each child phase folder.
 
 ### Out of Scope
-- Switching the active embedder provider or redesigning vector-shard storage architecture (explicitly out per research.md §3).
-- Making `INDEX_SCAN_COOLDOWN` env-tunable (research.md §9 — likely unnecessary once coalescing is correct).
-- Any change to spec-folder *content* or unrelated MCP handlers.
+- Per-child implementation detail (lives in each child phase folder).
+- Phase history narration (lives in the root `context-index.md`).
 
 ### Files to Change
+
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `mcp_server/handlers/memory-index.ts` | Modify | 1,2 | Coalescing envelope instead of raw E429; phased execution + async-mode indexing |
-| `mcp_server/core/db-state.ts` | Modify | 1,3 | Surface lease reason as coalescable job state; heartbeat/lease-epoch recovery |
-| `mcp_server/handlers/memory-crud-health.ts` | Modify | 1 | Add `index` freshness block (summary enum + counts) |
-| `mcp_server/lib/storage/incremental-index.ts` | Modify | 1 | Bounded global orphan sweep (ungated from scan scope) |
-| `mcp_server/lib/search/vector-index-mutations.ts` | Reuse | 1,3 | Orphan delete via `delete_memory_from_database()`; move-path update in place |
-| `mcp_server/handlers/save/embedding-pipeline.ts` | Modify | 2 | Async-mode scan indexing path |
-| `mcp_server/lib/providers/retry-manager.ts` | Reuse | 2,3 | Provider/circuit pre-check before pending→retry claim; claim-by-update |
-| `mcp_server/lib/embedders/reindex.ts` | Reuse | 2,3 | Job model pattern for scan job |
-| `013-.../{spec,plan,tasks,checklist,decision-record,implementation-summary}.md`, `description.json`, `graph-metadata.json` | Create | this | Packet docs + metadata |
+| `001-self-maintaining-index/` | Modify | children | Index runtime: coalescing async scan, degraded-mode, orphan/move reconciliation |
+| `002-checkpoint-v2-file-snapshot/` | Modify | children | File-based full-DB checkpoint durability layer |
+| `spec.md`, `graph-metadata.json`, `description.json` | Modify | this | Program navigation and metadata |
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
-- R1 (A1): A scan MUST never surface a raw `E429`. A second concurrent/repeat call returns a success envelope joining the in-flight/recent job (`coalesced:true`); the 30s cooldown becomes an internal thrash-guard.
-- R2 (A2): A scan/re-embed MUST always complete regardless of corpus size — no `-32001` request-deadline class. Lexical rows commit first (BM25/FTS-searchable as `pending`); vectors drain async after the request returns.
-- R6 (gate): Every phase passes `tsc` build + the spec-kit test suite before the next phase is dispatched; no phase claims completion without stack-appropriate verification.
+> Each child below is an independently executable phase folder owning its own plan, tasks, checklist, decisions, and continuity. The Status column reports child state.
 
-### P1 - Required (complete OR user-approved deferral)
-- R3 (A3): Concurrent callers coordinate without index corruption, duplicate embedding work, or a raw error (single-writer via atomic claim-by-update; per-worktree DBs independent domains).
-- R4 (A4): Embedder slowness/absence degrades to "indexed + searchable, vectors pending" (`degraded` + `nextVectorAttemptAfter`), never a wholesale scan failure; clean `pending` rows are never burned into `retry` during an outage.
-- R5 (A5): Moves/renames and orphaned rows self-heal without manual scans, behind a `memory_health.index` freshness summary; orphan delete reuses `delete_memory_from_database()` (never a raw `memory_index` delete).
-<!-- /ANCHOR:requirements -->
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-self-maintaining-index/` | Coalescing async scan job, phased lexical-first execution, single-writer concurrency, degraded-mode embedding, self-healing orphan/move reconciliation behind a memory_health freshness surface | complete (shipped) |
+| 002 | `002-checkpoint-v2-file-snapshot/` | File-based full-DB checkpoint via VACUUM INTO with whole-file restore swap and schema v29 versioning | in progress |
 
----
+### Phase Transition Rules
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+- Each child MUST pass `validate.sh` independently.
+- This parent tracks aggregate progress via the map; per-child detail stays in the children.
+- Deferred and abandoned children remain in place with explicit status; they are not removed.
+- Use `/spec_kit:resume` on a child folder to resume it.
+- Run `validate.sh --recursive` on this folder to validate all children as a unit.
 
-- **SC1:** Two back-to-back `memory_index_scan` calls both return success (the second `coalesced:true`), with zero raw `E429` observed.
-- **SC2:** A `force` scan on the 026 root returns within the MCP deadline (lexical committed) with `status:'complete_with_pending_vectors'`; vectors converge in the background.
-- **SC3:** `memory_health` returns an `index` block with a single `summary` enum (`healthy_fresh` / `healthy_lagging_vectors` / `stale_needs_scan` / `degraded_needs_repair` / `unavailable`) and counts (on-disk delta, orphan/pending/retry/failed, last-scan age).
-- **SC4:** A renested spec folder no longer leaves `File not found` orphan rows after the next completed scan (sweep ungated from scope); a `git mv`'d folder updates its row path in place without re-embedding (move reconciliation).
-- **SC5:** Each phase passes `tsc` + tests; no production regression in existing memory search/save behavior (additive contract — existing completed-response fields wrapped in job metadata).
-<!-- /ANCHOR:success-criteria -->
+### Phase Handoff Criteria
 
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Risk | Severity | Mitigation |
-|------|----------|------------|
-| Build-while-live: daemon running during edits to its own source | High | Edit source only; do not restart/rebuild the live daemon mid-phase; verify with isolated `tsc`; coordinate restart as a discrete step |
-| RM-8 destructive cli-opencode dispatch (precedent: 44 files deleted) | High | Clean recovery baseline commit recorded; BANNED OPS (no move/delete/create outside scope); disjoint file scope per phase; agent does NO git writes; isolated worktree; SIGKILL between dispatches |
-| Move-reconciliation false positives (copied/template-identical files) | Medium | Require a *unique* `packet_id` + doc role/anchor match with no competing live path; content hash is confirmation only; else fall back to delete+add |
-| Outage converts clean `pending` backlog into prunable `retry` rows | Medium | Vector drain checks provider/circuit state BEFORE the atomic pending→retry claim (`retry-manager.ts:303`); retention only prunes `retry` (`:493-519`) |
-| Auto-reindex trigger thrash | Medium | All triggers feed the coalescing `scanKey`; rapid commits collapse onto one job |
-| Comment-hygiene HARD BLOCK | Process | No ADR/REQ/task-id/spec-path labels in code comments; durable WHY only |
-
-### Dependencies
-- Existing building blocks: `embedder_status` job model (`lib/embedders/reindex.ts`), `pending`/`retry` embeddingStatus (`retry-manager.ts`), atomic claim-by-update (`retry-manager.ts:303`), deferred lexical upsert (`vector-index-mutations.ts:337`), `delete_memory_from_database()` (`vector-index-mutations.ts:577-627`).
-- cli-opencode `openai/gpt-5.5 --variant high` executor (per `cli-opencode/SKILL.md`).
-- Canonical design source: `../012-memory-index-scan-ux-hardening/research/research.md`.
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
-
-### Performance
-- **NFR-P01**: A repeat/coalesced scan call returns in well under the MCP request deadline (no synchronous embedding on the hot path).
-- **NFR-P02**: `memory_health.index` is derived from existing counters/queries; the added block must not add a heavy full-disk walk to every health call (bounded or cached orphan count).
-
-### Reliability
-- **NFR-R01**: Lexical commit has no hard embedder dependency — search stays available when the embedder is slow/absent.
-- **NFR-R02**: An embedder outage never converts clean `pending` rows into prunable `retry` rows (provider/circuit checked before the claim).
-
-### Safety
-- **NFR-S01**: Orphan deletion only goes through `delete_memory_from_database()` (vec + ancillary + BM25 + cache + main row); never a raw `DELETE FROM memory_index`.
-- **NFR-S02**: The orphan sweep checks both `file_path` and `canonical_file_path` on disk before deleting any row, so live rows can never be swept.
-<!-- /ANCHOR:nfr -->
-
----
-
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
-
-### Scan Lifecycle
-- Two near-simultaneous scans of the same scope: second coalesces onto the in-flight job (`coalesced:true`), no duplicate work, no raw E429.
-- Scan inside the 30s cooldown after a completed scan: returns the recent job handle, not an error.
-- `force` scan on a very large tree: returns at `lexical_complete` / `complete_with_pending_vectors`; vectors drain after.
-
-### Embedder Trouble
-- Provider cold-load / circuit open during drain: rows stay `pending`, `degraded:true` + `nextVectorAttemptAfter` surfaced; drain resumes when the provider recovers.
-- Main-DB ENOSPC: the only hard per-file index failure (lexical durability point); cache/metadata ENOSPC degrades vectors only.
-
-### Self-Heal
-- Renested folder (old path gone, new path present, same `packet_id`): move reconciliation updates the row path in place, preserving the embedding — no re-embed, no orphan.
-- Copied/template-identical files with the same content hash but different `packet_id`/anchor: NOT merged (unique-match guard); fall back to delete+add.
-- Orphan rows for a folder nobody scanned: removed by the global sweep on the next completed scan regardless of scope.
-<!-- /ANCHOR:edge-cases -->
-
----
-
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Scope | 18/25 | ~6 mcp_server files across 3 gated phases; additive contract |
-| Risk | 20/25 | Highest-blast-radius daemon code; build-while-live + RM-8 dispatch hazards |
-| Research | 8/20 | Design fully resolved in the 012 research packet; implementation-planning questions only |
-| **Total** | **46/70** | **Level 2** (risk-weighted; phased + gated to contain blast radius) |
-<!-- /ANCHOR:complexity -->
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| `001-self-maintaining-index` | `002-checkpoint-v2-file-snapshot` | Index runtime stable before adding the durability layer that snapshots its DB | Each child validates independently |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Q1 (Phase 2/3): new `index_scan_jobs` / `index_scan_work_items` tables vs reusing the embedder job table with a type discriminator (research.md §9). **Resolved at Phase 2 plan** — default to reuse-with-discriminator to minimize migration surface; revisit if the job semantics diverge.
-- Q2 (Phase 1): exact `memory_health.index` field names — fixed by this spec's SC3 enum; counts derive from existing `memory_stats` / `embedder_status` / retry telemetry.
-- Q3 (Phase 3): orphan-sweep cadence (every completed scan vs maintenance interval) — default to "every completed scan, bounded per-tick" per research.md §6.5.
+- None blocking. The active child is `002-checkpoint-v2-file-snapshot`; resume it via its folder.
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Canonical research synthesis**: `../012-memory-index-scan-ux-hardening/research/research.md` (17 sections, file:line-cited)
-- **Plan**: `plan.md` · **Tasks**: `tasks.md` · **Checklist**: `checklist.md` · **Decisions**: `decision-record.md`
-- **Parent track**: `../spec.md` (003-memory-and-causal-runtime)
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Parent Spec**: See `../spec.md`
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
