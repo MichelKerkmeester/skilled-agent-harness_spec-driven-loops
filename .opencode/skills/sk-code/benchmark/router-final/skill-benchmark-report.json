@@ -31,7 +31,7 @@
     },
     "D3": {
       "points": 15,
-      "score": 23
+      "score": 24
     },
     "D4": {
       "points": 25,
@@ -196,20 +196,20 @@
       "tier": "playbook",
       "dims": {
         "d1intra": {
-          "score": 0.6181818181818182,
+          "score": 0.6727272727272727,
           "intentRecall": null,
-          "resourceRecall": 0.36363636363636365,
+          "resourceRecall": 0.45454545454545453,
           "negative": false
         },
         "d2": {
-          "score": 0.36363636363636365,
+          "score": 0.45454545454545453,
           "proxy": "router-replay-recall",
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.6666666666666667,
+          "score": 0.8333333333333334,
           "routedCount": 6,
-          "wastedCount": 2,
+          "wastedCount": 1,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -223,7 +223,7 @@
         }
       },
       "firstFailingStage": "discovered",
-      "modeAScore": 53,
+      "modeAScore": 63,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "WEBFLOW",

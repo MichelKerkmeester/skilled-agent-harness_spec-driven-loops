@@ -16,7 +16,7 @@
 | D1 inter (advisor) | 12pts | _unscored-mode-a_ |
 | D1 intra (router) | 13pts | 57/100 |
 | D2 discovery | 20pts | 44/100 |
-| D3 efficiency | 15pts | 23/100 |
+| D3 efficiency | 15pts | 24/100 |
 | D4 usefulness | 25pts | _unscored-mode-a_ |
 | D5 connectivity (hard gate) | 15pts | 100/100 |
 
@@ -40,7 +40,7 @@ _Unscored in this run (need live mode): D1inter, D4._
 
 | Scenario | Class | Score | First failing stage |
 | -------- | ----- | ----- | ------------------- |
-| SD-001 | routing | 53/100 | discovered |
+| SD-001 | routing | 63/100 | discovered |
 | SD-002 | routing | 66/100 | passed |
 | SD-003 | routing | 0/100 | routed-intra |
 | LS-001 | routing | 51/100 | passed |

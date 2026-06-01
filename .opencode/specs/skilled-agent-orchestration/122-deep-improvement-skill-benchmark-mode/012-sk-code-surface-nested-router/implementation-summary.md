@@ -10,8 +10,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router"
     last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Implemented surface-aware route filter + the §11 rule; router D3 19 to 23, D2 held"
-    next_safe_action: "Live re-measure to validate the live D3 drop against the new rule"
+    recent_action: "Surface-aware routing live-validated: aggregate 71 to 79, D3 42 to 50, D2 held"
+    next_safe_action: "None blocking; optional intra-surface ranking if more D3 wanted"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/smart_routing.md"
@@ -37,7 +37,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Status** | Implemented (router-mode verified); live re-measure pending |
+| **Status** | Implemented and live-validated |
 | **Date** | 2026-06-01 |
 <!-- /ANCHOR:metadata -->
 
@@ -80,7 +80,7 @@ Spec + plan + tasks + checklist authored from the converged 011 research (3 nati
 | Router regression guard | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` | PASS — D2 held at 44, D1-intra 57, D5 100 (no regression); D3 19 → 23; orphans 0 |
 | Drift guard | `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` | PASS |
 | Full suite | `npx vitest run` (from `deep-improvement/scripts`) | PASS — 248 tests |
-| Live re-measure | `--trace-mode live` over the critical-path subset | pending (validates the live D3 drop against the §11 rule) |
+| Live re-measure | `--trace-mode live` over the critical-path subset | PASS — aggregate 71 → 79, D3 42 → 50, D2 87 → 95, D1-intra 92 → 97; no recall regression (CS-001 D2 0.60 → 1.0) |
 <!-- /ANCHOR:verification -->
 
 ---

@@ -33,7 +33,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `references/phase_detection.md`
 - `references/universal/code_quality_standards.md`
 - `references/webflow/implementation/webflow_patterns.md`
-- `references/webflow/implementation/animation_patterns.md`
+- `references/webflow/implementation/animation_workflows.md`
 - `references/webflow/implementation/observer_patterns.md`
 - `references/webflow/javascript/quality_standards.md`
 - `references/webflow/javascript/style_guide.md`
@@ -41,14 +41,14 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 - `references/webflow/shared/cross_language_rules.md`
 
 **Expected assets loaded**:
-- `assets/webflow/checklists/code_quality.md`
-- `assets/webflow/patterns/interaction_gate.js` (when intent is implementation gating)
+- `assets/webflow/checklists/code_quality_checklist.md`
+- `assets/webflow/patterns/interaction_gate_patterns.js` (when intent is implementation gating)
 
 **Expected NOT loaded**: any `references/opencode/*` or `assets/opencode/*` (would indicate misrouting).
 
 **Expected agent dispatch**: `@code` (LEAF) for the actual edit, dispatched ONLY by `@orchestrate`. If the user prompt is invoked directly without orchestration, the AI may apply the change inline using sk-code guidance without dispatching @code.
 
-**Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `assets/webflow/patterns/interaction_gate.js`) and confirming the modification with a Lenis initializer + observer fence.
+**Desired user-visible outcome**: The AI applies the edit to `src/2_javascript/scroll.js`, citing webflow-specific patterns (IntersectionObserver gate from `assets/webflow/patterns/interaction_gate_patterns.js`) and confirming the modification with a Lenis initializer + observer fence.
 
 ## 3. TEST EXECUTION
 
@@ -77,7 +77,7 @@ Add Lenis smooth-scroll to src/2_javascript/scroll.js, gated by IntersectionObse
 | 1 | Advisor returns JSON with `top_skill: "sk-code"`, `score: ≥ 0.80`. |
 | 2 | Pass — proceed. |
 | 3 | sk-code SKILL.md is loaded; the AI runs the smart router pseudocode and emits `SURFACE: WEBFLOW`. |
-| 4 | The AI lists `references/webflow/implementation/*` as loaded; lists `assets/webflow/checklists/code_quality.md` as loaded; does NOT list any `references/opencode/*`. |
+| 4 | The AI lists `references/webflow/implementation/*` as loaded; lists `assets/webflow/checklists/code_quality_checklist.md` as loaded; does NOT list any `references/opencode/*`. |
 | 5 | Evidence file contains all of the above. |
 
 ### Pass/Fail Criteria
