@@ -34,8 +34,8 @@ The design fixture for the parent stress-test playbook. Locks corpus version v1.
 
 ### Changed
 
-- Ablation mechanism revised mid-design from `--agent context` to `--pure` per cli-codex review P0. The original mechanism only swapped agent profiles; the corrected mechanism actually disables plugins and isolates model quality from MCP advantage
-- cli-copilot dispatch invocation now passes `--effort high` explicitly per cli-codex review P0/P1 (reproducibility — preferred over relying on ~/.copilot/config.json)
+- Ablation mechanism revised mid-design from `--agent context` to `--pure` per cli-codex review P0. The original mechanism only swapped agent profiles, the corrected mechanism actually disables plugins and isolates model quality from MCP advantage
+- cli-copilot dispatch invocation now passes `--effort high` explicitly per cli-codex review P0/P1 (reproducibility, preferred over relying on ~/.copilot/config.json)
 
 ### Fixed
 

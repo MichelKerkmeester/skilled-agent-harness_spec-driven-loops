@@ -41,4 +41,6 @@ None. Research-only phase.
 - Also identified the secondary writer-wiring gap (Superset wrapper clobbers per-prompt refresh), addressed in phase 007 (`copilot-writer-wiring`).
 
 ### Files Changed
+### Follow-Ups
 
+- None.

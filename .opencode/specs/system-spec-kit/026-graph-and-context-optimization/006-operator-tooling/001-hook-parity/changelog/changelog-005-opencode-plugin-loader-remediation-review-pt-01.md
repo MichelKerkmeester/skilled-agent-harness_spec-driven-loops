@@ -1,3 +1,5 @@
+
+
 ---
 title: "Hook Parity Phase 005 Review Pt-01: OpenCode plugin loader tier-2 review"
 description: "Review-only phase. Tier-2 review of OpenCode plugin loader remediation produced findings on helper relocation paths, plugin-global state, and bridge import consistency."
@@ -14,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge`
 > Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity`
 
 ### Summary
@@ -40,3 +42,10 @@ None. Review-only phase.
 
 ### Files Changed
 
+| File | Action | What changed |
+|------|--------|--------------|
+| None | None | Review-only phase, no production code changes |
+
+### Follow-Ups
+
+None.

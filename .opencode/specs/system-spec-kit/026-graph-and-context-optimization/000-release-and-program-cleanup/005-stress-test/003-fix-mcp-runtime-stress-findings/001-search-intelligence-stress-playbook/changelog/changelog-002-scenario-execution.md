@@ -25,7 +25,7 @@ The execution harness for the parent stress-test playbook. Defines the four-stag
 ### Added
 
 - Execution scaffold with pre-flight contract, dispatch loop architecture, output capture schema, manual scoring workflow, findings aggregation contract
-- 4-stage flow with clean handoffs (pre-flight failure aborts; dispatch failure marks SKIPPED; scoring is human-paced; aggregation reads score files)
+- 4-stage flow with clean handoffs (pre-flight failure aborts, dispatch failure marks SKIPPED, scoring is human-paced, aggregation reads score files)
 - Per-run artifacts folder layout under runs/ with prompt + output + meta.json + score.md per cell
 - Per-cell meta.json schema capturing latency_ms, tokens_in_estimate, tokens_out_estimate, model, exit_code, started_at, completed_at
 - Concurrency strategy honoring cli-copilot 3-process cap (per repo Phase 018 convention) with serial dispatch for cli-codex and cli-opencode
@@ -55,7 +55,7 @@ The execution harness for the parent stress-test playbook. Defines the four-stag
 | ---- | ------ | ------- |
 | `spec.md` | Create | Execution scaffold, run schema, findings format |
 | `plan.md` | Create | 4-stage flow, concurrency strategy, scoring workflow |
-| `tasks.md` | Create | T001-T504 work units (T001-T006 scaffold complete; T101-T504 executed by sweep agent) |
+| `tasks.md` | Create | T001-T504 work units (T001-T006 scaffold complete, T101-T504 executed by sweep agent) |
 | `implementation-summary.md` | Create | Sub-phase outcome summary |
 | `description.json` | Create | Indexer metadata |
 | `graph-metadata.json` | Create | Graph traversal metadata |
