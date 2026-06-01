@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
     last_updated_at: "2026-06-01T06:50:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Phase 4: #2-A supersede shipped+deployed+live-verified (pid 45861); #2-C live cleanup DONE 29830->9689 rows (20141 dup deletes, backup taken); #2-B index DEFERRED (incompatible with #2-A insert-then-delete)"
-    next_safe_action: "Restart daemon (stale caches after external delete) -> verify -> #4 re-embed (re-scoped small) -> #3/#5 scaffolds -> deep-review -> doc reconcile"
+    recent_action: "Phase 4 CHECKPOINT: #2-A shipped+committed (26fca5d1b2) + live-verified; #2-C cleanup DONE 29830->~9703 rows (committed 952dd1e1e1, backup taken); #2-B deferred; #4 bulk re-embed triggered (2192 draining); legacy vector shards deleted"
+    next_safe_action: "Fresh session per handover.md SECTION 8 runbook: verify #4 drain -> #4 5 provider-failures -> #2-B rework+index -> #3/#5 scaffolds -> deep-review -> doc reconcile + validate.sh --strict"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
@@ -230,7 +230,41 @@ A → re-index the lagging 013 docs cleanly → B + C → #4 re-embed → #3 che
 
 **Legacy vector shards (inert, safe to archive after #4 drain):** `hf-local__baai_bge-base-en-v1.5__768__q8` (52K), `hf-local__nomic-ai_nomic-embed-text-v1.5__768__q8` (3.2M), `ollama__nomic-embed-text-v1.5__1024` (52K). Active shard = `ollama__nomic-embed-text-v1.5__768` (258M).
 
-**REMAINING (recommended fresh session):** #4 provider-failure re-index (5 rows) · #3 checkpoint-v2 scaffold · #5 MCP front-proxy scaffold · #2-B rework (delete-before-insert + index) · mandatory post-implementation deep-review · final doc reconciliation + `validate.sh --strict`.
+---
+
+## 8. REMAINING ISSUES & NEXT-SESSION RUNBOOK
+
+### Start-here state snapshot
+- **Branch:** `main`. Session commits: `26fca5d1b2` (#2-A code + regression test), `952dd1e1e1` (handover Phase-4 record). #2-A is LIVE + verified; do NOT redo.
+- **Live index:** ~9,703 rows (was 29,830; cleanup removed 20,141 duplicate logical-key rows). Active embedder: `ollama / nomic-embed-text-v1.5 / 768`; active shard `database/vectors/context-vectors__ollama__nomic-embed-text-v1.5__768.sqlite` (258M).
+- **Rollback backup (KEEP until migration verified):** `database/backups/context-index-PRE-BC-20260601-083145.sqlite` (`integrity_check ok`, 29,830 rows). Restore = stop daemon, `cp` it over `database/context-index.sqlite`, restart.
+- **Daemon recycles under embed load** (pid churned 47588→45861→55572→79922 this session — the #5 bug). Restart procedure: `pkill -f "mcp_server/dist/context-server.js"` → wait for launcher respawn → operator `/mcp reconnect`. A read-only `sqlite3` on the live DB needs the daemon's `-shm` present (open read-write or post-clean-restart).
+- **One-shot migration scripts (untracked):** `mcp_server/scripts/dedup-cleanup-bc.mjs` (Phase-C cleanup), `mcp_server/scripts/dedup-index-b.mjs` (collision resolve + index). Dry-run by default; `--apply` to mutate. Reusable/auditable.
+- **Legacy vector shards DELETED** this session (hf-local bge-base, hf-local nomic, ollama-1024 + sidecars + a 0B stray). `database/test-context-index.sqlite` (468K) intentionally left — operator decision.
+
+### Open items (priority order)
+
+**A. Verify the #4 re-embed drain finished.** 2,192 success-coverage rows were reset to `retry` to re-embed into the ollama shard; daemon recycles likely paused it. Check `memory_health` → `index.retryVectors` trending to 0, and `memory_embedding_reconcile({mode:'dry-run'})` → `coverage.successMissingActiveVector` == 0. If stalled, re-run `memory_embedding_reconcile({mode:'apply', repairSuccessCoverage:true})`. The drain load is what trips the recycle (see E) — consider pacing.
+
+**B. #4 provider-failures — 5 rows, targeted re-index.** `failed`-status rows with no vector: `50257` (`026…/resource-map.md`), `50258`/`50260`/`50261` (`skilled-agent-orchestration/122-deep-improvement-skills/…/008-playbook-manual-test-run/{handover.md,spec.md,graph-metadata.json}`), `50259` (`008-playbook-manual-test-run/description.json`). For each: confirm the source file exists + no newer success row for its logical key, then `memory_index_scan({specFolder, force:true})` on its folder. Reconcile leaves these report-only by design.
+
+**C. #2-B unique-index guard — REWORK then ship (task #9).** Target guard: partial unique index `(spec_folder, canonical_file_path, COALESCE(anchor_id,'_')) WHERE importance_tier <> 'constitutional'`. BLOCKER: incompatible with #2-A's insert-then-delete — SQLite enforces uniqueness at INSERT, so `createAppendOnlyMemoryRecord`'s new row collides with the still-present predecessor and throws, breaking same-path re-index. FIX: rework the same-path branch in `handlers/memory-save.ts` `processPreparedMemory` to **delete-before-insert** (capture predecessor lineage metadata, delete predecessor, then insert new row + record SUPERSEDE lineage against the now-dangling predecessor id) OR switch to update-in-place. THEN create the index + register as schema migration **v28** (`lib/search/vector-index-schema.ts`, bump `SCHEMA_VERSION` 27→28). Cleanup already removed all non-constitutional dups, so the index will build. Also via `memory_health({autoRepair:true, confirmed:true})`: sweep **~2,257 dangling `active_memory_projection` pointers** + **1 orphan vector**. The 3 constitutional-bearing collision keys are tolerated by the partial predicate.
+
+**D. #3 Checkpoint-v2 scaffold.** `lib/storage/checkpoints.ts:1604` serializes the whole DB via one `JSON.stringify` → V8 max-string (`checkpoint_create` throws `Invalid string length` on the 1 GB DB). Design v2: PK-windowed compressed table chunks (NDJSON) OR SQLite `VACUUM INTO` for full-DB + manifest for scoped; keep v1 restore. Pass `includeEmbeddings` through the handler (`handlers/checkpoints.ts:40,398` — storage supports it; args don't).
+
+**E. #5 MCP front-proxy / reconnect scaffold.** OBSERVED LIVE: re-embed load → RSS watchdog `recycleViaGracefulSelfExit` → launcher relaunch → client severed, no transparent reconnect (`bin/mk-spec-memory-launcher.cjs:676/701/709/829`, child `stdio:'inherit'` :808; transport in `context-server.ts:2067`). Short-term: on worker death close the client transport with an explicit reconnect-required error. Medium-term: stable front proxy owns MCP session state; `context-server` becomes a restartable backend; RSS recycle restarts only the backend.
+
+**F. MANDATORY post-implementation deep-review (before any completion claim).** `/deep:start-review-loop` (or `@review`) over the #2-A change + the migration; surface no P0/P1. Scrutinize specifically: the insert-then-delete ordering (the #2-B incompatibility), `delete_memory_from_database`'s BM25 removal outside its inner transaction under the new path, and whether deleting same-path predecessors drops any needed lineage/causal/drift data.
+
+**G. Final doc reconciliation + validation.** Reconcile `spec.md` Status, `checklist.md` evidence, `implementation-summary.md` to shipped reality (#2-A shipped; #2-C done; #2-B deferred; #4 partial). Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation --strict`, then `/memory:save`.
+
+### Cleanup follow-ups (low priority)
+- Purge the 1 GB migration backup once the migration + re-embed are verified good.
+- Decide on `database/test-context-index.sqlite`.
+- Commit or remove the two one-shot migration scripts.
+
+### Hard constraints (carried over)
+- NEVER raw-SQL-delete memory rows — sanctioned per-row `delete_memory()` only. NEVER `git add -A` (concurrent parallel-session churn) — explicit paths, commit direct to `main`. No spec-paths/packet-ids/phase-numbers in code comments (pre-commit guard enforces). Treat any further live-DB mutation as daemon-up-with-backup or daemon-owned, with before/after verification.
 
 ---
 
