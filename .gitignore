@@ -64,6 +64,7 @@ code-graph.sqlite
 .opencode/skills/system-spec-kit/mcp_server/database/.doctor-update.last-run.json
 .opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
 .opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.lockdir/
+.opencode/skills/system-spec-kit/mcp_server/database/.unclean-shutdown
 .opencode/skills/system-spec-kit/mcp_server/database/**/*.sqlite*
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite
 .opencode/skills/system-spec-kit/shared/mcp_server/database/*.sqlite-shm
