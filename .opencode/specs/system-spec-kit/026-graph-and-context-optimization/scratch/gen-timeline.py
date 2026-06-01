@@ -28,6 +28,7 @@ Display columns: last-active (YYYY-MM-DD HH:MM) | born (day) | impl? | path
 """
 import json
 import os
+import re
 import subprocess
 from datetime import datetime, timezone
 
@@ -183,6 +184,76 @@ def tracks_table(last_map):
     return "\n".join(lines)
 
 
+def changelog_map():
+    """Invert each changelog's `> Spec folder:` line -> {spec_rel: {"all":[clrel], "rollup":clrel|None}}.
+
+    The bridge from a spec folder (what was worked on, recency view) to its packet
+    changelog(s) (what shipped). Keyed by the spec-folder path each changelog itself
+    declares in its blockquote, normalized on the packet anchor. Phase-parent rollups
+    (`-root.md`) are recorded separately so a parent folder can link the rollup that
+    already indexes its child phases instead of dumping every child link in one cell.
+    """
+    cl_root = os.path.join(ROOT26, "changelog")
+    anchor = "026-graph-and-context-optimization"
+    m = {}
+    for dirpath, _, filenames in os.walk(cl_root):
+        for fn in filenames:
+            if not fn.endswith(".md") or fn == "README.md":
+                continue
+            p = os.path.join(dirpath, fn)
+            sf = None
+            try:
+                with open(p, encoding="utf-8", errors="surrogateescape") as fh:
+                    for line in fh:
+                        mm = re.match(r"^> Spec folder: `([^`]+)`", line)
+                        if mm:
+                            sf = mm.group(1).rstrip("/")
+                            break
+            except OSError:
+                continue
+            if not sf or anchor not in sf:
+                continue
+            spec_rel = sf[sf.index(anchor) + len(anchor):].lstrip("/")
+            cl_rel = os.path.relpath(p, cl_root).replace(os.sep, "/")
+            entry = m.setdefault(spec_rel, {"all": [], "rollup": None})
+            entry["all"].append(cl_rel)
+            if fn.endswith("-root.md"):
+                entry["rollup"] = cl_rel
+    return m
+
+
+def cl_cell(rel, clmap):
+    """Render the §D Changelog cell for one spec folder. Links are relative to ROOT26
+    (where timeline.md lives), so `./changelog/<clrel>` resolves directly."""
+    e = clmap.get(rel)
+    if not e:
+        return "(none)"
+
+    def link(clrel):
+        return f"[{os.path.basename(clrel)}](./changelog/{clrel})"
+
+    if e["rollup"]:
+        cell = link(e["rollup"])
+        extra = len(e["all"]) - 1
+        if extra > 0:
+            cell += f" (rollup indexes +{extra})"
+        return cell
+    # no rollup: list every changelog (these cases hold only a few)
+    return "<br>".join(link(c) for c in sorted(e["all"]))
+
+
+def section_d(live_s, clmap):
+    lines = [
+        "| Spec folder | impl | Changelog |",
+        "|-------------|------|-----------|",
+    ]
+    for r in live_s:
+        impl = "impl" if r["impl"] else ""
+        rel = r["rel"].replace("|", "\\|")
+        lines.append(f"| `{rel}` | {impl} | {cl_cell(r['rel'], clmap)} |")
+    return "\n".join(lines)
+
+
 def main():
     folders = spec_folders()
     last_map = build_last_map(folders.keys())
@@ -192,6 +263,7 @@ def main():
         (archived if rel.split("/")[0] == "z_archive" else live).append(rec)
 
     live_s, arch_s = sort_recs(live), sort_recs(archived)
+    clmap = changelog_map()
     gen = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     newest = live_s[0]["rel"] if live_s else "n/a"
     oldest = live_s[-1]["rel"] if live_s else "n/a"
@@ -234,6 +306,10 @@ _memory:
 > identity assigned across reorg waves. This file is the *only* surface that orders by when work happened.
 > Phase identity → home mapping lives in [`context-index.md`](./context-index.md); the live track map lives
 > in [`spec.md`](./spec.md).
+>
+> **Changelog links:** §D maps every live spec folder to its packet changelog(s). Folders with none
+> (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
+> their `-root.md` rollup, which indexes the child phase changelogs.
 >
 > **Most recent live spec folder:** `{newest}`
 > **Oldest live spec folder:** `{oldest}`
@@ -281,6 +357,18 @@ identities via [`context-index.md`](./context-index.md).
 ```
 {block(arch_s)}
 ```
+
+---
+
+## D. Spec folder → changelog (generated link index)
+
+Every live spec folder linked to its packet changelog(s), in the same newest → oldest order as §B.
+This is the connection between "what was worked on when" (§B) and "what shipped" (the changelogs).
+Folders with `(none)` are docs-only, research, or work consolidated into a parent rollup. Phase
+parents link their `-root.md` rollup, which indexes the child phase changelogs (`+N` = additional
+changelogs the rollup covers). Links resolve relative to this file.
+
+{section_d(live_s, clmap)}
 """)
 
 
