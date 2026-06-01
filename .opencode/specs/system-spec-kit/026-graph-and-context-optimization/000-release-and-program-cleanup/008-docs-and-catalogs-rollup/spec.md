@@ -1,124 +1,133 @@
 ---
-speckit_template_source: "SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2"
-title: "Feature Specification: Docs and Catalogs Rollup (012/006)"
-description: "Update umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE) reflecting capabilities shipped by 012/002-005. Per-packet feature_catalog + manual_testing_playbook entries are written inline by 002-005; this sub-phase rolls up indexes."
+title: "Feature Specification: Docs and Catalogs Rollup"
+description: "Phase parent for documentation rollup work in the 026 release-and-program-cleanup track. Groups the umbrella docs and catalogs rollup with the program-wide changelog backfill and work audit."
 trigger_phrases:
-  - "012 docs rollup"
-  - "feature catalog rollup"
-  - "manual testing playbook rollup"
-  - "root readme update"
-  - "skill skill md update"
+  - "docs and catalogs rollup"
+  - "008 phase parent"
+  - "changelog backfill phase parent"
+  - "umbrella docs rollup"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup"
-    last_updated_at: "2026-04-25T11:00:00Z"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup"
+    last_updated_at: "2026-06-01T00:00:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Initialized sub-phase scaffold"
-    next_safe_action: "Wait for 012/002-005 to ship; then run sk-doc on umbrella docs"
-    completion_pct: 0
-    blockers: ["012/002 pending", "012/003 pending", "012/004 pending", "012/005 pending"]
-    key_files:
-      - "spec.md"
-      - "plan.md"
-      - "tasks.md"
-      - "checklist.md"
+    recent_action: "Converted 008 to a phase parent with two child phases"
+    next_safe_action: "Resume a child phase folder"
+    blockers: []
+    key_files: []
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000010"
+      session_id: "008-phase-parent-2026-06-01"
+      parent_session_id: null
+    completion_pct: 50
+    open_questions: []
+    answered_questions: []
 ---
-# Feature Specification: Docs and Catalogs Rollup (012/006)
 
+<!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md (these live in child phase folders)
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose, sub-phase list, what needs done
+-->
 
-> **Phase-naming alias (R-007-P2-12):** This packet was authored under the
-> historical label `012/006`. During refactor `bdd3c831d`, the parent phase
-> was renumbered from `012-graph-impact-and-affordance-uplift` to the
-> wrapper `010-graph-impact-and-affordance-uplift`. Both labels refer to the
-> same packet; the canonical path is now
-> `026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup/`.
-> Existing `012/006` references in body text are intentional — they point
-> to the same documents.
+# Feature Specification: Docs and Catalogs Rollup
 
----
-
+<!-- ANCHOR:metadata -->
 ## 1. METADATA
+
 | Field | Value |
 |-------|-------|
 | **Level** | 2 |
-| **Priority** | P2 |
-| **Status** | Draft (blocked on 012/002-005) |
-| **Created** | 2026-04-25 |
-| **Branch** | `012/006-docs-and-catalogs-rollup` |
+| **Priority** | P1 |
+| **Status** | In Progress |
+| **Created** | 2026-06-01 |
+| **Branch** | `main` |
+| **Parent Spec** | `../spec.md` |
+| **Parent Packet** | `system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup` |
+<!-- /ANCHOR:metadata -->
 
 ---
 
+<!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-**Problem:** Once 012/002-005 ship, umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE, feature_catalog/manual_testing_playbook indexes) won't reflect the new capabilities. Per-packet `feature_catalog/{NN--category}/` and `manual_testing_playbook/{NN--category}/` entries are written inline by 002-005, but the umbrella surfaces and top-level indexes need a coordinated update.
+### Problem Statement
 
-**Purpose:** Roll up the umbrella docs and top-level indexes after 002-005 land. sk-doc DQI compliance.
+Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the program had hundreds of shipped phases with almost no packet-local changelogs. This phase parent groups both efforts.
+
+### Purpose
+
+Deliver complete, accurate documentation for spec 026: rolled-up umbrella docs and catalogs, plus a packet-local changelog for every shipped phase backed by a program-wide work audit.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below.
+<!-- /ANCHOR:problem -->
 
 ---
 
+<!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope (Umbrella docs)
-- `/README.md` (repo root) — features section update for new capabilities
-- `.opencode/skills/system-spec-kit/SKILL.md` — capability matrix update (new handlers, lanes, badges)
-- `.opencode/skills/system-spec-kit/README.md` — feature index
-- `.opencode/skills/system-spec-kit/mcp_server/README.md` — handler list update (new `detect_changes`, enriched query/blast_radius)
-- `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` — verification steps for new behaviors
-- `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` — top-level index reflecting new entries
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` — top-level index reflecting new entries
-- `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` — record 012 as the External Project adoption phase
+### In Scope
 
-### Out of Scope (handled inline by 002-005)
-- Per-packet `feature_catalog/{NN--category}/` entries — written by their respective code sub-phases
-- Per-packet `manual_testing_playbook/{NN--category}/` entries — written by their respective code sub-phases
-- Code changes (this sub-phase is docs-only)
+- Umbrella docs and catalogs rollup reflecting capabilities shipped across the 026 program.
+- Program-wide packet-local changelog backfill across all 8 tracks, with phase-parent rollups and a work audit.
+
+### Out of Scope
+
+- Source-code changes. Both child phases produce documentation only.
+- Archived (z_archive) content.
 
 ### Files to Change
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `/README.md` | MODIFY | Features section (root) |
-| `.opencode/skills/system-spec-kit/SKILL.md` | MODIFY | Capability matrix |
-| `.opencode/skills/system-spec-kit/README.md` | MODIFY | Feature index |
-| `.opencode/skills/system-spec-kit/mcp_server/README.md` | MODIFY | Handler list |
-| `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | MODIFY | Verification steps |
-| `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | MODIFY | Top-level index |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | MODIFY | Top-level index |
-| `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/merged-phase-map.md` | MODIFY | Add 012 entry |
+
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| umbrella docs (root README, skill SKILL.md/README, mcp_server docs) | Modify | 001 | Roll up shipped capabilities |
+| `026/changelog/**` | Create | 002 | Backfilled changelogs, rollups, program index, audit |
+<!-- /ANCHOR:scope -->
 
 ---
 
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-| ID | Requirement |
-|----|-------------|
-| R-006-1 | Each umbrella doc reflects all capabilities shipped by 012/002-005 |
-| R-006-2 | sk-doc DQI score ≥85 on each modified umbrella doc |
-| R-006-3 | All file references in updated docs are valid (no broken links) |
-| R-006-4 | feature_catalog and manual_testing_playbook top-level indexes list new per-packet entries with correct paths |
-| R-006-5 | INSTALL_GUIDE includes a smoke-test step exercising one new capability per sub-phase (002-005) |
-| R-006-6 | merged-phase-map.md notes that 012 is the implementation phase derived from pt-01 + pt-02 syntheses |
-| R-006-7 | No factual claims unsupported by what 002-005 actually shipped (sync, not aspiration) |
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details live inside the phase children.
+
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 001 | `001-docs-and-catalogs-rollup/` | Umbrella docs and catalogs rollup for 026 | In Progress |
+| 002 | `002-changelog-backfill-and-audit/` | Program-wide changelog backfill, rollups, and work audit | Complete |
+
+### Phase Transition Rules
+
+- Each phase MUST pass `validate.sh` independently.
+- Parent spec tracks aggregate progress via this map.
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
+
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001 | 002 | Independent phases, no hard dependency | Each validates standalone |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
-## 5. VERIFICATION
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
 
-- [ ] Each umbrella doc loaded into sk-doc DQI scorer; score ≥85
-- [ ] Manual review: changes match 002-005 implementation-summary.md content
-- [ ] Link checker (or grep) confirms no broken references
-- [ ] feature_catalog.md and manual_testing_playbook.md indexes match on-disk entries
-- [ ] INSTALL_GUIDE smoke tests run successfully
-- [ ] `validate.sh --strict` passes on this sub-phase
-- [ ] Capture before/after diff summary in `implementation-summary.md`
+- None.
+<!-- /ANCHOR:questions -->
 
 ---
 
-## 6. REFERENCES
-- 012/spec.md §3 (scope), §4 (R-006 row)
-- 012/decision-record.md ADR-012-007 (per-packet inline + trailing rollup)
-- pt-02 §11 (no specific packet — this sub-phase is user-requested addition)
-- Reference docs to update (paths above)
-- sk-doc skill: `.opencode/skills/sk-doc/`
+## RELATED DOCUMENTS
+
+- **Phase children**: `001-docs-and-catalogs-rollup/`, `002-changelog-backfill-and-audit/`
+- **Parent Spec**: `../spec.md`
+- **Graph Metadata**: `graph-metadata.json`

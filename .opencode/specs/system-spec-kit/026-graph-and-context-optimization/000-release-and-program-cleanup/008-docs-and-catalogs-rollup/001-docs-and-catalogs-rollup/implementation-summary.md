@@ -9,7 +9,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/010-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup"
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup"
     last_updated_at: "2026-04-25T18:00:00Z"
     last_updated_by: "claude-opus-4-7"
     recent_action: "Synced 8 umbrella docs to 012/002-005 implementation-summary.md content; populated implementation-summary.md with before/after diff summary and pre-flight DQI evidence"

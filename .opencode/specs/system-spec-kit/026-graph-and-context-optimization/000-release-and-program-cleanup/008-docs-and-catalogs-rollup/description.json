@@ -1,25 +1,24 @@
 {
-  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
-  "description": "Feature Specification: Docs and Catalogs Rollup (012/006)",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "description": "Feature Specification: Docs and Catalogs Rollup",
   "keywords": [
     "feature",
     "specification",
     "docs",
     "catalogs",
-    "rollup",
-    "012",
-    "006"
+    "rollup"
   ],
-  "lastUpdated": "2026-05-27T08:41:18.183Z",
+  "lastUpdated": "2026-06-01T06:18:33.800Z",
   "specId": "008",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [
+    ".opencode",
+    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup"
   ],
-  "memorySequence": 1,
-  "memoryNameHistory": [
-    "25-04-26_11-48__scaffold-initialization-for-012-sub-phase-006.md"
-  ]
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
 }

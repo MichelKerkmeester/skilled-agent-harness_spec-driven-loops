@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "012 docs rollup",
+      "feature catalog rollup",
+      "manual testing playbook rollup",
+      "root readme update",
+      "skill skill md update",
+      "012/006 implementation summary",
+      "012 docs rollup shipped",
+      "umbrella docs sync"
+    ],
+    "key_topics": [
+      "012",
+      "docs",
+      "rollup",
+      "feature",
+      "catalog",
+      "manual",
+      "testing",
+      "playbook",
+      "root",
+      "readme",
+      "update",
+      "skill"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/README.md",
+      "mcp_server/INSTALL_GUIDE.md",
+      "feature_catalog/feature_catalog.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/SKILL.md",
+      ".opencode/skills/system-spec-kit/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/README.md",
+      ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "tasks.md",
+      "checklist.md",
+      "tests/memory/trust-badges.test.ts",
+      "manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
+      "implementation-summary.md",
+      "handlers/index.ts",
+      "formatters/search-results.ts",
+      "lib/response/profile-formatters.ts",
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "INSTALL_GUIDE.md",
+        "kind": "doc",
+        "path": "mcp_server/INSTALL_GUIDE.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "trust-badges.test.ts",
+        "kind": "test",
+        "path": "tests/memory/trust-badges.test.ts",
+        "source": "derived"
+      },
+      {
+        "name": "203-memory-causal-trust-display.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "index.ts",
+        "kind": "code",
+        "path": "handlers/index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "profile-formatters.ts",
+        "kind": "code",
+        "path": "lib/response/profile-formatters.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalogs Rollup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "External Project",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Change Type",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "grep",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "before",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Steps",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Update umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE) reflecting capabilities shipped by 012/002-005. Per-packet feature_catalog + manual_testing_playbook entries are written inline by 002-005; this sub-phase rolls up indexes.",
+    "created_at": "2026-04-25T10:48:09.975Z",
+    "last_save_at": "2026-05-30T10:12:01.822Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
