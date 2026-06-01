@@ -2536,17 +2536,25 @@ async function processPreparedMemory(
         recordIdentity,
       ) as { id: number; content_hash: string } | undefined;
 
-      const memoryId = existing && existing.content_hash !== routedParsed.contentHash
+      // A same-path re-index whose file content changed appends a new version
+      // row; the prior row for this logical key is retired below so re-indexing
+      // replaces in place rather than leaving a deprecated duplicate. Scoped to
+      // this branch only — PE-gate / reconsolidation lineage (createMemoryRecord)
+      // is intentionally preserved.
+      const samePathSupersededPredecessorId =
+        existing && existing.content_hash !== routedParsed.contentHash ? existing.id : null;
+
+      const memoryId = samePathSupersededPredecessorId != null
         ? createAppendOnlyMemoryRecord({
             database,
             parsed: routedParsed,
             filePath: routedFilePath,
             embedding,
             embeddingFailureReason,
-            predecessorMemoryId: existing.id,
+            predecessorMemoryId: samePathSupersededPredecessorId,
             actor: 'mcp:memory_save',
           })
-          : createMemoryRecord(
+        : createMemoryRecord(
             database,
             routedParsed,
             routedFilePath,
@@ -2569,14 +2577,23 @@ async function processPreparedMemory(
 
       recordLineageVersion(database, {
         memoryId,
-        predecessorMemoryId: existing && existing.content_hash !== routedParsed.contentHash
-          ? existing.id
-          : null,
+        predecessorMemoryId: samePathSupersededPredecessorId,
         actor: 'mcp:memory_save',
-        transitionEvent: existing && existing.content_hash !== routedParsed.contentHash
-          ? 'SUPERSEDE'
-          : 'CREATE',
+        transitionEvent: samePathSupersededPredecessorId != null ? 'SUPERSEDE' : 'CREATE',
       });
+
+      // Retire the superseded predecessor for a same-path content change so the
+      // active index holds a single row per logical key. Runs last, after
+      // markMemorySuperseded and recordLineageVersion have finished reading the
+      // predecessor; delete_memory_from_database nests via SAVEPOINT and clears
+      // the row's vector / FTS / lineage / causal residue (never raw SQL), while
+      // the memory_history audit trail is preserved by design.
+      if (
+        samePathSupersededPredecessorId != null
+        && samePathSupersededPredecessorId !== memoryId
+      ) {
+        delete_memory_from_database(database, samePathSupersededPredecessorId);
+      }
 
       return memoryId;
     });
