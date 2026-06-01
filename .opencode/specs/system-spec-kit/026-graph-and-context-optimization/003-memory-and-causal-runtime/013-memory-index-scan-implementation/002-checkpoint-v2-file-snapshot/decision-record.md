@@ -56,7 +56,7 @@ _memory:
 
 ### Constraints
 
-- Vectors live in a separate `active_vec` shard file; `vec_memories` is a `vec0` virtual table and `vec_metadata` lives in the shard, not main.
+- Vectors live in a separate `active_vec` shard file; `vec_memories` is a `vec0` virtual table. NOTE (corrected post-implementation, see ADR-005): the shard-attach slimming drops `vec_memories` from main but **retains** a small `vec_metadata` config table in main as a dimension fallback, so `vec_metadata` exists in BOTH main and the shard. That coupling drove the v2-selection gate bug.
 - The snapshot must be transactionally consistent against a live WAL database.
 - `db-shard-migration.ts` already establishes a working VACUUM + ATTACH + vec0 reconstruction precedent.
 <!-- /ANCHOR:adr-001-context -->
@@ -347,7 +347,46 @@ Scoped checkpoints (tenant/user/agent or specFolder-bound) are small and already
 
 ---
 
+## ADR-005: Gate v2 selection on vec_memories only (post-implementation correction)
+
+### Metadata
+
+| Field | Value |
+|-------|-------|
+| **Status** | Accepted |
+| **Date** | 2026-06-01 |
+| **Deciders** | Operator, orchestrator |
+
+### Context
+
+After Phases 1-7 shipped review-clean, live verification on the production database showed full-DB `checkpoint_create` was still choosing v1, not v2 — the feature was inert on the real runtime. Root cause: the selection gate `hasMainVectorPayloadTables` returned true when main held `vec_memories` **or `vec_metadata`**, but the shard-attach slimming (`drop_canonical_vector_payload_tables`) intentionally retains `vec_metadata` in main while dropping `vec_memories`. So every sharded daemon saw `vec_metadata` in main and fell back to the v1 string-ceiling path. Unit tests and the multi-lens review missed it — the test DBs never modeled the daemon post-slim state.
+
+### Decision
+
+**We chose**: Gate v2 selection on `vec_memories` only — the payload table the slimming actually removes from main — and add a regression test that creates `vec_metadata` in main and asserts v2 is still selected.
+
+### Alternatives Considered
+
+| Option | Pros | Cons | Score |
+|--------|------|------|-------|
+| **Gate on vec_memories only (chosen)** | Aligns the gate with what slimming removes; activates v2 on real runtimes; minimal change | Requires understanding the slim/gate coupling | 9/10 |
+| Also drop vec_metadata from main during slimming | One source of truth | `vec_metadata` is a deliberate dim fallback read by the no-shard path; dropping it regresses that fallback | 3/10 |
+
+### Consequences
+
+**What improves**: Full-DB v2 checkpoints activate on the production sharded runtime; `Invalid string length` is actually prevented. Live-proven — v2 create (297 MB main + 72 MB shard, 0.37 s, integrity ok) and restore round-trip (9665 memories, consistent).
+
+**What it costs**: Nothing material; one predicate plus a dedicated regression test.
+
+### Implementation
+
+**What changes**: `lib/storage/checkpoints.ts` `hasMainVectorPayloadTables` queries `name = 'vec_memories'` only; `tests/checkpoints-v2-create.vitest.ts` adds the daemon-post-slim regression test. Commit `cce4fe931d`.
+
+**How to roll back**: Re-add `vec_metadata` to the gate's name set; v2 selection reverts to inert (not recommended).
+
+---
+
 <!--
-Level 3 Decision Record: four ADRs, one per pressure-tested decision.
+Level 3 Decision Record: five ADRs, one per pressure-tested decision (ADR-005 added post-implementation from the live verification).
 Human voice: active, direct, specific. HVR rules: .opencode/skills/sk-doc/references/hvr_rules.md
 -->
