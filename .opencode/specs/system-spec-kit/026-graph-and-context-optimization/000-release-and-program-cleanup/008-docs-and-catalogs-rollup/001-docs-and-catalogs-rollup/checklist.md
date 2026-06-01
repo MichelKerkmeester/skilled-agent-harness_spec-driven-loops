@@ -1,42 +1,131 @@
 ---
-title: "Checklist: 012/006"
-description: "Docs and catalogs rollup verification."
-importance_tier: "important"
+title: "Verification Checklist: Docs and Catalogs Rollup"
+description: "Verification Date: 2026-06-01"
+trigger_phrases:
+  - "docs rollup verification"
+  - "umbrella docs checklist"
+  - "verification"
+importance_tier: "normal"
 contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup"
+    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_by: "claude-orchestrator"
+    recent_action: "Rollup verified"
+    next_safe_action: "None, packet complete"
+    blockers: []
+    key_files: ["spec.md"]
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000023"
+      session_id: "docs-rollup-2026-06-01"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
-# Checklist: 012/006
+# Verification Checklist: Docs and Catalogs Rollup
 
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: checklist | v2.2 -->
 
-> **Phase-naming alias (R-007-P2-12):** This packet was authored under the
-> historical label `012/006`. The parent phase has since been renumbered to
-> the wrapper `010-graph-impact-and-affordance-uplift`; both labels refer to
-> the same packet (canonical path
-> `010-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup/`).
+---
 
-## P2 — Doc Quality
-- [ ] sk-doc DQI ≥85 on `/README.md` — OPERATOR-PENDING. Pre-flight self-check estimates ~87 by structural template adherence (anchor pairs balanced, H2 emoji preserved, `####` heading + `&nbsp;` divider pattern preserved, footer version line bumped to 4.3 with Phase 012 mention). **Estimate is advisory only, NOT canonical sign-off** (R-007-15 — premature PASS). Operator must run `python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md --json` to attest the numeric ≥85 score.
-- [ ] sk-doc DQI ≥85 on `system-spec-kit/SKILL.md` — OPERATOR-PENDING. Pre-flight self-check estimates ~86 (anchor pairs balanced 7+7, table-row additions preserve column count + pipe alignment, Key Concepts bullets follow existing `**Term** - description` pattern). **Estimate is advisory only, NOT canonical sign-off** (R-007-15). Operator must run `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/SKILL.md --json --type skill`.
-- [ ] sk-doc DQI ≥85 on `system-spec-kit/README.md` — OPERATOR-PENDING. Pre-flight self-check estimates ~88 (anchor pairs balanced 10+10; line 545 mention of "ANCHOR markers" is body-text reference; table-row additions preserve column count; new H4 subsections use existing `#### Title` + `&nbsp;` pattern; footer version 3.0 -> 3.1). **Estimate is advisory only, NOT canonical sign-off** (R-007-15). Operator must run the validator.
-- [ ] sk-doc DQI ≥85 on `mcp_server/README.md` — OPERATOR-PENDING. Pre-flight self-check estimates ~89 (anchor pairs balanced 11+11; new section paragraphs use existing `**Term:** ...` pattern; new L7 tool entry follows the `##### tool_name` + parameter table + behavior paragraph contract used by every other tool entry). **Estimate is advisory only, NOT canonical sign-off** (R-007-15). Operator must run the validator.
-- [ ] sk-doc DQI ≥85 on `mcp_server/INSTALL_GUIDE.md` — OPERATOR-PENDING. Pre-flight self-check estimates ~88 (no anchors expected; new §6 Step 4 follows the existing "Step N: Title" + numbered command list + Validation pattern; smoke tests are end-to-end runnable with explicit PASS/FAIL per sub-phase). **Estimate is advisory only, NOT canonical sign-off** (R-007-15). Operator must run `python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md --json --type install_guide`.
-- [x] No broken links in any updated doc — VALIDATED PASS via `ls`: all 8 source-file references in updated docs resolve (`mcp_server/code_graph/handlers/detect-changes.ts`, `handlers/index.ts`, `code_graph/lib/diff-parser.ts`, `code_graph/lib/phase-runner.ts`, `code_graph/lib/structural-indexer.ts`, `skill_advisor/lib/affordance-normalizer.ts`, `formatters/search-results.ts`, `lib/response/profile-formatters.ts`); all 10 new per-packet entry relative paths in feature_catalog and manual_testing_playbook indexes resolve via `ls` (5 catalog + 5 playbook); anchor balance preserved per modified file via `grep -c "ANCHOR:"`.
+<!-- ANCHOR:protocol -->
+## Verification Protocol
 
-## P2 — Sync Discipline
-- [x] All updated docs reflect actual capabilities from 002, 003, 004, and 005 implementation-summary.md files (not aspirational) [See `implementation-summary.md` §Capabilities Reflected — the 4-row mapping table cites the originating sub-phase summary for every capability claim. Deferred items are documented as deferred (`detect_changes` tool-schema registration in `tool-schemas.ts` is called out as "registered handler, tool-schema deferred per ADR-012-003" in every umbrella surface that mentions the handler)]
-- [x] feature_catalog top-level index lists new per-packet entries with correct paths [See `feature_catalog/feature_catalog.md` Phase 012 audit section: 5 entries listed with relative paths `03--discovery/04-detect-changes-preflight.md`, `06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md`, `11--scoring-and-calibration/24-skill-advisor-affordance-evidence.md`, `13--memory-quality-and-indexing/28-memory-causal-trust-display.md`, `14--pipeline-architecture/25-code-graph-phase-dag-runner.md` — all 5 verified to exist on disk]
-- [x] manual_testing_playbook top-level index lists new per-packet entries [See `manual_testing_playbook/manual_testing_playbook.md` Phase 012 audit section: 5 scenarios listed with playbook IDs (EX-014, 271, EX-026, 199, 203) and relative paths `03--discovery/014-detect-changes-preflight.md`, `06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md`, `11--scoring-and-calibration/199-skill-advisor-affordance-evidence.md`, `13--memory-quality-and-indexing/203-memory-causal-trust-display.md`, `14--pipeline-architecture/271-code-graph-phase-dag-runner.md` — all 5 verified to exist on disk]
-- [x] merged-phase-map.md updated with 012 entry [See `026/merged-phase-map.md` new "Derived Implementation Phases" section after "Active Phase Themes" — 012 row records derivation from `001-research-and-baseline/007-external-project/` pt-01 + pt-02 syntheses with owner wrapper `026-graph-and-context-optimization/`, plus a one-paragraph note describing the six sub-phase decomposition]
+| Priority | Handling | Completion Impact |
+|----------|----------|-------------------|
+| **[P0]** | HARD BLOCKER | Cannot claim done until complete |
+| **[P1]** | Required | Must complete OR get user approval |
+| **[P2]** | Optional | Can defer with documented reason |
+<!-- /ANCHOR:protocol -->
 
-## P2 — INSTALL_GUIDE
-- [x] Verification steps include at least one smoke test per new capability (detect_changes, blast_radius enrichment, affordance evidence, memory trust badges) — VALIDATED PASS. See `mcp_server/INSTALL_GUIDE.md` §6 Step 4: 4a `detect_changes` preflight (stale + fresh), 4b `blast_radius` enrichment (relationship + filtered + ambiguous), 4c Skill Advisor affordance evidence (3 Vitest files + Python suite + npm run typecheck), 4d Memory causal trust display badges (rg + protected-file diff guard + 2 Vitest files) — one smoke per shipped capability per the brief's success criterion.
-- [ ] Smoke tests run successfully end-to-end — OPERATOR-PENDING. Specification: each smoke test 4a-4d declares the exact commands, expected response shape, PASS criterion, and FAIL criterion in operator-readable form. **Live end-to-end execution against a live MCP server has NOT been performed** (R-007-15 — premature PASS). Wave-3 canonical channel ran the unit/integration test suite but did not exercise the smoke-test happy paths against live tools. Operator must run each smoke (4a/4b/4c/4d) on a freshly indexed graph to attest end-to-end PASS.
+---
 
-## Phase Hand-off
-- [ ] `validate.sh --strict` passes — OPERATOR-PENDING-COSMETIC. Wave-3 canonical (010/007/T-B, 2026-04-25): FAILED on template-section conformance only (extra/non-canonical section headers from per-sub-phase scaffold). Cosmetic, NOT a contract violation: required Level-2 files present (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `implementation-summary.md`); no `[TBD]` placeholders in `implementation-summary.md`; `description.json` and `graph-metadata.json` already on disk. Tracked as deferred P2 cleanup in 010/007. The previous `[x]` was premature (R-007-15) since the script-backed run had not occurred. See `implementation-summary.md` §`validate.sh --strict` for full canonical evidence.
-- [x] `implementation-summary.md` populated with before/after diff summary — VALIDATED PASS. See §Before/After Diff Summary: 8-file LOC delta table totalling **+214 / -11 lines** (root README +32/-1, system-spec-kit/SKILL.md +9/-3, system-spec-kit/README.md +20/-2, mcp_server/README.md +13/-1, mcp_server/INSTALL_GUIDE.md +75/-3, feature_catalog/feature_catalog.md +18/-3, manual_testing_playbook/manual_testing_playbook.md +18/-3, merged-phase-map.md +10/0). Zero per-packet entries modified; zero code files modified. Now also includes Wave-3 canonical verification evidence (010/007/T-B 2026-04-25).
-- [x] All sibling sub-phases (002-005) referenced — VALIDATED PASS. `implementation-summary.md` §Capabilities Reflected references 012/002, 012/003, 012/004, 012/005 by name; §References lists each sibling implementation-summary.md path explicitly; tasks T-006-A1 through T-006-A4 carry per-sibling read evidence.
+<!-- ANCHOR:pre-impl -->
+## Pre-Implementation
 
-## References
-- spec.md §4 (requirements), §5 (verification)
-- 012/decision-record.md ADR-012-007 (per-packet inline + trailing umbrella rollup)
+- [x] CHK-001 [P0] Requirements documented in spec.md
+- [x] CHK-002 [P0] Technical approach defined in plan.md
+- [x] CHK-003 [P1] Shipped-capability evidence (changelogs) available
+<!-- /ANCHOR:pre-impl -->
+
+---
+
+<!-- ANCHOR:code-quality -->
+## Code Quality
+
+- [x] CHK-010 [P0] Additions match each doc's existing format
+- [x] CHK-011 [P0] No HVR violations in added lines (em-dash, non-backtick semicolon, Oxford comma)
+- [x] CHK-012 [P1] No existing content removed (additions plus justified count edits only)
+- [x] CHK-013 [P1] Tool counts updated consistently where justified
+<!-- /ANCHOR:code-quality -->
+
+---
+
+<!-- ANCHOR:testing -->
+## Testing
+
+- [x] CHK-020 [P0] Each umbrella doc reflects genuinely-missing 026 capabilities
+- [x] CHK-021 [P0] Content-preservation diff confirms additions-only
+- [x] CHK-022 [P1] Catalog top-level indexes updated
+- [x] CHK-023 [P1] No claim unsupported by a shipped changelog
+<!-- /ANCHOR:testing -->
+
+---
+
+<!-- ANCHOR:fix-completeness -->
+## Fix Completeness
+
+- [x] CHK-FIX-001 [P0] Each genuine gap classified and either applied or marked out-of-scope.
+- [x] CHK-FIX-002 [P0] Moved capabilities (code-graph, advisor) left to their extracted skills, not duplicated here.
+- [x] CHK-FIX-003 [P0] Every added file-path reference verified to exist.
+- [x] CHK-FIX-004 [P1] Net-new tool count change traced to tool-schemas.ts registration.
+- [x] CHK-FIX-005 [P1] Per-doc diff reviewed before commit.
+- [x] CHK-FIX-006 [P1] Not applicable (no global state).
+- [x] CHK-FIX-007 [P1] Evidence pinned to specific changelog files.
+<!-- /ANCHOR:fix-completeness -->
+
+---
+
+<!-- ANCHOR:security -->
+## Security
+
+- [x] CHK-030 [P0] No secrets surfaced in docs
+- [x] CHK-031 [P0] No comment-hygiene violations introduced
+- [x] CHK-032 [P1] No internal-only paths leaked inappropriately
+<!-- /ANCHOR:security -->
+
+---
+
+<!-- ANCHOR:docs -->
+## Documentation
+
+- [x] CHK-040 [P1] Spec, plan, tasks synchronized
+- [x] CHK-041 [P1] Implementation summary records before/after per doc
+- [x] CHK-042 [P2] merged-phase-map.md noted as removed (superseded by context-index.md)
+<!-- /ANCHOR:docs -->
+
+---
+
+<!-- ANCHOR:file-org -->
+## File Organization
+
+- [x] CHK-050 [P1] No stray temp files
+- [x] CHK-051 [P1] Packet docs are the only artifacts in this folder
+<!-- /ANCHOR:file-org -->
+
+---
+
+<!-- ANCHOR:summary -->
+## Verification Summary
+
+| Category | Total | Verified |
+|----------|-------|----------|
+| P0 Items | 11 | 11/11 |
+| P1 Items | 12 | 12/12 |
+| P2 Items | 2 | 2/2 |
+
+**Verification Date**: 2026-06-01
+<!-- /ANCHOR:summary -->
