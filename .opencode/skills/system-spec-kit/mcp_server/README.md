@@ -163,6 +163,8 @@ mcp_server/
 | `tool-schemas.ts` | Defines the public MCP tool registry and schema metadata. |
 | `schemas/tool-input-schemas.ts` | Validates incoming tool arguments with strict schemas. |
 | `handlers/index.ts` | Collects handler modules for dispatcher use. |
+| `handlers/memory-index.ts` | Implements `memory_index_scan`. Overlapping scan calls return a `coalesced:true` success envelope rather than an error. Rows are committed BM25/FTS5-searchable as pending while vectors drain async. Status is `complete_with_pending_vectors` with a `pendingVectors` count when deferred work remains. |
+| `handlers/memory-embedding-reconcile.ts` | Implements `memory_embedding_reconcile`. Dry-run-default maintenance tool that converges `embedding_status` for vector-present stale rows and resets retry counters for genuinely missing-vector rows inside one guarded `BEGIN IMMEDIATE` transaction. |
 | `tools/` | Groups tool definitions by domain. |
 | `lib/search/` | Owns memory retrieval, vector index access, lexical search, fusion, and reranking. |
 | `hooks/` | Builds runtime startup and prompt payloads. |
@@ -227,6 +229,7 @@ Main tool flow:
 | `tool-schemas.ts` | Module | Source of MCP tool schema definitions. |
 | `handlers/*` | Modules | Execute memory, graph, advisor, evaluation, and maintenance tools. |
 | `hooks/*` | Modules | Produce startup, prompt, and compact-context payloads for runtime integrations. |
+| `handlers/memory-embedding-reconcile.ts` | Module | Net-new public `memory_embedding_reconcile` tool: dry-run-default embedding convergence and retry-counter reset under a guarded transaction. |
 | `npm run build` | Command | Builds TypeScript into `dist/`. |
 | `npm test` | Command | Runs package tests through the configured test runner. |
 
@@ -242,6 +245,9 @@ The Spec Kit Memory MCP process participates in the shared native MCP lifecycle 
 | Orphan process sweeper | `.opencode/scripts/orphan-mcp-sweeper.sh` scans stale MCP helper classes and stale `/tmp` artifacts. Run `--dry-run --verbose` before any real sweep. |
 | Claude Stop cleanup | `.opencode/scripts/claude-session-cleanup.sh` kills only MCP helper descendants of the current Claude Code session and is chained through the repo-local Claude Stop hook. |
 | LaunchAgent rollout | `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned template only. It is not installed or loaded by default. |
+| WAL durability | On close the server runs `PRAGMA wal_checkpoint(TRUNCATE)` on the main DB and the active vector shard. `wal_autocheckpoint=256` is set on both at open. A five-minute periodic checkpoint fires while the server is running. |
+| Boot FTS5 integrity check | On startup the server checks the FTS5 shadow index integrity when the `.unclean-shutdown` crash marker is present. A failed check is logged as corrupt. Detection only with no auto-rebuild at this level. |
+| RSS-ceiling watchdog | Opt-in (`SPECKIT_LAUNCHER_RSS_SELF_EXIT=1`): on a sustained RSS breach the launcher SIGTERMs the child and exits cleanly so the host can relaunch. Unexpected child exits route through a crash-loop-guarded supervisor with exponential backoff. |
 
 Canonical operator references:
 

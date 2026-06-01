@@ -232,6 +232,12 @@ Platform-specific optional packages installed automatically when the platform ma
 npm run build
 ```
 
+`npm run build` compiles TypeScript incrementally and does not delete `dist/`. A running daemon survives this operation. Use `npm run rebuild` only when you need a from-scratch compile (it deletes `dist/` first):
+
+```bash
+npm run rebuild
+```
+
 If workspace type errors occur and you only need a runtime build, use:
 
 ```bash
@@ -444,6 +450,8 @@ You should see `mk-spec-memory` tools listed, including:
 - `memory_save` (index new spec-doc records)
 - `memory_index_scan` (bulk indexing)
 - `memory_stats` (system statistics)
+- `memory_health` (system health check with index block summary)
+- `memory_embedding_reconcile` (embedding status maintenance tool)
 - `code_graph_scan` (structural code indexing)
 - `code_graph_query` (structural relationship queries)
 - `code_graph_status` (graph health check)
@@ -611,10 +619,7 @@ opencode
 
 ### When to Rebuild
 
-Rebuild after:
-- Updating your Node.js version
-- Pulling updates that change `mcp_server/` code
-- Experiencing module resolution errors
+Run `npm run build` (incremental) after pulling updates that change `mcp_server/` code. A running daemon survives this. Run `npm run rebuild` (deletes `dist/` first) only when you need a clean from-scratch compile:
 
 ```bash
 cd .opencode/skills/system-spec-kit
@@ -622,6 +627,20 @@ npm install
 npm run build
 bash scripts/setup/rebuild-native-modules.sh
 ```
+
+For a from-scratch compile:
+
+```bash
+cd .opencode/skills/system-spec-kit
+npm install
+npm run rebuild
+bash scripts/setup/rebuild-native-modules.sh
+```
+
+Use `npm run rebuild` when:
+- Updating your Node.js version
+- Experiencing persistent module resolution errors after `npm run build`
+- Switching branches with large structural changes to `mcp_server/`
 
 ### Phase System Support
 
@@ -678,9 +697,23 @@ Query expansion activates automatically when you use `mode="deep"`.
 - `includeConstitutional`: Include `.opencode/skills/*/constitutional/`
 - `includeSpecDocs`: Include spec folder documents (spec.md, plan.md, etc.)
 
+**Self-maintaining behaviors (026):**
+- Overlapping scan calls return a `coalesced: true` success envelope (status `coalesced`) instead of an error.
+- Rows are committed to BM25/FTS tables first so they are lexically searchable immediately. Vector embedding drains asynchronously. If any vectors are still pending at return time, the status is `complete_with_pending_vectors` with a `pendingVectors` count.
+- Renamed spec folders are healed by packet identity so existing rows are moved rather than re-embedded.
+- A bounded global orphan sweep runs per scan, removing rows whose source files no longer exist.
+
 ### memory_stats: System Statistics
 
 `memory_stats()` returns counts, dates and top-ranked folders for the indexed-continuity store. Use it to confirm indexing is working and to inspect database health.
+
+### memory_health: System Health Check
+
+`memory_health()` reports the overall state of the memory system. The response includes an `index` block with a `summary` enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexedRows`, `pendingVectors` and `failedVectors` counts. Use `memory_health` when you want a quick operator-facing signal about indexing health without running a full scan.
+
+### memory_embedding_reconcile: Embedding Status Maintenance
+
+`memory_embedding_reconcile()` converges `embedding_status` for rows where a vector already exists but status is stale, and resets retry counters for rows that are genuinely missing their vector. All mutations run inside a single guarded `BEGIN IMMEDIATE` transaction. The default mode is dry-run: no writes occur unless you pass `dryRun: false`. Use this tool after restoring a database or after an interrupted embedding run leaves the index in a partially-embedded state.
 
 ### Causal Lineage System
 
@@ -898,6 +931,8 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh \
 | Database appears stale after restore | Client still uses old MCP process with in-memory state | Fully restart OpenCode or Claude Code |
 | MCP server not in tools list | Configuration file error or path is wrong | Validate JSON syntax and verify binary path (see below) |
 | Wikilink validation fails | Broken `[[node-name]]` reference in a skill node file | Run `check-links.sh` and fix the reported broken links |
+| `memory_health` returns `index.summary: "degraded_needs_repair"` with `failedVectors > 0` | Vectors are missing or embedding runs were interrupted | Run `memory_embedding_reconcile({ dryRun: false })` to converge status then recheck with `memory_health` |
+| Server logs `FTS5 SHADOW INDEX CORRUPTION DETECTED` at boot | Previous shutdown was unclean and the crash marker was found at startup | Run `memory_health` to confirm the `corrupt` boot FTS5 state; call `memory_health({ autoRepair: true })` or force-reindex via `memory_index_scan({ force: true })` to rebuild the FTS index |
 
 ### Detailed Fixes
 
@@ -1106,10 +1141,13 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 ### CLI Command Reference
 
 ```bash
-# Install and build
+# Install and build (incremental, daemon-safe)
 cd .opencode/skills/system-spec-kit
 npm install
 npm run build
+
+# From-scratch compile (deletes dist/ first)
+npm run rebuild
 
 # Prerequisites check
 bash scripts/setup/check-prerequisites.sh
@@ -1147,6 +1185,7 @@ bash .opencode/skills/system-spec-kit/scripts/validate.sh specs/NNN-name --recur
 
 ```
 INSTALL:      cd .opencode/skills/system-spec-kit && npm install && npm run build
+REBUILD:      npm run rebuild  (deletes dist/ first, use for clean from-scratch compile)
 PREREQS:      bash scripts/setup/check-prerequisites.sh
 NATIVE CHECK: bash scripts/setup/check-native-modules.sh
 NATIVE FIX:   bash scripts/setup/rebuild-native-modules.sh
@@ -1161,7 +1200,8 @@ FEATURE FLAGS (env vars):
   SPECKIT_MEMORY_ROADMAP_PHASE default: scope-governance (current roadmap default)
 
 MCP TOOLS: memory_context, memory_search, memory_match_triggers,
-           memory_save, memory_index_scan, memory_stats
+           memory_save, memory_index_scan, memory_stats,
+           memory_health, memory_embedding_reconcile
 ```
 
 ### External Resources

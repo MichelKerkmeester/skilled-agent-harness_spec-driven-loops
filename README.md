@@ -145,6 +145,8 @@ The native MCP servers (`mk-spec-memory`, `mk_skill_advisor`, `mk_code_index`) s
 
 Runtime lifecycle guardrails are part of the native MCP stack. The servers share `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` for idle self-exit, and the repo ships a dry-run-first orphan process sweeper plus a LaunchAgent template under `.opencode/scripts/`. The LaunchAgent is not installed or loaded by default; activation is a separate operator-approved rollout. See [Repo Scripts Runbook](.opencode/scripts/README.md) and the [022 orphan MCP leak prevention packet](.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md).
 
+Operator tooling shipped in 026: `session-cleanup.sh` (renamed from `claude-session-cleanup.sh`; a back-compat shim keeps the old name working) now resolves PIDs across `claude`, `opencode`, `codex` and `gemini` runtimes. Worktree-per-session isolation scripts live under `.opencode/bin/` (`worktree-session.sh`, `worktree-reaper.sh`, `worktree-guard.sh`) and set per-session `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` and `SPECKIT_IPC_SOCKET_DIR` so parallel sessions never share a database.
+
 ### Set Up Embedding Provider
 
 Choose an embedding provider:
@@ -389,14 +391,14 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L1** | Orchestration   | 3      | 2,000        | Unified context, resume and bootstrap entry points                           |
 | **L2** | Core            | 3      | 1,500        | Search, trigger matching, save                                               |
 | **L3** | Discovery       | 4      | 800          | List, stats, health checks and session readiness                             |
-| **L4** | Mutation        | 5      | 500          | Delete, update, validate, bulk cleanup, retention sweep                      |
+| **L4** | Mutation        | 6      | 500          | Delete, update, validate, bulk cleanup, retention sweep, embedding reconcile |
 | **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
 | **L6** | Analysis        | 6      | 1,200        | Causal graph (link/stats/drift_why), quick search, evaluations and dashboards |
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest and learning history                        |
 | **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
 | **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
-|        | **Total**       | **35** | **~8,300**   |                                                                              |
+|        | **Total**       | **36** | **~8,300**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
 
@@ -528,6 +530,8 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 - **Embedding retry** - Background worker retries failed embeddings
 - **Lexical fallback** - Text-searchable when embedding services are down
 - **Atomic writes** - Crash-safe with pending-file recovery on startup
+- **`memory_index_scan` self-maintaining** - Overlapping scans return a `coalesced:true` success envelope instead of a raw error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` status with `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. A bounded global orphan sweep runs per scan. `memory_health` gains an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexed`, `pending` and `failed` counts.
+- **`memory_embedding_reconcile`** - Net-new L4 maintenance tool (shipped 2026-05-27). Converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. Dry-run by default; pass `dryRun: false` to apply.
 
 &nbsp;
 #### Evaluation
@@ -855,7 +859,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 35-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
+- Integrates the 36-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 20 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-code-graph**
@@ -1203,12 +1207,12 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `mk-spec-memory`      | 35    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
+| `mk-spec-memory`      | 36    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
 | `mk_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `mk_code_index`        | 8     | Structural code graph, `detect_changes` and impact analysis            |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
 | `sequential_thinking`  | 1     | Structured multi-step reasoning for complex problems                   |
-| **Total**              | **60** |                                                                        |
+| **Total**              | **61** |                                                                        |
 
 Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` use the shared idle-timeout knob `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`. Orphan cleanup is documented in [.opencode/scripts/README.md](.opencode/scripts/README.md); the checked-in LaunchAgent is only a template until an operator copies and loads it.
 
@@ -1325,7 +1329,7 @@ Feature flags control search channels, scoring signals, save-time enforcement an
 - **Search Pipeline** - 5-channel retrieval, fallback routing, reranking, graph-walk rollout, confidence and token-budget policies.
 - **Session/Cache** - Working memory, cache invalidation on DB rebind, session deduplication, recovery helpers.
 - **Memory/Storage** - Save quality gate, reconsolidation, governed scopes, causal graph maintenance, projection cleanup.
-- **Runtime Lifecycle** - MCP idle self-exit through `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`; orphan sweeper rollout remains dry-run-first until explicitly installed.
+- **Runtime Lifecycle** - MCP idle self-exit through `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN`; orphan sweeper rollout remains dry-run-first until explicitly installed. Non-destructive incremental `tsc` build keeps a running daemon alive across rebuilds (use `npm run rebuild` for a from-scratch compile). WAL durability: `PRAGMA wal_checkpoint TRUNCATE` on close, `wal_autocheckpoint=256` on the main DB and active vector shard, plus a five-minute periodic checkpoint. FTS5 integrity-check on boot is gated on an unclean-shutdown crash marker (`health` can report `corrupt`; detect-only, no auto-rebuild). Opt-in RSS-ceiling watchdog (`SPECKIT_LAUNCHER_RSS_SELF_EXIT=1`) with crash-loop backoff.
 - **Embedding/API** - Startup provider resolution, fail-fast dimension checks, structured fallback metadata for effective vs requested provider.
 - **Evaluation/Debug** - Trace mode, eval logging, ablation/reporting guardrails, feedback evaluation and proposal diagnostics that observe candidates without reordering live results.
 
@@ -1450,7 +1454,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 60 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 35 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
+A: 61 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 36 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1495,4 +1499,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.14 | Last updated: 2026-05-31 | Framework: 11 agents, 22 skills, 24 commands, 60 MCP tools (35 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.15 | Last updated: 2026-06-01 | Framework: 11 agents, 22 skills, 24 commands, 61 MCP tools (36 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

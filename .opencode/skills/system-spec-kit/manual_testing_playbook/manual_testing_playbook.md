@@ -432,6 +432,10 @@ Prompt: `Validate memory_health full diagnostics and confirm healthy/degraded st
 
 healthy/degraded status and diagnostics
 
+Additional contract (026 index block): `Run memory_health and confirm the response includes an index block with a summary enum value drawn from: healthy_fresh, healthy_lagging_vectors, stale_needs_scan, degraded_needs_repair, or unavailable. Verify the index block also exposes indexed, pending, and failed counts. Return a concise pass/fail verdict with the main reason and cited field names.`
+
+index.summary is one of the documented enum values; index.indexed, index.pending and index.failed are all present as numeric fields
+
 #### Test Execution
 > **Feature File:** [EX-013](03--discovery/030-health-diagnostics-memory-health.md)
 > **Catalog:** [03--discovery/029-health-diagnostics-memoryhealth.md](../feature_catalog/03--discovery/029-health-diagnostics-memoryhealth.md)
@@ -445,6 +449,10 @@ Incremental sync run.
 Prompt: `Validate memory_index_scan incremental sync, spec-doc warn-only indexing, and atomic lease acquisition, rejection, expiry, and completion.`
 
 Scan summary, updated index state, and spec-doc warn-only indexing behavior
+
+Additional contract (026 self-maintaining behavior): `Run two overlapping memory_index_scan calls and confirm the second returns a success envelope with coalesced:true rather than a raw E429. Then run a scan after saving a document whose spec folder has been renamed and confirm the handler heals the move by packet identity without re-embedding the content. Capture evidence that a completed scan result can carry status complete_with_pending_vectors with a non-zero pendingVectors count when vectors are still draining. Return a concise pass/fail verdict with cited field names.`
+
+Overlapping scan returns coalesced:true success envelope instead of E429; renamed spec folder healed by packet identity without re-embedding; complete_with_pending_vectors status present with non-zero pendingVectors when vectors are still draining; BM25/FTS rows are searchable while vectors drain (lexical-first commit confirmed)
 
 #### Test Execution
 > **Feature File:** [EX-014](04--maintenance/035-workspace-scanning-and-indexing-memory-index-scan.md)
@@ -743,6 +751,20 @@ Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics
 #### Test Execution
 > **Feature File:** [EX-035](04--maintenance/036-startup-runtime-compatibility-guards.md)
 > **Catalog:** [04--maintenance/036-startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/036-startup-runtime-compatibility-guards.md)
+
+### EX-036 | Embedding reconciliation (memory_embedding_reconcile)
+
+#### Description
+Dry-run-default maintenance tool that converges embedding status for stale or missing-vector rows.
+
+#### Scenario Contract
+Prompt: `Validate memory_embedding_reconcile dry-run mode, apply mode, and idempotency. In dry-run (default), confirm the response lists affected row IDs and projected actions without mutating any rows. In apply mode, confirm the handler runs one guarded BEGIN IMMEDIATE transaction that sets vector-present stale rows to the correct converged status and resets genuinely missing-vector rows to allow retry. Re-run apply mode and confirm idempotency: a second pass with no new stale rows completes with zero mutations. Return a concise pass/fail verdict with cited field names and mutation counts.`
+
+Dry-run returns affected row IDs and projected actions without any DB mutation; apply mode completes in one BEGIN IMMEDIATE transaction; vector-present stale rows converge to the correct embedding_status; genuinely missing-vector rows reset to retry status; second apply pass with no new stale rows reports zero mutations (idempotent)
+
+#### Test Execution
+> **Feature File:** [EX-036](04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
+> **Catalog:** [04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md](../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
 
 ---
 
@@ -3902,3 +3924,4 @@ This split playbook keeps automated coverage references in three places:
 | 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](13--memory-quality-and-indexing/168-constitutional-sufficiency-gate-exemption.md) | [13--memory-quality-and-indexing/160-constitutional-sufficiency-gate-exemption.md](../feature_catalog/13--memory-quality-and-indexing/160-constitutional-sufficiency-gate-exemption.md) |
 | 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](13--memory-quality-and-indexing/169-graph-metadata-and-lineage-repair-runner.md) | [13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runner.md](../feature_catalog/13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runner.md) |
 | 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md) | [16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md](../feature_catalog/16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md), [19--feature-flag-reference/284-launcher-idle-timeout.md](../feature_catalog/19--feature-flag-reference/284-launcher-idle-timeout.md) |
+| EX-036 | Existing Features | Embedding reconciliation (memory_embedding_reconcile) | [EX-036](04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md) | [04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md](../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md) |

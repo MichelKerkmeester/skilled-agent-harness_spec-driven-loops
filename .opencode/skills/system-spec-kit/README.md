@@ -42,7 +42,7 @@ Context survives across sessions through persistent semantic memory and session 
 
 - **Spec Folder Workflow**. Creates mandatory documentation for every file-modifying conversation, scaled to 4 levels based on scope and risk, with packet-local changelog closeout for packet roots and child phases.
 - **Level Contract Templates**. Manifest template architecture where each level resolves the files and sections it needs.
-- **Spec Kit Memory MCP**. 35-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
+- **Spec Kit Memory MCP**. 36-tool MCP server providing persistent semantic memory, causal and degree retrieval, and session orchestration across sessions, models and tools.
 - **Startup and Recovery Surfaces**. `/speckit:resume` is the canonical operator-facing recovery surface. Under the hood, startup and recovery rebuild active context from `handover.md`, then `_memory.continuity`, then canonical spec docs.
 - **Session Continuity**. `generate-context.js` updates canonical continuity surfaces and refreshes packet metadata on every `/memory:save` invocation so `/speckit:resume` can rebuild the next session from packet-local sources.
 - **Validation Scripts**. 20-rule validation, continuity freshness checks, and strict EVIDENCE-marker linting for spec folders.
@@ -253,7 +253,7 @@ The indexed-continuity store lives in an MCP server that gives AI assistants per
 
 Think of it like a personal librarian that keeps notes on every conversation, files them by topic and hands you the right ones when you start a new task. Switch from Claude to GPT to Gemini and back -- the spec-doc record stays the same because it lives on your machine, not inside any AI's context window.
 
-For full architecture details, the 35-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
+For full architecture details, the 36-tool API reference, search pipeline internals and configuration, see [`mcp_server/README.md`](./mcp_server/README.md).
 
 #### Hybrid Search
 
@@ -337,6 +337,28 @@ When you save new content, the system runs an arbitration process before storing
 
 Three quality gates run before storage: structure check (required format and metadata), semantic sufficiency check (enough real content to be useful), and duplicate detection.
 Short decision-type memories can bypass the content-length gate when SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS=true and at least two structural signals (title, specFolder, or anchor) are present.
+
+#### Embedding Reconciliation
+
+`memory_embedding_reconcile` is a maintenance tool on the mk-spec-memory surface. It converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. The default mode is `dry-run`: no writes happen unless `mode: "apply"` is passed. Use it after an embedder swap or after the health report shows a high pending/failed count.
+
+```json
+{ "tool": "memory_embedding_reconcile", "arguments": { "mode": "dry-run" } }
+```
+
+#### Index Scan Self-Maintaining Behavior
+
+`memory_index_scan` is self-maintaining from spec 026 onward. Overlapping scan calls return a `coalesced: true` success envelope instead of a raw E429 error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` with a `pendingVectors` count), so content is always text-searchable even when the embedding queue is backed up. Move reconciliation heals renamed spec folders by packet identity without re-embedding. Each scan also runs a bounded global orphan sweep.
+
+`memory_health` now includes an `index` block with a `summary` enum and row counts:
+
+| Summary value | Meaning |
+| --- | --- |
+| `healthy_fresh` | Index is current and all vectors are resolved |
+| `healthy_lagging_vectors` | Index is current but some vectors are still pending |
+| `stale_needs_scan` | Index has not been scanned recently |
+| `degraded_needs_repair` | Failed rows require `memory_embedding_reconcile` |
+| `unavailable` | Index state could not be read |
 
 #### Evaluation Infrastructure
 
@@ -532,7 +554,7 @@ Template changes flow through the manifest source, Level contract resolver, and 
 | [`SKILL.md`](./SKILL.md)                                                     | AI agent instructions: routing rules, gates, validation procedures, template application             |
 | [`README.md`](./README.md)                                                   | This file -- what Spec Kit does, how to use it, where to find things                                 |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                       | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 35-tool API reference, search pipeline, graph intelligence, and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                             | Full MCP architecture: 36-tool API reference, search pipeline, graph intelligence, and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)               | Step-by-step installation with embedding providers and environment                                   |
 | [`scripts/spec/create.sh`](./scripts/spec/create.sh)                         | Create spec folders with level-appropriate template files                                            |
 | [`scripts/spec/validate.sh`](./scripts/spec/validate.sh)                     | Run 20-rule validation on any spec folder                                                            |
@@ -600,6 +622,7 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `SPEC_KIT_DB_DIR` / `SPECKIT_DB_DIR` | No | Preferred database-directory override; runtime derives the sqlite filename from the active embedding profile |
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
+| `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | No | Set `1` to enable the launcher RSS-ceiling watchdog. When the mk-spec-memory process tree breaches `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB`, the launcher sends SIGTERM and exits with crash-loop backoff. Default off. |
 
 For the full list of environment variables (including evaluation, telemetry and feature flag overrides), see [`references/config/environment_variables.md`](./references/config/environment_variables.md).
 
@@ -849,6 +872,41 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 # memory_context({ input: "find_decision: why did we choose JWT?", mode: "deep" })
 ```
 
+### memory_health Reports `corrupt` or FTS5 Integrity Failure
+
+**What you see**: `memory_health` returns a status of `corrupt` or the server logs show `FTS5 SHADOW INDEX CORRUPTION DETECTED` at boot.
+
+**What happens**: At boot the server checks `memory_fts` integrity only when the `.unclean-shutdown` crash marker is present. If the check fails and the previous shutdown was unclean the server logs the corruption and continues in a degraded state (BM25/FTS5 searches return empty or partial results). Auto-rebuild is detect-only: no automatic repair is attempted.
+
+**Fix**:
+
+```bash
+# Stop the MCP server, then rebuild the FTS5 shadow from the main index
+node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js --rebuild-fts
+# Or call the MCP health tool after restart to confirm recovery
+# memory_health({ reportMode: "full" })
+```
+
+If `degraded_needs_repair` appears in the `index.summary` field, run `memory_embedding_reconcile({ mode: "apply" })` after the FTS rebuild.
+
+---
+
+### Memory Save Fails While a Live Daemon Is Running
+
+**What you see**: Running `generate-context.js` or `memory_save` from a script fails with a lock or writer-conflict error when a live MCP daemon is already serving requests.
+
+**What is expected**: The indexed-continuity store uses a single-writer lease. A standalone script save and a live daemon session can conflict when both try to acquire the write lock on the same database file.
+
+**Fix**: Use the MCP tool path instead of the standalone script when a daemon is running:
+
+```text
+/memory:save [spec-folder]
+```
+
+The MCP daemon serializes writes through its own handler queue. Only fall back to `generate-context.js` directly when no daemon is active (for example in CI or headless batch jobs where no MCP process is started).
+
+---
+
 ### Quick Fixes
 
 | Problem                          | Fix                                                                             |
@@ -915,7 +973,7 @@ A: The indexed-continuity store can index any markdown file, beyond spec folder 
 
 **Q: What is the difference between this README and the MCP server README?**
 
-A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 35-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
+A: This README covers the whole skill: spec folders, documentation levels, commands, templates, scripts and a high-level summary of the indexed-continuity store. The MCP server README (`mcp_server/README.md`) goes deep on the indexed-continuity store: the 36-tool API reference, 5 core retrieval channels, session lifecycle tooling, canonical resume and bootstrap behavior, save pipeline, causal graph, query intelligence and evaluation infrastructure.
 
 ---
 
@@ -950,7 +1008,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------- |
 | [`SKILL.md`](./SKILL.md)                                                                         | AI agent instructions: routing, gates, validation, template application                              |
 | [`ARCHITECTURE.md`](./ARCHITECTURE.md)                                                           | API boundary contract between `scripts/` and `mcp_server/`                                           |
-| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 35-tool API reference, search pipeline, graph intelligence, and configuration |
+| [`mcp_server/README.md`](./mcp_server/README.md)                                                 | Full MCP architecture: 36-tool API reference, search pipeline, graph intelligence, and configuration |
 | [`mcp_server/INSTALL_GUIDE.md`](./mcp_server/INSTALL_GUIDE.md)                                   | Step-by-step installation with embedding providers and environment variables                         |
 | [`references/memory/memory_system.md`](./references/memory/memory_system.md)                     | Detailed memory system reference                                                                     |
 | [`references/memory/embedder_architecture.md`](./references/memory/embedder_architecture.md)     | Active embedder pointer, vector shard, dim-table, and swap architecture                              |

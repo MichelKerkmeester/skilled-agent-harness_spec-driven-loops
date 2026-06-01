@@ -45,7 +45,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **54 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count). The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
+The Spec Kit Memory MCP server exposes **55 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count). The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
@@ -601,6 +601,8 @@ The top-level status is currently derived from two signals only: embedding model
 
 All health validation failures return MCP error envelopes with `E_INVALID_INPUT` and `data.details.requestId`. User-facing hints sanitize absolute paths and stack traces before returning error context.
 
+**026 index block (changelog 003-013):** The `full` report mode now includes a `memory_health.index` section summarising the indexing surface without requiring a separate scan call. The block exposes three counts (`indexed`, `pending`, `failed`) and a `summary` enum with five values: `healthy_fresh` (indexed rows are current and vector coverage is complete), `healthy_lagging_vectors` (rows are indexed but some embeddings are still pending), `stale_needs_scan` (last scan is old enough that a rescan is recommended), `degraded_needs_repair` (failed rows exceed the threshold), and `unavailable` (the index table could not be queried). The `summary` value is safe to use as a machine-readable triage signal.
+
 #### Source Files
 
 See [`03--discovery/029-health-diagnostics-memoryhealth.md`](03--discovery/029-health-diagnostics-memoryhealth.md) for full implementation and test file listings.
@@ -633,9 +635,31 @@ A safety invariant protects against silent failures: post-indexing mtime updates
 
 The result breakdown is detailed: indexed count, updated count, unchanged count, failed count, skipped-by-mtime count, constitutional stats, dedup stats and incremental stats. Debug mode (`SPECKIT_DEBUG_INDEX_SCAN=true`) exposes additional file count diagnostics.
 
+**Phase 013 self-maintaining additions (026):** Overlapping scan requests no longer surface a raw E429 error. The handler detects an active lease and returns a `coalesced: true` success envelope with the computed wait time, so callers can treat concurrent scans as success. Lexical-first async commit means a newly indexed row is BM25/FTS5-searchable immediately with `embedding_status: 'pending'` while its vector drains in the background. The response envelope reports `status: 'complete_with_pending_vectors'` alongside a `pendingVectors` count. Move reconciliation heals renamed spec folders by matching on packet identity (`specId` / folder slug) without re-embedding any content. A bounded global orphan sweep runs once per scan to remove stale `memory_index` rows whose source files are no longer present on disk.
+
 #### Source Files
 
 See [`04--maintenance/034-workspace-scanning-and-indexing-memoryindexscan.md`](04--maintenance/034-workspace-scanning-and-indexing-memoryindexscan.md) for full implementation and test file listings.
+
+---
+
+### Embedding status reconciliation (memory_embedding_reconcile)
+
+#### Description
+
+Over time, `memory_index` rows can drift out of sync with the `vec_memories` vector table: a row may claim `embedding_status = 'success'` while its vector is genuinely absent, or a row may be stuck in a retry loop despite a healthy vector already existing. This tool converges those two states in a single guarded transaction without any data loss.
+
+#### How It Works
+
+`memory_embedding_reconcile` is a net-new public MCP maintenance tool on the `mk-spec-memory` surface (spec 026, changelog 003-006, 2026-05-27). It operates in dry-run mode by default, so calling it without `dryRun: false` will report what it would change without touching the database.
+
+Two correction paths run inside one `BEGIN IMMEDIATE` transaction. The convergence path finds rows that claim `embedding_status = 'stale'` or `'success'` while a matching vector is already present in `vec_memories` and resets those rows to `success` without re-embedding. The retry-reset path finds rows whose vector is genuinely absent and whose `embedding_status` is stuck at a non-pending value and resets those to `pending` so the background retry manager can pick them up cleanly.
+
+The `BEGIN IMMEDIATE` lock prevents concurrent embedding writes from racing with the reconciliation pass. On completion the handler returns counts for rows examined, rows converged and rows reset to pending, plus a `dryRun` boolean confirming which mode ran.
+
+#### Source Files
+
+See [`04--maintenance/035-embedding-status-reconciliation.md`](04--maintenance/035-embedding-status-reconciliation.md) for implementation and test file listings.
 
 ---
 
@@ -3940,6 +3964,20 @@ The orphan MCP sweeper gives operators a dry-run-first way to inspect and later 
 #### How It Works
 
 `.opencode/scripts/orphan-mcp-sweeper.sh` supports `--dry-run`, `--verbose`, `--log-path`, `ORPHAN_AGE_MIN_SEC`, `ORPHAN_TMP_AGE_HOURS`, log rotation, SIGTERM then SIGKILL in real mode, and `/tmp` cleanup. `.opencode/scripts/claude-session-cleanup.sh` handles the Claude Stop-hook side by walking only the current session descendants. `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is checked in as a template only; it is not installed or loaded by default.
+
+**026 rename and multi-runtime update (Track 006):** `.opencode/scripts/claude-session-cleanup.sh` is now a back-compat shim. The canonical script is `.opencode/scripts/session-cleanup.sh`, which resolves PID trees across all four supported runtimes: `claude`, `opencode`, `codex` and `gemini`. Both paths are safe to call from any Stop hook.
+
+#### Worktree-per-session isolation
+
+Three companion scripts under `.opencode/bin/` provide per-session git worktree isolation so concurrent agent sessions operate on separate working trees without sharing a `SPEC_KIT_DB_DIR`, `SPECKIT_CODE_GRAPH_DB_DIR` or `SPECKIT_IPC_SOCKET_DIR`.
+
+| Script | Role |
+|---|---|
+| `.opencode/bin/worktree-session.sh` | Creates a new worktree under a session-scoped directory, exports the three isolation env vars and optionally launches the agent process inside the isolated tree. |
+| `.opencode/bin/worktree-reaper.sh` | Cleans up session worktrees that are no longer active: removes the worktree directory and prunes the git worktree reference. |
+| `.opencode/bin/worktree-guard.sh` | Validates that the current shell is running inside a session worktree before allowing destructive operations. Exits non-zero when the isolation invariants are not met. |
+
+Each session gets its own SQLite database, code-graph index and IPC socket directory, so a failing or long-running scan in one session cannot block or corrupt another.
 
 #### Source Files
 
