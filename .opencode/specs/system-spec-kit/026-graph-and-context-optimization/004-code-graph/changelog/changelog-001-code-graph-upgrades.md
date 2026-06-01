@@ -18,7 +18,7 @@ contextType: "implementation"
 ## 2026-04-09
 
 > Spec folder: `026-graph-and-context-optimization/005-code-graph/001-code-graph-runtime-upgrades` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/005-code-graph`
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary
 

@@ -16,8 +16,8 @@ contextType: "implementation"
 
 ## 2026-04-29
 
-> Spec folder: `026-graph-and-context-optimization/005-memory-indexer-invariants/review/005-memory-indexer-invariants-pt-01` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-memory-indexer-invariants`
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants/review/005-memory-indexer-invariants-pt-01` (Level 2)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/010-memory-indexer-invariants`
 
 ### Summary
 

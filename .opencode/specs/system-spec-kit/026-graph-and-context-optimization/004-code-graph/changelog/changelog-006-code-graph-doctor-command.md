@@ -17,7 +17,7 @@ contextType: "implementation"
 ## 2026-04-25
 
 > Spec folder: `026-graph-and-context-optimization/005-code-graph/005-doctor-diagnostic-command-phase-a` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-code-graph`
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary
 

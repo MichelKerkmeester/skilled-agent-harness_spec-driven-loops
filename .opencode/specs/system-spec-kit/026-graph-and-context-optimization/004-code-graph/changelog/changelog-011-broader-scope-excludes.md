@@ -16,7 +16,7 @@ contextType: "implementation"
 ## 2026-05-03
 
 > Spec folder: `026-graph-and-context-optimization/005-code-graph/010-broader-excludes-and-granular-skills` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-code-graph`
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary
 

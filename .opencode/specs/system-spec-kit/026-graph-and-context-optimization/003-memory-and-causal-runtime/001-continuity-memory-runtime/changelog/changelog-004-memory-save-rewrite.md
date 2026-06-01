@@ -18,8 +18,8 @@ contextType: "implementation"
 
 ## 2026-04-15
 
-> Spec folder: `026-graph-and-context-optimization/003-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
-> Parent packet: `026-graph-and-context-optimization/003-continuity-memory-runtime`
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/004-memory-save-rewrite` (Level 3+)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
 
 ### Summary
 

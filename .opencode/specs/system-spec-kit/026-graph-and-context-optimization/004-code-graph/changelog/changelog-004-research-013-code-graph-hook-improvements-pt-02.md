@@ -18,7 +18,7 @@ contextType: "research"
 ## 2026-04-22
 
 > Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/002-readiness-cocoindex-and-startup-contract-research` (Research-only)
-> Parent packet: `026-graph-and-context-optimization/005-code-graph`
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary
 

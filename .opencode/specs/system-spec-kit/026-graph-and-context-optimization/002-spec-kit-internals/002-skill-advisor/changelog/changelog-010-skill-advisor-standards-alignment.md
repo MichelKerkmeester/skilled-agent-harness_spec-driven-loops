@@ -16,7 +16,7 @@ contextType: "implementation"
 ## 2026-04-23
 
 > Spec folder: `026-graph-and-context-optimization/006-skill-advisor/003-advisor-standards-alignment` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
 
 ### Summary
 

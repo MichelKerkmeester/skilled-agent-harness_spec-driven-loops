@@ -16,8 +16,8 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `026-graph-and-context-optimization/003-continuity-memory-runtime/005-memory-search-runtime-bugs` (Level 1)
-> Parent packet: `026-graph-and-context-optimization/003-continuity-memory-runtime`
+> Spec folder: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime/005-memory-search-runtime-bugs` (Level 1)
+> Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
 
 ### Summary
 

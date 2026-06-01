@@ -17,8 +17,8 @@ contextType: "implementation"
 
 ## 2026-04-26
 
-> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
-> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-resource-map-deep-loop-fix`
+> Spec folder: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` (Level 2)
+> Parent packet: `system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/001-resource-map-deep-loop-fix`
 
 ### Summary
 

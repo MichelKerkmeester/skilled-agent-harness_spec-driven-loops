@@ -15,7 +15,7 @@ contextType: "implementation"
 ## 2026-04-25
 
 > Spec folder: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/006-docs-and-catalogs-rollup` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift`
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
 
 ### Summary
 

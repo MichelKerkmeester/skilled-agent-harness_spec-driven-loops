@@ -17,7 +17,7 @@ contextType: "implementation"
 ## 2026-05-06
 
 > Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/007-tree-sitter-parser-crash-resilience` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/005-code-graph`
+> Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary
 

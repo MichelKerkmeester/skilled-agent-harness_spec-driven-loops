@@ -16,8 +16,8 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/008-template-levels`
+> Spec folder: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels/006-command-markdown-yaml-workflow-alignment` (Level 3)
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
 
 ### Summary
 

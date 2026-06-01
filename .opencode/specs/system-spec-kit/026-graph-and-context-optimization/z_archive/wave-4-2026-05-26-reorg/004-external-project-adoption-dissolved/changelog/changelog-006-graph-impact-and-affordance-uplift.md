@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-28
 
-> Spec folder: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift` (Level 3)
+> Spec folder: `026-graph-and-context-optimization/005-graph-impact-and-affordance` (Level 3)
 
 ### Summary
 

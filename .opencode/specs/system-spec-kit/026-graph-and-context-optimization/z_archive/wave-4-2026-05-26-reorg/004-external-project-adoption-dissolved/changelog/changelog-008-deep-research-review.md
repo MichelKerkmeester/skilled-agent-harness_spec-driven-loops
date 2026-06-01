@@ -15,7 +15,7 @@ contextType: "implementation"
 ## 2026-04-28
 
 > Spec folder: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/008-deep-research-review` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift`
+> Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
 
 ### Summary
 

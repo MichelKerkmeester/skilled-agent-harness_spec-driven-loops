@@ -15,7 +15,7 @@ contextType: "implementation"
 ## 2026-04-20
 
 > Spec folder: `026-graph-and-context-optimization/006-skill-advisor/002-skill-graph-daemon-native-advisor-tools/review/002-skill-graph-daemon-native-advisor-tools-pt-01` (Level 2)
-> Parent packet: `026-graph-and-context-optimization/006-skill-advisor`
+> Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
 
 ### Summary
 
