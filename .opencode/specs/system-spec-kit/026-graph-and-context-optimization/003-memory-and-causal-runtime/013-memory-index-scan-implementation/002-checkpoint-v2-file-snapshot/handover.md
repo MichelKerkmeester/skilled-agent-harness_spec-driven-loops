@@ -11,16 +11,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot"
-    last_updated_at: "2026-06-01T21:30:00Z"
+    last_updated_at: "2026-06-01T22:55:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Checkpoint-v2 Phases 1-7 committed b9820541e9; multi-lens review SAFE TO DEPLOY"
-    next_safe_action: "Live-verify checkpoint-v2 (rebuild + restart + full-DB create/restore proof)"
+    recent_action: "D live-verified + gate bug fixed (cce4fe931d); docs reconciled; G orphans reconciled"
+    next_safe_action: "Confirm 1.3GB backup purge; implement E (003 front-proxy) on a branch"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
       - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
-    completion_pct: 90
+    completion_pct: 95
     open_questions: []
     answered_questions: []
 ---
@@ -28,6 +28,15 @@ _memory:
 # Handover: checkpoint-v2 + 013 Phase-4 roadmap
 
 > **One-line:** checkpoint-v2 CODE (Phases 1-7) is fully on `main` and a multi-lens review returned **SAFE TO DEPLOY (P0/P1 none)** — but it is **NOT live-verified** (daemon still runs the old `dist/`). E (MCP front-proxy) is designed + packet scaffolded. F (memory bugs) is committed. G cleanups, the live-verify, and E implementation remain.
+
+## SESSION UPDATE — 2026-06-01 late (autonomous)
+
+The "NOT live-verified" caveat below is now RESOLVED, and the live verification surfaced a real bug.
+
+- **D checkpoint-v2 — DONE + LIVE-VERIFIED.** Rebuilt `dist/`; live-verified on the ~300 MB production DB. The live proof revealed the shipped v2 path was **inert**: `hasMainVectorPayloadTables` gated v2 on `vec_memories` OR `vec_metadata` in main, but shard-attach slimming intentionally retains `vec_metadata` in main → every sharded daemon fell back to v1 (the exact `Invalid string length` risk v2 exists to prevent). Fixed to gate on `vec_memories` only + regression test (**`cce4fe931d`**). Re-verified: v2 create (297 MB main + 72 MB shard, 0.37 s, integrity ok) + isolated restore round-trip via real `reopenActiveDatabase` (9665 memories, `rowsTotal==ftsRowsTotal==vecRowsTotal`). 002 docs reconciled + `validate --strict` PASS (**`d43d405a84`**).
+- **G cleanups — orphans DONE; backup DEFERRED.** Reconciled the 28 stale old-path orphan rows via the sanctioned `verifyIntegrity` autoClean+cleanFiles path (index now 9637 memory==fts==vec, 0 orphans). The **1.3 GB `database/backups/context-index-PRE-REBUILD-20260601-161614/` purge is DEFERRED for operator OK** (irreversible, not created by me, redundant nets remain: the `PRE-BC-083145` backup + working checkpoint-v2). It is safe to delete once you confirm.
+- **E MCP front-proxy (003) — NOT STARTED.** Deliberately not deployed overnight: it modifies the SHARED launcher (`.cjs`, live for all new sessions on commit) and is crash-safety-critical, so it needs live RSS-recycle verification you can witness. Design + plan are solid (judge-panel verified). Recommended: implement on a feature branch, live-verify together, then merge.
+- **Daemon note:** the live `mk-spec-memory` daemon RSS-recycled and severed repeatedly this session (the exact item-E bug) and my in-session MCP stayed down — all D/G verification was done via daemon-independent one-shot Node harnesses against `dist/` (faithful: same storage/handler code, minus the recycle layer).
 
 ## Operator goal (verbatim)
 "get long-term best solution for all roadmap items, work we planned to 100% completion and verification" — using **cli-opencode gpt-5.5-fast --variant high** + **agent workflows**, prioritizing effectiveness + quality. The roadmap = the 013 Phase-4 follow-ups: **D** checkpoint-v2, **E** MCP front-proxy, **F** memory-system bugs, **G** cleanups.
