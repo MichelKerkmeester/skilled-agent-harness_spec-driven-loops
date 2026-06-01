@@ -5,6 +5,8 @@
 // Feature catalog: Checkpoint restore (checkpoint_restore)
 // Gzip-compressed database checkpoints with embedding preservation
 // Node stdlib
+import * as fs from 'fs';
+import * as path from 'path';
 import * as zlib from 'zlib';
 
 // External packages
@@ -221,6 +223,7 @@ type CheckpointCreateErrorCode =
   | 'CHECKPOINT_CREATE_SQLITE_BUSY'
   | 'CHECKPOINT_CREATE_SQLITE_LOCKED'
   | 'CHECKPOINT_CREATE_DUPLICATE_NAME'
+  | 'CHECKPOINT_CREATE_INVALID_NAME'
   | 'CHECKPOINT_CREATE_PERMISSION_DENIED'
   | 'CHECKPOINT_CREATE_FAILED';
 
@@ -277,6 +280,28 @@ interface CheckpointSnapshot {
   vectors?: SnapshotVectorRow[];
   causalEdges?: Array<Record<string, unknown>>;
   timestamp: string;
+}
+
+interface DatabaseListRow {
+  seq?: number;
+  name?: string;
+  file?: string;
+}
+
+interface CheckpointV2Manifest {
+  formatVersion: 2;
+  createdAt: string;
+  specFolder: null;
+  gitBranch: string | null;
+  embedderSlug: string | null;
+  includeEmbeddings: boolean;
+  mainTables: string[];
+  vecTables: string[];
+  schemaVersion: number | null;
+  memoryCount: number;
+  vectorCount: number;
+  mainBytes: number;
+  vecBytes: number;
 }
 
 // Validate the decompressed checkpoint snapshot before
@@ -485,6 +510,209 @@ function getGitBranch(): string | null {
   }
 
   return null;
+}
+
+function quoteSqlString(value: string): string {
+  return `'${value.replace(/'/g, "''")}'`;
+}
+
+function getDatabaseList(database: Database.Database): DatabaseListRow[] {
+  return database.prepare('PRAGMA database_list').all() as DatabaseListRow[];
+}
+
+function sanitizeCheckpointName(name: string): string {
+  const sanitized = name.trim();
+  if (
+    sanitized.length === 0
+    || sanitized.length > 128
+    || sanitized.includes('/')
+    || sanitized.includes('\\')
+    || sanitized.includes('..')
+    || sanitized.includes('\0')
+  ) {
+    throw new CheckpointCreateError(
+      'CHECKPOINT_CREATE_INVALID_NAME',
+      'Checkpoint creation failed because the checkpoint name is invalid.',
+      { name },
+    );
+  }
+  return sanitized;
+}
+
+function resolveCheckpointDir(database: Database.Database, name: string): string {
+  const sanitizedName = sanitizeCheckpointName(name);
+  const mainRow = getDatabaseList(database).find((row) => row.name === 'main');
+  const mainFile = mainRow?.file;
+  if (!mainFile || mainFile === ':memory:') {
+    throw new CheckpointCreateError(
+      'CHECKPOINT_CREATE_FAILED',
+      'Checkpoint creation failed because the main database file path could not be resolved.',
+      { name: sanitizedName },
+    );
+  }
+  return path.join(path.dirname(mainFile), 'checkpoints', sanitizedName);
+}
+
+function getActiveVectorShardPath(database: Database.Database): string | null {
+  const activeVec = getDatabaseList(database).find((row) => row.name === 'active_vec');
+  return activeVec?.file && activeVec.file.length > 0 ? activeVec.file : null;
+}
+
+function deriveEmbedderSlug(shardPath: string | null): string | null {
+  if (!shardPath) {
+    return null;
+  }
+  const match = /^context-vectors__(.+)\.sqlite$/.exec(path.basename(shardPath));
+  return match?.[1] ?? null;
+}
+
+function sweepStaleCheckpointTmpDirs(checkpointsDir: string): void {
+  if (!fs.existsSync(checkpointsDir)) {
+    return;
+  }
+  for (const entry of fs.readdirSync(checkpointsDir, { withFileTypes: true })) {
+    if (entry.isDirectory() && entry.name.includes('.tmp-')) {
+      fs.rmSync(path.join(checkpointsDir, entry.name), { recursive: true, force: true });
+    }
+  }
+}
+
+function readSchemaVersion(database: Database.Database): number | null {
+  try {
+    const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
+    return typeof row?.version === 'number' ? row.version : null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function countTableRows(database: Database.Database, tableName: string): number {
+  if (!tableExists(database, tableName)) {
+    return 0;
+  }
+  const row = database.prepare(`SELECT COUNT(*) AS count FROM ${tableName}`).get() as { count?: number } | undefined;
+  return typeof row?.count === 'number' ? row.count : 0;
+}
+
+function countActiveVectorRows(database: Database.Database): number {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM active_vec.sqlite_master
+      WHERE type IN ('table', 'view') AND name = 'vec_memories'
+      LIMIT 1
+    `).get() as { found?: number } | undefined;
+    if (row?.found !== 1) {
+      return 0;
+    }
+    const countRow = database.prepare('SELECT COUNT(*) AS count FROM active_vec.vec_memories').get() as { count?: number } | undefined;
+    return typeof countRow?.count === 'number' ? countRow.count : 0;
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function readCheckpointV2Manifest(snapshotPath: string | null): CheckpointV2Manifest | null {
+  if (!snapshotPath) {
+    return null;
+  }
+  try {
+    const raw = fs.readFileSync(path.join(snapshotPath, 'manifest.json'), 'utf-8');
+    const parsed = JSON.parse(raw) as Partial<CheckpointV2Manifest>;
+    return parsed.formatVersion === 2 ? parsed as CheckpointV2Manifest : null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function statPathBytes(targetPath: string): number {
+  try {
+    const stats = fs.statSync(targetPath);
+    if (stats.isFile()) {
+      return stats.size;
+    }
+    if (!stats.isDirectory()) {
+      return 0;
+    }
+    return fs.readdirSync(targetPath).reduce((total, entry) => total + statPathBytes(path.join(targetPath, entry)), 0);
+  } catch (_error: unknown) {
+    return 0;
+  }
+}
+
+function getCheckpointV2SnapshotSize(snapshotPath: string | null): number {
+  const manifest = readCheckpointV2Manifest(snapshotPath);
+  if (manifest) {
+    return manifest.mainBytes + manifest.vecBytes;
+  }
+  return snapshotPath ? statPathBytes(snapshotPath) : 0;
+}
+
+function removeCheckpointSnapshotDirs(snapshotPaths: string[]): void {
+  for (const snapshotPath of snapshotPaths) {
+    try {
+      fs.rmSync(snapshotPath, { recursive: true, force: true });
+    } catch (_error: unknown) {
+      // Best-effort cleanup; the checkpoint row is already gone.
+    }
+  }
+}
+
+function collectPrunedCheckpointSnapshotPaths(database: Database.Database, pruneCount: number): string[] {
+  if (pruneCount <= 0) {
+    return [];
+  }
+  const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+  const snapshotPathSelect = checkpointColumns.has('snapshot_path') ? 'snapshot_path' : 'NULL AS snapshot_path';
+  const snapshotFormatSelect = checkpointColumns.has('snapshot_format') ? 'snapshot_format' : "'v1' AS snapshot_format";
+  const rows = database.prepare(`
+    SELECT id, ${snapshotPathSelect}, ${snapshotFormatSelect}
+    FROM checkpoints
+    ORDER BY created_at ASC, id ASC
+    LIMIT ?
+  `).all(pruneCount) as Array<{ id: number; snapshot_path?: string | null; snapshot_format?: string | null }>;
+
+  if (rows.length === 0) {
+    return [];
+  }
+  const ids = rows.map((row) => row.id);
+  const placeholders = ids.map(() => '?').join(', ');
+  database.prepare(`DELETE FROM checkpoints WHERE id IN (${placeholders})`).run(...ids);
+  return rows
+    .filter((row) => row.snapshot_format === 'v2' && typeof row.snapshot_path === 'string' && row.snapshot_path.length > 0)
+    .map((row) => row.snapshot_path as string);
+}
+
+function enforceMaxCheckpointsInTransaction(database: Database.Database): string[] {
+  const checkpointCount = (database.prepare(
+    'SELECT COUNT(*) as count FROM checkpoints'
+  ) as Database.Statement).get() as { count: number };
+
+  if (checkpointCount.count <= MAX_CHECKPOINTS) {
+    return [];
+  }
+
+  return collectPrunedCheckpointSnapshotPaths(database, checkpointCount.count - MAX_CHECKPOINTS);
+}
+
+function supportsCheckpointV2(database: Database.Database): boolean {
+  const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+  return checkpointColumns.has('snapshot_format') && checkpointColumns.has('snapshot_path');
+}
+
+function hasMainVectorPayloadTables(database: Database.Database): boolean {
+  try {
+    const row = database.prepare(`
+      SELECT 1 AS found
+      FROM sqlite_master
+      WHERE type IN ('table', 'view')
+        AND name IN ('vec_memories', 'vec_metadata')
+      LIMIT 1
+    `).get() as { found?: number } | undefined;
+    return row?.found === 1;
+  } catch (_error: unknown) {
+    return false;
+  }
 }
 
 function tableExists(database: Database.Database, tableName: string): boolean {
@@ -1543,6 +1771,152 @@ function validateMemoryRow(
    7. CHECKPOINT OPERATIONS
 ----------------------------------------------------------------*/
 
+function createCheckpointV2(
+  database: Database.Database,
+  options: Required<Pick<CreateCheckpointOptions, 'name' | 'includeEmbeddings' | 'metadata'>>,
+): CheckpointInfo {
+  const sanitizedName = sanitizeCheckpointName(options.name);
+  const finalDir = resolveCheckpointDir(database, sanitizedName);
+  const checkpointsDir = path.dirname(finalDir);
+  const tmpDir = `${finalDir}.tmp-${process.pid}`;
+  const mainSnapshotPath = path.join(tmpDir, 'snapshot-main.sqlite');
+  const vecSnapshotPath = path.join(tmpDir, 'snapshot-vec.sqlite');
+  let published = false;
+
+  try {
+    const existing = database.prepare('SELECT id FROM checkpoints WHERE name = ?').get(sanitizedName) as { id?: number } | undefined;
+    if (existing?.id) {
+      throw new CheckpointCreateError(
+        'CHECKPOINT_CREATE_DUPLICATE_NAME',
+        'Checkpoint creation failed because a checkpoint with this name already exists.',
+        { name: sanitizedName },
+      );
+    }
+
+    try {
+      database.pragma('busy_timeout = 5000');
+    } catch (_pragmaError: unknown) {
+      // Non-fatal: older/mocked better-sqlite3 handles may not expose pragma.
+    }
+
+    fs.mkdirSync(checkpointsDir, { recursive: true, mode: 0o700 });
+    sweepStaleCheckpointTmpDirs(checkpointsDir);
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.mkdirSync(tmpDir, { recursive: true, mode: 0o700 });
+
+    let lastVacuumError: unknown;
+    for (let attempt = 1; attempt <= CHECKPOINT_CREATE_MAX_ATTEMPTS; attempt += 1) {
+      try {
+        database.exec(`VACUUM main INTO ${quoteSqlString(mainSnapshotPath)}`);
+        const activeVecPath = getActiveVectorShardPath(database);
+        if (options.includeEmbeddings && activeVecPath) {
+          database.exec(`VACUUM active_vec INTO ${quoteSqlString(vecSnapshotPath)}`);
+        }
+        break;
+      } catch (error: unknown) {
+        lastVacuumError = error;
+        if (!isCheckpointBusyError(error) || attempt >= CHECKPOINT_CREATE_MAX_ATTEMPTS) {
+          throw error;
+        }
+        fs.rmSync(mainSnapshotPath, { force: true });
+        fs.rmSync(vecSnapshotPath, { force: true });
+        const delayMs = checkpointRetryDelayMs();
+        console.warn(
+          `[checkpoints] createCheckpoint v2 VACUUM busy for "${sanitizedName}" on attempt ${attempt}; retrying in ${delayMs}ms`,
+        );
+        sleepSync(delayMs);
+      }
+    }
+
+    if (lastVacuumError && !fs.existsSync(mainSnapshotPath)) {
+      throw lastVacuumError;
+    }
+
+    const createdAt = new Date().toISOString();
+    const gitBranch = getGitBranch();
+    const activeVecPath = getActiveVectorShardPath(database);
+    const vecIncluded = options.includeEmbeddings && !!activeVecPath && fs.existsSync(vecSnapshotPath);
+    const mainBytes = fs.statSync(mainSnapshotPath).size;
+    const vecBytes = vecIncluded ? fs.statSync(vecSnapshotPath).size : 0;
+    const manifest: CheckpointV2Manifest = {
+      formatVersion: 2,
+      createdAt,
+      specFolder: null,
+      gitBranch,
+      embedderSlug: deriveEmbedderSlug(activeVecPath),
+      includeEmbeddings: options.includeEmbeddings,
+      mainTables: CHECKPOINT_MANIFEST.snapshot.filter((tableName) => tableName !== 'vec_memories' && tableName !== 'vec_metadata'),
+      vecTables: vecIncluded ? ['vec_memories', 'vec_metadata'] : [],
+      schemaVersion: readSchemaVersion(database),
+      memoryCount: countTableRows(database, 'memory_index'),
+      vectorCount: vecIncluded ? countActiveVectorRows(database) : 0,
+      mainBytes,
+      vecBytes,
+    };
+    fs.writeFileSync(path.join(tmpDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, { mode: 0o600 });
+    fs.renameSync(tmpDir, finalDir);
+    published = true;
+
+    let prunedSnapshotPaths: string[] = [];
+    const checkpointMetadata = {
+      ...options.metadata,
+      formatVersion: 2,
+      memoryCount: manifest.memoryCount,
+      vectorCount: manifest.vectorCount,
+      includeEmbeddings: options.includeEmbeddings,
+      manifest,
+    };
+
+    const checkpointInfo = database.transaction(() => {
+      const result = (database.prepare(`
+        INSERT INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, snapshot_format, snapshot_path, metadata)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+      `) as Database.Statement).run(
+        sanitizedName,
+        createdAt,
+        null,
+        gitBranch,
+        null,
+        'v2',
+        finalDir,
+        JSON.stringify(checkpointMetadata),
+      );
+
+      prunedSnapshotPaths = enforceMaxCheckpointsInTransaction(database);
+
+      return {
+        id: (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number,
+        name: sanitizedName,
+        createdAt,
+        specFolder: null,
+        gitBranch,
+        snapshotSize: mainBytes + vecBytes,
+        snapshotFormat: 'v2',
+        snapshotPath: finalDir,
+        metadata: {
+          ...options.metadata,
+          formatVersion: 2,
+          memoryCount: manifest.memoryCount,
+          vectorCount: manifest.vectorCount,
+        },
+      };
+    })();
+
+    removeCheckpointSnapshotDirs(prunedSnapshotPaths.filter((snapshotPath) => snapshotPath !== finalDir));
+    console.error(`[checkpoints] Created checkpoint "${sanitizedName}" (${checkpointInfo.snapshotSize} bytes file snapshot)`);
+    return checkpointInfo;
+  } catch (error: unknown) {
+    if (!published) {
+      fs.rmSync(tmpDir, { recursive: true, force: true });
+    }
+    throw classifyCheckpointCreateError(error, {
+      name: sanitizedName,
+      specFolder: null,
+      attempts: CHECKPOINT_CREATE_MAX_ATTEMPTS,
+    });
+  }
+}
+
 function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo {
   const database = getDatabase();
 
@@ -1553,6 +1927,18 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
     metadata = {},
     scope = {},
   } = options;
+
+  const normalizedScopeForSelection = normalizeScopeContext(scope);
+  const useV2 = specFolder == null
+    && !normalizedScopeForSelection.tenantId
+    && !normalizedScopeForSelection.userId
+    && !normalizedScopeForSelection.agentId
+    && supportsCheckpointV2(database)
+    && !hasMainVectorPayloadTables(database);
+
+  if (useV2) {
+    return createCheckpointV2(database, { name, includeEmbeddings, metadata });
+  }
 
   try {
     try {
@@ -1619,7 +2005,8 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
     };
 
     const writeCheckpoint = (): CheckpointInfo => {
-      return database.transaction(() => {
+      let prunedSnapshotPaths: string[] = [];
+      const checkpointInfo = database.transaction(() => {
         const result = (database.prepare(`
           INSERT INTO checkpoints (name, created_at, spec_folder, git_branch, memory_snapshot, metadata)
           VALUES (?, ?, ?, ?, ?, ?)
@@ -1632,18 +2019,7 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
           JSON.stringify(checkpointMetadata),
         );
 
-        // Enforce max checkpoints
-        const checkpointCount = (database.prepare(
-          'SELECT COUNT(*) as count FROM checkpoints'
-        ) as Database.Statement).get() as { count: number };
-
-        if (checkpointCount.count > MAX_CHECKPOINTS) {
-          database.prepare(`
-            DELETE FROM checkpoints WHERE id IN (
-              SELECT id FROM checkpoints ORDER BY created_at ASC LIMIT ?
-            )
-          `).run(checkpointCount.count - MAX_CHECKPOINTS);
-        }
+        prunedSnapshotPaths = enforceMaxCheckpointsInTransaction(database);
 
         return {
           id: (result as { lastInsertRowid: number | bigint }).lastInsertRowid as number,
@@ -1661,6 +2037,8 @@ function createCheckpoint(options: CreateCheckpointOptions = {}): CheckpointInfo
           },
         };
       })();
+      removeCheckpointSnapshotDirs(prunedSnapshotPaths);
+      return checkpointInfo;
     };
 
     let lastError: unknown;
@@ -1729,17 +2107,23 @@ function listCheckpoints(
 
     return rows
       .filter((row) => checkpointMetadataMatchesScope(row.metadata, scope))
-      .map(row => ({
-        id: row.id as number,
-        name: row.name as string,
-        createdAt: row.created_at as string,
-        specFolder: row.spec_folder as string | null,
-        gitBranch: row.git_branch as string | null,
-        snapshotSize: (row.snapshot_size as number) || 0,
-        snapshotFormat: (row.snapshot_format as string | null | undefined) ?? 'v1',
-        snapshotPath: (row.snapshot_path as string | null | undefined) ?? null,
-        metadata: row.metadata ? JSON.parse(row.metadata as string) : {},
-      }));
+      .map(row => {
+        const snapshotFormat = (row.snapshot_format as string | null | undefined) ?? 'v1';
+        const snapshotPath = (row.snapshot_path as string | null | undefined) ?? null;
+        return {
+          id: row.id as number,
+          name: row.name as string,
+          createdAt: row.created_at as string,
+          specFolder: row.spec_folder as string | null,
+          gitBranch: row.git_branch as string | null,
+          snapshotSize: snapshotFormat === 'v2'
+            ? getCheckpointV2SnapshotSize(snapshotPath)
+            : (row.snapshot_size as number) || 0,
+          snapshotFormat,
+          snapshotPath,
+          metadata: row.metadata ? JSON.parse(row.metadata as string) : {},
+        };
+      });
   } catch (error: unknown) {
     const msg = toErrorMessage(error);
     console.warn(`[checkpoints] listCheckpoints error: ${msg}`);
@@ -2119,7 +2503,11 @@ function deleteCheckpoint(nameOrId: string | number, scope: ScopeContext = {}): 
       ? (database.prepare('DELETE FROM checkpoints WHERE id = ?') as Database.Statement).run(nameOrId)
       : (database.prepare('DELETE FROM checkpoints WHERE name = ?') as Database.Statement).run(nameOrId);
 
-    return (result as { changes: number }).changes > 0;
+    const deleted = (result as { changes: number }).changes > 0;
+    if (deleted && checkpoint.snapshot_format === 'v2' && checkpoint.snapshot_path) {
+      removeCheckpointSnapshotDirs([checkpoint.snapshot_path]);
+    }
+    return deleted;
   } catch (error: unknown) {
     const msg = toErrorMessage(error);
     console.warn(`[checkpoints] deleteCheckpoint error: ${msg}`);
