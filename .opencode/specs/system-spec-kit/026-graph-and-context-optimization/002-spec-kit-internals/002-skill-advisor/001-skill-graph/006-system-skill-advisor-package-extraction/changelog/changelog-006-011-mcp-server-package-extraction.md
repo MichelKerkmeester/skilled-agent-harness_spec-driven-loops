@@ -45,7 +45,7 @@ The advisor is now the sole runtime owner of skill graph code and lifecycle. Mem
 ### Fixed
 
 - Dual-writer risk where memory startup and advisor could both write skill graph state is eliminated by removing the memory lifecycle path in the same commit as the advisor adoption
-- Watcher race condition where both servers could run overlapping generation publication is resolved; advisor daemon watcher is the only watcher after D2a
+- Watcher race condition where both servers could run overlapping generation publication is resolved, advisor daemon watcher is the only watcher after D2a
 - Old empty `system-spec-kit/mcp_server/handlers/skill-graph/` orphan directory deleted
 
 ### Verification
@@ -63,11 +63,11 @@ The advisor is now the sole runtime owner of skill graph code and lifecycle. Mem
 | Grep: old spec-kit `lib/skill-graph` directory absent | PASS |
 | Grep: old spec-kit handler orphan directory absent | PASS |
 | Packet strict validation | PASS, 0 errors and 0 warnings |
-| Hook import resolution: Claude, Codex, Gemini | PASS for 3 present runtimes; no OpenCode hook directory in this checkout |
+| Hook import resolution: Claude, Codex, Gemini | PASS for 3 present runtimes, no OpenCode hook directory in this checkout |
 | Schema import resolution: `AdvisorToolInputSchemas` and parameter key exports | PASS via TypeScript verification |
 | Session-bootstrap topology: targeted suites 3/3 pass, topology returns advisor-ownership unavailable state | PASS |
 | Advisor full Vitest: 40 files, 291 tests | PASS |
-| Memory full `npm test`: core baseline-red (11404/11582); F-015 fixture fix passed; remaining failures are unrelated baseline surfaces | CLASSIFIED, outside 011 scope |
+| Memory full `npm test`: core baseline-red (11404/11582), F-015 fixture fix passed, remaining failures are unrelated baseline surfaces | CLASSIFIED, outside 011 scope |
 
 ### Files Changed
 
