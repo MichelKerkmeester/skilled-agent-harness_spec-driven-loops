@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: hardcoded default remediation arc"
-description: "Rollup of 13 child phase changelogs under 022-hardcoded-default-remediation-arc. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
+description: "Rollup of 16 child phase changelogs under 022-hardcoded-default-remediation-arc. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
 trigger_phrases:
   - "022-hardcoded-default-remediation-arc rollup"
   - "022-hardcoded-default-remediation-arc phase parent"
@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase parent groups 13 child phases spanning 2026-05-23 to 2026-05-24. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
+This phase parent groups 16 child phases spanning 2026-05-23 to 2026-05-24. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
@@ -26,7 +26,10 @@ This phase parent groups 13 child phases spanning 2026-05-23 to 2026-05-24. Each
 |-----------|------|-------|
 | [changelog-022-001-profile-ts-fallback-fix.md](./changelog-022-001-profile-ts-fallback-fix.md) | 2026-05-23 | 022/001 profile.ts Fallback Fix: replace inline pipe-pipe literals with getCanonicalFallback |
 | [changelog-022-002-cocoindex-embedder-doc-drift-resync.md](./changelog-022-002-cocoindex-embedder-doc-drift-resync.md) | 2026-05-23 | 022/002 CocoIndex Embedder Doc-Drift Resync: config_templates + embedder-pluggability + ENV_REFERENCE + SKILL.md |
+| [changelog-022-002b-cocoindex-reranker-doc-prose.md](./changelog-022-002b-cocoindex-reranker-doc-prose.md) | 2026-05-23 | 022/002b CocoIndex Reranker Doc Prose Resync: BAAI to Qwen3 plus daemon-log observability correction |
 | [changelog-022-003-codex-agents-mirror-fill.md](./changelog-022-003-codex-agents-mirror-fill.md) | 2026-05-24 | 022/003 Codex Agents Mirror Investigation and Qualifier Removal |
+| [changelog-022-004a-skill-advisor-compat-contract-consolidation.md](./changelog-022-004a-skill-advisor-compat-contract-consolidation.md) | 2026-05-23 | 022/004a Skill-Advisor Compat-Contract Consolidation (Wave 1): single source for confidence and uncertainty thresholds |
+| [changelog-022-004b-skill-advisor-interface-and-env-vars.md](./changelog-022-004b-skill-advisor-interface-and-env-vars.md) | 2026-05-23 | 022/004b Skill-Advisor Interface and Env-Var Overrides: RoutingCalibration slots, resolved threshold helpers, prompt-policy JSON |
 | [changelog-022-005-spec-memory-p1-registry-consolidation.md](./changelog-022-005-spec-memory-p1-registry-consolidation.md) | 2026-05-23 | 022/005 Spec-Memory P1 Registry Consolidation |
 | [changelog-022-006-cocoindex-p1-dedup.md](./changelog-022-006-cocoindex-p1-dedup.md) | 2026-05-23 | 022/006 CocoIndex Python Dedup: Chunk-Size and Rerank-Sidecar Default Consolidation |
 | [changelog-022-007-code-graph-p1-config-extraction.md](./changelog-022-007-code-graph-p1-config-extraction.md) | 2026-05-23 | 022/007 Code-Graph P1 Config Extraction: CODE_GRAPH_DEFAULTS consolidation with env-var overrides |
@@ -52,13 +55,13 @@ This phase parent groups 13 child phases spanning 2026-05-23 to 2026-05-24. Each
 
 ### Verification
 
-- All 13 child phases were verified independently. See each child changelog for per-phase verification evidence.
+- All 16 child phases were verified independently. See each child changelog for per-phase verification evidence.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/` (child phases) | n/a | Rollup of 13 child phase changelogs, no direct source changes at the parent level |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc/` (child phases) | n/a | Rollup of 16 child phase changelogs, no direct source changes at the parent level |
 
 ### Follow-Ups
 

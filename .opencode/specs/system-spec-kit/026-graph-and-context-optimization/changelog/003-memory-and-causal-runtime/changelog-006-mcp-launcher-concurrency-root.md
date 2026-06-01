@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: mcp launcher concurrency"
-description: "Rollup of 11 child phase changelogs under 006-mcp-launcher-concurrency. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
+description: "Rollup of 12 child phase changelogs under 006-mcp-launcher-concurrency. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
 trigger_phrases:
   - "006-mcp-launcher-concurrency rollup"
   - "006-mcp-launcher-concurrency phase parent"
@@ -18,12 +18,13 @@ contextType: "implementation"
 
 ### Summary
 
-This phase parent groups 11 child phases spanning 2026-05-18 to 2026-05-20. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
+This phase parent groups 12 child phases spanning 2026-05-18 to 2026-05-20. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
 | Changelog | Date | Title |
 |-----------|------|-------|
+| [changelog-006-001-concurrent-daemon-corruption-fix.md](./changelog-006-001-concurrent-daemon-corruption-fix.md) | 2026-05-18 | 006/001 Concurrent Daemon Corruption Fix: launcher-boundary single-writer lease plus WAL pragmas |
 | [changelog-006-002-cross-launcher-lease-propagation.md](./changelog-006-002-cross-launcher-lease-propagation.md) | 2026-05-18 | Cross-Launcher Lease Propagation: mk-code-index and mk-spec-memory |
 | [changelog-006-003-launcher-race-and-error-surface-hardening.md](./changelog-006-003-launcher-race-and-error-surface-hardening.md) | 2026-05-18 | Launcher Race and Error Surface Hardening: 9 P1 Findings Closed |
 | [changelog-006-004-launcher-diagnostics-and-signal-coverage.md](./changelog-006-004-launcher-diagnostics-and-signal-coverage.md) | 2026-05-18 | MCP Launcher P2 Cleanup: Diagnostics, Signal Coverage, Readonly Probes and Test Hygiene |
@@ -50,13 +51,13 @@ This phase parent groups 11 child phases spanning 2026-05-18 to 2026-05-20. Each
 
 ### Verification
 
-- All 11 child phases were verified independently. See each child changelog for per-phase verification evidence.
+- All 12 child phases were verified independently. See each child changelog for per-phase verification evidence.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/` (child phases) | n/a | Rollup of 11 child phase changelogs, no direct source changes at the parent level |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/` (child phases) | n/a | Rollup of 12 child phase changelogs, no direct source changes at the parent level |
 
 ### Follow-Ups
 
