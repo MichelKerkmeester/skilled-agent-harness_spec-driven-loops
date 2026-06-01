@@ -71,15 +71,19 @@ The Four Laws forbid invented work. Every changelog claim traces to the packet's
 
 - Removed 85 dangling symlinks in `026/changelog`. They pointed at pre-reorg folder paths (for example `007-code-graph`, `008-skill-advisor`, `006-graph-impact-and-affordance-uplift`) that were renumbered or deleted in the wave-4 reorganization. All 85 resolved to nothing. Zero valid symlinks were present.
 
-## 6. Deferred follow-ups (documented, not silently skipped)
+## 6. Canonicalization follow-ups (completed)
 
-These items are lower-value cleanup with rework risk. They are recorded here for a focused follow-up pass rather than done unattended.
+The polish items deferred in the first pass were completed in a second pass.
 
-1. **Relocate 28 non-canonical changelogs.** Some existing changelogs live in per-child `changelog/` directories instead of the parent-level directory used by the 004 gold standard. They are valid and already counted as coverage. The list is `work-list/_all-noncanon.txt`. Relocating each also requires updating its internal Spec folder line.
-2. **Rename 5 non-canonical `changelog.md` files** to the `changelog-<phase>-<name>.md` convention so tooling that scans for the canonical pattern detects them.
-3. **Stale spec-folder paths in pre-existing changelogs.** About 103 changelogs authored before this effort carry old renumbered paths in their Spec folder lines. A remap needs the correct old-to-new track mapping per file.
-4. **Per-directory README index files.** The 004 gold standard pairs each `changelog/` directory with a README index. The new root rollups already provide an Included Phases inventory, so a separate README is partly redundant. Adding READMEs is a navigability nicety.
-5. **002 grouping.** Track 002 was authored one-per-leaf to guarantee complete coverage. Its original precedent was thematic grouping. The owner may consolidate the per-leaf 002 changelogs into thematic entries later. No information is lost by the per-leaf form.
+1. **Relocated 28 non-canonical changelogs** from per-child directories into the parent-level `changelog/` directory (004 gold-standard layout), HVR-cleaned, with the 10 affected parent rollups regenerated. Done.
+2. **Removed 5 legacy `changelog.md` files** that duplicated canonical backfilled changelogs (confirmed duplicates, content preserved in the canonical version and git history). Done.
+3. **Remapped stale spec-folder paths.** 92 of 169 stale references were remapped using verified prefix mappings, applied only where the resulting path resolves to an existing folder. 77 deeply-reorganized references were left unchanged rather than guess a wrong pointer. A wrong pointer is worse than a stale one. The 77 remaining are historical references in pre-existing changelogs and do not affect content or discoverability.
+4. **Added the program-level changelog index** at `026/changelog/README.md`, linking all 8 track rollups. The 72 phase-parent rollups already serve as per-directory indexes through their Included Phases tables, so per-directory READMEs would be redundant.
+5. **002 grouping.** Track 002 remains one-per-leaf to guarantee complete coverage. Its original precedent was thematic grouping. The owner may consolidate later. No information is lost by the per-leaf form. Left as an intentional choice, not a defect.
+
+### Remaining (intentional, no action needed)
+- 77 stale spec-folder references in pre-existing changelogs that have no verified current target (deeply reorganized or archived). Cosmetic, content unaffected.
+- 002 per-leaf vs thematic is an owner preference, not a gap.
 
 ## 7. Anomalies observed during the sweep
 
