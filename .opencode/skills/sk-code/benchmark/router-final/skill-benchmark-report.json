@@ -9,7 +9,7 @@
     "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
   },
   "verdict": "FAIL",
-  "aggregateScore": 41,
+  "aggregateScore": 44,
   "gate": {
     "d5Score": 100,
     "gateFailed": false,
@@ -31,7 +31,7 @@
     },
     "D3": {
       "points": 15,
-      "score": 24
+      "score": 33
     },
     "D4": {
       "points": 25,
@@ -252,9 +252,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.375,
-          "routedCount": 16,
-          "wastedCount": 10,
+          "score": 0.8571428571428572,
+          "routedCount": 7,
+          "wastedCount": 1,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -268,7 +268,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 66,
+      "modeAScore": 81,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "OPENCODE",
@@ -342,9 +342,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.1875,
-          "routedCount": 16,
-          "wastedCount": 13,
+          "score": 0.4285714285714286,
+          "routedCount": 7,
+          "wastedCount": 4,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -358,7 +358,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 51,
+      "modeAScore": 59,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "OPENCODE",
@@ -387,9 +387,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.1875,
-          "routedCount": 16,
-          "wastedCount": 13,
+          "score": 0.4285714285714286,
+          "routedCount": 7,
+          "wastedCount": 4,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -403,7 +403,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 51,
+      "modeAScore": 59,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "OPENCODE",
@@ -432,9 +432,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.1875,
-          "routedCount": 16,
-          "wastedCount": 13,
+          "score": 0.4285714285714286,
+          "routedCount": 7,
+          "wastedCount": 4,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -448,7 +448,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 51,
+      "modeAScore": 59,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "OPENCODE",
@@ -789,9 +789,9 @@
           "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
         },
         "d3": {
-          "score": 0.3125,
-          "routedCount": 16,
-          "wastedCount": 11,
+          "score": 0.7142857142857143,
+          "routedCount": 7,
+          "wastedCount": 2,
           "proxy": "router-overload",
           "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
         },
@@ -805,7 +805,7 @@
         }
       },
       "firstFailingStage": null,
-      "modeAScore": 50,
+      "modeAScore": 62,
       "applicable": true,
       "classKind": "routing",
       "expectedSurface": "OPENCODE",

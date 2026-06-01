@@ -188,6 +188,19 @@ function detectSurface(taskLower) {
   if (webflow) return 'WEBFLOW';
   return 'UNKNOWN';
 }
+// OpenCode-only language sub-detection (mirrors SKILL.md §2). A `.opencode/` task
+// is one language, so it needs only that language's guides — not every language
+// folder. Webflow deliberately has no sub-detection (a frontend task spans
+// css + html + js together).
+const OPENCODE_LANGUAGES = ['typescript', 'python', 'shell', 'config', 'javascript'];
+function detectOpencodeLanguage(taskLower) {
+  if (/\.tsx?\b/.test(taskLower)) return 'typescript';
+  if (/\.py\b|argparse/.test(taskLower)) return 'python';
+  if (/\.sh\b|set -euo|shellcheck/.test(taskLower)) return 'shell';
+  if (/\.jsonc?\b|graph-metadata|descriptor|spec-folder/.test(taskLower)) return 'config';
+  if (/\.cjs\b|\.mjs\b/.test(taskLower)) return 'javascript';
+  return null;
+}
 
 /**
  * @returns {{ parseable: boolean, intents: string[], resources: string[],
@@ -221,13 +234,22 @@ function routeSkillResources({ skillRoot, taskText }) {
     && mapResources.some((r) => r.startsWith('references/opencode/'));
   if (hasSurfaceLayout) {
     const surface = detectSurface(taskLower);
+    // Within OpenCode, slice further to the detected language so a TypeScript task
+    // does not also pull the Python/shell/config guides. Non-language OpenCode
+    // folders (e.g. `shared/`) are always kept.
+    const ocLang = surface === 'OPENCODE' ? detectOpencodeLanguage(taskLower) : null;
     resources = resources.filter((r) => {
       if (r.startsWith('assets/')) return false;
       const rs = resourceSurface(r);
       if (rs === 'UNIVERSAL' || rs === 'MOTION') return true;
       if (surface === 'MIXED') return true;
       if (surface === 'UNKNOWN') return false;
-      return rs === surface;
+      if (rs !== surface) return false;
+      if (ocLang) {
+        const m = /^references\/opencode\/([^/]+)\//.exec(r);
+        if (m && OPENCODE_LANGUAGES.includes(m[1]) && m[1] !== ocLang) return false;
+      }
+      return true;
     });
     const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
     return { parseable: true, intents, resources, missingResources, scores, surface };

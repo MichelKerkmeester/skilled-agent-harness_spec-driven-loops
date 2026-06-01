@@ -46,10 +46,10 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Implemented the 011 recommendation as a route-time surface-aware filter (not a map re-key — see Key Decisions). After surface detection, a route loads the `DEFAULT_RESOURCE` preamble + the `references/universal/*` tier + only the detected surface's slice + the Motion.dev overlay, drops the other surface's resources, and defers `assets/*`. A MIXED task keeps both surfaces; UNKNOWN falls back to universal + Motion.
+Implemented the 011 recommendation as a route-time surface-aware filter (not a map re-key — see Key Decisions). After surface detection, a route loads the `DEFAULT_RESOURCE` preamble + the `references/universal/*` tier + only the detected surface's slice + the Motion.dev overlay, drops the other surface's resources, and defers `assets/*`. A MIXED task keeps both surfaces; UNKNOWN falls back to universal + Motion. Within OpenCode it slices once more by **detected language** (a TypeScript task loads `opencode/typescript/*` + `shared/`, not the Python/shell/config/JavaScript folders); Webflow has no language sub-slice.
 
 ### Files Changed (this build)
-`scripts/skill-benchmark/router-replay.cjs` (`detectSurface` + `resourceSurface` + the gated surface filter in `routeSkillResources`); `sk-code/references/smart_routing.md` §11 (the surface-aware loading rule + removed the now-resolved "surface is flattened" caveat).
+`scripts/skill-benchmark/router-replay.cjs` (`detectSurface`, `resourceSurface`, `detectOpencodeLanguage`, and the gated surface + language filter in `routeSkillResources`); `sk-code/references/smart_routing.md` §11 (the surface-aware loading rule incl. OpenCode language sub-slicing; removed the now-resolved "surface is flattened" caveat).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -77,9 +77,9 @@ Spec + plan + tasks + checklist authored from the converged 011 research (3 nati
 
 | Check | Command | Result |
 |-------|---------|--------|
-| Router regression guard | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` | PASS — D2 held at 44, D1-intra 57, D5 100 (no regression); D3 19 → 23; orphans 0 |
+| Router regression guard | `node scripts/skill-benchmark/run-skill-benchmark.cjs --skill sk-code --trace-mode router` | PASS — D2 held at 44, D1-intra 57, D5 100 (no regression); D3 19 → 33 (surface slice + language sub-slice); orphans 0 |
 | Drift guard | `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` | PASS |
-| Full suite | `npx vitest run` (from `deep-improvement/scripts`) | PASS — 248 tests |
+| Full suite | `npx vitest run` (from `deep-improvement/scripts`) | PASS — 251 tests |
 | Live re-measure | `--trace-mode live` over the critical-path subset | PASS — aggregate 71 → 79, D3 42 → 50, D2 87 → 95, D1-intra 92 → 97; no recall regression (CS-001 D2 0.60 → 1.0) |
 <!-- /ANCHOR:verification -->
 
