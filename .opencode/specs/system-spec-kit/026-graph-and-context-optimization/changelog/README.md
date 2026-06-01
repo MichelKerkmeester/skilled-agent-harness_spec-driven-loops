@@ -17,14 +17,14 @@ Spec 026 (graph-and-context-optimization) shipped across 8 tracks and about 634 
 
 | Track | Leaf changelogs | Rollups | Top rollup |
 |-------|-----------------|---------|------------|
-| 000 release and program cleanup | 121 | 13 | [changelog-000-release-and-program-cleanup-root.md](../000-release-and-program-cleanup/changelog/changelog-000-release-and-program-cleanup-root.md) |
-| 001 research and baseline | 6 | 1 | [changelog-001-research-and-baseline-root.md](../001-research-and-baseline/changelog/changelog-001-research-and-baseline-root.md) |
-| 002 spec-kit internals | 120 | 13 | [changelog-002-spec-kit-internals-root.md](../002-spec-kit-internals/changelog/changelog-002-spec-kit-internals-root.md) |
-| 003 memory and causal runtime | 239 | 27 | [changelog-003-memory-and-causal-runtime-root.md](../003-memory-and-causal-runtime/changelog/changelog-003-memory-and-causal-runtime-root.md) |
-| 004 code graph | 76 | 10 | [changelog-004-code-graph-root.md](../004-code-graph/changelog/changelog-004-code-graph-root.md) |
-| 005 graph impact and affordance | 6 | 1 | [changelog-005-graph-impact-and-affordance-root.md](../005-graph-impact-and-affordance/changelog/changelog-005-graph-impact-and-affordance-root.md) |
-| 006 operator tooling | 27 | 4 | [changelog-006-operator-tooling-root.md](../006-operator-tooling/changelog/changelog-006-operator-tooling-root.md) |
-| 007 mcp daemon reliability | 24 | 3 | [changelog-007-mcp-daemon-reliability-root.md](../007-mcp-daemon-reliability/changelog/changelog-007-mcp-daemon-reliability-root.md) |
+| 000 release and program cleanup | 121 | 13 | [changelog-000-release-and-program-cleanup-root.md](./000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
+| 001 research and baseline | 6 | 1 | [changelog-001-research-and-baseline-root.md](./001-research-and-baseline/changelog-001-research-and-baseline-root.md) |
+| 002 spec-kit internals | 120 | 13 | [changelog-002-spec-kit-internals-root.md](./002-spec-kit-internals/changelog-002-spec-kit-internals-root.md) |
+| 003 memory and causal runtime | 239 | 27 | [changelog-003-memory-and-causal-runtime-root.md](./003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) |
+| 004 code graph | 76 | 10 | [changelog-004-code-graph-root.md](./004-code-graph/changelog-004-code-graph-root.md) |
+| 005 graph impact and affordance | 6 | 1 | [changelog-005-graph-impact-and-affordance-root.md](./005-graph-impact-and-affordance/changelog-005-graph-impact-and-affordance-root.md) |
+| 006 operator tooling | 27 | 4 | [changelog-006-operator-tooling-root.md](./006-operator-tooling/changelog-006-operator-tooling-root.md) |
+| 007 mcp daemon reliability | 24 | 3 | [changelog-007-mcp-daemon-reliability-root.md](./007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md) |
 
 ## How to read these
 
