@@ -42,7 +42,7 @@ Fixtures live under `assets/skill-benchmark/fixtures/<skill-id>/` as `<id>.publi
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a prompt leaking the skill name is flagged (`passed:false`, `hardLeaks` non-empty), a domain-language prompt passes, and the malformed-fixture row degrades to `unparseable-fixture` with a `loadError`. |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a prompt leaking the skill name is flagged (`passed:false`, `hardLeaks` non-empty), a domain-language prompt passes, and the malformed-fixture row degrades to `unparseable-fixture` with a `loadError`. |
 
 ---
 

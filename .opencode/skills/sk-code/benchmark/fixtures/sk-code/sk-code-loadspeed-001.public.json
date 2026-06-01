@@ -1,0 +1,11 @@
+{
+  "scenarioId": "sk-code-loadspeed-001",
+  "tier": "T2",
+  "public": {
+    "prompt": "On phones our landing page takes a long time before anything shows up, and the big top picture pushes everything down once it finally arrives so the layout lurches. I want the heavy media fetched and ordered so the first meaningful view shows sooner and nothing jumps around afterward. How would you approach this, and how could I prove the page actually got faster?",
+    "runtime": "frontend marketing site",
+    "mutationBoundary": "read-only-or-packet-local",
+    "outputContract": "A surface-aware plan with concrete load-ordering changes plus the exact measurement commands that prove the gain."
+  },
+  "provenance": { "promptAuthor": "human-holdout", "goldAuthor": "router-extractor", "blindToRouterKeywords": true }
+}

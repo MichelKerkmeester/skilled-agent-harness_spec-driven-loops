@@ -44,7 +44,7 @@ This feature covers the JSON outputs that later gates, dashboards, and manual de
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies the replay-stability helper that sits beside benchmark verdicts. |
 | `.opencode/skills/deep-improvement/README.md` | Package reference | Mirrors the current weighted-score threshold and benchmark expectations for operators. |
 
 ---

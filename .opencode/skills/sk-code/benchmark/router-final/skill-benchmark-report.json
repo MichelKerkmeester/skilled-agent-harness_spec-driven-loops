@@ -1,0 +1,1010 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "FAIL",
+  "aggregateScore": 40,
+  "gate": {
+    "d5Score": 100,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 57
+    },
+    "D2": {
+      "points": 20,
+      "score": 44
+    },
+    "D3": {
+      "points": 15,
+      "score": 19
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 100,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "funnel": {
+    "discovered": 4,
+    "passed": 8,
+    "routed-intra": 5
+  },
+  "headlineBottleneck": "routed-intra",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "routed-intra",
+      "detail": "5 scenario(s) first fail at stage 'routed-intra'"
+    }
+  ],
+  "coverage": {
+    "routing": 15,
+    "advisor": 2,
+    "browser": 7,
+    "routedOut": 7,
+    "scored": 17
+  },
+  "divergence": [],
+  "lintFindings": [
+    {
+      "scenarioId": "SD-001",
+      "leaks": [
+        "lenis",
+        "javascript"
+      ]
+    },
+    {
+      "scenarioId": "SD-002",
+      "leaks": [
+        "typescript",
+        ".ts",
+        "opencode"
+      ]
+    },
+    {
+      "scenarioId": "LS-001",
+      "leaks": [
+        "config",
+        ".ts",
+        "opencode"
+      ]
+    },
+    {
+      "scenarioId": "LS-002",
+      "leaks": [
+        ".py",
+        "opencode",
+        "scripts"
+      ]
+    },
+    {
+      "scenarioId": "LS-003",
+      "leaks": [
+        ".sh",
+        "opencode",
+        "scripts"
+      ]
+    },
+    {
+      "scenarioId": "RD-001",
+      "leaks": [
+        "lenis",
+        "opencode",
+        "scripts"
+      ]
+    },
+    {
+      "scenarioId": "RD-002",
+      "leaks": [
+        "sk-code"
+      ]
+    },
+    {
+      "scenarioId": "CS-001",
+      "leaks": [
+        "cdn",
+        "animation",
+        "webflow",
+        "javascript"
+      ]
+    },
+    {
+      "scenarioId": "CS-002",
+      "leaks": [
+        "sk-code",
+        "motion.dev",
+        "references",
+        "webflow",
+        "snippets"
+      ]
+    },
+    {
+      "scenarioId": "CS-003",
+      "leaks": [
+        "sk-code",
+        ".ts",
+        "opencode",
+        "scripts"
+      ]
+    },
+    {
+      "scenarioId": "CS-004",
+      "leaks": [
+        "implementation",
+        "implement",
+        "motion.dev",
+        "references"
+      ]
+    },
+    {
+      "scenarioId": "CS-005",
+      "leaks": [
+        "sk-code",
+        "naming",
+        "references",
+        "webflow"
+      ]
+    },
+    {
+      "scenarioId": "CS-006",
+      "leaks": [
+        "sk-code",
+        "motion.dev",
+        "references",
+        "webflow",
+        "javascript"
+      ]
+    },
+    {
+      "scenarioId": "CS-007",
+      "leaks": [
+        "sk-code",
+        "motion.dev",
+        "webflow",
+        "javascript"
+      ]
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "SD-001",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.6181818181818182,
+          "intentRecall": null,
+          "resourceRecall": 0.36363636363636365,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.36363636363636365,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.6666666666666667,
+          "routedCount": 6,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "discovered",
+      "modeAScore": 53,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "SD-002",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.85,
+          "intentRecall": null,
+          "resourceRecall": 0.75,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.75,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.24,
+          "routedCount": 25,
+          "wastedCount": 19,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 62,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "SD-003",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "LS-001",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.12,
+          "routedCount": 25,
+          "wastedCount": 22,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 49,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "LS-002",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.12,
+          "routedCount": 25,
+          "wastedCount": 22,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 49,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "LS-003",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.76,
+          "intentRecall": null,
+          "resourceRecall": 0.6,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.6,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.12,
+          "routedCount": 25,
+          "wastedCount": 22,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 49,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "LS-004",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.4,
+          "intentRecall": null,
+          "resourceRecall": 0,
+          "negative": false
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 11,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "RD-001",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": true
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 1,
+          "routedCount": 6,
+          "wastedCount": 6,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 100,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "RD-002",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 69,
+      "applicable": true,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "SA-001",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 4,
+          "wastedCount": 4,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 69,
+      "applicable": true,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "MR-001",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-002",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-003",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "MR-004",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-001",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-002",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CB-003",
+      "classKind": "browser",
+      "routedOut": true,
+      "reason": "browser scenario — run in live mode (needs bdg)"
+    },
+    {
+      "scenarioId": "CS-001",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.52,
+          "intentRecall": null,
+          "resourceRecall": 0.2,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.2,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.25,
+          "routedCount": 8,
+          "wastedCount": 6,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "discovered",
+      "modeAScore": 30,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-002",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": true
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 11,
+          "wastedCount": 11,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-003",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.7,
+          "intentRecall": null,
+          "resourceRecall": 0.5,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.5,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.19999999999999996,
+          "routedCount": 25,
+          "wastedCount": 20,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 46,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "OPENCODE",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-004",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0.8,
+          "negative": true
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 31,
+          "wastedCount": 31,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-005",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0,
+          "intentRecall": null,
+          "resourceRecall": 0.3333333333333333,
+          "negative": true
+        },
+        "d2": {
+          "score": 0,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 13,
+          "wastedCount": 13,
+          "proxy": "negative-activation",
+          "note": "negative scenario: D3 tracks the suppression outcome, not over-routing"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "routed-intra",
+      "modeAScore": 0,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "UNKNOWN",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-006",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.625,
+          "intentRecall": null,
+          "resourceRecall": 0.375,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.375,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.2727272727272727,
+          "routedCount": 11,
+          "wastedCount": 8,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "discovered",
+      "modeAScore": 41,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    },
+    {
+      "scenarioId": "CS-007",
+      "tier": "playbook",
+      "dims": {
+        "d1intra": {
+          "score": 0.6571428571428571,
+          "intentRecall": null,
+          "resourceRecall": 0.42857142857142855,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.42857142857142855,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.2727272727272727,
+          "routedCount": 11,
+          "wastedCount": 8,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "discovered",
+      "modeAScore": 44,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": null,
+      "surfaceMatch": null,
+      "traceMode": "router",
+      "liveEvidence": {
+        "toolCalls": [],
+        "statedRoutingParsed": false,
+        "responseHead": ""
+      }
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 24,
+    "traceMode": "router",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  },
+  "parseWarnings": [
+    "SA-001: missing-exact-prompt"
+  ]
+}

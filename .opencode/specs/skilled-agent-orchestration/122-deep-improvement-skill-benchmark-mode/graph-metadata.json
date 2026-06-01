@@ -11,7 +11,9 @@
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/005-validation-and-docs",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/006-deep-review",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
-    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run"
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode"
   ],
   "manual": {
     "depends_on": [],
@@ -104,7 +106,7 @@
     ],
     "causal_summary": "Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-05-31T17:50:44.632Z",
+    "last_save_at": "2026-06-01T16:29:53.191Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

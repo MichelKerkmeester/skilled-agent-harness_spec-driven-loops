@@ -45,9 +45,9 @@ That reducer stop check is not the only stability signal. `mutation-coverage.cjs
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/mutation-coverage.vitest.ts` | Automated test | Verifies the three-point convergence rule and unstable-dimension reporting. |
-| `.opencode/skills/deep-improvement/scripts/tests/trade-off-detector.vitest.ts` | Automated test | Verifies insufficient-data handling and hard versus soft regression thresholds. |
-| `.opencode/skills/deep-improvement/scripts/tests/benchmark-stability.vitest.ts` | Automated test | Verifies insufficient-sample handling, stability coefficients, and warning thresholds. |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies the three-point convergence rule and unstable-dimension reporting. |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Automated test | Verifies insufficient-data handling and hard versus soft regression thresholds. |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Automated test | Verifies insufficient-sample handling, stability coefficients, and warning thresholds. |
 
 ---
 

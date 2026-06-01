@@ -25,6 +25,8 @@ const { scanConnectivity } = require('./d5-connectivity.cjs');
 const { scoreScenario, aggregate } = require('./score-skill-benchmark.cjs');
 const { probeAdvisor } = require('./advisor-probe.cjs');
 const { renderReport } = require('./build-report.cjs');
+const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
+const { dispatchScenario } = require('./executor-dispatch.cjs');
 
 const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
 
@@ -61,32 +63,10 @@ function loadFixtures(fixturesDir) {
   return out;
 }
 
-function run(args) {
-  const skillRoot = resolveSkillRoot(args.skill);
-  const skillId = resolveSkillId(skillRoot);
-  const outputsDir = path.resolve(args['outputs-dir']);
-  fs.mkdirSync(outputsDir, { recursive: true });
-  // D1-inter advisor probing is opt-in so the pure-router default stays fast +
-  // dependency-free. --advisor-mode=python enables the deterministic probe.
-  const advisorMode = args['advisor-mode'] || 'off';
-
-  if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
-    process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
-    return 2;
-  }
-
-  // 2. D5 hard gate first.
-  const connectivity = scanConnectivity({ skillRoot });
-
-  // 3. fixtures.
-  const fixturesDir = args['fixtures-dir']
-    ? path.resolve(args['fixtures-dir'])
-    : path.join(skillRoot, 'assets', 'skill-benchmark', 'fixtures', skillId);
-  const fixtures = loadFixtures(fixturesDir);
-
-  // 4. per-scenario.
-  const scenarioRows = [];
-  for (const fx of fixtures) {
+// Legacy synthetic-fixture loop (kept for back-compat + malformed-fixture
+// surfacing). Used only when --fixtures-dir is given explicitly.
+function runLegacyFixtures({ fixturesDir, skillRoot, skillId, advisorMode, scenarioRows }) {
+  for (const fx of loadFixtures(fixturesDir)) {
     if (fx.loadError) {
       scenarioRows.push({
         scenarioId: fx.scenarioId, tier: 'unknown', modeAScore: 0,
@@ -108,16 +88,87 @@ function run(args) {
       continue;
     }
     const routerResult = routeSkillResources({ skillRoot, taskText: fx.public.prompt || '' });
-    // D1-inter (opt-in): probe the advisor out-of-band with the public prompt.
-    // Deterministic (the Python advisor reads SQLite), so it stays in Mode A.
     const advisorResult = advisorMode === 'python'
-      ? probeAdvisor({ prompt: fx.public.prompt || '' })
-      : undefined;
+      ? probeAdvisor({ prompt: fx.public.prompt || '' }) : undefined;
     scenarioRows.push(scoreScenario({ scenarioId: fx.scenarioId, tier: fx.tier, routerResult, expected: fx.expected, advisorResult }));
   }
+}
 
-  // 5. aggregate + emit.
-  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode: args['trace-mode'] || 'router' });
+function filterScenarios(scenarios, filter) {
+  if (!filter) return scenarios;
+  const f = String(filter).toLowerCase();
+  if (f === 'critical') return scenarios.filter((s) => s.critical);
+  const ids = new Set(f.split(',').map((x) => x.trim().toUpperCase()));
+  return scenarios.filter((s) => ids.has(s.scenarioId.toUpperCase()));
+}
+
+// Default corpus: the skill's manual_testing_playbook. Each scenario routes to
+// the executor for its classKind; browser scenarios are routed out of the text
+// executors. Contamination-lint is a drift FINDING in router mode (the playbook
+// intentionally carries trigger words) and is skipped entirely in live mode.
+function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, playbookDir, scenariosFilter, scenarioRows, lintFindings, warningsOut }) {
+  const { scenarios, warnings } = loadPlaybookScenarios({ skillRoot, playbookDir });
+  if (warningsOut) warningsOut.push(...warnings);
+  for (const sc of filterScenarios(scenarios, scenariosFilter)) {
+    const observed = dispatchScenario({ scenario: sc, skillRoot, traceMode, executor });
+    if (sc.classKind === 'browser') {
+      if (observed.routedOut || observed.error) {
+        // Router/CI mode, or the browser harness was unavailable.
+        scenarioRows.push({
+          scenarioId: sc.scenarioId, classKind: 'browser', routedOut: true,
+          reason: observed.reason || observed.error || 'browser scenario — routed to browser harness',
+        });
+      } else {
+        // Live mode: browser-executor returned a full scenario row (with a verdict).
+        scenarioRows.push(observed);
+      }
+      continue;
+    }
+    if (traceMode === 'router' && sc.prompt) {
+      const bannedVocab = buildBannedVocab({ skillRoot, skillId, privateExpected: { resources: sc.expectedResources } });
+      const lint = lintFixture({ publicText: sc.prompt, bannedVocab });
+      if (!lint.passed) lintFindings.push({ scenarioId: sc.scenarioId, leaks: lint.hardLeaks.map((h) => h.term) });
+    }
+    const advisorResult = (advisorMode === 'python' && sc.classKind === 'advisor' && sc.prompt)
+      ? probeAdvisor({ prompt: sc.prompt }) : undefined;
+    scenarioRows.push(scoreScenario({ scenario: sc, observed, advisorResult, traceMode }));
+  }
+}
+
+function run(args) {
+  const skillRoot = resolveSkillRoot(args.skill);
+  const skillId = resolveSkillId(skillRoot);
+  const outputsDir = path.resolve(args['outputs-dir']);
+  fs.mkdirSync(outputsDir, { recursive: true });
+  const advisorMode = args['advisor-mode'] || 'off';
+  // The internal fallback stays 'router' so direct run() calls (the test suite)
+  // are deterministic; the live default is injected by loop-host for operators.
+  const traceMode = args['trace-mode'] || 'router';
+
+  if (!fs.existsSync(path.join(skillRoot, 'SKILL.md'))) {
+    process.stderr.write(`run-skill-benchmark: no SKILL.md at ${skillRoot}\n`);
+    return 2;
+  }
+
+  // D5 hard gate first.
+  const connectivity = scanConnectivity({ skillRoot });
+
+  const scenarioRows = [];
+  const lintFindings = [];
+  const warnings = [];
+  if (args['fixtures-dir']) {
+    runLegacyFixtures({ fixturesDir: path.resolve(args['fixtures-dir']), skillRoot, skillId, advisorMode, scenarioRows });
+  } else {
+    runPlaybook({
+      skillRoot, skillId, traceMode, advisorMode, executor: args.executor,
+      playbookDir: args['playbook-dir'],
+      scenariosFilter: args.scenarios, scenarioRows, lintFindings, warningsOut: warnings,
+    });
+  }
+
+  // aggregate + emit.
+  const report = aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings });
+  if (warnings.length) report.parseWarnings = warnings;
   const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
   const reportMdPath = reportJsonPath.replace(/\.json$/, '.md');
   fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
@@ -133,7 +184,7 @@ module.exports = { run, resolveSkillRoot, loadFixtures };
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (!args.skill || !args['outputs-dir']) {
-    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--output <report.json>] [--trace-mode router|live]\n');
+    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live]\n');
     process.exit(2);
   }
   process.exit(run(args));

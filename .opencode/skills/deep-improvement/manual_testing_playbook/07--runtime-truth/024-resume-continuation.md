@@ -74,7 +74,7 @@ Output excerpt:
 | `../../SKILL.md` | Skill entry point and operator contract for deep-improvement |
 | `../../scripts/shared/improvement-journal.cjs` | Implementation or verification anchor referenced by this scenario |
 | `.opencode/agents/debug.md` | Implementation or verification anchor referenced by this scenario |
-| `../../scripts/tests/improvement-journal.vitest.ts` | Automated regression test anchor for the runtime script |
+| `../../scripts/shared/tests/improvement-journal.vitest.ts` | Automated regression test anchor for the runtime script |
 
 ---
 

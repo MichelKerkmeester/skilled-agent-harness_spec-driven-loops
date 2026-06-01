@@ -93,7 +93,7 @@ deterministic/
 Run from the repository root.
 
 ```bash
-npx vitest run .opencode/skills/deep-improvement/scripts/tests/scorer.vitest.ts
+npx vitest run .opencode/skills/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts
 ```
 
 Expected result: the scorer suite, which exercises these checks through `score()`, passes.

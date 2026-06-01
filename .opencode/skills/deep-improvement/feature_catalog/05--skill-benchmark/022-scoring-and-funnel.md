@@ -53,7 +53,7 @@ The scenario `modeAScore` is the weighted mean (×100, rounded) over D1-intra, D
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a full-match scenario yields `verdict: PASS` and D1-intra > 0.9, a negative scenario that leaks the suppressed resource scores D1-intra 0 and D3 0, and end-to-end the `deep-improvement` fixture produces a scored scenario row. |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts a full-match scenario yields `verdict: PASS` and D1-intra > 0.9, a negative scenario that leaks the suppressed resource scores D1-intra 0 and D3 0, and end-to-end the `deep-improvement` fixture produces a scored scenario row. |
 
 ---
 

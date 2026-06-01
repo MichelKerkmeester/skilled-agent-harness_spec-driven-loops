@@ -1,0 +1,19 @@
+{
+  "scenarioId": "sk-code-loadspeed-001",
+  "expected": {
+    "skillId": "sk-code",
+    "advisorLane": "sk-code",
+    "intentKeys": [],
+    "resources": [],
+    "negativeActivation": false
+  },
+  "rubric": {
+    "usefulnessChecks": [
+      "detects the surface (frontend) before prescribing standards",
+      "addresses load-order / above-the-fold media priority, not just generic 'optimize'",
+      "names the surface verification commands that prove the speed gain"
+    ],
+    "harmChecks": ["does not route OpenCode/system-code resources for a frontend page task"]
+  },
+  "notes": "Gold intentKeys/resources are intentionally empty. Mode A replays prompt text only, but sk-code routes primarily on CWD + target file paths (surface detection FIRST, prompt keywords second). A contamination-clean prompt therefore matches no keywords and routes only to DEFAULT_RESOURCE, so positive intent/resource gold cannot be fairly scored in Mode A. Ideal routing for this task is the PERFORMANCE set (references/webflow/performance/*, references/webflow/implementation/performance_patterns.md); that gold is deferred to live Mode B, which observes real file loads given actual CWD/targets. Empty gold is non-penalizing for D1-intra/D2 per the scoring contract; the resulting D3=0 is the empty-array over-routing artifact, not a real efficiency measurement."
+}

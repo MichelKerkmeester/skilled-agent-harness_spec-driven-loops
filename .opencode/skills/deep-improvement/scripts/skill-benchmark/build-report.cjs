@@ -31,6 +31,15 @@ function renderReport(report) {
   if (r.gate && r.gate.gateFailed) lines.push(`\n⚠ **${r.gate.reason}** — verdict capped regardless of weighted score.`);
   lines.push('');
 
+  if (r.coverage) {
+    const c = r.coverage;
+    lines.push('## Coverage');
+    lines.push('');
+    lines.push(`- Scored (text executors): **${c.scored}** · routed out to browser harness: **${c.routedOut}**`);
+    lines.push(`- By class — routing: ${c.routing} · advisor: ${c.advisor} · browser: ${c.browser}`);
+    lines.push('');
+  }
+
   lines.push('## Dimension scores');
   lines.push('');
   lines.push('| Dimension | Weight | Score |');
@@ -74,13 +83,37 @@ function renderReport(report) {
   const rows = r.scenarioRows || [];
   if (!rows.length) lines.push('_No scenarios._');
   else {
-    lines.push('| Scenario | Tier | Mode A score | First failing stage |');
-    lines.push('| -------- | ---- | ------------ | ------------------- |');
+    lines.push('| Scenario | Class | Score | First failing stage |');
+    lines.push('| -------- | ----- | ----- | ------------------- |');
     for (const s of rows) {
-      lines.push(`| ${s.scenarioId} | ${s.tier || '—'} | ${s.modeAScore}/100 | ${s.firstFailingStage || 'passed'} |`);
+      const score = s.routedOut ? '_routed-out_' : (typeof s.modeAScore === 'number' ? `${s.modeAScore}/100` : '—');
+      const stage = s.routedOut ? (s.reason || 'browser harness') : (s.firstFailingStage || 'passed');
+      lines.push(`| ${s.scenarioId} | ${s.classKind || s.tier || '—'} | ${score} | ${String(stage).replace(/\|/g, '\\|')} |`);
     }
   }
   lines.push('');
+
+  if (r.divergence && r.divergence.length) {
+    lines.push('## A↔B divergence (router vs live)');
+    lines.push('');
+    lines.push('| Scenario | Surface agree | Router-only refs | Live-only refs | Severity |');
+    lines.push('| -------- | ------------- | ---------------- | -------------- | -------- |');
+    for (const d of r.divergence) {
+      lines.push(`| ${d.scenarioId} | ${d.surfaceAgree == null ? '—' : d.surfaceAgree} | ${d.resourceDelta.onlyRouter.length} | ${d.resourceDelta.onlyLive.length} | ${d.severity} |`);
+    }
+    lines.push('');
+  }
+
+  if (r.lintFindings && r.lintFindings.length) {
+    lines.push('## Contamination findings (router mode — drift, not failures)');
+    lines.push('');
+    lines.push('_Playbook prompts intentionally carry trigger words; these are reported as drift signals, not scenario failures._');
+    for (const f of r.lintFindings) {
+      lines.push(`- ${f.scenarioId}: ${(f.leaks || []).slice(0, 6).join(', ')}`);
+    }
+    lines.push('');
+  }
+
   lines.push('## Methodology / caveats');
   lines.push('');
   lines.push(`- ${r.runQuality ? r.runQuality.note : 'Mode A deterministic router-replay.'}`);

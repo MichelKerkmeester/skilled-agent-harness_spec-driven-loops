@@ -60,7 +60,7 @@ function buildBannedVocab({ skillRoot, skillId, privateExpected }) {
   add(path.basename(skillRoot));
   for (const t of frontmatterTriggers(skillMd)) add(t);
 
-  const router = parseRouter(skillMd);
+  const router = parseRouter(skillMd, skillRoot);
   for (const [intentKey, sig] of Object.entries(router.intentSignals)) {
     add(intentKey);
     for (const kw of sig.keywords) add(kw);

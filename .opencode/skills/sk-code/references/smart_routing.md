@@ -281,3 +281,169 @@ Returned when intent confidence is low (`max(intent_scores) < 0.5`) OR when the 
 - [`./phase_detection.md`](./phase_detection.md) — Phase 1/2/3 lifecycle and per-phase resource loading
 - `SKILL.md` §2 SMART ROUTING — operator-facing summary of this routing contract
 - Barter equivalent: `barter/.opencode/skills/sk-code/references/smart_routing.md` (different routing key — git-remote project — but same structural pattern)
+
+---
+
+## 11. MACHINE-READABLE ROUTER (replay / benchmark source)
+
+This is the single machine-readable projection of the prose Intent Model (§2) and the per-surface maps (§4 Webflow, §5 Motion.dev, §6 OpenCode). The prose sections above are the human-facing contract; this block is the byte-for-byte source a deterministic router-replay parses. Keep the two in sync: when a map row changes above, update the matching `RESOURCE_MAP` entry here.
+
+A drift guard (`.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/sk-code-router-sync.vitest.ts`) keeps this block honest: it fails if any path here is missing on disk, if any routable `references/`/`assets/` doc stops being covered, or if an explicit full path named in the prose maps is absent here. Run it standalone with `npx vitest run skill-benchmark/tests/sk-code-router-sync.vitest.ts` from `.opencode/skills/deep-improvement/scripts`.
+
+This projection is intentionally lossy in three documented ways the flat dictionary cannot express, all of which stay enforced by the prose contract and the surface-detection pseudocode in `SKILL.md` §2:
+
+- **Surface is flattened.** Webflow, Motion.dev, and OpenCode resources for a shared intent are unioned under one key. Real routing detects the surface first (CWD + target paths) and loads only that surface's slice, so a replay that sees prompt text alone will over-route relative to a single surface — read a low efficiency signal as a projection artifact, not a routing defect.
+- **No phase boosts.** The `+5` unambiguous-phase boost from the §2 scoring algorithm is not represented; every keyword carries unit weight here.
+- **No doc-only anti-signals.** The `sk-code -2 / sk-doc +3` anti-signals (§2) that route prose-only edits away from this skill are a pre-filter the flat model does not carry.
+
+```python
+# Always-loaded routing preamble: every code task detects stack, detects phase,
+# consults the router, and applies the universal quality baseline before any
+# surface-specific resource. These are loaded on every route.
+DEFAULT_RESOURCE = [
+    "references/stack_detection.md",
+    "references/phase_detection.md",
+    "references/smart_routing.md",
+    "references/universal/code_quality_standards.md",
+]
+
+INTENT_SIGNALS = {
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
+    "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
+    "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
+    "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
+    "TESTING":            {"weight": 1, "keywords": ["unit test", "integration test", "coverage", "vitest", "pytest", "shellcheck"]},
+    "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
+    "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "largest contentful", "pagespeed", "jank", "frame budget"]},
+    "ANIMATION":          {"weight": 1, "keywords": ["transition", "gsap", "lenis", "carousel", "parallax"]},
+    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "scroll()", "cross-stack animation"]},
+    "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
+    "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
+    "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
+    "CONFIG":             {"weight": 1, "keywords": ["jsonc", ".json", ".jsonc", "descriptor", "config schema"]},
+    "LANGUAGE_STANDARDS": {"weight": 1, "keywords": ["typescript", ".ts", ".tsx", "python", ".py", "shell script", "bash", ".sh", "commonjs", ".cjs", ".mjs", "docstring"]},
+}
+
+RESOURCE_MAP = {
+    "IMPLEMENTATION": [
+        "references/universal/multi_agent_research.md",
+        "references/webflow/implementation/implementation_workflows.md",
+        "references/webflow/implementation/async_patterns.md",
+        "references/webflow/implementation/observer_patterns.md",
+        "references/webflow/implementation/security_patterns.md",
+        "references/webflow/implementation/third_party_integrations.md",
+        "references/webflow/implementation/webflow_patterns.md",
+        "references/webflow/shared/dev_workflow.md",
+        "references/opencode/shared/universal_patterns.md",
+        "references/opencode/shared/code_organization.md",
+        "assets/opencode/checklists/agent_authoring.md",
+        "assets/opencode/checklists/command_authoring.md",
+        "assets/opencode/checklists/skill_authoring.md",
+        "assets/opencode/checklists/mcp_server_authoring.md",
+        "assets/opencode/checklists/spec_folder_authoring.md",
+        "assets/opencode/recipes/spec_folder_write.md",
+        "assets/universal/patterns/README.md",
+        "assets/webflow/integrations/README.md",
+        "assets/webflow/patterns/README.md",
+        "assets/webflow/templates/README.md"
+    ],
+    "CODE_QUALITY": [
+        "references/universal/code_quality_standards.md",
+        "references/universal/code_style_guide.md",
+        "references/webflow/shared/cross_language_rules.md",
+        "references/webflow/shared/enforcement.md",
+        "assets/opencode/checklists/universal_checklist.md",
+        "assets/opencode/checklists/javascript_checklist.md",
+        "assets/opencode/checklists/typescript_checklist.md",
+        "assets/opencode/checklists/python_checklist.md",
+        "assets/opencode/checklists/shell_checklist.md",
+        "assets/webflow/checklists/code_quality_checklist.md"
+    ],
+    "DEBUGGING": [
+        "references/universal/error_recovery.md",
+        "references/webflow/debugging/debugging_workflows.md",
+        "references/webflow/debugging/error_recovery.md",
+        "assets/universal/checklists/debugging_checklist.md",
+        "assets/webflow/checklists/debugging_checklist.md"
+    ],
+    "VERIFICATION": [
+        "references/webflow/verification/verification_workflows.md",
+        "references/opencode/shared/alignment_verification_automation.md",
+        "assets/universal/checklists/verification_checklist.md",
+        "assets/webflow/checklists/verification_checklist.md",
+        "assets/scripts/README.md"
+    ],
+    "TESTING": [
+        "assets/motion_dev/playbook_entries.md"
+    ],
+    "DEPLOYMENT": [
+        "references/webflow/deployment/cdn_deployment.md",
+        "references/webflow/deployment/minification_guide.md",
+        "references/webflow/deployment/webflow_staging_production.md",
+        "assets/webflow/scripts/README.md"
+    ],
+    "PERFORMANCE": [
+        "references/webflow/performance/cwv_remediation.md",
+        "references/webflow/performance/interaction_gated_loading.md",
+        "references/webflow/performance/resource_loading.md",
+        "references/webflow/performance/third_party.md",
+        "references/webflow/performance/webflow_constraints.md",
+        "references/webflow/verification/performance_checklist.md",
+        "references/webflow/implementation/performance_patterns.md",
+        "references/motion_dev/performance_and_pitfalls.md",
+        "assets/webflow/checklists/performance_loading_checklist.md"
+    ],
+    "ANIMATION": [
+        "references/webflow/implementation/animation_workflows.md",
+        "references/webflow/implementation/swiper_patterns.md"
+    ],
+    "MOTION_DEV": [
+        "references/motion_dev/quick_start.md",
+        "references/motion_dev/animate_and_timelines.md",
+        "references/motion_dev/scroll_and_gestures.md",
+        "references/motion_dev/integration_patterns.md",
+        "references/motion_dev/decision_matrix.md",
+        "assets/motion_dev/install_card.md",
+        "assets/motion_dev/snippets/README.md"
+    ],
+    "FORMS": [
+        "references/webflow/implementation/form_upload_workflows.md",
+        "references/webflow/implementation/focus_management.md"
+    ],
+    "VIDEO": [
+        "references/webflow/implementation/third_party_integrations.md"
+    ],
+    "HOOKS": [
+        "references/opencode/shared/hooks.md"
+    ],
+    "CONFIG": [
+        "references/opencode/config/style_guide.md",
+        "references/opencode/config/quality_standards.md",
+        "references/opencode/config/quick_reference.md",
+        "assets/opencode/checklists/config_checklist.md"
+    ],
+    "LANGUAGE_STANDARDS": [
+        "references/webflow/css/style_guide.md",
+        "references/webflow/css/quality_standards.md",
+        "references/webflow/css/quick_reference.md",
+        "references/webflow/css/patterns.md",
+        "references/webflow/html/style_guide.md",
+        "references/webflow/html/quality_standards.md",
+        "references/webflow/javascript/style_guide.md",
+        "references/webflow/javascript/quality_standards.md",
+        "references/webflow/javascript/quick_reference.md",
+        "references/opencode/javascript/style_guide.md",
+        "references/opencode/javascript/quality_standards.md",
+        "references/opencode/javascript/quick_reference.md",
+        "references/opencode/typescript/style_guide.md",
+        "references/opencode/typescript/quality_standards.md",
+        "references/opencode/typescript/quick_reference.md",
+        "references/opencode/python/style_guide.md",
+        "references/opencode/python/quality_standards.md",
+        "references/opencode/python/quick_reference.md",
+        "references/opencode/shell/style_guide.md",
+        "references/opencode/shell/quality_standards.md",
+        "references/opencode/shell/quick_reference.md"
+    ],
+}
+```

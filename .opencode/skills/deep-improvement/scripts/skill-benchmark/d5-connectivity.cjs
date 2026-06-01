@@ -53,12 +53,15 @@ function scanConnectivity({ skillRoot }) {
       findings: [{ class: 'missing_skill_md', severity: 'P0', detail: 'SKILL.md not found' }],
     };
   }
-  const router = parseRouter(fs.readFileSync(skillMdPath, 'utf8'));
+  const router = parseRouter(fs.readFileSync(skillMdPath, 'utf8'), skillRoot);
   const intentKeys = new Set(Object.keys(router.intentSignals));
   const deadResourcePaths = [];
   const deadIntentKeys = [];
   const pathEscapes = [];
   const routedRefs = new Set();
+  // Always-loaded default resources are reachable on every route, so they count
+  // as covered (not orphans) even when no intent maps to them.
+  for (const r of router.defaultResource || []) routedRefs.add(r);
 
   for (const [intent, resources] of Object.entries(router.resourceMap)) {
     if (!intentKeys.has(intent)) {
@@ -67,8 +70,11 @@ function scanConnectivity({ skillRoot }) {
     }
     for (const r of resources) {
       routedRefs.add(r);
+      const root = path.resolve(skillRoot);
       const resolved = path.resolve(skillRoot, r);
-      if (!resolved.startsWith(path.resolve(skillRoot))) {
+      // Separator-bounded containment: a bare startsWith(root) would let a
+      // sibling like `<root>-evil/...` slip through as "inside" the skill root.
+      if (resolved !== root && !resolved.startsWith(root + path.sep)) {
         pathEscapes.push(r);
         findings.push({ class: 'path_escape', severity: 'P0', locus: r, detail: `${r} resolves outside skill root` });
       } else if (!fs.existsSync(resolved)) {

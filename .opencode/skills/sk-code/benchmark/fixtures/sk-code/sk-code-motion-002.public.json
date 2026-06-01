@@ -1,0 +1,11 @@
+{
+  "scenarioId": "sk-code-motion-002",
+  "tier": "T2",
+  "public": {
+    "prompt": "On a marketing site I want a vertical list where each row gently eases into place one after another as the visitor brings it into view by scrolling, instead of everything showing up at once. What is the project's recommended way to do this kind of on-enter reveal, and which helper or library should I reach for?",
+    "runtime": "frontend marketing site",
+    "mutationBoundary": "read-only-or-packet-local",
+    "outputContract": "Name the project-preferred library and the exact reference plus a minimal example, with the trade-off versus plain CSS called out."
+  },
+  "provenance": { "promptAuthor": "human-holdout", "goldAuthor": "router-extractor", "blindToRouterKeywords": true }
+}

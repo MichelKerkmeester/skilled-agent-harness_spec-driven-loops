@@ -81,17 +81,66 @@ function parseResourceMap(body) {
   return map;
 }
 
+// DEFAULT_RESOURCE may be a single quoted path or a list of them. A skill's
+// always-loaded routing preamble (e.g. stack/phase detection plus the router
+// doc) is genuinely consulted on every route, so the replay seeds every result
+// with the whole set. Always returns an array; [] when absent.
 function parseDefaultResource(text) {
-  const m = /DEFAULT_RESOURCE\s*=\s*["']([^"']+)["']/.exec(text);
-  return m ? m[1] : null;
+  const listM = /DEFAULT_RESOURCE\s*=\s*\[([\s\S]*?)\]/.exec(text);
+  if (listM) {
+    return [...listM[1].matchAll(/["']([^"']+)["']/g)].map((m) => m[1]);
+  }
+  const strM = /DEFAULT_RESOURCE\s*=\s*["']([^"']+)["']/.exec(text);
+  return strM ? [strM[1]] : [];
 }
 
-function parseRouter(skillMdText) {
-  const intentSignals = parseIntentSignals(extractDictBody(skillMdText, 'INTENT_SIGNALS'));
-  const resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
-  const defaultResource = parseDefaultResource(skillMdText);
+// Some skills keep the authoritative router in a referenced doc (e.g.
+// references/smart_routing.md) rather than inlining it in SKILL.md. When the
+// inline dictionaries are absent we follow that pointer and parse the same
+// INTENT_SIGNALS / RESOURCE_MAP block from the referenced file. Inline always
+// wins; a skill with no inline block and no parseable referenced doc stays
+// unparseable, so a genuinely router-less skill is still reported as such.
+const ROUTER_REF_HINT = /(resource_map|intent_signals|intent_model|smart[ _-]?rout|routing logic)/i;
+
+function findReferencedRouterDoc(skillMdText, skillRoot) {
+  const pathRe = /(?:\.\/)?(references\/[A-Za-z0-9_./-]+\.md)/;
+  for (const line of skillMdText.split('\n')) {
+    if (!ROUTER_REF_HINT.test(line)) continue;
+    const m = pathRe.exec(line);
+    if (m) {
+      const candidate = path.join(skillRoot, m[1]);
+      if (fs.existsSync(candidate)) return candidate;
+    }
+  }
+  // Convention fallback: a router doc at the well-known location.
+  const conventional = path.join(skillRoot, 'references', 'smart_routing.md');
+  return fs.existsSync(conventional) ? conventional : null;
+}
+
+function parseRouter(skillMdText, skillRoot) {
+  let intentSignals = parseIntentSignals(extractDictBody(skillMdText, 'INTENT_SIGNALS'));
+  let resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
+  let defaultResource = parseDefaultResource(skillMdText);
+  let routerSource = 'inline';
+
+  const inlineEmpty = Object.keys(intentSignals).length === 0 && Object.keys(resourceMap).length === 0;
+  if (inlineEmpty && skillRoot) {
+    const refDoc = findReferencedRouterDoc(skillMdText, skillRoot);
+    if (refDoc) {
+      const refText = fs.readFileSync(refDoc, 'utf8');
+      const refSignals = parseIntentSignals(extractDictBody(refText, 'INTENT_SIGNALS'));
+      const refMap = parseResourceMap(extractDictBody(refText, 'RESOURCE_MAP'));
+      if (Object.keys(refSignals).length > 0 || Object.keys(refMap).length > 0) {
+        intentSignals = refSignals;
+        resourceMap = refMap;
+        defaultResource = defaultResource.length ? defaultResource : parseDefaultResource(refText);
+        routerSource = path.relative(skillRoot, refDoc);
+      }
+    }
+  }
+
   const parseable = Object.keys(intentSignals).length > 0 || Object.keys(resourceMap).length > 0;
-  return { intentSignals, resourceMap, defaultResource, parseable };
+  return { intentSignals, resourceMap, defaultResource, parseable, routerSource };
 }
 
 function scoreIntents(taskLower, intentSignals) {
@@ -119,14 +168,14 @@ function selectIntents(scores) {
  */
 function routeSkillResources({ skillRoot, taskText }) {
   const skillMd = readSkillMd(skillRoot);
-  const router = parseRouter(skillMd);
+  const router = parseRouter(skillMd, skillRoot);
   if (!router.parseable) {
     return { parseable: false, intents: [], resources: [], missingResources: [], scores: [] };
   }
   const scores = scoreIntents(String(taskText || '').toLowerCase(), router.intentSignals);
   const intents = selectIntents(scores);
   const resourceSet = new Set();
-  if (router.defaultResource) resourceSet.add(router.defaultResource);
+  for (const r of router.defaultResource || []) resourceSet.add(r);
   for (const intent of intents) {
     for (const r of router.resourceMap[intent] || []) resourceSet.add(r);
   }

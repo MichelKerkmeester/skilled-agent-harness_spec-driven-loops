@@ -41,8 +41,8 @@ Lane C is reached by resolving `--mode=skill-benchmark` in `loop-host.cjs`, whic
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `VALID_MODES` includes all three modes, that the skill-benchmark plan is a single `run-skill-benchmark.cjs` step, that it fails closed without required args, and the Lane A default plan stays byte-identical. |
-| `.opencode/skills/deep-improvement/scripts/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, `resolveScriptPath` lane mapping, and the closed mode set. |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `VALID_MODES` includes all three modes, that the skill-benchmark plan is a single `run-skill-benchmark.cjs` step, that it fails closed without required args, and the Lane A default plan stays byte-identical. |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/loop-host.vitest.ts` | Automated test | Verifies `parseArgs`, `resolveMode`, `resolveScriptPath` lane mapping, and the closed mode set. |
 
 ---
 

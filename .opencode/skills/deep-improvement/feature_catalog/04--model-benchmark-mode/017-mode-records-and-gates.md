@@ -43,8 +43,8 @@ Two environment gates harden the five-dimension scorer, and both default to the 
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/optin-scorer.vitest.ts` | Automated test | Verifies `scoringMethod` stamping across the pattern and 5dim paths. |
-| `.opencode/skills/deep-improvement/scripts/tests/scorer.vitest.ts` | Automated test | Verifies 5-dim scorer behavior under the criteria-exec and grader-cache gates. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies `scoringMethod` stamping across the pattern and 5dim paths. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies 5-dim scorer behavior under the criteria-exec and grader-cache gates. |
 
 ---
 

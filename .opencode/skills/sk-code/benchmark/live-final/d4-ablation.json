@@ -1,0 +1,30 @@
+{
+  "summary": {
+    "D4_aggregate": 49,
+    "scoredCount": 2,
+    "total": 2,
+    "attribution": "approximate"
+  },
+  "results": [
+    {
+      "id": "LS-001",
+      "score": 0.435,
+      "onScore": 0.82,
+      "offScore": 0.95,
+      "attribution": "approximate",
+      "graderMode": "real",
+      "contaminated": false,
+      "onActivated": true
+    },
+    {
+      "id": "CS-001",
+      "score": 0.55,
+      "onScore": 0.88,
+      "offScore": 0.78,
+      "attribution": "approximate",
+      "graderMode": "real",
+      "contaminated": false,
+      "onActivated": true
+    }
+  ]
+}

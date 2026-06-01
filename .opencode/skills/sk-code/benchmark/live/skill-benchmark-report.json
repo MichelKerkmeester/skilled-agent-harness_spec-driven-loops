@@ -1,0 +1,288 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-b-live",
+  "traceMode": "live",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 76,
+  "gate": {
+    "d5Score": 91,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 96
+    },
+    "D2": {
+      "points": 20,
+      "score": 94
+    },
+    "D3": {
+      "points": 15,
+      "score": 33
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 91,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D1inter",
+    "D4"
+  ],
+  "funnel": {
+    "passed": 3
+  },
+  "headlineBottleneck": null,
+  "bottlenecks": [
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/phase_detection.md",
+      "detail": "references/phase_detection.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/smart_routing.md",
+      "detail": "references/smart_routing.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/stack_detection.md",
+      "detail": "references/stack_detection.md is not reachable from any RESOURCE_MAP intent"
+    }
+  ],
+  "coverage": {
+    "routing": 2,
+    "advisor": 1,
+    "browser": 0,
+    "routedOut": 0,
+    "scored": 3
+  },
+  "divergence": [],
+  "lintFindings": [],
+  "scenarioRows": [
+    {
+      "scenarioId": "SD-001",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 0.8909090909090909,
+          "intentRecall": null,
+          "resourceRecall": 0.8181818181818182,
+          "negative": false
+        },
+        "d2": {
+          "score": 0.8181818181818182,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.3214285714285714,
+          "routedCount": 28,
+          "wastedCount": 19,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 68,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 31,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "read",
+          "read",
+          "glob",
+          "glob",
+          "grep",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "read",
+          "glob"
+        ],
+        "observedReads": [
+          "references/smart_routing.md",
+          "references/stack_detection.md",
+          "references/webflow/**/*.md",
+          "assets/webflow/**/*.md",
+          "references/webflow",
+          "references/universal/*.md",
+          "assets/webflow/scripts/*",
+          "assets/webflow/integrations/*",
+          "assets/webflow/patterns/*",
+          "assets/webflow/templates/*",
+          "assets/universal/**/*.md"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\n  \"surface\": \"WEBFLOW\",\n  \"subLanguage\": \"none\",\n  \"resources\": [\n    \"references/stack_detection.md\",\n    \"references/smart_routing.md\",\n    \"references/phase_detection.md\",\n    \"references/universal/code_quality_standards.md\",\n    \"references/universal/error_recovery.md\",\n    \"references"
+      }
+    },
+    {
+      "scenarioId": "RD-002",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 2,
+          "wastedCount": 2,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 69,
+      "applicable": true,
+      "classKind": "advisor",
+      "expectedSurface": null,
+      "observedSurface": "OPENCODE",
+      "surfaceMatch": null,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 6,
+        "activated": true,
+        "toolCalls": [
+          "skill"
+        ],
+        "observedReads": [],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"OPENCODE\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\"],\"assets\":[],\"agent\":\"none\",\"disambiguation\":false}\n```"
+      }
+    },
+    {
+      "scenarioId": "CS-001",
+      "tier": "live",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": 1,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0.6666666666666667,
+          "routedCount": 15,
+          "wastedCount": 5,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": null,
+          "unscored": "no advisor probe (run with --advisor-mode=python)"
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": null,
+      "modeAScore": 90,
+      "applicable": true,
+      "classKind": "routing",
+      "expectedSurface": "WEBFLOW",
+      "observedSurface": "WEBFLOW",
+      "surfaceMatch": true,
+      "traceMode": "live",
+      "liveEvidence": {
+        "eventCount": 27,
+        "activated": true,
+        "toolCalls": [
+          "mk-spec-memory_memory_match_triggers",
+          "skill",
+          "glob",
+          "glob",
+          "glob",
+          "glob",
+          "grep",
+          "grep",
+          "glob",
+          "glob",
+          "glob",
+          "read"
+        ],
+        "observedReads": [
+          "references/webflow/**/*.md",
+          "references/motion_dev/**/*.md",
+          "assets/webflow/**/*.md",
+          "assets/motion_dev/**/*.md",
+          "assets/motion_dev/snippets/*",
+          "assets/webflow/patterns/*",
+          "assets/webflow/integrations/*"
+        ],
+        "statedRoutingParsed": true,
+        "responseHead": "```json\n{\"surface\":\"WEBFLOW\",\"subLanguage\":\"none\",\"resources\":[\"references/stack_detection.md\",\"references/smart_routing.md\",\"references/webflow/implementation/animation_workflows.md\",\"references/webflow/implementation/observer_patterns.md\",\"references/webflow/implementation/third_party_integrations"
+      }
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 3,
+    "traceMode": "live",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  },
+  "parseWarnings": [
+    "SA-001: missing-exact-prompt"
+  ]
+}

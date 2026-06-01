@@ -31,8 +31,24 @@ After Phase 001 (design research) completed, a dedicated implementation-deep-res
 3. **003-skill-rename-deep-improvement** — rename `deep-agent-improvement` → `deep-improvement`, narrow scope (depends on 001 + 002).
 4. **004-skill-benchmark-mode** — design + build Lane C (depends on 001 + 002 + 003).
 5. **005-validation-and-docs** — three-lane docs, advisor, hardening (depends on 003 + 004).
+6. **006-deep-review** — deep-review loop over the built lane.
+7. **007-deep-improvement-3lane-doc-rebuild** — three-lane documentation rebuild.
+8. **008-playbook-manual-test-run** — manual playbook test run.
+9. **009-sk-code-router-benchmarkability** — make sk-code's delegated router machine-readable so Lane C can benchmark it; harness reference-following + drift guard. (Originally standalone packet `126`; absorbed here.)
+10. **010-skill-benchmark-live-playbook-mode** — Lane C "Mode B": benchmark a skill against its own `manual_testing_playbook` executed live via cli-opencode (dual-mode router CI gate + live default, browser executor, D4 ablation, generator). Realizes the Mode B deferred by `002-implementation-deep-research`. (Originally standalone packet `127`; absorbed here.)
 
-Execution arc: 001 ✅ → 002 (impl research) → 003 (rename) → 004 (build) → 005 (docs).
+Execution arc: 001 ✅ → 002 → 003 → 004 → 005 → 006 → 007 → 008 → 009 → 010.
+
+## Consolidation — standalone packets 126/127 absorbed as phases 009/010
+
+Two packets that began as track-level siblings were folded into this phase parent, since both continue the Lane C skill-benchmark work:
+
+| Was (standalone) | Now (phase) |
+| --- | --- |
+| `126-sk-code-router-benchmarkability/` | `009-sk-code-router-benchmarkability/` |
+| `127-skill-benchmark-live-playbook-mode/` | `010-skill-benchmark-live-playbook-mode/` |
+
+`127` (now `010`) realizes the "Mode B" live-playbook benchmark that `002-implementation-deep-research` scoped as a follow-on; `126` (now `009`) is the prerequisite that made sk-code's router benchmarkable. Both retain their full Level-2 doc sets as phase children.
 
 ## Notes
 

@@ -67,6 +67,9 @@ const SKILL_BENCHMARK_RUN_OPTIONS = [
   'output',
   'trace-mode',
   'advisor-mode',
+  'scenarios',
+  'executor',
+  'playbook-dir',
 ];
 
 // Single source of truth for the optional model-benchmark flags loop-host

@@ -834,16 +834,16 @@ Expected signals: the run exits 0 and writes both `skill-benchmark-report.json` 
 
 ## 17. AUTOMATED TEST CROSS-REFERENCE
 
-The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives under `.opencode/skills/deep-improvement/scripts/tests/` and should be used as regression evidence when a scenario touches the matching helper.
+The manual scenarios exercise the operator-visible behavior. Runtime helper coverage lives lane-locally under each lane's `tests/` (`scripts/<lane>/tests/`; see `scripts/shared/tests/README.md` for the index) and should be used as regression evidence when a scenario touches the matching helper.
 
 | Runtime Test | Covered Runtime Surface |
 |---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/benchmark-stability.vitest.ts` | Benchmark stability helpers used by RT-026 and low-sample validation |
-| `.opencode/skills/deep-improvement/scripts/tests/candidate-lineage.vitest.ts` | Candidate lineage graph helpers used by E2E-021 and replay-consumer validation |
-| `.opencode/skills/deep-improvement/scripts/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
-| `.opencode/skills/deep-improvement/scripts/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
-| `.opencode/skills/deep-improvement/scripts/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/benchmark-stability.vitest.ts` | Benchmark stability helpers used by RT-026 and low-sample validation |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Candidate lineage graph helpers used by E2E-021 and replay-consumer validation |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Journal emission and taxonomy helpers used by RT-022, RT-023, and RT-029 |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Mutation coverage and trajectory helpers used by E2E-019 and RT-027 |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/trade-off-detector.vitest.ts` | Trade-off and insufficient-data helpers used by E2E-020 and RT-030 |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Skill-benchmark router-replay, D5 connectivity, scoring, and dual-report helpers used by SB-043..SB-048 |
 
 ---
 

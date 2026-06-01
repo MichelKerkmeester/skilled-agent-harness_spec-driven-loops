@@ -134,8 +134,8 @@ Run from the repository root.
 
 ```bash
 node .opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs --mock /dev/null
-npx vitest run .opencode/skills/deep-improvement/scripts/tests/run-benchmark-hardening.vitest.ts
-npx vitest run .opencode/skills/deep-improvement/scripts/tests/optin-scorer.vitest.ts
+npx vitest run .opencode/skills/deep-improvement/scripts/model-benchmark/tests/run-benchmark-hardening.vitest.ts
+npx vitest run .opencode/skills/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts
 ```
 
 Expected result: the dispatcher prints a mock JSON envelope and the vitest suites pass.

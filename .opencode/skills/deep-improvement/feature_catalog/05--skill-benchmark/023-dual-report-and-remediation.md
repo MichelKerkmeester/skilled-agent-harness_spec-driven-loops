@@ -40,8 +40,8 @@ The orchestrator writes a machine `skill-benchmark-report.json` and renders a hu
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `renderReport` renders the title and `Verdict: PASS` from an aggregated report and that the end-to-end run emits both `skill-benchmark-report.json` and `.md`. |
-| `.opencode/skills/deep-improvement/scripts/tests/remediation.vitest.ts` | Automated test | Validates the model-benchmark remediation hardening fixes (dispatcher cwd, criteria-exec gate, grader clamp, pause sentinel). |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `renderReport` renders the title and `Verdict: PASS` from an aggregated report and that the end-to-end run emits both `skill-benchmark-report.json` and `.md`. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Validates the model-benchmark remediation hardening fixes (dispatcher cwd, criteria-exec gate, grader clamp, pause sentinel). |
 
 ---
 

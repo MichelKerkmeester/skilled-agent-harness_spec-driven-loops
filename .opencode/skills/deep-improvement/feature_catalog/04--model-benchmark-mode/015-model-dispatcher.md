@@ -43,7 +43,7 @@ The dispatcher forwards `cwd` to every executor so spawned CLIs run against the 
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/remediation.vitest.ts` | Automated test | Exercises dispatcher behavior alongside the model-benchmark remediation fixes. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts` | Automated test | Exercises dispatcher behavior alongside the model-benchmark remediation fixes. |
 | `.opencode/skills/deep-improvement/SKILL.md` | Skill contract | Documents the dispatcher as the model-agnostic seam loaded only on the model-benchmark path. |
 
 ---

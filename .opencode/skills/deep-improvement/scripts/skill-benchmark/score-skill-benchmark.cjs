@@ -32,7 +32,43 @@ function setRecall(expected, actual) {
  * Score a single scenario from its router-replay result joined with private gold.
  * @returns {{ scenarioId, dims, firstFailingStage, modeAScore, applicable }}
  */
-function scoreScenario({ scenarioId, tier, routerResult, expected, advisorResult }) {
+function scoreScenario(arg) {
+  let { scenarioId, tier, routerResult, expected, advisorResult } = arg;
+  // Back-compat adapter. Legacy callers pass {routerResult, expected}; the
+  // playbook/live path passes {scenario, observed, traceMode}. Normalize the new
+  // shape onto the legacy locals so the scoring body stays shared (and the
+  // existing unit tests keep exercising it unchanged).
+  let scenario = arg.scenario || null;
+  if (scenario && arg.observed) {
+    const obs = arg.observed;
+    scenarioId = scenario.scenarioId;
+    tier = scenario.tier || tier || (obs.mode === 'live' ? 'live' : 'playbook');
+    routerResult = {
+      parseable: obs.parseable !== false,
+      intents: obs.observedIntents || [],
+      resources: obs.observedResources || [],
+      missingResources: obs.missingResources || [],
+    };
+    expected = {
+      skillId: scenario.expectedSkillId || scenario.skillId || arg.skillId,
+      // Playbook gold is SURFACE + RESOURCES. Router intent keys are a different
+      // vocabulary, so intent-key recall applies only to intent-gold skills
+      // (sk-doc's expectedIntent); surface correctness is scored separately.
+      intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
+      resources: scenario.expectedResources || [],
+      negativeActivation: scenario.negativeActivation === true,
+    };
+  }
+  // Surface correctness is meaningful only when an executor observed a surface
+  // (live mode); router mode leaves observedSurface null. Computed up front so a
+  // wrong observed surface can fail routing rather than passing on incidental
+  // resource overlap.
+  const obs = arg.observed || null;
+  const expectedSurface = scenario ? scenario.expectedSurface : undefined;
+  const observedSurface = obs ? (obs.observedSurface || null) : undefined;
+  const surfaceMatch = (expectedSurface && observedSurface)
+    ? (observedSurface === expectedSurface) : null;
+
   const dims = {};
   const negative = expected && expected.negativeActivation === true;
 
@@ -47,6 +83,12 @@ function scoreScenario({ scenarioId, tier, routerResult, expected, advisorResult
     const ir = intentRecall == null ? 1 : intentRecall;
     const rr = resourceRecall == null ? 1 : resourceRecall;
     dims.d1intra = { score: 0.4 * ir + 0.6 * rr, intentRecall, resourceRecall, negative: false };
+  }
+  // Live-only: a wrong observed surface is a routing failure regardless of any
+  // incidental resource overlap, so cap D1-intra below the pass line.
+  if (surfaceMatch === false && !negative) {
+    dims.d1intra.surfaceMismatch = true;
+    dims.d1intra.score = Math.min(dims.d1intra.score, 0.25);
   }
 
   // D2 proxy (Mode A): recall of expected resources in the routed set. In live
@@ -92,6 +134,7 @@ function scoreScenario({ scenarioId, tier, routerResult, expected, advisorResult
   let firstFailingStage = null;
   if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) firstFailingStage = 'activated-inter';
   else if (!routerResult.parseable) firstFailingStage = 'router-unparseable';
+  else if (surfaceMatch === false) firstFailingStage = 'surface-mismatch';
   else if (dims.d1intra.score < 0.5) firstFailingStage = 'routed-intra';
   else if (dims.d2.score < 0.5) firstFailingStage = 'discovered';
 
@@ -106,21 +149,68 @@ function scoreScenario({ scenarioId, tier, routerResult, expected, advisorResult
   const wsum = measured.reduce((a, [, w]) => a + w, 0);
   const modeAScore = Math.round((measured.reduce((a, [s, w]) => a + s * w, 0) / wsum) * 100);
 
-  return { scenarioId, tier, dims, firstFailingStage, modeAScore, applicable: true };
+  // Trimmed live evidence so a live report is inspectable (what the model
+  // actually did) without bloating the JSON with full transcripts.
+  const liveEvidence = (obs && obs.raw) ? {
+    eventCount: obs.raw.eventCount,
+    activated: obs.activation ? obs.activation.activated : undefined,
+    toolCalls: (obs.raw.toolCalls || []).map((t) => t.tool),
+    observedReads: obs.raw.observedReads,
+    statedRoutingParsed: !!(obs.raw.stated && Object.keys(obs.raw.stated).length),
+    responseHead: (obs.raw.responseText || '').slice(0, 300),
+  } : undefined;
+
+  return {
+    scenarioId, tier, dims, firstFailingStage, modeAScore, applicable: true,
+    classKind: scenario ? scenario.classKind : undefined,
+    expectedSurface, observedSurface, surfaceMatch,
+    traceMode: arg.traceMode || (obs ? obs.mode : undefined),
+    liveEvidence,
+  };
+}
+
+/**
+ * A↔B divergence: the 122-research finding class — the router can reach a
+ * resource but the live model doesn't (the skill doesn't signpost it inline),
+ * or vice versa. Compared per scenario from a router observation and a live
+ * observation of the SAME scenario.
+ * @returns {{ scenarioId, resourceDelta:{onlyRouter:string[],onlyLive:string[]}, surfaceAgree:boolean|null, severity:string }}
+ */
+function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
+  const rRefs = new Set((routerObserved && routerObserved.observedResources) || []);
+  const lRefs = new Set((liveObserved && liveObserved.observedResources) || []);
+  const onlyRouter = [...rRefs].filter((r) => !lRefs.has(r));
+  const onlyLive = [...lRefs].filter((r) => !rRefs.has(r));
+  const rSurface = routerObserved && routerObserved.observedSurface;
+  const lSurface = liveObserved && liveObserved.observedSurface;
+  const surfaceAgree = (rSurface && lSurface) ? (rSurface === lSurface) : null;
+  const delta = onlyRouter.length + onlyLive.length;
+  const severity = delta === 0 && surfaceAgree !== false ? 'none' : (delta > 4 || surfaceAgree === false ? 'high' : 'low');
+  return { scenarioId, resourceDelta: { onlyRouter, onlyLive }, surfaceAgree, severity };
 }
 
 /**
  * Aggregate scenario rows + the D5 connectivity result into a report object.
  */
-function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }) {
+function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings, divergence }) {
   const rows = scenarioRows.filter(Boolean);
   const avg = (sel) => {
     const vals = rows.map(sel).filter((v) => typeof v === 'number');
     return vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
   };
-  // Funnel attrition: count first-failing-stage occurrences.
+  // Per-classKind coverage. Browser scenarios are routed out of the text
+  // executors; routed-out rows enter neither the funnel nor the score average.
+  const coverage = { routing: 0, advisor: 0, browser: 0, routedOut: 0, scored: 0 };
+  for (const r of rows) {
+    const k = r.classKind || 'routing';
+    if (coverage[k] !== undefined) coverage[k] += 1;
+    if (r.routedOut) coverage.routedOut += 1;
+    else if (typeof r.modeAScore === 'number') coverage.scored += 1;
+  }
+  // Funnel attrition: count first-failing-stage occurrences (scored rows only).
   const funnel = {};
   for (const r of rows) {
+    if (r.routedOut) continue;
     const stage = r.firstFailingStage || 'passed';
     funnel[stage] = (funnel[stage] || 0) + 1;
   }
@@ -132,7 +222,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }
   const aggregateScore = avg((r) => r.modeAScore);
   // D1-inter is scored only when advisor probes ran; avg() returns null if no row
   // carried a numeric D1-inter score, so the dimension self-reports its coverage.
-  const d1interAvg = avg((r) => (r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
+  const d1interAvg = avg((r) => (r.dims && r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
     ? Math.round(r.dims.d1inter.score * 100) : null));
   const gateFailed = connectivity.gateFailed;
   let verdict;
@@ -155,7 +245,7 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }
     schemaVersion: 'skill-benchmark-report.v1',
     status: 'skill-benchmark-complete',
     mode: 'skill-benchmark',
-    scoringMethod: 'mode-a-router-replay',
+    scoringMethod: (traceMode || 'router') === 'live' ? 'mode-b-live' : 'mode-a-router-replay',
     traceMode: traceMode || 'router',
     targetSkill: { id: skillId, root: skillRoot },
     verdict,
@@ -165,9 +255,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }
       D1inter: d1interAvg === null
         ? { points: WEIGHTS.d1inter, score: null, status: 'unscored-mode-a' }
         : { points: WEIGHTS.d1inter, score: d1interAvg },
-      D1intra: { points: WEIGHTS.d1intra, score: avg((r) => Math.round(r.dims.d1intra.score * 100)) },
-      D2: { points: WEIGHTS.d2, score: avg((r) => Math.round(r.dims.d2.score * 100)) },
-      D3: { points: WEIGHTS.d3, score: avg((r) => Math.round(r.dims.d3.score * 100)) },
+      D1intra: { points: WEIGHTS.d1intra, score: avg((r) => (r.dims && r.dims.d1intra ? Math.round(r.dims.d1intra.score * 100) : null)) },
+      D2: { points: WEIGHTS.d2, score: avg((r) => (r.dims && r.dims.d2 ? Math.round(r.dims.d2.score * 100) : null)) },
+      D3: { points: WEIGHTS.d3, score: avg((r) => (r.dims && r.dims.d3 ? Math.round(r.dims.d3.score * 100) : null)) },
       D4: { points: WEIGHTS.d4, score: null, status: 'unscored-mode-a' },
       D5: { points: WEIGHTS.d5, score: d5, hardGate: true },
     },
@@ -175,6 +265,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }
     funnel,
     headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,
     bottlenecks,
+    coverage,
+    divergence: divergence || [],
+    lintFindings: lintFindings || [],
     scenarioRows: rows,
     runQuality: {
       scenarioCount: rows.length,
@@ -184,4 +277,4 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode }
   };
 }
 
-module.exports = { scoreScenario, aggregate, WEIGHTS };
+module.exports = { scoreScenario, aggregate, computeDivergence, WEIGHTS };

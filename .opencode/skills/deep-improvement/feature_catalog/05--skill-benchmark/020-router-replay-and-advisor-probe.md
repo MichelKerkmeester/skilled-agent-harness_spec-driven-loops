@@ -40,7 +40,7 @@ Mode A routing is reproduced deterministically. `router-replay.cjs` parses the t
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `routeSkillResources` routes a REVIEW prompt on `cli-codex` to expected resources, `selectIntents` keeps near-tied intents, an unparseable router returns `parseable:false`, `scoreD1Inter` rank-weighting (1.0 / 0.75 / 0 / null) and negative-scenario inversion, and that `probeAdvisor` returns a ranked list deterministically. |
+| `.opencode/skills/deep-improvement/scripts/skill-benchmark/tests/skill-benchmark.vitest.ts` | Automated test | Asserts `routeSkillResources` routes a REVIEW prompt on `cli-codex` to expected resources, `selectIntents` keeps near-tied intents, an unparseable router returns `parseable:false`, `scoreD1Inter` rank-weighting (1.0 / 0.75 / 0 / null) and negative-scenario inversion, and that `probeAdvisor` returns a ranked list deterministically. |
 
 ---
 

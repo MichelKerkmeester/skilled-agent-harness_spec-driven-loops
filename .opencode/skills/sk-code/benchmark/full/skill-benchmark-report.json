@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "skill-benchmark-report.v1",
+  "status": "skill-benchmark-complete",
+  "mode": "skill-benchmark",
+  "scoringMethod": "mode-a-router-replay",
+  "traceMode": "router",
+  "targetSkill": {
+    "id": "sk-code",
+    "root": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-code"
+  },
+  "verdict": "CONDITIONAL",
+  "aggregateScore": 55,
+  "gate": {
+    "d5Score": 91,
+    "gateFailed": false,
+    "reason": null
+  },
+  "dimensionScores": {
+    "D1inter": {
+      "points": 12,
+      "score": 0
+    },
+    "D1intra": {
+      "points": 13,
+      "score": 100
+    },
+    "D2": {
+      "points": 20,
+      "score": 100
+    },
+    "D3": {
+      "points": 15,
+      "score": 0
+    },
+    "D4": {
+      "points": 25,
+      "score": null,
+      "status": "unscored-mode-a"
+    },
+    "D5": {
+      "points": 15,
+      "score": 91,
+      "hardGate": true
+    }
+  },
+  "unscoredDimensions": [
+    "D4"
+  ],
+  "funnel": {
+    "activated-inter": 2
+  },
+  "headlineBottleneck": "activated-inter",
+  "bottlenecks": [
+    {
+      "class": "funnel_attrition",
+      "severity": "P1",
+      "stage": "activated-inter",
+      "detail": "2 scenario(s) first fail at stage 'activated-inter'"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/phase_detection.md",
+      "detail": "references/phase_detection.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/smart_routing.md",
+      "detail": "references/smart_routing.md is not reachable from any RESOURCE_MAP intent"
+    },
+    {
+      "class": "orphan_reference",
+      "severity": "P2",
+      "locus": "references/stack_detection.md",
+      "detail": "references/stack_detection.md is not reachable from any RESOURCE_MAP intent"
+    }
+  ],
+  "scenarioRows": [
+    {
+      "scenarioId": "sk-code-loadspeed-001",
+      "tier": "T2",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": 0,
+          "rank": null,
+          "topSkill": null
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "activated-inter",
+      "modeAScore": 55,
+      "applicable": true
+    },
+    {
+      "scenarioId": "sk-code-motion-002",
+      "tier": "T2",
+      "dims": {
+        "d1intra": {
+          "score": 1,
+          "intentRecall": null,
+          "resourceRecall": null,
+          "negative": false
+        },
+        "d2": {
+          "score": 1,
+          "proxy": "router-replay-recall",
+          "note": "Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR"
+        },
+        "d3": {
+          "score": 0,
+          "routedCount": 1,
+          "wastedCount": 1,
+          "proxy": "router-overload",
+          "note": "Mode A proxy; live-mode replaces with calls/tokens-to-first-expected"
+        },
+        "d1inter": {
+          "score": 0,
+          "rank": null,
+          "topSkill": null
+        },
+        "d4": {
+          "score": null,
+          "unscored": "requires skill-on/off ablation (live mode)"
+        }
+      },
+      "firstFailingStage": "activated-inter",
+      "modeAScore": 55,
+      "applicable": true
+    }
+  ],
+  "runQuality": {
+    "scenarioCount": 2,
+    "traceMode": "router",
+    "note": "Mode A is the deterministic CI gate; D1-inter (advisor) + D4 (ablation) need live mode."
+  }
+}

@@ -43,8 +43,8 @@ Grader selection is separate from scorer selection. `--grader noop` is the defau
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/optin-scorer.vitest.ts` | Automated test | Verifies pattern-default parity, `--scorer 5dim` routing, grader selection, and `scoringMethod` stamping end to end. |
-| `.opencode/skills/deep-improvement/scripts/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer module behavior in isolation. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/optin-scorer.vitest.ts` | Automated test | Verifies pattern-default parity, `--scorer 5dim` routing, grader selection, and `scoringMethod` stamping end to end. |
+| `.opencode/skills/deep-improvement/scripts/model-benchmark/tests/scorer.vitest.ts` | Automated test | Verifies the five-dimension scorer module behavior in isolation. |
 
 ---
 

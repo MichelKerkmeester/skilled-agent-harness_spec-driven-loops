@@ -17,7 +17,7 @@ Resolve:
 - **target skill** — the skill id or root to benchmark (must have an `INTENT_SIGNALS` + `RESOURCE_MAP` smart router for Mode A; e.g. the `cli-*` skills).
 - **outputs dir** — where `skill-benchmark-report.{json,md}` are written.
 - **fixtures dir** (optional) — defaults to `<skill>/assets/skill-benchmark/fixtures/<skill-id>/`.
-- **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, follow-on).
+- **trace mode** — `router` (Mode A, deterministic, default/CI) or `live` (Mode B, BUILT — playbook corpus dispatched through `cli-opencode`).
 
 ## Run
 
@@ -40,4 +40,6 @@ Lane C is **diagnostic by default** (no target-skill mutation). Findings hand of
 
 ## Scope (current)
 
-Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically. D1-inter (advisor selection) is also built and deterministic, but opt-in via `--advisor-mode=python` (off by default and in CI; scored out-of-band through the in-repo SQLite advisor). Only D4 (usefulness ablation) and the live in-situ trace (Mode B) remain follow-on per the 002 implementation playbook; they report as `unscored-mode-a` until built. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.
+Mode A (router-replay) scores D1-intra, D2, D3, D5 deterministically; D1-inter (advisor selection) is opt-in via `--advisor-mode=python`.
+
+**Mode B (live playbook) is now BUILT** (packet `122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode`): a skill's own `manual_testing_playbook` is the corpus, scored in `--trace-mode router` (deterministic CI gate, real-gold) or `--trace-mode live` (real `cli-opencode` dispatch). Live routing/advisor scenarios are graded from the model's stated routing + observed activation; browser scenarios (MR/CB) route to a `bdg` executor; D4 usefulness is an **approximate** skill-on/off ablation; an opt-in staged generator can author scenarios for skills lacking them. Live flags: `--scenarios`, `--executor`, `--playbook-dir`; live model via env `SKILL_BENCH_OPENCODE_MODEL`/`SKILL_BENCH_OPENCODE_VARIANT` (use `gpt-5.5-fast --variant high`; `xhigh` times out). Live is advisory — the gated verdict stays router mode + the D5 hard gate. Modes `:auto` / `:confirm` follow the shared deep-loop command contract.

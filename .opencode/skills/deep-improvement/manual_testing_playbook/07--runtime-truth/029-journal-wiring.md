@@ -76,7 +76,7 @@ Output excerpt:
 | `.opencode/agents/debug.md` | Implementation or verification anchor referenced by this scenario |
 | `.opencode/commands/deep/start-agent-improvement-loop.md` | Implementation or verification anchor referenced by this scenario |
 | `.opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml` | Implementation or verification anchor referenced by this scenario |
-| `../../scripts/tests/improvement-journal.vitest.ts` | Automated regression test anchor for the runtime script |
+| `../../scripts/shared/tests/improvement-journal.vitest.ts` | Automated regression test anchor for the runtime script |
 
 ---
 

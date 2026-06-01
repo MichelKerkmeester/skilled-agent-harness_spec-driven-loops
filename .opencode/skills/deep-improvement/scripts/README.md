@@ -34,7 +34,7 @@ scripts/
 +-- model-benchmark/      # Lane B scripts
 |   `-- scorer/                # Opt-in five-dimension scorer subtree
 +-- lib/                  # Shared CommonJS helpers
-`-- tests/                # Vitest suites and fixtures
+`-- */tests/              # Lane-local Vitest suites; shared/tests/ also holds fixtures + the suite index
 ```
 
 Allowed dependency direction:
@@ -58,7 +58,8 @@ scripts/
 |   +-- materialize-benchmark-fixtures.cjs # Fixture materializer
 |   +-- mutation-coverage.cjs              # Mutation coverage and dimension trajectories
 |   +-- promote-candidate.cjs              # Guarded canonical promotion
-|   `-- reduce-state.cjs                    # Dashboard and registry reducer
+|   +-- reduce-state.cjs                    # Dashboard and registry reducer
+|   `-- tests/                             # Shared/lib suites + cross-lane fixtures + suite index
 +-- agent-improvement/
 |   +-- score-candidate.cjs                # Dynamic-mode five-dimension candidate scorer
 |   +-- benchmark-stability.cjs            # Score variance and weight advisory
@@ -67,13 +68,14 @@ scripts/
 |   +-- generate-profile.cjs               # Dynamic target profile generator
 |   +-- rollback-candidate.cjs             # Canonical rollback helper
 |   +-- scan-integration.cjs               # Integration surface scanner
-|   `-- trade-off-detector.cjs              # Cross-dimension regression detector
+|   +-- trade-off-detector.cjs             # Cross-dimension regression detector
+|   `-- tests/                             # Lane A Vitest suites
 +-- model-benchmark/
 |   +-- run-benchmark.cjs                  # Fixture and integration scorer
 |   +-- dispatch-model.cjs                 # Model-agnostic CLI dispatcher
-|   `-- scorer/                             # Opt-in five-dimension scorer subtree
+|   +-- scorer/                            # Opt-in five-dimension scorer subtree
+|   `-- tests/                             # Lane B Vitest suites
 +-- lib/                                   # Shared CommonJS helpers
-+-- tests/                                 # Vitest suites and fixtures
 `-- vitest.config.mjs                      # Vitest include config
 ```
 
@@ -102,6 +104,7 @@ scripts/
 | Entry | `shared/loop-host.cjs` is the single router. Lanes are not invoked directly by the loop. |
 | Imports | Lane and shared scripts import helpers from `lib/` only. `lib/` is not a cross-skill import surface. |
 | Lane separation | Lane A scripts stay in `agent-improvement/`, Lane B scripts stay in `model-benchmark/`, and cross-lane scripts stay in `shared/`. |
+| Test co-location | Each lane's Vitest suites live in its own `tests/` subdir (`<lane>/tests/`). Cross-lane fixtures and the suite index live under `shared/tests/`. |
 
 Main flow:
 
@@ -144,7 +147,7 @@ Run from the `scripts/` directory.
 npx vitest run
 ```
 
-Expected result: every suite under `tests/**/*.vitest.ts` passes.
+Expected result: every suite under `*/tests/**/*.vitest.ts` passes (suites live lane-locally under each lane's `tests/`).
 
 List the source files from the repository root.
 
@@ -158,5 +161,5 @@ rg --files .opencode/skills/deep-improvement/scripts -g '!node_modules'
 
 - [`deep-improvement/SKILL.md`](../SKILL.md)
 - [`lib/README.md`](./lib/README.md)
-- [`tests/README.md`](./tests/README.md)
+- [`shared/tests/README.md`](./shared/tests/README.md)
 - [`sk-code/SKILL.md`](../../sk-code/SKILL.md)

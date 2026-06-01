@@ -44,9 +44,9 @@ The reducer accepts more than one "good enough" label. It counts both `candidate
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-improvement/scripts/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
-| `.opencode/skills/deep-improvement/scripts/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
-| `.opencode/skills/deep-improvement/scripts/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/mutation-coverage.vitest.ts` | Automated test | Verifies trajectory recording and convergence eligibility rules. |
+| `.opencode/skills/deep-improvement/scripts/shared/tests/improvement-journal.vitest.ts` | Automated test | Verifies event validation, stop-reason enums, and journal replay helpers. |
+| `.opencode/skills/deep-improvement/scripts/agent-improvement/tests/candidate-lineage.vitest.ts` | Automated test | Verifies lineage recording, ancestry lookup, and wave filtering. |
 
 ---
 
