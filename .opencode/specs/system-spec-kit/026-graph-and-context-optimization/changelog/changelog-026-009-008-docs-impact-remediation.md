@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-008-docs-impact-remediation.md

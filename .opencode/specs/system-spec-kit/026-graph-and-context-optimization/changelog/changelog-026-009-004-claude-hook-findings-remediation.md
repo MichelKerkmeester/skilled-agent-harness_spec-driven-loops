@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-004-claude-hook-findings-remediation.md

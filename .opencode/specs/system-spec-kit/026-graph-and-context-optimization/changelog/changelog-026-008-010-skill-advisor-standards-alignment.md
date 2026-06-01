@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-010-skill-advisor-standards-alignment.md

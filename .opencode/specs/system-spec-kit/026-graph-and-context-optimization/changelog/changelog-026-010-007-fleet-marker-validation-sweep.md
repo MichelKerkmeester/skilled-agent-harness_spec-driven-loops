@@ -1,1 +1,0 @@
-../010-template-levels/changelog/changelog-007-fleet-marker-validation-sweep.md

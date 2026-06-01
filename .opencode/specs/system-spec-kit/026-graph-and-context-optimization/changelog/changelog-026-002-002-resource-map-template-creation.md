@@ -1,1 +1,0 @@
-../002-resource-map-template/changelog/changelog-002-resource-map-template-creation.md

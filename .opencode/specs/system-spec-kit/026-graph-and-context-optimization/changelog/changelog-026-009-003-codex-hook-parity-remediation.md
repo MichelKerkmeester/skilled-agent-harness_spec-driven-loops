@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-003-codex-hook-parity-remediation.md

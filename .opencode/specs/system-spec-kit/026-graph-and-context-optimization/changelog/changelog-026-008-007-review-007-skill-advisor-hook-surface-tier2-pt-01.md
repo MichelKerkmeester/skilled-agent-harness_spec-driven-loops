@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-007-review-007-skill-advisor-hook-surface-tier2-pt-01.md

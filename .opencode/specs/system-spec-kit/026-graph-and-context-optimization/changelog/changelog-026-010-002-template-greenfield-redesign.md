@@ -1,1 +1,0 @@
-../010-template-levels/changelog/changelog-002-template-greenfield-redesign.md

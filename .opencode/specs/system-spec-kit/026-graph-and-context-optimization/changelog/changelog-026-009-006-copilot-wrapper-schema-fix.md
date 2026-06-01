@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-006-copilot-wrapper-schema-fix.md

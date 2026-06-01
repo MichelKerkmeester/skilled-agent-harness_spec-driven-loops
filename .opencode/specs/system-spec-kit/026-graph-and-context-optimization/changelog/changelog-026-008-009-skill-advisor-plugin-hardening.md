@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-009-skill-advisor-plugin-hardening.md

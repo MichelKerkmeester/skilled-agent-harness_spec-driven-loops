@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-007-copilot-writer-wiring.md

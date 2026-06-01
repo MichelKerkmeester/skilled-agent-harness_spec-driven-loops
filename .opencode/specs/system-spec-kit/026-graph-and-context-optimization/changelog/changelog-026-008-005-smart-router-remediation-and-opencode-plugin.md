@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-005-smart-router-remediation-and-opencode-plugin.md

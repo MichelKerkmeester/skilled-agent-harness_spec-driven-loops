@@ -1,1 +1,0 @@
-../010-template-levels/changelog/changelog-003-template-greenfield-impl.md

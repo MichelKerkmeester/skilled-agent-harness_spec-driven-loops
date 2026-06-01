@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-004-skill-advisor-docs-and-code-alignment.md

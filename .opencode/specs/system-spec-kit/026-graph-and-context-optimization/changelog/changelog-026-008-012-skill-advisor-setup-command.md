@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-012-skill-advisor-setup-command.md

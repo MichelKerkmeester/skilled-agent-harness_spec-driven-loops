@@ -1,1 +1,0 @@
-../009-hook-parity/changelog/changelog-005-opencode-plugin-loader-remediation-review-pt-01.md

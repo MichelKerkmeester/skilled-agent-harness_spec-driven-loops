@@ -1,1 +1,0 @@
-../008-skill-advisor/changelog/changelog-011-skill-advisor-hook-improvements.md
