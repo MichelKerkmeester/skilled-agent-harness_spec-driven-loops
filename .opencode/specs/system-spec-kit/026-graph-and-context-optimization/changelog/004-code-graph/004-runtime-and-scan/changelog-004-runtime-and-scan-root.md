@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-04-09 to 2026-05-03. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-004-001-code-graph-runtime-upgrades.md](./changelog-004-001-code-graph-runtime-upgrades.md) | 2026-04-09 | Code Graph Runtime Upgrades: Detector Provenance, Blast-Radius Fix and Edge Evidence |
-| [changelog-004-002-fix-stale-highlights-and-scan-scope.md](./changelog-004-002-fix-stale-highlights-and-scan-scope.md) | 2026-04-23 | Code Graph Context and Scan Scope Remediation |
-| [changelog-004-003-resolver-and-hook-improvements.md](./changelog-004-003-resolver-and-hook-improvements.md) | 2026-04-24 | Code Graph Phase 004-003: Resolver Correctness and Hook Startup Parity |
-| [changelog-004-004-end-user-scope-default-and-opt-in.md](./changelog-004-004-end-user-scope-default-and-opt-in.md) | 2026-05-02 | End-User Scope Default: Code Graph Defaults to Repo-Only Indexing |
-| [changelog-004-005-broader-excludes-and-granular-skills.md](./changelog-004-005-broader-excludes-and-granular-skills.md) | 2026-05-03 | Code Graph 004-005: Broader Default Excludes plus Granular Skills plus Readiness Fixes |
+| [changelog-004-001-code-graph-runtime-upgrades.md](./001-code-graph-runtime-upgrades/changelog-004-001-code-graph-runtime-upgrades.md) | 2026-04-09 | Code Graph Runtime Upgrades: Detector Provenance, Blast-Radius Fix and Edge Evidence |
+| [changelog-004-002-fix-stale-highlights-and-scan-scope.md](./002-fix-stale-highlights-and-scan-scope/changelog-004-002-fix-stale-highlights-and-scan-scope.md) | 2026-04-23 | Code Graph Context and Scan Scope Remediation |
+| [changelog-004-003-resolver-and-hook-improvements.md](./003-resolver-and-hook-improvements/changelog-004-003-resolver-and-hook-improvements.md) | 2026-04-24 | Code Graph Phase 004-003: Resolver Correctness and Hook Startup Parity |
+| [changelog-004-004-end-user-scope-default-and-opt-in.md](./004-end-user-scope-default-and-opt-in/changelog-004-004-end-user-scope-default-and-opt-in.md) | 2026-05-02 | End-User Scope Default: Code Graph Defaults to Repo-Only Indexing |
+| [changelog-004-005-broader-excludes-and-granular-skills.md](./005-broader-excludes-and-granular-skills/changelog-004-005-broader-excludes-and-granular-skills.md) | 2026-05-03 | Code Graph 004-005: Broader Default Excludes plus Granular Skills plus Readiness Fixes |
 
 ### Added
 

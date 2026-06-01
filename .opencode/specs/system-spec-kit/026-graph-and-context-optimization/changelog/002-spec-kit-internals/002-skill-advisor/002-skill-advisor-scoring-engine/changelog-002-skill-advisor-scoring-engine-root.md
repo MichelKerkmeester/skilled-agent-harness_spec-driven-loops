@@ -24,14 +24,14 @@ This phase parent groups 8 child phases spanning 2026-05-31 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-002-001-advisor-hook-brief-improvements.md](./changelog-002-001-advisor-hook-brief-improvements.md) | 2026-05-31 | Skill-Advisor Hook Improvements |
-| [changelog-002-002-semantic-routing-lane.md](./changelog-002-002-semantic-routing-lane.md) | 2026-05-31 | Skill Advisor Semantic Lane: Strategy and Structural Reorganization |
-| [changelog-002-003-embedding-cache-cosine-wiring.md](./changelog-002-003-embedding-cache-cosine-wiring.md) | 2026-05-31 | Changelog: Skill embedding cache and cosine-similarity lane wiring [002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring] |
-| [changelog-002-004-ablation-sweep-and-weight-promotion.md](./changelog-002-004-ablation-sweep-and-weight-promotion.md) | 2026-05-31 | Skill Advisor Scoring Engine: Promote semantic lane to live |
-| [changelog-002-005-routing-weight-sweep-harness.md](./changelog-002-005-routing-weight-sweep-harness.md) | 2026-05-31 | Lane weight sweep harness and intent-prompt corpus |
-| [changelog-002-006-seeded-corpus-evaluation-sweep.md](./changelog-002-006-seeded-corpus-evaluation-sweep.md) | 2026-05-31 | Seeded cosine embeddings in the lane-weight sweep with a numbers-driven weight recommendation |
-| [changelog-002-007-hard-intent-corpus-resweep.md](./changelog-002-007-hard-intent-corpus-resweep.md) | 2026-05-31 | Harder intent-described corpus + sweep against lexical false-positives |
-| [changelog-002-008-routing-confidence-calibration.md](./changelog-002-008-routing-confidence-calibration.md) | 2026-05-31 | Changelog: Lane evidence damping investigation |
+| [changelog-002-001-advisor-hook-brief-improvements.md](./001-advisor-hook-brief-improvements/changelog-002-001-advisor-hook-brief-improvements.md) | 2026-05-31 | Skill-Advisor Hook Improvements |
+| [changelog-002-002-semantic-routing-lane.md](./002-semantic-routing-lane/changelog-002-002-semantic-routing-lane.md) | 2026-05-31 | Skill Advisor Semantic Lane: Strategy and Structural Reorganization |
+| [changelog-002-003-embedding-cache-cosine-wiring.md](./003-embedding-cache-cosine-wiring/changelog-002-003-embedding-cache-cosine-wiring.md) | 2026-05-31 | Changelog: Skill embedding cache and cosine-similarity lane wiring [002-skill-advisor-scoring-engine/003-embedding-cache-cosine-wiring] |
+| [changelog-002-004-ablation-sweep-and-weight-promotion.md](./004-ablation-sweep-and-weight-promotion/changelog-002-004-ablation-sweep-and-weight-promotion.md) | 2026-05-31 | Skill Advisor Scoring Engine: Promote semantic lane to live |
+| [changelog-002-005-routing-weight-sweep-harness.md](./005-routing-weight-sweep-harness/changelog-002-005-routing-weight-sweep-harness.md) | 2026-05-31 | Lane weight sweep harness and intent-prompt corpus |
+| [changelog-002-006-seeded-corpus-evaluation-sweep.md](./006-seeded-corpus-evaluation-sweep/changelog-002-006-seeded-corpus-evaluation-sweep.md) | 2026-05-31 | Seeded cosine embeddings in the lane-weight sweep with a numbers-driven weight recommendation |
+| [changelog-002-007-hard-intent-corpus-resweep.md](./007-hard-intent-corpus-resweep/changelog-002-007-hard-intent-corpus-resweep.md) | 2026-05-31 | Harder intent-described corpus + sweep against lexical false-positives |
+| [changelog-002-008-routing-confidence-calibration.md](./008-routing-confidence-calibration/changelog-002-008-routing-confidence-calibration.md) | 2026-05-31 | Changelog: Lane evidence damping investigation |
 
 ### Added
 

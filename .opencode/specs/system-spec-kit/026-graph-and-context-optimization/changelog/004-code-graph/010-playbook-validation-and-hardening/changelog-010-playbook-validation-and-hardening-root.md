@@ -24,14 +24,14 @@ This phase parent groups 8 child phases spanning 2026-05-26 to 2026-05-27. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-010-001-opencode-runtime-scenarios.md](./changelog-010-001-opencode-runtime-scenarios.md) | 2026-05-27 | Code Graph Playbook 001: OpenCode Live-Runtime Scenario Validation |
-| [changelog-010-002-devin-static-scenarios.md](./changelog-010-002-devin-static-scenarios.md) | 2026-05-26 | Code Graph Playbook 010-002: Devin Static Scenarios |
-| [changelog-010-003-release-readiness-synthesis.md](./changelog-010-003-release-readiness-synthesis.md) | 2026-05-26 | Code Graph Playbook 010/003: Release-Readiness Synthesis |
-| [changelog-010-004-hook-and-doc-fixes.md](./changelog-010-004-hook-and-doc-fixes.md) | 2026-05-27 | Code Graph Phase 010-004: Hook Registration + Playbook Doc-Sync Fixes |
-| [changelog-010-005-db-binding-cleanup.md](./changelog-010-005-db-binding-cleanup.md) | 2026-05-27 | Legacy DB Binding Cleanup: Stale SQLite Removed and F-019-1 Root Cause Corrected |
-| [changelog-010-006-parser-quarantine-recovery.md](./changelog-010-006-parser-quarantine-recovery.md) | 2026-05-27 | Code Graph Phase 010-006: Parser Quarantine Recovery |
-| [changelog-010-007-followup-hook-docs-and-022.md](./changelog-010-007-followup-hook-docs-and-022.md) | 2026-05-27 | Code Graph Phase 010-007: Hook-Doc Reconciliation and 022 Transitive Re-verify |
-| [changelog-010-008-blast-radius-transitive-flag.md](./changelog-010-008-blast-radius-transitive-flag.md) | 2026-05-27 | Code Graph Phase 010-008: blast_radius includeTransitive Flag Fix |
+| [changelog-010-001-opencode-runtime-scenarios.md](./001-opencode-runtime-scenarios/changelog-010-001-opencode-runtime-scenarios.md) | 2026-05-27 | Code Graph Playbook 001: OpenCode Live-Runtime Scenario Validation |
+| [changelog-010-002-devin-static-scenarios.md](./002-devin-static-scenarios/changelog-010-002-devin-static-scenarios.md) | 2026-05-26 | Code Graph Playbook 010-002: Devin Static Scenarios |
+| [changelog-010-003-release-readiness-synthesis.md](./003-release-readiness-synthesis/changelog-010-003-release-readiness-synthesis.md) | 2026-05-26 | Code Graph Playbook 010/003: Release-Readiness Synthesis |
+| [changelog-010-004-hook-and-doc-fixes.md](./004-hook-and-doc-fixes/changelog-010-004-hook-and-doc-fixes.md) | 2026-05-27 | Code Graph Phase 010-004: Hook Registration + Playbook Doc-Sync Fixes |
+| [changelog-010-005-db-binding-cleanup.md](./005-db-binding-cleanup/changelog-010-005-db-binding-cleanup.md) | 2026-05-27 | Legacy DB Binding Cleanup: Stale SQLite Removed and F-019-1 Root Cause Corrected |
+| [changelog-010-006-parser-quarantine-recovery.md](./006-parser-quarantine-recovery/changelog-010-006-parser-quarantine-recovery.md) | 2026-05-27 | Code Graph Phase 010-006: Parser Quarantine Recovery |
+| [changelog-010-007-followup-hook-docs-and-022.md](./007-followup-hook-docs-and-022/changelog-010-007-followup-hook-docs-and-022.md) | 2026-05-27 | Code Graph Phase 010-007: Hook-Doc Reconciliation and 022 Transitive Re-verify |
+| [changelog-010-008-blast-radius-transitive-flag.md](./008-blast-radius-transitive-flag/changelog-010-008-blast-radius-transitive-flag.md) | 2026-05-27 | Code Graph Phase 010-008: blast_radius includeTransitive Flag Fix |
 
 ### Added
 

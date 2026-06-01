@@ -24,15 +24,15 @@ This phase parent groups 9 child phases spanning 2026-05-27 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-004-embedding-backlog-drain-investigation.md](./changelog-003-004-embedding-backlog-drain-investigation.md) | 2026-05-28 | Memory Runtime 004: Embedding Backlog Drain and Daemon-Config Investigation |
-| [changelog-003-005-embedding-status-integrity.md](./changelog-003-005-embedding-status-integrity.md) | 2026-05-27 | Embedding Status Integrity: Durable Prevention Fixes |
-| [changelog-003-006-memory-embedding-reconcile-tool.md](./changelog-003-006-memory-embedding-reconcile-tool.md) | 2026-05-27 | memory_embedding_reconcile() MCP Maintenance Tool |
-| [changelog-003-007-success-vector-coverage-hygiene.md](./changelog-003-007-success-vector-coverage-hygiene.md) | 2026-05-27 | Memory Runtime Phase 007: Success-Vector Coverage Hygiene |
-| [changelog-003-008-embedder-provider-auto-resolution.md](./changelog-003-008-embedder-provider-auto-resolution.md) | 2026-05-27 | Embedder Provider Auto-Resolution Research: Root Cause Proven, Portable Fix Ranked |
-| [changelog-003-009-embedder-auto-resolution-fix.md](./changelog-003-009-embedder-auto-resolution-fix.md) | 2026-05-27 | Embedder Auto-Resolution Fix: node:sqlite Metadata Read |
-| [changelog-003-012-memory-index-scan-ux-hardening.md](./changelog-003-012-memory-index-scan-ux-hardening.md) | 2026-05-31 | memory_index_scan UX Hardening: Deep-Research Design Packet |
-| [changelog-003-013-memory-index-scan-implementation.md](./changelog-003-013-memory-index-scan-implementation.md) | 2026-05-31 | Memory Index Scan Phase 013: Self-Maintaining Index Implementation |
-| [changelog-003-memory-and-causal-runtime.md](./changelog-003-memory-and-causal-runtime.md) | n/a | changelog-003-memory-and-causal-runtime.md |
+| [changelog-003-004-embedding-backlog-drain-investigation.md](./004-embedding-backlog-drain-investigation/changelog-003-004-embedding-backlog-drain-investigation.md) | 2026-05-28 | Memory Runtime 004: Embedding Backlog Drain and Daemon-Config Investigation |
+| [changelog-003-005-embedding-status-integrity.md](./005-embedding-status-integrity/changelog-003-005-embedding-status-integrity.md) | 2026-05-27 | Embedding Status Integrity: Durable Prevention Fixes |
+| [changelog-003-006-memory-embedding-reconcile-tool.md](./006-memory-embedding-reconcile-tool/changelog-003-006-memory-embedding-reconcile-tool.md) | 2026-05-27 | memory_embedding_reconcile() MCP Maintenance Tool |
+| [changelog-003-007-success-vector-coverage-hygiene.md](./007-success-vector-coverage-hygiene/changelog-003-007-success-vector-coverage-hygiene.md) | 2026-05-27 | Memory Runtime Phase 007: Success-Vector Coverage Hygiene |
+| [changelog-003-008-embedder-provider-auto-resolution.md](./008-embedder-provider-auto-resolution/changelog-003-008-embedder-provider-auto-resolution.md) | 2026-05-27 | Embedder Provider Auto-Resolution Research: Root Cause Proven, Portable Fix Ranked |
+| [changelog-003-009-embedder-auto-resolution-fix.md](./009-embedder-auto-resolution-fix/changelog-003-009-embedder-auto-resolution-fix.md) | 2026-05-27 | Embedder Auto-Resolution Fix: node:sqlite Metadata Read |
+| [changelog-003-012-memory-index-scan-ux-hardening.md](./012-memory-index-scan-ux-hardening/changelog-003-012-memory-index-scan-ux-hardening.md) | 2026-05-31 | memory_index_scan UX Hardening: Deep-Research Design Packet |
+| [changelog-003-013-memory-index-scan-implementation.md](./013-memory-index-scan-implementation/changelog-003-013-memory-index-scan-implementation.md) | 2026-05-31 | Memory Index Scan Phase 013: Self-Maintaining Index Implementation |
+| [changelog-003-memory-and-causal-runtime.md](./_root/changelog-003-memory-and-causal-runtime.md) | n/a | changelog-003-memory-and-causal-runtime.md |
 
 ### Added
 

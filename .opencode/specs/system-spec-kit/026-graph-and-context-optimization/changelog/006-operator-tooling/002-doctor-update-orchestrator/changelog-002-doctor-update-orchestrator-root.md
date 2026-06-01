@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-09 to 2026-05-11. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-002-001-implement-initial-doctor-command-set.md](./changelog-002-001-implement-initial-doctor-command-set.md) | 2026-05-09 | 013 Doctor Update Orchestrator: Initial Command Set Scaffold |
-| [changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md](./changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md) | 2026-05-11 | Doctor Update Orchestrator Phase 002: RM-8 013 Remediation - Doc Honesty, Security Hardening, Cross-Runtime Mirror |
-| [changelog-002-003-consolidate-doctor-router-implementations.md](./changelog-002-003-consolidate-doctor-router-implementations.md) | 2026-05-11 | Doctor Router Phase 1: Additive Router and Manifest Consolidation |
-| [changelog-002-004-cutover-doctor-router-from-legacy-files.md](./changelog-002-004-cutover-doctor-router-from-legacy-files.md) | 2026-05-11 | Doctor Cutover Phase 2: Hard Cutover from Legacy /doctor:* Files |
+| [changelog-002-001-implement-initial-doctor-command-set.md](./001-implement-initial-doctor-command-set/changelog-002-001-implement-initial-doctor-command-set.md) | 2026-05-09 | 013 Doctor Update Orchestrator: Initial Command Set Scaffold |
+| [changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md](./002-fix-deep-review-findings-for-doctor-update-orchestrator/changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md) | 2026-05-11 | Doctor Update Orchestrator Phase 002: RM-8 013 Remediation - Doc Honesty, Security Hardening, Cross-Runtime Mirror |
+| [changelog-002-003-consolidate-doctor-router-implementations.md](./003-consolidate-doctor-router-implementations/changelog-002-003-consolidate-doctor-router-implementations.md) | 2026-05-11 | Doctor Router Phase 1: Additive Router and Manifest Consolidation |
+| [changelog-002-004-cutover-doctor-router-from-legacy-files.md](./004-cutover-doctor-router-from-legacy-files/changelog-002-004-cutover-doctor-router-from-legacy-files.md) | 2026-05-11 | Doctor Cutover Phase 2: Hard Cutover from Legacy /doctor:* Files |
 
 ### Added
 

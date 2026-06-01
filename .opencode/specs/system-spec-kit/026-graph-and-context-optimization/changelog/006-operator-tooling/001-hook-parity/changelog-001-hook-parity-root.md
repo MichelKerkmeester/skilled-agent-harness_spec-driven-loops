@@ -24,23 +24,23 @@ This phase parent groups 17 child phases spanning 2026-04-21 to 2026-04-23. Each
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-fix-runtime-hook-parity-findings.md](./changelog-001-001-fix-runtime-hook-parity-findings.md) | 2026-04-21 | Hook Parity Remediation: Runtime Hook Parity Findings Fix |
-| [changelog-001-002-copilot-custom-instructions-hook-parity.md](./changelog-001-002-copilot-custom-instructions-hook-parity.md) | 2026-04-22 | Hook Parity 002: Copilot CLI Custom-Instructions Parity |
-| [changelog-001-003-codex-native-startup-advisor-hooks.md](./changelog-001-003-codex-native-startup-advisor-hooks.md) | 2026-04-22 | Codex CLI Native Hook Parity: SessionStart and UserPromptSubmit Adapters |
-| [changelog-001-004-fix-claude-freshness-schema-harness.md](./changelog-001-004-fix-claude-freshness-schema-harness.md) | 2026-04-23 | Hook Parity Phase 004: Claude freshness fix, schema normalization, multi-turn harness |
-| [changelog-001-005-fix-opencode-plugin-loader-bridge.md](./changelog-001-005-fix-opencode-plugin-loader-bridge.md) | 2026-04-22 | Hook Parity Phase 005: OpenCode Plugin Loader Remediation |
-| [changelog-001-hook-parity-remediation.md](./changelog-001-hook-parity-remediation.md) | 2026-04-21 | Hook Parity Phase 001: Runtime hook parity remediation |
-| [changelog-002-copilot-hook-parity-remediation-research-pt-01.md](./changelog-002-copilot-hook-parity-remediation-research-pt-01.md) | 2026-04-22 | Hook Parity Phase 002 Research Pt-01: Copilot deep-review remediation |
-| [changelog-002-copilot-hook-parity-remediation-research-pt-03.md](./changelog-002-copilot-hook-parity-remediation-research-pt-03.md) | 2026-04-23 | Hook Parity Phase 002 Research Pt-03: Copilot wrapper schema crash root cause |
-| [changelog-002-copilot-hook-parity-remediation-review-pt-01.md](./changelog-002-copilot-hook-parity-remediation-review-pt-01.md) | 2026-04-22 | Hook Parity Phase 002 Review Pt-01: Copilot tier-2 review |
-| [changelog-002-copilot-hook-parity-remediation.md](./changelog-002-copilot-hook-parity-remediation.md) | 2026-04-22 | Hook Parity Phase 002: Copilot CLI hook parity remediation |
-| [changelog-003-codex-hook-parity-remediation.md](./changelog-003-codex-hook-parity-remediation.md) | 2026-04-22 | Hook Parity Phase 003: Codex CLI native hook parity |
-| [changelog-004-claude-hook-findings-remediation.md](./changelog-004-claude-hook-findings-remediation.md) | 2026-04-23 | Hook Parity Phase 004: Claude hook findings remediation |
-| [changelog-005-opencode-plugin-loader-remediation-review-pt-01.md](./changelog-005-opencode-plugin-loader-remediation-review-pt-01.md) | 2026-04-22 | Hook Parity Phase 005 Review Pt-01: OpenCode plugin loader tier-2 review |
-| [changelog-005-opencode-plugin-loader-remediation.md](./changelog-005-opencode-plugin-loader-remediation.md) | 2026-04-22 | Hook Parity Phase 005: OpenCode plugin loader remediation |
-| [changelog-006-copilot-wrapper-schema-fix.md](./changelog-006-copilot-wrapper-schema-fix.md) | 2026-04-23 | Hook Parity Phase 006: Copilot wrapper schema fix |
-| [changelog-007-copilot-writer-wiring.md](./changelog-007-copilot-writer-wiring.md) | 2026-04-23 | Hook Parity Phase 007: Copilot writer wiring |
-| [changelog-008-docs-impact-remediation.md](./changelog-008-docs-impact-remediation.md) | 2026-04-23 | Hook Parity Phase 008: Documentation impact remediation |
+| [changelog-001-001-fix-runtime-hook-parity-findings.md](./001-fix-runtime-hook-parity-findings/changelog-001-001-fix-runtime-hook-parity-findings.md) | 2026-04-21 | Hook Parity Remediation: Runtime Hook Parity Findings Fix |
+| [changelog-001-002-copilot-custom-instructions-hook-parity.md](./002-copilot-custom-instructions-hook-parity/changelog-001-002-copilot-custom-instructions-hook-parity.md) | 2026-04-22 | Hook Parity 002: Copilot CLI Custom-Instructions Parity |
+| [changelog-001-003-codex-native-startup-advisor-hooks.md](./003-codex-native-startup-advisor-hooks/changelog-001-003-codex-native-startup-advisor-hooks.md) | 2026-04-22 | Codex CLI Native Hook Parity: SessionStart and UserPromptSubmit Adapters |
+| [changelog-001-004-fix-claude-freshness-schema-harness.md](./004-fix-claude-freshness-schema-harness/changelog-001-004-fix-claude-freshness-schema-harness.md) | 2026-04-23 | Hook Parity Phase 004: Claude freshness fix, schema normalization, multi-turn harness |
+| [changelog-001-005-fix-opencode-plugin-loader-bridge.md](./005-fix-opencode-plugin-loader-bridge/changelog-001-005-fix-opencode-plugin-loader-bridge.md) | 2026-04-22 | Hook Parity Phase 005: OpenCode Plugin Loader Remediation |
+| [changelog-001-hook-parity-remediation.md](./_root/changelog-001-hook-parity-remediation.md) | 2026-04-21 | Hook Parity Phase 001: Runtime hook parity remediation |
+| [changelog-002-copilot-hook-parity-remediation-research-pt-01.md](./002-copilot-custom-instructions-hook-parity/research/001-copilot-hook-gap-deep-review-remediation/changelog-002-copilot-hook-parity-remediation-research-pt-01.md) | 2026-04-22 | Hook Parity Phase 002 Research Pt-01: Copilot deep-review remediation |
+| [changelog-002-copilot-hook-parity-remediation-research-pt-03.md](./002-copilot-custom-instructions-hook-parity/research/002-copilot-hook-followup-deep-review-remediation/changelog-002-copilot-hook-parity-remediation-research-pt-03.md) | 2026-04-23 | Hook Parity Phase 002 Research Pt-03: Copilot wrapper schema crash root cause |
+| [changelog-002-copilot-hook-parity-remediation-review-pt-01.md](./_root/changelog-002-copilot-hook-parity-remediation-review-pt-01.md) | 2026-04-22 | Hook Parity Phase 002 Review Pt-01: Copilot tier-2 review |
+| [changelog-002-copilot-hook-parity-remediation.md](./002-copilot-custom-instructions-hook-parity/changelog-002-copilot-hook-parity-remediation.md) | 2026-04-22 | Hook Parity Phase 002: Copilot CLI hook parity remediation |
+| [changelog-003-codex-hook-parity-remediation.md](./003-codex-native-startup-advisor-hooks/changelog-003-codex-hook-parity-remediation.md) | 2026-04-22 | Hook Parity Phase 003: Codex CLI native hook parity |
+| [changelog-004-claude-hook-findings-remediation.md](./_root/changelog-004-claude-hook-findings-remediation.md) | 2026-04-23 | Hook Parity Phase 004: Claude hook findings remediation |
+| [changelog-005-opencode-plugin-loader-remediation-review-pt-01.md](./005-fix-opencode-plugin-loader-bridge/changelog-005-opencode-plugin-loader-remediation-review-pt-01.md) | 2026-04-22 | Hook Parity Phase 005 Review Pt-01: OpenCode plugin loader tier-2 review |
+| [changelog-005-opencode-plugin-loader-remediation.md](./_root/changelog-005-opencode-plugin-loader-remediation.md) | 2026-04-22 | Hook Parity Phase 005: OpenCode plugin loader remediation |
+| [changelog-006-copilot-wrapper-schema-fix.md](./_root/changelog-006-copilot-wrapper-schema-fix.md) | 2026-04-23 | Hook Parity Phase 006: Copilot wrapper schema fix |
+| [changelog-007-copilot-writer-wiring.md](./_root/changelog-007-copilot-writer-wiring.md) | 2026-04-23 | Hook Parity Phase 007: Copilot writer wiring |
+| [changelog-008-docs-impact-remediation.md](./_root/changelog-008-docs-impact-remediation.md) | 2026-04-23 | Hook Parity Phase 008: Documentation impact remediation |
 
 ### Added
 

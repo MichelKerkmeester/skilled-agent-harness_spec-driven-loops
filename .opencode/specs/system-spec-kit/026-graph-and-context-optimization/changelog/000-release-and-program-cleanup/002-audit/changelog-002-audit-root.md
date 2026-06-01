@@ -24,14 +24,14 @@ This phase parent groups 8 child phases spanning 2026-04-29 to 2026-05-15. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-002-001-dependency-security-supply-chain-audit.md](./changelog-002-001-dependency-security-supply-chain-audit.md) | 2026-05-15 | Global Security Sweep + Supply-Chain Audit: 25-Iteration Deep-Research Campaign |
-| [changelog-002-002-runtime-wiring-enterprise-readiness-audit.md](./changelog-002-002-runtime-wiring-enterprise-readiness-audit.md) | 2026-04-29 | Phase G: W3-W7 Runtime Wiring and Enterprise Readiness Audit |
-| [changelog-002-003-documentation-truth-validation.md](./changelog-002-003-documentation-truth-validation.md) | 2026-04-29 | Audit Phase 003: Documentation Truth Validation |
-| [changelog-002-004-code-graph-watcher-claim-retraction.md](./changelog-002-004-code-graph-watcher-claim-retraction.md) | 2026-04-29 | Code Graph Watcher Claim Retraction |
-| [changelog-002-005-memory-retention-policy-sweep.md](./changelog-002-005-memory-retention-policy-sweep.md) | 2026-04-29 | Changelog: Memory Retention Policy Sweep [002-audit/005-memory-retention-policy-sweep] |
-| [changelog-002-006-runtime-matrix-execution-validation.md](./changelog-002-006-runtime-matrix-execution-validation.md) | 2026-04-29 | Changelog: Full-Matrix Execution Validation (002-audit/006) |
-| [changelog-002-007-runtime-command-agent-alignment-audit.md](./changelog-002-007-runtime-command-agent-alignment-audit.md) | 2026-04-30 | Runtime Command and Agent Alignment Audit |
-| [changelog-002-008-fix-audit-drift-findings.md](./changelog-002-008-fix-audit-drift-findings.md) | 2026-05-01 | Changelog: Drift Finding Fixes. Idempotent Derived Sync and 3 Catalog Alignments |
+| [changelog-002-001-dependency-security-supply-chain-audit.md](./001-dependency-security-supply-chain-audit/changelog-002-001-dependency-security-supply-chain-audit.md) | 2026-05-15 | Global Security Sweep + Supply-Chain Audit: 25-Iteration Deep-Research Campaign |
+| [changelog-002-002-runtime-wiring-enterprise-readiness-audit.md](./002-runtime-wiring-enterprise-readiness-audit/changelog-002-002-runtime-wiring-enterprise-readiness-audit.md) | 2026-04-29 | Phase G: W3-W7 Runtime Wiring and Enterprise Readiness Audit |
+| [changelog-002-003-documentation-truth-validation.md](./003-documentation-truth-validation/changelog-002-003-documentation-truth-validation.md) | 2026-04-29 | Audit Phase 003: Documentation Truth Validation |
+| [changelog-002-004-code-graph-watcher-claim-retraction.md](./004-code-graph-watcher-claim-retraction/changelog-002-004-code-graph-watcher-claim-retraction.md) | 2026-04-29 | Code Graph Watcher Claim Retraction |
+| [changelog-002-005-memory-retention-policy-sweep.md](./005-memory-retention-policy-sweep/changelog-002-005-memory-retention-policy-sweep.md) | 2026-04-29 | Changelog: Memory Retention Policy Sweep [002-audit/005-memory-retention-policy-sweep] |
+| [changelog-002-006-runtime-matrix-execution-validation.md](./006-runtime-matrix-execution-validation/changelog-002-006-runtime-matrix-execution-validation.md) | 2026-04-29 | Changelog: Full-Matrix Execution Validation (002-audit/006) |
+| [changelog-002-007-runtime-command-agent-alignment-audit.md](./007-runtime-command-agent-alignment-audit/changelog-002-007-runtime-command-agent-alignment-audit.md) | 2026-04-30 | Runtime Command and Agent Alignment Audit |
+| [changelog-002-008-fix-audit-drift-findings.md](./008-fix-audit-drift-findings/changelog-002-008-fix-audit-drift-findings.md) | 2026-05-01 | Changelog: Drift Finding Fixes. Idempotent Derived Sync and 3 Catalog Alignments |
 
 ### Added
 

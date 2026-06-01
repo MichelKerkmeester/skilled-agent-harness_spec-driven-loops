@@ -24,13 +24,13 @@ This phase parent groups 7 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-010-001-nomic-only-consolidation.md](./changelog-010-001-nomic-only-consolidation.md) | 2026-06-01 | Consolidate local embedding models to nomic only |
-| [changelog-010-002-hf-model-server.md](./changelog-010-002-hf-model-server.md) | 2026-06-01 | Changelog: Build hf-model-server.cjs local HTTP model server [010-embedding-consolidation-hf-local-server/002-hf-model-server] |
-| [changelog-010-003-hf-local-http-client.md](./changelog-010-003-hf-local-http-client.md) | 2026-06-01 | hf-local rewritten as HTTP model-server client |
-| [changelog-010-004-launcher-supervision.md](./changelog-010-004-launcher-supervision.md) | 2026-06-01 | Launcher supervision for the hf model server |
-| [changelog-010-005-retire-sidecar.md](./changelog-010-005-retire-sidecar.md) | 2026-06-01 | Retire the embedding sidecar execution path |
-| [changelog-010-006-skill-advisor-shared-wiring.md](./changelog-010-006-skill-advisor-shared-wiring.md) | 2026-06-01 | Changelog: Wire skill-advisor to the shared hf model server [010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring] |
-| [changelog-010-embedding-consolidation-hf-local-server.md](./changelog-010-embedding-consolidation-hf-local-server.md) | n/a | changelog-010-embedding-consolidation-hf-local-server.md |
+| [changelog-010-001-nomic-only-consolidation.md](./001-nomic-only-consolidation/changelog-010-001-nomic-only-consolidation.md) | 2026-06-01 | Consolidate local embedding models to nomic only |
+| [changelog-010-002-hf-model-server.md](./002-hf-model-server/changelog-010-002-hf-model-server.md) | 2026-06-01 | Changelog: Build hf-model-server.cjs local HTTP model server [010-embedding-consolidation-hf-local-server/002-hf-model-server] |
+| [changelog-010-003-hf-local-http-client.md](./003-hf-local-http-client/changelog-010-003-hf-local-http-client.md) | 2026-06-01 | hf-local rewritten as HTTP model-server client |
+| [changelog-010-004-launcher-supervision.md](./004-launcher-supervision/changelog-010-004-launcher-supervision.md) | 2026-06-01 | Launcher supervision for the hf model server |
+| [changelog-010-005-retire-sidecar.md](./005-retire-sidecar/changelog-010-005-retire-sidecar.md) | 2026-06-01 | Retire the embedding sidecar execution path |
+| [changelog-010-006-skill-advisor-shared-wiring.md](./006-skill-advisor-shared-wiring/changelog-010-006-skill-advisor-shared-wiring.md) | 2026-06-01 | Changelog: Wire skill-advisor to the shared hf model server [010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring] |
+| [changelog-010-embedding-consolidation-hf-local-server.md](./004-launcher-supervision/changelog-010-embedding-consolidation-hf-local-server.md) | n/a | changelog-010-embedding-consolidation-hf-local-server.md |
 
 ### Added
 

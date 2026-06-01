@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-04-28 to 2026-05-09. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-004-001-post-program-doc-and-state-cleanup.md](./changelog-004-001-post-program-doc-and-state-cleanup.md) | 2026-04-28 | Changelog: 005 Post-Program Doc and State Cleanup |
-| [changelog-004-002-vitest-baseline-recovery-followup.md](./changelog-004-002-vitest-baseline-recovery-followup.md) | 2026-05-09 | Vitest Baseline Recovery Followup: Zero-failure suite via re-baseline, fixture repair, Unit H closure |
-| [changelog-004-004-runtime-root-memory-cleanup-followup-fixes.md](./changelog-004-004-runtime-root-memory-cleanup-followup-fixes.md) | 2026-05-08 | 054 Runtime Cleanup Followups: Resolver Hardening, Deprecated Purge, FTS/Vec Diagnosis |
+| [changelog-004-001-post-program-doc-and-state-cleanup.md](./001-post-program-doc-and-state-cleanup/changelog-004-001-post-program-doc-and-state-cleanup.md) | 2026-04-28 | Changelog: 005 Post-Program Doc and State Cleanup |
+| [changelog-004-002-vitest-baseline-recovery-followup.md](./002-vitest-baseline-recovery-followup/changelog-004-002-vitest-baseline-recovery-followup.md) | 2026-05-09 | Vitest Baseline Recovery Followup: Zero-failure suite via re-baseline, fixture repair, Unit H closure |
+| [changelog-004-004-runtime-root-memory-cleanup-followup-fixes.md](./004-runtime-root-memory-cleanup-followup-fixes/changelog-004-004-runtime-root-memory-cleanup-followup-fixes.md) | 2026-05-08 | 054 Runtime Cleanup Followups: Resolver Hardening, Deprecated Purge, FTS/Vec Diagnosis |
 
 ### Added
 

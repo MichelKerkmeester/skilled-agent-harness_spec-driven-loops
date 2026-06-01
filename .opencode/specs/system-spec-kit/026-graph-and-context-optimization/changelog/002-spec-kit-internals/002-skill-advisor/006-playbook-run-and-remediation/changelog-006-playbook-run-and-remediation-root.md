@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-05-31 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-006-001-preconditions-and-build.md](./changelog-006-001-preconditions-and-build.md) | 2026-05-31 | Changelog: Preconditions and Build (Playbook Run Phase 001) |
-| [changelog-006-002-mcp-native-scenarios.md](./changelog-006-002-mcp-native-scenarios.md) | 2026-05-31 | Changelog: MCP-Native Scenarios (Playbook Run Phase 002) [006-playbook-run-and-remediation/002-mcp-native-scenarios] |
-| [changelog-006-003-cli-hooks-and-plugin.md](./changelog-006-003-cli-hooks-and-plugin.md) | 2026-05-31 | CLI Hooks and Plugin Verification |
-| [changelog-006-004-shell-python-daemon.md](./changelog-006-004-shell-python-daemon.md) | 2026-05-31 | Shell/Python/Daemon Wave Execution (Playbook Run Phase 004) |
-| [changelog-006-006-p1-routing-tuning.md](./changelog-006-006-p1-routing-tuning.md) | 2026-05-31 | Skill Advisor P1 Routing and Abstention Tuning |
+| [changelog-006-001-preconditions-and-build.md](./001-preconditions-and-build/changelog-006-001-preconditions-and-build.md) | 2026-05-31 | Changelog: Preconditions and Build (Playbook Run Phase 001) |
+| [changelog-006-002-mcp-native-scenarios.md](./002-mcp-native-scenarios/changelog-006-002-mcp-native-scenarios.md) | 2026-05-31 | Changelog: MCP-Native Scenarios (Playbook Run Phase 002) [006-playbook-run-and-remediation/002-mcp-native-scenarios] |
+| [changelog-006-003-cli-hooks-and-plugin.md](./003-cli-hooks-and-plugin/changelog-006-003-cli-hooks-and-plugin.md) | 2026-05-31 | CLI Hooks and Plugin Verification |
+| [changelog-006-004-shell-python-daemon.md](./004-shell-python-daemon/changelog-006-004-shell-python-daemon.md) | 2026-05-31 | Shell/Python/Daemon Wave Execution (Playbook Run Phase 004) |
+| [changelog-006-006-p1-routing-tuning.md](./006-p1-routing-tuning/changelog-006-006-p1-routing-tuning.md) | 2026-05-31 | Skill Advisor P1 Routing and Abstention Tuning |
 
 ### Added
 

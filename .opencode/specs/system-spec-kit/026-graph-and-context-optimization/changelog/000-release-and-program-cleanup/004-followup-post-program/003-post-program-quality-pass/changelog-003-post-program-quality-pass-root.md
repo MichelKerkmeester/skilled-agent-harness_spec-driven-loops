@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-04-29 to 2026-04-30. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-001-sk-code-opencode-standards-audit.md](./changelog-003-001-sk-code-opencode-standards-audit.md) | 2026-04-29 | Quality Pass 003/001: sk-code-opencode Standards Audit |
-| [changelog-003-002-feature-catalog-trio-alignment.md](./changelog-003-002-feature-catalog-trio-alignment.md) | 2026-04-29 | Feature Catalog Trio Alignment for Packets 031-036 |
-| [changelog-003-003-testing-playbook-trio-alignment.md](./changelog-003-003-testing-playbook-trio-alignment.md) | 2026-04-30 | Testing Playbook Trio: Manual Scenario Coverage for Packets 031-036 |
-| [changelog-003-004-sk-doc-template-alignment.md](./changelog-003-004-sk-doc-template-alignment.md) | 2026-04-29 | Post-Program Quality Pass Phase 004: sk-doc Template Alignment |
-| [changelog-003-005-stress-test-folder-migration.md](./changelog-003-005-stress-test-folder-migration.md) | 2026-04-29 | Changelog: Stress Test Folder Migration [003-post-program-quality-pass/005] |
-| [changelog-003-006-readme-cascade-refresh.md](./changelog-003-006-readme-cascade-refresh.md) | 2026-04-29 | Changelog: 037/006 README Cascade Refresh |
+| [changelog-003-001-sk-code-opencode-standards-audit.md](./001-sk-code-opencode-standards-audit/changelog-003-001-sk-code-opencode-standards-audit.md) | 2026-04-29 | Quality Pass 003/001: sk-code-opencode Standards Audit |
+| [changelog-003-002-feature-catalog-trio-alignment.md](./002-feature-catalog-trio-alignment/changelog-003-002-feature-catalog-trio-alignment.md) | 2026-04-29 | Feature Catalog Trio Alignment for Packets 031-036 |
+| [changelog-003-003-testing-playbook-trio-alignment.md](./003-testing-playbook-trio-alignment/changelog-003-003-testing-playbook-trio-alignment.md) | 2026-04-30 | Testing Playbook Trio: Manual Scenario Coverage for Packets 031-036 |
+| [changelog-003-004-sk-doc-template-alignment.md](./004-sk-doc-template-alignment/changelog-003-004-sk-doc-template-alignment.md) | 2026-04-29 | Post-Program Quality Pass Phase 004: sk-doc Template Alignment |
+| [changelog-003-005-stress-test-folder-migration.md](./005-stress-test-folder-migration/changelog-003-005-stress-test-folder-migration.md) | 2026-04-29 | Changelog: Stress Test Folder Migration [003-post-program-quality-pass/005] |
+| [changelog-003-006-readme-cascade-refresh.md](./006-readme-cascade-refresh/changelog-003-006-readme-cascade-refresh.md) | 2026-04-29 | Changelog: 037/006 README Cascade Refresh |
 
 ### Added
 

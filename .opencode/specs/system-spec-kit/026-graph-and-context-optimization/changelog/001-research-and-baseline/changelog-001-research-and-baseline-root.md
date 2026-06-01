@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-04-06 to 2026-04-12. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-claude-optimization-settings.md](./changelog-001-001-claude-optimization-settings.md) | 2026-04-07 | Phase 001: Claude Optimization Settings (Reddit Field-Report Audit) |
-| [changelog-001-002-codesight.md](./changelog-001-002-codesight.md) | 2026-04-12 | Research Baseline Phase 001/002: Codesight Deep-Research Audit |
-| [changelog-001-003-contextador.md](./changelog-001-003-contextador.md) | 2026-04-06 | 003-contextador: Contextador Deep Research - MCP Query, Self-Healing Loop and Mainframe Cache |
-| [changelog-001-004-graphify.md](./changelog-001-004-graphify.md) | 2026-04-08 | Research Phase 004-graphify: Graphify External Repo Audit |
-| [changelog-001-005-claudest.md](./changelog-001-005-claudest.md) | 2026-04-08 | 005-claudest: Claudest Plugin Marketplace Deep Research |
-| [changelog-001-006-research-memory-redundancy.md](./changelog-001-006-research-memory-redundancy.md) | 2026-04-09 | Research Memory Redundancy Follow-On: Packet Surface Repair and Ownership Handoff |
+| [changelog-001-001-claude-optimization-settings.md](./001-claude-optimization-settings/changelog-001-001-claude-optimization-settings.md) | 2026-04-07 | Phase 001: Claude Optimization Settings (Reddit Field-Report Audit) |
+| [changelog-001-002-codesight.md](./002-codesight/changelog-001-002-codesight.md) | 2026-04-12 | Research Baseline Phase 001/002: Codesight Deep-Research Audit |
+| [changelog-001-003-contextador.md](./003-contextador/changelog-001-003-contextador.md) | 2026-04-06 | 003-contextador: Contextador Deep Research - MCP Query, Self-Healing Loop and Mainframe Cache |
+| [changelog-001-004-graphify.md](./004-graphify/changelog-001-004-graphify.md) | 2026-04-08 | Research Phase 004-graphify: Graphify External Repo Audit |
+| [changelog-001-005-claudest.md](./005-claudest/changelog-001-005-claudest.md) | 2026-04-08 | 005-claudest: Claudest Plugin Marketplace Deep Research |
+| [changelog-001-006-research-memory-redundancy.md](./006-research-memory-redundancy/changelog-001-006-research-memory-redundancy.md) | 2026-04-09 | Research Memory Redundancy Follow-On: Packet Surface Repair and Ownership Handoff |
 
 ### Added
 

@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-05-21 to 2026-05-21. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-011-001-off-baseline-audit.md](./changelog-011-001-off-baseline-audit.md) | 2026-05-21 | OFF Baseline Audit: WEIGHT_RERANKER Penalty Decision Gate |
-| [changelog-011-002-bge-v2-m3-trial.md](./changelog-011-002-bge-v2-m3-trial.md) | 2026-05-21 | bge-reranker-v2-m3 off-the-shelf trial: HOLD verdict |
-| [changelog-011-003-domain-tuned-finetune.md](./changelog-011-003-domain-tuned-finetune.md) | 2026-05-21 | Rerank Decision Arc Phase 003: Domain-Tuned Fine-Tune Setup with Template Stripping |
-| [changelog-011-004-retrieval-and-fixture-audit.md](./changelog-011-004-retrieval-and-fixture-audit.md) | 2026-05-21 | 011/004 Retrieval and Fixture Audit: Decision Gate Before Phase 3 |
-| [changelog-011-005-opt-in-only-closure.md](./changelog-011-005-opt-in-only-closure.md) | 2026-05-21 | Spec: spec-memory rerank opt-in-only closure |
+| [changelog-011-001-off-baseline-audit.md](./001-off-baseline-audit/changelog-011-001-off-baseline-audit.md) | 2026-05-21 | OFF Baseline Audit: WEIGHT_RERANKER Penalty Decision Gate |
+| [changelog-011-002-bge-v2-m3-trial.md](./002-bge-v2-m3-trial/changelog-011-002-bge-v2-m3-trial.md) | 2026-05-21 | bge-reranker-v2-m3 off-the-shelf trial: HOLD verdict |
+| [changelog-011-003-domain-tuned-finetune.md](./003-domain-tuned-finetune/changelog-011-003-domain-tuned-finetune.md) | 2026-05-21 | Rerank Decision Arc Phase 003: Domain-Tuned Fine-Tune Setup with Template Stripping |
+| [changelog-011-004-retrieval-and-fixture-audit.md](./004-retrieval-and-fixture-audit/changelog-011-004-retrieval-and-fixture-audit.md) | 2026-05-21 | 011/004 Retrieval and Fixture Audit: Decision Gate Before Phase 3 |
+| [changelog-011-005-opt-in-only-closure.md](./005-opt-in-only-closure/changelog-011-005-opt-in-only-closure.md) | 2026-05-21 | Spec: spec-memory rerank opt-in-only closure |
 
 ### Added
 

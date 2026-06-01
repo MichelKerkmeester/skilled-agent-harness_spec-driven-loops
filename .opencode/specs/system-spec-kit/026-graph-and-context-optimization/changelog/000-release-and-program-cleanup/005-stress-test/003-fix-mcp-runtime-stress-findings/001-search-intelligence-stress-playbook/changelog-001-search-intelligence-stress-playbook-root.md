@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-04-26 to 2026-05-18. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-search-scenario-design.md](./changelog-001-001-search-scenario-design.md) | 2026-04-26 | Scenario Design Sub-Phase: 9-Scenario Corpus and Dispatch Matrix |
-| [changelog-001-002-search-scenario-execution.md](./changelog-001-002-search-scenario-execution.md) | 2026-05-18 | Stress-Test Playbook 002: Search Scenario Execution |
-| [changelog-001-scenario-design.md](./changelog-001-scenario-design.md) | 2026-04-26 | Changelog: 001-search-scenario-design |
-| [changelog-002-scenario-execution.md](./changelog-002-scenario-execution.md) | 2026-04-26 | Changelog: 002-search-scenario-execution |
+| [changelog-001-001-search-scenario-design.md](./001-search-scenario-design/changelog-001-001-search-scenario-design.md) | 2026-04-26 | Scenario Design Sub-Phase: 9-Scenario Corpus and Dispatch Matrix |
+| [changelog-001-002-search-scenario-execution.md](./002-search-scenario-execution/changelog-001-002-search-scenario-execution.md) | 2026-05-18 | Stress-Test Playbook 002: Search Scenario Execution |
+| [changelog-001-scenario-design.md](./_root/changelog-001-scenario-design.md) | 2026-04-26 | Changelog: 001-search-scenario-design |
+| [changelog-002-scenario-execution.md](./_root/changelog-002-scenario-execution.md) | 2026-04-26 | Changelog: 002-search-scenario-execution |
 
 ### Added
 

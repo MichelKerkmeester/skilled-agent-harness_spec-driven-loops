@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-019-001-implement-ledger-v2-schema-and-identity-verified-pid.md](./changelog-019-001-implement-ledger-v2-schema-and-identity-verified-pid.md) | 2026-05-23 | Ledger v2 Schema and Identity-Verified PID Helpers |
-| [changelog-019-002-implement-layer-b-sidecar-self-check-and-in-flight-gate.md](./changelog-019-002-implement-layer-b-sidecar-self-check-and-in-flight-gate.md) | 2026-05-23 | Layer B Sidecar Self-Check and In-Flight Gate |
-| [changelog-019-003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures.md](./changelog-019-003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures.md) | 2026-05-23 | Layer D Launcher Pre-Flight Reap and Parity Fixtures |
-| [changelog-019-004-implement-env-knobs-and-skill-docs.md](./changelog-019-004-implement-env-knobs-and-skill-docs.md) | 2026-05-23 | Rerank reaper env knobs and operator docs [019/004] |
+| [changelog-019-001-implement-ledger-v2-schema-and-identity-verified-pid.md](./001-implement-ledger-v2-schema-and-identity-verified-pid/changelog-019-001-implement-ledger-v2-schema-and-identity-verified-pid.md) | 2026-05-23 | Ledger v2 Schema and Identity-Verified PID Helpers |
+| [changelog-019-002-implement-layer-b-sidecar-self-check-and-in-flight-gate.md](./002-implement-layer-b-sidecar-self-check-and-in-flight-gate/changelog-019-002-implement-layer-b-sidecar-self-check-and-in-flight-gate.md) | 2026-05-23 | Layer B Sidecar Self-Check and In-Flight Gate |
+| [changelog-019-003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures.md](./003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures/changelog-019-003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures.md) | 2026-05-23 | Layer D Launcher Pre-Flight Reap and Parity Fixtures |
+| [changelog-019-004-implement-env-knobs-and-skill-docs.md](./004-implement-env-knobs-and-skill-docs/changelog-019-004-implement-env-knobs-and-skill-docs.md) | 2026-05-23 | Rerank reaper env knobs and operator docs [019/004] |
 
 ### Added
 

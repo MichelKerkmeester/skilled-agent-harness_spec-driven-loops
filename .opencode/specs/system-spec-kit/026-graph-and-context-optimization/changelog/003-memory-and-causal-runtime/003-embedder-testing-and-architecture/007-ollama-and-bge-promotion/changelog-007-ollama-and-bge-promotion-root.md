@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-18 to 2026-05-26. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-007-001-indexer-surface-investigation.md](./changelog-007-001-indexer-surface-investigation.md) | 2026-05-18 | 007/001 Indexer Surface Investigation |
-| [changelog-007-002-cocoindex-ollama-adapter.md](./changelog-007-002-cocoindex-ollama-adapter.md) | 2026-05-18 | CocoIndex Ollama Adapter: LiteLLM Provider Registration and Daemon Readiness Gate |
-| [changelog-007-003-bge-code-v1-confirmation-and-promote.md](./changelog-007-003-bge-code-v1-confirmation-and-promote.md) | 2026-05-26 | BGE-code-v1 confirmation closed as superseded by Nomic CodeRankEmbed |
-| [changelog-007-004-newer-text-embedders-survey.md](./changelog-007-004-newer-text-embedders-survey.md) | 2026-05-19 | Newer Text Embedders Survey: Post-May-2026 HF Crawl and HOLD Verdict |
+| [changelog-007-001-indexer-surface-investigation.md](./001-indexer-surface-investigation/changelog-007-001-indexer-surface-investigation.md) | 2026-05-18 | 007/001 Indexer Surface Investigation |
+| [changelog-007-002-cocoindex-ollama-adapter.md](./002-cocoindex-ollama-adapter/changelog-007-002-cocoindex-ollama-adapter.md) | 2026-05-18 | CocoIndex Ollama Adapter: LiteLLM Provider Registration and Daemon Readiness Gate |
+| [changelog-007-003-bge-code-v1-confirmation-and-promote.md](./003-bge-code-v1-confirmation-and-promote/changelog-007-003-bge-code-v1-confirmation-and-promote.md) | 2026-05-26 | BGE-code-v1 confirmation closed as superseded by Nomic CodeRankEmbed |
+| [changelog-007-004-newer-text-embedders-survey.md](./004-newer-text-embedders-survey/changelog-007-004-newer-text-embedders-survey.md) | 2026-05-19 | Newer Text Embedders Survey: Post-May-2026 HF Crawl and HOLD Verdict |
 
 ### Added
 

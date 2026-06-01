@@ -24,7 +24,7 @@ This phase parent groups 1 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-018-001-investigate-and-design-reaper-architecture.md](./changelog-018-001-investigate-and-design-reaper-architecture.md) | 2026-05-23 | Rerank-Sidecar Reaper Investigation and Three-Layer Architecture Design |
+| [changelog-018-001-investigate-and-design-reaper-architecture.md](./001-investigate-and-design-reaper-architecture/changelog-018-001-investigate-and-design-reaper-architecture.md) | 2026-05-23 | Rerank-Sidecar Reaper Investigation and Three-Layer Architecture Design |
 
 ### Added
 

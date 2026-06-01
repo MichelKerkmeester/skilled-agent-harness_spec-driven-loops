@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-26 to 2026-05-26. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-001-deep-research-install-scripts-doctor.md](./changelog-003-001-deep-research-install-scripts-doctor.md) | 2026-05-26 | Changelog: Phase 1: Deep-Research Install/Scripts/Doctor Realignment |
-| [changelog-003-002-operator-surface-realignment.md](./changelog-003-002-operator-surface-realignment.md) | 2026-05-26 | Operator Surface Realignment: INSTALL_GUIDE plus install.sh plus /doctor to post-CocoIndex Reality |
-| [changelog-003-003-advisor-adjacent-116-realignment.md](./changelog-003-003-advisor-adjacent-116-realignment.md) | 2026-05-26 | 003-install-scripts-doctor-realignment Phase 3: Advisor and Adjacent-116 Realignment |
-| [changelog-003-004-deferred-followups-and-cleanup.md](./changelog-003-004-deferred-followups-and-cleanup.md) | 2026-05-26 | Deferred Follow-Ups and Cleanup: Scorer Dead Branches, Graph-Metadata Paths, Contract-Parity, Doc Overviews, Install-Guide Deletions |
+| [changelog-003-001-deep-research-install-scripts-doctor.md](./001-deep-research-install-scripts-doctor/changelog-003-001-deep-research-install-scripts-doctor.md) | 2026-05-26 | Changelog: Phase 1: Deep-Research Install/Scripts/Doctor Realignment |
+| [changelog-003-002-operator-surface-realignment.md](./002-operator-surface-realignment/changelog-003-002-operator-surface-realignment.md) | 2026-05-26 | Operator Surface Realignment: INSTALL_GUIDE plus install.sh plus /doctor to post-CocoIndex Reality |
+| [changelog-003-003-advisor-adjacent-116-realignment.md](./003-advisor-adjacent-116-realignment/changelog-003-003-advisor-adjacent-116-realignment.md) | 2026-05-26 | 003-install-scripts-doctor-realignment Phase 3: Advisor and Adjacent-116 Realignment |
+| [changelog-003-004-deferred-followups-and-cleanup.md](./004-deferred-followups-and-cleanup/changelog-003-004-deferred-followups-and-cleanup.md) | 2026-05-26 | Deferred Follow-Ups and Cleanup: Scorer Dead Branches, Graph-Metadata Paths, Contract-Parity, Doc Overviews, Install-Guide Deletions |
 
 ### Added
 

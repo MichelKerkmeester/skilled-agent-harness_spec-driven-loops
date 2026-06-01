@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-05-17 to 2026-05-24. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-001-skill-mds-audit.md](./changelog-003-001-skill-mds-audit.md) | 2026-05-17 | Skill MDs Audit: Stale 016-019 Embedder Refs |
-| [changelog-003-002-root-readme-update.md](./changelog-003-002-root-readme-update.md) | 2026-05-17 | Root README Refresh: Embedder Defaults and Architecture Summary |
-| [changelog-003-003-embedder-pluggability-narrative.md](./changelog-003-003-embedder-pluggability-narrative.md) | 2026-05-24 | Embedder Pluggability Narrative: Canonical Reference Doc |
+| [changelog-003-001-skill-mds-audit.md](./001-skill-mds-audit/changelog-003-001-skill-mds-audit.md) | 2026-05-17 | Skill MDs Audit: Stale 016-019 Embedder Refs |
+| [changelog-003-002-root-readme-update.md](./002-root-readme-update/changelog-003-002-root-readme-update.md) | 2026-05-17 | Root README Refresh: Embedder Defaults and Architecture Summary |
+| [changelog-003-003-embedder-pluggability-narrative.md](./003-embedder-pluggability-narrative/changelog-003-003-embedder-pluggability-narrative.md) | 2026-05-24 | Embedder Pluggability Narrative: Canonical Reference Doc |
 
 ### Added
 

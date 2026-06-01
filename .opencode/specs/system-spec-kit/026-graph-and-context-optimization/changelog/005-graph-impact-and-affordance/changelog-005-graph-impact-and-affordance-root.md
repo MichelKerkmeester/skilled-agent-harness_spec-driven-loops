@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-04-25 to 2026-04-25. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-001-code-graph-phase-runner.md](./changelog-005-001-code-graph-phase-runner.md) | 2026-04-25 | Code Graph Phase Runner and detect_changes Preflight |
-| [changelog-005-002-edge-explanation-impact-uplift.md](./changelog-005-002-edge-explanation-impact-uplift.md) | 2026-04-25 | Code Graph Edge Explanation + Impact Uplift (012/003) |
-| [changelog-005-003-skill-advisor-affordance-evidence.md](./changelog-005-003-skill-advisor-affordance-evidence.md) | 2026-04-25 | Skill Advisor Affordance Evidence: Allowlist Normalizer and Lane Integration |
-| [changelog-005-004-memory-causal-trust-display.md](./changelog-005-004-memory-causal-trust-display.md) | 2026-04-25 | Memory Causal Trust Display: display-only trust badges on MemoryResultEnvelope |
-| [changelog-005-005-deep-review-findings.md](./changelog-005-005-deep-review-findings.md) | 2026-04-25 | Graph Impact and Affordance: Deep-Review Remediation |
-| [changelog-005-006-deep-research-review.md](./changelog-005-006-deep-research-review.md) | 2026-04-25 | Phase 005/006: Deep Research Review 008 - Independent Audit of Graph Impact and Affordance Work |
+| [changelog-005-001-code-graph-phase-runner.md](./001-code-graph-phase-runner/changelog-005-001-code-graph-phase-runner.md) | 2026-04-25 | Code Graph Phase Runner and detect_changes Preflight |
+| [changelog-005-002-edge-explanation-impact-uplift.md](./002-edge-explanation-impact-uplift/changelog-005-002-edge-explanation-impact-uplift.md) | 2026-04-25 | Code Graph Edge Explanation + Impact Uplift (012/003) |
+| [changelog-005-003-skill-advisor-affordance-evidence.md](./003-skill-advisor-affordance-evidence/changelog-005-003-skill-advisor-affordance-evidence.md) | 2026-04-25 | Skill Advisor Affordance Evidence: Allowlist Normalizer and Lane Integration |
+| [changelog-005-004-memory-causal-trust-display.md](./004-memory-causal-trust-display/changelog-005-004-memory-causal-trust-display.md) | 2026-04-25 | Memory Causal Trust Display: display-only trust badges on MemoryResultEnvelope |
+| [changelog-005-005-deep-review-findings.md](./005-deep-review-findings/changelog-005-005-deep-review-findings.md) | 2026-04-25 | Graph Impact and Affordance: Deep-Review Remediation |
+| [changelog-005-006-deep-research-review.md](./006-deep-research-review/changelog-005-006-deep-research-review.md) | 2026-04-25 | Phase 005/006: Deep Research Review 008 - Independent Audit of Graph Impact and Affordance Work |
 
 ### Added
 

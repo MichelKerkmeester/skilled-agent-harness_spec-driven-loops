@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-05-31 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-001-documentation-code-alignment.md](./changelog-005-001-documentation-code-alignment.md) | 2026-05-31 | Skill-Advisor Documentation and Phase 020 Code Alignment |
-| [changelog-005-002-code-folder-readme-coverage.md](./changelog-005-002-code-folder-readme-coverage.md) | 2026-05-31 | Changelog: Phase B sk-doc-aligned READMEs for system-skill-advisor |
-| [changelog-005-003-fix-documentation-config-drift.md](./changelog-005-003-fix-documentation-config-drift.md) | 2026-05-31 | system-skill-advisor doc and config drift fixes |
-| [changelog-005-005-cross-skill-documentation-decoupling.md](./changelog-005-005-cross-skill-documentation-decoupling.md) | 2026-05-31 | Cross-Skill Documentation Decoupling |
-| [changelog-005-006-skill-readme-refinement-survey.md](./changelog-005-006-skill-readme-refinement-survey.md) | 2026-05-31 | 17-Skill README Refinement Survey |
-| [changelog-005-007-reference-template-alignment.md](./changelog-005-007-reference-template-alignment.md) | 2026-05-31 | Changelog: System Skill Advisor Reference Template Alignment [005-skill-advisor-documentation/007-reference-template-alignment] |
+| [changelog-005-001-documentation-code-alignment.md](./001-documentation-code-alignment/changelog-005-001-documentation-code-alignment.md) | 2026-05-31 | Skill-Advisor Documentation and Phase 020 Code Alignment |
+| [changelog-005-002-code-folder-readme-coverage.md](./002-code-folder-readme-coverage/changelog-005-002-code-folder-readme-coverage.md) | 2026-05-31 | Changelog: Phase B sk-doc-aligned READMEs for system-skill-advisor |
+| [changelog-005-003-fix-documentation-config-drift.md](./003-fix-documentation-config-drift/changelog-005-003-fix-documentation-config-drift.md) | 2026-05-31 | system-skill-advisor doc and config drift fixes |
+| [changelog-005-005-cross-skill-documentation-decoupling.md](./005-cross-skill-documentation-decoupling/changelog-005-005-cross-skill-documentation-decoupling.md) | 2026-05-31 | Cross-Skill Documentation Decoupling |
+| [changelog-005-006-skill-readme-refinement-survey.md](./006-skill-readme-refinement-survey/changelog-005-006-skill-readme-refinement-survey.md) | 2026-05-31 | 17-Skill README Refinement Survey |
+| [changelog-005-007-reference-template-alignment.md](./007-reference-template-alignment/changelog-005-007-reference-template-alignment.md) | 2026-05-31 | Changelog: System Skill Advisor Reference Template Alignment [005-skill-advisor-documentation/007-reference-template-alignment] |
 
 ### Added
 

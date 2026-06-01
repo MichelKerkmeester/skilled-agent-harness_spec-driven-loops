@@ -24,13 +24,13 @@ This phase parent groups 7 child phases spanning 2026-05-25 to 2026-05-25. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-002-001-touchpoint-research.md](./changelog-002-001-touchpoint-research.md) | 2026-05-25 | 002/001: Touchpoint Research: CocoIndex and Rerank-Sidecar Deprecation Discovery |
-| [changelog-002-010-remove-memory-coco-integration.md](./changelog-002-010-remove-memory-coco-integration.md) | 2026-05-25 | 002/010: Remove memory's live CocoIndex integration and repair 002 type break |
-| [changelog-002-013-post-deprecation-deep-review.md](./changelog-002-013-post-deprecation-deep-review.md) | 2026-05-25 | 013: Post-Deprecation Deep Review, CocoIndex/Rerank Arc (30 Surfaces, FAIL verdict) |
-| [changelog-002-014-remediate-codegraph-naming.md](./changelog-002-014-remediate-codegraph-naming.md) | 2026-05-25 | Code Graph 002-014: Remediate ccc Naming Residue in system-code-graph Docs |
-| [changelog-002-015-remediate-cross-surface-residue.md](./changelog-002-015-remediate-cross-surface-residue.md) | 2026-05-25 | Code Graph 002-015: Remediate Cross-Surface coco/ccc/rerank Residue |
-| [changelog-002-016-remediate-residue-tail.md](./changelog-002-016-remediate-residue-tail.md) | 2026-05-25 | Deprecation Residue Tail Closed: CocoIndex / Rerank-Sidecar / CCC Completeness Verdict |
-| [changelog-002-017-remove-llm-reranking-keep-mmr.md](./changelog-002-017-remove-llm-reranking-keep-mmr.md) | 2026-05-25 | Code Graph 002/017: Remove LLM Reranking Vestiges, Keep MMR |
+| [changelog-002-001-touchpoint-research.md](./001-touchpoint-research/changelog-002-001-touchpoint-research.md) | 2026-05-25 | 002/001: Touchpoint Research: CocoIndex and Rerank-Sidecar Deprecation Discovery |
+| [changelog-002-010-remove-memory-coco-integration.md](./010-remove-memory-coco-integration/changelog-002-010-remove-memory-coco-integration.md) | 2026-05-25 | 002/010: Remove memory's live CocoIndex integration and repair 002 type break |
+| [changelog-002-013-post-deprecation-deep-review.md](./013-post-deprecation-deep-review/changelog-002-013-post-deprecation-deep-review.md) | 2026-05-25 | 013: Post-Deprecation Deep Review, CocoIndex/Rerank Arc (30 Surfaces, FAIL verdict) |
+| [changelog-002-014-remediate-codegraph-naming.md](./014-remediate-codegraph-naming/changelog-002-014-remediate-codegraph-naming.md) | 2026-05-25 | Code Graph 002-014: Remediate ccc Naming Residue in system-code-graph Docs |
+| [changelog-002-015-remediate-cross-surface-residue.md](./015-remediate-cross-surface-residue/changelog-002-015-remediate-cross-surface-residue.md) | 2026-05-25 | Code Graph 002-015: Remediate Cross-Surface coco/ccc/rerank Residue |
+| [changelog-002-016-remediate-residue-tail.md](./016-remediate-residue-tail/changelog-002-016-remediate-residue-tail.md) | 2026-05-25 | Deprecation Residue Tail Closed: CocoIndex / Rerank-Sidecar / CCC Completeness Verdict |
+| [changelog-002-017-remove-llm-reranking-keep-mmr.md](./017-remove-llm-reranking-keep-mmr/changelog-002-017-remove-llm-reranking-keep-mmr.md) | 2026-05-25 | Code Graph 002/017: Remove LLM Reranking Vestiges, Keep MMR |
 
 ### Added
 

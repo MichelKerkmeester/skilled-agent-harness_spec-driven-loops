@@ -24,8 +24,8 @@ This phase parent groups 2 child phases spanning 2026-05-08 to 2026-05-11. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-002-001-deliver-causal-graph-channel-routing-mvp.md](./changelog-002-001-deliver-causal-graph-channel-routing-mvp.md) | 2026-05-08 | 012 Causal Graph Channel Routing: Activate Graph Channel for Intent and Entity-Rich Queries |
-| [changelog-002-002-fix-deep-review-findings-for-causal-graph-channel-routing.md](./changelog-002-002-fix-deep-review-findings-for-causal-graph-channel-routing.md) | 2026-05-11 | Causal Graph Channel Routing: 002 Deep-Review Remediation |
+| [changelog-002-001-deliver-causal-graph-channel-routing-mvp.md](./001-deliver-causal-graph-channel-routing-mvp/changelog-002-001-deliver-causal-graph-channel-routing-mvp.md) | 2026-05-08 | 012 Causal Graph Channel Routing: Activate Graph Channel for Intent and Entity-Rich Queries |
+| [changelog-002-002-fix-deep-review-findings-for-causal-graph-channel-routing.md](./002-fix-deep-review-findings-for-causal-graph-channel-routing/changelog-002-002-fix-deep-review-findings-for-causal-graph-channel-routing.md) | 2026-05-11 | Causal Graph Channel Routing: 002 Deep-Review Remediation |
 
 ### Added
 

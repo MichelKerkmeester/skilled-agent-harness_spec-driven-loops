@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-04-27 to 2026-04-27. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-009-001-phase-parent-validator-docs.md](./changelog-009-001-phase-parent-validator-docs.md) | 2026-04-27 | Phase Parent Lean Trio: Validator and Documentation |
-| [changelog-009-002-phase-parent-generator-pointer-polish.md](./changelog-009-002-phase-parent-generator-pointer-polish.md) | 2026-04-27 | Phase Parent Generator Pointer + Polish |
-| [changelog-009-003-phase-parent-reference-readme-sync.md](./changelog-009-003-phase-parent-reference-readme-sync.md) | 2026-04-27 | Changelog: References and READMEs Lean-Trio Sync |
-| [changelog-009-004-legacy-phase-parent-migration.md](./changelog-009-004-legacy-phase-parent-migration.md) | 2026-04-27 | Retroactive Phase-Parent Migration: Lean Trio Applied to 31 Legacy Parents |
+| [changelog-009-001-phase-parent-validator-docs.md](./001-phase-parent-validator-docs/changelog-009-001-phase-parent-validator-docs.md) | 2026-04-27 | Phase Parent Lean Trio: Validator and Documentation |
+| [changelog-009-002-phase-parent-generator-pointer-polish.md](./002-phase-parent-generator-pointer-polish/changelog-009-002-phase-parent-generator-pointer-polish.md) | 2026-04-27 | Phase Parent Generator Pointer + Polish |
+| [changelog-009-003-phase-parent-reference-readme-sync.md](./003-phase-parent-reference-readme-sync/changelog-009-003-phase-parent-reference-readme-sync.md) | 2026-04-27 | Changelog: References and READMEs Lean-Trio Sync |
+| [changelog-009-004-legacy-phase-parent-migration.md](./004-legacy-phase-parent-migration/changelog-009-004-legacy-phase-parent-migration.md) | 2026-04-27 | Retroactive Phase-Parent Migration: Lean Trio Applied to 31 Legacy Parents |
 
 ### Added
 

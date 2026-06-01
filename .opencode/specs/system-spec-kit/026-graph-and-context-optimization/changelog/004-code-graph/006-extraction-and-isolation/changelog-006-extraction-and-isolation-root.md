@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-14 to 2026-05-15. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-006-001-system-code-graph-extraction.md](./changelog-006-001-system-code-graph-extraction.md) | 2026-05-14 | Code Graph Phase 006-001: system-code-graph extraction |
-| [changelog-006-002-extraction-design-and-decision-record.md](./changelog-006-002-extraction-design-and-decision-record.md) | 2026-05-14 | Code Graph Phase 006-002: Design and ADR for Code-Graph Extraction |
-| [changelog-006-003-standalone-mcp-topology-pivot.md](./changelog-006-003-standalone-mcp-topology-pivot.md) | 2026-05-14 | Code Graph 006-003: Standalone MCP Topology Pivot (ADR-002) |
-| [changelog-006-004-three-way-isolation-finalize.md](./changelog-006-004-three-way-isolation-finalize.md) | 2026-05-15 | Code Graph Phase 006-004: Three-Way Isolation Finalize |
+| [changelog-006-001-system-code-graph-extraction.md](./001-system-code-graph-extraction/changelog-006-001-system-code-graph-extraction.md) | 2026-05-14 | Code Graph Phase 006-001: system-code-graph extraction |
+| [changelog-006-002-extraction-design-and-decision-record.md](./002-extraction-design-and-decision-record/changelog-006-002-extraction-design-and-decision-record.md) | 2026-05-14 | Code Graph Phase 006-002: Design and ADR for Code-Graph Extraction |
+| [changelog-006-003-standalone-mcp-topology-pivot.md](./003-standalone-mcp-topology-pivot/changelog-006-003-standalone-mcp-topology-pivot.md) | 2026-05-14 | Code Graph 006-003: Standalone MCP Topology Pivot (ADR-002) |
+| [changelog-006-004-three-way-isolation-finalize.md](./004-three-way-isolation-finalize/changelog-006-004-three-way-isolation-finalize.md) | 2026-05-15 | Code Graph Phase 006-004: Three-Way Isolation Finalize |
 
 ### Added
 

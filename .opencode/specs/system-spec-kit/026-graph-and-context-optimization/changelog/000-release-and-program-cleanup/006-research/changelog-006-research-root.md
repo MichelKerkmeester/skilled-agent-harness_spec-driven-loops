@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-04-29 to 2026-05-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-006-001-automation-self-management-research.md](./changelog-006-001-automation-self-management-research.md) | 2026-04-29 | Research Charter: Automation and Self-Management Reality Map |
-| [changelog-006-002-automation-reality-supplemental-research.md](./changelog-006-002-automation-reality-supplemental-research.md) | 2026-04-29 | Supplemental Automation Reality Research: 5-Iter Continuation of 012 |
-| [changelog-006-003-system-bug-improvement-research.md](./changelog-006-003-system-bug-improvement-research.md) | 2026-05-01 | System Deep Research: Bugs and Improvements, 20-Iteration Audit |
+| [changelog-006-001-automation-self-management-research.md](./001-automation-self-management-research/changelog-006-001-automation-self-management-research.md) | 2026-04-29 | Research Charter: Automation and Self-Management Reality Map |
+| [changelog-006-002-automation-reality-supplemental-research.md](./002-automation-reality-supplemental-research/changelog-006-002-automation-reality-supplemental-research.md) | 2026-04-29 | Supplemental Automation Reality Research: 5-Iter Continuation of 012 |
+| [changelog-006-003-system-bug-improvement-research.md](./003-system-bug-improvement-research/changelog-006-003-system-bug-improvement-research.md) | 2026-05-01 | System Deep Research: Bugs and Improvements, 20-Iteration Audit |
 
 ### Added
 

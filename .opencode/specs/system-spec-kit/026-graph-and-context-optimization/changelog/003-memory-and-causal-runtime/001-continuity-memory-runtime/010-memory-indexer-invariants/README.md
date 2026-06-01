@@ -26,7 +26,7 @@ The packet ships at Level 3 with full spec docs: `spec.md` (399 lines, 13 sectio
 
 | Phase | Date | Title | One-line story |
 |-------|------|-------|----------------|
-| 005-pt-01 | 2026-04-29 | [Memory indexer invariants review](../../../006-operator-tooling/001-hook-parity/changelog-005-opencode-plugin-loader-remediation-review-pt-01.md) | Deep review validated both invariant tracks across 92 file reads, found 1 P1 and 13 P2 items, and confirmed the packet is CONDITIONAL pending a storage-boundary fix and a live MCP rescan. |
+| 005-pt-01 | 2026-04-29 | [Memory indexer invariants review](../../../006-operator-tooling/001-hook-parity/005-fix-opencode-plugin-loader-bridge/changelog-005-opencode-plugin-loader-remediation-review-pt-01.md) | Deep review validated both invariant tracks across 92 file reads, found 1 P1 and 13 P2 items, and confirmed the packet is CONDITIONAL pending a storage-boundary fix and a live MCP rescan. |
 
 ## How to read these
 

@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-04-24 to 2026-05-02. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-reverse-parent-research-review-folders.md](./changelog-001-001-reverse-parent-research-review-folders.md) | 2026-04-24 | Phase 001: Reverse Parent Research/Review Folder Placement |
-| [changelog-001-002-resource-map-template-creation.md](./changelog-001-002-resource-map-template-creation.md) | 2026-04-24 | Resource Map Template: Cross-Cutting Template Creation and Discovery Wiring |
-| [changelog-001-003-resource-map-deep-loop-integration.md](./changelog-001-003-resource-map-deep-loop-integration.md) | 2026-04-24 | Resource Map Deep Loop Integration: Convergence-Time Emission for deep-review and deep-research |
-| [changelog-001-reverse-parent-research-review-folders.md](./changelog-001-reverse-parent-research-review-folders.md) | 2026-05-02 | Track 002 Phase 001: Reverse parent research/review folder placement |
-| [changelog-002-resource-map-template-creation.md](./changelog-002-resource-map-template-creation.md) | 2026-05-02 | Track 002 Phase 002: Resource map template creation |
-| [changelog-003-resource-map-deep-loop-integration.md](./changelog-003-resource-map-deep-loop-integration.md) | 2026-04-26 | Track 002 Phase 003: Resource map deep-loop integration |
+| [changelog-001-001-reverse-parent-research-review-folders.md](./001-reverse-parent-research-review-folders/changelog-001-001-reverse-parent-research-review-folders.md) | 2026-04-24 | Phase 001: Reverse Parent Research/Review Folder Placement |
+| [changelog-001-002-resource-map-template-creation.md](./002-resource-map-template-creation/changelog-001-002-resource-map-template-creation.md) | 2026-04-24 | Resource Map Template: Cross-Cutting Template Creation and Discovery Wiring |
+| [changelog-001-003-resource-map-deep-loop-integration.md](./003-resource-map-deep-loop-integration/changelog-001-003-resource-map-deep-loop-integration.md) | 2026-04-24 | Resource Map Deep Loop Integration: Convergence-Time Emission for deep-review and deep-research |
+| [changelog-001-reverse-parent-research-review-folders.md](./001-reverse-parent-research-review-folders/changelog-001-reverse-parent-research-review-folders.md) | 2026-05-02 | Track 002 Phase 001: Reverse parent research/review folder placement |
+| [changelog-002-resource-map-template-creation.md](./002-resource-map-template-creation/changelog-002-resource-map-template-creation.md) | 2026-05-02 | Track 002 Phase 002: Resource map template creation |
+| [changelog-003-resource-map-deep-loop-integration.md](./003-resource-map-deep-loop-integration/changelog-003-resource-map-deep-loop-integration.md) | 2026-04-26 | Track 002 Phase 003: Resource map deep-loop integration |
 
 ### Added
 

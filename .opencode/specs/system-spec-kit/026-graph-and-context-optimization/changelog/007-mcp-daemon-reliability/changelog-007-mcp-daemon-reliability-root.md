@@ -24,21 +24,21 @@ This phase parent groups 15 child phases spanning 2026-05-28 to 2026-05-31. Each
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-007-001-ipc-socket-dir-canonicalize.md](./changelog-007-001-ipc-socket-dir-canonicalize.md) | 2026-05-28 | MCP Daemon Reliability Phase 001: IPC Socket Dir Canonicalize |
-| [changelog-007-002-code-graph-initial-scan.md](./changelog-007-002-code-graph-initial-scan.md) | 2026-05-28 | MCP Daemon Reliability Phase 002: Code Graph Initial Scan |
-| [changelog-007-003-daemon-reliability-research.md](./changelog-007-003-daemon-reliability-research.md) | 2026-05-28 | MCP Daemon Reliability Phase 003: Root-Cause Investigation and Fix Roadmap |
-| [changelog-007-004-nondestructive-build.md](./changelog-007-004-nondestructive-build.md) | 2026-05-28 | Non-destructive mcp-server build: rebuilds no longer crash a running daemon (RC-4) |
-| [changelog-007-005-provider-dispose.md](./changelog-007-005-provider-dispose.md) | 2026-05-28 | MCP Daemon Reliability Phase 005: Dispose the Embedding Provider's Native ONNX Session on Swap |
-| [changelog-007-006-graceful-exit-watchdog.md](./changelog-007-006-graceful-exit-watchdog.md) | 2026-05-28 | Changelog: Launcher RSS-ceiling watchdog and graceful-exit supervision |
-| [changelog-007-007-bridge-liveness-reap.md](./changelog-007-007-bridge-liveness-reap.md) | 2026-05-28 | MCP Daemon Reliability Phase 007: Bridge Liveness Probe and Reap-Aware Respawn |
-| [changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md](./changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md) | 2026-05-29 | spec-memory Graceful WAL Checkpoint on Close |
-| [changelog-007-009-shutdown-durability.md](./changelog-007-009-shutdown-durability.md) | 2026-05-29 | MCP Daemon Reliability 009: Shutdown Durability for Forwarded Launcher Signals |
-| [changelog-007-010-at-rest-wal-durability.md](./changelog-007-010-at-rest-wal-durability.md) | 2026-05-29 | At-Rest WAL Durability: Bounded Autocheckpoint and Dual-Schema TRUNCATE |
-| [changelog-007-011-deep-review-shutdown-and-codegraph.md](./changelog-007-011-deep-review-shutdown-and-codegraph.md) | 2026-05-29 | Deep Review 011: opus-4.8 Daemon-Shutdown and Code-Graph (CONDITIONAL, 9 P1 / 0 P0) |
-| [changelog-007-012-boot-integrity-retention-probe.md](./changelog-007-012-boot-integrity-retention-probe.md) | 2026-05-29 | Boot Integrity-Check + Retention Durability + Probe Liveness Fix |
-| [changelog-007-013-standalone-save-second-writer-guard.md](./changelog-007-013-standalone-save-second-writer-guard.md) | 2026-05-29 | 013 Standalone Save Second-Writer Guard |
-| [changelog-007-016-substrate-harness-hardening.md](./changelog-007-016-substrate-harness-hardening.md) | 2026-05-31 | Substrate stress-harness hardening: start-time identity, run-id TSV, env suppression |
-| [changelog-007-mcp-daemon-reliability.md](./changelog-007-mcp-daemon-reliability.md) | n/a | changelog-007-mcp-daemon-reliability.md |
+| [changelog-007-001-ipc-socket-dir-canonicalize.md](./001-ipc-socket-dir-canonicalize/changelog-007-001-ipc-socket-dir-canonicalize.md) | 2026-05-28 | MCP Daemon Reliability Phase 001: IPC Socket Dir Canonicalize |
+| [changelog-007-002-code-graph-initial-scan.md](./002-code-graph-initial-scan/changelog-007-002-code-graph-initial-scan.md) | 2026-05-28 | MCP Daemon Reliability Phase 002: Code Graph Initial Scan |
+| [changelog-007-003-daemon-reliability-research.md](./003-daemon-reliability-research/changelog-007-003-daemon-reliability-research.md) | 2026-05-28 | MCP Daemon Reliability Phase 003: Root-Cause Investigation and Fix Roadmap |
+| [changelog-007-004-nondestructive-build.md](./004-nondestructive-build/changelog-007-004-nondestructive-build.md) | 2026-05-28 | Non-destructive mcp-server build: rebuilds no longer crash a running daemon (RC-4) |
+| [changelog-007-005-provider-dispose.md](./005-provider-dispose/changelog-007-005-provider-dispose.md) | 2026-05-28 | MCP Daemon Reliability Phase 005: Dispose the Embedding Provider's Native ONNX Session on Swap |
+| [changelog-007-006-graceful-exit-watchdog.md](./006-graceful-exit-watchdog/changelog-007-006-graceful-exit-watchdog.md) | 2026-05-28 | Changelog: Launcher RSS-ceiling watchdog and graceful-exit supervision |
+| [changelog-007-007-bridge-liveness-reap.md](./007-bridge-liveness-reap/changelog-007-007-bridge-liveness-reap.md) | 2026-05-28 | MCP Daemon Reliability Phase 007: Bridge Liveness Probe and Reap-Aware Respawn |
+| [changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md](./008-spec-memory-graceful-wal-checkpoint-on-close/changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md) | 2026-05-29 | spec-memory Graceful WAL Checkpoint on Close |
+| [changelog-007-009-shutdown-durability.md](./009-shutdown-durability/changelog-007-009-shutdown-durability.md) | 2026-05-29 | MCP Daemon Reliability 009: Shutdown Durability for Forwarded Launcher Signals |
+| [changelog-007-010-at-rest-wal-durability.md](./010-at-rest-wal-durability/changelog-007-010-at-rest-wal-durability.md) | 2026-05-29 | At-Rest WAL Durability: Bounded Autocheckpoint and Dual-Schema TRUNCATE |
+| [changelog-007-011-deep-review-shutdown-and-codegraph.md](./011-deep-review-shutdown-and-codegraph/changelog-007-011-deep-review-shutdown-and-codegraph.md) | 2026-05-29 | Deep Review 011: opus-4.8 Daemon-Shutdown and Code-Graph (CONDITIONAL, 9 P1 / 0 P0) |
+| [changelog-007-012-boot-integrity-retention-probe.md](./012-boot-integrity-retention-probe/changelog-007-012-boot-integrity-retention-probe.md) | 2026-05-29 | Boot Integrity-Check + Retention Durability + Probe Liveness Fix |
+| [changelog-007-013-standalone-save-second-writer-guard.md](./013-standalone-save-second-writer-guard/changelog-007-013-standalone-save-second-writer-guard.md) | 2026-05-29 | 013 Standalone Save Second-Writer Guard |
+| [changelog-007-016-substrate-harness-hardening.md](./016-substrate-harness-hardening/changelog-007-016-substrate-harness-hardening.md) | 2026-05-31 | Substrate stress-harness hardening: start-time identity, run-id TSV, env suppression |
+| [changelog-007-mcp-daemon-reliability.md](./015-infra-followup-hardening/_root/changelog-007-mcp-daemon-reliability.md) | n/a | changelog-007-mcp-daemon-reliability.md |
 
 ### Added
 

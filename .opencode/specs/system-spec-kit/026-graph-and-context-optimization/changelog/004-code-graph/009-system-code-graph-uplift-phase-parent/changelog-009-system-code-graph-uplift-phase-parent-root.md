@@ -24,8 +24,8 @@ This phase parent groups 2 child phases spanning 2026-05-16 to 2026-05-16. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-009-001-skill-docs-install-guide-and-readmes-polish.md](./changelog-009-001-skill-docs-install-guide-and-readmes-polish.md) | 2026-05-16 | Code Graph Child 001: SKILL.md, INSTALL_GUIDE and READMEs Polish |
-| [changelog-009-002-readme-problem-first-rewrite.md](./changelog-009-002-readme-problem-first-rewrite.md) | 2026-05-16 | Code Graph 009/002: README Problem-First Rewrite |
+| [changelog-009-001-skill-docs-install-guide-and-readmes-polish.md](./001-skill-docs-install-guide-and-readmes-polish/changelog-009-001-skill-docs-install-guide-and-readmes-polish.md) | 2026-05-16 | Code Graph Child 001: SKILL.md, INSTALL_GUIDE and READMEs Polish |
+| [changelog-009-002-readme-problem-first-rewrite.md](./002-readme-problem-first-rewrite/changelog-009-002-readme-problem-first-rewrite.md) | 2026-05-16 | Code Graph 009/002: README Problem-First Rewrite |
 
 ### Added
 

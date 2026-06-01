@@ -24,21 +24,21 @@ This phase parent groups 15 child phases spanning 2026-04-08 to 2026-06-01. Each
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-cache-warning-hooks.md](./changelog-001-001-cache-warning-hooks.md) | 2026-04-08 | Continuity Memory Runtime Phase 001: Cache-Warning Hook System |
-| [changelog-001-002-fix-memory-quality.md](./changelog-001-002-fix-memory-quality.md) | 2026-04-12 | Memory Quality Backend Improvements: 10-Phase Remediation Train |
-| [changelog-001-003-continuity-refactor-gates.md](./changelog-001-003-continuity-refactor-gates.md) | 2026-04-13 | Continuity Refactor Gates: Six-Gate Coordination Packet Repair and Closeout |
-| [changelog-001-004-memory-save-rewrite.md](./changelog-001-004-memory-save-rewrite.md) | 2026-04-15 | Continuity Memory Runtime Phase 004: Memory Save Planner-First Default |
-| [changelog-001-006-fix-memory-search-health-fallback-stability.md](./changelog-001-006-fix-memory-search-health-fallback-stability.md) | 2026-05-08 | Memory Search Clusters 4-7 Remediation: Causal Stats, Folder Discovery, CocoIndex Health, Quality Fallback |
-| [changelog-001-007-foundational-runtime.md](./changelog-001-007-foundational-runtime.md) | 2026-04-17 | Foundational Runtime Remediation: H-56-1 Canonical Save Metadata Fix and 27-Task Hardening Pass |
-| [changelog-001-008-sk-deep-cli-runtime-execution.md](./changelog-001-008-sk-deep-cli-runtime-execution.md) | 2026-04-18 | CLI Runtime Executors for Iterative Skills |
-| [changelog-001-009-system-hardening.md](./changelog-001-009-system-hardening.md) | 2026-04-19 | System Hardening: Post-Consolidation Research and Remediation Train |
-| [changelog-001-010-memory-indexer-invariants.md](./changelog-001-010-memory-indexer-invariants.md) | 2026-06-01 | Memory Indexer Invariants: Lineage, Concurrency, Index Scope, and Constitutional Tier Enforcement |
-| [changelog-001-011-z-archive-memory-indexing.md](./changelog-001-011-z-archive-memory-indexing.md) | 2026-05-16 | Continuity Memory Runtime Phase 011: z_archive Memory Indexing Fix |
-| [changelog-001-cache-warning-hooks.md](./changelog-001-cache-warning-hooks.md) | 2026-04-08 | Continuity Memory Runtime Phase 001: Cache-warning hooks |
-| [changelog-002-memory-quality-remediation.md](./changelog-002-memory-quality-remediation.md) | 2026-04-08 | Continuity Memory Runtime Phase 002: Memory quality remediation |
-| [changelog-003-continuity-refactor-gates.md](./changelog-003-continuity-refactor-gates.md) | 2026-04-13 | Continuity Memory Runtime Phase 003: Continuity refactor gates |
-| [changelog-004-memory-save-rewrite.md](./changelog-004-memory-save-rewrite.md) | 2026-04-15 | Continuity Memory Runtime Phase 004: Memory save rewrite |
-| [changelog-005-memory-search-runtime-bugs.md](./changelog-005-memory-search-runtime-bugs.md) | 2026-04-26 | Continuity Memory Runtime Phase 005: Memory search runtime bugs |
+| [changelog-001-001-cache-warning-hooks.md](./001-cache-warning-hooks/changelog-001-001-cache-warning-hooks.md) | 2026-04-08 | Continuity Memory Runtime Phase 001: Cache-Warning Hook System |
+| [changelog-001-002-fix-memory-quality.md](./002-fix-memory-quality/changelog-001-002-fix-memory-quality.md) | 2026-04-12 | Memory Quality Backend Improvements: 10-Phase Remediation Train |
+| [changelog-001-003-continuity-refactor-gates.md](./003-continuity-refactor-gates/changelog-001-003-continuity-refactor-gates.md) | 2026-04-13 | Continuity Refactor Gates: Six-Gate Coordination Packet Repair and Closeout |
+| [changelog-001-004-memory-save-rewrite.md](./004-memory-save-rewrite/changelog-001-004-memory-save-rewrite.md) | 2026-04-15 | Continuity Memory Runtime Phase 004: Memory Save Planner-First Default |
+| [changelog-001-006-fix-memory-search-health-fallback-stability.md](./006-fix-memory-search-health-fallback-stability/changelog-001-006-fix-memory-search-health-fallback-stability.md) | 2026-05-08 | Memory Search Clusters 4-7 Remediation: Causal Stats, Folder Discovery, CocoIndex Health, Quality Fallback |
+| [changelog-001-007-foundational-runtime.md](./007-foundational-runtime/changelog-001-007-foundational-runtime.md) | 2026-04-17 | Foundational Runtime Remediation: H-56-1 Canonical Save Metadata Fix and 27-Task Hardening Pass |
+| [changelog-001-008-sk-deep-cli-runtime-execution.md](./008-sk-deep-cli-runtime-execution/changelog-001-008-sk-deep-cli-runtime-execution.md) | 2026-04-18 | CLI Runtime Executors for Iterative Skills |
+| [changelog-001-009-system-hardening.md](./009-system-hardening/changelog-001-009-system-hardening.md) | 2026-04-19 | System Hardening: Post-Consolidation Research and Remediation Train |
+| [changelog-001-010-memory-indexer-invariants.md](./010-memory-indexer-invariants/changelog-001-010-memory-indexer-invariants.md) | 2026-06-01 | Memory Indexer Invariants: Lineage, Concurrency, Index Scope, and Constitutional Tier Enforcement |
+| [changelog-001-011-z-archive-memory-indexing.md](./011-z-archive-memory-indexing/changelog-001-011-z-archive-memory-indexing.md) | 2026-05-16 | Continuity Memory Runtime Phase 011: z_archive Memory Indexing Fix |
+| [changelog-001-cache-warning-hooks.md](./001-cache-warning-hooks/changelog-001-cache-warning-hooks.md) | 2026-04-08 | Continuity Memory Runtime Phase 001: Cache-warning hooks |
+| [changelog-002-memory-quality-remediation.md](./_root/changelog-002-memory-quality-remediation.md) | 2026-04-08 | Continuity Memory Runtime Phase 002: Memory quality remediation |
+| [changelog-003-continuity-refactor-gates.md](./003-continuity-refactor-gates/changelog-003-continuity-refactor-gates.md) | 2026-04-13 | Continuity Memory Runtime Phase 003: Continuity refactor gates |
+| [changelog-004-memory-save-rewrite.md](./004-memory-save-rewrite/changelog-004-memory-save-rewrite.md) | 2026-04-15 | Continuity Memory Runtime Phase 004: Memory save rewrite |
+| [changelog-005-memory-search-runtime-bugs.md](./005-memory-search-runtime-bugs/changelog-005-memory-search-runtime-bugs.md) | 2026-04-26 | Continuity Memory Runtime Phase 005: Memory search runtime bugs |
 
 ### Added
 

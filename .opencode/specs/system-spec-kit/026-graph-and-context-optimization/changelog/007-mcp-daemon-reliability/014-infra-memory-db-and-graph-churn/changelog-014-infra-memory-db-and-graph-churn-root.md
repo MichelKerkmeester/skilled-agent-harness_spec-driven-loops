@@ -24,8 +24,8 @@ This phase parent groups 2 child phases spanning 2026-06-01 to 2026-06-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-014-001-daemon-lifecycle-healing.md](./changelog-014-001-daemon-lifecycle-healing.md) | 2026-06-01 | Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test) |
-| [changelog-014-infra-memory-db-and-graph-churn.md](./changelog-014-infra-memory-db-and-graph-churn.md) | n/a | changelog-014-infra-memory-db-and-graph-churn.md |
+| [changelog-014-001-daemon-lifecycle-healing.md](./001-daemon-lifecycle-healing/changelog-014-001-daemon-lifecycle-healing.md) | 2026-06-01 | Daemon-lifecycle healing (FTS auto-heal + clean-close barrier + substrate test) |
+| [changelog-014-infra-memory-db-and-graph-churn.md](./_root/changelog-014-infra-memory-db-and-graph-churn.md) | n/a | changelog-014-infra-memory-db-and-graph-churn.md |
 
 ### Added
 

@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md](./changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md) | 2026-05-23 | 016-001: P0 Sidecar Security Fixes for Resource Exhaustion and Symlink Attack |
-| [changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md](./changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md) | 2026-05-23 | P1 Resource Bounds and Input Validation Fixes: F48, F85, F86, F87 |
-| [changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md](./changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md) | 2026-05-23 | Investigation P1 Fixes for Sidecar Process Ownership Lifecycle |
-| [changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md](./changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md) | 2026-05-23 | Investigation P1 Fixes for TS CJS Rerank Twin Parity |
+| [changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md](./001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md) | 2026-05-23 | 016-001: P0 Sidecar Security Fixes for Resource Exhaustion and Symlink Attack |
+| [changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md](./002-fix-investigation-p1s-for-resource-bounds-and-input-validation/changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md) | 2026-05-23 | P1 Resource Bounds and Input Validation Fixes: F48, F85, F86, F87 |
+| [changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md](./003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle/changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md) | 2026-05-23 | Investigation P1 Fixes for Sidecar Process Ownership Lifecycle |
+| [changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md](./004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity/changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md) | 2026-05-23 | Investigation P1 Fixes for TS CJS Rerank Twin Parity |
 
 ### Added
 

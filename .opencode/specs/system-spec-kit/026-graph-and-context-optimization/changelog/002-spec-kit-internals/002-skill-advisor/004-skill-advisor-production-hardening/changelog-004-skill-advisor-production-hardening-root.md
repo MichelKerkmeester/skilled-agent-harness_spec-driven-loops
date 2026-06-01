@@ -24,10 +24,10 @@ This phase parent groups 4 child phases spanning 2026-05-31 to 2026-06-01. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-004-001-deferred-remediation-telemetry-run.md](./changelog-004-001-deferred-remediation-telemetry-run.md) | 2026-05-31 | Deferred Remediation and Telemetry Measurement Run |
-| [changelog-004-002-advisor-plugin-hardening.md](./changelog-004-002-advisor-plugin-hardening.md) | 2026-05-31 | Skill-Advisor Plugin Hardening |
-| [changelog-004-003-advisor-standards-alignment.md](./changelog-004-003-advisor-standards-alignment.md) | 2026-06-01 | Skill-Advisor Standards Alignment |
-| [changelog-004-004-devin-advisor-hook-integration.md](./changelog-004-004-devin-advisor-hook-integration.md) | 2026-06-01 | CLI Devin UserPromptSubmit Hook + mk-skill-advisor Plugin Rename + Bridge Migration |
+| [changelog-004-001-deferred-remediation-telemetry-run.md](./001-deferred-remediation-telemetry-run/changelog-004-001-deferred-remediation-telemetry-run.md) | 2026-05-31 | Deferred Remediation and Telemetry Measurement Run |
+| [changelog-004-002-advisor-plugin-hardening.md](./002-advisor-plugin-hardening/changelog-004-002-advisor-plugin-hardening.md) | 2026-05-31 | Skill-Advisor Plugin Hardening |
+| [changelog-004-003-advisor-standards-alignment.md](./003-advisor-standards-alignment/changelog-004-003-advisor-standards-alignment.md) | 2026-06-01 | Skill-Advisor Standards Alignment |
+| [changelog-004-004-devin-advisor-hook-integration.md](./004-devin-advisor-hook-integration/changelog-004-004-devin-advisor-hook-integration.md) | 2026-06-01 | CLI Devin UserPromptSubmit Hook + mk-skill-advisor Plugin Rename + Bridge Migration |
 
 ### Added
 

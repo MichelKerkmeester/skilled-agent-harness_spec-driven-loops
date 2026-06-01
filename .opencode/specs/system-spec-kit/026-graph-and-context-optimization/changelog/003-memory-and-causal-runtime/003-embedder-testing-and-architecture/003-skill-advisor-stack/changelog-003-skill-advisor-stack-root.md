@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-05-17 to 2026-05-21. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-003-001-pluggable-architecture.md](./changelog-003-001-pluggable-architecture.md) | 2026-05-17 | 003/001 Pluggable embedder architecture for skill-advisor |
-| [changelog-003-002-jina-swap-and-reindex.md](./changelog-003-002-jina-swap-and-reindex.md) | 2026-05-17 | Skill-Advisor Stack 002: Jina-v3 Swap and Reindex |
-| [changelog-003-003-install-guide-docs.md](./changelog-003-003-install-guide-docs.md) | 2026-05-18 | Changelog: 010/003 Skill-advisor INSTALL_GUIDE and README pluggable layer docs |
-| [changelog-003-004-skill-graph-db-writer-cross-wire.md](./changelog-003-004-skill-graph-db-writer-cross-wire.md) | 2026-05-18 | 010/004: skill-graph-db Writer Cross-Wire to EmbedderAdapter Layer |
-| [changelog-003-006-shared-embedder-logic-with-spec-memory.md](./changelog-003-006-shared-embedder-logic-with-spec-memory.md) | 2026-05-21 | 003/006 Changelog: Shared Embedder Logic with Spec-Memory |
+| [changelog-003-001-pluggable-architecture.md](./001-pluggable-architecture/changelog-003-001-pluggable-architecture.md) | 2026-05-17 | 003/001 Pluggable embedder architecture for skill-advisor |
+| [changelog-003-002-jina-swap-and-reindex.md](./002-jina-swap-and-reindex/changelog-003-002-jina-swap-and-reindex.md) | 2026-05-17 | Skill-Advisor Stack 002: Jina-v3 Swap and Reindex |
+| [changelog-003-003-install-guide-docs.md](./003-install-guide-docs/changelog-003-003-install-guide-docs.md) | 2026-05-18 | Changelog: 010/003 Skill-advisor INSTALL_GUIDE and README pluggable layer docs |
+| [changelog-003-004-skill-graph-db-writer-cross-wire.md](./004-skill-graph-db-writer-cross-wire/changelog-003-004-skill-graph-db-writer-cross-wire.md) | 2026-05-18 | 010/004: skill-graph-db Writer Cross-Wire to EmbedderAdapter Layer |
+| [changelog-003-006-shared-embedder-logic-with-spec-memory.md](./006-shared-embedder-logic-with-spec-memory/changelog-003-006-shared-embedder-logic-with-spec-memory.md) | 2026-05-21 | 003/006 Changelog: Shared Embedder Logic with Spec-Memory |
 
 ### Added
 

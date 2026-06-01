@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-05-17 to 2026-05-17. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-fairness-audit.md](./changelog-001-001-fairness-audit.md) | 2026-05-17 | Playbook Fairness Audit: 017/001 Pre-Expansion Scenario Inventory |
-| [changelog-001-002-tool-coverage-audit.md](./changelog-001-002-tool-coverage-audit.md) | 2026-05-17 | Playbook Quality Audit 002: Tool-surface coverage audit |
-| [changelog-001-003-scenario-expansion.md](./changelog-001-003-scenario-expansion.md) | 2026-05-17 | 017/003: Scenario Expansion for Playbook Quality Audit |
+| [changelog-001-001-fairness-audit.md](./001-fairness-audit/changelog-001-001-fairness-audit.md) | 2026-05-17 | Playbook Fairness Audit: 017/001 Pre-Expansion Scenario Inventory |
+| [changelog-001-002-tool-coverage-audit.md](./002-tool-coverage-audit/changelog-001-002-tool-coverage-audit.md) | 2026-05-17 | Playbook Quality Audit 002: Tool-surface coverage audit |
+| [changelog-001-003-scenario-expansion.md](./003-scenario-expansion/changelog-001-003-scenario-expansion.md) | 2026-05-17 | 017/003: Scenario Expansion for Playbook Quality Audit |
 
 ### Added
 

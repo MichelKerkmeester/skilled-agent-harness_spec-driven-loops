@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-017-001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode.md](./changelog-017-001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode.md) | 2026-05-23 | Sidecar-Worker P1 Fixes: Liveness, Dead Code, Error Policy |
-| [changelog-017-002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks.md](./changelog-017-002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks.md) | 2026-05-23 | Execution-Router P1 Fixes: Policy Resolution, Dimension Fallback, Shutdown Hooks |
-| [changelog-017-003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers.md](./changelog-017-003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers.md) | 2026-05-23 | Sidecar-Client P1 Fixes: Constructor Split, Helper Consolidation, Response Narrowing |
-| [changelog-017-004-fix-investigation-p1s-for-launcher-and-reindex-deadcode.md](./changelog-017-004-fix-investigation-p1s-for-launcher-and-reindex-deadcode.md) | 2026-05-23 | Launcher and Reindex P1 Finding Closure: F15, F49, F105 |
-| [changelog-017-005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep.md](./changelog-017-005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep.md) | 2026-05-23 | Phase 017-005: Investigation P2 Deadcode Drift and Comment Cleanup Sweep |
+| [changelog-017-001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode.md](./001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode/changelog-017-001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode.md) | 2026-05-23 | Sidecar-Worker P1 Fixes: Liveness, Dead Code, Error Policy |
+| [changelog-017-002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks.md](./002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks/changelog-017-002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks.md) | 2026-05-23 | Execution-Router P1 Fixes: Policy Resolution, Dimension Fallback, Shutdown Hooks |
+| [changelog-017-003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers.md](./003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers/changelog-017-003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers.md) | 2026-05-23 | Sidecar-Client P1 Fixes: Constructor Split, Helper Consolidation, Response Narrowing |
+| [changelog-017-004-fix-investigation-p1s-for-launcher-and-reindex-deadcode.md](./004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/changelog-017-004-fix-investigation-p1s-for-launcher-and-reindex-deadcode.md) | 2026-05-23 | Launcher and Reindex P1 Finding Closure: F15, F49, F105 |
+| [changelog-017-005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep.md](./005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep/changelog-017-005-fix-investigation-p2s-for-deadcode-drift-comment-cleanup-sweep.md) | 2026-05-23 | Phase 017-005: Investigation P2 Deadcode Drift and Comment Cleanup Sweep |
 
 ### Added
 

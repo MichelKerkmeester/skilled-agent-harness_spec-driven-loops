@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-04-28 to 2026-04-30. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-fix-skill-advisor-fail-open-fallback.md](./changelog-001-001-fix-skill-advisor-fail-open-fallback.md) | 2026-04-28 | Skill-Advisor Release Remediation: Fail-Open Fallback and Trusted-Caller Gate |
-| [changelog-001-002-fix-additional-release-readiness-findings.md](./changelog-001-002-fix-additional-release-readiness-findings.md) | 2026-04-28 | Release Readiness 001-002: Tier 2 Remediation, Close D/E/F/G Findings |
-| [changelog-001-004-fix-release-readiness-findings-synthesis.md](./changelog-001-004-fix-release-readiness-findings-synthesis.md) | 2026-04-29 | 046 Release Readiness Synthesis and Remediation |
-| [changelog-001-005-fix-remaining-priority-findings.md](./changelog-001-005-fix-remaining-priority-findings.md) | 2026-04-30 | Changelog: 048 Remaining P1/P2 Remediation |
-| [changelog-001-006-fix-stress-test-coverage-gap.md](./changelog-001-006-fix-stress-test-coverage-gap.md) | 2026-04-30 | Release Readiness 006: P1 and P2 Stress-Test Coverage Gap Closure |
+| [changelog-001-001-fix-skill-advisor-fail-open-fallback.md](./001-fix-skill-advisor-fail-open-fallback/changelog-001-001-fix-skill-advisor-fail-open-fallback.md) | 2026-04-28 | Skill-Advisor Release Remediation: Fail-Open Fallback and Trusted-Caller Gate |
+| [changelog-001-002-fix-additional-release-readiness-findings.md](./002-fix-additional-release-readiness-findings/changelog-001-002-fix-additional-release-readiness-findings.md) | 2026-04-28 | Release Readiness 001-002: Tier 2 Remediation, Close D/E/F/G Findings |
+| [changelog-001-004-fix-release-readiness-findings-synthesis.md](./004-fix-release-readiness-findings-synthesis/changelog-001-004-fix-release-readiness-findings-synthesis.md) | 2026-04-29 | 046 Release Readiness Synthesis and Remediation |
+| [changelog-001-005-fix-remaining-priority-findings.md](./005-fix-remaining-priority-findings/changelog-001-005-fix-remaining-priority-findings.md) | 2026-04-30 | Changelog: 048 Remaining P1/P2 Remediation |
+| [changelog-001-006-fix-stress-test-coverage-gap.md](./006-fix-stress-test-coverage-gap/changelog-001-006-fix-stress-test-coverage-gap.md) | 2026-04-30 | Release Readiness 006: P1 and P2 Stress-Test Coverage Gap Closure |
 
 ### Added
 

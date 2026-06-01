@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-05-29 to 2026-05-29. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-011-001-applied-source-and-doc-fixes.md](./changelog-011-001-applied-source-and-doc-fixes.md) | 2026-05-29 | Code Graph Phase 011-001: Applied Source and Doc Fixes |
-| [changelog-011-002-deferred-wip-overlapping-findings.md](./changelog-011-002-deferred-wip-overlapping-findings.md) | 2026-05-29 | Code Graph Audit 002: Deferred WIP-Overlapping Findings |
-| [changelog-011-003-db-location-skill-local.md](./changelog-011-003-db-location-skill-local.md) | 2026-05-29 | Code Graph Phase 011-003: DB Location Relocated to Skill-Local |
+| [changelog-011-001-applied-source-and-doc-fixes.md](./001-applied-source-and-doc-fixes/changelog-011-001-applied-source-and-doc-fixes.md) | 2026-05-29 | Code Graph Phase 011-001: Applied Source and Doc Fixes |
+| [changelog-011-002-deferred-wip-overlapping-findings.md](./002-deferred-wip-overlapping-findings/changelog-011-002-deferred-wip-overlapping-findings.md) | 2026-05-29 | Code Graph Audit 002: Deferred WIP-Overlapping Findings |
+| [changelog-011-003-db-location-skill-local.md](./003-db-location-skill-local/changelog-011-003-db-location-skill-local.md) | 2026-05-29 | Code Graph Phase 011-003: DB Location Relocated to Skill-Local |
 
 ### Added
 

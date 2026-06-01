@@ -24,12 +24,12 @@ This phase parent groups 6 child phases spanning 2026-04-13 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-001-001-skill-graph-metadata-routing-boosts.md](./changelog-001-001-skill-graph-metadata-routing-boosts.md) | 2026-04-13 | Skill Advisor Graph: Metadata Files and Routing Boosts |
-| [changelog-001-002-skill-graph-daemon-native-advisor-tools.md](./changelog-001-002-skill-graph-daemon-native-advisor-tools.md) | 2026-04-20 | Skill Graph Daemon and Advisor Unification: Phase 027 Complete |
-| [changelog-001-003-skill-metadata-embedding-quality-audit.md](./changelog-001-003-skill-metadata-embedding-quality-audit.md) | 2026-05-18 | Skill Graph Phase 003: Skill Metadata Embedding Quality Audit |
-| [changelog-001-004-metadata-fixes-and-seeded-sweep-rerun.md](./changelog-001-004-metadata-fixes-and-seeded-sweep-rerun.md) | 2026-05-14 | Skill Graph Phase 004: Metadata Fixes and Seeded Sweep Re-run |
-| [changelog-001-005-intent-signals-and-skill-relationships.md](./changelog-001-005-intent-signals-and-skill-relationships.md) | 2026-05-14 | Skill Graph 005: Populate intent_signals and manual skill relationships |
-| [changelog-001-007-cross-skill-enhancement-edge-propagation.md](./changelog-001-007-cross-skill-enhancement-edge-propagation.md) | 2026-05-31 | Cross-Skill Enhancement Edge Auto-Propagation |
+| [changelog-001-001-skill-graph-metadata-routing-boosts.md](./001-skill-graph-metadata-routing-boosts/changelog-001-001-skill-graph-metadata-routing-boosts.md) | 2026-04-13 | Skill Advisor Graph: Metadata Files and Routing Boosts |
+| [changelog-001-002-skill-graph-daemon-native-advisor-tools.md](./002-skill-graph-daemon-native-advisor-tools/changelog-001-002-skill-graph-daemon-native-advisor-tools.md) | 2026-04-20 | Skill Graph Daemon and Advisor Unification: Phase 027 Complete |
+| [changelog-001-003-skill-metadata-embedding-quality-audit.md](./003-skill-metadata-embedding-quality-audit/changelog-001-003-skill-metadata-embedding-quality-audit.md) | 2026-05-18 | Skill Graph Phase 003: Skill Metadata Embedding Quality Audit |
+| [changelog-001-004-metadata-fixes-and-seeded-sweep-rerun.md](./004-metadata-fixes-and-seeded-sweep-rerun/changelog-001-004-metadata-fixes-and-seeded-sweep-rerun.md) | 2026-05-14 | Skill Graph Phase 004: Metadata Fixes and Seeded Sweep Re-run |
+| [changelog-001-005-intent-signals-and-skill-relationships.md](./005-intent-signals-and-skill-relationships/changelog-001-005-intent-signals-and-skill-relationships.md) | 2026-05-14 | Skill Graph 005: Populate intent_signals and manual skill relationships |
+| [changelog-001-007-cross-skill-enhancement-edge-propagation.md](./007-cross-skill-enhancement-edge-propagation/changelog-001-007-cross-skill-enhancement-edge-propagation.md) | 2026-05-31 | Cross-Skill Enhancement Edge Auto-Propagation |
 
 ### Added
 

@@ -24,9 +24,9 @@ This phase parent groups 3 child phases spanning 2026-05-23 to 2026-05-23. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-021-001-identify-and-close-3-remaining-deferred-p2.md](./changelog-021-001-identify-and-close-3-remaining-deferred-p2.md) | 2026-05-23 | 021/001: Identify and Close 3 Remaining Deferred P2 Findings |
-| [changelog-021-002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code.md](./changelog-021-002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code.md) | 2026-05-23 | Rerank Sidecar CJS and Sidecar Worker sk-code Alignment |
-| [changelog-021-003-align-arc-020-spec-docs-with-sk-doc.md](./changelog-021-003-align-arc-020-spec-docs-with-sk-doc.md) | 2026-05-23 | Arc 020 Spec Docs sk-doc Alignment: H2 Case Sweep and Skill-Surface Evergreen Audit |
+| [changelog-021-001-identify-and-close-3-remaining-deferred-p2.md](./001-identify-and-close-3-remaining-deferred-p2/changelog-021-001-identify-and-close-3-remaining-deferred-p2.md) | 2026-05-23 | 021/001: Identify and Close 3 Remaining Deferred P2 Findings |
+| [changelog-021-002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code.md](./002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code/changelog-021-002-align-rerank-sidecar-cjs-and-sidecar-worker-with-sk-code.md) | 2026-05-23 | Rerank Sidecar CJS and Sidecar Worker sk-code Alignment |
+| [changelog-021-003-align-arc-020-spec-docs-with-sk-doc.md](./003-align-arc-020-spec-docs-with-sk-doc/changelog-021-003-align-arc-020-spec-docs-with-sk-doc.md) | 2026-05-23 | Arc 020 Spec Docs sk-doc Alignment: H2 Case Sweep and Skill-Surface Evergreen Audit |
 
 ### Added
 

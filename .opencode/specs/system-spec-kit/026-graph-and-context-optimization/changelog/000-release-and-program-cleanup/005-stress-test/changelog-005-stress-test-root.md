@@ -24,13 +24,13 @@ This phase parent groups 7 child phases spanning 2026-04-28 to 2026-05-17. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-001-fix-mcp-stress-cycle-doc-observability.md](./changelog-005-001-fix-mcp-stress-cycle-doc-observability.md) | 2026-04-28 | MCP Stress-Cycle Doc/Observability Cleanup |
-| [changelog-005-002-stress-test-pattern-documentation.md](./changelog-005-002-stress-test-pattern-documentation.md) | 2026-04-29 | Stress Test Pattern Documentation |
-| [changelog-005-004-stress-test-folder-completion.md](./changelog-005-004-stress-test-folder-completion.md) | 2026-04-29 | Stress Test Folder Completion: Content-Based Migration to Subsystem Layout |
-| [changelog-005-005-stress-test-expansion-alignment.md](./changelog-005-005-stress-test-expansion-alignment.md) | 2026-04-30 | Stress Test Expansion and Alignment: 005-stress-test-expansion-alignment |
-| [changelog-005-006-stress-coverage-audit-and-run.md](./changelog-005-006-stress-coverage-audit-and-run.md) | 2026-04-30 | Stress-Test Coverage Audit and Run for code_graph and skill_advisor |
-| [changelog-005-007-fix-stress-test-coverage-gap-followup.md](./changelog-005-007-fix-stress-test-coverage-gap-followup.md) | 2026-04-30 | Stress-Test Gap Remediation: Close 10 P0 Coverage Gaps |
-| [changelog-005-008-spec-memory-mcp-stress-test.md](./changelog-005-008-spec-memory-mcp-stress-test.md) | 2026-05-17 | mk-spec-memory Comprehensive Stress Test: All 39 Tools and 345 Playbook Scenarios |
+| [changelog-005-001-fix-mcp-stress-cycle-doc-observability.md](./001-fix-mcp-stress-cycle-doc-observability/changelog-005-001-fix-mcp-stress-cycle-doc-observability.md) | 2026-04-28 | MCP Stress-Cycle Doc/Observability Cleanup |
+| [changelog-005-002-stress-test-pattern-documentation.md](./002-stress-test-pattern-documentation/changelog-005-002-stress-test-pattern-documentation.md) | 2026-04-29 | Stress Test Pattern Documentation |
+| [changelog-005-004-stress-test-folder-completion.md](./004-stress-test-folder-completion/changelog-005-004-stress-test-folder-completion.md) | 2026-04-29 | Stress Test Folder Completion: Content-Based Migration to Subsystem Layout |
+| [changelog-005-005-stress-test-expansion-alignment.md](./005-stress-test-expansion-alignment/changelog-005-005-stress-test-expansion-alignment.md) | 2026-04-30 | Stress Test Expansion and Alignment: 005-stress-test-expansion-alignment |
+| [changelog-005-006-stress-coverage-audit-and-run.md](./006-stress-coverage-audit-and-run/changelog-005-006-stress-coverage-audit-and-run.md) | 2026-04-30 | Stress-Test Coverage Audit and Run for code_graph and skill_advisor |
+| [changelog-005-007-fix-stress-test-coverage-gap-followup.md](./007-fix-stress-test-coverage-gap-followup/changelog-005-007-fix-stress-test-coverage-gap-followup.md) | 2026-04-30 | Stress-Test Gap Remediation: Close 10 P0 Coverage Gaps |
+| [changelog-005-008-spec-memory-mcp-stress-test.md](./008-spec-memory-mcp-stress-test/changelog-005-008-spec-memory-mcp-stress-test.md) | 2026-05-17 | mk-spec-memory Comprehensive Stress Test: All 39 Tools and 345 Playbook Scenarios |
 
 ### Added
 

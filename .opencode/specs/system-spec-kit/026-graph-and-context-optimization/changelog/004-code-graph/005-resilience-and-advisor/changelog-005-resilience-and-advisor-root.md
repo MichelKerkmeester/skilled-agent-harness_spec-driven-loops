@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-04-25 to 2026-05-08. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-001-code-graph-advisor-refinement.md](./changelog-005-001-code-graph-advisor-refinement.md) | 2026-04-25 | Code Graph and Skill Advisor Refinement: Research Loop and Phase 5 Implementation |
-| [changelog-005-002-code-graph-resilience-research.md](./changelog-005-002-code-graph-resilience-research.md) | 2026-04-25 | Code Graph Phase 005-002: Code Graph Resilience Research |
-| [changelog-005-003-code-graph-backend-resilience-implementation.md](./changelog-005-003-code-graph-backend-resilience-implementation.md) | 2026-04-25 | Code Graph Phase 003: Backend Resilience Implementation |
-| [changelog-005-004-iteration-quality-meta-research.md](./changelog-005-004-iteration-quality-meta-research.md) | 2026-05-02 | Code Graph Phase 004 (resilience-and-advisor): Fix-Iteration Quality Meta-Research |
-| [changelog-005-005-doctor-apply-mode-implementation.md](./changelog-005-005-doctor-apply-mode-implementation.md) | 2026-05-08 | Code Graph Phase 005-005: /doctor:code-graph Apply-Mode (Phase B) |
+| [changelog-005-001-code-graph-advisor-refinement.md](./001-code-graph-advisor-refinement/changelog-005-001-code-graph-advisor-refinement.md) | 2026-04-25 | Code Graph and Skill Advisor Refinement: Research Loop and Phase 5 Implementation |
+| [changelog-005-002-code-graph-resilience-research.md](./002-code-graph-resilience-research/changelog-005-002-code-graph-resilience-research.md) | 2026-04-25 | Code Graph Phase 005-002: Code Graph Resilience Research |
+| [changelog-005-003-code-graph-backend-resilience-implementation.md](./003-code-graph-backend-resilience-implementation/changelog-005-003-code-graph-backend-resilience-implementation.md) | 2026-04-25 | Code Graph Phase 003: Backend Resilience Implementation |
+| [changelog-005-004-iteration-quality-meta-research.md](./004-iteration-quality-meta-research/changelog-005-004-iteration-quality-meta-research.md) | 2026-05-02 | Code Graph Phase 004 (resilience-and-advisor): Fix-Iteration Quality Meta-Research |
+| [changelog-005-005-doctor-apply-mode-implementation.md](./005-doctor-apply-mode-implementation/changelog-005-005-doctor-apply-mode-implementation.md) | 2026-05-08 | Code Graph Phase 005-005: /doctor:code-graph Apply-Mode (Phase B) |
 
 ### Added
 

@@ -19,11 +19,11 @@ The continuity-memory runtime is the set of hooks, save handlers, retrieval hand
 
 | Phase | Date | Title | One-line story |
 |-------|------|-------|----------------|
-| 001 | 2026-04-08 | [Cache-warning hooks](./changelog-001-cache-warning-hooks.md) | A six-phase warning prototype was narrowed to a bounded producer-side metadata patch with replay-safe verification. |
-| 002 | 2026-04-08 | [Memory quality remediation](./changelog-002-memory-quality-remediation.md) | Eight JSON-mode memory defects (D1-D8) closed across a five-phase remediation train plus a 22-finding deep-review cycle. |
-| 003 | 2026-04-13 | [Continuity refactor gates](./changelog-003-continuity-refactor-gates.md) | Six gates (A-F) built the canonical spec-doc continuity path from template blockers through a 178-file runtime cutover. |
-| 004 | 2026-04-15 | [Memory save rewrite](./changelog-004-memory-save-rewrite.md) | Largest phase (Level 3+). /memory:save became planner-first by default. Four subsystems gated behind opt-in env flags. 43 tasks, 9 deep-review findings closed. |
-| 005 | 2026-04-26 | [Memory search runtime bugs](./changelog-005-memory-search-runtime-bugs.md) | 17 defects catalogued in /memory:search. Three P0 cluster fixes landed in-phase (truncation, intent classifier, vocabulary enforcement). |
+| 001 | 2026-04-08 | [Cache-warning hooks](./001-cache-warning-hooks/changelog-001-cache-warning-hooks.md) | A six-phase warning prototype was narrowed to a bounded producer-side metadata patch with replay-safe verification. |
+| 002 | 2026-04-08 | [Memory quality remediation](./_root/changelog-002-memory-quality-remediation.md) | Eight JSON-mode memory defects (D1-D8) closed across a five-phase remediation train plus a 22-finding deep-review cycle. |
+| 003 | 2026-04-13 | [Continuity refactor gates](./003-continuity-refactor-gates/changelog-003-continuity-refactor-gates.md) | Six gates (A-F) built the canonical spec-doc continuity path from template blockers through a 178-file runtime cutover. |
+| 004 | 2026-04-15 | [Memory save rewrite](./004-memory-save-rewrite/changelog-004-memory-save-rewrite.md) | Largest phase (Level 3+). /memory:save became planner-first by default. Four subsystems gated behind opt-in env flags. 43 tasks, 9 deep-review findings closed. |
+| 005 | 2026-04-26 | [Memory search runtime bugs](./005-memory-search-runtime-bugs/changelog-005-memory-search-runtime-bugs.md) | 17 defects catalogued in /memory:search. Three P0 cluster fixes landed in-phase (truncation, intent classifier, vocabulary enforcement). |
 
 ## How to read these
 

@@ -24,11 +24,11 @@ This phase parent groups 5 child phases spanning 2026-05-18 to 2026-05-22. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-002-deep-review-stack.md](./changelog-005-002-deep-review-stack.md) | 2026-05-21 | Deep Review Stack 002: 20-Iteration Adversarial Review of 016-019 Embedder Stack |
-| [changelog-005-004-skill-local-benchmarks-format.md](./changelog-005-004-skill-local-benchmarks-format.md) | 2026-05-18 | Phase 005/004: Skill-local benchmarks/ folder format and report promotion |
-| [changelog-005-005-cocoindex-install-hygiene.md](./changelog-005-005-cocoindex-install-hygiene.md) | 2026-05-18 | CocoIndex Install Hygiene: pipx Drift Diagnosis and Harness Fix |
-| [changelog-005-006-benchmark-format-to-sk-doc.md](./changelog-005-006-benchmark-format-to-sk-doc.md) | 2026-05-19 | Benchmark Format Consolidation: FORMAT.md and benchmarks_format.md merged into benchmark_creation.md in sk-doc |
-| [changelog-005-008-spec-memory-vitest-stabilization.md](./changelog-005-008-spec-memory-vitest-stabilization.md) | 2026-05-22 | Cross-Cutting Quality 008: spec-memory vitest suite stabilization |
+| [changelog-005-002-deep-review-stack.md](./002-deep-review-stack/changelog-005-002-deep-review-stack.md) | 2026-05-21 | Deep Review Stack 002: 20-Iteration Adversarial Review of 016-019 Embedder Stack |
+| [changelog-005-004-skill-local-benchmarks-format.md](./004-skill-local-benchmarks-format/changelog-005-004-skill-local-benchmarks-format.md) | 2026-05-18 | Phase 005/004: Skill-local benchmarks/ folder format and report promotion |
+| [changelog-005-005-cocoindex-install-hygiene.md](./005-cocoindex-install-hygiene/changelog-005-005-cocoindex-install-hygiene.md) | 2026-05-18 | CocoIndex Install Hygiene: pipx Drift Diagnosis and Harness Fix |
+| [changelog-005-006-benchmark-format-to-sk-doc.md](./006-benchmark-format-to-sk-doc/changelog-005-006-benchmark-format-to-sk-doc.md) | 2026-05-19 | Benchmark Format Consolidation: FORMAT.md and benchmarks_format.md merged into benchmark_creation.md in sk-doc |
+| [changelog-005-008-spec-memory-vitest-stabilization.md](./008-spec-memory-vitest-stabilization/changelog-005-008-spec-memory-vitest-stabilization.md) | 2026-05-22 | Cross-Cutting Quality 008: spec-memory vitest suite stabilization |
 
 ### Added
 

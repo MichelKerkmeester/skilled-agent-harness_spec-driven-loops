@@ -24,14 +24,14 @@ This phase parent groups 8 child phases spanning 2026-05-31 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-004-001-documentation-quality-audit-research.md](./changelog-004-001-documentation-quality-audit-research.md) | 2026-05-31 | 001-documentation-quality-audit-research |
-| [changelog-004-002-fix-documentation-bugs.md](./changelog-004-002-fix-documentation-bugs.md) | 2026-05-31 | Skill Advisor Documentation Bug Fixes (Pending) |
-| [changelog-004-003-readme-problem-first-rewrite.md](./changelog-004-003-readme-problem-first-rewrite.md) | 2026-05-31 | Skill Advisor README Marketing Rewrite (Pending) |
-| [changelog-004-004-sk-doc-type-validation-alignment.md](./changelog-004-004-sk-doc-type-validation-alignment.md) | 2026-05-31 | 004-sk-doc-type-validation-alignment |
-| [changelog-004-005-content-additions-hvr-polish.md](./changelog-004-005-content-additions-hvr-polish.md) | 2026-05-31 | Changelog: 005-content-additions-hvr-polish [004-documentation-quality-refactor/005-content-additions-hvr-polish] |
-| [changelog-004-006-clean-deferred-documentation.md](./changelog-004-006-clean-deferred-documentation.md) | 2026-05-31 | Clean Deferred Documentation |
-| [changelog-004-007-finalize-documentation-quality-refactor.md](./changelog-004-007-finalize-documentation-quality-refactor.md) | 2026-05-31 | Skill Advisor documentation quality refactor complete |
-| [changelog-004-008-tier-d-documentation-execution.md](./changelog-004-008-tier-d-documentation-execution.md) | 2026-05-31 | Devin hooks migration, OLD hook deprecation banners, and playbook cross-reference table delivered |
+| [changelog-004-001-documentation-quality-audit-research.md](./001-documentation-quality-audit-research/changelog-004-001-documentation-quality-audit-research.md) | 2026-05-31 | 001-documentation-quality-audit-research |
+| [changelog-004-002-fix-documentation-bugs.md](./002-fix-documentation-bugs/changelog-004-002-fix-documentation-bugs.md) | 2026-05-31 | Skill Advisor Documentation Bug Fixes (Pending) |
+| [changelog-004-003-readme-problem-first-rewrite.md](./003-readme-problem-first-rewrite/changelog-004-003-readme-problem-first-rewrite.md) | 2026-05-31 | Skill Advisor README Marketing Rewrite (Pending) |
+| [changelog-004-004-sk-doc-type-validation-alignment.md](./004-sk-doc-type-validation-alignment/changelog-004-004-sk-doc-type-validation-alignment.md) | 2026-05-31 | 004-sk-doc-type-validation-alignment |
+| [changelog-004-005-content-additions-hvr-polish.md](./005-content-additions-hvr-polish/changelog-004-005-content-additions-hvr-polish.md) | 2026-05-31 | Changelog: 005-content-additions-hvr-polish [004-documentation-quality-refactor/005-content-additions-hvr-polish] |
+| [changelog-004-006-clean-deferred-documentation.md](./006-clean-deferred-documentation/changelog-004-006-clean-deferred-documentation.md) | 2026-05-31 | Clean Deferred Documentation |
+| [changelog-004-007-finalize-documentation-quality-refactor.md](./007-finalize-documentation-quality-refactor/changelog-004-007-finalize-documentation-quality-refactor.md) | 2026-05-31 | Skill Advisor documentation quality refactor complete |
+| [changelog-004-008-tier-d-documentation-execution.md](./008-tier-d-documentation-execution/changelog-004-008-tier-d-documentation-execution.md) | 2026-05-31 | Devin hooks migration, OLD hook deprecation banners, and playbook cross-reference table delivered |
 
 ### Added
 

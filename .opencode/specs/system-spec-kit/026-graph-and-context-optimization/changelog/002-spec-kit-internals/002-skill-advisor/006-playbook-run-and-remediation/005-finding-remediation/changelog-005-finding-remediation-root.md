@@ -24,13 +24,13 @@ This phase parent groups 7 child phases spanning 2026-05-31 to 2026-05-31. Each 
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-005-001-advisor-validate-alias-matching.md](./changelog-005-001-advisor-validate-alias-matching.md) | 2026-05-31 | advisor_validate Alias-Aware Gold Matching |
-| [changelog-005-002-scorer-p0-routing-fixes.md](./changelog-005-002-scorer-p0-routing-fixes.md) | 2026-05-31 | Skill Advisor Scorer P0 Routing Fixes |
-| [changelog-005-003-pc005-bench-doc-and-gates.md](./changelog-005-003-pc005-bench-doc-and-gates.md) | 2026-05-31 | PC-005 Bench Doc Fix + Gate Calibration |
-| [changelog-005-004-semantic-shadow-doc-sync.md](./changelog-005-004-semantic-shadow-doc-sync.md) | 2026-05-31 | Semantic Shadow Documentation and Comment Sync |
-| [changelog-005-005-opencode-bridge-native-route.md](./changelog-005-005-opencode-bridge-native-route.md) | 2026-05-31 | Changelog: OpenCode Bridge Native Route Fix (F4) |
-| [changelog-005-006-playbook-vitest-path-fix.md](./changelog-005-006-playbook-vitest-path-fix.md) | 2026-05-31 | Changelog: Playbook Vitest Path Fix (F5) [005-finding-remediation/006-playbook-vitest-path-fix] |
-| [changelog-005-007-harness-alias-and-stale-path.md](./changelog-005-007-harness-alias-and-stale-path.md) | 2026-05-31 | Regression-Harness Alias-Awareness and Stale Test Path Fix |
+| [changelog-005-001-advisor-validate-alias-matching.md](./001-advisor-validate-alias-matching/changelog-005-001-advisor-validate-alias-matching.md) | 2026-05-31 | advisor_validate Alias-Aware Gold Matching |
+| [changelog-005-002-scorer-p0-routing-fixes.md](./002-scorer-p0-routing-fixes/changelog-005-002-scorer-p0-routing-fixes.md) | 2026-05-31 | Skill Advisor Scorer P0 Routing Fixes |
+| [changelog-005-003-pc005-bench-doc-and-gates.md](./003-pc005-bench-doc-and-gates/changelog-005-003-pc005-bench-doc-and-gates.md) | 2026-05-31 | PC-005 Bench Doc Fix + Gate Calibration |
+| [changelog-005-004-semantic-shadow-doc-sync.md](./004-semantic-shadow-doc-sync/changelog-005-004-semantic-shadow-doc-sync.md) | 2026-05-31 | Semantic Shadow Documentation and Comment Sync |
+| [changelog-005-005-opencode-bridge-native-route.md](./005-opencode-bridge-native-route/changelog-005-005-opencode-bridge-native-route.md) | 2026-05-31 | Changelog: OpenCode Bridge Native Route Fix (F4) |
+| [changelog-005-006-playbook-vitest-path-fix.md](./006-playbook-vitest-path-fix/changelog-005-006-playbook-vitest-path-fix.md) | 2026-05-31 | Changelog: Playbook Vitest Path Fix (F5) [005-finding-remediation/006-playbook-vitest-path-fix] |
+| [changelog-005-007-harness-alias-and-stale-path.md](./007-harness-alias-and-stale-path/changelog-005-007-harness-alias-and-stale-path.md) | 2026-05-31 | Regression-Harness Alias-Awareness and Stale Test Path Fix |
 
 ### Added
 

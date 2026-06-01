@@ -24,16 +24,16 @@ This phase parent groups 10 child phases spanning 2026-04-30 to 2026-05-14. Each
 
 | Changelog | Date | Title |
 |-----------|------|-------|
-| [changelog-004-001-fix-code-graph-consistency.md](./changelog-004-001-fix-code-graph-consistency.md) | 2026-05-14 | 001 Code-Graph Consistency Remediation |
-| [changelog-004-002-fix-deep-loop-workflow-state.md](./changelog-004-002-fix-deep-loop-workflow-state.md) | 2026-04-30 | Deep-Loop Workflow State-Machine Remediation: Five Surgical Fixes |
-| [changelog-004-003-fix-skill-advisor-quality.md](./changelog-004-003-fix-skill-advisor-quality.md) | 2026-05-01 | 003 Advisor Quality: Eight Surgical Scorer and Bridge Fixes |
-| [changelog-004-004-fix-validation-memory.md](./changelog-004-004-fix-validation-memory.md) | 2026-05-01 | Phase 004: Validation and Memory Remediation |
-| [changelog-004-005-resource-leaks-silent-errors.md](./changelog-004-005-resource-leaks-silent-errors.md) | 2026-04-30 | 005 Resource Leaks and Silent Errors Remediation |
-| [changelog-004-006-fix-architecture-cleanup-followups.md](./changelog-004-006-fix-architecture-cleanup-followups.md) | 2026-05-01 | Architecture Cleanup Remediation: 15 P2 Findings Closed (F-016-D1 / F-017-D2 / F-018-D3) |
-| [changelog-004-007-fix-topology-build-boundary.md](./changelog-004-007-fix-topology-build-boundary.md) | 2026-05-01 | Fix 007: Topology and Build/Dist Boundary Remediation |
-| [changelog-004-008-fix-search-quality-tuning.md](./changelog-004-008-fix-search-quality-tuning.md) | 2026-05-01 | Search Quality Tuning: Five Surgical Fixes for F-011-C1-01 through F-011-C1-05 |
-| [changelog-004-009-fix-test-reliability.md](./changelog-004-009-fix-test-reliability.md) | 2026-05-01 | 009 Test Reliability Remediation: Six Brittle Tests Fixed |
-| [changelog-004-010-fix-cli-orchestrator-doc-drift.md](./changelog-004-010-fix-cli-orchestrator-doc-drift.md) | 2026-05-01 | 010 CLI Orchestrator Skill Doc Drift Fix |
+| [changelog-004-001-fix-code-graph-consistency.md](./001-fix-code-graph-consistency/changelog-004-001-fix-code-graph-consistency.md) | 2026-05-14 | 001 Code-Graph Consistency Remediation |
+| [changelog-004-002-fix-deep-loop-workflow-state.md](./002-fix-deep-loop-workflow-state/changelog-004-002-fix-deep-loop-workflow-state.md) | 2026-04-30 | Deep-Loop Workflow State-Machine Remediation: Five Surgical Fixes |
+| [changelog-004-003-fix-skill-advisor-quality.md](./003-fix-skill-advisor-quality/changelog-004-003-fix-skill-advisor-quality.md) | 2026-05-01 | 003 Advisor Quality: Eight Surgical Scorer and Bridge Fixes |
+| [changelog-004-004-fix-validation-memory.md](./004-fix-validation-memory/changelog-004-004-fix-validation-memory.md) | 2026-05-01 | Phase 004: Validation and Memory Remediation |
+| [changelog-004-005-resource-leaks-silent-errors.md](./005-resource-leaks-silent-errors/changelog-004-005-resource-leaks-silent-errors.md) | 2026-04-30 | 005 Resource Leaks and Silent Errors Remediation |
+| [changelog-004-006-fix-architecture-cleanup-followups.md](./006-fix-architecture-cleanup-followups/changelog-004-006-fix-architecture-cleanup-followups.md) | 2026-05-01 | Architecture Cleanup Remediation: 15 P2 Findings Closed (F-016-D1 / F-017-D2 / F-018-D3) |
+| [changelog-004-007-fix-topology-build-boundary.md](./007-fix-topology-build-boundary/changelog-004-007-fix-topology-build-boundary.md) | 2026-05-01 | Fix 007: Topology and Build/Dist Boundary Remediation |
+| [changelog-004-008-fix-search-quality-tuning.md](./008-fix-search-quality-tuning/changelog-004-008-fix-search-quality-tuning.md) | 2026-05-01 | Search Quality Tuning: Five Surgical Fixes for F-011-C1-01 through F-011-C1-05 |
+| [changelog-004-009-fix-test-reliability.md](./009-fix-test-reliability/changelog-004-009-fix-test-reliability.md) | 2026-05-01 | 009 Test Reliability Remediation: Six Brittle Tests Fixed |
+| [changelog-004-010-fix-cli-orchestrator-doc-drift.md](./010-fix-cli-orchestrator-doc-drift/changelog-004-010-fix-cli-orchestrator-doc-drift.md) | 2026-05-01 | 010 CLI Orchestrator Skill Doc Drift Fix |
 
 ### Added
 
