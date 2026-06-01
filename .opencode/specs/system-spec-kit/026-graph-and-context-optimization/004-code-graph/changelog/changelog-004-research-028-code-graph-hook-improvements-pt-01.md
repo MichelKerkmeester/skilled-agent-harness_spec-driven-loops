@@ -17,7 +17,7 @@ contextType: "research"
 
 ## 2026-04-21
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements/research/001-subtree-scan-freshness-and-startup-research` (Research-only)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Research-only)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary

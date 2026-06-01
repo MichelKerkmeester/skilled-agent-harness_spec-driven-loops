@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `026-graph-and-context-optimization/006-skill-advisor/001-advisor-hook-brief-improvements` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor`
 
 ### Summary

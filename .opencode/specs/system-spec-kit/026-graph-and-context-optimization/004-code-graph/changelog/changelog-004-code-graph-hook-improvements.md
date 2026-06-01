@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ## 2026-04-24
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/003-resolver-and-hook-improvements` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary

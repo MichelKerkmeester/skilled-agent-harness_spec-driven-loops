@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/008-template-levels/007-marker-validation-unused-scaffold` (Level 3)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/002-spec-kit-internals/003-template-levels`
 
 ### Summary

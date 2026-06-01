@@ -18,8 +18,8 @@ contextType: "implementation"
 
 ## 2026-04-18
 
-> Spec folder: `026-graph-and-context-optimization/004-runtime-executor-hardening/002-sk-deep-cli-runtime-execution` (Level 3)
-> Parent packet: `026-graph-and-context-optimization/004-runtime-executor-hardening`
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening` (Level 3)
+> Parent packet: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-2-merges/004-runtime-executor-hardening`
 
 ### Summary
 

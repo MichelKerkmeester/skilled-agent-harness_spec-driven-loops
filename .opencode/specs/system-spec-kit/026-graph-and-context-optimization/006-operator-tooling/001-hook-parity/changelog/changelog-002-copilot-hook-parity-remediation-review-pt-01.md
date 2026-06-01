@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-22
 
-> Spec folder: `026-graph-and-context-optimization/007-hook-parity/002-copilot-custom-instructions-hook-parity/review/002-copilot-custom-instructions-hook-parity-tier2-pt-01` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/001-hook-parity` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/006-operator-tooling/001-hook-parity/002-copilot-custom-instructions-hook-parity`
 
 ### Summary

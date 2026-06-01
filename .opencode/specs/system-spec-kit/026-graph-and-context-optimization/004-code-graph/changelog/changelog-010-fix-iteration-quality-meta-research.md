@@ -18,7 +18,7 @@ contextType: "research"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/009-fix-iteration-quality-meta-research` (Level 3)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 3)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary

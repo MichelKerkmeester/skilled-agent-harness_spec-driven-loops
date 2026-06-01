@@ -14,7 +14,7 @@ contextType: "implementation"
 
 ## 2026-04-25
 
-> Spec folder: `026-graph-and-context-optimization/006-graph-impact-and-affordance-uplift/007-review-remediation` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/z_archive/wave-4-2026-05-26-reorg/004-external-project-adoption-dissolved` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/005-graph-impact-and-affordance`
 
 ### Summary

@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-05-06
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning` (Level 2, Phase Parent)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2, Phase Parent)
 
 ### Summary
 

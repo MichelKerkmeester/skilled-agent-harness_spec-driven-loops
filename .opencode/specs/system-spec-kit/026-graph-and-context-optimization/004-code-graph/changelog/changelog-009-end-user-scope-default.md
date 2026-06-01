@@ -15,7 +15,7 @@ contextType: "implementation"
 
 ## 2026-05-02
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/008-end-user-scope-default-and-opt-in` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary

@@ -17,7 +17,7 @@ contextType: "implementation"
 
 ## 2026-05-05
 
-> Spec folder: `026-graph-and-context-optimization/005-code-graph/011-real-world-usefulness-test-planning/002-native-deferred-trial-rerun` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/004-code-graph` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/004-code-graph`
 
 ### Summary

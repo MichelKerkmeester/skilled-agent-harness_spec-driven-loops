@@ -16,7 +16,7 @@ contextType: "implementation"
 
 ## 2026-04-08
 
-> Spec folder: `026-graph-and-context-optimization/003-continuity-memory-runtime/002-memory-quality-remediation` (Level 2)
+> Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime` (Level 2)
 > Parent packet: `026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime`
 
 ### Summary
