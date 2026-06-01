@@ -81,8 +81,16 @@ The polish items deferred in the first pass were completed in a second pass.
 4. **Added the program-level changelog index** at `026/changelog/README.md`, linking all 8 track rollups. The 72 phase-parent rollups already serve as per-directory indexes through their Included Phases tables, so per-directory READMEs would be redundant.
 5. **002 grouping.** Track 002 remains one-per-leaf to guarantee complete coverage. Its original precedent was thematic grouping. The owner may consolidate later. No information is lost by the per-leaf form. Left as an intentional choice, not a defect.
 
+### Second-pass cleanup (MiniMax-2.7-fast, completed)
+
+A follow-up pass closed the remaining residue.
+
+- **Stale spec-folder paths: all fixed.** The 77 references were corrected deterministically from each changelog's real filesystem location (surgical path-line edits, zero content touched, every target verified to exist). 0 stale references remain. A full MiniMax rewrite was deliberately not used here because it risks dropping content a path-line fix should never touch.
+- **Legacy-format changelogs: 10 of 11 canonicalized.** MiniMax-2.7-fast reformatted them to the canonical 7-section form behind a content-fidelity guard that rejects any output dropping a backtick code-span (file path, commit hash) and keeps the original instead. Files where fast would have lost content were completed deterministically.
+- **Final state: 0 canonical failures across 694 changelogs, 0 stale references.**
+
 ### Remaining (intentional, no action needed)
-- 77 stale spec-folder references in pre-existing changelogs that have no verified current target (deeply reorganized or archived). Cosmetic, content unaffected.
+- 1 program-level changelog (`changelog-026-014-052-mk-spec-memory-rename.md`) left in its original freeform format. The fast variant could not reformat it without dropping content. It is a cross-cutting rename log, not a phase changelog.
 - 002 per-leaf vs thematic is an owner preference, not a gap.
 
 ## 7. Anomalies observed during the sweep
