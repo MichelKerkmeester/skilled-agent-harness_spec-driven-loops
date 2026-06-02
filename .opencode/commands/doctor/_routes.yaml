@@ -28,8 +28,8 @@ routes:
     yaml: doctor_memory.yaml
     setup_vars: [execution_mode, intent, incremental, no_snapshot, dry_run]
     allowed_flags: ["--incremental=true|false", "--no-snapshot", "--dry-run"]
-    mutating: mutates
-    gate3_location: "mcp_server/database/context-index__*.sqlite (active provider-keyed profile DB)"
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; reports drift and recommends action, no DB writes)"
     mcp_tools:
       - mcp__mk_spec_memory__memory_health
       - mcp__mk_spec_memory__memory_index_scan
@@ -59,8 +59,8 @@ routes:
     yaml: doctor_causal-graph.yaml
     setup_vars: [execution_mode, intent, confidence_threshold, no_snapshot, dry_run]
     allowed_flags: ["--confidence-threshold=N", "--no-snapshot", "--dry-run"]
-    mutating: add-only
-    gate3_location: "mcp_server/database/context-index__*.sqlite causal_edges table (add-only; existing edges never deleted or updated)"
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"
     mcp_tools:
       - mcp__mk_spec_memory__memory_causal_stats
       - mcp__mk_spec_memory__memory_causal_link
@@ -80,8 +80,8 @@ routes:
       - "--operation=rescan|prune-excludes|repair-nodes|recover-sqlite-corruption|rollback-bad-run"
       - "--dry-run"
       - "--confirm"
-    mutating: mutates
-    gate3_location: ".opencode/code-graph.config.json + .opencode/.spec-kit/code-graph/database/code-graph.sqlite"
+    mutating: read-only
+    gate3_location: "n/a (Phase A diagnostic is read-only; emits an exclude/language report, never scans or writes the index)"
     mcp_tools:
       - mcp__mk_code_index__code_graph_status
       - mcp__mk_code_index__code_graph_query
@@ -101,8 +101,8 @@ routes:
     yaml: doctor_deep-loop.yaml
     setup_vars: [execution_mode, intent, scope, no_snapshot, dry_run]
     allowed_flags: ["--scope=research|review|both", "--no-snapshot", "--dry-run"]
-    mutating: mutates
-    gate3_location: ".opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite"
+    mutating: read-only
+    gate3_location: "n/a (read-only diagnostic; reads coverage graph + iteration folders, never upserts)"
     mcp_tools: []
     script_invocations:
       - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'

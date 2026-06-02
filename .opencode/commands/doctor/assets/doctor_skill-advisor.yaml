@@ -20,8 +20,8 @@ operating_mode:
 # SKILL-ADVISOR DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 skill_advisor_doctor_invariant: |
-  Advisor doctor workflows treat scorer lanes (explicit, lexical, derived, semantic)
-  as independent calibration surfaces. Diagnostic mode is read-only and reports
+  Advisor doctor workflows treat scorer lanes (explicit_author, lexical, graph_causal,
+  derived_generated, semantic_shadow) as independent calibration surfaces. Diagnostic mode is read-only and reports
   per-lane scores against the gold battery. Confirm mode mutates lib/scorer/lanes/*.ts
   and skill graph-metadata only after explicit per-lane approval. Validation suite
   must pass post-mutation; failure triggers per-run rollback via the script generated
@@ -275,7 +275,7 @@ workflow:
       - "STEP 6 edit explicit.ts (only when approved scoped diff contains explicit changes)"
       - "STEP 7 edit lexical.ts (only when approved scoped diff contains lexical changes)"
       - "STEP 8 update graph-metadata.json per skill (only when approved scoped diff contains derived changes)"
-      - "STEP 9 rebuild dist: npm --prefix .opencode/skills/system-spec-kit/mcp_server run build"
+      - "STEP 9 rebuild dist: npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build"
       - "STEP 10 track applied changes per file for audit trail"
       - "STEP 11 display summary, then trigger pre_phase_4 approval gate"
     outputs:

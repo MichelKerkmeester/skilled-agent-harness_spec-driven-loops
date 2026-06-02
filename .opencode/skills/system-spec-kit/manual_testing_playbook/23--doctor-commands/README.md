@@ -9,7 +9,7 @@ Manual testing scenarios for the spec-kit `/doctor` command surface.
 - `/doctor memory` — 5 scenarios (323-327): fresh install bootstrap, drift detection, long-pole rebuild, SIGINT cancellation, disk-pressure refusal
 - `/doctor causal-graph` — 3 scenarios (328-330): low-coverage drift, confidence threshold enforcement, add-only mutation boundary
 - `/doctor deep-loop` — 3 scenarios (331-333): lazy-init, empty-graph refusal, convergence gold-battery
-- `/doctor code_graph` — 3 scenarios (334-336): daemon healthy, zombie restart, unreachable refusal
+- `/doctor code-graph` — 3 scenarios (334-336): daemon healthy, zombie restart, unreachable refusal
 - `/doctor:update` — 7 scenarios (338-344): G5 failure injection, G6 concurrent dispatch flock, G7 SIGINT mid-rebuild, G8 migration manifest gap, G9 cross-subsystem dashboard, default tier-aware flow
 - Version migration — 2 scenarios (345-346): end-to-end 3.3.0.0 → 3.4.1.0, cleanup-legacy with per-file prompts
 - `/doctor:mcp` infra — 1 scenario (347): MCP server install + verify

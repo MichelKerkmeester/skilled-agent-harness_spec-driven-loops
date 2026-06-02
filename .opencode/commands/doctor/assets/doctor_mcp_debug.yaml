@@ -57,7 +57,7 @@ upstream_assets:
 # ─────────────────────────────────────────────────────────────────
 user_inputs:
   fix: "[FIX] boolean"  # if true, offer guided repairs after diagnostic
-  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 6
+  server_filter: "[SERVER_FILTER] string|null"  # restrict to one server name; null = all 5
 
 # ─────────────────────────────────────────────────────────────────
 # FIELD HANDLING
@@ -70,7 +70,7 @@ field_handling:
     true: "after diagnostic, prompt per failed server for guided repair"
     false: "diagnostic only; emit recommendations without writes"
   server_filter_policy:
-    null: "diagnose all 6 MCP servers"
+    null: "diagnose all 5 MCP servers"
     set: "restrict diagnostic + repair to the named server only"
 
 # ─────────────────────────────────────────────────────────────────
@@ -149,7 +149,7 @@ repair_actions:
       command: "echo 'Launcher file .opencode/bin/mk-code-index-launcher.cjs is missing — restore from git: git checkout .opencode/bin/mk-code-index-launcher.cjs'"
       description: "Restore launcher from git history"
     db_dir_missing:
-      command: "mkdir -p .opencode/.spec-kit/code-graph/database"
+      command: "mkdir -p .opencode/skills/system-code-graph/mcp_server/database"
       description: "Create canonical code-graph database directory"
   code_mode:
     dist_missing:
@@ -318,7 +318,7 @@ error_handling:
     on_fail: "STOP — diagnostic script missing. Run: bash .opencode/commands/doctor/scripts/mcp-doctor.sh --help to verify installation."
   node_not_found:
     check: "command -v node"
-    on_fail: "WARN — Node.js not found. 5 of 6 MCP servers cannot be checked. Install Node.js >=20.11.0."
+    on_fail: "WARN — Node.js not found. All 5 MCP servers cannot be checked. Install Node.js >=20.11.0."
   json_parse_error:
     on_fail: "Fall back to human-readable mode: bash .opencode/commands/doctor/scripts/mcp-doctor.sh (without --json)"
   repair_fails:

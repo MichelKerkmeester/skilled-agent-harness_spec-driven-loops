@@ -112,7 +112,7 @@ Routing is fail-open. When the native MCP path is unreachable the Python `skill_
 | `lexical` | 0.28 | Text overlap and lexical evidence. |
 | `graph_causal` | 0.13 | Skill graph relationships (depends_on, enhances). |
 | `derived_generated` | 0.12 | Sanitized derived metadata from prior runs. |
-| `semantic_shadow` | 0.05 | Semantic evidence lane (shadow-only, low live weight). |
+| `semantic_shadow` | 0.05 | Semantic embedding evidence lane (live, lowest fusion weight). |
 
 Weights live in `mcp_server/lib/scorer/lane-registry.ts`. Changes require measured evidence plus synchronized doc updates across the feature catalog, manual playbook, README plus architecture.
 

@@ -53,7 +53,7 @@ Do not tune weights for these reasons:
 
 - "It feels low for lane X." Without measured evidence, intuition mispredicts the cross-skill impact.
 - "We just added this skill." Single-skill tuning belongs in the explicit_author lane's curated boosts (`mcp_server/lib/scorer/lanes/explicit.ts`), not in global lane weights.
-- "The semantic lane scored higher than expected." The semantic_shadow lane carries `shadowOnly=true` so it does not affect live ranking. Adjust the shadow_weight if you want to tune shadow mode, not the live weight.
+- "The semantic lane scored higher than expected." The semantic_shadow lane is live in the registry but carries the lowest fusion weight (0.05), so its live contribution is small by design. Re-weight it only with measured evidence; adjust the shadow_weight separately if you are tuning shadow mode rather than the live ranking.
 
 ---
 

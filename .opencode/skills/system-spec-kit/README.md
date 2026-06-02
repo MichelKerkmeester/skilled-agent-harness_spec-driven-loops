@@ -52,7 +52,7 @@ Context survives across sessions through persistent semantic memory and session 
 
 ### Requirements
 
-Requires Node.js 18+, TypeScript 5.0+, and Bash 4.0+. Embeddings are **local-first** (ADR-014, 2026-05-19): the runtime probes Ollama first, falls through to HuggingFace local (Python `sentence-transformers`), and only escalates to OpenAI or Voyage when an API key is set AND no local tier is available.
+Requires Node.js >= 20.11, TypeScript 5.0+, and Bash 4.0+. Embeddings are **local-first** (ADR-014, 2026-05-19): the runtime probes Ollama first (default, `nomic-embed-text`, 768-dim), falls through to pure-Node hf-local (`@huggingface/transformers` HTTP model server), and only escalates to OpenAI or Voyage when an API key is set AND no local tier is available.
 
 **Recommended new-user setup:** install [Ollama](https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects it on first daemon startup and persists `nomic-embed-text-v1.5` (768d) as the active embedder — no API keys required, all embeddings stay on-device.
 
@@ -630,7 +630,7 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | Tier | Provider          | Dimensions | Notes                                                            |
 | ---- | ----------------- | ---------- | ---------------------------------------------------------------- |
 | 1    | Ollama            | 768        | **Default.** Probes `/api/tags`; uses `nomic-embed-text-v1.5`. Recommended new-user setup. |
-| 2    | HuggingFace Local | 768        | Python `sentence-transformers` fallback. Default model: `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014). |
+| 2    | HuggingFace Local | 768        | Pure-Node `@huggingface/transformers` HTTP model server (local-first fallback). Default model: `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014). |
 | 3    | OpenAI            | 1536       | Cloud opt-in. Requires `OPENAI_API_KEY`.                         |
 | 4    | Voyage AI         | 1024       | Cloud opt-in. Requires `VOYAGE_API_KEY`. Gated by egress guard.  |
 
@@ -817,7 +817,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
 # Check the server can start
 node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 
-# If it fails, check Node.js version (requires 18+)
+# If it fails, check Node.js version (requires >= 20.11)
 node --version
 ```
 

@@ -58,7 +58,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
      ```
      What do you want to do with MCP servers?
-        1) Install fresh    (all 6 MCP servers from install guides)
+        1) Install fresh    (all 5 MCP servers from install guides)
         2) Debug + repair   (diagnose failures, apply guided fixes)
         X) Cancel
      ```
@@ -81,13 +81,13 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    case "$sub_action" in
      install)
        # allowed: --server <name>, --runtime <name>
-       --server <name>   → server_filter = <name>   (default: all 6 servers)
+       --server <name>   → server_filter = <name>   (default: all 5 servers)
        --runtime <name>  → runtime_filter = <name>  (default: detected runtime)
        ;;
      debug)
        # allowed: --fix, --server <name>
        --fix             → fix = true               (default: false; debug-only by default)
-       --server <name>   → server_filter = <name>   (default: all 6 servers)
+       --server <name>   → server_filter = <name>   (default: all 5 servers)
        ;;
    esac
 
@@ -142,7 +142,7 @@ These are the only two operations on MCP infrastructure itself. Every other `/do
 
 ```
 # Install (fresh / reinstall)
-/doctor:mcp install                                  # Install all 6 MCP servers from scratch
+/doctor:mcp install                                  # Install all 5 MCP servers from scratch
 /doctor:mcp install --server mk-spec-memory         # Install just mk-spec-memory
 /doctor:mcp install --server mk_code_index           # Install just System Code Graph
 /doctor:mcp install --server mk_skill_advisor        # Install just Skill Advisor

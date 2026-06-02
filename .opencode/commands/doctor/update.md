@@ -5,7 +5,7 @@ allowed-tools: Read, Bash, Grep, Glob, mcp__mk_code_index__code_graph_status, mc
 ---
 <!-- skill_agent: system-spec-kit -->
 
-> **Code Graph ownership:** The code-graph tier now uses `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` by default, with `SPECKIT_CODE_GRAPH_DB_DIR` as the DB-dir override.
+> **Code Graph ownership:** The code-graph tier now uses `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` by default (skill-local, shared across runtimes via the `.opencode/skills` symlink), with `SPECKIT_CODE_GRAPH_DB_DIR` as the DB-dir override.
 
 > ⚠️ **EXECUTION PROTOCOL — READ FIRST**
 >
@@ -210,7 +210,7 @@ Use it after upgrading spec-kit, after large packet moves, after a stale startup
 
 | Subsystem     | Database                                                           | Status/Health                        | Mutating Tool                          | Gold Battery                           |
 | ------------- | ------------------------------------------------------------------ | ------------------------------------ | -------------------------------------- | -------------------------------------- |
-| code-graph    | `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | `code_graph_status`                  | `code_graph_scan` / `code_graph_apply` | code-graph query battery               |
+| code-graph    | `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | `code_graph_status`                  | `code_graph_scan` / `code_graph_apply` | code-graph query battery               |
 | context-index | `mcp_server/database/context-index__*.sqlite` active profile DB    | `memory_health`, `memory_stats`      | `memory_index_scan`                    | `memory_search` representative queries |
 | vector-index  | `mcp_server/database/context-index__*.sqlite` active profile DB    | `memory_health`, `memory_stats`      | `memory_index_scan`                    | embedding-backed `memory_search`       |
 | causal-edges  | active profile DB `causal_edges` table                             | `memory_causal_stats`                | `memory_causal_link`                   | coverage and orphan checks             |
@@ -264,7 +264,7 @@ Additional non-tier prompts (always fire when their trigger condition is met):
 
 | Allowed Targets                                                                                                                                                                                                       | Notes                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` and `.opencode/.spec-kit/code-graph/database/code-graph.sqlite.pre-doctor-update.*.bak`                                                                     | structural graph DB + snapshots        |
+| `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` and `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite.pre-doctor-update.*.bak`                                       | structural graph DB + snapshots        |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` and `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite.pre-doctor-update.*.bak`                               | memory records, FTS, causal edges, vectors |
 | `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite` and `.opencode/skills/system-spec-kit/mcp_server/database/skill-graph.sqlite.pre-doctor-update.*.bak`                                         | skill graph DB                         |
 | `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite` and `.opencode/skills/deep-loop-runtime/database/deep-loop-graph.sqlite.pre-doctor-update.*.bak`                                                               | deep research/review graph DB          |

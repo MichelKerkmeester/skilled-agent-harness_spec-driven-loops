@@ -192,7 +192,7 @@ configure_mcp() {
             "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
             "_NOTE_1_DATABASE": "Auto-derives profile-specific DB files inside: .opencode/skills/system-spec-kit/mcp_server/database/",
             "_NOTE_2_PROVIDERS": "Supports: Voyage (1024 dims), OpenAI (1536/3072 dims), Ollama active manifests, HF Local (768 dims, no API needed)",
-            "_NOTE_3_CLOUD_PROVIDERS": "In auto mode: VOYAGE_API_KEY selects Voyage, OPENAI_API_KEY selects OpenAI, otherwise auto-selection probes Ollama pulled models and then hf-local",
+            "_NOTE_3_CLOUD_PROVIDERS": "Auto mode is local-first: Ollama (default, nomic-embed-text-v1.5, 768 dims) -> hf-local (pure-Node nomic) -> OpenAI -> Voyage. Cloud tiers are opt-in last resorts; set VOYAGE_API_KEY or OPENAI_API_KEY only to enable cloud embeddings (or pin EMBEDDINGS_PROVIDER to force a tier).",
             "_NOTE_4_PORTABLE": "Uses relative paths and auto-derived DB names so provider switches do not require manual sqlite path edits",
             "_NOTE_5_FEATURE_FLAGS": "Opt-out flags: SPECKIT_ADAPTIVE_FUSION default ON; SPECKIT_EXTENDED_TELEMETRY default OFF"
         }
@@ -295,11 +295,11 @@ Requirements:
     - Node.js >=${MIN_NODE_VERSION}
     - npm
 
-Embedding Providers (auto-cascade resolution order):
-    1. Voyage AI (VOYAGE_API_KEY)
-    2. OpenAI (OPENAI_API_KEY)
-    3. Ollama pulled models (Jina v3, Nomic, BGE-M3, then MXBAI)
-    4. Local Hugging Face BGE (no API key needed, final fallback)
+Embedding Providers (local-first auto-cascade resolution order):
+    1. Ollama (default; nomic-embed-text-v1.5, 768 dims, local daemon)
+    2. hf-local (pure-Node @huggingface/transformers nomic; no API key needed)
+    3. OpenAI (OPENAI_API_KEY; cloud opt-in)
+    4. Voyage AI (VOYAGE_API_KEY; cloud opt-in)
 
 After installation:
     Restart OpenCode to load the new MCP server.

@@ -64,7 +64,7 @@ user_inputs:
 # ─────────────────────────────────────────────────────────────────
 field_handling:
   defaults:
-    server_filter_empty: null  # install all 6 when unset
+    server_filter_empty: null  # install all 5 when unset
     runtime_filter_empty: null  # auto-detect active runtime when unset
   server_filter_policy:
     null: "install all supported MCP servers"
@@ -148,7 +148,7 @@ servers:
       - { path: "mcp_server/dist/index.js", type: "file_exists" }
       - { path: ".opencode/bin/mk-code-index-launcher.cjs", type: "file_exists" }
       - { path: "node_modules", type: "dir_exists" }
-      - { path: ".opencode/.spec-kit/code-graph/database", type: "dir_exists" }
+      - { path: ".opencode/skills/system-code-graph/mcp_server/database", type: "dir_exists" }
     install_steps:
       - "cd {skill_dir} && npm install"
       - "cd {skill_dir} && npm run clean && npm run build"

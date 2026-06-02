@@ -64,7 +64,7 @@ Spec Kit Memory is an MCP (Model Context Protocol) server that gives AI assistan
 │  SQLite + sqlite-vec for vector storage                         │
 │  Canonical DBs:                                                 │
 │    mcp_server/database/context-index__*.sqlite (active profile) │
-│    .spec-kit/code-graph/database/code-graph.sqlite (structural) │
+│    skills/system-code-graph/.../database/code-graph.sqlite      │
 └────────────────────┬────────────────────────────────────────────┘
                      │
           ┌──────────┼──────────┐
@@ -93,9 +93,10 @@ This guide addresses the full installation lifecycle and common failures after m
 
 | Path | Purpose |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP entry script |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Backend artifact the launcher spawns (built by `npm run build`) |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active repo-local memory database resolved from the embedding profile |
-| `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | Default structural code-graph database (the legacy `.opencode/skills/system-code-graph/mcp_server/database/` location is auto-migrated on first launcher startup; override with `SPECKIT_CODE_GRAPH_DB_DIR`) |
+| `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | Default structural code-graph database (skill-local; override with `SPECKIT_CODE_GRAPH_DB_DIR`. The former shared `.opencode/.spec-kit/code-graph/database/` location is superseded and auto-migrated back on first launcher startup) |
 
 The checked-in repo configs currently point `SPEC_KIT_DB_DIR` at `mcp_server/database/`. The runtime derives the active sqlite filename from the selected embedding profile. Typical filenames are `context-index__ollama__nomic-embed-text-v1.5__768.sqlite`, `context-index__hf-local__nomic-ai_nomic-embed-text-v1.5__768.sqlite`, `context-index__openai__text-embedding-3-small__1536__cloud.sqlite`, and `context-index__voyage__voyage-code-3__1024__cloud.sqlite`. Override `MEMORY_DB_PATH` only when you intentionally want to pin one exact sqlite file.
 
@@ -127,9 +128,9 @@ If you skip Ollama, the cascade falls through to `hf-local` (a pure-Node `@huggi
 
 > **Behavior change for existing operators (ADR-014):** Daemons with `VOYAGE_API_KEY` or `OPENAI_API_KEY` set will, on a fresh `vec_metadata` boot, prefer Ollama / hf-local first. To pin a cloud tier on rebuild, set `EMBEDDINGS_PROVIDER=voyage` (or `openai`). Existing persisted embedders in `vec_metadata` are NOT changed by this update; the new order applies only when the daemon re-probes.
 
-The Code Graph system uses a separate database stored alongside the spec-doc record index:
+The Code Graph system uses a separate, skill-local database:
 
-- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored alongside the active `context-index__*.sqlite` profile DB)
+- `code-graph.sqlite` (auto-created on first `code_graph_scan`, stored skill-local under `.opencode/skills/system-code-graph/mcp_server/database/`; override with `SPECKIT_CODE_GRAPH_DB_DIR`)
 - Tables: `code_files` (indexed source files), `code_nodes` (symbols), `code_edges` (relationships)
 - Edge types: `CONTAINS`, `CALLS`, `IMPORTS`, `EXPORTS`, `EXTENDS`, `IMPLEMENTS`, `DECORATES`, `OVERRIDES`, `TYPE_OF`
 
@@ -312,11 +313,12 @@ Add the following to `opencode.json` in your project root:
       "type": "local",
       "command": [
         "node",
-        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        ".opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
-        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database"
+        "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory"
       },
       "enabled": true
     }
@@ -324,8 +326,10 @@ Add the following to `opencode.json` in your project root:
 }
 ```
 
+The MCP `command` points at the front-proxy launcher (`.opencode/bin/mk-spec-memory-launcher.cjs`), which spawns and supervises the `dist/context-server.js` backend; do not point clients at `dist/context-server.js` directly. `SPECKIT_IPC_SOCKET_DIR` selects a short socket dir under the macOS `sun_path` 104-char limit; set `SPECKIT_BACKEND_ONLY=1` only when running the backend standalone (no front-proxy).
+
 Paths are relative to the project root. Use absolute paths if your client requires them:
-`/Users/YOUR_USERNAME/path/to/project/.opencode/skills/...`
+`/Users/YOUR_USERNAME/path/to/project/.opencode/...`
 
 > **Codex CLI users**: If running in a read-only workspace, point `SPEC_KIT_DB_DIR` at a writable directory outside the repo (for example `~/.speckit/database`). The runtime will derive the provider-specific sqlite filename there automatically. Use `MEMORY_DB_PATH` only for an intentional single-file override. See `.codex/config.toml` for the checked-in configuration shape.
 
@@ -352,10 +356,11 @@ Add the following to that file:
     "mk-spec-memory": {
       "command": "node",
       "args": [
-        "/Users/YOUR_USERNAME/path/to/project/.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        "/Users/YOUR_USERNAME/path/to/project/.opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "env": {
-        "EMBEDDINGS_PROVIDER": "auto"
+        "EMBEDDINGS_PROVIDER": "auto",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory"
       }
     }
   }
@@ -375,6 +380,13 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
 | `SPECKIT_MEMORY_ROADMAP_PHASE` | `scope-governance` | Records the current memory roadmap phase in telemetry, eval baselines, and migration checkpoint metadata. |
 | `SPECKIT_MEMORY_GRAPH_UNIFIED` | `true` | Default-on memory-roadmap graph capability metadata. Distinct from the live `SPECKIT_GRAPH_UNIFIED` runtime retrieval gate. |
 
+**Launcher / runtime env** (set alongside the launcher command, not feature flags):
+
+| Variable | Default | Description |
+|---|---|---|
+| `SPECKIT_IPC_SOCKET_DIR` | `/tmp/mk-spec-memory` | Directory for the launcher front-proxy IPC socket. Keep it short to stay under the macOS `sun_path` 104-char limit. |
+| `SPECKIT_BACKEND_ONLY` | unset | Set to `1` only when running `dist/context-server.js` standalone (no front-proxy). Normal clients use the launcher and leave this unset. |
+
 **Example** (OpenCode with all flags explicit):
 
 ```json
@@ -384,11 +396,12 @@ Add these flags to the `environment` (or `env`) block of any configuration optio
       "type": "local",
       "command": [
         "node",
-        ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"
+        ".opencode/bin/mk-spec-memory-launcher.cjs"
       ],
       "environment": {
         "EMBEDDINGS_PROVIDER": "auto",
         "SPEC_KIT_DB_DIR": ".opencode/skills/system-spec-kit/mcp_server/database",
+        "SPECKIT_IPC_SOCKET_DIR": "/tmp/mk-spec-memory",
         "SPECKIT_ADAPTIVE_FUSION": "true",
         "SPECKIT_EXTENDED_TELEMETRY": "true",
         "SPECKIT_MEMORY_ROADMAP_PHASE": "graph",
@@ -408,7 +421,9 @@ python3 -m json.tool < opencode.json > /dev/null
 # Or for Claude Code:
 python3 -m json.tool < .claude/mcp.json > /dev/null
 
-# Verify the binary path exists
+# Verify the MCP launcher path exists (the command clients point at)
+ls -la .opencode/bin/mk-spec-memory-launcher.cjs
+# And the backend artifact the launcher spawns (after `npm run build`)
 ls -la .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
@@ -452,13 +467,19 @@ You should see `mk-spec-memory` tools listed, including:
 - `memory_stats` (system statistics)
 - `memory_health` (system health check with index block summary)
 - `memory_embedding_reconcile` (embedding status maintenance tool)
-- `code_graph_scan` (structural code indexing)
-- `code_graph_query` (structural relationship queries)
-- `code_graph_status` (graph health check)
-- `code_graph_context` (LLM-oriented graph neighborhoods)
 - `session_health` (session readiness check)
 - `session_bootstrap` (complete session bootstrap)
 - `session_resume` (combined session resume)
+
+Code Graph is a separate MCP server named `mk_code_index` (8 tools), NOT part of `mk-spec-memory`. Its tool ids:
+- `code_graph_scan` (structural code indexing)
+- `code_graph_query` (structural relationship queries)
+- `code_graph_classify_query_intent` (route a query to graph vs lexical)
+- `code_graph_context` (LLM-oriented graph neighborhoods)
+- `code_graph_status` (graph health check)
+- `code_graph_verify` (integrity verification)
+- `code_graph_apply` (apply staged graph changes)
+- `detect_changes` (changed-file detection from a diff)
 
 Skill Advisor is a separate MCP server named `mk_skill_advisor`, registered alongside `mk-spec-memory`. Its public tool ids remain stable:
 - `advisor_recommend` (native skill routing recommendations)
@@ -1127,9 +1148,10 @@ This calls `memory_index_scan({ force: true })` to repopulate the search index f
 
 | Path | Purpose |
 |---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | MCP server entry point |
+| `.opencode/bin/mk-spec-memory-launcher.cjs` | MCP command (front-proxy launcher the OpenCode config points at) |
+| `.opencode/skills/system-spec-kit/mcp_server/dist/context-server.js` | Backend artifact the launcher spawns |
 | `.opencode/skills/system-spec-kit/mcp_server/database/context-index__*.sqlite` | Active profile database resolved by `shared/embeddings/profile.ts:resolveActiveProfileDbPath` |
-| `.opencode/.spec-kit/code-graph/database/code-graph.sqlite` | Structural code-graph database |
+| `.opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite` | Structural code-graph database (skill-local) |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-prerequisites.sh` | Verify Node.js version and prerequisites |
 | `.opencode/skills/system-spec-kit/scripts/setup/check-native-modules.sh` | Native module diagnostics |
 | `.opencode/skills/system-spec-kit/scripts/setup/rebuild-native-modules.sh` | Native module rebuild |
@@ -1215,8 +1237,7 @@ MCP TOOLS: memory_context, memory_search, memory_match_triggers,
 
 | Version | Date | Summary |
 |---|---|---|
-| v1.8.1 | 2026-05-19 | ADR-014: cascade reordered to local-first (Ollama > hf-local > OpenAI > Voyage). `HF_LOCAL_MODEL` fallback aligned with Ollama default (`nomic-ai/nomic-embed-text-v1.5`). |
-| v1.8.0 | 2026-05-18 | Bootstrap auto-selection now persists Ollama, hf-local, OpenAI, or Voyage into `vec_metadata`; native GGUF provider surface removed. |
+| v1.8.0 | 2026-05-18 | Bootstrap auto-selection now persists Ollama, hf-local, OpenAI, or Voyage into `vec_metadata`; native GGUF provider surface removed. ADR-014: cascade reordered to local-first (Ollama > hf-local > OpenAI > Voyage); `HF_LOCAL_MODEL` fallback aligned with the Ollama default (`nomic-ai/nomic-embed-text-v1.5`). |
 | v1.7.2 | 2026-03-15 | Dependency audit: `sqlite-vec-darwin-arm64` moved to `optionalDependencies`. Added `@huggingface/transformers` (with `onnxruntime-common` transitively), `chokidar`, `zod`. Rollback procedure added. Prerequisites script (`check-prerequisites.sh`) documented. |
 | v1.7.x | 2026-02-20 | Cross-encoder reranking enabled by default. Co-activation score boost fix. Query expansion on deep mode. Evidence gap warnings. MMR reranking with intent-mapped lambda. Phase system support (recursive validation, phase detection scoring). Feature flag updates. `memory_context` tokenUsage parameter. 28-tool surface area. |
 | v1.x | 2025 | Adaptive fusion, extended telemetry, artifact-class routing, append-only mutation ledger, typed retrieval contracts. Semantic search, trigger matching, intent-aware context, session deduplication. |

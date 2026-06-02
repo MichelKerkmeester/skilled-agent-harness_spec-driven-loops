@@ -57,7 +57,7 @@ The `install_guides/` directory is the central hub for all OpenCode setup and in
 |----------|-------|---------|
 | Guide files | 13 | 6 MCP guides + 2 skill-package install guides, 4 SET-UP guides, 1 index guide (this README) |
 | Install scripts | 8 | 3 real + 5 symlinks in `install_scripts/` |
-| MCP servers covered | 6 | Code Mode, Spec Kit Memory, Skill Advisor, Sequential Thinking, Chrome DevTools, System Code Graph |
+| Registered MCP servers | 5 | Code Mode, Spec Kit Memory, Skill Advisor, System Code Graph, Sequential Thinking (Chrome DevTools is a Code Mode provider / CLI, not a registered native server) |
 | Platforms supported | 3 | macOS, Linux, Windows WSL |
 
 ### What this guide covers
@@ -183,7 +183,7 @@ Answer these questions to configure your installation:
 - **GitHub Copilot** → Requires GitHub authentication
 - **OpenAI / Codex** → Requires `OPENAI_API_KEY`
 - **Gemini (Google)** → Requires `GEMINI_API_KEY`
-> **Note:** Spec Kit Memory embeddings support multiple providers: HF Local (default ONNX CPU), Ollama (local HTTP daemon when reachable), Voyage (cloud when `VOYAGE_API_KEY` is set), and OpenAI (cloud when `OPENAI_API_KEY` is set). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
+> **Note:** Spec Kit Memory embeddings use a local-first `auto` cascade: Ollama (default, local daemon when reachable), HF Local (pure-Node local fallback), Voyage (cloud, opt-in via `VOYAGE_API_KEY`), and OpenAI (cloud, opt-in via `OPENAI_API_KEY`). The default `auto` cascade works out of the box with no API key. See [Section 10.2](#102-spec-kit-memory-context-preservation) for details.
 
 ### Windows-Specific Configuration
 
@@ -296,7 +296,7 @@ uname -s | grep -E "Darwin|Linux" && echo "✅ PASS" || echo "❌ FAIL"
 
 **Disk breakdown:**
 - MCP servers: ~500MB
-- EmbeddingGemma model (default, HF Local ONNX q8): ~310MB
+- HF Local fallback model (nomic-embed-text-v1.5, ONNX q8): ~140MB (downloaded only if the HF Local fallback is used)
 - Spec Kit Memory database: ~50MB typical (grows with rows)
 
 **Quick Verification:**
@@ -574,19 +574,19 @@ Spec Kit Memory now supports four providers in cascade:
 
 | Provider | When to use | Dimension | Requirements |
 |----------|-------------|-----------|------------|
-| **HF Local** | Local default, Node.js only | 768 | Node.js only |
-| **Ollama** | Local daemon, opt-in | 768 | Ollama on `localhost:11434` |
+| **Ollama** | Local default (daemon) | 768 | Ollama on `localhost:11434` |
+| **HF Local** | Local fallback, Node.js only | 768 | Node.js only |
 | **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 | **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
 
-**Default provider:** `auto`. The active default is HF Local; the cascade promotes to Ollama, Voyage, or OpenAI when their probes succeed.
+**Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently — it requires an explicit key or `EMBEDDINGS_PROVIDER`.
 
-**Provider selection (cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
+**Provider selection (local-first cascade order when `EMBEDDINGS_PROVIDER=auto` or unset):**
 1. Explicit `EMBEDDINGS_PROVIDER` env var (if set and not `auto`)
-2. **Ollama** if the local daemon is reachable on `localhost:11434`
-3. **HF Local** as the default local provider
-4. **Voyage** when `VOYAGE_API_KEY` is set
-5. **OpenAI** when `OPENAI_API_KEY` is set
+2. **Ollama** (default) if the local daemon is reachable on `localhost:11434`
+3. **HF Local** (pure-Node local fallback) when Ollama is unavailable
+4. **OpenAI** when `OPENAI_API_KEY` is set (cloud, opt-in)
+5. **Voyage** when `VOYAGE_API_KEY` is set (cloud, opt-in)
 - Manual override: `export EMBEDDINGS_PROVIDER=ollama|hf-local|voyage|openai|auto`
 
 **Location:** Bundled in project at `.opencode/skills/system-spec-kit/`
@@ -619,8 +619,8 @@ export VOYAGE_EMBEDDINGS_MODEL=voyage-4  # Default
 export OPENAI_API_KEY=sk-...
 export OPENAI_EMBEDDINGS_MODEL=text-embedding-3-small  # Default
 
-# HF Local config (default local provider)
-export HF_EMBEDDINGS_MODEL=onnx-community/embeddinggemma-300m-ONNX  # Default
+# HF Local config (pure-Node local fallback provider; nomic-only menu)
+export HF_EMBEDDINGS_MODEL=nomic-ai/nomic-embed-text-v1.5  # Default
 export HF_EMBEDDINGS_DTYPE=q8  # Default (also: fp32, fp16, q4, int8, uint8, bnb4)
 
 # Ollama config (local daemon opt-in)
@@ -726,7 +726,7 @@ npm --prefix .opencode/skills/system-code-graph run build
       "type": "local",
       "command": ["node", ".opencode/bin/mk-code-index-launcher.cjs"],
       "environment": {
-        "_NOTE_1_DB": "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
+        "_NOTE_1_DB": "Database lives at .opencode/skills/system-code-graph/mcp_server/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides.",
         "_NOTE_2_TOOLS": "Registers 8 tools: code_graph_scan/query/context/status/verify/apply/classify_query_intent, detect_changes. MCP namespace: mcp__mk_code_index__*",
         "SPECKIT_CODE_GRAPH_INDEX_SKILLS": "false",
         "SPECKIT_CODE_GRAPH_INDEX_AGENTS": "false",
@@ -1502,7 +1502,7 @@ sudo chown -R $(whoami) /usr/local/lib/node_modules
 Instead of manual troubleshooting, use the built-in diagnostic commands that check all MCP servers automatically:
 
 ```bash
-# Diagnose all 6 MCP servers across all runtimes
+# Diagnose all 5 registered MCP servers across all runtimes
 /doctor:mcp debug
 
 # Auto-fix detected issues

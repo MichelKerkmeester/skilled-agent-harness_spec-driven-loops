@@ -22,11 +22,12 @@ operating_mode:
 # DEEP LOOP DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 deep_loop_doctor_invariant: |
-  Deep-loop doctor workflows derive graph nodes and edges from research/review
-  iteration folders without modifying those source markdown files. Apply modes
-  mutate only through deep_loop_graph_upsert, using deterministic IDs so rebuilds
-  are upsert-only and repeatable. Lazy-init is allowed only when the graph is
-  empty and iteration folders provide a readable source inventory.
+  Deep-loop doctor is read-only by contract. It reads graph nodes and edges and
+  the research/review iteration folders to assess coverage, without modifying the
+  source markdown files or the coverage graph. It never calls
+  deep_loop_graph_upsert; rebuilds are owned by /doctor:update. Lazy-init is
+  surfaced only as a recommendation when the graph is empty and iteration folders
+  provide a readable source inventory.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -199,9 +200,9 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If empty_graph=true and lazy_init_available=true -> recommend /doctor deep-loop --scope=<scope>."
-      - "If missing_convergence_signal > 0 -> recommend /doctor deep-loop."
-      - "If stale_graph=true or orphan_nodes > 0 -> recommend :apply-confirm --dry-run first."
+      - "If empty_graph=true and lazy_init_available=true -> recommend a coverage-graph rebuild via /doctor:update."
+      - "If missing_convergence_signal > 0 -> recommend a coverage-graph rebuild via /doctor:update."
+      - "If stale_graph=true or orphan_nodes > 0 -> recommend a coverage-graph rebuild via /doctor:update."
       - "If no drift -> status=OK, no action needed."
     outputs:
       - status: OK|EMPTY|STALE|ATTENTION|MISSING|CANCELLED|FAIL

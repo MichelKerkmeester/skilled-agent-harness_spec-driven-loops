@@ -304,7 +304,7 @@ The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActive
 | Tier | Probe | Picks |
 | --- | --- | --- |
 | 1 | Ollama running with a known text manifest pulled | `nomic-embed-text-v1.5` (first match in priority list) |
-| 2 | `sentence-transformers` importable via Python | `nomic-ai/nomic-embed-text-v1.5` (hf-local) |
+| 2 | hf-local model server reachable (pure-Node `@huggingface/transformers` HTTP client, zero Python) | `nomic-ai/nomic-embed-text-v1.5` (hf-local) |
 | 3 | `OPENAI_API_KEY` present | `text-embedding-3-small` (1536-dim) |
 | 4 | `VOYAGE_API_KEY` present | `voyage-code-3` (1024-dim, acknowledged compromise for prose memory) |
 
@@ -375,7 +375,7 @@ Skill-advisor does not ship an explicit `_resolve_device()` shim. Device selecti
 | Backend | Device handling |
 | --- | --- |
 | `ollama` (default after cascade picks tier 1) | Ollama owns runtime device handling. It already covers Metal / CUDA / CPU autonomously based on its own daemon configuration. |
-| `sentence-transformers` (hf-local fallback tier 2) | The Python sidecar uses its own MPS / CUDA / CPU resolution chain. |
+| `hf-local` (fallback tier 2) | Pure-Node `@huggingface/transformers` HTTP model server (zero Python). Device handling (MPS / CUDA / CPU) is resolved by the model server's own runtime. |
 | `api` (OpenAI or Voyage fallback) | Remote inference; device handling is the provider's concern. |
 
 If you need MPS-style auto-detect for a local model, the Ollama backend already provides it on Apple Silicon by default — install Ollama, pull a manifest, the cascade picks it.

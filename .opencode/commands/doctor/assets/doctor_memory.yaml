@@ -19,13 +19,12 @@ operating_mode:
 
 
 memory_doctor_invariant: |
-  Memory doctor workflows treat the active provider-keyed profile DBs
-  (ollama, hf-local, voyage, and openai profiles matching
-  context-index__*.sqlite) as the only memory-owned mutable stores, and only
-  :apply modes may rebuild them.
-  Diagnostic modes are report-only. Apply modes rely on ADR-001's per-file
-  memory_index_scan transaction finding, so SIGINT uses the ~5 sec settle window
-  before restoring snapshots for cross-file consistency.
+  Memory doctor is read-only by contract. It treats the active provider-keyed
+  profile DBs (ollama, hf-local, voyage, and openai profiles matching
+  context-index__*.sqlite) as the memory-owned stores it diagnoses but never
+  mutates. Rebuilds are owned by the /doctor:update orchestrator, which relies on
+  the per-file memory_index_scan transaction model so SIGINT uses the ~5 sec settle
+  window before restoring snapshots for cross-file consistency.
 
 upstream_assets:
   contract: "local command design contract"
@@ -39,7 +38,7 @@ upstream_assets:
     post_result_count_floor_ratio: 0.80  # preserve current workflow threshold
     recall_at_20_floor_ratio: 0.80  # preserve current Recall@20 proxy
 memory_doctor_philosophy:
-  principle: "Detect drift before it breaks memory_search; never mutate without explicit :apply mode"
+  principle: "Detect drift before it breaks memory_search; this command never mutates — rebuilds run through /doctor:update"
   approach: "Read memory_health + memory_stats → classify drift signals → emit recommendations"
   mandate: "This command is read-only by contract."
 
@@ -180,8 +179,8 @@ workflow:
   phase_2_recommendation:
     purpose: Translate drift signals into recommended action
     rules:
-      - "If severity_max == high (provider change OR divergent aliases) → recommend :apply --incremental=false"
-      - "If severity_max == medium (embedding OR fts drift) → recommend :apply --incremental=true"
+      - "If severity_max == high (provider change OR divergent aliases) → recommend a full rebuild via /doctor:update"
+      - "If severity_max == medium (embedding OR fts drift) → recommend an incremental rebuild via /doctor:update"
       - "If severity_max == low (boundary OR trigger drift) → recommend monitoring; rerun in 1-2 weeks"
       - "If no drift → status=OK, no action needed"
     outputs:
@@ -229,6 +228,6 @@ output_contract:
 # ─────────────────────────────────────────────────────────────────
 halt_conditions:
   - "Phase 0 fails to read memory_health (MCP unavailable) → STATUS=FAIL"
-  - "Database files missing entirely → STATUS=MISSING (not FAIL); recommend :apply to bootstrap"
+  - "Database files missing entirely → STATUS=MISSING (not FAIL); recommend /doctor:update to bootstrap"
   - "Any phase emits a write attempt → STATUS=FAIL with ERROR='confirm-mode-mutation-violation'"
   - "User answers `n` at any interactive gate → STATUS=CANCELLED and emit state log"

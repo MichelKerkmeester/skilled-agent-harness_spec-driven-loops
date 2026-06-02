@@ -41,7 +41,7 @@ Recommendations must be explainable through lane attribution without echoing raw
 
 ## 2. LANE ATTRIBUTION MODEL
 
-Five lanes participate in scoring. Each carries a fixed weight in the live fusion total. Lane attribution filters shadow-only lanes from dominant lane detection but keeps them in reason strings.
+Five lanes participate in scoring, and all five are live in the registry. Each carries a fixed weight in the live fusion total. Lane attribution derives shadow-only status from registry liveness (`isLiveScorerLane`): a lane is filtered from dominant-lane detection only when it is not live. With every lane currently live, all contribute to dominant-lane detection and reason strings.
 
 | Lane | Live Weight | Shadow Weight | Source |
 |---|---|---|---|
@@ -49,13 +49,13 @@ Five lanes participate in scoring. Each carries a fixed weight in the live fusio
 | lexical | 0.28 | 0.25 | Token matching with synonym expansion |
 | graph_causal | 0.13 | 0.20 | Skill graph edge propagation |
 | derived_generated | 0.12 | 0.10 | Derived trigger metadata |
-| semantic_shadow | 0.05 | 0.05 | Embedding cosine similarity (shadow only) |
+| semantic_shadow | 0.05 | 0.05 | Embedding cosine similarity (live, lowest fusion weight) |
 
 Lane weights live in `mcp_server/lib/scorer/lane-registry.ts:7-19`. The derived-dominant check fires when derived lane evidence exceeds combined explicit plus lexical evidence, triggering a confidence ceiling (`mcp_server/lib/scorer/attribution.ts:26-34`).
 
 ### Shadow vs live weight mechanics
 
-Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp_server/lib/scorer/lane-registry.ts:32-38`. Shadow mode (set via `SPECKIT_ADVISOR_SHADOW_MODE=1`) routes scoring through the shadow weights for evaluation runs without affecting the live ranking. The shadow lane (`semantic_shadow`) carries `shadowOnly=true` so it contributes to reasoning trails but is filtered out of dominant-lane detection in live mode.
+Shadow weights live alongside live weights as `DEFAULT_SHADOW_SCORER_LANE_WEIGHTS` in `mcp_server/lib/scorer/lane-registry.ts`. Shadow mode (set via `SPECKIT_ADVISOR_SHADOW_MODE=1`) routes scoring through the shadow weights for evaluation runs without affecting the live ranking. Effective shadow-only status is derived per lane from registry liveness in fusion (`shadowOnly = !isLiveScorerLane(lane)`), not from any per-match flag. Because `semantic_shadow` is live in the registry, its raw match tag is overridden to `shadowOnly:false`, so it contributes to both the live ranking (at weight 0.05) and dominant-lane detection.
 
 ---
 
@@ -69,7 +69,7 @@ Category hints route well-known phrases. The phrase `deep research` maps to the 
 
 ## 4. SEMANTIC SHADOW LANE
 
-The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings. The lane carries `shadowOnly=true` and weight 0.05 so it does not affect live ranking (`mcp_server/lib/scorer/lanes/semantic-shadow.ts:154-161`).
+The semantic shadow lane computes cosine similarity between a prompt embedding and pre-computed skill embeddings. The lane is live in the registry (`live: true`, weight 0.05) so it contributes to the live fusion ranking at its low weight. Raw matches still tag `shadowOnly:true`, but fusion derives the effective value from registry liveness (`isLiveScorerLane`) and reports `shadowOnly:false` for this live lane (`mcp_server/lib/scorer/lanes/semantic-shadow.ts:154-171`).
 
 Cosine similarity below 0.2 is treated as no signal (`mcp_server/lib/scorer/lanes/semantic-shadow.ts:10, 147-150`). When embeddings are unavailable under `VITEST=true`, the lane falls back to token-overlap scoring so tests stay deterministic (`mcp_server/lib/scorer/lanes/semantic-shadow.ts:91-108`).
 

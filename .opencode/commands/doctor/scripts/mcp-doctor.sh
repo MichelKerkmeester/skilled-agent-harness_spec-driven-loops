@@ -117,7 +117,7 @@ if check_command_exists node; then
     record_fail "prerequisites" "node" "$(node --version) < 20.11.0"
   fi
 else
-  _log log_fail "Node.js not found — 5 of 6 MCP servers require it"
+  _log log_fail "Node.js not found — all 5 MCP servers require it"
   record_fail "prerequisites" "node" "not found"
 fi
 
@@ -373,10 +373,11 @@ diagnose_mk_code_index() {
   local dist_entry="$skill_dir/mcp_server/dist/index.js"
   local stale_root_dist="$skill_dir/dist"
   local launcher="$PROJECT_ROOT/.opencode/bin/mk-code-index-launcher.cjs"
-  # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → new standalone location →
-  # legacy skill-local fallback (auto-migrated by the launcher on first run).
-  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$PROJECT_ROOT/.opencode/.spec-kit/code-graph/database}"
-  local legacy_db_dir="$skill_dir/mcp_server/database"
+  # DB path: prefer SPECKIT_CODE_GRAPH_DB_DIR override → the skill-local canonical
+  # location → the former shared location as fallback. The launcher auto-migrates a
+  # former-shared DB back to the skill-local location on first run.
+  local db_dir="${SPECKIT_CODE_GRAPH_DB_DIR:-$skill_dir/mcp_server/database}"
+  local legacy_db_dir="$PROJECT_ROOT/.opencode/.spec-kit/code-graph/database"
   local needs_fix=false
   local needs_db_dir=false
 
@@ -664,7 +665,7 @@ diagnose_sequential_thinking() {
     _log log_pass "npx available"
   else
     record_fail "$srv" "npx_available" "npx not found"
-    _log log_fail "npx not found — install Node.js 18+"
+    _log log_fail "npx not found — install Node.js >=20.11.0"
     return
   fi
 

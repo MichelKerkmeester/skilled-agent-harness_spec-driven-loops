@@ -22,11 +22,11 @@ operating_mode:
 # CAUSAL GRAPH DOCTOR INVARIANT
 # ─────────────────────────────────────────────────────────────────
 causal_graph_doctor_invariant: |
-  Causal-graph doctor workflows treat causal_edges as add-only evidence. Apply
-  modes may call memory_causal_link for candidates with confidence >= 0.7 after
-  existing-edge checks pass, but they never delete, update, or drop existing
-  edges. Any suspected upsert of an existing source/target/relation edge halts
-  and rolls back from the Phase 2 snapshot.
+  Causal-graph doctor is read-only by contract and treats causal_edges as
+  add-only evidence that it inspects but never deletes, updates, or drops. It
+  samples coverage and surfaces candidate links (confidence >= 0.7) as
+  recommendations only; it never calls memory_causal_link. Adding edges is the
+  job of memory-save tooling, not this diagnostic.
 
 # ─────────────────────────────────────────────────────────────────
 # UPSTREAM ASSETS
@@ -57,7 +57,7 @@ causal_graph_doctor_philosophy:
 user_inputs:
   execution_mode: "[EXECUTION_MODE] - INTERACTIVE (this YAML)"
   intent: "[INTENT] - DIAGNOSE (this YAML)"
-  confidence_threshold: "[CONFIDENCE_THRESHOLD] - informational only in diagnostic mode; minimum apply threshold is 0.7"
+  confidence_threshold: "[CONFIDENCE_THRESHOLD] - informational only in diagnostic mode; minimum recommendation threshold is 0.7"
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -67,8 +67,8 @@ field_handling:
   defaults:
     confidence_threshold_empty: "0.7"
   confidence_threshold_policy:
-    "0.7": "diagnostic recommendation floor for :apply"
-    ">0.7": "diagnostic recommendation floor for stricter :apply-confirm review"
+    "0.7": "diagnostic recommendation floor for candidate links"
+    ">0.7": "stricter diagnostic recommendation floor for candidate review"
 
 # ─────────────────────────────────────────────────────────────────
 # MUTATION BOUNDARIES
@@ -96,7 +96,7 @@ mutation_boundaries:
     - "DELETE FROM causal_edges"
     - "UPDATE causal_edges"
     - "DROP TABLE causal_edges"
-  policy: "read-only diagnostic; add-only edges policy is enforced by apply YAMLs; deletion is forbidden"
+  policy: "read-only diagnostic; edge writes are owned by memory-save tooling (add-only); deletion is forbidden"
   enforcement: "This command is READ-ONLY by contract. Any attempted write or delete halts with STATUS=FAIL and ERROR='confirm-mode-mutation-violation'."
   validator:
     name: validate_targets
@@ -195,8 +195,8 @@ workflow:
   phase_2_recommendation:
     purpose: "Translate drift signals into a safe operator action."
     rules:
-      - "If coverage_percent < 60 -> recommend /doctor causal-graph --confidence-threshold=0.7."
-      - "If this is first-time packet auto-link -> recommend /doctor causal-graph --confidence-threshold=0.9."
+      - "If coverage_percent < 60 -> recommend a causal-edges rebuild via /doctor:update (candidate floor 0.7)."
+      - "If this is a first-time packet with no edges -> recommend a causal-edges rebuild via /doctor:update (stricter candidate floor 0.9)."
       - "If orphan_records > 0 but coverage >= 60 -> recommend manual review."
       - "If no drift -> status=OK, no action needed."
     outputs:

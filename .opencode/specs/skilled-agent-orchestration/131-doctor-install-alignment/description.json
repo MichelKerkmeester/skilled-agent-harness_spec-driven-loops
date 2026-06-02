@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/131-doctor-install-alignment",
+  "description": "Align the /doctor command surface + three subsystem install guides to shipped reality (~148 misalignments) via a five-cluster disjoint sweep + orchestrator fix-ups.",
+  "keywords": [
+    "doctor",
+    "install-guide",
+    "alignment",
+    "mutation-class",
+    "code-graph-db-path",
+    "tool-count"
+  ],
+  "lastUpdated": "2026-06-02T20:40:00.000Z",
+  "specId": "131",
+  "folderSlug": "doctor-install-alignment",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
