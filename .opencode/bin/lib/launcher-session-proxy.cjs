@@ -20,6 +20,11 @@ const RETRYABLE_RECYCLE_ERROR = Object.freeze({
   message: 'backend recycled; retry',
   data: { retryable: true },
 });
+const PROTOCOL_MISMATCH_ERROR = Object.freeze({
+  code: -32002,
+  message: 'backend protocol version changed; client reconnect required',
+  data: { retryable: false },
+});
 const REPLAYABLE_TOOL_NAMES = new Set([
   'memory_search',
   'memory_context',
@@ -125,11 +130,17 @@ function classifyFrame(frame) {
 function createPendingRequestsTracker(classify = classifyFrame) {
   const pendingRequests = new Map();
   let cachedInitialize = null;
+  let cachedInitializeId = null;
+  let negotiatedProtocolVersion = null;
+  let protocolVersionObserved = false;
 
   function handleClientFrame(frame) {
     const parsed = parseFrame(frame);
     if (!parsed) return;
-    if (parsed.method === 'initialize') cachedInitialize = frame;
+    if (parsed.method === 'initialize') {
+      cachedInitialize = frame;
+      cachedInitializeId = hasRequestId(parsed) ? parsed.id : null;
+    }
     if (!hasRequestId(parsed)) return;
     pendingRequests.set(parsed.id, {
       frame,
@@ -149,6 +160,20 @@ function createPendingRequestsTracker(classify = classifyFrame) {
     handleBackendFrame,
     getCachedInitialize() {
       return cachedInitialize;
+    },
+    getCachedInitializeId() {
+      return cachedInitializeId;
+    },
+    getNegotiatedProtocolVersion() {
+      return negotiatedProtocolVersion;
+    },
+    hasObservedProtocolVersion() {
+      return protocolVersionObserved;
+    },
+    recordNegotiatedProtocolVersion(version) {
+      if (protocolVersionObserved) return;
+      protocolVersionObserved = true;
+      negotiatedProtocolVersion = typeof version === 'string' ? version : null;
     },
   };
 }
@@ -177,6 +202,14 @@ function retryableErrorFrame(id) {
     jsonrpc: '2.0',
     id,
     error: RETRYABLE_RECYCLE_ERROR,
+  });
+}
+
+function protocolMismatchErrorFrame(id) {
+  return JSON.stringify({
+    jsonrpc: '2.0',
+    id,
+    error: PROTOCOL_MISMATCH_ERROR,
   });
 }
 
@@ -210,14 +243,17 @@ function connectSocket(connect, socketPath) {
 }
 
 function internalHandshake(socket, initializeFrame) {
-  if (!initializeFrame) return Promise.resolve('');
+  if (!initializeFrame) return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false });
 
   const initialize = parseFrame(initializeFrame);
-  if (!initialize || !hasRequestId(initialize)) return Promise.resolve('');
+  if (!initialize || !hasRequestId(initialize)) {
+    return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false });
+  }
 
   return new Promise((resolve, reject) => {
     let buffer = '';
     let residual = '';
+    let negotiatedVersion;
     const timer = setTimeout(() => {
       cleanup();
       reject(new Error('timed out waiting for internal initialize'));
@@ -241,6 +277,9 @@ function internalHandshake(socket, initializeFrame) {
         const parsed = parseFrame(frame);
         if (parsed && isResponseFrame(parsed) && parsed.id === initialize.id) {
           initialized = true;
+          negotiatedVersion = parsed.result && typeof parsed.result === 'object'
+            ? parsed.result.protocolVersion
+            : undefined;
           continue;
         }
         residual += `${frame}\n`;
@@ -250,7 +289,7 @@ function internalHandshake(socket, initializeFrame) {
       buffer = '';
       residual = '';
       cleanup();
-      resolve(remainder);
+      resolve({ residual: remainder, protocolVersion: negotiatedVersion, handshakeObserved: true });
     };
     const onError = (error) => {
       cleanup();
@@ -396,26 +435,31 @@ function createSessionProxy(options) {
     pumpOutputQueue();
   }
 
-  function emitRetryableErrorForFrame(frame, failedIds) {
-    const parsed = parseFrame(frame);
-    if (!hasRequestId(parsed)) return;
-    const key = JSON.stringify(parsed.id);
-    if (failedIds.has(key)) return;
-    failedIds.add(key);
-    enqueueOutputFrame(retryableErrorFrame(parsed.id));
-  }
-
-  function failPendingAndEnd() {
+  function failPendingAndEndWith(makeErrorFrame) {
     const failedIds = new Set();
     for (const id of tracker.pendingRequests.keys()) {
       failedIds.add(JSON.stringify(id));
-      enqueueOutputFrame(retryableErrorFrame(id));
+      enqueueOutputFrame(makeErrorFrame(id));
     }
     tracker.pendingRequests.clear();
     while (queuedClientFrames.length > 0) {
-      emitRetryableErrorForFrame(queuedClientFrames.shift(), failedIds);
+      const frame = queuedClientFrames.shift();
+      const parsed = parseFrame(frame);
+      if (!hasRequestId(parsed)) continue;
+      const key = JSON.stringify(parsed.id);
+      if (failedIds.has(key)) continue;
+      failedIds.add(key);
+      enqueueOutputFrame(makeErrorFrame(parsed.id));
     }
     requestOutputEnd();
+  }
+
+  function failPendingAndEnd() {
+    failPendingAndEndWith(retryableErrorFrame);
+  }
+
+  function failPendingAndEndProtocolMismatch() {
+    failPendingAndEndWith(protocolMismatchErrorFrame);
   }
 
   function failOldestQueuedClientFrame() {
@@ -532,6 +576,18 @@ function createSessionProxy(options) {
       }
       return;
     }
+    const cachedInitializeId = tracker.getCachedInitializeId();
+    if (!tracker.hasObservedProtocolVersion()
+        && cachedInitializeId !== null
+        && isResponseFrame(parsed)
+        && parsed.id === cachedInitializeId) {
+      // Record the protocol version negotiated on the first initialize so an internal
+      // re-handshake to a swapped backend can fail closed on a version change rather
+      // than silently serve the client a protocol it never negotiated.
+      tracker.recordNegotiatedProtocolVersion(
+        parsed.result && typeof parsed.result === 'object' ? parsed.result.protocolVersion : undefined,
+      );
+    }
     tracker.handleBackendFrame(frame);
     enqueueOutputFrame(frame);
   }
@@ -550,10 +606,24 @@ function createSessionProxy(options) {
 
   async function attachFreshSocket({ replaySnapshotEntries = [] } = {}) {
     const freshSocket = await connectSocket(connect, socketPath);
-    const residual = await internalHandshake(freshSocket, tracker.getCachedInitialize());
+    const handshake = await internalHandshake(freshSocket, tracker.getCachedInitialize());
+    const expectedProtocolVersion = tracker.getNegotiatedProtocolVersion();
+    if (handshake.handshakeObserved
+        && expectedProtocolVersion !== null
+        && (handshake.protocolVersion ?? null) !== expectedProtocolVersion) {
+      // A backend build swap can re-handshake with a different negotiated protocol
+      // version. Serving it would silently break the client's protocol contract, so
+      // end the session with a non-retryable error instead of attaching the socket.
+      // CLOSED is terminal: the reattach loop must not retry a version-mismatched backend.
+      log(`backend protocol version drift: expected ${expectedProtocolVersion}, got ${handshake.protocolVersion ?? 'none'}; failing closed`);
+      freshSocket.destroy?.();
+      state = 'CLOSED';
+      failPendingAndEndProtocolMismatch();
+      return;
+    }
     socket = freshSocket;
     backendSplitter = createFrameSplitter(handleBackendFrame);
-    if (residual.length > 0) backendSplitter.push(residual);
+    if (handshake.residual.length > 0) backendSplitter.push(handshake.residual);
     socket.on('data', (chunk) => backendSplitter.push(chunk));
     socket.once('error', (error) => {
       log(`socket proxy error: ${error instanceof Error ? error.message : String(error)}`);
@@ -582,7 +652,7 @@ function createSessionProxy(options) {
         try {
           const snapshot = Array.from(tracker.pendingRequests.entries());
           await attachFreshSocket({ replaySnapshotEntries: snapshot });
-          if (state === 'CONNECTED' || stopped) return;
+          if (state === 'CONNECTED' || state === 'CLOSED' || stopped) return;
           log('reattach observed nested backend failure; retrying');
           continue;
         } catch (error) {
