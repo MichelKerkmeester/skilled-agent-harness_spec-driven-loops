@@ -113,6 +113,16 @@ interface ScanFileEntry {
   errorDetail?: string;
 }
 
+interface CheckpointRepairReport {
+  sentinelPresent: boolean;
+  attempted: boolean;
+  completed: number;
+  failed: number;
+  skipped: number;
+  cleared: boolean;
+  error: string | null;
+}
+
 interface ScanResults {
   scanned: number;
   indexed: number;
@@ -148,6 +158,7 @@ interface ScanResults {
   };
   aliasConflicts: AliasConflictSummary;
   divergenceReconcile: DivergenceReconcileSummary;
+  checkpointRepair: CheckpointRepairReport;
   warnings: string[];
   capExceeded: DiscoveryCapExceeded;
 }
@@ -187,6 +198,43 @@ interface OrphanSweepCandidates {
 }
 
 const ORPHAN_SWEEP_LIMIT = 200;
+
+function emptyCheckpointRepairReport(): CheckpointRepairReport {
+  return {
+    sentinelPresent: false,
+    attempted: false,
+    completed: 0,
+    failed: 0,
+    skipped: 0,
+    cleared: false,
+    error: null,
+  };
+}
+
+function runCheckpointNeedsRebuildRepairForScan(): CheckpointRepairReport {
+  try {
+    const repair = checkpoints.repairNeedsRebuildSentinel(requireDb(), {
+      source: 'memory_index_scan',
+      actor: 'mcp:memory_index_scan',
+    });
+    return {
+      sentinelPresent: repair.sentinelPresent,
+      attempted: repair.attempted,
+      completed: repair.summary?.completed.length ?? 0,
+      failed: repair.summary?.failed.length ?? 0,
+      skipped: repair.summary?.skipped.length ?? 0,
+      cleared: repair.cleared,
+      error: repair.error,
+    };
+  } catch (error: unknown) {
+    return {
+      ...emptyCheckpointRepairReport(),
+      sentinelPresent: true,
+      attempted: true,
+      error: toErrorMessage(error),
+    };
+  }
+}
 
 function createScanKey(options: ScanKeyOptions): string {
   const normalized = {
@@ -331,6 +379,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     scanLeaseReleased = true;
     await completeIndexScanLease(Date.now());
   };
+
+  const checkpointRepair = runCheckpointNeedsRebuildRepairForScan();
 
   try {
   const workspacePath: string = DEFAULT_BASE_PATH;
@@ -526,6 +576,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
         orphanSweepNextCursor: orphanSweepResult.nextCursor,
+        checkpointRepair,
         warnings: walkerWarnings,
         capExceeded: walkerCapExceeded,
       },
@@ -534,6 +585,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         ...(postInsertEnrichmentRepaired > 0 ? [`Repaired ${postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
+        ...(checkpointRepair.cleared ? [`Cleared checkpoint derived rebuild sentinel after repairing ${checkpointRepair.completed} step(s)`] : []),
+        ...(checkpointRepair.attempted && !checkpointRepair.cleared ? ['Checkpoint derived rebuild repair did not complete; sentinel retained'] : []),
+        ...(checkpointRepair.error ? [`Checkpoint derived rebuild repair error: ${checkpointRepair.error}`] : []),
         'Indexable files are canonical spec documents under specs/**/ (spec.md, plan.md, decision-record.md, implementation-summary.md, handover.md, etc.)',
         'Constitutional files go in .opencode/skills/*/constitutional/'
       ]
@@ -576,6 +630,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     },
     aliasConflicts: { ...EMPTY_ALIAS_CONFLICT_SUMMARY },
     divergenceReconcile: createDefaultDivergenceReconcileSummary(),
+    checkpointRepair,
     warnings: walkerWarnings,
     capExceeded: walkerCapExceeded,
   };
@@ -906,6 +961,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.divergenceReconcile.errors.length > 0) {
     hints.push(`Auto-reconcile hook encountered ${results.divergenceReconcile.errors.length} error(s)`);
+  }
+  if (results.checkpointRepair.cleared) {
+    hints.push(`Cleared checkpoint derived rebuild sentinel after repairing ${results.checkpointRepair.completed} step(s)`);
+  }
+  if (results.checkpointRepair.attempted && !results.checkpointRepair.cleared) {
+    hints.push('Checkpoint derived rebuild repair did not complete; sentinel retained');
+  }
+  if (results.checkpointRepair.error) {
+    hints.push(`Checkpoint derived rebuild repair error: ${results.checkpointRepair.error}`);
   }
   if (results.incremental.enabled && results.incremental.fast_path_skips > 0) {
     hints.push(`Incremental mode saved time: ${results.incremental.fast_path_skips} files skipped via mtime check`);
