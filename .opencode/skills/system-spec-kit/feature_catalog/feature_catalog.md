@@ -699,6 +699,8 @@ A maximum of 10 checkpoints are retained. When you create the 11th, the oldest i
 
 Checkpoints are the safety net for destructive operations. `memory_bulk_delete` creates one by default before bulk deletion, unless explicitly skipped for lower-risk tiers. `checkpoint_restore` brings it all back. The cycle works because checkpoints include vector embeddings alongside metadata, so restored memories are immediately searchable without re-running embedding generation.
 
+**v2 full-DB path:** Unscoped full-DB requests route to `createCheckpointV2`, which snapshots the database with SQLite `VACUUM main INTO` (and `VACUUM active_vec INTO` when `includeEmbeddings` is set), avoiding the v1 string-size ceiling entirely. The `checkpoints` row records `snapshot_format='v2'` and `snapshot_path` (schema v29 columns) with `memory_snapshot` NULL, prune/delete are dir-aware, and a `.needs-rebuild` sentinel tracks derived-table staleness. Scoped requests stay on the v1 gzip-JSON path verbatim.
+
 #### Source Files
 
 See [`05--lifecycle/038-checkpoint-creation-checkpointcreate.md`](05--lifecycle/038-checkpoint-creation-checkpointcreate.md) for full implementation and test file listings.
@@ -736,6 +738,8 @@ The `clearExisting` mode deserves explanation. When true, the entire restore run
 When merging (the default), the system checks for duplicates using a logical key of `spec_folder + file_path + anchor_id`. Existing spec-doc records that match the logical key are skipped rather than duplicated.
 
 After restore, vectors are restored from the checkpoint snapshot when vector payloads are present. The restore handler then clears in-memory search/constitutional caches, rebuilds BM25 from live DB content when BM25 is enabled and refreshes the trigger cache. This keeps restored memories immediately discoverable without forcing a full re-embedding pass.
+
+**v2 full-DB path:** When the row carries `snapshot_format='v2'`, `restoreCheckpointV2` makes the snapshot the live database by a whole-file swap through a `reopenActiveDatabase` coordinator (wal_checkpoint, detach `active_vec`, close, swap, reopen via `initialize_db`), guarded by a two-phase `.restore-journal.json` (`swap-pending` → `swap-done`) so boot crash-recovery rolls back from `.bak` only while pending, with manifest downgrade/embedder guards, `runPostRestoreRebuilds`, and a `.needs-rebuild` sentinel for post-swap derived staleness.
 
 #### Source Files
 
@@ -1196,6 +1200,38 @@ The `cleanupOldSessions()` method in the working memory manager compared `last_f
 #### Source Files
 
 See [`08--bug-fixes-and-data-integrity/067-working-memory-timestamp-fix.md`](08--bug-fixes-and-data-integrity/067-working-memory-timestamp-fix.md) for full implementation and test file listings.
+
+---
+
+### Schema version history (v28 to v30)
+
+#### Description
+
+The database carries a single integer `SCHEMA_VERSION` (currently 30), and a transactional migration runner applies each numbered migration in order when an older database is opened. This records what the three most recent migrations added so operators can see the timeline without reading the migration code.
+
+#### How It Works
+
+All three migrations are additive and idempotent. **v28** added the active-row logical-key partial unique index `idx_memory_logical_key_active_unique` (at most one non-deprecated, non-constitutional row per logical key per scope). **v29** added `snapshot_format TEXT DEFAULT 'v1'` and `snapshot_path TEXT` to `checkpoints` so restore can detect v1 vs v2 snapshots and pruning can find v2 directories. **v30** added the four `post_insert_enrichment_*` marker columns to `memory_index` plus the `idx_post_insert_enrichment_incomplete` partial index so deferred enrichment can be tracked and repaired. The column defaults (`'v1'`, `'complete'`) classify every legacy row with no backfill.
+
+#### Source Files
+
+See [`08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md`](08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md) for full implementation and test file listings.
+
+---
+
+### Error code reference (E429, -32001, -32002)
+
+#### Description
+
+Three error codes from different subsystems are easy to confuse. This unifies them into one reference so the call site can answer the only question that matters: is this safe to retry?
+
+#### How It Works
+
+`E429` (`RATE_LIMITED`) is the `memory_index_scan` lease/cooldown rejection; it carries the wait time and a `reason` of `lease_active` or `cooldown`, and is retryable after the wait. `-32001` (`RETRYABLE_RECYCLE_ERROR`, `{ retryable: true }`) is the launcher proxy's still-live "backend recycled; retry" signal for in-flight non-replayable requests during an in-place daemon recycle — it is NOT removed; only the unrelated index vector-drain outage path stopped surfacing its own `-32001` class. `-32002` (`PROTOCOL_MISMATCH_ERROR`, `{ retryable: false }`) is emitted when a re-handshaked backend negotiates a different protocol version; the proxy fails closed to a terminal `CLOSED` state and the client must reconnect from scratch.
+
+#### Source Files
+
+See [`08--bug-fixes-and-data-integrity/070-error-code-reference.md`](08--bug-fixes-and-data-integrity/070-error-code-reference.md) for full implementation and test file listings.
 
 ---
 
@@ -2955,6 +2991,22 @@ See [`13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runn
 
 ---
 
+### Post-insert enrichment marker (post_insert_enrichment_status)
+
+#### Description
+
+When a memory is saved in planner-first modes, some enrichment (causal links, entity extraction, graph signals) runs after the row is inserted rather than blocking the save. Each `memory_index` row records whether that post-insert enrichment completed, so an incomplete row is discoverable and repairable on a later pass instead of being silently left under-enriched.
+
+#### How It Works
+
+Schema migration v30 added `post_insert_enrichment_status` (`NOT NULL DEFAULT 'complete'`, with values `pending`/`complete`/`partial`/`failed`/`deferred`), plus `post_insert_enrichment_state`, `post_insert_enrichment_completed_at`, and `post_insert_enrichment_version`. The partial index `idx_post_insert_enrichment_incomplete` lets a repair scan find only the non-complete rows cheaply. The enrichment-state module re-runs the deferred step for incomplete rows and updates the marker, making the post-insert enrichment idempotent and recoverable.
+
+#### Source Files
+
+See [`13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md`](13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md) for full implementation and test file listings.
+
+---
+
 ## 15. PIPELINE ARCHITECTURE
 
 ### 4-stage pipeline refactor
@@ -3379,6 +3431,22 @@ Schema support is now part of vector index setup, and save handlers integrate li
 See [`14--pipeline-architecture/182-lineage-state-active-projection-and-asof-resolution.md`](14--pipeline-architecture/182-lineage-state-active-projection-and-asof-resolution.md) for full implementation and test file listings.
 
 > **Playbook:** [129](../manual_testing_playbook/manual_testing_playbook.md), [130](../manual_testing_playbook/manual_testing_playbook.md)
+
+---
+
+### MCP launcher front-proxy (reconnecting session proxy)
+
+#### Description
+
+Each MCP client connects through a launcher process rather than to the shared background daemon directly. Secondary (non-lease-holder) launchers bridge their client stdio through a reconnecting session proxy so a client survives an in-place daemon recycle transparently instead of having its connection severed.
+
+#### How It Works
+
+`bridgeStdioThroughSessionProxy` wraps a secondary launcher's stdio in a session proxy that reattaches to the restarted backend, replays safe in-flight read-mostly requests (`REPLAYABLE_TOOL_NAMES`), and keeps a keepalive ping to detect a wedged backend. On a sustained RSS breach the launcher runs `recycleDaemonInPlace`, re-spawning the backend with `SPECKIT_BACKEND_ONLY=1` (which skips the stdio transport and serves the IPC socket). Two error classes distinguish recovery: `-32001` `RETRYABLE_RECYCLE_ERROR` (still live; "backend recycled; retry") for non-replayable in-flight requests, and `-32002` `PROTOCOL_MISMATCH_ERROR` (non-retryable) when a re-handshaked backend negotiates a different protocol version, where the proxy fails closed to a terminal `CLOSED` state.
+
+#### Source Files
+
+See [`14--pipeline-architecture/189-mcp-launcher-front-proxy.md`](14--pipeline-architecture/189-mcp-launcher-front-proxy.md) for full implementation and test file listings.
 
 ---
 
@@ -3984,6 +4052,22 @@ Each session gets its own SQLite database, code-graph index and IPC socket direc
 See [`16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md`](16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md) for full implementation and validation listings.
 
 > **Playbook:** [419](../manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md)
+
+---
+
+### sk-git numbered worktree convention (wt/{NNNN}-{name})
+
+#### Description
+
+Spec-folder and CLI-dispatched code work often runs inside a Git worktree so the live tree is never edited directly. The `sk-git` skill owns the naming convention for those worktrees; this entry records it for discoverability and cross-references the skill, which owns the full mechanics.
+
+#### How It Works
+
+A deliberate feature worktree uses a branch named `wt/{NNNN}-{name}` checked out into `.worktrees/{NNNN}-{name}`, where `{NNNN}` is a 4-digit zero-padded global counter computed as `max(existing NNNN under .worktrees/) + 1` (first is `0001`) and `{name}` is a short kebab description. The `wt/` prefix groups every feature-worktree branch under one folder in Git UIs. This is distinct from the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`), which are auto-managed, auto-reaped, and intentionally not numbered. Full create/restructure mechanics live in the `sk-git` skill.
+
+#### Source Files
+
+See [`16--tooling-and-scripts/249-sk-git-worktree-convention.md`](16--tooling-and-scripts/249-sk-git-worktree-convention.md) for the cross-reference to the sk-git skill.
 
 ---
 

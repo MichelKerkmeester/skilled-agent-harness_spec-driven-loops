@@ -766,6 +766,84 @@ Dry-run returns affected row IDs and projected actions without any DB mutation; 
 > **Feature File:** [EX-036](04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
 > **Catalog:** [04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md](../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
 
+### EX-037 | Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)
+
+#### Description
+Full-DB v2 rollback net: `VACUUM INTO` create then restore round-trip. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the v2 full-DB checkpoint path: create an unscoped checkpoint with includeEmbeddings, confirm snapshot_format='v2' and a snapshot_path directory, then restore it into an isolated scratch copy and confirm memory_health consistency. Return a concise pass/fail verdict with cited field names.`
+
+snapshot_format='v2' with a populated snapshot_path and manifest.json; restore round-trip restores main plus the active_vec shard; memory_health reports rowsTotal == ftsRowsTotal == vecRowsTotal; restore-journal (swap-pending -> swap-done) gives crash-safe recovery
+
+#### Test Execution
+> **Feature File:** [EX-037](05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md)
+
+### EX-038 | Post-insert enrichment lifecycle (schema v30)
+
+#### Description
+post_insert_enrichment_status lifecycle after memory_save, with repair-on-replay and scan-lease backfill.
+
+#### Scenario Contract
+Prompt: `Validate the schema v30 post-insert enrichment lifecycle: after memory_save, confirm post_insert_enrichment_status transitions toward complete; then confirm an incomplete (pending/partial/failed) marker is repaired on replay and backfilled during a leased memory_index_scan. Return a concise pass/fail verdict with cited field names.`
+
+post_insert_enrichment_status converges to complete for a healthy save; incomplete (pending/partial/failed) markers are re-run by repairEnrichmentOnReplay; repairIncompleteMarkers backfills incomplete markers during a leased scan and reports a repaired count; complete/deferred markers are left untouched
+
+#### Test Execution
+> **Feature File:** [EX-038](04--maintenance/039-post-insert-enrichment-lifecycle-v30.md)
+
+### EX-039 | index_scan phased-async refinements (move reconciliation, active-row uniqueness, repair counts)
+
+#### Description
+walk -> commit-lexical -> async vector drain, packet_id move reconciliation, migration-28 active-row uniqueness, response repair counts.
+
+#### Scenario Contract
+Prompt: `Validate the index_scan phased-async refinements: confirm lexical rows are searchable before vectors drain (complete_with_pending_vectors with pendingVectors), a moved file is reconciled in place by packet identity (moveReconciled), the migration-28 active-row uniqueness guard holds, and the response surfaces repair counts. Return a concise pass/fail verdict with cited field names.`
+
+status complete_with_pending_vectors with non-zero pendingVectors while vectors drain; BM25/FTS rows searchable before vectors finish; moveReconciled > 0 when a tracked file moved; no duplicate active logical-key rows (mig 28); response carries moveReconciled, staleDeleted, orphan-sweep, and checkpointRepair counts
+
+#### Test Execution
+> **Feature File:** [EX-039](04--maintenance/040-index-scan-phased-async-refinements.md)
+
+### EX-040 | MCP front-proxy reconnect, SPECKIT_BACKEND_ONLY, and -32002 vs -32001
+
+#### Description
+Transparent backend RSS-recycle (-32001 retryable-recycle), backend-only mode, and -32002 fail-closed protocol mismatch. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the front-proxy reconnect contract: confirm a backend recycle is transparent via -32001 retryable-recycle, SPECKIT_BACKEND_ONLY=1 puts the server in backend mode behind the proxy, and a protocol-version mismatch fails closed with -32002 (terminal CLOSED, non-retryable). Return a concise pass/fail verdict with cited error codes.`
+
+a backend recycle reattaches transparently (-32001 RETRYABLE_RECYCLE_ERROR, retryable:true; LIVE, not removed); SPECKIT_BACKEND_ONLY=1 makes the server skip its own stdio transport; a protocol-version mismatch surfaces -32002 PROTOCOL_MISMATCH_ERROR (retryable:false) and the proxy goes terminal CLOSED
+
+#### Test Execution
+> **Feature File:** [EX-040](14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md)
+
+### EX-041 | sk-git worktree convention (wt/{NNNN}-{name} under .worktrees/)
+
+#### Description
+Numbered-worktree convention validation: branch wt/{NNNN}-{name}, directory .worktrees/{NNNN}-{name}, 4-digit global max+1 counter. No git writes beyond the worktree add.
+
+#### Scenario Contract
+Prompt: `Validate the sk-git worktree convention: create a wt/{NNNN}-{name} worktree using the 4-digit global max+1 counter, confirm the matching .worktrees/{NNNN}-{name} directory exists, and confirm the number is one greater than the existing maximum (or 0001 if none). Return a concise pass/fail verdict with cited paths.`
+
+new branch named wt/{NNNN}-{name}; worktree directory .worktrees/{NNNN}-{name}; {NNNN} equals max(existing NNNN under .worktrees/) + 1 (or 0001 when none), 4-digit zero-padded; no commit/push/merge performed
+
+#### Test Execution
+> **Feature File:** [EX-041](16--tooling-and-scripts/300-sk-git-worktree-convention.md)
+
+### EX-042 | Checkpoint v2 .needs-rebuild self-heal (boot / scan-lease)
+
+#### Description
+Post-restore .needs-rebuild sentinel repaired at daemon boot and during a leased memory_index_scan. Sandbox-only.
+
+#### Scenario Contract
+Prompt: `Validate the .needs-rebuild self-heal: confirm the sentinel is repaired at daemon boot and during a memory_index_scan after the scan lease is acquired, and that a successful repair clears the sentinel. Return a concise pass/fail verdict with cited field names.`
+
+repairNeedsRebuildSentinel reports sentinelPresent, attempted, completed, failed, skipped, cleared; the sentinel is repaired and cleared at boot (runCheckpointNeedsRebuildRepair) and during a leased scan (runCheckpointNeedsRebuildRepairForScan, after acquireIndexScanLease); the scan response surfaces the repair counts
+
+#### Test Execution
+> **Feature File:** [EX-042](05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md)
+
 ---
 
 ## 8. FEATURES

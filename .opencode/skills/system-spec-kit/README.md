@@ -360,6 +360,30 @@ Short decision-type memories can bypass the content-length gate when SPECKIT_SAV
 | `degraded_needs_repair` | Failed rows require `memory_embedding_reconcile` |
 | `unavailable` | Index state could not be read |
 
+#### Index Schema History (v28 -> v30) and the `.needs-rebuild` Sentinel
+
+The SQLite index schema (`mcp_server/lib/search/vector-index-schema.ts`, `SCHEMA_VERSION = 30`) advanced three migrations during the 013 roadmap. Each is additive and applied automatically at server boot:
+
+| Migration | Adds | Effect |
+| --- | --- | --- |
+| **v28** | Active-row partial unique index `idx_memory_logical_key_active_unique` | Enforces one non-deprecated row per logical key (spec folder + canonical path + anchor + tenant/user/agent/session), excluding `constitutional` and `deprecated` tiers. Backs the deprecate-before-insert dedup guard so a re-index can no longer create a duplicate active row. |
+| **v29** | Checkpoint-v2 metadata columns `snapshot_format`, `snapshot_path` | Lets a checkpoint record a file-snapshot format and on-disk path so checkpoint-v2 can restore from a `VACUUM ... INTO` snapshot rather than an inline blob. |
+| **v30** | Enrichment marker columns `post_insert_enrichment_status`, `post_insert_enrichment_state`, `post_insert_enrichment_completed_at`, `post_insert_enrichment_version` + partial index `idx_post_insert_enrichment_incomplete` | Tracks whether the optional save-time enrichment bundle finished for a row, so incomplete enrichment can be found and resumed without re-saving. |
+
+After a checkpoint restore that swaps the live DB files, the runtime writes a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME` in `mcp_server/lib/storage/checkpoints.ts`) beside the restored DB. The next boot detects it through `repairNeedsRebuildSentinel()` and rebuilds the derived indexes (FTS5/BM25 shadow and vector profile) before serving, so a restored snapshot never serves from a stale shadow. The sentinel is cleared once the rebuild completes.
+
+#### MCP Front-Proxy and In-Place Daemon Recycle
+
+The mk-spec-memory launcher fronts the backend daemon with a session proxy (`bridgeStdioThroughSessionProxy` in `.opencode/bin/mk-spec-memory-launcher.cjs`, implemented in `.opencode/bin/lib/launcher-session-proxy.cjs`). The proxy keeps one stable client-facing stdio session while the backend behind it can be recycled in place -- for example when the RSS-ceiling watchdog (`SPECKIT_LAUNCHER_RSS_SELF_EXIT`) restarts the daemon, or when a new build replaces the backend. Read-only replayable tools (`memory_search`, `memory_context`, and similar) are transparently retried across a recycle so a routine restart looks like a brief pause rather than a hard failure to the caller.
+
+This recycle/reconnect behavior surfaces three operator-visible error codes:
+
+| Code | Retryable | Meaning |
+| --- | --- | --- |
+| `E429` | Legacy | The former index rate-limit class. The self-maintaining `memory_index_scan` contract replaced it with a `coalesced: true` success envelope, so a routine overlapping scan no longer returns `E429`. |
+| `-32001` | **Yes** | `RETRYABLE_RECYCLE_ERROR` -- the **live** launcher recycle signal (`backend recycled; retry`, `data.retryable: true`). The front-proxy emits it when the backend is recycling under it; clients retry and reconnect. This code is **not removed**: only the index vector-drain *outage* path stopped surfacing its own `-32001` class. |
+| `-32002` | No | `PROTOCOL_MISMATCH_ERROR` -- a fail-closed protocol break (`backend protocol version changed; client reconnect required`, `data.retryable: false`). The proxy moves to a terminal CLOSED state and the client must reconnect from scratch; it is never auto-retried. |
+
 #### Evaluation Infrastructure
 
 The indexed-continuity store includes built-in tools for measuring search quality:
@@ -623,6 +647,7 @@ The indexed-continuity store converts text to numerical embeddings for vector se
 | `MEMORY_DB_PATH`     | No          | Explicit file override for the active SQLite database path |
 | `SPEC_KIT_LOG_LEVEL` | No          | Log verbosity: `debug`, `info`, `warn`, `error`      |
 | `SPECKIT_LAUNCHER_RSS_SELF_EXIT` | No | Set `1` to enable the launcher RSS-ceiling watchdog. When the mk-spec-memory process tree breaches `SPECKIT_CONTEXT_SERVER_MAX_RSS_MB`, the launcher sends SIGTERM and exits with crash-loop backoff. Default off. |
+| `SPECKIT_BACKEND_ONLY` | No | Backend-only stdio gate read at server boot (`mcp_server/context-server.ts`). Set `1` so the process runs purely as the recyclable backend behind the MCP front-proxy and skips front-facing stdio wiring; the launcher's `bridgeStdioThroughSessionProxy` then owns the client-facing transport. Default off (direct stdio). |
 
 For the full list of environment variables (including evaluation, telemetry and feature flag overrides), see [`references/config/environment_variables.md`](./references/config/environment_variables.md).
 
@@ -1034,7 +1059,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | ---------------------------------------------------- | ------------------------------------------------------------ |
 | [`sk-doc`](../sk-doc/SKILL.md)                       | Documentation quality standard (DQI scoring, HVR compliance) |
 | [`sk-code`](../sk-code/SKILL.md)                   | Stack-aware code workflow and quality standard; surface detected at dispatch time |
-| [`sk-git`](../sk-git/SKILL.md)                       | Git workflow orchestration (worktrees, commits, PRs)         |
+| [`sk-git`](../sk-git/SKILL.md)                       | Git workflow orchestration: numbered `wt/{NNNN}-{name}` branches in `.worktrees/{NNNN}-{name}` (4-digit zero-padded global `max+1` counter), conventional commits, PRs |
 
 ### Project-Level References
 
@@ -1055,4 +1080,4 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 
 ---
 
-_Documentation version: 3.3 | Last updated: 2026-04-29 | Skill version: 3.3.1.0 | Current docs cover retention sweep, advisor rebuild, Codex freshness checks, matrix runners, stress-test folders, feature catalogs, playbooks, and README cross-references._
+_Documentation version: 3.4 | Last updated: 2026-06-02 | Skill version: 3.4.0.0 | Current docs cover the SPECKIT_BACKEND_ONLY stdio gate, index schema history v28->v30 plus the `.needs-rebuild` sentinel, the MCP front-proxy in-place daemon recycle with E429/-32001/-32002 error codes, the sk-git `wt/{NNNN}-{name}` worktree convention, retention sweep, advisor rebuild, Codex freshness checks, matrix runners, stress-test folders, feature catalogs, playbooks, and README cross-references._

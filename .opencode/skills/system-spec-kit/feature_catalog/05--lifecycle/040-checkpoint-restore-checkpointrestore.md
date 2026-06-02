@@ -1,12 +1,14 @@
 ---
 title: "Checkpoint restore (checkpoint_restore)"
-description: "Covers the checkpoint restore tool that decompresses snapshots and either replaces memory state atomically with `clearExisting=true` or merges with best-effort partial restore semantics by default."
+description: "Covers the checkpoint restore tool that decompresses v1 gzip snapshots (merge or atomic clear-existing) and restores v2 file-based snapshots by whole-file swap through a reopen coordinator with a two-phase crash-safe restore journal."
 trigger_phrases:
   - "checkpoint restore"
   - "checkpoint_restore"
   - "restore memory from snapshot"
   - "atomic checkpoint rollback"
   - "partial restore merge semantics"
+  - "checkpoint v2 restore file swap journal"
+  - "reopenActiveDatabase swap-pending swap-done"
 ---
 
 # Checkpoint restore (checkpoint_restore)
@@ -41,6 +43,16 @@ Checkpoint restore now acquires a module-level maintenance barrier before restor
 
 Barrier release is guaranteed in the restore `finally` path, so the maintenance window clears after both successful restores and failed restores.
 
+### v2 File-Based Restore (whole-file swap)
+
+When a checkpoint row carries `snapshot_format='v2'` and a `snapshot_path`, restore routes to `restoreCheckpointV2` instead of the v1 gzip-parse path. A v2 snapshot is a complete database file, so the snapshot is made the live database by a whole-file swap rather than a row-copy. Row-copy was rejected because it re-fires the schema's `ON DELETE CASCADE`/`SET NULL` relationships and the append-only `mutation_ledger` ABORT triggers, and cannot reproduce the `vec_memories` vec0 virtual table.
+
+The swap runs through a `reopenActiveDatabase(targetPath, swapFn)` coordinator in `vector-index-store.ts`. The coordinator runs `wal_checkpoint(TRUNCATE)` on both schemas, detaches the `active_vec` shard, and closes the live connection before any file is touched, so no file is overwritten under an open WAL connection. It then runs the swap body (rename the live files to `.bak`, move the snapshot files into place, drop stale `-wal`/`-shm`) and reopens via `initialize_db`, which reattaches the shard, reloads sqlite-vec, and runs `ensure_schema_version`. On success the `.bak` copies are deleted; on failure the restore rolls back from `.bak`, reopens, and releases the barrier in the `finally` path.
+
+Crash-safety is provided by a two-phase restore journal (`.restore-journal.json`). The journal is written `phase: 'swap-pending'` before the file swap and advanced to `phase: 'swap-done'` once the snapshot files are in place. Boot crash-recovery rolls back from `.bak` ONLY while the journal is `swap-pending`; once the journal reaches `swap-done` it keeps the restored snapshot as committed. An in-process revert deliberately demotes the journal from `swap-done` back to `swap-pending` before reverting so both the boot path and the in-process path roll back from `.bak` deterministically.
+
+Before the swap, manifest guards refuse unsafe restores: a downgrade guard rejects a snapshot whose `schemaVersion` is newer than the running `SCHEMA_VERSION`, and an embedder-slug guard rejects a snapshot taken under a different embedder. After a successful swap, `runPostRestoreRebuilds` regenerates the derived tables, and a `.needs-rebuild` sentinel (`NEEDS_REBUILD_SENTINEL_NAME`) under the `checkpoints/` directory marks post-`swap-done` derived staleness so the rebuilds are not silently skipped. The v1 merge and `clearExisting` paths above are unchanged.
+
 ---
 
 ## 3. SOURCE FILES
@@ -50,7 +62,8 @@ Barrier release is guaranteed in the restore `finally` path, so the maintenance 
 | File | Role |
 |------|------|
 | `mcp_server/handlers/checkpoints.ts` | Checkpoint handler: create, list, restore, delete orchestration plus concurrent-restore barrier rejection |
-| `mcp_server/lib/storage/checkpoints.ts` | Checkpoint storage: gzip decompression, schema validation, merge/clear-existing logic, transaction wrapping and restore maintenance barrier state |
+| `mcp_server/lib/storage/checkpoints.ts` | Checkpoint storage: v1 gzip decompression, schema validation, merge/clear-existing logic, transaction wrapping, restore maintenance barrier state, plus `restoreCheckpointV2` whole-file swap, two-phase `.restore-journal.json` (`swap-pending`/`swap-done`), `.bak` rollback, manifest downgrade/embedder guards, and the `.needs-rebuild` sentinel |
+| `mcp_server/lib/search/vector-index-store.ts` | `reopenActiveDatabase(targetPath, swapFn)` coordinator: wal_checkpoint, detach `active_vec`, close, swap, reopen via `initialize_db` |
 | `mcp_server/handlers/memory-save.ts` | Mutation handler: fail-fast barrier check blocks `memory_save` during active checkpoint restore maintenance |
 | `mcp_server/handlers/memory-index.ts` | Mutation handler: fail-fast barrier check blocks `memory_index_scan` during active checkpoint restore maintenance |
 | `mcp_server/handlers/memory-bulk-delete.ts` | Mutation handler: fail-fast barrier check blocks `memory_bulk_delete` during active checkpoint restore maintenance |
