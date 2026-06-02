@@ -2,7 +2,7 @@
 name: sk-code
 description: "Multi-stack coding standards and verification. Smart router auto-detects the active surface and loads matching code patterns."
 allowed-tools: [Bash, Edit, Glob, Grep, Read, Task, Write]
-version: 3.3.0.0
+version: 3.3.1.0
 ---
 
 <!-- Keywords: sk-code, code workflows, smart-router, code-surface-detection, webflow, frontend, html, css, javascript, Motion.dev, motion-dev, motion_dev, cross-stack-animation, gsap, lenis, swiper, hls, filepond, opencode, system-code, mcp, typescript, python, shell, jsonc, code-quality, debugging-workflow, verification -->

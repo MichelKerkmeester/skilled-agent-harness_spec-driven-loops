@@ -26,7 +26,7 @@ Use this file to identify the folder boundary, the likely verification path, and
 
 | Metric | Value |
 |---|---:|
-| Code files | 9 |
+| Code files | 10 |
 | README scope | Direct files in this folder |
 | Audit context | Internal validation notes |
 
@@ -72,6 +72,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | `hover_gesture.js` | JS source file in this folder. |
 | `in_view_reveal.js` | JS source file in this folder. |
 | `layout_transition.js` | JS source file in this folder. |
+| `principled_reveal.js` | Principle-driven reveal sequence with timing, anticipation, and stagger-direction vocabulary. |
 | `spring_animation.js` | JS source file in this folder. |
 | `stagger_animation.js` | JS source file in this folder. |
 | `timeline_sequence.js` | JS source file in this folder. |

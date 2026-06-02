@@ -187,6 +187,7 @@ function close_dropdown(dropdown) {
 > **Cross-stack motion.dev reference**: The full Motion.dev knowledge base lives at [`../../motion_dev/`](../../motion_dev/). Load by topic:
 >
 > - [`quick_start.md`](../../motion_dev/quick_start.md) — install modes, API availability, first-call patterns
+> - [`animation_principles.md`](../../motion_dev/animation_principles.md) — timing, easing, stagger direction, anticipation, arc, and depth vocabulary
 > - [`decision_matrix.md`](../../motion_dev/decision_matrix.md) — when to use Motion.dev vs CSS vs `requestAnimationFrame`
 > - [`integration_patterns.md`](../../motion_dev/integration_patterns.md) — non-Webflow integration patterns and module loading
 > - [`animate_and_timelines.md`](../../motion_dev/animate_and_timelines.md) — `animate()` API surface, keyframe shapes, easing

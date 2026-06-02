@@ -47,8 +47,8 @@ Intent classification scores task text against weighted keyword signals to pick 
 | TESTING | `test`, `unit`, `integration`, `coverage`, `vitest`, `pytest`, `shellcheck` |
 | DEPLOYMENT | `deploy`, `cdn`, `wrangler`, `release`, `metadata`, `skill graph` |
 | PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
-| ANIMATION | `animation`, `motion`, `transition`, `gsap`, `lenis`, `swiper` |
-| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `snippet`, `cross-stack animation` |
+| ANIMATION | `animation`, `motion`, `transition`, `easing`, `stagger`, `motion principles`, `motion language`, `gsap`, `lenis`, `swiper` |
+| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `stagger()`, `animation principles`, `snippet`, `cross-stack animation` |
 | FORMS | `form`, `validation`, `filepond`, `schema`, `zod` |
 | VIDEO | `hls`, `video`, `stream`, `player` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
@@ -144,8 +144,8 @@ MOTION_DEV loads from `references/motion_dev/` and `assets/motion_dev/` as a pee
 
 | Intent | Resources |
 | --- | --- |
-| ANIMATION / MOTION_DEV | `references/motion_dev/quick_start.md`, `references/motion_dev/animate_and_timelines.md`, `references/motion_dev/scroll_and_gestures.md` |
-| PERFORMANCE | `references/motion_dev/performance_and_pitfalls.md` |
+| ANIMATION / MOTION_DEV | `references/motion_dev/quick_start.md`, `references/motion_dev/animation_principles.md`, `references/motion_dev/animate_and_timelines.md`, `references/motion_dev/scroll_and_gestures.md`, `assets/motion_dev/snippets/principled_reveal.js` |
+| PERFORMANCE | `references/motion_dev/performance_and_pitfalls.md` including frame-level visual verification for subtle timing/easing defects |
 | IMPLEMENTATION / API | `references/motion_dev/integration_patterns.md`, exact snippet assets such as `assets/motion_dev/snippets/animate_on_scroll.js` and `assets/motion_dev/snippets/in_view_reveal.js` |
 | CODE_QUALITY / DECISION | `references/motion_dev/decision_matrix.md`, `assets/motion_dev/install_card.md` |
 | TESTING / PLAYBOOK | `assets/motion_dev/playbook_entries.md` plus manual testing playbook Motion scenarios |
@@ -155,6 +155,7 @@ When WEBFLOW and MOTION_DEV both match, load Webflow guidance for CDN, `window.M
 When explicit non-Webflow language and MOTION_DEV both match, do not load `references/webflow/*` or `assets/webflow/*`. Load Motion.dev peer resources by exact path while keeping the surface UNKNOWN or N/A:
 
 - `references/motion_dev/quick_start.md`
+- `references/motion_dev/animation_principles.md`
 - `references/motion_dev/integration_patterns.md`
 - `references/motion_dev/decision_matrix.md`
 - `references/motion_dev/performance_and_pitfalls.md`
@@ -314,8 +315,8 @@ INTENT_SIGNALS = {
     "TESTING":            {"weight": 1, "keywords": ["unit test", "integration test", "coverage", "vitest", "pytest", "shellcheck"]},
     "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
     "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "largest contentful", "pagespeed", "jank", "frame budget"]},
-    "ANIMATION":          {"weight": 1, "keywords": ["transition", "gsap", "lenis", "carousel", "parallax"]},
-    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "cross-stack animation"]},
+    "ANIMATION":          {"weight": 1, "keywords": ["animation", "transition", "easing", "stagger", "motion principles", "motion language", "gsap", "lenis", "carousel", "parallax"]},
+    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "stagger()", "animation principles", "cross-stack animation"]},
     "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
     "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},
@@ -398,11 +399,13 @@ RESOURCE_MAP = {
     ],
     "MOTION_DEV": [
         "references/motion_dev/quick_start.md",
+        "references/motion_dev/animation_principles.md",
         "references/motion_dev/animate_and_timelines.md",
         "references/motion_dev/scroll_and_gestures.md",
         "references/motion_dev/integration_patterns.md",
         "references/motion_dev/decision_matrix.md",
         "assets/motion_dev/install_card.md",
+        "assets/motion_dev/snippets/principled_reveal.js",
         "assets/motion_dev/snippets/README.md"
     ],
     "FORMS": [

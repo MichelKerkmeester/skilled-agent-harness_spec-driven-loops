@@ -7,6 +7,8 @@ description: "Performance guidance for Motion animations, bundle sizing, reduced
 
 Performance guidance for Motion animations, bundle sizing, reduced-motion compliance, and Core Web Vitals risk.
 
+Attribution: Frame-level visual verification guidance in this reference adapts `Schmandarine/web-motion-skill` (MIT).
+
 ---
 
 ## 1. OVERVIEW
@@ -95,13 +97,38 @@ Mitigations:
 - Use `requestAnimationFrame` for render scheduling and avoid unnecessary per-frame DOM reads (Repo: `a_nobel_en_zn/2_javascript/slider/testimonial.js`).
 - For scroll-linked animation, use `scroll()` where supported so the browser can use ScrollTimeline for supported animations (Source: https://motion.dev/docs/scroll).
 
-## 7. REFERENCES AND RELATED RESOURCES
+## 7. FRAME-LEVEL VISUAL VERIFICATION
+
+Use this only when ordinary browser verification passes but the animation still feels too fast, robotic, abrupt, clipped, or poorly staged. Existing Webflow verification remains authoritative for opening a real browser, checking console output, viewports, reduced-motion behavior, and performance metrics.
+
+Frame-level review adds a motion-designer pass:
+
+| Step | What to do | Evidence to record |
+|---|---|---|
+| Capture | Record the animation path: scroll, hover, click, or manual interaction. | Browser, viewport, interaction, and capture duration. |
+| Extract | Convert the recording to evenly sampled frames, such as 25fps. | Frame rate and output frame count. |
+| Contact sheet | Build a labelled grid of sampled frames before drilling into individual frames. | Contact sheet path and sampled frame range. |
+| Map phases | Identify entrance, dwell, and exit windows. | Start/end frame numbers and visible duration. |
+| Drill in | Read suspect frames every 2-3 frames around the issue. | Exact frame where jump, clipping, early exit, or timing mismatch appears. |
+| Re-run | Apply the fix, capture again, and compare the same windows. | Before/after frame numbers and whether the issue moved or disappeared. |
+
+Look for:
+- Abrupt first/last frame movement, which usually means easing is too weak or a segment is too short.
+- Dwell lasting only a handful of frames, which means the user never gets time to read the state.
+- Multiple items arriving on the same frame, which usually needs stagger or reversed stagger.
+- Unexpected jumps, which often come from competing controls on the same property.
+- Clipping during arc, throw, or scatter movement, especially under `overflow: hidden` parents.
+
+Do not vendor external recording scripts into sk-code for this workflow. Prefer the active project's browser automation path, such as Chrome DevTools MCP, `mcp-chrome-devtools`/`bdg`, Playwright, or a local recording tool that the project already accepts.
+
+## 8. REFERENCES AND RELATED RESOURCES
 
 - Motion quick start and hardware acceleration note: https://motion.dev/docs/quick-start
 - Motion `animate()` mini/hybrid distinction: https://motion.dev/docs/animate
 - Motion `scroll()` and ScrollTimeline note: https://motion.dev/docs/scroll
 - Motion React accessibility/reduced-motion guidance: https://motion.dev/docs/react-accessibility, https://motion.dev/docs/react-use-reduced-motion
 - Motion Vue reduced-motion config: https://motion.dev/docs/vue-motion-config
+- Mined frame/contact-sheet workflow: `Schmandarine/web-motion-skill` (MIT), `SKILL.md`, `README.md`, and `scripts/contact-sheet.sh`
 - Local Webflow performance guide: `.opencode/skills/sk-code/references/webflow/implementation/performance_patterns.md`
 - Local dropdown measured-height examples: `a_nobel_en_zn/2_javascript/navigation/nav_dropdown.js`, `a_nobel_en_zn/2_javascript/navigation/nav_language_selector.js`
 - Local drag/rAF/reduced-motion example: `a_nobel_en_zn/2_javascript/slider/testimonial.js`
