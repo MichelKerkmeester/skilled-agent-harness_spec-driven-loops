@@ -42,6 +42,10 @@ describe('Vector index schema compatibility validator', () => {
           canonical_file_path TEXT,
           created_at TEXT,
           updated_at TEXT,
+          post_insert_enrichment_status TEXT,
+          post_insert_enrichment_state TEXT,
+          post_insert_enrichment_completed_at TEXT,
+          post_insert_enrichment_version INTEGER,
           stability REAL,
           difficulty REAL,
           last_review TEXT,
@@ -54,6 +58,9 @@ describe('Vector index schema compatibility validator', () => {
         CREATE INDEX idx_document_type ON memory_index(document_type);
         CREATE INDEX idx_doc_type_folder ON memory_index(document_type, spec_folder);
         CREATE INDEX idx_quality_score ON memory_index(quality_score);
+        CREATE INDEX idx_post_insert_enrichment_incomplete
+          ON memory_index(post_insert_enrichment_status, id)
+          WHERE post_insert_enrichment_status != 'complete';
         CREATE INDEX idx_save_parent_content_hash_scope
           ON memory_index(
             spec_folder,

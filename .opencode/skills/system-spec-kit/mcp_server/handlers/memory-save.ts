@@ -106,6 +106,13 @@ import {
 } from './save/reconsolidation-bridge.js';
 import { runPostInsertEnrichmentIfEnabled } from './save/post-insert.js';
 import {
+  markEnrichmentPending,
+  needsEnrichmentRepair,
+  POST_INSERT_ENRICHMENT_VERSION,
+  recordEnrichmentResult,
+  repairEnrichmentOnReplay,
+} from './save/enrichment-state.js';
+import {
   buildIndexResult,
   buildPlannerResponse,
   buildSaveResponse,
@@ -189,6 +196,22 @@ function invalidateEntityDensityCacheAfterSave(): void {
     const message = err instanceof Error ? err.message : String(err);
     console.warn(`[memory-save] Entity-density cache invalidation failed after save: ${message}`);
   }
+}
+
+async function repairReplayEnrichmentIfNeeded(
+  database: Parameters<typeof needsEnrichmentRepair>[0],
+  memoryId: number | undefined,
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+): Promise<void> {
+  if (memoryId == null || !needsEnrichmentRepair(database, memoryId)) {
+    return;
+  }
+
+  await repairEnrichmentOnReplay({
+    database,
+    parsed,
+    plannerMode: 'full-auto',
+  }, memoryId);
 }
 
 interface PreparedParsedMemory {
@@ -2339,6 +2362,7 @@ async function processPreparedMemory(
       scope,
     );
     if (duplicatePrecheck) {
+      await repairReplayEnrichmentIfNeeded(database, duplicatePrecheck.id, routedParsed);
       return duplicatePrecheck;
     }
 
@@ -2493,6 +2517,7 @@ async function processPreparedMemory(
       scope,
     );
     if (dupResult) {
+      await repairReplayEnrichmentIfNeeded(database, dupResult.id, routedParsed);
       return dupResult;
     }
 
@@ -2595,6 +2620,7 @@ async function processPreparedMemory(
         actor: 'mcp:memory_save',
         transitionEvent: samePathSupersededPredecessorId != null ? 'SUPERSEDE' : 'CREATE',
       });
+      markEnrichmentPending(database, memoryId, POST_INSERT_ENRICHMENT_VERSION);
 
       return memoryId;
     });
@@ -2646,12 +2672,14 @@ async function processPreparedMemory(
     }
 
     // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking
-    const { causalLinksResult, enrichmentStatus, executionStatus } = await runPostInsertEnrichmentIfEnabled(
+    const postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(
       database,
       id,
       routedParsed,
       { plannerMode },
     );
+    recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+    const { causalLinksResult, enrichmentStatus, executionStatus } = postInsertEnrichmentResult;
     invalidateEntityDensityCacheAfterSave();
 
     if (reconResult.assistiveRecommendation) {

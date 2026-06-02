@@ -29,6 +29,7 @@ const mocks = vi.hoisted(() => ({
     filteredToIndex: toIndex,
   })),
   mockDeleteMemory: vi.fn((): boolean => true),
+  mockRepairIncompleteMarkers: vi.fn(async () => ({ scanned: 0, repaired: 0, failed: 0 })),
   mockGetDb: vi.fn(() => ({
     prepare: vi.fn(() => ({
       get: vi.fn(() => undefined),
@@ -118,6 +119,14 @@ vi.mock('../handlers/memory-save', () => ({
   indexMemoryFile: vi.fn(async () => ({ status: 'indexed', id: 1, specFolder: 'specs/test' })),
 }));
 
+vi.mock('../handlers/save/enrichment-state', () => ({
+  repairIncompleteMarkers: mocks.mockRepairIncompleteMarkers,
+}));
+
+vi.mock('../handlers/save/enrichment-state.js', () => ({
+  repairIncompleteMarkers: mocks.mockRepairIncompleteMarkers,
+}));
+
 import * as handler from '../handlers/memory-index';
 
 describe('handler-memory-index cooldown behavior', () => {
@@ -133,6 +142,7 @@ describe('handler-memory-index cooldown behavior', () => {
     mocks.mockListIndexedRecordIdsForDeletedPaths.mockReset();
     mocks.mockReconcileMoves.mockReset();
     mocks.mockDeleteMemory.mockReset();
+    mocks.mockRepairIncompleteMarkers.mockReset();
     mocks.mockGetDb.mockReset();
     mocks.mockRunPostMutationHooks.mockReset();
 
@@ -169,6 +179,7 @@ describe('handler-memory-index cooldown behavior', () => {
       filteredToIndex: toIndex,
     }));
     mocks.mockDeleteMemory.mockReturnValue(true);
+    mocks.mockRepairIncompleteMarkers.mockResolvedValue({ scanned: 0, repaired: 0, failed: 0 });
     mocks.mockGetDb.mockReturnValue({
       prepare: vi.fn(() => ({
         get: vi.fn(() => undefined),
@@ -218,6 +229,26 @@ describe('handler-memory-index cooldown behavior', () => {
 
     const envelope = JSON.parse(result.content[0].text);
     expect(envelope.summary).toBe('No memory files found');
+  });
+
+  it('repairs incomplete post-insert enrichment markers under the scan lease and reports the count', async () => {
+    mocks.mockRepairIncompleteMarkers.mockResolvedValue({ scanned: 1, repaired: 1, failed: 0 });
+
+    const result = await handler.handleMemoryIndexScan({
+      includeConstitutional: false,
+      includeSpecDocs: true,
+    });
+
+    expect(mocks.mockAcquireIndexScanLease).toHaveBeenCalledTimes(1);
+    expect(mocks.mockRepairIncompleteMarkers).toHaveBeenCalledWith(
+      expect.objectContaining({ plannerMode: 'full-auto' }),
+      { limit: 5 },
+    );
+    expect(mocks.mockCompleteIndexScanLease).toHaveBeenCalledTimes(1);
+
+    const envelope = JSON.parse(result.content[0].text);
+    expect(envelope.data.postInsertEnrichmentRepaired).toBe(1);
+    expect(envelope.hints).toContain('Repaired 1 incomplete post-insert enrichment marker(s)');
   });
 
   it('removes stale index records even when discovery finds zero files', async () => {
