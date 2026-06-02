@@ -576,8 +576,8 @@ Spec Kit Memory now supports four providers in cascade:
 |----------|-------------|-----------|------------|
 | **Ollama** | Local default (daemon) | 768 | Ollama on `localhost:11434` |
 | **HF Local** | Local fallback, Node.js only | 768 | Node.js only |
-| **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 | **OpenAI** | Cloud opt-in | 1536/3072 | `OPENAI_API_KEY` |
+| **Voyage** | Cloud opt-in | 1024 | `VOYAGE_API_KEY` |
 
 **Default provider:** `auto`. The active default is **Ollama** when its local daemon is reachable; otherwise the cascade falls back to local **HF Local** (pure-Node), then to opt-in cloud. Cloud (OpenAI/Voyage) is never auto-selected silently — it requires an explicit key or `EMBEDDINGS_PROVIDER`.
 
@@ -644,7 +644,7 @@ ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 
 - [ ] Context server JS file exists
 - [ ] Database directory exists (or will be created)
-- [ ] Embeddings provider loads on first run (auto-cascade: ollama (if reachable) -> hf-local default -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY`)
+- [ ] Embeddings provider loads on first run (auto-cascade: ollama (default, if reachable) -> hf-local (local fallback) -> `OPENAI_API_KEY` -> `VOYAGE_API_KEY`)
 
 **Quick Verification:**
 ```bash
@@ -1397,7 +1397,7 @@ node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
 ```
 
 ### Embeddings not working
-1. Auto-cascade is ollama (if reachable) -> hf-local default -> `VOYAGE_API_KEY` -> `OPENAI_API_KEY`
+1. Auto-cascade is ollama (default, if reachable) -> hf-local (local fallback) -> `OPENAI_API_KEY` -> `VOYAGE_API_KEY`
 2. Clear corrupted model cache: `rm -rf .opencode/skills/system-spec-kit/mcp_server/node_modules/@huggingface/transformers/.cache`
 3. Restart MCP server (model re-downloads on first use)
 4. If using cloud provider: verify API key is set and `EMBEDDINGS_PROVIDER` matches

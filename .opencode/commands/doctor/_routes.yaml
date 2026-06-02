@@ -63,7 +63,6 @@ routes:
     gate3_location: "n/a (read-only diagnostic; samples causal_edges and recommends candidates, no writes)"
     mcp_tools:
       - mcp__mk_spec_memory__memory_causal_stats
-      - mcp__mk_spec_memory__memory_causal_link
       - mcp__mk_spec_memory__memory_drift_why
       - mcp__mk_spec_memory__memory_search
     trigger_phrases:
@@ -86,8 +85,6 @@ routes:
       - mcp__mk_code_index__code_graph_status
       - mcp__mk_code_index__code_graph_query
       - mcp__mk_code_index__code_graph_context
-      - mcp__mk_code_index__code_graph_scan
-      - mcp__mk_code_index__code_graph_apply
       - mcp__mk_code_index__detect_changes
       - mcp__mk_spec_memory__memory_context
       - mcp__mk_spec_memory__memory_search
@@ -107,7 +104,6 @@ routes:
     script_invocations:
       - 'node .opencode/skills/deep-loop-runtime/scripts/status.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
       - 'node .opencode/skills/deep-loop-runtime/scripts/query.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --query-type "{query_type}"'
-      - 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}" --nodes ''{nodes_json}'' --edges ''{edges_json}'''
       - 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "{loop_type}" --session-id "{session_id}"'
     trigger_phrases:
       - "deep-loop coverage"

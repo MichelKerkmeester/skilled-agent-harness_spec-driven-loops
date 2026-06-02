@@ -137,8 +137,9 @@ function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
   if (process.env.VOYAGE_API_KEY && (!explicitProvider || explicitProvider === 'auto')) {
     voyageDriftWarned = true;
     console.warn(
-      '[factory] VOYAGE_API_KEY is set and EMBEDDINGS_PROVIDER=auto will resolve to Voyage. ' +
-      'Set EMBEDDINGS_PROVIDER=hf-local explicitly to force local, or unset VOYAGE_API_KEY.',
+      '[factory] VOYAGE_API_KEY is set but EMBEDDINGS_PROVIDER=auto resolves local-first ' +
+      '(ollama, else hf-local) and will not auto-select Voyage. ' +
+      'Set EMBEDDINGS_PROVIDER=voyage explicitly to use Voyage, or unset VOYAGE_API_KEY to silence this warning.',
     );
   }
 }

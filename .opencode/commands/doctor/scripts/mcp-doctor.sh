@@ -429,7 +429,7 @@ diagnose_mk_code_index() {
     _log log_pass "root-level dist absent"
   fi
 
-  # Check 5: database directory (new standalone path; legacy skill-local checked as fallback)
+  # Check 5: database directory (skill-local canonical path; former-shared .spec-kit DB checked as fallback)
   if [[ -d "$db_dir" ]]; then
     local db_file="$db_dir/code-graph.sqlite"
     if [[ -f "$db_file" ]]; then
@@ -650,13 +650,13 @@ diagnose_sequential_thinking() {
     return
   fi
 
-  # Check 1: Node >= 18
-  if [[ "$NODE_MAJOR" -ge 18 ]]; then
-    record_pass "$srv" "node_version" "Node.js v$NODE_MAJOR (>= 18)"
-    _log log_pass "Node.js version $NODE_MAJOR >= 18"
+  # Check 1: Node >= 20.11 (matches the global prerequisite gate and the npx-failure message below)
+  if node_version_at_least "20.11.0"; then
+    record_pass "$srv" "node_version" "Node.js $(node --version) (>= 20.11.0)"
+    _log log_pass "Node.js $(node --version) >= 20.11.0"
   else
-    record_fail "$srv" "node_version" "Node.js v$NODE_MAJOR < 18"
-    _log log_fail "Node.js version $NODE_MAJOR is below required 18"
+    record_fail "$srv" "node_version" "Node.js $(node --version) < 20.11.0"
+    _log log_fail "Node.js $(node --version) is below required >=20.11.0"
   fi
 
   # Check 2: npx available
