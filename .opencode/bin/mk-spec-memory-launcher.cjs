@@ -698,39 +698,58 @@ function reapProcessTreeGroups(childPid, options = {}) {
   });
 }
 
-async function recycleDaemonInPlace(graceMs) {
-  if (rssBreachSelfExitInProgress) return;
-  rssBreachSelfExitInProgress = true;
-  if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
-  hfControl.clearTimers();
-  await hfControl.stopDemandListener();
-  const modelServerChild = hfControl.getChild();
-  if (isChildRunning(modelServerChild)) {
-    log(`RSS ceiling sustained; sending SIGTERM to hf-model-server pid ${modelServerChild.pid} before daemon recycle`);
+// Dependency seam mirrors the launcher's other supervision helpers (startRssWatchdog,
+// reapProcessTreeGroups): production callers pass only graceMs, so deps default to the live
+// closures and runtime behavior is unchanged; tests inject fakes to assert lease handling.
+async function recycleDaemonInPlace(graceMs, deps = {}) {
+  const ctx = {
+    getContextChild: deps.getContextChild ?? (() => childProcess),
+    hfControl: deps.hfControl ?? hfControl,
+    isChildRunning: deps.isChildRunning ?? isChildRunning,
+    waitForChildExit: deps.waitForChildExit ?? waitForChildExit,
+    clearLease: deps.clearLease ?? clearLeaseFile,
+    clearWatchdog: deps.clearWatchdog ?? (() => { if (rssWatchdogTimer) clearInterval(rssWatchdogTimer); }),
+    isRecycleInProgress: deps.isRecycleInProgress ?? (() => rssBreachSelfExitInProgress),
+    setRecycleInProgress: deps.setRecycleInProgress ?? ((value) => { rssBreachSelfExitInProgress = value; }),
+    log: deps.log ?? log,
+  };
+  if (ctx.isRecycleInProgress()) return;
+  ctx.setRecycleInProgress(true);
+  ctx.clearWatchdog();
+  ctx.hfControl.clearTimers();
+  await ctx.hfControl.stopDemandListener();
+  const modelServerChild = ctx.hfControl.getChild();
+  if (ctx.isChildRunning(modelServerChild)) {
+    ctx.log(`RSS ceiling sustained; sending SIGTERM to hf-model-server pid ${modelServerChild.pid} before daemon recycle`);
     modelServerChild.kill('SIGTERM');
-    hfControl.reapProcessTree(modelServerChild.pid);
-    const modelExitedAfterTerm = await waitForChildExit(modelServerChild, graceMs);
-    if (!modelExitedAfterTerm && isChildRunning(modelServerChild)) {
-      log(`hf-model-server pid ${modelServerChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
+    ctx.hfControl.reapProcessTree(modelServerChild.pid);
+    const modelExitedAfterTerm = await ctx.waitForChildExit(modelServerChild, graceMs);
+    if (!modelExitedAfterTerm && ctx.isChildRunning(modelServerChild)) {
+      ctx.log(`hf-model-server pid ${modelServerChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
       modelServerChild.kill('SIGKILL');
-      await waitForChildExit(modelServerChild, 1000);
+      await ctx.waitForChildExit(modelServerChild, 1000);
     }
   }
-  if (!isChildRunning(childProcess)) {
-    clearLeaseFile();
-    rssBreachSelfExitInProgress = false;
+  const contextChild = ctx.getContextChild();
+  if (!ctx.isChildRunning(contextChild)) {
+    ctx.clearLease();
+    ctx.setRecycleInProgress(false);
     return;
   }
 
-  log(`RSS ceiling sustained; sending SIGTERM to context-server pid ${childProcess.pid} before daemon recycle`);
-  childProcess.kill('SIGTERM');
-  const exitedAfterTerm = await waitForChildExit(childProcess, graceMs);
-  if (!exitedAfterTerm && isChildRunning(childProcess)) {
-    log(`context-server pid ${childProcess.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
-    childProcess.kill('SIGKILL');
-    await waitForChildExit(childProcess, 1000);
+  ctx.log(`RSS ceiling sustained; sending SIGTERM to context-server pid ${contextChild.pid} before daemon recycle`);
+  contextChild.kill('SIGTERM');
+  const exitedAfterTerm = await ctx.waitForChildExit(contextChild, graceMs);
+  if (!exitedAfterTerm && ctx.isChildRunning(contextChild)) {
+    ctx.log(`context-server pid ${contextChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
+    contextChild.kill('SIGKILL');
+    await ctx.waitForChildExit(contextChild, 1000);
   }
-  clearLeaseFile();
+  // Keep the lease held across an in-place recycle. The launcher process stays alive and the
+  // lease is keyed on its (still-live) pid, so the replacement daemon is respawned by the child
+  // exit handler's scheduleRelaunch backoff. Clearing the lease here would open a window — until
+  // relaunch rewrites childPid — where a concurrent launcher reads no lease and passes the
+  // single-writer gate, producing a competing daemon. Relaunch (writeLeaseFile) rewrites childPid.
 }
 
 function startRssWatchdog(childPid, options = {}) {
@@ -1044,6 +1063,7 @@ module.exports = {
   uncleanMarkerPresent,
   cleanCloseAfterReap,
   reapLeaseChildBeforeRespawn,
+  recycleDaemonInPlace,
   resolveModelServerSocketPath,
   sampleProcessTreeRssMb,
   shouldSkipLaunch,

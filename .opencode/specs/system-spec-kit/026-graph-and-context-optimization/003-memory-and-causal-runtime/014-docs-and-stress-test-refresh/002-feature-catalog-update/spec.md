@@ -40,7 +40,7 @@ The `system-spec-kit` feature catalog is the canonical, operator-facing inventor
 
 **Key Decisions**: Expand the existing checkpoint feature files in place rather than fork new ones; add one new front-proxy file under `14--pipeline-architecture/`; add a schema-version-history file and a unified error-code reference file; surface `post_insert_enrichment_status` as a discoverable entry; cross-reference the sk-git worktree convention.
 
-**Critical Dependencies**: Verified source anchors in `lib/search/vector-index-schema.ts` (SCHEMA_VERSION = 30, migrations 28/29/30), `lib/storage/checkpoints.ts` (VACUUM INTO, sentinel, restore journal), `.opencode/bin/lib/launcher-session-proxy.cjs` (-32001/-32002), and `context-server.ts` (serverInfo 1.7.2, SPECKIT_BACKEND_ONLY).
+**Critical Dependencies**: Verified source anchors in `lib/search/vector-index-schema.ts` (SCHEMA_VERSION = 30, migrations 28/29/30), `lib/storage/checkpoints.ts` (VACUUM INTO, sentinel, restore journal), `.opencode/bin/lib/launcher-session-proxy.cjs` (-32001/-32002), and `context-server.ts` (serverInfo 1.7.2 — pre-fix value captured at planning time; current deployed value is 1.8.0 per `package.json:3`, SPECKIT_BACKEND_ONLY).
 
 ---
 <!-- ANCHOR:metadata -->

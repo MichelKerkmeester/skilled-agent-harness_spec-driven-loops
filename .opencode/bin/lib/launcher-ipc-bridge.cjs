@@ -3,6 +3,7 @@
 const fs = require('fs');
 const net = require('net');
 const path = require('path');
+const { StringDecoder } = require('string_decoder');
 
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const DEFAULT_PROBE_TIMEOUT_MS = 5000;
@@ -145,6 +146,9 @@ function probeDaemon(socketPath, options = {}) {
     let settled = false;
     let buffer = '';
     let timer;
+    // Hold a multibyte char split across chunk boundaries until complete, so a probe reply
+    // carrying CJK/emoji (e.g. serverInfo strings) is not corrupted to U+FFFD mid-parse.
+    const decoder = new StringDecoder('utf8');
 
     const finish = (status, reason) => {
       if (settled) return;
@@ -172,7 +176,7 @@ function probeDaemon(socketPath, options = {}) {
       socket.write(request);
     });
     socket.on('data', (chunk) => {
-      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      buffer += Buffer.isBuffer(chunk) ? decoder.write(chunk) : String(chunk ?? '');
       let newlineIndex = buffer.indexOf('\n');
       while (newlineIndex !== -1) {
         const line = buffer.slice(0, newlineIndex).trim();

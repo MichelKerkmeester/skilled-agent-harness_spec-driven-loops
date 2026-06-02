@@ -2,6 +2,7 @@
 'use strict';
 
 const net = require('net');
+const { StringDecoder } = require('string_decoder');
 const {
   probeDaemon,
   toConnectionOptions,
@@ -68,9 +69,13 @@ function defaultLog(message) {
 
 function createFrameSplitter(onFrame) {
   let buffer = '';
+  // A multibyte UTF-8 char (CJK/emoji) can straddle a socket-chunk boundary; the
+  // StringDecoder holds the incomplete tail until the next chunk completes it, instead
+  // of emitting U+FFFD replacement chars on the partial sequence.
+  const decoder = new StringDecoder('utf8');
   return {
     push(chunk) {
-      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      buffer += Buffer.isBuffer(chunk) ? decoder.write(chunk) : String(chunk ?? '');
       let newlineIndex = buffer.indexOf('\n');
       while (newlineIndex !== -1) {
         const frame = buffer.slice(0, newlineIndex);
@@ -82,6 +87,7 @@ function createFrameSplitter(onFrame) {
     },
     discard() {
       buffer = '';
+      decoder.end();
     },
     buffered() {
       return buffer;
@@ -122,7 +128,15 @@ function classifyFrame(frame) {
     : undefined;
   if (typeof toolName !== 'string') return false;
   if (UNSAFE_TOOL_NAMES.has(toolName)) return false;
-  // memory_save relies on primary-row dedup; secondary-index idempotency remains a known follow-up.
+  // memory_save is replayable on a commit-then-die backend because its primary row is
+  // protected by content-hash dedup AND the v28 active-row partial unique index
+  // (idx_memory_logical_key_active_unique): an identical-content replay collapses to the
+  // same logical key and writes no new primary row. The KNOWN GAP is the secondary index —
+  // a commit-then-die that finished the primary insert but not the secondary-index write can,
+  // on replay, append duplicate secondary-index rows because that path is not yet keyed by an
+  // idempotency token. Closing it requires a request-id/dedup key threaded into the save
+  // handler (handlers/save/), which lives behind the daemon IPC and is out of scope for this
+  // proxy-layer frame classifier. Behavior is intentionally unchanged here; see flags.
   if (REPLAYABLE_TOOL_NAMES.has(toolName)) return true;
   return false;
 }
@@ -243,17 +257,21 @@ function connectSocket(connect, socketPath) {
 }
 
 function internalHandshake(socket, initializeFrame) {
-  if (!initializeFrame) return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false });
+  if (!initializeFrame) return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false, initializeResponse: null });
 
   const initialize = parseFrame(initializeFrame);
   if (!initialize || !hasRequestId(initialize)) {
-    return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false });
+    return Promise.resolve({ residual: '', protocolVersion: undefined, handshakeObserved: false, initializeResponse: null });
   }
 
   return new Promise((resolve, reject) => {
     let buffer = '';
     let residual = '';
     let negotiatedVersion;
+    let initializeResponse = null;
+    // Hold a multibyte char split across chunk boundaries until complete, so a CJK/emoji
+    // payload in the residual (post-handshake) stream is not corrupted to U+FFFD.
+    const decoder = new StringDecoder('utf8');
     const timer = setTimeout(() => {
       cleanup();
       reject(new Error('timed out waiting for internal initialize'));
@@ -266,7 +284,7 @@ function internalHandshake(socket, initializeFrame) {
       socket.off?.('close', onClose);
     };
     const onData = (chunk) => {
-      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      buffer += Buffer.isBuffer(chunk) ? decoder.write(chunk) : String(chunk ?? '');
       let initialized = false;
       let newlineIndex = buffer.indexOf('\n');
       while (newlineIndex !== -1) {
@@ -277,6 +295,7 @@ function internalHandshake(socket, initializeFrame) {
         const parsed = parseFrame(frame);
         if (parsed && isResponseFrame(parsed) && parsed.id === initialize.id) {
           initialized = true;
+          initializeResponse = frame;
           negotiatedVersion = parsed.result && typeof parsed.result === 'object'
             ? parsed.result.protocolVersion
             : undefined;
@@ -289,7 +308,7 @@ function internalHandshake(socket, initializeFrame) {
       buffer = '';
       residual = '';
       cleanup();
-      resolve({ residual: remainder, protocolVersion: negotiatedVersion, handshakeObserved: true });
+      resolve({ residual: remainder, protocolVersion: negotiatedVersion, handshakeObserved: true, initializeResponse });
     };
     const onError = (error) => {
       cleanup();
@@ -593,8 +612,13 @@ function createSessionProxy(options) {
   }
 
   function replaySnapshot(snapshot) {
+    const cachedInitializeId = tracker.getCachedInitializeId();
     for (const [id, entry] of snapshot) {
       if (!tracker.pendingRequests.has(id)) continue;
+      // internalHandshake already re-sent (and consumed the reply for) the cached
+      // initialize on the fresh socket. Replaying it here too would deliver a second
+      // initialize to the backend, so the handshake path owns the initialize replay.
+      if (cachedInitializeId !== null && id === cachedInitializeId) continue;
       if (entry.replayable) {
         enqueueSocketFrame(entry.frame);
         continue;
@@ -634,6 +658,18 @@ function createSessionProxy(options) {
     });
     state = 'CONNECTED';
     startKeepalive();
+    // The fresh backend may have died after receiving the client's initialize but before
+    // answering it on the old socket, leaving initialize pending. internalHandshake just
+    // re-sent and answered it; forward that single answer to the client and clear it from
+    // pending so replaySnapshot does not send a duplicate initialize to the backend.
+    const cachedInitializeId = tracker.getCachedInitializeId();
+    if (handshake.handshakeObserved
+        && handshake.initializeResponse
+        && cachedInitializeId !== null
+        && tracker.pendingRequests.has(cachedInitializeId)) {
+      tracker.pendingRequests.delete(cachedInitializeId);
+      enqueueOutputFrame(handshake.initializeResponse);
+    }
     replaySnapshot(replaySnapshotEntries);
     flushQueuedClientFrames();
     pumpSocketQueue();
@@ -666,7 +702,13 @@ function createSessionProxy(options) {
       const delayMs = PROBE_BACKOFF_MS[Math.min(attempt, PROBE_BACKOFF_MS.length - 1)];
       await sleep(delayMs);
     }
-    if (!stopped) failPendingAndEnd();
+    if (!stopped) {
+      // Mark the session terminal at give-up. failPendingAndEnd defers stop() under output
+      // backpressure, so leaving state='REATTACHING' would let the ensureReattachRunning
+      // guard restart a fresh 40-attempt loop. CLOSED is terminal and blocks that restart.
+      state = 'CLOSED';
+      failPendingAndEnd();
+    }
   }
 
   function ensureReattachRunning(reason) {

@@ -13,6 +13,7 @@ import type Database from 'better-sqlite3';
 
 // Internal modules
 import { getCanonicalPathKey } from '../utils/canonical-path.js';
+import { extractSpecFolder, extractDocumentType } from '../parsing/memory-parser.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -76,10 +77,12 @@ interface OrphanSweepResult {
 
 let db: Database.Database | null = null;
 let canonicalPathColumnAvailable: boolean | null = null;
+let documentTypeColumnAvailable: boolean | null = null;
 
 function init(database: Database.Database): void {
   db = database;
   canonicalPathColumnAvailable = null;
+  documentTypeColumnAvailable = null;
 }
 
 function hasCanonicalPathColumn(): boolean {
@@ -97,6 +100,23 @@ function hasCanonicalPathColumn(): boolean {
   }
 
   return canonicalPathColumnAvailable;
+}
+
+function hasDocumentTypeColumn(): boolean {
+  if (!db) return false;
+
+  if (documentTypeColumnAvailable !== null) {
+    return documentTypeColumnAvailable;
+  }
+
+  try {
+    const columns = (db.prepare('PRAGMA table_info(memory_index)').all() as Array<{ name: string }>);
+    documentTypeColumnAvailable = columns.some((column) => column.name === 'document_type');
+  } catch {
+    documentTypeColumnAvailable = false;
+  }
+
+  return documentTypeColumnAvailable;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -526,9 +546,18 @@ function reconcileMoves(
   const reconciledNewPaths = new Set<string>();
   const reconciled: MoveReconcileCandidate[] = [];
 
-  // Iterate from the NEW side: for each packet_id we know about, find the corresponding
-  // old path in toDelete by matching grandparent directory + basename (folder rename within
-  // the same parent). This avoids reading the old graph-metadata.json which may be gone.
+  // Iterate from the NEW side: for each new path whose folder still carries a packet_id,
+  // find the corresponding old path in toDelete by matching grandparent directory + basename
+  // (a sibling folder rename within the same parent). The packet_id only gates which new
+  // paths are eligible — the actual old→new pairing is grandparent + basename plus the
+  // DB uniqueness guards below; it does NOT match the old row by its packet_id (the old
+  // graph-metadata.json may be gone, and memory_index has no packet_id column). To avoid
+  // repointing across mismatched document kinds, the stored document_type is cross-checked
+  // against the doc type derived from the new path before the in-place update.
+  const docTypeAvailable = hasDocumentTypeColumn();
+  const selectSql = docTypeAvailable
+    ? `SELECT id, document_type FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`
+    : `SELECT id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`;
   for (const [, newCandidates] of newByPacketId) {
     for (const { newPath, docType, newGrandparent } of newCandidates) {
       if (reconciledNewPaths.has(newPath)) continue;
@@ -549,27 +578,38 @@ function reconcileMoves(
       const canonicalOld = getCanonicalPathKey(oldPath);
 
       // Verify in DB: exactly one live row for this old path (uniqueness guard).
-      const rows = db!.prepare(
-        `SELECT id FROM memory_index WHERE (file_path = ? OR canonical_file_path = ?) AND embedding_status != 'failed' LIMIT 2`
-      ).all(oldPath, canonicalOld) as Array<{ id: number }>;
+      const rows = db!.prepare(selectSql).all(oldPath, canonicalOld) as Array<{ id: number; document_type?: string | null }>;
       if (rows.length !== 1) continue;
+
+      // Cross-verify document kind: the stored document_type must agree with the doc type
+      // derived from the new path. Skip rows whose stored type diverged from the new file
+      // (e.g. a generic 'memory' row that happens to share a basename), preventing a
+      // mismatched repoint. Tolerant when the column is absent (legacy/test schemas).
+      if (docTypeAvailable) {
+        const storedDocType = rows[0].document_type ?? null;
+        if (storedDocType !== null && storedDocType !== extractDocumentType(newPath)) continue;
+      }
 
       const rowId = rows[0].id;
       const newCanonical = getCanonicalPathKey(newPath);
+      const newSpecFolder = extractSpecFolder(newPath);
       const newMtime = (() => {
         try { return fs.statSync(newPath).mtimeMs; } catch { return null; }
       })();
 
-      // Update the row's path in place (preserves embedding, id, history).
+      // Update the row's path in place (preserves embedding, id, history). A reconciled
+      // move is a folder rename, so spec_folder is repointed with the same canonicalization
+      // indexMemoryFile/migration 23 use — otherwise WHERE spec_folder=? grouping goes stale.
       const updated = db!.prepare(`
         UPDATE memory_index
         SET file_path = ?,
             canonical_file_path = ?,
+            spec_folder = ?,
             file_mtime_ms = ?,
             updated_at = datetime('now')
         WHERE id = ?
           AND embedding_status != 'failed'
-      `).run(newPath, newCanonical, newMtime, rowId);
+      `).run(newPath, newCanonical, newSpecFolder, newMtime, rowId);
 
       if ((updated as { changes: number }).changes !== 1) continue;
 

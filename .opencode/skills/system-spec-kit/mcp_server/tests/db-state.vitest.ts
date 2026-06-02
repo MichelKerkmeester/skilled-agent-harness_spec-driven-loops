@@ -89,6 +89,58 @@ describe('db-state', () => {
     db.close();
   });
 
+  it('fails CLOSED on SQLite lock contention so two scans cannot both acquire', async () => {
+    const busyError = Object.assign(new Error('database is locked'), { code: 'SQLITE_BUSY' });
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+
+    // Fake DB whose transaction body throws a contention error inside the lease try-block.
+    const contendedDb = {
+      exec: vi.fn(),
+      prepare: vi.fn(() => ({ all: vi.fn(), get: vi.fn(), run: vi.fn() })),
+      transaction: vi.fn(() => () => { throw busyError; }),
+    } as unknown as DatabaseLike;
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => contendedDb),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const lease = await acquireIndexScanLease({ now: Date.now(), cooldownMs: 60000, leaseExpiryMs: 120000 });
+
+    expect(lease.acquired).toBe(false);
+    expect(lease.reason).toBe('contention');
+    expect(lease.waitSeconds).toBeGreaterThan(0);
+    expect(warnSpy).toHaveBeenCalled();
+  });
+
+  it('fails OPEN on a non-contention structural error', async () => {
+    const structuralError = new Error('no such table: config');
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    const brokenDb = {
+      exec: vi.fn(),
+      prepare: vi.fn(() => ({ all: vi.fn(), get: vi.fn(), run: vi.fn() })),
+      transaction: vi.fn(() => () => { throw structuralError; }),
+    } as unknown as DatabaseLike;
+
+    init({
+      vectorIndex: {
+        initializeDb: vi.fn(),
+        getDb: vi.fn(() => brokenDb),
+        closeDb: vi.fn(),
+      },
+    });
+
+    const lease = await acquireIndexScanLease({ now: Date.now(), cooldownMs: 60000, leaseExpiryMs: 120000 });
+
+    expect(lease.acquired).toBe(true);
+    expect(lease.reason).toBe('ok');
+    expect(errorSpy).toHaveBeenCalled();
+  });
+
   it('completes lease by moving scan_started_at to last_index_scan', async () => {
     const db = new BetterSqlite3(':memory:');
     db.exec('CREATE TABLE config (key TEXT PRIMARY KEY, value TEXT)');

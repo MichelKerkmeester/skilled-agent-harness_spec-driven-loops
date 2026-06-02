@@ -133,6 +133,25 @@ describe('post-insert enrichment marker state', () => {
     expect(needsEnrichmentRepair(db, 1)).toBe(false);
   });
 
+  it('maps an unknown execution status to repairable partial (not finalized complete) and logs it', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    insertMemory(db, 10, 'pending');
+
+    // Simulate an unexpected/out-of-contract execution status reaching the mapper.
+    const unknownResult = {
+      ...COMPLETE_RESULT,
+      executionStatus: { status: 'totally-unexpected' },
+    } as unknown as typeof COMPLETE_RESULT;
+
+    recordEnrichmentResult(db, 10, unknownResult);
+
+    const marker = readMarker(db, 10);
+    expect(marker.status).toBe('partial');
+    expect(marker.completedAt).toBeNull(); // not finalized — stays repairable
+    expect(needsEnrichmentRepair(db, 10)).toBe(true);
+    expect(warnSpy).toHaveBeenCalled();
+  });
+
   it.each(['unchanged', 'duplicate'])('repairs a pending marker on %s replay', async () => {
     insertMemory(db, 2, 'pending');
 

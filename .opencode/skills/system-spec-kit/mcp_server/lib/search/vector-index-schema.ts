@@ -437,6 +437,96 @@ function getMigrationAllowedBasePaths(): string[] {
 /** Current schema version for vector-index migrations. */
 export const SCHEMA_VERSION = 30;
 
+/**
+ * Deprecate-before-create pre-pass for the active-row logical-key unique index.
+ *
+ * A pre-existing database can already hold duplicate active rows for one logical key
+ * (e.g. created before the supersede-on-reindex guard existed). Creating the UNIQUE
+ * index over those rows throws, and since all migrations share one transaction, the
+ * whole upgrade batch rolls back and the schema wedges. To advance safely we retire the
+ * duplicates first — deprecate, never delete — by setting the losers' importance_tier to
+ * 'deprecated' (the same retirement the runtime reindex guard uses), which removes them
+ * from the partial index predicate so the UNIQUE index can be built. Within each duplicate
+ * group the winner is the highest importance tier, then the most recently updated row.
+ *
+ * Grouping mirrors the index exactly. Tolerant when a scope/anchor column is absent on an
+ * older schema (the group key falls back to the empty string for the missing column, the
+ * same as the index's COALESCE), and a no-op when the table or needed columns are missing.
+ */
+function deprecateDuplicateActiveLogicalKeysBeforeUniqueIndex(database: Database.Database): void {
+  if (!hasTable(database, 'memory_index')) {
+    return;
+  }
+
+  const columns = new Set(getTableColumns(database, 'memory_index'));
+  // canonical_file_path / file_path and importance_tier are required to form the key and
+  // pick a winner; without them this DB predates the guarded schema and there is nothing
+  // to reconcile here.
+  if (!columns.has('importance_tier') || (!columns.has('canonical_file_path') && !columns.has('file_path'))) {
+    return;
+  }
+
+  // Build per-column key fragments that match the index's COALESCE expressions, degrading
+  // to a literal '' for columns this older schema does not have (so the key shape is stable).
+  const pathExpr = columns.has('canonical_file_path')
+    ? "COALESCE(NULLIF(canonical_file_path, ''), file_path)"
+    : 'file_path';
+  const anchorExpr = columns.has('anchor_id')
+    ? "COALESCE(NULLIF(TRIM(anchor_id), ''), '_')"
+    : "'_'";
+  const scopeExpr = (col: string): string => (columns.has(col) ? `COALESCE(${col}, '')` : "''");
+
+  const keyExpr = [
+    'spec_folder',
+    pathExpr,
+    anchorExpr,
+    scopeExpr('tenant_id'),
+    scopeExpr('user_id'),
+    scopeExpr('agent_id'),
+    scopeExpr('session_id'),
+  ].join(" || '\\u0000' || ");
+
+  // Active = the same predicate the unique index uses (excludes constitutional + deprecated).
+  const activePredicate = "COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated')";
+
+  // Tier rank mirrors IMPORTANCE_TIERS values so the highest-priority active row wins.
+  const tierRankExpr = `CASE COALESCE(importance_tier, 'normal')
+        WHEN 'critical' THEN 5
+        WHEN 'important' THEN 4
+        WHEN 'normal' THEN 3
+        WHEN 'temporary' THEN 2
+        ELSE 1
+      END`;
+
+  // Find groups with more than one active row, then deprecate every row except the winner
+  // (highest tier rank, then most recently updated, then highest id as a stable tiebreak).
+  const retireStmt = database.prepare(`
+    UPDATE memory_index
+    SET importance_tier = 'deprecated',
+        updated_at = datetime('now')
+    WHERE id IN (
+      SELECT id FROM (
+        SELECT id,
+               (${keyExpr}) AS logical_key,
+               ROW_NUMBER() OVER (
+                 PARTITION BY (${keyExpr})
+                 ORDER BY ${tierRankExpr} DESC, updated_at DESC, id DESC
+               ) AS rn
+        FROM memory_index
+        WHERE ${activePredicate}
+      )
+      WHERE rn > 1
+    )
+  `);
+
+  const result = retireStmt.run() as { changes: number };
+  if (result.changes > 0) {
+    logger.warn(
+      `Migration v28: deprecated ${result.changes} duplicate active row(s) before building idx_memory_logical_key_active_unique`,
+    );
+  }
+}
+
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
 // BUG-019 FIX: Wrap migrations in transaction for atomicity
@@ -1342,9 +1432,11 @@ export function run_migrations(database: Database.Database, from_version: number
     // tier rather than by deletion, and constitutional rows are exempt so always-
     // surfaced rules can carry intentional duplicates. COALESCE keeps NULL-tier rows
     // (treated as active everywhere else) inside the guard and groups unscoped rows
-    // together. Requires zero duplicate active logical keys at build time (a fresh
-    // reindex satisfies this); the build fails loudly otherwise rather than silently
-    // advancing the schema.
+    // together. A pre-existing DB may already hold duplicate active logical keys (created
+    // before this guard existed). The pre-pass below retires those duplicates first —
+    // deprecate, never delete — so the UNIQUE index can be built; otherwise the CREATE
+    // would throw and roll back the whole shared migration transaction, wedging the upgrade.
+    deprecateDuplicateActiveLogicalKeysBeforeUniqueIndex(database);
     createRequiredIndex(
       database,
       'idx_memory_logical_key_active_unique',

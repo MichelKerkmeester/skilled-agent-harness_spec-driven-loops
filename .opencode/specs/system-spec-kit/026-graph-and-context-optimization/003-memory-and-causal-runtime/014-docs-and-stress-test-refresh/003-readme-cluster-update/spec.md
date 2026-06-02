@@ -131,7 +131,7 @@ Make the README cluster an accurate operator-facing surface for the shipped 013 
 | Comment-hygiene HARD BLOCK | Process | Prose docs may reference spec folders; these are docs, not code comments. No spec-path/packet labels are added to any source CODE comment. |
 
 ### Dependencies
-- Verified deployed source anchors: `vector-index-schema.ts` (`SCHEMA_VERSION = 30`, migs 28-30), `context-server.ts:1014` (`version: '1.7.2'`) and `:2126` (`SPECKIT_BACKEND_ONLY`), `lib/storage/checkpoints.ts` (checkpoint v1/v2 + `.needs-rebuild` sentinel), `handlers/memory-crud-health.ts` (`index` block fields), `launcher-session-proxy.cjs` (error codes), `sk-git/SKILL.md` (worktree convention).
+- Verified deployed source anchors: `vector-index-schema.ts` (`SCHEMA_VERSION = 30`, migs 28-30), `context-server.ts:1014` (`version: '1.7.2'` — pre-fix value captured at planning time; current deployed value is `'1.8.0'` per `package.json:3`) and `:2126` (`SPECKIT_BACKEND_ONLY`), `lib/storage/checkpoints.ts` (checkpoint v1/v2 + `.needs-rebuild` sentinel), `handlers/memory-crud-health.ts` (`index` block fields), `launcher-session-proxy.cjs` (error codes), `sk-git/SKILL.md` (worktree convention).
 - Sibling `002-feature-catalog-update` (feature files exist before the README cluster links them, per the parent Phase Handoff Criteria).
 <!-- /ANCHOR:risks -->
 

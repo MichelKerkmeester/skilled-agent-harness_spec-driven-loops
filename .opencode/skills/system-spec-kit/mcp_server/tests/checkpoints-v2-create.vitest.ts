@@ -205,6 +205,51 @@ describe('checkpoint v2 create', () => {
     expect(() => checkpoints.createCheckpoint({ name: '../evil' })).toThrow(checkpoints.CheckpointCreateError);
   });
 
+  it('removes the published snapshot dir when the catalog INSERT fails so same-name re-creates succeed', () => {
+    const finalDir = path.join(tempDir, 'checkpoints', 'insert-fail');
+    // Fail the catalog INSERT (which runs AFTER the snapshot dir is published) while
+    // leaving the duplicate-name SELECT working, simulating a post-publish failure.
+    database.exec(`
+      CREATE TRIGGER reject_checkpoint_insert
+      BEFORE INSERT ON checkpoints
+      WHEN NEW.name = 'insert-fail'
+      BEGIN
+        SELECT RAISE(ABORT, 'forced catalog insert failure');
+      END;
+    `);
+
+    expect(() => checkpoints.createCheckpoint({ name: 'insert-fail' })).toThrow(checkpoints.CheckpointCreateError);
+    // The orphaned published dir must be swept; otherwise a same-name re-create hits
+    // ENOTEMPTY on the rename into finalDir and never recovers.
+    expect(fs.existsSync(finalDir)).toBe(false);
+
+    database.exec('DROP TRIGGER reject_checkpoint_insert');
+    const recreated = checkpoints.createCheckpoint({ name: 'insert-fail' });
+    expect(recreated.snapshotFormat).toBe('v2');
+    expect(fs.existsSync(path.join(finalDir, 'snapshot-main.sqlite'))).toBe(true);
+  });
+
+  it('sweeps orphan snapshot directories that no catalog row references on the next create', () => {
+    // A legitimate, catalog-referenced snapshot must survive the sweep.
+    checkpoints.createCheckpoint({ name: 'keeper' });
+    const keeperDir = path.join(tempDir, 'checkpoints', 'keeper');
+    expect(fs.existsSync(keeperDir)).toBe(true);
+
+    // Simulate the prune-after-commit leak: a snapshot dir whose catalog row was already
+    // deleted, but whose directory removal never ran (crash between commit and rmSync).
+    const orphanDir = path.join(tempDir, 'checkpoints', 'orphan-leaked');
+    fs.mkdirSync(orphanDir, { recursive: true, mode: 0o700 });
+    fs.writeFileSync(path.join(orphanDir, 'snapshot-main.sqlite'), 'leaked');
+    expect(fs.existsSync(orphanDir)).toBe(true);
+
+    // The next create runs the orphan sweep during its maintenance window.
+    checkpoints.createCheckpoint({ name: 'after-orphan' });
+
+    expect(fs.existsSync(orphanDir)).toBe(false);
+    expect(fs.existsSync(keeperDir)).toBe(true);
+    expect(fs.existsSync(path.join(tempDir, 'checkpoints', 'after-orphan', 'snapshot-main.sqlite'))).toBe(true);
+  });
+
   it('sweeps stale temporary checkpoint directories before creating a new snapshot', () => {
     const staleDir = path.join(tempDir, 'checkpoints', 'orphan.tmp-12345');
     fs.mkdirSync(staleDir, { recursive: true, mode: 0o700 });

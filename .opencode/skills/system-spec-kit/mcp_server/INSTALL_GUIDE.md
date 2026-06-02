@@ -1,6 +1,6 @@
 # Spec Kit Memory MCP Server: Installation Guide
 
-> MCP Server v1.7.2 | 2026-03-15 (verification steps refreshed on 2026-04-25)
+> MCP Server v1.8.0 | 2026-03-15 (verification steps refreshed on 2026-04-25)
 
 Complete installation and configuration guide for the Spec Kit Memory MCP server. This guide enables AI-powered context retrieval and conversation memory across your project. The system indexes markdown documentation from spec folders and constitutional rules to surface relevant information during AI interactions. It provides memory, trigger, context, evaluation, retention, and compatibility tools (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`). Skill Advisor tools are served by the standalone `mk_skill_advisor` MCP server, registered separately in your runtime config. See `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md`.
 

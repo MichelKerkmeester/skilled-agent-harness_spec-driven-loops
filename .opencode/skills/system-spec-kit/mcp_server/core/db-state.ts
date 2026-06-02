@@ -372,12 +372,32 @@ function clearStaleScanLease(db: DatabaseLike, now: number, scanStartedAt: numbe
 
 export interface IndexScanLeaseResult {
   acquired: boolean;
-  reason: 'ok' | 'cooldown' | 'lease_active';
+  reason: 'ok' | 'cooldown' | 'lease_active' | 'contention';
   waitSeconds: number;
   lastIndexScan: number;
   scanStartedAt: number;
   leaseExpiryMs: number;
   cooldownMs: number;
+}
+
+/**
+ * Wait hint (seconds) returned when a lease attempt loses to SQLite contention.
+ * Short by design: contention is transient, so the caller should retry/coalesce soon.
+ */
+const LEASE_CONTENTION_RETRY_SECONDS = 1;
+
+/**
+ * True when the error is SQLite lock/contention (transient) rather than a structural
+ * DB failure. Lock contention must fail CLOSED so two callers never both believe they
+ * hold the scan lease; only a truly unavailable DB fails open.
+ */
+function isSqliteContentionError(e: unknown): boolean {
+  const code = (e as { code?: unknown })?.code;
+  if (typeof code === 'string' && (code.startsWith('SQLITE_BUSY') || code.startsWith('SQLITE_LOCKED'))) {
+    return true;
+  }
+  const message = (e instanceof Error ? e.message : String(e)).toLowerCase();
+  return message.includes('database is locked') || message.includes('database table is locked');
 }
 
 /**
@@ -484,6 +504,25 @@ export async function acquireIndexScanLease(options?: {
     return reserveLeaseTx();
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : String(e);
+
+    // Lock/contention is transient: another writer holds the DB. Fail CLOSED so this
+    // caller does NOT believe it acquired the lease (which would let two scans run in
+    // parallel and corrupt scan_started_at). Signal a short retry/coalesce window.
+    if (isSqliteContentionError(e)) {
+      console.warn('[db-state] Index scan lease contention; failing closed for retry:', message);
+      return {
+        acquired: false,
+        reason: 'contention',
+        waitSeconds: LEASE_CONTENTION_RETRY_SECONDS,
+        lastIndexScan: 0,
+        scanStartedAt: 0,
+        leaseExpiryMs,
+        cooldownMs,
+      };
+    }
+
+    // Truly unavailable / structural error: fail OPEN so indexing is not permanently
+    // blocked by a one-off DB read failure.
     console.error('[db-state] Error acquiring index scan lease:', message);
     return {
       acquired: true,

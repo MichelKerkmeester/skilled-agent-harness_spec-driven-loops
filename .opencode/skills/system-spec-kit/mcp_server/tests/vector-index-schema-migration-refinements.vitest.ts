@@ -357,4 +357,66 @@ describe('vector-index schema migration refinements', () => {
     expect(indexes[1]?.sql).toContain('embedding_status');
     expect(indexes[1]?.sql).toContain('id DESC');
   });
+
+  it('advances a DB with duplicate active logical keys to v30 by deprecating losers before the v28 unique index', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    // Simulate a pre-existing DB that predates the active-row guard: drop the unique index
+    // and rewind the schema version so migrations 28..30 re-run on dirty data.
+    database.exec('DROP INDEX IF EXISTS idx_memory_logical_key_active_unique');
+
+    const sharedPath = '/workspace/specs/012-dup/spec.md';
+    const insertRow = database.prepare(`
+      INSERT INTO memory_index (
+        id, spec_folder, file_path, canonical_file_path, title,
+        created_at, updated_at, importance_tier, context_type, embedding_status
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'general', 'success')
+    `);
+
+    // Two ACTIVE rows for the SAME logical key (same spec_folder + path + null scope/anchor).
+    // The 'important' row should win; the 'normal' row should be deprecated.
+    insertRow.run(201, '012-dup', sharedPath, sharedPath, 'Loser', '2026-01-01T00:00:00.000Z', '2026-01-01T00:00:00.000Z', 'normal');
+    insertRow.run(202, '012-dup', sharedPath, sharedPath, 'Winner', '2026-01-02T00:00:00.000Z', '2026-01-02T00:00:00.000Z', 'important');
+    // An independent row for a different logical key must be left untouched.
+    const otherPath = '/workspace/specs/013-other/spec.md';
+    insertRow.run(203, '013-other', otherPath, otherPath, 'Independent', '2026-01-03T00:00:00.000Z', '2026-01-03T00:00:00.000Z', 'normal');
+
+    database.prepare('UPDATE schema_version SET version = 27 WHERE id = 1').run();
+
+    // Must NOT throw — the deprecate-before-create pre-pass clears the duplicate actives.
+    expect(() => ensureSchemaVersion(database)).not.toThrow();
+
+    // Schema advanced fully to v30.
+    const versionRow = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version: number };
+    expect(versionRow.version).toBe(30);
+
+    // The unique index now exists.
+    const indexNames = (database.prepare('PRAGMA index_list(memory_index)').all() as Array<{ name: string }>)
+      .map((row) => row.name);
+    expect(indexNames).toContain('idx_memory_logical_key_active_unique');
+
+    // Exactly one of the duplicate rows stays active; the lower-tier one is deprecated.
+    const dupRows = database.prepare('SELECT id, importance_tier FROM memory_index WHERE id IN (201, 202) ORDER BY id')
+      .all() as Array<{ id: number; importance_tier: string }>;
+    expect(dupRows).toEqual([
+      { id: 201, importance_tier: 'deprecated' },
+      { id: 202, importance_tier: 'important' },
+    ]);
+
+    // The independent row keeps its tier.
+    const independent = database.prepare('SELECT importance_tier FROM memory_index WHERE id = 203')
+      .get() as { importance_tier: string };
+    expect(independent.importance_tier).toBe('normal');
+
+    // The active-row guard now actually holds: inserting another active dup must fail.
+    expect(() => {
+      database.prepare(`
+        INSERT INTO memory_index (
+          id, spec_folder, file_path, canonical_file_path, title,
+          created_at, updated_at, importance_tier, context_type, embedding_status
+        ) VALUES (204, '012-dup', ?, ?, 'Another', '2026-01-04T00:00:00.000Z', '2026-01-04T00:00:00.000Z', 'normal', 'general', 'success')
+      `).run(sharedPath, sharedPath);
+    }).toThrow();
+  });
 });

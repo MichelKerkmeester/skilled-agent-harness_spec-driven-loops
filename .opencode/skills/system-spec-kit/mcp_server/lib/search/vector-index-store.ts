@@ -906,6 +906,87 @@ function read_restore_journal(journal_path: string): RestoreJournalFile | null {
   }
 }
 
+function merge_checkpoint_catalog_from_backup(live_main_path: string, backup_main_path: string): void {
+  // A swap-done crash happens after the snapshot DB is in place but before the live
+  // catalog rows (captured from the pre-swap DB) are re-merged in-process. The snapshot's
+  // checkpoints table only reflects state at snapshot time, so post-snapshot catalog rows
+  // would be lost when boot recovery deletes the .bak. Re-merge them here, reading the BLOB
+  // payloads directly from the .bak so v1 inline snapshots keep full fidelity. Best-effort:
+  // recovery must finalize even if the merge cannot run.
+  if (!fs.existsSync(backup_main_path)) {
+    return;
+  }
+  let live_db: Database.Database | null = null;
+  let backup_db: Database.Database | null = null;
+  try {
+    backup_db = new Database(backup_main_path, { readonly: true });
+    const catalog_exists = backup_db.prepare(
+      "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'checkpoints'",
+    ).get() as { 1?: number } | undefined;
+    if (!catalog_exists) {
+      return;
+    }
+    const backup_rows = backup_db.prepare('SELECT * FROM checkpoints ORDER BY id ASC').all() as Array<Record<string, unknown>>;
+    if (backup_rows.length === 0) {
+      return;
+    }
+
+    live_db = new Database(live_main_path);
+    const live_catalog_exists = live_db.prepare(
+      "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'checkpoints'",
+    ).get() as { 1?: number } | undefined;
+    if (!live_catalog_exists) {
+      return;
+    }
+    const target_columns = new Set(
+      (live_db.prepare('PRAGMA table_info("checkpoints")').all() as Array<{ name?: unknown }>)
+        .map((column) => column.name)
+        .filter((name): name is string => typeof name === 'string' && name.length > 0),
+    );
+
+    const merge = live_db.transaction((rows: Array<Record<string, unknown>>) => {
+      for (const row of rows) {
+        const name = row.name;
+        if (typeof name !== 'string' || name.length === 0) {
+          continue;
+        }
+        const existing_by_name = (live_db as Database.Database).prepare('SELECT id FROM checkpoints WHERE name = ?').get(name) as { id?: number } | undefined;
+        if (existing_by_name?.id) {
+          continue;
+        }
+
+        let columns = Object.keys(row).filter((column) => target_columns.has(column));
+        const id = row.id;
+        if (typeof id === 'number') {
+          const existing_by_id = (live_db as Database.Database).prepare('SELECT name FROM checkpoints WHERE id = ?').get(id) as { name?: string } | undefined;
+          if (existing_by_id?.name && existing_by_id.name !== name) {
+            columns = columns.filter((column) => column !== 'id');
+          }
+        }
+        if (columns.length === 0) {
+          continue;
+        }
+
+        const placeholders = columns.map(() => '?').join(', ');
+        (live_db as Database.Database).prepare(`
+          INSERT OR IGNORE INTO checkpoints (${columns.join(', ')})
+          VALUES (${placeholders})
+        `).run(...columns.map((column) => row[column]));
+      }
+    });
+    merge(backup_rows);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to re-merge checkpoint catalog during swap-done recovery (non-fatal): ${get_error_message(error)}`);
+  } finally {
+    if (backup_db) {
+      try { backup_db.close(); } catch (_error: unknown) { /* best-effort */ }
+    }
+    if (live_db) {
+      try { live_db.close(); } catch (_error: unknown) { /* best-effort */ }
+    }
+  }
+}
+
 export function recover_interrupted_checkpoint_restore(target_path: string): boolean {
   const journal_path = get_restore_journal_path(target_path);
   if (!journal_path || !fs.existsSync(journal_path)) {
@@ -918,6 +999,9 @@ export function recover_interrupted_checkpoint_restore(target_path: string): boo
   }
 
   if (journal.phase === 'swap-done') {
+    // Re-merge any post-snapshot catalog rows from the .bak before deleting it; the
+    // crashed in-process restore would have done this merge had it not been interrupted.
+    merge_checkpoint_catalog_from_backup(journal.liveMainPath, journal.backupMainPath);
     fs.rmSync(journal.backupMainPath, { force: true });
     fsync_directory_if_possible(path.dirname(journal.backupMainPath));
     if (journal.shouldRestoreVec && journal.backupShardPath) {

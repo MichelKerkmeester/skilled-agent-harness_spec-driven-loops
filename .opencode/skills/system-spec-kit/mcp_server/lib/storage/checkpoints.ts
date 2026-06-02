@@ -672,6 +672,59 @@ function sweepStaleCheckpointTmpDirs(checkpointsDir: string): void {
   }
 }
 
+function resolvePathSafe(targetPath: string): string {
+  try {
+    return fs.realpathSync(targetPath);
+  } catch (_error: unknown) {
+    return path.resolve(targetPath);
+  }
+}
+
+function sweepOrphanCheckpointSnapshotDirs(database: Database.Database, checkpointsDir: string): void {
+  // Checkpoint pruning removes the catalog row inside the create transaction but deletes
+  // the snapshot dir AFTER commit. A crash in that gap leaves a snapshot dir with no
+  // catalog row — never swept by the .tmp-* sweep (it has a published name) and never
+  // restorable. Reconcile on-disk v2 snapshot dirs against the live catalog and remove
+  // any that no catalog row references. Best-effort: never throw out of the create path.
+  try {
+    if (!fs.existsSync(checkpointsDir) || !tableExists(database, 'checkpoints')) {
+      return;
+    }
+
+    const checkpointColumns = new Set(getTableColumns(database, 'checkpoints'));
+    if (!checkpointColumns.has('snapshot_path')) {
+      return;
+    }
+    const referenced = new Set<string>();
+    const rows = database.prepare(
+      "SELECT snapshot_path FROM checkpoints WHERE snapshot_path IS NOT NULL AND snapshot_path <> ''",
+    ).all() as Array<{ snapshot_path?: string | null }>;
+    for (const row of rows) {
+      if (typeof row.snapshot_path === 'string' && row.snapshot_path.length > 0) {
+        referenced.add(resolvePathSafe(row.snapshot_path));
+      }
+    }
+
+    for (const entry of fs.readdirSync(checkpointsDir, { withFileTypes: true })) {
+      if (!entry.isDirectory() || entry.name.includes('.tmp-')) {
+        continue;
+      }
+      const entryPath = path.join(checkpointsDir, entry.name);
+      if (referenced.has(resolvePathSafe(entryPath))) {
+        continue;
+      }
+      try {
+        fs.rmSync(entryPath, { recursive: true, force: true });
+        console.warn(`[checkpoints] Swept orphan checkpoint snapshot dir with no catalog row: ${entry.name}`);
+      } catch (_removeError: unknown) {
+        // Best-effort: a single un-removable dir must not block checkpoint creation.
+      }
+    }
+  } catch (error: unknown) {
+    console.warn(`[checkpoints] Orphan checkpoint snapshot sweep skipped (non-fatal): ${toErrorMessage(error)}`);
+  }
+}
+
 function readSchemaVersion(database: Database.Database): number | null {
   try {
     const row = database.prepare('SELECT version FROM schema_version WHERE id = 1').get() as { version?: number } | undefined;
@@ -2208,6 +2261,7 @@ function createCheckpointV2(
 
     fs.mkdirSync(checkpointsDir, { recursive: true, mode: 0o700 });
     sweepStaleCheckpointTmpDirs(checkpointsDir);
+    sweepOrphanCheckpointSnapshotDirs(database, checkpointsDir);
     fs.rmSync(tmpDir, { recursive: true, force: true });
     fs.mkdirSync(tmpDir, { recursive: true, mode: 0o700 });
 
@@ -2315,6 +2369,12 @@ function createCheckpointV2(
   } catch (error: unknown) {
     if (!published) {
       fs.rmSync(tmpDir, { recursive: true, force: true });
+    } else {
+      // The snapshot dir was already published (renamed into place) before the
+      // catalog INSERT ran. A failed INSERT would otherwise orphan finalDir, and
+      // a later same-name re-create would hit ENOTEMPTY on the rename and never
+      // be swept. Best-effort remove the published dir so re-creates can proceed.
+      fs.rmSync(finalDir, { recursive: true, force: true });
     }
     throw classifyCheckpointCreateError(error, {
       name: sanitizedName,
@@ -2643,6 +2703,22 @@ function restoreCheckpointV2(
     try {
       newDb = reopen(liveMainPath, swapFn);
     } catch (error: unknown) {
+      // Demote the journal to swap-pending BEFORE the rollback reopen, mirroring the
+      // post-swap in-process catch below. swapFn may have already written swap-done
+      // (the snapshot is staged and the journal flipped) before the reopen's own
+      // DB-open step threw. restoreBackups rolls back via rmSync(live) -> rename(.bak
+      // -> live); a crash inside that gap while the journal still says swap-done makes
+      // boot recovery DELETE the .bak instead of rolling back from it — losing both the
+      // live and backup copies. Re-pinning swap-pending keeps crash and in-process
+      // rollback deterministically restoring from .bak.
+      if (restoreJournalPath) {
+        try {
+          writeRestoreJournal(restoreJournalPath, { ...restoreJournal, liveShardPreexisted });
+        } catch (_demoteError: unknown) {
+          // Best-effort: if the demotion write fails, the in-process rollback below still
+          // restores from .bak; only the crash-vs-in-process symmetry is at risk.
+        }
+      }
       try {
         reopen(liveMainPath, () => {
           restoreBackups(liveMainPath, liveShardPath);
@@ -3127,7 +3203,20 @@ function restoreCheckpoint(
     });
 
     restoreTx();
-    runPostRestoreRebuilds(database, checkpointSpecFolder);
+    const rebuildSummary = runPostRestoreRebuilds(database, checkpointSpecFolder);
+    if (!isDerivedRebuildComplete(rebuildSummary)) {
+      // Mirror the v2 path: a partial derived rebuild must leave a sentinel so a later
+      // boot or repair re-runs the rebuild instead of trusting stale derived artifacts.
+      try {
+        writeNeedsRebuildSentinelForDatabase(database, {
+          source: 'checkpoint_restore',
+          reason: 'post-restore derived rebuild did not complete',
+          summary: rebuildSummary,
+        });
+      } catch (sentinelError: unknown) {
+        console.warn(`[checkpoints] Failed to write needs-rebuild sentinel after restore (non-fatal): ${toErrorMessage(sentinelError)}`);
+      }
+    }
 
     console.error(`[checkpoints] Restored ${result.restored} memories, ${result.workingMemoryRestored} working memory entries from "${checkpoint.name}"`);
   } catch (error: unknown) {

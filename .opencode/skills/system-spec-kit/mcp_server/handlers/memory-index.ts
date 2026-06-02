@@ -353,9 +353,14 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     cooldownMs: INDEX_SCAN_COOLDOWN,
   });
   if (!lease.acquired) {
-    const message = lease.reason === 'lease_active'
-      ? 'A scan is already in progress; this call coalesced onto it.'
-      : 'A scan recently completed; this call coalesced onto the recent scan window.';
+    let message: string;
+    if (lease.reason === 'lease_active') {
+      message = 'A scan is already in progress; this call coalesced onto it.';
+    } else if (lease.reason === 'contention') {
+      message = 'The index DB is briefly locked by another writer; retry shortly.';
+    } else {
+      message = 'A scan recently completed; this call coalesced onto the recent scan window.';
+    }
     return createMCPSuccessResponse({
       tool: 'memory_index_scan',
       summary: message,
@@ -662,7 +667,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
 
   // Attempt move reconciliation before full delete+reindex cycle.
-  // Matches vanished paths to new paths by packet_id + doc type; updates in place.
+  // Pairs a vanished path with a new path by grandparent dir + basename (a sibling folder
+  // rename), gated by the new folder still carrying a packet_id and by DB uniqueness +
+  // stored-document_type cross-checks; the matched row is updated in place.
   if (filesToDelete.length > 0 && filesToIndex.length > 0) {
     const moveResult = incrementalIndex.reconcileMoves(filesToDelete, filesToIndex);
     if (moveResult.reconciled.length > 0) {

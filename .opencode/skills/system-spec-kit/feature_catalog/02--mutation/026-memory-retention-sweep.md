@@ -28,7 +28,7 @@ The handler calls `checkDatabaseUpdated()`, opens the vector-index database, and
 
 The governance library selects expired rows with `datetime(delete_after) < datetime('now')`. Dry runs return candidates and leave storage untouched. Non-dry runs initialize history, execute the sweep in a SQLite transaction, delete each candidate through `vectorIndex.deleteMemory()`, record a `DELETE` history event, write a governance audit decision with `reason: "retention_expired"`, and append a consolidated mutation-ledger entry when at least one row was deleted.
 
-The MCP schema registers the tool under L4 mutation and the memory-tool dispatcher routes `memory_retention_sweep` to the handler. The tool contributes to the current `mk-spec-memory` server's 41-tool count.
+The MCP schema registers the tool under L4 mutation and the memory-tool dispatcher routes `memory_retention_sweep` to the handler. The tool contributes to the current `mk-spec-memory` server's tool count (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`).
 
 ---
 

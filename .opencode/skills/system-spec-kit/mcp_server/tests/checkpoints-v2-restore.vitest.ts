@@ -252,6 +252,44 @@ describe('checkpoint v2 restore', () => {
     expect(checkpoints.isRestoreInProgress()).toBe(false);
   });
 
+  it('demotes the restore journal to swap-pending before rolling back a failed swap reopen', () => {
+    checkpoints.createCheckpoint({ name: 'v2-demote-on-swap-fail', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Live mutation survives rollback', 1);
+
+    const journalPath = getRestoreJournalPath();
+    let reopenCalls = 0;
+    let rollbackJournalPhase: string | null = null;
+    const failingReopen = (targetPath: string, swapFn: () => void): Database.Database => {
+      try { database.close(); } catch {}
+      reopenCalls += 1;
+      if (reopenCalls === 1) {
+        // swapFn runs the full file swap and flips the journal to swap-done; then we
+        // simulate the reopen's own DB-open step throwing after the swap completed.
+        swapFn();
+        throw new Error('forced reopen failure after swap-done');
+      }
+      // Second reopen = the rollback path. Inspect the journal BEFORE its callback
+      // (restoreBackups + clearRestoreJournal) runs, proving the demotion happened first.
+      const parsed = JSON.parse(fs.readFileSync(journalPath, 'utf-8')) as { phase?: string };
+      rollbackJournalPhase = parsed.phase ?? null;
+      swapFn();
+      database = new Database(targetPath);
+      checkpoints.init(database);
+      return database;
+    };
+
+    const result = checkpoints.restoreCheckpoint('v2-demote-on-swap-fail', false, {}, { reopen: failingReopen });
+
+    expect(result.errors.join('\n')).toContain('CHECKPOINT_RESTORE_SWAP_FAILED');
+    // The journal must be swap-pending at rollback time — a lingering swap-done would
+    // make a concurrent boot recovery delete the .bak instead of rolling back from it.
+    expect(rollbackJournalPhase).toBe('swap-pending');
+    expect(captureMemories(database)[0]?.title).toBe('Live mutation survives rollback');
+    expect(fs.existsSync(`${dbPath}.bak`)).toBe(false);
+    expect(fs.existsSync(journalPath)).toBe(false);
+    expect(checkpoints.isRestoreInProgress()).toBe(false);
+  });
+
   it('recovers an interrupted v2 restore from the boot journal', () => {
     checkpoints.createCheckpoint({ name: 'restore-crash', includeEmbeddings: false });
     database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Live mutation before crash', 1);
@@ -291,6 +329,57 @@ describe('checkpoint v2 restore', () => {
     expect(readMarkerValue(dbPath)).toBe('restored-live');
     expect(fs.existsSync(journalPath)).toBe(false);
     expect(fs.existsSync(getNeedsRebuildSentinelPath())).toBe(true);
+    expect(fs.existsSync(backupMainPath)).toBe(false);
+  });
+
+  it('re-merges post-snapshot catalog rows from the .bak during swap-done recovery', () => {
+    database.close();
+    const backupMainPath = `${dbPath}.bak`;
+    const journalPath = getRestoreJournalPath();
+    fs.rmSync(dbPath, { force: true });
+
+    const catalogSchema = `
+      CREATE TABLE checkpoints (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT UNIQUE NOT NULL,
+        created_at TEXT NOT NULL,
+        snapshot_format TEXT DEFAULT 'v1',
+        memory_snapshot BLOB
+      );
+    `;
+    // Live (post-swap snapshot) DB only knows the snapshot-era checkpoint.
+    const liveDb = new Database(dbPath);
+    liveDb.exec(catalogSchema);
+    liveDb.prepare('INSERT INTO checkpoints (name, created_at, snapshot_format) VALUES (?, ?, ?)')
+      .run('snapshot-era', '2026-01-01T00:00:00.000Z', 'v2');
+    liveDb.close();
+    // The .bak (pre-swap live) DB additionally has a v1 checkpoint created AFTER the
+    // snapshot, with an inline BLOB payload that must survive the merge.
+    const backupDb = new Database(backupMainPath);
+    backupDb.exec(catalogSchema);
+    backupDb.prepare('INSERT INTO checkpoints (name, created_at, snapshot_format) VALUES (?, ?, ?)')
+      .run('snapshot-era', '2026-01-01T00:00:00.000Z', 'v2');
+    backupDb.prepare('INSERT INTO checkpoints (name, created_at, snapshot_format, memory_snapshot) VALUES (?, ?, ?, ?)')
+      .run('post-snapshot', '2026-02-01T00:00:00.000Z', 'v1', Buffer.from('inline-v1-payload'));
+    backupDb.close();
+
+    writeRestoreJournalForPath('catalog-remerge', dbPath, backupMainPath, journalPath, {
+      phase: 'swap-done',
+    });
+
+    expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(true);
+
+    const merged = new Database(dbPath, { readonly: true });
+    try {
+      const names = (merged.prepare('SELECT name FROM checkpoints ORDER BY name').all() as Array<{ name: string }>)
+        .map((row) => row.name);
+      expect(names).toEqual(['post-snapshot', 'snapshot-era']);
+      const blob = (merged.prepare('SELECT memory_snapshot FROM checkpoints WHERE name = ?').get('post-snapshot') as { memory_snapshot: Buffer | null }).memory_snapshot;
+      expect(blob?.toString()).toBe('inline-v1-payload');
+    } finally {
+      merged.close();
+    }
+    expect(fs.existsSync(journalPath)).toBe(false);
     expect(fs.existsSync(backupMainPath)).toBe(false);
   });
 
@@ -451,6 +540,35 @@ describe('checkpoint v2 restore', () => {
     expect(() => recoverInterruptedCheckpointRestore(dbPath)).not.toThrow();
     expect(recoverInterruptedCheckpointRestore(dbPath)).toBe(false);
     expect(fs.existsSync(journalPath)).toBe(true);
+  });
+
+  it('writes a needs-rebuild sentinel on the v1 restore path when the derived rebuild is incomplete', () => {
+    checkpoints.createCheckpoint({ name: 'v1-rebuild-failure', specFolder: 'test-spec' });
+    // Break the derived rebuild (auto-entities fails, fts-rebuild skips) the same way the
+    // v2 sentinel test does, so the v1 path must leave a sentinel symmetrically.
+    database.exec('ALTER TABLE memory_index ADD COLUMN parent_id INTEGER');
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
+
+    const result = checkpoints.restoreCheckpoint('v1-rebuild-failure', true, {}, {
+      reopen: () => {
+        throw new Error('v1 must not use the v2 reopen hook');
+      },
+    });
+    const sentinelPath = getNeedsRebuildSentinelPath();
+    const sentinel = JSON.parse(fs.readFileSync(sentinelPath, 'utf-8')) as {
+      source?: string;
+      rebuildSummary?: {
+        failed?: Array<{ name?: string }>;
+        skipped?: Array<{ name?: string }>;
+      };
+    };
+
+    expect(result.errors).toEqual([]);
+    expect(fs.existsSync(sentinelPath)).toBe(true);
+    expect(sentinel.source).toBe('checkpoint_restore');
+    expect(sentinel.rebuildSummary?.failed?.some((entry) => entry.name === 'auto-entities')).toBe(true);
+    expect(sentinel.rebuildSummary?.skipped?.some((entry) => entry.name === 'fts-rebuild')).toBe(true);
+    expect(checkpoints.isRestoreInProgress()).toBe(false);
   });
 
   it('keeps v1 checkpoint rows on the JSON restore path', () => {

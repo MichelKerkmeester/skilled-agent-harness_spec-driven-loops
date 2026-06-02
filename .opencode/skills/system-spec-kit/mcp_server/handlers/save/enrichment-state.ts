@@ -75,7 +75,8 @@ function getMarkerStatus(
 }
 
 function mapExecutionStatus(result: PostInsertEnrichmentResult): PostInsertEnrichmentMarkerStatus {
-  switch ((result.executionStatus as { status?: string }).status) {
+  const status = (result.executionStatus as { status?: string }).status;
+  switch (status) {
     case 'ran':
       return 'complete';
     case 'deferred':
@@ -85,7 +86,11 @@ function mapExecutionStatus(result: PostInsertEnrichmentResult): PostInsertEnric
     case 'failed':
       return 'failed';
     default:
-      return 'complete';
+      // An unrecognized execution status must NOT be finalized as 'complete' — that
+      // would mark enrichment done and exclude the row from future repair. Map to the
+      // repairable 'partial' marker and surface the unexpected value for diagnosis.
+      console.warn(`[enrichment-state] Unexpected execution status ${JSON.stringify(status)}; treating as 'partial' (repairable)`);
+      return 'partial';
   }
 }
 

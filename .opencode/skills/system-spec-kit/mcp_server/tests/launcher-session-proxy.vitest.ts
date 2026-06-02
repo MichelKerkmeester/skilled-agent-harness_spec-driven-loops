@@ -213,6 +213,30 @@ describe('launcher session proxy frame engine', () => {
     expect(outOfPositionTracker.getCachedInitialize()).toBe(initialize);
   });
 
+  it('reassembles a multibyte frame split across chunk boundaries without U+FFFD corruption', () => {
+    // The payload mixes CJK (3-byte) and an emoji (4-byte surrogate pair) so a naive
+    // per-chunk chunk.toString('utf8') would drop replacement chars at every split.
+    const payload = '日本語テスト 😀 mixed 한국어';
+    const frameValue = frame({ jsonrpc: '2.0', id: 'mb', method: 'tools/call', params: { name: 'memory_search', text: payload } });
+    const frameBytes = Buffer.from(`${frameValue}\n`, 'utf8');
+
+    const received: string[] = [];
+    const splitter = __testing.createFrameSplitter((line) => received.push(line));
+
+    // Split at every byte offset so each boundary lands mid-multibyte-sequence at least once.
+    for (let cut = 1; cut < frameBytes.length; cut += 1) {
+      received.length = 0;
+      splitter.discard();
+      splitter.push(frameBytes.subarray(0, cut));
+      splitter.push(frameBytes.subarray(cut));
+
+      expect(received).toHaveLength(1);
+      expect(received[0]).not.toContain('�');
+      const parsed = JSON.parse(received[0]) as { params: { text: string } };
+      expect(parsed.params.text).toBe(payload);
+    }
+  });
+
   it('discards a truncated backend frame on close without clearing the pending request', () => {
     const tracker = __testing.createPendingRequestsTracker();
     const request = toolCall(7, 'memory_search');
@@ -396,6 +420,60 @@ describe('launcher session proxy frame engine', () => {
     expect(output.ended).toBe(true);
   });
 
+  it('does not restart the reattach loop after give-up while stop is deferred by output backpressure', async () => {
+    vi.useFakeTimers();
+    const input = new FakeInput();
+    const sockets: FakeSocket[] = [];
+    const logs: string[] = [];
+    let probeCalls = 0;
+
+    // Output stays under backpressure (write returns false) so requestOutputEnd defers stop()
+    // until a drain that never arrives. Before the fix this kept state='REATTACHING', letting
+    // the ensureReattachRunning guard kick off a fresh 40-attempt loop.
+    class BackpressuredOutput extends FakeOutput {
+      public write(chunk: string): boolean {
+        this.writes.push(String(chunk));
+        return false;
+      }
+    }
+    const output = new BackpressuredOutput();
+
+    const proxy = createSessionProxy({
+      socketPath: 'tcp://127.0.0.1:65535',
+      stdin: input,
+      stdout: output,
+      probe: () => {
+        probeCalls += 1;
+        // First probe (cold start) is alive; every reattach probe is dead, forcing give-up.
+        return Promise.resolve(probeCalls === 1
+          ? { status: 'alive', reason: 'startup' }
+          : { status: 'dead', reason: 'gone' });
+      },
+      connect: createConnectedSocket(sockets),
+      log: (message: string) => logs.push(message),
+      maxReattachAttempts: 2,
+      maxColdStartAttempts: 1,
+    });
+
+    await proxy.start();
+    // Leave a pending request so give-up has a frame to enqueue (triggering the deferred stop()).
+    input.send(toolCall('stuck', 'memory_search'));
+    await flushMicrotasks();
+    sockets[0]?.emit('close');
+
+    await vi.advanceTimersByTimeAsync(5000);
+    await flushMicrotasks(30);
+    const probesAfterGiveUp = probeCalls;
+    await vi.advanceTimersByTimeAsync(5000);
+    await flushMicrotasks(30);
+
+    // No fresh reattach loop must start after give-up: probe count is stable and the guard's
+    // restart log never fires. stop() stays deferred (output never drained) — that is expected.
+    expect(logs.some((message) => message.includes('reattach loop guard restarting'))).toBe(false);
+    expect(probeCalls).toBe(probesAfterGiveUp);
+    proxy.stop();
+  });
+
   it('primes coalesced post-handshake frames into the backend splitter', async () => {
     const input = new FakeInput();
     const output = new FakeOutput();
@@ -461,6 +539,55 @@ describe('launcher session proxy frame engine', () => {
     expect(sockets[1]?.destroyed).toBe(true);
     expect(sockets[2]?.writes.some((chunk) => chunk.includes('replay-me'))).toBe(true);
     expect(input.paused).toBe(false);
+    expect(output.ended).toBe(false);
+    proxy.stop();
+  });
+
+  it('does not double-send initialize when the backend dies before answering it', async () => {
+    const input = new FakeInput();
+    const output = new FakeOutput();
+    const sockets: FakeSocket[] = [];
+    const initialize = frame({ jsonrpc: '2.0', id: 'init', method: 'initialize', params: {} });
+    const proxy = createSessionProxy({
+      socketPath: 'tcp://127.0.0.1:65535',
+      stdin: input,
+      stdout: output,
+      probe: aliveProbe,
+      connect: createConnectedSocket(sockets, (socket, index) => {
+        if (index !== 1) return;
+        // The fresh backend answers the internal re-handshake initialize.
+        socket.onWrite = (chunk) => {
+          const parsed = JSON.parse(chunk.trim()) as { id: string; method?: string };
+          if (parsed.method === 'initialize') {
+            queueMicrotask(() => {
+              socket.emit('data', `${frame({ jsonrpc: '2.0', id: parsed.id, result: { protocolVersion: '2025-06-18' } })}\n`);
+            });
+          }
+        };
+      }),
+      log: () => undefined,
+      maxReattachAttempts: 3,
+      maxColdStartAttempts: 1,
+    });
+
+    await proxy.start();
+    // Client sends initialize; the first backend dies BEFORE answering it, so initialize
+    // stays pending and is carried into the reattach replay snapshot.
+    input.send(initialize);
+    await flushMicrotasks();
+    sockets[0]?.emit('close');
+    await flushMicrotasks(20);
+
+    // The fresh socket must receive initialize exactly once (the internal handshake), never a
+    // second time from replaySnapshot. A duplicate would re-run backend initialize side effects.
+    const initializeWrites = (sockets[1]?.writes ?? []).filter((chunk) => chunk.includes('"method":"initialize"'));
+    expect(initializeWrites).toHaveLength(1);
+
+    // The client receives exactly one initialize response (forwarded from the handshake).
+    const clientInitResponses = outputFrames(output).filter(
+      (parsed) => parsed.id === 'init' && Object.prototype.hasOwnProperty.call(parsed, 'result'),
+    );
+    expect(clientInitResponses).toHaveLength(1);
     expect(output.ended).toBe(false);
     proxy.stop();
   });
