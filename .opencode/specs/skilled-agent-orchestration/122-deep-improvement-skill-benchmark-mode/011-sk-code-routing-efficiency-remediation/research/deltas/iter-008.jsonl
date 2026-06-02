@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":8,"newInfoRatio":0.48,"status":"complete","focus":"D4-R task-usefulness instrument"}
+{"type":"finding","id":"f-i8-01","label":"Post-remediation aggregate/D3 gains are real only for the stated-route proxy; D4 remains unscored","iteration":8}
+{"type":"finding","id":"f-i8-02","label":"Current D4 grades routing-analysis JSON with a hallucination grader, not routine task execution","iteration":8}
+{"type":"finding","id":"f-i8-03","label":"Normal skill-benchmark reports cannot lift D4 because D4 ablation is not integrated into the report aggregator","iteration":8}
+{"type":"finding","id":"f-i8-04","label":"The playbook already supplies routine task prompts, outcome rules, and contamination constraints for a D4-R suite","iteration":8}
+{"type":"finding","id":"f-i8-05","label":"A separate D4_task_outcome_delta should be added instead of collapsing hallucination delta, D2 recall, and D3 efficiency","iteration":8}

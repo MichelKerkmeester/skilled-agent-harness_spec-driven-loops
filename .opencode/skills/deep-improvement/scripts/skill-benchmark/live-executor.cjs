@@ -158,8 +158,12 @@ function parseLiveResult(stdout, { skillId } = {}) {
     parseable: events.length > 0,
     observedIntents: [],
     // The model's STATED routing is the primary discovery signal; observed file
-    // reads corroborate. Union the two stated lists for resource recall.
-    observedResources: [...new Set([...statedResources, ...statedAssets])],
+    // reads corroborate. References and assets are kept on SEPARATE channels:
+    // D2/D3 score references only, asset support is scored on its own lane. The
+    // router defers assets on demand, so counting a stated, useful asset as a
+    // routed reference made it read as efficiency waste — a measurement artifact.
+    observedResources: [...new Set(statedResources)],
+    observedAssets: [...new Set(statedAssets)],
     observedSurface: statedSurface,
     statedRoutingCorrect: null,
     activation: { activated, topSkill: activated ? skillId : null },

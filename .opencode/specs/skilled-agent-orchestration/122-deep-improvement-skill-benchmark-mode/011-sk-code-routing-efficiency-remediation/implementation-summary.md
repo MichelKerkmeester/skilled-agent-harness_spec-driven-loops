@@ -8,14 +8,15 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation"
-    last_updated_at: "2026-06-01T00:00:00Z"
+    last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Deep research converged (3 native-Opus iters); recommendation recorded in research/research.md"
-    next_safe_action: "Implement the surface-nested router in the follow-on BUILD phase 012"
+    recent_action: "Round-2 deep research (5 gpt-5.5 iters) added to research.md §12-18; did not converge"
+    next_safe_action: "Decide fidelity track: prompt-source recon + deferred-asset lane + D4-R instrument"
     blockers: []
     key_files:
       - ".opencode/skills/sk-code/references/smart_routing.md"
       - "research/research.md"
+      - ".opencode/skills/deep-improvement/scripts/skill-benchmark/d4-ablation.cjs"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "sk-code-routing-efficiency-remediation"

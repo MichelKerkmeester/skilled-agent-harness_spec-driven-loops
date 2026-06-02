@@ -1,6 +1,7 @@
 # Deep Research — sk-code Routing-Efficiency & Usefulness Remediation
 
-> Synthesized from 3 native-Opus `@deep-research` iterations (converged at the planned stop). Source iterations: `iterations/iteration-00{1,2,3}.md`. Canonical findings ledger: `deltas/iter-00{1,2,3}.jsonl`.
+> **Round 1** (§§1–11): synthesized from 3 native-Opus `@deep-research` iterations (converged at the planned stop). Recommended H1 surface-nesting + cross-surface overlay + H4 intra-surface ranking + asset deferral — all **shipped in phase 012**. Source: `iterations/iteration-00{1,2,3}.md`, `deltas/iter-00{1,2,3}.jsonl`.
+> **Round 2** (§12): a post-012 follow-on — 5 iterations dispatched to **gpt-5.5-fast (variant high)** via cli-opencode, asking what is *left* to improve D3/D4 given 012's levers already ship. Source: `iterations/iteration-00{4..8}.md`, `deltas/iter-00{4..8}.jsonl`. Did **not** converge (newInfoRatio 0.86→0.48 at the planned max-5 stop) — the post-remediation D3/D4 space is richer than round-1's.
 
 ## 1. Question
 
@@ -99,3 +100,75 @@ Findings across `iteration-001.md`, `iteration-002.md`, and `iteration-003.md` c
 
 `sk-code/references/smart_routing.md` (§2 scoring, §3 tiers, §11 router + drift-guard note), `sk-code/SKILL.md` §2 (surface/phase detection), `sk-code/references/stack_detection.md`, `sk-code/references/phase_detection.md`, `sk-code/benchmark/live-final/skill-benchmark-report.json`, `sk-code/benchmark/live-final/d4-ablation.json`, `sk-code/manual_testing_playbook/01--surface-detection/001-webflow-detection.md`, `sk-code/manual_testing_playbook/07--cross-stack-routing/018-webflow-plus-motion-dev.md`, `deep-improvement/scripts/skill-benchmark/router-replay.cjs`, `deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs`.
 <!-- /ANCHOR:findings -->
+
+---
+
+# Round 2 — Post-012 Follow-on (gpt-5.5-fast, variant high)
+
+## 12. The question, reframed
+
+Round 1 asked *how to cut D3 / lift D4*; 012 shipped its answer (surface-nesting + cross-surface overlay + OpenCode language sub-slice + asset deferral), moving **router D3 19→33** and **live D3 42→50, D2 87→95, aggregate 71→79**. Round 2 asked the harder follow-on: **what is left, and how much of the remaining "gap" is the skill versus the benchmark instrument?** Five gpt-5.5 iterations, each grounded in real `file:line` evidence, converge on one uncomfortable headline:
+
+> **Most of the remaining D3/D4 "gap" is a measurement problem, not a routing problem.** The live D3 gain is real but *bounded and partly unmeasured*; the asset-deferral slice of it is an artifact; and **D4 = 49 does not measure routine-task usefulness at all.** Before chasing more score, fix the instrument.
+
+### 12.1 Real vs artifact — the load-bearing verdict
+
+| Reported signal | Verdict | Evidence |
+|---|---|---|
+| Live D3 42→50 (stated-route efficiency) | **REAL** — H1 + language slicing genuinely route fewer/tighter paths (SD-001 20→16 routed, CS-001 wasted 10→5) | f-i8-01, f-i8-02 (`live-{final,remediated}/…json`) |
+| Asset-deferral's share of the D3 gain | **ARTIFACT** — folding `expectedAssets` into gold moves D2 by **−9.55 pts** but D3 by **0.0000**, because the router filters every `assets/*` *before* D3 is computed | f-i4-02, f-i4-03 (`router-replay.cjs:241-243`, `score-skill-benchmark.cjs:102-118`) |
+| Live D3 as a *cost* metric | **PARTLY UNKNOWN** — D3 scores the model's *stated* route, while its *observed* reads still include broad `references/**`/`assets/**` globs that D3 never counts | f-i6-04, f-i7-05, f-i8-03 (`live-executor.cjs:149-168`) |
+| **D4 ≈ 49 (routine usefulness)** | **ARTIFACT for this question** — it is pre-remediation, n=2, **graded by a *hallucination* grader** whose own prompt says "do not score correctness/paths/planning", and post-012 D4 is hard-coded `null`/`unscored-mode-a` in every aggregate | f-i6-01, f-i6-02, f-i8-06, f-i8-09 (`d4-ablation.cjs:35-52`, `system-grader.md:3-4,22-41`, `score-skill-benchmark.cjs:254-264`) |
+
+**Implication:** post-012 routine-task usefulness is genuinely **UNKNOWN**, not 49. Any further D3 tuning that is not paired with a real usefulness check can improve the score while silently hurting routine work.
+
+## 13. Real D3 levers that remain (ranked)
+
+| Rank | Lever | What it fixes | D3 effect | D1/D2 effect | Real or artifact |
+|---|---|---|---|---|---|
+| **1** | **Intent-signal coverage (gold↔map reconciliation)** | SD-001 misses `observer_patterns.md`/`webflow_patterns.md` because `gate`/`gated`/`IntersectionObserver`/`smooth-scroll` don't fire `IMPLEMENTATION`; CS-001's `Motion CDN`/`in-view`/`snippet` don't fire `MOTION_DEV` | may *lower* D3 (more routed) | **raises D2** (the actual bottleneck) | **REAL** behavior fix |
+| **2** | **Live routing-discipline guard** | the model reads broad `references/**`/`assets/**` globs after sk-code loads — real token/tool cost D3 doesn't even score | real cost ↓ (unscored today) | none if exact-files-from-stated-route | **REAL**, needs a cost-aware metric to see it |
+| 3 | **Webflow concern overlay** (`implementation`/`performance`/`verification`/`accessibility`/`motion`) | residual within-surface waste (Webflow has no sub-slice, unlike OpenCode's language slice) | small on SD-001 (already D3 0.833) | D2-safety conflict with the implementation-trio contract | partial; **not** a phase gate |
+| — | **H2 phase-gating** | — | **not measurable** — the machine router declares "No phase boosts"; needs new machine state first | — | do **not** build as specified |
+
+**Key reorientation (f-i7-04, f-i7-02):** SD-001's deterministic D3 is *already* 0.833 (1 wasted of 6) — its failing stage is **`discovered` (D2 0.4545)**, not efficiency. The remaining sk-code bottleneck on the canonical scenarios is **recall/coverage, not over-routing.** CS-006/CS-007 (perf/accessibility cross-stack) are the same story: low D2 from missing concern-intent mapping, not wrong-phase slicing.
+
+## 14. Measurement-fidelity fixes (prerequisites — do these *before* chasing score)
+
+1. **Prompt-source reconciliation (f-i5-01, f-i5-03).** The parser uses CS-001's *per-feature* prompt ("Motion CDN… in-view snippet") which fires no `MOTION_DEV`, while the *root-table* prompt ("motion.dev animations") does. Aligning them lifts CS-001 D2 0.20→~0.50, D3 0.286→~0.417 — **report this as benchmark cleanup, not a router win.**
+2. **Deferred-asset lane (f-i4-09).** Score `expectedAssets` separately as `assetRecall` / `D4_asset_support`; do **not** fold assets into D3 (the router contract intentionally defers them). This stops asset deferral from reading as a pure D3 win.
+3. **Observed-cost D3 variant (f-i7-03, f-i8-03).** Add a metric scoring actual read/glob breadth + time-to-first-expected-source from live tool events, distinct from stated-route D3.
+4. **Prose↔logic contradiction (f-i5-06, f-i7-03).** `smart_routing.md` prose mandates the Webflow implementation-trio for *any* Webflow surface; route-time logic loads only matched intents. Reconcile: either always-load (accept D3 cost) or relax the prose/gold.
+
+## 15. The D4-R instrument — the real answer to "improve D4"
+
+You cannot *improve* D4 until you *measure* it. The build-ready design (f-i6-06, f-i8-13):
+
+- **Prompt shape:** no-write, "produce a minimal patch plan / unified diff + the verification commands" — **not** the current routing-analysis JSON.
+- **Score 4 axes:** task-action correctness · verification fit · contamination (no irrelevant cross-surface/-language advice) · hallucinated symbol/path risk.
+- **Keep two numbers separate:** existing `D4_hallucination_delta` **and** new `D4_task_outcome_delta` — never collapse them (f-i8-05).
+- **Integrate into the aggregator** (today `runD4Ablation` is never called by `run-skill-benchmark.cjs`; D4 is hard-coded null — f-i8-09).
+- **Corpus already exists (f-i6-05, f-i8-11):** LS-001/002/003/004 + SD-002 are authored routine scenarios → n=2 becomes n=5 with no synthetic corpus. *Caveat (f-i6-07):* adding LS-002 moves D4 49→~49.5 — the gain is **honesty/stability, not a score bump.**
+- **Real-gain criterion:** skill-on must improve task-action correctness *or* verification fit vs skill-off **without** increasing broad observed discovery.
+
+## 16. Updated recommendation & sequencing
+
+The post-012 work splits into a **fidelity track** (must precede any score claim) and a **behavior track**:
+
+1. **Fidelity first:** prompt-source reconciliation (§14.1) + deferred-asset lane (§14.2) + integrate D4-R with the two-number split (§15). Outcome: honest, comparable D2/D3 and a *real* D4.
+2. **Then behavior:** add the SD-001/CS-001 intent synonyms (§13.1) — accept the D3↔D2 tradeoff consciously, guarded by the round-1 D2 floors. This is the only lever that moves the true bottleneck (recall).
+3. **Optional:** the live routing-discipline guard (§13.2) + observed-cost D3 (§14.3) if real exploration cost matters to the program.
+4. **Defer/drop:** H2 phase-gating as specified (unmeasurable); a Webflow concern overlay only if §13.1 proves insufficient.
+
+## 17. Honest limits (round 2)
+
+- **Round 2 did not converge** (newInfoRatio 0.48 at iter 8). The fidelity/usefulness seam has more depth than 5 iterations covered — a further round (or the D4-R build itself) would surface more.
+- **Exact live D3 artifact magnitude is UNKNOWN** — stored reports keep only trimmed `responseHead` + observed reads, not the full stated `assets` array (f-i4-06, f-i5-08).
+- **All round-2 conclusions are static analysis** of the router/scorer/playbook code and the *existing* report artifacts — no new benchmark was executed. The D4-R lift is a *design*, not a measured result; the first thing its build phase must do is run it.
+- These are **benchmark/skill-fidelity findings**, several of which live in `deep-improvement`'s scorer, not in `sk-code` — implementing them is partly a benchmark change, not only a skill change.
+
+<!-- ANCHOR:findings-r2 -->
+## 18. Round-2 sources
+
+gpt-5.5 iterations 4–8 cite, beyond the round-1 set: `deep-improvement/scripts/skill-benchmark/load-playbook-scenarios.cjs`, `…/live-executor.cjs`, `…/d4-ablation.cjs`, `…/run-skill-benchmark.cjs`, `…/browser-executor.cjs`, `deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader.md`, `deep-improvement/scripts/model-benchmark/scorer/grader/harness.cjs`, `sk-code/benchmark/{router-final,live-remediated}/skill-benchmark-report.json`, `sk-code/manual_testing_playbook/manual_testing_playbook.md`, and the `02--language-sub-detection/00{4,5,6,7}-*.md` + `07--cross-stack-routing/0{18,23,24}-*.md` scenario gold.
+<!-- /ANCHOR:findings-r2 -->

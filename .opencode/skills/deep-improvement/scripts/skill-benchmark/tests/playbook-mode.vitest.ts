@@ -14,7 +14,7 @@ const { dispatchScenario } = require(join(SB, 'executor-dispatch.cjs'));
 const { scoreScenario, aggregate, computeDivergence } = require(join(SB, 'score-skill-benchmark.cjs'));
 const { parseLiveResult, extractRoutingJson, proseRoutingFallback } = require(join(SB, 'live-executor.cjs'));
 const { executeBrowserScenario, verdictToDims } = require(join(SB, 'browser-executor.cjs'));
-const { gradeAblation, buildSkillOffPrompt } = require(join(SB, 'd4-ablation.cjs'));
+const { gradeAblation, buildSkillOffPrompt, gradeTaskOutcome, buildTaskOutcomePrompt } = require(join(SB, 'd4-ablation.cjs'));
 const { generatePlaybook, analyzeCoverage, validateGenerated } = require(join(SB, 'playbook-generator.cjs'));
 const { mkdtempSync } = require('node:fs');
 const { tmpdir } = require('node:os');
@@ -122,7 +122,10 @@ describe('live-executor — parseLiveResult on the real event schema', () => {
     expect(r.activation.activated).toBe(true);
     expect(r.activation.topSkill).toBe('sk-code');
     expect(r.observedSurface).toBe('WEBFLOW');
-    expect(r.observedResources).toEqual(['references/a.md', 'assets/b.js']);
+    // References and assets are now scored on separate channels (the asset lane),
+    // so a stated asset no longer counts as a routed reference (D3 waste artifact).
+    expect(r.observedResources).toEqual(['references/a.md']);
+    expect(r.observedAssets).toEqual(['assets/b.js']);
     expect(r.raw.observedReads).toContain('references/webflow/x.md');
   });
 
@@ -279,5 +282,61 @@ describe('aggregate — coverage + routed-out handling', () => {
     expect(report.coverage.scored).toBe(1);
     expect(report.coverage.browser).toBe(1);
     expect(report.aggregateScore).toBe(80); // browser row excluded from the avg
+  });
+});
+
+describe('asset lane — expectedAssets scored separately from D2/D3', () => {
+  it('router mode: assets are deferred (assetRecall unscored, no D2/D3 distortion)', () => {
+    const scenario = { scenarioId: 'A-1', classKind: 'routing', expectedResources: ['references/a.md'], expectedAssets: ['assets/x.js'], negativeActivation: false };
+    const observed = { mode: 'router', parseable: true, observedResources: ['references/a.md'], missingResources: [] };
+    const row = scoreScenario({ scenario, observed, traceMode: 'router' });
+    expect(row.dims.assetRecall.score).toBeNull();
+    expect(row.dims.assetRecall.deferred).toBe(true);
+    expect(row.dims.d2.score).toBe(1); // assets never touch D2
+  });
+
+  it('live mode: assetRecall = recall of expectedAssets in observedAssets; stated asset is not D3 waste', () => {
+    const scenario = { scenarioId: 'A-2', classKind: 'routing', expectedSurface: 'WEBFLOW', expectedResources: ['references/a.md'], expectedAssets: ['assets/x.js', 'assets/y.js'], negativeActivation: false };
+    const observed = { mode: 'live', parseable: true, observedSurface: 'WEBFLOW', observedResources: ['references/a.md'], observedAssets: ['assets/x.js'], missingResources: [] };
+    const row = scoreScenario({ scenario, observed, traceMode: 'live' });
+    expect(row.dims.assetRecall.score).toBe(0.5); // 1 of 2 expected assets
+    expect(row.dims.d3.wastedCount).toBe(0); // a stated asset no longer counts as routed-reference waste
+  });
+});
+
+describe('D4-R task-outcome — a separate instrument from D4 hallucination', () => {
+  it('grades on/off into a normalized [0,1] delta, stamped task-outcome + approximate', async () => {
+    const r = await gradeTaskOutcome({
+      scenario: { scenarioId: 'LS-002', passCriteria: 'edits skill_advisor.py to add a --json-output flag' },
+      onText: 'Edit skill_advisor.py: add --json-output. Verify: python3 skill_advisor.py --json-output',
+      offText: 'vague answer', graderMode: 'mock',
+    });
+    expect(r.d4r.score).toBeGreaterThanOrEqual(0);
+    expect(r.d4r.score).toBeLessThanOrEqual(1);
+    expect(r.d4r.instrument).toBe('task-outcome');
+    expect(r.d4r.attribution).toBe('approximate');
+    expect(typeof r.d4r.onScore).toBe('number');
+  });
+
+  it('the task-outcome prompt asks for a patch plan + verification, not a routing list', () => {
+    const p = buildTaskOutcomePrompt({ prompt: 'add a flag' });
+    expect(p).toMatch(/implementation plan/i);
+    expect(p).toMatch(/verification command/i);
+    expect(p).toMatch(/not just list which docs/i);
+  });
+});
+
+describe('aggregate — advisory signals are additive, not weighted', () => {
+  it('surfaces D4_task_outcome + assetRecall without changing the weighted aggregate', () => {
+    const rows = [
+      { scenarioId: 'R-1', classKind: 'routing', modeAScore: 80, firstFailingStage: null,
+        dims: { d1intra: { score: 0.8 }, d2: { score: 0.8 }, d3: { score: 0.8 }, d1inter: { score: null }, assetRecall: { score: 0.5 } },
+        d4TaskOutcome: { score: 0.7 } },
+    ];
+    const report = aggregate({ skillId: 'x', skillRoot: '/x', scenarioRows: rows, connectivity: { score: 90, gateFailed: false, findings: [] }, traceMode: 'live' });
+    expect(report.aggregateScore).toBe(80); // unchanged by the advisory signals
+    expect(report.advisorySignals.D4_task_outcome.score).toBe(70);
+    expect(report.advisorySignals.assetRecall.score).toBe(50);
+    expect(report.dimensionScores.D4.score).toBeNull(); // hallucination D4 stays its own (unscored here)
   });
 });

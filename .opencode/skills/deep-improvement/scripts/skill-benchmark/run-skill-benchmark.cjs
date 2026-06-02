@@ -179,13 +179,64 @@ function run(args) {
   return 0;
 }
 
-module.exports = { run, resolveSkillRoot, loadFixtures };
+// Opt-in D4-R pass (live + paid). Kept OUT of the synchronous run() so the
+// deterministic test suite (which calls run() and reads the report immediately)
+// stays sync. Re-reads the report run() wrote, runs the task-outcome ablation on
+// the routine scenarios, attaches each row's d4TaskOutcome, recomputes the
+// advisory D4_task_outcome aggregate, and re-writes report.{json,md}.
+const DEFAULT_D4R_SCENARIOS = ['LS-001', 'LS-002', 'LS-003', 'LS-004', 'SD-002'];
+
+async function augmentWithD4R(args) {
+  const { runD4RAblation } = require('./d4-ablation.cjs');
+  const skillRoot = resolveSkillRoot(args.skill);
+  const outputsDir = path.resolve(args['outputs-dir']);
+  const reportJsonPath = args.output ? path.resolve(args.output) : path.join(outputsDir, 'skill-benchmark-report.json');
+  const report = JSON.parse(fs.readFileSync(reportJsonPath, 'utf8'));
+  const { scenarios } = loadPlaybookScenarios({ skillRoot, playbookDir: args['playbook-dir'] });
+  const wanted = (args['d4-scenarios'] ? String(args['d4-scenarios']).split(',') : DEFAULT_D4R_SCENARIOS)
+    .map((s) => s.trim().toUpperCase());
+  const byId = new Map((report.scenarioRows || []).map((r) => [(r.scenarioId || '').toUpperCase(), r]));
+  const graderMode = args['grader-mode'] || 'real';
+  const model = process.env.SKILL_BENCH_OPENCODE_MODEL;
+  const variant = process.env.SKILL_BENCH_OPENCODE_VARIANT;
+  let scored = 0;
+  for (const sc of scenarios) {
+    if (!wanted.includes((sc.scenarioId || '').toUpperCase())) continue;
+    process.stdout.write(`  D4-R ablation: ${sc.scenarioId} ...\n`);
+    const res = await runD4RAblation({ scenario: sc, skillRoot, model, variant, graderMode });
+    const row = byId.get((sc.scenarioId || '').toUpperCase());
+    if (row) { row.d4TaskOutcome = res.d4r; if (typeof res.d4r.score === 'number') scored += 1; }
+  }
+  const vals = (report.scenarioRows || [])
+    .map((r) => (r.d4TaskOutcome && typeof r.d4TaskOutcome.score === 'number' ? Math.round(r.d4TaskOutcome.score * 100) : null))
+    .filter((v) => typeof v === 'number');
+  const d4TaskAvg = vals.length ? Math.round(vals.reduce((a, b) => a + b, 0) / vals.length) : null;
+  report.advisorySignals = report.advisorySignals || {};
+  report.advisorySignals.D4_task_outcome = d4TaskAvg === null
+    ? { score: null, status: 'no D4-R rows scored', note: 'task-outcome usefulness delta; separate from D4 hallucination' }
+    : { score: d4TaskAvg, scoredCount: scored, attribution: 'approximate', note: 'task-outcome usefulness delta (skill-on vs off), separate from D4 hallucination' };
+  fs.writeFileSync(reportJsonPath, JSON.stringify(report, null, 2));
+  fs.writeFileSync(reportJsonPath.replace(/\.json$/, '.md'), renderReport(report));
+  process.stdout.write(`  D4-R: ${scored} scenario(s) scored; advisory D4_task_outcome=${d4TaskAvg == null ? 'null' : d4TaskAvg}\n`);
+  return 0;
+}
+
+module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));
   if (!args.skill || !args['outputs-dir']) {
-    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live]\n');
+    process.stderr.write('usage: run-skill-benchmark.cjs --skill <root-or-id> --outputs-dir <path> [--fixtures-dir <path>] [--playbook-dir <path>] [--scenarios <ids>] [--output <report.json>] [--trace-mode router|live] [--d4 [--d4-scenarios <ids>] [--grader-mode real|mock]]\n');
     process.exit(2);
   }
-  process.exit(run(args));
+  const code = run(args);
+  if (code === 0 && args.d4 && (args['trace-mode'] === 'live')) {
+    augmentWithD4R(args).then((c) => process.exit(c)).catch((err) => {
+      process.stderr.write(`D4-R pass failed: ${err && err.message}\n`);
+      process.exit(1);
+    });
+  } else {
+    if (args.d4 && args['trace-mode'] !== 'live') process.stderr.write('note: --d4 requires --trace-mode live; skipped.\n');
+    process.exit(code);
+  }
 }

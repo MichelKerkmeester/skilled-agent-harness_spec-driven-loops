@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":7,"newInfoRatio":0.62,"status":"complete","focus":"concern/phase slicing versus live broad-read waste"}
+{"type":"finding","id":"f-i7-01","label":"Phase-gated slicing is not currently measurable in router mode because the machine-readable router omits phase boosts.","iteration":7}
+{"type":"finding","id":"f-i7-02","label":"Current H2 deterministic headroom is small for SD-001: D3 is already 0.833 with only 1 wasted route, while D2 remains 0.4545.","iteration":7}
+{"type":"finding","id":"f-i7-03","label":"Post-remediation live D3 waste is driven partly by broad observed globs that D3 records as evidence but does not directly score.","iteration":7}
+{"type":"finding","id":"f-i7-04","label":"CS-006 and CS-007 residual failures point to performance/accessibility gold-map reconciliation, not generic phase gating.","iteration":7}
+{"type":"finding","id":"f-i7-05","label":"LS-002 is a concrete third routine D4-R candidate for task-usefulness grading.","iteration":7}

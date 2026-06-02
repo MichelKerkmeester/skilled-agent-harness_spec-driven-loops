@@ -40,7 +40,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 
 | Intent | Strong Signals |
 | --- | --- |
-| IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module` |
+| IMPLEMENTATION | `implement`, `build`, `create`, `feature`, `component`, `script`, `module`, `smooth-scroll`, `IntersectionObserver` |
 | CODE_QUALITY | `lint`, `format`, `quality gate`, `p0`, `p1`, `style`, `naming`, `standards` |
 | DEBUGGING | `debug`, `fix`, `bug`, `error`, `broken`, `failing`, `stack trace`, `console error` |
 | VERIFICATION | `verify`, `done`, `complete`, `works`, `fixed`, `passing`, `build`, `type-check` |
@@ -48,7 +48,7 @@ Intent classification scores task text against weighted keyword signals to pick 
 | DEPLOYMENT | `deploy`, `cdn`, `wrangler`, `release`, `metadata`, `skill graph` |
 | PERFORMANCE | `lighthouse`, `lcp`, `tbt`, `inp`, `cls`, `pagespeed`, `performance` |
 | ANIMATION | `animation`, `motion`, `transition`, `gsap`, `lenis`, `swiper` |
-| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `animate()`, `inView`, `scroll()`, `stagger`, `cross-stack animation` |
+| MOTION_DEV | `motion.dev`, `motion-dev`, `motion_dev`, `Motion API`, `Motion CDN`, `animate()`, `inView`, `in-view`, `scroll()`, `stagger`, `snippet`, `cross-stack animation` |
 | FORMS | `form`, `validation`, `filepond`, `schema`, `zod` |
 | VIDEO | `hls`, `video`, `stream`, `player` |
 | HOOKS | `hook`, `session-prime`, `user-prompt-submit`, `pre-tool-use`, `post-tool-use` |
@@ -307,7 +307,7 @@ DEFAULT_RESOURCE = [
 ]
 
 INTENT_SIGNALS = {
-    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring"]},
+    "IMPLEMENTATION":     {"weight": 1, "keywords": ["implement", "build", "create", "feature", "component", "module", "authoring", "smooth-scroll", "intersectionobserver"]},
     "CODE_QUALITY":       {"weight": 1, "keywords": ["lint", "format", "quality gate", "naming", "standards", "code smell"]},
     "DEBUGGING":          {"weight": 1, "keywords": ["debug", "broken", "failing", "stack trace", "console error", "regression"]},
     "VERIFICATION":       {"weight": 1, "keywords": ["verify", "passing", "type-check", "alignment drift", "completion claim"]},
@@ -315,7 +315,7 @@ INTENT_SIGNALS = {
     "DEPLOYMENT":         {"weight": 1, "keywords": ["deploy", "cdn", "wrangler", "minify", "staging", "production release"]},
     "PERFORMANCE":        {"weight": 1, "keywords": ["lighthouse", "core web vitals", "largest contentful", "pagespeed", "jank", "frame budget"]},
     "ANIMATION":          {"weight": 1, "keywords": ["transition", "gsap", "lenis", "carousel", "parallax"]},
-    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "scroll()", "cross-stack animation"]},
+    "MOTION_DEV":         {"weight": 1, "keywords": ["motion.dev", "motion-dev", "animate()", "inview", "in-view", "motion cdn", "scroll()", "cross-stack animation"]},
     "FORMS":              {"weight": 1, "keywords": ["form upload", "filepond", "field validation", "focus trap"]},
     "VIDEO":              {"weight": 1, "keywords": ["hls", "adaptive stream", "video player"]},
     "HOOKS":              {"weight": 1, "keywords": ["session-prime", "user-prompt-submit", "pre-tool-use", "post-tool-use"]},

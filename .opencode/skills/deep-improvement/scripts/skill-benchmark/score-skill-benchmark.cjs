@@ -56,6 +56,10 @@ function scoreScenario(arg) {
       // (sk-doc's expectedIntent); surface correctness is scored separately.
       intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
       resources: scenario.expectedResources || [],
+      // Assets are gold too, but scored on their own lane (assetRecall) — the
+      // router defers assets/* on demand, so folding them into resource recall
+      // would distort D2/D3.
+      assets: scenario.expectedAssets || [],
       negativeActivation: scenario.negativeActivation === true,
     };
   }
@@ -116,6 +120,20 @@ function scoreScenario(arg) {
         routedCount: routed, wastedCount: wasted,
         proxy: 'router-overload', note: 'Mode A proxy; live-mode replaces with calls/tokens-to-first-expected',
       };
+
+  // Asset support lane (advisory, not in the weighted aggregate). The router
+  // defers assets/* on demand, so they are scored separately instead of inside
+  // D2/D3. Router mode has no observed-asset channel (assets are not in the
+  // first slice), so it reports deferred; live mode scores stated-asset recall.
+  const expectedAssets = (expected && expected.assets) || [];
+  const observedAssets = obs && Array.isArray(obs.observedAssets) ? obs.observedAssets : null;
+  if (expectedAssets.length === 0) {
+    dims.assetRecall = { score: null, note: 'no expected assets for this scenario' };
+  } else if (observedAssets == null) {
+    dims.assetRecall = { score: null, deferred: true, expectedAssets, note: 'assets deferred on-demand; not in the first slice (router mode)' };
+  } else {
+    dims.assetRecall = { score: setRecall(expectedAssets, observedAssets), expectedAssets, observedAssets, note: 'live stated-asset recall (advisory, not weighted)' };
+  }
 
   // D1-inter: scored deterministically when an advisor probe is supplied (the
   // Python advisor reads the SQLite graph, no LLM), else left unscored.
@@ -224,6 +242,14 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
   // carried a numeric D1-inter score, so the dimension self-reports its coverage.
   const d1interAvg = avg((r) => (r.dims && r.dims.d1inter && typeof r.dims.d1inter.score === 'number'
     ? Math.round(r.dims.d1inter.score * 100) : null));
+  // Advisory signals — surfaced but NOT folded into the weighted aggregate (so
+  // the v1 dimension weights/verdict are unchanged). D4_task_outcome is attached
+  // to rows by the orchestrator's opt-in D4-R ablation pass; assetRecall comes
+  // from the per-scenario asset lane.
+  const d4TaskAvg = avg((r) => (r.d4TaskOutcome && typeof r.d4TaskOutcome.score === 'number'
+    ? Math.round(r.d4TaskOutcome.score * 100) : null));
+  const assetRecallAvg = avg((r) => (r.dims && r.dims.assetRecall && typeof r.dims.assetRecall.score === 'number'
+    ? Math.round(r.dims.assetRecall.score * 100) : null));
   const gateFailed = connectivity.gateFailed;
   let verdict;
   if (gateFailed) verdict = 'BLOCKED-BY-STRUCTURE';
@@ -262,6 +288,14 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
       D5: { points: WEIGHTS.d5, score: d5, hardGate: true },
     },
     unscoredDimensions: d1interAvg === null ? ['D1inter', 'D4'] : ['D4'],
+    advisorySignals: {
+      D4_task_outcome: d4TaskAvg === null
+        ? { score: null, status: 'unscored (run --d4 in live mode)', note: 'task-outcome usefulness delta; separate from D4 hallucination, never summed into it' }
+        : { score: d4TaskAvg, note: 'task-outcome usefulness delta (skill-on vs off), separate from D4 hallucination' },
+      assetRecall: assetRecallAvg === null
+        ? { score: null, status: 'deferred (router) or no asset gold', note: 'deferred-asset support recall; advisory, not weighted' }
+        : { score: assetRecallAvg, note: 'deferred-asset support recall; advisory, not weighted' },
+    },
     funnel,
     headlineBottleneck: headlineBottleneck ? headlineBottleneck[0] : null,
     bottlenecks,

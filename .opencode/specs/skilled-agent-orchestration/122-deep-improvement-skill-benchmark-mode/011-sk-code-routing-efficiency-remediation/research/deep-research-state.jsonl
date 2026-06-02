@@ -1,2 +1,9 @@
 {"event":"loop_init","executor":"native","model":"claude-opus-4-8","maxIterations":3,"convergenceThreshold":0.05}
 {"event":"converged","iterations":3,"stopReason":"max_iterations(planned)","newInfoRatio":[0.70,0.62,0.18],"recommendation":"H1 surface-nested map + full cross-surface overlay + H4 intra-surface ranking + asset deferral","synthesis":"research/research.md"}
+{"event":"loop_init","round":2,"executor":"cli-opencode","model":"openai/gpt-5.5-fast","variant":"high","maxIterations":5,"convergenceThreshold":0.05,"topic":"post-012 D3/D4 follow-on"}
+{"event":"iteration","iteration":4,"newInfoRatio":0.86,"findings":5,"converged":false,"secs":223}
+{"event":"iteration","iteration":5,"newInfoRatio":0.78,"findings":4,"converged":false,"secs":266}
+{"event":"iteration","iteration":6,"newInfoRatio":0.68,"findings":5,"converged":false,"secs":261}
+{"event":"iteration","iteration":7,"newInfoRatio":0.62,"findings":5,"converged":false,"secs":199}
+{"event":"iteration","iteration":8,"newInfoRatio":0.48,"findings":5,"converged":false,"secs":204}
+{"event":"converged","iterations":8,"stopReason":"max_iterations(planned)","newInfoRatio":[0.86,0.78,0.68,0.62,0.48]}

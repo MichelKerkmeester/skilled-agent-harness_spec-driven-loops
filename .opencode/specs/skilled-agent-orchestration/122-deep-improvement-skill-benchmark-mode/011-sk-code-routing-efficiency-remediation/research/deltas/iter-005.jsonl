@@ -1,0 +1,5 @@
+{"type":"iteration","iteration":5,"newInfoRatio":0.78,"status":"complete","focus":"gold-map-prompt reconciliation"}
+{"type":"finding","id":"f-i5-01","label":"CS-001 deterministic recall miss is partly a prompt-source artifact: the parser uses the per-feature prompt without motion.dev while the root prompt contains motion.dev.","iteration":5}
+{"type":"finding","id":"f-i5-02","label":"SD-001 is a real intent-signal gap: add/gated/IntersectionObserver/smooth-scroll do not trigger IMPLEMENTATION, so observer/webflow implementation gold is missed.","iteration":5}
+{"type":"finding","id":"f-i5-03","label":"smart_routing has a Webflow contract contradiction: prose mandates an implementation trio for any Webflow surface, while route-time logic loads only matched-intent slices.","iteration":5}
+{"type":"finding","id":"f-i5-04","label":"Live D3 can undercount actual exploration cost because live scoring uses stated resources/assets while observed reads include broad references/assets globs.","iteration":5}

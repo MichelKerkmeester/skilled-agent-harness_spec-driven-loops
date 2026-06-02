@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":6,"newInfoRatio":0.68,"status":"complete","focus":"D4 usefulness measurement instrument"}
+{"type":"finding","id":"f-i6-01","label":"post-remediation D4 is still unmeasured, so routine-usefulness lift is UNKNOWN","iteration":6}
+{"type":"finding","id":"f-i6-02","label":"current D4 ablation reuses a hallucination grader, not a task-usefulness grader","iteration":6}
+{"type":"finding","id":"f-i6-03","label":"live benchmark prompt measures routing analysis only and prevents action-outcome scoring","iteration":6}
+{"type":"finding","id":"f-i6-04","label":"live D3 still scores stated resources while broad observed globs remain raw evidence only","iteration":6}
+{"type":"finding","id":"f-i6-05","label":"LS-002 is an existing third routine scenario candidate for D4-R","iteration":6}

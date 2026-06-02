@@ -80,4 +80,95 @@ async function runD4Ablation({ scenario, skillRoot, model, variant, graderMode =
   return { ...graded, onActivated: !!(onParsed.activation && onParsed.activation.activated) };
 }
 
-module.exports = { runD4Ablation, gradeAblation, buildSkillOffPrompt, clamp01 };
+// ─────────────────────────────────────────────────────────────────────────────
+// D4-R: task-outcome usefulness (the complement of the hallucination delta).
+//
+// The hallucination ablation above grades a ROUTING-ANALYSIS answer with a
+// grader that is explicitly forbidden from scoring correctness — so it cannot
+// say whether the skill makes a ROUTINE TASK answer better. D4-R fixes that: it
+// asks the model to produce the actual change (a minimal patch plan + the
+// verification command), not a list of which docs it would load, and grades the
+// on/off pair with a task-outcome rubric. Reported as a SEPARATE number; the two
+// are never collapsed.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const TASK_OUTCOME_PROMPT_PATH = path.join(
+  __dirname, '..', 'model-benchmark', 'scorer', 'grader', 'prompts', 'system-grader-task-outcome.md',
+);
+
+// skill-ON task prompt: do the work, do not just route.
+function buildTaskOutcomePrompt(scenario) {
+  return [
+    'Produce a MINIMAL implementation plan for the task below — not a routing list.',
+    `Task: ${scenario.prompt || ''}`,
+    'Using the project code skill, output exactly: (1) the precise file(s) to change and the',
+    'exact edit (a short unified-diff-style sketch is fine), and (2) the verification command(s)',
+    'that would confirm the change. Do NOT edit files. Do NOT just list which docs you would load.',
+  ].join('\n');
+}
+
+// skill-OFF task prompt: same work, from the model's own knowledge, no skill.
+function buildTaskOutcomeOffPrompt(scenario) {
+  return [
+    'Answer ONLY from your own knowledge. Do NOT load any skill and do NOT read project skill files.',
+    `Task: ${scenario.prompt || ''}`,
+    'Output exactly: (1) the precise file(s) to change and the exact edit, and (2) the verification',
+    'command(s) that would confirm it. Do NOT edit files.',
+  ].join('\n');
+}
+
+/**
+ * Grade an on/off task-outcome pair with the task-outcome rubric (NOT the
+ * hallucination grader). Deterministic under a mock graderMode. Mirrors
+ * gradeAblation's delta math so the two instruments are comparable.
+ */
+async function gradeTaskOutcome({ scenario, onText, offText, graderMode = 'mock', cacheDir }) {
+  const base = {
+    variant_hash: 'live-d4r', rubric_version: 'v1.0.0', grader_model_build_hash: 'na',
+    mode: graderMode,
+    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
+    cache_dir: cacheDir,
+    system_prompt_path: TASK_OUTCOME_PROMPT_PATH,
+  };
+  const rubric = scenario.passCriteria || scenario.prompt || '';
+  const onG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#taskoutcome#on`, rubric }, swe16_output_text: onText || '', ...base });
+  const offG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#taskoutcome#off`, rubric }, swe16_output_text: offText || '', ...base });
+  const onScore = clamp01(onG.score);
+  const offScore = clamp01(offG.score);
+  const score = clamp01(0.5 + (onScore - offScore) / 2);
+  return { d4r: { score, onScore, offScore, attribution: 'approximate', instrument: 'task-outcome', graderMode }, raw: { onG, offG } };
+}
+
+/**
+ * Full live D4-R ablation: two real dispatches (on/off) in task-outcome mode +
+ * grade. Spends API. Same contamination guard as the hallucination ablation.
+ */
+async function runD4RAblation({ scenario, skillRoot, model, variant, graderMode = 'mock', cacheDir }) {
+  const dir = path.resolve(skillRoot, '..', '..', '..');
+  const skillId = path.basename(skillRoot || '');
+
+  const on = runDispatch({ prompt: buildTaskOutcomePrompt(scenario), dir, model, variant });
+  const off = runDispatch({ prompt: buildTaskOutcomeOffPrompt(scenario), dir, model, variant, extraEnv: { MK_SKILL_ADVISOR_HOOK_DISABLED: '1' } });
+  if (on.status !== 0 || off.status !== 0) {
+    return { d4r: { score: null, unscored: 'ablation dispatch failed', attribution: 'approximate', instrument: 'task-outcome' } };
+  }
+  const onParsed = parseLiveResult(on.stdout, { skillId });
+  const offParsed = parseLiveResult(off.stdout, { skillId });
+
+  // Contamination guard: skill-OFF must NOT have loaded/read the skill.
+  const offTouched = (offParsed.activation && offParsed.activation.activated)
+    || (offParsed.raw.observedReads || []).length > 0;
+  if (offTouched) {
+    return { d4r: { score: null, unscored: 'skill-off contaminated (skill was loaded)', attribution: 'approximate', instrument: 'task-outcome' }, contaminated: true };
+  }
+
+  const graded = await gradeTaskOutcome({
+    scenario, onText: onParsed.raw.responseText, offText: offParsed.raw.responseText, graderMode, cacheDir,
+  });
+  return { ...graded, onActivated: !!(onParsed.activation && onParsed.activation.activated) };
+}
+
+module.exports = {
+  runD4Ablation, gradeAblation, buildSkillOffPrompt, clamp01,
+  runD4RAblation, gradeTaskOutcome, buildTaskOutcomePrompt, buildTaskOutcomeOffPrompt,
+};

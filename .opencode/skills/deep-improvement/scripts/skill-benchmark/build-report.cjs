@@ -57,6 +57,16 @@ function renderReport(report) {
   }
   lines.push('');
 
+  if (r.advisorySignals) {
+    const a = r.advisorySignals;
+    const fmt = (s) => (s && typeof s.score === 'number' ? `${s.score}/100` : `_${(s && s.status) || 'unscored'}_`);
+    lines.push('### Advisory signals (NOT in the weighted aggregate)');
+    lines.push('');
+    if (a.D4_task_outcome) lines.push(`- **D4 task-outcome** — routine-task usefulness (skill-on vs off), separate from D4 hallucination: ${fmt(a.D4_task_outcome)}`);
+    if (a.assetRecall) lines.push(`- **Asset support recall** — deferred \`assets/*\` gold (router defers these on demand): ${fmt(a.assetRecall)}`);
+    lines.push('');
+  }
+
   lines.push('## Funnel');
   lines.push('');
   for (const [stage, count] of Object.entries(r.funnel || {})) {

@@ -1,0 +1,6 @@
+{"type":"iteration","iteration":4,"newInfoRatio":0.86,"status":"complete","focus":"assets-scoring seam"}
+{"type":"finding","id":"f-i4-01","label":"expectedAssets is parsed but dropped from scorer gold, so assets are invisible to expected-resource recall","iteration":4}
+{"type":"finding","id":"f-i4-02","label":"current router filters all assets before first-slice scoring, so folding expectedAssets changes current D2 but not current D3","iteration":4}
+{"type":"finding","id":"f-i4-03","label":"asset-bearing gold is behavior-relevant for D4, especially SD-001 interaction gates and CS-001 Motion snippets","iteration":4}
+{"type":"finding","id":"f-i4-04","label":"live scoring can count stated assets as actual resources while expected assets are omitted, creating D3 waste artifacts","iteration":4}
+{"type":"finding","id":"f-i4-05","label":"D4 remains n=2 approximate and cannot prove whether asset deferral improves routine-task usefulness","iteration":4}
