@@ -1,0 +1,17 @@
+{
+  "specFolder": "028-peck-teachings-adoption/003-current-state-discipline",
+  "description": "Phase 2: current-state-discipline",
+  "keywords": [
+    "phase",
+    "current-state-discipline"
+  ],
+  "lastUpdated": "2026-06-02T10:04:53.494Z",
+  "specId": "002",
+  "folderSlug": "current-state-discipline",
+  "parentChain": [
+    "028-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}
