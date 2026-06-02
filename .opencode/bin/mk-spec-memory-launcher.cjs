@@ -188,6 +188,24 @@ function resolveSessionProxySocketPath() {
   return getIpcSocketPath('mk-spec-memory', { dbDir: resolvedDbDir() });
 }
 
+// Bridge a secondary (non-lease-holder) launcher's client stdio to the daemon through
+// the reconnecting session proxy, so 2nd+ clients survive a daemon recycle transparently
+// like the lease holder does — instead of the raw bridge that severs on recycle. Each
+// secondary launcher process gets its own proxy instance (its own pendingRequests and
+// cached-initialize state) because it owns its own stdio. The proxy owns stdout and emits
+// JSON-RPC errors on failure, so the raw bridge's onError stdout marker is intentionally
+// unused here (it would corrupt the MCP stream). createProxy is injectable for tests.
+function bridgeStdioThroughSessionProxy(socketPath, options = {}) {
+  const createProxy = options.createProxy ?? createSessionProxy;
+  const sessionProxy = createProxy({
+    socketPath,
+    stdin: options.stdin ?? process.stdin,
+    stdout: options.stdout ?? process.stdout,
+    log,
+  });
+  return sessionProxy.start();
+}
+
 function refreshPaths() {
   skillsDir = path.join(opencodeDir, 'skills');
   legacySkillDir = path.join(opencodeDir, 'skill');
@@ -411,6 +429,7 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
     leaseResult,
     loggerPrefix: 'mk-spec-memory-launcher',
     dbDir: resolvedDbDir(),
+    bridge: bridgeStdioThroughSessionProxy,
   });
   if (decision && decision.action === 'respawn') {
     return await respawnAfterDeadSocket(leaseResult, decision);
@@ -1005,6 +1024,7 @@ async function main() {
 
 module.exports = {
   acquireModelServerRespawnLockFile,
+  bridgeStdioThroughSessionProxy,
   buildLeaseObject,
   computeBackoffMs,
   createCrashLoopGuard,
