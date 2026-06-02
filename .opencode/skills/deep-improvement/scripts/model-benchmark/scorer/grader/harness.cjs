@@ -84,6 +84,10 @@ function clampScore01(value) {
   return Math.max(0, Math.min(1, n));
 }
 
+function envTruthy(value) {
+  return value === '1' || value === 'true';
+}
+
 // Accept an explicit system-prompt path so callers (e.g. dispute.cjs adversarial
 // second call) can select a different prompt WITHOUT a global fs.readFileSync
 // monkey-patch. Defaults to the primary grader prompt.
@@ -124,10 +128,16 @@ function dimensionInstruction(dimId) {
  * @param {string} dimId - Expected dimension identifier.
  * @returns {{parsed:Object, dimMismatch:boolean}|null} Normalized payload, or null when unusable.
  */
-function normalizeParsedPayload(parsed, dimId) {
+function isScorePayload(parsed) {
   if (!parsed || typeof parsed !== 'object' || typeof parsed.score !== 'number') return null;
-  if (!parsed.dim_id) return { parsed: { ...parsed, dim_id: dimId }, dimMismatch: false };
-  if (parsed.dim_id === dimId) return { parsed, dimMismatch: false };
+  return parsed;
+}
+
+function stampMissingDimId(parsed, dimId) {
+  return { parsed: { ...parsed, dim_id: dimId }, dimMismatch: false };
+}
+
+function normalizeDimMismatch(parsed, dimId) {
   const confidence = typeof parsed.confidence === 'number' ? Math.min(parsed.confidence, 0.3) : 0.3;
   return {
     parsed: {
@@ -140,6 +150,41 @@ function normalizeParsedPayload(parsed, dimId) {
     },
     dimMismatch: true,
   };
+}
+
+function normalizeParsedPayload(parsed, dimId) {
+  if (!isScorePayload(parsed)) return null;
+  if (!parsed.dim_id) return stampMissingDimId(parsed, dimId);
+  if (parsed.dim_id === dimId) return { parsed, dimMismatch: false };
+  return normalizeDimMismatch(parsed, dimId);
+}
+
+function extractFirstScoreObject(rawText) {
+  for (let start = rawText.indexOf('{'); start !== -1; start = rawText.indexOf('{', start + 1)) {
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let i = start; i < rawText.length; i++) {
+      const ch = rawText[i];
+      if (inString) {
+        if (escaped) escaped = false;
+        else if (ch === '\\') escaped = true;
+        else if (ch === '"') inString = false;
+        continue;
+      }
+      if (ch === '"') inString = true;
+      else if (ch === '{') depth++;
+      else if (ch === '}') {
+        depth--;
+        if (depth === 0) {
+          const candidate = rawText.slice(start, i + 1);
+          if (/"score"\s*:/.test(candidate)) return candidate;
+          break;
+        }
+      }
+    }
+  }
+  return null;
 }
 
 /**
@@ -195,7 +240,8 @@ function parseGraderResponse(rawText, dimId = 'D4') {
   } catch (_) {
     // fall through to fallback extraction
   }
-  // Fallback: try to extract JSON object inside ```json ... ``` or first { ... }
+  // Fallback: try to extract JSON object inside ```json ... ``` or the first
+  // complete brace-balanced object that contains a score field.
   const fenced = rawText.match(/```json\s*([\s\S]+?)```/);
   if (fenced) {
     try {
@@ -208,10 +254,10 @@ function parseGraderResponse(rawText, dimId = 'D4') {
       // continue
     }
   }
-  const objMatch = rawText.match(/\{[\s\S]*?"score"\s*:\s*([\d.]+)[\s\S]*?\}/);
-  if (objMatch) {
+  const objText = extractFirstScoreObject(rawText);
+  if (objText) {
     try {
-      const parsed = JSON.parse(objMatch[0]);
+      const parsed = JSON.parse(objText);
       const normalized = normalizeParsedPayload(parsed, dimId);
       if (normalized) {
         return { parse_status: normalized.dimMismatch ? 'fallback_regex_dim_mismatch' : 'fallback_regex', parsed: normalized.parsed };
@@ -246,6 +292,7 @@ function parseGraderResponse(rawText, dimId = 'D4') {
  */
 function dispatchReal(prompt) {
   // Executes claude CLI with the composed prompt. Operator constraint: claude only.
+  // The grader is constrained to Claude CLI, so these Claude-specific flags are intentional.
   // Returns stdout text. Errors propagate.
   const args = ['--print', '--model', GRADER_MODEL, '--append-system-prompt', prompt.systemPrompt, '-p', prompt.userPrompt];
   return execFileSync(CLAUDE_BIN, args, {
@@ -336,15 +383,18 @@ async function gradeD4(opts) {
     mock_mode,
   } = opts;
   const dimId = opts.dim_id || 'D4';
+  const systemPromptPath = path.resolve(opts.system_prompt_path || SYSTEM_PROMPT_PATH);
 
   const swe16OutputHash = sha256Hex(swe16_output_text);
+  const graderBuildIdentity = [grader_model_build_hash || '', 'system_prompt_path=' + systemPromptPath].join('|');
   const cacheKey = cache.derive_grader_key({
     variant_hash,
     fixture_id: fixture.id,
     rubric_version: rubric_version || 'v1.0.0',
-    grader_model_build_hash,
+    grader_model_build_hash: graderBuildIdentity,
     dim_id: dimId,
     swe16_output_hash: swe16OutputHash,
+    system_prompt_path: systemPromptPath,
   });
 
   // Run-scoped grader cache root (undefined -> legacy in-repo root).
@@ -361,7 +411,7 @@ async function gradeD4(opts) {
     return cachedResult;
   }
 
-  const prompt = composeGraderPrompt(fixture, swe16_output_text, opts.system_prompt_path, dimId);
+  const prompt = composeGraderPrompt(fixture, swe16_output_text, systemPromptPath, dimId);
   let rawResponse;
   if (mode === 'real') {
     rawResponse = dispatchReal(prompt);
@@ -382,13 +432,12 @@ async function gradeD4(opts) {
   result.score = clampScore01(result.score);
   result.confidence = clampScore01(result.confidence);
 
-  // The grader cache persists raw model output for diagnostics. A hardened
-  // deployment can omit it (avoid echoing potentially sensitive prompt content
-  // into the on-disk cache) by setting DEEP_AGENT_GRADER_CACHE_RAW=0.
-  // Default keeps raw output for debuggability.
-  const cacheRawOutput = process.env.DEEP_AGENT_GRADER_CACHE_RAW === '0'
-    ? '[redacted: DEEP_AGENT_GRADER_CACHE_RAW=0]'
-    : result.raw_grader_output;
+  // The grader cache redacts raw model output by default to avoid echoing
+  // potentially sensitive prompt content into the on-disk cache. Opt in with
+  // DEEP_AGENT_GRADER_CACHE_RAW=1 or DEEP_AGENT_GRADER_CACHE_RAW=true.
+  const cacheRawOutput = envTruthy(process.env.DEEP_AGENT_GRADER_CACHE_RAW)
+    ? result.raw_grader_output
+    : '[redacted: set DEEP_AGENT_GRADER_CACHE_RAW=1 to store raw output]';
 
   // Cache the result body (excluding cache_key + cache_hit for cleaner blob)
   const blobBody = JSON.stringify({
@@ -411,6 +460,19 @@ async function gradeD4(opts) {
   }, graderCacheDir);
 
   return result;
+}
+
+function buildGraderBase({ variantHash, graderMode, cacheDir, systemPromptPath, dimId }) {
+  return {
+    variant_hash: variantHash,
+    rubric_version: 'v1.0.0',
+    grader_model_build_hash: 'na',
+    mode: graderMode,
+    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
+    cache_dir: cacheDir,
+    system_prompt_path: systemPromptPath,
+    dim_id: dimId,
+  };
 }
 
 function main() {
@@ -453,6 +515,7 @@ module.exports = {
   composeGraderPrompt,
   parseGraderResponse,
   clampScore01,
+  buildGraderBase,
   resolveGraderCacheDir,
   dispatchReal,
   dispatchMock,

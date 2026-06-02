@@ -180,10 +180,10 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 |   +-- agent-improvement/      # Lane A: charter, strategy, config, manifest
 |   +-- model-benchmark/        # Lane B: benchmark fixtures + profiles
 |   `-- skill-benchmark/        # Lane C: default profile and remediation taxonomy
-+-- scripts/                    # grouped by lane (22 helpers) + lib/ + tests/
++-- scripts/                    # 30 lane scripts grouped by lane + scorer/ + lib/ + tests/
 |   +-- agent-improvement/      # Lane A (8): scan, profile, score, rollback, drift, trade-off, lineage, stability
-|   +-- model-benchmark/        # Lane B (3): run-benchmark, dispatch-model, sweep-benchmark + scorer/ subtree
-|   +-- skill-benchmark/        # Lane C (5 core): run, live executor, score, D4/D4-R ablation, report builder
+|   +-- model-benchmark/        # Lane B (3): run-benchmark, dispatch-model, sweep-benchmark + scorer/ + lib/ subtrees
+|   +-- skill-benchmark/        # Lane C (13): run, executor-dispatch, live + browser executors, router-replay, score, D4/D4-R ablation, advisor-probe, d5-connectivity, contamination-lint, playbook load + generate, report builder
 |   `-- shared/                 # all lanes (6): loop-host, reduce-state, promote, journal, coverage, materialize
 +-- feature_catalog/            # Current-state feature inventory (4 categories incl. model-benchmark)
 `-- manual_testing_playbook/    # 42 manual scenarios across 9 categories (09 = model-benchmark / Lane B)
@@ -213,9 +213,9 @@ Under `references/agent-improvement/` (6), `references/model-benchmark/` (3), `r
 | `scenario_authoring.md` | Skill-benchmark scenario and gold authoring |
 | `scoring_contract.md` | Skill-benchmark D1-D5 scoring and funnel contract |
 
-### Scripts (22 + lib, grouped by lane)
+### Scripts (30 lane scripts + scorer/ + lib/, grouped by lane)
 
-Under `scripts/agent-improvement/` (8), `scripts/model-benchmark/` (3, plus the `scorer/` subtree), `scripts/skill-benchmark/` (5 core scripts), and `scripts/shared/` (6), with `lib/` helpers and `tests/`.
+Under `scripts/agent-improvement/` (8), `scripts/model-benchmark/` (3, plus the `scorer/` (8) and `lib/` (6) subtrees), `scripts/skill-benchmark/` (13), and `scripts/shared/` (6), with `tests/`. Lane-level scripts total 30.
 
 | Script | Purpose |
 |---|---|

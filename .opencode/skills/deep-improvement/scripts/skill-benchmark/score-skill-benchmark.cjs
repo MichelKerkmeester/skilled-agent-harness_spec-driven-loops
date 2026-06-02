@@ -48,32 +48,45 @@ function setRecall(expected, actual) {
   return hit / expected.length;
 }
 
+function scenarioObservationShape(arg) {
+  return arg.scenario && arg.observed ? { scenario: arg.scenario, observed: arg.observed } : null;
+}
+
+function expectedFromScenario(scenario, obs, arg) {
+  return {
+    skillId: scenario.expectedSkillId || scenario.skillId || arg.skillId,
+    // Playbook gold is SURFACE + RESOURCES. Router intent keys are a different
+    // vocabulary, so intent-key recall applies only to intent-gold skills
+    // (sk-doc's expectedIntent); surface correctness is scored separately.
+    intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
+    resources: scenario.expectedResources || [],
+    // Assets are gold too, but scored on their own lane (assetRecall) — the
+    // router defers assets/* on demand, so folding them into resource recall
+    // would distort D2/D3.
+    assets: scenario.expectedAssets || [],
+    negativeActivation: scenario.negativeActivation === true,
+  };
+}
+
+function routerResultFromObservation(obs) {
+  return {
+    parseable: obs.parseable !== false,
+    intents: obs.observedIntents || [],
+    resources: obs.observedResources || [],
+    missingResources: obs.missingResources || [],
+  };
+}
+
 function normalizeScenarioInput(arg) {
   let { scenarioId, tier, routerResult, expected, advisorResult } = arg;
-  const scenario = arg.scenario || null;
-  if (scenario && arg.observed) {
-    const obs = arg.observed;
+  const shaped = scenarioObservationShape(arg);
+  const scenario = shaped ? shaped.scenario : (arg.scenario || null);
+  if (shaped) {
+    const obs = shaped.observed;
     scenarioId = scenario.scenarioId;
     tier = scenario.tier || tier || (obs.mode === 'live' ? 'live' : 'playbook');
-    routerResult = {
-      parseable: obs.parseable !== false,
-      intents: obs.observedIntents || [],
-      resources: obs.observedResources || [],
-      missingResources: obs.missingResources || [],
-    };
-    expected = {
-      skillId: scenario.expectedSkillId || scenario.skillId || arg.skillId,
-      // Playbook gold is SURFACE + RESOURCES. Router intent keys are a different
-      // vocabulary, so intent-key recall applies only to intent-gold skills
-      // (sk-doc's expectedIntent); surface correctness is scored separately.
-      intentKeys: scenario.expectedIntent ? [scenario.expectedIntent] : [],
-      resources: scenario.expectedResources || [],
-      // Assets are gold too, but scored on their own lane (assetRecall) — the
-      // router defers assets/* on demand, so folding them into resource recall
-      // would distort D2/D3.
-      assets: scenario.expectedAssets || [],
-      negativeActivation: scenario.negativeActivation === true,
-    };
+    routerResult = routerResultFromObservation(obs);
+    expected = expectedFromScenario(scenario, obs, arg);
   }
   return { scenarioId, tier, routerResult, expected, advisorResult, scenario };
 }
@@ -106,6 +119,12 @@ function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRe
   return d1;
 }
 
+/**
+ * Compute D2 discovery recall proxy for the resources surfaced by the router.
+ *
+ * @param {Object} params - Inputs from D1-intra and resource recall.
+ * @returns {Object} D2 proxy score payload.
+ */
 function scoreD2({ negative, d1intra, resourceRecall }) {
   return {
     score: negative ? d1intra.score : (resourceRecall == null ? 1 : resourceRecall),
@@ -114,6 +133,12 @@ function scoreD2({ negative, d1intra, resourceRecall }) {
   };
 }
 
+/**
+ * Compute D3 routing-efficiency proxy from unexpected routed resources.
+ *
+ * @param {Object} params - Router output and expected resources.
+ * @returns {Object} D3 proxy score payload.
+ */
 function scoreD3({ negative, d1intra, routerResult, expected }) {
   const routed = routerResult.resources.length;
   const unexpectedRoutedCount = expected && expected.resources
@@ -138,6 +163,13 @@ function scoreD3({ negative, d1intra, routerResult, expected }) {
   };
 }
 
+/**
+ * Compute the advisory asset-recall lane; null scores are explicit unscored states.
+ *
+ * @param {Object} expected - Expected resources/assets for the scenario.
+ * @param {Object} obs - Live observation, when available.
+ * @returns {{score: (number|null), note: string}} Asset-recall score payload.
+ */
 function scoreAssetRecall(expected, obs) {
   const expectedAssets = (expected && expected.assets) || [];
   const observedAssets = obs && Array.isArray(obs.observedAssets) ? obs.observedAssets : null;
@@ -167,6 +199,7 @@ function modeAScore(dims) {
   ];
   if (dims.d1inter.score !== null) measured.push([dims.d1inter.score, WEIGHTS.d1inter]);
   const wsum = measured.reduce((a, [, w]) => a + w, 0);
+  // Round once after weighted normalization so the row score stays stable.
   return Math.round((measured.reduce((a, [s, w]) => a + s * w, 0) / wsum) * 100);
 }
 

@@ -25,18 +25,12 @@
 const path = require('path');
 const { runDispatch, parseLiveResult, buildLiveDispatchPrompt } = require('./live-executor.cjs');
 const grader = require('../model-benchmark/scorer/grader/harness.cjs');
+const clamp01 = grader.clampScore01;
+const buildGraderBase = grader.buildGraderBase;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 2. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Clamp a number into the [0,1] range, mapping non-finite values to 0.
- *
- * @param {number} x - Value to clamp.
- * @returns {number} Clamped value in [0,1].
- */
-function clamp01(x) { return Math.max(0, Math.min(1, Number.isFinite(x) ? x : 0)); }
 
 /**
  * Build the skill-OFF prompt: answer from the model's own knowledge, no skill,
@@ -51,28 +45,6 @@ function buildSkillOffPrompt(scenario) {
     `Task: ${scenario.prompt || ''}`,
     'Emit ONLY a fenced ```json code block: {"surface": "...", "resources": ["..."], "assets": ["..."], "agent": "none"}',
   ].join('\n');
-}
-
-/**
- * Build shared grader options for on/off ablation pairs.
- *
- * @param {Object} args - Grader base inputs.
- * @param {string} args.variantHash - Variant hash for cache keying.
- * @param {string} args.graderMode - Grader mode.
- * @param {string} [args.cacheDir] - Optional grader cache directory.
- * @param {string} [args.systemPromptPath] - Optional system-prompt override.
- * @param {string} args.dimId - Dimension identifier for the grader harness.
- * @returns {Object} Shared grader options.
- */
-function buildGraderBase({ variantHash, graderMode, cacheDir, systemPromptPath, dimId }) {
-  return {
-    variant_hash: variantHash, rubric_version: 'v1.0.0', grader_model_build_hash: 'na',
-    mode: graderMode,
-    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
-    cache_dir: cacheDir,
-    system_prompt_path: systemPromptPath,
-    dim_id: dimId,
-  };
 }
 
 /**

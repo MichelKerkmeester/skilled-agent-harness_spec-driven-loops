@@ -37,7 +37,7 @@ const harness = require(path.join(SCRIPTS, 'model-benchmark/scorer/grader/harnes
   clampScore01: (v: unknown) => number;
 };
 
-// ───── F-P1-1: dispatcher cwd propagation to ALL executors ─────
+// ───── dispatcher cwd propagation to ALL executors ─────
 describe('F-P1-1: dispatch-model cwd propagation', () => {
   let promptFile: string;
   beforeEach(() => {
@@ -62,14 +62,13 @@ describe('F-P1-1: dispatch-model cwd propagation', () => {
         _spawn: fakeSpawn,
       });
       expect(r.ok).toBe(true);
-      // The whole point of F-P1-1: every executor honors the requested cwd,
-      // not just cli-opencode (which previously was the only one via --dir).
+      // Every executor honors the requested cwd, not just cli-opencode.
       expect(capturedCwd).toBe('/custom/work/dir');
     });
   }
 });
 
-// ───── F-P1-2: cwd-check sibling-prefix path guard ─────
+// ───── cwd-check sibling-prefix path guard ─────
 describe('F-P1-2: cwd-check prefix boundary', () => {
   let dir: string;
   beforeEach(() => { dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cwdck-')); });
@@ -104,7 +103,7 @@ describe('F-P1-2: cwd-check prefix boundary', () => {
   });
 });
 
-// ───── F-P1-3: criteria-exec gate ─────
+// ───── criteria-exec gate ─────
 describe('F-P1-3: criteria deterministic-exec gate', () => {
   let cwd: string;
   beforeEach(() => {
@@ -118,8 +117,14 @@ describe('F-P1-3: criteria deterministic-exec gate', () => {
 
   const crit = { acceptance: [{ id: 'd1', type: 'deterministic', command: 'true', expected_exit: 0 }] };
 
-  it('runs the criterion by default (backward-compat)', async () => {
+  it('skips the criterion by default unless criteria exec is explicitly enabled', async () => {
     delete process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC;
+    const r = await scorer.score({ candidateId: 'c', outputText: 'out', criteria: crit, cwd, graderKind: 'noop' });
+    expect(r.dimensions.D1).toBe(0); // skipped → not passed
+  });
+
+  it('runs the criterion when DEEP_AGENT_ALLOW_CRITERIA_EXEC=1', async () => {
+    process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC = '1';
     const r = await scorer.score({ candidateId: 'c', outputText: 'out', criteria: crit, cwd, graderKind: 'noop' });
     expect(r.dimensions.D1).toBe(1); // `true` exits 0 → criterion passes
   });
@@ -131,7 +136,7 @@ describe('F-P1-3: criteria deterministic-exec gate', () => {
   });
 });
 
-// ───── F-P1-4: grader score clamp ─────
+// ───── grader score clamp ─────
 describe('F-P1-4: grader clampScore01', () => {
   it('clamps to [0,1] and coerces non-finite to 0', () => {
     expect(harness.clampScore01(1.5)).toBe(1);
@@ -143,7 +148,7 @@ describe('F-P1-4: grader clampScore01', () => {
   });
 });
 
-// ───── F-P2-8: deterministic scoring behavior (not just shape) ─────
+// ───── deterministic scoring behavior (not just shape) ─────
 describe('F-P2-8: deterministic scoring values', () => {
   let cwd: string;
   beforeEach(() => {
@@ -179,7 +184,7 @@ describe('F-P2-8: deterministic scoring values', () => {
   });
 });
 
-// ───── F-P1-1 (014): grader dispatch is READ-ONLY by default ─────
+// ───── grader dispatch is READ-ONLY by default ─────
 describe('F-P1-1: read-only-by-default executor dispatch', () => {
   const resolved = { model: 'm', agent: 'general', variant: null as string | null, dir: '/work', promptFile: '/tmp/p.md' };
 
@@ -266,7 +271,7 @@ describe('cli-opencode --agent handling', () => {
   });
 });
 
-// ───── F-P1-14 (014): pause sentinel is packet-local ─────
+// ───── pause sentinel is run-local ─────
 describe('F-P1-14: packet-local pause sentinel', () => {
   let runDir: string;
   beforeEach(() => { runDir = fs.mkdtempSync(path.join(os.tmpdir(), 'dm-state-')); });
@@ -317,7 +322,7 @@ describe('F-P1-14: packet-local pause sentinel', () => {
   });
 });
 
-// ───── P2 (014): resume hint points at the real resume path ─────
+// ───── resume hint points at the real resume path ─────
 describe('P2: pause resume hint targets the shipped loop-host', () => {
   it('resume hint removes the actual sentinel and runs scripts/shared/loop-host.cjs', () => {
     const sentinel = path.join(os.tmpdir(), 'whatever', '.benchmark-pause');
@@ -329,7 +334,7 @@ describe('P2: pause resume hint targets the shipped loop-host', () => {
   });
 });
 
-// ───── P2 (014): CLI surfaces failure diagnostics ─────
+// ───── CLI surfaces failure diagnostics ─────
 describe('P2: dispatcher CLI surfaces stderr + error diagnostics', () => {
   let promptFile: string;
   beforeEach(() => {

@@ -295,9 +295,9 @@ function dispatchCell(cell, promptText, opts) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sweep-cell-'));
   const promptFile = path.join(dir, 'prompt.txt');
   fs.writeFileSync(promptFile, promptText, 'utf8');
-  // Test-only seam: opts._dispatch stands in for the CLI dispatcher so a test
-  // can capture the cwd/prompt-file without spawning anything. Production callers
-  // never set it, so the universal dispatcher is used.
+  // Test-only injection seam: opts._dispatch stands in for the CLI dispatcher so
+  // tests can capture cwd/prompt-file behavior without spawning a real executor.
+  // Production callers never set it, so the universal dispatcher is used.
   const dispatchFn = typeof opts._dispatch === 'function' ? opts._dispatch : dispatcher.dispatch;
 
   try {

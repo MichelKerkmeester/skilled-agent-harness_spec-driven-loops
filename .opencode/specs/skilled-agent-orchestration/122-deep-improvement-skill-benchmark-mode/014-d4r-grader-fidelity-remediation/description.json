@@ -1,19 +1,18 @@
 {
+  "level": "2",
   "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
   "description": "Feature Specification: D4-R Grader Fidelity + Doc Reconciliation Remediation",
   "keywords": [
     "feature",
     "specification",
-    "d4r",
+    "d4-r",
     "grader",
     "fidelity",
     "doc",
     "reconciliation",
-    "remediation",
-    "deep-review",
-    "deep-improvement"
+    "remediation"
   ],
-  "lastUpdated": "2026-06-02T00:00:00.000Z",
+  "lastUpdated": "2026-06-02T16:26:46.054Z",
   "specId": "014",
   "folderSlug": "d4r-grader-fidelity-remediation",
   "parentChain": [
@@ -21,6 +20,5 @@
     "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

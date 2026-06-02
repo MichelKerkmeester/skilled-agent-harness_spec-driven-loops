@@ -1,0 +1,246 @@
+{
+  "findings": [
+    {
+      "type": "finding",
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "file": "harness.cjs:211",
+      "title": "Regex fallback in parseGraderResponse could over-match across multiple top-level JSON objects",
+      "iteration": 1
+    },
+    {
+      "type": "finding",
+      "id": "R1-P2-002",
+      "severity": "P2",
+      "file": "score-model-variant.cjs:116",
+      "title": "criteriaExecAllowed warning message wording is subtly misleading when env var is unset",
+      "iteration": 1
+    },
+    {
+      "type": "finding",
+      "id": "R2-P1-001",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/deterministic/bundle-gate.cjs:173",
+      "title": "Duplicate criteriaExecAllowed logic — bundle-gate inline check diverges from score-model-variant shared function",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R2-P2-001",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:211",
+      "title": "Fallback regex can match nested score key instead of top-level object",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R2-P2-002",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:162",
+      "title": "scoreScenario decomposition — modeAScore verified behavior-preserving (no-op finding)",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R3-P1-001",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/score-model-variant.cjs:111-120",
+      "title": "criteriaExecAllowed defaults to permissive with misleading guidance",
+      "iteration": 3
+    },
+    {
+      "type": "finding",
+      "id": "R3-P1-002",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:211-222",
+      "title": "Regex fallback for grader score extraction is fragile",
+      "iteration": 3
+    },
+    {
+      "type": "finding",
+      "id": "R3-P2-001",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:389-411",
+      "title": "Cache raw grader output redaction is partial",
+      "iteration": 3
+    },
+    {
+      "type": "finding",
+      "id": "R3-P2-002",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/dispatch-model.cjs:413-422",
+      "title": "buildSpawnSpec prompt passed as positional CLI argument",
+      "iteration": 3
+    },
+    {
+      "type": "finding",
+      "id": "R3-P2-003",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/score-model-variant.cjs:146",
+      "title": "Double-wrapped RegExp in scoreAcceptanceDeterministic",
+      "iteration": 3
+    },
+    {
+      "type": "finding",
+      "id": "R4-P1-001",
+      "severity": "P1",
+      "file": "SKILL.md:5",
+      "title": "SKILL.md version bumped to 1.12.0.0 with no changelog entry",
+      "iteration": 4
+    },
+    {
+      "type": "finding",
+      "id": "R4-P1-002",
+      "severity": "P1",
+      "file": "SKILL.md:544",
+      "title": "Script count mismatch: SKILL.md section 11 enumerates 25 but section 4 and README claim 22",
+      "iteration": 4
+    },
+    {
+      "type": "finding",
+      "id": "R4-P2-001",
+      "severity": "P2",
+      "file": "references/skill-benchmark/scoring_contract.md:15",
+      "title": "scoring_contract.md references upstream spec docs that may not exist in this skill",
+      "iteration": 4
+    },
+    {
+      "type": "finding",
+      "id": "R4-P2-002",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:211",
+      "title": "harness.cjs fallback_regex may over-match across nested JSON structures",
+      "iteration": 4
+    },
+    {
+      "type": "finding",
+      "id": "R5-P1-001",
+      "severity": "P1",
+      "file": "scripts/skill-benchmark/live-executor.cjs:45",
+      "title": "GRADED_RESPONSE_MAX_CHARS has no inline rationale for 8000 value",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P1-002",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:211",
+      "title": "Regex-based grader response fallback is greedy and can stitch across JSON objects",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P1-003",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:250",
+      "title": "Grader dispatch hardcoded to Claude CLI flags despite env-var configurability",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-001",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:51",
+      "title": "normalizeScenarioInput mixes shape detection and expected-object construction",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-002",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/dispatch-model.cjs:1",
+      "title": "677-line file mixes rate-limit, dispatch, parsing, sentinel, and CLI concerns",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-003",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/score-model-variant.cjs:146",
+      "title": "Double-nested RegExp construction is redundant",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-004",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/d4-ablation.cjs:67",
+      "title": "Duplicated grader-base construction across d4-ablation and score-model-variant",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-005",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/sweep-benchmark.cjs:301",
+      "title": "Undocumented test-only seam opts._dispatch",
+      "iteration": 5
+    },
+    {
+      "type": "finding",
+      "id": "R5-P2-006",
+      "severity": "P2",
+      "file": "references/skill-benchmark/scoring_contract.md:1",
+      "title": "Scoring contract has no programmatic validation against code",
+      "iteration": 5
+    }
+  ],
+  "dimensionCoverage": {},
+  "byIteration": [
+    {
+      "iteration": 1,
+      "dimension": "inventory+correctness",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 179
+    },
+    {
+      "iteration": 2,
+      "dimension": "correctness",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 1,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 238
+    },
+    {
+      "iteration": 3,
+      "dimension": "security",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 3
+      },
+      "newFindingsRatio": 1,
+      "secs": 180
+    },
+    {
+      "iteration": 4,
+      "dimension": "traceability",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 217
+    },
+    {
+      "iteration": 5,
+      "dimension": "maintainability",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 3,
+        "P2": 6
+      },
+      "newFindingsRatio": 1,
+      "secs": 151
+    }
+  ]
+}

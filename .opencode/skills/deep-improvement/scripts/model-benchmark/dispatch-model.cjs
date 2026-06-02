@@ -23,9 +23,9 @@
  *   - Config (model/agent/executor/timeout/backoff) is read from
  *     improvement_config.json -> modelBenchmarkConfig when present; opts override.
  *   - Mock outputs are model-agnostic and shared with the model-benchmark rig shapes.
- *   - Read-only by default (F-P1-1): executors run in their non-write mode;
+ *   - Read-only by default: executors run in their non-write mode;
  *     write-capable evaluation requires DEEP_AGENT_DISPATCH_WRITE=1.
- *   - Pause sentinel is run-scoped (F-P1-14): opts.state_dir / --state-dir /
+ *   - Pause sentinel is run-scoped: opts.state_dir / --state-dir /
  *     DEEP_AGENT_STATE_DIR pick the dir; falls back to the skill state/ dir.
  *   - Test-only seams (never set by production callers): opts._spawn overrides
  *     spawnSync; opts._backoff overrides the rate-limit backoff schedule.
@@ -50,10 +50,9 @@ const { spawnSync, execSync } = require('child_process');
 // pre-move scripts/-root depth. state/ and assets/ live at the skill root
 // (scripts/../.. from here), NOT at scripts/.. .
 const SCRIPTS_ROOT = __dirname;
-// F-P1-14 (014 review): the pause sentinel is no longer pinned to this shared
-// skill state dir. resolveStateDir() prefers a packet-local dir (opts.state_dir
-// / --state-dir / DEEP_AGENT_STATE_DIR) so concurrent benchmark runs under
-// different spec folders do not collide on one global .benchmark-pause file.
+// The pause sentinel is no longer pinned to this shared skill state dir.
+// resolveStateDir() prefers a run-scoped dir so concurrent benchmark runs do not
+// collide on one global .benchmark-pause file.
 // LEGACY_STATE_DIR is the backstop only when no run-scoped dir is supplied.
 const LEGACY_STATE_DIR = path.join(SCRIPTS_ROOT, '..', '..', 'state');
 const PAUSE_SENTINEL_BASENAME = '.benchmark-pause';
@@ -62,8 +61,8 @@ const PAUSE_SENTINEL_BASENAME = '.benchmark-pause';
 // 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 
-// F-P1-1 (014 review): grader/benchmark dispatch is a read-only judgment — the
-// model emits its verdict on stdout and must NOT mutate the workspace. Executors
+// Grader/benchmark dispatch is a read-only judgment: the model emits its verdict
+// on stdout and must NOT mutate the workspace. Executors
 // run in their READ-ONLY mode by default. Write-capable evaluation is an explicit
 // opt-in via DEEP_AGENT_DISPATCH_WRITE=1 (e.g. an isolated temp workspace run).
 /**
@@ -147,11 +146,9 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
-// F-P2-9 (122 review): synchronous sleep WITHOUT a busy-wait. The prior
-// `while (Date.now() < end) {}` spin burned a full core for 60-240s during
-// rate-limit backoff. Atomics.wait blocks the thread on an un-signalled buffer
-// for the timeout, yielding the CPU. Falls back to a bounded spin only if
-// Atomics is unavailable.
+// Synchronous sleep without a busy-wait prevents long rate-limit backoffs from
+// burning a full core. Atomics.wait blocks the thread on an un-signalled buffer
+// for the timeout, yielding the CPU.
 function sleepSync(ms) {
   if (ms <= 0) return;
   try {
@@ -329,9 +326,8 @@ function buildEnvelope(raw, resolved, executor, latencyMs) {
   return env;
 }
 
-// P2 (014-review traceability-3-5): emit a resume command that actually works — it removes
-// the REAL sentinel path (which is now run-scoped, not always state/) and invokes
-// the loop-host at its shipped lane path scripts/shared/loop-host.cjs.
+// Emit a resume command that removes the real run-scoped sentinel path and
+// invokes the loop-host at its shipped lane path.
 /**
  * Build a copy-paste resume command that clears the sentinel and restarts the loop.
  *
@@ -400,7 +396,7 @@ function pauseSentinelExists(opts) {
  */
 function buildSpawnSpec(executor, promptText, resolved) {
   const { model, agent, variant, dir } = resolved;
-  // F-P1-1: read-only is the default; write-capable is the explicit opt-in.
+  // Read-only is the default; write-capable is the explicit opt-in.
   const writeCapable = writeCapableOptIn();
   switch (executor) {
     case 'cli-opencode': {
@@ -418,6 +414,8 @@ function buildSpawnSpec(executor, promptText, resolved) {
       // events expose it. Placed after model/variant, before the prompt, to keep
       // every flag ahead of the positional prompt arg.
       args.push('--format', 'json');
+      // opencode run accepts the prompt as a positional argument; keeping flags
+      // before it avoids changing argv parsing while preserving current output.
       args.push(promptText);
       return { bin: process.env.OPENCODE_BIN || 'opencode', args, input: null };
     }
@@ -484,7 +482,7 @@ function dispatchReal(opts) {
   }
   const timeout = opts.timeout_ms || DEFAULT_TIMEOUT_MS;
   const dir = opts.cwd || repoRoot();
-  // Injectable spawn for tests (F-P1-1 regression asserts cwd reaches the spawn layer).
+  // Injectable spawn for tests that assert cwd reaches the spawn layer.
   const spawnFn = opts._spawn || spawnSync;
   // Test-only backoff override (mirrors the _spawn seam): lets the pause-sentinel
   // regression exhaust the backoff schedule without real 60-240s sleeps. Production
@@ -505,9 +503,8 @@ function dispatchReal(opts) {
   for (let attempt = 0; attempt < backoff.length + 1; attempt++) {
     const spec = buildSpawnSpec(executor, promptText, resolved);
     const res = spawnFn(spec.bin, spec.args, {
-      // F-P1-1 (122 review): set cwd for EVERY executor. Previously only cli-opencode
-      // forwarded `--dir dir` and spawnSync had no cwd opt, so cli-claude-code/codex/
-      // gemini/devin silently ran in the host process cwd. Honor `dir` for all.
+      // Set cwd for every executor so non-opencode CLIs do not silently inherit
+      // the host process cwd.
       cwd: dir,
       // stdin: feed prompt text for stdin-based executors (codex); otherwise close it
       // ('ignore' == </dev/null) to avoid opencode's stdin-hang bug.
@@ -635,10 +632,8 @@ function main() {
     process.exit(2);
   }
   const r = dispatch(args);
-  // P2 (014-review maintainability-8-4): surface failure diagnostics. Previously a failed
-  // executor run printed only {ok,exit_code,attempts,paused} + STDOUT, so the
-  // error/pause_reason/sentinel_path fields and stderr were swallowed and the
-  // failure was undiagnosable without instrumenting the module.
+  // Surface failure diagnostics so non-interactive callers can diagnose a
+  // failed executor run without instrumenting this module.
   process.stdout.write(JSON.stringify({
     ok: r.ok,
     exit_code: r.exit_code,

@@ -44,7 +44,6 @@ const { execSync, spawnSync } = require('child_process');
 const SCORER_ROOT = __dirname;
 const DET_DIR = path.join(SCORER_ROOT, 'deterministic');
 const harness = require(path.join(SCORER_ROOT, 'grader', 'harness.cjs'));
-let warnedPermissiveCriteriaExec = false;
 
 /**
  * Canonical 5-dim weights (D2 is the hard gate). Overridable via opts.rubric.
@@ -69,11 +68,9 @@ function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
 }
 
-// (F017-P2-03 / packet-018): separator-bounded containment, mirroring the
-// proven cwd-check.cjs isInside. A path is inside `base` only when it IS `base`
-// or begins with `base + path.sep`, so a sibling sharing a string prefix
-// (`/repo/proj-evil` vs `/repo/proj`) does NOT read as inside. Used to keep
-// grep / grep_absent criteria file reads anchored inside the fixture cwd.
+// Separator-bounded containment mirrors cwd-check.cjs. A path is inside `base`
+// only when it is `base` or begins with `base + path.sep`, so siblings sharing a
+// string prefix do not read as inside. This keeps criteria reads anchored.
 function isInsideCwd(candidate, base) {
   return candidate === base || candidate.startsWith(base + path.sep);
 }
@@ -106,17 +103,16 @@ function runDetCheck(scriptName, fixturePath, outputFile) {
 /**
  * Report whether profile-defined deterministic criteria may execute commands.
  *
+ * Command execution is fail-closed: only DEEP_AGENT_ALLOW_CRITERIA_EXEC=1 or
+ * DEEP_AGENT_ALLOW_CRITERIA_EXEC=true opts into executing profile commands.
+ *
  * @returns {boolean} True when command execution is allowed by the env gate.
  */
 function criteriaExecAllowed() {
   const raw = process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC;
-  if (raw === '0') return false;
   if (raw === '1' || raw === 'true') return true;
-  if (!warnedPermissiveCriteriaExec) {
-    console.warn('score-model-variant: DEEP_AGENT_ALLOW_CRITERIA_EXEC is not explicitly truthy; preserving trusted-profile default execution. Set it to 0 to disable criteria commands.');
-    warnedPermissiveCriteriaExec = true;
-  }
-  return true;
+  console.warn('score-model-variant: criteria command skipped because DEEP_AGENT_ALLOW_CRITERIA_EXEC is not explicitly 1 or true.');
+  return false;
 }
 
 /**
@@ -143,7 +139,7 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
         else if (!fs.existsSync(file)) { detail = 'file missing'; }
         else {
           const text = fs.readFileSync(file, 'utf8');
-          const matches = text.match(new RegExp(new RegExp(a.pattern).source, 'g'));
+          const matches = text.match(new RegExp(a.pattern, 'g'));
           const count = matches ? matches.length : 0;
           if (typeof a.expected_count === 'number') ok = count === a.expected_count;
           else if (typeof a.expected_count === 'string' && a.expected_count.startsWith('>=')) {
@@ -160,11 +156,9 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
           detail = ok ? 'absent' : 'present';
         }
       } else if (a.type === 'deterministic') {
-        // Profile-authored commands execute only inside the benchmark trust domain.
-        // Shared runners should set the gate to 0 to refuse this path.
         if (!criteriaExecAllowed()) {
           ok = false;
-          detail = 'deterministic criterion skipped: criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)';
+          detail = 'deterministic criterion skipped: criteria exec disabled (set DEEP_AGENT_ALLOW_CRITERIA_EXEC=1 to enable)';
           results.push({ id: a.id, type: a.type, passed: ok, detail });
           if (ok) pass++;
           continue;
@@ -201,7 +195,7 @@ function applyHardGate(d1, d2) {
 }
 
 /**
- * D4 grader factory (research iteration 3, F5 step 2). Returns an async grader
+ * D4 grader factory. Returns an async grader
  * function (virtualFixture, outputText, opts) -> { score, confidence, parse_status, ... }.
  *   - 'llm'  : real claude grader via the ported harness
  *   - 'mock' : deterministic stub via the harness mock path (default)
@@ -339,7 +333,7 @@ async function score(opts) {
 // 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { score, buildGraderFn, scoreAcceptanceDeterministic, DEFAULT_RUBRIC };
+module.exports = { score, buildGraderFn, scoreAcceptanceDeterministic, criteriaExecAllowed, DEFAULT_RUBRIC };
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 6. CLI ENTRYPOINT

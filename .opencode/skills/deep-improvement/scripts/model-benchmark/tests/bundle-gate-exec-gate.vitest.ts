@@ -1,16 +1,15 @@
 // ───────────────────────────────────────────────────────────────────
-// MODULE: bundle-gate exec gate (121/018 remediation of 017 review)
-//   F017-P1-02  bundle-gate Layer-3 execSync was not gated by
-//               DEEP_AGENT_ALLOW_CRITERIA_EXEC, unlike score-model-variant's
-//               deterministic branch. bundle-gate is the D2 hard gate, so the
-//               SKILL.md "refuse criteria-driven shell execution" guarantee
-//               was false for this path.
+// MODULE: bundle-gate Layer-3 exec gate (fail-closed criteria-exec)
+//   bundle-gate Layer-3 execSync must honor DEEP_AGENT_ALLOW_CRITERIA_EXEC,
+//   like score-model-variant's deterministic branch. bundle-gate is the D2
+//   hard gate, so the "refuse criteria-driven shell execution" guarantee
+//   would be false for this path without the shared fail-closed gate.
 //
-//   Semantics mirror score-model-variant's gate:
-//     - gate ON (env unset or '1'): the smoke-run command executes.
-//     - gate OFF (env '0'): the command is REFUSED (no execSync side effect),
-//       the layer does not pass, and the score is produced without crashing
-//       (hard_gate_failed stays false, so D1 is not short-circuited to 0.0).
+//   Semantics mirror score-model-variant's fail-closed gate:
+//     - gate ON (env '1' or 'true'): the smoke-run command executes.
+//     - gate OFF (env unset or '0'): the command is REFUSED (no execSync side
+//       effect), the layer does not pass, and the score is produced without
+//       crashing (hard_gate_failed stays false, so D1 is not short-circuited).
 // ───────────────────────────────────────────────────────────────────
 
 import path from 'node:path';
@@ -70,12 +69,13 @@ function fixtureWithSmokeRun() {
   };
 }
 
-describe('F017-P1-02 bundle-gate Layer-3 exec gate', () => {
-  it('gate ON (env unset): runs the smoke-run command (Layer-3 passes, sentinel written)', () => {
+describe('bundle-gate Layer-3 exec gate (fail-closed)', () => {
+  it('gate OFF (env unset): fail-closed default REFUSES the smoke-run (no sentinel)', () => {
     delete process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC;
     const r = bundleGate.scoreOutput(fixtureWithSmokeRun(), OUTPUT);
-    expect(fs.existsSync(sentinel)).toBe(true); // command executed
-    expect(r.details.layer_3.passed).toBe(true);
+    expect(fs.existsSync(sentinel)).toBe(false); // command refused (fail-closed default)
+    expect(r.details.layer_3.passed).toBe(false);
+    expect((r.details.layer_3.details as { skipped?: boolean }).skipped).toBe(true);
     expect(r.details.layer_3.hard_gate_failed).toBe(false);
   });
 
