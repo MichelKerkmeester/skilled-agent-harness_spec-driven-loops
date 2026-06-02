@@ -1011,7 +1011,7 @@ async function invalidateReinitializedDbCaches(): Promise<void> {
 
 function createContextMcpServer(): Server {
   return new Server(
-    { name: 'mk-spec-memory', version: '1.7.2' },
+    { name: 'mk-spec-memory', version: '1.8.0' },
     { capabilities: { tools: {} } },
   );
 }
