@@ -51,9 +51,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-006). _Evidence:_
-- [ ] CHK-002 [P0] Technical approach defined in plan.md (shared helper + sentinel + boot/scan repair). _Evidence:_
-- [ ] CHK-003 [P1] Dependencies identified and available (checkpoints.ts, context-server.ts, memory-index.ts, vector-index-store.ts). _Evidence:_
+- [x] CHK-001 [P0] Requirements documented in spec.md (REQ-001..REQ-006). _Evidence: spec.md read before implementation; requirements map to implemented sentinel write, boot/pre-scan repair, scan repair, and swap-done recovery._
+- [x] CHK-002 [P0] Technical approach defined in plan.md (shared helper + sentinel + boot/scan repair). _Evidence: plan.md read before implementation; implemented `runDerivedArtifactRebuilds()` plus `repairNeedsRebuildSentinel()` and consumers._
+- [x] CHK-003 [P1] Dependencies identified and available (checkpoints.ts, context-server.ts, memory-index.ts, vector-index-store.ts). _Evidence: all four source files read and modified within allowed paths._
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -61,10 +61,10 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Touched TS passes scoped typecheck (no new errors). _Evidence:_
-- [ ] CHK-011 [P0] No console errors or warnings introduced on the boot/scan path. _Evidence:_
-- [ ] CHK-012 [P1] Repair is non-fatal: rebuild errors are caught and logged, never thrown to boot/scan. _Evidence:_
-- [ ] CHK-013 [P1] One shared derived-rebuild helper is reused by restore, boot, and scan (no duplicated rebuild body). _Evidence:_
+- [ ] CHK-010 [P0] Touched TS passes scoped typecheck (no new errors). _Evidence: attempted `npx tsc --noEmit --pretty false`; blocked by existing `baseUrl` TS5101 deprecation. Attempted scoped `npx tsc --noEmit --pretty false --ignoreConfig ...`; blocked by existing missing declarations/modules (`better-sqlite3`, `@spec-kit/shared/*`, `@modelcontextprotocol/sdk/client/index.js`)._
+- [ ] CHK-011 [P0] No console errors or warnings introduced on the boot/scan path. _Evidence: not marked because the accepted plan intentionally logs non-fatal warnings when repair fails and the sentinel is retained; focused vitest suites passed 30/30._
+- [x] CHK-012 [P1] Repair is non-fatal: rebuild errors are caught and logged, never thrown to boot/scan. _Evidence: `repairNeedsRebuildSentinel()` returns a failed result instead of throwing; `checkpoint-needs-rebuild-sentinel.vitest.ts` failed-repair test passed._
+- [x] CHK-013 [P1] One shared derived-rebuild helper is reused by restore, boot, and scan (no duplicated rebuild body). _Evidence: `runDerivedArtifactRebuilds()` is exported from `checkpoints.ts`; restore calls through `runPostRestoreRebuilds()`, boot/pre-scan and scan call `repairNeedsRebuildSentinel()`._
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -72,10 +72,10 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] All acceptance criteria met (REQ-001 sentinel-on-failure, REQ-002 repair-clears, REQ-003 shared helper). _Evidence:_
-- [ ] CHK-021 [P0] Forced rebuild failure writes `.needs-rebuild` and the restore still returns success. _Evidence:_
-- [ ] CHK-022 [P1] A failed repair retains the sentinel and never blocks boot or scan (REQ-004). _Evidence:_
-- [ ] CHK-023 [P1] Swap-done journal recovery without rebuild evidence preserves/creates rebuild-needed state (REQ-006). _Evidence:_
+- [x] CHK-020 [P0] All acceptance criteria met (REQ-001 sentinel-on-failure, REQ-002 repair-clears, REQ-003 shared helper). _Evidence: focused vitest run passed 30/30 across checkpoint sentinel, v2 restore, scan repair reporting, and existing scan suites._
+- [x] CHK-021 [P0] Forced rebuild failure writes `.needs-rebuild` and the restore still returns success. _Evidence: `checkpoints-v2-restore.vitest.ts` test `writes a needs-rebuild sentinel when post-restore derived rebuild fails but restore succeeds`; focused vitest 30/30._
+- [x] CHK-022 [P1] A failed repair retains the sentinel and never blocks boot or scan (REQ-004). _Evidence: `checkpoint-needs-rebuild-sentinel.vitest.ts` test `keeps the sentinel after a failed derived rebuild repair`; focused vitest 30/30._
+- [x] CHK-023 [P1] Swap-done journal recovery without rebuild evidence preserves/creates rebuild-needed state (REQ-006). _Evidence: extended `checkpoints-v2-restore.vitest.ts` swap-done recovery test asserts `.needs-rebuild`; focused vitest 30/30._
 <!-- /ANCHOR:testing -->
 
 ---
@@ -83,12 +83,12 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`.
-- [ ] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (`runPostRestoreRebuilds|rebuildDerived|rebuildCommunities|rebuildFts`).
-- [ ] CHK-FIX-003 [P0] Consumer inventory completed for the rebuild summary, the sentinel helpers, and the scan response counts.
-- [ ] CHK-FIX-004 [P0] Path/marker handling: the `.needs-rebuild` path resolves beside the restore-journal artifacts; write-on-failure and clear-on-success are covered by tests.
-- [ ] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (outcome x site).
-- [ ] CHK-FIX-006 [P1] Boot/scan timing variant exercised: sentinel present at boot AND present at the pre-scan checkpoint.
+- [x] CHK-FIX-001 [P0] Each actionable finding has a finding class: `instance-only`, `class-of-bug`, `cross-consumer`, `algorithmic`, `matrix/evidence`, or `test-isolation`. _Evidence: class-of-bug across restore/boot/pre-scan/scan derived artifact consumers._
+- [x] CHK-FIX-002 [P0] Same-class producer inventory completed, or instance-only status proven by grep (`runPostRestoreRebuilds|rebuildDerived|rebuildCommunities|rebuildFts`). _Evidence: grep/read confirmed `runPostRestoreRebuilds()` and restore call sites in `checkpoints.ts`; one exported helper owns rebuild steps._
+- [x] CHK-FIX-003 [P0] Consumer inventory completed for the rebuild summary, the sentinel helpers, and the scan response counts. _Evidence: consumers wired in `restoreCheckpointV2()`, `context-server.ts` boot/pre-scan, `memory-index.ts` scan lease, and `vector-index-store.ts` swap-done recovery._
+- [x] CHK-FIX-004 [P0] Path/marker handling: the `.needs-rebuild` path resolves beside the restore-journal artifacts; write-on-failure and clear-on-success are covered by tests. _Evidence: sentinel path helpers in `checkpoints.ts`; restore/swap-done/repair tests passed 30/30._
+- [x] CHK-FIX-005 [P1] Matrix axes and row count are listed before completion is claimed (outcome x site). _Evidence: outcome matrix exercised by tests: restore degraded writes marker; repair success clears; repair failure retains; scan reports counts; swap-done recovery creates marker._
+- [x] CHK-FIX-006 [P1] Boot/scan timing variant exercised: sentinel present at boot AND present at the pre-scan checkpoint. _Evidence: `context-server.ts` calls repair after checkpoint/search init and again inside the scheduled startup-scan callback before `startupScan()`._
 - [ ] CHK-FIX-007 [P1] Evidence is pinned to a fix SHA or explicit diff range, not a moving branch-relative range.
 <!-- /ANCHOR:fix-completeness -->
 
@@ -97,9 +97,9 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] No hardcoded secrets introduced. _Evidence:_
-- [ ] CHK-031 [P0] Sentinel path is resolved safely beside existing restore artifacts (no path traversal). _Evidence:_
-- [ ] CHK-032 [P1] The repair path never mutates the restored base snapshot. _Evidence:_
+- [x] CHK-030 [P0] No hardcoded secrets introduced. _Evidence: changes only add local marker metadata, rebuild helpers, and tests; no credentials or network calls._
+- [x] CHK-031 [P0] Sentinel path is resolved safely beside existing restore artifacts (no path traversal). _Evidence: `.needs-rebuild` path derives from the resolved main DB path and `checkpoints` directory, matching restore journal placement._
+- [x] CHK-032 [P1] The repair path never mutates the restored base snapshot. _Evidence: repair rebuilds derived artifacts from live tables and clears only the sentinel on full success; restore success contract unchanged._
 <!-- /ANCHOR:security -->
 
 ---
@@ -107,9 +107,9 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] Spec/plan/tasks synchronized with the implemented behavior. _Evidence:_
-- [ ] CHK-041 [P1] No code comment embeds spec paths / packet ids / phase numbers / ADR-REQ-CHK-task ids (durable WHY only). _Evidence:_
-- [ ] CHK-042 [P2] Implementation-summary updated with shipped state + evidence. _Evidence:_
+- [x] CHK-040 [P1] Spec/plan/tasks synchronized with the implemented behavior. _Evidence: implementation follows the pre-approved spec/plan/tasks without scope expansion; implementation-summary updated with shipped state._
+- [x] CHK-041 [P1] No code comment embeds spec paths / packet ids / phase numbers / ADR-REQ-CHK-task ids (durable WHY only). _Evidence: comment hygiene checker passed on changed source files and new tests._
+- [x] CHK-042 [P2] Implementation-summary updated with shipped state + evidence. _Evidence: implementation-summary.md now records shipped files, verification commands, and known typecheck blocker._
 <!-- /ANCHOR:docs -->
 
 ---
@@ -117,8 +117,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P1] Temp files in scratch/ only. _Evidence:_
-- [ ] CHK-051 [P1] scratch/ cleaned before completion. _Evidence:_
+- [x] CHK-050 [P1] Temp files in scratch/ only. _Evidence: implementation did not create packet scratch files; tests use OS temp dirs and clean them in `afterEach`._
+- [x] CHK-051 [P1] scratch/ cleaned before completion. _Evidence: no packet scratch files created._
 <!-- /ANCHOR:file-org -->
 
 ---
@@ -128,9 +128,9 @@ _memory:
 
 | Category | Total | Verified |
 |----------|-------|----------|
-| P0 Items | 12 | [ ]/12 |
-| P1 Items | 13 | [ ]/13 |
-| P2 Items | 2 | [ ]/2 |
+| P0 Items | 12 | 10/12 |
+| P1 Items | 13 | 12/13 |
+| P2 Items | 2 | 1/2 |
 
 **Verification Date**: 2026-06-02
 <!-- /ANCHOR:summary -->

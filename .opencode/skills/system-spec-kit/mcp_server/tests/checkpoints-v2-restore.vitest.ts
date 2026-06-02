@@ -115,6 +115,10 @@ function getRestoreJournalPath(): string {
   return path.join(tempDir, 'checkpoints', '.restore-journal.json');
 }
 
+function getNeedsRebuildSentinelPath(): string {
+  return path.join(tempDir, 'checkpoints', '.needs-rebuild');
+}
+
 function createMarkerDatabase(targetPath: string, value: string): void {
   const markerDb = new Database(targetPath);
   markerDb.exec('CREATE TABLE marker (value TEXT NOT NULL)');
@@ -201,6 +205,28 @@ describe('checkpoint v2 restore', () => {
     expect(checkpoints.isRestoreInProgress()).toBe(false);
   });
 
+  it('writes a needs-rebuild sentinel when post-restore derived rebuild fails but restore succeeds', () => {
+    database.exec('ALTER TABLE memory_index ADD COLUMN parent_id INTEGER');
+    checkpoints.createCheckpoint({ name: 'v2-rebuild-failure', includeEmbeddings: false });
+    database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Memory A mutated', 1);
+
+    const result = checkpoints.restoreCheckpoint('v2-rebuild-failure', false, {}, { reopen: flatReopen });
+    const sentinelPath = getNeedsRebuildSentinelPath();
+    const sentinel = JSON.parse(fs.readFileSync(sentinelPath, 'utf-8')) as {
+      rebuildSummary?: {
+        failed?: Array<{ name?: string }>;
+        skipped?: Array<{ name?: string }>;
+      };
+    };
+
+    expect(result.errors).toEqual([]);
+    expect(result.restored).toBe(2);
+    expect(fs.existsSync(sentinelPath)).toBe(true);
+    expect(sentinel.rebuildSummary?.failed?.some((entry) => entry.name === 'auto-entities')).toBe(true);
+    expect(sentinel.rebuildSummary?.skipped?.some((entry) => entry.name === 'fts-rebuild')).toBe(true);
+    expect(checkpoints.isRestoreInProgress()).toBe(false);
+  });
+
   it('rolls back .bak files when reopen fails after the swap', () => {
     checkpoints.createCheckpoint({ name: 'v2-rollback', includeEmbeddings: false });
     database.prepare('UPDATE memory_index SET title = ? WHERE id = ?').run('Live mutation survives rollback', 1);
@@ -264,6 +290,7 @@ describe('checkpoint v2 restore', () => {
 
     expect(readMarkerValue(dbPath)).toBe('restored-live');
     expect(fs.existsSync(journalPath)).toBe(false);
+    expect(fs.existsSync(getNeedsRebuildSentinelPath())).toBe(true);
     expect(fs.existsSync(backupMainPath)).toBe(false);
   });
 
@@ -444,7 +471,7 @@ describe('checkpoint v2 restore', () => {
   it('refuses manifests from a newer schema version', () => {
     checkpoints.createCheckpoint({ name: 'future-schema', includeEmbeddings: false });
     const manifest = readManifest('future-schema');
-    writeManifest('future-schema', { ...manifest, schemaVersion: 30 });
+    writeManifest('future-schema', { ...manifest, schemaVersion: 9999 });
 
     const result = checkpoints.restoreCheckpoint('future-schema', false, {}, { reopen: flatReopen });
 

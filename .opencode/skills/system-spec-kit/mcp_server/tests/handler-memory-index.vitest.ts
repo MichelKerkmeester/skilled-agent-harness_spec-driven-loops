@@ -638,6 +638,13 @@ describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', (
         });
         vi.doMock('../lib/storage/checkpoints.js', () => ({
           getRestoreBarrierStatus: vi.fn(() => null),
+          repairNeedsRebuildSentinel: vi.fn(() => ({
+            sentinelPresent: false,
+            attempted: false,
+            cleared: false,
+            summary: null,
+            error: null,
+          })),
         }));
         vi.doMock('../lib/providers/embeddings.js', () => ({
           getEmbeddingProfile: vi.fn(() => null),

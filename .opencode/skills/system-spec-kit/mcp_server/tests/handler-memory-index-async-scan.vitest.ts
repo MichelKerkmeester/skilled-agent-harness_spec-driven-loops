@@ -141,6 +141,13 @@ vi.mock('../handlers/memory-index-alias', () => ({
 
 vi.mock('../lib/storage/checkpoints', () => ({
   getRestoreBarrierStatus: vi.fn(() => null),
+  repairNeedsRebuildSentinel: vi.fn(() => ({
+    sentinelPresent: false,
+    attempted: false,
+    cleared: false,
+    summary: null,
+    error: null,
+  })),
 }));
 
 // ──────────────────────────────────────────────────────────────

@@ -896,8 +896,26 @@ describe('Context Server', () => {
         generateQueryEmbedding: vi.fn(async () => [0]),
       }))
 
-      vi.doMock('../lib/storage/checkpoints', () => ({ init: vi.fn() }))
-      vi.doMock('../lib/storage/checkpoints.js', () => ({ init: vi.fn() }))
+      vi.doMock('../lib/storage/checkpoints', () => ({
+        init: vi.fn(),
+        repairNeedsRebuildSentinel: vi.fn(() => ({
+          sentinelPresent: false,
+          attempted: false,
+          cleared: false,
+          summary: null,
+          error: null,
+        })),
+      }))
+      vi.doMock('../lib/storage/checkpoints.js', () => ({
+        init: vi.fn(),
+        repairNeedsRebuildSentinel: vi.fn(() => ({
+          sentinelPresent: false,
+          attempted: false,
+          cleared: false,
+          summary: null,
+          error: null,
+        })),
+      }))
       vi.doMock('../lib/storage/access-tracker', () => ({ init: vi.fn(), reset: vi.fn() }))
       vi.doMock('../lib/storage/access-tracker.js', () => ({ init: vi.fn(), reset: vi.fn() }))
       vi.doMock('../lib/storage/lineage-state.js', () => ({ runLineageBackfill: vi.fn(async () => ({ repaired: 0 })) }))
