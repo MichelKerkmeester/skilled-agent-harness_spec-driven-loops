@@ -41,7 +41,7 @@
       "rss"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "mcp_server/context-server.ts",

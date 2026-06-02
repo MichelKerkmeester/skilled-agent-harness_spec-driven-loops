@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel"
-    last_updated_at: "2026-06-02T00:00:00Z"
-    last_updated_by: "gpt-5.5"
-    recent_action: "Implemented checkpoint needs-rebuild sentinel and focused tests"
-    next_safe_action: "Orchestrator reviews branch, integrates, and deploys when ready"
+    last_updated_at: "2026-06-02T10:03:31Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Needs-rebuild sentinel shipped, deployed to main; focused tests green"
+    next_safe_action: "None binding; merged and deployed to main"
     blockers: []
     key_files:
       - "mcp_server/lib/storage/checkpoints.ts"
@@ -35,7 +35,7 @@ _memory:
 <!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core | v2.2 -->
 <!-- HVR_REFERENCE: .opencode/skills/sk-doc/references/hvr_rules.md -->
 
-> Status: **IMPLEMENTED ON BRANCH** - focused vitest coverage passes. Deployment, git integration, and live daemon restart remain operator-owned.
+> Status: **SHIPPED + DEPLOYED** - merged to main and live (dist rebuilt, daemon restarted); focused vitest coverage passes.
 
 ---
 
@@ -45,7 +45,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Spec Folder** | 005-checkpoint-needs-rebuild-sentinel |
-| **Completed** | Implemented and focused-tested on branch |
+| **Completed** | 2026-06-02 - shipped and deployed to main |
 | **Level** | 3 |
 <!-- /ANCHOR:metadata -->
 
@@ -80,7 +80,7 @@ Boot and pre-scan repair call `repairNeedsRebuildSentinel()` from `mcp_server/co
 <!-- ANCHOR:how-delivered -->
 ## How It Was Delivered
 
-Delivery stayed inside the isolated branch and used throwaway SQLite/temp files in vitest only. No `dist/` rebuild, daemon restart, git operation, package install, or live-DB access was performed. Deployment and integration remain operator-owned.
+Implementation and focused vitest (throwaway SQLite/temp files) stayed inside an isolated branch. It then merged to main alongside the `004` memory_save enrichment follow-up, the `dist/` was rebuilt, and the daemon was restarted — the sentinel is live.
 <!-- /ANCHOR:how-delivered -->
 
 ---
@@ -117,5 +117,5 @@ Delivery stayed inside the isolated branch and used throwaway SQLite/temp files 
 
 1. **Best-effort retry without backoff.** A permanently failing rebuild repeats bounded work each boot/scan cycle; bounding retries with a backoff or attempt counter is an open question, not part of this packet.
 2. **Typecheck environment remains unresolved.** Focused vitest and alignment verification passed, but no-emit TypeScript checks are blocked by existing project type-resolution/configuration issues.
-3. **Deploy is gated.** The change runs on a branch only; applying it to the live daemon is a separate, explicitly-confirmed step.
+3. **Deployed.** The change is merged to main and live on the daemon (dist rebuilt, daemon restarted); this was the explicitly-confirmed deploy step.
 <!-- /ANCHOR:limitations -->

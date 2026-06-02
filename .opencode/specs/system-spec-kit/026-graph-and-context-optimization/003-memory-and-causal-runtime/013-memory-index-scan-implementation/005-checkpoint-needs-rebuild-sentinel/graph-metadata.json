@@ -34,7 +34,7 @@
       "scan"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/storage/checkpoints.ts",
       "mcp_server/context-server.ts",

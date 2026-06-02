@@ -34,7 +34,7 @@
       "backfill"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/search/vector-index-schema.ts",
       "mcp_server/handlers/memory-save.ts",

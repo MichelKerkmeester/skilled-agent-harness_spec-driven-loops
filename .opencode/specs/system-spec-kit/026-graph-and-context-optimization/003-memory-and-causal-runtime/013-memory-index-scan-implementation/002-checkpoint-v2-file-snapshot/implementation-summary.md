@@ -11,10 +11,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot"
-    last_updated_at: "2026-06-01T22:50:00Z"
+    last_updated_at: "2026-06-02T10:03:31Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Checkpoint-v2 shipped, gate-fixed (cce4fe931d), and live-verified"
-    next_safe_action: "Proceed to item-G cleanups then item-E front-proxy"
+    recent_action: "Checkpoint-v2 shipped, gate-fixed (cce4fe931d), live-verified, deployed to main"
+    next_safe_action: "None binding; front-proxy (E) shipped; needs-rebuild sentinel shipped (013/005)"
     blockers: []
     key_files:
       - "lib/storage/checkpoints.ts"
