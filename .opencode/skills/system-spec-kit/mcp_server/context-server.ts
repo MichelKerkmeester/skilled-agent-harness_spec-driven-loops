@@ -2082,9 +2082,12 @@ async function main(): Promise<void> {
     }
   }
 
-  transportConnectedAt = new Date().toISOString();
-  transport = new StdioServerTransport();
-  await server.connect(transport);
+  const backendOnly = process.env.SPECKIT_BACKEND_ONLY === '1';
+  if (!backendOnly) {
+    transportConnectedAt = new Date().toISOString();
+    transport = new StdioServerTransport();
+    await server.connect(transport);
+  }
   scheduleBootFtsIntegrityCheck();
   registerInterval(() => vectorIndex.checkpointAllWal(), 300_000, { unref: true });
   launcherIdleMonitor = createLauncherIdleMonitor({
@@ -2092,6 +2095,7 @@ async function main(): Promise<void> {
     getActiveClientCount: () => getIpcBridgeStats().secondary_clients_count,
     onIdle: () => fatalShutdown('Launcher idle timeout reached, shutting down...', 0),
     log: (message) => console.error(message),
+    stdin: backendOnly ? null : undefined,
   });
   ipcBridge = await startIpcSocketServer({
     socketPath: resolveIpcSocketPath(DATABASE_DIR),
@@ -2105,7 +2109,9 @@ async function main(): Promise<void> {
   });
   const rssMb = Math.round(process.memoryUsage().rss / 1024 / 1024);
   console.error(`[health] startup pid=${process.pid} rss=${rssMb}MB uptime=0s`);
-  console.error('[context-server] Context MCP server running on stdio');
+  console.error(backendOnly
+    ? '[context-server] Context MCP server running on IPC socket only'
+    : '[context-server] Context MCP server running on stdio and IPC socket');
 
 }
 

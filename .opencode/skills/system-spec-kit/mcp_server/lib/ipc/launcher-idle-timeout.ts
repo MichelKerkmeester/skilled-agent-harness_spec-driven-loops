@@ -77,6 +77,8 @@ function createLauncherIdleMonitor(options: LauncherIdleMonitorOptions): Launche
   let stopped = false;
   let lastActivityAt = now();
   let timer: IntervalHandle | null = null;
+  let sawActiveClient = false;
+  let zeroActiveClientChecks = 0;
 
   const markActivity = () => {
     if (!stopped) {
@@ -97,6 +99,14 @@ function createLauncherIdleMonitor(options: LauncherIdleMonitorOptions): Launche
     if (stopped) return;
     const activeClients = options.getActiveClientCount?.() ?? 0;
     if (activeClients > 0) {
+      sawActiveClient = true;
+      zeroActiveClientChecks = 0;
+      lastActivityAt = now();
+      return;
+    }
+    zeroActiveClientChecks += 1;
+    if (sawActiveClient && zeroActiveClientChecks < 2) {
+      // A reconnect can briefly drop the socket count to zero while the launcher is still preserving stdio.
       lastActivityAt = now();
       return;
     }

@@ -1,0 +1,691 @@
+// [launcher-session-proxy] Launcher-owned MCP stdin/stdout bridge over daemon IPC.
+'use strict';
+
+const net = require('net');
+const {
+  probeDaemon,
+  toConnectionOptions,
+} = require('./launcher-ipc-bridge.cjs');
+
+const PROBE_BACKOFF_MS = [100, 250, 500, 1000, 1500];
+const DEFAULT_MAX_REATTACH_ATTEMPTS = 40;
+const DEFAULT_MAX_COLD_START_ATTEMPTS = 120;
+const INTERNAL_HANDSHAKE_TIMEOUT_MS = 7000;
+const DEFAULT_KEEPALIVE_INTERVAL_MS = 10_000;
+const DEFAULT_KEEPALIVE_TIMEOUT_MS = 5_000;
+const DEFAULT_MAX_QUEUED_CLIENT_FRAMES = 1000;
+const PROXY_PRIVATE_ID_PREFIX = '__launcher_session_proxy_keepalive__';
+const RETRYABLE_RECYCLE_ERROR = Object.freeze({
+  code: -32001,
+  message: 'backend recycled; retry',
+  data: { retryable: true },
+});
+const REPLAYABLE_TOOL_NAMES = new Set([
+  'memory_search',
+  'memory_context',
+  'memory_match_triggers',
+  'memory_quick_search',
+  'memory_save',
+  'session_bootstrap',
+  'session_health',
+  'session_resume',
+  'session_status',
+  'memory_stats',
+  'memory_status',
+  'checkpoint_list',
+  'embedder_health',
+]);
+const UNSAFE_TOOL_NAMES = new Set([
+  'memory_delete',
+  'memory_bulk_delete',
+  'memory_update',
+  'checkpoint_restore',
+  'checkpoint_delete',
+  'embedder_set',
+  'memory_retention_sweep',
+  'memory_ingest_start',
+  'memory_ingest_cancel',
+]);
+const REPLAYABLE_PROTOCOL_METHODS = new Set([
+  'initialize',
+  'ping',
+]);
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function defaultConnect(connectionOptions) {
+  return net.createConnection(connectionOptions);
+}
+
+function defaultLog(message) {
+  process.stderr.write(`[launcher-session-proxy] ${message}\n`);
+}
+
+function createFrameSplitter(onFrame) {
+  let buffer = '';
+  return {
+    push(chunk) {
+      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      let newlineIndex = buffer.indexOf('\n');
+      while (newlineIndex !== -1) {
+        const frame = buffer.slice(0, newlineIndex);
+        buffer = buffer.slice(newlineIndex + 1);
+        newlineIndex = buffer.indexOf('\n');
+        if (frame.trim().length === 0) continue;
+        onFrame(frame);
+      }
+    },
+    discard() {
+      buffer = '';
+    },
+    buffered() {
+      return buffer;
+    },
+  };
+}
+
+function parseFrame(frame) {
+  try {
+    const parsed = JSON.parse(String(frame).trim());
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function hasOwn(object, key) {
+  return Object.prototype.hasOwnProperty.call(object, key);
+}
+
+function hasRequestId(parsed) {
+  return parsed !== null && hasOwn(parsed, 'id');
+}
+
+function isResponseFrame(parsed) {
+  return hasRequestId(parsed) && (hasOwn(parsed, 'result') || hasOwn(parsed, 'error'));
+}
+
+function classifyFrame(frame) {
+  const parsed = typeof frame === 'string' ? parseFrame(frame) : frame;
+  if (!parsed || typeof parsed.method !== 'string') return false;
+  if (parsed.method !== 'tools/call') {
+    return REPLAYABLE_PROTOCOL_METHODS.has(parsed.method) || parsed.method.startsWith('notifications/');
+  }
+
+  const toolName = parsed.params && typeof parsed.params === 'object'
+    ? parsed.params.name
+    : undefined;
+  if (typeof toolName !== 'string') return false;
+  if (UNSAFE_TOOL_NAMES.has(toolName)) return false;
+  // memory_save relies on primary-row dedup; secondary-index idempotency remains a known follow-up.
+  if (REPLAYABLE_TOOL_NAMES.has(toolName)) return true;
+  return false;
+}
+
+function createPendingRequestsTracker(classify = classifyFrame) {
+  const pendingRequests = new Map();
+  let cachedInitialize = null;
+
+  function handleClientFrame(frame) {
+    const parsed = parseFrame(frame);
+    if (!parsed) return;
+    if (parsed.method === 'initialize') cachedInitialize = frame;
+    if (!hasRequestId(parsed)) return;
+    pendingRequests.set(parsed.id, {
+      frame,
+      replayable: classify(frame),
+    });
+  }
+
+  function handleBackendFrame(frame) {
+    const parsed = parseFrame(frame);
+    if (!parsed || !isResponseFrame(parsed)) return;
+    pendingRequests.delete(parsed.id);
+  }
+
+  return {
+    pendingRequests,
+    handleClientFrame,
+    handleBackendFrame,
+    getCachedInitialize() {
+      return cachedInitialize;
+    },
+  };
+}
+
+async function waitForDaemonReady(socketPath, probe, connect, log, options = {}) {
+  const maxAttempts = Number.isInteger(options.maxAttempts) && options.maxAttempts > 0
+    ? options.maxAttempts
+    : Infinity;
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const result = await probe(socketPath, { connect, deepProbe: true });
+    if (result.status === 'alive') return result;
+    if (attempt + 1 >= maxAttempts) return result;
+    const delayMs = PROBE_BACKOFF_MS[Math.min(attempt, PROBE_BACKOFF_MS.length - 1)];
+    log(`daemon socket not ready (${result.reason}); retrying in ${delayMs}ms`);
+    await sleep(delayMs);
+  }
+  return { status: 'dead', reason: 'reattach-attempts-exhausted' };
+}
+
+function writeFrame(stream, frame) {
+  return stream.write(`${frame}\n`);
+}
+
+function retryableErrorFrame(id) {
+  return JSON.stringify({
+    jsonrpc: '2.0',
+    id,
+    error: RETRYABLE_RECYCLE_ERROR,
+  });
+}
+
+function connectSocket(connect, socketPath) {
+  return new Promise((resolve, reject) => {
+    let socket;
+    try {
+      socket = connect(toConnectionOptions(socketPath));
+    } catch (error) {
+      reject(error);
+      return;
+    }
+
+    const cleanup = () => {
+      socket.off?.('connect', onConnect);
+      socket.off?.('error', onError);
+    };
+    const onConnect = () => {
+      cleanup();
+      resolve(socket);
+    };
+    const onError = (error) => {
+      cleanup();
+      socket.destroy?.();
+      reject(error);
+    };
+
+    socket.once('connect', onConnect);
+    socket.once('error', onError);
+  });
+}
+
+function internalHandshake(socket, initializeFrame) {
+  if (!initializeFrame) return Promise.resolve('');
+
+  const initialize = parseFrame(initializeFrame);
+  if (!initialize || !hasRequestId(initialize)) return Promise.resolve('');
+
+  return new Promise((resolve, reject) => {
+    let buffer = '';
+    let residual = '';
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('timed out waiting for internal initialize'));
+    }, INTERNAL_HANDSHAKE_TIMEOUT_MS);
+    timer.unref?.();
+    const cleanup = () => {
+      clearTimeout(timer);
+      socket.off?.('data', onData);
+      socket.off?.('error', onError);
+      socket.off?.('close', onClose);
+    };
+    const onData = (chunk) => {
+      buffer += Buffer.isBuffer(chunk) ? chunk.toString('utf8') : String(chunk ?? '');
+      let initialized = false;
+      let newlineIndex = buffer.indexOf('\n');
+      while (newlineIndex !== -1) {
+        const frame = buffer.slice(0, newlineIndex);
+        buffer = buffer.slice(newlineIndex + 1);
+        newlineIndex = buffer.indexOf('\n');
+        if (frame.trim().length === 0) continue;
+        const parsed = parseFrame(frame);
+        if (parsed && isResponseFrame(parsed) && parsed.id === initialize.id) {
+          initialized = true;
+          continue;
+        }
+        residual += `${frame}\n`;
+      }
+      if (!initialized) return;
+      const remainder = residual + buffer;
+      buffer = '';
+      residual = '';
+      cleanup();
+      resolve(remainder);
+    };
+    const onError = (error) => {
+      cleanup();
+      reject(error);
+    };
+    const onClose = () => {
+      cleanup();
+      reject(new Error('socket closed during internal initialize'));
+    };
+
+    socket.on('data', onData);
+    socket.once('error', onError);
+    socket.once('close', onClose);
+    writeFrame(socket, initializeFrame);
+  });
+}
+
+function createSessionProxy(options) {
+  const socketPath = options?.socketPath;
+  const input = options?.stdin ?? process.stdin;
+  const output = options?.stdout ?? process.stdout;
+  const probe = options?.probe ?? probeDaemon;
+  const connect = options?.connect ?? defaultConnect;
+  const log = options?.log ?? defaultLog;
+  const classify = options?.classify ?? classifyFrame;
+  const maxReattachAttempts = Number.isInteger(options?.maxReattachAttempts) && options.maxReattachAttempts > 0
+    ? options.maxReattachAttempts
+    : DEFAULT_MAX_REATTACH_ATTEMPTS;
+  const maxColdStartAttempts = Number.isInteger(options?.maxColdStartAttempts) && options.maxColdStartAttempts > 0
+    ? options.maxColdStartAttempts
+    : DEFAULT_MAX_COLD_START_ATTEMPTS;
+  const keepaliveIntervalMs = Number.isInteger(options?.keepaliveIntervalMs) && options.keepaliveIntervalMs > 0
+    ? options.keepaliveIntervalMs
+    : DEFAULT_KEEPALIVE_INTERVAL_MS;
+  const keepaliveTimeoutMs = Number.isInteger(options?.keepaliveTimeoutMs) && options.keepaliveTimeoutMs > 0
+    ? options.keepaliveTimeoutMs
+    : DEFAULT_KEEPALIVE_TIMEOUT_MS;
+  const maxQueuedClientFrames = Number.isInteger(options?.maxQueuedClientFrames) && options.maxQueuedClientFrames > 0
+    ? options.maxQueuedClientFrames
+    : DEFAULT_MAX_QUEUED_CLIENT_FRAMES;
+
+  let socket = null;
+  let state = 'REATTACHING';
+  let stopped = false;
+  let clientEnded = false;
+  let reattachRunning = false;
+  let backendSplitter = createFrameSplitter(handleBackendFrame);
+  let keepaliveInterval = null;
+  let keepaliveTimer = null;
+  let keepaliveId = 0;
+  let pendingKeepaliveId = null;
+  let lastBackendActivity = Date.now();
+  let socketDrainWaiting = false;
+  let outputDrainWaiting = false;
+  let outputEndRequested = false;
+  const queuedClientFrames = [];
+  const socketWriteQueue = [];
+  const outputWriteQueue = [];
+  const tracker = createPendingRequestsTracker(classify);
+  const clientSplitter = createFrameSplitter(handleClientFrame);
+
+  if (typeof socketPath !== 'string' || socketPath.length === 0) {
+    throw new Error('createSessionProxy requires a non-empty socketPath');
+  }
+
+  function pauseClientInput() {
+    input.pause?.();
+  }
+
+  function resumeClientInputIfReady() {
+    if (!clientEnded && !stopped && state === 'CONNECTED') input.resume?.();
+  }
+
+  function stopKeepalive() {
+    if (keepaliveInterval !== null) {
+      clearInterval(keepaliveInterval);
+      keepaliveInterval = null;
+    }
+    if (keepaliveTimer !== null) {
+      clearTimeout(keepaliveTimer);
+      keepaliveTimer = null;
+    }
+    pendingKeepaliveId = null;
+  }
+
+  function detachSocket(destroy = true) {
+    stopKeepalive();
+    if (!socket) return;
+    const oldSocket = socket;
+    socket = null;
+    // The backpressure 'drain' wait was bound to this now-discarded socket and its
+    // handler short-circuits once the socket is swapped, so it can never reset the
+    // flag. Clear it here (and drop the listener) or the next socket's pump stays
+    // blocked forever — a silent hang when backpressure coincides with a recycle.
+    socketDrainWaiting = false;
+    oldSocket.removeAllListeners?.('data');
+    oldSocket.removeAllListeners?.('error');
+    oldSocket.removeAllListeners?.('close');
+    oldSocket.removeAllListeners?.('drain');
+    if (destroy) oldSocket.destroy?.();
+  }
+
+  function stop() {
+    if (stopped) return;
+    stopped = true;
+    input.off?.('data', onInputData);
+    input.off?.('end', onInputEnd);
+    input.off?.('close', onInputClose);
+    output.off?.('error', onOutputError);
+    detachSocket(true);
+  }
+
+  function pumpOutputQueue() {
+    if (outputDrainWaiting) return;
+    while (outputWriteQueue.length > 0) {
+      const frame = outputWriteQueue[0];
+      const accepted = writeFrame(output, frame);
+      outputWriteQueue.shift();
+      if (!accepted) {
+        outputDrainWaiting = true;
+        socket?.pause?.();
+        output.once?.('drain', () => {
+          outputDrainWaiting = false;
+          socket?.resume?.();
+          pumpOutputQueue();
+        });
+        return;
+      }
+    }
+    if (outputEndRequested) {
+      output.end?.();
+      stop();
+    }
+  }
+
+  function enqueueOutputFrame(frame) {
+    outputWriteQueue.push(frame);
+    pumpOutputQueue();
+  }
+
+  function requestOutputEnd() {
+    outputEndRequested = true;
+    pumpOutputQueue();
+  }
+
+  function emitRetryableErrorForFrame(frame, failedIds) {
+    const parsed = parseFrame(frame);
+    if (!hasRequestId(parsed)) return;
+    const key = JSON.stringify(parsed.id);
+    if (failedIds.has(key)) return;
+    failedIds.add(key);
+    enqueueOutputFrame(retryableErrorFrame(parsed.id));
+  }
+
+  function failPendingAndEnd() {
+    const failedIds = new Set();
+    for (const id of tracker.pendingRequests.keys()) {
+      failedIds.add(JSON.stringify(id));
+      enqueueOutputFrame(retryableErrorFrame(id));
+    }
+    tracker.pendingRequests.clear();
+    while (queuedClientFrames.length > 0) {
+      emitRetryableErrorForFrame(queuedClientFrames.shift(), failedIds);
+    }
+    requestOutputEnd();
+  }
+
+  function failOldestQueuedClientFrame() {
+    while (queuedClientFrames.length > maxQueuedClientFrames) {
+      const frame = queuedClientFrames.shift();
+      const parsed = parseFrame(frame);
+      if (hasRequestId(parsed)) {
+        enqueueOutputFrame(retryableErrorFrame(parsed.id));
+        tracker.pendingRequests.delete(parsed.id);
+      }
+    }
+  }
+
+  function queueClientFrame(frame) {
+    queuedClientFrames.push(frame);
+    failOldestQueuedClientFrame();
+  }
+
+  function pumpSocketQueue() {
+    if (!socket || state !== 'CONNECTED' || socketDrainWaiting) return;
+    while (socketWriteQueue.length > 0 && socket && state === 'CONNECTED') {
+      const activeSocket = socket;
+      const frame = socketWriteQueue[0];
+      const accepted = writeFrame(activeSocket, frame);
+      socketWriteQueue.shift();
+      if (!accepted) {
+        socketDrainWaiting = true;
+        pauseClientInput();
+        activeSocket.once?.('drain', () => {
+          if (activeSocket !== socket) return;
+          socketDrainWaiting = false;
+          resumeClientInputIfReady();
+          pumpSocketQueue();
+        });
+        return;
+      }
+    }
+    resumeClientInputIfReady();
+  }
+
+  function enqueueSocketFrame(frame) {
+    socketWriteQueue.push(frame);
+    pumpSocketQueue();
+  }
+
+  function sendKeepalive() {
+    if (!socket || state !== 'CONNECTED' || pendingKeepaliveId !== null) return;
+    if (Date.now() - lastBackendActivity < keepaliveIntervalMs) return;
+    pendingKeepaliveId = `${PROXY_PRIVATE_ID_PREFIX}${keepaliveId += 1}`;
+    enqueueSocketFrame(JSON.stringify({ jsonrpc: '2.0', id: pendingKeepaliveId, method: 'ping' }));
+    keepaliveTimer = setTimeout(() => {
+      keepaliveTimer = null;
+      if (pendingKeepaliveId === null) return;
+      pendingKeepaliveId = null;
+      handleBackendFailure('keepalive-timeout');
+    }, keepaliveTimeoutMs);
+    keepaliveTimer.unref?.();
+  }
+
+  function startKeepalive() {
+    stopKeepalive();
+    lastBackendActivity = Date.now();
+    keepaliveInterval = setInterval(sendKeepalive, keepaliveIntervalMs);
+    keepaliveInterval.unref?.();
+  }
+
+  function forwardClientFrame(frame) {
+    tracker.handleClientFrame(frame);
+    if (!socket || state !== 'CONNECTED') {
+      queueClientFrame(frame);
+      return;
+    }
+    enqueueSocketFrame(frame);
+  }
+
+  function flushQueuedClientFrames() {
+    while (queuedClientFrames.length > 0 && socket && state === 'CONNECTED') {
+      forwardClientFrame(queuedClientFrames.shift());
+    }
+  }
+
+  function handleClientFrame(frame) {
+    const parsedClient = parseFrame(frame);
+    if (parsedClient
+        && parsedClient.method !== undefined
+        && typeof parsedClient.id === 'string'
+        && parsedClient.id.startsWith(PROXY_PRIVATE_ID_PREFIX)) {
+      // This id prefix is reserved for the proxy's private keepalive pings. A
+      // client request carrying a colliding id would have its backend response
+      // silently swallowed by the keepalive interceptor in handleBackendFrame,
+      // hanging the request. Reject the reserved id rather than forward it.
+      enqueueOutputFrame(JSON.stringify({
+        jsonrpc: '2.0',
+        id: parsedClient.id,
+        error: { code: -32600, message: 'Request id uses a reserved prefix' },
+      }));
+      return;
+    }
+    if (state !== 'CONNECTED' || !socket) {
+      queueClientFrame(frame);
+      return;
+    }
+    forwardClientFrame(frame);
+  }
+
+  function handleBackendFrame(frame) {
+    lastBackendActivity = Date.now();
+    const parsed = parseFrame(frame);
+    if (pendingKeepaliveId !== null && isResponseFrame(parsed) && parsed.id === pendingKeepaliveId) {
+      pendingKeepaliveId = null;
+      if (keepaliveTimer !== null) {
+        clearTimeout(keepaliveTimer);
+        keepaliveTimer = null;
+      }
+      return;
+    }
+    tracker.handleBackendFrame(frame);
+    enqueueOutputFrame(frame);
+  }
+
+  function replaySnapshot(snapshot) {
+    for (const [id, entry] of snapshot) {
+      if (!tracker.pendingRequests.has(id)) continue;
+      if (entry.replayable) {
+        enqueueSocketFrame(entry.frame);
+        continue;
+      }
+      enqueueOutputFrame(retryableErrorFrame(id));
+      tracker.pendingRequests.delete(id);
+    }
+  }
+
+  async function attachFreshSocket({ replaySnapshotEntries = [] } = {}) {
+    const freshSocket = await connectSocket(connect, socketPath);
+    const residual = await internalHandshake(freshSocket, tracker.getCachedInitialize());
+    socket = freshSocket;
+    backendSplitter = createFrameSplitter(handleBackendFrame);
+    if (residual.length > 0) backendSplitter.push(residual);
+    socket.on('data', (chunk) => backendSplitter.push(chunk));
+    socket.once('error', (error) => {
+      log(`socket proxy error: ${error instanceof Error ? error.message : String(error)}`);
+      handleBackendFailure('error');
+    });
+    socket.once('close', () => {
+      handleBackendFailure('close');
+    });
+    state = 'CONNECTED';
+    startKeepalive();
+    replaySnapshot(replaySnapshotEntries);
+    flushQueuedClientFrames();
+    pumpSocketQueue();
+    if (clientEnded) {
+      socket?.end?.();
+      stop();
+      return;
+    }
+    resumeClientInputIfReady();
+  }
+
+  async function reattach() {
+    for (let attempt = 0; attempt < maxReattachAttempts && !stopped; attempt += 1) {
+      const ready = await waitForDaemonReady(socketPath, probe, connect, log, { maxAttempts: 1 });
+      if (ready.status === 'alive') {
+        try {
+          const snapshot = Array.from(tracker.pendingRequests.entries());
+          await attachFreshSocket({ replaySnapshotEntries: snapshot });
+          if (state === 'CONNECTED' || stopped) return;
+          log('reattach observed nested backend failure; retrying');
+          continue;
+        } catch (error) {
+          if (state === 'REATTACHING') {
+            log(`reattach attach interrupted: ${error instanceof Error ? error.message : String(error)}`);
+            continue;
+          }
+          log(`reattach handshake failed: ${error instanceof Error ? error.message : String(error)}`);
+        }
+      }
+      const delayMs = PROBE_BACKOFF_MS[Math.min(attempt, PROBE_BACKOFF_MS.length - 1)];
+      await sleep(delayMs);
+    }
+    if (!stopped) failPendingAndEnd();
+  }
+
+  function ensureReattachRunning(reason) {
+    if (reattachRunning || stopped || clientEnded) return;
+    reattachRunning = true;
+    reattach()
+      .catch((error) => {
+        log(`reattach failed: ${error instanceof Error ? error.message : String(error)}`);
+        if (!stopped) failPendingAndEnd();
+      })
+      .finally(() => {
+        reattachRunning = false;
+        if (!stopped && state === 'REATTACHING' && !clientEnded) {
+          log('reattach loop guard restarting');
+          ensureReattachRunning('guard');
+        }
+      });
+    log(`backend socket ${reason}; reattaching`);
+  }
+
+  function handleBackendFailure(reason) {
+    if (stopped) return;
+    if (state === 'REATTACHING') {
+      ensureReattachRunning(reason);
+      return;
+    }
+    if (clientEnded) {
+      stop();
+      return;
+    }
+    state = 'REATTACHING';
+    pauseClientInput();
+    backendSplitter.discard();
+    detachSocket(true);
+    ensureReattachRunning(reason);
+  }
+
+  function onInputData(chunk) {
+    clientSplitter.push(chunk);
+  }
+
+  function onInputEnd() {
+    clientEnded = true;
+    socket?.end?.();
+  }
+
+  function onInputClose() {
+    clientEnded = true;
+    stop();
+  }
+
+  function onOutputError() {
+    stop();
+  }
+
+  async function start() {
+    const ready = await waitForDaemonReady(socketPath, probe, connect, log, { maxAttempts: maxColdStartAttempts });
+    if (stopped) return;
+    if (ready.status !== 'alive') {
+      enqueueOutputFrame(JSON.stringify({
+        jsonrpc: '2.0',
+        id: null,
+        error: {
+          code: -32001,
+          message: `backend unavailable: ${ready.reason ?? 'startup-timeout'}`,
+          data: { retryable: true },
+        },
+      }));
+      requestOutputEnd();
+      return;
+    }
+
+    input.on('data', onInputData);
+    input.once('end', onInputEnd);
+    input.once('close', onInputClose);
+    output.once('error', onOutputError);
+
+    await attachFreshSocket();
+  }
+
+  return { start, stop };
+}
+
+module.exports = {
+  createSessionProxy,
+  __testing: {
+    classifyFrame,
+    createFrameSplitter,
+    createPendingRequestsTracker,
+    parseFrame,
+  },
+};

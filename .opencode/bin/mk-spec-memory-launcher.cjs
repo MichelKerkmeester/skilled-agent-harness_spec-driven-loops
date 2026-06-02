@@ -12,6 +12,7 @@ const http = require('http');
 const path = require('path');
 const { spawn, spawnSync } = require('child_process');
 const mss = require('./lib/model-server-supervision.cjs');
+const { createSessionProxy } = require('./lib/launcher-session-proxy.cjs');
 
 const {
   RESPAWN_REAP_GRACE_MS,
@@ -180,6 +181,11 @@ function loadBridgeModule() {
       },
     };
   }
+}
+
+function resolveSessionProxySocketPath() {
+  const { getIpcSocketPath } = loadBridgeModule();
+  return getIpcSocketPath('mk-spec-memory', { dbDir: resolvedDbDir() });
 }
 
 function refreshPaths() {
@@ -488,7 +494,7 @@ const hfControl = mss.createModelServerControl({
   opencodeDir,
   dbDir: resolvedDbDir,
   getLauncherShutdownInProgress: () => launcherShutdownInProgress,
-  onRssBreach: (cfg) => recycleViaGracefulSelfExit(cfg.graceMs),
+  onRssBreach: (cfg) => recycleDaemonInPlace(cfg.graceMs),
   bridge: loadBridgeModule(),
   writeModelServerPid: (pid) => writeSharedModelServerPid(pid),
   readModelServerPid: () => readSharedModelServerPid(),
@@ -673,41 +679,39 @@ function reapProcessTreeGroups(childPid, options = {}) {
   });
 }
 
-async function recycleViaGracefulSelfExit(graceMs) {
+async function recycleDaemonInPlace(graceMs) {
   if (rssBreachSelfExitInProgress) return;
   rssBreachSelfExitInProgress = true;
-  launcherShutdownInProgress = true;
   if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
   const modelServerChild = hfControl.getChild();
   if (isChildRunning(modelServerChild)) {
-    log(`RSS ceiling sustained; sending SIGTERM to hf-model-server pid ${modelServerChild.pid} before launcher self-exit`);
+    log(`RSS ceiling sustained; sending SIGTERM to hf-model-server pid ${modelServerChild.pid} before daemon recycle`);
     modelServerChild.kill('SIGTERM');
     hfControl.reapProcessTree(modelServerChild.pid);
     const modelExitedAfterTerm = await waitForChildExit(modelServerChild, graceMs);
     if (!modelExitedAfterTerm && isChildRunning(modelServerChild)) {
-      log(`hf-model-server pid ${modelServerChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before launcher self-exit`);
+      log(`hf-model-server pid ${modelServerChild.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
       modelServerChild.kill('SIGKILL');
       await waitForChildExit(modelServerChild, 1000);
     }
   }
   if (!isChildRunning(childProcess)) {
     clearLeaseFile();
-    process.exit(0);
+    rssBreachSelfExitInProgress = false;
     return;
   }
 
-  log(`RSS ceiling sustained; sending SIGTERM to context-server pid ${childProcess.pid} before launcher self-exit`);
+  log(`RSS ceiling sustained; sending SIGTERM to context-server pid ${childProcess.pid} before daemon recycle`);
   childProcess.kill('SIGTERM');
   const exitedAfterTerm = await waitForChildExit(childProcess, graceMs);
   if (!exitedAfterTerm && isChildRunning(childProcess)) {
-    log(`context-server pid ${childProcess.pid} exceeded ${graceMs}ms grace; sending SIGKILL before launcher self-exit`);
+    log(`context-server pid ${childProcess.pid} exceeded ${graceMs}ms grace; sending SIGKILL before daemon recycle`);
     childProcess.kill('SIGKILL');
     await waitForChildExit(childProcess, 1000);
   }
   clearLeaseFile();
-  process.exit(0);
 }
 
 function startRssWatchdog(childPid, options = {}) {
@@ -725,7 +729,7 @@ function startRssWatchdog(childPid, options = {}) {
       },
     },
     log: options.log || log,
-    onBreach: options.onBreach || ((breachConfig) => recycleViaGracefulSelfExit(breachConfig.graceMs)),
+    onBreach: options.onBreach || ((breachConfig) => recycleDaemonInPlace(breachConfig.graceMs)),
   });
 }
 
@@ -737,7 +741,7 @@ function createModelServerSupervisor(options = {}) {
   return baseCreateModelServerSupervisor({
     writeLease: () => writeLeaseFile(),
     shouldExitLauncher: () => launcherShutdownInProgress,
-    onRssBreach: (cfg) => recycleViaGracefulSelfExit(cfg.graceMs),
+    onRssBreach: (cfg) => recycleDaemonInPlace(cfg.graceMs),
     ...options,
   });
 }
@@ -807,8 +811,11 @@ function launchServer() {
   const nodeArgs = getContextServerNodeArgs();
   childProcess = spawn(process.execPath, [...nodeArgs, server], {
     cwd: root,
-    env: process.env,
-    stdio: 'inherit',
+    env: {
+      ...process.env,
+      SPECKIT_BACKEND_ONLY: '1',
+    },
+    stdio: ['ignore', 'ignore', 'inherit'],
   });
   const childPid = childProcess.pid;
   writeLeaseFile(childPid);
@@ -842,6 +849,9 @@ function launchServer() {
     log(error.stack || error.message);
     process.exit(1);
   });
+  if (rssBreachSelfExitInProgress) {
+    rssBreachSelfExitInProgress = false;
+  }
   return true;
 }
 
@@ -958,7 +968,16 @@ async function main() {
       process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
       process.exit(0);
     }
-    launchServer();
+    const launched = launchServer();
+    if (launched) {
+      const sessionProxy = createSessionProxy({
+        socketPath: resolveSessionProxySocketPath(),
+        stdin: process.stdin,
+        stdout: process.stdout,
+        log,
+      });
+      await sessionProxy.start();
+    }
     void startModelServerDemandListener().catch((error) => {
       log(`hf-model-server demand listener failed: ${error.stack || error.message}`);
     });
