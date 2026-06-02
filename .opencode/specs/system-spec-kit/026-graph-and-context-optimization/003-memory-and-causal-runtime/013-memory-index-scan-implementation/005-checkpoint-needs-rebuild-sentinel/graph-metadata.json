@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "manual",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "checkpoint needs-rebuild sentinel",
+      "post-restore derived rebuild failure",
+      "stale derived after checkpoint restore",
+      "boot derived rebuild repair",
+      "checkpoint-v2 rebuild marker"
+    ],
+    "key_topics": [
+      "checkpoint",
+      "restore",
+      "rebuild",
+      "sentinel",
+      "derived",
+      "fts",
+      "communities",
+      "graph",
+      "boot",
+      "scan"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      "mcp_server/lib/storage/checkpoints.ts",
+      "mcp_server/context-server.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/search/vector-index-store.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-store.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-store.ts",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "After a checkpoint-v2 restore, runPostRestoreRebuilds() (mcp_server/lib/storage/checkpoints.ts ~1701-1772) rebuilds derived artifacts (FTS, communities, derived graph) best-effort and catches failures; restoreCheckpointV2() (~2456-2464) calls it after the DB swap and reopen. If a rebuild step fails, the restore still reports success while the derived artifacts stay stale until some later scan re-indexes them. The existing boot FTS auto-heal is tied to the .unclean-shutdown marker (context-server.ts ~364-418), not to checkpoint-restore rebuild failures, and the startup scan (~1385-1477) does not run the checkpoint derived-rebuild helper, so a post-restore rebuild failure leaves a silent stale-derived window. This packet writes a durable .needs-rebuild sentinel when a post-restore derived rebuild fails or is skipped (the restore still succeeds because the base snapshot is valid), then checks it on boot and immediately before the startup scan to run a bounded, non-fatal derived rebuild that clears the sentinel on success. runPostRestoreRebuilds() returns a {completed, failed, skipped} summary and exports one shared derived-rebuild helper reused by restore, boot, and scan; memory-index.ts checks the sentinel under the scan lease (additive and distinct from packet 004's enrichment backfill at ~249-333) and reports repair counts; vector-index-store.ts swap-done journal recovery (~876-925) preserves or creates rebuild-needed state when rebuild evidence is absent. Options weighed: (A) keep existing behavior leaves the stale window (rejected); (B) fail the restore on a rebuild failure is too harsh since the snapshot restored fine (rejected); (C) sentinel plus boot/scan repair is durable and non-blocking (chosen). The follow-up research recommended deferring this, but the operator explicitly authorized implementing it now alongside packet 004. No dist rebuild, no daemon restart, no live-DB access; implemented and unit-tested on a branch only with deploy as a separate confirmed step.",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-06-02T00:00:00.000Z",
+    "save_lineage": "manual",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
