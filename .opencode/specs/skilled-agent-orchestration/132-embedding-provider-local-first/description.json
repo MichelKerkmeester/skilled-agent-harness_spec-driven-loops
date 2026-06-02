@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/132-embedding-provider-local-first",
+  "description": "Make resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort); repair stale embedder fixtures.",
+  "keywords": [
+    "embedding",
+    "provider",
+    "local-first",
+    "resolveProvider",
+    "ollama",
+    "hf-local"
+  ],
+  "lastUpdated": "2026-06-02T21:06:00.000Z",
+  "specId": "132",
+  "folderSlug": "embedding-provider-local-first",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

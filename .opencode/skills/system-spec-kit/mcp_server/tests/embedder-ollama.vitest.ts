@@ -62,6 +62,10 @@ function createActiveNomicDb(dbDir: string, withVec768Rows: boolean): string {
       "INSERT INTO vec_metadata (key, value) VALUES ('active_embedder_dim', '768');",
       withVec768Rows ? 'CREATE TABLE vec_768 (id INTEGER PRIMARY KEY, vec BLOB NOT NULL);' : '',
       withVec768Rows ? "INSERT INTO vec_768 (id, vec) VALUES (1, x'00');" : '',
+      // The active-Ollama gate also requires a non-empty vec_memories_rowids table:
+      // an active embedder is only honored when real indexed vectors exist.
+      withVec768Rows ? 'CREATE TABLE vec_memories_rowids (rowid INTEGER PRIMARY KEY, memory_id INTEGER NOT NULL);' : '',
+      withVec768Rows ? 'INSERT INTO vec_memories_rowids (rowid, memory_id) VALUES (1, 1);' : '',
     ].filter(Boolean).join('\n'),
   ]);
   return dbPath;

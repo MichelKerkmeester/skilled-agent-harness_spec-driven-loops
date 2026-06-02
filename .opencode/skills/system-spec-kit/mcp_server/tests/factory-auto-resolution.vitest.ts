@@ -47,6 +47,10 @@ function createActiveOllamaDb(dbPath: string): void {
     setMetadata.run('active_embedder_provider', '');
     db.prepare('CREATE TABLE vec_768 (id INTEGER PRIMARY KEY, embedding BLOB NOT NULL)').run();
     db.prepare("INSERT INTO vec_768 (id, embedding) VALUES (1, x'00')").run();
+    // The active-Ollama gate also requires a non-empty vec_memories_rowids table:
+    // an active embedder is only honored when real indexed vectors exist.
+    db.prepare('CREATE TABLE vec_memories_rowids (rowid INTEGER PRIMARY KEY, memory_id INTEGER NOT NULL)').run();
+    db.prepare('INSERT INTO vec_memories_rowids (rowid, memory_id) VALUES (1, 1)').run();
   } finally {
     db.close();
   }

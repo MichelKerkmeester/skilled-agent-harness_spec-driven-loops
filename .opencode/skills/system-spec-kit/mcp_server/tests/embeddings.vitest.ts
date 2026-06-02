@@ -119,30 +119,27 @@ describe('Embeddings Architecture (T513)', () => {
       expect(resolution.reason).toContain('Explicit EMBEDDINGS_PROVIDER');
     });
 
-    // SKIP: post-016 embedder cascade is local-first (Ollama default); tests encode legacy cloud-first contract
-    it.skip('T513-01b: auto mode prefers voyage when key is valid', () => {
+    it('T513-01b: auto mode prefers local hf-local over cloud even with a valid Voyage key', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       process.env.VOYAGE_API_KEY = 'voyage_test_key_1234567890';
       delete process.env.OPENAI_API_KEY;
 
       const resolution = resolveProvider();
-      expect(resolution.name).toBe('voyage');
-      expect(resolution.reason).toContain('VOYAGE_API_KEY');
+      expect(resolution.name).toBe('hf-local');
+      expect(resolution.reason).toContain('Local fallback');
     });
 
-    // SKIP: post-016 embedder cascade is local-first (Ollama default); tests encode legacy cloud-first contract
-    it.skip('T513-01c: auto mode falls back to openai when voyage key is placeholder', () => {
+    it('T513-01c: auto mode prefers local hf-local over cloud even with valid Voyage + OpenAI keys', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
-      process.env.VOYAGE_API_KEY = 'YOUR_VOYAGE_API_KEY_HERE';
+      process.env.VOYAGE_API_KEY = 'voyage_test_key_1234567890';
       process.env.OPENAI_API_KEY = 'openai_test_key_1234567890';
 
       const resolution = resolveProvider();
-      expect(resolution.name).toBe('openai');
-      expect(resolution.reason).toContain('OPENAI_API_KEY');
+      expect(resolution.name).toBe('hf-local');
+      expect(resolution.reason).toContain('Local fallback');
     });
 
-    // SKIP: post-016 embedder cascade is local-first (Ollama default); tests encode legacy cloud-first contract
-    it.skip('T513-01d: auto mode falls through to hf-local when no cloud key or active Ollama DB is available', () => {
+    it('T513-01d: auto mode resolves hf-local when no cloud key or active Ollama DB is available', () => {
       delete process.env.EMBEDDINGS_PROVIDER;
       delete process.env.VOYAGE_API_KEY;
       delete process.env.OPENAI_API_KEY;

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/132-embedding-provider-local-first",
+  "spec_folder": "skilled-agent-orchestration/132-embedding-provider-local-first",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/131-doctor-install-alignment"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "embedding provider priority",
+      "ollama default embedder",
+      "local-first embeddings",
+      "resolveProvider cloud fallback",
+      "hf-local before openai voyage"
+    ],
+    "key_topics": [
+      "embeddings",
+      "resolveProvider",
+      "local-first",
+      "ollama",
+      "hf-local",
+      "cascade",
+      "factory"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/factory-auto-resolution.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/embedder-ollama.vitest.ts"
+    ],
+    "entities": [],
+    "causal_summary": "Made resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort) so auto mode never silently selects cloud, aligning the runtime resolver with the two already-local-first order definitions; repaired two stale embedder fixtures. Verified by the embedder test gate (62 passed, 0 failed).",
+    "created_at": "2026-06-02T21:06:00Z",
+    "last_save_at": "2026-06-02T21:06:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

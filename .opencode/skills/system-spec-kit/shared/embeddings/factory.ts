@@ -740,27 +740,14 @@ export async function resolveStartupEmbeddingConfig(
 // ---------------------------------------------------------------
 
 /**
- * Check if an API key appears to be a placeholder value.
- * Returns true if key contains placeholder indicators or is too short.
- */
-function isPlaceholderKey(key: string): boolean {
-  const upperKey = key.toUpperCase();
-  return (
-    upperKey.includes('YOUR_') ||
-    upperKey.includes('PLACEHOLDER') ||
-    upperKey.includes('HERE') ||
-    key.length < 10
-  );
-}
-
-/**
- * Resolve provider based on env vars.
- * Precedence:
- * 1) EMBEDDINGS_PROVIDER,
+ * Resolve provider based on env vars. Local-first precedence:
+ * 1) explicit EMBEDDINGS_PROVIDER (the only way to auto-select cloud),
  * 2) persisted vec_metadata active Ollama pointer,
- * 3) VOYAGE_API_KEY,
- * 4) OPENAI_API_KEY,
- * 5) hf-local local fallback.
+ * 3) hf-local local fallback.
+ * Cloud (OpenAI/Voyage) is never auto-selected; it is reached only via an explicit
+ * EMBEDDINGS_PROVIDER, or as a last-resort cascade when hf-local creation fails
+ * (getCascadeFallbackOrder). Mirrors the bootstrap auto-select cascade order
+ * ollama -> hf-local -> openai -> voyage.
  */
 export function resolveProvider(): ProviderResolution {
   const explicitProvider = getExplicitProviderOverride();
@@ -779,30 +766,13 @@ export function resolveProvider(): ProviderResolution {
     };
   }
 
-  const voyageKey = process.env.VOYAGE_API_KEY;
-  if (voyageKey) {
-    if (isPlaceholderKey(voyageKey)) {
-      console.warn('[embeddings] VOYAGE_API_KEY appears to be a placeholder — skipping');
-    } else {
-      return {
-        name: 'voyage',
-        reason: 'VOYAGE_API_KEY detected (auto mode)',
-      };
-    }
-  }
-
-  const openaiKey = process.env.OPENAI_API_KEY;
-  if (openaiKey) {
-    if (isPlaceholderKey(openaiKey)) {
-      console.warn('[embeddings] OPENAI_API_KEY appears to be a placeholder — skipping');
-    } else {
-      return {
-        name: 'openai',
-        reason: 'OPENAI_API_KEY detected (auto mode)',
-      };
-    }
-  }
-
+  // Local-first: in auto mode prefer the local hf-local model server over cloud
+  // providers. Cloud (OpenAI/Voyage) is opt-in — set EMBEDDINGS_PROVIDER explicitly,
+  // or it is reached only as a last-resort cascade fallback when hf-local creation
+  // fails (see getCascadeFallbackOrder). Auto-mode egress therefore stays local by
+  // default: ollama when persisted/reachable, otherwise hf-local. This mirrors the
+  // bootstrap auto-select cascade and the creation-failure cascade, which already
+  // order ollama -> hf-local -> openai -> voyage.
   return {
     name: 'hf-local',
     reason: 'Local fallback provider',
@@ -1142,8 +1112,10 @@ export async function createEmbeddingsProvider(options: CreateProviderOptions = 
     }
     console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
 
-    // Resume the auto cascade when the selected backend is unavailable.
-    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'ollama') && allowsAutomaticFallback(options.provider)) {
+    // Resume the auto cascade when the selected backend is unavailable. hf-local is
+    // included so a hard local failure falls through to cloud (openai -> voyage) per
+    // getCascadeFallbackOrder, preserving cloud as the last-resort fallback tier.
+    if ((providerName === 'openai' || providerName === 'voyage' || providerName === 'ollama' || providerName === 'hf-local') && allowsAutomaticFallback(options.provider)) {
       return createFallbackProvider(
         providerName,
         options,
