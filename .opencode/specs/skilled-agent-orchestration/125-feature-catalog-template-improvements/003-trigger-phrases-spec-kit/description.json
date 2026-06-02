@@ -1,1 +1,26 @@
-{"id":"003-trigger-phrases-spec-kit","title":"Trigger Phrases — system-spec-kit","description":"Add trigger_phrases to all 313 spec-kit snippets via parallel AI agents batched by category.","status":"planned","level":1,"track":"skilled-agent-orchestration","created":"2026-05-31"}
+{
+  "title": "Trigger Phrases — system-spec-kit",
+  "level": 1,
+  "id": "003-trigger-phrases-spec-kit",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "description": "Phase 003: Trigger Phrases — system-spec-kit",
+  "keywords": [
+    "phase",
+    "003",
+    "trigger",
+    "phrases",
+    "system-spec-kit"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.524Z",
+  "specId": "003",
+  "folderSlug": "trigger-phrases-spec-kit",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

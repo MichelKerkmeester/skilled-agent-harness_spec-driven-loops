@@ -1,6 +1,6 @@
 {
-  "version": "1.3",
-  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax (default via the MiniMax Token Plan provider `minimax-coding-plan` — MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback; pay-per-token Direct API via provider `minimax` retained as a selectable alternative). Optional unverified separate-pool stubs: Claude Haiku, Gemini Flash.",
+  "version": "1.4",
+  "description": "Shared small-model profile registry for cli-devin and cli-opencode dispatch. Each model declares one or more executor paths with their provider + quota_pool, so the fallback engine can route across pools when one is exhausted. Active small-model rotation: SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax (default via the MiniMax Token Plan provider `minimax-coding-plan` — MiniMax-M3-highspeed default, MiniMax-M2.7-highspeed fallback; pay-per-token Direct API via provider `minimax` retained as a selectable alternative), MiMo-V2.5-Pro (via the Xiaomi Token Plan Europe provider xiaomi-token-plan-ams; free opencode/mimo-v2.5-free sibling). Optional unverified separate-pool stubs: Claude Haiku, Gemini Flash.",
   "models": [
     {
       "id": "swe-1.6",
@@ -245,6 +245,39 @@
       "weaknesses": [
         "Direct API path is pay-as-you-go on large contexts",
         "--variant behavior unverified (omitted by default)"
+      ],
+      "avg_iter_wall_clock_min": null,
+      "status": "active"
+    },
+    {
+      "id": "mimo-v2.5-pro",
+      "context_length": 1000000,
+      "tool_calling": "native",
+      "chat_template": "default",
+      "executors": [
+        {
+          "executor": "cli-opencode",
+          "provider": "xiaomi-token-plan-ams",
+          "quota_pool": "xiaomi-token-plan",
+          "status": "active",
+          "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Free cheap-iteration path: opencode/mimo-v2.5-free (opencode-go gateway, v2.5 tier). Context window 1,000,000 tokens (confirmed via 126/003 research; released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (126/004 benchmark, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
+        }
+      ],
+      "primary_quota_pool": "xiaomi-token-plan",
+      "fallback_target": null,
+      "free_tier": false,
+      "strengths": [
+        "1,000,000-token context window (largest in the small-model rotation)",
+        "strongly agentic — sustains 1000+ sequential tool calls (SWE-bench Pro 57.2)",
+        "token-efficient — 40-60% fewer tokens/trajectory vs frontier models (Opus 4.6 / Gemini 3.1 Pro / GPT-5.4)",
+        "Xiaomi Token Plan (Europe) subscription billing via provider xiaomi-token-plan-ams",
+        "separate quota pool (xiaomi-token-plan) independent of opencode-go / minimax / cognition pools",
+        "free cheap-iteration sibling available at opencode/mimo-v2.5-free"
+      ],
+      "weaknesses": [
+        "long-context quality degrades past ~512k despite the 1M window",
+        "Token-Plan subscription request-window semantics unverified",
+        "prompt-framework benchmark (126/004) used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active"

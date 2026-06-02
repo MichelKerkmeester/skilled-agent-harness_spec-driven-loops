@@ -14,7 +14,7 @@
   ],
   "created_at": "2026-05-31T00:00:00Z",
   "last_updated_at": "2026-05-31T00:00:00Z",
-  "specFolder": "124-mcp-click-up-task-management",
+  "specFolder": "skilled-agent-orchestration/124-mcp-click-up-task-management",
   "description": "Feature Specification: mcp-click-up — ClickUp Skill via cupt CLI + Official MCP",
   "keywords": [
     "feature",
@@ -28,13 +28,10 @@
     "official",
     "mcp"
   ],
-  "lastUpdated": "2026-05-31T10:01:10.978Z",
+  "lastUpdated": "2026-06-01T11:13:19.508Z",
   "specId": "124",
   "folderSlug": "mcp-click-up-task-management",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "skilled-agent-orchestration"
   ],
   "memorySequence": 2,

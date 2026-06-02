@@ -47,6 +47,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | cli-opencode budget propagation (sentinel mirror of cli-devin canonical) | `cli-opencode` | [`../../cli-opencode/references/context-budget.md`](../../cli-opencode/references/context-budget.md) | Phase 006 |
 | sk-prompt budget awareness (subsection in cross-CLI quality card) | `sk-prompt` | [`../../sk-prompt/assets/cli_prompt_quality_card.md`](../../sk-prompt/assets/cli_prompt_quality_card.md) § Budget Awareness | Phase 006 |
 | MiniMax M2.7 prompt framework (empirical winner: TIDD-EC + dense pre-plan) | `cli-opencode` | [`../../cli-opencode/assets/prompt_templates.md`](../../cli-opencode/assets/prompt_templates.md) § Template 14 + [`./prompt_quality_card.md`](../../cli-opencode/assets/prompt_quality_card.md) § per-model override | 120/003 |
+| MiMo-V2.5-Pro prompt framework (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `cli-opencode` | [`../../cli-opencode/assets/prompt_templates.md`](../../cli-opencode/assets/prompt_templates.md) § Template 15 + [`../../cli-opencode/assets/prompt_quality_card.md`](../../cli-opencode/assets/prompt_quality_card.md) § per-model override | 126/004 |
 
 ---
 
@@ -55,7 +56,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Executor / Skill | Owns | Surface |
 | --- | --- | --- |
 | `cli-devin` | SWE-1.6 (free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 via Cognition Pro | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
-| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) | Permissions matrix, budget propagation mirror, MiniMax prompt-framework template (TIDD-EC + dense) |
+| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`, `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling) | Permissions matrix, budget propagation mirror, MiniMax prompt-framework template (TIDD-EC + dense), MiMo prompt-framework template (COSTAR + lean) |
 | `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json (each entry has `executors` array), cli_prompt_quality_card.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 | `sk-prompt-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |

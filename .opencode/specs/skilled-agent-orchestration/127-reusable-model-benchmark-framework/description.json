@@ -1,0 +1,23 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "description": "Feature Specification: Reusable model-benchmark framework for deep-improvement",
+  "keywords": [
+    "feature",
+    "specification",
+    "reusable",
+    "model-benchmark",
+    "framework",
+    "deep-improvement"
+  ],
+  "lastUpdated": "2026-06-02T05:16:17.587Z",
+  "specId": "127",
+  "folderSlug": "reusable-model-benchmark-framework",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-06-26_06-16__build-as-an-additive-extension-of-deep.md"
+  ]
+}

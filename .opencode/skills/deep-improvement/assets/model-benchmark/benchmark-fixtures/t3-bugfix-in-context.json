@@ -1,0 +1,27 @@
+{
+  "id": "t3-lower-bound",
+  "category": "bug-fix-in-context",
+  "tier": "T3",
+  "fn_name": "lowerBound",
+  "signature": "function lowerBound(arr, target)",
+  "task": "Implement a JavaScript function `lowerBound(arr, target)` that returns the leftmost index at which `target` can be inserted into the already-sorted (ascending) array `arr` so the array stays sorted. Equivalently, return the first index `i` where `arr[i] >= target`; if every element is strictly less than `target`, return `arr.length`. The array may contain duplicates: when `target` is present, return the index of its FIRST (leftmost) occurrence, not any later one. Use a binary search; do not scan linearly. Watch the search-bound and midpoint arithmetic carefully — the common off-by-one traps are an inclusive vs half-open upper bound and collapsing the window on the wrong side of an equal element.",
+  "visibleSpec": "lowerBound(arr, target) -> integer index in [0, arr.length]. arr is sorted ascending and may contain duplicate values. Result is the leftmost insertion point keeping arr sorted; for a value already present it is the index of the first equal element.",
+  "scope": "Single pure function. No mutation of arr, no extra parameters, no helper globals, no I/O.",
+  "tests": [
+    { "name": "empty array inserts at 0", "args": [[], 5], "expect": 0 },
+    { "name": "insert at front", "args": [[2, 4, 6], 1], "expect": 0 },
+    { "name": "insert in middle", "args": [[2, 4, 6], 5], "expect": 2 },
+    { "name": "insert past end", "args": [[2, 4, 6], 9], "expect": 3 },
+    { "name": "leftmost of duplicate run", "args": [[1, 2, 2, 2, 3], 2], "expect": 1 }
+  ],
+  "hidden_tests": [
+    { "name": "target below all elements", "args": [[10, 20, 30], 0], "expect": 0 },
+    { "name": "target equals first element", "args": [[10, 20, 30], 10], "expect": 0 },
+    { "name": "target equals last element", "args": [[10, 20, 30], 30], "expect": 2 },
+    { "name": "single element, target above", "args": [[5], 7], "expect": 1 },
+    { "name": "single element, target below", "args": [[5], 3], "expect": 0 },
+    { "name": "all duplicates equal target returns 0", "args": [[4, 4, 4, 4], 4], "expect": 0 }
+  ],
+  "expectedDifficulty": "hard",
+  "saturation": { "status": "active" }
+}

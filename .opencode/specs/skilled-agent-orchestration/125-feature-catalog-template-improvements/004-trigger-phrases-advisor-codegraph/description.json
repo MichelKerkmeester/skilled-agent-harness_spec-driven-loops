@@ -1,1 +1,27 @@
-{"id":"004-trigger-phrases-advisor-codegraph","title":"Trigger Phrases — advisor + code-graph","description":"Add or improve trigger_phrases in 40 skill-advisor and 14 code-graph snippets.","status":"planned","level":1,"track":"skilled-agent-orchestration","created":"2026-05-31"}
+{
+  "title": "Trigger Phrases — advisor + code-graph",
+  "level": 1,
+  "id": "004-trigger-phrases-advisor-codegraph",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/004-trigger-phrases-advisor-codegraph",
+  "description": "Phase 004: Trigger Phrases — system-skill-advisor + system-code-graph",
+  "keywords": [
+    "phase",
+    "004",
+    "trigger",
+    "phrases",
+    "system-skill-advisor",
+    "system-code-graph"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.529Z",
+  "specId": "004",
+  "folderSlug": "trigger-phrases-advisor-codegraph",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

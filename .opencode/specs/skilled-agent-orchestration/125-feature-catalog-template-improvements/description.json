@@ -1,11 +1,34 @@
 {
-  "id": "125-feature-catalog-template-improvements",
   "title": "Feature Catalog Standards — Templates & Retroactive Rework",
-  "description": "Phase parent: establish new feature catalog standards then retroactively apply them across all 370 catalog files in three skills (system-spec-kit, system-skill-advisor, system-code-graph).",
-  "status": "complete",
   "level": 1,
+  "id": "125-feature-catalog-template-improvements",
+  "status": "complete",
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
   "is_phase_parent": true,
-  "tags": ["sk-doc", "templates", "feature-catalog", "retroactive-rework", "docs"]
+  "tags": [
+    "sk-doc",
+    "templates",
+    "feature-catalog",
+    "retroactive-rework",
+    "docs"
+  ],
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements",
+  "description": "Feature Catalog Standards — Templates & Retroactive Rework",
+  "keywords": [
+    "feature",
+    "catalog",
+    "standards",
+    "templates",
+    "retroactive",
+    "rework"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.513Z",
+  "specId": "125",
+  "folderSlug": "feature-catalog-template-improvements",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
 }

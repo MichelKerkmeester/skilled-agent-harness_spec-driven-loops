@@ -1,0 +1,20 @@
+{
+  "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+  "description": "Feature Specification: Phase 4: mimo-prompt-framework-benchmark",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "mimo-prompt-framework-benchmark"
+  ],
+  "lastUpdated": "2026-06-01T20:20:22.757Z",
+  "specId": "004",
+  "folderSlug": "mimo-prompt-framework-benchmark",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "126-cli-opencode-mimo-pro-optimization"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

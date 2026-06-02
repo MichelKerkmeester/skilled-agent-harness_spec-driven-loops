@@ -2,10 +2,10 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.3.4.0
+version: 1.3.6.0
 ---
 
-<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai, minimax, minimax-coding-plan, minimax-m3, minimax-m3-highspeed, token-plan -->
+<!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai, minimax, minimax-coding-plan, minimax-m3, minimax-m3-highspeed, token-plan, xiaomi, xiaomi-token-plan, xiaomi-token-plan-ams, mimo, mimo-v2.5-pro -->
 
 # OpenCode CLI Orchestrator - Full-Runtime Cross-AI Dispatch
 
@@ -175,7 +175,7 @@ env | grep -q '^OPENCODE_' && echo "ERROR: Already inside OpenCode session"
 opencode providers
 ```
 
-**Authentication options**: `opencode providers login <provider>` (and `opencode auth login` for subscription plans) for OAuth and API key flows. Configured providers on a typical install: `opencode-go` (api, DEFAULT), `deepseek` (api, fallback), `minimax-coding-plan` (MiniMax Token Plan subscription — **DEFAULT MiniMax path**; `opencode auth login`; model `minimax-coding-plan/MiniMax-M3-highspeed`), `minimax` (MiniMax Direct API, pay-per-token — `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`), `openai` (api, premium alternative for `gpt-5.5`/`gpt-5.5-pro`/`gpt-5.5-fast`).
+**Authentication options**: `opencode providers login <provider>` (and `opencode auth login` for subscription plans) for OAuth and API key flows. Configured providers on a typical install: `opencode-go` (api, DEFAULT), `deepseek` (api, fallback), `minimax-coding-plan` (MiniMax Token Plan subscription — **DEFAULT MiniMax path**; `opencode auth login`; model `minimax-coding-plan/MiniMax-M3-highspeed`), `minimax` (MiniMax Direct API, pay-per-token — `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`), `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe; `opencode auth login`; model `xiaomi-token-plan-ams/mimo-v2.5-pro`), `openai` (api, premium alternative for `gpt-5.5`/`gpt-5.5-pro`/`gpt-5.5-fast`).
 
 ### Provider Auth Pre-Flight (Smart Fallback)
 
@@ -188,6 +188,7 @@ echo "$PROVIDERS" | grep -q "opencode-go"         && OPENCODE_GO_OK=1    || OPEN
 echo "$PROVIDERS" | grep -q "deepseek"            && DEEPSEEK_OK=1       || DEEPSEEK_OK=0
 echo "$PROVIDERS" | grep -q "minimax-coding-plan" && MINIMAX_TOKEN_OK=1  || MINIMAX_TOKEN_OK=0   # MiniMax Token Plan (default MiniMax path)
 echo "$PROVIDERS" | grep -qE "minimax([^-]|$)"    && MINIMAX_DIRECT_OK=1 || MINIMAX_DIRECT_OK=0  # MiniMax Direct API (pay-per-token); regex skips the coding-plan provider
+echo "$PROVIDERS" | grep -q "xiaomi-token-plan-ams" && XIAOMI_OK=1       || XIAOMI_OK=0          # Xiaomi Token Plan (Europe)
 echo "$PROVIDERS" | grep -q "openai"              && OPENAI_OK=1         || OPENAI_OK=0
 ```
 
@@ -208,6 +209,13 @@ echo "$PROVIDERS" | grep -q "openai"              && OPENAI_OK=1         || OPEN
 | Token Plan not configured | `MINIMAX_TOKEN_OK=0` | **ASK user** to run `opencode auth login` → MiniMax Token Plan — never substitute silently |
 | Direct API explicitly requested | `MINIMAX_DIRECT_OK=1` | Proceed with `--model minimax/MiniMax-M2.7` (pay-per-token; confirm the live id via `opencode models minimax`) |
 | Direct API requested, not configured | `MINIMAX_DIRECT_OK=0` | **ASK user** to run `opencode providers login minimax` (needs `MINIMAX_API_KEY`) — never substitute silently |
+
+**MiMo routing** (Xiaomi Token Plan Europe; explicitly-selectable — first match wins):
+
+| State | Condition | Action |
+|-------|-----------|--------|
+| MiMo requested | `XIAOMI_OK=1` | Proceed with `--model xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (high reasoning is the standing default — opencode maps low/medium/high to MiMo's reasoning effort) — **omit `--agent`** (`--agent general` warns and falls back on opencode 1.15.13); confirm the live id via `opencode models xiaomi-token-plan-ams` |
+| Not configured | `XIAOMI_OK=0` | **ASK user** to run `opencode auth login` → Xiaomi Token Plan (Europe) — never substitute silently |
 
 **User prompt template — default missing, fallback configured:**
 
@@ -252,7 +260,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; omit `--agent`), the pay-per-token `minimax/MiniMax-M2.7` (Direct API), and `openai/*` (e.g. `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) remain available when explicitly requested.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; omit `--agent`), the pay-per-token `minimax/MiniMax-M2.7` (Direct API), `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (Xiaomi Token Plan Europe — MiMo; high reasoning default; omit `--agent`), and `openai/*` (e.g. `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) remain available when explicitly requested.
 
 Shared small-model facts, context defaults, quota pools, and fallback targets live in `../sk-prompt/assets/model-profiles.json`.
 
@@ -297,7 +305,7 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 
 1. Verify OpenCode CLI is installed before first invocation; confirm version baseline against v1.3.17 (drift handling per `references/cli_reference.md` §9).
 2. **Run the self-invocation guard before dispatch** (ADR-001): Layer 1 env-var lookup for any `OPENCODE_*`, Layer 2 process-ancestry probe for `opencode` parent, Layer 3 `~/.opencode/state/<id>/lock` probe. Trip on ANY positive — refuse unless prompt has explicit parallel-session keywords.
-3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model opencode-go/deepseek-v4-pro --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `minimax-coding-plan/MiniMax-M3-highspeed`, `openai/gpt-5.5-pro`).
+3. Pin model + variant + format + dir explicitly — **no `--agent`** (see the Default Invocation note: current opencode rejects a top-level `--agent general`; put any agent-profile request in the prompt body). Default: `--model opencode-go/deepseek-v4-pro --variant high --format json --dir <repo-root>`. Honor user overrides verbatim (e.g. `opencode-go/deepseek-v4-flash`, `opencode-go/glm-5.1`, `deepseek/deepseek-v4-pro`, `minimax-coding-plan/MiniMax-M3-highspeed`, `xiaomi-token-plan-ams/mimo-v2.5-pro`, `openai/gpt-5.5-pro`).
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
 5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration_patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.

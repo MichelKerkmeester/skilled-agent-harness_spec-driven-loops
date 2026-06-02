@@ -8,13 +8,15 @@
     "causal",
     "runtime"
   ],
-  "lastUpdated": "2026-05-26T16:53:24.642Z",
+  "lastUpdated": "2026-06-01T19:57:48.418Z",
   "specId": "003",
   "folderSlug": "memory-and-causal-runtime",
   "parentChain": [
     "system-spec-kit",
     "026-graph-and-context-optimization"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-06-26_20-57__i-m-not-going-to-re-argue-this-at-length-a-fourth.md"
+  ]
 }

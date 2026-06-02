@@ -6,14 +6,13 @@
     "feature",
     "specification",
     "003",
-    "memoization",
-    "dependency",
-    "dag",
+    "incremental",
+    "index",
     "foundation"
   ],
-  "lastUpdated": "2026-05-28T08:24:15.514Z",
-  "specId": "003",
-  "folderSlug": "memoization-dependency-dag-foundation",
+  "lastUpdated": "2026-06-01T11:13:19.810Z",
+  "specId": "002",
+  "folderSlug": "incremental-index-foundation",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

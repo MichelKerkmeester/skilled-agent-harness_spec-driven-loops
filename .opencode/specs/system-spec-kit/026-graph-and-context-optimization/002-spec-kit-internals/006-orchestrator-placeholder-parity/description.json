@@ -1,35 +1,23 @@
 {
-  "specFolder": "033-orchestrator-placeholder-parity",
-  "description": "Resolve orchestrator vs shell placeholder-detection divergence: add NEEDS CLARIFICATION space variant plus fenced-code and inline-backtick exclusions ",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/006-orchestrator-placeholder-parity",
+  "description": "Feature Specification: Orchestrator vs Shell Placeholder-Detection Parity",
   "keywords": [
-    "resolve",
+    "feature",
+    "specification",
     "orchestrator",
     "shell",
     "placeholder-detection",
-    "divergence",
-    "add",
-    "needs",
-    "clarification",
-    "space",
-    "variant",
-    "plus",
-    "fenced-code",
-    "inline-backtick",
-    "exclusions",
-    "canonical",
-    "node",
-    "drop",
-    "mustache",
-    "pattern",
-    "rule",
-    "strict",
     "parity"
   ],
-  "lastUpdated": "2026-05-29T12:33:35.354Z",
-  "specId": "033",
+  "lastUpdated": "2026-06-01T11:13:19.639Z",
+  "specId": "006",
   "folderSlug": "orchestrator-placeholder-parity",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

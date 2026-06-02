@@ -1,1 +1,25 @@
-{"id":"005-subheadings-spec-kit","title":"Sub-headings — system-spec-kit","description":"Apply H3 sub-headings to long HOW IT WORKS sections in spec-kit, targeting audit-flagged files.","status":"planned","level":1,"track":"skilled-agent-orchestration","created":"2026-05-31"}
+{
+  "title": "Sub-headings — system-spec-kit",
+  "level": 1,
+  "id": "005-subheadings-spec-kit",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/005-subheadings-spec-kit",
+  "description": "Phase 005: Sub-headings — system-spec-kit",
+  "keywords": [
+    "phase",
+    "005",
+    "sub-headings",
+    "system-spec-kit"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.534Z",
+  "specId": "005",
+  "folderSlug": "subheadings-spec-kit",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

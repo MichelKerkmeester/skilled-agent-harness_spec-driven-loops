@@ -142,6 +142,160 @@ function detectRateLimit(combinedOutput) {
   return RATE_LIMIT_PATTERNS.some((re) => re.test(combinedOutput));
 }
 
+// Derive a provider id from a model slug's `provider/model` prefix. cli model
+// ids carry the provider as a path segment (e.g. `minimax-coding-plan/MiniMax-...`
+// or `anthropic/claude-...`); a bare slug with no slash has no derivable provider,
+// so return null rather than guessing.
+function deriveProvider(modelSlug) {
+  if (typeof modelSlug !== 'string') return null;
+  const slash = modelSlug.indexOf('/');
+  if (slash <= 0) return null;
+  return modelSlug.slice(0, slash);
+}
+
+// Coerce a candidate usage value to a finite number, or null. Token/cost fields
+// are reported as null when unknown — NEVER a fabricated 0 — so downstream
+// aggregation can distinguish "provider did not report usage" from "zero usage".
+function finiteOrNull(v) {
+  if (typeof v === 'number' && Number.isFinite(v)) return v;
+  return null;
+}
+
+// Probe an event object for usage fields at the locations OpenCode's event shape
+// plausibly carries them. The live binary's usage payload is UNVERIFIED (the
+// event-stream text shape is confirmed, the usage fields are not), so every
+// access is defensive: any missing branch leaves the value null. Recognized
+// shapes: a `usage`/`tokens` object with input/output token counts, and a
+// numeric `cost`/`cost_usd`. Returns { tokens_in, tokens_out, cost_usd } with
+// nulls for whatever is absent.
+function probeUsageFromEvent(ev) {
+  const out = { tokens_in: null, tokens_out: null, cost_usd: null };
+  if (!ev || typeof ev !== 'object') return out;
+  // Usage commonly hangs off the event, a nested part, or a session payload.
+  const carriers = [ev, ev.part, ev.session, ev.message, ev.info].filter(
+    (c) => c && typeof c === 'object',
+  );
+  for (const c of carriers) {
+    const usage = c.usage || c.tokens || null;
+    if (usage && typeof usage === 'object') {
+      if (out.tokens_in == null) {
+        out.tokens_in = finiteOrNull(
+          usage.input != null ? usage.input
+            : usage.input_tokens != null ? usage.input_tokens
+              : usage.prompt_tokens != null ? usage.prompt_tokens
+                : usage.tokens_in,
+        );
+      }
+      if (out.tokens_out == null) {
+        out.tokens_out = finiteOrNull(
+          usage.output != null ? usage.output
+            : usage.output_tokens != null ? usage.output_tokens
+              : usage.completion_tokens != null ? usage.completion_tokens
+                : usage.tokens_out,
+        );
+      }
+    }
+    if (out.cost_usd == null) {
+      const cost = c.cost != null ? c.cost : c.cost_usd;
+      if (cost && typeof cost === 'object') {
+        out.cost_usd = finiteOrNull(cost.total != null ? cost.total : cost.usd);
+      } else {
+        out.cost_usd = finiteOrNull(cost);
+      }
+    }
+  }
+  return out;
+}
+
+// Parse a cli-opencode `--format json` stdout (newline-delimited JSON events).
+// Returns { output, tokens_in, tokens_out, cost_usd, usage_parser_status }:
+//   - output: assembled assistant text from `type === 'text'` events, ordered by
+//     part start time (mirrors the sweep + 126/004 extractor shape). Empty string
+//     when no text events are present.
+//   - usage fields: extracted from the events when exposed, else null.
+//   - usage_parser_status: 'parsed' (≥1 usage field found), 'absent' (events
+//     parsed cleanly but carried no usage), or 'error' (no line parsed as JSON —
+//     i.e. not an event stream / malformed / empty).
+// Defensive by contract: a malformed or empty stream yields output '' and null
+// usage with status 'error' so the caller can fall back to raw stdout.
+function parseOpencodeStream(stdout) {
+  const result = {
+    output: '',
+    tokens_in: null,
+    tokens_out: null,
+    cost_usd: null,
+    usage_parser_status: 'absent',
+  };
+  const lines = String(stdout || '').split(/\r?\n/).filter(Boolean);
+  const parts = [];
+  let sawEvent = false;
+  for (const line of lines) {
+    let ev;
+    try {
+      ev = JSON.parse(line);
+    } catch (_) {
+      continue; // non-JSON line (e.g. a stray log) is skipped, not fatal.
+    }
+    sawEvent = true;
+    if (ev && ev.type === 'text' && ev.part && typeof ev.part.text === 'string') {
+      parts.push({ text: ev.part.text, start: (ev.part.time && ev.part.time.start) || 0 });
+    }
+    const usage = probeUsageFromEvent(ev);
+    if (usage.tokens_in != null && result.tokens_in == null) result.tokens_in = usage.tokens_in;
+    if (usage.tokens_out != null && result.tokens_out == null) result.tokens_out = usage.tokens_out;
+    if (usage.cost_usd != null && result.cost_usd == null) result.cost_usd = usage.cost_usd;
+  }
+  if (!sawEvent) {
+    // Nothing parsed as a JSON event — not an OpenCode stream. Signal 'error' so
+    // the caller keeps the raw stdout as output and leaves usage null.
+    result.usage_parser_status = 'error';
+    return result;
+  }
+  parts.sort((x, y) => x.start - y.start);
+  result.output = parts.map((p) => p.text).join('');
+  if (result.tokens_in != null || result.tokens_out != null || result.cost_usd != null) {
+    result.usage_parser_status = 'parsed';
+  }
+  return result;
+}
+
+// Wrap a raw dispatch result in the normalized cross-executor envelope. ADD-only:
+// every existing key on `raw` is preserved (callers/tests that read ok/exit_code/
+// stdout/stderr/attempts/paused/etc. keep working); the envelope layers the
+// model-agnostic fields on top. `output` is the clean assistant text (parsed from
+// the cli-opencode event stream, else raw stdout). Token/cost stay null unless an
+// executor's parser fills them.
+function buildEnvelope(raw, resolved, executor, latencyMs) {
+  const env = Object.assign({}, raw);
+  env.latency_ms = Number.isFinite(latencyMs) ? latencyMs : null;
+  env.executor = executor || null;
+  env.model = (resolved && resolved.model) || null;
+  env.variant = (resolved && resolved.variant) || null;
+  env.provider = deriveProvider(env.model);
+  // Usage is null until a parser proves otherwise. Preserve any value a caller
+  // already set on raw (none do today), else default null — never fabricate.
+  env.tokens_in = finiteOrNull(raw && raw.tokens_in);
+  env.tokens_out = finiteOrNull(raw && raw.tokens_out);
+  env.cost_usd = finiteOrNull(raw && raw.cost_usd);
+
+  // cli-opencode emits the JSON event stream (--format json). Parse it for clean
+  // assistant text + usage; fall back to raw stdout on a malformed/empty stream.
+  if (executor === 'cli-opencode' && typeof raw.stdout === 'string') {
+    const parsed = parseOpencodeStream(raw.stdout);
+    env.usage_parser_status = parsed.usage_parser_status;
+    env.output = parsed.usage_parser_status === 'error'
+      ? raw.stdout
+      : (parsed.output || raw.stdout);
+    if (parsed.tokens_in != null) env.tokens_in = parsed.tokens_in;
+    if (parsed.tokens_out != null) env.tokens_out = parsed.tokens_out;
+    if (parsed.cost_usd != null) env.cost_usd = parsed.cost_usd;
+  } else if (env.output == null) {
+    // Plain-text executors (and mock) return assistant text directly on stdout.
+    env.output = typeof raw.stdout === 'string' ? raw.stdout : '';
+  }
+  return env;
+}
+
 // P2 (014-review traceability-3-5): emit a resume command that actually works — it removes
 // the REAL sentinel path (which is now run-scoped, not always state/) and invokes
 // the loop-host at its shipped lane path scripts/shared/loop-host.cjs.
@@ -190,8 +344,18 @@ function buildSpawnSpec(executor, promptText, resolved) {
     case 'cli-opencode': {
       // opencode `run` does not auto-approve arbitrary edits, so no write-grant
       // flag is added; routing is preserved unchanged.
-      const args = ['run', '--model', model, '--agent', agent, '--dir', dir];
+      // Omit `--agent` for the default `general`: current opencode treats `general`
+      // as a subagent and rejects it at the top level (warns + falls back), and
+      // token-plan providers (MiniMax, Xiaomi MiMo) reject it outright. Pass
+      // `--agent` only for an explicit non-general primary agent.
+      const args = ['run', '--model', model, '--dir', dir];
+      if (agent && agent !== 'general') args.push('--agent', agent);
       if (variant) args.push('--variant', variant);
+      // Emit the newline-delimited JSON event stream so the envelope parser can
+      // assemble clean assistant text and read usage (tokens/cost) when the
+      // events expose it. Placed after model/variant, before the prompt, to keep
+      // every flag ahead of the positional prompt arg.
+      args.push('--format', 'json');
       args.push(promptText);
       return { bin: process.env.OPENCODE_BIN || 'opencode', args, input: null };
     }
@@ -234,9 +398,17 @@ function buildSpawnSpec(executor, promptText, resolved) {
 }
 
 function dispatchReal(opts) {
+  // Wall-clock start for the normalized envelope's latency_ms (per-dispatch,
+  // inclusive of retries/backoff — the real elapsed cost of getting a result).
+  const t0 = Date.now();
   const executor = opts.executor || TARGET.executor || 'cli-opencode';
   if (!KNOWN_EXECUTORS.has(executor)) {
-    return { ok: false, exit_code: -1, stdout: '', stderr: '', attempts: 0, error: `unknown executor: ${executor}` };
+    return buildEnvelope(
+      { ok: false, exit_code: -1, stdout: '', stderr: '', attempts: 0, error: `unknown executor: ${executor}` },
+      { model: opts.model || null, variant: opts.variant || null },
+      executor,
+      Date.now() - t0,
+    );
   }
   const timeout = opts.timeout_ms || DEFAULT_TIMEOUT_MS;
   const dir = opts.cwd || repoRoot();

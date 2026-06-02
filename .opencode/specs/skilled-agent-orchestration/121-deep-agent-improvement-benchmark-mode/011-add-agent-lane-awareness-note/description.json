@@ -1,21 +1,23 @@
 {
+  "title": "Feature Specification: add agent lane-awareness note",
   "level": "1",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/011-add-agent-lane-awareness-note",
-  "description": "Add lane-awareness guidance across agent mirrors so agents distinguish agent-improvement and model-benchmark workflows.",
+  "description": "Feature Specification: add agent lane-awareness note",
   "keywords": [
     "feature",
     "specification",
-    "phase",
-    "agent-lane-note"
+    "add",
+    "agent",
+    "lane-awareness",
+    "note"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.377Z",
+  "lastUpdated": "2026-06-01T11:13:19.419Z",
   "specId": "011",
-  "folderSlug": "011-add-agent-lane-awareness-note",
+  "folderSlug": "add-agent-lane-awareness-note",
   "parentChain": [
     "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: add agent lane-awareness note"
+  "memoryNameHistory": []
 }

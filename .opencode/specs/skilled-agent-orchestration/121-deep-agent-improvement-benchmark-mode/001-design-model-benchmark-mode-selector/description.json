@@ -1,32 +1,23 @@
 {
+  "title": "Feature Specification: design model-benchmark mode selector",
   "level": "3",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/001-design-model-benchmark-mode-selector",
-  "description": "Design the model-benchmark mode selector, pluggable seams, architecture decisions, and build plan for deep-agent-improvement.",
+  "description": "Feature Specification: design model-benchmark mode selector",
   "keywords": [
     "feature",
     "specification",
     "design",
-    "add",
-    "model",
-    "prompt-framework",
-    "benchmark",
+    "model-benchmark",
     "mode",
-    "deep-agent-improvement",
-    "port",
-    "120",
-    "003",
-    "rig",
-    "behind",
     "selector"
   ],
-  "lastUpdated": "2026-05-28T21:38:19.856Z",
+  "lastUpdated": "2026-06-01T11:13:19.389Z",
   "specId": "001",
-  "folderSlug": "001-design-model-benchmark-mode-selector",
+  "folderSlug": "design-model-benchmark-mode-selector",
   "parentChain": [
     "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: design model-benchmark mode selector"
+  "memoryNameHistory": []
 }

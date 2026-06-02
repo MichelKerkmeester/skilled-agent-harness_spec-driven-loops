@@ -33,9 +33,6 @@
     "key_files": [
       ".codex/config.toml",
       ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
-      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/001-markdown-agent-cli-claude-code.md",
-      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md",
-      ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/003-markdown-agent-cli-opencode.md",
       "implementation-summary.md",
       "evidence/SD-018-cli-claude-code.txt",
       "evidence/SD-019-cli-codex.txt",
@@ -43,8 +40,7 @@
       "tasks.md",
       "spec.md",
       "plan.md",
-      "checklist.md",
-      ".opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md"
+      "checklist.md"
     ],
     "entities": [
       {
@@ -57,24 +53,6 @@
         "name": "manual_testing_playbook.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
-        "source": "derived"
-      },
-      {
-        "name": "001-markdown-agent-cli-claude-code.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/001-markdown-agent-cli-claude-code.md",
-        "source": "derived"
-      },
-      {
-        "name": "002-markdown-agent-cli-codex.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/002-markdown-agent-cli-codex.md",
-        "source": "derived"
-      },
-      {
-        "name": "003-markdown-agent-cli-opencode.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/003-markdown-agent-cli-opencode.md",
         "source": "derived"
       },
       {
@@ -123,12 +101,6 @@
         "name": "checklist.md",
         "kind": "doc",
         "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "001-short-prompt-baseline.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/001-short-prompt-baseline.md",
         "source": "derived"
       },
       {
@@ -190,11 +162,35 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "The Setup",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Agent Dispatch",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 003 introduced the `@markdown` agent as the dedicated sk-doc documentation executor, but the sk-doc manual testing playbook was not updated. The playbook has zero scenarios that dispatch `@markdown` as an executor. Its preamble even claims \"Each of the 3 CLI runtimes (cli-codex, cli-opencode)\" — admitting an unfilled third-CLI slot. The dedicated documentation executor is therefore untested by the very playbook that owns sk-doc routing validation.",
     "created_at": "2026-05-11T05:27:26Z",
-    "last_save_at": "2026-05-30T10:12:00.853Z",
+    "last_save_at": "2026-06-01T06:32:00.871Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

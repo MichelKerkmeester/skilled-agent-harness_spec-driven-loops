@@ -1,0 +1,15 @@
+{
+  "tag": "tidd-ec__parseRange",
+  "framework": "tidd-ec",
+  "framework_name": "TIDD-EC",
+  "fixture": "parseRange",
+  "repeat": 1,
+  "model": "minimax-coding-plan/MiniMax-M3",
+  "variant": "high",
+  "dispatched_at": "2026-06-02T05:37:49.245Z",
+  "exit": 0,
+  "ms": 8710,
+  "prompt": "## Task\nImplement a JavaScript function `parseRange(s)` where `s` is a string. If `s` is of the form 'a-b' (two integers separated by a hyphen), return an inclusive integer array from a to b: ascending when a <= b, descending when a > b. If `s` is a single integer 'n', return `[n]`.\n\n## Instructions\n1. Implement `parseRange` to satisfy every acceptance criterion.\n2. Return ONLY the JavaScript function source for `parseRange` (signature `function parseRange(s)`). No prose, no explanation, no test code, no markdown fence — just the function.\n\n## Do's\n- Handle every stated edge case exactly.\n- Keep it a single pure function with no side effects.\n- Return only the function source.\n\n## Don'ts\n- Do not add extra parameters, helper globals, or behaviour beyond the spec.\n- Do not include prose, explanations, tests, or a markdown fence.\n- Do not rename the function or change its signature.\n\n## Examples\nOutput shape: the bare function declaration `function parseRange(s) { ... }` and nothing else.\n\n## Context\nPure-function implementation task evaluated by an automated assertion suite that calls the function directly.",
+  "assistant_text": "function parseRange(s) {\n    if (typeof s !== 'string') s = String(s);\n    var idx = s.indexOf('-');\n    if (idx === -1) return [parseInt(s, 10)];\n    var a = parseInt(s.substring(0, idx), 10);\n    var b = parseInt(s.substring(idx + 1), 10);\n    if (isNaN(a) || isNaN(b)) return [parseInt(s, 10)];\n    var result = [];\n    if (a <= b) {\n        for (var i = a; i <= b; i++) result.push(i);\n    } else {\n        for (var j = a; j >= b; j--) result.push(j);\n    }\n    return result;\n}",
+  "stderr": ""
+}

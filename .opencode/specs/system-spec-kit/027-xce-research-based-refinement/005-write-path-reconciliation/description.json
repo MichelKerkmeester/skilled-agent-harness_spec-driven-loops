@@ -6,13 +6,12 @@
     "feature",
     "specification",
     "006",
-    "statediff",
-    "reconciliation",
-    "layer"
+    "write-path",
+    "reconciliation"
   ],
-  "lastUpdated": "2026-05-28T08:24:15.066Z",
-  "specId": "006",
-  "folderSlug": "statediff-reconciliation-layer",
+  "lastUpdated": "2026-06-01T11:13:19.824Z",
+  "specId": "005",
+  "folderSlug": "write-path-reconciliation",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

@@ -1,1 +1,27 @@
-{"id":"008-master-catalog-enrichment","title":"Master Catalog Enrichment — All Skills","description":"Add trigger_phrases and last_updated to the 3 master feature_catalog.md files.","status":"planned","level":1,"track":"skilled-agent-orchestration","created":"2026-05-31"}
+{
+  "title": "Master Catalog Enrichment — All Skills",
+  "level": 1,
+  "id": "008-master-catalog-enrichment",
+  "status": "planned",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/008-master-catalog-enrichment",
+  "description": "Phase 008: Master Catalog Enrichment — All Skills",
+  "keywords": [
+    "phase",
+    "008",
+    "master",
+    "catalog",
+    "enrichment",
+    "skills"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.549Z",
+  "specId": "008",
+  "folderSlug": "master-catalog-enrichment",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

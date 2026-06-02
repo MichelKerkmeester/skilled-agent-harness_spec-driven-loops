@@ -1,0 +1,28 @@
+{
+  "title": "Template Improvements",
+  "level": 1,
+  "id": "001-template-improvements",
+  "status": "complete",
+  "track": "skilled-agent-orchestration",
+  "created": "2026-05-31",
+  "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
+  "description": "Phase 001: Establish the correct feature catalog template standard — rewrite snippet template to 5 sections, update master template scaffolds and prose.",
+  "keywords": [
+    "phase",
+    "001",
+    "template",
+    "improvements",
+    "feature-catalog",
+    "snippet-template",
+    "master-template"
+  ],
+  "lastUpdated": "2026-06-02T00:00:00.000Z",
+  "specId": "001",
+  "folderSlug": "template-improvements",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "125-feature-catalog-template-improvements"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

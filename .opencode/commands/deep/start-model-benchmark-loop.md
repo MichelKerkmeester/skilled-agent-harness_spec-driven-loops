@@ -94,7 +94,7 @@ PRE-BOUND SETUP ANSWERS:
   grader: noop  # noop (default) | mock | llm
   max_iterations: 5  # positive integer; default 5
   executor: cli-codex  # required only when grader = llm; one of cli-opencode | cli-claude-code | cli-codex | cli-gemini | cli-devin
-  model: gpt-5.5  # required only when grader = llm; model id for the chosen executor
+  model: gpt-5.5  # required only when grader = llm; model id for the chosen executor (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
 ```
 
 Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default, marker fields take precedence over $ARGUMENTS flags, unknown fields warn, malformed lines parse-error). When `grader != llm`, any `executor`/`model` marker fields are ignored with a warning.

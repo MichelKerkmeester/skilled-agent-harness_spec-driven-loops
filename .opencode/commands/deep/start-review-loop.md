@@ -77,7 +77,7 @@ PRE-BOUND SETUP ANSWERS:
   maxIterations: 10
   convergenceThreshold: 0.10
   executor: native  # one of: native | cli-codex | cli-gemini | cli-claude-code | cli-opencode | cli-devin
-  executor_model: ""  # optional, executor-specific
+  executor_model: ""  # optional, executor-specific (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
   executor_reasoning: ""  # optional
   executor_service_tier: ""  # optional
   executor_timeout: 900  # optional
@@ -214,7 +214,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
      B) cli-codex — `codex exec` with --model X -c model_reasoning_effort -c service_tier.
      C) cli-gemini — `gemini "PROMPT" -m gemini-3.1-pro-preview -y -o text`. Single supported model currently. No reasoning-effort or service-tier.
      D) cli-claude-code — `claude -p "PROMPT" --model X --permission-mode acceptEdits` with optional --effort. No service-tier.
-     E) cli-opencode — `opencode run --model X --agent general --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null`. `reasoningEffort` maps to `--variant`. No service-tier.
+     E) cli-opencode — `opencode run --model X --format json --dangerously-skip-permissions --pure --dir {repo_root} [--variant Y] "PROMPT" </dev/null` (no `--agent`: current opencode rejects top-level `--agent general` — default agent runs; required for MiniMax/Xiaomi token-plan models). `reasoningEffort` maps to `--variant`. No service-tier.
      F) cli-devin — `devin --print --prompt-file ... --model X --permission-mode auto`. Default model swe-1.6. No reasoning-effort or service-tier.
 
    Reply format examples:

@@ -1,5 +1,5 @@
 {
-  "specFolder": "038-substrate-harness-hardening",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-substrate-harness-hardening",
   "description": "Feature Specification: Substrate stress-harness hardening",
   "keywords": [
     "feature",
@@ -8,14 +8,13 @@
     "stress-harness",
     "hardening"
   ],
-  "lastUpdated": "2026-05-31T12:23:16.356Z",
-  "specId": "038",
+  "lastUpdated": "2026-06-01T11:13:19.790Z",
+  "specId": "016",
   "folderSlug": "substrate-harness-hardening",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
-    "system-spec-kit"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
   ],
   "memorySequence": 2,
   "memoryNameHistory": [

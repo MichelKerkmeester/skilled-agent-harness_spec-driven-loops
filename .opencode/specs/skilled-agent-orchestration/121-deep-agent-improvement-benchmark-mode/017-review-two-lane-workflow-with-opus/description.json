@@ -1,18 +1,23 @@
 {
-  "specFolder": "121-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus",
-  "description": "Run an independent Opus review of the post-fix two-lane workflow implementation and record findings.",
+  "title": "Feature Specification: review two-lane workflow with Opus",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/017-review-two-lane-workflow-with-opus",
+  "description": "Feature Specification: review two-lane workflow with Opus",
   "keywords": [
-    "phase",
-    "two-lane-opus-deep-review"
+    "feature",
+    "specification",
+    "review",
+    "two-lane",
+    "workflow",
+    "opus"
   ],
-  "lastUpdated": "2026-05-29T13:38:56.766Z",
+  "lastUpdated": "2026-06-01T11:13:19.434Z",
   "specId": "017",
-  "folderSlug": "017-review-two-lane-workflow-with-opus",
+  "folderSlug": "review-two-lane-workflow-with-opus",
   "parentChain": [
+    "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1",
-  "title": "Feature Specification: review two-lane workflow with Opus"
+  "memoryNameHistory": []
 }

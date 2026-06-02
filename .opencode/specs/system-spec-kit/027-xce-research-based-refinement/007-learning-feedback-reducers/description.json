@@ -43,14 +43,15 @@
     "feature",
     "specification",
     "008",
+    "learning",
     "feedback",
     "reducers",
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-05-28T08:24:15.979Z",
-  "specId": "008",
-  "folderSlug": "feedback-reducers",
+  "lastUpdated": "2026-06-01T11:13:19.835Z",
+  "specId": "007",
+  "folderSlug": "learning-feedback-reducers",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

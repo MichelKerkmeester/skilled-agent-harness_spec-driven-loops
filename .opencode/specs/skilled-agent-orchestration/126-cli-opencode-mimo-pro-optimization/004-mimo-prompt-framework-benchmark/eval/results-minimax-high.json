@@ -1,0 +1,448 @@
+{
+  "generated_at": "2026-06-02T03:43:10.887Z",
+  "model": "minimax-coding-plan/MiniMax-M2.7-highspeed",
+  "variant": "high",
+  "per_dispatch_timeout_sec": 120,
+  "repeat": 1,
+  "succeeded": 10,
+  "failed": 0,
+  "combos": 10,
+  "results": [
+    {
+      "tag": "rcaf__chunk",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 243,
+      "output_words": 42,
+      "ms": 4750,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/rcaf__chunk.json"
+    },
+    {
+      "tag": "rcaf__parseRange",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 372,
+      "output_words": 58,
+      "ms": 15686,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/rcaf__parseRange.json",
+      "retried": true,
+      "first_attempt": {
+        "exit": 124,
+        "ms": 120037,
+        "note": "first dispatch hit gtimeout SIGTERM at 120s (exit 124), empty stdout/stderr — transient hang, not quota/auth. Retry completed in 15.7s."
+      }
+    },
+    {
+      "tag": "race__chunk",
+      "framework": "race",
+      "framework_name": "RACE",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 243,
+      "output_words": 42,
+      "ms": 6791,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/race__chunk.json"
+    },
+    {
+      "tag": "race__parseRange",
+      "framework": "race",
+      "framework_name": "RACE",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 309,
+      "output_words": 52,
+      "ms": 7607,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/race__parseRange.json"
+    },
+    {
+      "tag": "cidi__chunk",
+      "framework": "cidi",
+      "framework_name": "CIDI",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 243,
+      "output_words": 42,
+      "ms": 6292,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/cidi__chunk.json"
+    },
+    {
+      "tag": "cidi__parseRange",
+      "framework": "cidi",
+      "framework_name": "CIDI",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 307,
+      "output_words": 56,
+      "ms": 8773,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/cidi__parseRange.json"
+    },
+    {
+      "tag": "tidd-ec__chunk",
+      "framework": "tidd-ec",
+      "framework_name": "TIDD-EC",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 246,
+      "output_words": 42,
+      "ms": 7817,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/tidd-ec__chunk.json"
+    },
+    {
+      "tag": "tidd-ec__parseRange",
+      "framework": "tidd-ec",
+      "framework_name": "TIDD-EC",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 309,
+      "output_words": 52,
+      "ms": 8328,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/tidd-ec__parseRange.json"
+    },
+    {
+      "tag": "costar__chunk",
+      "framework": "costar",
+      "framework_name": "COSTAR",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 244,
+      "output_words": 42,
+      "ms": 5758,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/costar__chunk.json"
+    },
+    {
+      "tag": "costar__parseRange",
+      "framework": "costar",
+      "framework_name": "COSTAR",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 491,
+      "output_words": 72,
+      "ms": 32075,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/costar__parseRange.json"
+    }
+  ],
+  "retry_provenance": {
+    "combo": "rcaf__parseRange",
+    "first_attempt_exit": 124,
+    "first_attempt_ms": 120037,
+    "reason": "gtimeout 120s wall hit on first dispatch (transient hang; empty stdout, empty stderr). Per STEP 3 transient-failure policy, retried once and succeeded.",
+    "retry_ms": 15686,
+    "retry_pass_rate": 1,
+    "retry_format_adherent": true,
+    "retry_words": 58
+  }
+}

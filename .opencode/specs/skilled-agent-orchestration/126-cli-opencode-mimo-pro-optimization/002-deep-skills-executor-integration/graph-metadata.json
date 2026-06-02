@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "spec_folder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+  "parent_id": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep skills executor integration",
+      "mimo deep-review deep-research",
+      "opencode agent general fix",
+      "minimax deep loop executor",
+      "deep skills executor integration plan",
+      "mimo minimax deep loop plan",
+      "opencode agent general removal plan",
+      "deep skills executor integration tasks",
+      "mimo minimax deep loop task list",
+      "tasks",
+      "name",
+      "deep skills executor integration checklist"
+    ],
+    "key_topics": [
+      "deep",
+      "skills",
+      "executor",
+      "integration",
+      "mimo",
+      "deep-review",
+      "deep-research",
+      "opencode",
+      "agent",
+      "general",
+      "fix",
+      "minimax"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+      ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+      ".opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
+      ".opencode/commands/deep/start-research-loop.md",
+      ".opencode/commands/deep/start-review-loop.md",
+      ".opencode/commands/deep/start-model-benchmark-loop.md",
+      ".opencode/commands/deep/ask-ai-council.md",
+      ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
+      ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
+      "spec.md",
+      "plan.md",
+      "checklist.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "deep_start-review-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-review-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_start-research-loop_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_start-research-loop_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-model.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "remediation.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/tests/remediation.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "start-research-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-research-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-review-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-review-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "start-model-benchmark-loop.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/start-model-benchmark-loop.md",
+        "source": "derived"
+      },
+      {
+        "name": "ask-ai-council.md",
+        "kind": "doc",
+        "path": ".opencode/commands/deep/ask-ai-council.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ask-ai-council_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "deep_ask-ai-council_confirm.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The deep skills reach external models through the `cli-opencode` executor kind, which already accepts any `provider/model` string (`EXECUTOR_KINDS` in `deep-loop-runtime/lib/deep-loop/executor-config.ts`; no per-model whitelist for cli-opencode). The one blocker is that the dispatch recipes hard-code `--agent general`:",
+    "created_at": "2026-06-01T20:21:29.318Z",
+    "last_save_at": "2026-06-01T21:25:18.781Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

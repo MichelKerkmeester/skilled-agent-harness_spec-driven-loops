@@ -23,13 +23,14 @@ A discovery anchor that surfaces alongside `cli-devin` or `cli-opencode` wheneve
 - Dispatching to DeepSeek-v4-pro directly via `cli-opencode` + DeepSeek API provider (`DEEPSEEK_API_KEY`, `--pure` required)
 - Dispatching to DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, or GLM-5.1 via `cli-opencode` + opencode-go provider (workspace credit pool)
 - Dispatching to MiniMax via `cli-opencode` — default MiniMax Token Plan provider `minimax-coding-plan` (`--model minimax-coding-plan/MiniMax-M3-highspeed`, fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`, subscription quota pool `minimax-token-plan`, omit `--agent`); pay-per-token MiniMax Direct API provider `minimax` (`MINIMAX_API_KEY`, `--model minimax/MiniMax-M2.7`, `minimax-api` pool) as the alternative
+- Dispatching to MiMo-V2.5-Pro via `cli-opencode` → provider `xiaomi-token-plan-ams`, model `xiaomi-token-plan-ams/mimo-v2.5-pro`, quota pool `xiaomi-token-plan`, omit `--agent` (cheap-iteration sibling `opencode/mimo-v2.5-free` via the opencode-go gateway; best framework COSTAR + lean / RACE fallback per 126/004)
 - Optional future targets: Claude Haiku (Anthropic separate quota), Gemini Flash (Google separate quota)
 - Asking "where is the small-model X pattern?" — context budget, output verification, model profiles, structured permissions, quota fallback
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `haiku`, `gemini flash`
-- Provider names: `opencode-go`, `deepseek-api`, `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `cognition pro`, `cognition free`
+- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`, `haiku`, `gemini flash`
+- Provider names: `opencode-go`, `deepseek-api`, `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `cognition pro`, `cognition free`
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
 ### Use Cases
@@ -139,6 +140,7 @@ Operators do not invoke a router from inside this skill. They follow `references
 | GLM-5.1 | `cli-devin` → cognition (cognition-pro) · `cli-opencode` → opencode-go (opencode-go) | active (2 paths) |
 | MiniMax-M3 (default) | `cli-opencode` → minimax-coding-plan (minimax-token-plan) | active — MiniMax Token Plan; `MiniMax-M3-highspeed`; fallback → minimax-2.7 |
 | MiniMax-M2.7 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active (2 paths: Token Plan highspeed fallback + pay-per-token Direct API) |
+| MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) | active — Xiaomi Token Plan Europe; `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 | Gemini Flash | `cli-gemini` → google (google) | optional-unverified |
 

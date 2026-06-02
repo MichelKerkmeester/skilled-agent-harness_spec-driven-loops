@@ -19,6 +19,8 @@ A thin sentinel skill that gives operators one discoverable entry point for smal
 
 This README explains how to discover, navigate, and contribute to the small-model optimization patterns shipped in the 114-small-ai-model-optimization arc. The skill itself is a routing anchor only — it does not host pattern bodies. Read this README when you want a human-facing overview; read `SKILL.md` for runtime instructions and `references/pattern-index.md` for the canonical index of patterns and their executor owners.
 
+Provider note: MiniMax dispatches via `cli-opencode` through the MiniMax Token Plan provider `minimax-coding-plan` (Direct API `minimax` alternative); MiMo-V2.5-Pro dispatches via `cli-opencode` through the Xiaomi Token Plan provider `xiaomi-token-plan-ams` (model `xiaomi-token-plan-ams/mimo-v2.5-pro`, free `opencode/mimo-v2.5-free` sibling). See the dispatch matrix in `SKILL.md` and `references/pattern-index.md` for the full per-model provider mapping.
+
 ### Usage
 
 1. Open `references/pattern-index.md` to locate the pattern you need.

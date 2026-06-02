@@ -1,0 +1,221 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "spec_folder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation",
+    "skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "reusable benchmark framework",
+      "deep-improvement benchmark generalization",
+      "model-agnostic benchmark",
+      "reusable benchmark framework plan",
+      "deep-improvement benchmark research plan",
+      "reusable benchmark framework tasks",
+      "deep-improvement benchmark research tasks",
+      "reusable benchmark framework summary",
+      "deep-improvement benchmark research outcome"
+    ],
+    "key_topics": [
+      "reusable",
+      "benchmark",
+      "framework",
+      "deep-improvement",
+      "generalization",
+      "model-agnostic",
+      "plan",
+      "research",
+      "tasks",
+      "summary",
+      "outcome",
+      "repo"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "research/research.md",
+      "research/deltas/deltas.jsonl",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/iterations/iteration-007.md",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
+      ".opencode/skills/deep-improvement/scripts/model-benchmark/README.md",
+      ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+      ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      ".opencode/skills/sk-prompt/SKILL.md",
+      ".opencode/skills/sk-prompt/references/model-profiles.md"
+    ],
+    "entities": [
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "deltas.jsonl",
+        "kind": "file",
+        "path": "research/deltas/deltas.jsonl",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-007.md",
+        "kind": "doc",
+        "path": "research/iterations/iteration-007.md",
+        "source": "derived"
+      },
+      {
+        "name": "run-benchmark.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "dispatch-model.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "score-model-variant.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-improvement/scripts/model-benchmark/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "default.json",
+        "kind": "config",
+        "path": ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
+        "source": "derived"
+      },
+      {
+        "name": "model-profiles.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "model-profiles.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt/references/model-profiles.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs**: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B (`run-benchmark.cjs` + `dispatch-model.cjs` + a 5-dim scorer), but the **prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are not yet a reusable framework** — each new model or question still needs new rig code. The `126/004` run also exposed a **correctness-saturation** problem: tractable pure-function fixtures don't separate frontier models, so the benchmark only measured format/brevity.",
+    "created_at": "2026-06-02T03:46:30.214Z",
+    "last_save_at": "2026-06-02T05:21:22.231Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": "2026-06-02T05:16:17.628Z"
+  }
+}

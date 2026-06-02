@@ -1,21 +1,24 @@
 {
+  "title": "Feature Specification: label catalog, playbook, and advisor lanes",
   "level": "1",
   "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/012-label-catalog-playbook-and-advisor-lanes",
-  "description": "Label the feature catalog, manual testing playbook, and skill advisor outputs with agent-improvement and model-benchmark lanes.",
+  "description": "Feature Specification: label catalog, playbook, and advisor lanes",
   "keywords": [
     "feature",
     "specification",
-    "phase",
-    "catalog-playbook-advisor-lane-labels"
+    "label",
+    "catalog",
+    "playbook",
+    "advisor",
+    "lanes"
   ],
-  "lastUpdated": "2026-05-29T09:27:47.380Z",
+  "lastUpdated": "2026-06-01T11:13:19.424Z",
   "specId": "012",
-  "folderSlug": "012-label-catalog-playbook-and-advisor-lanes",
+  "folderSlug": "label-catalog-playbook-and-advisor-lanes",
   "parentChain": [
     "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "title": "Feature Specification: label catalog, playbook, and advisor lanes"
+  "memoryNameHistory": []
 }

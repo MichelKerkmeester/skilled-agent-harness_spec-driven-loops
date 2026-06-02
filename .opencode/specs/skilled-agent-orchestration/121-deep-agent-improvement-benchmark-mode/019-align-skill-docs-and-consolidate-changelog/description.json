@@ -1,20 +1,24 @@
 {
-  "specFolder": "121-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
-  "description": "Align the skill documentation to the two-lane workflow and consolidate the packet changelog for the completed model-benchmark program.",
+  "title": "Feature Specification: align skill docs and consolidate changelog",
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/121-deep-agent-improvement-benchmark-mode/019-align-skill-docs-and-consolidate-changelog",
+  "description": "Feature Specification: align skill docs and consolidate changelog",
   "keywords": [
-    "skill-doc-alignment",
-    "changelog-consolidation",
-    "two-lane-readme",
-    "mode-4-to-lane-b"
+    "feature",
+    "specification",
+    "align",
+    "skill",
+    "docs",
+    "consolidate",
+    "changelog"
   ],
-  "lastUpdated": "2026-05-30T06:29:14.467Z",
+  "lastUpdated": "2026-06-01T11:13:19.439Z",
   "specId": "019",
-  "folderSlug": "019-align-skill-docs-and-consolidate-changelog",
+  "folderSlug": "align-skill-docs-and-consolidate-changelog",
   "parentChain": [
+    "skilled-agent-orchestration",
     "121-deep-agent-improvement-benchmark-mode"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1",
-  "title": "Feature Specification: align skill docs and consolidate changelog"
+  "memoryNameHistory": []
 }

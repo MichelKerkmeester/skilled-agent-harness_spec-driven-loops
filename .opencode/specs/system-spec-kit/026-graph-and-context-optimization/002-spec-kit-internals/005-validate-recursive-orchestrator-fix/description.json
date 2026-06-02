@@ -1,7 +1,10 @@
 {
-  "specFolder": "032-validate-recursive-orchestrator-fix",
-  "description": "Fix validate.sh --recursive orchestrator-path silent no-op so phase children are validated",
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/005-validate-recursive-orchestrator-fix",
+  "description": "Feature Specification: Fix validate.sh --recursive orchestrator-path silent no-op so phase children are validated",
   "keywords": [
+    "feature",
+    "specification",
     "fix",
     "validate",
     "recursive",
@@ -12,11 +15,14 @@
     "children",
     "validated"
   ],
-  "lastUpdated": "2026-05-29T11:47:41.171Z",
-  "specId": "032",
+  "lastUpdated": "2026-06-01T11:13:19.634Z",
+  "specId": "005",
   "folderSlug": "validate-recursive-orchestrator-fix",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "002-spec-kit-internals"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

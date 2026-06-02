@@ -1,23 +1,15 @@
 {
   "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/009-fanout-remediation",
-  "description": "Level-3 remediation spec for the 14 verified findings from the packet-123 deep review: 2 P0 (CLI fan-out runs serially because the pool worker blocks on spawnSync; a fan-out review whose lineages all crash returns a false PASS), 1 latent-P0 (executor field name drift type vs kind across docs/YAML/loader), 8 P1 (timeout orphans, unbounded count/concurrency, full env leak to lineages, unreliable cross-lineage dedup, unenforced executor+fanout XOR, unpadded salvage filenames, salvage blob reuse, merge-drop of malformed registries), and 3 P2 (attribution verdict shape, TSX-respawn comment, doc staleness). Fixes reuse runAuditedExecutorCommandAsync, buildExecutorDispatchEnv, and pad3; preserve the single-executor byte-identical parity gate; and add the real-spawn concurrency test plus the fail-closed merge test the original 72-test suite lacked. Implementation is this phase's future work.",
+  "description": "Feature Specification: Deep-loop fan-out remediation (009)",
   "keywords": [
-    "fanout remediation",
-    "serial spawnSync",
-    "false pass review gate",
-    "executor type kind drift",
-    "timeout orphans",
-    "env allowlist",
-    "merge dedup content hash",
-    "fanout bounds",
-    "executor fanout xor",
-    "salvage padding",
-    "byte-identical parity gate",
-    "deep-loop-runtime",
-    "deep-review",
-    "deep-research",
-    "verbatim lineage execution"
+    "feature",
+    "specification",
+    "deep-loop",
+    "fan-out",
+    "remediation",
+    "009"
   ],
+  "lastUpdated": "2026-06-01T11:13:19.502Z",
   "specId": "009",
   "folderSlug": "fanout-remediation",
   "parentChain": [

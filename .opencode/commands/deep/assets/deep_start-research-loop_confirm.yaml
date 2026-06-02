@@ -691,7 +691,6 @@ workflow:
           command: |
             opencode run \
               --model "{config.executor.model}" \
-              --agent general \
               --format json \
               --dangerously-skip-permissions \
               --pure \

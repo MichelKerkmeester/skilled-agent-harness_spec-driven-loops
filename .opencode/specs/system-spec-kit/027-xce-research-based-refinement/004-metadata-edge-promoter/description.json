@@ -6,13 +6,13 @@
     "feature",
     "specification",
     "005",
-    "frontmatter",
-    "causal-edge",
+    "metadata",
+    "edge",
     "promoter"
   ],
-  "lastUpdated": "2026-05-28T08:24:15.741Z",
-  "specId": "005",
-  "folderSlug": "frontmatter-causal-edge-promoter",
+  "lastUpdated": "2026-06-01T11:13:19.820Z",
+  "specId": "004",
+  "folderSlug": "metadata-edge-promoter",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

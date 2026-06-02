@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-02T03:43:47.984Z",
+  "model": "minimax-coding-plan/MiniMax-M2.7-highspeed",
+  "variant": "high",
+  "per_dispatch_timeout_sec": 120,
+  "repeat": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "combos": 1,
+  "results": [
+    {
+      "tag": "rcaf__parseRange",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 372,
+      "output_words": 58,
+      "ms": 15686,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/rcaf__parseRange.json"
+    }
+  ]
+}

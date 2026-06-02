@@ -7,13 +7,12 @@
     "specification",
     "004",
     "causal",
-    "graph",
-    "lifecycle",
+    "edge",
     "tombstones"
   ],
-  "lastUpdated": "2026-05-28T08:24:15.291Z",
-  "specId": "004",
-  "folderSlug": "causal-graph-lifecycle-tombstones",
+  "lastUpdated": "2026-06-01T11:13:19.815Z",
+  "specId": "003",
+  "folderSlug": "causal-edge-tombstones",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

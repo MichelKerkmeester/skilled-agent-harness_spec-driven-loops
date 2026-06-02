@@ -10,7 +10,7 @@
     "parallel",
     "multi-executor"
   ],
-  "lastUpdated": "2026-05-30T14:31:20.489Z",
+  "lastUpdated": "2026-06-01T11:13:19.464Z",
   "specId": "123",
   "folderSlug": "deep-loop-parallel-fanout",
   "parentChain": [

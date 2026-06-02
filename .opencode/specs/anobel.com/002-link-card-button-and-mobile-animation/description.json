@@ -3,6 +3,8 @@
   "specFolder": "anobel.com/002-link-card-button-and-mobile-animation",
   "description": "Feature Specification: Link Card Collapse/Expand — Button & Mobile Animation Fixes",
   "keywords": [
+    "feature",
+    "specification",
     "link",
     "card",
     "collapse",
@@ -10,10 +12,9 @@
     "button",
     "mobile",
     "animation",
-    "sector",
-    "menu"
+    "fixes"
   ],
-  "lastUpdated": "2026-05-30T00:00:00.000Z",
+  "lastUpdated": "2026-06-01T11:13:19.343Z",
   "specId": "002",
   "folderSlug": "link-card-button-and-mobile-animation",
   "parentChain": [

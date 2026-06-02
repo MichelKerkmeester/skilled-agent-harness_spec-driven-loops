@@ -30,12 +30,13 @@
     "feature",
     "specification",
     "002",
-    "feedback",
-    "correctness"
+    "memory",
+    "write",
+    "safety"
   ],
-  "lastUpdated": "2026-05-28T08:24:14.565Z",
-  "specId": "002",
-  "folderSlug": "feedback-p0-correctness",
+  "lastUpdated": "2026-06-01T11:13:19.805Z",
+  "specId": "001",
+  "folderSlug": "memory-write-safety",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

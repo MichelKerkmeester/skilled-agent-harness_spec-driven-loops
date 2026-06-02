@@ -239,6 +239,33 @@ describe('F-P1-1: read-only-by-default executor dispatch', () => {
   });
 });
 
+// ───── cli-opencode omits top-level --agent for the default `general` ─────
+// Current opencode treats `general` as a subagent and rejects it at the top
+// level (warns + falls back); token-plan providers (MiniMax, Xiaomi MiMo) reject
+// it outright. The default agent is correct, so --agent is omitted unless an
+// explicit non-general primary agent is requested.
+describe('cli-opencode --agent handling', () => {
+  const base = { model: 'm', variant: null as string | null, dir: '/work', promptFile: '/tmp/p.md' };
+
+  it('omits --agent when the agent is the default `general`', () => {
+    const spec = dispatchModel.buildSpawnSpec('cli-opencode', 'prompt', { ...base, agent: 'general' });
+    expect(spec.args).not.toContain('--agent');
+    expect(spec.args).toContain('--model');
+  });
+
+  it('omits --agent when the agent is unset', () => {
+    const spec = dispatchModel.buildSpawnSpec('cli-opencode', 'prompt', { ...base, agent: undefined });
+    expect(spec.args).not.toContain('--agent');
+  });
+
+  it('passes --agent for an explicit non-general primary agent', () => {
+    const spec = dispatchModel.buildSpawnSpec('cli-opencode', 'prompt', { ...base, agent: 'orchestrate' });
+    const idx = spec.args.indexOf('--agent');
+    expect(idx).toBeGreaterThanOrEqual(0);
+    expect(spec.args[idx + 1]).toBe('orchestrate');
+  });
+});
+
 // ───── F-P1-14 (014): pause sentinel is packet-local ─────
 describe('F-P1-14: packet-local pause sentinel', () => {
   let runDir: string;

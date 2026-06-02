@@ -1,23 +1,17 @@
 {
   "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout/007-native-per-iteration-model-schedule",
-  "description": "Design (spec only) a first-class contract-compliant per-iteration model schedule for deep-loop fan-out: an operator can request a fixed-count heterogeneous schedule (e.g. nine iterations on minimax MiniMax-M2.7-highspeed then one on claude-opus-4-8) through /deep:start-review-loop, /deep:start-research-loop, and the shared deep-loop-runtime. Models the schedule as ordered single-executor lineages (bands) over the existing fan-out machinery via a thin iterationPlan flag that desugars one-to-one into ordered lineages plus a minimal sequencing hint reusing step_fanout_spawn, fanout-pool.cjs, fanout-run.cjs, fanout-salvage.cjs, fanout-merge.cjs, and executor-config.ts. Produces the schema, routing, audit, merge-precedence, and command-surface design; implementation is this phase's future work.",
+  "description": "Phase 007 — Native per-iteration model schedule for deep-loop fan-out",
   "keywords": [
-    "per-iteration model schedule",
-    "iteration plan",
-    "model schedule",
-    "deep-loop fan-out",
-    "ordered bands",
-    "single-executor lineages",
-    "fanout-pool",
-    "fanout-merge",
-    "executor-config",
-    "band priority merge precedence",
-    "severity rollup invariant",
-    "deep-research",
-    "deep-review",
-    "contract compliance",
-    "byte-identical backward compatibility"
+    "phase",
+    "007",
+    "native",
+    "per-iteration",
+    "model",
+    "schedule",
+    "deep-loop",
+    "fan-out"
   ],
+  "lastUpdated": "2026-06-01T11:13:19.498Z",
   "specId": "007",
   "folderSlug": "native-per-iteration-model-schedule",
   "parentChain": [

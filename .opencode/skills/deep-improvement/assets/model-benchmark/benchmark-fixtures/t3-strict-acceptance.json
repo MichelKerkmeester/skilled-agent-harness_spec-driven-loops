@@ -1,0 +1,28 @@
+{
+  "id": "t3-compare-versions",
+  "category": "strict-acceptance",
+  "tier": "T3",
+  "fn_name": "compareVersions",
+  "signature": "function compareVersions(a, b)",
+  "task": "Implement a JavaScript function `compareVersions(a, b)` that compares two semantic-version strings and returns -1 if a < b, 0 if a == b, and 1 if a > b. Each version is dot-separated numeric release identifiers (e.g. '1.2.0'), optionally followed by a hyphen and a dot-separated pre-release tag (e.g. '1.2.0-alpha.1'). Rules, applied strictly in order: (1) Compare the numeric release fields left to right, comparing each NUMERICALLY (so 2 < 10); a missing field is treated as 0. (2) When the release fields are equal, a version that has NO pre-release tag has HIGHER precedence than one that does. (3) When both have a pre-release tag, compare its identifiers left to right: a purely numeric identifier is compared numerically and always ranks LOWER than a non-numeric identifier; two non-numeric identifiers compare lexically by ASCII order. (4) If all compared identifiers are equal, the version with FEWER pre-release identifiers ranks lower. These are adversarial cases: numeric-vs-lexical ordering of identifiers and the release-outranks-prerelease rule are where naive string comparison fails.",
+  "visibleSpec": "compareVersions(a, b) -> -1 | 0 | 1. Inputs are valid SemVer-like strings 'X.Y.Z' or 'X.Y.Z-pre.release.ids'. Release fields compare numerically; release without a pre-release tag outranks the same release with one; pre-release identifiers compare per SemVer precedence (numeric < alphanumeric, numeric compared numerically, alphanumeric compared by ASCII, fewer identifiers ranks lower when otherwise equal).",
+  "scope": "Single pure function. No mutation of inputs, no extra parameters, no helper globals, no I/O, no external libraries.",
+  "tests": [
+    { "name": "identical versions are equal", "args": ["1.0.0", "1.0.0"], "expect": 0 },
+    { "name": "major dominates", "args": ["2.0.0", "1.9.9"], "expect": 1 },
+    { "name": "patch numeric not lexical", "args": ["1.0.2", "1.0.10"], "expect": -1 },
+    { "name": "release outranks prerelease", "args": ["1.0.0", "1.0.0-rc.1"], "expect": 1 },
+    { "name": "alpha before beta", "args": ["1.0.0-alpha", "1.0.0-beta"], "expect": -1 }
+  ],
+  "hidden_tests": [
+    { "name": "minor field decides", "args": ["1.1.0", "1.2.0"], "expect": -1 },
+    { "name": "prerelease lower than release", "args": ["1.0.0-alpha", "1.0.0"], "expect": -1 },
+    { "name": "numeric prerelease identifiers numeric order", "args": ["1.0.0-1", "1.0.0-2"], "expect": -1 },
+    { "name": "numeric identifier ranks below alphanumeric", "args": ["1.0.0-1", "1.0.0-alpha"], "expect": -1 },
+    { "name": "alpha.1 before alpha.beta", "args": ["1.0.0-alpha.1", "1.0.0-alpha.beta"], "expect": -1 },
+    { "name": "fewer prerelease identifiers ranks lower", "args": ["1.0.0-alpha", "1.0.0-alpha.1"], "expect": -1 },
+    { "name": "numeric prerelease compared numerically", "args": ["1.0.0-2", "1.0.0-10"], "expect": -1 }
+  ],
+  "expectedDifficulty": "hard",
+  "saturation": { "status": "active" }
+}

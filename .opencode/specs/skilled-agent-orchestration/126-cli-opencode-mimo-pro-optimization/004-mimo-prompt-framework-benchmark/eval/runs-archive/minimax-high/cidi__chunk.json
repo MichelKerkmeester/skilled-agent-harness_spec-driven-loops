@@ -1,0 +1,15 @@
+{
+  "tag": "cidi__chunk",
+  "framework": "cidi",
+  "framework_name": "CIDI",
+  "fixture": "chunk",
+  "repeat": 1,
+  "model": "minimax-coding-plan/MiniMax-M2.7-highspeed",
+  "variant": "high",
+  "dispatched_at": "2026-06-02T03:42:06.534Z",
+  "exit": 0,
+  "ms": 6292,
+  "prompt": "## Context\nA senior JavaScript engineer must produce a pure function that satisfies the acceptance criteria exactly, staying strictly in scope.\n\n## Instructions\n1. Implement the function described under Input.\n2. Return ONLY the JavaScript function source for `chunk` (signature `function chunk(array, size)`). No prose, no explanation, no test code, no markdown fence — just the function.\n\n## Details\nHandle every stated edge case. Do not invent extra parameters, helper globals, or behaviour beyond the specification. Pure function, no side effects.\n\n## Input\nImplement a JavaScript function `chunk(array, size)` that splits `array` into consecutive sub-arrays (\"chunks\"), each of length `size`. The final chunk holds the remainder when the length is not divisible by `size`. Edge cases: if `size <= 0` return `[]`; if `array` is empty return `[]`.",
+  "assistant_text": "```javascript\nfunction chunk(array, size) {\n  if (size <= 0 || array.length === 0) {\n    return [];\n  }\n  const result = [];\n  for (let i = 0; i < array.length; i += size) {\n    result.push(array.slice(i, i + size));\n  }\n  return result;\n}\n```",
+  "stderr": ""
+}

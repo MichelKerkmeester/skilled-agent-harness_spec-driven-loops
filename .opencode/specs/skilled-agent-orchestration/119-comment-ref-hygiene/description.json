@@ -1,7 +1,7 @@
 {
   "level": "3",
   "specFolder": "skilled-agent-orchestration/119-comment-ref-hygiene",
-  "description": "Feature Specification: Forbid ephemeral-artifact references in code comments",
+  "description": "Feature Specification: Forbid Ephemeral-Artifact References in Code Comments",
   "keywords": [
     "feature",
     "specification",
@@ -11,7 +11,7 @@
     "code",
     "comments"
   ],
-  "lastUpdated": "2026-05-27T20:15:05.629Z",
+  "lastUpdated": "2026-06-01T11:13:19.372Z",
   "specId": "119",
   "folderSlug": "comment-ref-hygiene",
   "parentChain": [

@@ -33,17 +33,13 @@
     "feature",
     "specification",
     "007",
-    "memory",
-    "backend",
     "semantic",
     "trigger",
-    "matching",
-    "hybrid",
-    "lexical"
+    "fallback"
   ],
-  "lastUpdated": "2026-05-28T08:24:14.814Z",
-  "specId": "007",
-  "folderSlug": "memory-semantic-triggers",
+  "lastUpdated": "2026-06-01T11:13:19.830Z",
+  "specId": "006",
+  "folderSlug": "semantic-trigger-fallback",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"

@@ -1,0 +1,27 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization",
+  "description": "Feature Specification: Xiaomi MiMo-V2.5-Pro optimization for cli-opencode + deep-skill executor integration",
+  "keywords": [
+    "feature",
+    "specification",
+    "xiaomi",
+    "mimo-v2",
+    "5-pro",
+    "optimization",
+    "cli-opencode",
+    "deep-skill",
+    "executor",
+    "integration"
+  ],
+  "lastUpdated": "2026-06-01T21:27:49.855Z",
+  "specId": "126",
+  "folderSlug": "cli-opencode-mimo-pro-optimization",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "01-06-26_22-27__mimo-minimax-reach-the-deep-loops-via-the.md"
+  ]
+}

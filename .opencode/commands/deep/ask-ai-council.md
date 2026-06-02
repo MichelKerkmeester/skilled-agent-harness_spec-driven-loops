@@ -88,7 +88,7 @@ PRE-BOUND SETUP ANSWERS:
   executor:
     mode: in-cli  # in-cli | external-cli
     cli: active-runtime  # active-runtime | cli-codex | cli-claude-code | cli-opencode
-    model: ""  # optional executor-specific model id
+    model: ""  # optional executor-specific model id (cli-opencode e.g. xiaomi-token-plan-ams/mimo-v2.5-pro, minimax-coding-plan/MiniMax-M2.7-highspeed)
     reasoning: ""  # optional reasoning effort or variant
     service_tier: ""  # optional, executor-specific
     timeout: 900  # optional positive integer seconds

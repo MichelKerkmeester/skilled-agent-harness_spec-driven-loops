@@ -86,8 +86,20 @@
       "minimax-2.7",
       "minimax-m3",
       "minimax-coding-plan/MiniMax-M3-highspeed",
+      "minimax m3",
+      "minimax-m3-highspeed",
+      "minimax m3 highspeed",
+      "m3-highspeed",
+      "MiniMax-M3",
       "minimax dispatch",
-      "tidd-ec framework"
+      "tidd-ec framework",
+      "xiaomi",
+      "xiaomi token plan",
+      "xiaomi-token-plan-ams",
+      "mimo",
+      "mimo-v2.5-pro",
+      "mimo pro",
+      "xiaomi-token-plan-ams/mimo-v2.5-pro"
     ],
     "key_topics": [
       "cli",
@@ -102,7 +114,14 @@
       "self-invocation guard",
       "share url",
       "agent dispatch",
-      "memory handback"
+      "memory handback",
+      "minimax",
+      "minimax-m3",
+      "token-plan",
+      "highspeed",
+      "xiaomi",
+      "mimo",
+      "mimo-v2.5-pro"
     ],
     "intent_signals": [
       "delegate to opencode",

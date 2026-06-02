@@ -1,5 +1,5 @@
 {
-  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
   "description": "Feature Specification: Docs and Catalogs Rollup",
   "keywords": [
     "feature",
@@ -8,12 +8,10 @@
     "catalogs",
     "rollup"
   ],
-  "lastUpdated": "2026-06-01T06:42:20.214Z",
+  "lastUpdated": "2026-06-01T11:13:19.613Z",
   "specId": "001",
   "folderSlug": "docs-and-catalogs-rollup",
   "parentChain": [
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "000-release-and-program-cleanup",

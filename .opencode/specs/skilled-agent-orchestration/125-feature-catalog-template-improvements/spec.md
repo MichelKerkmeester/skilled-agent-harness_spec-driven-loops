@@ -1,6 +1,6 @@
 ---
 title: "Feature Catalog Standards — Templates & Retroactive Rework"
-description: "Phase parent: establish new feature catalog standards (templates, heading rename, sub-headings, trigger_phrases, related references) then retroactively apply them across all 370 catalog files in three skills."
+description: "Phase parent: establish new feature catalog standards then retroactively apply them across all 370 catalog files in three skills."
 trigger_phrases:
   - "feature catalog rework"
   - "catalog retroactive update"
@@ -8,12 +8,41 @@ trigger_phrases:
   - "feature catalog trigger phrases"
   - "catalog snippet subheadings"
 importance_tier: "normal"
-contextType: "general"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: "skilled-agent-orchestration/125-feature-catalog-template-improvements"
+    last_updated_at: "2026-06-02T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Restructured to phase-parent with lean trio; moved Phase 001 docs to child folder"
+    next_safe_action: "Resume a child phase folder or run validation"
+    blockers: []
+    key_files:
+      - "spec.md"
+      - "roadmap.md"
+      - "graph-metadata.json"
+    session_dedup:
+      fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      session_id: "restructure-session"
+      parent_session_id: null
+    completion_pct: 100
+    open_questions: []
+    answered_questions: []
 ---
+
 # Feature Catalog Standards — Templates & Retroactive Rework
 
-<!-- SPECKIT_LEVEL: 1 -->
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
+<!-- SPECKIT_LEVEL: phase -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
 
 ---
 
@@ -22,7 +51,7 @@ contextType: "general"
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 (Phase Parent) |
+| **Level** | Phase Parent |
 | **Priority** | P1 |
 | **Status** | Complete |
 | **Created** | 2026-05-31 |
@@ -35,6 +64,7 @@ contextType: "general"
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
+
 Cross-analysis of all 370 feature catalog files across three skills (system-spec-kit: 314 files, 25 categories; system-skill-advisor: 41 files, 7 categories; system-code-graph: 15 files, 7 categories) reveals pervasive drift from the desired standard:
 
 | Gap | Files affected |
@@ -44,13 +74,16 @@ Cross-analysis of all 370 feature catalog files across three skills (system-spec
 | Missing `trigger_phrases` in frontmatter | 309 |
 | Old 2-col validation table (`File \| Focus`) | 249 |
 | Missing `Related references` in SOURCE METADATA | 315 |
-| Long HOW IT WORKS sections without H3 sub-headings | TBD (audit in 002) |
+| Long HOW IT WORKS sections without H3 sub-headings | ~100-150 |
 | Master catalogs missing `trigger_phrases` + `last_updated` | 3 |
 
 The two template files were also non-conformant: missing required fields, broken section hierarchy, inconsistent naming.
 
 ### Purpose
-Phase 001 (complete): Establish the correct template standard. Phases 002–009: Retroactively apply that standard to every existing feature catalog file across all three skills.
+
+Phase 001 (complete): Establish the correct template standard. Phases 002–009 (complete): Retroactively apply that standard to every existing feature catalog file across all three skills.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
 
 <!-- /ANCHOR:problem -->
 ---
@@ -59,62 +92,95 @@ Phase 001 (complete): Establish the correct template standard. Phases 002–009:
 ## 3. SCOPE
 
 ### In Scope
-- `feature_catalog_snippet_template.md`: restructure, add frontmatter contract section, fix hierarchy, add checklist
-- `feature_catalog_template.md`: add quick-jump callout, update scaffolds, convert §2 to decision table, expand authoring notes
+
+- Feature catalog snippet template: restructure to 5 sections, add frontmatter contract, fix hierarchy, add checklist
+- Feature catalog template: add quick-jump callout, update scaffolds, convert §2 to decision table, expand authoring notes
+- Retroactive application of new standard to all 370 catalog files across three skills
 
 ### Out of Scope
-- Any existing feature catalog instance files (system-spec-kit, system-skill-advisor, system-code-graph)
-- Adding new template files
+
 - Changes to sk-doc SKILL.md
+- Adding new template files beyond the two existing ones
+- Any feature catalog work outside the three target skills
 
 ### Files to Change
 
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md` | Modify | Restructure to 5 sections, add frontmatter contract, fix hierarchy, add checklist |
-| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Modify | Quick-jump callout, updated scaffolds, decision table §2, expanded authoring notes |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md` | Modify | 001 | 5-section restructure, frontmatter contract, checklist |
+| `.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md` | Modify | 001 | Quick-jump, decision table §2, updated scaffolds |
+| 365+ snippet files across 3 skills | Modify | 002-009 | Retroactive standardization |
 
 <!-- /ANCHOR:scope -->
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder. All implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | `trigger_phrases` present in all three scaffolds | Snippet template scaffold, master template §4 scaffold, master template §5 scaffold all include trigger_phrases in frontmatter |
-| REQ-002 | Template marker in per-feature scaffolds | `<!-- sk-doc-template: skill_asset_feature_catalog -->` appears after H1 in both per-feature scaffolds |
-| REQ-003 | Fix `### Authoring Notes` hierarchy | Promoted to `## 4. AUTHORING NOTES` as a proper H2 section in snippet template |
-| REQ-004 | Fix filename case inconsistency | `FEATURE_CATALOG.md` → `feature_catalog.md` in snippet template line 78 |
-| REQ-005 | Add `## 5. CHECKLIST` to snippet template | Pre-publish checklist with Structure / Content / Quality categories |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | `001-template-improvements/` | Establish correct template standard (2 template files) | Complete |
+| 2 | `002-mechanical-sweep/` | Python scripts for heading renames, template markers, validation tables | Complete |
+| 3 | `003-trigger-phrases-spec-kit/` | Add trigger_phrases to 309 system-spec-kit snippets | Complete |
+| 4 | `004-trigger-phrases-advisor-codegraph/` | Add trigger_phrases to 4 advisor+code-graph snippets | Complete |
+| 5 | `005-subheadings-spec-kit/` | Add H3 sub-headings to 106 system-spec-kit snippets | Complete |
+| 6 | `006-subheadings-advisor-codegraph/` | Add H3 sub-headings to 1 advisor+code-graph snippet | Complete |
+| 7 | `007-related-references/` | Add Related references to 312 snippets | Complete |
+| 8 | `008-master-catalog-enrichment/` | Enrich 3 master catalog files | Complete |
+| 9 | `009-validation-sweep/` | Validation script + targeted fixes for all 370 files | Complete |
 
-### P1 - Required
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-006 | Add `## 2. FRONTMATTER CONTRACT` section to snippet template | Shows all fields with required/optional inline comments |
-| REQ-007 | Convert §2 of master template to decision table | "Create when / Keep simpler when" as a 2-column table |
-| REQ-008 | Add quick-jump callout to master template | Visible callout after H1 pointing to §4 and §5 |
-| REQ-009 | Expand authoring notes in master template | Two new bullets covering trigger_phrases and importance_tier |
+- Each phase MUST pass `validate.sh` independently before the next phase begins
+- Parent spec tracks aggregate progress via this map
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
+- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
 
-<!-- /ANCHOR:requirements -->
+### Phase Handoff Criteria
+
+| From | To | Criteria | Verification |
+|------|-----|----------|--------------|
+| 001 | 002 | Both template files updated to new standard | Read template files, verify 5 sections + scaffolds |
+| 002 | 003-007 | Mechanical sweep complete (headings, markers, tables) | git diff --stat shows expected file counts |
+| 003-007 | 008 | All snippet files have trigger_phrases, sub-headings, related references | Grep for trigger_phrases, H3 headers, Related references |
+| 008 | 009 | Master catalogs enriched | Read master catalogs, verify trigger_phrases + last_updated |
+| 009 | Done | 95%+ compliance across all 370 files | Validation script compliance report |
+
+<!-- /ANCHOR:phase-map -->
 ---
 
 <!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
+## 4. SUCCESS CRITERIA
 
-- **SC-001**: Snippet template has exactly 5 numbered H2 sections (OVERVIEW, FRONTMATTER CONTRACT, TEMPLATE SCAFFOLD, AUTHORING NOTES, CHECKLIST)
-- **SC-002**: `trigger_phrases` appears in all three scaffold frontmatter blocks
-- **SC-003**: `feature_catalog.md` (lowercase) is consistent across both template files
-- **SC-004**: No existing catalog instance files are modified (git diff --stat shows only the two template files)
+### Cross-Phase Success Criteria
+
+- **SC-001**: All 370 feature catalog files have `trigger_phrases` in frontmatter
+- **SC-002**: All 370 files use `HOW IT WORKS` heading (not `CURRENT REALITY`)
+- **SC-003**: All 370 files have template marker after H1
+- **SC-004**: All 370 files use 3-col validation table (`File|Type|Role`)
+- **SC-005**: All 370 files have `Related references` in SOURCE METADATA
+- **SC-006**: Long HOW IT WORKS sections have H3 sub-headings
+- **SC-007**: Both template files match new standard (5 sections, scaffolds, etc.)
+- **SC-008**: 3 master catalogs enriched with `trigger_phrases` + `last_updated`
+
+### Final Compliance (as of Phase 009 completion)
+
+| Check | Result | Gap |
+|---|---|---|
+| `trigger_phrases` in frontmatter | 100% | 0 |
+| `HOW IT WORKS` heading | 100% | 0 (366 renamed) |
+| Template marker after H1 | 100% | 0 (330 inserted) |
+| Validation table `File|Type|Role` | 100% | 0 (248 fixed) |
+| Related references in SOURCE METADATA | 100%* | 3 singletons exempt |
+| Master catalogs enriched | 3/3 | — |
 
 <!-- /ANCHOR:success-criteria -->
 ---
 
 <!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
+## 5. RISKS & DEPENDENCIES
 
 | Type | Item | Impact | Mitigation |
 |------|------|--------|------------|
@@ -125,8 +191,15 @@ Phase 001 (complete): Establish the correct template standard. Phases 002–009:
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 6. OPEN QUESTIONS
 
-None — scope is clear from cross-analysis of 365+ real-world instantiations.
+None — all phases complete. Scope was clear from cross-analysis of 365+ real-world instantiations.
 
 <!-- /ANCHOR:questions -->
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
+- **Roadmap**: See `roadmap.md` for cross-phase gap summary and dependency graph
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer

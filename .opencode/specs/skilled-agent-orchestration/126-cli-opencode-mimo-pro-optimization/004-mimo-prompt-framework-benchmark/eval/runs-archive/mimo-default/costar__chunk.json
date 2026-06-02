@@ -1,0 +1,14 @@
+{
+  "tag": "costar__chunk",
+  "framework": "costar",
+  "framework_name": "COSTAR",
+  "fixture": "chunk",
+  "repeat": 1,
+  "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+  "dispatched_at": "2026-06-01T21:06:35.524Z",
+  "exit": 0,
+  "ms": 4582,
+  "prompt": "## Context\nPure-function JavaScript implementation task. Handle every stated edge case. Do not invent extra parameters, helper globals, or behaviour beyond the specification. Pure function, no side effects.\n\n## Objective\nImplement a JavaScript function `chunk(array, size)` that splits `array` into consecutive sub-arrays (\"chunks\"), each of length `size`. The final chunk holds the remainder when the length is not divisible by `size`. Edge cases: if `size <= 0` return `[]`; if `array` is empty return `[]`.\n\n## Style\nPrecise, implementation-grade. No preamble.\n\n## Tone\nDirect and technical.\n\n## Audience\nAn automated assertion suite that calls the function directly and rejects out-of-scope behaviour or invented parameters.\n\n## Response\nReturn ONLY the JavaScript function source for `chunk` (signature `function chunk(array, size)`). No prose, no explanation, no test code, no markdown fence — just the function.",
+  "assistant_text": "function chunk(array, size) {\n  if (size <= 0 || array.length === 0) return [];\n  const result = [];\n  for (let i = 0; i < array.length; i += size) {\n    result.push(array.slice(i, i + size));\n  }\n  return result;\n}",
+  "stderr": ""
+}

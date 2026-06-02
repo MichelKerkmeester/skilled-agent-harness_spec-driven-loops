@@ -1,0 +1,364 @@
+{
+  "generated_at": "2026-06-02T05:38:01.888Z",
+  "model": "minimax-coding-plan/MiniMax-M3",
+  "variant": "high",
+  "per_dispatch_timeout_sec": 120,
+  "repeat": 1,
+  "succeeded": 8,
+  "failed": 1,
+  "combos": 10,
+  "results": [
+    {
+      "tag": "rcaf__chunk",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": false,
+      "exit": 0,
+      "stderr": "",
+      "assertion_pass_rate": null,
+      "format_adherent": null,
+      "output_chars": 0,
+      "output_words": 0,
+      "ms": 5998,
+      "raw": "runs/rcaf__chunk.json"
+    },
+    {
+      "tag": "rcaf__parseRange",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 442,
+      "output_words": 66,
+      "ms": 49706,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/rcaf__parseRange.json"
+    },
+    {
+      "tag": "race__chunk",
+      "framework": "race",
+      "framework_name": "RACE",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 215,
+      "output_words": 38,
+      "ms": 9976,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/race__chunk.json"
+    },
+    {
+      "tag": "race__parseRange",
+      "framework": "race",
+      "framework_name": "RACE",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 445,
+      "output_words": 68,
+      "ms": 30107,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/race__parseRange.json"
+    },
+    {
+      "tag": "cidi__chunk",
+      "framework": "cidi",
+      "framework_name": "CIDI",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 215,
+      "output_words": 38,
+      "ms": 7112,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/cidi__chunk.json"
+    },
+    {
+      "tag": "cidi__parseRange",
+      "framework": "cidi",
+      "framework_name": "CIDI",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 448,
+      "output_words": 73,
+      "ms": 17686,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/cidi__parseRange.json"
+    },
+    {
+      "tag": "tidd-ec__chunk",
+      "framework": "tidd-ec",
+      "framework_name": "TIDD-EC",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 215,
+      "output_words": 38,
+      "ms": 9532,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/tidd-ec__chunk.json"
+    },
+    {
+      "tag": "tidd-ec__parseRange",
+      "framework": "tidd-ec",
+      "framework_name": "TIDD-EC",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 482,
+      "output_words": 78,
+      "ms": 8710,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/tidd-ec__parseRange.json"
+    },
+    {
+      "tag": "costar__chunk",
+      "framework": "costar",
+      "framework_name": "COSTAR",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 215,
+      "output_words": 38,
+      "ms": 12073,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/costar__chunk.json"
+    }
+  ]
+}
