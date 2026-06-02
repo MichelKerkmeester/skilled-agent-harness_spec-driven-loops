@@ -7,6 +7,7 @@ type SignalFn = (pid: number, sig: number | string) => boolean;
 
 const require = createRequire(import.meta.url);
 const launcher = require('../../../../bin/mk-spec-memory-launcher.cjs') as {
+  bridgeStdioThroughSessionProxy: (socketPath: string, options?: Record<string, unknown>) => Promise<unknown>;
   buildLeaseObject: (childPid?: number | null, startedAt?: string) => Record<string, unknown>;
   createCrashLoopGuard: (options?: Record<string, unknown>) => { recordDeath: () => Record<string, unknown> };
   getWatchdogConfig: (env?: Record<string, string | undefined>, warn?: (message: string) => void) => Record<string, unknown>;
@@ -41,6 +42,32 @@ describe('launcher watchdog helpers', () => {
     `);
 
     expect(rssMb).toBe(6);
+  });
+
+  it('bridges a secondary launcher through its own reconnecting session proxy', async () => {
+    let captured: Record<string, unknown> | undefined;
+    const start = vi.fn(() => Promise.resolve('started'));
+    const createProxy = vi.fn((opts: Record<string, unknown>) => {
+      captured = opts;
+      return { start, stop: () => undefined };
+    });
+    const stdin = {};
+    const stdout = {};
+
+    const result = await launcher.bridgeStdioThroughSessionProxy('tcp://127.0.0.1:65500', {
+      createProxy,
+      stdin,
+      stdout,
+      onError: () => { throw new Error('onError must not be used by the proxy bridge'); },
+    });
+
+    expect(createProxy).toHaveBeenCalledTimes(1);
+    expect(captured?.socketPath).toBe('tcp://127.0.0.1:65500');
+    expect(captured?.stdin).toBe(stdin);
+    expect(captured?.stdout).toBe(stdout);
+    expect(typeof captured?.log).toBe('function');
+    expect(start).toHaveBeenCalledTimes(1);
+    expect(result).toBe('started');
   });
 
   it('treats EPERM sampling failures as unknown instead of a recycle signal', () => {

@@ -141,6 +141,50 @@ function aliveProbe(): Promise<{ status: string; reason: string }> {
   return Promise.resolve({ status: 'alive', reason: 'test' });
 }
 
+// Drives a proxy to CONNECTED, caches protocol version 2025-06-18 from the first
+// initialize response, leaves one replayable request pending, then recycles. The
+// fresh socket (index 1) answers the internal re-handshake with `rehandshakeResult`
+// (or stays silent when null), so callers can assert version-drift handling.
+async function driveToRehandshake(
+  rehandshakeResult: Record<string, unknown> | null,
+): Promise<{ input: FakeInput; output: FakeOutput; sockets: FakeSocket[]; proxy: SessionProxy }> {
+  const input = new FakeInput();
+  const output = new FakeOutput();
+  const sockets: FakeSocket[] = [];
+  const initialize = frame({ jsonrpc: '2.0', id: 'init', method: 'initialize', params: {} });
+  const request = toolCall('survivor', 'memory_search');
+  const proxy = createSessionProxy({
+    socketPath: 'tcp://127.0.0.1:65535',
+    stdin: input,
+    stdout: output,
+    probe: aliveProbe,
+    connect: createConnectedSocket(sockets, (socket, index) => {
+      if (index !== 1) return;
+      socket.onWrite = (chunk) => {
+        const parsed = JSON.parse(chunk.trim()) as { id: string; method?: string };
+        if (parsed.method === 'initialize' && rehandshakeResult !== null) {
+          queueMicrotask(() => {
+            socket.emit('data', `${frame({ jsonrpc: '2.0', id: parsed.id, result: rehandshakeResult })}\n`);
+          });
+        }
+      };
+    }),
+    log: () => undefined,
+    maxReattachAttempts: 3,
+    maxColdStartAttempts: 1,
+  });
+
+  await proxy.start();
+  input.send(initialize);
+  sockets[0]?.emit('data', `${frame({ jsonrpc: '2.0', id: 'init', result: { protocolVersion: '2025-06-18' } })}\n`);
+  await flushMicrotasks();
+  input.send(request);
+  await flushMicrotasks();
+  sockets[0]?.emit('close');
+  await flushMicrotasks(20);
+  return { input, output, sockets, proxy };
+}
+
 describe('launcher session proxy frame engine', () => {
   afterEach(() => {
     vi.useRealTimers();
@@ -418,6 +462,43 @@ describe('launcher session proxy frame engine', () => {
     expect(sockets[2]?.writes.some((chunk) => chunk.includes('replay-me'))).toBe(true);
     expect(input.paused).toBe(false);
     expect(output.ended).toBe(false);
+    proxy.stop();
+  });
+
+  it('replays a pending request after a matching-version internal re-handshake', async () => {
+    const { output, sockets, proxy } = await driveToRehandshake({ protocolVersion: '2025-06-18' });
+
+    expect(sockets[1]?.writes.some((chunk) => chunk.includes('survivor'))).toBe(true);
+    const mismatch = outputFrames(output).filter(
+      (parsed) => (parsed.error as { code?: number } | undefined)?.code === -32002,
+    );
+    expect(mismatch).toHaveLength(0);
+    expect(output.ended).toBe(false);
+    proxy.stop();
+  });
+
+  it('fails closed when the internal re-handshake negotiates a different protocol version', async () => {
+    const { output, sockets, proxy } = await driveToRehandshake({ protocolVersion: '2099-01-01' });
+
+    const mismatch = outputFrames(output).filter(
+      (parsed) => parsed.id === 'survivor' && (parsed.error as { code?: number } | undefined)?.code === -32002,
+    );
+    expect(mismatch).toHaveLength(1);
+    expect((mismatch[0].error as { data?: { retryable?: boolean } }).data?.retryable).toBe(false);
+    expect(sockets[1]?.writes.some((chunk) => chunk.includes('survivor'))).toBe(false);
+    expect(output.ended).toBe(true);
+    proxy.stop();
+  });
+
+  it('fails closed when a later re-handshake omits the previously negotiated protocol version', async () => {
+    const { output, sockets, proxy } = await driveToRehandshake({});
+
+    const mismatch = outputFrames(output).filter(
+      (parsed) => parsed.id === 'survivor' && (parsed.error as { code?: number } | undefined)?.code === -32002,
+    );
+    expect(mismatch).toHaveLength(1);
+    expect(sockets[1]?.writes.some((chunk) => chunk.includes('survivor'))).toBe(false);
+    expect(output.ended).toBe(true);
     proxy.stop();
   });
 });

@@ -348,11 +348,14 @@ async function maybeBridgeLeaseHolder(options) {
 
   process.stderr.write(`[${loggerPrefix}] bridging to lease holder pid=${ownerPid} socket=${socketPath}\n`);
   const bridgeToSocket = bridge ?? bridgeStdioToSocket;
-  bridgeToSocket(socketPath, {
+  // Await so an injected reconnecting bridge (whose start() resolves after the first
+  // attach) is fully wired before returning. The raw bridge returns a socket, not a
+  // promise, so Promise.resolve keeps the original fire-and-forget timing for it.
+  await Promise.resolve(bridgeToSocket(socketPath, {
     onError: () => {
       writeLeaseHeld(' (bridge-refused)');
     },
-  });
+  }));
   return { action: 'bridge', socketPath };
 }
 

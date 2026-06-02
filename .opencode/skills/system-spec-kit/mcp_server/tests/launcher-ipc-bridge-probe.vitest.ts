@@ -124,6 +124,41 @@ describe('launcher IPC bridge liveness probe', () => {
     expect(bridge).toHaveBeenCalledTimes(1);
   });
 
+  it('awaits an async bridge before resolving the bridge decision', async () => {
+    process.env.SPECKIT_IPC_SOCKET_DIR = 'tcp://127.0.0.1:65535';
+    const order: string[] = [];
+    let releaseBridge: () => void = () => undefined;
+    const bridgeGate = new Promise<void>((resolvePromise) => {
+      releaseBridge = resolvePromise;
+    });
+    const bridge = vi.fn(async () => {
+      order.push('bridge-start');
+      await bridgeGate;
+      order.push('bridge-end');
+    });
+
+    const decision = maybeBridgeLeaseHolder({
+      serviceName: 'mk-spec-memory',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
+      loggerPrefix: 'test-launcher',
+      connect: createAliveConnect(),
+      bridge,
+      probeTimeoutMs: 100,
+    }).then((value) => {
+      order.push('decision-resolved');
+      return value;
+    });
+
+    // Let the probe settle and the bridge start; the decision must still be pending
+    // because maybeBridgeLeaseHolder awaits the async bridge (the reconnecting proxy).
+    await new Promise((resolvePromise) => setTimeout(resolvePromise, 10));
+    expect(order).toEqual(['bridge-start']);
+
+    releaseBridge();
+    await expect(decision).resolves.toMatchObject({ action: 'bridge' });
+    expect(order).toEqual(['bridge-start', 'bridge-end', 'decision-resolved']);
+  });
+
   it('classifies connect success as alive without deepProbe', async () => {
     const sockets: FakeSocket[] = [];
 
