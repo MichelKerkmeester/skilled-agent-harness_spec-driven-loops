@@ -115,6 +115,7 @@ const CHECKPOINT_CREATE_MAX_ATTEMPTS = 3;
 const CHECKPOINT_CREATE_RETRY_MIN_DELAY_MS = 50;
 const CHECKPOINT_CREATE_RETRY_MAX_DELAY_MS = 200;
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
+const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
 
 const CHECKPOINT_MANIFEST = Object.freeze({
   snapshot: [
@@ -281,6 +282,56 @@ interface RestoreResult {
   workingMemoryRestored: number;
   partialFailure?: boolean;
   rolledBackTables?: string[];
+}
+
+interface DerivedRebuildFailure {
+  name: string;
+  error: string;
+}
+
+interface DerivedRebuildSkipped {
+  name: string;
+  reason: string;
+}
+
+interface DerivedRebuildSummary {
+  completed: string[];
+  failed: DerivedRebuildFailure[];
+  skipped: DerivedRebuildSkipped[];
+}
+
+interface RunDerivedArtifactRebuildOptions {
+  specFolder?: string | null;
+  actor?: string;
+  logContext?: string;
+}
+
+interface NeedsRebuildSentinelFile {
+  formatVersion: 1;
+  createdAt: string;
+  source: string;
+  reason: string;
+  rebuildSummary?: DerivedRebuildSummary;
+}
+
+interface NeedsRebuildSentinelWriteOptions {
+  source: string;
+  reason: string;
+  summary?: DerivedRebuildSummary;
+}
+
+interface NeedsRebuildRepairOptions {
+  source: string;
+  specFolder?: string | null;
+  actor?: string;
+}
+
+interface NeedsRebuildRepairResult {
+  sentinelPresent: boolean;
+  attempted: boolean;
+  cleared: boolean;
+  summary: DerivedRebuildSummary | null;
+  error: string | null;
 }
 
 interface SnapshotVectorRow {
@@ -724,6 +775,10 @@ function getRestoreJournalPath(liveMainPath: string): string {
   return path.join(path.dirname(liveMainPath), 'checkpoints', RESTORE_JOURNAL_NAME);
 }
 
+function getNeedsRebuildSentinelPath(liveMainPath: string): string {
+  return path.join(path.dirname(liveMainPath), 'checkpoints', NEEDS_REBUILD_SENTINEL_NAME);
+}
+
 function fsyncFileIfPossible(filePath: string): void {
   let fd: number | null = null;
   try {
@@ -765,6 +820,78 @@ function writeRestoreJournal(journalPath: string, journal: RestoreJournalFile): 
 function clearRestoreJournal(journalPath: string): void {
   fs.rmSync(journalPath, { force: true });
   fsyncDirectoryIfPossible(path.dirname(journalPath));
+}
+
+function writeNeedsRebuildSentinelAtPath(
+  sentinelPath: string,
+  options: NeedsRebuildSentinelWriteOptions,
+): void {
+  const sentinelDir = path.dirname(sentinelPath);
+  const tempSentinelPath = `${sentinelPath}.tmp`;
+  const sentinel: NeedsRebuildSentinelFile = {
+    formatVersion: 1,
+    createdAt: new Date().toISOString(),
+    source: options.source,
+    reason: options.reason,
+    ...(options.summary ? { rebuildSummary: options.summary } : {}),
+  };
+
+  fs.mkdirSync(sentinelDir, { recursive: true, mode: 0o700 });
+  fs.writeFileSync(tempSentinelPath, `${JSON.stringify(sentinel, null, 2)}\n`, { mode: 0o600 });
+  fsyncFileIfPossible(tempSentinelPath);
+  fs.renameSync(tempSentinelPath, sentinelPath);
+  fsyncDirectoryIfPossible(sentinelDir);
+}
+
+function clearNeedsRebuildSentinelAtPath(sentinelPath: string): boolean {
+  const existed = fs.existsSync(sentinelPath);
+  fs.rmSync(sentinelPath, { force: true });
+  if (existed) {
+    fsyncDirectoryIfPossible(path.dirname(sentinelPath));
+  }
+  return existed;
+}
+
+function getNeedsRebuildSentinelPathForDatabase(database: Database.Database): string | null {
+  try {
+    return getNeedsRebuildSentinelPath(resolveMainDatabasePath(database));
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
+function hasNeedsRebuildSentinel(database: Database.Database): boolean {
+  const sentinelPath = getNeedsRebuildSentinelPathForDatabase(database);
+  return sentinelPath !== null && fs.existsSync(sentinelPath);
+}
+
+function writeNeedsRebuildSentinelForDatabase(
+  database: Database.Database,
+  options: NeedsRebuildSentinelWriteOptions,
+): string | null {
+  const sentinelPath = getNeedsRebuildSentinelPathForDatabase(database);
+  if (sentinelPath === null) {
+    return null;
+  }
+  writeNeedsRebuildSentinelAtPath(sentinelPath, options);
+  return sentinelPath;
+}
+
+function writeNeedsRebuildSentinelForMainPath(
+  liveMainPath: string,
+  options: NeedsRebuildSentinelWriteOptions,
+): string {
+  const sentinelPath = getNeedsRebuildSentinelPath(liveMainPath);
+  writeNeedsRebuildSentinelAtPath(sentinelPath, options);
+  return sentinelPath;
+}
+
+function clearNeedsRebuildSentinelForDatabase(database: Database.Database): boolean {
+  const sentinelPath = getNeedsRebuildSentinelPathForDatabase(database);
+  if (sentinelPath === null) {
+    return false;
+  }
+  return clearNeedsRebuildSentinelAtPath(sentinelPath);
 }
 
 function removeRestoreBackupIfPossible(backupPath: string): void {
@@ -1698,13 +1825,19 @@ function restoreGenericTable(
   return restored;
 }
 
-function runPostRestoreRebuilds(
-  database: Database.Database,
-  checkpointSpecFolder: string | null,
-): void {
-  const hasMemoryParentId = tableHasColumn(database, 'memory_index', 'parent_id');
+function isDerivedRebuildComplete(summary: DerivedRebuildSummary): boolean {
+  return summary.failed.length === 0 && summary.skipped.length === 0;
+}
 
-  // Each rebuild is best-effort — failures must not block restore success.
+function runDerivedArtifactRebuilds(
+  database: Database.Database,
+  options: RunDerivedArtifactRebuildOptions = {},
+): DerivedRebuildSummary {
+  const hasMemoryParentId = tableHasColumn(database, 'memory_index', 'parent_id');
+  const checkpointSpecFolder = options.specFolder ?? null;
+  const actor = options.actor ?? 'mcp:checkpoint_restore';
+  const logContext = options.logContext ?? 'derived-artifact';
+
   const rebuildSteps: Array<{ name: string; deps: string[]; run: () => void }> = [
     {
       name: 'auto-entities',
@@ -1741,19 +1874,21 @@ function runPostRestoreRebuilds(
     rebuildSteps.unshift({
       name: 'lineage-backfill',
       deps: [],
-      run: () => runLineageBackfill(database, { actor: 'mcp:checkpoint_restore' }),
+      run: () => runLineageBackfill(database, { actor }),
     });
   }
 
   const completed = new Set<string>();
-  const skipped = new Set<string>();
+  const failed: DerivedRebuildFailure[] = [];
+  const skipped: DerivedRebuildSkipped[] = [];
 
   for (const { name, deps, run } of rebuildSteps) {
     const missingDeps = deps.filter((dependency) => !completed.has(dependency));
     if (missingDeps.length > 0) {
-      skipped.add(name);
+      const reason = `dependencies did not complete: ${missingDeps.join(', ')}`;
+      skipped.push({ name, reason });
       console.warn(
-        `[checkpoints] Skipping post-restore rebuild "${name}" because dependencies did not complete: ${missingDeps.join(', ')}`,
+        `[checkpoints] Skipping ${logContext} rebuild "${name}" because ${reason}`,
       );
       continue;
     }
@@ -1762,13 +1897,85 @@ function runPostRestoreRebuilds(
       run();
       completed.add(name);
     } catch (err: unknown) {
-      console.warn(`[checkpoints] Post-restore rebuild "${name}" failed (non-fatal): ${toErrorMessage(err)}`);
+      const error = toErrorMessage(err);
+      failed.push({ name, error });
+      console.warn(`[checkpoints] ${logContext} rebuild "${name}" failed (non-fatal): ${error}`);
     }
   }
 
+  const summary: DerivedRebuildSummary = {
+    completed: [...completed],
+    failed,
+    skipped,
+  };
+
   console.warn(
-    `[checkpoints] Post-restore rebuild summary: completed=${[...completed].join(', ') || 'none'}; skipped=${[...skipped].join(', ') || 'none'}`,
+    `[checkpoints] ${logContext} rebuild summary: completed=${summary.completed.join(', ') || 'none'}; failed=${summary.failed.map((entry) => entry.name).join(', ') || 'none'}; skipped=${summary.skipped.map((entry) => entry.name).join(', ') || 'none'}`,
   );
+
+  return summary;
+}
+
+function runPostRestoreRebuilds(
+  database: Database.Database,
+  checkpointSpecFolder: string | null,
+): DerivedRebuildSummary {
+  return runDerivedArtifactRebuilds(database, {
+    specFolder: checkpointSpecFolder,
+    actor: 'mcp:checkpoint_restore',
+    logContext: 'post-restore',
+  });
+}
+
+function repairNeedsRebuildSentinel(
+  database: Database.Database,
+  options: NeedsRebuildRepairOptions,
+): NeedsRebuildRepairResult {
+  if (!hasNeedsRebuildSentinel(database)) {
+    return {
+      sentinelPresent: false,
+      attempted: false,
+      cleared: false,
+      summary: null,
+      error: null,
+    };
+  }
+
+  let summary: DerivedRebuildSummary | null = null;
+  try {
+    summary = runDerivedArtifactRebuilds(database, {
+      specFolder: options.specFolder ?? null,
+      actor: options.actor ?? `mcp:${options.source}`,
+      logContext: `${options.source} repair`,
+    });
+
+    if (!isDerivedRebuildComplete(summary)) {
+      return {
+        sentinelPresent: true,
+        attempted: true,
+        cleared: false,
+        summary,
+        error: null,
+      };
+    }
+
+    clearNeedsRebuildSentinelForDatabase(database);
+    return {
+      sentinelPresent: true,
+      attempted: true,
+      cleared: true,
+      summary,
+      error: null,
+    };
+  } catch (error: unknown) {
+    return {
+      sentinelPresent: true,
+      attempted: true,
+      cleared: false,
+      summary,
+      error: toErrorMessage(error),
+    };
+  }
 }
 
 function normalizeMemoryColumnValue(column: string, value: unknown): unknown {
@@ -2456,7 +2663,18 @@ function restoreCheckpointV2(
     try {
       init(newDb);
       mergeCheckpointCatalogRows(newDb, liveCheckpointCatalogRows);
-      runPostRestoreRebuilds(newDb, null);
+      const rebuildSummary = runPostRestoreRebuilds(newDb, null);
+      if (!isDerivedRebuildComplete(rebuildSummary)) {
+        try {
+          writeNeedsRebuildSentinelForMainPath(liveMainPath, {
+            source: 'checkpoint_restore',
+            reason: 'post-restore derived rebuild did not complete',
+            summary: rebuildSummary,
+          });
+        } catch (sentinelError: unknown) {
+          console.warn(`[checkpoints] Failed to write needs-rebuild sentinel after restore (non-fatal): ${toErrorMessage(sentinelError)}`);
+        }
+      }
       result.restored = manifest.memoryCount;
       result.workingMemoryRestored = countTableRows(newDb, 'working_memory');
       if (restoreJournalPath) {
@@ -2969,6 +3187,12 @@ export {
   isRestoreInProgress,
   getRestoreBarrierStatus,
   setRestoreBarrierHooks,
+  runDerivedArtifactRebuilds,
+  repairNeedsRebuildSentinel,
+  getNeedsRebuildSentinelPathForDatabase,
+  hasNeedsRebuildSentinel,
+  writeNeedsRebuildSentinelForDatabase,
+  clearNeedsRebuildSentinelForDatabase,
   validateMemoryRow,
   createCheckpoint,
   listCheckpoints,
@@ -2993,6 +3217,13 @@ export type {
   CheckpointCreateErrorCode,
   CheckpointRestoreErrorCode,
   CreateCheckpointOptions,
+  DerivedRebuildFailure,
+  DerivedRebuildSkipped,
+  DerivedRebuildSummary,
+  NeedsRebuildRepairResult,
+  NeedsRebuildRepairOptions,
+  NeedsRebuildSentinelWriteOptions,
+  RunDerivedArtifactRebuildOptions,
   RestoreCheckpointV2Options,
   RestoreResult,
 };

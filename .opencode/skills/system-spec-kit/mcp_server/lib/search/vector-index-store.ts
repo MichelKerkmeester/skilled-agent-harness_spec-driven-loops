@@ -82,6 +82,7 @@ type InitializeDbOptions = {
 };
 
 const RESTORE_JOURNAL_NAME = '.restore-journal.json';
+const NEEDS_REBUILD_SENTINEL_NAME = '.needs-rebuild';
 
 function loadSearchWeights(): SearchWeightsConfig {
   // SERVER_DIR points to dist/ at runtime; configs/ lives at the package root (dist/..)
@@ -839,6 +840,38 @@ function get_restore_journal_path(target_path: string): string | null {
   return path.join(path.dirname(target_path), 'checkpoints', RESTORE_JOURNAL_NAME);
 }
 
+function get_needs_rebuild_sentinel_path(target_path: string): string | null {
+  if (target_path === ':memory:') {
+    return null;
+  }
+  return path.join(path.dirname(target_path), 'checkpoints', NEEDS_REBUILD_SENTINEL_NAME);
+}
+
+function write_needs_rebuild_sentinel_for_recovered_restore(target_path: string, checkpoint_name: string): void {
+  const sentinel_path = get_needs_rebuild_sentinel_path(target_path);
+  if (!sentinel_path || fs.existsSync(sentinel_path)) {
+    return;
+  }
+
+  try {
+    const sentinel_dir = path.dirname(sentinel_path);
+    const temp_sentinel_path = `${sentinel_path}.tmp`;
+    fs.mkdirSync(sentinel_dir, { recursive: true, mode: 0o700 });
+    fs.writeFileSync(temp_sentinel_path, `${JSON.stringify({
+      formatVersion: 1,
+      createdAt: new Date().toISOString(),
+      source: 'swap_done_recovery',
+      reason: 'completed restore journal recovered without derived rebuild evidence',
+      checkpointName: checkpoint_name,
+    }, null, 2)}\n`, { mode: 0o600 });
+    fsync_file_if_possible(temp_sentinel_path);
+    fs.renameSync(temp_sentinel_path, sentinel_path);
+    fsync_directory_if_possible(sentinel_dir);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to write checkpoint needs-rebuild sentinel during recovery: ${get_error_message(error)}`);
+  }
+}
+
 function read_restore_journal(journal_path: string): RestoreJournalFile | null {
   try {
     const parsed = JSON.parse(fs.readFileSync(journal_path, 'utf-8')) as Partial<RestoreJournalFile>;
@@ -891,6 +924,7 @@ export function recover_interrupted_checkpoint_restore(target_path: string): boo
       fs.rmSync(journal.backupShardPath, { force: true });
       fsync_directory_if_possible(path.dirname(journal.backupShardPath));
     }
+    write_needs_rebuild_sentinel_for_recovered_restore(journal.liveMainPath, journal.checkpointName);
     fs.rmSync(journal_path, { force: true });
     fsync_directory_if_possible(path.dirname(journal_path));
     console.warn('[vector-index] Finalized completed checkpoint restore from rollback journal');

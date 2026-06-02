@@ -347,6 +347,8 @@ const FALLBACK_SESSION_TRACKING_ID = `stdio-session-${process.pid}`;
 let detectedRuntime: RuntimeInfo | null = null;
 let bootFtsIntegrityHealth: BootFtsIntegrityHealth = 'unknown';
 
+type CheckpointRepairSource = 'boot' | 'startup-scan';
+
 function getUncleanShutdownMarkerPath(): string {
   // Derive the marker dir from the ACTUAL opened DB path (vectorIndex.getDbPath()) — the same path the
   // marker writer in vector-index-store uses — not the independently-derived DATABASE_PATH. Under a
@@ -415,6 +417,37 @@ function scheduleBootFtsIntegrityCheck(): void {
   }
 
   registerTimeout(() => runBootFtsIntegrityCheck(), 0, { unref: true });
+}
+
+function runCheckpointNeedsRebuildRepair(
+  database: Database.Database,
+  source: CheckpointRepairSource,
+): checkpointsLib.NeedsRebuildRepairResult | null {
+  try {
+    const result = checkpointsLib.repairNeedsRebuildSentinel(database, {
+      source,
+      actor: `mcp:${source.replace(/-/g, '_')}`,
+    });
+    if (!result.sentinelPresent) {
+      return result;
+    }
+
+    const completed = result.summary?.completed.length ?? 0;
+    const failed = result.summary?.failed.length ?? 0;
+    const skipped = result.summary?.skipped.length ?? 0;
+    if (result.cleared) {
+      console.error(`[context-server] Checkpoint derived rebuild repair (${source}) completed: completed=${completed}, failed=0, skipped=0`);
+    } else {
+      console.warn(
+        `[context-server] Checkpoint derived rebuild repair (${source}) incomplete; sentinel retained: completed=${completed}, failed=${failed}, skipped=${skipped}${result.error ? `, error=${result.error}` : ''}`,
+      );
+    }
+    return result;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`[context-server] Checkpoint derived rebuild repair (${source}) failed (non-fatal): ${message}`);
+    return null;
+  }
 }
 
 export function maybeStructuralNudge(
@@ -1497,6 +1530,7 @@ export const __testables = {
   runAsyncCleanupStep,
   main: () => main(),
   getBootFtsIntegrityHealth,
+  runCheckpointNeedsRebuildRepair,
   normalizeGraphFilePath,
   extractFilePathsFromToolArgs,
 };
@@ -1888,6 +1922,7 @@ async function main(): Promise<void> {
     causalBoost.init(database);
     installGraphRefresh(database);
     console.error('[context-server] Checkpoints, access tracker, hybrid search, session boost, and causal boost initialized');
+    runCheckpointNeedsRebuildRepair(database, 'boot');
 
     // P3-04/014: Warm in-memory BM25 only when the selected lexical engine needs it.
     if (bm25Index.shouldWarmInMemoryBm25(database)) {
@@ -2065,6 +2100,12 @@ async function main(): Promise<void> {
 
     // Background startup scan
     setImmediate(() => {
+      try {
+        runCheckpointNeedsRebuildRepair(vectorIndex.getDb(), 'startup-scan');
+      } catch (repairErr: unknown) {
+        const message = repairErr instanceof Error ? repairErr.message : String(repairErr);
+        console.warn('[context-server] Pre-scan checkpoint derived rebuild repair failed (non-fatal):', message);
+      }
       void startupScan(DEFAULT_BASE_PATH);
     });
   });
