@@ -1,12 +1,13 @@
 ---
 name: sk-git
-description: "Git workflow orchestrator: worktree setup, clean commits, finish/PR creation across git-worktrees, git-commit, git-finish."
+description: "Git workflow orchestrator OWNING all git/version-control intent: git worktree create/restructure (numbered wt/{NNNN}-{name} branches under .worktrees/), branch, conventional commits, pull request (PR), merge, rebase, finish work, integrate changes. Routes git-worktrees, git-commit, git-finish. NOT for spec folders / memory / save context (system-spec-kit) or code implementation / tests (sk-code)."
 allowed-tools: [Read, Bash, mcp__code_mode__call_tool_chain]
 argument-hint: "[worktree|commit|finish]"
-version: 1.1.1.0
+version: 1.1.2.0
 ---
 
-<!-- Keywords: git-workflow, git-worktree, conventional-commits, pull-request, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
+<!-- Keywords: git-workflow, git-worktree, create-worktree, numbered-worktree, restructure-worktrees, worktree-prefix, wt-branch, branch, commit, conventional-commits, pull-request, PR, merge, rebase, finish-work, integrate-changes, commit-hygiene, workspace-isolation, version-control, github, issues, pr-review -->
+<!-- Owns: git worktree / create worktree / numbered worktree / restructure worktrees / worktree prefix / wt/ branch / branch / commit / conventional commits / pull request / PR / merge / rebase / finish work / integrate changes / git workflow. Does NOT own: spec folders, memory, continuity, save context (system-spec-kit); code implementation, tests (sk-code). -->
 
 # Git Workflows - Git Development Orchestrator
 
@@ -29,7 +30,9 @@ Use this orchestrator when:
 
 ### Keyword Triggers
 
-`worktree`, `branch`, `commit`, `merge`, `pr`, `pull request`, `git workflow`, `conventional commits`, `finish work`, `integrate changes`, `github`, `issue`, `review`
+**Owned (route here):** `git worktree`, `worktree`, `create worktree`, `numbered worktree`, `restructure worktrees`, `worktree prefix`, `wt/ branch`, `branch`, `commit`, `conventional commits`, `pull request`, `pr`, `pr review`, `merge`, `rebase`, `finish work`, `integrate changes`, `git workflow`, `github`, `issue`
+
+**Not owned (do NOT claim):** spec folders / memory / continuity / save context → `system-spec-kit`; code implementation / writing tests → `sk-code`. This skill commits and integrates that work; it does not author it.
 
 ---
 
@@ -56,7 +59,7 @@ RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
 DEFAULT_RESOURCE = "references/quick_reference.md"
 
 INTENT_SIGNALS = {
-    "WORKSPACE_SETUP": {"weight": 4, "keywords": ["worktree", "workspace", "parallel work"]},
+    "WORKSPACE_SETUP": {"weight": 4, "keywords": ["worktree", "create worktree", "numbered worktree", "restructure worktrees", "workspace", "parallel work"]},
     "COMMIT": {"weight": 4, "keywords": ["commit", "staged", "message", "conventional commit"]},
     "FINISH": {"weight": 4, "keywords": ["finish", "merge", "pr", "pull request", "integrate"]},
     "SHARED_PATTERNS": {"weight": 3, "keywords": ["convention", "pattern", "reference", "branch naming"]},
@@ -84,7 +87,7 @@ RESOURCE_MAP = {
 
 LOADING_LEVELS = {
     "ALWAYS": [DEFAULT_RESOURCE],
-    "ON_DEMAND_KEYWORDS": ["full git flow", "all templates", "full reference", "git worktree", "experiment branch", "clean experiment branch", "routing-hardening", "routing-accuracy experiment"],
+    "ON_DEMAND_KEYWORDS": ["full git flow", "all templates", "full reference", "git worktree", "create worktree", "numbered worktree", "restructure worktrees", "worktree prefix", "wt/ branch", "experiment branch", "clean experiment branch", "routing-hardening", "routing-accuracy experiment"],
     "ON_DEMAND": ["references/shared_patterns.md", "assets/commit_message_template.md"],
 }
 
@@ -285,7 +288,7 @@ git-finish (feature A) → git-finish (feature B)
 1. **Use deterministic conventional commit format** - All commits must follow `type(scope): description` using the commit-message logic defined below
 2. **Create worktree for parallel work** - Never work on multiple features in the same worktree
 3. **Verify branch is up-to-date** - Pull latest changes before creating PR
-4. **Use descriptive worktree-created branch names** - Format: `type/short-description` (e.g., `feat/add-auth`, `fix/login-bug`)
+4. **Name worktree-created branches with the unified numbered namespace** - Format: `wt/{NNNN}-{name}` where `{NNNN}` is a 4-digit zero-padded global counter (`max(existing NNNN under .worktrees/) + 1`, first is `0001`) and `{name}` is a short kebab description (e.g., `wt/0001-add-oauth`, `wt/0002-login-bug`). The matching directory is `.worktrees/{NNNN}-{name}`. The `wt/` prefix groups every feature-worktree branch under one folder in Git UIs. This is distinct from the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}` + `.worktrees/{runtime}-{slug}`), which are auto-managed, auto-reaped, and intentionally not numbered.
 5. **Reference spec folder in commits** - Include spec folder path in commit body when applicable
 6. **Clean up after merge** - Delete local and remote feature branches after successful merge
 7. **Squash commits for clean history** - Use squash merge for feature branches with many WIP commits
@@ -382,7 +385,7 @@ Use this logic whenever the AI writes or rewrites commit messages.
 ### Workspace Setup Complete
 - Workspace prepared in the selected mode (`git worktree` or current branch)
 - If a worktree was selected, it was created in the correct directory (`.worktrees/` or user-specified)
-- Any worktree-created branch naming follows convention (`type/short-description`)
+- Any worktree-created branch naming follows convention (`wt/{NNNN}-{name}`)
 - User confirmed workspace choice (worktree/current branch)
 
 ### Commit Complete

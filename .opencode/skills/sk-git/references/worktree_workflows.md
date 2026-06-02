@@ -37,17 +37,19 @@ If the user has not been prompted or selected a different option:
 
 ## 3. PROCESS OVERVIEW
 
-1. Determine worktree directory location (priority: existing → AGENTS.md → ask user)
-2. Verify safety (`.gitignore` check for project-local directories)
-3. Create worktree with appropriate branch strategy
+1. Compute the global worktree number `{NNNN}` and confirm the kebab `{name}`
+2. Verify safety (`.gitignore` check for the `.worktrees/` home)
+3. Create worktree with appropriate lifecycle strategy under the unified `wt/{NNNN}-{name}` branch namespace
 4. Run project setup (auto-detect and install dependencies)
 5. Verify clean baseline (run tests)
 6. Report location and status
 
-**Branch Strategies**:
-- **Main-focused (default)**: Work on main with minimal branching (short-lived temp branches)
-- **Feature branches**: Create new branch per worktree (for long-running work)
-- **Experimental**: Quick experiments with detached HEAD (no branch pollution)
+**Branch namespace**: every named feature worktree uses the unified `wt/{NNNN}-{name}` branch and the `.worktrees/{NNNN}-{name}` directory (see Naming Convention below). The lifecycle strategy below only changes *how the branch is managed after creation*, not how it is named.
+
+**Lifecycle strategies**:
+- **Fast-merge (default)**: short-lived branch that merges straight back to main after testing
+- **Long-running**: same `wt/{NNNN}-{name}` branch kept across multiple days for PR review
+- **Detached experiment**: quick throwaway work with detached HEAD (no branch, so no number is assigned)
 
 ---
 
@@ -55,18 +57,18 @@ If the user has not been prompted or selected a different option:
 
 ### Step 1: Gather User Inputs
 
-**Purpose**: Collect task description and branch strategy
+**Purpose**: Collect task description and lifecycle strategy
 
 **Actions**:
-- Ask for feature/task description
-- Confirm branch strategy (default: main_temp for most work)
-- Determine branch name based on strategy
+- Ask for feature/task description and derive a short kebab `{name}` from it
+- Confirm lifecycle strategy (default: fast-merge for most work)
+- The branch is always `wt/{NNNN}-{name}` — only the lifecycle (how it merges) varies. `{NNNN}` is computed in Step 4.
 
-**Default Strategy**: `main_temp` (short-lived branches merging back to main)
+**Default Strategy**: fast-merge (short-lived `wt/{NNNN}-{name}` branch merging back to main)
 
 **When to use other strategies**:
-- `feature_branch`: Long-running features requiring PR review
-- `main_detached`: Quick experiments without branch creation
+- Long-running: features requiring PR review across multiple days (same `wt/{NNNN}-{name}` branch)
+- Detached experiment: quick experiments with no branch (no number assigned)
 
 **Validation**: `inputs_collected`
 
@@ -74,101 +76,103 @@ If the user has not been prompted or selected a different option:
 
 ### Step 2: Directory Selection
 
-**Purpose**: Determine where to create worktree
+**Purpose**: Confirm the worktree home (standardized on `.worktrees/`)
+
+Named feature worktrees live under the repo-local, already-gitignored `.worktrees/`
+home. Each worktree is a numbered subdirectory: `.worktrees/{NNNN}-{name}` (the
+`{NNNN}` is computed in Step 4). You normally do not need to ask — `.worktrees/` is
+the default.
 
 **Priority Order**:
 
-1. **Check Existing Directories**
+1. **Confirm the `.worktrees/` home exists (create on first use)**
 ```bash
-ls -d .worktrees 2>/dev/null     # Preferred (hidden)
-ls -d worktrees 2>/dev/null      # Alternative
+ls -d .worktrees 2>/dev/null || echo "NONE_YET"   # repo-local, hidden, gitignored
 ```
-   **If found**: Use that directory. If both exist, `.worktrees` wins.
+   `.worktrees/` is the standard. `git worktree add` will create it on first use.
 
-2. **Check AGENTS.md**
+2. **Check AGENTS.md only for an explicit override**
 ```bash
 grep -i "worktree.*directory" AGENTS.md 2>/dev/null
 ```
-   **If preference specified**: Use it without asking.
+   Honor an explicit override if one is recorded; otherwise use `.worktrees/`.
 
-3. **Ask User**
-   If no directory exists and no AGENTS.md preference:
-```text
-No worktree directory found. Where should I create worktrees?
-
-1. .worktrees/ (project-local, hidden)
-2. ~/.config/superpowers/worktrees/<project-name>/ (global location)
-
-Which would you prefer?
-```
+3. **Ask only if an override is ambiguous**
+   `.worktrees/` is the default and needs no prompt. Ask only when AGENTS.md records a
+   conflicting or unclear directory preference.
 
 **Validation**: `directory_determined`
 
 ### Step 3: Safety Verification
 
-**Purpose**: Ensure worktree directory won't pollute repository
-
-**For Project-Local Directories** (`.worktrees/` or `worktrees/`):
+**Purpose**: Ensure the `.worktrees/` home won't pollute the repository
 
 **Critical Check**:
 ```bash
-# Prefer git's matcher to verify ignore status for project-local directories
-# A match indicates the path would be ignored
-git check-ignore -n .worktrees 2>/dev/null \
-  || git check-ignore -n worktrees 2>/dev/null \
-  || echo "NOT_IGNORED"
+# Prefer git's matcher to verify ignore status. A match means the path is ignored.
+git check-ignore -n .worktrees 2>/dev/null || echo "NOT_IGNORED"
 ```
 
-**If NOT ignored**:
-1. Add appropriate line to `.gitignore`
+`.worktrees/` is normally already gitignored in this repo. If the check reports
+`NOT_IGNORED`:
+1. Add `.worktrees/` to `.gitignore`
 2. Ask for approval, then commit the change
 3. Proceed with worktree creation
 
-**Rationale**: Prevents accidentally committing worktree contents to repository.
-
-**For Global Directory** (`~/.config/superpowers/worktrees/`):
-- No `.gitignore` verification needed (outside project)
+**Rationale**: Prevents accidentally committing worktree contents to the repository.
 
 **Validation**: `safety_verified`
 
 ### Step 4: Create Worktree
 
-**Purpose**: Create isolated workspace with appropriate branch
+**Purpose**: Create the isolated workspace under the `wt/{NNNN}-{name}` namespace
+
+#### Naming Convention
+
+Named feature worktrees — the ones a human creates for a feature or a parallel task —
+use one unified, numbered namespace:
+
+- **Branch**: `wt/{NNNN}-{name}` — e.g. `wt/0001-add-oauth`. The `wt/` prefix groups
+  every feature-worktree branch under a single folder in Git UIs (the same way
+  `system-speckit/023-...` groups spec branches). `{name}` is a short kebab description.
+- **Directory**: `<repo-root>/.worktrees/{NNNN}-{name}` — e.g. `.worktrees/0001-add-oauth`.
+  `.worktrees/` is the repo-local, already-gitignored worktree home.
+- **`{NNNN}`** is a 4-digit zero-padded **global** counter, assigned as
+  `max(existing NNNN under .worktrees/) + 1` (the first worktree is `0001`).
+
+> **Two distinct lanes.** This numbered `wt/{NNNN}-{name}` convention is for *named
+> feature worktrees a human creates*. It is separate from the per-session **ephemeral**
+> worktrees allocated by the launch wrapper `.opencode/bin/worktree-session.sh`, which
+> keep their own auto-managed namespace — branch `work/{runtime}/{slug}`, directory
+> `.worktrees/{runtime}-{slug}` — and are auto-reaped by `worktree-reaper.sh` (which keys
+> on the `.worktrees/` directory, not on the branch prefix). Those ephemeral session
+> worktrees are intentionally **not** numbered; do not assign them an `{NNNN}`.
 
 **Actions**:
 
-1. **Detect Project Name**:
+1. **Compute the global number `{NNNN}`**:
 ```bash
-project=$(basename "$(git rev-parse --show-toplevel)")
+# max existing NNNN under .worktrees/ + 1, zero-padded to 4 digits (first is 0001)
+n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
 ```
 
-2. **Determine Path**:
+2. **Set the kebab `{name}` and derive the paths**:
 ```bash
-case $LOCATION in
-  .worktrees|worktrees)
-    path="$LOCATION/$BRANCH_NAME"
-    ;;
-  ~/.config/superpowers/worktrees/*)
-    path="$HOME/.config/superpowers/worktrees/$project/$BRANCH_NAME"
-    ;;
-esac
+name="add-oauth"                 # short kebab description from Step 1
+branch="wt/${n}-${name}"         # e.g. wt/0001-add-oauth
+path=".worktrees/${n}-${name}"   # e.g. .worktrees/0001-add-oauth
 ```
 
-3. **Create Worktree** (strategy-dependent):
+3. **Create Worktree** (lifecycle-dependent; branch name is identical in both branch cases):
 
-   **Feature Branch**:
+   **Fast-merge / Long-running** (named branch `wt/{NNNN}-{name}` off main):
 ```bash
-git worktree add "$path" -b "$BRANCH_NAME"
+git worktree add -b "$branch" "$path" main
 ```
 
-   **Main Temp** (short-lived branch):
+   **Detached experiment** (no branch, so no number is assigned):
 ```bash
-git worktree add "$path" -b "temp/$TASK_ID" main
-```
-
-   **Main Detached** (no branch):
-```bash
-git worktree add --detach "$path" main
+git worktree add --detach .worktrees/experiment main
 ```
 
 4. **Navigate**:
@@ -285,21 +289,25 @@ Fast mode (large repos):
 
 ## 5. BRANCH STRATEGY GUIDE
 
-### Main Temp (Default - Recommended) ⭐
+All named feature worktrees share the unified `wt/{NNNN}-{name}` branch namespace and
+the `.worktrees/{NNNN}-{name}` directory (see Step 4 → Naming Convention). The strategies
+below differ only in how the branch is *managed after creation*, not in how it is named.
+
+### Fast-merge (Default - Recommended) ⭐
 
 **When to use**:
 - Most development work (default choice)
 - Quick fixes or small changes
 - Want to keep codebase on main
 - Immediate merge-back after testing
-- Avoid long-lived feature branches
+- Avoid long-lived branches
 
-**Example**:
+**Example** (`{NNNN}` computed in Step 4, e.g. `0001`):
 ```bash
-git worktree add .worktrees/quick-fix -b temp/fix-modal main
+git worktree add -b wt/0001-fix-modal .worktrees/0001-fix-modal main
 # ... make changes ...
-cd ../.. && git checkout main && git merge temp/fix-modal
-git branch -d temp/fix-modal
+cd ../.. && git checkout main && git merge wt/0001-fix-modal
+git branch -d wt/0001-fix-modal
 ```
 
 **Advantages**:
@@ -310,7 +318,7 @@ git branch -d temp/fix-modal
 
 **Best for**: 80% of development work
 
-### Feature Branch
+### Long-running
 
 **When to use**:
 - Long-running features (multiple days/weeks)
@@ -320,26 +328,26 @@ git branch -d temp/fix-modal
 
 **Example**:
 ```bash
-git worktree add .worktrees/user-auth -b feature/user-auth
+git worktree add -b wt/0002-user-auth .worktrees/0002-user-auth main
 # ... develop feature ...
 # Create PR, review, merge
 ```
 
 **Best for**: Major features, team collaboration requiring review
 
-### Main Detached (Experimental)
+### Detached experiment
 
 **When to use**:
 - Quick experiments
 - Testing ideas without creating branches
 - Throwaway work
 
-**Example**:
+**Example** (no branch, so no `{NNNN}` is assigned):
 ```bash
 git worktree add --detach .worktrees/experiment main
 # ... experiment ...
-# If keeping: create branch and commit
-# If discarding: just remove worktree
+# If keeping: create a numbered wt/{NNNN}-{name} branch and commit
+# If discarding: just remove the worktree
 ```
 
 **Advantage**: No branch pollution
@@ -348,15 +356,15 @@ git worktree add --detach .worktrees/experiment main
 
 ## 6. DECISION MATRIX
 
-| Situation | Directory Strategy | Branch Strategy |
-|-----------|-------------------|-----------------|
-| `.worktrees/` exists | Use it (verify .gitignore) | User preference |
-| `worktrees/` exists | Use it (verify .gitignore) | User preference |
-| Both exist | Use `.worktrees/` | User preference |
-| Neither exists | Check AGENTS.md → Ask | User preference |
-| Directory not in .gitignore | Add + commit immediately | User preference |
-| Tests fail during baseline | Report + ask permission | User preference |
-| No package.json/Cargo.toml | Skip dependency install | User preference |
+| Situation | Directory | Branch / Lifecycle |
+|-----------|-----------|--------------------|
+| Named feature worktree | `.worktrees/{NNNN}-{name}` (compute `{NNNN}`) | `wt/{NNNN}-{name}`, fast-merge by default |
+| Long-running feature | `.worktrees/{NNNN}-{name}` | `wt/{NNNN}-{name}`, kept for PR review |
+| Quick throwaway experiment | `.worktrees/experiment` | Detached HEAD (no branch, no number) |
+| Ephemeral per-session (launch wrapper) | `.worktrees/{runtime}-{slug}` (auto) | `work/{runtime}/{slug}` (auto-reaped, not numbered) |
+| `.worktrees/` not in .gitignore | Add + commit immediately | — |
+| Tests fail during baseline | Report + ask permission | — |
+| No package.json/Cargo.toml | Skip dependency install | — |
 
 ---
 
@@ -386,67 +394,69 @@ git worktree add --detach .worktrees/experiment main
 
 ## 8. EXAMPLE WORKFLOWS
 
-### Example 1: Main Temp (Default Workflow) ⭐
+### Example 1: Fast-merge (Default Workflow) ⭐
 
 ```text
 User: "Quick fix for modal close button"
-Agent: "I'm using the git-worktrees skill with main-focused strategy (default)."
+Agent: "I'm using the git-worktrees skill with the fast-merge strategy (default)."
 
-[Step 1: Gather inputs - branch_strategy: main_temp (default)]
-[Step 2: Directory selection - found .worktrees/]
+[Step 1: Gather inputs - lifecycle: fast-merge (default), name: modal-fix]
+[Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
-[Step 4: Create worktree with temp branch]
-> git worktree add .worktrees/modal-fix -b temp/modal-fix main
+[Step 4: Compute number, then create worktree]
+> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0001
+> git worktree add -b wt/0001-modal-fix .worktrees/0001-modal-fix main
 [Step 5: Project setup]
 > npm install
 [Step 6: Baseline verification]
 > npm test
 ✓ All tests passing
 
-✓ Worktree ready at /Users/user/project/.worktrees/modal-fix
-✓ Branch: temp/modal-fix (main_temp - merges back to main immediately)
+✓ Worktree ready at /Users/user/project/.worktrees/0001-modal-fix
+✓ Branch: wt/0001-modal-fix (fast-merge - merges back to main immediately)
 ✓ Tests passing
 ✓ Ready for quick fix
 
 [After fix is committed and tested]
 User: "Fix is done and tested"
-Agent: "Merging back to main and cleaning up temp branch..."
-> git checkout main && git merge temp/modal-fix && git branch -d temp/modal-fix
+Agent: "Merging back to main and cleaning up the branch..."
+> git checkout main && git merge wt/0001-modal-fix && git branch -d wt/0001-modal-fix
 ```
 
-### Example 2: Feature Branch (Long-Running Work)
+### Example 2: Long-running Work
 
 ```text
 User: "I need to implement user authentication - this will take a few days"
 
-Agent: "I'm using the git-worktrees skill with feature branch strategy."
+Agent: "I'm using the git-worktrees skill with the long-running lifecycle."
 
-[Step 1: Gather inputs - branch_strategy: feature_branch]
-[Step 2: Directory selection - found .worktrees/]
+[Step 1: Gather inputs - lifecycle: long-running, name: user-auth]
+[Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
-[Step 4: Create worktree]
-> git worktree add .worktrees/user-auth -b feature/user-auth
+[Step 4: Compute number, then create worktree]
+> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0002
+> git worktree add -b wt/0002-user-auth .worktrees/0002-user-auth main
 [Step 5: Project setup - detected Node.js]
 > npm install
 [Step 6: Baseline verification]
 > npm test
 ✓ 47 tests passing
 
-✓ Worktree ready at /Users/user/project/.worktrees/user-auth
-✓ Branch: feature/user-auth (feature_branch)
+✓ Worktree ready at /Users/user/project/.worktrees/0002-user-auth
+✓ Branch: wt/0002-user-auth (long-running)
 ✓ Tests passing (47 tests, 0 failures)
 ✓ Ready to implement user authentication
 ```
 
-### Example 3: Main Detached (Experimental)
+### Example 3: Detached experiment
 
 ```text
 User: "Want to experiment with a new approach, not sure if I'll keep it"
 
-Agent: "I'm using detached HEAD worktree for experimentation."
+Agent: "I'm using a detached HEAD worktree for experimentation (no branch, no number)."
 
-[Step 1: Gather inputs - branch_strategy: main_detached]
-[Step 2: Directory selection - found .worktrees/]
+[Step 1: Gather inputs - lifecycle: detached experiment]
+[Step 2: Directory selection - .worktrees/ home confirmed]
 [Step 3: Safety verification - .gitignore contains .worktrees/]
 [Step 4: Create worktree detached]
 > git worktree add --detach .worktrees/experiment main
@@ -462,10 +472,11 @@ Agent: "I'm using detached HEAD worktree for experimentation."
 
 [If keeping the changes]
 User: "This worked great, let's keep it"
-Agent: "Creating a new worktree and branch from this detached HEAD state..."
-> git worktree add ../new-approach -b feature/new-approach HEAD
-> cd ../new-approach
-> git add . && git commit -m "Experimental approach"
+Agent: "Promoting to a numbered worktree and branch from this detached HEAD state..."
+> n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))   # -> 0003
+> git worktree add -b wt/0003-new-approach .worktrees/0003-new-approach HEAD
+> cd .worktrees/0003-new-approach
+> git add . && git commit -m "feat: experimental approach"
 ```
 
 ---

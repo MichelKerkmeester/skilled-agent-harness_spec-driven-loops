@@ -17,17 +17,19 @@ This reference consolidates common patterns, commands, and conventions used acro
 
 ## 2. BRANCH NAMING CONVENTIONS
 
-### Temporary Branches (Main-Focused Workflow)
+### Named Feature Branches — Merge Back Fast
 
-**Pattern**: `temp/<id>`
+**Pattern**: `wt/{NNNN}-{name}` (directory `.worktrees/{NNNN}-{name}`)
+
+`{NNNN}` is a 4-digit zero-padded global counter: `max(existing NNNN under .worktrees/) + 1`.
 
 **Purpose**: Short-lived branches that merge back to main immediately
 
 **Examples**:
 ```bash
-temp/modal-fix
-temp/auth-bug
-temp/quick-refactor
+wt/0001-modal-fix
+wt/0002-auth-bug
+wt/0003-quick-refactor
 ```
 
 **Lifecycle**:
@@ -40,17 +42,17 @@ temp/quick-refactor
 
 **Best for**: 80% of development work
 
-### Feature Branches (Long-Running Work)
+### Named Feature Branches — Long-Running Work
 
-**Pattern**: `feature/<name>`
+**Pattern**: `wt/{NNNN}-{name}` (same unified scheme; the next global number)
 
 **Purpose**: Long-running features requiring PR review
 
 **Examples**:
 ```bash
-feature/user-auth
-feature/payment-integration
-feature/dashboard-redesign
+wt/0004-user-auth
+wt/0005-payment-integration
+wt/0006-dashboard-redesign
 ```
 
 **Lifecycle**:
@@ -66,13 +68,17 @@ feature/dashboard-redesign
 
 ### Experimental Branches
 
-**Pattern**: Detached HEAD (no branch)
+**Pattern**: Detached HEAD (no branch → no number)
 
 **Purpose**: Quick experiments without branch pollution
 
+Detached experiments create no branch, so there is no counter to assign. The
+directory may use the numbered `.worktrees/{NNNN}-{name}` form or a descriptive
+throwaway dir.
+
 **Command**:
 ```bash
-git worktree add --detach .worktrees/experiment main
+git worktree add --detach .worktrees/0001-experiment main
 ```
 
 **Lifecycle**:
@@ -330,11 +336,11 @@ Clients must update to handle JSON responses.
 ### Pattern 1: Quick Fix Workflow
 
 ```bash
-# 1. Create worktree with temp branch
-git worktree add .worktrees/quick-fix -b temp/quick-fix main
+# 1. Create named feature worktree (0001 = next global counter)
+git worktree add -b wt/0001-quick-fix .worktrees/0001-quick-fix main
 
 # 2. Navigate and fix
-cd .worktrees/quick-fix
+cd .worktrees/0001-quick-fix
 # ... make changes ...
 
 # 3. Commit
@@ -347,21 +353,21 @@ npm test  # or appropriate test command
 # 5. Merge back to main
 cd ../..
 git checkout main
-git merge temp/quick-fix
+git merge wt/0001-quick-fix
 
 # 6. Cleanup
-git branch -d temp/quick-fix
-git worktree remove .worktrees/quick-fix
+git branch -d wt/0001-quick-fix
+git worktree remove .worktrees/0001-quick-fix
 ```
 
 ### Pattern 2: Feature Branch with PR
 
 ```bash
-# 1. Create worktree with feature branch
-git worktree add .worktrees/new-feature -b feature/new-feature
+# 1. Create named feature worktree (0002 = next global counter)
+git worktree add -b wt/0002-new-feature .worktrees/0002-new-feature main
 
 # 2. Navigate and develop
-cd .worktrees/new-feature
+cd .worktrees/0002-new-feature
 # ... develop feature (multiple commits) ...
 
 # 3. Commit changes
@@ -372,33 +378,33 @@ git commit -m "feat: description"
 npm test
 
 # 5. Push and create PR
-git push -u origin feature/new-feature
+git push -u origin wt/0002-new-feature
 gh pr create --title "feat: description" --body "..."
 
 # 6. Cleanup worktree (keep branch for PR)
 cd ../..
-git worktree remove .worktrees/new-feature
+git worktree remove .worktrees/0002-new-feature
 ```
 
 ### Pattern 3: Experimental Work
 
 ```bash
-# 1. Create detached HEAD worktree
-git worktree add --detach .worktrees/experiment main
+# 1. Create detached HEAD worktree (no branch → no number)
+git worktree add --detach .worktrees/0003-experiment main
 
 # 2. Experiment
-cd .worktrees/experiment
+cd .worktrees/0003-experiment
 # ... try different approach ...
 
-# 3a. If keeping: Create a new worktree and branch
-git worktree add ../new-approach -b feature/new-approach HEAD
-cd ../new-approach
+# 3a. If keeping: Create a new named worktree and branch (0004 = next counter)
+git worktree add -b wt/0004-new-approach .worktrees/0004-new-approach HEAD
+cd ../0004-new-approach
 git add .
 git commit -m "feat: experimental approach"
 
 # 3b. If discarding: Just remove
 cd ../..
-git worktree remove .worktrees/experiment
+git worktree remove .worktrees/0003-experiment
 ```
 
 ---
@@ -431,7 +437,7 @@ npm test
 
 ```bash
 # 1. Attempt merge
-git merge feature/branch
+git merge wt/0001-feature
 # CONFLICT detected
 
 # 2. View conflicts
@@ -494,22 +500,22 @@ git branch -d recovery-branch
 
 ### Pattern: Worktree Branch Already Exists
 
-**Symptom**: `fatal: 'temp/feature' is already checked out`
+**Symptom**: `fatal: 'wt/0007-feature' is already checked out`
 
 ```bash
 # 1. List existing worktrees
 git worktree list
 
-# 2. Option A: Use different branch name
-git worktree add .worktrees/feature -b temp/feature-v2 main
+# 2. Option A: Use the next global number for a fresh worktree
+git worktree add -b wt/0008-feature .worktrees/0008-feature main
 
-# 3. Option B: Remove existing worktree first
-git worktree remove .worktrees/old-feature
-git branch -d temp/feature
-git worktree add .worktrees/feature -b temp/feature main
+# 3. Option B: Remove existing worktree first, then reuse the name
+git worktree remove .worktrees/0007-feature
+git branch -d wt/0007-feature
+git worktree add -b wt/0007-feature .worktrees/0007-feature main
 
 # 4. Option C: Continue work in existing worktree
-cd .worktrees/old-feature  # Navigate to existing
+cd .worktrees/0007-feature  # Navigate to existing
 ```
 
 ### Pattern: Failed Push (Remote Rejected)

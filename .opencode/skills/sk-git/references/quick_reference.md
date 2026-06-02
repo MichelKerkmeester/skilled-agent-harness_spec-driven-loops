@@ -39,20 +39,20 @@ git-worktrees   git-commit      git-finish
 ### Quick Commands
 
 ```bash
-# Default: temp branch (recommended)
-git worktree add .worktrees/<name> -b temp/<name> main
+# Named feature worktree (recommended): NNNN = next 4-digit global counter
+git worktree add -b wt/0001-<name> .worktrees/0001-<name> main
 
-# Feature branch (long-running)
-git worktree add .worktrees/<name> -b feature/<name>
+# Long-running feature worktree (needs PR): same scheme, next number
+git worktree add -b wt/0002-<name> .worktrees/0002-<name> main
 
-# Experimental (no branch)
-git worktree add --detach .worktrees/<name> main
+# Experimental (no branch → no number; throwaway dir)
+git worktree add --detach .worktrees/0003-<name> main
 
 # List all worktrees
 git worktree list
 
 # Remove worktree
-git worktree remove .worktrees/<name>
+git worktree remove .worktrees/0001-<name>
 ```
 
 ### 7-Step Workflow
@@ -69,9 +69,9 @@ git worktree remove .worktrees/<name>
 
 | Strategy | When to Use | Example |
 |----------|-------------|---------|
-| `temp/*` (default) | 80% of work, merge back immediately | `temp/quick-fix` |
-| `feature/*` | Long-running, needs PR | `feature/user-auth` |
-| Detached HEAD | Experiments, throwaway | No branch created |
+| `wt/{NNNN}-{name}` (merge back fast) | 80% of work, merge back immediately | `wt/0001-quick-fix` |
+| `wt/{NNNN}-{name}` (long-running) | Long-running, needs PR | `wt/0002-user-auth` |
+| Detached HEAD | Experiments, throwaway | No branch created (no number) |
 
 ---
 
@@ -149,7 +149,7 @@ gh pr create --title "..." --body "..."
 git checkout main && git branch -D <branch>
 
 # Cleanup worktree
-git worktree remove .worktrees/<name>
+git worktree remove .worktrees/{NNNN}-<name>
 ```
 
 ### 5-Step Workflow
@@ -182,11 +182,11 @@ git worktree remove .worktrees/<name>
 ### Workflow A: Quick Fix (Main-Focused)
 
 ```bash
-# 1. Create temp branch worktree
-git worktree add .worktrees/fix -b temp/fix main
+# 1. Create named feature worktree (0001 = next global counter)
+git worktree add -b wt/0001-fix .worktrees/0001-fix main
 
 # 2. Make changes
-cd .worktrees/fix
+cd .worktrees/0001-fix
 # ... fix code ...
 
 # 3. Commit
@@ -197,21 +197,21 @@ git commit -m "fix: description"
 npm test
 
 # 5. Merge
-cd ../.. && git checkout main && git merge temp/fix
+cd ../.. && git checkout main && git merge wt/0001-fix
 
 # 6. Cleanup
-git branch -d temp/fix
-git worktree remove .worktrees/fix
+git branch -d wt/0001-fix
+git worktree remove .worktrees/0001-fix
 ```
 
 ### Workflow B: Feature with PR
 
 ```bash
-# 1. Create feature branch worktree
-git worktree add .worktrees/feature -b feature/name
+# 1. Create named feature worktree (0002 = next global counter)
+git worktree add -b wt/0002-name .worktrees/0002-name main
 
 # 2. Develop
-cd .worktrees/feature
+cd .worktrees/0002-name
 # ... implement feature ...
 
 # 3. Commit
@@ -222,30 +222,30 @@ git commit -m "feat: description"
 npm test
 
 # 5. Create PR
-git push -u origin feature/name
+git push -u origin wt/0002-name
 gh pr create --title "feat: ..." --body "..."
 
 # 6. Cleanup worktree (keep branch)
-cd ../.. && git worktree remove .worktrees/feature
+cd ../.. && git worktree remove .worktrees/0002-name
 ```
 
 ### Workflow C: Experiment
 
 ```bash
-# 1. Create detached HEAD worktree
-git worktree add --detach .worktrees/exp main
+# 1. Create detached HEAD worktree (no branch → no number)
+git worktree add --detach .worktrees/0003-exp main
 
 # 2. Experiment
-cd .worktrees/exp
+cd .worktrees/0003-exp
 # ... try approach ...
 
-# 3a. Keep: Create a new worktree and branch
-git worktree add ../feature -b feature/name HEAD
-cd ../feature
+# 3a. Keep: Create a new named worktree and branch (0004 = next counter)
+git worktree add -b wt/0004-name .worktrees/0004-name HEAD
+cd ../0004-name
 git add . && git commit -m "feat: experimental approach"
 
 # 3b. Discard: Remove worktree
-cd ../.. && git worktree remove .worktrees/exp
+cd ../.. && git worktree remove .worktrees/0003-exp
 ```
 
 ---
@@ -254,12 +254,12 @@ cd ../.. && git worktree remove .worktrees/exp
 
 | Scenario | Worktree Strategy | Commit Strategy | Finish Option |
 |----------|-------------------|-----------------|---------------|
-| Small fix | temp/* | Single commit | Option 1 (Merge) |
-| Feature (solo) | temp/* | Multiple commits | Option 1 (Merge) |
-| Feature (team) | feature/* | Multiple commits | Option 2 (PR) |
+| Small fix | wt/{NNNN}-{name} | Single commit | Option 1 (Merge) |
+| Feature (solo) | wt/{NNNN}-{name} | Multiple commits | Option 1 (Merge) |
+| Feature (team) | wt/{NNNN}-{name} | Multiple commits | Option 2 (PR) |
 | Experiment | Detached HEAD | N/A or commit | Option 4 (Discard) |
-| Refactor | temp/* or feature/* | Single/multiple | Option 1 or 2 |
-| Bug fix | temp/* | Single commit | Option 1 or 2 |
+| Refactor | wt/{NNNN}-{name} | Single/multiple | Option 1 or 2 |
+| Bug fix | wt/{NNNN}-{name} | Single commit | Option 1 or 2 |
 
 ---
 
@@ -340,14 +340,14 @@ gh pr create                           # Create PR
 
 ```
 .worktrees/                 # Project-local worktrees (add to .gitignore)
-  feature-name/             # Individual worktree
-  quick-fix/
-  experiment/
+  0001-feature-name/        # Individual worktree (NNNN-name)
+  0002-quick-fix/
+  0003-experiment/
 
 ~/.config/superpowers/      # Global worktrees location
   worktrees/
     project-name/
-      feature-name/
+      0001-feature-name/
 ```
 
 ---

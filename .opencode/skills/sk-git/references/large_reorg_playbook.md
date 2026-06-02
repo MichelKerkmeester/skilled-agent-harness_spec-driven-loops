@@ -61,8 +61,8 @@ Start from a clean, up-to-date base so the diff is pure rename signal.
 ```bash
 git status --porcelain        # MUST be empty; stash/commit unrelated WIP first
 git fetch && git checkout main && git pull --ff-only
-git worktree add .worktrees/reorg -b temp/reorg main
-cd .worktrees/reorg
+git worktree add -b wt/0001-reorg .worktrees/0001-reorg main
+cd .worktrees/0001-reorg
 ```
 
 Do NOT install deps or run the toolchain here — this worktree is for renames only
@@ -99,7 +99,7 @@ rename/rename) is covered in [shared_patterns.md](./shared_patterns.md).
 ```bash
 cd ../..                 # back to main worktree
 git checkout main && git pull --ff-only
-git merge temp/reorg     # or PR + squash per project policy
+git merge wt/0001-reorg     # or PR + squash per project policy
 ```
 
 After merge, sanity-check the tree has NO old+new duplicate folders (the merge should
@@ -168,7 +168,7 @@ real paths once — running it from the worktree would index paths that did not 
 - [ ] `memory_index_scan` / generators ran on `main`; spot-check a moved folder resolves
       in `memory_search`.
 - [ ] DB snapshot (step 0) can be deleted once the above all pass.
-- [ ] Worktree removed: `git worktree remove .worktrees/reorg && git branch -d temp/reorg`.
+- [ ] Worktree removed: `git worktree remove .worktrees/0001-reorg && git branch -d wt/0001-reorg`.
 
 ---
 

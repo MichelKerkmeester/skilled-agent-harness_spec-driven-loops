@@ -24,6 +24,12 @@ This checklist ensures git worktrees are created safely with proper .gitignore c
 
 Any new branch must be created by `git worktree add -b ...`, never by `git branch`, `git checkout` plus `-b`, or `git switch` plus `-c`.
 
+> **Scope**: this checklist covers *named feature worktrees*, which use the numbered
+> `wt/{NNNN}-{name}` branch + `.worktrees/{NNNN}-{name}` directory convention. It does
+> not cover the launch wrapper's ephemeral per-session worktrees (`work/{runtime}/{slug}`
+> + `.worktrees/{runtime}-{slug}`), which are auto-allocated and auto-reaped, and are
+> intentionally not numbered.
+
 ---
 
 ## 2. PRE-CREATION CHECKLIST
@@ -31,13 +37,13 @@ Any new branch must be created by `git worktree add -b ...`, never by `git branc
 ### Step 1: Gather Information
 
 - [ ] **Task/feature description** - What will you work on?
-- [ ] **Branch strategy decided** - temp/*, feature/*, or detached HEAD?
-- [ ] **Branch name chosen** (if needed) - Follows naming conventions?
+- [ ] **Lifecycle decided** - fast-merge, long-running, or detached experiment?
+- [ ] **Kebab `{name}` chosen** (if a branch is needed) - short description for `wt/{NNNN}-{name}`?
 
-**Decision guide**:
-- **temp/***: 80% of work (merge back to main immediately)
-- **feature/***: Long-running work needing PR review
-- **Detached HEAD**: Experiments, throwaway work
+**Decision guide** (named feature worktrees all use the `wt/{NNNN}-{name}` namespace):
+- **Fast-merge**: 80% of work (merge back to main immediately)
+- **Long-running**: features needing PR review across multiple days
+- **Detached experiment**: throwaway work, no branch (so no number assigned)
 
 ### Step 2: Directory Selection
 
@@ -93,29 +99,35 @@ Any new branch must be created by `git worktree add -b ...`, never by `git branc
 
 ### Step 4: Create Worktree
 
-Choose one based on branch strategy:
+First compute the global number, then choose a lifecycle. Named branches always use
+`wt/{NNNN}-{name}` — only how the branch merges differs between fast-merge and long-running.
 
-**Option A: Temp Branch** (default)
-- [ ] Create worktree with temp branch
+- [ ] **Compute the global `{NNNN}`** (max existing + 1, zero-padded, first is `0001`)
   ```bash
-  git worktree add .worktrees/<name> -b temp/<name> main
+  n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
   ```
 
-**Option B: Feature Branch**
-- [ ] Create worktree with feature branch
+**Option A: Fast-merge** (default) — named branch off main
+- [ ] Create worktree
   ```bash
-  git worktree add .worktrees/<name> -b feature/<name>
+  git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
   ```
 
-**Option C: Detached HEAD**
+**Option B: Long-running** — same `wt/{NNNN}-{name}` branch, kept for PR review
+- [ ] Create worktree
+  ```bash
+  git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+  ```
+
+**Option C: Detached experiment** — no branch, so no number assigned
 - [ ] Create detached HEAD worktree
   ```bash
-  git worktree add --detach .worktrees/<name> main
+  git worktree add --detach .worktrees/experiment main
   ```
 
 - [ ] **Navigate to worktree**
   ```bash
-  cd .worktrees/<name>
+  cd ".worktrees/${n}-${name}"   # (or .worktrees/experiment for detached)
   ```
 
 - [ ] **Verify creation**
@@ -256,8 +268,8 @@ Provide this information to user:
 
 Example:
 ```
-✓ Worktree ready at /Users/user/project/.worktrees/user-auth
-✓ Branch: feature/user-auth (feature_branch)
+✓ Worktree ready at /Users/user/project/.worktrees/0002-user-auth
+✓ Branch: wt/0002-user-auth (long-running)
 ✓ Tests passing (152 tests, 0 failures)
 ✓ Ready to implement user authentication
 ```
@@ -291,13 +303,13 @@ Example:
 **Solution**:
 ```bash
 # Remove existing worktree if stale
-git worktree remove .worktrees/<name>
+git worktree remove ".worktrees/${n}-${name}"
 
 # Prune stale references
 git worktree prune
 
 # Try again
-git worktree add .worktrees/<name> -b <branch>
+git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
 ```
 
 ### Issue: Tests Fail in New Worktree

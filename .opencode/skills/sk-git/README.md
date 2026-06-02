@@ -29,7 +29,7 @@ When a git workflow needs packet context, `/speckit:resume` is still the canonic
 
 ### Key Statistics
 
-- Version: 1.1.0.0
+- Version: 1.1.2.0
 - Phases: 3 (Workspace Setup, Work and Commit, Complete and Integrate)
 - Sub-skills: 3 (git-worktrees, git-commit, git-finish)
 - Reference documents: 6 (worktree, commit, finish, shared patterns, quick reference, GitHub MCP)
@@ -120,7 +120,7 @@ GitHub MCP integration covers the full remote workflow without requiring the use
 
 | Option | Command | Best For |
 |--------|---------|----------|
-| A: Git worktree | `git worktree add -b type/description .worktrees/name` | Parallel work, complex features, long-running tasks |
+| A: Git worktree | `git worktree add -b wt/{NNNN}-{name} .worktrees/{NNNN}-{name} main` | Parallel work, complex features, long-running tasks |
 | B: Current branch | (no command, work in place) | Quick fixes, exploration, single-task sessions |
 
 **Commit type selection (first match wins)**
@@ -225,19 +225,40 @@ A personal access token (PAT) must be configured in `.utcp_config.json` with the
 
 ### Branch Naming Convention
 
-All worktree-created branches follow `type/short-description`:
+All named feature worktrees use one unified, numbered namespace: `wt/{NNNN}-{name}`,
+where `{NNNN}` is a 4-digit zero-padded global counter and `{name}` is a short kebab
+description. The `wt/` prefix groups every feature-worktree branch under a single folder
+in Git UIs.
 
-| Type | Example Branch Name |
-|------|---------------------|
-| `feat` | `feat/add-oauth2-login` |
-| `fix` | `fix/handle-null-user-response` |
-| `docs` | `docs/update-install-guide` |
-| `refactor` | `refactor/extract-auth-module` |
-| `chore` | `chore/update-dependencies` |
+| Branch | Example |
+|--------|---------|
+| `wt/{NNNN}-{name}` | `wt/0001-add-oauth2-login` |
+| `wt/{NNNN}-{name}` | `wt/0002-handle-null-user-response` |
+| `wt/{NNNN}-{name}` | `wt/0003-update-install-guide` |
+
+> The Conventional Commits `type(scope):` format still governs **commit messages** (see
+> Section 4). Branch names use the `wt/{NNNN}-{name}` namespace, not a `type/` prefix.
 
 ### Worktree Directory Convention
 
-Worktrees are created under `.worktrees/` in the repository root by default. The directory name matches the branch short-description: `.worktrees/add-oauth2-login`.
+Named feature worktrees are created under `.worktrees/` in the repository root — the
+repo-local, already-gitignored worktree home. Each worktree is a numbered subdirectory
+matching its branch: `.worktrees/{NNNN}-{name}` (e.g. `.worktrees/0001-add-oauth2-login`).
+
+Compute the global `{NNNN}` as `max(existing NNNN under .worktrees/) + 1` (first is `0001`):
+
+```bash
+n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
+git worktree add -b "wt/${n}-${name}" ".worktrees/${n}-${name}" main
+```
+
+**Two distinct lanes.** The numbered `wt/{NNNN}-{name}` convention above is for *named
+feature worktrees a human creates*. The per-session **ephemeral** worktrees allocated by
+the launch wrapper `.opencode/bin/worktree-session.sh` are a separate lane: they keep their
+own auto-managed namespace — branch `work/{runtime}/{slug}`, directory
+`.worktrees/{runtime}-{slug}` — and are auto-reaped by `worktree-reaper.sh` (which keys on
+the `.worktrees/` directory, not the branch prefix). Ephemeral session worktrees are
+intentionally **not** numbered.
 
 ---
 
@@ -248,24 +269,25 @@ Worktrees are created under `.worktrees/` in the repository root by default. The
 Starting from scratch on a new feature, using an isolated worktree for parallel development.
 
 ```bash
-# Phase 1: Create isolated workspace
-git worktree add -b feat/add-oauth2-login .worktrees/add-oauth2-login main
+# Phase 1: Create isolated workspace (compute the global {NNNN}, e.g. 0001)
+n=$(printf '%04d' $(( $(ls -1 .worktrees 2>/dev/null | grep -oE '^[0-9]{4}' | sort -n | tail -1 | sed 's/^0*//' || echo 0) + 1 )))
+git worktree add -b "wt/${n}-add-oauth2-login" ".worktrees/${n}-add-oauth2-login" main
 
 # Confirm workspace in terminal and begin coding
-cd .worktrees/add-oauth2-login
+cd ".worktrees/${n}-add-oauth2-login"
 
 # Phase 2: Commit changes with Conventional Commits format
 git add src/auth/oauth2.ts src/auth/types.ts
 git commit -m "feat(auth): add OAuth2 login flow"
 
 # Phase 3: Create PR and integrate
-git push -u origin feat/add-oauth2-login
+git push -u origin "wt/${n}-add-oauth2-login"
 gh pr create --title "feat(auth): add OAuth2 login flow" --body "$(cat .opencode/skills/sk-git/assets/pr_template.md)"
 
 # After merge: cleanup
-git worktree remove .worktrees/add-oauth2-login
-git branch -d feat/add-oauth2-login
-git push origin --delete feat/add-oauth2-login
+git worktree remove ".worktrees/${n}-add-oauth2-login"
+git branch -d "wt/${n}-add-oauth2-login"
+git push origin --delete "wt/${n}-add-oauth2-login"
 ```
 
 ### Example 2: Quick Hotfix on Current Branch
@@ -286,21 +308,21 @@ gh pr create --title "fix(api): handle null user response" --body "Closes #123"
 Two features in development simultaneously in separate terminals.
 
 ```bash
-# Terminal A: Feature A workspace
-git worktree add -b feat/feature-a .worktrees/feature-a main
-cd .worktrees/feature-a
+# Terminal A: Feature A workspace (first worktree -> 0001)
+git worktree add -b wt/0001-stripe-checkout .worktrees/0001-stripe-checkout main
+cd .worktrees/0001-stripe-checkout
 # ... code feature A ...
 git commit -m "feat(payments): add stripe checkout integration"
 
-# Terminal B: Feature B workspace
-git worktree add -b feat/feature-b .worktrees/feature-b main
-cd .worktrees/feature-b
+# Terminal B: Feature B workspace (next number -> 0002)
+git worktree add -b wt/0002-order-email .worktrees/0002-order-email main
+cd .worktrees/0002-order-email
 # ... code feature B ...
 git commit -m "feat(notifications): add email on order complete"
 
 # Finish both sequentially after tests pass
-git push -u origin feat/feature-a && gh pr create --title "feat(payments): add stripe checkout"
-git push -u origin feat/feature-b && gh pr create --title "feat(notifications): add email on order"
+git push -u origin wt/0001-stripe-checkout && gh pr create --title "feat(payments): add stripe checkout"
+git push -u origin wt/0002-order-email && gh pr create --title "feat(notifications): add email on order"
 ```
 
 ---
@@ -334,7 +356,7 @@ A: Build outputs (`dist/`, `build/`, `out/`), coverage reports (`coverage/`, `*.
 A: Use `gh` CLI for simple PR creation and listing. Use GitHub MCP for operations that need structured data back (reading PR reviews, querying issue fields, checking CI run details) or for bulk operations across multiple PRs or issues.
 
 **Q: How do I handle a PR that was merged but the worktree cleanup was skipped?**
-A: Run `git worktree list` to see all active worktrees. Remove the stale one with `git worktree remove .worktrees/branch-name`. Then delete the local branch with `git branch -d branch-name` and the remote tracking branch with `git push origin --delete branch-name`. Run `git worktree prune` to clean up any metadata.
+A: Run `git worktree list` to see all active worktrees. Remove the stale one with `git worktree remove .worktrees/{NNNN}-{name}`. Then delete the local branch with `git branch -d wt/{NNNN}-{name}` and the remote tracking branch with `git push origin --delete wt/{NNNN}-{name}`. Run `git worktree prune` to clean up any metadata.
 
 ---
 

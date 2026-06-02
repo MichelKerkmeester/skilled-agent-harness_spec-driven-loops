@@ -1,0 +1,24 @@
+{
+  "specFolder": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
+  "description": "Feature Specification: sk-git Worktree Convention (wt/NNNN-name) + Skill-Advisor Routing Optimization",
+  "keywords": [
+    "feature",
+    "specification",
+    "sk-git",
+    "worktree",
+    "convention",
+    "nnnn-name",
+    "skill-advisor",
+    "routing",
+    "optimization"
+  ],
+  "lastUpdated": "2026-06-02T06:17:55.790Z",
+  "specId": "128",
+  "folderSlug": "sk-git-worktree-convention-and-advisor-routing",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

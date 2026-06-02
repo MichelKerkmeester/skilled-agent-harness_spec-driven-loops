@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
+  "spec_folder": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
+  "parent_id": "skilled-agent-orchestration",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "128-sk-git-worktree-convention-and-advisor-routing",
+      "sk-git worktree convention",
+      "wt/ worktree numbered",
+      "skill advisor routing sk-git"
+    ],
+    "key_topics": [
+      "128-sk-git-worktree-convention-and-advisor-routing",
+      "sk-git",
+      "worktree",
+      "convention",
+      "wt-prefix",
+      "numbered-worktree",
+      "global-counter",
+      "skill-advisor",
+      "routing",
+      "trigger-phrases",
+      "ephemeral-wrapper",
+      "restructure"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/sk-git/references/worktree_workflows.md",
+      ".opencode/skills/sk-git/README.md",
+      ".opencode/skills/sk-git/SKILL.md",
+      ".opencode/skills/sk-git/assets/worktree_checklist.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "worktree_workflows.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/references/worktree_workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "worktree_checklist.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/assets/worktree_checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Draft",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "sk-git's documented worktree convention is dir `.worktrees/{short-desc}` + branch `type/{short-desc}` (no number, no single grouping namespace), so feature worktrees were created ad-hoc as repo siblings that neither group in the Git UI nor sort in any stable order. Separately, the skill advisor routes git/worktree work to sk-git on **thin margins** (sk-git 0.85/0.16 vs system-spec-kit 0.82/0.22; sk-code-vs-sk-git ties), so git/worktree/branch/commit/PR intent does not reliably land on sk-git. This packet adopts branch `wt/{NNNN}-{name}` + dir `.worktrees/{NNNN}-{name}` for NAMED FEATURE worktrees (NNNN = max(existing)+1) and sharpens sk-git advisor triggers, scoping the ephemeral `worktree-session.sh` lane OUT.",
+    "created_at": "2026-06-02T06:17:55.790Z",
+    "last_save_at": "2026-06-02T06:17:55.790Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
