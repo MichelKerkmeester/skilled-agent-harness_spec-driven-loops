@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Mutation Coverage — Track Explored Mutations & Dimension Trajectories   ║
+// ║ mutation-coverage — track explored mutations & dimension trajectories    ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -394,9 +394,10 @@ module.exports = {
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 7. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 // CLI support: node mutation-coverage.cjs --record-mutation --coverage=<path> ...
 //              node mutation-coverage.cjs --record-trajectory --coverage=<path> ...
-// ─────────────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const argv = process.argv.slice(2);

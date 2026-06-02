@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ score-skill-benchmark — compute & aggregate Lane C skill-benchmark score ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -17,9 +20,21 @@
  * D2=20, D3=15, D4=25, D5=15 (gate).
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const { scoreD1Inter } = require('./advisor-probe.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function setRecall(expected, actual) {
   if (!expected || expected.length === 0) return null; // not applicable
@@ -28,8 +43,13 @@ function setRecall(expected, actual) {
   return hit / expected.length;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Score a single scenario from its router-replay result joined with private gold.
+ * @param {Object} arg - Scenario input (legacy {scenarioId,tier,routerResult,expected,advisorResult} or new {scenario,observed,traceMode}).
  * @returns {{ scenarioId, dims, firstFailingStage, modeAScore, applicable }}
  */
 function scoreScenario(arg) {
@@ -192,6 +212,10 @@ function scoreScenario(arg) {
  * resource but the live model doesn't (the skill doesn't signpost it inline),
  * or vice versa. Compared per scenario from a router observation and a live
  * observation of the SAME scenario.
+ * @param {Object} params - Comparison input.
+ * @param {string} params.scenarioId - Scenario identifier.
+ * @param {Object} params.routerObserved - Router-mode observation for the scenario.
+ * @param {Object} params.liveObserved - Live-mode observation for the same scenario.
  * @returns {{ scenarioId, resourceDelta:{onlyRouter:string[],onlyLive:string[]}, surfaceAgree:boolean|null, severity:string }}
  */
 function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
@@ -209,6 +233,15 @@ function computeDivergence({ scenarioId, routerObserved, liveObserved }) {
 
 /**
  * Aggregate scenario rows + the D5 connectivity result into a report object.
+ * @param {Object} params - Aggregation input.
+ * @param {string} params.skillId - Target skill identifier.
+ * @param {string} params.skillRoot - Target skill root path.
+ * @param {Array} params.scenarioRows - Per-scenario score rows.
+ * @param {Object} params.connectivity - D5 structural connectivity result.
+ * @param {string} [params.traceMode] - Trace mode ('router' or 'live').
+ * @param {Array} [params.lintFindings] - Lint findings to attach.
+ * @param {Array} [params.divergence] - A↔B divergence rows to attach.
+ * @returns {Object} Skill-benchmark report object.
  */
 function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, lintFindings, divergence }) {
   const rows = scenarioRows.filter(Boolean);
@@ -310,5 +343,9 @@ function aggregate({ skillId, skillRoot, scenarioRows, connectivity, traceMode, 
     },
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scoreScenario, aggregate, computeDivergence, WEIGHTS };

@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Improvement Journal — Append-Only Audit Journal for Improvement Sessions║
+// ║ improvement-journal — append-only audit journal for improvement runs     ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -66,6 +66,10 @@ const VALID_EVENT_TYPES = Object.freeze([
   'session_end',
 ]);
 
+/**
+ * Gate names a legal_stop_evaluated event must report on.
+ * @type {Readonly<string[]>}
+ */
 const LEGAL_STOP_GATES = Object.freeze([
   'contractGate',
   'behaviorGate',

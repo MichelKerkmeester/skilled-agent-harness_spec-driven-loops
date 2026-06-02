@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Trade-Off Detector — Cross-Dimension Regression Detection               ║
+// ║ trade-off-detector — cross-dimension regression detection               ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -55,6 +55,10 @@ const DEFAULT_REGRESSION_THRESHOLDS = Object.freeze({
   hard: -3,
   soft: -5,
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function resolveMinDataPoints(options) {
   if (Number.isInteger(options?.minDataPoints) && options.minDataPoints > 0) {
@@ -145,7 +149,7 @@ function extractScoredDimensions(event, journalPath, scoreOutputCache) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. CORE API
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -316,7 +320,7 @@ function checkParetoDominance(candidateScores, baselineScores) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. EXPORTS
+// 5. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {

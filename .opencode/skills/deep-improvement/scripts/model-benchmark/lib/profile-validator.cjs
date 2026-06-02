@@ -1,11 +1,21 @@
-// Dependency-free, additive profile validator for the config-driven benchmark
-// framework. It validates ONLY the new sweep keys, and ONLY when they are
-// present. A legacy profile with no `mode` is reported valid and untouched, so
-// the existing Lane B benchmark path keeps working byte-for-byte. The validator
-// never throws on shape problems — it collects them into an errors array so a
-// caller can surface all issues at once.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ profile-validator — additive, dependency-free sweep-profile validator      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
+
+/**
+ * Dependency-free, additive profile validator for the config-driven benchmark
+ * framework. It validates ONLY the new sweep keys, and ONLY when they are
+ * present. A legacy profile with no `mode` is reported valid and untouched, so
+ * the existing Lane B benchmark path keeps working byte-for-byte. The validator
+ * never throws on shape problems — it collects them into an errors array so a
+ * caller can surface all issues at once.
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Supported sweep modes. `mode` is a thin selector; the runner stays
 // mode-agnostic, so this list is the only place a new mode is gated.
@@ -37,6 +47,10 @@ const KNOWN_SCORERS = new Set(['pattern', '5dim']);
 // does not spuriously fail.
 const WEIGHT_SUM_TOLERANCE = 0.001;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function isPlainObject(v) {
   return v !== null && typeof v === 'object' && !Array.isArray(v);
 }
@@ -49,9 +63,18 @@ function isFiniteNumber(v) {
   return typeof v === 'number' && Number.isFinite(v);
 }
 
-// Validate a profile object. Returns { valid, errors } where errors is a list
-// of human-readable strings. Checks are additive: an absent key is never an
-// error; a present key is validated against its contract.
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Validate a profile object. Checks are additive: an absent key is never an
+ * error; a present key is validated against its contract.
+ *
+ * @param {Object} profile - The profile object to validate.
+ * @returns {{ valid: boolean, errors: string[] }} Validity flag and a list of
+ *   human-readable error strings (empty when valid).
+ */
 function validateProfile(profile) {
   const errors = [];
 
@@ -177,6 +200,10 @@ function validateProfile(profile) {
 
   return { valid: errors.length === 0, errors };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   validateProfile,

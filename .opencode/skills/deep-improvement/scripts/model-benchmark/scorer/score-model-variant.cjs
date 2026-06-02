@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ score-model-variant — decoupled 5-dimension model-benchmark scorer       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * scorer/score-model-variant.cjs
- *
  * Decoupled 5-dimension scorer for the deep-improvement model-benchmark
- * mode. Ported from 120/003 eval-loop/score-variant.cjs and decoupled from the
+ * mode. Ported from the eval-loop score-variant and decoupled from the
  * fixture-JSON-file assumption per the 002 research (iteration 3):
  *
  *   - PUBLIC API takes PRIMITIVE CRITERIA + an absolute `cwd`, never a fixture
@@ -26,17 +27,29 @@
  *          deterministic, grader, interaction_terms }
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const { execSync, spawnSync } = require('child_process');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SCORER_ROOT = __dirname;
 const DET_DIR = path.join(SCORER_ROOT, 'deterministic');
 const harness = require(path.join(SCORER_ROOT, 'grader', 'harness.cjs'));
 
-// 120/003 canonical 5-dim weights (D2 is the hard gate). Overridable via opts.rubric.
+/**
+ * Canonical 5-dim weights (D2 is the hard gate). Overridable via opts.rubric.
+ *
+ * @type {{ dims: Array<{ id: string, weight: number }> }}
+ */
 const DEFAULT_RUBRIC = {
   dims: [
     { id: 'D1', weight: 0.25 }, // acceptance (deterministic)
@@ -46,6 +59,10 @@ const DEFAULT_RUBRIC = {
     { id: 'D5', weight: 0.1 }, // pre-planning
   ],
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
@@ -85,8 +102,15 @@ function runDetCheck(scriptName, fixturePath, outputFile) {
   }
 }
 
-// Ported verbatim from score-variant.cjs (acceptance is the only check 120/003
-// did not ship as a standalone det-script). Operates on an absolute cwd.
+/**
+ * Score acceptance criteria deterministically against an absolute cwd.
+ * Ported verbatim from score-variant.cjs (acceptance is the only check the
+ * eval-loop did not ship as a standalone det-script). Operates on an absolute cwd.
+ *
+ * @param {Array<object>} acceptance - Acceptance criteria entries to evaluate
+ * @param {string} cwdAbs - Absolute fixture cwd used to resolve criteria files
+ * @returns {{ score: number, details: object }} Acceptance score and per-criterion details
+ */
 function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
   const acc = acceptance || [];
   if (acc.length === 0) return { score: 1.0, details: { count: 0, note: 'no acceptance defined' } };
@@ -168,6 +192,9 @@ function applyHardGate(d1, d2) {
  *   - 'llm'  : real claude grader via the ported harness
  *   - 'mock' : deterministic stub via the harness mock path (default)
  *   - 'noop' : D4 contributes a constant 1.0 (deterministic-only scoring)
+ *
+ * @param {string} graderKind - Grader selector: 'llm', 'mock', or 'noop'
+ * @returns {Function} Async grader function (virtualFixture, outputText, opts)
  */
 function buildGraderFn(graderKind) {
   if (graderKind === 'noop') {
@@ -190,6 +217,23 @@ function buildGraderFn(graderKind) {
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score a single candidate across the 5 dimensions and return the weighted result.
+ *
+ * @param {object} opts - Scoring options
+ * @param {string} opts.candidateId - Candidate identifier
+ * @param {string} [opts.candidateHash] - Candidate hash (derived from output when absent)
+ * @param {string} opts.outputText - Candidate output text to score
+ * @param {object} [opts.criteria] - Acceptance/grading criteria data
+ * @param {object} [opts.rubric] - Dimension weights (defaults to DEFAULT_RUBRIC)
+ * @param {string} opts.cwd - Absolute scope cwd (required)
+ * @param {string} [opts.graderKind] - D4 grader selector ('mock' default)
+ * @returns {Promise<object>} Weighted score, per-dimension scores, and details
+ */
 async function score(opts) {
   const {
     candidateId,
@@ -277,7 +321,15 @@ async function score(opts) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 module.exports = { score, buildGraderFn, scoreAcceptanceDeterministic, DEFAULT_RUBRIC };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6. CLI ENTRYPOINT
+// ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   const [outputFile, cwdArg] = process.argv.slice(2);

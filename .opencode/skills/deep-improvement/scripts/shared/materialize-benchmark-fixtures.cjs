@@ -1,7 +1,11 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Benchmark Fixture Materializer                                           ║
+// ║ materialize-benchmark-fixtures — render benchmark fixtures to output md  ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -10,6 +14,10 @@ const path = require('node:path');
 // identically in both steps" invariant is one source of truth, not a byte-aligned
 // hand-maintained copy.
 const { DEFAULT_PROFILES_DIR, fixturePathFor } = require('../lib/profile-resolve.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = {};
@@ -73,6 +81,10 @@ function renderFixture(fixture) {
   }
   return `${lines.join('\n').replace(/\n{3,}/g, '\n\n')}\n`;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const args = parseArgs(process.argv.slice(2));

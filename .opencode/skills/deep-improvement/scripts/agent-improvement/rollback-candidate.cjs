@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Canonical Rollback Helper                                                ║
+// ║ rollback-candidate — canonical rollback of single canonical target      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -47,7 +47,7 @@ function resolveAllowedCanonicalTarget(manifestPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. MAIN
+// 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 function main() {

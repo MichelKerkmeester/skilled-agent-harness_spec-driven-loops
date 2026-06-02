@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ live-executor — Mode B live executor (cli-opencode)                      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -23,18 +26,35 @@
  * Model + binary come from env so no machine-specific id is baked in.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_MODEL = process.env.SKILL_BENCH_OPENCODE_MODEL || 'opencode-go/deepseek-v4-pro';
 const DEFAULT_VARIANT = process.env.SKILL_BENCH_OPENCODE_VARIANT || 'high';
 const OPENCODE_BIN = process.env.OPENCODE_BIN || 'opencode';
 const DISPATCH_TIMEOUT_MS = Number(process.env.SKILL_BENCH_DISPATCH_TIMEOUT_MS || 360000);
 
-// Wrap the scenario prompt as a routing-ANALYSIS task with a strict output
-// contract. CS-* scenarios are already analysis-shaped; SD/LS/RD/SA get the
-// reframe. The contract forces one fenced json block the parser can read.
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Wrap the scenario prompt as a routing-ANALYSIS task with a strict output
+ * contract. CS-* scenarios are already analysis-shaped; SD/LS/RD/SA get the
+ * reframe. The contract forces one fenced json block the parser can read.
+ *
+ * @param {Object} scenario - Scenario being dispatched.
+ * @returns {string} The routing-analysis dispatch prompt.
+ */
 function buildLiveDispatchPrompt(scenario) {
   const base = scenario.prompt || '';
   return [
@@ -64,6 +84,17 @@ function dispatchArgs(model, dir, variant) {
   return args;
 }
 
+/**
+ * Run one `opencode run` dispatch via spawnSync and capture its streams.
+ *
+ * @param {Object} args - Dispatch inputs.
+ * @param {string} args.prompt - Prompt to send to the model.
+ * @param {string} args.dir - Working directory / project dir for the run.
+ * @param {string} args.model - Model id to dispatch.
+ * @param {string} args.variant - Reasoning-effort variant.
+ * @param {Object} [args.extraEnv] - Extra environment variables to inject.
+ * @returns {{ status:number, stdout:string, stderr:string, timedOut:boolean }}
+ */
 function runDispatch({ prompt, dir, model, variant, extraEnv }) {
   const res = spawnSync(OPENCODE_BIN, [...dispatchArgs(model, dir, variant), prompt], {
     cwd: dir,
@@ -86,10 +117,15 @@ function parseEvents(stdout) {
   return events;
 }
 
-// Cross-model robust extraction of the stated-routing JSON. Models vary: some
-// emit ```json fences (MiniMax), some plain ``` fences or none (gpt-5.5). Try,
-// in order: any-tag fenced block, then a bare brace-balanced object mentioning
-// "surface". Returns the LAST valid routing object (models often restate).
+/**
+ * Cross-model robust extraction of the stated-routing JSON. Models vary: some
+ * emit ```json fences (MiniMax), some plain ``` fences or none (gpt-5.5). Try,
+ * in order: any-tag fenced block, then a bare brace-balanced object mentioning
+ * "surface". Returns the LAST valid routing object (models often restate).
+ *
+ * @param {string} text - The model's response text to scan.
+ * @returns {Object|null} The recovered routing object, or null if none found.
+ */
 function extractRoutingJson(text) {
   const s = String(text);
   const isRouting = (j) => j && typeof j === 'object' && ('surface' in j || 'resources' in j);
@@ -107,9 +143,14 @@ function extractRoutingJson(text) {
   return null;
 }
 
-// Last-resort prose fallback: when the model answered in prose with no JSON,
-// recover the surface keyword and any referenced skill paths so the run still
-// yields a (lower-confidence) signal instead of a null.
+/**
+ * Last-resort prose fallback: when the model answered in prose with no JSON,
+ * recover the surface keyword and any referenced skill paths so the run still
+ * yields a (lower-confidence) signal instead of a null.
+ *
+ * @param {string} text - The model's prose response text.
+ * @returns {Object|null} Recovered routing-like object, or null if nothing found.
+ */
 function proseRoutingFallback(text) {
   const s = String(text);
   const surfM = /\b(WEBFLOW|OPENCODE|UNKNOWN|MOTION_DEV)\b/.exec(s.toUpperCase());
@@ -120,6 +161,10 @@ function proseRoutingFallback(text) {
 
 /**
  * Parse the live NDJSON event stream into the normalized observed result.
+ *
+ * @param {string} stdout - Raw NDJSON stdout from the dispatch.
+ * @param {Object} [opts] - Parse options.
+ * @param {string} [opts.skillId] - Skill id used to detect activation/reads.
  * @returns observed-result consumed by score-skill-benchmark.scoreScenario
  */
 function parseLiveResult(stdout, { skillId } = {}) {
@@ -174,6 +219,12 @@ function parseLiveResult(stdout, { skillId } = {}) {
 
 /**
  * Executor entrypoint called by executor-dispatch.cjs (live branch).
+ *
+ * @param {Object} [args] - Scenario inputs.
+ * @param {Object} args.scenario - Scenario to run live.
+ * @param {string} args.skillRoot - Absolute path to the skill root.
+ * @param {string} [args.model] - Optional model override (defaults to DEFAULT_MODEL).
+ * @returns {Object} Normalized observed-result for the scorer.
  */
 function runLiveScenario({ scenario, skillRoot, model } = {}) {
   const skillId = path.basename(skillRoot || '');
@@ -193,6 +244,10 @@ function runLiveScenario({ scenario, skillRoot, model } = {}) {
   result.raw.model = chosenModel;
   return result;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, DEFAULT_MODEL, DEFAULT_VARIANT };
 

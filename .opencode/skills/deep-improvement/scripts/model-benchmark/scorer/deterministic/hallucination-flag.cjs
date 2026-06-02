@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ hallucination-flag — D4 allowlist gate for claimed CLI flags & symbols   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
 
 /**
- * scripts/deterministic/hallucination-flag.cjs
- *
  * D4 Hallucination check (rubric weight 0.15, deterministic primary; grader adds
  * semantic check at the harness layer).
  *
@@ -30,7 +32,15 @@
  *   node scripts/deterministic/hallucination-flag.cjs <fixture.json> <output.md>
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const VERSION = '1.0.0';
 
@@ -67,6 +77,10 @@ const JS_KEYWORDS = new Set([
   'else', 'case', 'break', 'continue', 'throw', 'try', 'finally', 'do',
 ]);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload) + '\n');
 }
@@ -80,6 +94,12 @@ function loadOutput(p) {
   return fs.readFileSync(p, 'utf8');
 }
 
+/**
+ * Extract tokens that look like CLI flags from output text.
+ *
+ * @param {string} text - Output text to scan.
+ * @returns {string[]} De-duplicated CLI-flag tokens.
+ */
 function extractCliFlags(text) {
   const flags = new Set();
   // Find tokens that look like CLI flags: --flag or -f, length >= 2 to skip "-" subtraction
@@ -91,6 +111,12 @@ function extractCliFlags(text) {
   return Array.from(flags);
 }
 
+/**
+ * Extract identifiers used as function calls (potential symbol claims) from text.
+ *
+ * @param {string} text - Output text to scan.
+ * @returns {string[]} De-duplicated call-site identifiers worth verifying.
+ */
 function extractSymbols(text) {
   const symbols = new Set();
   // Match identifiers used as function calls: foo(, Module.method(, deepNs.scope.fn(
@@ -113,6 +139,17 @@ function extractSymbols(text) {
   return Array.from(symbols);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score an output by counting claimed flags/symbols not covered by the allowlist.
+ *
+ * @param {Object} fixture - Fixture descriptor (allowlist.cli_flags, allowlist.symbols).
+ * @param {string} text - Output text to score.
+ * @returns {Object} Score payload with score, passed, details, version.
+ */
 function scoreOutput(fixture, text) {
   const allowlist = fixture.allowlist || {};
   const allowedFlags = new Set(allowlist.cli_flags || []);
@@ -175,5 +212,9 @@ function main() {
 if (require.main === module) {
   main();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scoreOutput, extractCliFlags, extractSymbols, VERSION };

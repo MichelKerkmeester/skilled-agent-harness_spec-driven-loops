@@ -1,33 +1,55 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ profile-resolve — shared benchmark profile/fixture path resolution      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
-// ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Shared Benchmark Profile/Fixture Path Resolution                         ║
-// ╚══════════════════════════════════════════════════════════════════════════╝
-//
-// F017-P2-09 (017 review): materialize-benchmark-fixtures.cjs and run-benchmark.cjs
-// both hardcoded the SAME profiles-dir default literal and an identical
-// fixturePathFor(). The F-P1-4b invariant ("a profile-by-id resolves identically
-// in BOTH steps") relied on those two copies staying byte-aligned by hand. This
-// module is the single source of truth so the alignment is structural, not a
-// hand-maintained contract.
-//
-// Scope note: only the two provably-identical pieces are consolidated here. The
-// per-script loadProfile/resolveInput helpers differ in body (run-benchmark's
-// loadProfile returns {data, path}; the materializer resolves inline) and stay
-// in their own files, so this module does NOT change any resolution behavior.
+/**
+ * Single source of truth for the two provably-identical resolution pieces that
+ * the benchmark-fixture materializer and the benchmark runner both depend on:
+ * the default profiles-dir literal and fixturePathFor(). Both steps previously
+ * hardcoded these identically, relying on the copies staying byte-aligned by
+ * hand. Centralizing them makes the "a profile-by-id resolves identically in
+ * both steps" invariant structural rather than a hand-maintained contract.
+ *
+ * Scope note: only the two identical pieces live here. The per-script
+ * loadProfile/resolveInput helpers differ in body and stay in their own files,
+ * so this module does NOT change any resolution behavior.
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
 
 const path = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // The default benchmark-profiles directory both Lane B steps fall back to when
 // --profiles-dir is not supplied. Kept identical to the prior in-file literals.
 const DEFAULT_PROFILES_DIR =
   '.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles';
 
-// Map a fixture reference (id or *.json filename) to its on-disk path under the
-// fixture dir. Behavior-identical to the prior copies in both Lane B steps.
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Map a fixture reference (id or *.json filename) to its on-disk path under the
+ * fixture dir. Behavior-identical to the prior copies in both Lane B steps.
+ *
+ * @param {string} fixtureRef - Fixture id or *.json filename.
+ * @param {string} fixtureDir - Directory containing fixture files.
+ * @returns {string} Resolved path to the fixture file.
+ */
 function fixturePathFor(fixtureRef, fixtureDir) {
   const fileName = fixtureRef.endsWith('.json') ? fixtureRef : `${fixtureRef}.json`;
   return path.join(fixtureDir, fileName);
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { DEFAULT_PROFILES_DIR, fixturePathFor };

@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Candidate Lineage — Track Candidate Derivation for Parallel Waves       ║
+// ║ candidate-lineage — track candidate derivation for parallel waves        ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -39,6 +39,14 @@ function stripRubricMetadata(content) {
     .replace(/<!--\s*scoring-rubric[\s\S]*?-->/gi, '');
 }
 
+/**
+ * Compute a normalized SHA-256 content hash for a candidate.
+ * Strips rubric metadata and normalizes whitespace/case before hashing so
+ * semantically identical candidates collapse to the same hash.
+ *
+ * @param {string} content - Raw candidate content to hash
+ * @returns {string} Hex-encoded SHA-256 digest of the normalized content
+ */
 function computeCandidateContentHash(content) {
   return crypto
     .createHash('sha256')

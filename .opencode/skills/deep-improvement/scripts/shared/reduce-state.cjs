@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Ledger Reducer — Dashboard and Registry Generator                        ║
+// ║ reduce-state — dashboard and registry generator                          ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

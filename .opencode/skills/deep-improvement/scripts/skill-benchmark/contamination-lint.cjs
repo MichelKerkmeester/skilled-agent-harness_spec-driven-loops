@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ contamination-lint.cjs — pre-dispatch hint-free fixture gate             ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -13,14 +16,27 @@
  * leak is a FIXTURE failure (fix the fixture, not the skill).
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { parseRouter } = require('./router-replay.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function readIfExists(p) {
   return fs.existsSync(p) ? fs.readFileSync(p, 'utf8') : '';
 }
 
+/**
+ * Extract trigger phrases and the skill name from a SKILL.md frontmatter block.
+ * @param {string} skillMd - Raw SKILL.md contents (may be empty).
+ * @returns {string[]} Trigger phrases plus the frontmatter name, if present.
+ */
 function frontmatterTriggers(skillMd) {
   const fm = /^---\n([\s\S]*?)\n---/.exec(skillMd);
   if (!fm) return [];
@@ -47,8 +63,16 @@ function pathTokens(resourcePath) {
   return [...tokens];
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Build the banned-substring vocabulary for a target skill.
+ * @param {Object} params - Vocabulary parameters.
+ * @param {string} params.skillRoot - Target skill root directory (holds SKILL.md).
+ * @param {string} [params.skillId] - Skill id; defaults to the skillRoot basename.
+ * @param {{ skillId?: string, intentKeys?: string[], resources?: string[], assets?: string[] }} [params.privateExpected] - Private gold labels for the scenario.
  * @returns {string[]} lowercased banned substrings
  */
 function buildBannedVocab({ skillRoot, skillId, privateExpected }) {
@@ -80,6 +104,10 @@ function buildBannedVocab({ skillRoot, skillId, privateExpected }) {
 }
 
 /**
+ * Lint a public fixture prompt against the banned vocabulary.
+ * @param {Object} params - Lint parameters.
+ * @param {string} params.publicText - Public prompt text to scan for leaks.
+ * @param {string[]} params.bannedVocab - Lowercased banned substrings from buildBannedVocab.
  * @returns {{ passed: boolean, hardLeaks: Array<{term:string}> }}
  */
 function lintFixture({ publicText, bannedVocab }) {
@@ -90,6 +118,10 @@ function lintFixture({ publicText, bannedVocab }) {
   }
   return { passed: hardLeaks.length === 0, hardLeaks };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { buildBannedVocab, lintFixture, frontmatterTriggers };
 

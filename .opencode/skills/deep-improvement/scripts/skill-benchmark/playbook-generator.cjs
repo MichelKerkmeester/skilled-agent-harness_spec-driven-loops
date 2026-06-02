@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ playbook-generator — auto-create benchmark scenarios for thin-coverage   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -19,13 +22,26 @@
  *   4. self-consistency — routeSkillResources actually routes to the claimed gold
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { parseRouter, routeSkillResources } = require('./router-replay.cjs');
 const { buildBannedVocab, lintFixture } = require('./contamination-lint.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
 
-// Coverage targets derived from the skill's own router + "When NOT to Use".
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Derive coverage targets from the skill's own router + "When NOT to Use".
+ *
+ * @param {string} skillRoot - Skill root dir containing SKILL.md.
+ * @returns {{intents:string[],resourceTargets:string[],negatives:string[],existingCount:number,routerParseable:boolean}} Coverage analysis.
+ */
 function analyzeCoverage(skillRoot) {
   const skillMd = fs.readFileSync(path.join(skillRoot, 'SKILL.md'), 'utf8');
   const router = parseRouter(skillMd, skillRoot);
@@ -37,7 +53,18 @@ function analyzeCoverage(skillRoot) {
   return { intents, resourceTargets, negatives, existingCount: existing.length, routerParseable: router.parseable };
 }
 
-// Render one scenario in the GOLD per-feature format the parser reads.
+/**
+ * Render one scenario in the GOLD per-feature format the parser reads.
+ *
+ * @param {Object} spec - Scenario fields.
+ * @param {string} spec.id - Scenario id.
+ * @param {string} spec.title - Scenario title.
+ * @param {string} spec.prompt - Exact prompt text.
+ * @param {string} spec.expectedSurface - Asserted surface (defaults to UNKNOWN).
+ * @param {string[]} spec.expectedResources - Expected references.
+ * @param {boolean} spec.negative - Whether the skill should NOT activate.
+ * @returns {string} The rendered scenario markdown.
+ */
 function renderScenarioMarkdown({ id, title, prompt, expectedSurface, expectedResources, negative }) {
   const refs = (expectedResources || []).map((r) => `- \`${r}\``).join('\n') || '- (none)';
   return `---
@@ -72,7 +99,19 @@ ${refs}
 `;
 }
 
-// 4 validation gates on a generated scenario.
+/**
+ * Run the 4 validation gates on a generated scenario.
+ *
+ * @param {Object} args - Gate inputs.
+ * @param {string} args.skillRoot - Skill root dir.
+ * @param {string} args.skillId - Skill id.
+ * @param {string} args.scenarioMd - Rendered scenario markdown.
+ * @param {string} args.prompt - Scenario prompt text.
+ * @param {string[]} args.expectedResources - Claimed gold resources.
+ * @param {string} args.stagingDir - Staging dir for generated scenarios.
+ * @param {string} args.id - Scenario id.
+ * @returns {{contamination:boolean,structural:boolean,parseRoundTrip:boolean,selfConsistency:boolean,allPassed:boolean}} Gate results.
+ */
 function validateGenerated({ skillRoot, skillId, scenarioMd, prompt, expectedResources, stagingDir, id }) {
   const gates = {};
   // 1. contamination
@@ -94,11 +133,22 @@ function validateGenerated({ skillRoot, skillId, scenarioMd, prompt, expectedRes
   return gates;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Generate staged scenarios. `author` is an injectable async fn
  * (spec -> {prompt, expectedSurface, expectedResources}); the default `dry`
  * author emits a deterministic stub (no LLM, for CI/testing). The real path
  * passes an LLM-backed author (dispatch via live-executor).
+ *
+ * @param {Object} args - Generation options.
+ * @param {string} args.skillRoot - Skill root dir.
+ * @param {boolean} [args.createMissing=false] - Opt-in to author staged scenarios.
+ * @param {Function} [args.author] - Injectable async author fn.
+ * @param {boolean} [args.dry=true] - When true, do not write staged files to disk.
+ * @returns {Promise<{staged:Array,proposalDir:?string,coverage:Object,promoteHint:string}>} Generation result.
  */
 async function generatePlaybook({ skillRoot, createMissing = false, author, dry = true }) {
   const skillId = path.basename(skillRoot);
@@ -133,5 +183,9 @@ async function generatePlaybook({ skillRoot, createMissing = false, author, dry 
     promoteHint: `Review ${stagingDir}, then move promotable scenarios into the live playbook category folders + root index.`,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { generatePlaybook, analyzeCoverage, validateGenerated, renderScenarioMarkdown };

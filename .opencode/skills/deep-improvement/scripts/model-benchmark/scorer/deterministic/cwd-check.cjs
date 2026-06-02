@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ cwd-check — D3 path/CWD discipline & traversal classification check      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
 
 /**
- * scripts/deterministic/cwd-check.cjs
- *
  * D3 Path/CWD discipline check (rubric weight 0.20, soft signal).
  *
  * Extract path-like strings from the output. Classify each as one of:
@@ -31,11 +33,23 @@
  *   node scripts/deterministic/cwd-check.cjs <fixture.json> <output.md>
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const VERSION = '1.0.0';
 const PACKET_ROOT = path.resolve(__dirname, '..', '..');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload) + '\n');
@@ -50,9 +64,14 @@ function loadOutput(p) {
   return fs.readFileSync(p, 'utf8');
 }
 
-// Extract candidate path-like tokens from text.
-// Heuristic: absolute /..., ~/..., relative ./..., ../..., or token containing
-// path separator with extension or trailing slash.
+/**
+ * Extract candidate path-like tokens from text.
+ * Heuristic: absolute /..., ~/..., relative ./..., ../..., or token containing
+ * path separator with extension or trailing slash.
+ *
+ * @param {string} text - Output text to scan.
+ * @returns {string[]} De-duplicated path-like tokens.
+ */
 function extractPaths(text) {
   const candidates = new Set();
   // Absolute and tilde paths.
@@ -86,6 +105,14 @@ function isInside(candidate, base) {
   return candidate === base || candidate.startsWith(base + path.sep);
 }
 
+/**
+ * Classify a path token relative to the fixture cwd.
+ *
+ * @param {string} rawPath - Candidate path token.
+ * @param {string} fixtureCwdAbs - Absolute fixture cwd.
+ * @param {string} fixtureCwdRel - Fixture cwd relative to the packet root.
+ * @returns {string} One of absolute_in_fixture_cwd, absolute_outside, bare_relative, traversal_attempt.
+ */
 function classifyPath(rawPath, fixtureCwdAbs, fixtureCwdRel) {
   if (rawPath.includes('..')) {
     // Treat any .. segment as traversal_attempt unless it stays inside cwd.
@@ -108,6 +135,17 @@ function classifyPath(rawPath, fixtureCwdAbs, fixtureCwdRel) {
   return 'bare_relative';
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score an output's path/CWD discipline by tallying classified path tokens.
+ *
+ * @param {Object} fixture - Fixture descriptor (scope.cwd).
+ * @param {string} text - Output text to score.
+ * @returns {Object} Score payload with score, passed, details, version.
+ */
 function scoreOutput(fixture, text) {
   const fixtureCwdRel = (fixture.scope && fixture.scope.cwd) || '';
   const fixtureCwdAbs = path.resolve(PACKET_ROOT, fixtureCwdRel);
@@ -170,5 +208,9 @@ function main() {
 if (require.main === module) {
   main();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scoreOutput, classifyPath, extractPaths, VERSION };

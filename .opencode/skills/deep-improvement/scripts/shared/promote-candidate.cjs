@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Guarded Canonical Promotion Helper                                       ║
+// ║ promote-candidate — guarded canonical promotion helper                   ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

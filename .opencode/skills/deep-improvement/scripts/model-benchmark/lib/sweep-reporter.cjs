@@ -1,26 +1,36 @@
-// The reporter is the direct fix for the saturation mis-read. It turns the raw
-// per-cell sweep rows into a grouped aggregate plus a human synthesis, and it
-// orders the synthesis so a trust verdict and a saturation status are stated
-// BEFORE any leaderboard or "winner" wording. A reader can never see a ranked
-// table without first seeing whether that ranking is trustworthy.
-//
-// Pipeline (no mode-specific branches):
-//   group rows by reporting.groupBy
-//     -> per-group n / correctness_mean / format_adherent_rate / words_median
-//     -> correctness GATE (eligibility + ranking key; correctness never blended)
-//     -> saturation auto-detect (every eligible group pinned at the top => the
-//        correctness column carries no ranking signal; recommend an action)
-//     -> trust verdict (enough repeated samples AND top-pair margin > noise floor
-//        AND a paired bootstrap CI on the top-pair delta that excludes zero)
-//     -> aggregate.json + synthesis.md
-//
-// The verdict deliberately measures its margin on the GATE's chosen ranking key
-// and its noise floor on that same metric's scale, so a "winner" only stands when
-// the deciding axis truly separates the top pair beyond run-to-run jitter.
-//
-// Dependency-free (Node stdlib only).
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ sweep-reporter — grouped sweep aggregate + trust-first synthesis           ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
+
+/**
+ * The reporter is the direct fix for the saturation mis-read. It turns the raw
+ * per-cell sweep rows into a grouped aggregate plus a human synthesis, and it
+ * orders the synthesis so a trust verdict and a saturation status are stated
+ * BEFORE any leaderboard or "winner" wording. A reader can never see a ranked
+ * table without first seeing whether that ranking is trustworthy.
+ *
+ * Pipeline (no mode-specific branches):
+ *   group rows by reporting.groupBy
+ *     -> per-group n / correctness_mean / format_adherent_rate / words_median
+ *     -> correctness GATE (eligibility + ranking key; correctness never blended)
+ *     -> saturation auto-detect (every eligible group pinned at the top => the
+ *        correctness column carries no ranking signal; recommend an action)
+ *     -> trust verdict (enough repeated samples AND top-pair margin > noise floor
+ *        AND a paired bootstrap CI on the top-pair delta that excludes zero)
+ *     -> aggregate.json + synthesis.md
+ *
+ * The verdict deliberately measures its margin on the GATE's chosen ranking key
+ * and its noise floor on that same metric's scale, so a "winner" only stands when
+ * the deciding axis truly separates the top pair beyond run-to-run jitter.
+ *
+ * Dependency-free (Node stdlib only).
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
@@ -28,9 +38,17 @@ const path = require('path');
 const stats = require('./sweep-stats.cjs');
 const { applyGate } = require('./correctness-gate.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SCHEMA_VERSION = 1;
 const DEFAULT_GROUP_BY = 'framework';
 const DEFAULT_MIN_SAMPLES_FOR_WINNER = 3;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isFiniteNumber(v) {
   return typeof v === 'number' && Number.isFinite(v);
@@ -71,10 +89,20 @@ function groupMetric(group, key) {
   return group.output_words_median;
 }
 
-// ---------------------------------------------------------------------------
-// Grouping + per-group aggregation.
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
+// --- Grouping + per-group aggregation. ---
+
+/**
+ * Bucket rows by a grouping key into a Map of group-name -> rows[].
+ *
+ * @param {Array<Object>} rows - The raw per-cell sweep rows.
+ * @param {string} groupBy - The row field to group by.
+ * @returns {Map<string, Array<Object>>} Buckets keyed by group name; a null key
+ *   is bucketed under the stable literal '(none)'.
+ */
 function groupRows(rows, groupBy) {
   const buckets = new Map();
   for (const row of rows) {
@@ -87,9 +115,14 @@ function groupRows(rows, groupBy) {
   return buckets;
 }
 
-// Min repeated-sample count across the cells in a row set. This is the depth of
-// repeated measurement the trust gate cares about: a single sample per cell
-// gives no spread, so the verdict cannot be a WINNER (insufficient_n).
+/**
+ * Min repeated-sample count across the cells in a row set, the depth of repeated
+ * measurement the trust gate relies on. A single sample per cell gives no spread,
+ * so the verdict cannot be a WINNER (insufficient_n).
+ *
+ * @param {Array<Object>} rows - Rows carrying a `cellId` field.
+ * @returns {number} The minimum per-cell sample count, or 0 when no cells exist.
+ */
 function minSamplesPerCell(rows) {
   const perCell = new Map();
   for (const row of rows) {
@@ -102,9 +135,15 @@ function minSamplesPerCell(rows) {
   return min === Infinity ? 0 : min;
 }
 
-// Robust noise floor on a ranking-key metric: take MAD across the repeated
-// samples WITHIN each cell (run-to-run jitter for an identical config), then the
-// max across cells as the conservative floor. Single-sample cells contribute 0.
+/**
+ * Robust noise floor on a ranking-key metric: take MAD across the repeated
+ * samples WITHIN each cell (run-to-run jitter for an identical config), then the
+ * max across cells as the conservative floor.
+ *
+ * @param {Array<Object>} rows - Rows carrying a `cellId` field.
+ * @param {string} key - The ranking key ('correctness'|'format'|'efficiency').
+ * @returns {number} The conservative noise floor; single-sample cells add 0.
+ */
 function noiseFloorForKey(rows, key) {
   const perCell = new Map();
   for (const row of rows) {
@@ -120,6 +159,14 @@ function noiseFloorForKey(rows, key) {
   return floor;
 }
 
+/**
+ * Aggregate one group's rows into per-group summary statistics.
+ *
+ * @param {string} name - The group name.
+ * @param {Array<Object>} rows - The rows belonging to this group.
+ * @returns {Object} { group, n, correctness_mean, format_adherent_rate,
+ *   output_words_median, rows }; adherence rate ignores null-field rows.
+ */
 function aggregateGroup(name, rows) {
   const correctness = rows.map((r) => r.correctness_pass_rate);
   const words = rows.map((r) => r.output_words);
@@ -145,13 +192,18 @@ function aggregateGroup(name, rows) {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Saturation auto-detect.
-// ---------------------------------------------------------------------------
+// --- Saturation auto-detect. ---
 
-// Flag a fixture as saturated when every cell touching it scored a perfect
-// correctness rate with zero variance — the column then carries no ranking
-// signal and harder cases (or demotion to smoke) are required.
+/**
+ * Flag each fixture as saturated when every cell touching it scored a perfect
+ * correctness rate with zero variance — the column then carries no ranking signal
+ * and harder cases (or demotion to smoke) are required.
+ *
+ * @param {Array<Object>} rows - Rows carrying `fixture` and
+ *   `correctness_pass_rate` fields.
+ * @returns {Array<Object>} Per-fixture records: { fixture, cells,
+ *   correctness_mean, saturated, action }.
+ */
 function detectFixtureSaturation(rows) {
   const byFixture = new Map();
   for (const row of rows) {
@@ -180,9 +232,7 @@ function detectFixtureSaturation(rows) {
   return fixtures;
 }
 
-// ---------------------------------------------------------------------------
-// Trust verdict, measured on the gate's chosen ranking key.
-// ---------------------------------------------------------------------------
+// --- Trust verdict, measured on the gate's chosen ranking key. ---
 
 // Pair the top-two groups' per-cell-per-sample metrics on the ranking key by the
 // shared (fixture, sample-index) condition, so a paired bootstrap cancels the
@@ -221,6 +271,20 @@ function verdictSeed(topGroup, secondGroup, rankingKey, override) {
   return 'verdict::' + rankingKey + '::' + topGroup + '::' + secondGroup;
 }
 
+/**
+ * Build the trust verdict on the gate's chosen ranking key: gates on repeated
+ * samples, top-pair margin vs noise floor, and a paired bootstrap CI excluding
+ * zero.
+ *
+ * @param {Array<Object>} ranked - The ranked eligible groups (rank order).
+ * @param {string} rankingKey - The deciding ranking key.
+ * @param {Array<Object>} rows - The raw rows for re-grouping the deciding pair.
+ * @param {number} minSamplesForWinner - The n threshold for a trusted winner.
+ * @param {Object} [opts] - Overrides: { groupBy?, bootstrapIterations?,
+ *   confidence?, seed? }.
+ * @returns {Object} { verdict, reason, ranking_key, n_samples, margin,
+ *   noise_floor, ci, top_pair }.
+ */
 function buildVerdict(ranked, rankingKey, rows, minSamplesForWinner, opts) {
   const options = opts || {};
   const nSamples = minSamplesPerCell(rows);
@@ -302,9 +366,7 @@ function buildVerdict(ranked, rankingKey, rows, minSamplesForWinner, opts) {
   };
 }
 
-// ---------------------------------------------------------------------------
-// Synthesis markdown — verdict + saturation FIRST, leaderboard LAST.
-// ---------------------------------------------------------------------------
+// --- Synthesis markdown — verdict + saturation FIRST, leaderboard LAST. ---
 
 function fmtNum(v, digits) {
   if (!isFiniteNumber(v)) return 'n/a';
@@ -449,20 +511,20 @@ function renderSynthesis(aggregate, profileMeta) {
   return lines.join('\n');
 }
 
-// ---------------------------------------------------------------------------
-// Public entry.
-// ---------------------------------------------------------------------------
+// --- Public entry. ---
 
-// report(sweepResult, opts) -> { aggregate, synthesisMarkdown }
-//
-// sweepResult: the object returned by runSweep ({ profile, rows, meta }).
-// opts:
-//   profile               : the full profile (for reporting.groupBy + gate cfg)
-//   outDir                : write aggregate.json + synthesis.md here (when set)
-//   groupBy               : override reporting.groupBy
-//   minSamplesForWinner   : override the trust gate's n threshold (default 3)
-//   write                 : set false to skip disk writes (default: writes iff
-//                           outDir is provided)
+/**
+ * Turn a sweep result into a grouped aggregate plus a trust-first synthesis,
+ * optionally writing aggregate.json + synthesis.md to disk.
+ *
+ * @param {Object} sweepResult - The object returned by runSweep
+ *   ({ profile, rows, meta }); must carry a rows[] array.
+ * @param {Object} [opts] - Overrides: { profile?, outDir?, groupBy?,
+ *   minSamplesForWinner?, write?, bootstrapIterations?, confidence?,
+ *   bootstrapSeed? }. `write` defaults to writing iff `outDir` is provided.
+ * @returns {{ aggregate: Object, synthesisMarkdown: string }} The aggregate
+ *   object and the rendered synthesis markdown.
+ */
 function report(sweepResult, opts) {
   const options = opts || {};
   if (!sweepResult || !Array.isArray(sweepResult.rows)) {
@@ -585,6 +647,10 @@ function report(sweepResult, opts) {
 
   return { aggregate, synthesisMarkdown };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   report,

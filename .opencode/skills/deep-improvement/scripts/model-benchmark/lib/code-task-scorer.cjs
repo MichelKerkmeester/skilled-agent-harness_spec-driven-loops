@@ -1,3 +1,8 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ code-task-scorer — dimension-vector producer for one benchmark cell      ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
+
 // Dimension-vector producer for ONE benchmark cell. Given a model's raw output
 // and a code-task fixture, it extracts the target function, runs the fixture's
 // visible + hidden tests as deep-equal oracles in ISOLATED child processes, and
@@ -10,7 +15,9 @@
 // per-case isolation means a model that throws, hangs, or defines globals on one
 // input zeroes only that case, not the whole suite. Dependency-free (Node stdlib).
 
-'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const os = require('os');
@@ -18,14 +25,21 @@ const path = require('path');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
 
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Extraction: pull a single function definition out of a model response.
 // Models often wrap code in a markdown fence even when told not to, so both
 // fenced and bare output are handled, as are `function name(...)` and the
 // `const name = (...) =>` / arrow forms.
-// ---------------------------------------------------------------------------
 
-// Strip the first fenced code block's fence markers; return { code, wasFenced }.
+/**
+ * Strip the first fenced code block's fence markers.
+ *
+ * @param {string} text - Raw model text possibly containing a markdown fence.
+ * @returns {{code: string, wasFenced: boolean}} Unfenced code and fence flag.
+ */
 function unfence(text) {
   const fenceRe = /```(?:[a-zA-Z0-9_-]+)?\n([\s\S]*?)```/;
   const m = String(text).match(fenceRe);
@@ -33,8 +47,13 @@ function unfence(text) {
   return { code: String(text), wasFenced: false };
 }
 
-// Extract a function definition for `fnName` from raw model text.
-// Returns { source, ok, reason }.
+/**
+ * Extract a function definition for `fnName` from raw model text.
+ *
+ * @param {string} rawText - Raw model output.
+ * @param {string} fnName - Name of the function to extract.
+ * @returns {{source: string, ok: boolean, reason: string}} Extracted source and status.
+ */
 function extractFunction(rawText, fnName) {
   if (!rawText || !String(rawText).trim()) {
     return { source: '', ok: false, reason: 'empty response' };
@@ -83,9 +102,17 @@ function escapeRegExp(s) {
   return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// Did the model honour "return ONLY the function code"? Exactly one fenced block
-// OR no fence is allowed; substantive prose (a sentence) appearing OUTSIDE the
-// code body is rejected. Comments inside the function body are fine.
+/**
+ * Decide whether the model honoured "return ONLY the function code".
+ *
+ * Exactly one fenced block OR no fence is allowed; substantive prose (a sentence)
+ * appearing OUTSIDE the code body is rejected. Comments inside the function body
+ * are fine.
+ *
+ * @param {string} rawText - Raw model output.
+ * @param {string} fnName - Name of the expected function.
+ * @returns {{adherent: boolean, reason: string}} Adherence verdict and reason.
+ */
 function detectFormatAdherence(rawText, fnName) {
   if (!rawText) return { adherent: false, reason: 'empty' };
   const fenceCount = (String(rawText).match(/```/g) || []).length;
@@ -113,13 +140,11 @@ function detectFormatAdherence(rawText, fnName) {
   return { adherent: true, reason: 'code only' };
 }
 
-// ---------------------------------------------------------------------------
 // Isolated execution: ONE child process per test case. The child source is
 // materialized to a temp file and spawned with the case payload on argv. Per-case
 // isolation is the reason this is a subprocess and not an in-process eval: model
 // code may throw, loop forever, or define globals, and a hang on one input must
 // not mask which other cases passed — each child has its own hard timeout.
-// ---------------------------------------------------------------------------
 
 // Self-contained runner-child program. It defines the model's function via the
 // Function constructor (scoped, not a leaked global eval), runs ONE test with
@@ -210,9 +235,19 @@ function runOne(childPath, source, fnName, test, timeoutMs) {
   }
 }
 
-// Run an extracted function against a list of test cases. A define-time probe
-// runs first: if the function will not even define, every case fails for the same
-// reason, so surface it once instead of spawning a child per case.
+/**
+ * Run an extracted function against a list of test cases.
+ *
+ * A define-time probe runs first: if the function will not even define, every
+ * case fails for the same reason, so surface it once instead of spawning a child
+ * per case.
+ *
+ * @param {string} source - Extracted function source code.
+ * @param {string} fnName - Name of the function under test.
+ * @param {Object[]} tests - Test cases with args/expect/name.
+ * @param {number} timeoutMs - Per-case child process timeout in milliseconds.
+ * @returns {{total: number, passed: number, pass_rate: number, per_test: Object[], define_error?: string}} Suite result.
+ */
 function runSuite(source, fnName, tests, timeoutMs) {
   const childPath = childRunnerPath();
   const probe = runOne(
@@ -250,29 +285,38 @@ function runSuite(source, fnName, tests, timeoutMs) {
   };
 }
 
-// ---------------------------------------------------------------------------
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 // The public scorer.
-// ---------------------------------------------------------------------------
 
 function wordCount(s) {
   const m = String(s || '').trim().match(/\S+/g);
   return m ? m.length : 0;
 }
 
-// Score ONE cell's model output against a fixture. The oracle is the fixture's
-// visible `tests` PLUS any `hidden_tests` (held-out, anti-overfitting cases) so a
-// model cannot pattern-match only the prompt-visible examples.
-//
-// Returns the dimension vector:
-//   correctness_pass_rate : passed / total over visible+hidden oracles (0..1)
-//   assertions_passed     : count of oracle cases that passed
-//   assertions_total      : count of oracle cases run
-//   format_adherent       : did the model return ONLY the function (bool)
-//   output_words          : whitespace-delimited token count of raw output
-//   output_chars          : raw output length
-//   per_test              : [{name, ok, ...}] per oracle case
-//   extracted             : was a function definition found at all (bool)
-//   extract_reason        : why extraction succeeded/failed
+/**
+ * Score ONE cell's model output against a fixture.
+ *
+ * The oracle is the fixture's visible `tests` PLUS any `hidden_tests` (held-out,
+ * anti-overfitting cases) so a model cannot pattern-match only the prompt-visible
+ * examples. The returned dimension vector carries:
+ *   correctness_pass_rate : passed / total over visible+hidden oracles (0..1)
+ *   assertions_passed     : count of oracle cases that passed
+ *   assertions_total      : count of oracle cases run
+ *   format_adherent       : did the model return ONLY the function (bool)
+ *   output_words          : whitespace-delimited token count of raw output
+ *   output_chars          : raw output length
+ *   per_test              : [{name, ok, ...}] per oracle case
+ *   extracted             : was a function definition found at all (bool)
+ *   extract_reason        : why extraction succeeded/failed
+ *
+ * @param {string} modelOutput - Raw model output for the cell.
+ * @param {Object} fixture - Code-task fixture (requires string `fn_name`).
+ * @param {Object} [opts] - Options (timeoutMs for per-case child timeout).
+ * @returns {Object} Dimension vector describing the scored cell.
+ */
 function scoreCodeTask(modelOutput, fixture, opts) {
   const options = opts || {};
   const timeoutMs = typeof options.timeoutMs === 'number' ? options.timeoutMs : 3000;
@@ -319,6 +363,10 @@ function scoreCodeTask(modelOutput, fixture, opts) {
     extract_reason: ext.reason,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   scoreCodeTask,

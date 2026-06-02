@@ -1,13 +1,27 @@
-// Data-driven prompt-framework renderer. Replaces per-rig render() closures
-// with a single slot interpolator over a machine-readable framework registry.
-// A framework template carries named {{slot}} placeholders; this module computes
-// the framework-neutral output_contract and constraints from the fixture, then
-// fills every slot. Required-slot validation fails LOUD at render time so a
-// malformed framework definition is caught before any model dispatch.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ framework-renderer — data-driven prompt-framework slot interpolator        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
 
+/**
+ * Data-driven prompt-framework renderer. Replaces per-rig render() closures
+ * with a single slot interpolator over a machine-readable framework registry.
+ * A framework template carries named {{slot}} placeholders; this module computes
+ * the framework-neutral output_contract and constraints from the fixture, then
+ * fills every slot. Required-slot validation fails LOUD at render time so a
+ * malformed framework definition is caught before any model dispatch.
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Framework-neutral guardrail line. Held constant across frameworks so a
 // bake-off isolates the framework axis, not the constraint wording. Mirrors the
@@ -20,6 +34,10 @@ const DEFAULT_CONSTRAINTS =
 // reference any of these by {{name}}; missing ones surface as required-slot
 // errors rather than leaking an empty string into the prompt.
 const FIXTURE_TOKEN_KEYS = ['task', 'fn_name', 'signature'];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function escapeRegExp(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -85,9 +103,20 @@ function buildValues(frameworkDef, fixture, opts) {
   return Object.assign({}, fixtureTokens, { constraints, output_contract });
 }
 
-// Render a framework definition against a fixture into a prompt string.
-// Throws a clear Error naming every required slot left without a value, so a
-// broken template never silently ships a prompt with literal {{placeholders}}.
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Render a framework definition against a fixture into a prompt string.
+ * Throws a clear Error naming every required slot left without a value, so a
+ * broken template never silently ships a prompt with literal {{placeholders}}.
+ *
+ * @param {Object} frameworkDef - Framework definition with a string `template`.
+ * @param {Object} fixture - Fixture providing task/fn_name/signature tokens.
+ * @param {Object} [opts] - Overrides: { constraints?, output_contract? }.
+ * @returns {string} The rendered prompt with every slot filled.
+ */
 function renderFramework(frameworkDef, fixture, opts) {
   if (!frameworkDef || typeof frameworkDef !== 'object') {
     throw new Error('renderFramework: frameworkDef must be an object');
@@ -144,7 +173,12 @@ function renderFramework(frameworkDef, fixture, opts) {
   return prompt;
 }
 
-// Read and parse a framework registry JSON file from disk.
+/**
+ * Read and parse a framework registry JSON file from disk.
+ *
+ * @param {string} registryPath - Path to the registry JSON file.
+ * @returns {Object} The parsed registry object carrying a `frameworks` array.
+ */
 function loadRegistry(registryPath) {
   if (!registryPath || typeof registryPath !== 'string') {
     throw new Error('loadRegistry: registryPath must be a non-empty string');
@@ -161,8 +195,13 @@ function loadRegistry(registryPath) {
   return parsed;
 }
 
-// Look up a single framework definition by id (case-insensitive). Returns the
-// definition object, or undefined when the id is absent.
+/**
+ * Look up a single framework definition by id (case-insensitive).
+ *
+ * @param {Object} registry - Registry object carrying a `frameworks` array.
+ * @param {string} id - The framework id to find.
+ * @returns {Object|undefined} The definition object, or undefined when absent.
+ */
 function getFramework(registry, id) {
   if (!registry || !Array.isArray(registry.frameworks)) return undefined;
   if (id === undefined || id === null) return undefined;
@@ -171,6 +210,10 @@ function getFramework(registry, id) {
     (f) => f && String(f.id).toLowerCase() === want,
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   renderFramework,

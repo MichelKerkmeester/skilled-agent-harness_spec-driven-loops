@@ -1,6 +1,8 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Candidate Scorer — 5-Dimension Evaluation Framework                     ║
+// ║ score-candidate — 5-dimension candidate evaluation framework            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
+'use strict';
+
 // Usage:
 //   node score-candidate.cjs --candidate=<path> [--baseline=<path>] [--output=<path>]
 //
@@ -9,7 +11,6 @@
 //   delta: total and per-dimension candidate-minus-baseline score deltas
 //   thresholdDelta: comparison threshold from --thresholdDelta, manifest scoring,
 //     or the default value of 2.
-'use strict';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. IMPORTS
@@ -31,6 +32,10 @@ const {
   PROMOTION_GATES,
   evaluatePromotionGates,
 } = require('../lib/promotion-gates.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function parseArgs(argv) {
   const args = {};
@@ -151,7 +156,7 @@ function inferFamily(profileId, manifest, targetPath) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 5. DYNAMIC 5-DIMENSION SCORING
+// 3. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 
 const DIMENSION_WEIGHTS = {
@@ -484,10 +489,6 @@ function resolveThresholdDelta(args, manifest) {
   const parsed = Number(raw);
   return Number.isFinite(parsed) ? parsed : 2;
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 6. MAIN
-// ─────────────────────────────────────────────────────────────────────────────
 
 function main() {
   const args = parseArgs(process.argv.slice(2));

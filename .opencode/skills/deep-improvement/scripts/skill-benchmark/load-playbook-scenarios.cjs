@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ load-playbook-scenarios — corpus loader for Lane C                       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -22,14 +25,34 @@
  * finding the scorer should surface as router↔gold drift, not silently drop.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const ID_RE = /\b([A-Z]{2})-(\d{3})\b/;
 
-// classKind selects the executor: routing/advisor run via router-replay or live
-// cli-opencode; browser scenarios need a real browser (bdg) and are routed out
-// of the text executors.
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Select the executor class for a scenario: routing/advisor run via router-replay
+ * or live cli-opencode; browser scenarios need a real browser (bdg) and are routed
+ * out of the text executors.
+ *
+ * @param {string} scenarioId - Scenario id (e.g. SD-001), used for prefix hints.
+ * @param {string} category - Category label from the playbook index.
+ * @param {string} expectedSurface - Asserted in-skill surface, if any.
+ * @param {string} passCriteria - Pass/fail criteria text.
+ * @returns {'browser'|'advisor'|'routing'} The executor class.
+ */
 function classifyKind(scenarioId, category, expectedSurface, passCriteria) {
   const cat = (category || '').toLowerCase();
   const prefix = (ID_RE.exec(scenarioId || '') || [])[1] || '';
@@ -53,9 +76,14 @@ function readFileSafe(p) {
   try { return fs.readFileSync(p, 'utf8'); } catch { return null; }
 }
 
-// Pull every `references/...` / `assets/...` markdown-ish path token out of a
-// text block, deduped, order-preserving. Tolerates backticks, bullets, and
-// trailing parentheticals like "(when intent is X)".
+/**
+ * Pull every `references/...` / `assets/...` markdown-ish path token out of a
+ * text block, deduped, order-preserving. Tolerates backticks, bullets, and
+ * trailing parentheticals like "(when intent is X)".
+ *
+ * @param {string} block - Text block to scan.
+ * @returns {string[]} Deduped, order-preserving list of path tokens.
+ */
 function extractPaths(block) {
   if (!block) return [];
   const out = [];
@@ -160,7 +188,12 @@ function parseFeatureFile(absPath, scenarioId, category, critical, rootEntry) {
   };
 }
 
-// Parse the root index table mapping id -> {category, featureFile, critical}.
+/**
+ * Parse the root index table mapping id -> {category, featureFile, critical}.
+ *
+ * @param {string} rootText - The root playbook markdown text.
+ * @returns {Array<{categoryLabel:string,scenarioId:string,featureFile:string,critical:boolean}>} Index rows.
+ */
 function parseRootIndex(rootText) {
   const idx = [];
   const secStart = rootText.search(/##\s+\d+\.\s+FEATURE CATALOG CROSS-REFERENCE INDEX/i);
@@ -225,7 +258,16 @@ function loadYamlFrontmatterScenarios(playbookDir) {
   return out;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
+ * Parse a skill's manual_testing_playbook into normalized benchmark scenarios.
+ *
+ * @param {Object} [options] - Loader options.
+ * @param {string} [options.skillRoot] - Skill root dir (playbook resolved under it).
+ * @param {string} [options.playbookDir] - Explicit playbook dir override.
  * @returns {{ scenarios: Array, shape: 'sk-code'|'sk-doc'|'none', warnings: string[] }}
  */
 function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
@@ -258,6 +300,10 @@ function loadPlaybookScenarios({ skillRoot, playbookDir } = {}) {
   const scenarios = loadYamlFrontmatterScenarios(dir);
   return { scenarios, shape: scenarios.length ? 'sk-doc' : 'none', warnings };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { loadPlaybookScenarios, classifyKind, extractPaths, parseRootIndex };
 

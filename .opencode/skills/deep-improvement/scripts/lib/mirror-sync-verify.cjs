@@ -1,10 +1,18 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Four-Runtime Agent Mirror Sync Verifier                                  ║
+// ║ mirror-sync-verify — four-runtime agent mirror sync verifier            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('node:fs');
 const path = require('node:path');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const RUNTIME_MIRRORS = Object.freeze([
   { runtime: 'opencode', template: '.opencode/agents/{name}.md', format: 'markdown' },
@@ -13,10 +21,20 @@ const RUNTIME_MIRRORS = Object.freeze([
   { runtime: 'gemini', template: '.gemini/agents/{name}.md', format: 'markdown' },
 ]);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function resolveMirrorPath(repoRoot, template, agentName) {
   return path.join(repoRoot, template.replace('{name}', agentName));
 }
 
+/**
+ * Strip leading YAML frontmatter from markdown content.
+ *
+ * @param {string} content - Raw file content.
+ * @returns {string} Content with the leading frontmatter block removed.
+ */
 function stripFrontmatter(content) {
   return String(content || '').replace(/^---[\s\S]*?---\n/, '');
 }
@@ -34,6 +52,13 @@ function extractCodexDeveloperInstructions(content) {
   return null;
 }
 
+/**
+ * Extract the agent body from runtime-mirror content by format.
+ *
+ * @param {string} content - Raw mirror file content.
+ * @param {string} [format] - Mirror format ('markdown' or 'codex-toml').
+ * @returns {string|null} Trimmed agent body, or null if not extractable.
+ */
 function extractAgentBody(content, format = 'markdown') {
   if (format === 'codex-toml') {
     const body = extractCodexDeveloperInstructions(content);
@@ -58,6 +83,13 @@ function tokenizeBody(body) {
   return new Set(normalized.match(/[a-z0-9_./*-]{3,}/g) || []);
 }
 
+/**
+ * Compare two agent bodies by normalized token sets for drift.
+ *
+ * @param {string} expectedBody - Canonical expected body.
+ * @param {string} actualBody - Mirror body to compare against.
+ * @returns {Object} Comparison with matches flag and missing/unexpected tokens.
+ */
 function compareBodyTokens(expectedBody, actualBody) {
   const expectedTokens = tokenizeBody(expectedBody);
   const actualTokens = tokenizeBody(actualBody);
@@ -73,11 +105,24 @@ function compareBodyTokens(expectedBody, actualBody) {
   };
 }
 
+/**
+ * Infer the agent name from a mirror file path (basename without extension).
+ *
+ * @param {string} filePath - Path to a runtime-mirror agent file.
+ * @returns {string} Agent name derived from the file basename.
+ */
 function inferAgentNameFromPath(filePath) {
   const ext = path.extname(filePath);
   return path.basename(filePath, ext);
 }
 
+/**
+ * Resolve the per-runtime mirror paths for an agent name.
+ *
+ * @param {string} agentName - Agent name to expand into mirror paths.
+ * @param {string} [repoRoot] - Repository root for absolute path resolution.
+ * @returns {Array<Object>} Mirror descriptors with runtime, path, absolutePath, format.
+ */
 function runtimePaths(agentName, repoRoot = process.cwd()) {
   return RUNTIME_MIRRORS.map((mirror) => ({
     runtime: mirror.runtime,
@@ -87,6 +132,20 @@ function runtimePaths(agentName, repoRoot = process.cwd()) {
   }));
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Verify that all runtime mirrors of an agent are present and in sync.
+ *
+ * @param {string} agentName - Agent name to verify across runtime mirrors.
+ * @param {string} content - Canonical agent content to compare mirrors against.
+ * @param {Object} [options] - Options bag.
+ * @param {string} [options.repoRoot] - Repository root for resolving mirror paths.
+ * @param {string} [options.expectedFormat] - Format of the canonical content.
+ * @returns {Object} Result with present/missing/drift runtimes, allInSync, details.
+ */
 function verifyMirrorSync(agentName, content, options = {}) {
   const repoRoot = path.resolve(options.repoRoot || process.cwd());
   const expectedFormat = options.expectedFormat || 'markdown';
@@ -155,6 +214,10 @@ function verifyMirrorSync(agentName, content, options = {}) {
     details,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   RUNTIME_MIRRORS,

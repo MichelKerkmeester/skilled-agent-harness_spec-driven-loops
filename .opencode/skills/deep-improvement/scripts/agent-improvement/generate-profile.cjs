@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Dynamic Target Profile Generator                                         ║
+// ║ generate-profile — dynamic target profile generator                      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

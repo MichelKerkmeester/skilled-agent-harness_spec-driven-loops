@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Integration Surface Scanner for deep-improvement                      ║
+// ║ scan-integration — scan agent integration surfaces across runtimes      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -22,7 +22,7 @@ const GLOBAL_DOC_PATHS = ['CLAUDE.md', '.claude/CLAUDE.md'];
 const SKILL_ADVISOR_PATH = '.opencode/skills/scripts/skill_advisor.py';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 3. UTILITIES
+// 3. HELPERS
 // ─────────────────────────────────────────────────────────────────────────────
 function parseArgs(argv) {
   const args = {};
@@ -73,7 +73,7 @@ function collectFiles(rootDir) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4. SIGNAL-BASED MIRROR SYNC CHECK
+// 4. CORE LOGIC
 // ─────────────────────────────────────────────────────────────────────────────
 function extractSignals(body) {
   const signals = [];
@@ -94,9 +94,6 @@ function checkMirrorSync(canonicalBody, mirrorContent) {
   return hits >= 2 ? 'aligned' : 'diverged';
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5. SURFACE SCANNERS
-// ─────────────────────────────────────────────────────────────────────────────
 function scanCanonical(repoRoot, agentName) {
   const relPath = `.opencode/agents/${agentName}.md`;
   const content = readOptional(path.join(repoRoot, relPath));
@@ -180,9 +177,6 @@ function scanSkillAdvisor(repoRoot, agentName) {
   return { path: SKILL_ADVISOR_PATH, matched: content !== null && new RegExp(`\\b${agentName}\\b`, 'i').test(content) };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6. MAIN
-// ─────────────────────────────────────────────────────────────────────────────
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const agentName = args.agent;

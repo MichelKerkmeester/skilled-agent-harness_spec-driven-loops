@@ -1,3 +1,9 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ sweep-stats — dependency-free sweep statistics & trustworthiness gates   ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
+'use strict';
+
 // Dependency-free statistics for the benchmark sweep. No scipy/numpy analogue —
 // just the primitives a trustworthiness verdict needs: central tendency, a
 // robust spread (MAD) for the noise floor, quantiles, a deterministic seeded
@@ -7,7 +13,9 @@
 // and tolerates empty input by returning NaN (never throws) so a partial sweep
 // cannot crash the reducer.
 
-'use strict';
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Coerce to a clean numeric array, dropping non-finite entries. Stats over a
 // dirty cell should reflect only the real samples, not NaN contamination.
@@ -16,6 +24,12 @@ function toNumbers(xs) {
   return xs.filter((x) => typeof x === 'number' && Number.isFinite(x));
 }
 
+/**
+ * Arithmetic mean over the finite samples.
+ *
+ * @param {number[]} xs - Sample values (non-finite entries are dropped).
+ * @returns {number} Mean of the finite samples, or NaN when there are none.
+ */
 function mean(xs) {
   const v = toNumbers(xs);
   if (v.length === 0) return NaN;
@@ -24,8 +38,14 @@ function mean(xs) {
   return sum / v.length;
 }
 
-// Linear-interpolation quantile on the sorted sample. q is clamped to [0,1].
-// q=0 -> min, q=1 -> max, q=0.5 -> median. Matches the common "type 7" method.
+/**
+ * Linear-interpolation quantile on the sorted sample. q is clamped to [0,1].
+ * q=0 -> min, q=1 -> max, q=0.5 -> median. Matches the common "type 7" method.
+ *
+ * @param {number[]} xs - Sample values (non-finite entries are dropped).
+ * @param {number} q - Quantile in [0,1] (clamped).
+ * @returns {number} Interpolated quantile, or NaN when there are no samples.
+ */
 function quantile(xs, q) {
   const v = toNumbers(xs).slice().sort((a, b) => a - b);
   if (v.length === 0) return NaN;
@@ -39,13 +59,24 @@ function quantile(xs, q) {
   return v[lo] + (v[hi] - v[lo]) * frac;
 }
 
+/**
+ * Median (0.5 quantile) of the finite samples.
+ *
+ * @param {number[]} xs - Sample values (non-finite entries are dropped).
+ * @returns {number} Median, or NaN when there are no samples.
+ */
 function median(xs) {
   return quantile(xs, 0.5);
 }
 
-// Median absolute deviation about the median. A robust spread estimate used as
-// the noise floor: the minimum margin that is distinguishable from run-to-run
-// jitter. Returns 0 for a single sample (no observed spread), NaN for empty.
+/**
+ * Median absolute deviation about the median. A robust spread estimate used as
+ * the noise floor: the minimum margin that is distinguishable from run-to-run
+ * jitter. Returns 0 for a single sample (no observed spread), NaN for empty.
+ *
+ * @param {number[]} xs - Sample values (non-finite entries are dropped).
+ * @returns {number} MAD, or NaN when there are no samples.
+ */
 function mad(xs) {
   const v = toNumbers(xs);
   if (v.length === 0) return NaN;
@@ -54,9 +85,14 @@ function mad(xs) {
   return median(deviations);
 }
 
-// Deterministic PRNG (mulberry32). Same seed -> same stream, so randomized /
-// property fixtures and any sampling jitter are reproducible across runs and
-// machines. Accepts a number or a string seed (hashed to a 32-bit int).
+/**
+ * Deterministic PRNG (mulberry32). Same seed -> same stream, so randomized /
+ * property fixtures and any sampling jitter are reproducible across runs and
+ * machines. Accepts a number or a string seed (hashed to a 32-bit int).
+ *
+ * @param {number|string} seed - Numeric seed or string seed (FNV-1a hashed).
+ * @returns {function(): number} Generator returning floats in [0, 1).
+ */
 function seededRandom(seed) {
   let a;
   if (typeof seed === 'number' && Number.isFinite(seed)) {
@@ -80,15 +116,28 @@ function seededRandom(seed) {
   };
 }
 
-// Trustworthiness gate. Declares a WINNER only when there are enough samples AND
-// the top-pair margin clears the noise floor; otherwise emits TIE or
-// INCONCLUSIVE with a machine-readable reason so the reporter can surface it
-// BEFORE any leaderboard text. This is the guard against the saturated-fixture
-// "winner" mis-read: a margin inside the noise floor is a TIE, not a win.
-//
-//   nSamples < minSamplesForWinner -> INCONCLUSIVE('insufficient_n')
-//   margin <= noiseFloor           -> TIE('inside_noise_floor')
-//   otherwise                      -> WINNER('trusted_margin')
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Trustworthiness gate. Declares a WINNER only when there are enough samples AND
+ * the top-pair margin clears the noise floor; otherwise emits TIE or
+ * INCONCLUSIVE with a machine-readable reason so the reporter can surface it
+ * BEFORE any leaderboard text. This is the guard against the saturated-fixture
+ * "winner" mis-read: a margin inside the noise floor is a TIE, not a win.
+ *
+ *   nSamples < minSamplesForWinner -> INCONCLUSIVE('insufficient_n')
+ *   margin <= noiseFloor           -> TIE('inside_noise_floor')
+ *   otherwise                      -> WINNER('trusted_margin')
+ *
+ * @param {Object} params - Verdict inputs.
+ * @param {number} params.nSamples - Number of samples backing the comparison.
+ * @param {number} params.margin - Observed top-pair margin.
+ * @param {number} params.noiseFloor - Run-to-run noise floor on the metric scale.
+ * @param {number} [params.minSamplesForWinner=3] - Minimum samples for a WINNER.
+ * @returns {{verdict: string, reason: string}} Verdict with machine-readable reason.
+ */
 function trustVerdict({ nSamples, margin, noiseFloor, minSamplesForWinner = 3 }) {
   const n = typeof nSamples === 'number' ? nSamples : NaN;
   const m = typeof margin === 'number' ? margin : NaN;
@@ -129,10 +178,16 @@ function pairDeltas(samplesA, samplesB) {
   return deltas;
 }
 
-// Fraction of paired comparisons where A strictly beats B (A_i > B_i). Ties and
-// losses do not count toward A. NaN when there are no comparable pairs, so an
-// empty cell reports "unknown" rather than a misleading 0. Direction is the
-// caller's responsibility: pass the higher-is-better series as A.
+/**
+ * Fraction of paired comparisons where A strictly beats B (A_i > B_i). Ties and
+ * losses do not count toward A. NaN when there are no comparable pairs, so an
+ * empty cell reports "unknown" rather than a misleading 0. Direction is the
+ * caller's responsibility: pass the higher-is-better series as A.
+ *
+ * @param {number[]} samplesA - Higher-is-better series.
+ * @param {number[]} samplesB - Comparison series.
+ * @returns {number} Win fraction in [0,1], or NaN when there are no pairs.
+ */
 function pairedWinRate(samplesA, samplesB) {
   const rawA = Array.isArray(samplesA) ? samplesA : [];
   const rawB = Array.isArray(samplesB) ? samplesB : [];
@@ -154,23 +209,33 @@ function pairedWinRate(samplesA, samplesB) {
   return wins / pairs;
 }
 
-// Seeded paired-delta bootstrap confidence interval for the mean difference
-// A - B. This is the rigor the single-margin gate lacks: instead of trusting a
-// point margin, it asks whether the WHOLE plausible range of the paired mean
-// delta stays on one side of zero.
-//
-// Method (dependency-free, deterministic):
-//   1. Form the per-index paired deltas d_i = A_i - B_i (shared sample index).
-//   2. Resample those deltas WITH replacement `iterations` times; each resample
-//      draws n deltas and records its mean. seededRandom makes the draw stream
-//      reproducible, so the same inputs + seed always yield the same CI.
-//   3. The CI is the [(1-confidence)/2, 1-(1-confidence)/2] quantiles of that
-//      bootstrap mean-delta distribution; `point` is the mean of the raw deltas.
-//
-// Returns { point, lo, hi }. Degenerate inputs (0 or 1 paired delta) cannot
-// support a spread, so lo/hi collapse to the point (a 1-delta CI has zero width
-// and the gate will read it as not excluding zero unless the point itself is
-// off zero — which a single observation should not be trusted to claim).
+/**
+ * Seeded paired-delta bootstrap confidence interval for the mean difference
+ * A - B. This is the rigor the single-margin gate lacks: instead of trusting a
+ * point margin, it asks whether the WHOLE plausible range of the paired mean
+ * delta stays on one side of zero.
+ *
+ * Method (dependency-free, deterministic):
+ *   1. Form the per-index paired deltas d_i = A_i - B_i (shared sample index).
+ *   2. Resample those deltas WITH replacement `iterations` times; each resample
+ *      draws n deltas and records its mean. seededRandom makes the draw stream
+ *      reproducible, so the same inputs + seed always yield the same CI.
+ *   3. The CI is the [(1-confidence)/2, 1-(1-confidence)/2] quantiles of that
+ *      bootstrap mean-delta distribution; `point` is the mean of the raw deltas.
+ *
+ * Degenerate inputs (0 or 1 paired delta) cannot support a spread, so lo/hi
+ * collapse to the point (a 1-delta CI has zero width and the gate will read it
+ * as not excluding zero unless the point itself is off zero — which a single
+ * observation should not be trusted to claim).
+ *
+ * @param {number[]} samplesA - First series.
+ * @param {number[]} samplesB - Second series.
+ * @param {Object} [options] - Bootstrap options.
+ * @param {number} [options.iterations=2000] - Resample count.
+ * @param {number} [options.confidence=0.9] - Confidence level in (0,1).
+ * @param {number|string} [options.seed] - Seed for the resampling stream.
+ * @returns {{point: number, lo: number, hi: number}} Point estimate and CI bounds.
+ */
 function bootstrapPairedDeltaCi(samplesA, samplesB, options) {
   const opts = options || {};
   const iterations =
@@ -211,28 +276,43 @@ function bootstrapPairedDeltaCi(samplesA, samplesB, options) {
   return { point, lo, hi };
 }
 
-// MAD-based minimum detectable difference: the run-to-run jitter of an identical
-// config, expressed on the metric's own scale. A margin at or under this floor
-// is indistinguishable from noise. Thin wrapper over `mad` named for the role it
-// plays in the verdict gate, so call sites read as intent, not as a raw stat.
+/**
+ * MAD-based minimum detectable difference: the run-to-run jitter of an identical
+ * config, expressed on the metric's own scale. A margin at or under this floor
+ * is indistinguishable from noise. Thin wrapper over `mad` named for the role it
+ * plays in the verdict gate, so call sites read as intent, not as a raw stat.
+ *
+ * @param {number[]} repeatedSamples - Repeated-config samples.
+ * @returns {number} Noise floor, or NaN when it cannot be computed.
+ */
 function noiseFloorMad(repeatedSamples) {
   const m = mad(repeatedSamples);
   return Number.isFinite(m) ? m : NaN;
 }
 
-// CI-gated trustworthiness verdict. The stricter successor to trustVerdict: a
-// WINNER must clear the sample-count gate, clear the noise floor, AND have a
-// paired confidence interval that excludes zero. Any one failing downgrades the
-// verdict with a machine-readable reason the reporter surfaces before any
-// leaderboard text.
-//
-//   nSamples < minSamplesForWinner -> INCONCLUSIVE('insufficient_n')
-//   margin <= noiseFloor           -> TIE('inside_noise_floor')
-//   ci brackets zero (lo<=0<=hi)   -> TIE('ci_overlaps_zero')
-//   otherwise                      -> WINNER('trusted_margin')
-//
-// The CI is the deciding rigor: even a margin above the noise floor is a TIE if
-// the bootstrap says zero difference is still plausible.
+/**
+ * CI-gated trustworthiness verdict. The stricter successor to trustVerdict: a
+ * WINNER must clear the sample-count gate, clear the noise floor, AND have a
+ * paired confidence interval that excludes zero. Any one failing downgrades the
+ * verdict with a machine-readable reason the reporter surfaces before any
+ * leaderboard text.
+ *
+ *   nSamples < minSamplesForWinner -> INCONCLUSIVE('insufficient_n')
+ *   margin <= noiseFloor           -> TIE('inside_noise_floor')
+ *   ci brackets zero (lo<=0<=hi)   -> TIE('ci_overlaps_zero')
+ *   otherwise                      -> WINNER('trusted_margin')
+ *
+ * The CI is the deciding rigor: even a margin above the noise floor is a TIE if
+ * the bootstrap says zero difference is still plausible.
+ *
+ * @param {Object} params - Verdict inputs.
+ * @param {number} params.nSamples - Number of samples backing the comparison.
+ * @param {number} params.margin - Observed top-pair margin.
+ * @param {number} params.noiseFloor - Run-to-run noise floor on the metric scale.
+ * @param {{lo: number, hi: number}} params.ci - Paired-delta confidence interval.
+ * @param {number} [params.minSamplesForWinner=3] - Minimum samples for a WINNER.
+ * @returns {{verdict: string, reason: string}} Verdict with machine-readable reason.
+ */
 function trustVerdictCI({ nSamples, margin, noiseFloor, ci, minSamplesForWinner = 3 }) {
   const n = typeof nSamples === 'number' ? nSamples : NaN;
   const m = typeof margin === 'number' ? margin : NaN;
@@ -253,6 +333,10 @@ function trustVerdictCI({ nSamples, margin, noiseFloor, ci, minSamplesForWinner 
   }
   return { verdict: 'WINNER', reason: 'trusted_margin' };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   mean,

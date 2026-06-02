@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ advisor-probe.cjs — D1-inter advisor routing signal probe                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -17,16 +20,32 @@
  * so the pure-router Mode A default stays dependency-free and fast.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
 const DEFAULT_ADVISOR_PY = path.join(
   SKILLS_DIR, 'system-skill-advisor', 'mcp_server', 'scripts', 'skill_advisor.py',
 );
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Run the advisor over a prompt and return its ranked recommendations.
+ * @param {Object} params - Probe parameters.
+ * @param {string} params.prompt - Public prompt text to route through the advisor.
+ * @param {string} [params.advisorPy] - Path to the advisor CLI; defaults to DEFAULT_ADVISOR_PY.
+ * @param {number} [params.timeoutMs] - Spawn timeout in milliseconds.
  * @returns {{ ok: boolean, recommendations: Array<{skill:string,confidence:number}>,
  *   topSkill: string|null, error?: string }}
  */
@@ -56,6 +75,10 @@ function probeAdvisor({ prompt, advisorPy, timeoutMs }) {
  * Score the D1-inter dimension for one scenario from an advisor probe result.
  * Rank-weighted: top-1 = 1.0, top-3 = 0.75, top-5 = 0.5, else 0. Negative
  * scenarios invert: the target must NOT appear in the recommendations.
+ * @param {Object} params - Scoring parameters.
+ * @param {{ ok: boolean, recommendations: Array<{skill:string}>, topSkill: string|null }} params.advisorResult - Result from probeAdvisor.
+ * @param {string} params.expectedSkillId - Skill id expected to appear in the recommendations.
+ * @param {boolean} params.negative - When true, success means the target is absent or ranked >5.
  * @returns {{ score: number|null, rank: number|null, topSkill: string|null, ok: boolean }}
  */
 function scoreD1Inter({ advisorResult, expectedSkillId, negative }) {
@@ -73,6 +96,10 @@ function scoreD1Inter({ advisorResult, expectedSkillId, negative }) {
   else if (rank !== null && rank <= 5) score = 0.5;
   return { score, rank, topSkill: advisorResult.topSkill, ok: true };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { probeAdvisor, scoreD1Inter, DEFAULT_ADVISOR_PY };
 

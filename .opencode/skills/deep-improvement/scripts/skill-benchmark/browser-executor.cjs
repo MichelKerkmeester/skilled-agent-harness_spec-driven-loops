@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ browser-executor.cjs — Mode B executor for browser-gated scenarios       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -15,20 +18,35 @@
  *   PASS → 1.0 · FAIL → 0 · PARTIAL → 0.5 (status: partial) · SKIP → null (non-penalizing)
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const BDG = process.env.BDG_BIN || 'bdg';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function bdg(args, { timeout = 30000 } = {}) {
   const res = spawnSync(BDG, args, { encoding: 'utf8', timeout, stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 8 * 1024 * 1024 });
   return { status: res.status, stdout: (res.stdout || '').trim(), stderr: (res.stderr || '').trim() };
 }
 
-// Minimal Motion-CDN smoke page: imports the pinned Motion ESM bundle and
-// records export presence + a completed animate()/inView() on window.__skc.
+/**
+ * Minimal Motion-CDN smoke page: imports the pinned Motion ESM bundle and
+ * records export presence + a completed animate()/inView() on window.__skc.
+ * @returns {string} HTML document source for the headless smoke page.
+ */
 function motionSandboxHtml() {
   return `<!doctype html><html><head><meta charset="utf-8"></head><body><div id="t">x</div>
 <script type="module">
@@ -42,6 +60,11 @@ window.__skcReady = true;
 </script></body></html>`;
 }
 
+/**
+ * Map a browser verdict to per-dimension scores for aggregation.
+ * @param {string} verdict - One of PASS, FAIL, PARTIAL-*, or a SKIP-* verdict.
+ * @returns {Object} Dimension map with d1intra/d2/d3 scored and d1inter/d4 unscored.
+ */
 function verdictToDims(verdict) {
   const v = verdict === 'PASS' ? 1 : verdict === 'FAIL' ? 0 : verdict.startsWith('PARTIAL') ? 0.5 : null;
   const dim = (extra) => ({ score: v, ...(v === null ? { status: 'skip-needs-browser' } : {}), ...(extra || {}) });
@@ -58,6 +81,10 @@ function row(scenario, verdict, browser) {
     dims, browser,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 // Motion API smoke — the one fully-automatable browser scenario: load a Motion
 // sandbox headless and assert the API exports + a completed animation.
@@ -88,6 +115,10 @@ function runMotionSmoke(scenario, sandboxDir) {
 /**
  * Executor entrypoint (called by executor-dispatch.cjs browser branch).
  * Honest per-scenario verdicts; never a fabricated PASS.
+ * @param {Object} [params] - Executor parameters.
+ * @param {{ scenarioId: string }} params.scenario - Scenario descriptor with scenarioId.
+ * @param {string} [params.sandboxDir] - Sandbox directory; a temp dir is created when omitted.
+ * @returns {Object} Scenario result row with verdict, dims, and browser evidence.
  */
 function executeBrowserScenario({ scenario, sandboxDir } = {}) {
   const dir = sandboxDir || fs.mkdtempSync(path.join(os.tmpdir(), 'skc-browser-'));
@@ -111,6 +142,10 @@ function executeBrowserScenario({ scenario, sandboxDir } = {}) {
   }[id] || { verdict: 'SKIP-NO-BROWSER', reason: 'no browser-harness recipe for this scenario yet' };
   return row(scenario, partial.verdict, { ...partial, evidence: [] });
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { executeBrowserScenario, verdictToDims, motionSandboxHtml };
 

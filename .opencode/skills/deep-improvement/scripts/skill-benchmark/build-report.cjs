@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ build-report.cjs — render report.md from report.json (anti-drift)        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -11,7 +14,15 @@
  * accepts no score arguments, only the report object.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function dimLine(name, d) {
   if (!d) return `| ${name} | — | — |`;
@@ -20,6 +31,15 @@ function dimLine(name, d) {
   return `| ${name}${gate} | ${d.points}pts | ${score} |`;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Render the human-readable report.md from a machine report object.
+ * @param {Object} report - Parsed report.json object (scores, funnel, scenarios, etc.).
+ * @returns {string} Markdown document rendered deterministically from the report.
+ */
 function renderReport(report) {
   const r = report;
   const lines = [];
@@ -131,6 +151,10 @@ function renderReport(report) {
   lines.push('');
   return lines.join('\n');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { renderReport };
 

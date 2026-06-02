@@ -1,7 +1,11 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Promotion Gate Constants                                                ║
+// ║ promotion-gates — promotion gate thresholds and gate evaluation         ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const WEIGHTED_SCORE_GATE = 70;
 
@@ -20,6 +24,16 @@ const MIRROR_SYNC_STATES = Object.freeze({
   verificationFailed: 'verification_failed',
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Evaluate scored dimensions against the per-dimension promotion thresholds.
+ *
+ * @param {Array<Object>} dimensions - Dimensions with name and score fields.
+ * @returns {Object} Result with passed flag, thresholds, per-name results, failed, unscored.
+ */
 function evaluatePromotionGates(dimensions) {
   const byName = new Map((dimensions || []).map((dimension) => [dimension.name, dimension]));
   const results = {};
@@ -51,11 +65,23 @@ function evaluatePromotionGates(dimensions) {
   };
 }
 
+/**
+ * Build the partial mirror-sync state label from the landed runtimes.
+ *
+ * @param {Array<string>} presentRuntimes - Runtimes whose mirrors landed.
+ * @returns {string} A `partial:<runtimes>` label, or the verification-failed state.
+ */
 function buildPartialMirrorSyncState(presentRuntimes) {
   const landed = [...new Set(presentRuntimes || [])].sort();
   return landed.length > 0 ? `partial:${landed.join(',')}` : MIRROR_SYNC_STATES.verificationFailed;
 }
 
+/**
+ * Evaluate the mirror-sync gate from a verifyMirrorSync result.
+ *
+ * @param {Object} syncResult - Result object from the mirror-sync verifier.
+ * @returns {Object} Gate outcome with passed, mirror_sync_state, recoveryAction, result.
+ */
 function evaluateMirrorSyncGate(syncResult) {
   if (syncResult?.allInSync) {
     return {
@@ -73,6 +99,10 @@ function evaluateMirrorSyncGate(syncResult) {
     result: syncResult || null,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   WEIGHTED_SCORE_GATE,

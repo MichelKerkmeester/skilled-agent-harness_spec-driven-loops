@@ -1,9 +1,10 @@
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ cache.cjs — atomic append-only cache layer for the eval pipeline          ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * lib/cache.cjs
- *
- * Atomic, append-only cache layer for the 002-eval-rig pipeline.
+ * Atomic, append-only cache layer for the eval-rig pipeline.
  * Two cache kinds live side by side under cache/:
  *   cache/det/      Deterministic check results (regex-checkable; grader-independent).
  *   cache/grader/   Grader-call results (depend on rubric_version + grader_model_build_hash).
@@ -22,18 +23,25 @@
  * TODO: replace with the real API model-version header captured at dispatch time
  *       (read from response headers when the grader call lands).
  *
- * F017-P2-13a (017 review): the cache root is run-scoped. write_atomic / read /
- * cache_hit / read_index / rebuild_index accept an optional final cacheRoot
- * argument. When omitted they fall back to the legacy in-repo CACHE_ROOT so
- * existing callers keep working, but run-scoped callers (the grader harness)
- * pass a per-run outputs directory instead of writing into a shared in-repo
- * location that is trusted on the cache-hit path. This is the un-applied
- * analogue of the 015 score-candidate cache relocation (F-P1-11).
+ * The cache root is run-scoped. write_atomic / read / cache_hit / read_index /
+ * rebuild_index accept an optional final cacheRoot argument. When omitted they
+ * fall back to the legacy in-repo CACHE_ROOT so existing callers keep working,
+ * but run-scoped callers (the grader harness) pass a per-run outputs directory
+ * instead of writing into a shared in-repo location that is trusted on the
+ * cache-hit path.
  */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
 
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const PACKET_ROOT = path.resolve(__dirname, '..');
 const CACHE_ROOT = path.join(PACKET_ROOT, 'cache');
@@ -42,6 +50,10 @@ const LOCK_TTL_MS = 5 * 60 * 1000;
 const LOCK_RETRY_INTERVAL_MS = 50;
 const LOCK_WAIT_MAX_MS = 5 * 60 * 1000;
 const GRADER_MODEL_BUILD_HASH_PLACEHOLDER = 'claude-sonnet-4.6@2026-04-01';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function sha256Hex(input) {
   return crypto.createHash('sha256').update(input, 'utf8').digest('hex');
@@ -54,6 +66,16 @@ function canonicalConcat(parts) {
     .join('|');
 }
 
+/**
+ * Derive a deterministic-check cache key from its canonicalized input bundle.
+ *
+ * @param {Object} input - Key components.
+ * @param {string} input.variant_hash - Variant identity hash.
+ * @param {string} input.fixture_id - Fixture identifier.
+ * @param {string} input.check_name - Deterministic check name.
+ * @param {string} [input.check_version] - Check version (defaults to '1.0.0').
+ * @returns {string} 32-char SHA-256 hex prefix.
+ */
 function deriveDetKey({ variant_hash, fixture_id, check_name, check_version }) {
   if (!variant_hash || !fixture_id || !check_name) {
     throw new Error('derive_det_key requires variant_hash, fixture_id, check_name');
@@ -68,6 +90,18 @@ function deriveDetKey({ variant_hash, fixture_id, check_name, check_version }) {
   return sha256Hex(concat).slice(0, 32);
 }
 
+/**
+ * Derive a grader-call cache key from its canonicalized input bundle.
+ *
+ * @param {Object} input - Key components.
+ * @param {string} input.variant_hash - Variant identity hash.
+ * @param {string} input.fixture_id - Fixture identifier.
+ * @param {string} input.rubric_version - Rubric version.
+ * @param {string} [input.grader_model_build_hash] - Grader model build hash (defaults to placeholder).
+ * @param {string} input.dim_id - Scoring dimension id.
+ * @param {string} input.swe16_output_hash - Hash of the candidate output under grade.
+ * @returns {string} 32-char SHA-256 hex prefix.
+ */
 function deriveGraderKey({
   variant_hash,
   fixture_id,
@@ -100,7 +134,7 @@ function deriveGraderKey({
   return sha256Hex(concat).slice(0, 32);
 }
 
-// F017-P2-13a: resolve the active cache root. Callers may pass a run-scoped dir;
+// Resolve the active cache root. Callers may pass a run-scoped dir;
 // undefined falls back to the legacy in-repo CACHE_ROOT for backward compatibility.
 function resolveCacheRoot(cacheRoot) {
   return cacheRoot ? path.resolve(cacheRoot) : CACHE_ROOT;
@@ -173,6 +207,20 @@ function releaseLock(lockPath) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Atomically write a cache blob and append its index row under a per-key lock.
+ *
+ * @param {string} kind - Cache kind ('det' or 'grader').
+ * @param {string} key - Cache key.
+ * @param {string} outputText - Blob body text to persist.
+ * @param {Object} [metadata] - Extra metadata merged into the blob header and index row.
+ * @param {string} [cacheRoot] - Optional run-scoped cache root; falls back to legacy CACHE_ROOT.
+ * @returns {{key: string, target: string, kind: string}} Write descriptor.
+ */
 function writeAtomic(kind, key, outputText, metadata, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
@@ -212,6 +260,14 @@ function writeAtomic(kind, key, outputText, metadata, cacheRoot) {
   }
 }
 
+/**
+ * Read a cache blob and split its self-describing metadata header from the body.
+ *
+ * @param {string} kind - Cache kind ('det' or 'grader').
+ * @param {string} key - Cache key.
+ * @param {string} [cacheRoot] - Optional run-scoped cache root; falls back to legacy CACHE_ROOT.
+ * @returns {?{key: string, kind: string, metadata: Object, body: string}} Entry, or null if absent.
+ */
 function read(kind, key, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
@@ -235,10 +291,25 @@ function read(kind, key, cacheRoot) {
   return { key, kind, metadata, body };
 }
 
+/**
+ * Report whether a cache blob exists for the given kind and key.
+ *
+ * @param {string} kind - Cache kind ('det' or 'grader').
+ * @param {string} key - Cache key.
+ * @param {string} [cacheRoot] - Optional run-scoped cache root; falls back to legacy CACHE_ROOT.
+ * @returns {boolean} True when the blob exists.
+ */
 function cacheHit(kind, key, cacheRoot) {
   return fs.existsSync(blobPath(kind, key, cacheRoot));
 }
 
+/**
+ * Read and parse the append-only index for a cache kind.
+ *
+ * @param {string} kind - Cache kind ('det' or 'grader').
+ * @param {string} [cacheRoot] - Optional run-scoped cache root; falls back to legacy CACHE_ROOT.
+ * @returns {Array<Object>} Parsed index rows (malformed lines marked with parse_error).
+ */
 function readIndex(kind, cacheRoot) {
   ensureKindDir(kind, cacheRoot);
   const raw = fs.readFileSync(indexPath(kind, cacheRoot), 'utf8');
@@ -257,6 +328,13 @@ function readIndex(kind, cacheRoot) {
   return rows;
 }
 
+/**
+ * Rebuild the index for a cache kind by reconstructing it from blob headers.
+ *
+ * @param {string} kind - Cache kind ('det' or 'grader').
+ * @param {string} [cacheRoot] - Optional run-scoped cache root; falls back to legacy CACHE_ROOT.
+ * @returns {{kind: string, rebuilt_count: number}} Rebuild summary.
+ */
 function rebuildIndex(kind, cacheRoot) {
   if (!VALID_KINDS.has(kind)) {
     throw new Error(`unknown cache kind: ${kind}`);
@@ -289,6 +367,10 @@ function rebuildIndex(kind, cacheRoot) {
   fs.renameSync(tmp, indexPath(kind, cacheRoot));
   return { kind, rebuilt_count: rows.length };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   // exports as snake_case to match the spec contract

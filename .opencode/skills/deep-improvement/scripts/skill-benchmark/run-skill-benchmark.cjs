@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ run-skill-benchmark — Lane C orchestrator                                ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -17,6 +20,10 @@
  * orchestrator emits a complete, honest Mode A report today.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { routeSkillResources } = require('./router-replay.cjs');
@@ -28,8 +35,23 @@ const { renderReport } = require('./build-report.cjs');
 const { loadPlaybookScenarios } = require('./load-playbook-scenarios.cjs');
 const { dispatchScenario } = require('./executor-dispatch.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SKILLS_DIR = path.resolve(__dirname, '..', '..', '..'); // .opencode/skills
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Resolve a skill argument to an absolute root: a path/relative arg resolves
+ * as-is, a bare id resolves under .opencode/skills/.
+ *
+ * @param {string} skillArg - Skill path or bare id.
+ * @returns {string} Absolute skill root dir.
+ */
 function resolveSkillRoot(skillArg) {
   if (skillArg.includes('/') || skillArg.startsWith('.')) return path.resolve(skillArg);
   return path.join(SKILLS_DIR, skillArg);
@@ -39,8 +61,14 @@ function resolveSkillId(skillRoot) {
   return path.basename(skillRoot);
 }
 
-// Fixtures: assets/skill-benchmark/fixtures/<skill-id>/ with <id>.public.json +
-// <id>.private.json pairs. Falls back to the --fixtures-dir override.
+/**
+ * Load public/private fixture pairs from a fixtures dir
+ * (assets/skill-benchmark/fixtures/<skill-id>/ with <id>.public.json +
+ * <id>.private.json pairs). Falls back to the --fixtures-dir override.
+ *
+ * @param {string} fixturesDir - Directory containing fixture pairs.
+ * @returns {Array<Object>} Loaded fixture rows (malformed pairs carry loadError).
+ */
 function loadFixtures(fixturesDir) {
   const out = [];
   if (!fs.existsSync(fixturesDir)) return out;
@@ -135,6 +163,17 @@ function runPlaybook({ skillRoot, skillId, traceMode, advisorMode, executor, pla
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Run the Lane C benchmark: resolve skill, D5 connectivity gate, score scenarios
+ * (legacy fixtures or playbook), aggregate, and write report.{json,md}.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @returns {number} Process exit code (0 success, 2 on missing SKILL.md).
+ */
 function run(args) {
   const skillRoot = resolveSkillRoot(args.skill);
   const skillId = resolveSkillId(skillRoot);
@@ -186,6 +225,14 @@ function run(args) {
 // advisory D4_task_outcome aggregate, and re-writes report.{json,md}.
 const DEFAULT_D4R_SCENARIOS = ['LS-001', 'LS-002', 'LS-003', 'LS-004', 'SD-002'];
 
+/**
+ * Opt-in D4-R pass: re-read the written report, run the task-outcome ablation on
+ * the chosen scenarios, attach each row's d4TaskOutcome, recompute the advisory
+ * D4_task_outcome aggregate, and re-write report.{json,md}.
+ *
+ * @param {Object} args - Parsed CLI args.
+ * @returns {Promise<number>} Process exit code (0 on success).
+ */
 async function augmentWithD4R(args) {
   const { runD4RAblation } = require('./d4-ablation.cjs');
   const skillRoot = resolveSkillRoot(args.skill);
@@ -220,6 +267,10 @@ async function augmentWithD4R(args) {
   process.stdout.write(`  D4-R: ${scored} scenario(s) scored; advisory D4_task_outcome=${d4TaskAvg == null ? 'null' : d4TaskAvg}\n`);
   return 0;
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { run, augmentWithD4R, resolveSkillRoot, loadFixtures };
 

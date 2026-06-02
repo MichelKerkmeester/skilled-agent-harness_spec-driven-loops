@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ dispute.cjs — D4 grader confidence-threshold dual-grader escalation       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * grader/dispute.cjs
- *
  * Confidence-threshold recovery hook for D4 grader. Decides when to escalate
  * to a dual-grader adversarial second call, computes dispute metrics, returns
  * median + dispute flag.
@@ -18,16 +19,36 @@
  * call with adversarial framing, NOT a different CLI/model.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
 const harness = require('./harness.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const CONFIDENCE_THRESHOLD = parseFloat(process.env.GRADER_CONFIDENCE_THRESHOLD || '0.7');
 const DISPUTE_RATE_THRESHOLD = parseFloat(process.env.GRADER_DISPUTE_RATE_THRESHOLD || '0.15');
 const DISPUTE_DELTA_THRESHOLD = parseFloat(process.env.GRADER_DISPUTE_DELTA || '0.15');
 const RECENT_ITERS_WINDOW = parseInt(process.env.GRADER_RECENT_ITERS || '3', 10);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Decide whether to escalate D4 grading to a dual-grader adversarial second call.
+ *
+ * @param {Object} opts - Escalation inputs.
+ * @param {Object} [opts.last_grader_result] - Most recent grader result (checked for low confidence).
+ * @param {string} [opts.state_jsonl_path] - Path to the loop state JSONL (checked for recent dispute rate).
+ * @returns {{escalate: boolean, reason?: string, confidence?: number, rate?: number, disputes?: number, total?: number}} Escalation decision.
+ */
 function shouldEscalateToDualGrader(opts) {
   const { last_grader_result, state_jsonl_path } = opts;
 
@@ -60,11 +81,17 @@ function shouldEscalateToDualGrader(opts) {
   return { escalate: false };
 }
 
+/**
+ * Dispatch the adversarial grader (skeptic system prompt) for a second D4 call.
+ *
+ * @param {Object} opts - Grader options forwarded to harness.gradeD4.
+ * @returns {Promise<Object>} Adversarial grader result.
+ */
 async function adversarialSecondCall(opts) {
   // Dispatches the adversarial grader (system-skeptic.md as system prompt).
-  // F-P2-7 (122 review): pass the skeptic prompt path via harness DI
-  // (`system_prompt_path`) instead of globally monkey-patching fs.readFileSync —
-  // the old swap was not concurrency-safe and broke testability.
+  // Pass the skeptic prompt path via harness DI (`system_prompt_path`) instead
+  // of globally monkey-patching fs.readFileSync — the old swap was not
+  // concurrency-safe and broke testability.
   const skepticPromptPath = path.join(__dirname, 'prompts', 'system-skeptic.md');
   return harness.gradeD4({
     ...opts,
@@ -74,6 +101,12 @@ async function adversarialSecondCall(opts) {
   });
 }
 
+/**
+ * Run the primary D4 grader and, when escalation triggers, the adversarial second call.
+ *
+ * @param {Object} opts - Grader options forwarded to harness.gradeD4.
+ * @returns {Promise<Object>} Single- or dual-mode result with median + dispute flag when escalated.
+ */
 async function dualGraderInvocation(opts) {
   const primary = await harness.gradeD4(opts);
   const escalate = shouldEscalateToDualGrader({ last_grader_result: primary, ...opts });
@@ -95,6 +128,10 @@ async function dualGraderInvocation(opts) {
     dispute,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   shouldEscalateToDualGrader,

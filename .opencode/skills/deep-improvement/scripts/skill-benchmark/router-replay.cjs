@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ router-replay — Mode A deterministic in-skill smart-router replay        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -16,10 +19,22 @@
  * Exit: 0 on a successful replay (even with zero intents), 2 on unparseable router.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const AMBIGUITY_DELTA = 1; // mirror the in-skill router: keep near-tied intents
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function readSkillMd(skillRoot) {
   const p = path.join(skillRoot, 'SKILL.md');
@@ -117,6 +132,15 @@ function findReferencedRouterDoc(skillMdText, skillRoot) {
   return fs.existsSync(conventional) ? conventional : null;
 }
 
+/**
+ * Extract the in-skill router (INTENT_SIGNALS + RESOURCE_MAP + DEFAULT_RESOURCE)
+ * from SKILL.md, falling back to a referenced router doc when the inline block
+ * is absent.
+ *
+ * @param {string} skillMdText - The SKILL.md text.
+ * @param {string} skillRoot - Skill root dir (for resolving referenced docs).
+ * @returns {{intentSignals:Object,resourceMap:Object,defaultResource:string[],parseable:boolean,routerSource:string}} Parsed router.
+ */
 function parseRouter(skillMdText, skillRoot) {
   let intentSignals = parseIntentSignals(extractDictBody(skillMdText, 'INTENT_SIGNALS'));
   let resourceMap = parseResourceMap(extractDictBody(skillMdText, 'RESOURCE_MAP'));
@@ -143,6 +167,14 @@ function parseRouter(skillMdText, skillRoot) {
   return { intentSignals, resourceMap, defaultResource, parseable, routerSource };
 }
 
+/**
+ * Score each intent by summing its weight for every keyword that is a substring
+ * of the lowercased task, keeping only positive-scoring intents (sorted desc).
+ *
+ * @param {string} taskLower - Lowercased task text.
+ * @param {Object} intentSignals - Map of intent -> {weight, keywords}.
+ * @returns {Array<{intent:string,score:number}>} Scored intents, highest first.
+ */
 function scoreIntents(taskLower, intentSignals) {
   const scores = [];
   for (const [key, sig] of Object.entries(intentSignals)) {
@@ -156,6 +188,13 @@ function scoreIntents(taskLower, intentSignals) {
   return scores;
 }
 
+/**
+ * Select intents within AMBIGUITY_DELTA of the top score (keeps near-tied
+ * intents, mirroring the in-skill router).
+ *
+ * @param {Array<{intent:string,score:number}>} scores - Scored intents, highest first.
+ * @returns {string[]} Selected intent keys.
+ */
 function selectIntents(scores) {
   if (scores.length === 0) return [];
   const top = scores[0].score;
@@ -202,7 +241,16 @@ function detectOpencodeLanguage(taskLower) {
   return null;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
+ * Replay the in-skill router for a task and return the routed resources.
+ *
+ * @param {Object} args - Routing inputs.
+ * @param {string} args.skillRoot - Skill root dir containing SKILL.md.
+ * @param {string} args.taskText - Task text to route.
  * @returns {{ parseable: boolean, intents: string[], resources: string[],
  *   missingResources: string[], scores: Array<{intent:string,score:number}>, surface?: string }}
  */
@@ -258,6 +306,10 @@ function routeSkillResources({ skillRoot, taskText }) {
   const missingResources = resources.filter((r) => !fs.existsSync(path.join(skillRoot, r)));
   return { parseable: true, intents, resources, missingResources, scores };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { routeSkillResources, parseRouter, scoreIntents, selectIntents };
 

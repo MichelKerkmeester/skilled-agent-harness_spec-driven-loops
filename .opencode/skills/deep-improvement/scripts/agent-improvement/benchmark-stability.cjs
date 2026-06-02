@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ Benchmark Stability — Score Variance & Weight Optimization Advisory     ║
+// ║ benchmark-stability — score variance & weight optimization advisory      ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ bundle-gate — D2 import/export/smoke-run bundle verification gate        ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
+
 'use strict';
 
 /**
- * scripts/deterministic/bundle-gate.cjs
- *
  * D2 Bundle-gate check (rubric weight 0.30, HARD GATE on smoke-run env failure).
  *
  * Three-layer verification per `feedback_bundle_gate_smoke_run`:
@@ -29,9 +31,17 @@
  *   node scripts/deterministic/bundle-gate.cjs <fixture.json> <output.md>
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const VERSION = '1.0.0';
 const PACKET_ROOT = path.resolve(__dirname, '..', '..');
@@ -46,6 +56,10 @@ const ENV_FAILURE_PATTERNS = [
   /Permission denied/i,
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload) + '\n');
 }
@@ -59,6 +73,12 @@ function loadOutput(p) {
   return fs.readFileSync(p, 'utf8');
 }
 
+/**
+ * Extract import/require specifiers from output text.
+ *
+ * @param {string} text - Output text to scan.
+ * @returns {string[]} De-duplicated list of import/require specifiers.
+ */
 function extractImports(text) {
   const imports = [];
   const importRe = /^\s*import\s+(?:[^'"`]+\s+from\s+)?['"`]([^'"`]+)['"`]/gm;
@@ -69,6 +89,12 @@ function extractImports(text) {
   return Array.from(new Set(imports));
 }
 
+/**
+ * Extract declared exports (ESM and CommonJS forms) from output text.
+ *
+ * @param {string} text - Output text to scan.
+ * @returns {Array<{name: string, kind: string}>} Export descriptors with name and kind.
+ */
 function extractExports(text) {
   const exports = [];
   const esmRe = /^\s*export\s+(?:default\s+)?(?:async\s+)?(?:function|const|let|var|class)\s+([A-Za-z_$][A-Za-z0-9_$]*)/gm;
@@ -199,6 +225,17 @@ function scoreLayer3(fixture) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score an output against the three bundle-gate layers and combine into a verdict.
+ *
+ * @param {Object} fixture - Fixture descriptor (acceptance, scope).
+ * @param {string} text - Output text to score.
+ * @returns {Object} Score payload with score, passed, hard_gate_failed, details, version.
+ */
 function scoreOutput(fixture, text) {
   const l1 = scoreLayer1(text);
   const l2 = scoreLayer2(text);
@@ -243,5 +280,9 @@ function main() {
 if (require.main === module) {
   main();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scoreOutput, extractImports, extractExports, VERSION };

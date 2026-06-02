@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ preplanning-regex.cjs — D5 pre-plan structure deterministic check         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * scripts/deterministic/preplanning-regex.cjs
- *
  * D5 Pre-plan structure check (rubric weight 0.10, never a hard gate).
  *
  * Looks for a <pre-plan> ... </pre-plan> block in the output. Scores the
@@ -26,10 +27,22 @@
  *   node scripts/deterministic/preplanning-regex.cjs <fixture.json> <output.md>
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const VERSION = '1.0.0';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function emit(payload) {
   process.stdout.write(JSON.stringify(payload) + '\n');
@@ -84,6 +97,16 @@ function stepHasVerification(step) {
   return false;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score the <pre-plan> block in an output against the three D5 quality signals.
+ *
+ * @param {string} text - Full candidate output text to inspect.
+ * @returns {{score: number, passed: boolean, details: Object, version: string}} Score result.
+ */
 function scoreBlock(text) {
   const block = findPrePlanBlock(text);
   if (!block) {
@@ -148,5 +171,9 @@ function main() {
 if (require.main === module) {
   main();
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scoreBlock, VERSION };

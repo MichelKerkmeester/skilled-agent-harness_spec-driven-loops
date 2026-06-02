@@ -1,9 +1,10 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ loop-host — mode-switching entry point for deep-improvement runs         ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
- * scripts/loop-host.cjs
- *
  * Mode-switching entry point for deep-improvement. Routes between the
  * existing `agent-improvement` scoring path and the new `model-benchmark`
  * pipeline. This is the seam host that was previously missing
@@ -24,8 +25,16 @@
  * Unknown --mode values warn to stderr and fall back to agent-improvement.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const path = require('path');
 const { spawnSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SCRIPTS_ROOT = __dirname;
 const VALID_MODES = new Set(['agent-improvement', 'model-benchmark', 'skill-benchmark']);
@@ -94,6 +103,16 @@ const BENCHMARK_MATERIALIZE_OPTIONS = [
   'profiles-dir',
 ];
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Map a bare lane script name to its on-disk path at spawn time.
+ *
+ * @param {string} scriptName - Bare script name (e.g. 'score-candidate.cjs')
+ * @returns {string} Absolute path to the resolved lane script
+ */
 function resolveScriptPath(scriptName) {
   if (LANE_A.has(scriptName)) {
     return path.join(SCRIPTS_ROOT, '..', 'agent-improvement', scriptName);
@@ -109,6 +128,12 @@ function resolveScriptPath(scriptName) {
   return path.join(SCRIPTS_ROOT, scriptName);
 }
 
+/**
+ * Parse CLI argv into a flag map, supporting =-form and space-form values.
+ *
+ * @param {string[]} argv - Argument vector (without node/script entries)
+ * @returns {Object<string, string|boolean>} Parsed flags keyed by name
+ */
 function parseArgs(argv) {
   const args = {};
   for (let index = 0; index < argv.length; index += 1) {
@@ -137,6 +162,12 @@ function parseArgs(argv) {
   return args;
 }
 
+/**
+ * Resolve a raw --mode value to a valid mode, defaulting unknown values.
+ *
+ * @param {string|undefined} rawMode - Raw --mode flag value
+ * @returns {string} A valid mode, falling back to 'agent-improvement'
+ */
 function resolveMode(rawMode) {
   if (rawMode === undefined) return 'agent-improvement';
   if (VALID_MODES.has(rawMode)) return rawMode;
@@ -144,12 +175,18 @@ function resolveMode(rawMode) {
   return 'agent-improvement';
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
 /**
  * Pure planner: map (mode, args) -> the ordered script invocations to run.
  * Planning is separated from execution so the backward-compat identity gate
  * the identity gate can assert byte-identical plans for the default and explicit
  * agent-improvement routes without spawning anything.
  *
+ * @param {string} mode - Resolved run mode (agent-improvement, model-benchmark, skill-benchmark)
+ * @param {object} args - Parsed CLI args keyed by flag name
  * @returns {{ ok: true, steps: Array<{script: string, args: string[]}> } | { ok: false, error: string }}
  */
 function planInvocation(mode, args) {
@@ -238,5 +275,9 @@ function main() {
 }
 
 if (require.main === module) main();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { parseArgs, resolveMode, planInvocation, resolveScriptPath, VALID_MODES, LANE_SKILL_BENCHMARK };

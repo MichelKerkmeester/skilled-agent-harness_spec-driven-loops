@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ executor-dispatch — orchestrator-to-executor seam, normalized results    ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -15,8 +18,16 @@
  * dependency-free and CI-safe even before those siblings ship.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const path = require('path');
 const { routeSkillResources } = require('./router-replay.cjs');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 /**
  * Normalized observed-result the scorer consumes regardless of executor:
@@ -32,6 +43,13 @@ const { routeSkillResources } = require('./router-replay.cjs');
  *   routedOut?: bool, reason?: string, error?: string,
  *   raw: object
  * }
+ *
+ * @param {Object} [args] - Dispatch inputs.
+ * @param {Object} args.scenario - Scenario to execute.
+ * @param {string} args.skillRoot - Absolute path to the skill root.
+ * @param {string} args.traceMode - Trace mode ('live' or router/CI default).
+ * @param {string} [args.executor] - Optional executor override for live mode.
+ * @returns {Object} Normalized observed-result for the scorer.
  */
 function dispatchScenario({ scenario, skillRoot, traceMode, executor } = {}) {
   const classKind = scenario.classKind || 'routing';
@@ -97,5 +115,9 @@ function runOptionalExecutor(moduleRel, fnName, callArgs, base) {
   // Trust the sibling to return the normalized shape; backfill base fields.
   return { ...base, ...result };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { dispatchScenario };

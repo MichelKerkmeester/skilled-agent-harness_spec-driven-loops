@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ dispatch-model — model-agnostic CLI dispatcher for model-benchmark       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -28,10 +31,18 @@
  *     spawnSync; opts._backoff overrides the rate-limit backoff schedule.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 const { spawnSync, execSync } = require('child_process');
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // This file lives in scripts/model-benchmark/, one level deeper
 // than the original scripts/ root. SCRIPTS_ROOT is __dirname (model-benchmark/),
@@ -47,15 +58,30 @@ const SCRIPTS_ROOT = __dirname;
 const LEGACY_STATE_DIR = path.join(SCRIPTS_ROOT, '..', '..', 'state');
 const PAUSE_SENTINEL_BASENAME = '.benchmark-pause';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
+
 // F-P1-1 (014 review): grader/benchmark dispatch is a read-only judgment — the
 // model emits its verdict on stdout and must NOT mutate the workspace. Executors
 // run in their READ-ONLY mode by default. Write-capable evaluation is an explicit
 // opt-in via DEEP_AGENT_DISPATCH_WRITE=1 (e.g. an isolated temp workspace run).
+/**
+ * Report whether write-capable dispatch is opted in via DEEP_AGENT_DISPATCH_WRITE.
+ *
+ * @returns {boolean} True when the env var is '1' or 'true', else false.
+ */
 function writeCapableOptIn() {
   const v = process.env.DEEP_AGENT_DISPATCH_WRITE;
   return v === '1' || v === 'true';
 }
 
+/**
+ * Resolve the run-scoped state directory for the pause sentinel.
+ *
+ * @param {Object} opts - Dispatch options; opts.state_dir takes precedence.
+ * @returns {string} The chosen state directory path.
+ */
 function resolveStateDir(opts) {
   return (
     (opts && opts.state_dir) ||
@@ -64,6 +90,12 @@ function resolveStateDir(opts) {
   );
 }
 
+/**
+ * Build the absolute path to the pause sentinel file for a run.
+ *
+ * @param {Object} opts - Dispatch options forwarded to resolveStateDir.
+ * @returns {string} The pause sentinel file path.
+ */
 function pauseSentinelPath(opts) {
   return path.join(resolveStateDir(opts), PAUSE_SENTINEL_BASENAME);
 }
@@ -210,7 +242,7 @@ function probeUsageFromEvent(ev) {
 // Parse a cli-opencode `--format json` stdout (newline-delimited JSON events).
 // Returns { output, tokens_in, tokens_out, cost_usd, usage_parser_status }:
 //   - output: assembled assistant text from `type === 'text'` events, ordered by
-//     part start time (mirrors the sweep + 126/004 extractor shape). Empty string
+//     part start time (mirrors the sweep extractor shape). Empty string
 //     when no text events are present.
 //   - usage fields: extracted from the events when exposed, else null.
 //   - usage_parser_status: 'parsed' (≥1 usage field found), 'absent' (events
@@ -280,7 +312,7 @@ function buildEnvelope(raw, resolved, executor, latencyMs) {
 
   // cli-opencode emits the JSON event stream (--format json). Parse it for clean
   // assistant text + usage; fall back to raw stdout on a malformed/empty stream.
-  if (executor === 'cli-opencode' && typeof raw.stdout === 'string') {
+  if (!raw.mock && executor === 'cli-opencode' && typeof raw.stdout === 'string') {
     const parsed = parseOpencodeStream(raw.stdout);
     env.usage_parser_status = parsed.usage_parser_status;
     env.output = parsed.usage_parser_status === 'error'
@@ -299,6 +331,12 @@ function buildEnvelope(raw, resolved, executor, latencyMs) {
 // P2 (014-review traceability-3-5): emit a resume command that actually works — it removes
 // the REAL sentinel path (which is now run-scoped, not always state/) and invokes
 // the loop-host at its shipped lane path scripts/shared/loop-host.cjs.
+/**
+ * Build a copy-paste resume command that clears the sentinel and restarts the loop.
+ *
+ * @param {string} sentinelPath - Absolute path to the run's pause sentinel file.
+ * @returns {string} A shell command string that removes the sentinel and reruns the loop-host.
+ */
 function buildResumeHint(sentinelPath) {
   const root = repoRoot();
   const relSentinel = path.relative(root, sentinelPath) || sentinelPath;
@@ -308,6 +346,13 @@ function buildResumeHint(sentinelPath) {
   return `rm ${relSentinel} && node ${loopHost} --mode=model-benchmark --profile=<profile> --outputs-dir=<outputs-dir>`;
 }
 
+/**
+ * Write the pause sentinel file recording why dispatch paused.
+ *
+ * @param {string} reason - Human-readable pause reason recorded in the sentinel.
+ * @param {Object} opts - Dispatch options used to resolve the sentinel path.
+ * @returns {string} The path of the sentinel file that was written.
+ */
 function writePauseSentinel(reason, opts) {
   const sentinelPath = pauseSentinelPath(opts);
   fs.mkdirSync(path.dirname(sentinelPath), { recursive: true });
@@ -327,6 +372,12 @@ function writePauseSentinel(reason, opts) {
   return sentinelPath;
 }
 
+/**
+ * Report whether a pause sentinel file exists for the run.
+ *
+ * @param {Object} opts - Dispatch options used to resolve the sentinel path.
+ * @returns {boolean} True when the sentinel file exists, else false.
+ */
 function pauseSentinelExists(opts) {
   return fs.existsSync(pauseSentinelPath(opts));
 }
@@ -397,6 +448,16 @@ function buildSpawnSpec(executor, promptText, resolved) {
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Run a real executor dispatch with rate-limit backoff and pause-sentinel handling.
+ *
+ * @param {Object} opts - Dispatch options (prompt_file, executor, model, variant, cwd, timeout_ms, etc.).
+ * @returns {Object} The normalized dispatch envelope (ok, exit_code, stdout, stderr, attempts, paused, ...).
+ */
 function dispatchReal(opts) {
   // Wall-clock start for the normalized envelope's latency_ms (per-dispatch,
   // inclusive of retries/backoff — the real elapsed cost of getting a result).
@@ -448,7 +509,7 @@ function dispatchReal(opts) {
     lastStdout = res.stdout || '';
     lastStderr = res.stderr || '';
     if (res.status === 0) {
-      return { ok: true, exit_code: 0, stdout: lastStdout, stderr: lastStderr, attempts: attempt + 1 };
+      return buildEnvelope({ ok: true, exit_code: 0, stdout: lastStdout, stderr: lastStderr, attempts: attempt + 1 }, resolved, executor, Date.now() - t0);
     }
     const combined = lastStdout + lastStderr;
     if (detectRateLimit(combined)) {
@@ -467,13 +528,20 @@ function dispatchReal(opts) {
 }
 
 // Mock outputs are model-agnostic — they exercise the scoring pipeline for the dry-run gate.
+/**
+ * Return canned model-agnostic output for a dry-run dispatch, shaped by mock_mode.
+ *
+ * @param {Object} opts - Dispatch options; opts.mock_mode selects high-score/low-score/default.
+ * @returns {Object} A mock dispatch result (ok, exit_code, mock, stdout, stderr, attempts).
+ */
 function dispatchMock(opts) {
+  const t0 = Date.now();
   const mockMode = opts.mock_mode || 'default';
   const promptText = fs.readFileSync(opts.prompt_file, 'utf8');
   const promptHash = sha256Hex(promptText).slice(0, 8);
 
   if (mockMode === 'high-score') {
-    return {
+    return buildEnvelope({
       ok: true, exit_code: 0, mock: true, stderr: '', attempts: 1,
       stdout: `<pre-plan>
 1. Define formatBytes(n) with units ['B','KB','MB','GB'].
@@ -494,15 +562,15 @@ export function formatBytes(n: number): string {
 \`\`\`
 
 Variant hash: ${promptHash} (mock high-score)`,
-    };
+    }, { model: opts.model || null, variant: opts.variant || null }, opts.executor || null, Date.now() - t0);
   }
   if (mockMode === 'low-score') {
-    return {
+    return buildEnvelope({
       ok: true, exit_code: 0, mock: true, stderr: '', attempts: 1,
       stdout: `Here you go: \`export const formatBytes = vitest.computeBytes;\`. Used --reasoning-effort high.`,
-    };
+    }, { model: opts.model || null, variant: opts.variant || null }, opts.executor || null, Date.now() - t0);
   }
-  return {
+  return buildEnvelope({
     ok: true, exit_code: 0, mock: true, stderr: '', attempts: 1,
     stdout: `<pre-plan>
 1. Add formatBytes function.
@@ -516,9 +584,15 @@ export function formatBytes(n: number): string {
   return (n/1024/1024).toFixed(1) + ' MB';
 }
 \`\`\``,
-  };
+  }, { model: opts.model || null, variant: opts.variant || null }, opts.executor || null, Date.now() - t0);
 }
 
+/**
+ * Top-level dispatch: honor an existing pause sentinel, then route to mock or real.
+ *
+ * @param {Object} opts - Dispatch options (prompt_file, executor, model, mock, mock_mode, etc.).
+ * @returns {Object} The dispatch result envelope from the mock or real path.
+ */
 function dispatch(opts) {
   if (pauseSentinelExists(opts)) {
     const sentinelPath = pauseSentinelPath(opts);
@@ -570,11 +644,18 @@ function main() {
 
 if (require.main === module) main();
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 module.exports = {
   dispatch,
   dispatchReal,
   dispatchMock,
   buildSpawnSpec,
+  buildEnvelope,
+  parseOpencodeStream,
+  deriveProvider,
   KNOWN_EXECUTORS,
   resolveStateDir,
   pauseSentinelPath,

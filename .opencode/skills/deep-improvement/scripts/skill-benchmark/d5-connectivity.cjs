@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ d5-connectivity — static structural scan, the D5 hard gate               ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
 /**
@@ -13,10 +16,24 @@
  * strongest gate failure.
  */
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const path = require('path');
 const { parseRouter } = require('./router-replay.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * List every markdown reference under the skill's references/ and assets/ trees.
+ *
+ * @param {string} skillRoot - Absolute path to the skill root.
+ * @returns {string[]} Skill-root-relative paths to each markdown file found.
+ */
 function listMarkdownRefs(skillRoot) {
   const out = [];
   for (const dir of ['references', 'assets']) {
@@ -36,6 +53,10 @@ function listMarkdownRefs(skillRoot) {
 }
 
 /**
+ * Statically scan a skill's router connectivity and produce the D5 gate verdict.
+ *
+ * @param {Object} args - Scan inputs.
+ * @param {string} args.skillRoot - Absolute path to the skill root.
  * @returns {{ score:number, gateFailed:boolean, findings:Array,
  *   deadResourcePaths:string[], deadIntentKeys:string[], orphanReferences:string[],
  *   pathEscapes:string[], routerParseable:boolean }}
@@ -102,6 +123,10 @@ function scanConnectivity({ skillRoot }) {
 
   return { score, gateFailed, routerParseable: router.parseable, deadResourcePaths, deadIntentKeys, orphanReferences, pathEscapes, findings };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = { scanConnectivity, listMarkdownRefs };
 

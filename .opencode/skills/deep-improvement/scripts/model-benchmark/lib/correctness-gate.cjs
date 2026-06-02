@@ -1,24 +1,38 @@
-// Correctness as a GATE, never a blended score. This is the direct fix for the
-// saturation mis-read: a one-off bake-off ranked frameworks on a correctness
-// column where every cell scored 100%, so the "winner" was really a
-// format/length artifact dressed up as a correctness win.
-//
-// The rule: a group is ELIGIBLE iff its correctness_mean clears the gate
-// threshold (default 1.0 for hidden deterministic oracles). Among the eligible:
-//   - if correctness still SEPARATES them, correctness is the ranking key;
-//   - if correctness is saturated (every eligible group tied at the top, so the
-//     column carries zero ranking signal), correctness is DROPPED as the key and
-//     survivors rank on format-adherence (desc) then efficiency / fewer output
-//     words (asc). Correctness is never folded into a blended score either way.
-//
-// Dependency-free (Node stdlib only); pure function, no I/O.
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ correctness-gate — correctness as an eligibility gate, never a blend       ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 
 'use strict';
+
+/**
+ * Correctness as a GATE, never a blended score. This is the direct fix for the
+ * saturation mis-read: a one-off bake-off ranked frameworks on a correctness
+ * column where every cell scored 100%, so the "winner" was really a
+ * format/length artifact dressed up as a correctness win.
+ *
+ * The rule: a group is ELIGIBLE iff its correctness_mean clears the gate
+ * threshold (default 1.0 for hidden deterministic oracles). Among the eligible:
+ *   - if correctness still SEPARATES them, correctness is the ranking key;
+ *   - if correctness is saturated (every eligible group tied at the top, so the
+ *     column carries zero ranking signal), correctness is DROPPED as the key and
+ *     survivors rank on format-adherence (desc) then efficiency / fewer output
+ *     words (asc). Correctness is never folded into a blended score either way.
+ *
+ * Dependency-free (Node stdlib only); pure function, no I/O.
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 const DEFAULT_THRESHOLD = 1.0;
 // Correctness means within this band are treated as the same level, so floating
 // rounding of clean rates (e.g. 5/5 vs 10/10) does not fake a separation.
 const SEPARATION_EPSILON = 1e-9;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 function isFiniteNumber(v) {
   return typeof v === 'number' && Number.isFinite(v);
@@ -85,28 +99,28 @@ function decideRankingKey(rankedSurvivors) {
   return 'efficiency';
 }
 
-// Apply the correctness gate to a list of aggregated groups.
-//
-// groups: [{ group, rows, correctness_mean, format_adherent_rate,
-//            output_words_median, ... }]
-// gateCfg: { threshold? }  (default threshold 1.0)
-//
-// Returns:
-//   {
-//     threshold,
-//     ranking_key: 'correctness' | 'format' | 'efficiency',
-//     correctness_saturated: boolean,
-//     eligible:  [...groups that cleared the gate, each + {eligible:true, rank}],
-//     ineligible:[...groups below the gate, each + {eligible:false, rank:null}],
-//     ranked:    [...eligible groups in rank order]
-//   }
-//
-// Ranking semantics:
-//   - correctness separates eligible -> ranking_key 'correctness', rank by
-//     correctness desc (format/efficiency break exact ties).
-//   - correctness saturated among eligible -> correctness DROPPED; rank by
-//     format desc then efficiency (fewer words) asc; ranking_key reflects the
-//     axis that actually split the top pair.
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Apply the correctness gate to a list of aggregated groups.
+ *
+ * Ranking semantics:
+ *   - correctness separates eligible -> ranking_key 'correctness', rank by
+ *     correctness desc (format/efficiency break exact ties).
+ *   - correctness saturated among eligible -> correctness DROPPED; rank by
+ *     format desc then efficiency (fewer words) asc; ranking_key reflects the
+ *     axis that actually split the top pair.
+ *
+ * @param {Array<Object>} groups - Aggregated groups: [{ group, rows,
+ *   correctness_mean, format_adherent_rate, output_words_median, ... }].
+ * @param {Object} [gateCfg] - Gate config: { threshold? } (default threshold 1.0).
+ * @returns {Object} { threshold, ranking_key: 'correctness'|'format'|'efficiency',
+ *   correctness_saturated, eligible (cleared groups + {eligible,rank}),
+ *   ineligible (below-gate groups + {eligible:false,rank:null}),
+ *   ranked (eligible groups in rank order) }.
+ */
 function applyGate(groups, gateCfg) {
   const cfg = gateCfg || {};
   const threshold = isFiniteNumber(cfg.threshold) ? cfg.threshold : DEFAULT_THRESHOLD;
@@ -156,6 +170,10 @@ function applyGate(groups, gateCfg) {
     ranked,
   };
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   applyGate,

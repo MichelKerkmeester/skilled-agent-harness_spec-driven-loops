@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+// ╔══════════════════════════════════════════════════════════════════════════╗
+// ║ sweep-benchmark — config-driven benchmark matrix expander and scorer     ║
+// ╚══════════════════════════════════════════════════════════════════════════╝
 // Matrix expander for the config-driven model-benchmark framework. It turns ONE
 // profile into a cartesian sweep of cells and scores each cell, with NO
 // mode-specific branches: the runner always does expand matrix -> render prompt
@@ -16,6 +19,10 @@
 
 'use strict';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 1. IMPORTS/REQUIRES
+// ─────────────────────────────────────────────────────────────────────────────
+
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -26,6 +33,10 @@ const { scoreCodeTask } = require('./lib/code-task-scorer.cjs');
 const { report } = require('./lib/sweep-reporter.cjs');
 const dispatcher = require('./dispatch-model.cjs');
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 2. CONSTANTS
+// ─────────────────────────────────────────────────────────────────────────────
+
 const SCRIPTS_ROOT = __dirname;
 // Canonical framework definitions live in sk-prompt; benchmark consumes them.
 // From scripts/model-benchmark/, sk-prompt is five levels up to the skills root.
@@ -34,6 +45,10 @@ const DEFAULT_REGISTRY_PATH = path.resolve(
   '..', '..', '..',
   'sk-prompt', 'assets', 'framework-registry.json',
 );
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3. HELPERS
+// ─────────────────────────────────────────────────────────────────────────────
 
 // ---------------------------------------------------------------------------
 // Fixture loading. Profiles reference fixtures by their internal `id`, which is
@@ -53,6 +68,12 @@ function resolveFixtureDir(profile, opts) {
   return path.resolve(root, raw);
 }
 
+/**
+ * Scan a fixture directory and index every JSON fixture by parsed id and by filename stem.
+ *
+ * @param {string} fixtureDir - Absolute path to the directory of fixture JSON files.
+ * @returns {{byId: Map, byFile: Map}} Maps keyed by fixture id and by filename stem.
+ */
 function loadFixtureIndex(fixtureDir) {
   let entries;
   try {
@@ -78,6 +99,13 @@ function loadFixtureIndex(fixtureDir) {
   return { byId, byFile };
 }
 
+/**
+ * Resolve a profile's requested fixtures against the index by id then filename.
+ *
+ * @param {Object} profile - The benchmark profile selecting fixtures.
+ * @param {{byId: Map, byFile: Map}} index - The fixture index from loadFixtureIndex.
+ * @returns {Array<Object>} The resolved fixture objects in request order.
+ */
 function selectFixtures(profile, index) {
   const sel = profile.fixtureSelection || {};
   const requested =
@@ -104,12 +132,24 @@ function selectFixtures(profile, index) {
 // becomes a singleton so the product is uniform. NO branch on profile.mode.
 // ---------------------------------------------------------------------------
 
+/**
+ * Normalize the models axis to a non-empty list, collapsing an absent axis to one default cell.
+ *
+ * @param {Object} profile - The benchmark profile.
+ * @returns {Array<Object>} The models list, or a single empty-object slot when none are defined.
+ */
 function axisModels(profile) {
   const ms = Array.isArray(profile.models) ? profile.models : [];
   // A profile with no models still runs one cell against the dispatcher default.
   return ms.length ? ms : [{}];
 }
 
+/**
+ * Normalize the variants axis to a non-empty list, using a single null slot when absent.
+ *
+ * @param {Object} profile - The benchmark profile.
+ * @returns {Array} The variants list, or [null] to defer to each model entry's own variant.
+ */
 function axisVariants(profile) {
   // Top-level variants[] is the explicit sweep axis (e.g. reasoning ablation).
   // When absent, a single null slot means "use the model entry's own variant".
@@ -117,6 +157,12 @@ function axisVariants(profile) {
   return vs.length ? vs : [null];
 }
 
+/**
+ * Normalize the frameworks axis to a non-empty list, using a single null slot when absent.
+ *
+ * @param {Object} profile - The benchmark profile.
+ * @returns {Array} The frameworks list, or [null] to dispatch the bare fixture task.
+ */
 function axisFrameworks(profile) {
   const fws = Array.isArray(profile.frameworks) ? profile.frameworks : [];
   // No framework axis means the fixture task is dispatched without framework
@@ -124,6 +170,13 @@ function axisFrameworks(profile) {
   return fws.length ? fws : [null];
 }
 
+/**
+ * Resolve the per-cell sample count, preferring an opts override over the profile setting.
+ *
+ * @param {Object} profile - The benchmark profile (sampling.samplesPerCell).
+ * @param {Object} opts - Options; opts.samplesPerCell overrides when a positive integer.
+ * @returns {number} The number of samples per cell (defaults to 1).
+ */
 function sampleCount(profile, opts) {
   if (opts && Number.isInteger(opts.samplesPerCell) && opts.samplesPerCell > 0) {
     return opts.samplesPerCell;
@@ -134,6 +187,13 @@ function sampleCount(profile, opts) {
 
 // Build the flat list of cells (one per model x variant x framework x fixture).
 // Samples are expanded later so a cell keeps a stable identity across its runs.
+/**
+ * Expand the model x variant x framework x fixture axes into a flat list of cells.
+ *
+ * @param {Object} profile - The benchmark profile defining the sweep axes.
+ * @param {Array<Object>} fixtures - The resolved fixtures to sweep across.
+ * @returns {Array<Object>} The flat list of cell descriptors, one per axis combination.
+ */
 function expandCells(profile, fixtures) {
   const models = axisModels(profile);
   const variants = axisVariants(profile);
@@ -186,6 +246,13 @@ function expandCells(profile, fixtures) {
 
 // Build the prompt for a cell. With a framework, render it through the registry
 // slot interpolator; without one, fall back to the fixture's bare task text.
+/**
+ * Build the dispatch prompt for a cell from its framework or bare fixture task.
+ *
+ * @param {Object} cell - The cell descriptor (framework, fixture).
+ * @param {Object} registry - The loaded framework registry for slot interpolation.
+ * @returns {string} The rendered prompt text to dispatch.
+ */
 function buildPrompt(cell, registry) {
   if (!cell.framework) {
     const task = cell.fixture && cell.fixture.task;
@@ -220,45 +287,62 @@ function dispatchCell(cell, promptText, opts) {
     };
   }
 
-  // Materialize the prompt to a temp file: every executor in dispatch-model.cjs
-  // reads its prompt from a file path.
+  // Materialize the prompt to a per-cell temp dir: every executor in
+  // dispatch-model.cjs reads its prompt from a file path, and the dispatch runs
+  // with that throwaway dir as its cwd so an agentic model's stray writes land
+  // there (and are discarded), never polluting the repo. The dir is removed in
+  // the finally so each cell is fully isolated and leaves nothing behind.
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'sweep-cell-'));
   const promptFile = path.join(dir, 'prompt.txt');
   fs.writeFileSync(promptFile, promptText, 'utf8');
+  // Test-only seam: opts._dispatch stands in for the CLI dispatcher so a test
+  // can capture the cwd/prompt-file without spawning anything. Production callers
+  // never set it, so the universal dispatcher is used.
+  const dispatchFn = typeof opts._dispatch === 'function' ? opts._dispatch : dispatcher.dispatch;
 
-  const res = dispatcher.dispatch({
-    prompt_file: promptFile,
-    executor: cell.executor || undefined,
-    model: cell.modelId || undefined,
-    variant: cell.variant || undefined,
-    timeout_ms: opts.timeout_ms,
-    mock: !!opts.mock,
-    mock_mode: opts.mock_mode,
-    state_dir: opts.state_dir,
-    cwd: opts.cwd,
-  });
+  try {
+    const res = dispatchFn({
+      prompt_file: promptFile,
+      executor: cell.executor || undefined,
+      model: cell.modelId || undefined,
+      variant: cell.variant || undefined,
+      timeout_ms: opts.timeout_ms,
+      mock: !!opts.mock,
+      mock_mode: opts.mock_mode,
+      state_dir: opts.state_dir,
+      cwd: dir,
+    });
 
-  // The dispatcher returns concatenated stdout. For a real cli-opencode run that
-  // is a JSONL event stream; pull the assistant text out of it. Mock output and
-  // plain-text executors return the assistant text directly on stdout.
-  const stdout = res.stdout || '';
-  const assistantText = res.mock ? stdout : extractAssistantText(stdout) || stdout;
+    // The dispatcher returns concatenated stdout. For a real cli-opencode run that
+    // is a JSONL event stream; pull the assistant text out of it. Mock output and
+    // plain-text executors return the assistant text directly on stdout.
+    const stdout = res.stdout || '';
+    const assistantText = res.mock ? stdout : extractAssistantText(stdout) || stdout;
 
-  return {
-    assistantText,
-    dispatch_ok: !!res.ok && assistantText.trim().length > 0,
-    exit_code: typeof res.exit_code === 'number' ? res.exit_code : -1,
-    latency_ms: Date.now() - t0,
-    attempts: res.attempts || 0,
-    paused: res.paused || false,
-    pause_reason: res.pause_reason || null,
-    mock: !!res.mock,
-  };
+    return {
+      assistantText,
+      dispatch_ok: !!res.ok && assistantText.trim().length > 0,
+      exit_code: typeof res.exit_code === 'number' ? res.exit_code : -1,
+      latency_ms: Date.now() - t0,
+      attempts: res.attempts || 0,
+      paused: res.paused || false,
+      pause_reason: res.pause_reason || null,
+      mock: !!res.mock,
+    };
+  } finally {
+    fs.rmSync(dir, { recursive: true, force: true });
+  }
 }
 
 // Pull the concatenated assistant text out of a cli-opencode JSONL event stream.
 // Falls back to returning the raw string when it is not an event stream (so a
 // plain-text executor's stdout passes through unchanged).
+/**
+ * Extract concatenated assistant text from a cli-opencode JSONL event stream.
+ *
+ * @param {string} stdout - The raw dispatch stdout, possibly a JSONL event stream.
+ * @returns {?string} The ordered assistant text, or null when stdout is not an event stream.
+ */
 function extractAssistantText(stdout) {
   const lines = String(stdout).split(/\r?\n/).filter(Boolean);
   const parts = [];
@@ -279,6 +363,10 @@ function extractAssistantText(stdout) {
   parts.sort((x, y) => x.start - y.start);
   return parts.map((p) => p.text).join('');
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
 
 // ---------------------------------------------------------------------------
 // The sweep.
@@ -305,6 +393,13 @@ function resolveOutDir(profile, opts) {
 //   report        : set false to skip the aggregate.json + synthesis.md report
 //                   (default true); the report writes alongside results.json
 //                   only when an outDir is actually resolved
+/**
+ * Run the full benchmark sweep for a profile: expand cells, dispatch, score, and report.
+ *
+ * @param {Object} profile - The validated benchmark profile to sweep.
+ * @param {Object} opts - Sweep options (mock, mockResponder, samplesPerCell, registryPath, outDir, report, etc.).
+ * @returns {Object} The sweep result (profile, rows, meta, and aggregate/synthesis when reporting).
+ */
 function runSweep(profile, opts) {
   const options = opts || {};
 
@@ -537,6 +632,10 @@ function gitRoot() {
 }
 
 if (require.main === module) main();
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5. EXPORTS
+// ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
   runSweep,
