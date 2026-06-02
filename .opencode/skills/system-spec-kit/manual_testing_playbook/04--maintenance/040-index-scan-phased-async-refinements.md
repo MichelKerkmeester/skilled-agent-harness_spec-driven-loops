@@ -9,7 +9,7 @@ description: "This scenario validates the index_scan phased-async refinements fo
 
 This scenario validates the phased-async refinements of `memory_index_scan` for `EX-039`, extending the basic `EX-014` coverage. The scan walks the workspace, commits lexical (BM25/FTS) rows first so documents are searchable immediately, then drains vectors asynchronously; a completed scan can therefore return `status: complete_with_pending_vectors` with a non-zero `pendingVectors` count while embeddings finish.
 
-The scan also reconciles moved files by packet identity rather than delete-then-reindex, enforces the migration-28 active-row logical-key uniqueness guard (at most one non-deprecated, non-constitutional row per logical key), and surfaces repair counts (`moveReconciled`, `staleDeleted`, orphan-sweep counts, `checkpointRepair`) in the response. The user-observable value is fast lexical availability plus a self-correcting index that does not duplicate or orphan rows when files move.
+The scan also reconciles a sibling spec-folder rename in place rather than delete-then-reindex — matching by packet_id only under a narrow guard (unchanged basename, same grandparent directory, and exactly one live old row) — enforces the migration-28 active-row logical-key uniqueness guard (at most one non-deprecated, non-constitutional row per logical key), and surfaces repair counts (`moveReconciled`, `staleDeleted`, orphan-sweep counts, `checkpointRepair`) in the response. The user-observable value is fast lexical availability plus a self-correcting index that does not duplicate or orphan rows when files move.
 
 ---
 
@@ -17,7 +17,7 @@ The scan also reconciles moved files by packet identity rather than delete-then-
 
 - Objective: Verify phased-async indexing, move reconciliation, active-row uniqueness, and repair counts.
 - Real user request: `I renamed a spec folder and re-ran the index. Are my docs still searchable immediately, and did the index avoid duplicating rows?`
-- Prompt: `Validate the index_scan phased-async refinements: confirm lexical rows are searchable before vectors drain (complete_with_pending_vectors with pendingVectors), a moved file is reconciled in place by packet identity (moveReconciled), the migration-28 active-row uniqueness guard holds, and the response surfaces repair counts. Return a concise pass/fail verdict with cited field names.`
+- Prompt: `Validate the index_scan phased-async refinements: confirm lexical rows are searchable before vectors drain (complete_with_pending_vectors with pendingVectors), a sibling folder rename is reconciled in place under the narrow packet_id guard (moveReconciled), the migration-28 active-row uniqueness guard holds, and the response surfaces repair counts. Return a concise pass/fail verdict with cited field names.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `status: complete_with_pending_vectors` with a non-zero `pendingVectors` when vectors still drain; lexical/BM25 rows searchable before vectors finish; `moveReconciled` > 0 when a tracked file moved; no duplicate active logical-key rows (mig 28); response carries `moveReconciled`, `staleDeleted`, orphan-sweep, and `checkpointRepair` counts.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -60,18 +60,18 @@ Inspect the `deferred`/`pendingVectors` handling and the `complete_with_pending_
 ### Prompt
 
 ```
-As a maintenance validation operator, validate packet_id move reconciliation against memory_index_scan after moving a tracked file to a new path. Verify the scan matches the vanished path to the new path by packet_id and doc type, updates the row in place (moveReconciled > 0), and does not delete-then-reindex. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a maintenance validation operator, validate move reconciliation against memory_index_scan after a sibling spec-folder rename (only the immediate folder name changes within the same parent). Verify the scan matches the vanished path to the new path when both delete and index candidate sets exist, the new graph-metadata.json carries a packet_id, the basename is unchanged, the grandparent directory is the same, and exactly one live old row matches — then updates the row in place (moveReconciled > 0) without delete-then-reindex. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. Move a tracked spec doc to a new path under the same packet identity.
+1. Rename a tracked spec folder in place (e.g. `012-old` -> `012-new`) so its docs keep the same basename and grandparent and the new graph-metadata.json keeps the same packet_id; this produces both a vanished old path and a new path in one scan.
 2. memory_index_scan(force:false) and capture `moveReconciled`.
-3. Confirm the row was updated in place (not re-embedded from scratch).
+3. Confirm the single live old row was updated in place (not re-embedded from scratch).
 
 ### Expected
 
-The scan reconciles the move before any delete+reindex cycle: vanished paths are matched to new paths by `packet_id` + doc type, the row is updated in place, and `moveReconciled` is non-zero. The content is not re-embedded.
+The scan reconciles the move before any delete+reindex cycle, but only under the narrow guard: both the delete and index candidate sets are non-empty, the new graph-metadata.json carries a `packet_id`, the old and new paths share the same basename and the same grandparent directory (a sibling folder rename), and exactly one live (non-failed) old row matches. When all hold, the row is updated in place, `moveReconciled` is non-zero, and the content is not re-embedded.
 
 ### Evidence
 
@@ -121,7 +121,7 @@ Inspect migration v28 (`idx_memory_logical_key_active_unique`) in `mcp_server/li
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
 - index_scan handler: `mcp_server/handlers/memory-index.ts` (phased-async `deferred`/`pendingVectors`/`complete_with_pending_vectors`, `reconcileMoves`, repair counts)
 - Active-row uniqueness: `mcp_server/lib/search/vector-index-schema.ts` (migration v28 `idx_memory_logical_key_active_unique`)
-- Move reconciliation: `mcp_server/lib/search/incremental-index.ts` (`reconcileMoves`)
+- Move reconciliation: `mcp_server/lib/storage/incremental-index.ts` (`reconcileMoves`)
 
 ---
 

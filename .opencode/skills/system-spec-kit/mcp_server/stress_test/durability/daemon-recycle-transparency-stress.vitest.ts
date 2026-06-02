@@ -11,12 +11,23 @@
 // retryable -32001 RETRYABLE_RECYCLE_ERROR and re-drives them itself). A protocol
 // version drift across the recycle fails closed with terminal -32002.
 //
-// This stress drives a flood of in-flight requests through the pending-request
-// tracker, simulates a recycle, and asserts the replay partition is correct under
-// load and that -32001 stays LIVE as the retryable recycle signal.
+// This stress drives a flood of in-flight requests through the REAL pending-request
+// tracker, then applies a LOCAL model of the replay DECISION (replayablePartition
+// below) under load, and asserts -32001 stays LIVE as the retryable recycle signal.
 //
-// ISOLATION: pure logic against the proxy module's exported __testing helpers and
-// frozen error constants. No socket, no spawned daemon, no production DB.
+// SCOPE: this exercises the production CLASSIFIER (__testing.classifyFrame /
+// createPendingRequestsTracker) plus the replay-partition DECISION — replayable
+// pending requests are re-sent, unsafe pending requests get a retryable recycle
+// signal. It does NOT drive the production replaySnapshot() closure itself
+// (a side-effecting closure inside createSessionProxy that enqueues to the live
+// socket/output queues, not a pure exported function). The production replay path
+// — fresh-socket re-send of replayable requests and the single -32001
+// RETRYABLE_RECYCLE_ERROR for unsafe/gapped requests — is covered end-to-end
+// against the real proxy in tests/launcher-session-proxy.vitest.ts.
+//
+// ISOLATION: the real tracker + classifier from the proxy module's exported
+// __testing helpers, the frozen error constants, and a local partition model. No
+// socket, no spawned daemon, no production DB.
 
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -73,10 +84,14 @@ function responseFrame(id: number): string {
   return JSON.stringify({ jsonrpc: '2.0', id, result: { ok: true } });
 }
 
-// Faithful model of the proxy's replaySnapshot(): replayable pending frames are
-// re-sent to the fresh backend; unsafe pending frames are dropped and the client
-// gets a retryable recycle error. Returns the partition for assertions.
-function replayAcrossRecycle(tracker: PendingTracker): {
+// Local model of the replay DECISION (NOT the production replaySnapshot() closure):
+// over the real tracker's pending snapshot, replayable frames are the ones that
+// would be re-sent to the fresh backend and unsafe frames are the ones that would
+// get a retryable recycle error (and be dropped from pending). Returns the
+// partition so the stress can assert the decision is correct under load. The
+// production closure's actual socket/output emission is covered in
+// tests/launcher-session-proxy.vitest.ts.
+function replayablePartition(tracker: PendingTracker): {
   resent: Array<string | number | null>;
   failedRetryable: Array<string | number | null>;
 } {
@@ -102,7 +117,7 @@ describe('durability: daemon RSS-recycle transparency (front-proxy replay)', () 
     expect(errorCodeOf('PROTOCOL_MISMATCH_ERROR')).toBe(-32002);
   });
 
-  it('replays in-flight idempotent reads and refuses in-flight mutations across a recycle under load', () => {
+  it('partitions in-flight idempotent reads (replay) from in-flight mutations (retryable) across a recycle under load', () => {
     const tracker = __testing.createPendingRequestsTracker();
 
     const expectReplayed: number[] = [];
@@ -125,17 +140,17 @@ describe('durability: daemon RSS-recycle transparency (front-proxy replay)', () 
 
     expect(tracker.pendingRequests.size).toBe(IN_FLIGHT);
 
-    // The backend daemon RSS-recycles. The proxy replays the pending snapshot
-    // against the fresh backend.
-    const { resent, failedRetryable } = replayAcrossRecycle(tracker);
+    // The backend daemon RSS-recycles. Model the replay DECISION over the real
+    // tracker's pending snapshot (production emission tested in the launcher unit suite).
+    const { resent, failedRetryable } = replayablePartition(tracker);
 
-    // Every idempotent read survives the recycle transparently (re-sent to the
-    // fresh backend); every unsafe mutation is refused with a retryable signal so
-    // the client re-drives it rather than risking a double mutation.
+    // Every idempotent read is partitioned as replayable (would be re-sent to the
+    // fresh backend); every unsafe mutation is partitioned as retryable so the
+    // client re-drives it rather than risking a double mutation.
     expect(resent.sort((a, b) => Number(a) - Number(b))).toEqual(expectReplayed);
     expect(failedRetryable.sort((a, b) => Number(a) - Number(b))).toEqual(expectRetryable);
 
-    // The replayable reads remain pending (awaiting the fresh backend's
+    // The replayable reads remain pending (would await the fresh backend's
     // response); the unsafe ones were dropped from the pending set.
     expect(tracker.pendingRequests.size).toBe(expectReplayed.length);
   });
@@ -148,11 +163,11 @@ describe('durability: daemon RSS-recycle transparency (front-proxy replay)', () 
     }
     expect(tracker.pendingRequests.size).toBe(IN_FLIGHT);
 
-    const { resent } = replayAcrossRecycle(tracker);
+    const { resent } = replayablePartition(tracker);
     expect(resent).toHaveLength(IN_FLIGHT);
 
     // The fresh backend answers each replayed request — the pending set drains to
-    // zero, proving no in-flight bookkeeping leaks across the recycle.
+    // zero, showing no in-flight bookkeeping leaks across the recycle in the tracker.
     for (let id = 0; id < IN_FLIGHT; id += 1) {
       tracker.handleBackendFrame(responseFrame(id));
     }

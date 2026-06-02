@@ -154,7 +154,7 @@ describe('durability: checkpoint-v2 create/restore round-trip under contention',
     for (let cycle = 0; cycle < ROUND_TRIPS; cycle += 1) {
       const name = `rt-${cycle}`;
       const created = checkpoints.createCheckpoint({ name, includeEmbeddings: false });
-      expect(created.snapshotFormat ?? 'v2').toBe('v2');
+      expect(created.snapshotFormat).toBe('v2');
 
       // Mutate the live DB so a restore has something to roll back.
       database.prepare('UPDATE memory_index SET title = ? WHERE id = ?')

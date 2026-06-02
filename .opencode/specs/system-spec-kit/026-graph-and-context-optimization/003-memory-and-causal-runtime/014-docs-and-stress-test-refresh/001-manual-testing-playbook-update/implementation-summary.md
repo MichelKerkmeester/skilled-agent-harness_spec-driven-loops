@@ -13,7 +13,7 @@ _memory:
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Authored EX-037..EX-042 playbook scenarios and wired the master index"
-    next_safe_action: "Hand back to parent; start sibling 002-feature-catalog-update"
+    next_safe_action: "None binding; six EX scenarios shipped and wired into the master index"
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"

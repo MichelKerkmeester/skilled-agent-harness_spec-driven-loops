@@ -27,7 +27,7 @@ The most important distinction: **`-32001` is retryable and still live**, while 
 
 | Code | Class | Retryable | Meaning | Where it comes from |
 |------|-------|-----------|---------|---------------------|
-| `E429` | Handler envelope (`RATE_LIMITED`) | Yes, after the returned wait | The `memory_index_scan` lease/cooldown guard rejected an overlapping or too-soon scan. The response carries the computed wait time and a `reason` of `lease_active` (overlapping fresh scan) or `cooldown` (too soon after a completed scan). | `lib/errors/core.ts` (`RATE_LIMITED: 'E429'`); raised by `handlers/memory-index.ts` via `lib/response/envelope.ts` |
+| `E429` | Handler envelope (`RATE_LIMITED`) | Legacy / registered (not raised on the routine scan path) | **Legacy.** The `RATE_LIMITED: 'E429'` code is still registered, but the `memory_index_scan` lease/cooldown guard no longer rejects routine overlapping or too-soon scans with it. Instead, an overlapping or too-soon scan now coalesces onto the in-progress or recently completed scan and returns a `coalesced:true` SUCCESS envelope (`status: 'coalesced'`) carrying the `reason` (`lease_active` for an overlapping fresh scan, `cooldown` for too soon after a completed scan), `waitSeconds`, and `nextPollAfterMs`. | `lib/errors/core.ts` (`RATE_LIMITED: 'E429'`, registered); coalesced success returned by `handlers/memory-index.ts` via `lib/response/envelope.ts` |
 | `-32001` | Launcher proxy (`RETRYABLE_RECYCLE_ERROR`, `{ retryable: true }`) | Yes — retry the request | The backend daemon recycled in place and an in-flight non-replayable request (or a reattach-budget exhaustion) could not be transparently replayed. The message is "backend recycled; retry". | `.opencode/bin/lib/launcher-session-proxy.cjs` (`RETRYABLE_RECYCLE_ERROR`) |
 | `-32002` | Launcher proxy (`PROTOCOL_MISMATCH_ERROR`, `{ retryable: false }`) | No — reconnect from scratch | A re-handshaked backend negotiated a different protocol version than the client originally negotiated. The proxy fails closed (terminal `CLOSED` state) rather than serve a silently broken protocol contract. | `.opencode/bin/lib/launcher-session-proxy.cjs` (`PROTOCOL_MISMATCH_ERROR`) |
 
@@ -39,7 +39,7 @@ What changed historically is unrelated to the proxy: the index vector-drain *out
 
 ### How a client should handle each code
 
-- **`E429`**: back off for the returned wait time, then re-issue the scan. The guard exists to prevent overlapping and crash-leftover scans.
+- **`E429`** (legacy): no longer raised on the routine scan path. A routine overlapping or too-soon scan returns a `coalesced:true` SUCCESS envelope instead — treat that success as "your scan joined the active/recent one"; if you need a fresh result, poll again after the returned `nextPollAfterMs`/`waitSeconds`. The lease/cooldown guard exists to prevent overlapping and crash-leftover scans.
 - **`-32001`**: retry the same request. The recycle is transparent for replayable read-mostly tools (the proxy re-sends them automatically); for the rest, the client retries on this code.
 - **`-32002`**: do not retry the request on the same session. Tear down and reconnect, which re-runs `initialize` against the new backend protocol version.
 

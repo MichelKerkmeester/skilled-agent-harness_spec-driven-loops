@@ -45,7 +45,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 
 ### Command-Surface Contract
 
-The Spec Kit Memory MCP server exposes **55 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count). The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
+The Spec Kit Memory MCP server exposes **36 tools** overall across the 7-layer MCP surface (canonical source: `TOOL_DEFINITIONS.length` in `mcp_server/tool-schemas.ts`; deferred / internal-only handlers do NOT count), matching the README's 36-tool API reference. The command layer wraps the spec-doc record-focused subset under **4 top-level memory slash commands**, with session recovery still owned by `/spec_kit:resume` as a spec-folder workflow using the spec-doc record/session recovery stack. Each command declares its allowed tools in frontmatter; tools not listed are inaccessible to that command. The canonical source for primary tool ownership is the coverage matrix in `.opencode/commands/memory/README.txt`, while each command file's `allowed-tools` frontmatter shows the full operational surface. Recovery behavior is documented in `.opencode/commands/spec_kit/resume.md`.
 
 | Command | Tools | Ownership | Tool Names |
 |---------|-------|-----------|------------|
@@ -57,7 +57,7 @@ The Spec Kit Memory MCP server exposes **55 tools** overall across the 7-layer M
 
 **Owns** means the command is the primary home for those tools. **Shared** means the command borrows tools whose primary home is another command (typically `/memory:search` or `/memory:manage`).
 
-Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it is included in the 54-tool server count through `TOOL_DEFINITIONS`.
+Current catalog entries include surfaced runtime and tooling features such as `memory_retention_sweep` for governed `delete_after` closure, CLI matrix adapter runners under `mcp_server/matrix_runners/`, the Codex `freshness-smoke-check` helper, orphan MCP sweeper documentation, and the launcher idle-timeout knob. The Skill Advisor catalog owns the detailed `advisor_rebuild` MCP entry; it belongs to the separate Skill Advisor server and is NOT part of the mk-spec-memory 36-tool `TOOL_DEFINITIONS` surface counted above.
 
 ---
 
@@ -3442,7 +3442,7 @@ Each MCP client connects through a launcher process rather than to the shared ba
 
 #### How It Works
 
-`bridgeStdioThroughSessionProxy` wraps a secondary launcher's stdio in a session proxy that reattaches to the restarted backend, replays safe in-flight read-mostly requests (`REPLAYABLE_TOOL_NAMES`), and keeps a keepalive ping to detect a wedged backend. On a sustained RSS breach the launcher runs `recycleDaemonInPlace`, re-spawning the backend with `SPECKIT_BACKEND_ONLY=1` (which skips the stdio transport and serves the IPC socket). Two error classes distinguish recovery: `-32001` `RETRYABLE_RECYCLE_ERROR` (still live; "backend recycled; retry") for non-replayable in-flight requests, and `-32002` `PROTOCOL_MISMATCH_ERROR` (non-retryable) when a re-handshaked backend negotiates a different protocol version, where the proxy fails closed to a terminal `CLOSED` state.
+`bridgeStdioThroughSessionProxy` wraps a secondary launcher's stdio in a session proxy that reattaches to the restarted backend, replays safe in-flight read and idempotent-write requests (`REPLAYABLE_TOOL_NAMES`, which includes `memory_save` via primary-row dedup), and keeps a keepalive ping to detect a wedged backend. On a sustained RSS breach the launcher runs `recycleDaemonInPlace`, re-spawning the backend with `SPECKIT_BACKEND_ONLY=1` (which skips the stdio transport and serves the IPC socket). Two error classes distinguish recovery: `-32001` `RETRYABLE_RECYCLE_ERROR` (still live; "backend recycled; retry") for non-replayable in-flight requests, and `-32002` `PROTOCOL_MISMATCH_ERROR` (non-retryable) when a re-handshaked backend negotiates a different protocol version, where the proxy fails closed to a terminal `CLOSED` state.
 
 #### Source Files
 

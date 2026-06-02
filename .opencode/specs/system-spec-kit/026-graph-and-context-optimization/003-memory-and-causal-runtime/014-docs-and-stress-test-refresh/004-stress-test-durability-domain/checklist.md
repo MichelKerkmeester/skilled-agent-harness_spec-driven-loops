@@ -133,7 +133,7 @@ _memory:
 |----------|-------|----------|
 | P0 Items | 14 | All verified this session — `npm run stress:durability` green (12/12); evidence in implementation-summary.md |
 | P1 Items | 14 | Met — see implementation-summary.md verification table |
-| P2 Items | 2 | Met (decision-record + docs synchronized) |
+| P2 Items | 9 | 6 met; 3 deferred with documented reason (CHK-112, CHK-124, CHK-142 — opt-in soak variant, CI wiring, operator soak note) |
 
 **Verification Date**: 2026-06-02 — durability stress domain complete, green (12/12), no config breakage
 <!-- /ANCHOR:summary -->

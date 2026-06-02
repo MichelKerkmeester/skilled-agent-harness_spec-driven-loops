@@ -6,9 +6,15 @@
 // (post_insert_enrichment_status + idx_post_insert_enrichment_incomplete) let a
 // crashed daemon find the rows whose enrichment never completed. This stress
 // drives a flood of saves that each leave a `pending` marker, then runs the
-// bounded backfill repeatedly and asserts every marker converges to `complete`
-// and the partial-index-eligible (incomplete) set drains to empty — i.e. the
-// backlog is bounded and self-healing, never an ever-growing leak.
+// bounded backfill repeatedly and asserts every PENDING marker converges to
+// `complete` and the repair-eligible set drains to empty — i.e. the backlog is
+// bounded and self-healing, never an ever-growing leak.
+//
+// Scope note: repairIncompleteMarkers only repairs the repair-eligible statuses
+// ('pending', 'partial', 'failed'). `deferred` rows are intentionally SKIPPED
+// (repairEnrichmentOnReplay returns early for them) — deferral is a deliberate
+// "do not enrich" decision, not an incomplete state to backfill. This stress
+// floods only `pending` markers and does not claim coverage of deferred rows.
 //
 // ISOLATION: an in-memory better-sqlite3 DB per test. The enrichment runtime
 // (runPostInsertEnrichmentIfEnabled) is mocked to a deterministic COMPLETE
@@ -97,8 +103,10 @@ function insertSavedRow(database: Database.Database, id: number): void {
   `).run(id, 'specs/flood', `specs/flood/doc-${id}.md`, `# Doc ${id}\n\nbody`, now, now);
 }
 
-// Count exactly the rows the repair partial index is built to find: the
-// incomplete (pending/deferred) markers. A bounded backlog must drain to 0.
+// Count the rows the repair partial index is built to find: every marker not yet
+// `complete`. The backfill itself only repairs the repair-eligible statuses
+// (pending/partial/failed); `deferred` rows are skipped, not backfilled. This
+// flood creates only `pending` markers, so the repair-eligible backlog drains to 0.
 function incompleteMarkerCount(database: Database.Database): number {
   return (database.prepare(`
     SELECT COUNT(*) AS count

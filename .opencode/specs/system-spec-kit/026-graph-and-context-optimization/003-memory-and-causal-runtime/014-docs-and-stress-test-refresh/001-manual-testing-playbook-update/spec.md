@@ -13,8 +13,8 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update"
     last_updated_at: "2026-06-02T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored manual-testing-playbook-update child packet docs and EX scenarios"
-    next_safe_action: "Hand back to parent; start sibling 002-feature-catalog-update"
+    recent_action: "Authored EX-037..EX-042 playbook scenarios and wired the master index"
+    next_safe_action: "None binding; six EX scenarios shipped and wired into the master index"
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
@@ -24,7 +24,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---

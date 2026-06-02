@@ -7,7 +7,7 @@ description: "This scenario validates the v2 file-based full-DB checkpoint path 
 
 ## 1. OVERVIEW
 
-This scenario validates Checkpoint v2 file-based full-DB snapshots for `EX-037`. It focuses on a full-DB `checkpoint_create` that snapshots the database with SQLite `VACUUM INTO` (rather than the v1 `JSON.stringify` BLOB), then a `checkpoint_restore` round-trip into an isolated scratch copy.
+This scenario validates Checkpoint v2 file-based full-DB snapshots for `EX-037`. It focuses on a full-DB `checkpoint_create` that snapshots the database with SQLite `VACUUM INTO` (rather than the v1 `JSON.stringify` BLOB), then a `checkpoint_restore` round-trip that swaps the active DB files in place. Run it against a disposable copy of the database so the in-place restore never touches production.
 
 Unlike the v1 checkpoint scenarios (`EX-015`..`EX-018`), the v2 path is selected for unscoped full-DB requests. On a sharded runtime the vectors live in the attached `active_vec` shard, so the create snapshots both the main DB and the shard when `includeEmbeddings` is set, and the restore swaps both files in through the `reopenActiveDatabase` coordinator. The user-observable value is a real rollback net on the production-sized database, where v1 throws `Invalid string length`.
 
@@ -19,7 +19,7 @@ Unlike the v1 checkpoint scenarios (`EX-015`..`EX-018`), the v2 path is selected
 
 - Objective: Full-DB v2 create then restore round-trip with format and consistency verification.
 - Real user request: `I'm about to run a risky migration on the full memory DB. Take a real rollback checkpoint, then prove I can restore it.`
-- Prompt: `Validate the v2 full-DB checkpoint path: create an unscoped checkpoint with includeEmbeddings, confirm snapshot_format='v2' and a snapshot_path directory, then restore it into an isolated scratch copy and confirm memory_health consistency. Return a concise pass/fail verdict with cited field names.`
+- Prompt: `Validate the v2 full-DB checkpoint path: create an unscoped checkpoint with includeEmbeddings, confirm snapshot_format='v2' and a snapshot_path directory, then restore it in place against a disposable DB copy and confirm memory_health consistency. Return a concise pass/fail verdict with cited field names.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: `snapshot_format='v2'`, a populated `snapshot_path` snapshot directory, a `manifest.json` recording the main/vec table split, restore round-trip restores main plus the `active_vec` shard, and `memory_health` reports consistent row totals.
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -63,13 +63,13 @@ If the request falls back to v1 on a sharded daemon, inspect `lib/storage/checkp
 ### Prompt
 
 ```
-As a lifecycle validation operator, validate the v2 restore round-trip against checkpoint_restore for the v2 checkpoint into an isolated scratch copy. Verify main and the active_vec shard are restored and memory_health reports rowsTotal == ftsRowsTotal == vecRowsTotal. Return a concise pass/fail verdict with the main reason and cited evidence.
+As a lifecycle validation operator, validate the v2 restore round-trip against checkpoint_restore for the v2 checkpoint, run against a disposable DB copy so the in-place swap never touches production. Verify main and the active_vec shard are restored and memory_health reports rowsTotal == ftsRowsTotal == vecRowsTotal. Return a concise pass/fail verdict with the main reason and cited evidence.
 ```
 
 ### Commands
 
-1. Copy the live DB to a disposable scratch path so the restore never touches production.
-2. checkpoint_restore(name:`<checkpoint-name>`) against the scratch copy.
+1. Point the MCP server at a disposable copy of the database (set `MEMORY_DB_PATH` / `SPEC_KIT_DB_DIR` to the sandbox copy before the daemon starts) so the in-place restore never touches production.
+2. checkpoint_restore(name:`<checkpoint-name>`) — the restore swaps the active DB files in place via the reopen coordinator; there is no per-call scratch target.
 3. memory_health() and confirm the index/consistency block reports aligned totals.
 
 ### Expected
@@ -78,11 +78,11 @@ Restore routes through `reopenActiveDatabase`, which checkpoints both schemas, d
 
 ### Evidence
 
-Restore transcript, the post-restore `memory_health` index/consistency block, and confirmation the production DB was untouched.
+Restore transcript, the post-restore `memory_health` index/consistency block, and confirmation the server was pointed at the disposable DB copy so production was untouched.
 
 ### Pass / Fail
 
-- **Pass**: the restore completes through the reopen coordinator and `memory_health` reports aligned row totals on the restored scratch copy
+- **Pass**: the restore completes through the reopen coordinator and `memory_health` reports aligned row totals on the restored disposable DB copy
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage
@@ -134,5 +134,5 @@ Inspect the `RestoreJournalPhase` type and `writeRestoreJournal` usage in `lib/s
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md`
 - Source anchors read: `mcp_server/lib/storage/checkpoints.ts` (`createCheckpointV2` ~L2181, `VACUUM main INTO`/`VACUUM active_vec INTO` ~L2217/2220, `restoreCheckpointV2` ~L2489, `RestoreJournalPhase` ~L385, `RESTORE_JOURNAL_NAME` ~L117); `mcp_server/lib/search/vector-index-schema.ts` (migration v29 `snapshot_format`/`snapshot_path` ~L1375-1381)
-- Destructive: Yes — sandbox-only; restore must target a disposable scratch copy.
+- Destructive: Yes — sandbox-only; restore swaps the active DB files in place, so the server must be pointed at a disposable DB copy.
 - Runtime policy: Real execution only; no mocked snapshot or fake restore.

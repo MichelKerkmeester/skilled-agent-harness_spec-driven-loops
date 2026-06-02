@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ### Summary
 
-Shipped the self-maintaining `memory_index_scan` index in four gated phases (Phases 1-3 on 2026-05-31, Phase 4 council follow-up on 2026-06-01). Phase 1: coalescing caller contract (no raw `E429`) + a `memory_health.index` freshness block + a bounded global orphan sweep. Phase 2: phased async execution (walk → commit-lexical → async vector drain) with outage-safe drain that removes the `-32001` error class. Phase 3: job-layer single-writer concurrency + move reconciliation by `packet_id` identity + auto-reindex triggers. Phase 4: an active-row uniqueness guard (deprecate-before-insert + a v28 partial unique index) plus multi-tenant scope isolation. Commit `942ad78d9c`; a clean index rebuild produced 9614 rows / 9614 vectors / 0 missing (`healthy_fresh`).
+Shipped the self-maintaining `memory_index_scan` index in four gated phases (Phases 1-3 on 2026-05-31, Phase 4 council follow-up on 2026-06-01). Phase 1: coalescing caller contract (no raw `E429`) + a `memory_health.index` freshness block + a bounded global orphan sweep. Phase 2: phased async execution (walk → commit-lexical → async vector drain) with outage-safe drain that removes the index vector-drain outage `-32001` class only (the launcher retryable-recycle `-32001` is unaffected/live). Phase 3: job-layer single-writer concurrency + move reconciliation by `packet_id` identity + auto-reindex triggers. Phase 4: an active-row uniqueness guard (deprecate-before-insert + a v28 partial unique index) plus multi-tenant scope isolation. Commit `942ad78d9c`; a clean index rebuild produced 9614 rows / 9614 vectors / 0 missing (`healthy_fresh`).
 
 ### Added
 

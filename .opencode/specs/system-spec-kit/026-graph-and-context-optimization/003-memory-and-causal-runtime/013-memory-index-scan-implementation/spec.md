@@ -116,7 +116,7 @@ Own navigation, the child-phase map, and aggregate status for the memory_index_s
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- None blocking. The active child is `002-checkpoint-v2-file-snapshot`; resume it via its folder.
+- None blocking. Program complete — all five child phases (001-005) shipped and deployed. The last active child was `003-mcp-front-proxy`.
 <!-- /ANCHOR:questions -->
 
 ---
