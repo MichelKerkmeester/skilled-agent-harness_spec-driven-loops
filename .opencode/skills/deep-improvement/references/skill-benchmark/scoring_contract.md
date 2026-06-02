@@ -50,6 +50,10 @@ The weighted **D4** dimension stays `unscored-mode-a` in the aggregate by design
 
 **Live trace (Mode B)** replaces the D2/D3 router-replay proxies with the model's stated/observed routing (references only — assets are on the `assetRecall` lane). Signals that did not run report `status: unscored-mode-a` — never faked.
 
+### Advisory Signals
+
+`score-skill-benchmark.cjs` emits `advisorySignals` in the machine report, and `build-report.cjs` renders them under **Advisory signals (NOT in the weighted aggregate)**. `D4_task_outcome` reports the opt-in D4-R routine-task usefulness delta when `--d4` live ablation runs; otherwise it is unscored. `assetRecall` reports expected deferred-asset support when live stated assets are available; otherwise it is deferred or unscored. Both are diagnostic only and never change `aggregateScore`, `dimensionScores`, `verdict`, or D4's weighted status.
+
 ## 6. FUNNEL + BOTTLENECK RANKING
 
-Per-scenario `firstFailingStage` ∈ {router-unparseable, routed-intra, discovered}. The headline bottleneck is the stage with the largest first-failure count (attrition). Bottlenecks list D5 findings + the headline funnel finding, each mapped through `assets/skill-benchmark/remediation_taxonomy.json` to (file, locus, one-line fix, handoff lane).
+Per-scenario `firstFailingStage` follows the implemented order: `activated-inter` (advisor selected the wrong skill when D1-inter is scored), `router-unparseable`, `surface-mismatch`, `routed-intra`, then `discovered`. A scenario with no failing stage is counted as `passed`; orchestrator-added degradation rows can also contribute `unparseable-fixture`, `contaminated-fixture`, or browser routed-out reasons, and `build-report.cjs` displays routed-out rows with their reason instead of a normal failing stage. The headline bottleneck is the non-`passed` stage with the largest first-failure count (attrition). Bottlenecks list D5 findings plus the headline funnel finding, each mapped through `assets/skill-benchmark/remediation_taxonomy.json` to file, locus, one-line fix, and handoff lane.

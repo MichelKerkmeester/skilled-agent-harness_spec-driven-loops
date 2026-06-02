@@ -1,0 +1,308 @@
+{
+  "findings": [
+    {
+      "type": "finding",
+      "id": "R1-P1-001",
+      "severity": "P1",
+      "file": "SKILL.md:217-218",
+      "title": "SKILL.md pseudocode omits SKILL_BENCHMARK runtime_assets extension",
+      "iteration": 1
+    },
+    {
+      "type": "finding",
+      "id": "R1-P2-001",
+      "severity": "P2",
+      "file": "references/skill-benchmark/scoring_contract.md:54",
+      "title": "scoring_contract.md funnel stages incomplete vs code",
+      "iteration": 1
+    },
+    {
+      "type": "finding",
+      "id": "R1-P2-002",
+      "severity": "P2",
+      "file": "references/skill-benchmark/scoring_contract.md:46",
+      "title": "build-report advisorySignals section not documented in scoring_contract",
+      "iteration": 1
+    },
+    {
+      "type": "finding",
+      "id": "R2-P1-001",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:136",
+      "title": "composeGraderPrompt hardcodes 'Score D4 Hallucination only' in user prompt, contradicting D4-R task-outcome system prompt",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R2-P2-001",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/live-executor.cjs:98",
+      "title": "runDispatch does not default model to DEFAULT_MODEL",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R2-P2-002",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:187",
+      "title": "Fallback grader parser hardcodes dim_id D4 even for D4-R task-outcome responses",
+      "iteration": 2
+    },
+    {
+      "type": "finding",
+      "id": "R6-P1-001",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:187",
+      "title": "Grader fallback parser hardcodes dim_id: 'D4' for all grader calls including D4-R",
+      "iteration": 6
+    },
+    {
+      "type": "finding",
+      "id": "R6-P1-002",
+      "severity": "P1",
+      "file": "scripts/skill-benchmark/live-executor.cjs:216",
+      "title": "responseText truncated to 2000 chars before grading penalizes longer D4-R outputs",
+      "iteration": 6
+    },
+    {
+      "type": "finding",
+      "id": "R6-P2-001",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/live-executor.cjs:138",
+      "title": "extractRoutingJson bare-object regex rejects nested-brace routing JSON",
+      "iteration": 6
+    },
+    {
+      "type": "finding",
+      "id": "R6-P2-002",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:137",
+      "title": "D3 wastedCount semantics confusing for negative scenarios",
+      "iteration": 6
+    },
+    {
+      "type": "finding",
+      "id": "R6-P2-003",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:163",
+      "title": "parseGraderResponse fenced fallback doesn't validate dim_id",
+      "iteration": 6
+    },
+    {
+      "type": "finding",
+      "id": "R7-P1-001",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/dispatch-model.cjs:340-347",
+      "title": "buildResumeHint shell command injection via unsanitized path",
+      "iteration": 7
+    },
+    {
+      "type": "finding",
+      "id": "R7-P1-002",
+      "severity": "P1",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:170-176",
+      "title": "Regex fallback in parseGraderResponse accepts structurally wrong JSON (missing dim_id validation)",
+      "iteration": 7
+    },
+    {
+      "type": "finding",
+      "id": "R7-P2-001",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/score-model-variant.cjs:151",
+      "title": "DEEP_AGENT_ALLOW_CRITERIA_EXEC defaults to permissive (profile commands execute by default)",
+      "iteration": 7
+    },
+    {
+      "type": "finding",
+      "id": "R7-P2-002",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/scorer/grader/harness.cjs:208",
+      "title": "Grader prompt concatenation passes system+user as single -p arg",
+      "iteration": 7
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-001",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/sweep-benchmark.cjs:346-365",
+      "title": "Duplicated event-stream parsing logic between extractAssistantText and parseOpencodeStream",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-002",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:107-109",
+      "title": "Magic numbers in D1-intra scoring weights (0.4/0.6) and surface mismatch cap (0.25)",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-003",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/d4-ablation.cjs:70-75",
+      "title": "Duplicated grader base object construction in gradeAblation and gradeTaskOutcome",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-004",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:55-208",
+      "title": "scoreScenario function is 153 lines mixing normalization, scoring, funnel, and assembly",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-005",
+      "severity": "P2",
+      "file": "scripts/skill-benchmark/score-skill-benchmark.cjs:181-188",
+      "title": "WEIGHTS constant exported but not used in per-scenario mode-A scoring (inline values instead)",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R8-P2-006",
+      "severity": "P2",
+      "file": "scripts/model-benchmark/dispatch-model.cjs:103-117",
+      "title": "Silent config load failure — malformed JSON produces no diagnostic signal",
+      "iteration": 8
+    },
+    {
+      "type": "finding",
+      "id": "R9-P1-001",
+      "severity": "P1",
+      "file": "SKILL.md:216-222",
+      "title": "Smart router pseudocode missing SKILL_BENCHMARK runtime_assets branch",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P1-002",
+      "severity": "P1",
+      "file": "SKILL.md:541",
+      "title": "Section 11 script list incomplete — 6 scripts missing (5 skill-benchmark + sweep-benchmark)",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P2-021",
+      "severity": "P2",
+      "file": "README.md:178-183",
+      "title": "README structure block omits scripts/skill-benchmark/ directory",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P2-022",
+      "severity": "P2",
+      "file": "README.md:186-205",
+      "title": "README references table lists 14 but actual count is 17; 3 skill-benchmark refs missing",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P2-023",
+      "severity": "P2",
+      "file": "README.md:207-230",
+      "title": "README scripts table omits all skill-benchmark scripts and sweep-benchmark",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P2-024",
+      "severity": "P2",
+      "file": "README.md:4-11",
+      "title": "README trigger_phrases incomplete vs SKILL.md (6 vs 9 triggers)",
+      "iteration": 9
+    },
+    {
+      "type": "finding",
+      "id": "R9-P2-025",
+      "severity": "P2",
+      "file": "changelog/v1.11.0.0.md:30",
+      "title": "Changelog does not link D4-R scenarios to DEFAULT_D4R_SCENARIOS code constant",
+      "iteration": 9
+    }
+  ],
+  "dimensionCoverage": {},
+  "byIteration": [
+    {
+      "iteration": 1,
+      "dimension": "inventory+correctness",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 1,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 157
+    },
+    {
+      "iteration": 2,
+      "dimension": "correctness",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 1,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 189
+    },
+    {
+      "iteration": 5,
+      "dimension": "maintainability",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 5
+      },
+      "newFindingsRatio": 1,
+      "secs": 136
+    },
+    {
+      "iteration": 6,
+      "dimension": "correctness (deep)",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 3
+      },
+      "newFindingsRatio": 1,
+      "secs": 184
+    },
+    {
+      "iteration": 7,
+      "dimension": "security (deep)",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 2
+      },
+      "newFindingsRatio": 1,
+      "secs": 157
+    },
+    {
+      "iteration": 8,
+      "dimension": "maintainability (deep)",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 6
+      },
+      "newFindingsRatio": 1,
+      "secs": 154
+    },
+    {
+      "iteration": 9,
+      "dimension": "traceability (deep)",
+      "findingsSummary": {
+        "P0": 0,
+        "P1": 2,
+        "P2": 5
+      },
+      "newFindingsRatio": 1,
+      "secs": 182
+    }
+  ]
+}

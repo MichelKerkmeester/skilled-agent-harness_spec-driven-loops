@@ -42,6 +42,7 @@ const DEFAULT_MODEL = process.env.SKILL_BENCH_OPENCODE_MODEL || 'opencode-go/dee
 const DEFAULT_VARIANT = process.env.SKILL_BENCH_OPENCODE_VARIANT || 'high';
 const OPENCODE_BIN = process.env.OPENCODE_BIN || 'opencode';
 const DISPATCH_TIMEOUT_MS = Number(process.env.SKILL_BENCH_DISPATCH_TIMEOUT_MS || 360000);
+const GRADED_RESPONSE_MAX_CHARS = 8000;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. CORE LOGIC
@@ -96,6 +97,7 @@ function dispatchArgs(model, dir, variant) {
  * @returns {{ status:number, stdout:string, stderr:string, timedOut:boolean }}
  */
 function runDispatch({ prompt, dir, model, variant, extraEnv }) {
+  model = model || DEFAULT_MODEL;
   const res = spawnSync(OPENCODE_BIN, [...dispatchArgs(model, dir, variant), prompt], {
     cwd: dir,
     stdio: ['ignore', 'pipe', 'pipe'], // closed stdin == the mandatory </dev/null
@@ -105,6 +107,44 @@ function runDispatch({ prompt, dir, model, variant, extraEnv }) {
     env: { ...process.env, AI_SESSION_CHILD: '1', ...(extraEnv || {}) },
   });
   return { status: res.status, stdout: res.stdout || '', stderr: res.stderr || '', timedOut: res.signal === 'SIGTERM' };
+}
+
+/**
+ * Collect brace-balanced object candidates from prose.
+ *
+ * @param {string} text - Text to scan for JSON-looking objects.
+ * @returns {Array<string>} Complete object substrings in encounter order.
+ */
+function collectBraceBalancedObjects(text) {
+  const candidates = [];
+  let start = -1;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = 0; i < text.length; i += 1) {
+    const ch = text[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') {
+      inString = true;
+      continue;
+    }
+    if (ch === '{') {
+      if (depth === 0) start = i;
+      depth += 1;
+    } else if (ch === '}' && depth > 0) {
+      depth -= 1;
+      if (depth === 0 && start >= 0) {
+        candidates.push(text.slice(start, i + 1));
+        start = -1;
+      }
+    }
+  }
+  return candidates;
 }
 
 function parseEvents(stdout) {
@@ -133,12 +173,11 @@ function extractRoutingJson(text) {
   for (let i = fences.length - 1; i >= 0; i -= 1) {
     try { const j = JSON.parse(fences[i][1].trim()); if (isRouting(j)) return j; } catch { /* next */ }
   }
-  // Bare object (routing JSON has no nested objects — arrays use []), pick the
-  // last one that mentions a surface key.
-  const objs = [...s.matchAll(/\{[^{}]*\}/g)];
+  // Bare object: collect balanced candidates so nested routing payloads parse.
+  const objs = collectBraceBalancedObjects(s);
   for (let i = objs.length - 1; i >= 0; i -= 1) {
-    if (!/surface/i.test(objs[i][0])) continue;
-    try { const j = JSON.parse(objs[i][0]); if (isRouting(j)) return j; } catch { /* next */ }
+    if (!/surface/i.test(objs[i])) continue;
+    try { const j = JSON.parse(objs[i]); if (isRouting(j)) return j; } catch { /* next */ }
   }
   return null;
 }
@@ -213,7 +252,7 @@ function parseLiveResult(stdout, { skillId } = {}) {
     statedRoutingCorrect: null,
     activation: { activated, topSkill: activated ? skillId : null },
     missingResources: [],
-    raw: { eventCount: events.length, toolCalls, observedReads: [...new Set(observedReads)], stated, responseText: responseText.slice(0, 2000) },
+    raw: { eventCount: events.length, toolCalls, observedReads: [...new Set(observedReads)], stated, responseText: responseText.slice(0, GRADED_RESPONSE_MAX_CHARS) },
   };
 }
 
@@ -249,7 +288,7 @@ function runLiveScenario({ scenario, skillRoot, model } = {}) {
 // 4. EXPORTS
 // ─────────────────────────────────────────────────────────────────────────────
 
-module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, DEFAULT_MODEL, DEFAULT_VARIANT };
+module.exports = { runLiveScenario, parseLiveResult, buildLiveDispatchPrompt, runDispatch, extractRoutingJson, proseRoutingFallback, collectBraceBalancedObjects, DEFAULT_MODEL, DEFAULT_VARIANT };
 
 if (require.main === module) {
   const args = require('./_args.cjs').parse(process.argv.slice(2));

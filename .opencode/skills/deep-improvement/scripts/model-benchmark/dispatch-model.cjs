@@ -109,8 +109,9 @@ function loadConfig() {
   for (const file of candidates) {
     try {
       return JSON.parse(fs.readFileSync(file, 'utf8'));
-    } catch (_) {
-      /* optional */
+    } catch (err) {
+      if (err && err.code === 'ENOENT') continue;
+      console.warn('dispatch-model: could not parse optional config ' + file + ': ' + (err.message || err));
     }
   }
   return {};
@@ -343,7 +344,17 @@ function buildResumeHint(sentinelPath) {
   const loopHost = path.join(
     '.opencode', 'skills', 'deep-improvement', 'scripts', 'shared', 'loop-host.cjs',
   );
-  return `rm ${relSentinel} && node ${loopHost} --mode=model-benchmark --profile=<profile> --outputs-dir=<outputs-dir>`;
+  return `rm ${shellQuote(relSentinel)} && node ${shellQuote(loopHost)} --mode=model-benchmark --profile=<profile> --outputs-dir=<outputs-dir>`;
+}
+
+/**
+ * Quote a value for POSIX shell command display.
+ *
+ * @param {string} value - Raw shell argument.
+ * @returns {string} Single-quoted shell argument.
+ */
+function shellQuote(value) {
+  return "'" + String(value).replace(/'/g, "'\\''") + "'";
 }
 
 /**

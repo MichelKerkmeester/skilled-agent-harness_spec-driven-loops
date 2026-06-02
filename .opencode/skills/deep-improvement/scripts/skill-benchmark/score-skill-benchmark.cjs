@@ -31,6 +31,11 @@ const { scoreD1Inter } = require('./advisor-probe.cjs');
 // ─────────────────────────────────────────────────────────────────────────────
 
 const WEIGHTS = { d1inter: 12, d1intra: 13, d2: 20, d3: 15, d4: 25, d5: 15 };
+// D1-intra favors resource recall because useful skill routing depends more on
+// loading the right guidance than on matching an internal intent label.
+const D1_INTRA_INTENT_WEIGHT = 0.4;
+const D1_INTRA_RESOURCE_WEIGHT = 0.6;
+const SURFACE_MISMATCH_D1_CAP = 0.25;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. HELPERS
@@ -43,22 +48,9 @@ function setRecall(expected, actual) {
   return hit / expected.length;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4. CORE LOGIC
-// ─────────────────────────────────────────────────────────────────────────────
-
-/**
- * Score a single scenario from its router-replay result joined with private gold.
- * @param {Object} arg - Scenario input (legacy {scenarioId,tier,routerResult,expected,advisorResult} or new {scenario,observed,traceMode}).
- * @returns {{ scenarioId, dims, firstFailingStage, modeAScore, applicable }}
- */
-function scoreScenario(arg) {
+function normalizeScenarioInput(arg) {
   let { scenarioId, tier, routerResult, expected, advisorResult } = arg;
-  // Back-compat adapter. Legacy callers pass {routerResult, expected}; the
-  // playbook/live path passes {scenario, observed, traceMode}. Normalize the new
-  // shape onto the legacy locals so the scoring body stays shared (and the
-  // existing unit tests keep exercising it unchanged).
-  let scenario = arg.scenario || null;
+  const scenario = arg.scenario || null;
   if (scenario && arg.observed) {
     const obs = arg.observed;
     scenarioId = scenario.scenarioId;
@@ -83,15 +75,130 @@ function scoreScenario(arg) {
       negativeActivation: scenario.negativeActivation === true,
     };
   }
+  return { scenarioId, tier, routerResult, expected, advisorResult, scenario };
+}
+
+function computeSurfaceMatch(scenario, obs) {
+  const expectedSurface = scenario ? scenario.expectedSurface : undefined;
+  const observedSurface = obs ? (obs.observedSurface || null) : undefined;
+  const surfaceMatch = (expectedSurface && observedSurface)
+    ? (observedSurface === expectedSurface) : null;
+  return { expectedSurface, observedSurface, surfaceMatch };
+}
+
+function scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall }) {
+  if (negative) {
+    const leakedExpected = (expected.resources || []).some((r) => routerResult.resources.includes(r));
+    return { score: leakedExpected ? 0 : 1, intentRecall, resourceRecall, negative: true };
+  }
+  const ir = intentRecall == null ? 1 : intentRecall;
+  const rr = resourceRecall == null ? 1 : resourceRecall;
+  const d1 = {
+    score: D1_INTRA_INTENT_WEIGHT * ir + D1_INTRA_RESOURCE_WEIGHT * rr,
+    intentRecall,
+    resourceRecall,
+    negative: false,
+  };
+  if (surfaceMatch === false) {
+    d1.surfaceMismatch = true;
+    d1.score = Math.min(d1.score, SURFACE_MISMATCH_D1_CAP);
+  }
+  return d1;
+}
+
+function scoreD2({ negative, d1intra, resourceRecall }) {
+  return {
+    score: negative ? d1intra.score : (resourceRecall == null ? 1 : resourceRecall),
+    proxy: 'router-replay-recall',
+    note: 'Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR',
+  };
+}
+
+function scoreD3({ negative, d1intra, routerResult, expected }) {
+  const routed = routerResult.resources.length;
+  const unexpectedRoutedCount = expected && expected.resources
+    ? routerResult.resources.filter((r) => !expected.resources.includes(r)).length
+    : 0;
+  if (negative) {
+    return {
+      score: d1intra.score,
+      routedCount: routed,
+      // In negative scenarios, every routed resource is suppression waste.
+      wastedCount: routed,
+      proxy: 'negative-activation',
+      note: 'negative scenario: D3 tracks the suppression outcome, not over-routing',
+    };
+  }
+  return {
+    score: routed === 0 ? 1 : Math.max(0, 1 - unexpectedRoutedCount / routed),
+    routedCount: routed,
+    wastedCount: unexpectedRoutedCount,
+    proxy: 'router-overload',
+    note: 'Mode A proxy; live-mode replaces with calls/tokens-to-first-expected',
+  };
+}
+
+function scoreAssetRecall(expected, obs) {
+  const expectedAssets = (expected && expected.assets) || [];
+  const observedAssets = obs && Array.isArray(obs.observedAssets) ? obs.observedAssets : null;
+  if (expectedAssets.length === 0) {
+    return { score: null, note: 'no expected assets for this scenario' };
+  }
+  if (observedAssets == null) {
+    return { score: null, deferred: true, expectedAssets, note: 'assets deferred on-demand; not in the first slice (router mode)' };
+  }
+  return { score: setRecall(expectedAssets, observedAssets), expectedAssets, observedAssets, note: 'live stated-asset recall (advisory, not weighted)' };
+}
+
+function firstFailingStage({ dims, routerResult, surfaceMatch }) {
+  if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) return 'activated-inter';
+  if (!routerResult.parseable) return 'router-unparseable';
+  if (surfaceMatch === false) return 'surface-mismatch';
+  if (dims.d1intra.score < 0.5) return 'routed-intra';
+  if (dims.d2.score < 0.5) return 'discovered';
+  return null;
+}
+
+function modeAScore(dims) {
+  const measured = [
+    [dims.d1intra.score, WEIGHTS.d1intra],
+    [dims.d2.score, WEIGHTS.d2],
+    [dims.d3.score, WEIGHTS.d3],
+  ];
+  if (dims.d1inter.score !== null) measured.push([dims.d1inter.score, WEIGHTS.d1inter]);
+  const wsum = measured.reduce((a, [, w]) => a + w, 0);
+  return Math.round((measured.reduce((a, [s, w]) => a + s * w, 0) / wsum) * 100);
+}
+
+function buildLiveEvidence(obs) {
+  if (!obs || !obs.raw) return undefined;
+  return {
+    eventCount: obs.raw.eventCount,
+    activated: obs.activation ? obs.activation.activated : undefined,
+    toolCalls: (obs.raw.toolCalls || []).map((t) => t.tool),
+    observedReads: obs.raw.observedReads,
+    statedRoutingParsed: !!(obs.raw.stated && Object.keys(obs.raw.stated).length),
+    responseHead: (obs.raw.responseText || '').slice(0, 300),
+  };
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CORE LOGIC
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Score a single scenario from its router-replay result joined with private gold.
+ * @param {Object} arg - Scenario input (legacy {scenarioId,tier,routerResult,expected,advisorResult} or new {scenario,observed,traceMode}).
+ * @returns {{ scenarioId, dims, firstFailingStage, modeAScore, applicable }}
+ */
+function scoreScenario(arg) {
+  const { scenarioId, tier, routerResult, expected, advisorResult, scenario } = normalizeScenarioInput(arg);
   // Surface correctness is meaningful only when an executor observed a surface
   // (live mode); router mode leaves observedSurface null. Computed up front so a
   // wrong observed surface can fail routing rather than passing on incidental
   // resource overlap.
   const obs = arg.observed || null;
-  const expectedSurface = scenario ? scenario.expectedSurface : undefined;
-  const observedSurface = obs ? (obs.observedSurface || null) : undefined;
-  const surfaceMatch = (expectedSurface && observedSurface)
-    ? (observedSurface === expectedSurface) : null;
+  const { expectedSurface, observedSurface, surfaceMatch } = computeSurfaceMatch(scenario, obs);
 
   const dims = {};
   const negative = expected && expected.negativeActivation === true;
@@ -99,61 +206,25 @@ function scoreScenario(arg) {
   // D1-intra: did the in-skill router select the expected intents + resources?
   const intentRecall = setRecall(expected && expected.intentKeys, routerResult.intents);
   const resourceRecall = setRecall(expected && expected.resources, routerResult.resources);
-  if (negative) {
-    // For a should-not-activate scenario, routing nothing relevant is success.
-    const leakedExpected = (expected.resources || []).some((r) => routerResult.resources.includes(r));
-    dims.d1intra = { score: leakedExpected ? 0 : 1, intentRecall, resourceRecall, negative: true };
-  } else {
-    const ir = intentRecall == null ? 1 : intentRecall;
-    const rr = resourceRecall == null ? 1 : resourceRecall;
-    dims.d1intra = { score: 0.4 * ir + 0.6 * rr, intentRecall, resourceRecall, negative: false };
-  }
-  // Live-only: a wrong observed surface is a routing failure regardless of any
-  // incidental resource overlap, so cap D1-intra below the pass line.
-  if (surfaceMatch === false && !negative) {
-    dims.d1intra.surfaceMismatch = true;
-    dims.d1intra.score = Math.min(dims.d1intra.score, 0.25);
-  }
+  dims.d1intra = scoreD1Intra({ expected, routerResult, negative, surfaceMatch, intentRecall, resourceRecall });
 
   // D2 proxy (Mode A): recall of expected resources in the routed set. In live
   // mode this is replaced by Hit@k/Recall@k/MRR over the observed load trace.
-  dims.d2 = {
-    score: negative ? (dims.d1intra.score) : (resourceRecall == null ? 1 : resourceRecall),
-    proxy: 'router-replay-recall',
-    note: 'Mode A proxy; live-mode replaces with observed-load Hit@k/Recall@k/MRR',
-  };
+  dims.d2 = scoreD2({ negative, d1intra: dims.d1intra, resourceRecall });
 
   // D3 efficiency proxy (Mode A): penalize over-routing — resources routed that
   // are not in the expected set are "wasted loads". Live mode uses tool-call /
   // token cost to first expected resource.
-  const routed = routerResult.resources.length;
-  const wasted = expected && expected.resources
-    ? routerResult.resources.filter((r) => !expected.resources.includes(r)).length
-    : 0;
   // For a negative scenario the "expected" resources are the ones that must NOT
   // be routed, so the over-routing math inverts (routing them reads as zero
   // waste). Couple D3 to the suppression outcome instead, mirroring D2.
-  dims.d3 = negative
-    ? { score: dims.d1intra.score, routedCount: routed, wastedCount: routed, proxy: 'negative-activation', note: 'negative scenario: D3 tracks the suppression outcome, not over-routing' }
-    : {
-        score: routed === 0 ? 1 : Math.max(0, 1 - wasted / routed),
-        routedCount: routed, wastedCount: wasted,
-        proxy: 'router-overload', note: 'Mode A proxy; live-mode replaces with calls/tokens-to-first-expected',
-      };
+  dims.d3 = scoreD3({ negative, d1intra: dims.d1intra, routerResult, expected });
 
   // Asset support lane (advisory, not in the weighted aggregate). The router
   // defers assets/* on demand, so they are scored separately instead of inside
   // D2/D3. Router mode has no observed-asset channel (assets are not in the
   // first slice), so it reports deferred; live mode scores stated-asset recall.
-  const expectedAssets = (expected && expected.assets) || [];
-  const observedAssets = obs && Array.isArray(obs.observedAssets) ? obs.observedAssets : null;
-  if (expectedAssets.length === 0) {
-    dims.assetRecall = { score: null, note: 'no expected assets for this scenario' };
-  } else if (observedAssets == null) {
-    dims.assetRecall = { score: null, deferred: true, expectedAssets, note: 'assets deferred on-demand; not in the first slice (router mode)' };
-  } else {
-    dims.assetRecall = { score: setRecall(expectedAssets, observedAssets), expectedAssets, observedAssets, note: 'live stated-asset recall (advisory, not weighted)' };
-  }
+  dims.assetRecall = scoreAssetRecall(expected, obs);
 
   // D1-inter: scored deterministically when an advisor probe is supplied (the
   // Python advisor reads the SQLite graph, no LLM), else left unscored.
@@ -168,38 +239,19 @@ function scoreScenario(arg) {
   // D4 usefulness ablation: still needs live skill-on/off dispatch (follow-on).
   dims.d4 = { score: null, unscored: 'requires skill-on/off ablation (live mode)' };
 
-  // First failing stage (funnel): advisor activate -> router parse -> intra -> discovery.
-  let firstFailingStage = null;
-  if (dims.d1inter.score !== null && dims.d1inter.score < 0.5) firstFailingStage = 'activated-inter';
-  else if (!routerResult.parseable) firstFailingStage = 'router-unparseable';
-  else if (surfaceMatch === false) firstFailingStage = 'surface-mismatch';
-  else if (dims.d1intra.score < 0.5) firstFailingStage = 'routed-intra';
-  else if (dims.d2.score < 0.5) firstFailingStage = 'discovered';
+  // First failing stage (funnel): advisor activate -> router parse -> surface -> intra -> discovery.
+  const failingStage = firstFailingStage({ dims, routerResult, surfaceMatch });
 
   // Mode A scenario score: weight the measured dims, normalize over their weights.
   // D1-inter joins the measured set only when an advisor probe produced a score.
-  const measured = [
-    [dims.d1intra.score, WEIGHTS.d1intra],
-    [dims.d2.score, WEIGHTS.d2],
-    [dims.d3.score, WEIGHTS.d3],
-  ];
-  if (dims.d1inter.score !== null) measured.push([dims.d1inter.score, WEIGHTS.d1inter]);
-  const wsum = measured.reduce((a, [, w]) => a + w, 0);
-  const modeAScore = Math.round((measured.reduce((a, [s, w]) => a + s * w, 0) / wsum) * 100);
+  const score = modeAScore(dims);
 
   // Trimmed live evidence so a live report is inspectable (what the model
   // actually did) without bloating the JSON with full transcripts.
-  const liveEvidence = (obs && obs.raw) ? {
-    eventCount: obs.raw.eventCount,
-    activated: obs.activation ? obs.activation.activated : undefined,
-    toolCalls: (obs.raw.toolCalls || []).map((t) => t.tool),
-    observedReads: obs.raw.observedReads,
-    statedRoutingParsed: !!(obs.raw.stated && Object.keys(obs.raw.stated).length),
-    responseHead: (obs.raw.responseText || '').slice(0, 300),
-  } : undefined;
+  const liveEvidence = buildLiveEvidence(obs);
 
   return {
-    scenarioId, tier, dims, firstFailingStage, modeAScore, applicable: true,
+    scenarioId, tier, dims, firstFailingStage: failingStage, modeAScore: score, applicable: true,
     classKind: scenario ? scenario.classKind : undefined,
     expectedSurface, observedSurface, surfaceMatch,
     traceMode: arg.traceMode || (obs ? obs.mode : undefined),

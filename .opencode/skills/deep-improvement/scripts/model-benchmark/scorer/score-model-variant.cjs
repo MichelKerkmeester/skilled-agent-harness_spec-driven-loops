@@ -44,6 +44,7 @@ const { execSync, spawnSync } = require('child_process');
 const SCORER_ROOT = __dirname;
 const DET_DIR = path.join(SCORER_ROOT, 'deterministic');
 const harness = require(path.join(SCORER_ROOT, 'grader', 'harness.cjs'));
+let warnedPermissiveCriteriaExec = false;
 
 /**
  * Canonical 5-dim weights (D2 is the hard gate). Overridable via opts.rubric.
@@ -103,6 +104,22 @@ function runDetCheck(scriptName, fixturePath, outputFile) {
 }
 
 /**
+ * Report whether profile-defined deterministic criteria may execute commands.
+ *
+ * @returns {boolean} True when command execution is allowed by the env gate.
+ */
+function criteriaExecAllowed() {
+  const raw = process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC;
+  if (raw === '0') return false;
+  if (raw === '1' || raw === 'true') return true;
+  if (!warnedPermissiveCriteriaExec) {
+    console.warn('score-model-variant: DEEP_AGENT_ALLOW_CRITERIA_EXEC is not explicitly truthy; preserving trusted-profile default execution. Set it to 0 to disable criteria commands.');
+    warnedPermissiveCriteriaExec = true;
+  }
+  return true;
+}
+
+/**
  * Score acceptance criteria deterministically against an absolute cwd.
  * Ported verbatim from score-variant.cjs (acceptance is the only check the
  * eval-loop did not ship as a standalone det-script). Operates on an absolute cwd.
@@ -143,12 +160,9 @@ function scoreAcceptanceDeterministic(acceptance, cwdAbs) {
           detail = ok ? 'absent' : 'present';
         }
       } else if (a.type === 'deterministic') {
-        // F-P1-3 (122 review): `a.command` is profile/fixture-supplied data that flows
-        // into a shell via execSync. Benchmark profiles are trusted-author content today,
-        // so this is a latent injection surface rather than an open exploit. The gate lets
-        // a hardened deployment refuse criteria-driven shell execution by setting
-        // DEEP_AGENT_ALLOW_CRITERIA_EXEC=0. Default ('1'/unset) preserves backward-compat.
-        if (process.env.DEEP_AGENT_ALLOW_CRITERIA_EXEC === '0') {
+        // Profile-authored commands execute only inside the benchmark trust domain.
+        // Shared runners should set the gate to 0 to refuse this path.
+        if (!criteriaExecAllowed()) {
           ok = false;
           detail = 'deterministic criterion skipped: criteria exec disabled (DEEP_AGENT_ALLOW_CRITERIA_EXEC=0)';
           results.push({ id: a.id, type: a.type, passed: ok, detail });

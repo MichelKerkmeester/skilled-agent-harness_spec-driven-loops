@@ -3,11 +3,14 @@ title: "deep-improvement: Prove an Agent Got Better Before You Ship It"
 description: "Evaluator-first skill for bounded agent improvement with 5-dimension integration-aware scoring, dynamic profiling, packet-local candidates, and guarded promotion or rollback."
 trigger_phrases:
   - "deep-improvement"
-  - "recursive agent"
   - "agent improvement loop"
   - "bounded agent improvement"
   - "5-dimension scoring"
   - "integration scanner"
+  - "dynamic profiling"
+  - "model-benchmark mode"
+  - "benchmark a model or prompt framework"
+  - "skill-benchmark mode"
 ---
 
 # deep-improvement
@@ -171,21 +174,24 @@ For multi-iter evaluation sweeps, two patterns improve breadth and cut noise.
 +-- references/                 # operator and policy guides, grouped by lane
 |   +-- agent-improvement/      # Lane A (6): integration, scoring, profiling, onboarding, proposal, mirror drift
 |   +-- model-benchmark/        # Lane B (3): evaluator contract, benchmark operator guide, mixed-executor
-|   `-- shared/                 # both lanes (5): quick reference, loop protocol, promotion rules + gate, rollback
+|   +-- skill-benchmark/        # Lane C (3): operator guide, scenario authoring, scoring contract
+|   `-- shared/                 # all lanes (5): quick reference, loop protocol, promotion rules + gate, rollback
 +-- assets/                     # grouped by lane
 |   +-- agent-improvement/      # Lane A: charter, strategy, config, manifest
-|   `-- model-benchmark/        # Lane B: benchmark fixtures + profiles
-+-- scripts/                    # grouped by lane (16 helpers) + lib/ + tests/
+|   +-- model-benchmark/        # Lane B: benchmark fixtures + profiles
+|   `-- skill-benchmark/        # Lane C: default profile and remediation taxonomy
++-- scripts/                    # grouped by lane (22 helpers) + lib/ + tests/
 |   +-- agent-improvement/      # Lane A (8): scan, profile, score, rollback, drift, trade-off, lineage, stability
-|   +-- model-benchmark/        # Lane B (2): run-benchmark, dispatch-model + scorer/ subtree
-|   `-- shared/                 # both lanes (6): loop-host, reduce-state, promote, journal, coverage, materialize
+|   +-- model-benchmark/        # Lane B (3): run-benchmark, dispatch-model, sweep-benchmark + scorer/ subtree
+|   +-- skill-benchmark/        # Lane C (5 core): run, live executor, score, D4/D4-R ablation, report builder
+|   `-- shared/                 # all lanes (6): loop-host, reduce-state, promote, journal, coverage, materialize
 +-- feature_catalog/            # Current-state feature inventory (4 categories incl. model-benchmark)
 `-- manual_testing_playbook/    # 42 manual scenarios across 9 categories (09 = model-benchmark / Lane B)
 ```
 
-### References (14, grouped by lane)
+### References (17, grouped by lane)
 
-Under `references/agent-improvement/` (6), `references/model-benchmark/` (3), and `references/shared/` (5).
+Under `references/agent-improvement/` (6), `references/model-benchmark/` (3), `references/skill-benchmark/` (3), and `references/shared/` (5).
 
 | Reference | Purpose |
 |---|---|
@@ -203,16 +209,25 @@ Under `references/agent-improvement/` (6), `references/model-benchmark/` (3), an
 | `integration_scanning.md` | Integration scanner documentation |
 | `profiling_audit_log.md` | Profile-selection rationale logging |
 | `mixed_executor_methodology.md` | Mixed-executor and adjudication-iter guidance |
+| `operator_guide.md` | Skill-benchmark operator workflow |
+| `scenario_authoring.md` | Skill-benchmark scenario and gold authoring |
+| `scoring_contract.md` | Skill-benchmark D1-D5 scoring and funnel contract |
 
-### Scripts (16 + lib, grouped by lane)
+### Scripts (22 + lib, grouped by lane)
 
-Under `scripts/agent-improvement/` (8), `scripts/model-benchmark/` (2, plus the `scorer/` subtree), and `scripts/shared/` (6), with `lib/` helpers and `tests/`.
+Under `scripts/agent-improvement/` (8), `scripts/model-benchmark/` (3, plus the `scorer/` subtree), `scripts/skill-benchmark/` (5 core scripts), and `scripts/shared/` (6), with `lib/` helpers and `tests/`.
 
 | Script | Purpose |
 |---|---|
 | `shared/loop-host.cjs` | Mode-switch entry point: routes to Lane A or `--mode=model-benchmark` (Lane B) |
 | `model-benchmark/dispatch-model.cjs` | Lane B: run a model against fixtures under prompt-framework variants |
+| `model-benchmark/sweep-benchmark.cjs` | Lane B: expand and score model/framework/fixture sweep matrices |
 | `model-benchmark/scorer/**` | Lane B: ported decoupled scorer (deterministic checks + LLM grader harness) |
+| `skill-benchmark/run-skill-benchmark.cjs` | Lane C: orchestrate skill-benchmark scenarios and reports |
+| `skill-benchmark/live-executor.cjs` | Lane C: execute live routing-analysis dispatches |
+| `skill-benchmark/score-skill-benchmark.cjs` | Lane C: compute D1-D5 scores, funnel, and advisory signals |
+| `skill-benchmark/d4-ablation.cjs` | Lane C: run D4 hallucination and D4-R task-outcome ablations |
+| `skill-benchmark/build-report.cjs` | Lane C: render report markdown from report JSON |
 | `scan-integration.cjs` | Discover every surface an agent touches |
 | `generate-profile.cjs` | Derive a scoring profile from any agent |
 | `score-candidate.cjs` | Score a candidate across five dimensions |

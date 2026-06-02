@@ -2,7 +2,7 @@
 name: deep-improvement
 description: "Evaluator-first bounded agent improvement: 5-dim scoring, dynamic profiling, packet-local candidates, guarded promotion."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.11.0.0
+version: 1.11.1.0
 triggers:
   - deep-improvement
   - agent improvement loop
@@ -12,6 +12,7 @@ triggers:
   - dynamic profiling
   - model-benchmark mode
   - benchmark a model or prompt framework
+  - skill-benchmark mode
 ---
 
 <!-- Keywords: deep-improvement, deep-improvement, agent-improvement, benchmark-harness, score-candidate, promote-candidate, rollback-candidate -->
@@ -216,6 +217,8 @@ def route_recursive_agent_resources(task):
     runtime_assets = list(RUNTIME_ASSETS["ALWAYS"])
     if "MODEL_BENCHMARK" in intents:
         runtime_assets.extend(RUNTIME_ASSETS.get("MODEL_BENCHMARK", []))
+    if "SKILL_BENCHMARK" in intents:
+        runtime_assets.extend(RUNTIME_ASSETS.get("SKILL_BENCHMARK", []))
 
     if not loaded:
         load_if_available(DEFAULT_RESOURCE)
@@ -538,6 +541,6 @@ Core references: `README.md`, `references/shared/quick_reference.md`, `reference
 
 The router discovers reference, asset, and script docs dynamically. Start with `references/shared/loop_protocol.md`, `references/shared/quick_reference.md`, `references/model-benchmark/benchmark_operator_guide.md`, `references/model-benchmark/evaluator_contract.md`, `references/agent-improvement/integration_scanning.md`, `references/agent-improvement/mirror_drift_policy.md`, `references/shared/promotion_rules.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
-Scripts: `scripts/agent-improvement/benchmark-stability.cjs`, `scripts/agent-improvement/candidate-lineage.cjs`, `scripts/agent-improvement/check-mirror-drift.cjs`, `scripts/agent-improvement/generate-profile.cjs`, `scripts/shared/improvement-journal.cjs`, `scripts/shared/materialize-benchmark-fixtures.cjs`, `scripts/shared/mutation-coverage.cjs`, `scripts/shared/promote-candidate.cjs`, `scripts/shared/reduce-state.cjs`, `scripts/agent-improvement/rollback-candidate.cjs`, `scripts/model-benchmark/run-benchmark.cjs`, `scripts/agent-improvement/scan-integration.cjs`, `scripts/agent-improvement/score-candidate.cjs`, `scripts/agent-improvement/trade-off-detector.cjs`.
+Scripts: `scripts/agent-improvement/benchmark-stability.cjs` (repeatability and weight recommendations), `scripts/agent-improvement/candidate-lineage.cjs` (candidate parentage across waves), `scripts/agent-improvement/check-mirror-drift.cjs` (runtime mirror drift report), `scripts/agent-improvement/generate-profile.cjs` (dynamic target profile), `scripts/shared/improvement-journal.cjs` (append-only lifecycle journal), `scripts/shared/materialize-benchmark-fixtures.cjs` (static fixture materializer), `scripts/shared/mutation-coverage.cjs` (mutation coverage graph), `scripts/shared/promote-candidate.cjs` (guarded canonical promotion), `scripts/shared/reduce-state.cjs` (dashboard and registry reducer), `scripts/agent-improvement/rollback-candidate.cjs` (promotion rollback), `scripts/model-benchmark/run-benchmark.cjs` (Lane B fixture runner), `scripts/model-benchmark/sweep-benchmark.cjs` (Lane B matrix sweep and scoring), `scripts/agent-improvement/scan-integration.cjs` (integration surface scanner), `scripts/agent-improvement/score-candidate.cjs` (Lane A candidate scorer), `scripts/agent-improvement/trade-off-detector.cjs` (Pareto trade-off detector), `scripts/skill-benchmark/run-skill-benchmark.cjs` (Lane C orchestrator), `scripts/skill-benchmark/live-executor.cjs` (Lane C live dispatch executor), `scripts/skill-benchmark/score-skill-benchmark.cjs` (Lane C D1-D5 scorer), `scripts/skill-benchmark/d4-ablation.cjs` (D4 and D4-R ablation), `scripts/skill-benchmark/build-report.cjs` (Lane C markdown report renderer).
 
 Related skills: `sk-doc` for package-shape and markdown validation, `system-spec-kit` for packet validation, and `sk-prompt` when prompt surfaces need evaluator-backed rewriting.

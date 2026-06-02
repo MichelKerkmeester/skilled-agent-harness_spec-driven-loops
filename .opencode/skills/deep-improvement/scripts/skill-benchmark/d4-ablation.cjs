@@ -54,6 +54,28 @@ function buildSkillOffPrompt(scenario) {
 }
 
 /**
+ * Build shared grader options for on/off ablation pairs.
+ *
+ * @param {Object} args - Grader base inputs.
+ * @param {string} args.variantHash - Variant hash for cache keying.
+ * @param {string} args.graderMode - Grader mode.
+ * @param {string} [args.cacheDir] - Optional grader cache directory.
+ * @param {string} [args.systemPromptPath] - Optional system-prompt override.
+ * @param {string} args.dimId - Dimension identifier for the grader harness.
+ * @returns {Object} Shared grader options.
+ */
+function buildGraderBase({ variantHash, graderMode, cacheDir, systemPromptPath, dimId }) {
+  return {
+    variant_hash: variantHash, rubric_version: 'v1.0.0', grader_model_build_hash: 'na',
+    mode: graderMode,
+    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
+    cache_dir: cacheDir,
+    system_prompt_path: systemPromptPath,
+    dim_id: dimId,
+  };
+}
+
+/**
  * Grade the on/off output pair into a normalized D4 usefulness score.
  * Deterministic when graderMode is a mock mode. score in [0,1]: 0.5 = no delta,
  * 1 = skill-on fully better, 0 = skill-off better (skill hurt).
@@ -67,12 +89,7 @@ function buildSkillOffPrompt(scenario) {
  * @returns {Promise<Object>} D4 score object plus raw on/off grades.
  */
 async function gradeAblation({ scenario, onText, offText, graderMode = 'mock', cacheDir }) {
-  const base = {
-    variant_hash: 'live', rubric_version: 'v1.0.0', grader_model_build_hash: 'na',
-    mode: graderMode,
-    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
-    cache_dir: cacheDir,
-  };
+  const base = buildGraderBase({ variantHash: 'live', graderMode, cacheDir, dimId: 'D4' });
   const rubric = scenario.passCriteria || scenario.prompt || '';
   const onG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#on`, rubric }, swe16_output_text: onText || '', ...base });
   const offG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#off`, rubric }, swe16_output_text: offText || '', ...base });
@@ -181,13 +198,9 @@ function buildTaskOutcomeOffPrompt(scenario) {
  * @returns {Promise<Object>} D4-R score object plus raw on/off grades.
  */
 async function gradeTaskOutcome({ scenario, onText, offText, graderMode = 'mock', cacheDir }) {
-  const base = {
-    variant_hash: 'live-d4r', rubric_version: 'v1.0.0', grader_model_build_hash: 'na',
-    mode: graderMode,
-    mock_mode: graderMode.startsWith('mock-') ? graderMode.slice('mock-'.length) : 'default',
-    cache_dir: cacheDir,
-    system_prompt_path: TASK_OUTCOME_PROMPT_PATH,
-  };
+  const base = buildGraderBase({
+    variantHash: 'live-d4r', graderMode, cacheDir, systemPromptPath: TASK_OUTCOME_PROMPT_PATH, dimId: 'D4-R',
+  });
   const rubric = scenario.passCriteria || scenario.prompt || '';
   const onG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#taskoutcome#on`, rubric }, swe16_output_text: onText || '', ...base });
   const offG = await grader.gradeD4({ fixture: { id: `${scenario.scenarioId}#taskoutcome#off`, rubric }, swe16_output_text: offText || '', ...base });
@@ -240,6 +253,6 @@ async function runD4RAblation({ scenario, skillRoot, model, variant, graderMode 
 // ─────────────────────────────────────────────────────────────────────────────
 
 module.exports = {
-  runD4Ablation, gradeAblation, buildSkillOffPrompt, clamp01,
+  runD4Ablation, gradeAblation, buildSkillOffPrompt, buildGraderBase, clamp01,
   runD4RAblation, gradeTaskOutcome, buildTaskOutcomePrompt, buildTaskOutcomeOffPrompt,
 };

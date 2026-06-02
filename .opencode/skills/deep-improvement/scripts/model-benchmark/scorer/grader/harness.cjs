@@ -5,7 +5,7 @@
 'use strict';
 
 /**
- * Primary grader dispatcher for D4 Hallucination dimension. Builds the prompt,
+ * Primary grader dispatcher for D4-family dimensions. Builds the prompt,
  * dispatches via Claude Code CLI (operator constraint: claude-only), parses
  * the JSON response, caches the result.
  *
@@ -106,14 +106,52 @@ function untrustedDelimiter() {
 }
 
 /**
- * Compose the system + user prompt pair for a D4 grader call.
+ * Return the user-prompt scoring instruction for the selected dimension.
+ *
+ * @param {string} dimId - Dimension identifier being graded.
+ * @returns {string} Tail instruction for the grader user prompt.
+ */
+function dimensionInstruction(dimId) {
+  if (dimId === 'D4') return 'Score D4 Hallucination only. Return JSON only per the system prompt.';
+  if (dimId === 'D4-R') return 'Score the D4-R task-outcome rubric defined in the system prompt only. Return JSON only.';
+  return 'Score the ' + dimId + ' rubric defined in the system prompt only. Return JSON only.';
+}
+
+/**
+ * Normalize a parsed grader payload for the expected dimension.
+ *
+ * @param {Object} parsed - Parsed grader payload.
+ * @param {string} dimId - Expected dimension identifier.
+ * @returns {{parsed:Object, dimMismatch:boolean}|null} Normalized payload, or null when unusable.
+ */
+function normalizeParsedPayload(parsed, dimId) {
+  if (!parsed || typeof parsed !== 'object' || typeof parsed.score !== 'number') return null;
+  if (!parsed.dim_id) return { parsed: { ...parsed, dim_id: dimId }, dimMismatch: false };
+  if (parsed.dim_id === dimId) return { parsed, dimMismatch: false };
+  const confidence = typeof parsed.confidence === 'number' ? Math.min(parsed.confidence, 0.3) : 0.3;
+  return {
+    parsed: {
+      ...parsed,
+      dim_id: dimId,
+      confidence,
+      rationale: parsed.rationale
+        ? parsed.rationale + ' (grader returned a different dimension id; normalized to requested dimension)'
+        : 'grader returned a different dimension id; normalized to requested dimension',
+    },
+    dimMismatch: true,
+  };
+}
+
+/**
+ * Compose the system + user prompt pair for a grader call.
  *
  * @param {Object} fixture - Fixture metadata embedded in the prompt.
  * @param {string} swe16OutputText - Untrusted candidate output to grade.
  * @param {string} [systemPromptPath] - Optional override for the system-prompt file.
+ * @param {string} [dimId='D4'] - Dimension identifier being graded.
  * @returns {{systemPrompt: string, userPrompt: string}} Composed prompt pair.
  */
-function composeGraderPrompt(fixture, swe16OutputText, systemPromptPath) {
+function composeGraderPrompt(fixture, swe16OutputText, systemPromptPath, dimId = 'D4') {
   const systemPrompt = readSystemPrompt(systemPromptPath);
   const marker = untrustedDelimiter();
   const userPrompt = [
@@ -133,7 +171,7 @@ function composeGraderPrompt(fixture, swe16OutputText, systemPromptPath) {
     swe16OutputText,
     marker + '-END',
     '',
-    'Score D4 Hallucination only. Return JSON only per the system prompt.',
+    dimensionInstruction(dimId),
   ].join('\n');
   return { systemPrompt, userPrompt };
 }
@@ -142,15 +180,17 @@ function composeGraderPrompt(fixture, swe16OutputText, systemPromptPath) {
  * Parse a raw grader response into a structured result with a parse-status tag.
  *
  * @param {string} rawText - Raw grader stdout text.
+ * @param {string} [dimId='D4'] - Expected dimension identifier.
  * @returns {{parse_status: string, parsed: (Object|null)}} Parse outcome with extracted payload (or null on failure).
  */
-function parseGraderResponse(rawText) {
+function parseGraderResponse(rawText, dimId = 'D4') {
   // Try strict JSON parse first
   const trimmed = rawText.trim();
   try {
     const parsed = JSON.parse(trimmed);
-    if (typeof parsed.score === 'number' && parsed.dim_id) {
-      return { parse_status: 'ok', parsed };
+    const normalized = normalizeParsedPayload(parsed, dimId);
+    if (normalized) {
+      return { parse_status: normalized.dimMismatch ? 'dim_mismatch' : 'ok', parsed: normalized.parsed };
     }
   } catch (_) {
     // fall through to fallback extraction
@@ -160,8 +200,9 @@ function parseGraderResponse(rawText) {
   if (fenced) {
     try {
       const parsed = JSON.parse(fenced[1].trim());
-      if (typeof parsed.score === 'number') {
-        return { parse_status: 'fallback_fenced', parsed };
+      const normalized = normalizeParsedPayload(parsed, dimId);
+      if (normalized) {
+        return { parse_status: normalized.dimMismatch ? 'fallback_fenced_dim_mismatch' : 'fallback_fenced', parsed: normalized.parsed };
       }
     } catch (_) {
       // continue
@@ -171,8 +212,9 @@ function parseGraderResponse(rawText) {
   if (objMatch) {
     try {
       const parsed = JSON.parse(objMatch[0]);
-      if (typeof parsed.score === 'number') {
-        return { parse_status: 'fallback_regex', parsed };
+      const normalized = normalizeParsedPayload(parsed, dimId);
+      if (normalized) {
+        return { parse_status: normalized.dimMismatch ? 'fallback_regex_dim_mismatch' : 'fallback_regex', parsed: normalized.parsed };
       }
     } catch (_) {
       // continue
@@ -184,7 +226,7 @@ function parseGraderResponse(rawText) {
     return {
       parse_status: 'fallback_score_only',
       parsed: {
-        dim_id: 'D4',
+        dim_id: dimId,
         score: parseFloat(scoreMatch[1]),
         confidence: 0.3,
         rationale: 'parse fallback; full JSON not extracted',
@@ -205,7 +247,7 @@ function parseGraderResponse(rawText) {
 function dispatchReal(prompt) {
   // Executes claude CLI with the composed prompt. Operator constraint: claude only.
   // Returns stdout text. Errors propagate.
-  const args = ['--print', '--model', GRADER_MODEL, '-p', prompt.systemPrompt + '\n\n' + prompt.userPrompt];
+  const args = ['--print', '--model', GRADER_MODEL, '--append-system-prompt', prompt.systemPrompt, '-p', prompt.userPrompt];
   return execFileSync(CLAUDE_BIN, args, {
     timeout: DISPATCH_TIMEOUT_MS,
     encoding: 'utf8',
@@ -218,13 +260,14 @@ function dispatchReal(prompt) {
  *
  * @param {{systemPrompt: string, userPrompt: string}} prompt - Composed prompt pair (unused by mock).
  * @param {string} mockMode - Mock scenario selector ('high-confidence', 'low-confidence', 'parse-failure', 'fenced', default).
+ * @param {string} [dimId='D4'] - Dimension identifier to stamp on mock responses.
  * @returns {string} Mock raw response text.
  */
-function dispatchMock(prompt, mockMode) {
+function dispatchMock(prompt, mockMode, dimId = 'D4') {
   // Used by the dry-run gate to verify parser without hitting real CLI.
   if (mockMode === 'high-confidence') {
     return JSON.stringify({
-      dim_id: 'D4',
+      dim_id: dimId,
       score: 0.95,
       confidence: 0.9,
       rationale: 'all symbols and flags in output verified against allowlist',
@@ -234,7 +277,7 @@ function dispatchMock(prompt, mockMode) {
   }
   if (mockMode === 'low-confidence') {
     return JSON.stringify({
-      dim_id: 'D4',
+      dim_id: dimId,
       score: 0.5,
       confidence: 0.4,
       rationale: 'unable to verify several symbols',
@@ -248,12 +291,12 @@ function dispatchMock(prompt, mockMode) {
   }
   if (mockMode === 'fenced') {
     return 'Here is my grade:\n```json\n' + JSON.stringify({
-      dim_id: 'D4', score: 0.7, confidence: 0.8, rationale: 'mixed', evidence: [], version: VERSION,
+      dim_id: dimId, score: 0.7, confidence: 0.8, rationale: 'mixed', evidence: [], version: VERSION,
     }) + '\n```';
   }
   // default fall-through
   return JSON.stringify({
-    dim_id: 'D4',
+    dim_id: dimId,
     score: 0.85,
     confidence: 0.85,
     rationale: 'mock default',
@@ -267,7 +310,7 @@ function dispatchMock(prompt, mockMode) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Grade the D4 Hallucination dimension: build prompt, dispatch, parse, clamp, cache.
+ * Grade a D4-family dimension: build prompt, dispatch, parse, clamp, cache.
  *
  * @param {Object} opts - Grading options.
  * @param {Object} opts.fixture - Fixture metadata (must include `id`).
@@ -279,6 +322,7 @@ function dispatchMock(prompt, mockMode) {
  * @param {string} [opts.mock_mode] - Mock scenario selector when not real.
  * @param {string} [opts.cache_dir] - Optional run-scoped grader cache dir.
  * @param {string} [opts.system_prompt_path] - Optional system-prompt override.
+ * @param {string} [opts.dim_id='D4'] - Dimension identifier for prompt, parser, and cache metadata.
  * @returns {Promise<Object>} Grader result with clamped score/confidence and cache metadata.
  */
 async function gradeD4(opts) {
@@ -291,6 +335,7 @@ async function gradeD4(opts) {
     mode, // 'real' | 'mock-high-confidence' | 'mock-low-confidence' | etc.
     mock_mode,
   } = opts;
+  const dimId = opts.dim_id || 'D4';
 
   const swe16OutputHash = sha256Hex(swe16_output_text);
   const cacheKey = cache.derive_grader_key({
@@ -298,7 +343,7 @@ async function gradeD4(opts) {
     fixture_id: fixture.id,
     rubric_version: rubric_version || 'v1.0.0',
     grader_model_build_hash,
-    dim_id: 'D4',
+    dim_id: dimId,
     swe16_output_hash: swe16OutputHash,
   });
 
@@ -316,21 +361,21 @@ async function gradeD4(opts) {
     return cachedResult;
   }
 
-  const prompt = composeGraderPrompt(fixture, swe16_output_text, opts.system_prompt_path);
+  const prompt = composeGraderPrompt(fixture, swe16_output_text, opts.system_prompt_path, dimId);
   let rawResponse;
   if (mode === 'real') {
     rawResponse = dispatchReal(prompt);
   } else {
-    rawResponse = dispatchMock(prompt, mock_mode || 'default');
+    rawResponse = dispatchMock(prompt, mock_mode || 'default', dimId);
   }
 
-  const { parse_status, parsed } = parseGraderResponse(rawResponse);
+  const { parse_status, parsed } = parseGraderResponse(rawResponse, dimId);
   const result = {
     cache_hit: false,
     cache_key: cacheKey,
     raw_grader_output: rawResponse,
     parse_status,
-    ...(parsed || { score: 0.0, confidence: 0.0, rationale: 'parse failed', evidence: [], dim_id: 'D4', version: VERSION }),
+    ...(parsed || { score: 0.0, confidence: 0.0, rationale: 'parse failed', evidence: [], dim_id: dimId, version: VERSION }),
   };
 
   // Clamp model-provided score + confidence to [0,1].
@@ -357,7 +402,7 @@ async function gradeD4(opts) {
     version: VERSION,
   });
   cache.write_atomic('grader', cacheKey, blobBody, {
-    dim_id: 'D4',
+    dim_id: dimId,
     fixture_id: fixture.id,
     variant_hash,
     rubric_version: rubric_version || 'v1.0.0',

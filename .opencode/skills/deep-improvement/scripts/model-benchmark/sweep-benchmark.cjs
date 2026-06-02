@@ -338,30 +338,24 @@ function dispatchCell(cell, promptText, opts) {
 // Falls back to returning the raw string when it is not an event stream (so a
 // plain-text executor's stdout passes through unchanged).
 /**
+ * Parse assistant text using the dispatcher's shared OpenCode stream parser.
+ *
+ * @param {string} stdout - The raw dispatch stdout, possibly a JSONL event stream.
+ * @returns {?string} The ordered assistant text, or null when stdout is not an event stream.
+ */
+function parseAssistantTextFromStream(stdout) {
+  const parsed = dispatcher.parseOpencodeStream(stdout);
+  return parsed.usage_parser_status === 'error' ? null : parsed.output;
+}
+
+/**
  * Extract concatenated assistant text from a cli-opencode JSONL event stream.
  *
  * @param {string} stdout - The raw dispatch stdout, possibly a JSONL event stream.
  * @returns {?string} The ordered assistant text, or null when stdout is not an event stream.
  */
 function extractAssistantText(stdout) {
-  const lines = String(stdout).split(/\r?\n/).filter(Boolean);
-  const parts = [];
-  let sawEvent = false;
-  for (const line of lines) {
-    let ev;
-    try {
-      ev = JSON.parse(line);
-    } catch (_) {
-      continue;
-    }
-    sawEvent = true;
-    if (ev && ev.type === 'text' && ev.part && typeof ev.part.text === 'string') {
-      parts.push({ text: ev.part.text, start: (ev.part.time && ev.part.time.start) || 0 });
-    }
-  }
-  if (!sawEvent) return null;
-  parts.sort((x, y) => x.start - y.start);
-  return parts.map((p) => p.text).join('');
+  return parseAssistantTextFromStream(stdout);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -648,4 +642,5 @@ module.exports = {
   axisFrameworks,
   sampleCount,
   extractAssistantText,
+  parseAssistantTextFromStream,
 };

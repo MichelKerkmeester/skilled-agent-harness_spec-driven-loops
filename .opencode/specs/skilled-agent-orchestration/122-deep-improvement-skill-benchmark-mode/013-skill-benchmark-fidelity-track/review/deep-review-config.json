@@ -1,0 +1,28 @@
+{
+  "topic": "Review: skill:deep-improvement",
+  "mode": "review",
+  "sessionId": "mimo-deepreview-013",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.1,
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+  "status": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "type": "cli-opencode",
+    "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+    "reasoningEffort": "high",
+    "timeoutSeconds": 900
+  },
+  "reviewTarget": "skill:deep-improvement",
+  "reviewTargetType": "skill",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2"
+}
