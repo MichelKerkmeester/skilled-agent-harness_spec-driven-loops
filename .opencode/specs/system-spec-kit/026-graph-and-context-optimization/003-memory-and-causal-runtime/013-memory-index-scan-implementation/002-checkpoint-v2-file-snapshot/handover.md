@@ -11,16 +11,16 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot"
-    last_updated_at: "2026-06-01T22:55:00Z"
+    last_updated_at: "2026-06-02T00:10:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "D live-verified + gate bug fixed (cce4fe931d); docs reconciled; G orphans reconciled"
-    next_safe_action: "Confirm 1.3GB backup purge; implement E (003 front-proxy) on a branch"
+    recent_action: "D+G+E all done + deployed; E merged (598be61b05) after 5-iter deep research"
+    next_safe_action: "Roadmap complete; optional formal /memory:save when the daemon is stable"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts"
-      - ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
-    completion_pct: 95
+      - ".opencode/bin/lib/launcher-session-proxy.cjs"
+      - ".opencode/bin/mk-spec-memory-launcher.cjs"
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -34,8 +34,9 @@ _memory:
 The "NOT live-verified" caveat below is now RESOLVED, and the live verification surfaced a real bug.
 
 - **D checkpoint-v2 — DONE + LIVE-VERIFIED.** Rebuilt `dist/`; live-verified on the ~300 MB production DB. The live proof revealed the shipped v2 path was **inert**: `hasMainVectorPayloadTables` gated v2 on `vec_memories` OR `vec_metadata` in main, but shard-attach slimming intentionally retains `vec_metadata` in main → every sharded daemon fell back to v1 (the exact `Invalid string length` risk v2 exists to prevent). Fixed to gate on `vec_memories` only + regression test (**`cce4fe931d`**). Re-verified: v2 create (297 MB main + 72 MB shard, 0.37 s, integrity ok) + isolated restore round-trip via real `reopenActiveDatabase` (9665 memories, `rowsTotal==ftsRowsTotal==vecRowsTotal`). 002 docs reconciled + `validate --strict` PASS (**`d43d405a84`**).
-- **G cleanups — orphans DONE; backup DEFERRED.** Reconciled the 28 stale old-path orphan rows via the sanctioned `verifyIntegrity` autoClean+cleanFiles path (index now 9637 memory==fts==vec, 0 orphans). The **1.3 GB `database/backups/context-index-PRE-REBUILD-20260601-161614/` purge is DEFERRED for operator OK** (irreversible, not created by me, redundant nets remain: the `PRE-BC-083145` backup + working checkpoint-v2). It is safe to delete once you confirm.
-- **E MCP front-proxy (003) — Phase 1 done on branch `e-mcp-front-proxy` (commit `22d1fca58a`), NOT merged.** Phase 1 (in-place daemon recycle) is implemented + inspection-verified: `recycleViaGracefulSelfExit`→`recycleDaemonInPlace` drops both `process.exit(0)` and the `launcherShutdownInProgress=true`, so the existing child-exit supervisor respawns the daemon child in place (`scheduleRelaunch`→`launchServer`, which resets the re-entrancy guard) and the launcher survives. `node --check` passes; the supervisor respawn path was verified by reading launcher.cjs:815-845. NOT live-verified, NOT deployed (it modifies the SHARED launcher `.cjs`, live for all new sessions on merge). **Phases 2-5 remain** (frame-proxy topology + `SPECKIT_BACKEND_ONLY` gate, transparent-reconnect engine, idempotency classifier, idle-monitor fix, live RSS-recycle proof) — they need the live verification you witness. Recommended: review the branch, continue Phases 2-5, live-verify together, then merge. Worktree at `../e-front-proxy-wt`.
+- **G cleanups — DONE.** Reconciled the 28 stale old-path orphan rows via the sanctioned `verifyIntegrity` autoClean+cleanFiles path (index consistent: memory==fts==vec, 0 orphans). The **1.3 GB `context-index-PRE-REBUILD-20260601-161614/` backup was PURGED** once D verified the gate (the `PRE-BC-083145` 1.0 GB backup + working checkpoint-v2 remain as nets).
+- **E MCP front-proxy (003) — DONE + MERGED to main (`598be61b05`).** All phases shipped: in-place daemon recycle, frame-proxy topology (`SPECKIT_BACKEND_ONLY`), the transparent-reconnect engine (bidirectional frame parsing, pendingRequests + cached-initialize replay, default-deny idempotency classifier, ~10s keepalive with reserved id prefix, backpressure both directions), and the idle-monitor REATTACHING grace. **Verified:** 4-lens + Opus re-review (3 P0 found & fixed), 9/9 unit tests, an isolated live RSS-recycle proof (`RECYCLE_SURVIVED_TRANSPARENT` — daemon stays alive, launcher pid stable, in-flight request survived), and a **5-iteration integration deep research** (`003/research/`) that found + fixed a keepalive-id-collision P0 and assessed the second-launcher-bridge severance as **NOT a regression** (2nd+ sessions behave as pre-E; E only improves the primary session). dist rebuilt; typecheck 0; 17/17 tests in main. **Deferred non-blocking:** P2 `memory_save` replay enrichment, P2 protocol-version drift, and multi-client reconnect transparency (route the second-launcher bridge through `createSessionProxy` — design risk #9). Branch `e-mcp-front-proxy` retains the full per-phase history; worktree at `../e-front-proxy-wt`.
+- **D P2 fast-follows — P2-1/P2-2/P2-4 DONE** (`83e0661e5f` fsync stale-.bak; `29160c0e50` journal-demote determinism; `94069f63e5` .unclean-shutdown gitignore). **P2-3** (`.needs-rebuild` sentinel) deferred — the degraded derived-index state self-heals on the next `memory_index_scan`, so it is a low-value optimization, not a correctness fix.
 - **Daemon note:** the live `mk-spec-memory` daemon RSS-recycled and severed repeatedly this session (the exact item-E bug) and my in-session MCP stayed down — all D/G verification was done via daemon-independent one-shot Node harnesses against `dist/` (faithful: same storage/handler code, minus the recycle layer).
 
 ## Operator goal (verbatim)
