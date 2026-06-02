@@ -471,7 +471,7 @@ describe('checkpoint v2 restore', () => {
   it('refuses manifests from a newer schema version', () => {
     checkpoints.createCheckpoint({ name: 'future-schema', includeEmbeddings: false });
     const manifest = readManifest('future-schema');
-    writeManifest('future-schema', { ...manifest, schemaVersion: 30 });
+    writeManifest('future-schema', { ...manifest, schemaVersion: 9999 });
 
     const result = checkpoints.restoreCheckpoint('future-schema', false, {}, { reopen: flatReopen });
 
