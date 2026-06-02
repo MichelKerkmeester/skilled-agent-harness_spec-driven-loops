@@ -26,6 +26,7 @@ import * as embeddings from '../lib/providers/embeddings.js';
 import * as incrementalIndex from '../lib/storage/incremental-index.js';
 import * as vectorIndex from '../lib/search/vector-index.js';
 import { runPostMutationHooks } from './mutation-hooks.js';
+import { repairIncompleteMarkers } from './save/enrichment-state.js';
 import {
   findConstitutionalFiles,
   findGraphMetadataFiles,
@@ -123,6 +124,7 @@ interface ScanResults {
   mtimeUpdates: number;
   staleDeleted: number;
   staleDeleteFailed: number;
+  postInsertEnrichmentRepaired: number;
   orphanSwept: number;
   orphanSweepFailed: number;
   orphanSweepScanned: number;
@@ -459,10 +461,27 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   };
 
+  const runPostInsertEnrichmentRepairBackfill = async (): Promise<number> => {
+    try {
+      const repairResult = await repairIncompleteMarkers(
+        { database: requireDb(), plannerMode: 'full-auto' },
+        { limit: BATCH_SIZE },
+      );
+      if (repairResult.failed > 0) {
+        console.warn(`[memory-index-scan] Post-insert enrichment repair left ${repairResult.failed} failed marker(s)`);
+      }
+      return repairResult.repaired;
+    } catch (error: unknown) {
+      console.warn('[memory-index-scan] Post-insert enrichment repair skipped:', toErrorMessage(error));
+      return 0;
+    }
+  };
+
   if (files.length === 0) {
     let staleDeleted = 0;
     let staleDeleteFailed = 0;
     const orphanSweepResult = runGlobalOrphanSweep();
+    const postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
 
     if (incremental && !force) {
       const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing([]);
@@ -481,6 +500,12 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         operation: 'orphan-sweep',
       });
     }
+    if (postInsertEnrichmentRepaired > 0) {
+      runScanInvalidationHooks({
+        postInsertEnrichmentRepaired,
+        operation: 'post-insert-enrichment-repair',
+      });
+    }
 
     await releaseScanLease();
     return createMCPSuccessResponse({
@@ -496,6 +521,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         failed: 0,
         staleDeleted,
         staleDeleteFailed,
+        postInsertEnrichmentRepaired,
         orphanSwept: orphanSweepResult.swept,
         orphanSweepFailed: orphanSweepResult.failed,
         orphanSweepScanned: orphanSweepResult.scannedRows,
@@ -505,6 +531,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
       },
       hints: [
         ...(staleDeleted > 0 ? [`Removed ${staleDeleted} stale index record(s) for deleted files`] : []),
+        ...(postInsertEnrichmentRepaired > 0 ? [`Repaired ${postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`] : []),
         ...(orphanSweepResult.swept > 0 ? [`Swept ${orphanSweepResult.swept} orphan index record(s)`] : []),
         ...(orphanSweepResult.failed > 0 ? [`${orphanSweepResult.failed} orphan index record(s) could not be removed`] : []),
         'Indexable files are canonical spec documents under specs/**/ (spec.md, plan.md, decision-record.md, implementation-summary.md, handover.md, etc.)',
@@ -526,6 +553,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     mtimeUpdates: 0,
     staleDeleted: 0,
     staleDeleteFailed: 0,
+    postInsertEnrichmentRepaired: 0,
     orphanSwept: 0,
     orphanSweepFailed: 0,
     orphanSweepScanned: 0,
@@ -744,6 +772,8 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   results.orphanSweepScanned = orphanSweepResult.scannedRows;
   results.orphanSweepNextCursor = orphanSweepResult.nextCursor;
 
+  results.postInsertEnrichmentRepaired = await runPostInsertEnrichmentRepairBackfill();
+
   // Create causal chains between spec folder documents.
   // Includes deferred indexing outcomes and incremental single-file updates.
   if (include_spec_docs) {
@@ -814,12 +844,15 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     }
   }
 
-  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0) {
+  if (results.indexed > 0 || results.updated > 0 || results.staleDeleted > 0 || results.orphanSwept > 0 || results.postInsertEnrichmentRepaired > 0) {
     runScanInvalidationHooks({
       indexed: results.indexed,
       updated: results.updated,
       staleDeleted: results.staleDeleted,
       staleDeleteFailed: results.staleDeleteFailed,
+      ...(results.postInsertEnrichmentRepaired > 0
+        ? { postInsertEnrichmentRepaired: results.postInsertEnrichmentRepaired }
+        : {}),
       ...(results.orphanSwept > 0 || results.orphanSweepFailed > 0
         ? {
             orphanSwept: results.orphanSwept,
@@ -849,6 +882,9 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
   }
   if (results.orphanSwept > 0) {
     hints.push(`Swept ${results.orphanSwept} orphan index record(s)`);
+  }
+  if (results.postInsertEnrichmentRepaired > 0) {
+    hints.push(`Repaired ${results.postInsertEnrichmentRepaired} incomplete post-insert enrichment marker(s)`);
   }
   if (results.orphanSweepFailed > 0) {
     hints.push(`${results.orphanSweepFailed} orphan index record(s) could not be removed`);

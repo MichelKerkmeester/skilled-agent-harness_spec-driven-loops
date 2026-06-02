@@ -57,6 +57,7 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_document_type',
     'idx_doc_type_folder',
     'idx_quality_score',
+    'idx_post_insert_enrichment_incomplete',
     'idx_save_parent_content_hash_scope',
     'idx_save_parent_canonical_path',
   ],
@@ -74,6 +75,10 @@ const REQUIRED_MEMORY_INDEX_COLUMNS: readonly string[] = [
   'session_id',
   'created_at',
   'updated_at',
+  'post_insert_enrichment_status',
+  'post_insert_enrichment_state',
+  'post_insert_enrichment_completed_at',
+  'post_insert_enrichment_version',
 ];
 const REQUIRED_MEMORY_CONFLICT_COLUMNS: readonly string[] = [
   'id',
@@ -135,6 +140,11 @@ const SAVE_PARENT_CANONICAL_PATH_INDEX_SQL = `
   CREATE INDEX IF NOT EXISTS idx_save_parent_canonical_path
   ON memory_index(spec_folder, canonical_file_path, id DESC)
   WHERE parent_id IS NULL
+`;
+const POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL = `
+  CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
+  ON memory_index(post_insert_enrichment_status, id)
+  WHERE post_insert_enrichment_status != 'complete'
 `;
 
 function hasTable(database: Database.Database, tableName: string): boolean {
@@ -423,8 +433,9 @@ function getMigrationAllowedBasePaths(): string[] {
 // V22: Step 2 memory lineage tables + active projection support
 // V23: One-time spec_folder re-canonicalization + session_state migration
 // V24: Add trigger-cache source and temporal contiguity indexes
+// V30: Add post-insert enrichment completion markers
 /** Current schema version for vector-index migrations. */
-export const SCHEMA_VERSION = 29;
+export const SCHEMA_VERSION = 30;
 
 // Run schema migrations from one version to another
 // Each migration is idempotent - safe to run multiple times
@@ -1371,6 +1382,58 @@ export function run_migrations(database: Database.Database, from_version: number
     }
   };
 
+  migrations[30] = () => {
+    if (!hasTable(database, 'memory_index')) {
+      logger.warn('Migration v30: memory_index missing; skipping enrichment marker migration');
+      return;
+    }
+
+    const columns = new Set(getTableColumns(database, 'memory_index'));
+    const markerColumns: Array<{ name: string; sql: string }> = [
+      {
+        name: 'post_insert_enrichment_status',
+        sql: "ALTER TABLE memory_index ADD COLUMN post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete'",
+      },
+      {
+        name: 'post_insert_enrichment_state',
+        sql: 'ALTER TABLE memory_index ADD COLUMN post_insert_enrichment_state TEXT',
+      },
+      {
+        name: 'post_insert_enrichment_completed_at',
+        sql: 'ALTER TABLE memory_index ADD COLUMN post_insert_enrichment_completed_at TEXT',
+      },
+      {
+        name: 'post_insert_enrichment_version',
+        sql: 'ALTER TABLE memory_index ADD COLUMN post_insert_enrichment_version INTEGER',
+      },
+    ];
+
+    for (const column of markerColumns) {
+      if (columns.has(column.name)) {
+        continue;
+      }
+
+      try {
+        database.exec(column.sql);
+        columns.add(column.name);
+        logger.info(`Migration v30: Added memory_index.${column.name}`);
+      } catch (error: unknown) {
+        if (!get_error_message(error).includes('duplicate column')) {
+          throw error;
+        }
+        logDuplicateColumnMigrationSkip(column.name, error);
+      }
+    }
+
+    createRequiredIndex(
+      database,
+      'idx_post_insert_enrichment_incomplete',
+      POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL,
+      'Migration v30',
+    );
+    logger.info('Migration v30: Created post-insert enrichment repair index');
+  };
+
   // BUG-019 FIX: Wrap all migrations in a transaction for atomicity
   const run_all_migrations = database.transaction(() => {
     for (let v = from_version + 1; v <= to_version; v++) {
@@ -2204,6 +2267,24 @@ export function create_common_indexes(database: Database.Database): void {
     });
   }
 
+  if (getTableColumns(database, 'memory_index').includes('post_insert_enrichment_status')) {
+    try {
+      createRequiredIndex(
+        database,
+        'idx_post_insert_enrichment_incomplete',
+        POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL,
+        'create_common_indexes',
+      );
+      logger.info('Created idx_post_insert_enrichment_incomplete index');
+    } catch (err: unknown) {
+      console.warn('[vector-index] Failed to create idx_post_insert_enrichment_incomplete', {
+        operation: 'create_common_indexes',
+        index: 'idx_post_insert_enrichment_incomplete',
+        error: get_error_message(err),
+      });
+    }
+  }
+
   // H5 FIX: Add idx_history_timestamp index for memory_history table
   try {
     database.exec(`CREATE INDEX IF NOT EXISTS idx_history_timestamp ON memory_history(timestamp DESC)`);
@@ -2466,7 +2547,11 @@ export function create_schema(
       chunk_label TEXT,
       encoding_intent TEXT DEFAULT 'document',
       learned_triggers TEXT DEFAULT '[]',
-      interference_score REAL DEFAULT 0
+      interference_score REAL DEFAULT 0,
+      post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete',
+      post_insert_enrichment_state TEXT,
+      post_insert_enrichment_completed_at TEXT,
+      post_insert_enrichment_version INTEGER
     )
   `);
 
@@ -2578,6 +2663,9 @@ export function create_schema(
     CREATE INDEX IF NOT EXISTS idx_document_type ON memory_index(document_type);
     CREATE INDEX IF NOT EXISTS idx_doc_type_folder ON memory_index(document_type, spec_folder);
     CREATE INDEX IF NOT EXISTS idx_quality_score ON memory_index(quality_score);
+    CREATE INDEX IF NOT EXISTS idx_post_insert_enrichment_incomplete
+      ON memory_index(post_insert_enrichment_status, id)
+      WHERE post_insert_enrichment_status != 'complete';
   `);
 
   database.exec(`
