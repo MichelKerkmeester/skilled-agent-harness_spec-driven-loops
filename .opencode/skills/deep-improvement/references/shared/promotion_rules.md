@@ -1,6 +1,11 @@
 ---
 title: Promotion Rules
 description: Keep, reject, and guarded promotion rules for deep-improvement candidates.
+trigger_phrases:
+  - "promotion rules"
+  - "keep vs reject candidate"
+  - "promotion prerequisites"
+  - "no-go conditions"
 ---
 
 # Promotion Rules

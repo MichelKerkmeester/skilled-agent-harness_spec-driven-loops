@@ -1,6 +1,11 @@
 ---
 title: Target Onboarding Guide
 description: How to add a new bounded target to deep-improvement without weakening guardrails.
+trigger_phrases:
+  - "onboard new target"
+  - "add deep-improvement target"
+  - "classify canonical derived candidate target"
+  - "target manifest guardrails"
 ---
 
 # Target Onboarding Guide

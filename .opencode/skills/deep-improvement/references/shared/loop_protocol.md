@@ -1,6 +1,11 @@
 ---
 title: Loop Protocol
 description: End-to-end deep-improvement workflow from initialization through guarded promotion or stop decisions.
+trigger_phrases:
+  - "deep-improvement loop protocol"
+  - "improvement workflow lifecycle"
+  - "candidate score benchmark reduce promote"
+  - "guarded promotion and stop decisions"
 ---
 
 # Loop Protocol

@@ -18,7 +18,7 @@ Authoritative computation for the Skill Benchmark Report. Source of truth: the c
 
 ## 1. OVERVIEW
 
-Lane C scores a skill across five dimensions (D1-D5) and rolls them into a single verdict. D5 (structural connectivity) is a static hard gate that runs first. Mode A (router-replay) scores everything that needs no live model deterministically; D1-inter is built but opt-in via the in-repo advisor; D4 and the live trace remain follow-on. The aggregate normalizes over the dimensions actually measured so the headline number stays honest about coverage.
+Lane C scores a skill across five dimensions (D1-D5) and rolls them into a single verdict. D5 (structural connectivity) is a static hard gate that runs first. Mode A (router-replay) scores everything that needs no live model deterministically; D1-inter is built but opt-in via the in-repo advisor. The weighted **D4** dimension (a hallucination-grader proxy) stays unscored in the aggregate **by design** — it does not measure task usefulness. Real routine-task usefulness is measured separately by the opt-in **D4-R task-outcome ablation**, reported as an advisory signal (never folded into the weighted score); the live trace (Mode B) is built. The aggregate normalizes over the dimensions actually measured so the headline number stays honest about coverage.
 
 ## 2. POINT WEIGHTS (FULL / LIVE MODE)
 
@@ -41,12 +41,14 @@ D1-inter (does the skill *advisor* select this skill for the scenario?) is built
 - Scored out-of-band via the deterministic SQLite advisor (`scoreAdvisorPrompt` / `skill_advisor.py`) with the advisor hook disabled so the answer cannot leak into the dispatched prompt.
 - When disabled it reports `status: unscored-mode-a` (never faked); when enabled it contributes its 12 points to the measured aggregate.
 
-## 5. DEFERRED TO LIVE MODE (MODE B)
+## 5. LIVE MODE (MODE B) + ADVISORY SIGNALS
 
-- **D4** — usefulness via skill-on vs skill-off ablation through the pluggable grader (`noop|mock|llm`). Reuse the Lane B grader harness (claude-graded, single-dimension) per the playbook; namespace its cache dir to avoid Lane B collision.
-- **Live trace (Mode B)** replaces the D2/D3 router-replay proxies with observed file-load telemetry.
+The weighted **D4** dimension stays `unscored-mode-a` in the aggregate by design (its grader scores hallucination, not usefulness). Two live-mode signals are surfaced under `advisorySignals`, **outside** the weighted aggregate so the v1 weights/verdict are unchanged:
 
-Deferred items are reported as `status: unscored-mode-a` until built — never faked.
+- **`D4_task_outcome` — the real usefulness instrument (D4-R).** Opt-in via `--d4` (live). The model is asked to *do* a routine task (a minimal patch plan + verification commands, not a routing list) skill-on vs skill-off; both answers are graded by the task-outcome rubric (`system-grader-task-outcome.md`: correctness / verification-fit / focus / hallucination-risk) through the Lane B grader harness (claude-graded; distinct cache keys via the `#taskoutcome#on|off` fixture ids). Score = `0.5 + (on − off) / 2` (>0.5 = the skill helped). Stamped `attribution: approximate` (skill-off is approximated by hook-disable + preamble + a contamination guard that drops a leaked pair). Reported as `advisorySignals.D4_task_outcome`, never summed into the verdict.
+- **`assetRecall` — deferred-asset support.** `expectedAssets` is scored on its own lane (live: recall vs the model's stated assets; router: deferred). `live-executor` keeps assets on a separate `observedAssets` channel so a stated, useful asset is not counted as D3 over-routing waste.
+
+**Live trace (Mode B)** replaces the D2/D3 router-replay proxies with the model's stated/observed routing (references only — assets are on the `assetRecall` lane). Signals that did not run report `status: unscored-mode-a` — never faked.
 
 ## 6. FUNNEL + BOTTLENECK RANKING
 

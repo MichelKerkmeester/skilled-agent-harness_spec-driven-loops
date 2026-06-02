@@ -1,6 +1,11 @@
 ---
 title: Benchmark Operator Guide
 description: Step-by-step guide for running repeatable fixture benchmarks for deep-improvement target profiles.
+trigger_phrases:
+  - "run a fixture benchmark"
+  - "benchmark runner command"
+  - "benchmark repeatability"
+  - "benchmark output layout"
 ---
 
 # Benchmark Operator Guide

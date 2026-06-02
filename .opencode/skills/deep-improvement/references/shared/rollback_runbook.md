@@ -1,6 +1,11 @@
 ---
 title: Rollback Runbook
 description: Rollback and post-promotion verification procedure for bounded deep-improvement promotions.
+trigger_phrases:
+  - "rollback runbook"
+  - "promotion rollback steps"
+  - "post-promotion verification"
+  - "restore canonical target"
 ---
 
 # Rollback Runbook

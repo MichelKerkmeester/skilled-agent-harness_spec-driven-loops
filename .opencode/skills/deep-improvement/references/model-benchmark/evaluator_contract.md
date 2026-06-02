@@ -1,6 +1,11 @@
 ---
 title: Evaluator Contract
 description: Deterministic scoring and benchmark contract for target-profiled deep-improvement experiments.
+trigger_phrases:
+  - "evaluator contract"
+  - "candidate scoring rubric"
+  - "benchmark runner inputs"
+  - "infra failure vs weak candidate"
 ---
 
 # Evaluator Contract

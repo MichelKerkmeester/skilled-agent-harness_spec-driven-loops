@@ -1,6 +1,11 @@
 ---
 title: Quick Reference
 description: Short operational reference for running the deep-improvement workflow.
+trigger_phrases:
+  - "deep-improvement quick reference"
+  - "agent improvement command"
+  - "improvement runtime layout"
+  - "dimension weights"
 ---
 
 # Quick Reference

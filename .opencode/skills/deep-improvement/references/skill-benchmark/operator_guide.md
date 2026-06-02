@@ -18,11 +18,11 @@ Lane C benchmarks whether a *skill* is well-routed, discoverable, efficient, and
 
 ## 1. OVERVIEW
 
-Run Lane C with `loop-host.cjs --mode=skill-benchmark` (or `/deep:start-skill-benchmark-loop`). The orchestrator runs the D5 structural hard gate first, then per-scenario contamination-lint → router-replay → score, then writes a dual JSON+Markdown report. Mode A is deterministic and is the CI gate; the D1-inter advisor probe and live trace are opt-in / follow-on.
+Run Lane C with `loop-host.cjs --mode=skill-benchmark` (or `/deep:start-skill-benchmark-loop`). The orchestrator runs the D5 structural hard gate first, then per-scenario contamination-lint → router-replay → score, then writes a dual JSON+Markdown report. Mode A is deterministic and is the CI gate; the D1-inter advisor probe, the live trace (Mode B), and the D4-R task-outcome ablation are all opt-in (live/paid), kept off the CI path.
 
 > **Mode B (live playbook) — BUILT** (packet `122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode`). Beyond the synthetic-fixture Mode A above, Lane C can now use a skill's own `manual_testing_playbook` as the corpus and score it in two trace-modes over one parser:
 > - `--trace-mode router` (default for `run()` / CI) — deterministic router-replay over the real playbook prompts, scored against the playbook's expected-ref gold (replaces the old empty-gold fixtures).
-> - `--trace-mode live` — real `cli-opencode` dispatch; routing/advisor scenarios are run as routing-analysis prompts (the model states its routing as JSON, graded vs gold + observed activation); browser scenarios (MR/CB) route to a `bdg` browser executor; D4 usefulness is an **approximate** skill-on/off ablation. A↔B divergence is reported as a finding.
+> - `--trace-mode live` — real `cli-opencode` dispatch; routing/advisor scenarios are run as routing-analysis prompts (the model states its routing as JSON, graded vs gold + observed activation); browser scenarios (MR/CB) route to a `bdg` browser executor. Add `--d4` for the opt-in **D4-R task-outcome ablation** — the model is asked to *do* a routine task skill-on vs skill-off (a patch plan + verification, not a routing list), claude-graded into an advisory `D4_task_outcome` (the real usefulness measure, separate from the hallucination-grader D4). A↔B divergence + `assetRecall` are reported alongside.
 > - Flags: `--scenarios <ids|critical>`, `--executor`, `--playbook-dir`. Live model via env `SKILL_BENCH_OPENCODE_MODEL` / `SKILL_BENCH_OPENCODE_VARIANT`.
 > - **Live model guidance:** `gpt-5.5-fast --variant high` completes (~78s); `xhigh` is too slow and times out. Live is advisory (cost + nondeterminism) — the gated verdict stays driven by router mode + the D5 hard gate. Auto-CREATE generator (`playbook-generator.cjs`) is opt-in + staged.
 
@@ -39,6 +39,18 @@ node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs \
 ```
 
 `--advisor-mode=python` enables the **D1-inter** advisor probe — the deterministic in-repo SQLite advisor, scored out-of-band so the answer cannot leak. It is **off by default** (and in CI) to keep the pure-router path fast and dependency-free; enable it to lift a Mode A run from 4-dimension to 5-dimension coverage.
+
+For the opt-in, paid **D4-R task-outcome** usefulness signal (live only):
+
+```bash
+# advisory D4_task_outcome over routine scenarios — requires --trace-mode live
+SKILL_BENCH_OPENCODE_MODEL=openai/gpt-5.5-fast SKILL_BENCH_OPENCODE_VARIANT=high GRADER_MODEL=claude-sonnet-4-5 \
+node .opencode/skills/deep-improvement/scripts/skill-benchmark/run-skill-benchmark.cjs \
+  --skill=<skill-id-or-root> --outputs-dir=<path> --trace-mode live \
+  --scenarios <routine-ids> --d4 [--d4-scenarios <ids>] [--grader-mode real|mock]
+```
+
+`--d4` runs a separate task-outcome ablation (skill-on/off) graded by claude and writes an advisory `D4_task_outcome` to the report; it requires `--trace-mode live` (a no-op otherwise) and spends API per scenario. Skill-off keeps a contamination guard — a leaked skill read drops the pair `unscored` rather than faking a score.
 
 Command surface: `/deep:start-skill-benchmark-loop` (see `commands/deep/start-skill-benchmark-loop.md`).
 
@@ -58,9 +70,16 @@ Command surface: `/deep:start-skill-benchmark-loop` (see `commands/deep/start-sk
 | D3 | efficiency (over-routing proxy) | scored |
 | D5 | structural connectivity | scored (hard gate) |
 | D1-inter | advisor selects the right skill | scored when `--advisor-mode=python` (else `unscored-mode-a`) |
-| D4 | usefulness via skill-on/off ablation | unscored (needs live mode) |
+| D4 (weighted) | hallucination-grader proxy (the 25-pt dimension) | `unscored-mode-a` in the aggregate **by design** — see note |
 
-D1-inter is **built and deterministic** but opt-in (`--advisor-mode=python`). Only D4 and the live in-situ trace (Mode B) remain follow-on — see the 002 implementation playbook. Mode A is honest about its coverage: the aggregate normalizes over the dimensions actually measured.
+**Advisory signals** (live `--d4`; surfaced under `advisorySignals`, **not** folded into the weighted aggregate):
+
+| Signal | What | When |
+| ------ | ---- | ---- |
+| `D4_task_outcome` | real routine-task usefulness — skill-on vs skill-off, claude-graded on a task-outcome rubric (correctness / verification-fit / focus / hallucination-risk) | opt-in `--d4` (live) |
+| `assetRecall` | deferred `expectedAssets` support recall, kept off D2/D3 | live (router mode reports it deferred) |
+
+D1-inter is **built and deterministic** but opt-in (`--advisor-mode=python`); the live in-situ trace (Mode B) is built. The weighted **D4** dimension stays `unscored-mode-a` on purpose — its grader scores *hallucination*, not task usefulness, so folding it would mislabel the number. Real usefulness is the opt-in **D4-R task-outcome ablation** (`--d4`), reported separately as advisory `D4_task_outcome`, never summed into the weighted score. Mode A stays honest about coverage: the aggregate normalizes over the dimensions actually measured.
 
 ## 5. VERDICT BANDS
 

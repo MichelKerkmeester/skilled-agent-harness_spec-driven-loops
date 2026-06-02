@@ -1,6 +1,11 @@
 ---
 title: Integration Scanning
 description: How the integration scanner discovers all surfaces an agent touches across the repo.
+trigger_phrases:
+  - "integration scanning"
+  - "agent integration surfaces"
+  - "mirror drift detection"
+  - "scan-integration"
 ---
 
 # Integration Scanning

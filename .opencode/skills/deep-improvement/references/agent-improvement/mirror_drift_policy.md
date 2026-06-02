@@ -1,6 +1,11 @@
 ---
 title: Mirror Drift Policy
 description: Policy for handling runtime mirror drift after canonical deep-improvement promotion.
+trigger_phrases:
+  - "mirror drift policy"
+  - "runtime mirror sync"
+  - "agent definition drift"
+  - "packaging parity after promotion"
 ---
 
 # Mirror Drift Policy
