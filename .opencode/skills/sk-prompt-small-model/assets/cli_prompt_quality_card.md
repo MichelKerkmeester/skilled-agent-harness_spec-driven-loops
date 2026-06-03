@@ -128,8 +128,8 @@ When editing this file, no mirroring step is required — the delegating cards r
 ## 8. Related Resources
 
 - `../SKILL.md`
-- `../references/patterns_evaluation.md`
-- `../references/depth_framework.md`
+- `../../sk-prompt/references/patterns_evaluation.md`
+- `../../sk-prompt/references/depth_framework.md`
 - `../../cli-claude-code/assets/prompt_quality_card.md`
 - `../../cli-codex/assets/prompt_quality_card.md`
 - `../../cli-gemini/assets/prompt_quality_card.md`

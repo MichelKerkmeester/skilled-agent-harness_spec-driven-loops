@@ -23,7 +23,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
 ## 3. CODEX MODEL OVERRIDES
 
@@ -31,10 +31,10 @@ No per-model overrides today. Codex CLI dispatches only `gpt-5.5`; reasoning eff
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
 
 Codex-specific escalation example: if the task needs a crowded `codex exec` prompt plus explicit `-c service_tier="fast"` or sandbox guidance, dispatch `@prompt-improver` via the Task tool first and hand the returned `ENHANCED_PROMPT` to Codex CLI. Escalate on any canonical Tier 3 trigger.
 
 ## 5. RELATED RESOURCES
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)

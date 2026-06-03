@@ -23,7 +23,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md`
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`
 (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
 ## 3. GEMINI CLI MODEL OVERRIDES
@@ -38,10 +38,10 @@ gemini "$ENHANCED_PROMPT" -m gemini-3.1-pro-preview -o text 2>&1
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
 
 Gemini-specific escalation example: if the task requires a long grounded prompt plus `-m gemini-3.1-pro-preview`, dispatch `@prompt-improver` via the Task tool first, receive the structured `ENHANCED_PROMPT`, then hand that to the Gemini CLI invocation. Escalate on any canonical Tier 3 trigger: complexity >= 7/10; compliance, policy, privacy, or security sensitivity; more than one stakeholder or audience; more than one ambiguous key requirement; or a fast-path CLEAR check that cannot clear its floor quickly.
 
 ## 5. RELATED RESOURCES
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)

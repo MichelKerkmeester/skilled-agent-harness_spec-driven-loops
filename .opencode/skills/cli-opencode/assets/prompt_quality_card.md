@@ -23,7 +23,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
 
 The 7-framework selection table, the task->framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
 ## 3. OPENCODE MODEL OVERRIDES
 
@@ -40,10 +40,10 @@ OpenCode dispatches the MiniMax, MiMo, and opencode-go (DeepSeek-v4-pro / Kimi-k
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
 
 OpenCode-specific escalation example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first, then pass that result to OpenCode.
 
 ## 5. RELATED RESOURCES
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)

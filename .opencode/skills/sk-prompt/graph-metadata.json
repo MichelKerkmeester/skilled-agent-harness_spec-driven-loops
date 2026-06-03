@@ -42,11 +42,6 @@
     "conflicts_with": [],
     "prerequisite_for": []
   },
-  "enhance_when": {
-    "skill_has_asset": "assets/cli_prompt_quality_card.md",
-    "weight": 0.4,
-    "context_template": "prompt quality card"
-  },
   "manual": {
     "depends_on": [],
     "related_to": [
@@ -109,7 +104,6 @@
       ".opencode/skills/sk-prompt/README.md",
       ".opencode/skills/sk-prompt/references/depth_framework.md",
       ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
-      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
       ".opencode/skills/sk-prompt/assets/format_guide_markdown.md",
       ".claude/agents/prompt-improver.md",
       ".opencode/agents/prompt-improver.md"
@@ -140,12 +134,6 @@
         "source": "derived"
       },
       {
-        "name": "cli_prompt_quality_card",
-        "kind": "reference",
-        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
         "name": "format_guide_markdown",
         "kind": "reference",
         "path": ".opencode/skills/sk-prompt/assets/format_guide_markdown.md",
@@ -169,8 +157,7 @@
       "SKILL.md",
       "README.md",
       "references/depth_framework.md",
-      "references/patterns_evaluation.md",
-      "assets/cli_prompt_quality_card.md"
+      "references/patterns_evaluation.md"
     ],
     "created_at": "2026-04-13T00:00:00Z",
     "last_updated_at": "2026-04-13T23:00:00Z"

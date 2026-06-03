@@ -249,7 +249,7 @@ Keep the runtime tolerant of optional stubs. If `context_length` is `null`, do n
 
 ## sk-prompt Insertion-Point Hint
 
-Phase 006 can update `sk-prompt/assets/cli_prompt_quality_card.md` after the existing anti-hallucination wording and before the CLEAR checklist.
+Phase 006 can update `sk-prompt-small-model/assets/cli_prompt_quality_card.md` after the existing anti-hallucination wording and before the CLEAR checklist.
 
 The insert should point back here and tell prompt composers to:
 

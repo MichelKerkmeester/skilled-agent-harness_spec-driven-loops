@@ -15,8 +15,8 @@ _memory:
     next_safe_action: "None; spec complete"
     blockers: []
     key_files:
-      - ".opencode/skills/sk-prompt/assets/model-profiles.json"
-      - ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+      - ".opencode/skills/sk-prompt-small-model/assets/model-profiles.json"
+      - ".opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md"
       - ".opencode/skills/sk-prompt-small-model/SKILL.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -128,7 +128,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 10 | 010-hub-doc-alignment-and-router/ | Align hub SKILL.md (model-keyed router), README (spec-ref scrub), and the 9 references/models profiles to the sk-doc templates (L1) | Complete |
 | 11 | 011-model-profiles-and-benchmark-merge/ | model-profiles.json comment-hygiene; merge benchmark 006 into 005 (two eval subsets); repoint stale benchmark ids to the 00N scheme (L1) | Complete |
 | 12 | 012-cli-doc-alignment/ | Align the 5 cli-* prompt_quality_card.md + confidence-scoring-rubric + cli-opencode references to the sk-doc asset/reference templates (L1) | Complete |
-| 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Pending |
+| 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins

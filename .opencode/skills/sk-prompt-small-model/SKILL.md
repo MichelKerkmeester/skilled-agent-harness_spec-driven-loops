@@ -2,7 +2,7 @@
 name: sk-prompt-small-model
 description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
 allowed-tools: []
-version: 0.7.1.0
+version: 0.7.2.0
 ---
 
 <!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
@@ -268,7 +268,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 - [`cli-opencode/assets/permissions-matrix.schema.json`](../cli-opencode/assets/permissions-matrix.schema.json) — JSON Schema for permission rules
 - [`cli-opencode/assets/prompt_templates.md`](../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
 - [`sk-prompt-small-model/assets/model-profiles.json`](./assets/model-profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
-- [`sk-prompt/assets/cli_prompt_quality_card.md`](../sk-prompt/assets/cli_prompt_quality_card.md) — Cross-CLI quality card + generic framework definitions
+- [`assets/cli_prompt_quality_card.md`](./assets/cli_prompt_quality_card.md) — Canonical cross-CLI prompt quality card (owned by this hub); generic framework definitions live in `sk-prompt`
 
 ### Reference Loading Notes
 

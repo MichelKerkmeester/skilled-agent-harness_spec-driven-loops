@@ -24,7 +24,7 @@
 #             (prevents the model-unreachable-by-name class, e.g. qwen3.6).
 #
 # Canonical locations (allowed to carry the tables / the Tier-3 list):
-#   .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+#   .opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md
 #   .opencode/skills/sk-prompt/references/patterns_evaluation.md
 #
 # Exit codes:

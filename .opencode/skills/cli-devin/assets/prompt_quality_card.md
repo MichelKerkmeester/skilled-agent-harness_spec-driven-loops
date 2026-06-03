@@ -23,7 +23,7 @@ Compose a dispatch prompt by starting from the shared layer (canonical card), ap
 
 The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here. The canonical CLEAR (Correctness / Logic / Expression / Arrangement / Reusability) is the single CLEAR for the cli-* family — cli-devin does not define its own.
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md`
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`
 (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
 ## 3. DEVIN MODEL SELECTION & OVERRIDES
@@ -48,7 +48,7 @@ Before each `devin --prompt-file` invocation, confirm the permission mode matche
 
 ## 4. DELEGATION / PRECEDENCE
 
-The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`. Apply it in order; stop at the first tier that fully covers the task:
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`. Apply it in order; stop at the first tier that fully covers the task:
 
 - **Tier 1 (fast path):** build the prompt from the canonical card — select a framework, run the CLEAR check, dispatch.
 - **Tier 2 (model override):** when dispatching a profiled model, honor the model profile at `../../sk-prompt-small-model/references/models/<id>.md` — it overrides the cross-model defaults. (This replaces cli-devin's former "every dispatch MUST be composed through sk-prompt" mandate.)
@@ -56,6 +56,6 @@ The 3-tier precedence rule (fast path -> model override -> deep path) is canonic
 
 ## 5. RELATED RESOURCES
 
--> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` (copy-paste templates + composition patterns A/B/C) · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
+-> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` (copy-paste templates + composition patterns A/B/C) · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
 
 - Memory Handback: when a dispatch produces continuity-worthy state, request a `MEMORY_HANDBACK` block in the prompt and run the canonical protocol — see `./prompt_templates.md` §8 and `../../system-spec-kit/references/cli/memory_handback.md`.
