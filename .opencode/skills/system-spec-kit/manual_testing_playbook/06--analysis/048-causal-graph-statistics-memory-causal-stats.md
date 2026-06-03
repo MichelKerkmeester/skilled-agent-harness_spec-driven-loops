@@ -15,13 +15,13 @@ This scenario validates Causal graph statistics (memory_causal_stats) for `EX-02
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Verify `deltaByRelation` per-relation deltas, `balanceStatus` enum (`balanced` | `skewed_inbound` | `skewed_outbound` | `capped`), and per-relation per-window cap surface.
-- Real user request: `` Please validate Causal graph statistics (memory_causal_stats) against memory_causal_stats() and tell me whether the expected signals are present: `deltaByRelation` keys cover all causal relation types in the test corpus; `balanceStatus` value matches corpus shape; `windowCap` surfaces when configured cap is exceeded; baseline coverage/edge metrics still present. ``
-- Prompt: `Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.`
+- Objective: Verify `deltaByRelation` per-relation deltas, `balanceStatus` enum (`balanced` | `relation_skewed` | `insufficient_data`), `dominantRelation`, and baseline coverage/edge metrics. `insufficient_data` is returned when the per-window relation-delta total is below the insufficiency threshold (`RELATION_INSUFFICIENT_TOTAL = 5`); on a freshly indexed corpus with few recent edges this is the expected, correct status.
+- Real user request: `` Please validate Causal graph statistics (memory_causal_stats) against memory_causal_stats() and tell me whether the expected signals are present: `deltaByRelation` keys cover the causal relation types present in the test corpus; `balanceStatus` value matches corpus shape; `dominantRelation` reflects the skewing relation when `balanceStatus === "relation_skewed"`; baseline coverage/edge metrics still present. ``
+- Prompt: `Validate memory_causal_stats per-window metrics across balanced, skewed, and low-delta corpora; return pass/fail with cited evidence.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
-- Expected signals: `deltaByRelation` keys cover all causal relation types in the test corpus; `balanceStatus` value matches corpus shape; `windowCap` surfaces when configured cap is exceeded; baseline coverage/edge metrics still present
+- Expected signals: `deltaByRelation` keys cover the causal relation types present in the corpus; `balanceStatus` value matches corpus shape (`balanced` | `relation_skewed` | `insufficient_data`); `dominantRelation` set when skewed; baseline coverage/edge metrics still present
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS if all three window-metric fields are present and align with the corpus shape across balanced, skewed, and cap-trigger scenarios
+- Pass/fail: PASS if `deltaByRelation`, `balanceStatus`, and `dominantRelation` are present and align with the corpus shape across balanced, skewed, and low-delta (insufficient_data) scenarios
 
 ---
 
@@ -30,7 +30,7 @@ This scenario validates Causal graph statistics (memory_causal_stats) for `EX-02
 ### Prompt
 
 ```
-Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.
+Validate memory_causal_stats per-window metrics across balanced, skewed, and low-delta corpora; return pass/fail with cited evidence.
 ```
 
 ### Commands
@@ -59,31 +59,31 @@ Rebuild causal edges if empty
 ### Prompt
 
 ```
-Validate memory_causal_stats per-window metrics across balanced, skewed, and cap-trigger corpora; return pass/fail with cited evidence.
+Validate memory_causal_stats per-window metrics across balanced, skewed, and low-delta corpora; return pass/fail with cited evidence.
 ```
 
 ### Commands
 
-1. `memory_causal_stats()` against a balanced corpus → assert `balanceStatus === "balanced"`, `deltaByRelation` populated, no `windowCap`
-2. `memory_causal_stats()` against a skewed corpus → assert `balanceStatus ∈ {"skewed_inbound","skewed_outbound"}`, `deltaByRelation` shows the dominant relation
-3. `memory_causal_stats()` against a cap-trigger corpus (relation deltas exceeding configured per-window cap) → assert `balanceStatus === "capped"` and `windowCap` field surfaces with the relation that hit the cap
+1. `memory_causal_stats()` against a balanced corpus (per-window relation-delta total ≥ 5, no single relation dominating) → assert `balanceStatus === "balanced"`, `deltaByRelation` populated
+2. `memory_causal_stats()` against a skewed corpus (one relation dominates the window deltas) → assert `balanceStatus === "relation_skewed"` and `dominantRelation` names the dominant relation
+3. `memory_causal_stats()` against a low-delta corpus (per-window relation-delta total < 5) → assert `balanceStatus === "insufficient_data"` (correct, expected status on sparse/freshly-indexed graphs — not a failure)
 
 ### Expected
 
-`deltaByRelation` keyed by every relation type with non-negative integer deltas; `balanceStatus` matches the corpus shape; `windowCap` only present when the cap is triggered.
+`deltaByRelation` keyed by the relation types present with non-negative integer deltas; `balanceStatus` matches the corpus shape (`balanced` | `relation_skewed` | `insufficient_data`); `dominantRelation` set when `relation_skewed`.
 
 ### Evidence
 
-memory_causal_stats responses for all three corpora highlighting deltaByRelation, balanceStatus, and windowCap fields
+memory_causal_stats responses for the three corpora highlighting deltaByRelation, balanceStatus, and dominantRelation fields
 
 ### Pass / Fail
 
-- **Pass**: every window-metric field present and consistent with the corpus across the three scenarios
-- **Fail**: any field missing, balanceStatus drifts from the documented enum, or windowCap surfaces on a non-capped corpus
+- **Pass**: `deltaByRelation`, `balanceStatus`, and `dominantRelation` present and consistent with the corpus across the three scenarios
+- **Fail**: any field missing, or `balanceStatus` drifts from the documented enum (`balanced` | `relation_skewed` | `insufficient_data`)
 
 ### Failure Triage
 
-Inspect `mcp_server/handlers/memory/causal-stats.ts` window-metrics computation; confirm packet 006 dist marker present
+Inspect `mcp_server/handlers/causal-graph.ts` balanceStatus computation (`RELATION_INSUFFICIENT_TOTAL` threshold). `insufficient_data` on a sparse corpus is expected; rebuild causal edges only if baseline coverage/edge metrics are also empty.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
