@@ -65,7 +65,7 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py path/to/document.md
 Use `init_skill.py` to scaffold a skill directory, then populate the templates. Run `package_skill.py` to validate and package when complete.
 
 ```bash
-python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skills
 python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill
 ```
 
@@ -201,9 +201,8 @@ sk-doc/
 │   │   ├── skill_md_template.md                     # Canonical SKILL.md template
 │   │   ├── skill_reference_template.md              # Reference file template
 │   │   └── skill_asset_template.md                  # Asset file template
-│   ├── agents/                                      # Agent and command templates
-│   │   ├── agent_template.md                        # Agent creation template
-│   │   └── command_template.md                      # Command creation template
+│   ├── agent_template.md                            # Agent creation template
+│   ├── command_template.md                          # Command creation template
 │   ├── benchmark/                                   # Skill-local benchmark folder templates
 │   │   ├── benchmark_report_template.md             # Ten-section curated report scaffold
 │   │   └── source_template.md                       # SOURCE.md wayfinding pointer scaffold
@@ -216,14 +215,13 @@ sk-doc/
 │   │   ├── validation.md                            # DQI scoring criteria
 │   │   ├── workflows.md                             # Execution modes by task type
 │   │   └── quick_reference.md                       # One-page command and gate cheat sheet
-│   └── specific/                                    # Component and document-family guides
-│       ├── skill_creation.md                        # 6-step skill creation workflow
-│       ├── agent_creation.md                        # Agent authority and creation workflow
-│       ├── readme_creation.md                       # README creation workflow
-│       ├── install_guide_creation.md                # Install guide standards and workflow
-│       ├── feature_catalog_creation.md              # Feature catalog standards and workflow
-│       ├── manual_testing_playbook_creation.md      # Playbook standards and workflow
-│       └── benchmark_creation.md                    # Benchmark folder standards and workflow
+│   ├── skill_creation.md                            # 6-step skill creation workflow
+│   ├── agent_creation.md                            # Agent authority and creation workflow
+│   ├── readme_creation.md                           # README creation workflow
+│   ├── install_guide_creation.md                    # Install guide standards and workflow
+│   ├── feature_catalog_creation.md                  # Feature catalog standards and workflow
+│   ├── manual_testing_playbook_creation.md          # Playbook standards and workflow
+│   └── benchmark_creation.md                        # Benchmark folder standards and workflow
 └── scripts/                                         # Automation scripts
     ├── extract_structure.py                         # Parse document to JSON + DQI score
     ├── validate_document.py                         # README format validation (exit 0/1/2)
@@ -262,49 +260,49 @@ Template enforcement rules are defined in `assets/template_rules.json`. This fil
 **Score a document and review recommendations**
 
 ```bash
-|# Run extract_structure.py and parse the JSON output
+# Run extract_structure.py and parse the JSON output
 python3 .opencode/skills/sk-doc/scripts/extract_structure.py path/to/document.md
 
-|# Example output (truncated):
-|# {
-|#   "dqi": { "total": 82, "band": "good", "components": { "structure": 35, "content": 22, "style": 25 } },
-|#   "checklist": { "passed": 9, "failed": 2, "skipped": 1 },
-|#   "documentType": "README",
-|#   "violations": ["missing_toc_anchor", "h2_missing_emoji"]
-|# }
+# Example output (truncated):
+# {
+#   "dqi": { "total": 82, "band": "good", "components": { "structure": 35, "content": 22, "style": 25 } },
+#   "checklist": { "passed": 9, "failed": 2, "skipped": 1 },
+#   "documentType": "README",
+#   "violations": ["missing_toc_anchor", "h2_missing_emoji"]
+# }
 ```
 
 **Scaffold, populate, and package a new skill**
 
 ```bash
-|# Step 1: scaffold the directory
-python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+# Step 1: scaffold the directory
+python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skills
 
-|# Step 2: populate SKILL.md and bundled resources using templates
-|# assets/skill/skill_md_template.md  →  .opencode/skills/my-skill/SKILL.md
-|# assets/skill/skill_reference_template.md  →  references/
-|# assets/skill/skill_asset_template.md      →  assets/
+# Step 2: populate SKILL.md and bundled resources using templates
+# assets/skill/skill_md_template.md  →  .opencode/skills/my-skill/SKILL.md
+# assets/skill/skill_reference_template.md  →  references/
+# assets/skill/skill_asset_template.md      →  assets/
 
-|# Step 3: run quick validation during editing
+# Step 3: run quick validation during editing
 python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/my-skill --json
 
-|# Step 4: package and validate for distribution
+# Step 4: package and validate for distribution
 python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill
 
-|# Step 5: final DQI check on SKILL.md
+# Step 5: final DQI check on SKILL.md
 python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/my-skill/SKILL.md
 ```
 
 **Validate a README before delivery**
 
 ```bash
-|# validate_document.py checks H2 emojis, required sections
+# validate_document.py checks H2 emojis, required sections
 python3 .opencode/skills/sk-doc/scripts/validate_document.py README.md
 
-|# Exit codes:
-|# 0 = valid, proceed to delivery
-|# 1 = blocking errors (fix and re-run)
-|# 2 = file read or parse error (check path and input)
+# Exit codes:
+# 0 = valid, proceed to delivery
+# 1 = blocking errors (fix and re-run)
+# 2 = file read or parse error (check path and input)
 ```
 
 ---

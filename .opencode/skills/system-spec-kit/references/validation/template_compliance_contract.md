@@ -114,7 +114,7 @@ L2 addenda (after core): `nfr` (## L2: NON-FUNCTIONAL REQUIREMENTS), `edge-cases
 
 OPEN QUESTIONS numbering varies by level:
 - Level 1: `## 7. OPEN QUESTIONS`
-- Level 2: `## 7. OPEN QUESTIONS`
+- Level 2: `## 10. OPEN QUESTIONS`
 - Level 3: `## 12. OPEN QUESTIONS`
 - Level 3+: `## 16. OPEN QUESTIONS`
 
@@ -151,6 +151,7 @@ L2 addenda (after core): `phase-deps` (## L2: PHASE DEPENDENCIES), `effort` (## 
 | pre-impl | ## Pre-Implementation |
 | code-quality | ## Code Quality |
 | testing | ## Testing |
+| fix-completeness | ## Fix Completeness |
 | security | ## Security |
 | docs | ## Documentation |
 | file-org | ## File Organization |
@@ -187,15 +188,19 @@ Each ADR uses parametric anchors. Replace `NNN` with the ADR number (e.g., 001):
 | adr-NNN-five-checks | ## Five Checks subsection |
 | adr-NNN-impl | ## Implementation Notes subsection |
 
-All 6 sub-anchors are required per ADR, in the order shown above.
+These sub-anchors are template-provided and allowed by the contract engine (`buildDecisionRecordContract()` lists them in `allowedAnchors`), but they are not currently enforced as required (`requiredAnchors: []`). The order shown above matches the template scaffold.
 
 ---
 
 ## 6. LEVEL 3+ CONTRACT
 
-Same structural contract as Level 3. Extended governance requirements
-(approval tracking, compliance checkpoints, extended checklists) are content-level concerns
-enforced by quality-audit.sh, not by structural template contracts.
+Level 3+ retains the full Level 3 structural contract and adds a governance layer on top.
+
+### Governance Expansion (Level 3+ only)
+
+`spec-kit-docs.json` assigns Level 3+ the `governance-expansion` capability in addition to Level 3's `implementation`, `qa-verification`, and `architecture-decisions` presets. This activates Level-3+-only section gates across `spec.md`, `plan.md`, `tasks.md`, and `implementation-summary.md` (anchors gated with `"3+"` in their `sectionGates` arrays) that are absent at Level 3.
+
+Other extended governance requirements (approval tracking, compliance checkpoints, extended checklists) are content-level concerns enforced by quality-audit.sh, not by structural template contracts.
 
 ---
 

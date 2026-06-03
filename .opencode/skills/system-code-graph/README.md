@@ -288,7 +288,7 @@ No. Those files belong to third-party packages. Keep sk-doc template alignment t
 | [references/config/database_path_policy.md](./references/config/database_path_policy.md) | Canonical database path and override rules. |
 | [references/runtime/launcher_lease.md](./references/runtime/launcher_lease.md) | Launcher PID-file lease and single-writer behavior. |
 | [repo scripts runbook](../../scripts/README.md) | Shared orphan MCP sweeper, Claude cleanup, and LaunchAgent template notes. |
-| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
+| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
 | [mcp_server/handlers/README.md](./mcp_server/handlers/README.md) | Handler-layer package topology. |
 | [mcp_server/lib/README.md](./mcp_server/lib/README.md) | Core graph implementation topology. |
 | [mcp_server/tools/README.md](./mcp_server/tools/README.md) | MCP dispatch surface. |

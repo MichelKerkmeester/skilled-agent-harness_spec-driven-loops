@@ -142,7 +142,7 @@ printf "  │ %-23s │ %-29s │\n" "Chrome DevTools (bdg)" "$(command -v bdg >
 echo "    ├─────────────────────────┼───────────────────────────────┤"
 printf "  │ %-23s │ %-29s │\n" "opencode.json" "$(test -f opencode.json && echo '✅ Exists' || echo '❌ Missing')"
 printf "  │ %-23s │ %-29s │\n" ".utcp_config.json" "$(test -f .utcp_config.json && echo '✅ Exists' || echo '❌ Missing')"
-printf "  │ %-23s │ %-29s │\n" "Skills directory" "$(test -d .opencode/skill && echo '✅ '$(ls .opencode/skill 2>/dev/null | wc -l | tr -d ' ')' skills'     || echo '❌ Missing')"
+printf "  │ %-23s │ %-29s │\n" "Skills directory" "$(test -d .opencode/skills && echo '✅ '$(ls .opencode/skills 2>/dev/null | wc -l | tr -d ' ')' skills'     || echo '❌ Missing')"
 echo "    └─────────────────────────┴───────────────────────────────┘"
 echo ""
 ```
@@ -597,7 +597,7 @@ Spec Kit Memory now supports four providers in cascade:
   "mcp": {
     "mk-spec-memory": {
       "command": "node",
-      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"],
+      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"],
       "env": {
         "EMBEDDINGS_PROVIDER": "auto"
       }
@@ -648,7 +648,7 @@ ls -la .opencode/skills/system-spec-kit/mcp_server/database/
 
 **Quick Verification:**
 ```bash
-test -f .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js && grep -q '"mk-spec-memory"' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
+test -f .opencode/bin/mk-spec-memory-launcher.cjs && grep -q 'mk-spec-memory-launcher' opencode.json && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 **Verify active provider:**
@@ -910,7 +910,7 @@ Skills are automatically discovered from:
 
 **Quick Verification:**
 ```bash
-test -d .opencode/skill && ls .opencode/skills/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
+test -d .opencode/skills && ls .opencode/skills/*/SKILL.md >/dev/null 2>&1 && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -961,7 +961,7 @@ export OPENAI_API_KEY="your-api-key"
 
 **Quick Verification:**
 ```bash
-test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
+test -d .opencode/skills && [ $(ls -1 .opencode/skills | wc -l) -ge 1 ] && echo "✅ PASS" || echo "❌ FAIL"
 ```
 
 ---
@@ -983,7 +983,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "mk-spec-memory": {
       "command": "node",
-      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
+      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"]
     },
     "sequential_thinking": {
       "command": "npx",
@@ -1022,7 +1022,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
     },
     "mk-spec-memory": {
       "command": "node",
-      "args": [".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js"]
+      "args": [".opencode/bin/mk-spec-memory-launcher.cjs"]
     }
   },
   "plugins": []
@@ -1056,7 +1056,7 @@ test -d .opencode/skill && [ $(ls -1 .opencode/skill | wc -l) -ge 1 ] && echo "�
 node --version | grep -E "^v(1[89]|2[0-9])" && \
 python3 --version | grep -E "3\.(1[0-9]|[2-9][0-9])" && \
 test -f opencode.json && \
-test -d .opencode/skill && \
+test -d .opencode/skills && \
 echo "✅ INSTALLATION COMPLETE" || echo "❌ VERIFICATION FAILED"
 ```
 
@@ -1164,7 +1164,7 @@ BACKUP=$(ls -td ~/.opencode-backup-* 2>/dev/null | head -1) && [ -n "$BACKUP" ] 
 
 ```bash
 # Quick health check one-liner
-node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
+node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
 ls .opencode/skills/           # Skills installed
@@ -1242,7 +1242,7 @@ Create custom skills to extend AI agent capabilities:
 
 ```bash
 # Initialize new skill
-python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skills
 
 # Validate skill
 python .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/<my-skill>/
@@ -1295,7 +1295,7 @@ This template ships with `sk-code` configured for Webflow + OpenCode + cross-sta
 
 **Post-Installation Quick Verification:**
 ```bash
-node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skill ] && echo "✅ Core components OK" || echo "❌ Check failed"
+node -v && python3 -V && [ -f opencode.json ] && [ -d .opencode/skills ] && echo "✅ Core components OK" || echo "❌ Check failed"
 
 # Detailed checks
 ls .opencode/skills/           # Skills installed
@@ -1338,7 +1338,7 @@ You have completed the installation. Here is your roadmap for getting started.
 | SpecKit  | `/speckit:complete`, `/deep:start-research-loop`, `/deep:start-review-loop`, `/speckit:implement`, `/speckit:plan`, `/speckit:plan --intake-only`, `/speckit:resume` |
 | Utility  | `/agent_router` |
 
-For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skill/system-spec-kit/references/intake-contract.md`](../skill/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:start-research-loop` now anchors each run to `spec.md` through `spec_check_protocol.md`.
+For the SpecKit chain, `/speckit:plan --intake-only` is the standalone intake entry, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract in [`../skills/system-spec-kit/references/intake-contract.md`](../skills/system-spec-kit/references/intake-contract.md) when packet state still needs repair, and `/deep:start-research-loop` now anchors each run to `spec.md` through `spec_check_protocol.md`.
 
 ### 16.4 Learning Resources
 
@@ -1390,10 +1390,9 @@ npx utcp-mcp
 ### Database not found
 ```bash
 # Create directory if missing
-mkdir -p .opencode/skills/system-spec-kit/mcp_server/dist/database
+mkdir -p .opencode/skills/system-spec-kit/mcp_server/database
 
-# Database is created on first run
-node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js
+# Database is created on first run when OpenCode starts the MCP server
 ```
 
 ### Embeddings not working
@@ -1541,7 +1540,7 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | List skills          | `ls .opencode/skills/`                                       |
 | Read skill           | `cat .opencode/skills/<skill-name>/SKILL.md`                 |
 | Browser screenshot   | `bdg screenshot --url <url> --output out.png`               |
-| Run health check     | `bash health-check.sh`                                      |
+| Run health check     | `node -v && python3 -V && test -f opencode.json`            |
 
 ### File Locations
 
@@ -1576,8 +1575,8 @@ bash .opencode/commands/doctor/scripts/mcp-doctor.sh --fix
 | Document | Purpose |
 |----------|---------|
 | [AGENTS.md](../../AGENTS.md) | AI agent behavior configuration and mandatory gates |
-| [Spec Kit Framework](../skill/system-spec-kit/README.md) | Spec folder and memory system documentation |
-| [sk-doc SKILL.md](../skill/sk-doc/SKILL.md) | Document creation standards and templates |
+| [Spec Kit Framework](../skills/system-spec-kit/README.md) | Spec folder and memory system documentation |
+| [sk-doc SKILL.md](../skills/sk-doc/SKILL.md) | Document creation standards and templates |
 | [system-skill-advisor INSTALL_GUIDE.md](../skills/system-skill-advisor/INSTALL_GUIDE.md) | Standalone `mk_skill_advisor` MCP server bootstrap |
 | [system-code-graph INSTALL_GUIDE.md](../skills/system-code-graph/INSTALL_GUIDE.md) | Standalone `mk_code_index` MCP server bootstrap (8 graph tools) |
 | [SET-UP - Code Graph.md](./SET-UP%20-%20Code%20Graph.md) | Runtime diagnostics for `/doctor code-graph` |

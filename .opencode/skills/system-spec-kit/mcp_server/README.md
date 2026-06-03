@@ -22,7 +22,7 @@ importance_tier: "important"
 
 Spec Kit's memory is not a feature flag. It is a running MCP server that you can stop, restart, swap out, or roll back without touching the rest of the framework. That server lives here.
 
-Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/spec_kit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, Gemini, OpenCode, and Copilot calls into this package for its startup brief.
+Every `/memory:save` you trigger flows through `context-server.ts`, gets schema-validated, lands in a handler, fans out across 5 retrieval channels (vector, FTS5, BM25, causal graph, degree), and writes into a local SQLite store next to the rest of your repo. Every `/speckit:resume` reads from the same store and rebuilds your last session's context. Every prompt-submit hook in Claude, Codex, Gemini, OpenCode, and Copilot calls into this package for its startup brief.
 
 The package is local-first by design. No cloud round-trip. No vendor lock-in. The database, the indexes, the migration state, and the hook payloads all live inside the repository so they travel with the code.
 
@@ -30,7 +30,7 @@ The package is local-first by design. No cloud round-trip. No vendor lock-in. Th
 
 You rarely touch this server directly. Six surfaces drive it for you:
 
-- **Slash commands.** `/memory:save`, `/memory:search`, `/memory:learn`, `/memory:manage`, `/spec_kit:resume` are the everyday entrypoints.
+- **Slash commands.** `/memory:save`, `/memory:search`, `/memory:learn`, `/memory:manage`, `/speckit:resume` are the everyday entrypoints.
 - **Runtime hooks.** Each supported CLI ships a hook that injects the session brief at startup or prompt-submit time, populated by handlers in `hooks/`.
 - **The `mcp_*` tool surface.** Direct MCP callers (other agents, scripts, tests) reach the tools through `mcp__mk_spec_memory__*` after the server registers them.
 - **The plugin bridge.** OpenCode routes through a plugin entrypoint that calls into the same handlers.
@@ -258,7 +258,7 @@ Canonical operator references:
 
 - [Repo scripts runbook](../../../scripts/README.md)
 - [Environment reference](./ENV_REFERENCE.md)
-- [Orphan MCP leak prevention implementation summary](../../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
+- [Orphan MCP leak prevention implementation summary](../../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 
 ---
 

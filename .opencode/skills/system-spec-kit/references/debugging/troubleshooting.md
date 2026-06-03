@@ -129,15 +129,19 @@ memory_search({ query: "test" })
 | Old spec-doc records ranked too high | Decay not enabled | Set `useDecay: true` in search params |
 | Recent spec-doc records not prioritized | Decay rate too high | Check tier-specific rates (normal=0.80, temporary=0.60) |
 | Score calculations seem wrong | Missing FSRS fields | Verify `stability` and `last_review` fields populated |
-| Decay too aggressive | Low decay rate | Adjust tier or use protected tier (constitutional/critical/important) |
+| Decay too aggressive | Low decay rate | Adjust tier or use a no-decay tier (constitutional/critical) |
 
-**Note (v1.7.2):** The following tiers are protected from decay (rate = 1.0):
+**Note:** Under FSRS classification decay (`IMPORTANCE_TIER_STABILITY_MULTIPLIER`, gated by `SPECKIT_CLASSIFICATION_DECAY`), only two tiers have `Infinity` stability and therefore never decay:
 - constitutional
 - critical
-- important
-- deprecated
 
-Only `normal` (0.80) and `temporary` (0.60) tiers experience decay.
+All other tiers decay, scaled by a stability multiplier:
+- `important` — 1.5x stability (decays slower than normal)
+- `normal` — 1.0x (standard)
+- `temporary` — 0.5x (decays ~2x faster)
+- `deprecated` — 0.25x (decays fastest, ~4x)
+
+The per-tier `rate = 1.0` values in the turn-based attention-decay system are a separate mechanism from this FSRS classification decay and do not make `important` or `deprecated` decay-protected.
 
 **Decay Models (v1.7.2 has TWO distinct decay systems):**
 
@@ -189,14 +193,17 @@ Where:
 ### Debugging Commands
 
 ```bash
-# Check if generated support artifact has anchors (UPPERCASE format)
-grep -c "<!-- ANCHOR:" specs/049-*/memory/*.md
+# Check if a canonical spec doc has anchors (UPPERCASE format)
+grep -c "<!-- ANCHOR:" .opencode/specs/<track>/<NNN-name>/implementation-summary.md
 
-# List all available anchor IDs in a file
-grep -o 'ANCHOR:[a-z0-9-]*' specs/049-*/memory/*.md | sed 's/ANCHOR://' | sort -u
+# List all available anchor IDs in a spec doc
+grep -o 'ANCHOR:[a-z0-9-]*' .opencode/specs/<track>/<NNN-name>/*.md | sed 's/ANCHOR://' | sort -u
 
-# Find all generated support artifacts with anchors across project
-find specs -name "*.md" -path "*/memory/*" -exec grep -l "<!-- ANCHOR:" {} \;
+# Find all spec docs with anchors across the project
+find .opencode/specs -name "*.md" -exec grep -l "<!-- ANCHOR:" {} \;
+
+# Re-index a spec folder for immediate MCP visibility
+# Use: memory_index_scan({ specFolder: ".opencode/specs/<track>/<NNN-name>" })
 
 # Check memory system statistics (via MCP)
 # Use: memory_stats() - shows counts, dates, tier breakdown
@@ -214,9 +221,9 @@ find specs -name "*.md" -path "*/memory/*" -exec grep -l "<!-- ANCHOR:" {} \;
 # Check file version (UPPERCASE anchor format)
 grep -q "<!-- ANCHOR:" file.md && echo "Current (supports anchors)" || echo "Legacy (full read only)"
 
-# Count files by format in spec folder
-current_count=$(find specs/049-*/memory -name "*.md" -exec grep -l "<!-- ANCHOR:" {} \; | wc -l)
-total_count=$(find specs/049-*/memory -name "*.md" | wc -l)
+# Count files by format in a spec folder
+current_count=$(find .opencode/specs/<track>/<NNN-name> -name "*.md" -exec grep -l "<!-- ANCHOR:" {} \; | wc -l)
+total_count=$(find .opencode/specs/<track>/<NNN-name> -name "*.md" | wc -l)
 echo "Current: $current_count | Legacy: $((total_count - current_count))"
 ```
 
@@ -375,8 +382,8 @@ If vector index is corrupted or empty:
 
 If spec-doc records are missing:
 
-1. Check file system: `find specs -path "*/memory/*.md"`
-2. Check database directly if accessible
+1. Check file system: `find .opencode/specs -name "*.md"` for canonical spec docs (spec.md, plan.md, tasks.md, implementation-summary.md)
+2. Check the index via MCP: `memory_index_scan()`, `memory_search()`, `memory_list()`
 3. Restore from checkpoint: `checkpoint_list()` → `checkpoint_restore()`
 
 ### Configuration Recovery

@@ -17,15 +17,20 @@ This document covers spec folder organization, naming conventions, and level-spe
 
 ```
 templates/
-├── Level source                    # Minimal templates (~60-90 LOC) - source components
-│   ├── spec-core.md
-│   ├── plan-core.md
-│   ├── tasks-core.md
+├── manifest/                       # Canonical .tmpl source files + Level contract
+│   ├── spec.md.tmpl
+│   ├── plan.md.tmpl
+│   ├── tasks.md.tmpl
+│   ├── checklist.md.tmpl
+│   ├── decision-record.md.tmpl
 │   ├── implementation-summary.md.tmpl
 │   ├── phase-parent.spec.md.tmpl
 │   ├── handover.md.tmpl
 │   ├── debug-delegation.md.tmpl
-│   └── resource-map.md.tmpl
+│   ├── research.md.tmpl
+│   ├── resource-map.md.tmpl
+│   ├── context-index.md.tmpl
+│   └── spec-kit-docs.json          # Level contract resolved by create.sh
 │
 ├── examples/               # Rendered examples by Level
 ├── changelog/              # Template history

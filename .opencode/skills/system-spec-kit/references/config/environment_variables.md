@@ -38,12 +38,14 @@ Codex note: point `SPEC_KIT_DB_DIR` at a writable directory outside read-only re
 
 ## 3. EMBEDDING PROVIDERS
 
-The MCP server supports multiple embedding providers for semantic search. Provider selection follows this precedence:
-1. Explicit `EMBEDDINGS_PROVIDER` setting
-2. `VOYAGE_API_KEY` detected (auto-selects Voyage)
-3. `OPENAI_API_KEY` detected (auto-selects OpenAI)
-4. `ollama` when `Ollama runtime` loads and the GGUF model is reachable
-5. Falls back to `hf-local` (Hugging Face local inference)
+The MCP server supports multiple embedding providers for semantic search. Provider selection is **local-first** and follows this precedence:
+1. Explicit `EMBEDDINGS_PROVIDER` setting (the only way to auto-select cloud)
+2. `ollama` when the persisted `vec_metadata` active embedder pointer is set and reachable
+3. Falls back to `hf-local` (Hugging Face local inference)
+4. `openai` — reached only as a last-resort cascade fallback when `hf-local` creation fails
+5. `voyage` — reached only as a last-resort cascade fallback when `hf-local` creation fails
+
+Cloud providers (OpenAI/Voyage) are never auto-selected from a detected API key; set `EMBEDDINGS_PROVIDER` explicitly to use them.
 
 ### Provider Selection
 
@@ -56,7 +58,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `VOYAGE_API_KEY` | - | API key for Voyage AI embeddings (required for `voyage` provider) |
-| `VOYAGE_EMBEDDINGS_MODEL` | `voyage-4` | Voyage model name (1024 dimensions) |
+| `VOYAGE_EMBEDDINGS_MODEL` | `voyage-code-3` | Voyage model name (1024 dimensions) |
 
 ### OpenAI Provider
 
@@ -69,7 +71,7 @@ The MCP server supports multiple embedding providers for semantic search. Provid
 
 | Variable | Default | Purpose |
 |----------|---------|---------|
-| `HF_EMBEDDINGS_MODEL` | `onnx-community/bge-base-en-v1.5-ONNX` | hf-local model name (768 dimensions) |
+| `HF_EMBEDDINGS_MODEL` | `nomic-ai/nomic-embed-text-v1.5` | hf-local model name (768 dimensions) |
 
 ### Rate Limiting
 
@@ -235,7 +237,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 |------|---------|--------|---------|
 | `SPECKIT_SAVE_QUALITY_GATE` | ON | S4 | Pre-storage quality gate for memory saves (TM-04) |
 | `SPECKIT_PRE_SAVE_DEDUP` | ON | S9 | Script-side save-pipeline overlap advisory. Default ON unless explicitly set to `false` or `0`. Runs an exact-match SHA1 comparison against the 20 most recent sibling memories before write and logs a warning without blocking the save. |
-| `SPECKIT_RECONSOLIDATION` | OFF | S4 | Reconsolidation-on-save for memory deduplication (TM-06). Opt in with `SPECKIT_RECONSOLIDATION=true` |
+| `SPECKIT_RECONSOLIDATION` | ON | S4 | Reconsolidation-on-save for memory deduplication (TM-06). Graduated ON; set `SPECKIT_RECONSOLIDATION=false` to opt out |
 | `SPECKIT_ENCODING_INTENT` | ON | S5 | Encoding-intent capture at index time (document, code, structured_data) |
 | `SPECKIT_AUTO_ENTITIES` | ON | S6 | Rule-based noun-phrase entity extraction at save time (R10) |
 | `SPECKIT_ENTITY_LINKING` | ON | S6 | Cross-document entity linking via entity-based edges (S5). Requires R10 |
@@ -279,7 +281,7 @@ These flags are managed via `isFeatureEnabled()` in `rollout-policy.ts` with 100
 | `SPECKIT_RELATIONS` | ON | S4 | Enables relation extraction in learning/corrections module |
 | `SPECKIT_ABLATION` | OFF | S7 | Ablation testing framework (opt-in) |
 | `SPECKIT_EVAL_LOGGING` | OFF | S7 | Evaluation metric logging (opt-in) |
-| `SPECKIT_QUALITY_LOOP` | OFF | S7 | Verify-fix-verify quality loop for `memory_save` (opt-in) |
+| `SPECKIT_QUALITY_LOOP` | ON | S7 | Verify-fix-verify quality loop for `memory_save`. Graduated ON; set `SPECKIT_QUALITY_LOOP=false` to opt out |
 | `SPECKIT_SKIP_API_VALIDATION` | OFF | S0 | Skip API key validation at startup (development only) |
 | `SPECKIT_DEBUG_INDEX_SCAN` | OFF | S7 | Debug logging for index scan operations (opt-in) |
 | `SPECKIT_ROLLOUT_PERCENT` | `100` | S3 | Numeric: graduated rollout percentage (0-100) for deterministic feature bucketing |

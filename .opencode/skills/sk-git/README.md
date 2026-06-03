@@ -68,7 +68,7 @@ When a git workflow needs packet context, `/speckit:resume` is still the canonic
 
 ```bash
 # Gate 2 auto-routing (preferred)
-skill_advisor.py "commit my changes" --threshold 0.8
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "commit my changes" --threshold 0.8
 
 # Direct invocation
 Read(".opencode/skills/sk-git/SKILL.md")

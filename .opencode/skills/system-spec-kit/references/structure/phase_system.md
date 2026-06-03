@@ -82,16 +82,18 @@ VALIDATE  --> Recursive validation of all children + parent as integrated unit
 ## 7. FOLDER STRUCTURE
 
 ```
-specs/###-parent-feature/
-  spec.md              # Contains Phase Documentation Map
-  plan.md              # High-level coordination plan
-  tasks.md             # Cross-phase task tracking
-  memory/              # Parent-level context
+specs/###-parent-feature/        # Lean phase-parent trio only
+  spec.md              # Root purpose + Phase Documentation Map
+  description.json     # Auto-generated metadata
+  graph-metadata.json  # Auto-generated; derived.last_active_child_id pointer
   001-phase-name/      # Phase 1 (child spec folder)
     spec.md            # Back-references parent
-    plan.md
+    plan.md            # Level 1 templates per phase
     tasks.md
-    memory/
+    implementation-summary.md
+    description.json
+    graph-metadata.json
+    scratch/           # git-ignored working files
   002-phase-name/      # Phase 2
     ...
 ```

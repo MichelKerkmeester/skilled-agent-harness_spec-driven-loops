@@ -58,13 +58,13 @@ ls .opencode/ 2>/dev/null                     # OPENCODE marker (within tree)
 
 ```bash
 # WEBFLOW: minify + verify minification + test minified runtime + browser evidence
-node assets/webflow/scripts/minify-webflow.mjs
-node assets/webflow/scripts/verify-minification.mjs
-node assets/webflow/scripts/test-minified-runtime.mjs
+node .opencode/skills/sk-code/assets/webflow/scripts/minify-webflow.mjs
+node .opencode/skills/sk-code/assets/webflow/scripts/verify-minification.mjs
+node .opencode/skills/sk-code/assets/webflow/scripts/test-minified-runtime.mjs
 # Plus browser evidence (Chrome DevTools or equivalent)
 
 # OPENCODE: alignment-drift + targeted tests
-python3 assets/scripts/verify_alignment_drift.py --root <changed-scope>
+python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root <changed-scope>
 # Plus per-language test runner (vitest, pytest, etc.)
 ```
 
@@ -136,9 +136,9 @@ sk-code is at version 3.3.0.0 with a SKILL.md contract of 252 LOC. The skill shi
 
 | Reference | Purpose |
 | --- | --- |
-| `universal/code_quality.md` | Cross-surface quality patterns (KISS, DRY, complexity) |
-| `universal/style.md` | Cross-surface style conventions |
-| `universal/research.md` | When to research vs assume |
+| `universal/code_quality_standards.md` | Cross-surface quality patterns (KISS, DRY, complexity) |
+| `universal/code_style_guide.md` | Cross-surface style conventions |
+| `universal/multi_agent_research.md` | When to research vs assume |
 | `universal/error_recovery.md` | Failure handling and root-cause discipline |
 
 ---
@@ -152,11 +152,9 @@ sk-code/
 ├── description.json                    # Auto-discoverable description
 ├── graph-metadata.json                 # Skill graph relationships
 ├── references/
-│   ├── router/                         # Detection, intent, resource loading, lifecycle
-│   │   ├── code_surface_detection.md
-│   │   ├── intent_classification.md
-│   │   ├── resource_loading.md
-│   │   └── phase_lifecycle.md
+│   ├── stack_detection.md              # Surface detection markers
+│   ├── smart_routing.md                # Intent classification + resource loading
+│   ├── phase_detection.md              # Phase lifecycle detection
 │   ├── universal/                      # Shared code quality, style, research, error recovery
 │   ├── motion_dev/                     # Cross-stack motion.dev API, performance, decision, integration
 │   ├── webflow/                        # Live Webflow/frontend resources
@@ -207,7 +205,7 @@ No configuration is required. The smart router handles surface detection automat
 Task: Add a hero animation using motion.dev
 sk-code:
   Detection: src/2_javascript/ + window.Motion → WEBFLOW + MOTION_DEV intent
-  Loaded: references/webflow/animation.md, references/motion_dev/integration.md, references/universal/code_quality.md
+  Loaded: references/webflow/implementation/animation_workflows.md, references/motion_dev/integration_patterns.md, references/universal/code_quality_standards.md
   Implementation: writes the hero animation
   Verification: runs minify-webflow.mjs (exit 0) + verify-minification.mjs (exit 0)
                 + test-minified-runtime.mjs (exit 0) + collects browser evidence
@@ -221,7 +219,7 @@ Task: Add a Python verification script for the new skill
 sk-code:
   Detection: target path under .opencode/ → OPENCODE
   Sub-detection: .py extension → Python
-  Loaded: references/opencode/python/standards.md, references/opencode/python/testing.md, references/universal/code_quality.md
+  Loaded: references/opencode/python/standards.md, references/opencode/python/testing.md, references/universal/code_quality_standards.md
   Implementation: writes the script + tests
   Verification: runs verify_alignment_drift.py --root .opencode/skills/<skill> (exit 0) + pytest (exit 0)
   Result: claims done with OPENCODE evidence
@@ -236,7 +234,7 @@ sk-code:
   Action: asks user for surface and verification commands rather than guessing
   User reply: "[surface: webflow] update the parallax scroll"
   Detection: explicit override → WEBFLOW
-  Loaded: references/webflow/animation.md, references/webflow/scroll.md
+  Loaded: references/webflow/implementation/animation_workflows.md
   Verification: full WEBFLOW evidence chain
 ```
 

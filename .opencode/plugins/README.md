@@ -1,6 +1,6 @@
 ---
 title: "OpenCode Plugin Entrypoints"
-description: "Two plugin entrypoint files OpenCode auto-loads at startup. Helper bridge modules live with their owning skills, not in this folder."
+description: "Three plugin entrypoint files OpenCode auto-loads at startup. Helper bridge modules live with their owning skills, not in this folder."
 ---
 
 # OpenCode Plugin Entrypoints
@@ -43,6 +43,7 @@ When OpenCode boots, every `.js` file in this folder is invoked once. To add a n
 |---|---|
 | `mk-skill-advisor.js` | Prompt-time Skill Advisor plugin. Surfaces a compact skill recommendation when a user prompt arrives. Routes via `mk-skill-advisor-bridge.mjs`. |
 | `mk-code-graph.js` | Transport-backed code-graph context plugin (OpenCode session integration). Routes context requests via `mk-code-graph-bridge.mjs`. The underlying MCP server name stays `mk-code-index` for stable tool-prefix `mcp__mk_code_index__*`. |
+| `session-cleanup.js` | Session-end MCP cleanup plugin. OpenCode has no JSON SessionEnd hook, so this listens for the `server.instance.disposed` / `global.disposed` dispose lifecycle events and runs `.opencode/scripts/session-cleanup.sh` to reclaim the session's MCP helper descendants. Best-effort and bounded; never blocks teardown. |
 
 ---
 

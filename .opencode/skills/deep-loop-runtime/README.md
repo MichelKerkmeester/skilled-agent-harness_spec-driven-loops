@@ -104,8 +104,8 @@ import { renderPromptPack } from '../../deep-loop-runtime/lib/deep-loop/prompt-p
 ### Run the runtime tests
 
 ```bash
-# From the workspace root
-pnpm vitest run .opencode/skills/deep-loop-runtime/tests
+# From the workspace root (uses the system-spec-kit vitest config that globs these tests)
+pnpm --dir .opencode/skills/system-spec-kit/mcp_server exec vitest run ../../deep-loop-runtime/tests
 ```
 
 The `system-spec-kit/mcp_server/vitest.config.ts` glob picks these up alongside the spec-kit suite.
@@ -254,9 +254,9 @@ Total: 79 files, 15,645 lines across runtime + tests + docs.
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `DEEP_LOOP_DB_PATH` | Override the SQLite storage path (advanced testing only) | `database/deep-loop-graph.sqlite` |
-| `DEEP_LOOP_LOG_LEVEL` | Adjust script logging verbosity (`debug`, `info`, `warn`, `error`) | `info` |
-| `DEEP_LOOP_LOCK_TIMEOUT_MS` | Lock-acquisition wait before timeout error | `5000` |
+| `DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` | Writer-lock acquisition wait before a DB_ERROR timeout | `1000` |
+| `DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS` | Poll interval while waiting on a contended writer lock | `25` |
+| `DEEP_LOOP_SCRIPT_LOCK_HOLD_MS` | Artificial hold after acquiring the writer lock (testing only) | `0` |
 
 ### Executor config schema
 
@@ -292,7 +292,7 @@ Atomic-state semantics, loop-lock behavior, permissions-gate checks and Bayesian
 
 ```yaml
 - name: Check deep-review convergence
-  bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --iteration-count "{iter_count}"'
+  bash: 'node .opencode/skills/deep-loop-runtime/scripts/convergence.cjs --spec-folder "{spec_folder}" --loop-type "review" --session-id "{session_id}" --iteration "{iter_count}"'
   outputs:
     - graph_decision         # "CONTINUE" | "STOP_ALLOWED" | "STOP_BLOCKED"
     - graph_signals_json     # raw novelty + support + contradiction signal
@@ -305,7 +305,7 @@ Atomic-state semantics, loop-lock behavior, permissions-gate checks and Bayesian
 
 ```yaml
 - name: Upsert iteration graph events
-  bash: 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{session_id}" --graph-events-file "{iteration_dir}/graph-events.json"'
+  bash: 'node .opencode/skills/deep-loop-runtime/scripts/upsert.cjs --spec-folder "{spec_folder}" --loop-type "research" --session-id "{session_id}" --events "{iteration_dir}/graph-events.json"'
 ```
 
 ### Operator invocation (one-off status check)
@@ -340,7 +340,7 @@ try {
 
 ### Script exits with code 2 (DB error)
 
-The SQLite database is missing, corrupt or locked by another writer. Check `database/deep-loop-graph.sqlite` exists and is writable. If the lockfile at `database/deep-loop-graph.lock` is stale (process holding it died without releasing), delete it after confirming no live writer exists (`ps aux | grep convergence.cjs`).
+The SQLite database is missing, corrupt or locked by another writer. Check `database/deep-loop-graph.sqlite` exists and is writable. If the hidden dot-file lock at `database/.deep-loop-graph-writer.lock` is stale (process holding it died without releasing), delete it after confirming no live writer exists (`ps aux | grep convergence.cjs`).
 
 ### Script exits with code 3 (input validation error)
 
@@ -352,11 +352,11 @@ The novelty signal is not dropping. Check `lib/deep-loop/bayesian-scorer.ts` for
 
 ### Loop-lock acquisition times out
 
-`DEEP_LOOP_LOCK_TIMEOUT_MS` default is 5 seconds. If a long-running upsert is in flight, raise the timeout. If a stale lock survived a crash, the lockfile at `database/<loop-type>.lock` may need manual removal after confirming no live writer.
+`DEEP_LOOP_WRITER_LOCK_MAX_WAIT_MS` default is 1 second (poll interval `DEEP_LOOP_WRITER_LOCK_RETRY_INTERVAL_MS`, default 25 ms). If a long-running upsert is in flight, raise the max wait. If a stale lock survived a crash, the hidden dot-file lock at `database/.deep-loop-graph-writer.lock` (research/review) or `database/.council-graph-writer.lock` (council) may need manual removal after confirming no live writer.
 
 ### Tests fail with "table coverage_nodes not found"
 
-The runtime test runner expects a fresh per-test SQLite database. Confirm the test imports `coverage-graph-db.ts` and calls the init helper before asserting on tables. If running against a real DB by mistake, set `DEEP_LOOP_DB_PATH` to a tmp path in the test setup.
+The runtime test runner expects a fresh per-test SQLite database. Confirm the test imports `coverage-graph-db.ts` and calls the init helper before asserting on tables, pointing it at a per-test tmp database directory rather than a real one.
 
 ---
 

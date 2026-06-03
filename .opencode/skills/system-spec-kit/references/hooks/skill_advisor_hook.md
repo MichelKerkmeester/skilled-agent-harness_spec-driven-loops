@@ -55,16 +55,18 @@ Native tool baseline:
 | Runtime | Source Hook | Output Shape | Notes |
 | --- | --- | --- | --- |
 | Claude Code | `mcp_server/hooks/claude/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt` and `cwd`. |
-| Copilot CLI | `mcp_server/hooks/copilot/user-prompt-submit.ts` | managed block in `$HOME/.copilot/copilot-instructions.md`; hook stdout remains `{}` | Copilot advisor is NEXT-PROMPT freshness: current prompt sees PRIOR turn's brief. |
 | Gemini CLI | `mcp_server/hooks/gemini/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Reads `prompt`, `userPrompt`, or `request.prompt`. |
 | Codex CLI | `mcp_server/hooks/codex/user-prompt-submit.ts` | `hookSpecificOutput.additionalContext` | Stdin JSON is canonical and wins over argv JSON. |
 | Codex fallback | `mcp_server/hooks/codex/prompt-wrapper.ts` | `promptWrapper` and `wrappedPrompt` | Runs only when Codex hook policy reports hooks unavailable. |
-| OpenCode | `.opencode/plugins/spec-kit-skill-advisor.js` + `.opencode/plugins/spec-kit-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js`, applies the same effective threshold on native and fallback paths, then falls back to the Python-backed brief path only when native is unavailable. |
+| OpenCode | `.opencode/plugins/mk-skill-advisor.js` + `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs` | `experimental.chat.system.transform` mutates `output.system` | Bridge imports native `compat/index.js`, applies the same effective threshold on native and fallback paths, then falls back to the Python-backed brief path only when native is unavailable. |
 
-Build all runtime adapters:
+Build all runtime adapters (both steps required):
 
 ```bash
+# 1. Builds the system-spec-kit hook shims.
 npm --prefix .opencode/skills/system-spec-kit/mcp_server run build
+# 2. Builds the real adapter targets that those shims spawn.
+npm --prefix .opencode/skills/system-skill-advisor/mcp_server run build
 ```
 
 ---
@@ -97,18 +99,6 @@ printf '%s' '{"prompt":"help me commit my changes","cwd":"'"$PWD"'","hook_event_
 
 Expected: `{}` or `hookSpecificOutput.additionalContext` beginning with `Advisor:`.
 
-### Copilot CLI
-
-```bash
-SPECKIT_COPILOT_INSTRUCTIONS_PATH="$(mktemp -d)/copilot-instructions.md"
-export SPECKIT_COPILOT_INSTRUCTIONS_PATH
-printf '%s' '{"prompt":"create a pull request on github","cwd":"'"$PWD"'"}' | \
-  node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/copilot/user-prompt-submit.js
-cat "$SPECKIT_COPILOT_INSTRUCTIONS_PATH"
-```
-
-Expected: hook stdout is `{}` and the custom-instructions file contains `SPEC-KIT-COPILOT-CONTEXT` plus an `Active Advisor Brief` section.
-
 ### Gemini CLI
 
 ```bash
@@ -136,7 +126,7 @@ printf '%s' '{"prompt":"update documentation with DQI checks","cwd":"'"$PWD"'"}'
 
 ```bash
 printf '%s' '{"prompt":"save this conversation context to memory","workspaceRoot":"'"$PWD"'","runtime":"opencode","maxTokens":80,"thresholdConfidence":0.8}' | \
-  node .opencode/plugins/spec-kit-skill-advisor-bridge.mjs
+  node .opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs
 ```
 
 Expected: `status: "ok"` with `metadata.route: "native"` when native is available, `metadata.workspaceRoot` matching the supplied repo root, and `metadata.effectiveThresholds` showing the active confidence/uncertainty pair.
@@ -174,14 +164,23 @@ Use `advisor_status` for prompt-safe state:
 advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 ```
 
+Freshness states (the canonical caller-trust axis returned by `advisor_status`):
+
 | State | Meaning | Operator Action |
 | --- | --- | --- |
 | `live` | Current graph generation is trusted. | No action. |
 | `stale` | Sources are newer than graph state. | Run `advisor_rebuild({})`, then recheck with `advisor_status`. |
 | `absent` | Required graph state is missing. | Run `advisor_rebuild({})`. `advisor_recommend` should fail open with empty recommendations until repaired. |
 | `unavailable` | Status cannot be read. | Inspect daemon logs and SQLite state, then run `advisor_rebuild({"force":true})` when source metadata is intact. |
+
+Hook statuses (the diagnostic axis on the rendered brief, distinct from freshness):
+
+| Status | Meaning | Operator Action |
+| --- | --- | --- |
+| `ok` | Brief produced or native call succeeded. | No action. |
+| `skipped` | Prompt policy, disable flag, or no matching route skipped advisor output. | No action. |
 | `degraded` | Hook or daemon can only provide limited trust. | Follow OP-001 in the playbook. |
-| `quarantined` | Watcher isolated malformed skill metadata. | Follow OP-002 in the playbook. |
+| `fail_open` | Error path returned safe empty output and let the prompt continue. | Inspect diagnostics if recurring. |
 
 H5 operator scenarios:
 

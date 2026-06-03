@@ -31,8 +31,10 @@ Current templates (user-facing only):
 |-------|-----------|
 | **Level 1** | spec.md, plan.md, tasks.md, implementation-summary.md |
 | **Level 2** | + checklist.md |
-| **Level 3** | + decision-record.md, research/research.md |
+| **Level 3** | + decision-record.md |
 | **Utility** | handover.md, debug-delegation.md, resource-map.md |
+
+> **Optional/Lazy:** `research/research.md` is a `lazyAddonDocs` entry for Levels 3 and 3+ in `spec-kit-docs.json` — it is added on demand, not required.
 
 ---
 
@@ -40,17 +42,23 @@ Current templates (user-facing only):
 
 ### Standard Format
 
-Use bulleted list format for metadata sections in all templates:
+Core spec templates use a markdown table for the METADATA section, as rendered by `spec.md.tmpl`:
 
 ```markdown
-### Metadata
-- **Created:** [FORMAT: YYYY-MM-DD]
-- **Level:** [FORMAT: 1 / 2 / 3 / 3+]
-- **Status:** [YOUR_VALUE_HERE: Planning / In Progress / Complete]
-- **Owner:** [YOUR_VALUE_HERE: team or person]
+<!-- ANCHOR:metadata -->
+## 1. METADATA
+
+| Field | Value |
+|-------|-------|
+| **Level** | 1 |
+| **Priority** | [P0/P1/P2] |
+| **Status** | [Draft/In Progress/Review/Complete] |
+| **Created** | [YYYY-MM-DD] |
+| **Branch** | `[###-feature-name]` |
+<!-- /ANCHOR:metadata -->
 ```
 
-> **Note:** Level 3+ coordination-root packets may use a metadata table format with point-in-time snapshot fields.
+> **Note:** Bulleted-list metadata applies only to templates that actually use it (e.g. utility/ad-hoc docs). The core spec documents render the table format shown above.
 
 ### Format Exceptions
 
@@ -179,7 +187,7 @@ All templates should include a source marker for validation and change tracking:
 <!-- SPECKIT_TEMPLATE_SOURCE: template-name | v1.0 -->
 ```
 
-**Placement:** First line of the template file (before frontmatter if present).
+**Placement:** Near the top after YAML frontmatter and the H1 heading, as produced by `create.sh` (which moves the marker after the closing `---` of frontmatter).
 
 **Purpose:**
 - Enables automated validation
@@ -236,7 +244,7 @@ The `validate.sh` script enforces these rules:
 | Required files | Level-appropriate files exist | ERROR |
 | Frontmatter syntax | Valid YAML | ERROR |
 | implementation-summary.md | Exists for completed specs | ERROR (Level 1+) |
-| Placeholder completion | No unfilled `[YOUR_VALUE_HERE:]` | WARN |
+| Placeholder completion | No unfilled `[YOUR_VALUE_HERE:]` | ERROR |
 
 ### Manual Checks
 
@@ -261,10 +269,10 @@ The `validate.sh` script enforces these rules:
 
 | Script | Purpose |
 |--------|---------|
-| `scripts/spec/validate.sh` | Spec folder validation |
-| `scripts/rules/check-files.sh` | File existence checks |
-| `scripts/rules/check-folder-naming.sh` | Folder naming validation |
-| `scripts/rules/check-frontmatter.sh` | YAML frontmatter validation |
+| `.opencode/skills/system-spec-kit/scripts/spec/validate.sh` | Spec folder validation |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-files.sh` | File existence checks |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-folder-naming.sh` | Folder naming validation |
+| `.opencode/skills/system-spec-kit/scripts/rules/check-frontmatter.sh` | YAML frontmatter validation |
 
 ### Related References
 

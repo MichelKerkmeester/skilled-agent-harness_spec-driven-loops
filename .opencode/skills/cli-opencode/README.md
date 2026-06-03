@@ -29,7 +29,7 @@ The skill includes a layered self-invocation guard. Three checks (env var lookup
 
 ### Key Statistics
 
-The skill documents three orthogonal use cases: external runtime to OpenCode, in-OpenCode parallel detached sessions, and cross-AI handback. It includes a three-layer self-invocation guard (env var lookup, process ancestry, lock-file probe). The default invocation is `--model opencode-go/deepseek-v4-pro --agent general --variant high --format json`, with OpenCode Go as the default provider. It routes DeepSeek and other open models through one API gateway. Three providers are supported: opencode-go (DEFAULT), deepseek, and openai. Four references are documented: cli_reference, integration_patterns, opencode_tools, and agent_delegation. Two assets are included: prompt_quality_card and prompt_templates (13 templates). The version baseline is opencode v1.3.17, and this is skill version 1.0.0.
+The skill documents three orthogonal use cases: external runtime to OpenCode, in-OpenCode parallel detached sessions, and cross-AI handback. It includes a three-layer self-invocation guard (env var lookup, process ancestry, lock-file probe). The default invocation is `--model opencode-go/deepseek-v4-pro --variant high --format json --dir <repo-root>` (no `--agent` — current opencode rejects a top-level `--agent general`), with OpenCode Go as the default provider. It routes DeepSeek and other open models through one API gateway. Three providers are supported: opencode-go (DEFAULT), deepseek, and openai. Four references are documented: cli_reference, integration_patterns, opencode_tools, and agent_delegation. Two assets are included: prompt_quality_card and prompt_templates (13 templates). The version baseline is opencode v1.3.17, and this is skill version 1.0.0.
 
 ### Key Features at a Glance
 
@@ -72,11 +72,13 @@ ls ~/.opencode/state/*/lock 2>/dev/null | head -1 | grep -q lock && echo "live O
 ```bash
 opencode run \
   --model opencode-go/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
   "Use memory_search to find context for the approved spec folder." 2>&1
+# Note: no --agent. Current opencode rejects a top-level --agent general;
+# the default agent runs when --agent is omitted. State any agent-profile
+# request in the prompt body instead.
 ```
 
 ### 4. Spawn a Parallel Detached Session
@@ -84,11 +86,13 @@ opencode run \
 ```bash
 opencode run --share --port 4096 \
   --model opencode-go/deepseek-v4-pro \
-  --agent deep-research \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
   "Run iteration 3 of the deep-research loop for the approved spec folder." 2>&1
+# Note: no --agent. The deep-research / deep-review / deep-improvement loops are
+# command-owned executors (dispatch via /deep:start-research-loop etc.), not
+# direct --agent targets; do not pass --agent deep-research at the top level.
 ```
 
 ### 5. Background / Automation Dispatch (REQUIRES `</dev/null`)
@@ -108,7 +112,7 @@ timeout 720 opencode run \
   2> stderr.log
 ```
 
-See `references/integration_patterns.md` §6 for the full failure-mode + fix matrix and `CHANGELOG-2026-05-08-tool-name-regex-fix.md` §Fix 4 for discovery context.
+See `references/integration_patterns.md` §6 for the full failure-mode + fix matrix and discovery context.
 
 ---
 
@@ -237,7 +241,6 @@ cli-opencode defaults to `opencode-go/deepseek-v4-pro --variant high` for cross-
 opencode run \
   --model opencode-go/deepseek-v4-flash \
   --variant high \
-  --agent general \
   --format json \
   --dir /repo \
   "<prompt>"
@@ -246,7 +249,6 @@ opencode run \
 opencode run \
   --model deepseek/deepseek-v4-pro \
   --variant high \
-  --agent general \
   --format json \
   --dir /repo \
   "<prompt>"
@@ -254,7 +256,6 @@ opencode run \
 # Use the latency-optimized direct DeepSeek model
 opencode run \
   --model deepseek/deepseek-v4-flash \
-  --agent general \
   --format json \
   --dir /repo \
   "<prompt>"
@@ -279,7 +280,6 @@ opencode run \
 ```bash
 opencode run \
   --model opencode-go/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -289,9 +289,10 @@ opencode run \
 ### Parallel Detached Session (Use Case 2)
 
 ```bash
+# deep-research is a command-owned loop executor; dispatch it via
+# /deep:start-research-loop rather than a top-level --agent deep-research.
 opencode run --share --port 4096 \
   --model opencode-go/deepseek-v4-pro \
-  --agent deep-research \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
@@ -304,23 +305,24 @@ opencode run --share --port 4096 \
 # Calling AI is Codex / Copilot / Gemini, which needs OpenCode for spec-kit workflow
 opencode run \
   --model opencode-go/deepseek-v4-pro \
-  --agent general \
   --variant high \
   --format json \
   --dir "$REPO_ROOT" \
   "Use system-spec-kit to validate the approved spec folder. Return strict-mode validation report as JSON." 2>&1
 ```
 
-### Code Review with the Review Agent
+### Code Review (state the reviewer role in the prompt body)
 
 ```bash
+# Generic subagents (review, context, debug, ...) are not valid top-level --agent
+# targets. State the role in the prompt body, or route through --agent orchestrate
+# and let it dispatch the review subagent via the Task tool.
 opencode run \
   --model opencode-go/deepseek-v4-pro \
-  --agent review \
   --variant high \
   --format json \
   --dir /repo \
-  "Review @src/auth.ts for security issues. Surface P0 / P1 findings with file:line evidence." 2>&1
+  "Act as a code-review agent: review @src/auth.ts for security issues. Surface P0 / P1 findings with file:line evidence." 2>&1
 ```
 
 ### Worker Farm (Background Loop with `</dev/null`)
@@ -330,7 +332,6 @@ for n in $(seq 1 8); do
   port=$((4100 + n))
   opencode run --share --port "$port" \
     --model opencode-go/deepseek-v4-pro \
-    --agent general \
     --variant high \
     --format json \
     --dir /repo \

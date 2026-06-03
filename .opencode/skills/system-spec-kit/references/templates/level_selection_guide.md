@@ -11,7 +11,7 @@ Guide to selecting appropriate documentation levels based on task complexity.
 
 ## 1. OVERVIEW
 
-> Use `--level N` with `scripts/spec/create.sh` to select a level directly.
+> Use `--level N` with `.opencode/skills/system-spec-kit/scripts/spec/create.sh` to select a level directly.
 
 The complexity detection system automatically analyzes task descriptions to:
 - Recommend appropriate documentation levels (1, 2, 3, or 3+)
@@ -25,56 +25,55 @@ The complexity detection system automatically analyzes task descriptions to:
 
 ---
 
-## 2. 5-DIMENSION SCORING ALGORITHM
+## 2. SCORING ALGORITHM
 
-The algorithm scores tasks across 5 weighted dimensions (0-100 scale):
+`scripts/spec/recommend-level.sh` scores tasks across 4 weighted factors (0-100 scale):
 
-| Dimension       | Weight | What It Measures                          |
-|-----------------|--------|-------------------------------------------|
-| **Scope**       | 25%    | Files affected, LOC estimate, systems     |
-| **Risk**        | 25%    | Security, auth, config, breaking changes  |
-| **Research**    | 20%    | Investigation, unknowns, external deps    |
-| **Multi-Agent** | 15%    | Parallel workstreams, agent coordination  |
-| **Coordination**| 15%    | Cross-system deps, blocking relationships |
+| Factor          | Weight | What It Measures                                  |
+|-----------------|--------|---------------------------------------------------|
+| **LOC**         | 35%    | Lines-of-code estimate (0-35 points)              |
+| **File Count**  | 20%    | Number of files modified (0-20 points)            |
+| **Risk**        | 25%    | auth (+10), api (+8), db (+7) — capped at 25      |
+| **Complexity**  | 20%    | Architectural change (+20)                        |
 
-### Dimension Details
+### Factor Details
 
-#### Scope (25%)
-Evaluates the breadth of changes:
-- LOC estimates (100+ LOC adds points)
-- File count mentions
-- System/component count
-- "Comprehensive", "large-scale" indicators
+#### LOC (35%)
+Linear interpolation across thresholds:
+- 0-50 LOC: 0-8 points
+- 51-150 LOC: 8-18 points
+- 151-400 LOC: 18-28 points
+- 401-1000 LOC: 28-35 points
+- >1000 LOC: 35 points (max)
+
+#### File Count (20%)
+Linear interpolation across thresholds:
+- 1-3 files: 0-5 points
+- 4-8 files: 5-10 points
+- 9-15 files: 10-16 points
+- 16-30 files: 16-20 points
+- >30 files: 20 points (max)
 
 #### Risk (25%)
-Identifies high-risk areas:
-- Authentication/authorization work
-- API changes
-- Database modifications
-- Configuration changes
-- Security-sensitive code
-- Breaking changes
+Sum of risk flags, capped at 25:
+- `--auth` (authentication/authorization): +10
+- `--api` (API changes): +8
+- `--db` (database changes): +7
 
-#### Research (20%)
-Detects investigation needs:
-- "Investigate", "analyze", "research" keywords
-- Unknown factors mentioned
-- External dependencies
-- Exploration requirements
+#### Complexity (20%)
+- `--architectural` (architectural change): +20
 
-#### Multi-Agent (15%)
-Identifies parallel work needs:
-- Multiple workstreams mentioned
-- Agent coordination required
-- Parallel task execution
-- Team coordination
+### Phase Scoring (optional, separate from level)
 
-#### Coordination (15%)
-Measures dependency complexity:
-- Cross-system dependencies
-- Blocking relationships
-- Integration requirements
-- External service dependencies
+Phase scoring uses its own 5 signals (max 50 points), enabled by default:
+- Architectural flag: +10
+- Files > 15: +10
+- LOC > 800: +10
+- Risk flags >= 2: +10
+- Extreme scale (Files > 30 OR LOC > 2000): +10
+
+Phases are recommended when phase score >= 25 (threshold) AND recommended level >= 3.
+Score 25-34 → 2 phases; 35-44 → 3 phases; 45+ → 4+ phases.
 
 ---
 
@@ -82,12 +81,12 @@ Measures dependency complexity:
 
 | Score     | Level | Name         | Description                              |
 |-----------|-------|--------------|------------------------------------------|
-| 0-25      | 1     | Baseline     | Minimal templates, simple tasks          |
-| 26-55     | 2     | Verification | Standard docs + checklist                |
-| 56-79     | 3     | Full         | Complete documentation + ADR             |
-| 80-100    | 3+    | Extended     | Full + AI protocols + dependency graphs  |
+| <25       | 0     | Quick        | Trivial changes, no formal spec needed   |
+| 25-44     | 1     | Baseline     | Standard tasks, basic documentation      |
+| 45-69     | 2     | Verification | Complex tasks, full verification         |
+| 70+       | 3     | Full         | Critical/architectural, comprehensive    |
 
-**Override**: Coordination-root packets governing multi-phase efforts should use Level 3+ regardless of complexity score, as they require governance artifacts (phase maps, ADR records) not covered by Level 3.
+**Level 3+ (Extended)** is an override applied on top of Level 3, not a separate score band. Coordination-root packets governing multi-phase efforts should use Level 3+ regardless of complexity score, as they require governance artifacts (phase maps, ADR records) not covered by Level 3.
 
 ### Level 3+ (Extended) Features
 
@@ -108,16 +107,16 @@ Create spec folder with pre-expanded templates from level-specific folders:
 
 ```bash
 # Create Level 1 spec folder (default)
-./scripts/spec/create.sh "Simple bugfix"
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Simple bugfix"
 
 # Create Level 2 spec folder
-./scripts/spec/create.sh "Add OAuth2 authentication" --level 2
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Add OAuth2 authentication" --level 2
 
 # Create Level 3 spec folder
-./scripts/spec/create.sh "Major architecture redesign" --level 3
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Major architecture redesign" --level 3
 
 # Create Level 3+ spec folder (extended)
-./scripts/spec/create.sh "Platform migration" --level 3+
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Platform migration" --level 3+
 ```
 
 **Template Source:**
@@ -180,10 +179,10 @@ Validates level consistency across all spec files:
 
 ```bash
 # Run all complexity validation rules
-./scripts/rules/check-complexity.sh specs/XXX/
-./scripts/rules/check-section-counts.sh specs/XXX/
-./scripts/rules/check-ai-protocols.sh specs/XXX/
-./scripts/rules/check-level-match.sh specs/XXX/
+bash .opencode/skills/system-spec-kit/scripts/rules/check-complexity.sh specs/XXX/
+bash .opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh specs/XXX/
+bash .opencode/skills/system-spec-kit/scripts/rules/check-ai-protocols.sh specs/XXX/
+bash .opencode/skills/system-spec-kit/scripts/rules/check-level-match.sh specs/XXX/
 
 # Exit codes:
 # 0 = PASS

@@ -154,15 +154,21 @@ The reasoning effort system adds another dimension. GPT-5.5 supports six effort 
 
 #### Agent Profiles
 
-| Profile | Purpose | Invocation |
-|---------|---------|------------|
-| `review` | Code review, security audit | `codex exec -p review "Review @./src" -m gpt-5.5` |
-| `context` | Architecture exploration | `codex exec -p context "Analyze architecture" -m gpt-5.5` |
-| `research` | Technical research with web | `codex exec -p research "Research X" -m gpt-5.5 --search` |
-| `write` | Documentation generation | `codex exec -p write "Generate README" -m gpt-5.5` |
-| `debug` | Fresh-perspective debugging | `codex exec -p debug "Debug error: X" -m gpt-5.5` |
-| `ai-council` | Multi-strategy planning | `codex exec -p ai-council "Plan redesign" -m gpt-5.5` |
-| `speckit` | Spec documentation | `codex exec -p speckit "Create spec folder" -m gpt-5.5` |
+Defined as `[agents.<name>]` personas in `.codex/config.toml` (each pointing to `agents/<name>.toml`). They drive the interactive multi-agent TUI (requires the `multi_agent` feature flag); they are not loaded by the `-p` profile flag.
+
+| Agent | Purpose |
+|-------|---------|
+| `ai-council` | Multi-strategy planning |
+| `code` | Application-code implementation |
+| `context` | Architecture exploration, context retrieval |
+| `debug` | Fresh-perspective debugging |
+| `deep-improvement` | Bounded agent improvement |
+| `deep-research` | Iterative investigation with convergence |
+| `deep-review` | Iterative deep review (P0/P1/P2) |
+| `markdown` | Documentation generation |
+| `orchestrate` | Decomposition, delegation, synthesis |
+| `prompt-improver` | Prompt framework selection and CLEAR validation |
+| `review` | Code review, security audit |
 
 ### 3.3 CLI COMPARISON
 
@@ -222,16 +228,24 @@ approval_policy = "on-request"
 
 > **Note**: The skill passes `--model`, `-c model_reasoning_effort`, and `-c service_tier` explicitly on every dispatch so the invocation is self-documenting. The `config.toml` above is what the user's own interactive Codex sessions will use when they don't override, and keeps per-run behavior aligned with skill dispatches.
 
-### Agent Profiles
+### Agents
 
-Profiles override global settings per task type. Defined in `config.toml` under `[profiles.<name>]`:
+The live `.codex/config.toml` registers agent personas under `[agents.<name>]`, each pointing to an `agents/<name>.toml` file. These drive the interactive multi-agent TUI (requires the `multi_agent` feature flag):
 
 ```toml
-[profiles.review]
-model = "gpt-5.5"
-model_reasoning_effort = "high"
-sandbox_mode = "read-only"
+[agents.review]
+config_file = "agents/review.toml"
+description = "Code review specialist focused on correctness, risk, and tests."
 ```
+
+> **Note**: Agent `.toml` files are NOT loaded by the `-p`/`--profile` flag. To override per-task settings for `codex exec`, define matching `[profiles.<name>]` sections in `config.toml` (none ship by default):
+>
+> ```toml
+> [profiles.review]
+> model = "gpt-5.5"
+> model_reasoning_effort = "high"
+> sandbox_mode = "read-only"
+> ```
 
 ### Native Hooks
 
@@ -344,7 +358,7 @@ A: Use `-c model_reasoning_effort="high"` on the command line, or set `model_rea
 A: Yes. The `--oss` flag switches to local open-source models via Ollama.
 
 **Q: Why does a Codex session say no startup context or advisor brief was injected?**
-A: Check `codex features list` and confirm `codex_hooks` is `true`. Then inspect `~/.codex/hooks.json` for Spec Kit Memory `SessionStart` and `UserPromptSubmit` commands. The required command shapes and smoke tests live in [hook_contract.md](./references/hook_contract.md).
+A: Check `codex features` and confirm `codex_hooks` is `true`. Then inspect `~/.codex/hooks.json` for Spec Kit Memory `SessionStart` and `UserPromptSubmit` commands. The required command shapes and smoke tests live in [hook_contract.md](./references/hook_contract.md).
 
 ### Sessions
 

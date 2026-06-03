@@ -103,8 +103,8 @@ These factors can push you to a higher level even if LOC suggests lower:
 | Scenario                | LOC | Suggested Level | Required Files                  | Rationale                                |
 | ----------------------- | --- | --------------- | ------------------------------- | ---------------------------------------- |
 | Typo in one file        | 1   | Exempt          | None                            | Truly trivial (<5 chars, single file)    |
-| Typo across 5 files     | 5   | Level 1         | spec + plan + tasks             | Multi-file coordination                  |
-| 95 LOC feature          | 95  | Level 1         | spec + plan + tasks             | Under threshold, baseline docs           |
+| Typo across 5 files     | 5   | Level 1         | spec + plan + tasks + implementation-summary | Multi-file coordination                  |
+| 95 LOC feature          | 95  | Level 1         | spec + plan + tasks + implementation-summary | Under threshold, baseline docs           |
 | 105 LOC feature         | 105 | Level 2         | L1 + checklist                  | Just over, needs QA validation           |
 | Refactor (no new logic) | 200 | Level 2         | L1 + checklist                  | Complexity needs verification            |
 | Config cascade          | 50  | Level 2         | L1 + checklist                  | Risk trumps LOC - needs validation       |

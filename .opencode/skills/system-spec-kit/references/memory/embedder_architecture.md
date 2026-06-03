@@ -48,7 +48,7 @@ On first memory-runtime use, `context-server.ts` opens the vector database and c
 
 | Tier | Probe | Persisted active embedder |
 |------|-------|---------------------------|
-| 1 | Ollama `/api/tags` reachable and an ADR-013 priority model is pulled | first pulled of `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1` |
+| 1 | Ollama `/api/tags` reachable and `nomic-embed-text-v1.5` is pulled (the only registered manifest per `MANIFESTS`; add models to `shared/embeddings/registry.ts` to extend the priority list) | `nomic-embed-text-v1.5` |
 | 2 | hf-local model server answers `/api/health` (launcher-supervised pure-Node `@huggingface/transformers`; ready or loading both count) | `{ name: "nomic-ai/nomic-embed-text-v1.5", dim: 768, provider: "hf-local" }` |
 | 3 | `OPENAI_API_KEY` set and OpenAI embeddings endpoint is reachable | `{ name: "text-embedding-3-small", dim: 1536, provider: "openai" }` |
 | 4 | `VOYAGE_API_KEY` set and `https://api.voyageai.com/v1/embeddings` accepts `voyage-code-3` | `{ name: "voyage-code-3", dim: 1024, provider: "voyage" }` |
@@ -97,26 +97,20 @@ No environment variable controls this layout. `MEMORY_DB_PATH` still points at t
 
 ## 5. SUPPORTED MANIFESTS
 
-The MCP registry currently exposes these Ollama-backed re-index manifests:
+The MCP registry currently exposes a single Ollama-backed re-index manifest (`MANIFESTS` in `shared/embeddings/registry.ts`). `embedder_set` rejects any name not in this list with `UNKNOWN_EMBEDDER`:
 
 | Manifest | Ollama model | Dim | Notes |
 |----------|--------------|-----|-------|
-| `nomic-embed-text-v1.5` | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes |
-| `mxbai-embed-large-v1` | `mxbai-embed-large:latest` | 1024 | AnglE/paraphrase-oriented candidate |
-| `bge-small-en-v1.5` | `bge-small-en-v1.5:latest` | 384 | Compact candidate |
-| `bge-large-en-v1.5` | `bge-large-en-v1.5:latest` | 1024 | Large BAAI candidate |
-| `jina-embeddings-v3` | `hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M` | 1024 | ADR-012 production local target |
-| `bge-m3` | `bge-m3:latest` | 1024 | Multilingual hybrid model |
-| `snowflake-arctic-embed-l-v2.0` | `snowflake-arctic-embed2:latest` | 1024 | Snowflake multilingual candidate |
+| `nomic-embed-text-v1.5` | `nomic-embed-text:v1.5` | 768 | Requires query/document prefixes; local-first cascade default |
 
-Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
+To support additional models, add manifests to `shared/embeddings/registry.ts`. Cloud and hf-local providers are selected during bootstrap, not by `embedder_set`.
 
 ## 6. SWAP RUNBOOK
 
 1. Pull the Ollama model:
 
 ```bash
-ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M
+ollama pull nomic-embed-text:v1.5
 ```
 
 2. Confirm Ollama is listening:
@@ -125,10 +119,10 @@ ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M
 curl http://127.0.0.1:11434/api/tags
 ```
 
-3. Use MCP `embedder_set`:
+3. Use MCP `embedder_set` with a registered manifest name (only `nomic-embed-text-v1.5` is registered today):
 
 ```json
-{ "name": "jina-embeddings-v3" }
+{ "name": "nomic-embed-text-v1.5" }
 ```
 
 4. Poll `embedder_status` until the job completes.
@@ -169,7 +163,7 @@ The trade-off is first-call latency: the first `memory_search`, `memory_context`
 
 ### Stage 3 Reranking (removed)
 
-Stage 3 cross-encoder reranking was REMOVED in the 014 deprecation: the local rerank path in `mcp_server/lib/search/cross-encoder.ts` was removed in phase 003 and the local rerank sidecar skill was deleted in phase 004 (cloud rerankers were already removed in 022/013). Memory search now returns fused vector/BM25/FTS/graph/degree results with no rerank stage. The retired A/B benchmark (`mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/`) had already kept reranking out of the default config (negligible hit-rate gain, large p95 latency regression) and is retained only as a historical record.
+Only the model-based cross-encoder reranker was removed: `mcp_server/lib/search/cross-encoder.ts` is gone and the local rerank sidecar skill was deleted (cloud rerankers were removed earlier). Stage 3 itself is NOT gone — `mcp_server/lib/search/pipeline/stage3-rerank.ts` still runs algorithmic MMR diversity pruning (gated by `SPECKIT_MMR`) and MPAB chunk-collapse over the fused vector/BM25/FTS/graph/degree results. The retired A/B benchmark (`mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/`) had already kept the cross-encoder out of the default config (negligible hit-rate gain, large p95 latency regression) and is retained only as a historical record.
 
 ### Lexical Search Engine
 
@@ -183,13 +177,7 @@ The lexical normalizer lives in `mcp_server/lib/search/lexical-normalizer.ts` an
 
 Embedding execution is routed through `mcp_server/lib/embedders/execution-router.ts`. The router keeps SQLite reads/writes, cache lookup/store, and vector table mutations in the MCP process, but can move heavy local model runtimes into a child Node sidecar that speaks JSONL over stdio.
 
-`SPECKIT_EMBEDDER_EXECUTION` controls routing:
-
-| Value | Voyage/OpenAI | Ollama | hf-local | Future sentence-transformers |
-|-------|---------------|--------|----------|------------------------------|
-| `auto` | direct | direct | sidecar | sidecar |
-| `direct` | direct | direct | direct | direct |
-| `sidecar` | sidecar | sidecar | sidecar | sidecar |
+`SPECKIT_EMBEDDER_EXECUTION` is **deprecated and ignored**. `execution-router.ts` calls `warnIgnoredExecutionPolicyEnv()`, which logs `SPECKIT_EMBEDDER_EXECUTION="..." is deprecated and ignored; using direct provider routing` and early-returns without applying the value. All providers use direct provider routing regardless of the env var; there is no `auto`/`direct`/`sidecar` routing switch in effect.
 
 Sidecars are lazy: the worker is not forked until the first embedding request for a `(provider, model)` tuple. `SPECKIT_EMBEDDER_SIDECAR_IDLE_MS` evicts an idle worker after 300000 ms by default, so the MCP daemon's RSS stays small and local model memory can leave the machine-wide resident set after idle. `SPECKIT_EMBEDDER_SIDECAR_PING_TIMEOUT_MS` bounds the health ping before each request; a timed-out worker is respawned before embedding.
 

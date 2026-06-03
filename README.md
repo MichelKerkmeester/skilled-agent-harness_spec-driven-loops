@@ -531,7 +531,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 - **Lexical fallback** - Text-searchable when embedding services are down
 - **Atomic writes** - Crash-safe with pending-file recovery on startup
 - **`memory_index_scan` self-maintaining** - Overlapping scans return a `coalesced:true` success envelope instead of a raw error. Rows become BM25/FTS-searchable immediately as `pending` while vectors drain (`complete_with_pending_vectors` status with `pendingVectors` count). Move reconciliation heals renamed spec folders by packet identity without re-embedding. A bounded global orphan sweep runs per scan. `memory_health` gains an `index` block with a summary enum (`healthy_fresh`, `healthy_lagging_vectors`, `stale_needs_scan`, `degraded_needs_repair`, `unavailable`) plus `indexed`, `pending` and `failed` counts.
-- **`memory_embedding_reconcile`** - Net-new L4 maintenance tool (shipped 2026-05-27). Converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. Dry-run by default; pass `dryRun: false` to apply.
+- **`memory_embedding_reconcile`** - Net-new L4 maintenance tool (shipped 2026-05-27). Converges `embedding_status` for vector-present stale rows and resets genuinely missing-vector retry rows inside one guarded `BEGIN IMMEDIATE` transaction. Dry-run by default; pass `mode: "apply"` to apply.
 
 &nbsp;
 #### Evaluation
@@ -745,7 +745,7 @@ The Skill Advisor matches what you type to the right skill before any tool runs.
 #### How Runtimes Talk To It
 
 - **Claude Code, Gemini CLI, Codex CLI**: call prompt-time hook adapters under `.opencode/skills/system-spec-kit/mcp_server/hooks/`. Codex CLI requires `[features].codex_hooks = true` opt-in for native hooks. Copilot CLI uses file-based custom instructions for the startup-surface path only.
-- **OpenCode**: uses `.opencode/plugins/spec-kit-skill-advisor.js` with `spec-kit-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts`.
+- **OpenCode**: uses `.opencode/plugins/mk-skill-advisor.js` with `.opencode/skills/system-skill-advisor/mcp_server/plugin_bridges/mk-skill-advisor-bridge.mjs`, which imports the stable compat entry under `.opencode/skills/system-skill-advisor/mcp_server/compat/index.ts`.
 - **Codex cold starts**: the Codex prompt hook emits a prompt-safe stale advisory plus `{"stale":true,"reason":"timeout-fallback"}` when startup context times out. The smoke helper lives at [freshness-smoke-check.ts](.opencode/skills/system-spec-kit/mcp_server/hooks/codex/lib/freshness-smoke-check.ts).
 - **Disable everywhere**: set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to turn off all prompt-time advisor surfaces.
 - **Threshold contract at the prompt**: confidence ≥ 0.8 and uncertainty ≤ 0.35 by default.
@@ -1248,7 +1248,7 @@ Lifecycle guardrails: `mk-spec-memory`, `mk_skill_advisor`, and `mk_code_index` 
 | Type safety       | None                                       | Full TypeScript      |
 | Context reduction | -                                          | 98.7%                |
 
-To call a Code Mode tool: `call_tool_chain({ typescript: "const result = await figma.figma_get_file({fileKey: 'abc123'}); return result;" })`
+To call a Code Mode tool: `call_tool_chain({ code: "const result = await figma.figma_get_file({fileKey: 'abc123'}); return result;" })`
 
 For more on the `mcp-code-mode` skill and TypeScript execution patterns, see the skill at `.opencode/skills/mcp-code-mode/SKILL.md`.
 
@@ -1309,7 +1309,7 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 The memory server reads configuration from environment variables:
 
 - **`VOYAGE_API_KEY`** (optional) - Voyage AI cloud embeddings (opt-in only, gated by egress guard)
-- **`SPECKIT_EMBEDDER`** (optional) - Override the default embedder id (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md) for the registered list.
+- **`EMBEDDINGS_PROVIDER`** (optional) - Override the default embedder provider (default: `ollama-nomic-v1.5` since ADR-013/014 2026-05-19; was previously `ollama-jina-v3`). See [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md) for the registered list.
 - **`SPECKIT_RERANK_LAYER`** (optional) - Retrieval-rescue layer toggle, default `true` per ADR-011. Set to `false` to disable.
 - **`HF_EMBEDDINGS_DTYPE`** (optional) - hf-local fallback dtype (default: `q8`. Also: `fp32`, `fp16`, `q4`, `int8`, `uint8`, `bnb4`)
 - **`OPENAI_API_KEY`** (optional) - OpenAI embeddings (alternative)

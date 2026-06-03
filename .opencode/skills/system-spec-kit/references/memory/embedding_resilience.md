@@ -30,7 +30,7 @@ Prefer a visible degraded mode over silent vector drift. Missing or mismatched e
 When `vec_metadata` has no active pointer, daemon startup probes providers in this **local-first** order (ADR-014, 2026-05-19):
 
 1. Ollama: reachable `/api/tags`, choosing the first pulled model in ADR-013 order: `nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`.
-2. hf-local: `sentence-transformers` importable, selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
+2. hf-local: Node.js model server answers `/api/health` (launcher-supervised pure-Node `@huggingface/transformers`; ready or loading both count), selecting `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
 3. OpenAI API: `OPENAI_API_KEY` plus a successful `text-embedding-3-small` embeddings request.
 4. Voyage API: `VOYAGE_API_KEY` plus a successful `voyage-code-3` embeddings request.
 
@@ -50,7 +50,7 @@ Provider creation still has bounded runtime fallback for transient failures:
 
 | Failed provider | Next candidates (in ADR-014 cascade order) |
 |-----------------|-----------------|
-| Ollama | hf-local, OpenAI, Voyage |
+| Ollama | hf-local only (the Ollama short list keeps the local-only progression) |
 | hf-local | OpenAI, Voyage |
 | OpenAI | Voyage |
 | Voyage | none |
@@ -86,17 +86,20 @@ Permanent authorization failures should not be retried.
 
 ## 6. CACHE SHAPE
 
-Profile-keyed caches keep provider/model/dimension separate:
+Profile-keyed caches keep provider/model/dimension separate. Provider separation is handled via `profile_key` (derived from the active provider/model/dim), not a standalone `provider` column:
 
 ```text
-provider      TEXT (voyage/openai/ollama/hf-local)
-model         TEXT
-dimensions    INTEGER
-embedding     BLOB
 content_hash  TEXT
+profile_key   TEXT
+input_kind    TEXT ('document' | 'query')
+model_id      TEXT
+embedding     BLOB
+dimensions    INTEGER
+created_at    TEXT
+last_used_at  TEXT
 ```
 
-Never reuse a cache row across provider or dimension boundaries.
+Never reuse a cache row across profile, input-kind, model, or dimension boundaries.
 
 ## 7. OPERATOR CHECKS
 

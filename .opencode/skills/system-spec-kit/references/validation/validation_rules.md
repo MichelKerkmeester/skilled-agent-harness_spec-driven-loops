@@ -46,15 +46,17 @@ CLI taxonomy: `0` = success, `1` = user error, `2` = validation error, and `3` =
 | `LEVEL_DECLARED`     | INFO     | spec.md       | Level explicitly stated in metadata            |
 | `PRIORITY_TAGS`      | WARNING  | checklist.md  | P0/P1/P2 priority tags properly formatted      |
 | `EVIDENCE_CITED`     | WARNING  | checklist.md  | Non-P2 items cite supporting evidence          |
-| `ANCHORS_VALID`      | ERROR    | memory/*.md   | ANCHOR pairs properly opened and closed        |
+| `ANCHORS_VALID`      | ERROR    | spec docs + memory/*.md | ANCHOR pairs properly opened and closed  |
 | `FOLDER_NAMING`      | ERROR    | Folder path   | Folder follows ###-short-name convention       |
-| `FRONTMATTER_VALID`  | WARNING  | spec/plan.md  | YAML frontmatter properly structured           |
+| `FRONTMATTER_VALID`  | ERROR    | spec docs     | YAML frontmatter properly structured           |
 | `COMPLEXITY_MATCH`   | WARNING  | All levels    | Content metrics match declared level           |
-| `AI_PROTOCOL`        | WARNING  | Level 3/3+    | AI execution protocols present                 |
+| `AI_PROTOCOLS`       | ERROR    | Level 3/3+    | AI execution protocols present                 |
 | `LEVEL_MATCH`        | ERROR    | All files     | Level consistent across all spec files         |
 | `SECTION_COUNTS`     | WARNING  | All levels    | Section counts within expected ranges          |
 | `PHASE_LINKS`        | WARNING  | Phased specs  | Parent-child phase references valid            |
 | `PHASE_PARENT_CONTENT` | WARNING | Phase parents | Phase-parent `spec.md` avoids consolidation/migration narratives |
+
+> **Partial reference:** The table above covers the most commonly-encountered rules. The authoritative, complete rule set (36 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, SPEC_DOC_INTEGRITY, TEMPLATE_HEADERS, SECTION_COUNTS, and strict-only validators) and their canonical severities live in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ---
 
@@ -82,7 +84,7 @@ All spec folders require an implementation summary that captures what was built:
 | --------------------------- | --------------------------- | ---------------------------------------------- |
 | `implementation-summary.md` | End of implementation phase | Captures what was built, deviations, results   |
 
-**Note:** This file is validated as part of the FILE_EXISTS rule. If missing for any spec folder, validation will fail with an ERROR.
+**Note:** `create.sh` scaffolds `implementation-summary.md` for Level 1 and above. `check-files.sh` skips it in the base required-doc loop and only enforces it once implementation has started — i.e. when `checklist.md` or `tasks.md` shows completed `[x]` items. At that point a missing `implementation-summary.md` is an ERROR.
 
 ### Nested Packet Changelog (Recommended for phased work)
 
@@ -187,11 +189,11 @@ Move any flagged narrative to `context-index.md` (create the file if it does not
 
 ### Patterns Detected
 
-| Pattern                      | Status  | Action Required           |
-| ---------------------------- | ------- | ------------------------- |
-| `<YOUR_VALUE_HERE: ...>`     | FLAGGED | Replace with actual value |
-| `<NEEDS_CLARIFICATION: ...>` | FLAGGED | Resolve and replace       |
-| `<OPTIONAL: ...>`            | IGNORED | Optional content          |
+| Pattern                                              | Status  | Action Required           |
+| ---------------------------------------------------- | ------- | ------------------------- |
+| `[YOUR_VALUE_HERE: ...]`                             | FLAGGED | Replace with actual value |
+| `[NEEDS_CLARIFICATION: ...]` / `[NEEDS CLARIFICATION: ...]` | FLAGGED | Resolve and replace |
+| `[OPTIONAL: ...]`                                    | IGNORED | Optional content          |
 
 ### Files Scanned
 
@@ -511,7 +513,9 @@ Anchors are structured markers that define semantic boundaries in indexed contin
 ### Anchor Format
 
 ```markdown
+<!-- ANCHOR:id -->
 Content goes here...
+<!-- /ANCHOR:id -->
 ```
 
 ### Rules
@@ -519,7 +523,7 @@ Content goes here...
 1. **Every ANCHOR must have a closing /ANCHOR**
 2. **Names must match exactly** (case-sensitive)
 3. **No nesting** - anchors cannot contain other anchors
-4. **Scope:** Only `memory/*.md` files are validated
+4. **Scope:** `memory/*.md` files plus the major spec docs — `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md` — are validated
 
 ### Examples
 
@@ -625,15 +629,18 @@ mv specs/Feature specs/001-feature
 
 ## 12. FRONTMATTER_VALID
 
-**Severity:** WARNING
-**Description:** Validates YAML frontmatter structure in markdown files and checks for template source markers.
+**Severity:** ERROR
+**Description:** Validates YAML frontmatter structure and required semantic values across the major spec documents.
 
 ### Validation Checks
 
-| Check                     | Files Scanned    | Description                             |
-| ------------------------- | ---------------- | --------------------------------------- |
-| Frontmatter closure       | spec.md, plan.md | Opening `---` has matching closing `---`|
-| Template source marker    | spec.md, plan.md | Contains `SPECKIT_TEMPLATE_SOURCE`      |
+`check-frontmatter.sh` scans all six major spec docs: `spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, and `implementation-summary.md`. It validates frontmatter closure plus required semantic fields (`title`, `description`, `importance_tier`, `contextType`, `trigger_phrases`).
+
+| Check                     | Files Scanned     | Description                             |
+| ------------------------- | ----------------- | --------------------------------------- |
+| Frontmatter closure       | all six spec docs | Opening `---` has matching closing `---`|
+| Template source marker    | all six spec docs | Contains `SPECKIT_TEMPLATE_SOURCE`      |
+| Semantic fields           | all six spec docs | `title`, `description`, `importance_tier`, `contextType`, `trigger_phrases` present |
 
 ### Examples
 
@@ -723,10 +730,10 @@ Either adjust the declared level or modify content to match:
 
 ---
 
-## 14. AI_PROTOCOL
+## 14. AI_PROTOCOLS
 
-**Severity:** WARNING
-**Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance.
+**Severity:** ERROR
+**Description:** Validates that Level 3 and 3+ specs include AI execution protocol sections for agent guidance. For Level 3+, missing protocol components are reported as errors.
 
 ### Required for Level 3+
 
@@ -802,11 +809,12 @@ cat .opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl
 
 ### Required Files by Level
 
-| Level | Required Files                                               |
-| ----- | ------------------------------------------------------------ |
-| 1     | spec.md, plan.md, tasks.md                                   |
-| 2     | Level 1 + checklist.md                                       |
-| 3/3+  | Level 2 + decision-record.md                                 |
+| Level | Required Files                                                                |
+| ----- | ---------------------------------------------------------------------------- |
+| 1     | spec.md, plan.md, tasks.md, implementation-summary.md (enforced once implementation starts — see §3) |
+| 2     | Level 1 + checklist.md                                                        |
+| 3     | Level 2 + decision-record.md                                                  |
+| 3+    | Level 3 set + Level-3+ governance section gates (see template_compliance_contract.md §6) |
 
 ### Examples
 
@@ -962,7 +970,7 @@ specs/042-payment-system/010-phase-links/
 To validate phase links across parent and all children:
 
 ```bash
-./scripts/spec/validate.sh specs/042-payment-system/ --recursive
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/042-payment-system/ --recursive
 ```
 
 ---
@@ -985,17 +993,17 @@ To validate phase links across parent and all children:
 
 **Run validation on a spec folder:**
 ```bash
-./scripts/spec/validate.sh specs/007-feature/
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 ```
 
 **Run in strict mode (fail on warnings):**
 ```bash
-SPECKIT_STRICT=true ./scripts/spec/validate.sh specs/007-feature/
+SPECKIT_STRICT=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 ```
 
 **Get JSON output for automation:**
 ```bash
-SPECKIT_JSON=true ./scripts/spec/validate.sh specs/007-feature/
+SPECKIT_JSON=true bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/007-feature/
 ```
 
 ---

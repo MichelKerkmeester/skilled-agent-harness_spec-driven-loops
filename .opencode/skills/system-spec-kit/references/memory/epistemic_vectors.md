@@ -382,7 +382,7 @@ DUAL-THRESHOLD CHECK:
 Three MCP tools measure knowledge gains across implementation tasks:
 
 1. **`task_preflight()`** — Captures epistemic baseline before work begins. Records uncertainty score (0-100), knowledge gaps, and context coverage.
-2. **`task_postflight()`** — Measures post-task state. Computes Learning Index: `LI = (KnowledgeDelta × 0.4) + (UncertaintyReduction × 0.35) + (ContextImprovement × 0.25)`.
+2. **`task_postflight()`** — Measures post-task state. Computes Learning Index: `LI = (KnowledgeDelta × 0.4) + (ContextImprovement × 0.35) + (UncertaintyReduction × 0.25)`.
 3. **`memory_get_learning_history()`** — Returns historical learning measurements with trend analysis.
 
 **Score Interpretation (0-100):**

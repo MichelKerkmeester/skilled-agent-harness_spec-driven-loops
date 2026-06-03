@@ -161,7 +161,9 @@ This package owns local automation. Long-lived product behavior belongs in the s
 ```bash
 npm --prefix .opencode/skills/system-spec-kit/scripts run build
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/<name> --strict
-node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js /tmp/save-context-data.json specs/<name>
+node .opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js --json '<inline-json>' specs/<name>
+# Or use --stdin, or a session-scoped temp file (e.g. /tmp/save-context-data-<session-id>.json).
+# The legacy shared path /tmp/save-context-data.json is rejected (LEGACY_SHARED_DATA_FILE).
 node .opencode/skills/system-spec-kit/scripts/dist/graph/backfill-graph-metadata.js --dry-run
 ```
 

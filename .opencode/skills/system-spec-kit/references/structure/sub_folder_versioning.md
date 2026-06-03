@@ -13,11 +13,11 @@ Workflow-assisted pattern for organizing iterative work within existing spec fol
 
 ### Purpose
 
-Enable clean separation of iterative work within a single spec folder while preserving historical context through packet continuity and generated support artifacts. Each iteration maintains its own `memory/` directory for generated support artifacts tied to that child packet.
+Enable clean separation of iterative work within a single spec folder while preserving historical context through packet continuity. Each iteration maintains its own canonical continuity (the `_memory.continuity` block in its `implementation-summary.md`) plus a git-ignored `scratch/` workspace tied to that child packet.
 
 ### Important Note
 
-Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Option A flows and `create.sh --subfolder` can create numbered sub-folders with `memory/` and `scratch/` automatically. Existing root docs are not auto-moved; archival/reorganization remains explicit.
+Sub-folder versioning is **workflow-assisted**: the AI can suggest it during Option A flows and `create.sh --subfolder` creates numbered sub-folders with a `scratch/` directory and `graph-metadata.json` automatically. Legacy `[spec]/memory/*.md` artifacts are no longer produced. Existing root docs are not auto-moved; archival/reorganization remains explicit.
 
 ### When to Use
 
@@ -35,18 +35,18 @@ specs/###-name/
 ├── 001-original-topic/   # First iteration
 │   ├── spec.md
 │   ├── plan.md
-│   └── memory/
-│       └── {timestamp}__.md
+│   ├── implementation-summary.md   # _memory.continuity block (canonical context)
+│   └── scratch/                    # git-ignored working files
 ├── 002-new-iteration/    # Second iteration
 │   ├── spec.md
 │   ├── plan.md
-│   └── memory/
-│       └── {timestamp}__.md
+│   ├── implementation-summary.md
+│   └── scratch/
 └── 003-another-task/     # Third iteration (current, active)
     ├── spec.md
     ├── plan.md
-    └── memory/           # Independent context
-        └── {timestamp}__.md
+    ├── implementation-summary.md   # Independent continuity
+    └── scratch/
 ```
 
 ---
@@ -98,10 +98,10 @@ Routine saves pass the target spec folder alongside structured JSON.
 ## 5. MEMORY CONTEXT ROUTING
 
 - Spec folder path passed explicitly alongside structured JSON for routine saves
-- `generate-context.js` writes support artifacts to the specified sub-folder's `memory/` directory while refreshing canonical continuity in that packet
-- Each iteration has isolated support-artifact history
+- `generate-context.js` refreshes canonical continuity in the specified sub-folder's `implementation-summary.md` `_memory.continuity` block (legacy `[spec]/memory/*.md` writes are retired)
+- Each iteration has isolated continuity history
 - Sub-folder creation also provisions isolated `scratch/` directories
-- Root `memory/` may contain earlier generated artifacts. Routine saves target the intended sub-folder path with structured JSON
+- Older packets may still contain a root `memory/` directory from before the retirement; current saves write only canonical continuity
 
 ---
 
@@ -116,7 +116,7 @@ Routine saves pass the target spec folder alongside structured JSON.
    specs/007-auth-system/
    ├── spec.md
    ├── plan.md
-   └── memory/
+   └── implementation-summary.md
    ```
 
 2. **After Manual Organization:**
@@ -125,17 +125,17 @@ Routine saves pass the target spec folder alongside structured JSON.
    ├── 001-initial-implementation/    # Original content (manually moved)
    │   ├── spec.md
    │   ├── plan.md
-   │   └── memory/
+   │   └── implementation-summary.md
    └── 002-oauth-addition/            # New work
        ├── spec.md
        ├── plan.md
-       └── memory/
+       └── implementation-summary.md
    ```
 
 **Key Points:**
 - User manually creates and organizes sub-folders
 - Original content can be moved to a sub-folder if desired
-- Each sub-folder has independent generated support artifacts under `memory/`
+- Each sub-folder has independent continuity in its `implementation-summary.md`
 - Numbering is sequential within the spec folder
 
 ### Step-by-Step Walkthrough
@@ -147,7 +147,7 @@ Routine saves pass the target spec folder alongside structured JSON.
 5. If yes:
    - User provides sub-folder name: "002-oauth-addition"
    - AI helps create the sub-folder with templates
-   - Memory saves go to the sub-folder's memory/ directory
+   - Continuity saves update the sub-folder's `implementation-summary.md` `_memory.continuity` block
 6. If no:
    - Continue working in root folder
 
@@ -157,7 +157,7 @@ Routine saves pass the target spec folder alongside structured JSON.
 
 - Clean separation of iterative work
 - Preserves all historical work (no data loss)
-- Independent generated support artifacts per iteration
+- Independent continuity per iteration
 - Backward compatible (works with non-versioned folders)
 - Flexible organization based on project needs
 
@@ -179,7 +179,7 @@ Sub-folder versioning and phases serve distinct purposes:
 
 **Key distinction:** Versions are **temporal** (this work, then that work). Phases are **spatial** (this part and that part, potentially in parallel).
 
-Both systems use the same `###-name/` naming convention for child folders and both support independent `memory/` directories per child.
+Both systems use the same `###-name/` naming convention for child folders and both keep independent canonical continuity (`implementation-summary.md` `_memory.continuity`) per child.
 
 ---
 
@@ -197,11 +197,11 @@ When using subfolder versioning, the spec-doc record save script (`generate-cont
 | `specs/003-parent/121-child`           | Strips prefix, resolves nested                     |
 | Internal design notes | Strips prefix, resolves nested                     |
 
-### Generated Support Artifact Location
+### Continuity Save Location
 
-Generated continuity support artifacts are always saved to the CHILD folder's `memory/` directory:
-- `specs/003-parent/121-child/memory/` (correct)
-- `specs/003-parent/memory/` (wrong — parent-level, not child)
+Canonical continuity is always written to the CHILD folder's `implementation-summary.md`:
+- `specs/003-parent/121-child/implementation-summary.md` (correct)
+- `specs/003-parent/implementation-summary.md` (wrong — parent-level, not child)
 
 ### Bare Child Ambiguity
 

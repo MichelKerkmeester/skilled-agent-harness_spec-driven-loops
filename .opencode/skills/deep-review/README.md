@@ -256,7 +256,7 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | `--max-iterations` | 7 | Hard cap on loop iterations |
 | `--convergence` | 0.10 | STOP threshold on the severity-weighted `newFindingsRatio` |
 | `--spec-folder` | auto-detected | Target spec folder for state and output |
-| `--dimensions` | all 4 | Comma-separated subset to restrict the active dimensions |
+| `--dims` | all 4 | Comma-separated subset to restrict the active dimensions |
 | `--no-resource-map` | off | Disable convergence-time `resource-map.md` emission for one run |
 | `--executor` | native | Optional CLI executor (e.g. `cli-codex`), see `references/protocol/loop_protocol.md` |
 
@@ -300,7 +300,7 @@ Threshold semantics and sibling-parity notes (deep-review 0.10 vs deep-research 
 |---|---|
 | Deeper audit | Lower `--convergence` to 0.05, raise `--max-iterations` to 10 |
 | Faster gate check | Raise `--convergence` to 0.15, lower `--max-iterations` to 4 |
-| Security-focused audit | Pass `--dimensions correctness,security` to restrict scope |
+| Security-focused audit | Pass `--dims correctness,security` to restrict scope |
 | Skip the resource map | Pass `--no-resource-map` for the run |
 
 ### Security-Sensitive Override

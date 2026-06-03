@@ -198,7 +198,7 @@ The council agent ships across four runtimes under its established `ai-council` 
 | `convergence_signal` | Rule such as `two-of-three-agree` |
 | `status` | `in-progress`, `complete` or `non-converged` |
 
-Template source: [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json). Operators can pair it with [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md), [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md), [`assets/prompt_pack_round.md.tmpl`](./assets/prompt_pack_round.md.tmpl), and [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json).
+Template source: [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json). Operators can pair it with [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md), [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md), [`assets/prompt_pack_round.md`](./assets/prompt_pack_round.md), and [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json).
 
 The parser fails closed on missing required report sections. Add `--strict-output` to enforce that during capture:
 
@@ -330,7 +330,7 @@ A: Preserve the failed artifacts under `failed/round-NNN-<timestamp>/` and appen
 | [`assets/deep_ai_council_config.json`](./assets/deep_ai_council_config.json) | Council run-config template |
 | [`assets/deep_ai_council_strategy.md`](./assets/deep_ai_council_strategy.md) | Council round strategy template |
 | [`assets/deep_ai_council_dashboard.md`](./assets/deep_ai_council_dashboard.md) | Council status dashboard template |
-| [`assets/prompt_pack_round.md.tmpl`](./assets/prompt_pack_round.md.tmpl) | Seat prompt-pack template |
+| [`assets/prompt_pack_round.md`](./assets/prompt_pack_round.md) | Seat prompt-pack template |
 | [`assets/runtime_capabilities.json`](./assets/runtime_capabilities.json) | Runtime capability and validation matrix |
 | [`changelog/`](./changelog/) | Per-release notes (v1.0.0.0 through v2.2.0.0) |
 

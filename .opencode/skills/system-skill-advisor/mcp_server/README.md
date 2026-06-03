@@ -292,7 +292,8 @@ Run from `mcp_server/` unless noted.
 
 ```bash
 npm run build
-npm test -- --runInBand
+npm test
+# For serial execution (Vitest 4.x): npm test -- --no-file-parallelism --maxWorkers=1
 ```
 
 Focused documentation checks from the repository root:

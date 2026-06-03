@@ -215,7 +215,7 @@ Each skill folder follows this internal structure:
 | `mcp-code-mode` | `scripts/update-code-mode.sh`, `scripts/validate_config.py` |
 | `deep-loop-runtime` | `scripts/convergence.cjs`, `scripts/upsert.cjs`, `scripts/query.cjs`, `scripts/status.cjs` |
 | `sk-doc` | `scripts/init_skill.py`, `scripts/package_skill.py`, `scripts/validate_document.py`, `scripts/extract_structure.py`, `scripts/validate_flowchart.sh` |
-| `system-spec-kit` | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.js`, `scripts/setup/check-prerequisites.sh` |
+| `system-spec-kit` | `scripts/spec/create.sh`, `scripts/spec/validate.sh`, `scripts/memory/generate-context.ts` (source; compiled to `scripts/dist/memory/generate-context.js`, the path actually invoked), `scripts/setup/check-prerequisites.sh` |
 
 For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scripts-registry.json`.
 
@@ -338,7 +338,7 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py /path/to/README.md 
 
 ```bash
 # Scaffold the folder structure
-python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skill
+python3 .opencode/skills/sk-doc/scripts/init_skill.py my-skill --path .opencode/skills
 
 # After filling in SKILL.md and references, package and validate
 python3 .opencode/skills/sk-doc/scripts/package_skill.py .opencode/skills/my-skill/

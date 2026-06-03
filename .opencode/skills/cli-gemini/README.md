@@ -45,7 +45,7 @@ Gemini CLI supports one model (gemini-3.1-pro-preview) and provides three built-
 
 ### Requirements
 
-Install the `@google/gemini-cli` package via npm. Authentication uses Google OAuth for free tier access, or `GEMINI_API_KEY` and Vertex AI for enterprise use. Node.js 18 or higher is required for npm installation.
+Install the `@google/gemini-cli` package via npm. Authentication uses Google OAuth for free tier access, or `GEMINI_API_KEY` and Vertex AI for enterprise use. Node.js 20 or higher is required for npm installation.
 
 ---
 

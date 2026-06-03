@@ -74,6 +74,7 @@ specs/008-fix-button-alignment/
 ├── spec.md      # Problem description, acceptance criteria
 ├── plan.md      # CSS changes needed
 ├── tasks.md     # [ ] Update button.css, [ ] Test in browsers
+├── implementation-summary.md  # Final state, validation evidence
 └── scratch/     # (empty)
 ```
 
@@ -127,6 +128,7 @@ specs/009-notification-system/
 ├── plan.md        # Implementation approach, component breakdown
 ├── tasks.md       # Granular task list with priorities
 ├── checklist.md   # QA validation checklist
+├── implementation-summary.md  # Final state, validation evidence
 └── scratch/       # Debug logs, test scripts
 ```
 
@@ -202,6 +204,7 @@ specs/010-graphql-migration/
 ├── tasks.md           # Detailed task breakdown
 ├── checklist.md       # QA and rollback validation
 ├── decision-record.md # ADR documenting rationale
+├── implementation-summary.md # Final state, validation evidence
 └── scratch/           # Migration scripts, test queries
 ```
 

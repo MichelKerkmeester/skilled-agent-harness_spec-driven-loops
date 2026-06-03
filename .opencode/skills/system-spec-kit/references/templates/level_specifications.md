@@ -27,7 +27,9 @@ templates/manifest/
 ├── phase-parent.spec.md.tmpl
 ├── handover.md.tmpl
 ├── debug-delegation.md.tmpl
-└── resource-map.md.tmpl
+├── resource-map.md.tmpl
+├── context-index.md.tmpl     # Phase-parent migration bridge
+└── research.md.tmpl          # Optional research notes
 ```
 
 ### Template Paths - Quick Reference
@@ -253,7 +255,8 @@ Level 3+ (Extended):    +Enterprise governance, AI protocols (~1075 LOC)
 ├── tasks.md                   # Implementation tasks
 ├── implementation-summary.md  # Post-implementation outcomes
 ├── checklist.md               # Verification checklist (Level 2+)
-├── memory/                    # Session context
+├── description.json           # Generated packet metadata
+├── graph-metadata.json        # Generated graph metadata
 └── scratch/                   # Temporary files
 ```
 
@@ -482,7 +485,7 @@ Level 3+ is auto-detected via complexity scoring for highly complex tasks:
 
 ```bash
 # Specify level directly (recommended)
-./scripts/spec/create.sh "Complex migration" --level 3+
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Complex migration" --level 3+
 ```
 
 ### Template Adaptation
@@ -516,16 +519,16 @@ Use `upgrade-level.sh` to upgrade existing spec folders to a higher documentatio
 
 ```bash
 # Upgrade to Level 2 (auto-detects current level)
-bash upgrade-level.sh specs/042-feature/ --to 2
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Upgrade to Level 3 (chains through intermediate levels automatically)
-bash upgrade-level.sh specs/042-feature/ --to 3
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3
 
 # Upgrade to Level 3+ (approval workflow + compliance)
-bash upgrade-level.sh specs/042-feature/ --to 3+
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3+
 
 # Preview changes without modifying files
-bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 **Supported upgrade paths:**

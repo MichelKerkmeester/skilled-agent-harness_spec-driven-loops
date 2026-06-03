@@ -260,16 +260,16 @@ When workflow prompts at conversation start:
 
 ```bash
 # Upgrade to Level 2 (auto-detects current level)
-bash upgrade-level.sh specs/042-feature/ --to 2
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Upgrade to Level 3 (chains through intermediate levels)
-bash upgrade-level.sh specs/042-feature/ --to 3
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3
 
 # Upgrade to Level 3+
-bash upgrade-level.sh specs/042-feature/ --to 3+
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3+
 
 # Preview changes first
-bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 **Post-Upgrade:** After the script runs, AI **must** auto-populate all `<placeholder_token>` text in newly injected sections by reading existing spec context and deriving appropriate content.
@@ -449,7 +449,7 @@ Before presenting documentation to user:
 - Command: `/memory:save`
 - Keywords: "save context", "save conversation", "save this"
 
-**Note:** OpenCode does not support automatic interval-based saves (no hooks system).
+**Note:** OpenCode does not support automatic interval-based saves (hooks are event-triggered via plugins, not time-interval).
 
 **MANDATORY:** Use generate-context.js for memory save:
 ```

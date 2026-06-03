@@ -11,7 +11,7 @@ Spec Kit Memory MCP tools, behavior notes, and configuration options.
 
 ## 1. OVERVIEW
 
-Current baseline: schema v23 (`document_type`, `spec_level`), 3 indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
+Current baseline: schema v30 (`document_type`, `spec_level`), 3 indexed content sources, 7 intent types, and `includeSpecDocs: true` by default.
 
 The Spec Kit Memory system provides context preservation across sessions through vector-based semantic search and packet-first continuity. Phase 018 makes `handover.md -> _memory.continuity -> spec docs` the canonical recovery chain; retired `[spec]/memory/*.md` artifacts are no longer produced at save time and only matter when older packets still contain them. This reference covers MCP tool behavior, importance tiers, decay scoring, and configuration.
 
@@ -93,10 +93,10 @@ Six-tier system for prioritizing memory relevance:
 
 > **Note:** MCP tool names use plain names such as `memory_search`, `memory_save`, and `checkpoint_create`.
 
-### Tool Reference (54 `mk-spec-memory` tools)
+### Tool Reference (36 `mk-spec-memory` tools)
 
-The public surface is 50 local descriptors from `mcp_server/tool-schemas.ts`
-plus 4 Skill Advisor descriptors imported into the same registry.
+The public surface is 36 local descriptors in `TOOL_DEFINITIONS` from `mcp_server/tool-schemas.ts`.
+Code Graph and Skill Advisor descriptors are exposed by their own MCP servers, not this registry.
 
 | Layer | Tool | Purpose | Example Use |
 |-------|------|---------|-------------|
@@ -124,7 +124,6 @@ plus 4 Skill Advisor descriptors imported into the same registry.
 | L6: Analysis | `memory_drift_why()` | Trace causal chain for a spec-doc record ("why was this decided?") | Understand decision lineage |
 | L6: Analysis | `memory_causal_link()` | Create causal relationship between two memories | Link decision to its cause |
 | L6: Analysis | `memory_causal_stats()` | Get statistics about the causal memory graph | Check causal coverage |
-| L6: Analysis | `memory_causal_unlink()` | Remove a causal relationship by edge ID | Clean up incorrect links |
 | L6: Analysis | `eval_run_ablation()` | Run ablation study on memory scoring components | Compare scoring strategies |
 | L6: Analysis | `eval_reporting_dashboard()` | Generate evaluation and reporting dashboard data | Review system metrics |
 | L6: Analysis | `code_graph_query()` | Query structural relationships such as callers, imports, and outlines | Find what calls a symbol or which files import a module |
@@ -447,7 +446,7 @@ Real-time file watching is optional rather than always-on. By default, use `memo
 
 ### Rate Limiting
 
-The `memory_index_scan` operation has a 1-minute cooldown between scans to prevent resource exhaustion. If called within the cooldown period, it returns an error with the remaining wait time.
+The `memory_index_scan` operation has a 30-second cooldown between scans to prevent resource exhaustion. If called within the cooldown period, it returns an error with the remaining wait time.
 
 ---
 

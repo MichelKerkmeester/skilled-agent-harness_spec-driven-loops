@@ -11,7 +11,7 @@ trigger_phrases:
 
 # MCP Code Mode
 
-> Execute TypeScript code with access to 200+ external MCP tools through progressive disclosure, delivering 98.7% context reduction and 60% faster execution than direct tool calling.
+> Execute TypeScript code with access to every external MCP tool registered in `.utcp_config.json` (currently 5 manuals: 2 Chrome DevTools instances, ClickUp, Figma, GitHub) through progressive disclosure, delivering 98.7% context reduction and 60% faster execution than direct tool calling.
 
 ---
 
@@ -45,7 +45,7 @@ search_tools({
 **Step 2: Confirm the tool interface.** Use `tool_info` to get the TypeScript interface definition before executing code with parameters.
 
 ```typescript
-tool_info({ tool_name: "clickup.clickup_create_task" });
+tool_info({ tool_name: "clickup_official.clickup_official_create_task" });
 ```
 
 **Step 3: Execute via call_tool_chain.** All external MCP tool calls go inside `call_tool_chain`. The naming pattern is always `{manual_name}.{manual_name}_{tool_name}`.
@@ -175,7 +175,7 @@ mcp-code-mode/
   references/
     naming_convention.md         # Tool naming pattern with examples and fixes
     configuration.md             # .utcp_config.json and .env setup guide
-    tool_catalog.md              # 250+ tools across 8 configured servers
+    tool_catalog.md              # Tools across the configured manuals (currently 5 in .utcp_config.json)
     workflows.md                 # Five end-to-end workflow examples
     architecture.md              # Token economics and system internals
 ```
@@ -192,15 +192,15 @@ Code Mode uses two separate configuration systems. Understanding the boundary be
 {
   "manual_call_templates": [
     {
-      "name": "clickup",
+      "name": "clickup_official",
       "call_template_type": "mcp",
       "config": {
         "mcpServers": {
-          "clickup": {
+          "clickup_official": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["mcp-clickup"],
-            "env": { "CLICKUP_API_KEY": "${clickup_CLICKUP_API_KEY}" },
+            "args": ["-y", "@clickup/mcp-server"],
+            "env": { "CLICKUP_API_KEY": "${CLICKUP_API_KEY}" },
             "disabled": false
           }
         }
@@ -390,9 +390,8 @@ A: Without error handling, an unhandled exception stops the entire `call_tool_ch
 | File | Purpose |
 |------|---------|
 | [references/naming_convention.md](references/naming_convention.md) | Complete naming pattern guide with troubleshooting |
-| [references/tool_catalog.md](references/tool_catalog.md) | Tool catalog with 250+ tools |
+| [references/tool_catalog.md](references/tool_catalog.md) | Tool catalog for the configured manuals (currently 5 in .utcp_config.json) |
 | [references/configuration.md](references/configuration.md) | .utcp_config.json and .env setup |
-| [references/tool_catalog.md](references/tool_catalog.md) | 250+ tools across 8 configured servers |
 | [references/workflows.md](references/workflows.md) | Five end-to-end workflow examples |
 | [references/architecture.md](references/architecture.md) | Token economics and system internals |
 

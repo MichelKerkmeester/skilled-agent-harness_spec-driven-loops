@@ -54,7 +54,7 @@ The promise does NOT mean any HuggingFace model just works. Only vetted candidat
 Before any within-Ollama choice, the outer provider cascade decides which backend wins:
 
 ```text
-Ollama (tier 1, local)  ->  hf-local (tier 2, local Python)  ->  OpenAI (tier 3, cloud)  ->  Voyage (tier 4, cloud)
+Ollama (tier 1, local)  ->  hf-local (tier 2, pure-Node @huggingface/transformers model server)  ->  OpenAI (tier 3, cloud)  ->  Voyage (tier 4, cloud)
 ```
 
 ADR-014 (2026-05-19) supersedes the cascade clause of ADR-013 — earlier cascade was cloud-first (`voyage > openai > ollama > hf-local`); the new order keeps embeddings local by default unless the operator explicitly chooses a cloud tier (`EMBEDDINGS_PROVIDER=openai|voyage`).
@@ -78,15 +78,15 @@ Rescue layer is default-on (`SPECKIT_RERANK_LAYER` unset or `true`). Kill switch
 
 ### MANIFESTS registry pattern
 
-Source of truth: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/registry.ts` (commit `4a4e166ab`). The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
+Source of truth: `.opencode/skills/system-spec-kit/shared/embeddings/registry.ts`. The `mcp_server/lib/embedders/registry.ts` path is only a re-export shim that points at `@spec-kit/shared`. The `MANIFESTS` constant is a frozen `ReadonlyArray<EmbedderManifest>`. Each manifest declares:
 
 ```typescript
 {
   name: string,           // canonical name; matches active_embedder_name
   dim: number,            // vector dimension; routes to vec_<dim> table
-  backend: BackendKind,   // 'ollama' | 'ollama' | 'sentence-transformers' | 'api'
+  backend: BackendKind,   // 'ollama' | 'api' | 'sentence-transformers'
   ollamaName?: string,    // Ollama model tag (when backend === 'ollama')
-  modelPath?: string,     // GGUF path (when backend === 'ollama')
+  apiUrl?: string,        // endpoint URL (when backend === 'api')
   prefixQuery?: string,   // optional query-time prefix (e.g. "search_query: ")
   prefixDocument?: string,// optional document-time prefix
   maxInputChars?: number, // cap to keep inputs under model context window
@@ -94,7 +94,7 @@ Source of truth: `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/regi
 }
 ```
 
-Eight candidates are registered today (in declaration order): `bge-base-en-v1.5` (legacy baseline, `ollama` backend), `nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3` (historical Jina default candidate), `bge-m3`, `snowflake-arctic-embed-l-v2.0`.
+One candidate is registered today: `nomic-embed-text-v1.5` (`ollama` backend, 768d). `embedder_set` rejects any other name with `UNKNOWN_EMBEDDER`. Additional models can be added by appending manifests to `shared/embeddings/registry.ts`.
 
 Adding a new candidate is a single registry row plus, if the backend is new, a single adapter file under `.opencode/skills/system-spec-kit/mcp_server/lib/embedders/adapters/`. No call sites change. The adapter contract is small (see §2: EmbedderAdapter interface).
 
@@ -115,13 +115,17 @@ Operator flow is "list, set, watch." The set call is asynchronous: it returns a 
 Contract every backend honors, defined in `mcp_server/lib/embedders/adapter.ts` (commit `3d9e89d1f`):
 
 ```typescript
+interface EmbedderOptions {
+  readonly inputType?: 'document' | 'query'; // selects query vs document prefix
+}
+
 interface EmbedderAdapter {
   readonly name: string;
   readonly dim: number;
   readonly backend: BackendKind;
   readonly prefixQuery?: string;
   readonly prefixDocument?: string;
-  embed(texts: ReadonlyArray<string>): Promise<Float32Array[]>;
+  embed(texts: ReadonlyArray<string>, options?: EmbedderOptions): Promise<Float32Array[]>;
   ready(): Promise<boolean>;
 }
 ```
@@ -209,18 +213,13 @@ mk-spec-memory rollback is a same-shape `embedder_set` call that re-points activ
 
 ## 5. OUT-OF-BOX SUPPORT MATRIX
 
-The table below lists mk-spec-memory embedders that work without code changes because the registry already includes the candidate.
+The table below lists the mk-spec-memory embedder that works without code changes because the registry already includes the candidate. Only one manifest is registered today (`MANIFESTS` in `shared/embeddings/registry.ts`); `embedder_set` throws `UNKNOWN_EMBEDDER` for any name not in this list.
 
 | Embedder | mk-spec-memory backend | Dim | Approx RAM | Notes |
 |---|---|---:|---:|---|
-| `bge-base-en-v1.5` | ollama (baseline) | 768 | ~600 MB | General-text legacy baseline. |
-| `jina-embeddings-v3` | ollama (historical/default candidate) | 1024 | ~600 MB (GGUF Q4_K_M) | Text-tuned; production memory default per ADR-012. |
-| `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; 5-8/10 on 409 leaderboard. |
-| `bge-small-en-v1.5` | ollama | 384 | small | Compact 33M-param text baseline; `vec_384` schema. |
-| `bge-large-en-v1.5` | ollama | 1024 | ~1.5 GB | BAAI flagship text retrieval. |
-| `bge-m3` | ollama | 1024 | ~1.5 GB | Multilingual hybrid (dense+sparse+colbert), 8192 ctx. |
-| `mxbai-embed-large-v1` | ollama | 1024 | ~1 GB | AnglE-loss paraphrase-tuned. |
-| `snowflake-arctic-embed-l-v2.0` | ollama | 1024 | ~1.5 GB | Snowflake late-2024 flagship; multilingual, 8192 ctx. |
+| `nomic-embed-text-v1.5` | ollama | 768 | ~600 MB | Current default text retrieval specialist; local-first cascade default. |
+
+The candidates evaluated during the 016/004 bake-off (`jina-embeddings-v3`, `bge-base-en-v1.5`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `bge-m3`, `mxbai-embed-large-v1`, `snowflake-arctic-embed-l-v2.0`) are historical/removed and are NOT registered; restore them to `shared/embeddings/registry.ts` to make them selectable again.
 
 ---
 
@@ -255,6 +254,5 @@ This document was authored against the following source files at the commits bel
 
 ### Cross-links
 
-- Memory ADR trail: [`decision-record.md`](../../../<spec-folder>)
-- Memory registry source: [`registry.ts`](../mcp_server/lib/embedders/registry.ts)
-- Memory adapter interface: [`adapter.ts`](../mcp_server/lib/embedders/adapter.ts)
+- Memory registry source: [`registry.ts`](../../mcp_server/lib/embedders/registry.ts)
+- Memory adapter interface: [`adapter.ts`](../../mcp_server/lib/embedders/adapter.ts)

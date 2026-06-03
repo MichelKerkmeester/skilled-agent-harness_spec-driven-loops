@@ -399,9 +399,9 @@ The indexed-continuity store includes built-in tools for measuring search qualit
 
 ### 3.3 COMMANDS
 
-Spec Kit exposes 13 top-level workflow commands: 9 `spec_kit` + 4 `memory` operations. Repository-wide command entry points total 22 when combined with 6 `create` commands, 2 `improve` commands, and 1 `agent_router` utility. Each command opens access to a specific set of tools.
+Spec Kit exposes its core workflow through 4 `/speckit:*` commands (`complete`, `implement`, `plan`, `resume`; `plan` also has an `--intake-only` flag variant) plus 4 `/memory:*` operations. Repository-wide command entry points also include 6 `/deep:*` loop commands (one of which, `start-agent-improvement-loop`, supersedes the former `improve` commands), 7 `/create:*` commands, 3 `/doctor:*` commands, and the `agent_router` and `prompt` utilities. Each command opens access to a specific set of tools.
 
-#### Spec Kit Commands (9)
+#### Spec Kit Commands (4)
 
 | Command                 | Steps | Purpose                                                                                                                          |
 | ----------------------- | ----- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -410,7 +410,7 @@ Spec Kit exposes 13 top-level workflow commands: 9 `spec_kit` + 4 `memory` opera
 | `/speckit:plan`        | 7     | Planning only -- spec through plan, no implementation, with the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) for `no-spec`, `partial-folder`, `repair-mode`, or `placeholder-upgrade` packets |
 | `/speckit:implement`   | 9     | Execute pre-planned work. Requires existing `plan.md`; packet-aware targets also generate local changelog output during closeout |
 | `/speckit:resume`      | 4     | Resume a previous session on an existing spec folder                                                                             |
-| `/deep:start-research-loop` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-research/references/spec_check_protocol.md) |
+| `/deep:start-research-loop` | N/A | Autonomous research loop with convergence detection plus bounded `spec.md` anchoring under [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md) |
 | `/deep:start-review-loop` | N/A   | Autonomous code review loop with convergence detection                                                                           |
 
 **Mode Suffixes** change how commands run:
@@ -593,7 +593,7 @@ The **spec folder workflow** is the filing system. Every time you modify files, 
 
 The **memory system** is the librarian. When a session ends, `generate-context.js` updates the packet's canonical continuity surfaces so the next session can recover from packet-local sources first. The MCP server indexes those packet docs into vector, FTS5, and BM25 surfaces, while graph and degree signals are computed at retrieval time. When a new session starts, `/speckit:resume` rebuilds context from `handover.md`, `_memory.continuity`, and the packet docs. If you need deeper retrieval after that, `session_bootstrap()` bundles resume context, health, and structural readiness into one follow-up recovery call before broader `memory_context` work begins.
 
-The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
+The **commands** are the doors into the system. Each command opens access to the tools it needs. `/speckit:plan --intake-only` owns the standalone intake surface, `/speckit:plan` and `/speckit:complete` reuse the shared intake contract from [intake_contract.md](./references/workflows/intake_contract.md) when the Step 0 local `folder_state` requires delegation, and downstream callers should consume the returned `start_state` as the canonical intake enum. `/deep:start-research-loop` anchors research to `spec.md` through [spec_check_protocol.md](../deep-research/references/protocol/spec_check_protocol.md). `/memory:save` updates packet continuity. `/speckit:resume` recovers or continues a previous session.
 
 The common packet lifecycle now uses `/speckit:plan --intake-only` for standalone trio creation or repair, `/deep:start-research-loop` can enrich that packet under the bounded `spec_check_protocol.md` rules, and `/speckit:plan` or `/speckit:complete` continue from the same folder without reopening intake unless the local `folder_state` still requires repair. When intake does run, `start_state` is the canonical downstream field.
 
@@ -906,8 +906,10 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 **Fix**:
 
 ```bash
-# Stop the MCP server, then rebuild the FTS5 shadow from the main index
-node .opencode/skills/system-spec-kit/mcp_server/dist/context-server.js --rebuild-fts
+# Stop the MCP server. FTS5 rebuild runs automatically at boot via the
+# auto-heal path (SPECKIT_BOOT_FTS_AUTOHEAL is on by default; set =0 to opt out).
+# Just restart the server to trigger the rebuild:
+SPECKIT_BOOT_FTS_AUTOHEAL=1 node .opencode/bin/mk-spec-memory-launcher.cjs
 # Or call the MCP health tool after restart to confirm recovery
 # memory_health({ reportMode: "full" })
 ```
@@ -956,7 +958,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh \
   .opencode/specs/[project]/NNN-feature/ --verbose
 
 # Check API boundary (scripts/ vs mcp_server/)
-bash .opencode/skills/system-spec-kit/check-api-boundary.sh
+bash .opencode/skills/system-spec-kit/scripts/check-api-boundary.sh
 
 # View memory system health
 # memory_health({ reportMode: "full" })
@@ -1050,8 +1052,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 | [`references/hooks/skill_advisor_hook_validation.md`](./references/hooks/skill_advisor_hook_validation.md) | Skill Advisor hook validation playbook                                                     |
 | [`references/workflows/rollback_runbook.md`](./references/workflows/rollback_runbook.md)         | Feature-flag rollback and smoke-test procedures                                                      |
 | [`feature_catalog/feature_catalog.md`](./feature_catalog/feature_catalog.md)                     | Complete catalog of 294 features across 22 categories                                                |
-| [`../../../DEPLOYMENT.md`](../../../DEPLOYMENT.md)                                               | Deployment notes, Docker anti-patterns, Copilot runtime notes, and session-resume auth rollout flag |
-| [`../../changelog/system-spec-kit/v3.4.0.2.md`](../../changelog/system-spec-kit/v3.4.0.2.md) | Release changelog for the H-56-1 fix and runtime-parity follow-ups                         |
+| [`../../changelog/system-spec-kit/v3.4.2.0.md`](../../changelog/system-spec-kit/v3.4.2.0.md) | Latest release changelog for system-spec-kit                                               |
 
 ### Cross-Skill Alignment
 

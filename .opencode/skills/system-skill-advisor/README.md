@@ -50,7 +50,7 @@ The advisor is the canonical Gate 2 routing surface. Call `advisor_recommend` to
 Call the standalone MCP server through the normalized namespace:
 
 ```text
-mcp__mk_skill_advisor__advisor_status({})
+mcp__mk_skill_advisor__advisor_status({ "workspaceRoot": "<repo-root>" })
 ```
 
 Expected result: a payload with `freshness`, `generation`, `trustState`, lane weights, daemon info plus `skillCount`.
@@ -187,7 +187,7 @@ system-skill-advisor/
 | `SYSTEM_SKILL_ADVISOR_DB_DIR` | (unset) | Legacy fallback. Same semantics as `MK_SKILL_ADVISOR_DB_DIR`. Prefer the `MK_` form. |
 | `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED` | `0` | Set to `1` to disable runtime hooks (Claude, Codex, Gemini, OpenCode). |
 | `MK_SKILL_ADVISOR_HOOK_DISABLED` | (unset) | Devin-specific hook disable flag. Checked first by the Devin hook, then falls back to `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED`. |
-| `SPECKIT_ADVISOR_SHADOW_MODE` | `0` | Set to `1` to disable the live scorer and run shadow-mode only. |
+| `SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON` | (unset) | JSON override for the per-lane shadow-scoring weights; falls back to the built-in shadow defaults when unset. Pairs with `SPECKIT_ADVISOR_LANE_WEIGHTS_JSON` for the live weights. |
 | `SKILL_ADVISOR_DEBUG` | `0` | Set to `1` to enable opt-in debug logging (v0.3.0+). |
 | `SPECKIT_LAUNCHER_IDLE_TIMEOUT_MIN` | `30` | Shared MCP server idle self-exit timeout. Fractional values are allowed for tests; `0` disables the monitor. |
 
@@ -309,7 +309,7 @@ A: See [references/hooks/skill_advisor_hook.md](./references/hooks/skill_advisor
 | [references/decisions/deferred_decisions.md](./references/decisions/deferred_decisions.md) | Tier D decision records (F4 Devin hooks, F6 deprecation banners). |
 | [system-spec-kit hook reference](../system-spec-kit/references/hooks/skill_advisor_hook.md) | Sibling Spec Kit hook configuration reference. |
 | [repo scripts runbook](../../scripts/README.md) | Shared orphan MCP sweeper, Claude cleanup, and LaunchAgent template notes. |
-| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
+| [orphan MCP leak prevention packet](../../specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md) | Canonical lifecycle guardrail implementation summary. |
 | [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md) | Current feature inventory. |
 | [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md) | Manual validation scenario index. |
 | [changelog/v0.2.0.md](./changelog/v0.2.0.md) | v0.2.0 production isolation from system-spec-kit. |

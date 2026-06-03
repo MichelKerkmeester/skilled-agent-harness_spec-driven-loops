@@ -7,7 +7,7 @@ description: Canonical helper-function bodies (_task_text, _guard_in_skill, disc
 
 The five cli-* sibling skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) share an identical smart-router structure. The helper bodies below are byte-identical across all five files (except the `route_<provider>_resources` function name). Each cli-* SKILL.md provides its own provider-specific dictionaries (`INTENT_SIGNALS`, `RESOURCE_MAP`, `LOADING_LEVELS`, `UNKNOWN_FALLBACK_CHECKLIST`) inline; this reference holds the shared procedural code.
 
-> Pattern: see [sk-doc smart-router resilience template](../../sk-doc/assets/skill/skill_smart_router.md).
+> Pattern: see [sk-doc smart-router resilience template](../../../sk-doc/assets/skill/skill_smart_router.md).
 
 ---
 

@@ -278,7 +278,7 @@ Reads `handover.md` and `_memory.continuity` for `reentry_reason` and `resume_qu
 | Description generator | `.opencode/skills/system-spec-kit/scripts/dist/spec-folder/generate-description.js` |
 | Memory save script | `.opencode/skills/system-spec-kit/scripts/dist/memory/generate-context.js` |
 | Validator | `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <folder> --strict` |
-| Deep-research spec check | `.opencode/skills/deep-research/references/spec_check_protocol.md` |
+| Deep-research spec check | `.opencode/skills/deep-research/references/protocol/spec_check_protocol.md` |
 
 ---
 

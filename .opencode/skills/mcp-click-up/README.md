@@ -187,14 +187,23 @@ Get your workspace ID: `cupt status` shows it as "Workspace ID".
 
 ### MCP Platform Configuration
 
-Add to `opencode.json` (OpenCode) or equivalent:
+ClickUp runs through Code Mode, so add it to `.utcp_config.json` as a `manual_call_templates` entry named `clickup_official` (not to `opencode.json` — that file only registers `code_mode`):
 ```json
-"clickup": {
-  "command": "npx",
-  "args": ["-y", "@clickup/mcp-server"],
-  "env": {
-    "CLICKUP_API_KEY": "pk_YOUR_TOKEN",
-    "CLICKUP_TEAM_ID": "YOUR_WORKSPACE_ID"
+{
+  "name": "clickup_official",
+  "call_template_type": "mcp",
+  "config": {
+    "mcpServers": {
+      "clickup_official": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@clickup/mcp-server"],
+        "env": {
+          "CLICKUP_API_KEY": "${CLICKUP_API_KEY}",
+          "CLICKUP_TEAM_ID": "${CLICKUP_TEAM_ID}"
+        }
+      }
+    }
   }
 }
 ```
@@ -238,15 +247,17 @@ Full script: `examples/time-tracking-workflow.sh`
 ### Scenario 3: Create a sprint document (official MCP via Code Mode)
 
 ```typescript
-await call_tool_chain([{
-  tool: "clickup.clickup_create_document",
-  input: {
-    name: "Sprint 42 Notes",
-    parent: { type: 4, id: "LIST_ID" },
-    content: "# Sprint 42\n\n## Goals\n...",
-    content_format: "markdown"
-  }
-}]);
+await call_tool_chain({
+  code: `
+    const result = await clickup_official.clickup_official_create_document({
+      name: "Sprint 42 Notes",
+      parent: { type: 4, id: "LIST_ID" },
+      content: "# Sprint 42\n\n## Goals\n...",
+      content_format: "markdown"
+    });
+    return result;
+  `
+});
 ```
 
 ---
@@ -260,7 +271,7 @@ await call_tool_chain([{
 | `cupt done` sets wrong status | List has non-standard status schema | Run `cupt statuses <id>` first; use `--dry-run` to verify |
 | `cupt list --team X` is slow | Team filter is client-side | Combine with `--tag X` to narrow results |
 | MCP connection failure | Missing env vars or wrong values | Verify `CLICKUP_API_KEY` and `CLICKUP_TEAM_ID` in platform config |
-| MCP `tool not found` | Wrong tool name format | Use `clickup.clickup_{tool_name}` (e.g. `clickup.clickup_create_task`) |
+| MCP `tool not found` | Wrong tool name format | Use `clickup_official.clickup_official_{tool_name}` (e.g. `clickup_official.clickup_official_create_task`) |
 
 Full guide: `references/troubleshooting.md`
 

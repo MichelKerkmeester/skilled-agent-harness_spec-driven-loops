@@ -237,7 +237,7 @@ Optional environment variables for the CLI:
           "chrome_devtools_1": {
             "transport": "stdio",
             "command": "npx",
-            "args": ["chrome-devtools-mcp@latest", "--isolated=true"],
+            "args": ["chrome-devtools-mcp@0.26.0", "--isolated=true"],
             "env": {}
           }
         }
@@ -305,8 +305,11 @@ await call_tool_chain({
       const staging = await chrome_devtools_2.chrome_devtools_2_take_screenshot({});
       return { production: prod, staging: staging };
     } finally {
-      await chrome_devtools_1.chrome_devtools_1_close_page({});
-      await chrome_devtools_2.chrome_devtools_2_close_page({});
+      // close_page requires a pageId — discover it via list_pages first
+      const pages1 = await chrome_devtools_1.chrome_devtools_1_list_pages({});
+      await chrome_devtools_1.chrome_devtools_1_close_page({ pageId: pages1[0].pageId });
+      const pages2 = await chrome_devtools_2.chrome_devtools_2_list_pages({});
+      await chrome_devtools_2.chrome_devtools_2_close_page({ pageId: pages2[0].pageId });
     }
   `,
   timeout: 60000

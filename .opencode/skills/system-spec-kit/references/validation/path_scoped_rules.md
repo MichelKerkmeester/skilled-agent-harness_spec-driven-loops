@@ -13,7 +13,7 @@ Path-scoped validation for differentiated rules based on file location, level, a
 
 Path-scoped rules enable differentiated validation based on:
 - File location (scratch/, memory/, templates/)
-- Documentation level (1/2/3)
+- Documentation level (1/2/3/3+/phase parent)
 - File type (spec.md, decision-record.md, etc.)
 
 ### Why This Matters
@@ -74,12 +74,14 @@ ENVIRONMENT OVERRIDES (runtime control)
 | `LEVEL_DECLARED`     | INFO     | Level explicitly stated in spec.md metadata         |
 | `PRIORITY_TAGS`      | WARNING  | Validate P0/P1/P2 format in checklists              |
 | `EVIDENCE_CITED`     | WARNING  | Verify `[EVIDENCE:]` on completed P0/P1 items       |
-| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in generated continuity support artifacts |
+| `ANCHORS_VALID`      | ERROR    | Validate `<!-- ANCHOR:id -->` pairs in spec docs (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md) and generated continuity support artifacts |
+
+> **Partial reference:** This table lists a commonly-encountered subset. The authoritative, complete rule set (36 rules including FRONTMATTER_MEMORY_BLOCK, TOC_POLICY, PHASE_PARENT_CONTENT, AI_PROTOCOLS, TEMPLATE_HEADERS, SPEC_DOC_INTEGRITY, CONTINUITY_FRESHNESS, and strict-only validators) lives in [`scripts/lib/validator-registry.json`](../../scripts/lib/validator-registry.json).
 
 ### Placeholder Patterns Detected
 
 - `[YOUR_VALUE_HERE: ...]` - Template placeholder, must be filled
-- `<NEEDS_CLARIFICATION: ...>` - Ambiguity marker, must be resolved
+- `[NEEDS_CLARIFICATION: ...]` / `[NEEDS CLARIFICATION: ...]` - Ambiguity marker, must be resolved
 - `[OPTIONAL: ...]` - NOT flagged (intentionally optional content)
 
 ### Section Requirements
@@ -110,12 +112,15 @@ ENVIRONMENT OVERRIDES (runtime control)
 
 ### Environment Variables
 
-| Variable             | Default | Description                          |
-| -------------------- | ------- | ------------------------------------ |
-| `SPECKIT_VALIDATION` | true    | Set to `false` to disable validation |
-| `SPECKIT_STRICT`     | false   | Set to `true` for strict mode        |
-| `SPECKIT_JSON`       | false   | Set to `true` for JSON output        |
-| `SPECKIT_VERBOSE`    | false   | Set to `true` for verbose output     |
+| Variable                  | Default | Description                                          |
+| ------------------------- | ------- | ---------------------------------------------------- |
+| `SPECKIT_VALIDATION`      | true    | Set to `false` to disable validation                 |
+| `SPECKIT_STRICT`          | false   | Set to `true` for strict mode                        |
+| `SPECKIT_JSON`            | false   | Set to `true` for JSON output                        |
+| `SPECKIT_VERBOSE`         | false   | Set to `true` for verbose output                     |
+| `SPECKIT_SKIP_VALIDATION` | unset   | Set to any value to skip validation entirely         |
+| `SPECKIT_QUIET`           | false   | Set to `true` for quiet output                       |
+| `SPECKIT_RULES`           | unset   | Comma-separated rule subset (e.g. `FILE_EXISTS,LEVEL_DECLARED`) |
 
 ### Exit Codes
 

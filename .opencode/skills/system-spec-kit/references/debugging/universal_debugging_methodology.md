@@ -1,6 +1,6 @@
 ---
 title: Universal Debugging Methodology
-description: Stack-agnostic 4-phase debugging approach applicable to any technology.
+description: Stack-agnostic 5-phase debugging approach applicable to any technology.
 ---
 
 # Universal Debugging Methodology
@@ -13,13 +13,13 @@ Stack-agnostic debugging framework that applies to any technology: frontend, bac
 
 ### Purpose
 
-Provides a universal debugging methodology that works across all technology stacks. Whether debugging JavaScript in a browser, Python on a server, Go microservices, Docker containers, or SQL queries - the same 4-phase approach applies.
+Provides a universal debugging methodology that works across all technology stacks. Whether debugging JavaScript in a browser, Python on a server, Go microservices, Docker containers, or SQL queries - the same 5-phase approach applies.
 
 ### When to Use
 
 - Debugging any code issue (frontend, backend, infrastructure)
-- When `@debug` is dispatched via the Task tool
-- After 3+ failed fix attempts on the same error
+- When `@debug` is dispatched via the Task tool (dispatch requires explicit user/operator opt-in; `@debug` is never auto-dispatched)
+- After 3+ failed fix attempts on the same error, which justifies *offering* `@debug` to the operator — not dispatching automatically
 - When systematic debugging approach is needed
 
 ### Core Principle
@@ -28,9 +28,11 @@ Provides a universal debugging methodology that works across all technology stac
 
 ---
 
-## 2. THE FOUR PHASES
+## 2. THE FIVE PHASES
 
 Complete each phase before proceeding to the next.
+
+**Hard boundary:** Do not edit source files before Phase 5. Phases 1-4 observe, analyze, hypothesize, and challenge; any command run before Phase 5 must gather evidence, not mutate source.
 
 ### Phase 1: OBSERVE
 
@@ -79,11 +81,26 @@ Complete each phase before proceeding to the next.
 
 **Rules:**
 - One hypothesis at a time
-- Smallest possible change to test
-- Don't stack fixes - test each independently
+- Form ranked theories; do NOT edit source code in this phase
+- Any command run here gathers evidence, it does not mutate source
 - If hypothesis fails, form a NEW one (don't add more fixes)
 
-### Phase 4: FIX
+### Phase 4: CHALLENGE / RE-RANK
+
+**Goal:** Adversarially challenge the ranked hypotheses before any fix.
+
+| Action | How |
+|--------|-----|
+| Challenge each hypothesis | Ask "what would disprove this?" and look for counter-evidence |
+| Re-rank by surviving evidence | Demote theories with counter-evidence; promote those that survive |
+| Use prior failed attempts as evidence | Treat past failures as counter-evidence, not as the starting hypothesis |
+| Confirm the leading theory | Proceed to Phase 5 with the post-challenge ranking, not the original |
+
+**Rules:**
+- No source edits in this phase — only read-only searches, inspection, reproductions, or non-mutating tests
+- Do not let a prior failed attempt become the starting hypothesis; use it to challenge or deprioritize theories
+
+### Phase 5: FIX
 
 **Goal:** Implement and verify the root cause fix.
 
@@ -131,8 +148,8 @@ After any debugging session:
 
 ## 5. WHEN TO ESCALATE
 
-Escalate (dispatch `@debug` via the Task tool) when:
-- Same error persists after 3+ fix attempts
+Escalate by *offering* `@debug` to the operator (dispatch via the Task tool requires explicit user/operator opt-in — `@debug` is never auto-dispatched) when:
+- Same error persists after 3+ fix attempts (this justifies offering `@debug`, not dispatching it automatically)
 - Need fresh perspective on complex issue
 - Stuck in a debugging loop
 - Issue requires specialized knowledge
@@ -141,7 +158,7 @@ Escalate (dispatch `@debug` via the Task tool) when:
 
 ## 6. STACK-SPECIFIC NOTES
 
-The 4-phase methodology is universal. Tools vary by stack:
+The 5-phase methodology is universal. Tools vary by stack:
 
 | Stack | Error Capture | Debugging Tools |
 |-------|---------------|-----------------|
@@ -153,7 +170,7 @@ The 4-phase methodology is universal. Tools vary by stack:
 | Docker | container logs | docker logs, compose logs |
 | SQL | query errors | EXPLAIN ANALYZE |
 
-The methodology stays the same: **Observe → Analyze → Hypothesize → Fix**.
+The methodology stays the same: **Observe → Analyze → Hypothesize → Challenge/Re-rank → Fix**.
 
 ---
 

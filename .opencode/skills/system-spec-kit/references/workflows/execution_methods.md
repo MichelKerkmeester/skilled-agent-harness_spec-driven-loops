@@ -201,7 +201,6 @@ bash .opencode/skills/system-spec-kit/scripts/templates/inline-gate-renderer.sh 
 
 **When to Use:**
 - After modifying Level contract templates
-- After modifying Level contract templates
 - To verify template consistency in CI/CD
 - Before releasing template updates
 

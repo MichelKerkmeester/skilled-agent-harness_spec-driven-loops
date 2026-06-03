@@ -44,7 +44,7 @@ GATE: [NAME] | DECISION: [PASS/BLOCK] | CONFIDENCE: [H/M/L] | EVIDENCE: [brief]
 
 ### Architectural Decision Records (ADR)
 
-For Level 3+ spec folders, `decision-record.md` may also contain ADR entries:
+For Level 3 and Level 3+ spec folders, `decision-record.md` may also contain ADR entries:
 - **ADR-NNN**: Unique identifier (e.g., ADR-001)
 - **Status**: proposed | accepted | superseded | deprecated
 - **Context**: Problem statement and constraints
@@ -258,7 +258,7 @@ ALTERNATIVE: N/A - P0 items cannot be skipped
 
 ## 5. SESSION DECISION LOG (LEVEL 3+)
 
-For Level 3+ spec folders, maintain a decision log table in decision-record.md:
+For Level 3+ spec folders, you may optionally maintain a decision log table in decision-record.md. This is an authoring convention only — the live `decision-record.md.tmpl` does not scaffold a Session Decision Log section, and the validator does not require it:
 
 ### Format
 

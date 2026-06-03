@@ -27,7 +27,7 @@ The launcher may reclaim stale owners, but it must not open a second writer when
 
 The launcher lease is a process-boundary guard. Before bootstrap work begins, the launcher reads `.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json` and probes the recorded PID with `process.kill(pid, 0)`.
 
-If the recorded process is alive, the new launcher prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0`. If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
+If the recorded process is alive, the launcher calls `bridgeOrReportLeaseHeld()`, which first attempts to bridge stdio through the existing daemon's session proxy so the second client survives a daemon recycle transparently; it only prints `LEASE_HELD_BY:<pid>` to stdout and exits with code `0` when bridge fallback is unavailable (for example, the bridge module is missing or `SPECKIT_LAUNCHER_BRIDGE_DISABLED=1`). If the recorded process is gone, the launcher logs `staleReclaimed: true`, continues boot, and overwrites the PID file after bootstrap succeeds.
 
 ---
 
@@ -39,12 +39,15 @@ The PID file lives beside the spec-memory launcher database state:
 .opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json
 ```
 
-The active lease payload is intentionally small:
+The active lease payload is intentionally small. `pid`, `startedAt`, and `ownerPid` are always present; `childPid` and `modelServerPid` are optional, written only when the launcher has spawned the corresponding child (a context-server child and a model-server process, respectively):
 
 ```json
 {
   "pid": 12345,
-  "startedAt": "2026-05-18T07:52:00.000Z"
+  "startedAt": "2026-05-18T07:52:00.000Z",
+  "ownerPid": 12345,
+  "childPid": 12346,
+  "modelServerPid": 12347
 }
 ```
 

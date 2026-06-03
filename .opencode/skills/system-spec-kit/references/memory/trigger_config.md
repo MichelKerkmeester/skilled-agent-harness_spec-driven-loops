@@ -150,7 +150,6 @@ Beyond the default trigger phrases, the system recognizes expanded signal types 
 | `CORRECTION` | Tracks when a spec-doc record is corrected or superseded | "actually", "correction", "that was wrong", "update previous" |
 | `PREFERENCE` | Captures user preference signals | "I prefer", "use this instead", "default to", "always do" |
 | `REINFORCEMENT` | Positive validation of existing spec-doc records | "that's right", "confirmed", "keep this" |
-| `DEPRECATION` | Marks memories as outdated | "no longer valid", "deprecated", "removed", "obsolete" |
 
 These signals are detected during `memory_match_triggers()` processing and influence save-time arbitration (prediction-error scoring) and correction tracking.
 

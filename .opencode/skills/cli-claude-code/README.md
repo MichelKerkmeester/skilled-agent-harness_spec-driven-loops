@@ -21,7 +21,7 @@ trigger_phrases:
 
 This skill lets external AI assistants (Gemini CLI, Codex CLI, GitHub Copilot) invoke Anthropic's Claude Code CLI as a specialist tool. The calling AI stays the conductor, delegating specific tasks to Claude Code and integrating the results back into its own workflow.
 
-Claude Code brings capabilities that other CLIs lack or handle differently. Extended thinking with chain-of-thought reasoning gives it an edge on complex architecture decisions. The Edit tool performs surgical, diff-based code modifications rather than rewriting entire files. Schema-validated structured output guarantees machine-readable JSON. And 9 specialized agents handle everything from code review to session handover.
+Claude Code brings capabilities that other CLIs lack or handle differently. Extended thinking with chain-of-thought reasoning gives it an edge on complex architecture decisions. The Edit tool performs surgical, diff-based code modifications rather than rewriting entire files. Schema-validated structured output guarantees machine-readable JSON. And 11 specialized agents handle everything from code review to documentation.
 
 When Claude Code returns work to a Spec Kit packet, `/speckit:resume` is the canonical recovery surface. Continuity stays in packet docs in the order `handover.md`, `_memory.continuity`, then the remaining spec docs, with generated memory artifacts treated as support only.
 
@@ -29,14 +29,14 @@ The skill includes a self-invocation guard: if you are already running inside Cl
 
 ### Key Statistics
 
-The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 9 specialized agents (context, debug, handover, orchestrate, research, review, speckit, ai-council, write), 3 permission modes (plan for read-only, default for interactive approval, bypassPermissions for auto-approve), 3 output formats (text, json, stream-json), 4 reference documents (cli_reference, claude_tools, agent_delegation, integration_patterns), and is at version 1.1.1.
+The skill supports 3 models (Opus 4.6, Sonnet 4.6, Haiku 4.5), 11 specialized agents (ai-council, code, context, debug, deep-improvement, deep-research, deep-review, markdown, orchestrate, prompt-improver, review), 3 permission modes (plan for read-only, default for interactive approval, bypassPermissions for auto-approve), 3 output formats (text, json, stream-json), 4 reference documents (cli_reference, claude_tools, agent_delegation, integration_patterns), and is at version 1.1.1.
 
 ### Key Features at a Glance
 
 - **Extended Thinking**: Deep chain-of-thought reasoning via `--effort high` with Opus for complex trade-off analysis
 - **Edit Tool**: Surgical diff-based code editing that modifies specific lines without rewriting files
 - **Structured Output**: Schema-validated JSON via `--json-schema` for pipeline integration
-- **Agent Delegation**: 9 agents (review, debug, context, write, etc.) routed via `--agent` flag
+- **Agent Delegation**: 11 agents (review, debug, context, markdown, etc.) routed via `--agent` flag
 - **Permission Modes**: Read-only exploration (`plan`), interactive approval (`default`), or full auto (`bypassPermissions`)
 - **Session Continuity**: Resume prior conversations with `--continue` or `--resume SESSION_ID`
 - **Cost Control**: Hard budget cap per session via `--max-budget-usd`
@@ -90,7 +90,7 @@ The Edit tool changes how code gets modified. Instead of regenerating entire fil
 
 Structured output through `--json-schema` fills a gap that other CLIs handle loosely. You define a JSON schema, and Claude Code validates its response against it before returning. The output either matches the schema or the request fails. No parsing surprises, no malformed JSON. This makes Claude Code a reliable node in data pipelines where downstream systems expect exact formats.
 
-The agent system adds specialization on top of these foundations. Nine agents cover distinct domains: `context` for codebase exploration, `review` for security audits, `debug` for root cause analysis, `write` for documentation, and five more. Each agent loads domain-specific instructions that shape how Claude Code approaches the task.
+The agent system adds specialization on top of these foundations. Eleven agents cover distinct domains: `context` for codebase exploration, `review` for security audits, `debug` for root cause analysis, `markdown` for documentation, and seven more. Each agent loads domain-specific instructions that shape how Claude Code approaches the task.
 
 #### Comparison with Other AI CLIs
 
@@ -99,7 +99,7 @@ The agent system adds specialization on top of these foundations. Nine agents co
 | **Deep reasoning** | Configurable effort | Standard | Configurable effort | Extended thinking with chain-of-thought |
 | **Code editing** | Sandbox-based | File writes | Autopilot | Surgical diff-based Edit tool |
 | **Structured output** | Standard JSON | JSON mode | Standard JSON | Schema-validated `--json-schema` |
-| **Agent system** | Profile-based TOML | Markdown agents | Explore/Task agents | 9 specialized agents with routing |
+| **Agent system** | Profile-based TOML | Markdown agents | Explore/Task agents | 11 specialized agents with routing |
 | **Session continuity** | Resume/fork | Memory tool | Repo memory | `--continue` / `--resume` with full context |
 | **Cost control** | Token limits | Free tier | Subscription | `--max-budget-usd` per session |
 
@@ -132,15 +132,17 @@ The agent system adds specialization on top of these foundations. Nine agents co
 
 | Agent | Purpose | Invocation |
 |-------|---------|------------|
+| `ai-council` | Multi-strategy planning | `--agent ai-council --permission-mode plan` |
+| `code` | Application-code implementation | `--agent code` |
 | `context` | Codebase exploration | `--agent context --permission-mode plan` |
 | `debug` | Root cause analysis | `--agent debug` |
-| `handover` | Session state capture | `--agent handover` |
+| `deep-improvement` | Bounded agent improvement | `--agent deep-improvement` |
+| `deep-research` | Autonomous deep research | `--agent deep-research` |
+| `deep-review` | Autonomous deep review | `--agent deep-review` |
+| `markdown` | Documentation generation | `--agent markdown` |
 | `orchestrate` | Multi-agent coordination | `--agent orchestrate` |
-| `research` | Evidence gathering | `--agent research` |
+| `prompt-improver` | Prompt engineering | `--agent prompt-improver` |
 | `review` | Code review and audit | `--agent review --permission-mode plan` |
-| `speckit` | Spec documentation | `--agent speckit` |
-| `ai-council` | Multi-strategy planning | `--agent ai-council --permission-mode plan` |
-| `write` | Documentation generation | `--agent write` |
 
 ---
 
@@ -256,7 +258,7 @@ claude -p "Generate full test coverage for src/utils/" \
 ### General
 
 **Q: When should I use Claude Code instead of other CLIs?**
-A: Use Claude Code for tasks requiring deep extended thinking (Opus), surgical code editing (diff-based), schema-validated structured output, or access to its 9 specialized agents. For web search, use Gemini or Codex instead.
+A: Use Claude Code for tasks requiring deep extended thinking (Opus), surgical code editing (diff-based), schema-validated structured output, or access to its 11 specialized agents. For web search, use Gemini or Codex instead.
 
 **Q: Can Claude Code search the web?**
 A: No. Claude Code has no web search capability. Delegate web research to Gemini CLI (Google Search grounding) or Codex CLI (`--search` flag).

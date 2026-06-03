@@ -1,0 +1,21 @@
+{
+  "specFolder": "skilled-agent-orchestration/133-readme-and-references-accuracy",
+  "description": "gpt-5.5-fast accuracy audit of user-facing command READMEs + system-spec-kit references/assets; adversarial verify (144 confirmed / 13 rejected); remediate 142 fixes across 61 files.",
+  "keywords": [
+    "readme",
+    "references",
+    "accuracy",
+    "audit",
+    "remediation",
+    "drift"
+  ],
+  "lastUpdated": "2026-06-03T07:33:00.000Z",
+  "specId": "133",
+  "folderSlug": "readme-and-references-accuracy",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}

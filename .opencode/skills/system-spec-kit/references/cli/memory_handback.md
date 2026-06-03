@@ -5,7 +5,7 @@ description: Canonical 7-step Memory Handback procedure shared across the five c
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. This procedure is byte-identical across all five sibling skills; this reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
+When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all five sibling skills except for the Step 2 extraction delimiter: the four HTML-comment-form skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->`, while `cli-devin` emits the plain-text `BEGIN_MEMORY_HANDBACK` / `END_MEMORY_HANDBACK` form. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
 
 ---
 
@@ -18,7 +18,9 @@ Canonical 7-step Memory Handback procedure shared across the five cli-* sibling 
 ## 2. PROCEDURE (7 STEPS)
 
 1. **Include epilogue**: Append the Spec-Doc Record Epilogue template (see the cli-* skill's `assets/prompt_templates.md` §N — the section number is cited inline in the skill's §4) to the delegated prompt.
-2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section using: `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section. The delimiter format differs by provider:
+   - **HTML-comment form** (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`): `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+   - **Plain-text form** (`cli-devin`): `/BEGIN_MEMORY_HANDBACK([\s\S]*?)END_MEMORY_HANDBACK/`
 3. **Convert to structured JSON**: Build the JSON-primary payload that `generate-context.js` documents. Use `specFolder`, `user_prompts`, `observations`, and `recent_context` as the canonical field names in new examples. Add `FILES`, `sessionSummary`, `keyDecisions`, `nextSteps`, `triggerPhrases`, `toolCalls`, `exchanges`, `preflight`, and `postflight` when the delegated run produced that evidence.
 4. **Redact and scrub**: Remove secrets, tokens, credentials, and any unnecessary sensitive values before writing the JSON file or sending the payload to the save script.
 5. **Choose a structured-input mode**: Save the scrubbed payload to `/tmp/save-context-data-<session-id>.json`, pipe it with `--stdin`, or pass it inline with `--json`.

@@ -283,8 +283,8 @@ specs/122-skill-standardization/
 | 2    | Normalize path     | Remove `specs/` prefix if present |
 | 3    | Validate exists    | `test -d specs/${path}`           |
 | 4    | Determine target   | Full path including sub-folder    |
-| 5    | Create memory dir  | `mkdir -p specs/${path}/memory/`  |
-| 6    | Write context      | Save to memory folder             |
+| 5    | Write continuity   | Update `implementation-summary.md` `_memory.continuity` block in the target packet |
+| 6    | Refresh metadata   | Re-generate `graph-metadata.json` and `description.json` for the spec folder |
 
 ---
 

@@ -193,16 +193,16 @@ Choose the appropriate template **style** based on user experience and requireme
 
 ```bash
 # Create spec folder with Level 1 (default)
-./scripts/spec/create.sh "Simple bugfix"
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Simple bugfix"
 
 # Create spec folder with Level 2
-./scripts/spec/create.sh "Add authentication" --level 2
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Add authentication" --level 2
 
 # Create spec folder with Level 3
-./scripts/spec/create.sh "Major refactor" --level 3
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Major refactor" --level 3
 
 # Create spec folder with Level 3+ (extended)
-./scripts/spec/create.sh "Platform migration" --level 3+
+bash .opencode/skills/system-spec-kit/scripts/spec/create.sh "Platform migration" --level 3+
 ```
 
 ---

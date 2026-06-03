@@ -30,7 +30,7 @@ The skill includes a self-invocation guard, if the calling AI is itself a local 
 - **Cloud Handoff**: Migrate the live session to a Devin cloud VM; returns a PR while you close the laptop
 - **Permission Modes**: `auto` (default, auto-approves read-only tools), `dangerous` (auto-approves all tools, explicit operator approval required)
 - **Four-Model Preset**: SWE-1.6 (default, context gathering / tool use / simple-medium tasks), DeepSeek v4 (primary for complex work), GLM 5.1 + Kimi k2.6 (complex-task fallbacks)
-- **MCP integration**: `devin mcp add <name>` + OAuth via `devin mcp login`
+- **MCP integration**: `devin mcp add <NAME> -- <CMD> [ARGS]` (the `--` separator is required before a stdio command; HTTP transport uses `devin mcp add --transport http <NAME> <URL>`), then OAuth via `devin mcp login <name>`
 - **ACP server**: Run Devin as an Agent Client Protocol server, embeddable in other tools
 - **Session continuity**: `devin --continue` / `--resume <id>` / `devin list`
 - **Self-invocation guard**: Refuses to load when the calling AI is itself a local `devin` session (cloud handoff is the documented exception)
@@ -94,7 +94,7 @@ If `devin auth status` succeeds and the smoke test returns a coherent response, 
 - **Resume**: `devin --continue` or `devin --resume <id>`
 - **Background dispatch**: append ` &` and capture stdout/stderr to a log
 - **Interactive slash commands**: `/mode`, `/plan` (read-only mode), `/clear`, `/fork`, `/revert`, `/steps`, `/ask`, `/model`, `/context`, `/help`
-- **MCP**: `devin mcp {add,list,login}`
+- **MCP**: `devin mcp {add,list,login}` — registration form is `devin mcp add <NAME> -- <CMD> [ARGS]` (stdio; `--` required) or `devin mcp add --transport http <NAME> <URL>` (HTTP)
 - **Rules / skills**: `devin rules list`, `devin skills {list, show}`
 - **ACP server**: `devin acp`
 - **Shell integration**: `devin shell setup`
@@ -178,7 +178,7 @@ Devin stores profiles at `~/.config/devin/config.json`. Each profile holds the A
 - `dangerous` (auto-approves all tools, explicit operator approval required)
 
 ### MCP Servers
-`devin mcp add <name>` to register; `devin mcp login <name>` for OAuth.
+`devin mcp add <NAME> -- <CMD> [ARGS]` to register a stdio server (the `--` separator is required before the command); for HTTP transport use `devin mcp add --transport http <NAME> <URL>`. Then `devin mcp login <name>` for OAuth.
 
 ### Skill Configuration
 This skill itself reads no configuration from disk, it composes invocations from operator phrasing + the §3 SKILL.md routing table. No per-skill config file is required.
@@ -205,7 +205,10 @@ See [references/cloud_handoff.md](./references/cloud_handoff.md) for the full op
 
 ### Example 4: Resume a prior session
 ```bash
-devin --resume 019e2a5a-ee4f-7da0-9d65-bed3476c5256
+# Session ids are human-friendly kebab-case slugs (e.g. paint-bean), NOT UUIDs.
+# Discover the slug from the `id` field, then resume it.
+devin list --format json
+devin --resume paint-bean
 ```
 
 ### Example 5: Inspect available rules and skills

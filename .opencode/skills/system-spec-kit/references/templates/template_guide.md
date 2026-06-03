@@ -27,7 +27,7 @@ Level 3+ (Extended):    Level 3 + governance/AI protocol content
 
 1. **Never create from scratch** - Always scaffold through `create.sh` or render from `.opencode/skills/system-spec-kit/templates/manifest/`
 2. **Always adapt to feature** - Templates are starting points, not final documents
-3. **Preserve structure** - Maintain numbering, emojis, and section organization
+3. **Preserve structure** - Preserve section structure and numbering; emojis are optional
 4. **Remove placeholders** - Replace ALL `[PLACEHOLDER]` text with actual content
 5. **Delete samples** - Remove `<!-- SAMPLE CONTENT -->` blocks before delivery
 
@@ -751,10 +751,10 @@ When scope grows during implementation and a level upgrade is needed, use `upgra
 
 ```bash
 # Upgrade spec folder to a higher level (auto-detects current level)
-bash upgrade-level.sh specs/042-feature/ --to 2
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 2
 
 # Preview changes without modifying files
-bash upgrade-level.sh specs/042-feature/ --to 3 --dry-run
+bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh specs/042-feature/ --to 3 --dry-run
 ```
 
 The script handles structural changes (new files, addendum injection, backups). After it runs, the AI agent **must** auto-populate all `[placeholder]` text in newly injected sections by reading existing spec context and deriving appropriate content.
@@ -912,7 +912,7 @@ There are **two distinct sub-folder systems**:
 3. User chooses a descriptive name for the new sub-folder
 4. Sub-folder created via `create.sh --subfolder` or manually
 5. Spec folder path passed via explicit CLI target
-6. Each sub-folder gets independent `memory/` context
+6. Each sub-folder gets an independent `scratch/` workspace and `graph-metadata.json`
 
 Archival and reorganization of existing root content is explicit (user-driven), not automatic.
 
@@ -927,7 +927,8 @@ specs/122-skill-standardization/
 └── 003-bug-fixes/      (current work - path passed via CLI)
     ├── spec.md
     ├── plan.md
-    └── memory/
+    ├── graph-metadata.json
+    └── scratch/
 ```
 
 **See:** `system-spec-kit SKILL.md` Section 3 (Sub-Folder Versioning) for full versioning workflow.
@@ -958,9 +959,9 @@ specs/###-parent-feature/
     component-spec.md  # Component-specific specification
     testing-plan.md    # Component-specific testing
 
-  memory/              # Created by manual context save (/memory/save)
-    YYYY-MM-DD_HH-MM__context-name.md
-    metadata.json
+  scratch/             # Temporary workspace (continuity lives in implementation-summary.md)
+    .gitkeep
+  graph-metadata.json  # Generated graph metadata
 ```
 
 ### Creating a Sub-Folder
@@ -1049,7 +1050,7 @@ The enforce-spec-folder workflow includes sub-folder detection:
 - **Automatic suggestion:** When working in a sub-folder without README
 - **Template recommendation:** Suggests creating a README.md to document the sub-folder
 - **Non-blocking:** Suggestion only, not enforced
-- **Skips memory/ folder:** No README needed for auto-generated context
+- **Skips scratch/ folder:** No README needed for the temporary workspace
 
 ### Best Practices
 
@@ -1120,7 +1121,7 @@ When a specification is decomposed into phases, templates are applied at two lev
 Validate all phases recursively from the parent:
 
 ```bash
-./scripts/spec/validate.sh specs/###-parent-feature/ --recursive
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/###-parent-feature/ --recursive
 ```
 
 This validates the parent and each child phase folder independently, plus checks cross-references (PHASE_LINKS rule).

@@ -79,7 +79,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 
 # 3. Install core MCPs (recommended order)
 .opencode/install_guides/install_scripts/install-code-mode.sh
-.opencode/install_guides/install_scripts/install-mk-spec-memory.sh
+.opencode/install_guides/install_scripts/install-spec-kit-memory.sh
 .opencode/install_guides/install_scripts/install-sequential-thinking.sh
 ```
 
@@ -123,7 +123,7 @@ opencode
 install_scripts/
 ├── _utils.sh                      # Shared utility functions (36 functions)
 ├── install-sequential-thinking.sh # Sequential Thinking MCP
-├── install-mk-spec-memory.sh     # Spec Kit Memory MCP
+├── install-spec-kit-memory.sh     # Spec Kit Memory MCP
 ├── install-code-mode.sh           # Code Mode MCP
 ├── install-chrome-devtools.sh     # Chrome DevTools MCP (bdg CLI)
 ├── install-all.sh                 # Master installer with --skip/--only flags
@@ -150,7 +150,7 @@ install_scripts/
 | Script | Component | Description | Prerequisites |
 |--------|-----------|-------------|---------------|
 | `install-sequential-thinking.sh` | Sequential Thinking MCP | Structured problem-solving via flexible thinking | Node.js 18+ |
-| `install-mk-spec-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
+| `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
 | `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
 
@@ -171,17 +171,17 @@ install_scripts/
 ### Master Installer (install-all.sh)
 
 ```bash
-# Install all MCPs
-./install-all.sh
+# Install all MCPs (run from project root)
+.opencode/install_guides/install_scripts/install-all.sh
 
 # Skip specific MCPs
-./install-all.sh --skip chrome-devtools
+.opencode/install_guides/install_scripts/install-all.sh --skip chrome-devtools
 
 # Install only specific MCPs
-./install-all.sh --only code-mode --only mk-spec-memory
+.opencode/install_guides/install_scripts/install-all.sh --only code-mode --only mk-spec-memory
 
 # Dry-run mode (preview without installing)
-./install-all.sh --dry-run
+.opencode/install_guides/install_scripts/install-all.sh --dry-run
 ```
 
 <!-- /ANCHOR:features -->
@@ -204,14 +204,15 @@ install_scripts/
 
 ### Common Options
 
-All scripts support these standard options:
+Verification and dry-run flags differ per script — they are not uniform:
 
-| Option | Description |
-|--------|-------------|
-| `-h, --help` | Show help message |
-| `-v, --verbose` | Enable verbose output |
-| `--skip-verify` | Skip verification step |
-| `--dry-run` | Preview changes without making them |
+| Option | Description | Supported by |
+|--------|-------------|--------------|
+| `-h, --help` | Show help message | All scripts |
+| `-v, --verbose` | Enable verbose output | All scripts |
+| `--skip-verify` | Skip verification step | `install-sequential-thinking.sh`, `install-spec-kit-memory.sh`, `install-code-mode.sh`, `install-chrome-devtools.sh` |
+| `--no-verify` | Skip verification step (master installer name) | `install-all.sh` |
+| `--dry-run` | Preview changes without making them | `install-all.sh`, `install-code-mode.sh` (not `install-sequential-thinking.sh`, `install-spec-kit-memory.sh`, `install-chrome-devtools.sh`) |
 
 ### Script-Specific Options
 
@@ -231,10 +232,10 @@ All scripts support these standard options:
 ### Example 1: Install Core MCPs
 
 ```bash
-# Install the three core MCPs in recommended order
-./install-code-mode.sh
-./install-mk-spec-memory.sh
-./install-sequential-thinking.sh
+# Install the three core MCPs in recommended order (run from project root)
+.opencode/install_guides/install_scripts/install-code-mode.sh
+.opencode/install_guides/install_scripts/install-spec-kit-memory.sh
+.opencode/install_guides/install_scripts/install-sequential-thinking.sh
 ```
 
 **Result**: Core MCPs configured in `opencode.json`, ready for use.
@@ -243,13 +244,13 @@ All scripts support these standard options:
 
 ```bash
 # Dry-run to preview installation
-./install-all.sh --dry-run
+.opencode/install_guides/install_scripts/install-all.sh --dry-run
 
 # Install specific MCPs only
-./install-all.sh --only code-mode --only sequential-thinking
+.opencode/install_guides/install_scripts/install-all.sh --only code-mode --only sequential-thinking
 
 # Verbose mode to see all output
-./install-all.sh -v
+.opencode/install_guides/install_scripts/install-all.sh -v
 ```
 
 **Result**: MCPs installed with appropriate flags for automation.
@@ -258,10 +259,10 @@ All scripts support these standard options:
 
 | Pattern | Command | When to Use |
 |---------|---------|-------------|
-| Core setup | `./install-all.sh --only code-mode --only mk-spec-memory --only sequential-thinking` | New project setup |
-| Full setup | `./install-all.sh` | Complete MCP installation |
-| Reinstall | `./install-<component>.sh --force` | Fix broken installation |
-| Debug | `./install-<component>.sh -v` | Troubleshoot issues |
+| Core setup | `.opencode/install_guides/install_scripts/install-all.sh --only code-mode --only mk-spec-memory --only sequential-thinking` | New project setup |
+| Full setup | `.opencode/install_guides/install_scripts/install-all.sh` | Complete MCP installation |
+| Reinstall | `.opencode/install_guides/install_scripts/install-<component>.sh --force` | Fix broken installation |
+| Debug | `.opencode/install_guides/install_scripts/install-<component>.sh -v` | Troubleshoot issues |
 
 <!-- /ANCHOR:usage-examples -->
 
@@ -307,7 +308,7 @@ chmod +x .opencode/install_guides/install_scripts/*.sh
 ```bash
 # Run from project root containing opencode.json
 cd /path/to/your/project
-./install-<component>.sh
+.opencode/install_guides/install_scripts/install-<component>.sh
 ```
 
 #### JSON validation failed
@@ -415,7 +416,7 @@ See the Contributing section in the source for the full template.
 
 A: Yes. Use `--dry-run` to preview changes without installing:
 ```bash
-./install-all.sh --dry-run
+.opencode/install_guides/install_scripts/install-all.sh --dry-run
 ```
 
 <!-- /ANCHOR:faq -->

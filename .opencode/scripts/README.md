@@ -5,7 +5,6 @@ trigger_phrases:
   - "repo scripts"
   - "orphan mcp sweeper"
   - "claude session cleanup"
-  - "orphan sweep launchagent"
 importance_tier: "important"
 ---
 
@@ -19,9 +18,8 @@ importance_tier: "important"
 - [1. OVERVIEW](#1--overview)
 - [2. ORPHAN MCP SWEEPER](#2--orphan-mcp-sweeper)
 - [3. CLAUDE SESSION CLEANUP](#3--claude-session-cleanup)
-- [4. LAUNCHAGENT TEMPLATE](#4--launchagent-template)
-- [5. VALIDATION](#5--validation)
-- [6. RELATED](#6--related)
+- [4. VALIDATION](#4--validation)
+- [5. RELATED](#5--related)
 
 <!-- /ANCHOR:table-of-contents -->
 
@@ -30,13 +28,12 @@ importance_tier: "important"
 <!-- ANCHOR:overview -->
 ## 1. OVERVIEW
 
-This folder holds small repository-level operational scripts. The orphan MCP leak prevention packet added three lifecycle surfaces:
+This folder holds small repository-level operational scripts. The orphan MCP leak prevention packet added two lifecycle surfaces:
 
 | File | Purpose | Rollout state |
 |---|---|---|
 | `orphan-mcp-sweeper.sh` | Scans stale MCP helper processes and stale `/tmp` dispatch artifacts. | Implemented, dry-run reviewed. |
 | `claude-session-cleanup.sh` | Kills only MCP helper descendants of the current Claude Code session. | Wired through repo-local `.claude/settings.local.json`. |
-| `launchagents/com.michelkerkmeester.orphan-sweep.plist` | macOS LaunchAgent template that would run the sweeper every 600 seconds. | Template only. Not installed or loaded by default. |
 
 The canonical implementation packet is `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/`.
 
@@ -111,43 +108,25 @@ The repo-local `.claude/settings.local.json` chains this script after the canoni
 
 ---
 
-<!-- ANCHOR:launchagent-template -->
-## 4. LAUNCHAGENT TEMPLATE
-
-`launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned macOS LaunchAgent template. It runs:
-
-```text
-/bin/bash /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/scripts/orphan-mcp-sweeper.sh
-```
-
-every 600 seconds and writes stdout/stderr to `~/.local/share/orphan-sweeper.log`.
-
-This file is not installed into `~/Library/LaunchAgents` by the repo. A rollout step must be explicitly approved before copying or loading it with `launchctl`.
-
-<!-- /ANCHOR:launchagent-template -->
-
----
-
 <!-- ANCHOR:validation -->
-## 5. VALIDATION
+## 4. VALIDATION
 
 Run from the repository root:
 
 ```bash
 bash -n .opencode/scripts/orphan-mcp-sweeper.sh
 bash -n .opencode/scripts/claude-session-cleanup.sh
-plutil -lint .opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist
 bash .opencode/scripts/orphan-mcp-sweeper.sh --dry-run --verbose --log-path /tmp/orphan-sweeper-review.log
 ```
 
-Expected result: syntax checks pass, plist lint passes, dry-run logs preserve and candidate decisions, and no PIDs or files are removed during dry-run.
+Expected result: syntax checks pass, dry-run logs preserve and candidate decisions, and no PIDs or files are removed during dry-run.
 
 <!-- /ANCHOR:validation -->
 
 ---
 
 <!-- ANCHOR:related -->
-## 6. RELATED
+## 5. RELATED
 
 - [Orphan MCP leak prevention implementation summary](../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 - [Spec Kit MCP ENV reference](../skills/system-spec-kit/mcp_server/ENV_REFERENCE.md)
