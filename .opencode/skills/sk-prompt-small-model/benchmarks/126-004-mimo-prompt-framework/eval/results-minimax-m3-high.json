@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-02T05:38:01.888Z",
+  "generated_at": "2026-06-02T05:39:30.002Z",
   "model": "minimax-coding-plan/MiniMax-M3",
   "variant": "high",
   "per_dispatch_timeout_sec": 120,
   "repeat": 1,
-  "succeeded": 8,
-  "failed": 1,
+  "succeeded": 10,
+  "failed": 0,
   "combos": 10,
   "results": [
     {
@@ -14,14 +14,40 @@
       "framework_name": "RCAF",
       "fixture": "chunk",
       "repeat": 1,
-      "dispatch_ok": false,
+      "dispatch_ok": true,
       "exit": 0,
-      "stderr": "",
-      "assertion_pass_rate": null,
-      "format_adherent": null,
-      "output_chars": 0,
-      "output_words": 0,
-      "ms": 5998,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 240,
+      "output_words": 40,
+      "ms": 12127,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
       "raw": "runs/rcaf__chunk.json"
     },
     {
@@ -359,6 +385,72 @@
         }
       ],
       "raw": "runs/costar__chunk.json"
+    },
+    {
+      "tag": "costar__parseRange",
+      "framework": "costar",
+      "framework_name": "COSTAR",
+      "fixture": "parseRange",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 301,
+      "output_words": 57,
+      "ms": 87803,
+      "per_test": [
+        {
+          "name": "ascending range",
+          "ok": true
+        },
+        {
+          "name": "descending range",
+          "ok": true
+        },
+        {
+          "name": "single value",
+          "ok": true
+        },
+        {
+          "name": "two-element ascending",
+          "ok": true
+        },
+        {
+          "name": "equal endpoints",
+          "ok": true
+        }
+      ],
+      "raw": "runs/costar__parseRange.json"
     }
-  ]
+  ],
+  "retry_provenance": [
+    {
+      "tag": "rcaf__chunk",
+      "reason": "first attempt returned empty assistant text at exit 0 (transient empty turn; ms=5998; stderr empty). NOT quota/auth/timeout.",
+      "failed_entry": {
+        "dispatch_ok": false,
+        "exit": 0,
+        "output_chars": 0,
+        "output_words": 0,
+        "ms": 5998
+      },
+      "retry_entry": {
+        "dispatch_ok": true,
+        "exit": 0,
+        "assertion_pass_rate": 1,
+        "format_adherent": true,
+        "output_words": 40,
+        "ms": 12127
+      },
+      "failed_raw_preserved": "runs/rcaf__chunk.M3-FAILED-empty-exit0.json",
+      "retry_results_file": "results-minimax-m3-high-rcafchunk-retry.json"
+    }
+  ],
+  "note": "rcaf__chunk first attempt failed (empty text, exit 0); retried once per policy and recovered. Counts reflect post-retry 10/10. Original failure preserved in retry_provenance + runs/rcaf__chunk.M3-FAILED-empty-exit0.json."
 }

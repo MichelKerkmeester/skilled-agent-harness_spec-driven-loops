@@ -1,14 +1,14 @@
 ---
 title: GLM-5.1 Prompt-Craft Profile
 model_id: glm-5.1
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: default-unverified
 last_benchmarked: "none"
 ---
 
 # GLM-5.1 Prompt-Craft Profile
 
-Single source of truth for how to prompt GLM-5.1. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) (the DATA source); executor mechanics (binary flags, invocation wrappers) live in `cli-devin` / `cli-opencode`.
+Single source of truth for how to prompt GLM-5.1. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source); executor mechanics (binary flags, invocation wrappers) live in `cli-devin` / `cli-opencode`.
 
 ---
 
@@ -96,7 +96,7 @@ Relevant files:
 
 ## 5. Dispatch Gotchas
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) entry `"id": "glm-5.1"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "glm-5.1"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -116,7 +116,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ## 6. See Also
 
-- [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) `#glm-5.1` — Authoritative capability fields, executor list, and `recommended_frameworks` object.
+- [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#glm-5.1` — Authoritative capability fields, executor list, and `recommended_frameworks` object.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF framework definition, scoring criteria, and all other supported frameworks.
 - [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor card for the `cli-devin` / Cognition Pro path including invocation wrappers, non-TTY rules, and quota-fallback mechanics.
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for the `cli-opencode` / opencode-go path.

@@ -491,7 +491,7 @@ Output shape: a `<pre-plan>` block, then fenced code with a path comment, then a
 - Acceptance criteria (what "done" means)
 ```
 
-**Why**: TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope/format drift more than RCAF's role anchor (0.767 vs 0.742), and MiniMax uses dense plan structure rather than being slowed by it (0.775 dense vs 0.767 medium) — the opposite of SWE-1.6. Evidence: `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md`.
+**Why**: TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope/format drift more than RCAF's role anchor (0.767 vs 0.742), and MiniMax uses dense plan structure rather than being slowed by it (0.775 dense vs 0.767 medium) — the opposite of SWE-1.6. Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/120-003-minimax-prompt-framework/eval-loop/synthesis.md`.
 
 ---
 
@@ -513,7 +513,7 @@ opencode run \
 
 **Prompt scaffold (COSTAR — empirical winner)**: Context (task + repo facts) → Objective (the single concrete deliverable) → Style (`precise, no preamble`) → Tone (neutral) → Audience (`an automated/downstream consumer that parses your output`) → Response (exact output shape, e.g. "return ONLY the function body"). Keep pre-planning lean-to-medium. **RACE** (Role/Action/Context/Expectation) is the equally-valid fallback. Do NOT use TIDD-EC or dense guardrail framing — it ranked last for MiMo (inflated output ~2.4× and leaked explanatory prose that broke the code-only contract).
 
-**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe); the default skill model stays `opencode-go/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 126/004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md`.
+**Why**: MiMo-V2.5-Pro (1M-token context, strongly agentic — 1000+ tool calls, token-efficient; SWE-bench Pro 57.2) is an explicitly-selectable model on the Xiaomi Token Plan (Europe); the default skill model stays `opencode-go/deepseek-v4-pro`. The COSTAR/RACE-lean contract is the empirical 126/004 finding (10/10 real dispatches; the discriminator was format adherence + token efficiency, not correctness — MiMo solved every fixture under every framework). Evidence: `.opencode/skills/sk-prompt-small-model/benchmarks/126-004-mimo-prompt-framework/eval/synthesis.md`.
 
 ---
 

@@ -1,11 +1,11 @@
 ---
 title: Small-Model Prompt-Craft Profiles — Index
-description: Thin index of the per-model prompt-craft profiles that ARE this skill's hub content. One row per active small model — prompt framework + status — linking to each model's profile. Frameworks mirror sk-prompt/assets/model-profiles.json recommended_frameworks (the DATA source of truth); executor MECHANICS stay in cli-devin / cli-opencode.
+description: Thin index of the per-model prompt-craft profiles that ARE this skill's hub content. One row per active small model — prompt framework + status — linking to each model's profile. Frameworks mirror sk-prompt-small-model/assets/model-profiles.json recommended_frameworks (the DATA source of truth); executor MECHANICS stay in cli-devin / cli-opencode.
 ---
 
 # Small-Model Prompt-Craft Profiles — Index
 
-These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its prompt-craft hub content. Each `<id>.md` records how to PROMPT that model: framework (primary + fallback), pre-planning density, scaffold shape, and gotchas. The framework choices below mirror `recommended_frameworks` in [`sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) (the DATA source of truth) and each profile cites it. Executor MECHANICS (binary flags, invocation wrappers) live in `cli-devin` / `cli-opencode` — see [`../pattern-index.md`](../pattern-index.md).
+These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its prompt-craft hub content. Each `<id>.md` records how to PROMPT that model: framework (primary + fallback), pre-planning density, scaffold shape, and gotchas. The framework choices below mirror `recommended_frameworks` in [`sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source of truth) and each profile cites it. Executor MECHANICS (binary flags, invocation wrappers) live in `cli-devin` / `cli-opencode` — see [`../pattern-index.md`](../pattern-index.md).
 
 > A profile path that is missing on disk is a roadmap pointer (profile not yet authored), not a broken link — same convention as `pattern-index.md`.
 
@@ -37,4 +37,4 @@ Optional, not-yet-adopted (no active profile): Claude Haiku, Gemini Flash. Front
 
 - [`../pattern-index.md`](../pattern-index.md) — Locates executor-owned MECHANICS + ship status.
 - [`../../SKILL.md`](../../SKILL.md) — Hub workflow, dispatch matrix, rules.
-- [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) — The registry DATA every profile mirrors.
+- [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) — The registry DATA every profile mirrors.

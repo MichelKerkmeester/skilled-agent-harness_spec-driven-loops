@@ -1,14 +1,14 @@
 ---
 title: "DeepSeek-v4-Pro Prompt-Craft Profile"
 model_id: "deepseek-v4-pro"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: "default-unverified"
 last_benchmarked: "none"
 ---
 
 # DeepSeek-v4-Pro Prompt-Craft Profile
 
-Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
+Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rotation. Framework choices mirror `recommended_frameworks` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) (the DATA source of truth). Executor MECHANICS (binary flags, invocation wrappers, non-TTY rules) live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md) — not here.
 
 ---
 
@@ -123,7 +123,7 @@ Constraints:
 
 ## 5. Dispatch Gotchas
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -143,7 +143,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ## 6. See Also
 
-- [`../../../sk-prompt/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
+- [`../../../sk-prompt-small-model/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow and dispatch matrix
 - [`../pattern-index.md`](../pattern-index.md) — Executor-owned MECHANICS (context budget, output verification, quota fallback)

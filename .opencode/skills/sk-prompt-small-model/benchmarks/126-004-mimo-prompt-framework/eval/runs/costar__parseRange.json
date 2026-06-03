@@ -1,0 +1,15 @@
+{
+  "tag": "costar__parseRange",
+  "framework": "costar",
+  "framework_name": "COSTAR",
+  "fixture": "parseRange",
+  "repeat": 1,
+  "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+  "variant": "high",
+  "dispatched_at": "2026-06-02T05:43:10.803Z",
+  "exit": 0,
+  "ms": 8443,
+  "prompt": "## Context\nPure-function JavaScript implementation task. Handle every stated edge case. Do not invent extra parameters, helper globals, or behaviour beyond the specification. Pure function, no side effects.\n\n## Objective\nImplement a JavaScript function `parseRange(s)` where `s` is a string. If `s` is of the form 'a-b' (two integers separated by a hyphen), return an inclusive integer array from a to b: ascending when a <= b, descending when a > b. If `s` is a single integer 'n', return `[n]`.\n\n## Style\nPrecise, implementation-grade. No preamble.\n\n## Tone\nDirect and technical.\n\n## Audience\nAn automated assertion suite that calls the function directly and rejects out-of-scope behaviour or invented parameters.\n\n## Response\nReturn ONLY the JavaScript function source for `parseRange` (signature `function parseRange(s)`). No prose, no explanation, no test code, no markdown fence — just the function.",
+  "assistant_text": "```javascript\nfunction parseRange(s) {\n  const parts = s.split('-');\n  if (parts.length === 1) {\n    return [parseInt(parts[0], 10)];\n  }\n  const a = parseInt(parts[0], 10);\n  const b = parseInt(parts[1], 10);\n  const result = [];\n  if (a <= b) {\n    for (let i = a; i <= b; i++) {\n      result.push(i);\n    }\n  } else {\n    for (let i = a; i >= b; i--) {\n      result.push(i);\n    }\n  }\n  return result;\n}\n```",
+  "stderr": ""
+}

@@ -2,7 +2,7 @@
 name: sk-prompt-small-model
 description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
 allowed-tools: []
-version: 0.5.0.0
+version: 0.6.0.0
 ---
 
 <!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
@@ -78,11 +78,10 @@ references/
     pattern-index.md      # Locates executor-owned MECHANICS + ship status
 ```
 
-This skill carries prompt-craft PROSE (`references/models/`) plus two thin indexes. It intentionally has no `assets/` and no `scripts/`. Executor MECHANICS and runtime code live elsewhere:
+This skill carries prompt-craft PROSE (`references/models/`) plus two thin indexes and the model registry (`assets/model-profiles.json`). Executor MECHANICS and runtime code live elsewhere:
 
 - `.opencode/skills/cli-devin/references/` and `assets/` (flags, wrappers, budgets)
 - `.opencode/skills/cli-opencode/references/` and `assets/` (flags, wrappers, permissions)
-- `.opencode/skills/sk-prompt/assets/` (model-profiles registry — the DATA profiles mirror)
 - `.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/` (runtime helpers)
 
 ### Resource Loading Levels
@@ -123,15 +122,15 @@ This skill has no runtime router of its own. The skill-advisor surfaces it via `
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
 | Gemini Flash | `cli-gemini` → google (google) | optional-unverified |
 
-Canonical source: `sk-prompt/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
+Canonical source: `sk-prompt-small-model/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
 
 ### Ownership Boundary
 
-This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`); `cli-devin`/`cli-opencode` own executor MECHANICS (flags, wrappers, budgets, permissions); `sk-prompt` owns the registry DATA + generic framework definitions; `system-spec-kit` owns runtime helpers. See the Skill Boundary Map in §5.
+This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`) and the model registry DATA (`assets/model-profiles.json`); `cli-devin`/`cli-opencode` own executor MECHANICS (flags, wrappers, budgets, permissions); `sk-prompt` owns generic framework definitions; `system-spec-kit` owns runtime helpers. See the Skill Boundary Map in §5.
 
 ### Adopting a New Provider (Haiku, Gemini Flash, others)
 
-Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the registry stub in `sk-prompt/assets/model-profiles.json` (set `quota_pool`, `context_length`, `recommended_frameworks`); (2) add a `references/models/<id>.md` profile mirroring + citing that entry; (3) add one row to `references/models/_index.md`; (4) optionally set `fallback_target` and add `graph-metadata.json` trigger phrases; (5) re-index the advisor (`skill_advisor.py --force-refresh`). No executor-MECHANICS or code edits are needed when the quota pool is already represented.
+Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the registry stub in `sk-prompt-small-model/assets/model-profiles.json` (set `quota_pool`, `context_length`, `recommended_frameworks`); (2) add a `references/models/<id>.md` profile mirroring + citing that entry; (3) add one row to `references/models/_index.md`; (4) optionally set `fallback_target` and add `graph-metadata.json` trigger phrases; (5) re-index the advisor (`skill_advisor.py --force-refresh`). No executor-MECHANICS or code edits are needed when the quota pool is already represented.
 
 ---
 
@@ -140,7 +139,7 @@ Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the re
 ### ALWAYS
 
 1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 200 LOC, `references/models/_index.md` ≤ 100 LOC, and `pattern-index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
-2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
+2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
 5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3/M2.7, MiMo-V2.5-Pro active; Haiku, Gemini Flash optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
@@ -156,7 +155,7 @@ Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the re
 
 1. A model becomes dispatchable from a NEW executor with conflicting MECHANICS (different flags/wrappers than the existing path). Resolve the mechanics in the owning `cli-X` first; the profile only records prompt-craft, so it must not arbitrate flag conflicts.
 2. A profile would need to RESTATE executor flags to be usable. That belongs in `cli-X` — escalate to add/extend the executor reference, then link to it.
-3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `sk-prompt/assets/model-profiles.json` first, then add the profile + index row.
+3. A new small-model provider arrives that does not fit the existing quota-pool model. Update the registry schema in `sk-prompt-small-model/assets/model-profiles.json` first, then add the profile + index row.
 
 ---
 
@@ -178,8 +177,7 @@ Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the re
 - [`cli-opencode/references/permissions-matrix.md`](../cli-opencode/references/permissions-matrix.md) — Structured permissions schema
 - [`cli-opencode/assets/permissions-matrix.schema.json`](../cli-opencode/assets/permissions-matrix.schema.json) — JSON Schema for permission rules
 - [`cli-opencode/assets/prompt_templates.md`](../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates (MiniMax, MiMo scaffolds in mechanics form)
-- [`sk-prompt/assets/model-profiles.json`](../sk-prompt/assets/model-profiles.json) — Unified model registry; the DATA each profile mirrors
-- [`sk-prompt/references/model-profiles.md`](../sk-prompt/references/model-profiles.md) — Registry schema + adoption protocol
+- [`sk-prompt-small-model/assets/model-profiles.json`](./assets/model-profiles.json) — Unified model registry; the DATA each profile mirrors (owned by this skill)
 - [`sk-prompt/assets/cli_prompt_quality_card.md`](../sk-prompt/assets/cli_prompt_quality_card.md) — Cross-CLI quality card + generic framework definitions
 
 ### Reference Loading Notes
@@ -191,10 +189,10 @@ Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the re
 ### Skill Boundary Map
 
 ```text
-sk-prompt-small-model (this skill)  ← OWNS per-model prompt-craft profiles + indexes
+sk-prompt-small-model (this skill)  ← OWNS per-model prompt-craft profiles + indexes + model registry (assets/model-profiles.json)
     |
     +-- cli-devin                   ← owns MECHANICS: SWE-1.6 budget + verification + fallback
     +-- cli-opencode                ← owns MECHANICS: DeepSeek/Kimi/Qwen/MiniMax/MiMo flags + permissions
-    +-- sk-prompt                   ← owns model registry (DATA) + generic framework definitions
+    +-- sk-prompt                   ← owns generic framework definitions
     +-- system-spec-kit             ← owns runtime helpers (TS code)
 ```

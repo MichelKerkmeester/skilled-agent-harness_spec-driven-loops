@@ -104,8 +104,8 @@ state_paths:
   dashboard: "{spec_folder}/improvement/agent-improvement-dashboard.md"
   registry: "{spec_folder}/improvement/experiment-registry.json"
   journal: "{spec_folder}/improvement/improvement-journal.jsonl"
-  benchmark_root: "{spec_folder}/improvement/benchmark-outputs"
-  benchmark_report: "{spec_folder}/improvement/benchmark-outputs/report.json"
+  benchmark_root: ".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}"
+  benchmark_report: ".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json"
 
 # ─────────────────────────────────────────────────────────────────
 # WORKFLOW
@@ -126,7 +126,7 @@ workflow:
         action: "Bind {profile} to the user-supplied profile or, when empty, to .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json; verify it resolves to an existing profile JSON."
       step_create_directories:
         description: "Create benchmark runtime directories including the outputs dir"
-        command: "mkdir -p {spec_folder}/improvement/benchmark-outputs"
+        command: "mkdir -p .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}"
       step_copy_templates:
         description: "Copy config template into runtime root"
         action: "Copy the improvement config template into the runtime root"
@@ -144,10 +144,10 @@ workflow:
     steps:
       step_run_benchmark:
         description: "Run the model-benchmark loop host: materialize fixtures then run-benchmark (EC-5 ordering, internal to loop-host)"
-        command: "node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \"{spec_folder}/improvement/benchmark-outputs\" --scorer \"{scoring_method}\" --grader \"{grader}\""
+        command: "node .opencode/skills/deep-improvement/scripts/shared/loop-host.cjs --mode=model-benchmark --profile \"{profile}\" --outputs-dir \".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}\" --scorer \"{scoring_method}\" --grader \"{grader}\""
       step_emit_journal_event_benchmark_completed:
         description: "Emit benchmark_completed journal event after report.json exists"
-        command: "test -f {spec_folder}/improvement/benchmark-outputs/report.json && node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\"{spec_folder}/improvement/benchmark-outputs/report.json\",\"scoringMethod\":\"{scoring_method}\"}'"
+        command: "test -f .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json && node .opencode/skills/deep-improvement/scripts/shared/improvement-journal.cjs --emit benchmark_completed --journal {spec_folder}/improvement/improvement-journal.jsonl --details '{\"sessionId\":\"{session_id}\",\"iteration\":\"{iteration}\",\"profile\":\"{profile}\",\"benchmarkOutputPath\":\".opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json\",\"scoringMethod\":\"{scoring_method}\"}'"
       step_append_ledger:
         description: "Verify the benchmark_run ledger row written by run-benchmark.cjs"
         ledger_ownership: "run-benchmark.cjs is the sole ledger writer. It appends the benchmark_run row (with mode, scoringMethod, and aggregate score) when it can infer the state-log path. This step VERIFIES that row exists. The orchestrator does NOT append a duplicate."
@@ -170,11 +170,11 @@ workflow:
         command: "node .opencode/skills/deep-improvement/scripts/shared/reduce-state.cjs {spec_folder}/improvement"
       step_recommendation:
         description: "Recommend continue, promote, or stop based on reducer output and the benchmark report scoringMethod"
-        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from {spec_folder}/improvement/benchmark-outputs/report.json"
+        action: "Check experiment-registry.json for the best benchmark record and stopStatus; read scoringMethod from .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json"
       step_promote_candidate:
         description: "Offer optional promotion of the accepted benchmark variant to canonical target (guarded benchmark-mode path, requires benchmark evidence)"
-        promotion_evidence: "Lane B promotes on benchmark evidence. The gate is the benchmark report ({spec_folder}/improvement/benchmark-outputs/report.json) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads status, recommendation, target, profileId, and aggregateScore from the report, and refuses promotion unless status is benchmark-complete with a benchmark-pass recommendation and a passing aggregate and repeatability gate. There is no scored agent file and no --score argument in Lane B."
-        command: "node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report={spec_folder}/improvement/benchmark-outputs/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
+        promotion_evidence: "Lane B promotes on benchmark evidence. The gate is the benchmark report (.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json) passed via --benchmark-report. promote-candidate.cjs runs its benchmark-mode path when --score is omitted, reads status, recommendation, target, profileId, and aggregateScore from the report, and refuses promotion unless status is benchmark-complete with a benchmark-pass recommendation and a passing aggregate and repeatability gate. There is no scored agent file and no --score argument in Lane B."
+        command: "node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --candidate={candidate_path} --target={target_path} --benchmark-report=.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json --config={spec_folder}/improvement/model-benchmark-config.json --manifest={spec_folder}/improvement/target_manifest.jsonc --archive-dir={spec_folder}/improvement/archive --approve"
       step_report_status:
         description: "Report STATUS with the benchmark outcome and scoring method"
         action: "Report STATUS=benchmark-complete with scoringMethod={scoring_method}, grader={grader}, and the final aggregate score"

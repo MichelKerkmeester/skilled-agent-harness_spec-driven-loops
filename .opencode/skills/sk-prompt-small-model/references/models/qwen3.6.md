@@ -1,14 +1,14 @@
 ---
 title: "Qwen3.6 Prompt-Craft Profile"
 model_id: "qwen3.6"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: "default-unverified"
 last_benchmarked: "none"
 ---
 
 # Qwen3.6 — Prompt-Craft Profile
 
-Single source of truth for how to prompt `qwen3.6`. Framework choices mirror the `recommended_frameworks` entry in [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json); executor MECHANICS (binary flags, invocation wrappers, permissions, budgets) live in [`cli-opencode`](../../../cli-opencode/). See [`pattern-index.md`](../pattern-index.md) for the canonical locations of those patterns.
+Single source of truth for how to prompt `qwen3.6`. Framework choices mirror the `recommended_frameworks` entry in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json); executor MECHANICS (binary flags, invocation wrappers, permissions, budgets) live in [`cli-opencode`](../../../cli-opencode/). See [`pattern-index.md`](../pattern-index.md) for the canonical locations of those patterns.
 
 ---
 
@@ -34,7 +34,7 @@ Qwen3.6 is available only via the `opencode-go` provider credits. There is no De
 **Avoid:** none specified  
 **Pre-planning density:** MEDIUM
 
-These values are drawn verbatim from the `recommended_frameworks` object for `qwen3.6` in [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) — that file is the DATA source of truth; this section records the rationale.
+These values are drawn verbatim from the `recommended_frameworks` object for `qwen3.6` in [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) — that file is the DATA source of truth; this section records the rationale.
 
 **Why RCAF as default:** RCAF (Role, Context, Action, Format) is the registry default for focused, bounded coding tasks on this unverified profile. Qwen3.6's strengths — "focused edits", "bounded analysis", "cost-conscious iteration" — align naturally with RCAF's tight four-element structure, which also minimises token overhead on a 32k window. The model has not been benchmarked against alternatives; RCAF is the convention default for unverified small coding models.
 
@@ -114,7 +114,7 @@ Return:
 
 ## 5. Dispatch Gotchas
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) entry `qwen3.6`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `qwen3.6`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -135,7 +135,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ## 6. See Also
 
-- [`model-profiles.json#qwen3.6`](../../../sk-prompt/assets/model-profiles.json) — Registry entry; authoritative source for capability fields and `recommended_frameworks`
+- [`model-profiles.json#qwen3.6`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative source for capability fields and `recommended_frameworks`
 - [`patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF framework definition, CLEAR scoring, and all 7 framework bodies
 - [`cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Executor prompt-pack templates and dispatch wrappers (MECHANICS)
 - [`cli-opencode/references/context-budget.md`](../../../cli-opencode/references/context-budget.md) — Context budget propagation reference for cli-opencode

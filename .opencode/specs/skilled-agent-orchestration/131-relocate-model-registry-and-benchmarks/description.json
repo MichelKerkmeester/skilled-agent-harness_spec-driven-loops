@@ -1,0 +1,28 @@
+{
+  "specFolder": "131-relocate-model-registry-and-benchmarks",
+  "description": "Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework engine; deep-improvement",
+  "keywords": [
+    "relocate",
+    "model",
+    "registry",
+    "benchmarks",
+    "sk-prompt-small-model",
+    "make",
+    "sk-prompt",
+    "forkable",
+    "standalone",
+    "framework",
+    "engine",
+    "deep-improvement",
+    "writes",
+    "hub",
+    "only"
+  ],
+  "lastUpdated": "2026-06-03T04:03:34.597Z",
+  "specId": "131",
+  "folderSlug": "relocate-model-registry-and-benchmarks",
+  "parentChain": [],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "3"
+}

@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/004-capability-discrimination",
+  "description": "Feature Specification: Capability discrimination",
+  "keywords": [
+    "feature",
+    "specification",
+    "capability",
+    "discrimination"
+  ],
+  "lastUpdated": "2026-06-02T12:06:06.932Z",
+  "specId": "004",
+  "folderSlug": "capability-discrimination",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-reusable-model-benchmark-framework"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-06-26_13-06__benchmarks-so-we-can-better-say-which-model-is.md"
+  ]
+}

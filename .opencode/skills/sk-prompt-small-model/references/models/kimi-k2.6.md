@@ -1,7 +1,7 @@
 ---
 title: "Kimi-k2.6 Prompt-Craft Profile"
 model_id: "kimi-k2.6"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: default-unverified
 last_benchmarked: "none"
 ---
@@ -35,7 +35,7 @@ Kimi-k2.6 is the **large-context specialist** in the rotation — 200 k tokens m
 **Avoid:** none specified in registry  
 **Pre-planning density:** MEDIUM
 
-These choices mirror `recommended_frameworks` in [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) entry `kimi-k2.6` (the DATA source of truth). See `patterns_evaluation.md` for the generic RCAF, COSTAR, and RACE definitions — this profile records the per-model choice and rationale only.
+These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `kimi-k2.6` (the DATA source of truth). See `patterns_evaluation.md` for the generic RCAF, COSTAR, and RACE definitions — this profile records the per-model choice and rationale only.
 
 **Why RCAF for Kimi-k2.6:** RCAF's four elements — Role, Context, Action, Format — map cleanly onto large-context work. The model's primary strength is absorbing wide context and synthesising across many files; RCAF lets you front-load that in the `Context` block while keeping the action and output format explicit. The registry does not specify TIDD-EC or COSTAR for Kimi-k2.6, and no model-specific benchmark has compared them. Medium pre-planning density is appropriate: enough caller-side scoping to keep the action bounded, without importing MiniMax's dense guardrail pattern.
 
@@ -109,7 +109,7 @@ Output:
 
 ## 5. Dispatch Gotchas
 
-Model-specific capability fields and flags are sourced from the `kimi-k2.6` entry in [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json). Full dispatch wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
+Model-specific capability fields and flags are sourced from the `kimi-k2.6` entry in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json). Full dispatch wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
 | Field | Value | Implication |
 | --- | --- | --- |
@@ -130,7 +130,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.6` entr
 
 ## 6. See Also
 
-- [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) `#kimi-k2.6` — Registry entry; the authoritative DATA this profile mirrors.
+- [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#kimi-k2.6` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).
 - [`../../../cli-devin/SKILL.md`](../../../cli-devin/SKILL.md) — Executor MECHANICS for the cli-devin path (cognition-pro); budget, verification, timeout wrappers.
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor MECHANICS for the cli-opencode path (opencode-go); hang-rate note, non-TTY rule, permissions.

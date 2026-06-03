@@ -1,0 +1,2175 @@
+{
+  "profile": {
+    "id": "capability-m3-vs-mimo",
+    "mode": "model-vs-model",
+    "version": "1.0"
+  },
+  "rows": [
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 65,
+      "output_chars": 472,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 30356,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 63,
+      "output_chars": 463,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 14054,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 92,
+      "output_chars": 634,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 43738,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 144,
+      "output_chars": 872,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 222815,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 133,
+      "output_chars": 854,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 91309,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 140,
+      "output_chars": 872,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 127852,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 163,
+      "output_chars": 793,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": true
+        },
+        {
+          "name": "subtractive IV",
+          "ok": true
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": true
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": true
+        },
+        {
+          "name": "single I",
+          "ok": true
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": true
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": true
+        },
+        {
+          "name": "subtractive IX",
+          "ok": true
+        },
+        {
+          "name": "forty XL",
+          "ok": true
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": true
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": true
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": true
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 73836,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 173,
+      "output_chars": 869,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": true
+        },
+        {
+          "name": "subtractive IV",
+          "ok": true
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": true
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": true
+        },
+        {
+          "name": "single I",
+          "ok": true
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": true
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": true
+        },
+        {
+          "name": "subtractive IX",
+          "ok": true
+        },
+        {
+          "name": "forty XL",
+          "ok": true
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": true
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": true
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": true
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 26684,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 148,
+      "output_chars": 863,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": true
+        },
+        {
+          "name": "subtractive IV",
+          "ok": true
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": true
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": true
+        },
+        {
+          "name": "single I",
+          "ok": true
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": true
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": true
+        },
+        {
+          "name": "subtractive IX",
+          "ok": true
+        },
+        {
+          "name": "forty XL",
+          "ok": true
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": true
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": true
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": true
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 76049,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 18,
+      "assertions_total": 18,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 414,
+      "output_chars": 2554,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple addition",
+          "ok": true
+        },
+        {
+          "name": "precedence multiply before add",
+          "ok": true
+        },
+        {
+          "name": "parentheses override precedence",
+          "ok": true
+        },
+        {
+          "name": "integer division truncates",
+          "ok": true
+        },
+        {
+          "name": "division by zero is null",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a literal",
+          "ok": true
+        },
+        {
+          "name": "binary minus then unary minus",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a parenthesized group",
+          "ok": true
+        },
+        {
+          "name": "negative division truncates toward zero",
+          "ok": true
+        },
+        {
+          "name": "left-to-right within same precedence",
+          "ok": true
+        },
+        {
+          "name": "nested parentheses",
+          "ok": true
+        },
+        {
+          "name": "whitespace is insignificant",
+          "ok": true
+        },
+        {
+          "name": "empty string is malformed",
+          "ok": true
+        },
+        {
+          "name": "unbalanced open paren is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "doubled binary operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "empty parens are malformed",
+          "ok": true
+        },
+        {
+          "name": "illegal character is malformed",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 236976,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 1,
+      "correctness_pass_rate": null,
+      "assertions_passed": null,
+      "assertions_total": 18,
+      "format_adherent": null,
+      "format_reason": "dispatch_failed",
+      "output_words": 0,
+      "output_chars": 0,
+      "extracted": false,
+      "extract_reason": "dispatch_failed",
+      "per_test": [],
+      "dispatch_ok": false,
+      "exit_code": -1,
+      "latency_ms": 240017,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::minimax-coding-plan/MiniMax-M3::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "minimax-coding-plan/MiniMax-M3",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 18,
+      "assertions_total": 18,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 362,
+      "output_chars": 2628,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple addition",
+          "ok": true
+        },
+        {
+          "name": "precedence multiply before add",
+          "ok": true
+        },
+        {
+          "name": "parentheses override precedence",
+          "ok": true
+        },
+        {
+          "name": "integer division truncates",
+          "ok": true
+        },
+        {
+          "name": "division by zero is null",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a literal",
+          "ok": true
+        },
+        {
+          "name": "binary minus then unary minus",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a parenthesized group",
+          "ok": true
+        },
+        {
+          "name": "negative division truncates toward zero",
+          "ok": true
+        },
+        {
+          "name": "left-to-right within same precedence",
+          "ok": true
+        },
+        {
+          "name": "nested parentheses",
+          "ok": true
+        },
+        {
+          "name": "whitespace is insignificant",
+          "ok": true
+        },
+        {
+          "name": "empty string is malformed",
+          "ok": true
+        },
+        {
+          "name": "unbalanced open paren is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "doubled binary operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "empty parens are malformed",
+          "ok": true
+        },
+        {
+          "name": "illegal character is malformed",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 161959,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 62,
+      "output_chars": 462,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 8282,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 58,
+      "output_chars": 439,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 5203,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-merge-intervals",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-merge-intervals",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 16,
+      "assertions_total": 16,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 58,
+      "output_chars": 439,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "two overlapping intervals merge",
+          "ok": true
+        },
+        {
+          "name": "touching endpoints merge (closed intervals)",
+          "ok": true
+        },
+        {
+          "name": "disjoint intervals stay separate",
+          "ok": true
+        },
+        {
+          "name": "unsorted input is sorted in output",
+          "ok": true
+        },
+        {
+          "name": "empty input yields empty array",
+          "ok": true
+        },
+        {
+          "name": "fully nested interval collapses into outer",
+          "ok": true
+        },
+        {
+          "name": "nested given in reverse order still collapses",
+          "ok": true
+        },
+        {
+          "name": "single interval returns a single pair",
+          "ok": true
+        },
+        {
+          "name": "negative coordinates sort and merge",
+          "ok": true
+        },
+        {
+          "name": "non-overlapping interval between two overlapping ones",
+          "ok": true
+        },
+        {
+          "name": "chain of touching intervals merges to one",
+          "ok": true
+        },
+        {
+          "name": "duplicate identical intervals collapse",
+          "ok": true
+        },
+        {
+          "name": "zero-width point interval inside a range",
+          "ok": true
+        },
+        {
+          "name": "adjacent-by-one but not touching stays separate",
+          "ok": true
+        },
+        {
+          "name": "later end smaller than running end keeps larger end",
+          "ok": true
+        },
+        {
+          "name": "many mixed intervals",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 10295,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 0,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": false,
+      "format_reason": "prose outside code",
+      "output_words": 184,
+      "output_chars": 1212,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 63174,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": false,
+      "format_reason": "prose outside code",
+      "output_words": 210,
+      "output_chars": 1553,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 114747,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-parse-csv-line",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-parse-csv-line",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 17,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 163,
+      "output_chars": 1166,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple unquoted fields",
+          "ok": true
+        },
+        {
+          "name": "quoted field with embedded comma",
+          "ok": true
+        },
+        {
+          "name": "doubled quote is an escaped quote",
+          "ok": true
+        },
+        {
+          "name": "single empty field",
+          "ok": true
+        },
+        {
+          "name": "unterminated quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing comma yields trailing empty field",
+          "ok": true
+        },
+        {
+          "name": "leading comma yields leading empty field",
+          "ok": true
+        },
+        {
+          "name": "unquoted whitespace preserved",
+          "ok": true
+        },
+        {
+          "name": "two consecutive empty fields",
+          "ok": true
+        },
+        {
+          "name": "quoted empty field",
+          "ok": true
+        },
+        {
+          "name": "mid-field quote in unquoted field is literal",
+          "ok": true
+        },
+        {
+          "name": "junk after closing quote is malformed",
+          "ok": true
+        },
+        {
+          "name": "quoted field followed by comma then field",
+          "ok": true
+        },
+        {
+          "name": "doubled quotes around comma stay one field",
+          "ok": true
+        },
+        {
+          "name": "all empty from two commas at start",
+          "ok": true
+        },
+        {
+          "name": "quoted field with only a doubled quote",
+          "ok": true
+        },
+        {
+          "name": "plain single field no commas",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 50240,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 0,
+      "correctness_pass_rate": 0.9411764705882353,
+      "assertions_passed": 16,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 133,
+      "output_chars": 861,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": true
+        },
+        {
+          "name": "subtractive IV",
+          "ok": true
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": true
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": true
+        },
+        {
+          "name": "single I",
+          "ok": true
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": true
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": true
+        },
+        {
+          "name": "subtractive IX",
+          "ok": true
+        },
+        {
+          "name": "forty XL",
+          "ok": true
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": true
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": true
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": true
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": false,
+          "got": 4
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 15741,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 1,
+      "correctness_pass_rate": 0.9411764705882353,
+      "assertions_passed": 16,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 126,
+      "output_chars": 783,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": true
+        },
+        {
+          "name": "subtractive IV",
+          "ok": true
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": true
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": true
+        },
+        {
+          "name": "single I",
+          "ok": true
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": true
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": true
+        },
+        {
+          "name": "subtractive IX",
+          "ok": true
+        },
+        {
+          "name": "forty XL",
+          "ok": true
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": true
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": true
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": true
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": true
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": false,
+          "got": 4
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": true
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 13565,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-roman-to-int",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-roman-to-int",
+      "sample": 2,
+      "correctness_pass_rate": 0,
+      "assertions_passed": 0,
+      "assertions_total": 17,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 189,
+      "output_chars": 2571,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple additive III",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "subtractive IV",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "complex MCMXCIV",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "non-canonical IIII is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "illegal subtractive IL is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "single I",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "max value MMMCMXCIX is 3999",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "fifty-eight LVIII",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "subtractive IX",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "forty XL",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "repeated V is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "four M out of range is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "illegal pair VX is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "empty string is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "lowercase is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "non-roman character is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        },
+        {
+          "name": "non-canonical VIIII is invalid",
+          "ok": false,
+          "error": "define: Invalid or unexpected token"
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 13884,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 0,
+      "correctness_pass_rate": null,
+      "assertions_passed": null,
+      "assertions_total": 18,
+      "format_adherent": null,
+      "format_reason": "dispatch_failed",
+      "output_words": 0,
+      "output_chars": 0,
+      "extracted": false,
+      "extract_reason": "dispatch_failed",
+      "per_test": [],
+      "dispatch_ok": false,
+      "exit_code": -1,
+      "latency_ms": 240021,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 1,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 18,
+      "assertions_total": 18,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 342,
+      "output_chars": 2151,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple addition",
+          "ok": true
+        },
+        {
+          "name": "precedence multiply before add",
+          "ok": true
+        },
+        {
+          "name": "parentheses override precedence",
+          "ok": true
+        },
+        {
+          "name": "integer division truncates",
+          "ok": true
+        },
+        {
+          "name": "division by zero is null",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a literal",
+          "ok": true
+        },
+        {
+          "name": "binary minus then unary minus",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a parenthesized group",
+          "ok": true
+        },
+        {
+          "name": "negative division truncates toward zero",
+          "ok": true
+        },
+        {
+          "name": "left-to-right within same precedence",
+          "ok": true
+        },
+        {
+          "name": "nested parentheses",
+          "ok": true
+        },
+        {
+          "name": "whitespace is insignificant",
+          "ok": true
+        },
+        {
+          "name": "empty string is malformed",
+          "ok": true
+        },
+        {
+          "name": "unbalanced open paren is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "doubled binary operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "empty parens are malformed",
+          "ok": true
+        },
+        {
+          "name": "illegal character is malformed",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 30643,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    },
+    {
+      "cellId": "cli-opencode::xiaomi-token-plan-ams/mimo-v2.5-pro::high::costar::hard-eval-expr",
+      "mode": "model-vs-model",
+      "model": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "executor": "cli-opencode",
+      "variant": "high",
+      "framework": "costar",
+      "fixture": "hard-eval-expr",
+      "sample": 2,
+      "correctness_pass_rate": 1,
+      "assertions_passed": 18,
+      "assertions_total": 18,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_words": 288,
+      "output_chars": 1887,
+      "extracted": true,
+      "extract_reason": "ok",
+      "per_test": [
+        {
+          "name": "simple addition",
+          "ok": true
+        },
+        {
+          "name": "precedence multiply before add",
+          "ok": true
+        },
+        {
+          "name": "parentheses override precedence",
+          "ok": true
+        },
+        {
+          "name": "integer division truncates",
+          "ok": true
+        },
+        {
+          "name": "division by zero is null",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a literal",
+          "ok": true
+        },
+        {
+          "name": "binary minus then unary minus",
+          "ok": true
+        },
+        {
+          "name": "unary minus on a parenthesized group",
+          "ok": true
+        },
+        {
+          "name": "negative division truncates toward zero",
+          "ok": true
+        },
+        {
+          "name": "left-to-right within same precedence",
+          "ok": true
+        },
+        {
+          "name": "nested parentheses",
+          "ok": true
+        },
+        {
+          "name": "whitespace is insignificant",
+          "ok": true
+        },
+        {
+          "name": "empty string is malformed",
+          "ok": true
+        },
+        {
+          "name": "unbalanced open paren is malformed",
+          "ok": true
+        },
+        {
+          "name": "trailing operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "doubled binary operator is malformed",
+          "ok": true
+        },
+        {
+          "name": "empty parens are malformed",
+          "ok": true
+        },
+        {
+          "name": "illegal character is malformed",
+          "ok": true
+        }
+      ],
+      "dispatch_ok": true,
+      "exit_code": 0,
+      "latency_ms": 56262,
+      "tokens_in": null,
+      "tokens_out": null,
+      "cost_usd": null
+    }
+  ],
+  "meta": {
+    "axes": {
+      "models": 2,
+      "variants": 1,
+      "frameworks": 1,
+      "fixtures": 4,
+      "samples": 3
+    },
+    "cellCount": 8,
+    "sampleCount": 24,
+    "mock": false,
+    "generated_at": "2026-06-02T09:17:39.775Z"
+  }
+}

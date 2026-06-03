@@ -1,7 +1,7 @@
 ---
 title: "MiniMax-M2.7 Prompt-Craft Profile"
 model_id: "minimax-2.7"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: empirical
 last_benchmarked: "2026 (120/003)"
 ---
@@ -97,7 +97,7 @@ Do not include explanatory prose unless requested. If any constraint cannot be m
 
 ## 5. Dispatch Gotchas
 
-Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) entry `"id": "minimax-2.7"` → `"capability"`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section records wrapper inputs, not wrapper syntax.
+Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "minimax-2.7"` → `"capability"`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section records wrapper inputs, not wrapper syntax.
 
 | Field | Value | Implication |
 |---|---|---|
@@ -118,7 +118,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ## 6. See Also
 
-- **Data source:** [`model-profiles.json#minimax-2.7`](../../../sk-prompt/assets/model-profiles.json) — authoritative capability fields, framework scores, executor paths
+- **Data source:** [`model-profiles.json#minimax-2.7`](../../../sk-prompt-small-model/assets/model-profiles.json) — authoritative capability fields, framework scores, executor paths
 - **Framework definitions and scoring:** [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md)
 - **Executor card and dispatch templates:** [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md)
 - **Executor mechanics (binary flags, invocation wrappers):** [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md)

@@ -73,9 +73,9 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 - Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist a config record under `{spec_folder}/improvement/model-benchmark-config.json` (shape: `lane: "model-benchmark"`, `profilePath`, `specFolder`, `outputsDir`, `executionMode: "auto"`, `scoringMethod`, `grader`, optional `executor`, optional `model`, and when `grader = llm` also thread `executor`/`model` into `modelBenchmarkConfig.target_model` so `dispatch-model.cjs` reads them), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml`. End §0.
+1. **Tier 1 - Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist a config record under `{spec_folder}/improvement/model-benchmark-config.json` (shape: `lane: "model-benchmark"`, `profilePath`, `specFolder`, `runLabel`, `outputsDir`, `executionMode: "auto"`, `scoringMethod`, `grader`, optional `executor`, optional `model`, and when `grader = llm` also thread `executor`/`model` into `modelBenchmarkConfig.target_model` so `dispatch-model.cjs` reads them). `outputsDir` is always `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}` — there is no spec-local option. Bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/deep/assets/deep_start-model-benchmark-loop_auto.yaml`. End §0.
 
-2. **Tier 2 - Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`. **Ordering rule**: none needed. `profile_path` absence is not ambiguity because it has a default, and `executor`/`model` are only required when `grader = llm`.
+2. **Tier 2 - Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `spec_folder`, `run_label`. **Ordering rule**: none needed. `profile_path` absence is not ambiguity because it has a default, and `executor`/`model` are only required when `grader = llm`.
 
 3. **Tier 3 - Fail fast** (contract §4): emit the named-missing-inputs error format with `/deep:start-model-benchmark-loop:auto` as the command name. Exit non-zero. Do not load YAML.
 
@@ -89,6 +89,7 @@ The dispatched prompt body may contain one structured marker block. Parse it bef
 PRE-BOUND SETUP ANSWERS:
   profile_path: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json  # optional; default profile when omitted
   spec_folder: specs/121/008  # required spec folder path or explicit runtime folder
+  run_label: minimax-tidd-ec  # required; identifies the benchmark run in the hub (e.g. "minimax-tidd-ec", "mimo-costar")
   execution_mode: AUTONOMOUS  # from :auto suffix
   scoring_method: pattern  # pattern (default) or 5dim
   grader: noop  # noop (default) | mock | llm
@@ -106,7 +107,8 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default,
 | `lane` | Y | fixed by command | `model-benchmark` | N |
 | `profile_path` | Y | `$ARGUMENTS` profile path, or marker `profile_path` | `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` | N |
 | `spec_folder` | Y | flag `--spec-folder`, marker `spec_folder`, or requires-ask | none | Y |
-| `outputs_dir` | Y | derived from `spec_folder` | `{spec_folder}/improvement/benchmark-outputs` | N |
+| `run_label` | Y | flag `--run-label`, marker `run_label`, or requires-ask | none | Y |
+| `outputs_dir` | Y | derived from `run_label` | `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}` | N |
 | `execution_mode` | Y | attached suffix `:auto` or marker `execution_mode` | `AUTONOMOUS` under `:auto` | N |
 | `scoring_method` | Y | flag `--scorer`, marker `scoring_method`, Q3 equivalent, or default | `pattern` | N |
 | `grader` | Y | flag `--grader`, marker `grader`, Q4 equivalent, or default | `noop` | N |
@@ -195,7 +197,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    - lane = "model-benchmark" (fixed)
    - profile_path = [from Q0 or $ARGUMENTS or default profile]
    - spec_folder = [from Q1 or --spec-folder]
-   - outputs_dir = [{spec_folder}/improvement/benchmark-outputs]
+   - run_label = [from --run-label or Q1b; e.g. "minimax-tidd-ec", "mimo-costar"]
+   - outputs_dir = [.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}]
    - execution_mode = [AUTONOMOUS/INTERACTIVE from suffix or Q2]
    - scoring_method = [pattern or 5dim from Q3 or --scorer]
    - grader = [noop/mock/llm from Q4 or --grader]
@@ -221,6 +224,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 - `lane = model-benchmark`
 - `profile_path = ________________`
 - `spec_folder = ________________`
+- `run_label = ________________`
 - `outputs_dir = ________________`
 - `execution_mode = ________________`
 - `scoring_method = ________________`
@@ -241,7 +245,8 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 | lane                   | ✅ Yes         | model-benchmark | Fixed by command   |
 | profile_path           | ✅ Yes         | ______     | Q0, $ARGUMENTS, or default |
 | spec_folder            | ✅ Yes         | ______     | Q1 or --spec-folder     |
-| outputs_dir            | ✅ Yes         | ______     | Derived from spec_folder |
+| run_label              | ✅ Yes         | ______     | --run-label or Q1b      |
+| outputs_dir            | ✅ Yes         | ______     | Derived from run_label  |
 | execution_mode         | ✅ Yes         | ______     | Suffix or Q2            |
 | scoring_method         | ✅ Yes         | ______     | Q3 or --scorer          |
 | grader                 | ✅ Yes         | ______     | Q4 or --grader          |
@@ -295,7 +300,7 @@ This command drives the model-benchmark lane only. To improve an agent definitio
 ## 2. CONTRACT
 
 **Inputs:** `$ARGUMENTS` - optional profile path, optional mode suffix, optional spec folder, optional scorer/grader flags, optional executor+model (only with `--grader=llm`)
-**Outputs:** benchmark packet state under `{spec_folder}/improvement/benchmark-outputs/` + `STATUS=<OK|FAIL|CANCELLED>`
+**Outputs:** benchmark outputs written to the sk-prompt-small-model hub at `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. There is no spec-local output option. `STATUS=<OK|FAIL|CANCELLED>`
 
 ### Lane B Runtime Contract
 
@@ -378,11 +383,11 @@ ls .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/d
 
 ### Step 3: Initialize Runtime
 
-Create the benchmark output directory:
+Create the benchmark output directory in the sk-prompt-small-model hub:
 ```bash
-mkdir -p {spec_folder}/improvement/benchmark-outputs
+mkdir -p .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}
 ```
-Persist the config record to `{spec_folder}/improvement/model-benchmark-config.json` (`lane`, `profilePath`, `specFolder`, `outputsDir`, `executionMode`, `scoringMethod`, `grader`, optional `executor`, optional `model`). When `grader = llm`, also thread the gathered `executor` and `model` into `modelBenchmarkConfig.target_model` (shape: `{ "modelBenchmarkConfig": { "target_model": { "executor": "<executor>", "model": "<model>" } } }`) so `dispatch-model.cjs` resolves the requested executor and model instead of its built-in defaults.
+Persist the config record to `{spec_folder}/improvement/model-benchmark-config.json` (`lane`, `profilePath`, `specFolder`, `runLabel`, `outputsDir`, `executionMode`, `scoringMethod`, `grader`, optional `executor`, optional `model`). `outputsDir` is always `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}` — there is no spec-local path. When `grader = llm`, also thread the gathered `executor` and `model` into `modelBenchmarkConfig.target_model` (shape: `{ "modelBenchmarkConfig": { "target_model": { "executor": "<executor>", "model": "<model>" } } }`) so `dispatch-model.cjs` resolves the requested executor and model instead of its built-in defaults.
 
 ### Step 4: Execute Loop
 
@@ -402,7 +407,7 @@ The orchestrator never runs `materialize` and `run-benchmark` out of order. `loo
 ### Step 5: Review Results
 
 After the loop exits, present:
-- `{spec_folder}/improvement/benchmark-outputs/report.json` - fixture scores, aggregate, `scoringMethod`
+- `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json` - fixture scores, aggregate, `scoringMethod`
 - Per-fixture pass/fail against the profile thresholds (`requiredAggregateScore`, `minimumFixtureScore`)
 - Recommendation: continue, promote (if eligible), or stop
 
@@ -410,7 +415,7 @@ After the loop exits, present:
 
 Lane B promotes from the benchmark report, not from an agent-scored candidate file. When evidence and approval allow it:
 ```bash
-node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --benchmark-report {spec_folder}/improvement/benchmark-outputs/report.json ...
+node .opencode/skills/deep-improvement/scripts/shared/promote-candidate.cjs --benchmark-report .opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/report.json ...
 ```
 When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmark-mode promotion path. It promotes on the report basis when the report carries `status: benchmark-complete` with a `benchmark-pass` recommendation, bypassing the agent-scored-file requirement that the agent-improvement path uses. Promotion stays guarded by the benchmark aggregate gate, repeatability, and operator approval, and it refuses to act while the runtime config is still proposal-only.
 
@@ -429,30 +434,30 @@ When `--benchmark-report` is supplied, `promote-candidate.cjs` runs its benchmar
 ### Default Profile, Pattern Scorer (Autonomous)
 
 ```
-/deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008
+/deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008 --run-label=minimax-tidd-ec
 ```
-Uses the default profile, `--scorer pattern`, `--grader noop`.
+Uses the default profile, `--scorer pattern`, `--grader noop`. Outputs go to `.opencode/skills/sk-prompt-small-model/benchmarks/minimax-tidd-ec/`.
 
 ### Explicit Profile, 5-Dimension Scorer (Interactive)
 
 ```
-/deep:start-model-benchmark-loop ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim
+/deep:start-model-benchmark-loop ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json" :confirm --scorer=5dim --run-label=mimo-costar
 ```
-Setup asks the remaining questions. Grader stays `noop` unless changed.
+Setup asks the remaining questions. Grader stays `noop` unless changed. Outputs go to `.opencode/skills/sk-prompt-small-model/benchmarks/mimo-costar/`.
 
 ### 5-Dimension Scorer with Real Model Dispatch
 
 ```
-/deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008 --scorer=5dim --grader=llm --executor=cli-codex --model=gpt-5.5
+/deep:start-model-benchmark-loop :auto --spec-folder=specs/121/008 --run-label=minimax-tidd-ec --scorer=5dim --grader=llm --executor=cli-codex --model=gpt-5.5
 ```
-Routes graded scoring through `dispatch-model.cjs` to the named executor and model.
+Routes graded scoring through `dispatch-model.cjs` to the named executor and model. Outputs go to `.opencode/skills/sk-prompt-small-model/benchmarks/minimax-tidd-ec/`.
 
 ### Prompt for Setup
 
 ```
 /deep:start-model-benchmark-loop :confirm
 ```
-Setup phase lists available profiles, defaults the profile to `default.json`, and asks for spec folder, scorer, and grader.
+Setup phase lists available profiles, defaults the profile to `default.json`, and asks for spec folder, run label, scorer, and grader.
 
 ---
 
@@ -466,6 +471,7 @@ Profile: .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-prof
 Scoring: pattern
 Grader:  noop
 Mode:    model-benchmark
+Run:     minimax-tidd-ec
 
 Fixture Scores:
   fixture-baseline: 82 (pass)
@@ -477,8 +483,8 @@ scoringMethod: pattern
 Stop Reason: converged
 
 Artifacts:
-  Report: specs/121/008/improvement/benchmark-outputs/report.json
-  Outputs: specs/121/008/improvement/benchmark-outputs/
+  Report: .opencode/skills/sk-prompt-small-model/benchmarks/minimax-tidd-ec/report.json
+  Outputs: .opencode/skills/sk-prompt-small-model/benchmarks/minimax-tidd-ec/
 
 STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 ```
@@ -490,11 +496,13 @@ STATUS=OK SCORING=pattern GRADER=noop AGGREGATE=82 REASON="converged"
 - **Skill dependency**: Requires `deep-improvement` at `.opencode/skills/deep-improvement/`
 - **Lane**: This command fixes `lane = model-benchmark`. It never mutates a canonical agent file. Use `/deep:start-agent-improvement-loop` for the agent-improvement lane.
 - **Entry point**: `scripts/shared/loop-host.cjs --mode=model-benchmark` runs `materialize-benchmark-fixtures.cjs` then `run-benchmark.cjs` in that order. Required flags: `--profile`, `--outputs-dir`.
+- **Output location**: Benchmark outputs are always written to the sk-prompt-small-model hub at `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/`. There is no spec-local output option. `run_label` is a required identifier (e.g. `"minimax-tidd-ec"`, `"mimo-costar"`) that distinguishes benchmark runs in the hub.
 - **Scorer default**: `--scorer pattern` keeps the byte-identical heading/pattern matcher. `--scorer 5dim` is opt-in and lazily loads `scripts/model-benchmark/scorer/score-model-variant.cjs`.
 - **Grader default**: `--grader noop` stays deterministic with no model dispatch. `--grader llm` is the only grader that loads `dispatch-model.cjs`.
 - **Mode-aware records**: every state record carries `mode: model-benchmark` and benchmark reports carry `scoringMethod: pattern|5dim` for downstream attribution.
 - **Promotion**: Lane B promotes via `promote-candidate.cjs --benchmark-report`, which runs a benchmark-mode promotion path that gates on a `benchmark-complete` report with a `benchmark-pass` recommendation instead of an agent-scored candidate file. It stays guarded by the benchmark aggregate gate, repeatability, and operator approval.
-- **Provenance**: model-benchmark mode built in spec 121/003, remediated in 121/004, opt-in scorer and docs in 121/005, command entry in 121/008. Canonical source of truth: `.opencode/skills/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
+- **Hub convention**: Benchmark outputs are written to `.opencode/skills/sk-prompt-small-model/benchmarks/{run_label}/` by convention. The hub is the single canonical location for all model and framework benchmark runs. There is no spec-local default and no override path.
+- **Canonical source of truth**: `.opencode/skills/deep-improvement/SKILL.md` §4 LANE B: MODEL-BENCHMARK.
 
 ---
 

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "groupBy": "model",
+  "gate_threshold": 1,
+  "ranking_key": "format",
+  "correctness_saturated": true,
+  "groups": [
+    {
+      "group": "minimax-coding-plan/MiniMax-M3",
+      "n": 20,
+      "correctness_mean": 1,
+      "format_adherent_rate": 0.95,
+      "output_words_median": 108,
+      "eligible": true,
+      "rank": 1
+    },
+    {
+      "group": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "n": 20,
+      "correctness_mean": 0.8911764705882353,
+      "format_adherent_rate": 0.9,
+      "output_words_median": 105,
+      "eligible": false,
+      "rank": null
+    }
+  ],
+  "saturation": {
+    "status": "saturated",
+    "action": "promote-or-demote-to-smoke",
+    "detail": "every eligible model is pinned at the correctness gate; correctness cannot rank — ranked on format instead.",
+    "fixtures": [
+      {
+        "fixture": "validate-ipv4",
+        "cells": 10,
+        "correctness_mean": 0.9,
+        "saturated": false,
+        "action": "keep"
+      },
+      {
+        "fixture": "validate-date",
+        "cells": 10,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "validate-semver",
+        "cells": 10,
+        "correctness_mean": 1,
+        "saturated": true,
+        "action": "promote-or-demote-to-smoke"
+      },
+      {
+        "fixture": "hard-roman-to-int",
+        "cells": 10,
+        "correctness_mean": 0.8823529411764707,
+        "saturated": false,
+        "action": "keep"
+      }
+    ]
+  },
+  "verdict": {
+    "verdict": "TIE",
+    "reason": "inside_noise_floor",
+    "ranking_key": "format",
+    "n_samples": 5,
+    "margin": null,
+    "noise_floor": null,
+    "ci": null,
+    "top_pair": [
+      "minimax-coding-plan/MiniMax-M3"
+    ]
+  },
+  "profile": {
+    "id": "capability-m3-vs-mimo-v3",
+    "mode": "model-vs-model",
+    "version": "1.0"
+  }
+}

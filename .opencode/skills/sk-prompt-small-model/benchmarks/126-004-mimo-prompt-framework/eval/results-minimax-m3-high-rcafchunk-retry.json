@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-06-02T05:40:02.181Z",
+  "model": "minimax-coding-plan/MiniMax-M3",
+  "variant": "high",
+  "per_dispatch_timeout_sec": 120,
+  "repeat": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "combos": 1,
+  "results": [
+    {
+      "tag": "rcaf__chunk",
+      "framework": "rcaf",
+      "framework_name": "RCAF",
+      "fixture": "chunk",
+      "repeat": 1,
+      "dispatch_ok": true,
+      "exit": 0,
+      "extracted": true,
+      "extract_reason": "ok",
+      "assertion_pass_rate": 1,
+      "assertions_passed": 5,
+      "assertions_total": 5,
+      "format_adherent": true,
+      "format_reason": "code only",
+      "output_chars": 240,
+      "output_words": 40,
+      "ms": 12127,
+      "per_test": [
+        {
+          "name": "splits 5 into pairs",
+          "ok": true
+        },
+        {
+          "name": "empty array",
+          "ok": true
+        },
+        {
+          "name": "size zero",
+          "ok": true
+        },
+        {
+          "name": "exact division",
+          "ok": true
+        },
+        {
+          "name": "size one",
+          "ok": true
+        }
+      ],
+      "raw": "runs/rcaf__chunk.json"
+    }
+  ]
+}

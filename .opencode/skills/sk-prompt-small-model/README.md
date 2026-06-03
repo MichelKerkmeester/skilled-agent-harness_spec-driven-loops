@@ -35,9 +35,9 @@ Provider note: MiniMax dispatches via `cli-opencode` through the MiniMax Token P
 | Version | 0.1.0 |
 | Operating modes | 1 (sentinel / discovery anchor) |
 | References | 1 (`pattern-index.md`) |
-| Assets | 0 (intentional) |
+| Assets | 1 (`assets/model-profiles.json` — model registry) |
 | Scripts | 0 (intentional) |
-| Owned patterns | 0 (this skill links; it does not own logic) |
+| Owned patterns | 0 (prompt-craft prose lives in `references/models/`; registry in `assets/`) |
 | Linked patterns | 14 across `cli-devin`, `cli-opencode`, `sk-prompt`, `system-spec-kit` |
 
 ### How This Compares
@@ -47,7 +47,7 @@ Provider note: MiniMax dispatches via `cli-opencode` through the MiniMax Token P
 | Hosts small-model patterns | No (links only) | `cli-devin`, `cli-opencode` (host the patterns) |
 | Routes via advisor | Yes (via `enhances` edges + trigger phrases) | `cli-devin`, `cli-opencode` (route via their own metadata) |
 | Holds runtime code | No | `system-spec-kit/mcp_server/lib/deep-loop/` (TS helpers) |
-| Holds the model registry | No (links) | `sk-prompt/assets/model-profiles.json` (canonical) |
+| Holds the model registry | Yes — `assets/model-profiles.json` | (owned here; profiles in `references/models/` mirror it) |
 | Surfaces on frontier-model dispatch | No (out of scope) | n/a |
 
 ### Key Features
@@ -119,7 +119,10 @@ sk-prompt-small-model/
 +-- README.md                         # This file — human-facing overview
 +-- description.json                  # Memory-system metadata
 +-- graph-metadata.json               # enhances edges + trigger phrases for advisor
++-- assets/
+|   `-- model-profiles.json           # Unified model registry (owned by this skill)
 `-- references/
+    +-- models/                       # Per-model prompt-craft profiles (one <id>.md each)
     `-- pattern-index.md              # Authoritative pattern index
 ```
 
@@ -129,7 +132,9 @@ sk-prompt-small-model/
 | `README.md` | Human-facing overview; read by operators onboarding to the 114 arc |
 | `description.json` | Memory-system metadata for spec-kit indexing |
 | `graph-metadata.json` | Defines `enhances` edges (cli-devin, cli-opencode at weight 0.5) and lexical trigger phrases |
-| `references/pattern-index.md` | The only reference; maps every small-model pattern to its executor-owned location |
+| `assets/model-profiles.json` | Unified model registry; the DATA source each prompt-craft profile mirrors |
+| `references/models/` | Per-model prompt-craft profiles (`_index.md` + one `<id>.md` per active model) |
+| `references/pattern-index.md` | Authoritative index; maps every small-model pattern to its executor-owned location |
 
 ---
 
@@ -153,7 +158,7 @@ Non-configurable invariants:
 
 - `SKILL.md` must remain ≤ 200 LOC.
 - `references/pattern-index.md` must remain ≤ 100 LOC.
-- No `assets/` directory; no `scripts/` directory.
+- No `scripts/` directory.
 
 ---
 
@@ -216,9 +221,9 @@ Expected output: update the row's path; if file removed instead, replace path wi
 
 A: Per the 114 research synthesis (HYBRID-with-Anchor verdict, iter 14), the patterns themselves are runtime-specific to their executor. Duplicating them in a generic skill would rot quickly. The sentinel exists for *discovery*, not for hosting logic.
 
-**Q: Why no `assets/` or `scripts/`?**
+**Q: Why no `scripts/` directory?**
 
-A: There's nothing to put in them. All operational assets live with the executor that runs them (`cli-devin/assets/`, `cli-opencode/assets/`, etc.). Adding empty directories would imply this skill grows real content over time, which is explicitly out of scope.
+A: There is nothing to put there. All operational scripts and runtime code live with the executor that runs them (`cli-devin/`, `cli-opencode/`, `system-spec-kit/`). This skill owns `assets/model-profiles.json` (the registry DATA) but no executable logic.
 
 **Q: How do I add a new pattern?**
 
@@ -254,5 +259,5 @@ A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user dir
 | [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md) | Research synthesis (HYBRID-with-Anchor verdict in §RQ5) |
 | [`../cli-devin/SKILL.md`](../cli-devin/SKILL.md) | SWE-1.6 dispatch surface — owns budget, verification, fallback patterns |
 | [`../cli-opencode/SKILL.md`](../cli-opencode/SKILL.md) | DeepSeek / Kimi / Qwen dispatch surface — owns permissions matrix, budget propagation |
-| [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Cross-CLI prompt quality + model registry owner |
+| [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Cross-CLI prompt quality + generic framework definitions |
 | [`../system-spec-kit/SKILL.md`](../system-spec-kit/SKILL.md) | Runtime helpers (bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts) |

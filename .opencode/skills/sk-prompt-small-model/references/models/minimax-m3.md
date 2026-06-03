@@ -1,7 +1,7 @@
 ---
 title: "MiniMax-M3 Prompt-Craft Profile"
 model_id: "minimax-m3"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: "carried"
 last_benchmarked: "inherited from minimax-2.7"
 ---
@@ -109,7 +109,7 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ## 5. Dispatch Gotchas
 
-Source of truth for capability fields: [`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) → `models[id="minimax-m3"].capability`.
+Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → `models[id="minimax-m3"].capability`.
 
 | Capability field | Value | Dispatch rule |
 |---|---|---|
@@ -140,7 +140,7 @@ opencode run \
 
 ## 6. See Also
 
-- [`../../../sk-prompt/assets/model-profiles.json#minimax-m3`](../../../sk-prompt/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, fallback_target, recommended_frameworks)
+- [`../../../sk-prompt-small-model/assets/model-profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, fallback_target, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
 - [`minimax-2.7.md`](./minimax-2.7.md) — empirical sibling; benchmark 120/003 was run on this model; M3 carries its framework contract
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue

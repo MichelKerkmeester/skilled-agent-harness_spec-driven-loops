@@ -1,7 +1,7 @@
 ---
 title: "MiMo-V2.5-Pro Prompt-Craft Profile"
 model_id: "mimo-v2.5-pro"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: empirical
 last_benchmarked: "2026 (126/004)"
 ---
@@ -160,7 +160,7 @@ opencode run \
 
 ## 6. See Also
 
-- [`model-profiles.json#mimo-v2.5-pro`](../../../sk-prompt/assets/model-profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
+- [`model-profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.
 - [`../../../cli-opencode/assets/prompt_templates.md` §TEMPLATE 15](../../../cli-opencode/assets/prompt_templates.md) — MiMo executor card with the `opencode run` invocation wrapper and benchmark evidence pointer. The executor card points here for the prompt-craft contract.
 - [`../../../cli-opencode/assets/prompt_quality_card.md` §Per-model override — MiMo](../../../cli-opencode/assets/prompt_quality_card.md) — Fast-path selection note for MiMo in the OpenCode CLI quality card.

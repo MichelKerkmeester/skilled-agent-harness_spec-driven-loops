@@ -1,7 +1,7 @@
 ---
 title: "SWE-1.6 — Prompt-Craft Profile"
 model_id: "swe-1.6"
-profile_of: "../../../sk-prompt/assets/model-profiles.json"
+profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: "default-unverified"
 last_benchmarked: "none"
 ---
@@ -9,7 +9,7 @@ last_benchmarked: "none"
 # SWE-1.6 — Prompt-Craft Profile
 
 Single source of truth for how to prompt SWE-1.6 via `cli-devin`. Mirrors
-`sk-prompt/assets/model-profiles.json#swe-1.6 recommended_frameworks` (the DATA
+`sk-prompt-small-model/assets/model-profiles.json#swe-1.6 recommended_frameworks` (the DATA
 source). Executor MECHANICS (flags, wrappers, budgets) live in `cli-devin` — follow
 `../pattern-index.md` to those files; do not look for them here.
 
@@ -50,7 +50,7 @@ aggressive constraint language are profile-level cautions, not registry avoid en
 **Pre-planning density:** medium (3–4 ordered steps; see §4 scaffold).
 
 These choices mirror `recommended_frameworks` in
-[`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json)
+[`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json)
 (`id: "swe-1.6"`, `primary: "rcaf"`, `fallback: null`, `avoid: []`,
 `preplanning_density: "medium"`). That JSON is the DATA source of truth; STAR, BUILD,
 and the cautionary avoid wording above are profile-level cli-devin guidance, not registry
@@ -166,7 +166,7 @@ with SWE-1.6; this is cli-devin profile guidance, not a registry fallback.
 ## 5. Dispatch Gotchas
 
 Source of truth for model-specific capability fields and flags:
-[`../../../sk-prompt/assets/model-profiles.json`](../../../sk-prompt/assets/model-profiles.json) `id: "swe-1.6"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
+[`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `id: "swe-1.6"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
 
 | Field | Value | Notes |
 | --- | --- | --- |
@@ -202,7 +202,7 @@ the distribution.
 
 ## 6. See Also
 
-- [`../../../sk-prompt/assets/model-profiles.json#swe-1.6`](../../../sk-prompt/assets/model-profiles.json)
+- [`../../../sk-prompt-small-model/assets/model-profiles.json#swe-1.6`](../../../sk-prompt-small-model/assets/model-profiles.json)
   — Registry entry; `recommended_frameworks`, `executors`, capability fields, and
   strengths/weaknesses. DATA source for all sections above.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md)
