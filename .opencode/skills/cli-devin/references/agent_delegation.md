@@ -82,7 +82,7 @@ The `--model swe-1.6` flag is the cli-devin default — Cognition's coding-speci
 2. The calling AI always **validates** Devin output before integrating.
 3. The calling AI never **blindly forwards** operator requests to Devin without selecting (model, permission-mode) and composing a tight prompt.
 4. The calling AI honors the self-invocation guard: refuses if the calling AI is itself a local `devin` session (cloud handoff is the documented exception).
-5. The calling AI never **silently escalates** permission mode beyond `auto` — `dangerous` and `dangerous` require explicit operator approval recorded in the dispatch log.
+5. The calling AI never **silently escalates** permission mode beyond `auto` — `dangerous` requires explicit operator approval recorded in the dispatch log.
 6. Each `devin` invocation is **stateless by default** for one-shot dispatches; use `--continue` / `--resume <id>` for explicit continuation.
 7. The calling AI surfaces operator-relevant output (auth issues, permission-mode escalations, cloud-handoff requests) rather than swallowing them.
 
@@ -249,7 +249,7 @@ The official `--json` flag is unverified as of 2026-05-15 — do not rely on it 
 | Mode | Detection | Recovery |
 |------|-----------|----------|
 | Auth fails mid-dispatch | stderr contains "Not authenticated" | Re-run `devin auth status`, surface to operator, do not retry silently |
-| Permission denied on destructive op | Devin pauses for confirmation in non-interactive mode | Re-dispatch with `dangerous` or `dangerous` (operator-approved) or run interactively |
+| Permission denied on destructive op | Devin pauses for confirmation in non-interactive mode | Re-dispatch with `dangerous` (operator-approved) or run interactively |
 | Tests fail at intermediate step | Dispatch returns non-zero or output reports failure | Calling AI surfaces the failure; operator decides next step |
 | Output truncated | Long output may be truncated by terminal pager — use `--prompt-file` + log capture | Calling AI should not assume completeness; check exit code |
 

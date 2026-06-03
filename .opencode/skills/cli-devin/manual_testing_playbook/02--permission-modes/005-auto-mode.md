@@ -59,7 +59,7 @@ This scenario validates `--permission-mode auto` for `DV-005`. Normal is the doc
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../references/cli_reference.md` (§6 Permission Modes) | Documents the three permission modes |
+| `../../references/cli_reference.md` (§6 Permission Modes) | Documents the two permission modes |
 
 ### Implementation And Test Anchors
 

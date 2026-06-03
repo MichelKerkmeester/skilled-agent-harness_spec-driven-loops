@@ -132,5 +132,5 @@ stayed +0.
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **cli-devin README permission-mode typos.** `README.md` still shows `dangerous` or `dangerous` at lines 80, 239, 259 and a "3-tier" framing. Out of this phase's scope; reported as a follow-up to align the README with the corrected reference doc.
+1. **Resolved in a follow-up (cli-devin v1.0.13.0).** The same duplicate-`dangerous` permission-mode typo found in `cli_reference.md` also survived in `README.md`, `references/agent_delegation.md`, `references/cloud_handoff.md`, `references/devin_tools.md` (§5 table) and `02--permission-modes/005-auto-mode.md`. All were collapsed to Devin's 2 real modes (`auto`/`dangerous`); a grep confirms no duplicate-`dangerous` or "three permission modes" claim remains in cli-devin.
 <!-- /ANCHOR:limitations -->

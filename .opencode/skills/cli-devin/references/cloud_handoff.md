@@ -73,7 +73,7 @@ The operator MUST acknowledge that local repo state will be transmitted to Cogni
 The operator MUST confirm the prompt has clear-enough acceptance criteria for an async agent to self-evaluate completion. Cloud agents don't have an operator-in-the-loop fallback — they need to know when they're done.
 
 ### CHK-CH-5: Permission-Mode Selection
-The operator MUST select the cloud session's permission mode (`auto` / `dangerous`). Cloud sessions in `dangerous` or `dangerous` mode operate without confirmations; the choice is operator-explicit.
+The operator MUST select the cloud session's permission mode (`auto` / `dangerous`). Cloud sessions in `dangerous` mode operate without confirmations; the choice is operator-explicit.
 
 ### Gate Output
 If ALL 5 checks pass, the calling AI proceeds with the dispatch. The cli-devin SKILL.md §3 Default Invocation block applies; the operator initiates the handoff inside the live `devin` TUI per Devin's documented procedure.
@@ -181,7 +181,7 @@ When the cloud agent returns a PR, the operator's next session uses the calling 
 
 ## 9. RELATED RESOURCES
 
-- [SKILL.md](../SKILL.md) — Default Invocation, RULES (the `dangerous`/`dangerous` operator-approval gate also applies to cloud sessions)
+- [SKILL.md](../SKILL.md) — Default Invocation, RULES (the `dangerous` operator-approval gate also applies to cloud sessions)
 - [cli_reference.md](./cli_reference.md) — Top-level command surface
 - [integration_patterns.md](./integration_patterns.md) — Use Case 3 (cloud-handoff initiation)
 - [devin_tools.md](./devin_tools.md) — Cross-CLI comparison (Devin is the only family member with this capability)

@@ -77,7 +77,7 @@ If `devin auth status` succeeds and the smoke test returns a coherent response, 
 
 **Local-to-cloud handoff (the differentiator).** When local work outgrows the laptop, hand the session off to a cloud-hosted Devin VM. The cloud agent keeps working asynchronously and returns a PR. The skill enforces an operator-confirmation gate before any handoff because cloud sessions transmit local repo state to Cognition's sandbox and consume Devin units.
 
-**Permission modes mapped to family risk taxonomy.** `auto` = default (confirms risky ops; analog of Codex `--ask-for-approval on-request`). `dangerous` = mostly auto (analog of Codex `--full-auto`). `dangerous` = full auto (analog of `--dangerously-skip-permissions` / `--sandbox danger-full-access`). The skill requires explicit operator approval before escalating beyond `auto`.
+**Permission modes mapped to family risk taxonomy.** `auto` = default (confirms risky ops; analog of Codex `--ask-for-approval on-request`). `dangerous` = auto-approves all actions (analog of Codex `--full-auto` / `--dangerously-skip-permissions` / `--sandbox danger-full-access`). The skill requires explicit operator approval before escalating beyond `auto`.
 
 **Four-model preset.** SWE-1.6 is Cognition's coding-specialized model and the natural default for context gathering, tool use, and simple-to-medium well-defined tasks. DeepSeek v4 is the primary pick for complex work. GLM 5.1 and Kimi k2.6 are documented complex-task fallbacks, pick GLM 5.1 for agentic / tool-use-heavy complex work, Kimi k2.6 when the complex task needs unusually large context. Switch via `--model <id>` per dispatch or `/model <name>` mid-session.
 
@@ -236,7 +236,7 @@ More patterns in [references/integration_patterns.md](./references/integration_p
 | `command not found: devin` | Binary not installed | Run install command from §2 |
 | `Not authenticated` | Missing or expired token | `devin auth login` (token from `https://app.devin.ai` (Cognition / Codeium / Windsurf bridge)) |
 | Dispatch hangs at 0% CPU after launch | Missing `</dev/null` in background invocation | Append `</dev/null` to the command |
-| Task ran but no files changed | `--permission-mode auto` paused for confirmation in non-interactive mode | Re-dispatch with `dangerous` or `dangerous` (operator-approved) or run interactively |
+| Task ran but no files changed | `--permission-mode auto` paused for confirmation in non-interactive mode | Re-dispatch with `dangerous` (operator-approved) or run interactively |
 | Self-invocation guard error | The calling AI IS a local `devin` session | Use a sibling cli-* skill, or restate with explicit cloud-handoff keywords |
 | `--model <id>` rejected | Model name typo | Use one of: `swe-1.6`, `deepseek-v4`, `kimi-k2.6`, `glm-5.1` |
 | Cloud handoff refused | Account lacks cloud entitlement, or operator did not confirm | See `references/cloud_handoff.md` |
@@ -256,7 +256,7 @@ A: `swe-1.6`. It is the right choice for context gathering, tool use, and simple
 A: When the work is long-running (multi-hour), the operator wants to disconnect, AND the operator has explicitly confirmed cloud-handoff in the same turn. The skill enforces an operator-confirmation gate because cloud sessions transmit repo state and consume Devin units. See `references/cloud_handoff.md`.
 
 **Q: Why isn't there a `--sandbox` flag like Codex has?**
-A: Devin uses `--permission-mode` instead. `auto` ≈ `--ask-for-approval on-request`; `dangerous` ≈ `--full-auto`; `dangerous` ≈ `--sandbox danger-full-access`. See `references/devin_tools.md` for the full cross-CLI permission-mode map.
+A: Devin uses `--permission-mode` instead. `auto` ≈ `--ask-for-approval on-request`; `dangerous` ≈ `--full-auto` / `--sandbox danger-full-access`. See `references/devin_tools.md` for the full cross-CLI permission-mode map.
 
 ### Self-Invocation Guard
 

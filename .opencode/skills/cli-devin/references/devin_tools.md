@@ -133,8 +133,7 @@ Detailed mapping for callers composing dispatches.
 | Devin Mode | cli-codex Equivalent | cli-claude-code | cli-opencode | Notes |
 |------------|----------------------|-----------------|--------------|-------|
 | `auto` | `--ask-for-approval on-request` (or default `untrusted`) + `--sandbox workspace-write` | Permission mode default | Permission system default | Pauses for confirmation on destructive ops |
-| `dangerous` | `--full-auto` (`workspace-write` + `on-request`) | Mid-tier (no exact analog) | Mid-tier | Mostly auto; rare prompts |
-| `dangerous` | `--sandbox danger-full-access` + `--ask-for-approval never` | `--dangerously-skip-permissions` | `--dangerously-skip-permissions` | Full auto, no prompts; explicit operator approval REQUIRED |
+| `dangerous` | `--full-auto` / `--sandbox danger-full-access` + `--ask-for-approval never` | `--dangerously-skip-permissions` | `--dangerously-skip-permissions` | Auto-approves all actions; no prompts; explicit operator approval REQUIRED |
 
 When mapping across CLIs, choose the LOWEST permission tier that still completes the task. Never escalate silently — record operator approval in the dispatch log.
 
