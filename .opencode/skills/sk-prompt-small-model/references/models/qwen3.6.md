@@ -143,3 +143,4 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 - [`../pattern-index.md`](../pattern-index.md) — Index of executor-owned MECHANICS + ship status
 - [`../_index.md`](./_index.md) — All model profiles at a glance
 - **Sibling default-unverified profiles (same RCAF/medium convention):** `swe-1.6.md`, `deepseek-v4-pro.md`, `kimi-k2.6.md`, `glm-5.1.md` — same framework default; differ in context window, executor paths, and pool membership
+- **Executor quality card (card↔profile round-trip):** [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — qwen3.6's sole executor; its model-selection table links to this profile, closing the navigability round-trip.

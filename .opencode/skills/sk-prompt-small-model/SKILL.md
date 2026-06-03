@@ -2,7 +2,7 @@
 name: sk-prompt-small-model
 description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
 allowed-tools: []
-version: 0.6.0.0
+version: 0.6.1.0
 ---
 
 <!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
@@ -130,7 +130,7 @@ This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`) an
 
 ### Adopting a New Provider (Haiku, Gemini Flash, others)
 
-Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the registry stub in `sk-prompt-small-model/assets/model-profiles.json` (set `quota_pool`, `context_length`, `recommended_frameworks`); (2) add a `references/models/<id>.md` profile mirroring + citing that entry; (3) add one row to `references/models/_index.md`; (4) optionally set `fallback_target` and add `graph-metadata.json` trigger phrases; (5) re-index the advisor (`skill_advisor.py --force-refresh`). No executor-MECHANICS or code edits are needed when the quota pool is already represented.
+Follow the single canonical checklist in [`references/pattern-index.md`](./references/pattern-index.md) §4 "Adopting a New Provider" — it is the one source for the adoption steps (registry entry → author the profile → `_index.md` row → this §3 dispatch-matrix row → the dispatching executor's trigger phrase → re-index + verify). Do not maintain a second copy of the steps here. No executor-MECHANICS or code edits are needed when the quota pool is already represented.
 
 ---
 
@@ -147,7 +147,7 @@ Profile-plus-metadata adoption keeps the entry surface thin: (1) populate the re
 ### NEVER
 
 1. **Never duplicate EXECUTOR MECHANICS here** — binary flags, invocation wrappers, budgets, and permissions stay in `cli-devin`/`cli-opencode`. A profile points at them via `pattern-index.md`; it does not restate them.
-2. **Never copy generic framework definitions here** — TIDD-EC, RCAF, COSTAR, RACE, STAR, etc. are defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale.
+2. **Never copy generic framework definitions here** — the closed 7-framework set (RCAF / COSTAR / RACE / CIDI / TIDD-EC / CRISPE / CRAFT) is defined once in `sk-prompt`. Profiles link to those definitions and only record the per-model choice + rationale. STAR/BUILD are **cli-devin task-shapes**, NOT sk-prompt frameworks — keep them cli-devin-local; never present them as canonical frameworks or as a registry `fallback`.
 3. **Never present carried-forward evidence as fresh.** When a profile's frameworks are inherited (e.g. MiniMax-M3 `status: carried` from MiniMax-2.7), label it carried and name the source benchmark — do not imply a fresh M3 run.
 4. **Never add runtime logic here** — no shell commands, no scripts, no agent-config recipes.
 

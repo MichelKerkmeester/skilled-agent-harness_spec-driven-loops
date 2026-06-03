@@ -14,7 +14,7 @@
       {
         "target": "cli-opencode",
         "weight": 0.5,
-        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool"
+        "context": "cli-opencode executor: DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax-M3/M2.7 via the Token Plan + MiMo-V2.5-Pro via the Xiaomi Token Plan"
       }
     ],
     "siblings": [],
@@ -43,6 +43,9 @@
     "kimi-k2.6",
     "qwen3.6",
     "glm-5.1",
+    "minimax-m3",
+    "minimax-2.7",
+    "mimo-v2.5-pro",
     "opencode-go",
     "deepseek-api",
     "context budget",
@@ -92,7 +95,9 @@
       "xiaomi-token-plan-ams"
     ],
     "key_topics": [
-      "sentinel skill",
+      "prompt-craft hub",
+      "per-model profiles",
+      "model registry",
       "small-model patterns",
       "pattern index",
       "advisor routing"
@@ -102,7 +107,10 @@
       "route SWE-1.6",
       "small-model output verification",
       "small-model context budget",
-      "small-model structured permissions"
+      "small-model structured permissions",
+      "dispatch MiniMax-M3 / MiMo-V2.5-Pro",
+      "route minimax-m3",
+      "route mimo-v2.5-pro"
     ],
     "key_files": [
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
@@ -116,12 +124,12 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Sentinel skill for small-model optimization routing. It keeps real patterns in cli-devin and cli-opencode while providing a single advisor-discoverable anchor for small-model dispatch prompts.",
+    "causal_summary": "Per-model prompt-craft hub for small-model dispatch. It OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring assets/model-profiles.json) plus the model registry; executor MECHANICS stay in cli-devin/cli-opencode. The advisor co-surfaces it alongside those executors so every small-model dispatch has one discoverable knowledge anchor.",
     "source_docs": [
       "SKILL.md",
       "references/pattern-index.md"
     ],
     "created_at": "2026-05-18T00:00:00Z",
-    "last_updated_at": "2026-05-18T00:00:00Z"
+    "last_updated_at": "2026-06-03T00:00:00Z"
   }
 }

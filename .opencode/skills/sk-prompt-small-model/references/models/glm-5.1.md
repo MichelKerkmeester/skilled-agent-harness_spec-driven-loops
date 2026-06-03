@@ -122,3 +122,4 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 - [`../../../cli-opencode/SKILL.md`](../../../cli-opencode/SKILL.md) — Executor card for the `cli-opencode` / opencode-go path.
 - [`_index.md`](./_index.md) — Hub index listing all active small-model profiles and their framework status.
 - Sibling default-unverified profiles with the same RCAF / medium baseline: [`swe-1.6.md`](./swe-1.6.md), [`deepseek-v4-pro.md`](./deepseek-v4-pro.md), [`kimi-k2.6.md`](./kimi-k2.6.md), [`qwen3.6.md`](./qwen3.6.md).
+- **Executor quality cards (card↔profile round-trip):** [`../../../cli-devin/assets/prompt_quality_card.md`](../../../cli-devin/assets/prompt_quality_card.md) · [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — the model-selection tables link to this profile; this closes the navigability round-trip.

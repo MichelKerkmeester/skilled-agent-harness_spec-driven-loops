@@ -140,17 +140,7 @@ Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-
 | `quota_pool` | `xiaomi-token-plan` | Independent pool — does not draw from `opencode-go`, `cognition-pro`, or `minimax-token-plan` |
 | `fallback_target` | `null` | No automatic pool fallback defined; use `opencode/mimo-v2.5-free` (opencode-go) for cheap iteration when the primary pool is exhausted |
 
-**Non-TTY automation rule:** Any dispatch that redirects stdout and/or stderr to files MUST also close stdin. Append `</dev/null` after the prompt argument, before output redirects. Without it, opencode v1.14.39+ hangs at 0% CPU after the `+60s snapshot prune cleanup` log line. Example:
-
-```bash
-opencode run \
-  --model xiaomi-token-plan-ams/mimo-v2.5-pro \
-  --variant high \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "<prompt>" \
-  </dev/null > stdout.log 2> stderr.log
-```
+**Non-TTY automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any output redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--variant high`, `--format json`, `--dir`, redirects) lives in [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
 **Fallback target:** `opencode/mimo-v2.5-free` (opencode-go gateway, v2.5 tier, free). Use for cheap probing / iterative drafts when you do not need full -pro reasoning depth. Verify live model ids with `opencode models xiaomi-token-plan-ams` and `opencode models opencode-go` before relying on either path.
 

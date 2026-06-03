@@ -1,29 +1,37 @@
 {
   "level": "phase",
   "is_phase_parent": true,
-  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering",
-  "description": "Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub",
+  "specFolder": "130-prompt-knowledge-layering",
+  "description": "Remediate hub-cli layering drift: pointer-ize precedence rule, fix STAR phantom, extend and CI-wire the sync guard, coordinated cluster treatment for ",
   "keywords": [
-    "prompt-knowledge",
+    "remediate",
+    "hub-cli",
     "layering",
-    "across",
-    "cli",
-    "skills",
-    "sk-prompt",
-    "frameworks",
-    "sk-prompt-small-model",
-    "model-craft",
-    "hub"
+    "drift",
+    "pointer-ize",
+    "precedence",
+    "rule",
+    "fix",
+    "star",
+    "phantom",
+    "extend",
+    "ci-wire",
+    "sync",
+    "guard",
+    "coordinated",
+    "cluster",
+    "treatment",
+    "default-unverified",
+    "models"
   ],
-  "lastUpdated": "2026-06-02T20:34:38.062Z",
+  "lastUpdated": "2026-06-03T06:13:44.738Z",
   "specId": "130",
   "folderSlug": "prompt-knowledge-layering",
-  "parentChain": [
-    "skilled-agent-orchestration"
-  ],
-  "memorySequence": 2,
+  "parentChain": [],
+  "memorySequence": 3,
   "memoryNameHistory": [
     "02-06-26_20-11__next-steps.md",
-    "02-06-26_21-34__next-steps.md"
+    "02-06-26_21-34__next-steps.md",
+    "03-06-26_07-07__ran-5-sequential-deep-research-iterations-via.md"
   ]
 }

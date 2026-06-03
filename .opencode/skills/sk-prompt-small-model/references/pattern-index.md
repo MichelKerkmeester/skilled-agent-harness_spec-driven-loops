@@ -65,16 +65,19 @@ If a pattern needs to span two executors, the rule is: ship the body in the prim
 
 ## 4. ADOPTING A NEW PROVIDER
 
-When adopting Claude Haiku, Gemini Flash, or any future small-model provider, follow this checklist in order:
+When adopting Claude Haiku, Gemini Flash, or any future small-model provider, follow this checklist in order. **This is the single canonical adoption checklist** — `sk-prompt-small-model/SKILL.md` §3 points here; do not maintain a second copy of these steps.
 
-1. **Populate the registry stub** at `sk-prompt-small-model/assets/model-profiles.json` — set the executor entry's `provider` + `quota_pool` (nested under `executors[]`), plus the model-level `context_length`, `tool_calling`, `primary_quota_pool`, and `recommended_frameworks` fields.
-2. **Optional: set `fallback_target`** on existing models that should fall back to the new provider (only if the new provider's quota pool differs from the source).
-3. **Add trigger phrases** in `sk-prompt-small-model/graph-metadata.json` if the new provider has a distinct dispatch keyword (e.g. `haiku dispatch`).
-4. **Mark the affected rows** in this index as shipped — no rows need to be added if the existing patterns already cover the new provider's needs.
-5. **Re-index the advisor** — `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-refresh`.
-6. **Verify routing** — simulate a sample prompt naming the new provider and confirm the advisor surfaces `sk-prompt-small-model` plus the relevant executor skill.
+1. **Populate the registry entry** at `sk-prompt-small-model/assets/model-profiles.json` — set the executor entry's `provider` + `quota_pool` (nested under `executors[]`), plus the model-level `context_length`, `tool_calling`, `primary_quota_pool`, and `recommended_frameworks` fields.
+2. **Author the prompt-craft profile** at `sk-prompt-small-model/references/models/<id>.md` from the 6-section per-model template, mirroring + citing the registry entry. **Without this the model has zero hub WEIGHT — a registry entry alone is not an adopted model.**
+3. **Add a row to `sk-prompt-small-model/references/models/_index.md`** (id → framework primary; fallback; pre-planning density; status).
+4. **Add a row to the `sk-prompt-small-model/SKILL.md` §3 Dispatch Matrix** (model → executor → provider (quota pool) → status).
+5. **Register discovery triggers** — add the model name to the `trigger_phrases` of **each dispatching executor's** `graph-metadata.json` (`cli-opencode` and/or `cli-devin`), plus `sk-prompt-small-model/graph-metadata.json` `trigger_phrases` + `intent_signals`. Add a phrase only to an executor that actually dispatches the model (do not blanket-add).
+6. **Optional: set `fallback_target`** on existing models that should fall back to the new provider (only if the new provider's quota pool differs from the source).
+7. **Re-index the advisor** — `python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py --force-refresh`.
+8. **Verify routing** — simulate a sample prompt naming the new provider and confirm the advisor surfaces `sk-prompt-small-model` plus the relevant executor skill.
+9. **Mark the affected rows** in §2 of this index as shipped — add new pattern rows only if the model needs a pattern not already covered.
 
-No code changes are required for adoption when the new provider fits an existing quota-pool category.
+No executor-MECHANICS or code changes are required for adoption when the new provider fits an existing quota-pool category.
 
 ---
 

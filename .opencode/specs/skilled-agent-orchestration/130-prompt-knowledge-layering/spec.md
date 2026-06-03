@@ -124,7 +124,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 6 | 006-thin-and-standardize-cli-cards/ | Delegate framework table to sk-prompt; canonical order; reconcile cli-devin fork (L3) | Complete |
 | 7 | 007-wire-precedence-and-crosslinks/ | One precedence rule in all 5 SKILL.md; sentinel cross-links; template stubs (L2) | Complete |
 | 8 | 008-validate-sweep-changelog-reindex/ | `validate.sh --recursive --strict`; duplication grep; changelogs; advisor re-index (L2) | Complete |
-
+| 9 | 009-refine-hub-cli-connections/ | Remediate hub↔cli-* seam drift (C1–C10 from the deep research): pointer-ize precedence, de-phantom STAR, repair cluster navigability/discovery, complete the new-provider checklist, extend + CI-wire the sync guard (L1) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -143,6 +143,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 005-backfill-remaining-profiles | 006 | Profiles exist for all active models | profile count == active-model count |
 | 006-thin-and-standardize-cli-cards | 007 | Framework table de-duplicated; cli-devin reconciled | grep table count 6→2; sync checker green |
 | 007-wire-precedence-and-crosslinks | 008 | Sentinel referenced in all 5 SKILL.md; precedence rule identical | grep sentinel in 5; no dangling links |
+| 008-validate-sweep-changelog-reindex | 009-refine-hub-cli-connections | 001–008 shipped; deep research surfaced the C1–C10 seam-drift backlog | extended sync guard green; validate.sh --recursive --strict PASSED |
 <!-- /ANCHOR:phase-map -->
 
 ---

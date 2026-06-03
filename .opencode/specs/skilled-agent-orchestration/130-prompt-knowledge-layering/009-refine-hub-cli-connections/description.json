@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+  "description": "Feature Specification: refine-hub-cli-connections",
+  "keywords": [
+    "feature",
+    "specification",
+    "refine-hub-cli-connections"
+  ],
+  "lastUpdated": "2026-06-03T07:05:22.966Z",
+  "specId": "009",
+  "folderSlug": "refine-hub-cli-connections",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "03-06-26_08-05__implemented-all-10-consolidated-items-c1-c10-from.md"
+  ]
+}

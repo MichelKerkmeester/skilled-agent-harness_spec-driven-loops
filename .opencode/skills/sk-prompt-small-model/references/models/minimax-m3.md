@@ -121,18 +121,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 | `default_variant` | `high` | Dispatch-layer default; `--variant` forwarding unverified — do not rely on a non-default variant |
 | `fallback_target` | `minimax-2.7` | When M3-highspeed slug is unavailable, fall back to `minimax-coding-plan/MiniMax-M2.7-highspeed` |
 
-**Non-TTY / automation rule:** Any dispatch that redirects stdout or stderr to files MUST also append `</dev/null` to close stdin. opencode reads stdin at startup; without explicit closed stdin, dispatches hang at 0% CPU after the `+60s snapshot prune cleanup` log line. Position `</dev/null` after the prompt argument, before any `> file` redirects.
-
-Example non-TTY invocation:
-
-```bash
-opencode run \
-  --model minimax-coding-plan/MiniMax-M3-highspeed \
-  --format json \
-  --dir "$REPO_ROOT" \
-  "$(cat prompt.md)" \
-  </dev/null
-```
+**Non-TTY / automation rule (executor mechanic):** every non-interactive `opencode run` must append `</dev/null` after the prompt argument, before any `> file` redirects — opencode reads stdin at startup and hangs at 0% CPU without closed stdin. The full invocation wrapper (slug, `--format json`, `--dir`, redirects) lives in [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md); compose from there, not from this profile.
 
 **Slug availability note:** Plain `minimax-coding-plan/MiniMax-M3` is confirmed live (2026-06-02). The `-highspeed` variant slug is account-holder-directed — verify with `opencode models minimax-coding-plan` before relying on it. If absent, fall back to `minimax-coding-plan/MiniMax-M2.7-highspeed` (confirmed on opencode 1.15.13).
 

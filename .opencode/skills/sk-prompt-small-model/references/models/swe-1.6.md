@@ -80,9 +80,9 @@ status is **default-unverified**.
 
 The RCAF + medium pre-planning default comes from `model-profiles.json` and the
 SWE-1.6 caller-side pre-planning contract in `cli-devin`, not a head-to-head
-framework bakeoff. The registry names RCAF as primary and STAR as fallback. BUILD,
-dense-plan cautions, and strict bundle-gate cautions are profile-level cli-devin
-guidance for task-shape handling; they are not registry fallback or avoid entries.
+framework bakeoff. The registry names RCAF as primary and `fallback: null`. STAR and
+BUILD, dense-plan cautions, and strict bundle-gate cautions are profile-level cli-devin
+task-shape guidance; they are not registry fallback or avoid entries.
 
 **Discriminator (notional):** If a benchmark were run, the primary discriminator
 would be correctness on clearly-scoped single-file and multi-file coding tasks (not
@@ -151,7 +151,7 @@ do not silently push past the plan.
 </format>
 ```
 
-**Fallback — STAR (narrative-heavy or context-gathering tasks):** Replace
+**Profile-level option — STAR (narrative-heavy or context-gathering tasks; a cli-devin task-shape, not a registry fallback):** Replace
 `<framework>RCAF</framework>` with `<framework>STAR</framework>` and restructure:
 `<situation>`, `<task>`, `<action>`, `<result>`. Retain the `<pre-plan>` block at
 medium density.

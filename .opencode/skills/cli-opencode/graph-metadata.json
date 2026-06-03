@@ -99,7 +99,19 @@
       "mimo",
       "mimo-v2.5-pro",
       "mimo pro",
-      "xiaomi-token-plan-ams/mimo-v2.5-pro"
+      "xiaomi-token-plan-ams/mimo-v2.5-pro",
+      "deepseek-v4-pro",
+      "deepseek-v4",
+      "deepseek dispatch",
+      "kimi-k2.6",
+      "kimi",
+      "kimi dispatch",
+      "qwen3.6",
+      "qwen",
+      "qwen dispatch",
+      "glm-5.1",
+      "glm",
+      "glm dispatch"
     ],
     "key_topics": [
       "cli",
@@ -121,7 +133,11 @@
       "highspeed",
       "xiaomi",
       "mimo",
-      "mimo-v2.5-pro"
+      "mimo-v2.5-pro",
+      "deepseek-v4-pro",
+      "kimi-k2.6",
+      "qwen3.6",
+      "glm-5.1"
     ],
     "intent_signals": [
       "delegate to opencode",
@@ -200,6 +216,6 @@
       "references/agent_delegation.md"
     ],
     "created_at": "2026-04-26T00:00:00Z",
-    "last_updated_at": "2026-04-26T00:00:00Z"
+    "last_updated_at": "2026-06-03T00:00:00Z"
   }
 }
