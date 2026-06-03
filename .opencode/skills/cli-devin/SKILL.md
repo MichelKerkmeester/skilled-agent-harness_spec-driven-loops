@@ -2,7 +2,7 @@
 name: cli-devin
 description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.0.10.0
+version: 1.0.11.0
 ---
 
 <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
@@ -212,7 +212,7 @@ devin "<seed prompt>" \
 | "Use Kimi k2.6 on Devin" | `--model kimi-k2.6 --permission-mode auto` |
 | "Use GLM 5.1 on Devin" | `--model glm-5.1 --permission-mode auto` |
 | "Devin dangerous mode" | `--permission-mode dangerous` (explicit operator approval REQUIRED — record in dispatch log) |
-| "Devin bypass mode" | `--permission-mode dangerous` (auto-approve all actions — operator approval REQUIRED, record in dispatch log) |
+| "Devin bypass mode" | Synonym for "Devin dangerous mode" — resolves to `--permission-mode dangerous` (operator approval REQUIRED, record in dispatch log) |
 | "Devin cloud handoff" | See `references/cloud_handoff.md` — operator-confirmed; the local CLI initiates the handoff but the cloud session runs in a separate sandbox |
 
 Only model and permission-mode dimensions change via override. The skill never silently switches between local and cloud — cloud handoff is always explicit.
@@ -342,7 +342,7 @@ devin update
 | `Pro · 0% remaining` banner in TUI | Only affects Pro-tier models (`deepseek-v4`, `glm-5.1`, `kimi-k2.6`, Claude/Gemini variants). `--model swe-1.6` runs on the Free tier and continues to dispatch normally. Switch to SWE-1.6 for the duration of the Pro window, or wait for the Pro window to reset. |
 | Auth expired | Run `devin auth logout && devin auth login` |
 | Wrong profile | Use `devin --config <path>` to override; profiles live at `~/.config/devin/config.json` |
-| Task ran but no files changed | `--permission-mode auto` may have paused for confirmation — re-dispatch with explicit `dangerous` or `dangerous` (operator-approved) or run interactively |
+| Task ran but no files changed | `--permission-mode auto` may have paused for confirmation — re-dispatch with explicit `--permission-mode dangerous` (operator-approved) or run interactively |
 | Background dispatch hangs at 0% CPU | Missing `</dev/null` — append it so devin's stdin is closed |
 | Cloud-handoff dispatch refused | Account lacks cloud entitlement, or operator did not pre-confirm — see `references/cloud_handoff.md` |
 | Self-invocation guard tripped | The calling AI is itself a local `devin` session; use a sibling cli-* skill or restate with explicit cloud-handoff keywords |
@@ -390,7 +390,7 @@ devin update
 1. Devin CLI is not installed and the operator has not acknowledged (provide the install command).
 2. Auth pre-flight fails after one retry (surface `devin auth login` and wait).
 3. Operator requests cloud handoff without confirming Devin account provisioning (surface `references/cloud_handoff.md` checklist).
-4. Operator requests `--permission-mode dangerous` or `dangerous` without stating the destructive operations required (describe risks; get explicit approval).
+4. Operator requests `--permission-mode dangerous` without stating the destructive operations required (describe risks; get explicit approval).
 5. The Devin CLI surface has drifted from this skill's documentation (operator can run `devin --help` to inspect; update `references/cli_reference.md` if persistent drift).
 
 ### Memory Handback Protocol

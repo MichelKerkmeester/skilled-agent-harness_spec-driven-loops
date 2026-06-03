@@ -1,0 +1,17 @@
+{
+  "specFolder": "130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+  "description": "Phase 1: doc-divider-sweep-and-sk-prompt-cleanup",
+  "keywords": [
+    "phase",
+    "doc-divider-sweep-and-sk-prompt-cleanup"
+  ],
+  "lastUpdated": "2026-06-03T10:04:26.423Z",
+  "specId": "014",
+  "folderSlug": "doc-divider-sweep-and-sk-prompt-cleanup",
+  "parentChain": [
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

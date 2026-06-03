@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.11.0
+version: 1.1.12.0
 ---
 
 <!-- Keywords: claude-code, claude-cli, anthropic, cross-ai, deep-reasoning, extended-thinking, code-editing, structured-output, agent-delegation, opus, sonnet, haiku -->

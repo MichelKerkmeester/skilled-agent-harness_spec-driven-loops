@@ -129,6 +129,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 11 | 011-model-profiles-and-benchmark-merge/ | model-profiles.json comment-hygiene; merge benchmark 006 into 005 (two eval subsets); repoint stale benchmark ids to the 00N scheme (L1) | Complete |
 | 12 | 012-cli-doc-alignment/ | Align the 5 cli-* prompt_quality_card.md + confidence-scoring-rubric + cli-opencode references to the sk-doc asset/reference templates (L1) | Complete |
 | 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Complete |
+| 14 | 014-doc-divider-sweep-and-sk-prompt-cleanup/ | Add missing sk-doc section dividers across the 5 cli skills' reference/asset docs; scrub stale card refs from sk-prompt SKILL.md (L1) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -152,6 +153,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 010-hub-doc-alignment-and-router | 011-model-profiles-and-benchmark-merge | Hub doc surface aligned | benchmark folders renumbered + merged; stale ids repointed |
 | 011-model-profiles-and-benchmark-merge | 012-cli-doc-alignment | Benchmark refs stable | cli-* cards + references aligned to templates |
 | 012-cli-doc-alignment | 013-card-relocation-and-guard | cli docs aligned | card relocated to hub; guard rewritten + green; validate --strict exit 0 |
+| 013-card-relocation-and-guard | 014-doc-divider-sweep-and-sk-prompt-cleanup | every non-first H2 in the 5 cli skills' docs has its section divider; sk-prompt card-ref-free | strict scout +0; content-skeleton diff clean; adversarial workflow PASS; validate --strict exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

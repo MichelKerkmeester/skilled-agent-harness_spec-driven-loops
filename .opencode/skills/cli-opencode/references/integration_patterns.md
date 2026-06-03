@@ -23,6 +23,8 @@ cli-opencode resolves this by documenting THREE orthogonal use cases. The smart 
 
 The cycle ADR-001 protects against is the operator inside OpenCode asking cli-opencode to "delegate this exact prompt to OpenCode" — that case is REFUSED at the routing layer.
 
+---
+
 ## 2. USE CASE 1 — EXTERNAL RUNTIME TO OPENCODE
 
 ### When to use
@@ -74,6 +76,8 @@ opencode run \
 ### Why it matters
 
 This is the canonical cross-AI dispatch path. It gives external runtimes a one-shot bridge into the project's full runtime without forcing the operator to leave their host session.
+
+---
 
 ## 3. USE CASE 2 — IN-OPENCODE PARALLEL DETACHED SESSION
 
@@ -137,6 +141,8 @@ Parallel research, ablation studies, and worker farms need N concurrent sessions
 
 Per CHK-033, the calling AI MUST confirm with the operator before passing `--share`. The share URL exposes the session's contents to anyone with the URL, so it is opt-in.
 
+---
+
 ## 4. USE CASE 3 — CROSS-AI ORCHESTRATION HANDBACK
 
 ### When to use
@@ -194,6 +200,8 @@ The invocation shape is identical to use case 1 — the difference is the prompt
 ### Why it matters
 
 Codex, Copilot, and Gemini cannot load this project's plugin / skill / MCP runtime on their own. cli-opencode is the documented bridge that lets a Codex-led orchestration call into the project's spec-kit workflows without leaving the Codex session.
+
+---
 
 ## 5. SMART-ROUTER DECISION TREE
 
@@ -257,6 +265,8 @@ Options:
    "ablation suite" / "worker farm" / "share URL" keywords — that triggers
    use case 2 instead of refusal.
 ```
+
+---
 
 ## 6. STDIN HANDLING — `</dev/null` IS REQUIRED FOR ALL NON-INTERACTIVE DISPATCH
 
@@ -344,11 +354,15 @@ This is the pattern enforced by the 4 `if_cli_opencode` blocks in the deep-resea
 
 The bug is in opencode v1.14.39. The fix would be: in the `run` subcommand entrypoint, check `process.stdin.isTTY` (or equivalent) and skip the stdin read in non-interactive mode — the message is already provided as a positional argument, so stdin is informational only. Until upstream patches this, `</dev/null` at every callsite is the workaround. File a bug report with opencode-ai/opencode if not already filed.
 
+---
+
 ## 7. MEMORY HANDBACK
 
 cli-opencode dispatches that produce evidence for a Spec Kit Memory save MUST include the Memory Epilogue at the end of the prompt. The dispatched session adds `MEMORY_HANDBACK_START` / `MEMORY_HANDBACK_END` delimiters around a structured JSON payload that the calling AI extracts and feeds to `generate-context.js`.
 
 The full Memory Handback Protocol is shared with cli-claude-code and cli-codex. See SKILL.md Section 4 (RULES) for the canonical 7-step procedure. The same JSON normalization (camelCase / snake_case aliases) and post-010 save gates apply.
+
+---
 
 ## 8. RELATED RESOURCES
 

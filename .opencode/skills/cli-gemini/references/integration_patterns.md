@@ -26,6 +26,8 @@ Each pattern documented here includes the rationale, implementation template, an
 - You want to run parallel AI tasks while the calling AI continues working
 - Complex workflows benefit from structured, multi-stage generation and validation
 
+---
+
 ## 2. GENERATE-REVIEW-FIX CYCLE
 
 **The most reliable cross-AI pattern.** One AI generates, the other reviews, then the original fixes.
@@ -62,6 +64,8 @@ echo "Fix these issues in the rate limiter: $(cat /tmp/review.md)" | \
 - Always validate the final output yourself (neither AI is infallible)
 - Keep the review focused: bullet points of specific issues, not general feedback
 - Limit to 2 cycles maximum; diminishing returns beyond that
+
+---
 
 ## 3. JSON OUTPUT PROCESSING
 
@@ -122,6 +126,8 @@ parsed.issues.filter(i => i.severity === 'high').forEach(i => {
 - Use `stream-json` for long-running tasks where you want incremental updates
 - Validate the JSON structure before relying on it; LLM JSON is not guaranteed well-formed
 
+---
+
 ## 4. BACKGROUND EXECUTION
 
 **Run Gemini tasks in parallel while the calling AI continues working.**
@@ -176,6 +182,8 @@ tail -f /tmp/generated-tests.ts
 - Background processes share rate limits; add delays between launches to avoid 429s
 - Do not background tasks that modify files YOLO-style (race conditions)
 
+---
+
 ## 5. MODEL SELECTION STRATEGY
 
 **`gemini-3.1-pro-preview` is the only supported model. Use it for all tasks.**
@@ -194,6 +202,8 @@ echo "Does src/ use the singleton pattern? Answer yes or no." | \
 
 - Always specify `-m gemini-3.1-pro-preview` explicitly in scripts for predictability.
 - Omitting `-m` will use the CLI default, which may change across versions.
+
+---
 
 ## 6. RATE LIMIT HANDLING
 
@@ -237,6 +247,8 @@ $(for f in src/utils.ts src/auth.ts src/api.ts; do echo "--- $f ---"; cat "$f"; 
 | Free (OAuth) | 60 | 1,000 | Batch requests, add delays |
 | Free (API Key) | 60 | 1,000 | Same as OAuth |
 | Paid | Higher | Higher | Less concern, still batch for efficiency |
+
+---
 
 ## 7. CONTEXT ENRICHMENT
 
@@ -295,6 +307,8 @@ echo "Fix this security issue. Context from prior analysis: $CLAUDE_ANALYSIS" | 
 - Use GEMINI.md for project-wide conventions that apply to every request
 - Inject the calling AI's findings when Gemini is doing follow-up work
 
+---
+
 ## 8. VALIDATION PIPELINE
 
 **Multi-stage validation of Gemini-generated output.**
@@ -345,6 +359,8 @@ Result<T,E> error handling, JSDoc on exports." | \
 - Security-sensitive code (auth, payments, data handling)
 - Code that lacks test coverage
 
+---
+
 ## 9. INCREMENTAL REFINEMENT
 
 **Build complex artifacts in stages, verifying each stage before proceeding.**
@@ -390,6 +406,8 @@ npx jest src/task-queue/__tests__/queue.test.ts
 - Building new modules or subsystems from scratch
 - Complex features with multiple interacting components
 - When you want to maintain control over architectural decisions at each step
+
+---
 
 ## 10. CROSS-VALIDATION WITH CLAUDE
 
@@ -437,6 +455,8 @@ echo "Create a caching layer with TTL support and LRU eviction" | \
 | **Specialist routing** | Route by strength (table above) | Efficiency optimization |
 | **Red team** | A writes, B tries to break | Auth, payments, data access |
 
+---
+
 ## 11. SESSION CONTINUITY
 
 **Maintain context across multiple Gemini invocations for complex, multi-turn tasks.**
@@ -483,6 +503,8 @@ fi
 - Sessions consume storage; clean up with `--delete-session` when done
 - Session context has limits; very long sessions may lose early context
 - For cross-AI orchestration, it is often simpler to re-provide context than manage sessions
+
+---
 
 ## 12. ANTI-PATTERNS
 

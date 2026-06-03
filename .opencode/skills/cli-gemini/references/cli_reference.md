@@ -35,6 +35,8 @@ Provide a comprehensive, single-source reference for all Gemini CLI commands, fl
 | **License** | Apache 2.0 |
 | **Runtime** | Node.js 20+ |
 
+---
+
 ## 2. INSTALLATION
 
 | Method | Command | Notes |
@@ -45,6 +47,8 @@ Provide a comprehensive, single-source reference for all Gemini CLI commands, fl
 | **From source** | `git clone` + `npm install` + `npm run build` | Development |
 
 After installation, run `gemini` to start the interactive REPL or pipe input for non-interactive use.
+
+---
 
 ## 3. AUTHENTICATION
 
@@ -69,6 +73,8 @@ Or use environment variable:
 ```bash
 export GEMINI_API_KEY="AIza..."
 ```
+
+---
 
 ## 4. COMMAND-LINE FLAGS
 
@@ -122,6 +128,8 @@ gemini --allowed-tools read_file,search_file_content "Find the bug"
 cat error.log | gemini -i "What caused this?"
 ```
 
+---
+
 ## 5. MODEL SELECTION
 
 ### Supported Model
@@ -148,6 +156,8 @@ gemini -m gemini-3.1-pro-preview "Design the authentication system"
   "model": "gemini-3.1-pro-preview"
 }
 ```
+
+---
 
 ## 6. OUTPUT FORMATS
 
@@ -195,6 +205,8 @@ echo "Generate tests" | gemini -o stream-json
 
 Outputs newline-delimited JSON objects as they are produced, suitable for real-time processing.
 
+---
+
 ## 7. INTERACTIVE SLASH COMMANDS
 
 When running in interactive (REPL) mode, these commands are available:
@@ -224,6 +236,8 @@ When running in interactive (REPL) mode, these commands are available:
 | `/init` | Initialize GEMINI.md in current directory |
 | `/plan` | Enter planning mode for complex tasks |
 | `/quit` | Exit the REPL |
+
+---
 
 ## 8. SPECIAL INPUT SYNTAX
 
@@ -261,6 +275,8 @@ Use `@server://resource` syntax to reference MCP server resources:
 @memory://recent  Load recent memory entries
 @github://issues  List open issues
 ```
+
+---
 
 ## 9. CONFIGURATION FILES
 
@@ -325,6 +341,8 @@ secrets/
 
 Placed at repository root. Patterns follow gitignore syntax.
 
+---
+
 ## 10. RATE LIMITS
 
 ### Free Tier Limits
@@ -350,6 +368,8 @@ When rate limits are hit, Gemini CLI automatically:
 - Use API key for higher quotas vs. OAuth free tier
 - Monitor usage via Google AI Studio dashboard
 
+---
+
 ## 11. KEYBOARD SHORTCUTS
 
 | Shortcut | Action |
@@ -362,6 +382,8 @@ When rate limits are hit, Gemini CLI automatically:
 | `Ctrl+D` | Exit the REPL |
 | `Up/Down` | Navigate prompt history |
 | `Tab` | Auto-complete file paths and commands |
+
+---
 
 ## 12. TROUBLESHOOTING
 
@@ -379,6 +401,8 @@ When rate limits are hit, Gemini CLI automatically:
 | Output truncated | Token limit reached | Break task into smaller steps, use `/compress` |
 | `npm ERR!` on install | Node.js version mismatch | Ensure Node.js 20+ is installed: `node --version` |
 | Garbled output in pipe mode | Terminal control codes in non-TTY | Use `-o text` or `-o json` explicitly |
+
+---
 
 ## 13. ENVIRONMENT VARIABLES
 

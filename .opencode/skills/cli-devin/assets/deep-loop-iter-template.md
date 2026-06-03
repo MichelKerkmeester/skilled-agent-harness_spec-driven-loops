@@ -233,6 +233,8 @@ Every claim in the Findings or Evidence sections MUST be followed by a `<ref_fil
 - JSONL delta row is REQUIRED at the end of every iter output. Format inlined per prompt — do NOT back-reference "Same as iter NNN".
 - Output begins at `# Iter NNN`. No preamble. The dispatcher captures stdout, which becomes the iter file directly (v1.0.4.0+ recipes have narrow Write scope that may obviate this, but the convention holds for compatibility).
 
+---
+
 ## 7. RELATED
 
 - [`.opencode/skills/cli-devin/references/deep-loop-iter-contract.md`](../references/deep-loop-iter-contract.md)

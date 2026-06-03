@@ -25,6 +25,8 @@ The 7-framework selection table, the task->framework map, the pre-planning-densi
 
 -> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
+---
+
 ## 3. OPENCODE MODEL OVERRIDES
 
 OpenCode dispatches the MiniMax, MiMo, and opencode-go (DeepSeek-v4-pro / Kimi-k2.6 / Qwen3.6 / GLM-5.1) small models, which override or default against the cross-model defaults from the canonical card:
@@ -38,11 +40,15 @@ OpenCode dispatches the MiniMax, MiMo, and opencode-go (DeepSeek-v4-pro / Kimi-k
 
 **Executor notes:** Omit `--agent` for all small-model dispatches listed above. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
 
+---
+
 ## 4. DELEGATION / PRECEDENCE
 
 The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
 
 OpenCode-specific escalation example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first, then pass that result to OpenCode.
+
+---
 
 ## 5. RELATED RESOURCES
 

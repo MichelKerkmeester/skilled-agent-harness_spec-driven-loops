@@ -384,6 +384,8 @@ All placeholders used across templates in this file:
 - [integration_patterns.md](../references/integration_patterns.md) - Cross-AI orchestration patterns
 - [gemini_tools.md](../references/gemini_tools.md) - Built-in tools (google_web_search, codebase_investigator)
 
+---
+
 ## 13. MEMORY EPILOGUE
 
 ### Purpose

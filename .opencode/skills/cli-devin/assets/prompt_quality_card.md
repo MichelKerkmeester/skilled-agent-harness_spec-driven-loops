@@ -26,6 +26,8 @@ The 7-framework selection table, the task-to-framework map, the pre-planning-den
 -> `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md`
 (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
+---
+
 ## 3. DEVIN MODEL SELECTION & OVERRIDES
 
 cli-devin dispatches several profiled models. Pick the Devin model + permission mode by task shape, then compose the prompt with the canonical framework named below. These rows are EXECUTOR MECHANICS (model routing + permission mode), NOT prompt frameworks — the framework column points back to the canonical card's owned set.
@@ -46,6 +48,8 @@ Read the hub profile before composing for any profiled model — it may prescrib
 
 Before each `devin --prompt-file` invocation, confirm the permission mode matches the work: `auto` is the default; `dangerous` and other escalations require explicit operator approval recorded in the dispatch log. This is an executor pre-flight check, NOT a competing CLEAR definition — CLEAR is canonical (§1).
 
+---
+
 ## 4. DELEGATION / PRECEDENCE
 
 The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`. Apply it in order; stop at the first tier that fully covers the task:
@@ -53,6 +57,8 @@ The 3-tier precedence rule (fast path -> model override -> deep path) is canonic
 - **Tier 1 (fast path):** build the prompt from the canonical card — select a framework, run the CLEAR check, dispatch.
 - **Tier 2 (model override):** when dispatching a profiled model, honor the model profile at `../../sk-prompt-small-model/references/models/<id>.md` — it overrides the cross-model defaults. (This replaces cli-devin's former "every dispatch MUST be composed through sk-prompt" mandate.)
 - **Tier 3 (deep path):** dispatch `@prompt-improver` via the Task tool when any canonical Tier 3 trigger applies: complexity >= 7/10, compliance/policy/privacy/security sensitivity, >1 stakeholder or audience, >1 ambiguous requirement, or the fast-path CLEAR check cannot clear its floor; hand the returned `ENHANCED_PROMPT` to the `devin` invocation.
+
+---
 
 ## 5. RELATED RESOURCES
 

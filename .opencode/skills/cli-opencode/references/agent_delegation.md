@@ -31,6 +31,8 @@ The calling AI decides WHAT to delegate. The agent's frontmatter shapes HOW the 
 
 This separation of concerns is load-bearing for the cli-opencode skill: the calling AI owns the task graph and the integration step, while the dispatched OpenCode session owns the per-task execution under the agent's tool permissions and system prompt.
 
+---
+
 ## 2. ORCHESTRATION MODEL
 
 ```text
@@ -102,6 +104,8 @@ The `--variant high` flag is the cli-opencode default for cross-AI dispatches. T
 | System prompt and behavioral rules | Agent frontmatter |
 | Result validation and integration | Calling AI |
 | Memory handback extraction | Calling AI |
+
+---
 
 ## 3. AGENT ROSTER
 
@@ -196,6 +200,8 @@ These two agents are dispatched only by their parent commands. The calling AI do
 
 Both are LEAF agents. Each iteration is fresh-context. The parent command owns convergence detection and state continuity.
 
+---
+
 ## 4. AGENT ROUTING MATRIX
 
 Pick the agent that matches the task type. Default to `general` when no specialist fits.
@@ -212,6 +218,8 @@ Pick the agent that matches the task type. Default to `general` when no speciali
 | Multi-strategy planning | `ai-council` | `opencode run --agent ai-council --variant high --format json --dir /repo "Plan the authentication redesign — compare three strategies."` |
 | Agent improvement | `deep-agent-improvement` | **Command-only.** Dispatch via `/deep:start-agent-improvement-loop`. Direct `opencode run --agent deep-agent-improvement` is forbidden; the parent command owns evaluation, candidates, and promotion. <!-- F-007-B2-02 --> |
 | Default / unspecified | `general` | `opencode run --agent general --variant high --format json --dir /repo "<prompt>"` |
+
+---
 
 ## 5. THE `As @<agent>` PROMPT-TIME PATTERN
 
@@ -234,6 +242,8 @@ The dispatched session parses the `As @review:` prefix and loads the review agen
 |---------|------|
 | `--agent <slug>` | Routine routing — the calling AI knows the right agent up front |
 | `As @<agent>:` | The calling AI wants the agent slug to be visible in the prompt for debugging or telemetry |
+
+---
 
 ## 6. MULTI-AGENT WORKFLOWS
 
@@ -264,6 +274,8 @@ If the calling AI is already decomposing tasks, delegate directly to leaf agents
 | Calling AI -> `@orchestrate` -> single leaf agent | Orchestrator overhead with no coordination benefit | Delegate directly to the leaf agent |
 | Calling AI -> `@orchestrate` -> `@orchestrate` -> leaf | Two orchestration layers with the same task graph | Pick one orchestrator, decompose once |
 
+---
+
 ## 7. LEAF-AGENT CONSTRAINTS
 
 Some agents are LEAF agents by design. They MUST NOT dispatch sub-agents, use the Task tool, or write files (read-only). The cli-opencode skill MUST honor these constraints:
@@ -276,6 +288,8 @@ Some agents are LEAF agents by design. They MUST NOT dispatch sub-agents, use th
 | `ai-council` | PLANNING-ONLY — no file modifications |
 
 The calling AI must NOT request a write or sub-dispatch from a LEAF agent. If the prompt would require either, route to `general` or `orchestrate` instead.
+
+---
 
 ## 8. WORKED EXAMPLES
 
@@ -319,6 +333,8 @@ opencode run \
 **Expected handback:** JSON event stream including a write to `debug-delegation.md` and a final summary with root cause + applied fix (or refusal with rationale).
 
 **Calling AI follow-up:** Read `debug-delegation.md`. If a fix was applied, run the project's test suite. If `@debug` declined to fix, surface the rationale to the operator.
+
+---
 
 ## 9. FAILURE MODES AND OUTPUT HANDLING
 
@@ -372,6 +388,8 @@ When a dispatch produces low-quality output, the calling AI has three escalation
 3. **Decompose the task** — break the dispatch into smaller sub-tasks with explicit handoffs between agents. Each sub-task gets its own validation step.
 
 The conductor (calling AI) decides which path. The agent has no visibility into the parent task graph.
+
+---
 
 ## 10. RELATED RESOURCES
 

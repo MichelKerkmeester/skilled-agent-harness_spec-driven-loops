@@ -35,6 +35,8 @@ Provide a comprehensive, single-source reference for all Codex CLI commands, fla
 | **License** | MIT |
 | **Runtime** | Node.js 18+ |
 
+---
+
 ## 2. INSTALLATION
 
 | Method | Command | Notes |
@@ -53,6 +55,8 @@ Provide a comprehensive, single-source reference for all Codex CLI commands, fla
 | Windows (WSL) | Experimental — use WSL 2 for best results |
 
 After installation, run `codex` for the full-screen TUI or `codex exec "prompt" --model gpt-5.5` for non-interactive use.
+
+---
 
 ## 3. AUTHENTICATION
 
@@ -85,6 +89,8 @@ codex logout
 ```
 
 **OAuth account eligibility:** ChatGPT Plus, Pro, Business, Edu, or Enterprise accounts only. Free-tier ChatGPT accounts are not supported.
+
+---
 
 ## 4. COMMAND-LINE FLAGS
 
@@ -171,6 +177,8 @@ codex exec "Review this PR" --profile review --model gpt-5.5
 codex exec "Refactor this function" --oss
 ```
 
+---
+
 ## 5. MODEL SELECTION
 
 ### Supported Model
@@ -238,6 +246,8 @@ model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 ```
 
+---
+
 ## 6. OUTPUT HANDLING
 
 ### exec Mode Output
@@ -280,6 +290,8 @@ jq '.issues[] | select(.severity == "high")' /tmp/analysis.json
 | `0` | Success |
 | Non-zero | Error (check stderr for details) |
 
+---
+
 ## 7. INTERACTIVE COMMANDS
 
 When running `codex` in interactive (full-screen TUI) mode, these slash commands are available:
@@ -301,6 +313,8 @@ All session management is accessible from the TUI home screen when running `code
 - Select an existing session to resume it
 - Start a new session from scratch
 - Fork an existing session to branch it
+
+---
 
 ## 8. SPECIAL INPUT SYNTAX
 
@@ -358,6 +372,8 @@ Place an `instructions.md` in `.codex/` to inject persistent project context int
 - Modify prisma/schema.prisma without explicit instruction
 - Add npm dependencies without justification
 ```
+
+---
 
 ## 9. CONFIGURATION FILES
 
@@ -446,6 +462,8 @@ codex exec -p review "Audit this codebase" --model gpt-5.5
 
 **Note:** The `.codex/agents/*.toml` files define agent personas for the interactive multi-agent TUI feature (requires `multi_agent` feature flag). They are NOT loaded by the `-p` profile flag. To use agent-specific settings in `codex exec`, define corresponding `[profiles.<name>]` sections in config.toml.
 
+---
+
 ## 10. SANDBOX MODES
 
 Sandbox modes control what Codex is permitted to do during execution. Always choose the least-permissive mode that allows the task to complete.
@@ -479,6 +497,8 @@ codex exec "Migrate database schema and update all dependent files" \
 1. **Read-only first:** Start with read-only for exploration and analysis tasks.
 2. **Workspace-write for generation:** Use when Codex must create or modify files in the project.
 3. **Full-access sparingly:** Reserve for tasks that genuinely require system-level access. Always pair with `--ask-for-approval untrusted`.
+
+---
 
 ## 11. SESSION MANAGEMENT
 
@@ -517,6 +537,8 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 | `fork` | Try a different approach without losing the original session |
 | New session | Fresh context; previous session is not relevant |
 
+---
+
 ## 12. SUBCOMMANDS
 
 | Subcommand | Description |
@@ -530,6 +552,8 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 | `codex mcp` | Manage MCP (Model Context Protocol) server connections |
 | `codex cloud` | Manage cloud-based session storage and sync |
 | `codex apply` | Apply a previously generated diff/patch |
+
+---
 
 ## 13. TROUBLESHOOTING
 
@@ -547,6 +571,8 @@ codex exec --session-id "$FORK_ID" "Attempt the migration" \
 | Web search not working | `--search` flag not specified | Add `--search` flag to enable live browsing |
 | Windows compatibility | WSL not configured | Use WSL 2; native Windows support is experimental |
 | Image not accepted | Unsupported format | Use PNG or JPEG only; convert other formats first |
+
+---
 
 ## 14. ENVIRONMENT VARIABLES
 

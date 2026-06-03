@@ -24,6 +24,8 @@ The three sibling cli-* skills (cli-claude-code, cli-codex, cli-gemini) dispatch
 
 The cli-opencode skill exists because no sibling provides this. It is the bridge between an external AI and the full plugin / skill / MCP runtime this repo defines.
 
+---
+
 ## 2. FULL PLUGIN, SKILL, AND MCP RUNTIME
 
 ### What it does
@@ -54,6 +56,8 @@ opencode run \
 ```
 
 The dispatched session loads `system-spec-kit` skill, calls `memory_health` (an MCP tool), inspects the database, and writes the proposal back through Spec Kit Memory's normal save pipeline.
+
+---
 
 ## 3. PARALLEL DETACHED SESSIONS
 
@@ -86,6 +90,8 @@ opencode run \
 
 The skill's smart router gates this use case behind ADR-001's self-invocation signal. When the signal trips AND the prompt explicitly names a parallel detached session, the router permits the dispatch. Otherwise it refuses (see `./integration_patterns.md` for the full decision tree).
 
+---
+
 ## 4. STRUCTURED EVENT STREAM
 
 ### What it does
@@ -115,6 +121,8 @@ opencode run \
   done
 ```
 
+---
+
 ## 5. AGENT DISPATCH VIA `--agent`
 
 ### What it does
@@ -139,6 +147,8 @@ opencode run \
 
 See `./agent_delegation.md` for the full routing matrix.
 
+---
+
 ## 6. CROSS-REPO DISPATCH VIA `--dir`
 
 ### What it does
@@ -162,6 +172,8 @@ opencode run \
   "Use Barter's spec-kit to draft a Level 1 spec for the X feature. Save context after."
 ```
 
+---
+
 ## 7. STATE COMPARISON WITH SIBLING CLI BINARIES
 
 | Sibling | Persistent state | Memory continuity | Plugin runtime |
@@ -172,6 +184,8 @@ opencode run \
 | **cli-opencode** | `~/.opencode/state/<session_id>/` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
 
 The persistent state directory at `~/.opencode/state/` is what makes use case 2 (parallel detached sessions) possible — each session has an independent file-system footprint that the operator can inspect, archive, or replay.
+
+---
 
 ## 8. RELATED RESOURCES
 

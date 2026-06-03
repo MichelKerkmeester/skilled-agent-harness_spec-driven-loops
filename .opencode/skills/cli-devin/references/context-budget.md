@@ -5,6 +5,8 @@ description: "Smallcode-derived token budget defaults, truncation marker syntax,
 
 # cli-devin Context Budget Engine
 
+---
+
 ## Overview
 
 This reference documents the Phase 004 budget pattern for cli-devin small-model dispatches.
@@ -30,6 +32,8 @@ The key imported defaults are:
 - `truncation_marker_template`: `[... truncated %d tokens]`.
 
 The source pattern counts tokens approximately with 4 characters per token. That is deliberately conservative and cheap. It is not a tokenizer replacement.
+
+---
 
 ## Smallcode-Derived Patterns
 
@@ -126,6 +130,8 @@ Recommended behavior:
 - If the exact span matters, include only that span plus neighboring context.
 - If the tool result is still too large, truncate with the marker.
 
+---
+
 ## Per-Model Defaults
 
 The canonical asset is `../assets/per-model-budgets.json`.
@@ -147,6 +153,8 @@ Dropped from Phase 004 scope:
 - Claude Sonnet.
 
 The dropped models are intentionally absent from `per-model-budgets.json`.
+
+---
 
 ## Truncation-Marker Syntax
 
@@ -193,6 +201,8 @@ function example() {
 <!-- more omitted -->
 ```
 
+---
+
 ## Eviction Priority Ladder
 
 The ladder is intentionally simple because small models benefit from predictable policies.
@@ -213,6 +223,8 @@ When a prompt pack exceeds budget:
 5. If still over budget, halt composition and ask for narrower scope.
 
 Do not silently drop required acceptance criteria.
+
+---
 
 ## Integration With Prompt-Pack Templates
 
@@ -247,6 +259,8 @@ type BudgetConfig = {
 
 Keep the runtime tolerant of optional stubs. If `context_length` is `null`, do not route budgeted dispatch for that model.
 
+---
+
 ## sk-prompt Insertion-Point Hint
 
 Phase 006 can update `sk-prompt-small-model/assets/cli_prompt_quality_card.md` after the existing anti-hallucination wording and before the CLEAR checklist.
@@ -260,6 +274,8 @@ The insert should point back here and tell prompt composers to:
 - avoid adding more prose to compensate for missing evidence.
 
 This is deliberately a hint, not a Phase 004 write. Phase 004 does not modify `sk-prompt`.
+
+---
 
 ## Operational Notes
 
@@ -285,6 +301,8 @@ Expected SWE-1.6 budget:
 
 If a simulated tool result exceeds that budget, the output must include `[... truncated N tokens]`.
 
+---
+
 ## Limits
 
 This reference does not implement tokenizer-accurate counting.
@@ -296,6 +314,8 @@ This reference does not enable Haiku or Gemini Flash routing.
 This reference does not alter Devin's model-selection table beyond cross-references.
 
 This reference does not include GLM-5.1, gpt-5.5, Opus, or Sonnet because Phase 004 explicitly dropped them.
+
+---
 
 ## Reference Checklist
 
@@ -354,6 +374,8 @@ Use this checklist when wiring the data asset into a future prompt-pack builder.
 - [ ] Avoid multiple competing marker syntaxes in one prompt.
 - [ ] Keep budget prose short for SWE-1.6.
 
+---
+
 ## Worked Examples
 
 ### SWE-1.6
@@ -409,6 +431,8 @@ remaining_after_working_memory = 21900
 ```
 
 Qwen is the tightest required window. Prefer summaries and exact line ranges.
+
+---
 
 ## Failure Modes
 

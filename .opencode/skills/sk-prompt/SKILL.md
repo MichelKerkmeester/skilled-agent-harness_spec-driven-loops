@@ -2,7 +2,7 @@
 name: sk-prompt
 description: "Prompt engineering specialist: structured AI prompts via 7 frameworks, DEPTH thinking, CLEAR scoring."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 2.1.0.0
+version: 2.1.1.0
 ---
 
 <!-- Keywords: prompt-engineering, prompt-improvement, improve prompt, improve this prompt, improve the prompt, enhance prompt, prompt improvement, DEPTH, RICCE, CLEAR-scoring, framework-selection, RCAF, COSTAR, CRAFT, TIDD-EC, CRISPE -->
@@ -24,7 +24,7 @@ Transforms vague or basic inputs into highly effective, structured AI prompts. P
 - Evaluating prompt quality with CLEAR scoring
 - Selecting the right prompt framework for a given task
 - Transforming vague requests into structured, effective prompts
-- Supporting indirect invocation from `@prompt-improver` agent dispatches and `cli_prompt_quality_card.md` fast-path escalation flows
+- Supporting indirect invocation from `@prompt-improver` agent dispatches (the deep-path escalation target for CLI fast-path prompt cards)
 
 **Keyword Triggers**:
 - `$improve`, `$text`, `$short`, `$refine`, `$json`, `$yaml`
@@ -332,7 +332,6 @@ See [depth_framework.md](./references/depth_framework.md) for the DEPTH methodol
 
 - [depth_framework.md](./references/depth_framework.md) - DEPTH methodology (Discover, Engineer, Prototype, Test, Harmonize), RICCE integration
 - [patterns_evaluation.md](./references/patterns_evaluation.md) - 7 framework definitions, CLEAR scoring
-- [cli_prompt_quality_card.md](./assets/cli_prompt_quality_card.md) - External consumption entry point for CLI orchestrator mirrors; update all four mirrors when editing
 
 ### Asset Files
 
@@ -407,26 +406,7 @@ ESCALATION_NOTES: <remaining ambiguity, risk, or follow-up>
 
 ---
 
-## 8. FAST-PATH ASSET: `cli_prompt_quality_card.md`
-
-`assets/cli_prompt_quality_card.md` is the lightweight external-consumption surface for routine CLI prompt construction.
-
-### Purpose
-
-- Keep routine `cli-*` dispatches inside the calling skill tree
-- Provide a compact framework-selection table and CLEAR 5-question check
-- Trigger escalation to `@prompt-improver` only when complexity, compliance, or ambiguity warrants the heavier path
-
-### Two-Tier Behavior
-
-- **Fast path**: CLI skills load the local mirror card from their own `assets/` tree and apply the checklist inline.
-- **Deep path**: CLI skills dispatch `@prompt-improver`, which loads this skill's full reference set in fresh context and returns a structured enhancement block.
-
-The card is intentionally compact and mirrors this skill's core routing heuristics rather than duplicating the full framework deep dives.
-
----
-
-## 9. INTEGRATION POINTS
+## 8. INTEGRATION POINTS
 
 ### Framework Integration
 
@@ -446,9 +426,9 @@ Key integrations:
 
 ---
 
-## 10. REFERENCES AND RELATED RESOURCES
+## 9. REFERENCES AND RELATED RESOURCES
 
-The router discovers reference, asset, and script docs dynamically. Start with `references/depth_framework.md`, `references/patterns_evaluation.md`, `assets/cli_prompt_quality_card.md`, `assets/format_guide_json.md`, `assets/format_guide_markdown.md`, `assets/format_guide_yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
+The router discovers reference, asset, and script docs dynamically. Start with `references/depth_framework.md`, `references/patterns_evaluation.md`, `assets/format_guide_json.md`, `assets/format_guide_markdown.md`, `assets/format_guide_yaml.md`, then load task-specific resources from `references/`, templates from `assets/`, and automation from `scripts/` when present.
 
 ## RELATED PLAYBOOK
 

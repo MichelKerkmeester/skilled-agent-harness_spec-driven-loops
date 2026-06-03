@@ -17,6 +17,8 @@ The cli-opencode skill ships templates for the three documented use cases (per A
 
 Templates are numbered for cross-reference from `references/integration_patterns.md` and `SKILL.md`.
 
+---
+
 ## 2. TEMPLATE 1 — EXTERNAL RUNTIME TO OPENCODE (USE CASE 1)
 
 **Framework:** RCAF
@@ -71,6 +73,8 @@ opencode run \
   "<prompt-from-template>" 2>&1
 ```
 
+---
+
 ## 3. TEMPLATE 2 — IN-OPENCODE PARALLEL DETACHED SESSION (USE CASE 2)
 
 **Framework:** CIDI
@@ -107,6 +111,8 @@ opencode run \
   --dir "$REPO_ROOT" \
   "<prompt-from-template>" 2>&1
 ```
+
+---
 
 ## 4. TEMPLATE 3 — CROSS-AI ORCHESTRATION HANDBACK (USE CASE 3)
 
@@ -148,6 +154,8 @@ opencode run \
   "<prompt-from-template>" 2>&1
 ```
 
+---
+
 ## 5. TEMPLATE 4 — SPECIALIZED AGENT DISPATCH
 
 **Framework:** RCAF
@@ -166,6 +174,8 @@ opencode run \
 ```
 
 Common slugs: `general`, `context`, `orchestrate`, `write`, `review`, `debug`, `deep-research`, `deep-review`, `ai-council`, `deep-improvement`.
+
+---
 
 ## 6. TEMPLATE 5 — CODE REVIEW
 
@@ -206,6 +216,8 @@ opencode run \
   "<prompt>" 2>&1
 ```
 
+---
+
 ## 7. TEMPLATE 6 — ITERATIVE DEEP RESEARCH
 
 **Framework:** CRISPE
@@ -236,6 +248,8 @@ opencode run \
   --dir /repo \
   "<prompt>" 2>&1
 ```
+
+---
 
 ## 8. TEMPLATE 7 — ABLATION SUITE
 
@@ -271,6 +285,8 @@ opencode run \
   --dir /repo \
   "<prompt>" 2>&1
 ```
+
+---
 
 ## 9. TEMPLATE 8 — WORKER FARM DISPATCH
 
@@ -308,6 +324,8 @@ done
 wait
 ```
 
+---
+
 ## 10. TEMPLATE 9 — SPEC KIT MEMORY SEARCH VIA OPENCODE
 
 **Framework:** RCAF
@@ -337,6 +355,8 @@ opencode run \
   "<prompt>" 2>&1
 ```
 
+---
+
 ## 11. TEMPLATE 10 — MULTI-STRATEGY PLANNING VIA @MULTI-AI COUNCIL
 
 **Framework:** CRAFT
@@ -363,6 +383,8 @@ opencode run \
   "<prompt>" 2>&1
 ```
 
+---
+
 ## 12. TEMPLATE 11 — DOC GENERATION VIA @WRITE
 
 **Framework:** RCAF
@@ -386,6 +408,8 @@ opencode run \
   --dir /repo \
   "<prompt>" 2>&1
 ```
+
+---
 
 ## 13. TEMPLATE 12 — SELF-INVOCATION REFUSAL SURFACE
 
@@ -411,6 +435,8 @@ Options:
 ```
 
 This template is NOT an `opencode run` invocation — it is the user-facing message the calling AI prints when the router refuses dispatch.
+
+---
 
 ## 14. TEMPLATE 13 — MEMORY EPILOGUE (REUSABLE TAIL)
 
@@ -447,6 +473,8 @@ The calling AI extracts this block via regex
 /<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/
 and feeds it to generate-context.js.
 ```
+
+---
 
 ## 15. TEMPLATE 14 — MINIMAX (TOKEN PLAN; EMPIRICAL DEFAULT: TIDD-EC + DENSE PRE-PLAN)
 

@@ -28,6 +28,8 @@ Each pattern documented here includes the rationale, implementation template, an
 - Cost-controlled execution with `--max-budget-usd`
 - Read-only exploration with guaranteed safety via `--permission-mode plan`
 
+---
+
 ## 2. GENERATE-REVIEW-FIX CYCLE
 
 **The most reliable cross-AI pattern.** The calling AI generates, Claude Code reviews, the calling AI fixes.
@@ -61,6 +63,8 @@ claude -p "Review @/tmp/generated.ts for bugs, security issues, and style violat
 - Use `--permission-mode plan` for the review step (guaranteed read-only)
 - Keep the review prompt focused: request specific findings, not general feedback
 - Limit to 2 fix cycles maximum; diminishing returns beyond that
+
+---
 
 ## 3. DEEP REASONING DELEGATION
 
@@ -102,6 +106,8 @@ claude -p "Intermittent 500 errors on POST /api/orders. Error logs show: [paste 
 - Opus is expensive — reserve for genuinely complex decisions
 - Sonnet with `--effort high` is a good middle ground for moderately complex tasks
 
+---
+
 ## 4. STRUCTURED OUTPUT PROCESSING
 
 **Extract structured data from Claude Code for programmatic use.**
@@ -136,6 +142,8 @@ claude -p "Audit @src/auth/ for security vulnerabilities" \
 - Keep schemas focused — complex schemas increase failure probability
 - Test schema with a small prompt before batch operations
 - Parse with `jq '.result'` to extract the content from the JSON wrapper
+
+---
 
 ## 5. BACKGROUND EXECUTION
 
@@ -175,6 +183,8 @@ wait $CLAUDE_PID
 - Use `$!` to capture the PID for status checking
 - Background tasks compete for API rate limits
 
+---
+
 ## 6. MODEL SELECTION STRATEGY
 
 **Choose the right model tier for each delegated task.**
@@ -213,6 +223,8 @@ TRIAGE=$(claude -p "List the 3 most critical security issues in @src/auth/" \
 DEEP_ANALYSIS=$(claude -p "Deep analysis of these security issues: $TRIAGE" \
   --model claude-opus-4-6 --effort high --permission-mode plan --output-format text 2>&1)
 ```
+
+---
 
 ## 7. CONTEXT ENRICHMENT
 
@@ -254,6 +266,8 @@ claude -p "Review this code" \
   --permission-mode plan --output-format text 2>&1
 ```
 
+---
+
 ## 8. VALIDATION PIPELINE
 
 **Multi-stage validation using Claude Code at different levels.**
@@ -285,6 +299,8 @@ claude -p "Analyze @src/feature.ts and suggest comprehensive test cases. Identif
 - Pre-merge quality gates
 - Complex feature development requiring multiple review dimensions
 - Security-sensitive changes requiring independent validation
+
+---
 
 ## 9. CROSS-VALIDATION
 
@@ -322,6 +338,8 @@ CODEX_REVIEW=$(codex exec "Review @/tmp/feature.ts for bugs and security issues"
 - Focus on disagreements between AIs as areas needing human review
 - Weight each AI's strengths: Claude for reasoning, Gemini for web context, Codex for sandbox safety
 
+---
+
 ## 10. SESSION CONTINUITY
 
 **Continue conversations across invocations.**
@@ -356,6 +374,8 @@ claude -p "Apply the suggested improvements" \
 - `--resume SESSION_ID` is more reliable for specific conversations
 - Session context accumulates — watch for growing token usage and costs
 - Use `--max-budget-usd` to cap cumulative session costs
+
+---
 
 ## 11. ANTI-PATTERNS
 

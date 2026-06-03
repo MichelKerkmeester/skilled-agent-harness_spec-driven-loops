@@ -7,6 +7,8 @@ description: "Sentinel-style pointer for applying context-budget semantics to cl
 
 Sentinel-style pointer that applies the canonical cli-devin context-budget semantics to cli-opencode dispatches without duplicating the pattern.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose
@@ -29,6 +31,8 @@ cli-devin and cli-opencode dispatch through different agent surfaces, but prompt
 
 This mirror is documentation-only. It does not add runtime budget logic, mutate memory state, or port the dropped 2-stage tool-routing idea.
 
+---
+
 ## 3. POINTER TO CANONICAL SOURCE
 
 Use `../../cli-devin/references/context-budget.md` as the source of truth for:
@@ -40,6 +44,8 @@ Use `../../cli-devin/references/context-budget.md` as the source of truth for:
 - marker interpretation.
 
 Use `../../cli-devin/assets/per-model-budgets.json` for budget defaults and `../../sk-prompt-small-model/assets/model-profiles.json` for model profiles, context windows, quota pools, and fallback metadata.
+
+---
 
 ## 4. CLI-OPENCODE-SPECIFIC NOTES
 
@@ -54,6 +60,8 @@ The active cli-opencode small-model set is registry-driven, not duplicated here.
 Do not assume every cli-opencode model has a larger window than SWE-1.6. The registry currently shows Kimi-k2.6 above SWE-1.6, while DeepSeek-v4-pro and Qwen3.6 are below it; the budget semantics still come from `../../cli-devin/references/context-budget.md`.
 
 Larger windows change what can be retained, not the rule shape. The caller may include more evidence for Kimi-k2.6, but should still apply the canonical summary threshold, truncation marker, and eviction priority from `../../cli-devin/references/context-budget.md`.
+
+---
 
 ## 5. TRUNCATION MARKER SYNTAX
 

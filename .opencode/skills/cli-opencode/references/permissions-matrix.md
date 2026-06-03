@@ -7,6 +7,8 @@ description: "Structured permissions-matrix schema, examples, RM-8 replay reason
 
 Structured permissions-matrix schema, resolution semantics, example matrices, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches.
 
+---
+
 ## 1. OVERVIEW
 
 ### Purpose
@@ -59,6 +61,8 @@ The schema intentionally keeps the rule object small. Conditions, nested
 allow/deny maps, and generated tokens were left out by design because the
 schema optimizes for auditability and deterministic runtime matching.
 
+---
+
 ## 3. RESOLUTION SEMANTICS
 
 Runtime matching does four things.
@@ -82,6 +86,8 @@ This means an allow rule for
 
 No matching rule means deny. Empty or malformed matrix means deny.
 
+---
+
 ## 4. EXAMPLE MATRIX: READ-ONLY
 
 Use `permissions-matrix.example-readonly.json` for audit, review, and research
@@ -99,6 +105,8 @@ Core intent:
 The read-only matrix is the closest match for deep-review mode. It blocks the
 RM-8 class in two independent ways: direct write/edit/delete tool calls deny,
 and the Bash command targets used for deletion deny before shell execution.
+
+---
 
 ## 5. EXAMPLE MATRIX: PACKET-LOCAL
 
@@ -121,6 +129,8 @@ Core intent:
 This is the matrix to use for implementation packets where broad reads are safe
 but mutation must stay narrow.
 
+---
+
 ## 6. EXAMPLE MATRIX: REPO-WIDE `.opencode`
 
 Use `permissions-matrix.example-repo-wide.json` for trusted refactors across
@@ -140,6 +150,8 @@ Core intent:
 
 This profile has wider authoring scope but still keeps delete and external
 configuration operations blocked.
+
+---
 
 ## 7. RUNTIME GATE BEHAVIOR
 
@@ -178,6 +190,8 @@ Bash calls are normalized to `Exec(<command>)`. Examples:
 
 If a command contains multiple segments, every command target must pass. A
 single denied command denies the whole Bash call.
+
+---
 
 ## 8. RM-8 COUNTER-EXAMPLE WALKTHROUGH
 
@@ -259,6 +273,8 @@ Layers 2-4 remain useful as defense in depth:
 
 But when a matrix is configured, the structured gate is the primary control.
 
+---
+
 ## 9. MIGRATION CHECKLIST
 
 Use this checklist when converting a prose-constrained cli-opencode recipe.
@@ -275,6 +291,8 @@ Use this checklist when converting a prose-constrained cli-opencode recipe.
 - Validate with `npx ajv validate -s permissions-matrix.schema.json -d <matrix>`.
 - Run a dry replay with representative denied writes before dispatch.
 - If no matrix is loaded, keep using the legacy four-layer prose mitigation.
+
+---
 
 ## 10. `**` GLOB SMELL WARNING
 
@@ -296,6 +314,8 @@ Risky shapes:
 
 The gate logs broad-glob warnings as a smoke check. A future CI lint can turn
 the smell into a blocking rule if the team wants enforcement.
+
+---
 
 ## 11. VALIDATION COMMANDS
 

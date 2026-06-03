@@ -35,6 +35,8 @@ hooks = true
 Superset `codex` wrapper already passes this flag, but `~/.codex/config.toml`
 should still include it so direct Codex invocations behave the same way.
 
+---
+
 ## 3. Registration
 
 Codex reads hook entries from `~/.codex/hooks.json` using the Claude-style
@@ -73,6 +75,8 @@ When appending Spec Kit Memory hooks, preserve existing Superset `notify.sh`
 entries. Multiple hooks for one event run concurrently, so hook commands must be
 idempotent and must not rely on registration order.
 
+---
+
 ## 4. Event Inputs
 
 Hook commands receive JSON on stdin. Current generated schemas use snake_case
@@ -109,6 +113,8 @@ field names and reject unknown properties.
 }
 ```
 
+---
+
 ## 5. Event Outputs
 
 Use JSON output for model-visible context:
@@ -131,6 +137,8 @@ as a developer-role message in the conversation state. For `SessionStart`, it is
 placed before the first user prompt; for `UserPromptSubmit`, it is placed after
 the submitted user message.
 
+---
+
 ## 6. Exit and Timeout Semantics
 
 | Condition | Behavior |
@@ -143,6 +151,8 @@ the submitted user message.
 Spec Kit hooks use short per-hook timeouts in registration and return `{}` on
 fail-open paths. The prompt hook emits a bounded stale advisory on cold-start
 timeout so the user can see the advisor surface is installed.
+
+---
 
 ## 7. Spec Kit Memory Wiring
 
@@ -166,6 +176,8 @@ printf '%s\n' '{"prompt":"implement TypeScript hook","cwd":"'"$PWD"'"}' \
 Expected stdout is `{}` or a JSON object with
 `hookSpecificOutput.additionalContext`; for matching work prompts it should be
 non-empty and start with `Advisor:` on the prompt hook.
+
+---
 
 ## 8. Sources
 

@@ -5,6 +5,8 @@ description: "Opt-in Smallcode-derived verification pass for cli-devin iteration
 
 # cli-devin Output Verification Pipeline
 
+---
+
 ## Overview
 
 Phase 004 adds an opt-in verification pattern for deep-loop post-dispatch validation.
@@ -27,6 +29,8 @@ cli-devin Phase 004 adapts that idea in two layers:
 
 - Recipe layer: opt-in fields tell the dispatcher whether verification should apply.
 - Validator layer: post-dispatch validation scores fenced code output and appends a degraded JSONL event when confidence is below threshold.
+
+---
 
 ## Smallcode-Derived 4-Stage Pipeline
 
@@ -77,6 +81,8 @@ Lint catches quality issues that compilation misses.
 
 SmallCode treats lint as non-blocking at `verifier.ms:93-97`. Phase 004 follows that calibration: lint contributes 0.10 to confidence, but failed lint alone does not make a hard fail.
 
+---
+
 ## Adapted For Research Output
 
 Deep research and deep review iterations often produce markdown, not runnable code. Verification should not punish narrative output when no code is produced.
@@ -97,6 +103,8 @@ Research-output rubric mode is documented for self-checks and future dispatchers
 | lint | anti-hallucination | 0.10 |
 
 The research adaptation comes from `iteration-007.md:49-103`, with the drop-in system-instruction shape at `iteration-007.md:21-45`.
+
+---
 
 ## Confidence Scoring Formula
 
@@ -129,6 +137,8 @@ Example event:
 {"type":"event","event":"verification_degraded","status":"degraded","confidence":0,"threshold":0.5,"language":"typescript","reason":"verification_degraded","detail":"verification confidence 0.00 below threshold 0.50","timestamp":"2026-05-18T00:00:00.000Z"}
 ```
 
+---
+
 ## Hard-Fail Gatekeeper Template
 
 SmallCode refuses to claim success when code cannot compile or execute after retries. Its hard-fail template is at `hard_fail.ms:95-105`, and the policy is at `hard_fail.ms:28-70`.
@@ -157,6 +167,8 @@ Reason: {reason}
 ```
 
 The template intentionally says "degraded" for Phase 004. Full hard-fail retry orchestration is out of scope.
+
+---
 
 ## post-dispatch-validate.ts Handshake
 
@@ -198,6 +210,8 @@ Supported language labels:
 
 The implementation is intentionally local and static. It does not run arbitrary model output.
 
+---
+
 ## When To Enable
 
 Enable verification when:
@@ -215,6 +229,8 @@ Keep verification disabled when:
 - the model output should be judged by human review rather than syntax checks.
 
 ADR-001 requires opt-in semantics. Existing recipes must keep `verification_enabled: false`.
+
+---
 
 ## Recipe Fields
 
@@ -238,6 +254,8 @@ Supported values:
 - `go`
 
 Do not add conditionals to JSON. The conditional meaning is documented in each recipe's `system_instructions`.
+
+---
 
 ## Tool Scoring State File Format
 
@@ -295,6 +313,8 @@ At exactly `0.5`, do not demote. Below `0.5` with only one or two calls, do not 
 
 Demotion only affects the next iter's suggestions. It is not a permanent deny rule, and it does not modify the recipe's allowed-tools contract.
 
+---
+
 ## Operational Verification
 
 Run the focused unit test:
@@ -328,6 +348,8 @@ Expected backward-compat case:
 - malformed fenced code does not alter existing validation behavior.
 - no degraded event is appended.
 
+---
+
 ## Limits
 
 Phase 004 does not execute model output.
@@ -341,6 +363,8 @@ Phase 004 does not change cli-opencode docs.
 Phase 004 treats lint as a confidence contributor, not a blocker.
 
 Future work can replace static scoring with sandboxed compile/run/test/lint commands once the dispatcher can constrain execution paths and timeouts.
+
+---
 
 ## Reference Checklist
 
@@ -400,6 +424,8 @@ Use this checklist when enabling verification for a recipe or future dispatcher.
 - [ ] Require timeouts before real execution.
 - [ ] Require path scoping before real execution.
 - [ ] Keep lint non-blocking unless a future ADR changes it.
+
+---
 
 ## Worked Examples
 
@@ -496,6 +522,8 @@ validator returns ok
 no degraded event
 ```
 
+---
+
 ## Failure Modes
 
 ### False Positive Code Detection
@@ -537,6 +565,8 @@ Mitigation:
 - recipe defaults stay false.
 - missing config is equivalent to false.
 - unit tests cover verification-off pass-through.
+
+---
 
 ## Future Extension Points
 
