@@ -268,6 +268,11 @@ const memoryHealth: ToolDefinition = {
         type: 'boolean',
         default: false,
         description: 'Required with autoRepair:true to execute repair actions. When false or omitted, the indexed-continuity health check returns a confirmation-only response.'
+      },
+      cleanFiles: {
+        type: 'boolean',
+        default: false,
+        description: 'When true in full mode, removes orphaned vector/index files surfaced by the integrity check.'
       }
     },
     required: []

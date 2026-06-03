@@ -332,6 +332,7 @@ const memoryStatsSchema = getSchema({
 
 const memoryHealthSchema = getSchema({
   reportMode: z.enum(['full', 'divergent_aliases']).optional(),
+  includeFullReport: z.boolean().optional(),
   limit: positiveIntMax(200).optional(),
   specFolder: optionalPathString(),
   autoRepair: z.boolean().optional(),
@@ -555,7 +556,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_save: ['filePath', 'force', 'dryRun', 'skipPreflight', 'asyncEmbedding', 'routeAs', 'mergeModeHint', 'tenantId', 'userId', 'agentId', 'sessionId', 'provenanceSource', 'provenanceActor', 'governedAt', 'retentionPolicy', 'deleteAfter'],
   memory_list: ['limit', 'offset', 'specFolder', 'sortBy', 'includeChunks'],
   memory_stats: ['folderRanking', 'excludePatterns', 'includeScores', 'includeArchived', 'limit'],
-  memory_health: ['reportMode', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],
+  memory_health: ['reportMode', 'includeFullReport', 'limit', 'specFolder', 'autoRepair', 'confirmed', 'cleanFiles'],
   memory_delete: ['id', 'specFolder', 'confirm'],
   memory_update: ['id', 'title', 'triggerPhrases', 'importanceWeight', 'importanceTier', 'allowPartialUpdate'],
   memory_validate: ['id', 'wasUseful', 'queryId', 'queryTerms', 'resultRank', 'totalResultsShown', 'searchMode', 'intent', 'sessionId', 'notes'],

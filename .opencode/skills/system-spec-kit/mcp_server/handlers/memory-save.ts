@@ -2799,6 +2799,29 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_save');
   // Generate requestId for incident correlation in error responses
   const requestId = randomUUID();
+
+  // Fail fast with a clear message when the target file does not exist, before any
+  // path/db processing flattens it into the generic "unexpected error" (E081). The
+  // caller-supplied path is safe to echo back.
+  if (typeof args.filePath === 'string' && args.filePath.length > 0) {
+    const probePath = path.isAbsolute(args.filePath)
+      ? args.filePath
+      : path.resolve(process.cwd(), args.filePath);
+    if (!fs.existsSync(probePath)) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: `File not found: ${probePath}`,
+        code: 'E089',
+        details: { requestId, filePath: probePath },
+        recovery: {
+          hint: 'Create the file before indexing it; for a new spec folder, generate description.json and graph-metadata.json first.',
+          actions: ['Verify the path exists', 'Scaffold the spec folder metadata before saving its docs'],
+          severity: 'warning',
+        },
+      });
+    }
+  }
+
   const restoreBarrier = checkpoints.getRestoreBarrierStatus();
 
   if (restoreBarrier) {
@@ -2857,6 +2880,29 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
 
   if (!memoryParser.isMemoryFile(validatedPath)) {
     throw new Error('File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/');
+  }
+
+  // Fail fast with a clear message when a spec doc's folder lacks both structural
+  // metadata files, instead of the generic save "unexpected error" (E081).
+  if (path.basename(canonicalValidatedPath) !== 'description.json'
+    && path.basename(canonicalValidatedPath) !== 'graph-metadata.json'
+    && !canonicalValidatedPath.includes('/constitutional/')) {
+    const specFolderDir = path.dirname(canonicalValidatedPath);
+    const missingMetadata = ['description.json', 'graph-metadata.json']
+      .filter((name) => !fs.existsSync(path.join(specFolderDir, name)));
+    if (missingMetadata.length === 2) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: `Spec folder is missing required metadata (${missingMetadata.join(', ')}): ${specFolderDir}`,
+        code: 'E089',
+        details: { requestId, filePath: canonicalValidatedPath, missingMetadata },
+        recovery: {
+          hint: 'Generate the spec-folder metadata before indexing its other documents.',
+          actions: ['Run generate-context.js / generate-description.js for this spec folder', 'Then retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
   }
 
   if (typeof database.exec === 'function') {
