@@ -456,7 +456,10 @@ function printReport(report: ValidationReport, opts: ValidateOpts): void {
   process.stdout.write(`RESULT: ${report.passed ? 'PASSED' : 'FAILED'}\n`);
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// Compare resolved filesystem paths, not the raw URL string: a repo path with
+// spaces or "|" makes import.meta.url percent-encode while argv stays literal,
+// so `file://${argv}` equality silently fails and the CLI entry never runs.
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     const { folder, opts } = parseCliArgs(process.argv.slice(2));
     const report = validateFolder(folder, opts);
