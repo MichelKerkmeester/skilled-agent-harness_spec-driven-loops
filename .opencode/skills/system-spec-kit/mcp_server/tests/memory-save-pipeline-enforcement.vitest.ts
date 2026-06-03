@@ -284,6 +284,11 @@ function parseResponse(result: { content: Array<{ text: string }> }): any {
 function resetFixtureDir(): void {
   fs.rmSync(FIXTURE_ROOT, { recursive: true, force: true });
   fs.mkdirSync(path.join(FIXTURE_ROOT, 'memory'), { recursive: true });
+  // handleMemorySave fails fast when a spec doc's folder is missing both structural metadata
+  // files; provide minimal description.json + graph-metadata.json so saves routed through the
+  // handler reach the pipeline/planner under test instead of short-circuiting on E089.
+  fs.writeFileSync(path.join(FIXTURE_ROOT, 'description.json'), '{}\n', 'utf8');
+  fs.writeFileSync(path.join(FIXTURE_ROOT, 'graph-metadata.json'), '{}\n', 'utf8');
 }
 
 function cleanupFixtureRows(): void {
