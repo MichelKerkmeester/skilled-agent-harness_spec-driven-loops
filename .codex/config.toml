@@ -72,6 +72,7 @@ SPECKIT_RETRY_QUEUE_MAX_AGE_MS = "3153600000000"
 _NOTE_CONTEXT_BUDGET = "Tool-schema wire payload: ~7,000–8,000 tokens (largest MCP surface; 35 tools across 8 families). Project-wide MCP context budget: ~16–21K tokens total — see code_mode env block for the rollup."
 _NOTE_RETRY_TUNING = "Bulk re-embed retry tuning: raised pending cap + max-age + faster batch/interval so a large embedding backlog drains instead of being parked as failed (defaults park excess/old pending: cap 1000, 24h age, 5-per-5min)."
 _NOTE_SOCKET = "macOS sun_path limit (104 chars): the default bridge socket path under database/daemon-ipc.sock exceeds the limit and the launcher fails with EINVAL. Pin to a short /tmp path so the multi-client bridge can bind."
+_NOTE_RECOMMENDED_SETUP = "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
 _NOTE_1_DB = "Default DB (recommended): context-index__ollama__nomic-embed-text-v1.5__768.sqlite (auto-derived from provider+model+dim). Pull `ollama pull nomic-embed-text:v1.5` for the local-first new-user setup; hf-local with nomic-ai/nomic-embed-text-v1.5 is the Python-side fallback."
 _NOTE_2_TOOLS = "Registers 35 tools across families (verified against mcp_server/tool-schemas.ts): memory_save/search/context/match_triggers/index_scan/stats/health/validate/update/delete/bulk_delete/list/drift_why/retention_sweep/get_learning_history/quick_search (16 memory), memory_causal_link/causal_stats (2 causal), memory_ingest_start/status/cancel (3 async ingest), embedder_list/set/status (3 embedder), session_bootstrap/resume/health (3 session), checkpoint_create/list/restore/delete (4 checkpoint), task_preflight/postflight (2 task), eval_run_ablation/reporting_dashboard (2 eval). MCP namespace: mcp__mk_spec_memory__*. Note: coverage-graph and council graph operations are owned by deep-loop-runtime CLI modules and are NOT exposed as MCP tools."
 _NOTE_3_PROVIDERS = "Auto cascade (ADR-014, local-first): Ollama (local) -> hf-local (Python sentence-transformers) -> OpenAI API -> Voyage API."
@@ -80,7 +81,6 @@ _NOTE_5_CLOUD_PROVIDERS = "Cloud tiers are explicit opt-in: add VOYAGE_API_KEY o
 _NOTE_6_GET_VOYAGE_KEY = "Get Voyage key: https://dash.voyageai.com/api-keys"
 _NOTE_7_GET_OPENAI_KEY = "Get OpenAI key: https://platform.openai.com/api-keys"
 _NOTE_8_FEATURE_FLAGS = "Opt-out flags (default ON): SPECKIT_ADAPTIVE_FUSION, SPECKIT_SESSION_BOOST, SPECKIT_CAUSAL_BOOST, SPECKIT_HYDE_ACTIVE, SPECKIT_ENTITY_LINKING, SPECKIT_GRAPH_CONCEPT_ROUTING, SPECKIT_GRAPH_REFRESH_MODE=write_local. Tier 3 LLM save routing is always on (fail-open to Tier 2 on timeout)."
-_NOTE_RECOMMENDED_SETUP = "New users: install Ollama (https://ollama.com) and run `ollama pull nomic-embed-text:v1.5`. The cascade auto-detects Ollama and persists nomic-embed-text-v1.5 (768d) as the active embedder — no API keys, all-local."
 
 [mcp_servers.mk_code_index]
 args = [".opencode/bin/mk-code-index-launcher.cjs"]
@@ -88,16 +88,16 @@ command = "node"
 
 [mcp_servers.mk_code_index.env]
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-code-index"
-_NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides. Legacy location (.opencode/skills/system-code-graph/mcp_server/database/) is auto-migrated on first launcher startup."
-_NOTE_2_TOOLS = "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply and detect_changes. MCP namespace: mcp__mk_code_index__*"
-_NOTE_CONTEXT_BUDGET = "Tool-schema wire payload: ~2,200 tokens (8 tools)."
-_NOTE_3_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
-_NOTE_4_RESCAN_THRESHOLD = "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
 SPECKIT_CODE_GRAPH_INDEX_SKILLS = "false"
 SPECKIT_CODE_GRAPH_INDEX_AGENTS = "false"
 SPECKIT_CODE_GRAPH_INDEX_COMMANDS = "false"
 SPECKIT_CODE_GRAPH_INDEX_SPECS = "false"
 SPECKIT_CODE_GRAPH_INDEX_PLUGINS = "false"
+_NOTE_CONTEXT_BUDGET = "Tool-schema wire payload: ~2,200 tokens (8 tools)."
+_NOTE_1_DB = "Database lives at .opencode/.spec-kit/code-graph/database/code-graph.sqlite by default; SPECKIT_CODE_GRAPH_DB_DIR overrides. Legacy location (.opencode/skills/system-code-graph/mcp_server/database/) is auto-migrated on first launcher startup."
+_NOTE_2_TOOLS = "Registers 8 tools: code_graph_scan/query/classify_query_intent/context/status/verify/apply and detect_changes. MCP namespace: mcp__mk_code_index__*"
+_NOTE_3_INDEX_DEFAULTS = "INDEX_* committed defaults are false (end-user safe). Maintainer mode: set SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true in .env.local (gitignored); the launcher will force all 5 INDEX_* to true at startup. Per-call code_graph_scan args (includeSkills, includeAgents, includeCommands, includeSpecs, includePlugins) still override env for fine-grained control."
+_NOTE_4_RESCAN_THRESHOLD = "SPECKIT_CODE_GRAPH_SELECTIVE_REINDEX_THRESHOLD (default 50) controls when the launcher switches from selective rescan to full scan. Raise to delay full-scans (faster session-boot, more drift tolerance); lower to keep the DB tighter. Post-commit hook (.opencode/scripts/git-hooks/post-commit) also invalidates the SQLite when commits exceed SPECKIT_CODE_GRAPH_POST_COMMIT_REBUILD_THRESHOLD (default 100)."
 
 [mcp_servers.mk_skill_advisor]
 args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]
@@ -106,13 +106,13 @@ command = "node"
 [mcp_servers.mk_skill_advisor.env]
 SPECKIT_IPC_SOCKET_DIR = "/tmp/mk-skill-advisor"
 HF_EMBED_SERVER_URL = "unix:///tmp/mk-hf-embed/hf-embed.sock"
-_NOTE_1_DB = "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback (both still recognized by the launcher + handlers)."
-_NOTE_2_TOOLS = "Registers 9 tools (8 public + 1 internal trusted-caller): advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate/propagate_enhances. MCP namespace: mcp__mk_skill_advisor__*"
-_NOTE_CONTEXT_BUDGET = "Tool-schema wire payload: ~2,200 tokens (9 tools)."
-_NOTE_3_THRESHOLDS = "Advisor confidence/uncertainty thresholds are tunable: SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD (default 0.8), SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD (default 0.35). Lane weights tunable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON + SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON (partial-merge JSON, post-022/011/4b)."
 MK_SKILL_ADVISOR_DB_DIR = ".opencode/skills/system-skill-advisor/mcp_server/database"
 SPECKIT_ADVISOR_SHADOW_MODE = "0"
 SPECKIT_SKILL_ADVISOR_HOOK_DISABLED = "0"
+_NOTE_CONTEXT_BUDGET = "Tool-schema wire payload: ~2,200 tokens (9 tools)."
+_NOTE_1_DB = "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback (both still recognized by the launcher + handlers)."
+_NOTE_2_TOOLS = "Registers 9 tools (8 public + 1 internal trusted-caller): advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate/propagate_enhances. MCP namespace: mcp__mk_skill_advisor__*"
+_NOTE_3_THRESHOLDS = "Advisor confidence/uncertainty thresholds are tunable: SPECKIT_ADVISOR_CONFIDENCE_THRESHOLD (default 0.8), SPECKIT_ADVISOR_UNCERTAINTY_THRESHOLD (default 0.35). Lane weights tunable via SPECKIT_ADVISOR_LANE_WEIGHTS_JSON + SPECKIT_ADVISOR_LANE_SHADOW_WEIGHTS_JSON (partial-merge JSON, post-022/011/4b)."
 
 [mcp_servers.sequential_thinking]
 args = ["@modelcontextprotocol/server-sequential-thinking@2025.12.18"]
