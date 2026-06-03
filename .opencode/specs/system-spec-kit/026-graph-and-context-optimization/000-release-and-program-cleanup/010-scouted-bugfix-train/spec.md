@@ -13,7 +13,7 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train"
     last_updated_at: "2026-06-03T00:00:00Z"
     last_updated_by: "claude-orchestrator"
-    recent_action: "Batches 1-4 shipped via verify-first scout-confirm-fix pipeline"
+    recent_action: "Batches 1-5 shipped via verify-first scout-confirm-fix pipeline"
     next_safe_action: "Land scouted bugfix batch-4 as 004 under this train"
     blockers: []
     key_files: []
@@ -103,6 +103,7 @@ Run a verify-first bugfix pipeline as a repeatable train: scout the codebase for
 | 002 | `002-scouted-bugfix-batch-2/` | Second batch (chunking, deep-loop, embeddings, vector-index, code-graph) | Complete |
 | 003 | `003-scouted-bugfix-batch-3/` | Third batch (stress-test isolation, launcher TOCTOU, memory-search gating, schema) | Complete |
 | 004 | `004-scouted-bugfix-batch-4/` | Fourth batch (token-metrics, anchor-miss, formatAgeString, shadow gate, adapter, graph-metadata-shape, cli auth, token-budget) | Complete |
+| 005 | `005-scouted-bugfix-batch-5/` | Fifth batch (D4-R grader dim_id, handover freshness aliases, updatePhaseParentPointer Zod) | Complete |
 
 ### Phase Transition Rules
 
@@ -117,6 +118,7 @@ Run a verify-first bugfix pipeline as a repeatable train: scout the codebase for
 | 001 | 002 | Independent batches, no hard dependency | Each validates standalone |
 | 002 | 003 | Independent batches, no hard dependency | Each validates standalone |
 | 003 | 004 | Independent batches, no hard dependency | Each validates standalone |
+| 004 | 005 | Independent batches, no hard dependency | Each validates standalone |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -131,6 +133,6 @@ Run a verify-first bugfix pipeline as a repeatable train: scout the codebase for
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: `001-scouted-bugfix-batch-1/`, `002-scouted-bugfix-batch-2/`, `003-scouted-bugfix-batch-3/`, `004-scouted-bugfix-batch-4/`
+- **Phase children**: `001-scouted-bugfix-batch-1/`, `002-scouted-bugfix-batch-2/`, `003-scouted-bugfix-batch-3/`, `004-scouted-bugfix-batch-4/`, `005-scouted-bugfix-batch-5/`
 - **Parent Spec**: `../spec.md`
 - **Graph Metadata**: `graph-metadata.json`

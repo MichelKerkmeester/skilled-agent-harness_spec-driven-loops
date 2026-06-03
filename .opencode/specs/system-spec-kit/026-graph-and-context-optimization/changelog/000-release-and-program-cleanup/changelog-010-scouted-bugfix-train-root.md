@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: scouted bugfix train"
-description: "Rollup of 4 child phase changelogs under 010-scouted-bugfix-train. Each batch shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
+description: "Rollup of 5 child phase changelogs under 010-scouted-bugfix-train. Each batch shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
 trigger_phrases:
   - "010-scouted-bugfix-train rollup"
   - "010-scouted-bugfix-train phase parent"
@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase parent groups 4 child phases. Each batch ran the verify-first pipeline of scout then gpt-5.5-fast confirm deep-dive then implement-and-test, and each shipped independently with its own changelog. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-batch summary, verification, and files changed.
+This phase parent groups 5 child phases. Each batch ran the verify-first pipeline of scout then gpt-5.5-fast confirm deep-dive then implement-and-test, and each shipped independently with its own changelog. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-batch summary, verification, and files changed.
 
 ### Included Phases
 
@@ -28,6 +28,7 @@ This phase parent groups 4 child phases. Each batch ran the verify-first pipelin
 | [changelog-010-002-scouted-bugfix-batch-2.md](./changelog-010-002-scouted-bugfix-batch-2.md) | 2026-06-03 | Scouted Bugfix Batch 2 |
 | [changelog-010-003-scouted-bugfix-batch-3.md](./changelog-010-003-scouted-bugfix-batch-3.md) | 2026-06-03 | Scouted Bugfix Batch 3 |
 | [changelog-010-004-scouted-bugfix-batch-4.md](./changelog-010-004-scouted-bugfix-batch-4.md) | 2026-06-03 | Scouted Bugfix Batch 4 |
+| [changelog-010-005-scouted-bugfix-batch-5.md](./changelog-010-005-scouted-bugfix-batch-5.md) | 2026-06-03 | Scouted Bugfix Batch 5 |
 
 ### Added
 
@@ -43,7 +44,7 @@ This phase parent groups 4 child phases. Each batch ran the verify-first pipelin
 
 ### Verification
 
-- All 4 child batches were verified independently. See each child changelog for per-batch verification evidence.
+- All 5 child batches were verified independently. See each child changelog for per-batch verification evidence.
 
 ### Files Changed
 
