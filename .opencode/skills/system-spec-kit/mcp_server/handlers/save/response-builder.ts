@@ -492,7 +492,7 @@ export function buildPlannerResponse({ planner }: BuildPlannerResponseParams): M
  * picks a more specific code so callers can pattern-match on the code without
  * parsing the message string.
  */
-function classifySaveErrorCode(errorMessage: string): string {
+export function classifySaveErrorCode(errorMessage: string): string {
   const lower = errorMessage.toLowerCase();
   if (lower.includes('governed ingest rejected') || lower.includes('governance_rejected')) {
     return 'E085'; // MEMORY_SAVE_GOVERNANCE_REJECTED
@@ -527,7 +527,7 @@ function classifySaveErrorCode(errorMessage: string): string {
  * `issues` array so callers can iterate over individual problems instead of
  * substring-matching the joined string.
  */
-function extractSaveErrorDetails(errorMessage: string): Record<string, unknown> {
+export function extractSaveErrorDetails(errorMessage: string): Record<string, unknown> {
   const govPrefix = 'Governed ingest rejected:';
   const govIndex = errorMessage.indexOf(govPrefix);
   if (govIndex >= 0) {

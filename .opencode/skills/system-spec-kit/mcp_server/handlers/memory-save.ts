@@ -116,6 +116,8 @@ import {
   buildIndexResult,
   buildPlannerResponse,
   buildSaveResponse,
+  classifySaveErrorCode,
+  extractSaveErrorDetails,
   serializePlannerAdvisory,
   serializePlannerBlocker,
   serializePlannerFollowUpAction,
@@ -2863,9 +2865,21 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
   const plannerMode = requestedPlannerMode ?? resolveSavePlannerMode();
   const shouldPlanCanonicalSave = !dryRun && plannerMode !== 'full-auto' && Boolean(routeAs || mergeModeHint || targetAnchorId);
 
-  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation)
+  // Validate inputs before any I/O (checkDatabaseUpdated is deferred until after validation).
+  // Return a classified validation error instead of a bare throw, which the dispatcher would
+  // otherwise flatten into the generic "unexpected error" (E081).
   if (!file_path || typeof file_path !== 'string') {
-    throw new Error('filePath is required and must be a string');
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: 'filePath is required and must be a string',
+      code: 'E089',
+      details: { requestId },
+      recovery: {
+        hint: 'Pass an absolute path to a canonical spec document or constitutional memory.',
+        actions: ['Provide a non-empty filePath string', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
   }
 
   await checkDatabaseUpdated();
@@ -2878,8 +2892,20 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
     return createIndexScopeExcludedResponse(requestId, canonicalValidatedPath, validatedPath);
   }
 
+  // A non-canonical target (e.g. a scratch file outside specs/**) returns a clear
+  // validation error rather than a bare throw the dispatcher would surface as E081.
   if (!memoryParser.isMemoryFile(validatedPath)) {
-    throw new Error('File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/');
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: 'File must be a canonical spec document under specs/**/ (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, handover.md, research.md, resource-map.md, description.json, graph-metadata.json) or a constitutional memory under .opencode/skills/*/constitutional/',
+      code: 'E089',
+      details: { requestId, filePath: validatedPath },
+      recovery: {
+        hint: 'Save a canonical spec document or constitutional memory; scratch files outside specs/** are not indexable.',
+        actions: ['Move the content into a spec folder under specs/** or .opencode/specs/**', 'Retry memory_save with the canonical path'],
+        severity: 'warning',
+      },
+    });
   }
 
   // Fail fast with a clear message when a spec doc's folder lacks both structural
@@ -2932,7 +2958,19 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
       reason: governanceDecision.reason ?? 'governance_rejected',
       metadata: { issues: governanceDecision.issues },
     });
-    throw new Error(`Governed ingest rejected: ${governanceDecision.issues.join('; ')}`);
+    // Surface the governance rejection with its own code + issue list instead of a bare
+    // throw that the dispatcher would report as the generic E081 "unexpected error".
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: `Governed ingest rejected: ${governanceDecision.issues.join('; ')}`,
+      code: 'E085',
+      details: { requestId, issues: governanceDecision.issues },
+      recovery: {
+        hint: 'Supply the required governed-ingest provenance/scope fields and retry.',
+        actions: ['Provide the missing tenant/provenance/actor metadata', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
   }
 
   // Shared dry-run response builder — both the skipPreflight and post-preflight
@@ -3097,7 +3135,20 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
             },
           });
         }
-        throw error;
+        // Classify dry-run preparation failures so even validation-only runs surface the
+        // specific cause instead of the generic E081 catch-all at the dispatcher.
+        const dryRunErrorMessage = error instanceof Error ? error.message : String(error);
+        return createMCPErrorResponse({
+          tool: 'memory_save',
+          error: dryRunErrorMessage,
+          code: classifySaveErrorCode(dryRunErrorMessage),
+          details: { requestId, ...extractSaveErrorDetails(dryRunErrorMessage) },
+          recovery: {
+            hint: 'Inspect the error message for the specific dry-run preparation failure.',
+            actions: ['Resolve the reported cause', 'Retry memory_save'],
+            severity: 'warning',
+          },
+        });
       }
       return buildDryRunResponse(preparedDryRun, parsedForPreflight, {
         skipped: false,
@@ -3248,7 +3299,20 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
         },
       });
     }
-    throw error;
+    // Classify deep save/index failures (sqlite busy, embedding, db error, etc.) so the
+    // response code points at the actual failure mode instead of the generic E081 catch-all.
+    const indexErrorMessage = error instanceof Error ? error.message : String(error);
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: indexErrorMessage,
+      code: classifySaveErrorCode(indexErrorMessage),
+      details: { requestId, ...extractSaveErrorDetails(indexErrorMessage) },
+      recovery: {
+        hint: 'Inspect the error message for the specific failure; transient DB/embedding issues are usually retryable.',
+        actions: ['Resolve the reported cause', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
   }
 
   if (typeof result.id === 'number' && result.id > 0 && result.status !== 'unchanged' && result.status !== 'duplicate') {
@@ -3275,9 +3339,23 @@ async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
       // C2 FIX: Use full delete helper to clean up ALL ancillary records
       // (vec_memories, BM25 index, causal edges, projections, etc.)
       // not just memory_index, to prevent orphaned search phantoms.
-      console.error('[memory-save] Governance metadata failed, removing orphaned memory:', govErr instanceof Error ? govErr.message : String(govErr));
+      const govErrorMessage = govErr instanceof Error ? govErr.message : String(govErr);
+      console.error('[memory-save] Governance metadata failed, removing orphaned memory:', govErrorMessage);
       try { delete_memory_from_database(database, result.id); } catch (_: unknown) { /* best-effort cleanup */ }
-      throw govErr;
+      // The orphan rollback above already ran; return a classified error (sqlite-busy / db
+      // failures map to E087/E088) instead of a bare throw the dispatcher would surface as the
+      // generic E081 catch-all.
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: govErrorMessage,
+        code: classifySaveErrorCode(govErrorMessage),
+        details: { requestId, ...extractSaveErrorDetails(govErrorMessage) },
+        recovery: {
+          hint: 'The memory was rolled back after a post-insert metadata write failed; transient DB locks are retryable.',
+          actions: ['Resolve the reported cause', 'Retry memory_save'],
+          severity: 'warning',
+        },
+      });
     }
   }
 

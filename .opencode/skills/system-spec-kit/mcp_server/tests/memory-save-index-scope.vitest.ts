@@ -85,6 +85,15 @@ async function loadMemorySaveHarness(parsedMemory: ParsedMemoryFixture) {
   vi.doUnmock('../handlers/memory-save');
   vi.doUnmock('../handlers/memory-save.js');
 
+  // The handler's pre-flight guards (target-file existence + spec-folder metadata presence)
+  // use the real filesystem. These unit tests drive synthetic in-scope/out-of-scope paths, so
+  // treat them as present and let the tier/scope logic under test run instead of short-circuiting
+  // on a File-not-found validation error.
+  vi.doMock('node:fs', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('node:fs')>();
+    return { ...actual, existsSync: () => true };
+  });
+
   vi.doMock('../core/index.js', async (importOriginal) => {
     const actual = await importOriginal<typeof import('../core/index.js')>();
     return {
@@ -264,6 +273,20 @@ async function loadMemorySaveHarness(parsedMemory: ParsedMemoryFixture) {
     return {
       ...actual,
       applyPostInsertMetadata: vi.fn(),
+    };
+  });
+
+  // The post-insert enrichment marker writes to memory_index; this harness runs against a bare
+  // :memory: DB without that table, so stub the marker writes to no-ops (the tier/scope logic
+  // under test does not depend on enrichment persistence).
+  vi.doMock('../handlers/save/enrichment-state.js', async (importOriginal) => {
+    const actual = await importOriginal<typeof import('../handlers/save/enrichment-state.js')>();
+    return {
+      ...actual,
+      markEnrichmentPending: vi.fn(),
+      recordEnrichmentResult: vi.fn(),
+      needsEnrichmentRepair: vi.fn(() => false),
+      repairEnrichmentOnReplay: vi.fn(async () => undefined),
     };
   });
 

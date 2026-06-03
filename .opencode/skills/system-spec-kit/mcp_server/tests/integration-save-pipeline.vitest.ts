@@ -11,6 +11,21 @@ function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : String(error);
 }
 
+// Validation failures return a classified structured error envelope (isError:true with a
+// specific code) instead of throwing, so callers get a clear code/message rather than the
+// generic E081 catch-all.
+function expectClassifiedError(
+  res: Awaited<ReturnType<typeof saveHandler.handleMemorySave>>,
+): { code: string; error: string } {
+  expect(res.isError).toBe(true);
+  const payload = JSON.parse((res.content[0] as { text: string }).text) as {
+    data: { code: string; error: string };
+  };
+  expect(typeof payload.data.code).toBe('string');
+  expect(payload.data.code).not.toBe('E081');
+  return payload.data;
+}
+
 describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures]', () => {
 
   // SUITE: Pipeline Module Integration
@@ -34,22 +49,27 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
   describe('Pipeline Input Validation', () => {
 
     it('T526-2: Missing filePath rejected', async () => {
-      await expect(
-        saveHandler.handleMemorySave({} as Parameters<typeof saveHandler.handleMemorySave>[0])
-      ).rejects.toThrow(/filePath|required/);
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({} as Parameters<typeof saveHandler.handleMemorySave>[0])
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).toMatch(/filePath|required/);
     });
 
     it('T526-3: Path traversal blocked', async () => {
-      await expect(
-        saveHandler.handleMemorySave({ filePath: '/specs/../../../etc/passwd' })
-      ).rejects.toThrow();
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({ filePath: '/specs/../../../etc/passwd' })
+      );
+      // Blocked with a specific code, never the generic E081 catch-all.
+      expect(err.code).toMatch(/^E/);
     });
 
     it('T526-4: Non-existent file produces error', async () => {
       const fakePath = path.join(os.tmpdir(), 'mcp-test-nonexistent-' + Date.now(), 'memory', 'fake.md');
-      await expect(
-        saveHandler.handleMemorySave({ filePath: fakePath })
-      ).rejects.toThrow();
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({ filePath: fakePath })
+      );
+      expect(err.code).toBe('E089');
     });
 
     it('T526-5: Force flag accepted as parameter', async () => {
@@ -78,19 +98,20 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
   describe('Pipeline Error Response Format', () => {
 
     it('T526-7: Save errors have consistent response format', async () => {
-      try {
-        await saveHandler.handleMemorySave({} as Parameters<typeof saveHandler.handleMemorySave>[0]);
-      } catch (error: unknown) {
-        expect(typeof getErrorMessage(error)).toBe('string');
-        return;
-      }
-      expect.unreachable('Expected an error to be thrown');
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({} as Parameters<typeof saveHandler.handleMemorySave>[0])
+      );
+      expect(typeof err.error).toBe('string');
+      expect(err.error.length).toBeGreaterThan(0);
+      expect(typeof err.code).toBe('string');
     });
 
     it('T526-8: Non-memory path rejected', async () => {
-      await expect(
-        saveHandler.handleMemorySave({ filePath: '/tmp/random-file.txt' })
-      ).rejects.toThrow();
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({ filePath: '/tmp/random-file.txt' })
+      );
+      // Classified (missing-file / non-canonical), never the generic E081 catch-all.
+      expect(err.code).toMatch(/^E/);
     });
 
   });

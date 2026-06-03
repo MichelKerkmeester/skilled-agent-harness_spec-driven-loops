@@ -59,32 +59,58 @@ describe('Handler Memory Save (T518) [deferred - requires DB test fixtures]', ()
   });
 
   describe('Input Validation', () => {
-    it('T518-7: Missing filePath throws error', async () => {
-      await expect(handler.handleMemorySave({} as Parameters<typeof handler.handleMemorySave>[0])).rejects.toThrow(/filePath.*required/);
+    // Validation failures return a classified structured error envelope (isError:true with a
+    // specific code) instead of throwing, so the dispatcher surfaces a clear code/message
+    // rather than the generic E081 catch-all.
+    const expectClassifiedError = (
+      res: Awaited<ReturnType<typeof handler.handleMemorySave>>,
+    ): { code: string; error: string } => {
+      expect(res.isError).toBe(true);
+      const payload = JSON.parse((res.content[0] as { text: string }).text) as {
+        data: { code: string; error: string };
+      };
+      expect(typeof payload.data.code).toBe('string');
+      expect(payload.data.code).not.toBe('E081');
+      return payload.data;
+    };
+
+    it('T518-7: Missing filePath returns classified validation error', async () => {
+      const err = expectClassifiedError(
+        await handler.handleMemorySave({} as Parameters<typeof handler.handleMemorySave>[0]),
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).toMatch(/filePath.*required/);
     });
 
-    it('T518-8: Null filePath throws error', async () => {
-      await expect(
-        handler.handleMemorySave({ filePath: null } as unknown as Parameters<typeof handler.handleMemorySave>[0])
-      ).rejects.toThrow(/filePath/);
+    it('T518-8: Null filePath returns classified validation error', async () => {
+      const err = expectClassifiedError(
+        await handler.handleMemorySave({ filePath: null } as unknown as Parameters<typeof handler.handleMemorySave>[0]),
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).toMatch(/filePath/);
     });
 
-    it('T518-9: Non-string filePath throws error', async () => {
-      await expect(
-        handler.handleMemorySave({ filePath: 12345 } as unknown as Parameters<typeof handler.handleMemorySave>[0])
-      ).rejects.toThrow(/filePath.*string/);
+    it('T518-9: Non-string filePath returns classified validation error', async () => {
+      const err = expectClassifiedError(
+        await handler.handleMemorySave({ filePath: 12345 } as unknown as Parameters<typeof handler.handleMemorySave>[0]),
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).toMatch(/filePath.*string/);
     });
 
-    it('T518-10: Path traversal blocked', async () => {
-      await expect(
-        handler.handleMemorySave({ filePath: '/specs/../../../etc/passwd' })
-      ).rejects.toThrow();
+    it('T518-10: Path traversal blocked with a classified error', async () => {
+      const err = expectClassifiedError(
+        await handler.handleMemorySave({ filePath: '/specs/../../../etc/passwd' }),
+      );
+      // Blocked with a specific code (scope-excluded / validation), never the generic catch-all.
+      expect(err.code).toMatch(/^E/);
     });
 
-    it('T518-11: Non-memory file rejected', async () => {
-      await expect(
-        handler.handleMemorySave({ filePath: '/tmp/not-a-memory-file.txt' })
-      ).rejects.toThrow();
+    it('T518-11: Non-memory / missing file returns classified error', async () => {
+      const err = expectClassifiedError(
+        await handler.handleMemorySave({ filePath: '/tmp/not-a-memory-file.txt' }),
+      );
+      expect(err.code).toBe('E089');
     });
   });
 
