@@ -303,7 +303,7 @@
         "avoid": [],
         "preplanning_density": "dense",
         "evidence": {
-          "benchmark": "120/003",
+          "benchmark": "003",
           "primary_score": 0.767,
           "fallback_score": 0.742,
           "sample": "7-fixture rig, real MiniMax M2.7 runs",
@@ -365,7 +365,7 @@
         "avoid": [],
         "preplanning_density": "dense",
         "evidence": {
-          "benchmark": "120/003",
+          "benchmark": "003",
           "primary_score": 0.767,
           "fallback_score": 0.742,
           "sample": "7-fixture rig, real MiniMax M2.7 runs",
@@ -386,7 +386,7 @@
           "provider": "xiaomi-token-plan-ams",
           "quota_pool": "xiaomi-token-plan",
           "status": "active",
-          "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Free cheap-iteration path: opencode/mimo-v2.5-free (opencode-go gateway, v2.5 tier). Context window 1,000,000 tokens (confirmed via 126/003 research; released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (126/004 benchmark, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
+          "notes": "Xiaomi Token Plan (Europe) via opencode provider xiaomi-token-plan-ams (credential 'Xiaomi Token Plan (Europe)'). Live slug xiaomi-token-plan-ams/mimo-v2.5-pro (confirmed responsive on opencode 1.15.13, 2026-06-01); verify the full live list with 'opencode models xiaomi-token-plan-ams'. Omit --agent (warns + falls back on 1.15.13). Free cheap-iteration path: opencode/mimo-v2.5-free (opencode-go gateway, v2.5 tier). Context window 1,000,000 tokens (released 2026-04-22). OpenAI-compatible endpoint https://token-plan-ams.xiaomimimo.com/v1; opencode cost shows 0/0 (Token-Plan subscription). --variant maps to MiMo reasoning effort (low/medium/high) in opencode settings — always dispatch with --variant high (confirmed accepted on opencode 1.15.13). Best prompt framework (benchmark 004, 10/10 real runs): COSTAR or RACE + lean pre-planning — frame for format/brevity, not guardrails; TIDD-EC/dense ranked last; avoid CIDI (intermittent tool-only file-writes)."
         }
       ],
       "primary_quota_pool": "xiaomi-token-plan",
@@ -413,7 +413,7 @@
       "weaknesses": [
         "long-context quality degrades past ~512k despite the 1M window",
         "Token-Plan subscription request-window semantics unverified",
-        "prompt-framework benchmark (126/004) used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise"
+        "prompt-framework benchmark 004 used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise"
       ],
       "avg_iter_wall_clock_min": null,
       "status": "active",
@@ -426,7 +426,7 @@
         ],
         "preplanning_density": "lean",
         "evidence": {
-          "benchmark": "126/004",
+          "benchmark": "004",
           "primary_score": 1.0,
           "fallback_score": 0.9934,
           "sample": "10/10 real MiMo-V2.5-Pro runs at --variant high",

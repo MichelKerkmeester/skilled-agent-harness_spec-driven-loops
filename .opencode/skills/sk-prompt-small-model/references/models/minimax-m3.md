@@ -57,26 +57,26 @@ This mirrors `model-profiles.json` `recommended_frameworks` for `minimax-m3`:
 
 **Counter-intuitive note:** MiniMax wants guardrail-heavy framing (TIDD-EC Do's/Don'ts) **plus** dense pre-planning — the **opposite** of the cross-model default (medium pre-planning, lighter framing). Most models plateau or regress with dense pre-plans; MiniMax actively uses the dense plan structure rather than being slowed by it. This is because TIDD-EC's explicit Do's/Don'ts curb MiniMax's scope and format drift more effectively than RCAF's role anchor, and the dense pre-plan gives MiniMax a concrete decision scaffold it follows rather than ignoring. For all other models in the rotation (SWE-1.6, DeepSeek, Kimi, GLM, Qwen) the cross-model default applies (RCAF + medium); MiniMax is the explicit exception.
 
-The benchmark that produced these numbers was run on `minimax-2.7` in packet `120/003`; the framework contract is **carried** to M3 until a fresh M3-specific run is completed.
+The benchmark that produced these numbers was run on `minimax-2.7` in benchmark `003`; the framework contract is **carried** to M3 until a fresh M3-specific run is completed.
 
 ---
 
 ## 4. BENCHMARK EVIDENCE
 
-Evidence source for this section: packet `120/003` synthesis.
+Evidence source for this section: benchmark `003` synthesis.
 
 | Field | Value |
 |---|---|
-| **Packet id** | `120/003` |
+| **Benchmark id** | `003` |
 | **Model benchmarked** | `minimax-2.7` (carried to M3) |
-| **Primary score** (TIDD-EC medium) | `0.7671` (per `120/003` synthesis) |
-| **Fallback score** (RCAF medium) | `0.7419` (per `120/003` synthesis) |
-| **Dense vs medium pre-plan** | `0.7750` (dense) vs `0.7671` (medium) — dense wins (per `120/003` synthesis) |
-| **Sample** | 7-fixture rig; 49 real MiniMax M2.7 dispatches (7 variants × 7 fixtures), per `120/003` synthesis |
+| **Primary score** (TIDD-EC medium) | `0.7671` (per benchmark `003` synthesis) |
+| **Fallback score** (RCAF medium) | `0.7419` (per benchmark `003` synthesis) |
+| **Dense vs medium pre-plan** | `0.7750` (dense) vs `0.7671` (medium) — dense wins (per benchmark `003` synthesis) |
+| **Sample** | 7-fixture rig; 49 real MiniMax M2.7 dispatches (7 variants × 7 fixtures), per benchmark `003` synthesis |
 | **Caveat** | Single sample per variant/fixture; margins of `0.008`–`0.03` were above the synthesis' `~0.02` fixture-noise floor |
 | **Status** | `carried` — framework inherited from `minimax-2.7`; NOT a fresh run on M3 |
 
-**Discriminator:** Per `120/003` synthesis, TIDD-EC's explicit Do's/Don'ts curbed MiniMax's scope/format drift, and dense pre-planning gave MiniMax extra structure it used rather than being slowed by it.
+**Discriminator:** Per benchmark `003` synthesis, TIDD-EC's explicit Do's/Don'ts curbed MiniMax's scope/format drift, and dense pre-planning gave MiniMax extra structure it used rather than being slowed by it.
 
 For `status: "carried"`: the M3-highspeed model slug is newer and its exact behaviour is unverified. The framework contract is a reasonable prior given MiniMax's architectural continuity, but a fresh 7+ fixture benchmark on M3 should be run before elevating status to `empirical`.
 
@@ -149,7 +149,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, fallback_target, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
-- [`minimax-2.7.md`](./minimax-2.7.md) — empirical sibling; benchmark 120/003 was run on this model; M3 carries its framework contract
+- [`minimax-2.7.md`](./minimax-2.7.md) — empirical sibling; benchmark 003 was run on this model; M3 carries its framework contract
 - [`../../../cli-opencode/assets/prompt_templates.md`](../../../cli-opencode/assets/prompt_templates.md) — Template 14 (MiniMax TIDD-EC + dense); executor invocation wrappers, `</dev/null` rule, Memory Epilogue
 - [`../../../cli-opencode/assets/prompt_quality_card.md`](../../../cli-opencode/assets/prompt_quality_card.md) — per-model override block for MiniMax (cross-model pre-planning density context)
 - [`../../SKILL.md`](../../SKILL.md) — sk-prompt-small-model hub workflow, dispatch matrix, escalation rules

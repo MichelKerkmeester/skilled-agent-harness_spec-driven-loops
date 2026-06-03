@@ -3,7 +3,7 @@ title: "MiniMax-M2.7 Prompt-Craft Profile"
 model_id: "minimax-2.7"
 profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: empirical
-last_benchmarked: "2026 (120/003)"
+last_benchmarked: "2026 (benchmark 003)"
 ---
 
 # MiniMax-M2.7 Prompt-Craft Profile
@@ -61,7 +61,7 @@ For the generic TIDD-EC framework definition and scoring rubric, see [`../../../
 
 ## 4. BENCHMARK EVIDENCE
 
-**Benchmark packet:** 120/003  
+**Benchmark:** 003  
 **Model under test:** MiniMax-M2.7 (real runs on `minimax-coding-plan/MiniMax-M2.7-highspeed`)  
 **Sample size:** 7-fixture rig  
 **Confidence:** medium  
@@ -73,7 +73,7 @@ For the generic TIDD-EC framework definition and scoring rubric, see [`../../../
 
 **Discriminator:** The gap between TIDD-EC and RCAF is modest (0.025), but TIDD-EC's explicit constraint and output-contract sections produced consistently tighter format adherence across the fixture set — format adherence was the primary differentiator, with correctness roughly equivalent between the two. The 7-fixture sample establishes TIDD-EC as the working default at the registry's medium confidence level.
 
-**No model-specific standalone benchmark exists for M2.7 outside of 120/003.** The sibling `minimax-m3` carries this result forward with status `carried`; this profile is the original empirical host.
+**No model-specific standalone benchmark exists for M2.7 outside of benchmark 003.** The sibling `minimax-m3` carries this result forward with status `carried`; this profile is the original empirical host.
 
 ---
 

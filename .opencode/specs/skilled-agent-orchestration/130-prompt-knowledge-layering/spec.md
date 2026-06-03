@@ -126,7 +126,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 8 | 008-validate-sweep-changelog-reindex/ | `validate.sh --recursive --strict`; duplication grep; changelogs; advisor re-index (L2) | Complete |
 | 9 | 009-refine-hub-cli-connections/ | Remediate hub↔cli-* seam drift (C1–C10 from the deep research): pointer-ize precedence, de-phantom STAR, repair cluster navigability/discovery, complete the new-provider checklist, extend + CI-wire the sync guard (L1) | Complete |
 | 10 | 010-hub-doc-alignment-and-router/ | Align hub SKILL.md (model-keyed router), README (spec-ref scrub), and the 9 references/models profiles to the sk-doc templates (L1) | Complete |
-| 11 | 011-model-profiles-and-benchmark-merge/ | model-profiles.json comment-hygiene; merge benchmark 006 into 005 (two eval subsets); repoint stale benchmark ids to the 00N scheme (L1) | Pending |
+| 11 | 011-model-profiles-and-benchmark-merge/ | model-profiles.json comment-hygiene; merge benchmark 006 into 005 (two eval subsets); repoint stale benchmark ids to the 00N scheme (L1) | Complete |
 | 12 | 012-cli-doc-alignment/ | Align the 5 cli-* prompt_quality_card.md + confidence-scoring-rubric + cli-opencode references to the sk-doc asset/reference templates (L1) | Pending |
 | 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Pending |
 ### Phase Transition Rules

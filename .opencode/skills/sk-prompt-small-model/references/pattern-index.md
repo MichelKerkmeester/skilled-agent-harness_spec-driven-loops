@@ -1,6 +1,6 @@
 ---
 title: Small-Model Pattern Index
-description: Authoritative index of small-model optimization patterns with their canonical executor-owned locations and ship status per Phase 002-006.
+description: Authoritative index of small-model optimization patterns with their canonical executor-owned locations and ship status.
 ---
 
 # Small-Model Pattern Index
@@ -19,8 +19,8 @@ Provide one discoverable index that maps each small-model optimization pattern (
 
 - Operator searches for "where is the small-model X pattern?"
 - Skill-advisor surfaces `sk-prompt-small-model` alongside `cli-devin` or `cli-opencode`
-- Onboarding to the 114-small-ai-model-optimization arc
-- Verifying which phase shipped a given pattern
+- Onboarding to the small-model optimization patterns
+- Verifying which patterns are shipped versus roadmap
 
 ### Core Principle
 
@@ -30,22 +30,22 @@ The index is the contract; executor skills own the patterns. If a path here is m
 
 ## 2. PATTERN INDEX
 
-| Pattern | Owner Skill | Canonical Location | Shipped In |
+| Pattern | Owner Skill | Canonical Location | Status |
 | --- | --- | --- | --- |
-| Context budget engine (per-model defaults, fit-to-budget truncation, priority eviction) | `cli-devin` | [`../../cli-devin/references/context-budget.md`](../../cli-devin/references/context-budget.md) | Phase 004 |
-| Output verification pipeline (compile → execute → smoke-test → lint) | `cli-devin` | [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) | Phase 004 |
-| Confidence-scoring rubric (verification scoring formula) | `cli-devin` | [`../../cli-devin/assets/confidence-scoring-rubric.md`](../../cli-devin/assets/confidence-scoring-rubric.md) | Phase 004 |
-| Per-model budget defaults (4 required + 2 optional stubs) | `cli-devin` | [`../../cli-devin/assets/per-model-budgets.json`](../../cli-devin/assets/per-model-budgets.json) | Phase 004 |
-| Quota-pool-aware fallback (no same-pool retry; fail-fast when no different-pool target) | `cli-devin` | [`../../cli-devin/references/quota-fallback.md`](../../cli-devin/references/quota-fallback.md) | Phase 005 |
-| Model-profile registry (unified per-model metadata) | `sk-prompt-small-model` | [`../assets/model-profiles.json`](../assets/model-profiles.json) | Phase 005 |
-| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `cli-devin` | [`../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts`](../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts) + [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) § Tool scoring state file format | Phase 005 |
-| Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`](../../deep-loop-runtime/lib/deep-loop/fallback-router.ts) | Phase 005 |
-| Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../cli-opencode/assets/permissions-matrix.schema.json`](../../cli-opencode/assets/permissions-matrix.schema.json) | Phase 003 |
-| Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../cli-opencode/references/permissions-matrix.md`](../../cli-opencode/references/permissions-matrix.md) | Phase 003 |
-| Permissions gate runtime (pre-tool-call enforcer) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`](../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts) | Phase 003 |
-| cli-opencode budget propagation (sentinel mirror of cli-devin canonical) | `cli-opencode` | [`../../cli-opencode/references/context-budget.md`](../../cli-opencode/references/context-budget.md) | Phase 006 |
-| MiniMax prompt-framework guidance (M2.7: TIDD-EC + dense pre-plan; M3: see profile) | `sk-prompt-small-model` | [`./models/minimax-2.7.md`](./models/minimax-2.7.md) + [`./models/minimax-m3.md`](./models/minimax-m3.md) | 120/003 |
-| MiMo-V2.5-Pro prompt-framework guidance (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `sk-prompt-small-model` | [`./models/mimo-v2.5-pro.md`](./models/mimo-v2.5-pro.md) | 126/004 |
+| Context budget engine (per-model defaults, fit-to-budget truncation, priority eviction) | `cli-devin` | [`../../cli-devin/references/context-budget.md`](../../cli-devin/references/context-budget.md) | shipped |
+| Output verification pipeline (compile → execute → smoke-test → lint) | `cli-devin` | [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) | shipped |
+| Confidence-scoring rubric (verification scoring formula) | `cli-devin` | [`../../cli-devin/assets/confidence-scoring-rubric.md`](../../cli-devin/assets/confidence-scoring-rubric.md) | shipped |
+| Per-model budget defaults (4 required + 2 optional stubs) | `cli-devin` | [`../../cli-devin/assets/per-model-budgets.json`](../../cli-devin/assets/per-model-budgets.json) | shipped |
+| Quota-pool-aware fallback (no same-pool retry; fail-fast when no different-pool target) | `cli-devin` | [`../../cli-devin/references/quota-fallback.md`](../../cli-devin/references/quota-fallback.md) | shipped |
+| Model-profile registry (unified per-model metadata) | `sk-prompt-small-model` | [`../assets/model-profiles.json`](../assets/model-profiles.json) | shipped |
+| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `cli-devin` | [`../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts`](../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts) + [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) § Tool scoring state file format | shipped |
+| Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`](../../deep-loop-runtime/lib/deep-loop/fallback-router.ts) | shipped |
+| Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../cli-opencode/assets/permissions-matrix.schema.json`](../../cli-opencode/assets/permissions-matrix.schema.json) | shipped |
+| Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../cli-opencode/references/permissions-matrix.md`](../../cli-opencode/references/permissions-matrix.md) | shipped |
+| Permissions gate runtime (pre-tool-call enforcer) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`](../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts) | shipped |
+| cli-opencode budget propagation (sentinel mirror of cli-devin canonical) | `cli-opencode` | [`../../cli-opencode/references/context-budget.md`](../../cli-opencode/references/context-budget.md) | shipped |
+| MiniMax prompt-framework guidance (M2.7: TIDD-EC + dense pre-plan; M3: see profile) | `sk-prompt-small-model` | [`./models/minimax-2.7.md`](./models/minimax-2.7.md) + [`./models/minimax-m3.md`](./models/minimax-m3.md) | shipped (benchmark 003) |
+| MiMo-V2.5-Pro prompt-framework guidance (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `sk-prompt-small-model` | [`./models/mimo-v2.5-pro.md`](./models/mimo-v2.5-pro.md) | shipped (benchmark 004) |
 
 ---
 
@@ -59,7 +59,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | `sk-prompt-small-model` (this skill) | Model registry + prompt-craft profiles + indexes | `assets/model-profiles.json` (each entry has `executors` array), `references/models/`, this file, SKILL.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 
-If a pattern needs to span two executors, the rule is: ship the body in the primary executor and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary. Phase 006's `cli-opencode/references/context-budget.md` is the canonical example of this pattern.
+If a pattern needs to span two executors, the rule is: ship the body in the primary executor and add a sentinel-style mirror (≤ 200 LOC, link-only) in the secondary. The `cli-opencode/references/context-budget.md` mirror is the canonical example of this pattern.
 
 ---
 
@@ -92,14 +92,13 @@ If a downstream phase moves, renames, or removes a pattern file:
 | Pattern split across multiple files | List all locations in the same row (comma-separated paths) |
 | Pattern merged into another | Point both rows at the merged location |
 
-There is no automated CI check for staleness (Phase 007 was deleted 2026-05-18 per user direction). Rely on PR review when modifying any path referenced here.
+There is no automated CI check for staleness. Rely on PR review when modifying any path referenced here.
 
 ---
 
 ## 6. RELATED RESOURCES
 
-- [`../SKILL.md`](../SKILL.md) — Sentinel skill runtime instructions
+- [`../SKILL.md`](../SKILL.md) — Hub skill runtime instructions + the model-keyed router
 - [`../README.md`](../README.md) — Human-facing overview + quick start
 - [`../graph-metadata.json`](../graph-metadata.json) — `enhances` edges + trigger phrases
-- [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md) — Phase parent + roadmap
-- [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md) — Research synthesis (HYBRID-with-Anchor verdict in §RQ5)
+- [`../models/_index.md`](../models/_index.md) — Per-model profile index

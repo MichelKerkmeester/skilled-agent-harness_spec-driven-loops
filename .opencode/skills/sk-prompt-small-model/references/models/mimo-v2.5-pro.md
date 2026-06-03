@@ -3,7 +3,7 @@ title: "MiMo-V2.5-Pro Prompt-Craft Profile"
 model_id: "mimo-v2.5-pro"
 profile_of: "../../../sk-prompt-small-model/assets/model-profiles.json"
 status: empirical
-last_benchmarked: "2026 (126/004)"
+last_benchmarked: "2026 (benchmark 004)"
 ---
 
 # MiMo-V2.5-Pro Prompt-Craft Profile
@@ -59,39 +59,39 @@ These choices mirror `recommended_frameworks` in `model-profiles.json#mimo-v2.5-
 
 ### Why COSTAR wins for MiMo
 
-MiMo-V2.5-Pro was **frontier-correct on every benchmarked framework** — correctness was not the discriminator in the 126/004 benchmark (100% assertion pass across all five frameworks, per `126/004` synthesis). The discriminator was **format adherence + token efficiency**: lean, audience-framed prompts suppress the explanatory preamble that CIDI, RCAF, and TIDD-EC leak.
+MiMo-V2.5-Pro was **frontier-correct on every benchmarked framework** — correctness was not the discriminator in benchmark 004 (100% assertion pass across all five frameworks, per benchmark `004` synthesis). The discriminator was **format adherence + token efficiency**: lean, audience-framed prompts suppress the explanatory preamble that CIDI, RCAF, and TIDD-EC leak.
 
 The two key levers in COSTAR are:
 - `Style: "precise, no preamble"` — eliminates the warm-up paragraph MiMo emits under guardrail-heavy framing
 - `Audience: "automated pipeline / downstream parser"` — signals that prose wrapping around code is actively harmful
 
-TIDD-EC — the framework that **wins for MiniMax** — came **dead last** for MiMo: on the harder fixture it produced 151 words versus COSTAR's 62 words (`2.4×`), per `126/004` synthesis, and leaked substantial explanatory prose, breaking code-only contracts. The Do's/Don'ts guardrail structure MiniMax needs is unnecessary overhead for MiMo.
+TIDD-EC — the framework that **wins for MiniMax** — came **dead last** for MiMo: on the harder fixture it produced 151 words versus COSTAR's 62 words (`2.4×`), per benchmark `004` synthesis, and leaked substantial explanatory prose, breaking code-only contracts. The Do's/Don'ts guardrail structure MiniMax needs is unnecessary overhead for MiMo.
 
 CIDI is unreliable on MiMo: it intermittently writes output to a file via tool call instead of returning inline code, which fails automated suite parsing.
 
 ### Counter-intuitive note
 
-MiMo and MiniMax are **opposite on framework choice**. Per `126/004` synthesis, RCAF was middle-of-pack for MiMo and only 50% format-adherent, while COSTAR and RACE were both 100% format-adherent. Dense pre-planning adds prompt cost without yield for MiMo; TIDD-EC's dense scaffold ranked last.
+MiMo and MiniMax are **opposite on framework choice**. Per benchmark `004` synthesis, RCAF was middle-of-pack for MiMo and only 50% format-adherent, while COSTAR and RACE were both 100% format-adherent. Dense pre-planning adds prompt cost without yield for MiMo; TIDD-EC's dense scaffold ranked last.
 
 ---
 
 ## 4. BENCHMARK EVIDENCE
 
-Evidence source for this section: packet `126/004` synthesis.
+Evidence source for this section: benchmark `004` synthesis.
 
 | Field | Value |
 | ----- | ----- |
-| Benchmark packet | `126/004` |
-| Runs | 10/10 real `mimo-v2.5-pro` dispatches succeeded (5 frameworks × 2 fixtures), per `126/004` synthesis |
-| COSTAR score | 1.0000 (composite), per `126/004` synthesis |
-| RACE score | 0.9934 (composite, statistical tie), per `126/004` synthesis |
-| TIDD-EC score | ranked last; hard-fixture output was 151 words vs COSTAR's 62 words (`2.4×`), per `126/004` synthesis |
+| Benchmark id | `004` |
+| Runs | 10/10 real `mimo-v2.5-pro` dispatches succeeded (5 frameworks × 2 fixtures), per benchmark `004` synthesis |
+| COSTAR score | 1.0000 (composite), per benchmark `004` synthesis |
+| RACE score | 0.9934 (composite, statistical tie), per benchmark `004` synthesis |
+| TIDD-EC score | ranked last; hard-fixture output was 151 words vs COSTAR's 62 words (`2.4×`), per benchmark `004` synthesis |
 | Sample size | 2 fixtures × 5 framework passes (single-sample per framework per fixture) |
 | **Discriminator** | **Format adherence + token efficiency, NOT correctness** |
 
-All five benchmarked frameworks produced 100% correct assertions, per `126/004` synthesis. The ranking was driven by whether the model emitted only the requested output shape or wrapped it in explanatory prose. COSTAR's `Audience` and `Style` fields are the structural mechanism that suppresses preamble.
+All five benchmarked frameworks produced 100% correct assertions, per benchmark `004` synthesis. The ranking was driven by whether the model emitted only the requested output shape or wrapped it in explanatory prose. COSTAR's `Audience` and `Style` fields are the structural mechanism that suppresses preamble.
 
-**Caveat:** The 126/004 sample is 2 fixtures / single-sample per framework — the COSTAR/RACE margin is inside single-sample noise. Both are safe to use. TIDD-EC/dense ranked last, was the longest average output, and was one of the frameworks that failed format adherence on the harder fixture.
+**Caveat:** The benchmark 004 sample is 2 fixtures / single-sample per framework — the COSTAR/RACE margin is inside single-sample noise. Both are safe to use. TIDD-EC/dense ranked last, was the longest average output, and was one of the frameworks that failed format adherence on the harder fixture.
 
 ---
 

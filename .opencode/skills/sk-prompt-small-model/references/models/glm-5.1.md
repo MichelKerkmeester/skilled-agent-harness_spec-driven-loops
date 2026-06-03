@@ -74,7 +74,7 @@ RCAF at medium pre-planning density is the convention default for the entire sma
 
 1. The model is described as agentic with structured reasoning and multi-file synthesis strengths — capabilities that benefit from explicit Role and Context framing.
 2. Medium density avoids under-specifying the task (risking drift) while staying within the 128k window comfortably for typical iteration payloads.
-3. No counter-evidence exists from any sibling benchmark (e.g., 120/003, 126/004) that would argue for a different framework on a similarly-scoped structured-reasoning model.
+3. No counter-evidence exists from any sibling benchmark (e.g., benchmark 003, benchmark 004) that would argue for a different framework on a similarly-scoped structured-reasoning model.
 
 The discriminator for a future benchmark should be **format adherence** (does RCAF produce more structured, verifiable outputs than plain instructions?) since GLM-5.1's stated strengths suggest it can follow structured roles, but that has not been measured.
 
