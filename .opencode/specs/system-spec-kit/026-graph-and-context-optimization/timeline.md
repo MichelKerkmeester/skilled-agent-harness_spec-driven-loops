@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-06-01T12:17:31Z"
+    last_updated_at: "2026-06-03T08:18:56Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** 2026-06-01T12:17:31Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-03T08:18:56Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `003-memory-and-causal-runtime/013-memory-index-scan-implementation`
+> **Most recent live spec folder:** `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3`
 > **Oldest live spec folder:** `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs`
-> **Counts:** 639 live spec folders · 34 archived (`z_archive/`).
+> **Counts:** 657 live spec folders · 34 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-01 10:55  003-memory-and-causal-runtime/013-memory-index-scan-implementation
- 2. 2026-06-01 10:55  003-memory-and-causal-runtime
- 3. 2026-06-01 08:43  000-release-and-program-cleanup/008-docs-and-catalogs-rollup
- 4. 2026-06-01 08:43  000-release-and-program-cleanup
- 5. 2026-06-01 08:43  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup
- 6. 2026-06-01 08:19  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit
- 7. 2026-06-01 07:45  007-mcp-daemon-reliability/015-infra-followup-hardening
- 8. 2026-06-01 07:45  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
- 9. 2026-06-01 07:45  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
-10. 2026-06-01 07:45  007-mcp-daemon-reliability
-11. 2026-06-01 07:45  006-operator-tooling
-12. 2026-06-01 07:45  000-release-and-program-cleanup/005-stress-test
-13. 2026-06-01 07:45  000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
-14. 2026-06-01 07:45  000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook
-15. 2026-06-01 07:45  006-operator-tooling/001-hook-parity
+ 1. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3
+ 2. 2026-06-03 10:18  000-release-and-program-cleanup/009-readme-and-references-accuracy
+ 3. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2
+ 4. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1
+ 5. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train
+ 6. 2026-06-03 10:18  003-memory-and-causal-runtime/016-embedding-provider-local-first
+ 7. 2026-06-03 10:18  006-operator-tooling/006-doctor-install-alignment
+ 8. 2026-06-03 10:18  006-operator-tooling
+ 9. 2026-06-03 10:18  003-memory-and-causal-runtime
+10. 2026-06-03 10:18  000-release-and-program-cleanup
+11. 2026-06-03 08:08  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
+12. 2026-06-03 08:08  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing
+13. 2026-06-02 20:22  003-memory-and-causal-runtime/015-opus-review-runtime-remediation
+14. 2026-06-02 20:22  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh
+15. 2026-06-02 20:22  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update
 ```
 
 ---
@@ -73,12 +73,12 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-01 10:55 | 2026-05-26 | `003-memory-and-causal-runtime/` |
-| 2 | 2026-06-01 08:43 | 2026-04-27 | `000-release-and-program-cleanup/` |
-| 3 | 2026-06-01 07:45 | 2026-05-28 | `007-mcp-daemon-reliability/` |
-| 4 | 2026-06-01 07:45 | 2026-05-26 | `006-operator-tooling/` |
-| 5 | 2026-06-01 07:37 | 2026-05-26 | `002-spec-kit-internals/` |
-| 6 | 2026-06-01 07:37 | 2026-04-21 | `004-code-graph/` |
+| 1 | 2026-06-03 10:18 | 2026-05-26 | `006-operator-tooling/` |
+| 2 | 2026-06-03 10:18 | 2026-05-26 | `003-memory-and-causal-runtime/` |
+| 3 | 2026-06-03 10:18 | 2026-04-27 | `000-release-and-program-cleanup/` |
+| 4 | 2026-06-02 07:56 | 2026-05-28 | `007-mcp-daemon-reliability/` |
+| 5 | 2026-06-02 07:56 | 2026-05-26 | `002-spec-kit-internals/` |
+| 6 | 2026-06-02 07:56 | 2026-04-21 | `004-code-graph/` |
 | 7 | 2026-06-01 06:49 | 2026-05-26 | `005-graph-impact-and-affordance/` |
 | 8 | 2026-06-01 06:49 | 2026-04-07 | `001-research-and-baseline/` |
 
@@ -94,35 +94,75 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-01 10:55  born:2026-05-31  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation
-2026-06-01 10:55  born:2026-05-26        003-memory-and-causal-runtime
-2026-06-01 08:43  born:2026-06-01        000-release-and-program-cleanup/008-docs-and-catalogs-rollup
-2026-06-01 08:43  born:2026-04-27        000-release-and-program-cleanup
-2026-06-01 08:43  born:2026-04-25  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup
-2026-06-01 08:19  born:2026-05-31  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit
-2026-06-01 07:45  born:2026-05-30        007-mcp-daemon-reliability/015-infra-followup-hardening
-2026-06-01 07:45  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
-2026-06-01 07:45  born:2026-05-29        003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
-2026-06-01 07:45  born:2026-05-28        007-mcp-daemon-reliability
-2026-06-01 07:45  born:2026-05-26        006-operator-tooling
+2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3
+2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/009-readme-and-references-accuracy
+2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2
+2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1
+2026-06-03 10:18  born:2026-06-03        000-release-and-program-cleanup/010-scouted-bugfix-train
+2026-06-03 10:18  born:2026-06-02  impl  003-memory-and-causal-runtime/016-embedding-provider-local-first
+2026-06-03 10:18  born:2026-06-02  impl  006-operator-tooling/006-doctor-install-alignment
+2026-06-03 10:18  born:2026-05-26        006-operator-tooling
+2026-06-03 10:18  born:2026-05-26        003-memory-and-causal-runtime
+2026-06-03 10:18  born:2026-04-27        000-release-and-program-cleanup
+2026-06-03 08:08  born:2026-05-16        000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
+2026-06-03 08:08  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing
+2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/015-opus-review-runtime-remediation
+2026-06-02 20:22  born:2026-06-02        003-memory-and-causal-runtime/014-docs-and-stress-test-refresh
+2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update
+2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update
+2026-06-02 17:05  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain
+2026-06-02 17:05  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update
+2026-06-02 17:05  born:2026-05-31        003-memory-and-causal-runtime/013-memory-index-scan-implementation
+2026-06-02 12:13  born:2026-06-02  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel
+2026-06-02 12:12  born:2026-06-02  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair
+2026-06-02 12:12  born:2026-06-01  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot
+2026-06-02 12:12  born:2026-06-01  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy
+2026-06-02 12:12  born:2026-05-31  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index
+2026-06-02 07:56  born:2026-06-01        000-release-and-program-cleanup/008-docs-and-catalogs-rollup
+2026-06-02 07:56  born:2026-05-31  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit
+2026-06-02 07:56  born:2026-05-31  impl  003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening
+2026-06-02 07:56  born:2026-05-31  impl  007-mcp-daemon-reliability/016-substrate-harness-hardening
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
+2026-06-02 07:56  born:2026-05-30        007-mcp-daemon-reliability/015-infra-followup-hardening
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
+2026-06-02 07:56  born:2026-05-30  impl  006-operator-tooling/005-worktree-per-session-automation
+2026-06-02 07:56  born:2026-05-30  impl  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
+2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
+2026-06-02 07:56  born:2026-05-29  impl  007-mcp-daemon-reliability/010-at-rest-wal-durability
+2026-06-02 07:56  born:2026-05-29  impl  002-spec-kit-internals/006-orchestrator-placeholder-parity
+2026-06-02 07:56  born:2026-05-29  impl  002-spec-kit-internals/005-validate-recursive-orchestrator-fix
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch
+2026-06-02 07:56  born:2026-05-29        003-memory-and-causal-runtime/011-embedding-stack-hardening
+2026-06-02 07:56  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings
+2026-06-02 07:56  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
+2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
+2026-06-02 07:56  born:2026-05-29        003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
+2026-06-02 07:56  born:2026-05-28        007-mcp-daemon-reliability
+2026-06-02 07:56  born:2026-05-26        002-spec-kit-internals
+2026-06-02 07:56  born:2026-04-25  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup
+2026-06-02 07:56  born:2026-04-21        004-code-graph
 2026-06-01 07:45  born:2026-05-16        000-release-and-program-cleanup/005-stress-test
 2026-06-01 07:45  born:2026-04-27        000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
 2026-06-01 07:45  born:2026-04-26  impl  000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook
 2026-06-01 07:45  born:2026-04-21        006-operator-tooling/001-hook-parity
-2026-06-01 07:37  born:2026-05-26        002-spec-kit-internals
 2026-06-01 07:37  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation
 2026-06-01 07:37  born:2026-05-01        002-spec-kit-internals/003-template-levels
 2026-06-01 07:37  born:2026-04-24        002-spec-kit-internals/001-resource-map-deep-loop-fix
-2026-06-01 07:37  born:2026-04-21        004-code-graph
 2026-06-01 07:37  born:2026-04-21        003-memory-and-causal-runtime/001-continuity-memory-runtime
 2026-06-01 07:37  born:2026-04-21        002-spec-kit-internals/002-skill-advisor
-2026-06-01 07:24  born:2026-05-29        003-memory-and-causal-runtime/011-embedding-stack-hardening
 2026-06-01 07:24  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack
 2026-06-01 07:24  born:2026-05-17        003-memory-and-causal-runtime/003-embedder-testing-and-architecture
 2026-06-01 07:06  born:2026-05-26        004-code-graph/005-resilience-and-advisor
 2026-06-01 07:06  born:2026-05-19  impl  003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp
 2026-06-01 07:06  born:2026-05-16        000-release-and-program-cleanup/004-followup-post-program
-2026-06-01 07:06  born:2026-05-16        000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
 2026-06-01 07:06  born:2026-05-11        003-memory-and-causal-runtime/002-causal-graph-channel-routing
 2026-06-01 07:06  born:2026-05-09  impl  000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup
 2026-06-01 07:06  born:2026-05-08  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery
@@ -130,7 +170,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-01 07:06  born:2026-05-08  impl  003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability
 2026-06-01 06:53  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/001-skill-graph
 2026-06-01 06:53  born:2026-05-14        002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction
-2026-06-01 06:49  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit
 2026-06-01 06:49  born:2026-05-27        002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation
 2026-06-01 06:49  born:2026-05-26        002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation
 2026-06-01 06:49  born:2026-05-26        004-code-graph/010-playbook-validation-and-hardening
@@ -187,31 +226,13 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 20:51  born:2026-05-14  impl  002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename
 2026-05-31 20:51  born:2026-05-14  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner
 2026-05-31 20:51  born:2026-05-14  impl  002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope
-2026-05-31 17:08  born:2026-05-31  impl  003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening
-2026-05-31 15:23  born:2026-05-31  impl  007-mcp-daemon-reliability/016-substrate-harness-hardening
 2026-05-31 15:23  born:2026-05-29  impl  007-mcp-daemon-reliability/013-standalone-save-second-writer-guard
 2026-05-31 12:16  born:2026-05-31  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test
-2026-05-31 12:16  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
-2026-05-31 12:16  born:2026-05-30  impl  006-operator-tooling/005-worktree-per-session-automation
-2026-05-31 12:16  born:2026-05-30  impl  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup
-2026-05-31 12:16  born:2026-05-29  impl  002-spec-kit-internals/006-orchestrator-placeholder-parity
-2026-05-31 12:16  born:2026-05-29  impl  002-spec-kit-internals/005-validate-recursive-orchestrator-fix
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
-2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client
 2026-05-31 12:16  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server
@@ -219,12 +240,10 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/013-owner-lease-election-race
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/012-boot-integrity-retention-probe
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph
-2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/010-at-rest-wal-durability
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/009-shutdown-durability
 2026-05-31 10:53  born:2026-05-29  impl  007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close
 2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/012-empty-graph-first-time-auto-scan
 2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local
-2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings
 2026-05-31 10:53  born:2026-05-29  impl  004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes
 2026-05-31 10:53  born:2026-05-28  impl  007-mcp-daemon-reliability/007-bridge-liveness-reap
 2026-05-31 10:53  born:2026-05-28  impl  007-mcp-daemon-reliability/006-graceful-exit-watchdog
@@ -620,7 +639,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit
-2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/012-code-graph-catalog-and-playbook
 2026-05-31 10:53  born:2026-04-29  impl  000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh
@@ -791,35 +809,75 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `003-memory-and-causal-runtime/013-memory-index-scan-implementation` | impl | [changelog-003-013-memory-index-scan-implementation.md](./changelog/003-memory-and-causal-runtime/changelog-003-013-memory-index-scan-implementation.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` | impl | [changelog-010-003-scouted-bugfix-batch-3.md](./changelog/000-release-and-program-cleanup/changelog-010-003-scouted-bugfix-batch-3.md) |
+| `000-release-and-program-cleanup/009-readme-and-references-accuracy` | impl | [changelog-009-readme-and-references-accuracy.md](./changelog/000-release-and-program-cleanup/changelog-009-readme-and-references-accuracy.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` | impl | [changelog-010-002-scouted-bugfix-batch-2.md](./changelog/000-release-and-program-cleanup/changelog-010-002-scouted-bugfix-batch-2.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` | impl | [changelog-010-001-scouted-bugfix-batch-1.md](./changelog/000-release-and-program-cleanup/changelog-010-001-scouted-bugfix-batch-1.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train` |  | [changelog-010-scouted-bugfix-train-root.md](./changelog/000-release-and-program-cleanup/changelog-010-scouted-bugfix-train-root.md) |
+| `003-memory-and-causal-runtime/016-embedding-provider-local-first` | impl | [changelog-016-embedding-provider-local-first.md](./changelog/003-memory-and-causal-runtime/changelog-016-embedding-provider-local-first.md) |
+| `006-operator-tooling/006-doctor-install-alignment` | impl | [changelog-006-006-doctor-install-alignment.md](./changelog/006-operator-tooling/changelog-006-006-doctor-install-alignment.md) |
+| `006-operator-tooling` |  | [changelog-006-operator-tooling-root.md](./changelog/006-operator-tooling/changelog-006-operator-tooling-root.md) |
 | `003-memory-and-causal-runtime` |  | [changelog-003-memory-and-causal-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) (rollup indexes +1) |
-| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup` |  | (none) |
 | `000-release-and-program-cleanup` |  | [changelog-000-release-and-program-cleanup-root.md](./changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
-| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup` | impl | [changelog-008-001-docs-and-catalogs-rollup.md](./changelog/000-release-and-program-cleanup/changelog-008-001-docs-and-catalogs-rollup.md) |
+| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass` |  | [changelog-003-cross-cutting-cleanup-pass-root.md](./changelog/000-release-and-program-cleanup/changelog-003-cross-cutting-cleanup-pass-root.md) |
+| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` | impl | [changelog-003-016-runtime-hook-plugin-testing.md](./changelog/000-release-and-program-cleanup/changelog-003-016-runtime-hook-plugin-testing.md) |
+| `003-memory-and-causal-runtime/015-opus-review-runtime-remediation` | impl | (none) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` |  | (none) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update` | impl | (none) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update` | impl | (none) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain` | impl | (none) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update` | impl | (none) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation` |  | [changelog-003-013-memory-index-scan-implementation.md](./changelog/003-memory-and-causal-runtime/changelog-003-013-memory-index-scan-implementation.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` | impl | [changelog-013-005-checkpoint-needs-rebuild-sentinel.md](./changelog/003-memory-and-causal-runtime/changelog-013-005-checkpoint-needs-rebuild-sentinel.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair` | impl | [changelog-013-004-memory-save-enrichment-repair.md](./changelog/003-memory-and-causal-runtime/changelog-013-004-memory-save-enrichment-repair.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot` | impl | [changelog-013-002-checkpoint-v2-file-snapshot.md](./changelog/003-memory-and-causal-runtime/changelog-013-002-checkpoint-v2-file-snapshot.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` | impl | [changelog-013-003-front-proxy-in-place-recycle.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-in-place-recycle.md)<br>[changelog-013-003-front-proxy-reconnect-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-reconnect-hardening.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index` | impl | [changelog-013-001-self-maintaining-index.md](./changelog/003-memory-and-causal-runtime/changelog-013-001-self-maintaining-index.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup` |  | (none) |
 | `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit` | impl | (none) |
+| `003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening` | impl | [changelog-003-012-memory-index-scan-ux-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-003-012-memory-index-scan-ux-hardening.md) |
+| `007-mcp-daemon-reliability/016-substrate-harness-hardening` | impl | [changelog-007-016-substrate-harness-hardening.md](./changelog/007-mcp-daemon-reliability/changelog-007-016-substrate-harness-hardening.md) |
+| `007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` | impl | [changelog-015-006-sessionstart-worktree-guard.md](./changelog/007-mcp-daemon-reliability/changelog-015-006-sessionstart-worktree-guard.md) |
+| `007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation` | impl | [changelog-015-004-cli-child-marker-propagation.md](./changelog/007-mcp-daemon-reliability/changelog-015-004-cli-child-marker-propagation.md) |
+| `007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch` | impl | [changelog-015-003-worktree-child-marker-dispatch.md](./changelog/007-mcp-daemon-reliability/changelog-015-003-worktree-child-marker-dispatch.md) |
+| `007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios` | impl | [changelog-015-002-substrate-codegraph-scenarios.md](./changelog/007-mcp-daemon-reliability/changelog-015-002-substrate-codegraph-scenarios.md) |
+| `007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test` | impl | [changelog-015-001-live-two-launcher-test.md](./changelog/007-mcp-daemon-reliability/changelog-015-001-live-two-launcher-test.md) |
 | `007-mcp-daemon-reliability/015-infra-followup-hardening` |  | [changelog-015-infra-followup-hardening-root.md](./changelog/007-mcp-daemon-reliability/changelog-015-infra-followup-hardening-root.md) (rollup indexes +2) |
+| `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing` | impl | [changelog-014-001-daemon-lifecycle-healing.md](./changelog/007-mcp-daemon-reliability/changelog-014-001-daemon-lifecycle-healing.md) |
+| `006-operator-tooling/005-worktree-per-session-automation` | impl | [changelog-006-005-worktree-per-session-automation.md](./changelog/006-operator-tooling/changelog-006-005-worktree-per-session-automation.md) |
+| `006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` | impl | [changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md](./changelog/006-operator-tooling/changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md) |
 | `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn` | impl | [changelog-014-infra-memory-db-and-graph-churn-root.md](./changelog/007-mcp-daemon-reliability/changelog-014-infra-memory-db-and-graph-churn-root.md) (rollup indexes +1) |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges` | impl | [changelog-011-008-deep-review-correctness-edges.md](./changelog/003-memory-and-causal-runtime/changelog-011-008-deep-review-correctness-edges.md) |
+| `007-mcp-daemon-reliability/010-at-rest-wal-durability` | impl | [changelog-007-010-at-rest-wal-durability.md](./changelog/007-mcp-daemon-reliability/changelog-007-010-at-rest-wal-durability.md) |
+| `002-spec-kit-internals/006-orchestrator-placeholder-parity` | impl | [changelog-002-006-orchestrator-placeholder-parity.md](./changelog/002-spec-kit-internals/changelog-002-006-orchestrator-placeholder-parity.md) |
+| `002-spec-kit-internals/005-validate-recursive-orchestrator-fix` | impl | [changelog-002-005-validate-recursive-orchestrator-fix.md](./changelog/002-spec-kit-internals/changelog-002-005-validate-recursive-orchestrator-fix.md) |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening` | impl | [changelog-011-005-live-validation-bench-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-011-005-live-validation-bench-hardening.md) |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching` | impl | [changelog-011-004-perf-instrumentation-batching.md](./changelog/003-memory-and-causal-runtime/changelog-011-004-perf-instrumentation-batching.md) |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch` | impl | [changelog-011-003-observability-model-switch.md](./changelog/003-memory-and-causal-runtime/changelog-011-003-observability-model-switch.md) |
+| `003-memory-and-causal-runtime/011-embedding-stack-hardening` |  | [changelog-011-embedding-stack-hardening-root.md](./changelog/003-memory-and-causal-runtime/changelog-011-embedding-stack-hardening-root.md) |
+| `004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings` | impl | [changelog-011-002-deferred-wip-overlapping-findings.md](./changelog/004-code-graph/changelog-011-002-deferred-wip-overlapping-findings.md) |
+| `004-code-graph/011-source-bug-and-misalignment-audit` | impl | [changelog-011-source-bug-and-misalignment-audit-root.md](./changelog/004-code-graph/changelog-011-source-bug-and-misalignment-audit-root.md) |
+| `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` | impl | [changelog-010-006-skill-advisor-shared-wiring.md](./changelog/003-memory-and-causal-runtime/changelog-010-006-skill-advisor-shared-wiring.md) |
+| `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` | impl | [changelog-010-005-retire-sidecar.md](./changelog/003-memory-and-causal-runtime/changelog-010-005-retire-sidecar.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server` |  | [changelog-010-embedding-consolidation-hf-local-server-root.md](./changelog/003-memory-and-causal-runtime/changelog-010-embedding-consolidation-hf-local-server-root.md) |
 | `007-mcp-daemon-reliability` |  | [changelog-007-mcp-daemon-reliability-root.md](./changelog/007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md) |
-| `006-operator-tooling` |  | [changelog-006-operator-tooling-root.md](./changelog/006-operator-tooling/changelog-006-operator-tooling-root.md) |
+| `002-spec-kit-internals` |  | [changelog-002-spec-kit-internals-root.md](./changelog/002-spec-kit-internals/changelog-002-spec-kit-internals-root.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup` | impl | [changelog-008-001-docs-and-catalogs-rollup.md](./changelog/000-release-and-program-cleanup/changelog-008-001-docs-and-catalogs-rollup.md) |
+| `004-code-graph` |  | [changelog-004-code-graph-root.md](./changelog/004-code-graph/changelog-004-code-graph-root.md) (rollup indexes +25) |
 | `000-release-and-program-cleanup/005-stress-test` |  | [changelog-005-stress-test-root.md](./changelog/000-release-and-program-cleanup/changelog-005-stress-test-root.md) |
 | `000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings` |  | [changelog-003-fix-mcp-runtime-stress-findings-root.md](./changelog/000-release-and-program-cleanup/changelog-003-fix-mcp-runtime-stress-findings-root.md) |
 | `000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` | impl | [changelog-001-search-intelligence-stress-playbook-root.md](./changelog/000-release-and-program-cleanup/changelog-001-search-intelligence-stress-playbook-root.md) (rollup indexes +2) |
 | `006-operator-tooling/001-hook-parity` |  | [changelog-001-hook-parity-root.md](./changelog/006-operator-tooling/changelog-001-hook-parity-root.md) (rollup indexes +7) |
-| `002-spec-kit-internals` |  | [changelog-002-spec-kit-internals-root.md](./changelog/002-spec-kit-internals/changelog-002-spec-kit-internals-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation` |  | [changelog-005-skill-advisor-documentation-root.md](./changelog/002-spec-kit-internals/changelog-005-skill-advisor-documentation-root.md) |
 | `002-spec-kit-internals/003-template-levels` |  | [changelog-003-template-levels-root.md](./changelog/002-spec-kit-internals/changelog-003-template-levels-root.md) (rollup indexes +3) |
 | `002-spec-kit-internals/001-resource-map-deep-loop-fix` |  | [changelog-001-resource-map-deep-loop-fix-root.md](./changelog/002-spec-kit-internals/changelog-001-resource-map-deep-loop-fix-root.md) |
-| `004-code-graph` |  | [changelog-004-code-graph-root.md](./changelog/004-code-graph/changelog-004-code-graph-root.md) (rollup indexes +25) |
 | `003-memory-and-causal-runtime/001-continuity-memory-runtime` |  | [changelog-001-continuity-memory-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-001-continuity-memory-runtime-root.md) (rollup indexes +1) |
 | `002-spec-kit-internals/002-skill-advisor` |  | [changelog-002-skill-advisor-root.md](./changelog/002-spec-kit-internals/changelog-002-skill-advisor-root.md) (rollup indexes +13) |
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening` |  | [changelog-011-embedding-stack-hardening-root.md](./changelog/003-memory-and-causal-runtime/changelog-011-embedding-stack-hardening-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack` |  | [changelog-004-code-index-stack-root.md](./changelog/003-memory-and-causal-runtime/changelog-004-code-index-stack-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture` |  | [changelog-003-embedder-testing-and-architecture-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-embedder-testing-and-architecture-root.md) |
 | `004-code-graph/005-resilience-and-advisor` |  | [changelog-005-resilience-and-advisor-root.md](./changelog/004-code-graph/changelog-005-resilience-and-advisor-root.md) |
 | `003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp` | impl | [changelog-002-001-deliver-causal-graph-channel-routing-mvp.md](./changelog/003-memory-and-causal-runtime/changelog-002-001-deliver-causal-graph-channel-routing-mvp.md) |
 | `000-release-and-program-cleanup/004-followup-post-program` |  | [changelog-004-followup-post-program-root.md](./changelog/000-release-and-program-cleanup/changelog-004-followup-post-program-root.md) |
-| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass` |  | [changelog-003-cross-cutting-cleanup-pass-root.md](./changelog/000-release-and-program-cleanup/changelog-003-cross-cutting-cleanup-pass-root.md) |
 | `003-memory-and-causal-runtime/002-causal-graph-channel-routing` |  | [changelog-002-causal-graph-channel-routing-root.md](./changelog/003-memory-and-causal-runtime/changelog-002-causal-graph-channel-routing-root.md) |
 | `000-release-and-program-cleanup/004-followup-post-program/002-vitest-baseline-recovery-followup` | impl | [changelog-004-002-vitest-baseline-recovery-followup.md](./changelog/000-release-and-program-cleanup/changelog-004-002-vitest-baseline-recovery-followup.md) |
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/003-vitest-baseline-recovery` | impl | [changelog-003-003-vitest-baseline-recovery.md](./changelog/000-release-and-program-cleanup/changelog-003-003-vitest-baseline-recovery.md) |
@@ -827,7 +885,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/001-continuity-memory-runtime/006-fix-memory-search-health-fallback-stability` | impl | [changelog-001-006-fix-memory-search-health-fallback-stability.md](./changelog/003-memory-and-causal-runtime/changelog-001-006-fix-memory-search-health-fallback-stability.md) |
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph` |  | [changelog-001-skill-graph-root.md](./changelog/002-spec-kit-internals/changelog-001-skill-graph-root.md) (rollup indexes +2) |
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction` |  | [changelog-006-system-skill-advisor-package-extraction-root.md](./changelog/002-spec-kit-internals/changelog-006-system-skill-advisor-package-extraction-root.md) |
-| `004-code-graph/011-source-bug-and-misalignment-audit` | impl | [changelog-011-source-bug-and-misalignment-audit-root.md](./changelog/004-code-graph/changelog-011-source-bug-and-misalignment-audit-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation` |  | [changelog-005-finding-remediation-root.md](./changelog/002-spec-kit-internals/changelog-005-finding-remediation-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation` |  | [changelog-006-playbook-run-and-remediation-root.md](./changelog/002-spec-kit-internals/changelog-006-playbook-run-and-remediation-root.md) |
 | `004-code-graph/010-playbook-validation-and-hardening` |  | [changelog-010-playbook-validation-and-hardening-root.md](./changelog/004-code-graph/changelog-010-playbook-validation-and-hardening-root.md) |
@@ -884,31 +941,13 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/015-mcp-server-mk-skill-advisor-rename` | impl | [changelog-006-015-mcp-server-mk-skill-advisor-rename.md](./changelog/002-spec-kit-internals/changelog-006-015-mcp-server-mk-skill-advisor-rename.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/046-shared-daemon-suite-runner` | impl | [changelog-001-046-shared-daemon-suite-runner.md](./changelog/003-memory-and-causal-runtime/changelog-001-046-shared-daemon-suite-runner.md) |
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/009-fix-script-filesystem-scope` | impl | [changelog-006-009-fix-script-filesystem-scope.md](./changelog/002-spec-kit-internals/changelog-006-009-fix-script-filesystem-scope.md) |
-| `003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening` | impl | [changelog-003-012-memory-index-scan-ux-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-003-012-memory-index-scan-ux-hardening.md) |
-| `007-mcp-daemon-reliability/016-substrate-harness-hardening` | impl | [changelog-007-016-substrate-harness-hardening.md](./changelog/007-mcp-daemon-reliability/changelog-007-016-substrate-harness-hardening.md) |
 | `007-mcp-daemon-reliability/013-standalone-save-second-writer-guard` | impl | [changelog-007-013-standalone-save-second-writer-guard.md](./changelog/007-mcp-daemon-reliability/changelog-007-013-standalone-save-second-writer-guard.md) |
 | `007-mcp-daemon-reliability/015-infra-followup-hardening/005-substrate-codegraph-2nd-daemon` | impl | [changelog-015-005-substrate-codegraph-2nd-daemon.md](./changelog/007-mcp-daemon-reliability/changelog-015-005-substrate-codegraph-2nd-daemon.md) |
-| `007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` | impl | [changelog-015-006-sessionstart-worktree-guard.md](./changelog/007-mcp-daemon-reliability/changelog-015-006-sessionstart-worktree-guard.md) |
-| `007-mcp-daemon-reliability/015-infra-followup-hardening/004-cli-child-marker-propagation` | impl | [changelog-015-004-cli-child-marker-propagation.md](./changelog/007-mcp-daemon-reliability/changelog-015-004-cli-child-marker-propagation.md) |
-| `007-mcp-daemon-reliability/015-infra-followup-hardening/003-worktree-child-marker-dispatch` | impl | [changelog-015-003-worktree-child-marker-dispatch.md](./changelog/007-mcp-daemon-reliability/changelog-015-003-worktree-child-marker-dispatch.md) |
-| `007-mcp-daemon-reliability/015-infra-followup-hardening/002-substrate-codegraph-scenarios` | impl | [changelog-015-002-substrate-codegraph-scenarios.md](./changelog/007-mcp-daemon-reliability/changelog-015-002-substrate-codegraph-scenarios.md) |
-| `007-mcp-daemon-reliability/015-infra-followup-hardening/001-live-two-launcher-test` | impl | [changelog-015-001-live-two-launcher-test.md](./changelog/007-mcp-daemon-reliability/changelog-015-001-live-two-launcher-test.md) |
-| `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing` | impl | [changelog-014-001-daemon-lifecycle-healing.md](./changelog/007-mcp-daemon-reliability/changelog-014-001-daemon-lifecycle-healing.md) |
-| `006-operator-tooling/005-worktree-per-session-automation` | impl | [changelog-006-005-worktree-per-session-automation.md](./changelog/006-operator-tooling/changelog-006-005-worktree-per-session-automation.md) |
-| `006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` | impl | [changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md](./changelog/006-operator-tooling/changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/009-single-writer-durability-cluster` | impl | [changelog-011-009-single-writer-durability-cluster.md](./changelog/003-memory-and-causal-runtime/changelog-011-009-single-writer-durability-cluster.md) |
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges` | impl | [changelog-011-008-deep-review-correctness-edges.md](./changelog/003-memory-and-causal-runtime/changelog-011-008-deep-review-correctness-edges.md) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/007-ephemeral-pointer-guard-and-sweep` | impl | [changelog-011-007-ephemeral-pointer-guard-and-sweep.md](./changelog/003-memory-and-causal-runtime/changelog-011-007-ephemeral-pointer-guard-and-sweep.md) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/006-comment-ephemeral-pointer-cleanup` | impl | [changelog-011-006-comment-ephemeral-pointer-cleanup.md](./changelog/003-memory-and-causal-runtime/changelog-011-006-comment-ephemeral-pointer-cleanup.md) |
-| `002-spec-kit-internals/006-orchestrator-placeholder-parity` | impl | [changelog-002-006-orchestrator-placeholder-parity.md](./changelog/002-spec-kit-internals/changelog-002-006-orchestrator-placeholder-parity.md) |
-| `002-spec-kit-internals/005-validate-recursive-orchestrator-fix` | impl | [changelog-002-005-validate-recursive-orchestrator-fix.md](./changelog/002-spec-kit-internals/changelog-002-005-validate-recursive-orchestrator-fix.md) |
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening/005-live-validation-bench-hardening` | impl | [changelog-011-005-live-validation-bench-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-011-005-live-validation-bench-hardening.md) |
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening/004-perf-instrumentation-batching` | impl | [changelog-011-004-perf-instrumentation-batching.md](./changelog/003-memory-and-causal-runtime/changelog-011-004-perf-instrumentation-batching.md) |
-| `003-memory-and-causal-runtime/011-embedding-stack-hardening/003-observability-model-switch` | impl | [changelog-011-003-observability-model-switch.md](./changelog/003-memory-and-causal-runtime/changelog-011-003-observability-model-switch.md) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/002-server-liveness-supervision` | impl | [changelog-011-002-server-liveness-supervision.md](./changelog/003-memory-and-causal-runtime/changelog-011-002-server-liveness-supervision.md) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/001-selector-and-shared-socket` | impl | [changelog-011-001-selector-and-shared-socket.md](./changelog/003-memory-and-causal-runtime/changelog-011-001-selector-and-shared-socket.md) |
-| `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` | impl | [changelog-010-006-skill-advisor-shared-wiring.md](./changelog/003-memory-and-causal-runtime/changelog-010-006-skill-advisor-shared-wiring.md) |
-| `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` | impl | [changelog-010-005-retire-sidecar.md](./changelog/003-memory-and-causal-runtime/changelog-010-005-retire-sidecar.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/004-launcher-supervision` | impl | [changelog-010-004-launcher-supervision.md](./changelog/003-memory-and-causal-runtime/changelog-010-004-launcher-supervision.md)<br>[changelog-010-embedding-consolidation-hf-local-server.md](./changelog/003-memory-and-causal-runtime/changelog-010-embedding-consolidation-hf-local-server.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/003-hf-local-http-client` | impl | [changelog-010-003-hf-local-http-client.md](./changelog/003-memory-and-causal-runtime/changelog-010-003-hf-local-http-client.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/002-hf-model-server` | impl | [changelog-010-002-hf-model-server.md](./changelog/003-memory-and-causal-runtime/changelog-010-002-hf-model-server.md) |
@@ -916,12 +955,10 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `004-code-graph/013-owner-lease-election-race` | impl | [changelog-004-013-owner-lease-election-race.md](./changelog/004-code-graph/changelog-004-013-owner-lease-election-race.md) |
 | `007-mcp-daemon-reliability/012-boot-integrity-retention-probe` | impl | [changelog-007-012-boot-integrity-retention-probe.md](./changelog/007-mcp-daemon-reliability/changelog-007-012-boot-integrity-retention-probe.md) |
 | `007-mcp-daemon-reliability/011-deep-review-shutdown-and-codegraph` | impl | [changelog-007-011-deep-review-shutdown-and-codegraph.md](./changelog/007-mcp-daemon-reliability/changelog-007-011-deep-review-shutdown-and-codegraph.md) |
-| `007-mcp-daemon-reliability/010-at-rest-wal-durability` | impl | [changelog-007-010-at-rest-wal-durability.md](./changelog/007-mcp-daemon-reliability/changelog-007-010-at-rest-wal-durability.md) |
 | `007-mcp-daemon-reliability/009-shutdown-durability` | impl | [changelog-007-009-shutdown-durability.md](./changelog/007-mcp-daemon-reliability/changelog-007-009-shutdown-durability.md) |
 | `007-mcp-daemon-reliability/008-spec-memory-graceful-wal-checkpoint-on-close` | impl | [changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md](./changelog/007-mcp-daemon-reliability/changelog-007-008-spec-memory-graceful-wal-checkpoint-on-close.md) |
 | `004-code-graph/012-empty-graph-first-time-auto-scan` | impl | [changelog-004-012-empty-graph-first-time-auto-scan.md](./changelog/004-code-graph/changelog-004-012-empty-graph-first-time-auto-scan.md) |
 | `004-code-graph/011-source-bug-and-misalignment-audit/003-db-location-skill-local` | impl | [changelog-011-003-db-location-skill-local.md](./changelog/004-code-graph/changelog-011-003-db-location-skill-local.md) |
-| `004-code-graph/011-source-bug-and-misalignment-audit/002-deferred-wip-overlapping-findings` | impl | [changelog-011-002-deferred-wip-overlapping-findings.md](./changelog/004-code-graph/changelog-011-002-deferred-wip-overlapping-findings.md) |
 | `004-code-graph/011-source-bug-and-misalignment-audit/001-applied-source-and-doc-fixes` | impl | [changelog-011-001-applied-source-and-doc-fixes.md](./changelog/004-code-graph/changelog-011-001-applied-source-and-doc-fixes.md) |
 | `007-mcp-daemon-reliability/007-bridge-liveness-reap` | impl | [changelog-007-007-bridge-liveness-reap.md](./changelog/007-mcp-daemon-reliability/changelog-007-007-bridge-liveness-reap.md) |
 | `007-mcp-daemon-reliability/006-graceful-exit-watchdog` | impl | [changelog-007-006-graceful-exit-watchdog.md](./changelog/007-mcp-daemon-reliability/changelog-007-006-graceful-exit-watchdog.md) |
@@ -1317,7 +1354,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/013-evergreen-doc-packet-id-removal` | impl | [changelog-003-013-evergreen-doc-packet-id-removal.md](./changelog/000-release-and-program-cleanup/changelog-003-013-evergreen-doc-packet-id-removal.md) |
 | `000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/004-code-graph-readiness-audit` | impl | [changelog-003-004-code-graph-readiness-audit.md](./changelog/000-release-and-program-cleanup/changelog-003-004-code-graph-readiness-audit.md) |
 | `000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits/008-validator-spec-document-integrity-audit` | impl | [changelog-003-008-validator-spec-document-integrity-audit.md](./changelog/000-release-and-program-cleanup/changelog-003-008-validator-spec-document-integrity-audit.md) |
-| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` | impl | [changelog-003-016-runtime-hook-plugin-testing.md](./changelog/000-release-and-program-cleanup/changelog-003-016-runtime-hook-plugin-testing.md) |
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/015-root-readme-refresh` | impl | [changelog-003-015-root-readme-refresh.md](./changelog/000-release-and-program-cleanup/changelog-003-015-root-readme-refresh.md) |
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/012-code-graph-catalog-and-playbook` | impl | [changelog-003-012-code-graph-catalog-and-playbook.md](./changelog/000-release-and-program-cleanup/changelog-003-012-code-graph-catalog-and-playbook.md) |
 | `000-release-and-program-cleanup/004-followup-post-program/003-post-program-quality-pass/006-readme-cascade-refresh` | impl | [changelog-003-006-readme-cascade-refresh.md](./changelog/000-release-and-program-cleanup/changelog-003-006-readme-cascade-refresh.md) |
