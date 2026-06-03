@@ -8,7 +8,27 @@ last_benchmarked: "2026 (120/003)"
 
 # MiniMax-M2.7 Prompt-Craft Profile
 
-## 1. Identity
+---
+
+## 1. OVERVIEW
+
+### Purpose
+
+The single source for how to prompt `minimax-2.7` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+
+### When to Use
+
+- Before dispatching `minimax-2.7` through `cli-opencode`.
+- When choosing its prompt framework or building its tuned scaffold.
+- When you need its dispatch gotchas (slug, variant, agent, quota pool).
+
+### Core Principle
+
+MiniMax-M2.7 rewards guardrail-heavy TIDD-EC framing plus dense pre-planning — more upfront structure, not less.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 |---|---|
@@ -24,7 +44,7 @@ MiniMax-M2.7 is the **fallback target** for `minimax-m3` in the Token Plan rotat
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** TIDD-EC  
 **Fallback:** RCAF  
@@ -39,7 +59,7 @@ For the generic TIDD-EC framework definition and scoring rubric, see [`../../../
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 **Benchmark packet:** 120/003  
 **Model under test:** MiniMax-M2.7 (real runs on `minimax-coding-plan/MiniMax-M2.7-highspeed`)  
@@ -57,7 +77,7 @@ For the generic TIDD-EC framework definition and scoring rubric, see [`../../../
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 The generic TIDD-EC framework definition and evaluation rubric live in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md). The scaffold below is the MiniMax-M2.7-specific fill — copy-paste-ready, executor-agnostic.
 
@@ -95,7 +115,7 @@ Do not include explanatory prose unless requested. If any constraint cannot be m
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "minimax-2.7"` → `"capability"`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this section records wrapper inputs, not wrapper syntax.
 
@@ -116,7 +136,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - **Data source:** [`model-profiles.json#minimax-2.7`](../../../sk-prompt-small-model/assets/model-profiles.json) — authoritative capability fields, framework scores, executor paths
 - **Framework definitions and scoring:** [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md)

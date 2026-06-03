@@ -11,7 +11,7 @@ These per-model profiles are the WEIGHT of `sk-prompt-small-model` — its promp
 
 ---
 
-## Active Models
+## 1. ACTIVE MODELS
 
 | Model | Profile | Framework (primary; fallback) | Pre-planning | Status |
 | --- | --- | --- | --- | --- |
@@ -33,7 +33,7 @@ Optional, not-yet-adopted (no active profile): Claude Haiku, Gemini Flash. Front
 
 ---
 
-## Related
+## 2. RELATED
 
 - [`../pattern-index.md`](../pattern-index.md) — Locates executor-owned MECHANICS + ship status.
 - [`../../SKILL.md`](../../SKILL.md) — Hub workflow, dispatch matrix, rules.

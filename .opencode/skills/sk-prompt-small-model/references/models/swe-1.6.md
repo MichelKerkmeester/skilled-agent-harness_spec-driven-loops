@@ -15,7 +15,25 @@ source). Executor MECHANICS (flags, wrappers, budgets) live in `cli-devin` — f
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+This profile is the single source for how to prompt SWE-1.6, the code-specialized model dispatched exclusively through `cli-devin` on the Cognition free tier. It mirrors the `swe-1.6` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+
+### When to Use
+
+- Before dispatching SWE-1.6 through `cli-devin`.
+- When choosing its prompt framework and scaffold shape.
+- When you need its dispatch gotchas (pre-planning contract, escalation, timeout headroom).
+
+### Core Principle
+
+RCAF + medium pre-planning: SWE-1.6 needs caller-supplied structured decomposition upfront, not piled-on guardrail imperatives.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | --- | --- |
@@ -34,7 +52,7 @@ SWE-1.6 does not self-plan reliably without it.
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** RCAF (Role / Context / Action / Format)
 **Fallback:** none in the registry (`fallback: null`) — RCAF is the only registry-backed
@@ -71,7 +89,7 @@ work; do not pile on imperatives. This caution is not a registry `avoid` entry.
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 No model-specific benchmark has been run for SWE-1.6 under this hub. The profile
 status is **default-unverified**.
@@ -94,7 +112,7 @@ Sample: mandatory caller-side pre-planning contract (no fixture rig).
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 The scaffold below is the canonical RCAF + medium pre-planning shape for SWE-1.6.
 It is copy-paste ready and executor-agnostic (no `devin` invocation wrapper here —
@@ -163,7 +181,7 @@ with SWE-1.6; this is cli-devin profile guidance, not a registry fallback.
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for model-specific capability fields and flags:
 [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `id: "swe-1.6"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
@@ -200,7 +218,7 @@ the distribution.
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#swe-1.6`](../../../sk-prompt-small-model/assets/model-profiles.json)
   — Registry entry; `recommended_frameworks`, `executors`, capability fields, and

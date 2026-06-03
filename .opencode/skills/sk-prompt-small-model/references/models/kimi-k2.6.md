@@ -12,7 +12,25 @@ Single source of truth for how to prompt Kimi-k2.6 in the small-model rotation. 
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+This profile is the single source for how to prompt Kimi-k2.6, the large-context specialist dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (opencode-go). It mirrors the `kimi-k2.6` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+
+### When to Use
+
+- Before dispatching Kimi-k2.6 through `cli-devin` or `cli-opencode`.
+- When choosing its prompt framework and scaffold shape.
+- When you need its dispatch gotchas (hang rate, quota pools, timeout headroom).
+
+### Core Principle
+
+RCAF + medium pre-planning: the 200k window is for front-loading explicit file-anchored Context, not for unstructured raw dumps.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | --- | --- |
@@ -28,7 +46,7 @@ Kimi-k2.6 is the **large-context specialist** in the rotation — 200 k tokens m
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** RCAF  
 **Fallback:** none specified in registry  
@@ -43,7 +61,7 @@ These choices mirror `recommended_frameworks` in [`../../../sk-prompt-small-mode
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 No model-specific benchmark has been run for Kimi-k2.6. The registry entry records `benchmark: null`, `primary_score: null`, `sample: "no model-specific benchmark"`, `confidence: "low"` — reproduced verbatim from the DATA source.
 
@@ -56,7 +74,7 @@ Until a dedicated benchmark is run (fixtures covering long-file analysis and cro
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 The generic RCAF framework definition and its full layered-RCAF YAML are defined in [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) § 3 "RCAF Mastery Patterns" — do not restate them here.
 
@@ -107,7 +125,7 @@ Output:
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Model-specific capability fields and flags are sourced from the `kimi-k2.6` entry in [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json). Full dispatch wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
@@ -128,7 +146,7 @@ Model-specific capability fields and flags are sourced from the `kimi-k2.6` entr
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#kimi-k2.6` — Registry entry; the authoritative DATA this profile mirrors.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (RCAF § 3, full framework library).

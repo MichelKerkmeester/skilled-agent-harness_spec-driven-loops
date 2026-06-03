@@ -12,7 +12,25 @@ Single source of truth for how to prompt `qwen3.6`. Framework choices mirror the
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+This profile is the single source for how to prompt Qwen3.6, dispatched only through `cli-opencode` via the `opencode-go` provider. It mirrors the `qwen3.6` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+
+### When to Use
+
+- Before dispatching Qwen3.6 through `cli-opencode`.
+- When choosing its prompt framework and scaffold shape.
+- When you need its dispatch gotchas (32k context ceiling, no cross-pool fallback).
+
+### Core Principle
+
+RCAF + medium pre-planning: on a 32k window, prompt economy is non-negotiable — RCAF's tight structure leaves budget for file-anchored context instead of guardrail bloat.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | --- | --- |
@@ -27,7 +45,7 @@ Qwen3.6 is available only via the `opencode-go` provider credits. There is no De
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** RCAF  
 **Fallback:** none  
@@ -44,7 +62,7 @@ These values are drawn verbatim from the `recommended_frameworks` object for `qw
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 No model-specific benchmark has been run for `qwen3.6` as of this profile's authoring date.
 
@@ -66,7 +84,7 @@ No model-specific benchmark has been run for `qwen3.6` as of this profile's auth
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 The generic RCAF framework definition and scoring context live in [`patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — do not copy that definition here; link to it.
 
@@ -112,7 +130,7 @@ Return:
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `qwen3.6`. Full invocation wrappers live in [`cli-opencode`](../../../cli-opencode/SKILL.md); this profile records wrapper inputs, not wrapper syntax.
 
@@ -133,7 +151,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`model-profiles.json#qwen3.6`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative source for capability fields and `recommended_frameworks`
 - [`patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF framework definition, CLEAR scoring, and all 7 framework bodies

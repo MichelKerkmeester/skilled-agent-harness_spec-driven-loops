@@ -2,7 +2,7 @@
 name: sk-prompt-small-model
 description: Per-model prompt-craft hub for small-model dispatch (SWE-1.6 + DeepSeek-v4-pro + Kimi-k2.6 + Qwen3.6 + GLM-5.1 + MiniMax-M3/M2.7 + MiMo-V2.5-Pro across cli-devin and cli-opencode). OWNS the per-model prompt-craft profiles in references/models/ (framework + scaffold + gotchas, mirroring model-profiles.json); executor MECHANICS (binary flags, invocation wrappers) stay in cli-devin/cli-opencode. Advisor co-surfaces it with those executors.
 allowed-tools: []
-version: 0.6.1.0
+version: 0.7.0.0
 ---
 
 <!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
@@ -55,17 +55,35 @@ The advisor reaches this skill through `enhances` edges from both CLI skills, pr
 
 ## 2. SMART ROUTING
 
-### Detection & Flow
+### Model Detection
 
-Discovery happens through skill-advisor `enhances` edges + trigger phrases (no dedicated detection script), then the operator reads the profile and applies executor mechanics:
+The routing key is the **target model**. Detect it from the model named in the task — a slug
+(`minimax-m3`), an alias (`minimax m3`, `deepseek`, `kimi`), or a provider phrase — and normalize
+it to a canonical profile id with the alias map. A model name is the one signal that selects which
+`references/models/<id>.md` profile to load.
+
+```python
+MODEL_ALIASES = {
+    "swe-1.6": "swe-1.6", "swe 1.6": "swe-1.6",
+    "deepseek": "deepseek-v4-pro", "deepseek-v4": "deepseek-v4-pro", "deepseek-v4-pro": "deepseek-v4-pro",
+    "kimi": "kimi-k2.6", "kimi-k2.6": "kimi-k2.6",
+    "qwen": "qwen3.6", "qwen3.6": "qwen3.6",
+    "glm": "glm-5.1", "glm-5.1": "glm-5.1",
+    "minimax-m3": "minimax-m3", "minimax m3": "minimax-m3", "minimax": "minimax-m3",
+    "minimax-2.7": "minimax-2.7", "minimax m2.7": "minimax-2.7",
+    "mimo": "mimo-v2.5-pro", "mimo-v2.5-pro": "mimo-v2.5-pro", "mimo pro": "mimo-v2.5-pro",
+}
+```
+
+### Phase Detection
 
 ```text
-Prompt mentions small-model name/pattern
+TASK CONTEXT
     |
-    +- Advisor matches trigger phrases (lexical) OR enhances edge from cli-devin/cli-opencode (graph)
-    +- Phase 1: Pick the model in references/models/_index.md
-    +- Phase 2: Read references/models/<id>.md for framework + scaffold + gotchas
-    +- Phase 3: Apply executor MECHANICS (flags, wrappers) from the cli-X
+    +- STEP 0: Resolve the target model id (alias map) — the routing key
+    +- Phase 1: Load references/models/_index.md, pick the model
+    +- Phase 2: Load references/models/<id>.md for framework + scaffold + gotchas
+    +- Phase 3: Follow references/pattern-index.md to executor MECHANICS in the cli-X
 ```
 
 ### Resource Domains
@@ -73,12 +91,15 @@ Prompt mentions small-model name/pattern
 ```text
 references/
     models/
-        _index.md         # Thin per-model index: id -> framework primary; status
+        _index.md         # Thin per-model index: id -> framework primary; status (ALWAYS)
         <id>.md           # One prompt-craft profile per active model (the hub WEIGHT)
     pattern-index.md      # Locates executor-owned MECHANICS + ship status
+assets/
+    model-profiles.json   # The registry DATA each profile mirrors
+    cli_prompt_quality_card.md  # Canonical cross-CLI quality card
 ```
 
-This skill carries prompt-craft PROSE (`references/models/`) plus two thin indexes and the model registry (`assets/model-profiles.json`). Executor MECHANICS and runtime code live elsewhere:
+Executor MECHANICS and runtime code live elsewhere — a profile points at them, never restates them:
 
 - `.opencode/skills/cli-devin/references/` and `assets/` (flags, wrappers, budgets)
 - `.opencode/skills/cli-opencode/references/` and `assets/` (flags, wrappers, permissions)
@@ -93,9 +114,78 @@ This skill carries prompt-craft PROSE (`references/models/`) plus two thin index
 | CONDITIONAL | Needing executor MECHANICS    | Follow `references/pattern-index.md` to the `cli-X` file |
 | ON_DEMAND   | Adopting Haiku/Flash          | Add a profile + index row + executor metadata (see README) |
 
-### Routing Mechanism
+### Smart Router Pseudocode
 
-This skill has no runtime router of its own. The skill-advisor surfaces it via `graph-metadata.json` trigger phrases (lexical lane) and the `enhances` edges from `cli-devin`/`cli-opencode` (graph lane). Operators then read the model's profile in `references/models/<id>.md` and follow `references/pattern-index.md` to the executor-owned MECHANICS.
+> Pattern: see [`../sk-doc/assets/skill/skill_smart_router.md`](../sk-doc/assets/skill/skill_smart_router.md)
+> for the canonical runtime-discovery, guarded-load, routing-key, and fallback reference. This hub
+> routes by MODEL: `routing_key` = the canonical model id, resource = `references/models/<id>.md`.
+
+```python
+from pathlib import Path
+
+SKILL_ROOT = Path(__file__).resolve().parent
+RESOURCE_BASES = (SKILL_ROOT / "references", SKILL_ROOT / "assets")
+DEFAULT_RESOURCE = "references/models/_index.md"
+MODELS_DIR = "references/models/"
+
+UNKNOWN_FALLBACK_CHECKLIST = [
+    "Name the target small model (slug, alias, or provider)",
+    "Confirm the executor (cli-devin or cli-opencode)",
+    "Provide the task intent plus one concrete input",
+    "Confirm the verification command set before completion",
+]
+
+def _guard_in_skill(relative_path):
+    resolved = (SKILL_ROOT / relative_path).resolve()
+    resolved.relative_to(SKILL_ROOT)                       # reject paths outside the skill
+    if resolved.suffix.lower() != ".md":
+        raise ValueError(f"Only markdown resources are routable: {relative_path}")
+    return resolved.relative_to(SKILL_ROOT).as_posix()
+
+def discover_markdown_resources():
+    docs = []
+    for base in RESOURCE_BASES:
+        if base.exists():                                  # deleted folders must not break routing
+            docs.extend(p for p in base.rglob("*.md") if p.is_file())
+    return {d.relative_to(SKILL_ROOT).as_posix() for d in docs}
+
+def resolve_model_id(task):
+    text = (getattr(task, "request", "") or "").lower()
+    for alias, model_id in MODEL_ALIASES.items():
+        if alias in text:
+            return model_id
+    return "unknown"
+
+def route_small_model_profile(task):
+    inventory = discover_markdown_resources()
+    loaded, seen = [], set()
+
+    def load_if_available(relative_path):
+        guarded = _guard_in_skill(relative_path)
+        if guarded in inventory and guarded not in seen:
+            load(guarded); loaded.append(guarded); seen.add(guarded)
+
+    load_if_available(DEFAULT_RESOURCE)                    # ALWAYS: the model index
+
+    model_id = resolve_model_id(task)
+    if model_id == "unknown":                              # Tier 1: no model named
+        return {"routing_key": "unknown", "needs_disambiguation": True,
+                "disambiguation_checklist": UNKNOWN_FALLBACK_CHECKLIST, "resources": loaded}
+
+    profile = f"{MODELS_DIR}{model_id}.md"
+    if profile not in inventory:                           # Tier 2: known model, profile not authored yet
+        return {"routing_key": model_id,
+                "notice": f"No prompt-craft profile authored yet for '{model_id}'; see _index.md",
+                "resources": loaded}
+
+    load_if_available(profile)                             # Tier 3: load the profile; mechanics follow
+    load_if_available("references/pattern-index.md")
+    return {"routing_key": model_id, "resources": loaded}
+```
+
+The skill-advisor still surfaces this hub via `graph-metadata.json` trigger phrases (lexical) and
+the `enhances` edges from `cli-devin`/`cli-opencode` (graph); the router above is how the resolved
+invocation loads the right profile.
 
 ---
 
@@ -138,7 +228,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 
 ### ALWAYS
 
-1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 200 LOC, `references/models/_index.md` ≤ 100 LOC, and `pattern-index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
+1. **Keep the entry surface thin; let the profiles carry the WEIGHT.** SKILL.md ≤ 300 LOC (the §2 smart-router pseudocode is the bulk; everything else stays terse), `references/models/_index.md` ≤ 100 LOC, and `pattern-index.md` ~110 LOC (it also carries the staleness policy + roadmap refs). The per-model prose lives in `references/models/<id>.md`, loaded on-demand — never inline a profile body into SKILL.md.
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.

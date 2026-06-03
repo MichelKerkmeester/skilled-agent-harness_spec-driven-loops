@@ -12,7 +12,25 @@ Single source of truth for **how to prompt** MiMo-V2.5-Pro. Framework rationale,
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+The single source for how to prompt `mimo-v2.5-pro` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+
+### When to Use
+
+- Before dispatching `mimo-v2.5-pro` through `cli-opencode`.
+- When choosing its prompt framework or building its tuned scaffold.
+- When you need its dispatch gotchas (slug, variant, agent, quota pool).
+
+### Core Principle
+
+MiMo-V2.5-Pro wins on COSTAR plus lean pre-planning — frame for output format, not guardrails.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | ----- | ----- |
@@ -29,7 +47,7 @@ MiMo-V2.5-Pro is the **largest-context model in the small-model rotation** and t
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** COSTAR
 **Fallback:** RACE
@@ -57,7 +75,7 @@ MiMo and MiniMax are **opposite on framework choice**. Per `126/004` synthesis, 
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 Evidence source for this section: packet `126/004` synthesis.
 
@@ -77,7 +95,7 @@ All five benchmarked frameworks produced 100% correct assertions, per `126/004` 
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 For the generic COSTAR framework definition and field semantics, see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md).
 
@@ -125,7 +143,7 @@ Expectation: <exact output shape; append "no preamble, no prose wrapping">
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-pro.capability`.
 
@@ -148,7 +166,7 @@ Source of truth for the capability fields below: `model-profiles.json#mimo-v2.5-
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`model-profiles.json#mimo-v2.5-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Canonical capability fields and recommended_frameworks data; this profile mirrors and annotates it.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic framework definitions (COSTAR, RACE, TIDD-EC, RCAF, CIDI, CRISPE, CRAFT). Section 4 (Tuned Template Snippet) links here rather than copying.

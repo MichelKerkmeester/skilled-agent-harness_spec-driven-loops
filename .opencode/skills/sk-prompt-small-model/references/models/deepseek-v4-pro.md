@@ -12,7 +12,25 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+This profile is the single source for how to prompt DeepSeek-v4-pro, dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (deepseek-api, opencode-go) as the small-model rotation's reasoning-depth escalation target. It mirrors the `deepseek-v4-pro` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+
+### When to Use
+
+- Before dispatching DeepSeek-v4-pro through `cli-devin` or `cli-opencode`.
+- When choosing its prompt framework and scaffold shape.
+- When you need its dispatch gotchas (`--pure` flag, quota pools, timeout headroom).
+
+### Core Principle
+
+RCAF + medium pre-planning, leaning into depth: name concrete files, exact symbols, and explicit acceptance criteria — vague prompts waste this model's reasoning capability on scope disambiguation.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | --- | --- |
@@ -27,7 +45,7 @@ Single source of truth for how to prompt DeepSeek-v4-pro in the small-model rota
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** RCAF (Role → Context → Action → Format)
 **Fallback:** none (registry `fallback: null` — no empirical alternative validated)
@@ -45,7 +63,7 @@ This mirrors `model-profiles.json` → `recommended_frameworks` for `deepseek-v4
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 **Status:** default-unverified — no model-specific benchmark has been run for deepseek-v4-pro.
 
@@ -68,7 +86,7 @@ The discriminator for a future benchmark run should be **correctness on multi-st
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 Primary framework: **RCAF**. For the generic RCAF definition and CLEAR scoring methodology, see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md).
 
@@ -121,7 +139,7 @@ Constraints:
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → entry `"id": "deepseek-v4-pro"`. Full invocation wrappers stay in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section only records facts needed to choose the wrapper.
 
@@ -141,7 +159,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#deepseek-v4-pro`](../../../sk-prompt-small-model/assets/model-profiles.json) — Registry entry; authoritative for all capability fields and `recommended_frameworks` data
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF definition, CLEAR scoring, full framework matrix

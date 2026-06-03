@@ -12,7 +12,25 @@ Single source of truth for how to prompt GLM-5.1. Framework choices mirror `reco
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+This profile is the single source for how to prompt GLM-5.1, an agentic model dispatched through `cli-devin` (cognition-pro) and `cli-opencode` (opencode-go). It mirrors the `glm-5.1` entry in `model-profiles.json`, covering its framework, scaffold, and dispatch gotchas.
+
+### When to Use
+
+- Before dispatching GLM-5.1 through `cli-devin` or `cli-opencode`.
+- When choosing its prompt framework and scaffold shape.
+- When you need its dispatch gotchas (dual quota pools, no cross-pool fallback).
+
+### Core Principle
+
+RCAF + medium pre-planning: front-load explicit Role and Context for structured multi-file synthesis, but keep the Action tightly scoped — the 128k window is not a licence to broaden scope.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 | --- | --- |
@@ -27,7 +45,7 @@ GLM-5.1 is an agentic model available on two independent quota pools. The primar
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 | Attribute | Value |
 | --- | --- |
@@ -46,7 +64,7 @@ No fallback framework is defined in `model-profiles.json`; if RCAF scaffolding f
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 No model-specific benchmark has been run for GLM-5.1. The `recommended_frameworks.evidence` block in `model-profiles.json` states `"sample": "no model-specific benchmark"`, `"confidence": "low"`, and `"benchmark": null`.
 
@@ -62,7 +80,7 @@ The discriminator for a future benchmark should be **format adherence** (does RC
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 For the generic RCAF framework definition — including field semantics, scoring criteria, and pattern variants — see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md).
 
@@ -94,7 +112,7 @@ Relevant files:
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for model-specific capability fields and flags: [`model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) entry `"id": "glm-5.1"`. Full invocation wrappers live in [`cli-devin`](../../../cli-devin/SKILL.md) and [`cli-opencode`](../../../cli-opencode/SKILL.md); this section does not own wrapper syntax.
 
@@ -114,7 +132,7 @@ Source of truth for model-specific capability fields and flags: [`model-profiles
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) `#glm-5.1` — Authoritative capability fields, executor list, and `recommended_frameworks` object.
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — Generic RCAF framework definition, scoring criteria, and all other supported frameworks.

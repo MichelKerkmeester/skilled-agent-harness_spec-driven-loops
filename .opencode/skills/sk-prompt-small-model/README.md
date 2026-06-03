@@ -1,15 +1,15 @@
 ---
-title: "sk-prompt-small-model: Small-Model Optimization Sentinel"
-description: "Discovery anchor that surfaces alongside cli-devin / cli-opencode and points operators at executor-owned small-model patterns."
+title: "sk-prompt-small-model: Per-Model Prompt-Craft Hub"
+description: "The model-knowledge hub that owns per-model prompt-craft profiles and the model registry for small-model dispatch via cli-devin and cli-opencode."
 trigger_phrases:
   - "small-model dispatch"
-  - "small model patterns"
-  - "swe-1.6 patterns"
+  - "small model prompt-craft"
+  - "model profile lookup"
 ---
 
 # sk-prompt-small-model
 
-A thin sentinel skill that gives operators one discoverable entry point for small-model optimization patterns (SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, optional Haiku + Gemini Flash).
+The model-knowledge hub for small-model dispatch: it owns one prompt-craft profile per active small model (framework, scaffold, gotchas) plus the model registry.
 
 ---
 
@@ -17,48 +17,47 @@ A thin sentinel skill that gives operators one discoverable entry point for smal
 
 ### Purpose
 
-This README explains how to discover, navigate, and contribute to the small-model optimization patterns shipped in the 114-small-ai-model-optimization arc. The skill itself is a routing anchor only — it does not host pattern bodies. Read this README when you want a human-facing overview; read `SKILL.md` for runtime instructions and `references/pattern-index.md` for the canonical index of patterns and their executor owners.
+This README orients a human to the hub. The skill owns the per-model prompt-craft profiles in `references/models/` and the model registry in `assets/model-profiles.json`, and the advisor co-surfaces it alongside `cli-devin` or `cli-opencode` whenever a small model is named. Read `SKILL.md` for the runtime router and rules, `references/models/_index.md` to pick a model, and `references/pattern-index.md` to find executor-owned mechanics.
 
-Provider note: MiniMax dispatches via `cli-opencode` through the MiniMax Token Plan provider `minimax-coding-plan` (Direct API `minimax` alternative); MiMo-V2.5-Pro dispatches via `cli-opencode` through the Xiaomi Token Plan provider `xiaomi-token-plan-ams` (model `xiaomi-token-plan-ams/mimo-v2.5-pro`, free `opencode/mimo-v2.5-free` sibling). See the dispatch matrix in `SKILL.md` and `references/pattern-index.md` for the full per-model provider mapping.
+The boundary is sharp. This hub owns prompt-CRAFT (which framework, what scaffold, what gotchas) for each model. The `cli-*` executors own MECHANICS (binary flags, invocation wrappers, budgets, permissions). `sk-prompt` owns the generic framework definitions. A profile here points at mechanics, it never restates them.
 
 ### Usage
 
-1. Open `references/pattern-index.md` to locate the pattern you need.
-2. Follow the link to the executor-owned file (`cli-devin/...`, `cli-opencode/...`, `sk-prompt/...`, or `system-spec-kit/...`).
-3. Apply the pattern from its canonical location. Do not copy pattern bodies into this skill.
-4. When adopting a new provider (Haiku, Gemini Flash), follow the checklist in §4 of `pattern-index.md`.
+1. Open `references/models/_index.md` and pick the target model.
+2. Read `references/models/<id>.md` for that model's framework, pre-planning density, scaffold, and dispatch gotchas.
+3. Follow `references/pattern-index.md` to the owning `cli-*` for the invocation mechanics.
+4. To adopt a new provider (Haiku, Gemini Flash), follow the single canonical checklist in `references/pattern-index.md` section 4.
 
 ### Key Statistics
 
 | Metric | Value |
 |---|---|
-| Version | 0.1.0 |
-| Operating modes | 1 (sentinel / discovery anchor) |
-| References | 1 (`pattern-index.md`) |
-| Assets | 1 (`assets/model-profiles.json` — model registry) |
-| Scripts | 0 (intentional) |
-| Owned patterns | 0 (prompt-craft prose lives in `references/models/`; registry in `assets/`) |
-| Linked patterns | 14 across `cli-devin`, `cli-opencode`, `sk-prompt`, `system-spec-kit` |
+| Version | 0.7.0.0 |
+| Operating mode | Model-keyed prompt-craft hub |
+| Active model profiles | 8 (swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, mimo-v2.5-pro) |
+| References | `models/` (profiles + `_index.md`), `pattern-index.md` |
+| Assets | `model-profiles.json` (registry), `cli_prompt_quality_card.md` (canonical card) |
+| Scripts | None (intentional) |
 
 ### How This Compares
 
 | Capability | This Skill | Related Skill |
 |---|---|---|
-| Hosts small-model patterns | No (links only) | `cli-devin`, `cli-opencode` (host the patterns) |
-| Routes via advisor | Yes (via `enhances` edges + trigger phrases) | `cli-devin`, `cli-opencode` (route via their own metadata) |
-| Holds runtime code | No | `system-spec-kit/mcp_server/lib/deep-loop/` (TS helpers) |
-| Holds the model registry | Yes — `assets/model-profiles.json` | (owned here; profiles in `references/models/` mirror it) |
-| Surfaces on frontier-model dispatch | No (out of scope) | n/a |
+| Owns per-model prompt-craft profiles | Yes (`references/models/`) | none |
+| Owns the model registry | Yes (`assets/model-profiles.json`) | none |
+| Owns executor mechanics | No | `cli-devin`, `cli-opencode` |
+| Owns generic framework definitions | No | `sk-prompt` (patterns_evaluation, depth_framework) |
+| Holds runtime code | No | `system-spec-kit` runtime helpers |
 
 ### Key Features
 
 | Feature | What It Does |
 |---|---|
-| Pattern index | Lists every small-model pattern with owner + canonical path + ship status |
-| `enhances` edges | Pulls this skill into the advisor's top results alongside `cli-devin` / `cli-opencode` |
-| Trigger phrases | Lexical-lane matches for small-model keywords (`swe-1.6`, `kimi`, `deepseek`, `qwen`, etc.) |
-| Adoption checklist | Step-by-step protocol for adding Haiku, Gemini Flash, or other small-model providers |
-| Ownership boundary table | Clarifies which executor owns which pattern, preventing drift |
+| Per-model profiles | One profile per active model: framework (primary plus fallback), pre-planning density, scaffold, gotchas |
+| Model-keyed router | Resolves the target model from the task, then loads its profile (see `SKILL.md` section 2) |
+| Model registry | `model-profiles.json` is the DATA each profile mirrors and cites |
+| Pattern index | Maps each executor-owned mechanic to its canonical `cli-*` location plus ship status |
+| Adoption checklist | One canonical protocol for adding a new small-model provider |
 
 ---
 
@@ -66,27 +65,24 @@ Provider note: MiniMax dispatches via `cli-opencode` through the MiniMax Token P
 
 **Step 1: Invoke the skill.**
 
-Routing is automatic. Mention any small-model name (`SWE-1.6`, `Kimi-k2.6`, `DeepSeek-v4-pro`, `Qwen3.6`, `Claude Haiku`, `Gemini Flash`) or pattern (`context budget`, `output verification`, `permissions matrix`, `quota fallback`, `model profile`, `tool scoring`) in a prompt and the skill-advisor will surface `sk-prompt-small-model` alongside the matching CLI skill.
+Routing is automatic. Name any small model (`SWE-1.6`, `Kimi-k2.6`, `DeepSeek-v4-pro`, `Qwen3.6`, `GLM-5.1`, `MiniMax-M3`, `MiMo-V2.5-Pro`) and the advisor surfaces this hub alongside the matching `cli-*` executor.
 
-**Step 2: Read the pattern index.**
-
-```bash
-cat .opencode/skills/sk-prompt-small-model/references/pattern-index.md
-```
-
-Expected result: a table mapping each pattern to its owner skill and canonical path.
-
-**Step 3: Navigate to the canonical pattern.**
-
-Click the link in the index row. Read the executor-owned pattern from there. Do not duplicate it.
-
-**Step 4: Verify before delivery.**
+**Step 2: Read the model index, then the profile.**
 
 ```bash
-python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "dispatch SWE-1.6 to read file" --threshold 0.8
+cat .opencode/skills/sk-prompt-small-model/references/models/_index.md
+cat .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md
 ```
 
-Expected result: `sk-prompt-small-model` appears in the top-3 with confidence ≥ 0.8.
+Expected result: the index lists every model with its framework and status. The profile gives the framework, density, scaffold, and gotchas for that model.
+
+**Step 3: Verify routing before delivery.**
+
+```bash
+python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "dispatch MiniMax-M3 via cli-opencode" --threshold 0.8
+```
+
+Expected result: `sk-prompt-small-model` appears in the top results alongside `cli-opencode`.
 
 ---
 
@@ -94,20 +90,20 @@ Expected result: `sk-prompt-small-model` appears in the top-3 with confidence �
 
 ### 3.1 FEATURE HIGHLIGHTS
 
-The sentinel deliberately ships with zero runtime logic. Everything operators need is either in the pattern index or in the executor-owned files the index points to. The skill earns its keep through three properties:
+The hub keeps prompt-craft in one place so it cannot drift across the five executors. The weight lives in the on-demand per-model profiles, not in the entry surface. Three properties carry it:
 
-- **Discoverability** — one place to look when you think "small model"; advisor co-surfaces it automatically with the relevant CLI skill.
-- **Ownership clarity** — the index makes it obvious which CLI skill or shared asset owns each pattern. Drift is minimized because patterns live with their executor.
-- **Adoption ergonomics** — adding a new small-model provider is a documented metadata-first checklist, not a multi-packet effort.
+- **Single source of craft.** Each model's framework choice and scaffold live in exactly one profile, mirrored from the registry row.
+- **Discoverability.** The advisor co-surfaces the hub with the relevant executor whenever a small model is named.
+- **Adoption ergonomics.** Adding a provider is a documented checklist, not a multi-file scramble.
 
 ### 3.2 FEATURE REFERENCE
 
 | Feature | Inputs | Output | Primary Resource |
 |---|---|---|---|
-| Pattern discovery | Pattern name or model name | Path to canonical owner file | [`references/pattern-index.md`](./references/pattern-index.md) |
-| Routing co-surfacing | Operator prompt with small-model signals | `sk-prompt-small-model` in advisor top-3 | [`graph-metadata.json`](./graph-metadata.json) |
-| Provider adoption | New provider name + quota-pool category | Updated registry + index | [`references/pattern-index.md`](./references/pattern-index.md) § 4 |
-| Ownership boundary | Pattern type | Which CLI / shared skill owns it | [`references/pattern-index.md`](./references/pattern-index.md) § 3 |
+| Profile lookup | Model name or alias | Framework, density, scaffold, gotchas | [`references/models/`](./references/models/) |
+| Model-keyed routing | Operator prompt naming a model | The matching profile loaded | [`SKILL.md`](./SKILL.md) section 2 |
+| Mechanic discovery | Pattern name | Path to the owning `cli-*` file | [`references/pattern-index.md`](./references/pattern-index.md) |
+| Provider adoption | New provider plus quota-pool category | Registry row, profile, index row | [`references/pattern-index.md`](./references/pattern-index.md) section 4 |
 
 ---
 
@@ -115,89 +111,74 @@ The sentinel deliberately ships with zero runtime logic. Everything operators ne
 
 ```text
 sk-prompt-small-model/
-+-- SKILL.md                          # Runtime instructions + smart router
-+-- README.md                         # This file — human-facing overview
-+-- description.json                  # Memory-system metadata
-+-- graph-metadata.json               # enhances edges + trigger phrases for advisor
++-- SKILL.md                          # Runtime instructions plus the model-keyed smart router
++-- README.md                         # This file, human-facing overview
++-- graph-metadata.json               # enhances edges plus trigger phrases for the advisor
 +-- assets/
-|   `-- model-profiles.json           # Unified model registry (owned by this skill)
-`-- references/
-    +-- models/                       # Per-model prompt-craft profiles (one <id>.md each)
-    `-- pattern-index.md              # Authoritative pattern index
+|   +-- model-profiles.json           # Unified model registry (the DATA profiles mirror)
+|   `-- cli_prompt_quality_card.md    # Canonical cross-CLI prompt quality card
++-- references/
+|   +-- models/                       # Per-model prompt-craft profiles (_index.md plus one <id>.md each)
+|   `-- pattern-index.md              # Index mapping mechanics to their cli-* owners
+`-- benchmarks/                       # Relocated benchmark run data + synthesis
 ```
 
 | Path | Purpose |
 |---|---|
-| `SKILL.md` | Runtime entry point loaded by the skill-advisor when the sentinel is surfaced |
-| `README.md` | Human-facing overview; read by operators onboarding to the 114 arc |
-| `description.json` | Memory-system metadata for spec-kit indexing |
-| `graph-metadata.json` | Defines `enhances` edges (cli-devin, cli-opencode at weight 0.5) and lexical trigger phrases |
-| `assets/model-profiles.json` | Unified model registry; the DATA source each prompt-craft profile mirrors |
-| `references/models/` | Per-model prompt-craft profiles (`_index.md` + one `<id>.md` per active model) |
-| `references/pattern-index.md` | Authoritative index; maps every small-model pattern to its executor-owned location |
+| `SKILL.md` | Runtime entry point and the model-keyed smart router |
+| `assets/model-profiles.json` | Unified registry, the DATA source each profile mirrors |
+| `assets/cli_prompt_quality_card.md` | Canonical cross-CLI quality card the 5 cli cards mirror |
+| `references/models/` | Per-model prompt-craft profiles plus `_index.md` |
+| `references/pattern-index.md` | Maps every executor-owned mechanic to its canonical location |
+| `benchmarks/` | Relocated benchmark datasets and synthesis for the model comparisons |
 
 ---
 
 ## 5. CONFIGURATION
 
-This skill has no configurable settings. Routing weights are encoded directly in `graph-metadata.json`:
+This skill has no configurable settings. Routing weights live in `graph-metadata.json`:
 
 | Setting | Default | Purpose |
 |---|---|---|
-| `enhances → cli-devin` | weight 0.5 | Co-surface sk-prompt-small-model when cli-devin is already high-confidence |
-| `enhances → cli-opencode` | weight 0.5 | Co-surface sk-prompt-small-model when cli-opencode is already high-confidence |
-| Trigger phrases | 19 entries | Lexical-lane matches in the advisor scorer |
-
-Tuning advice:
-
-- If the sentinel surfaces too aggressively on non-small-model prompts, lower edge weights to 0.4 and re-index.
-- If it under-surfaces, add more specific trigger phrases (model names + pattern names) and re-index.
-- Do not introduce new fields beyond what `graph-metadata.json` already defines; the schema is shared with all other skills.
+| `enhances -> cli-devin` | weight 0.5 | Co-surface the hub when cli-devin is high-confidence |
+| `enhances -> cli-opencode` | weight 0.5 | Co-surface the hub when cli-opencode is high-confidence |
+| Trigger phrases | model names plus pattern names | Lexical-lane matches in the advisor scorer |
 
 Non-configurable invariants:
 
-- `SKILL.md` must remain ≤ 200 LOC.
-- `references/pattern-index.md` must remain ≤ 100 LOC.
-- No `scripts/` directory.
+- `SKILL.md` stays at or under 300 LOC (the smart-router pseudocode is the bulk).
+- A profile records prompt-craft only, never executor mechanics.
+- Frontier models (Opus, Sonnet, gpt-5.5) are out of scope.
 
 ---
 
 ## 6. USAGE EXAMPLES
 
-**Operator asks about a specific pattern**
+**Operator dispatches a profiled model**
 
 ```text
-User request: "where is the small-model output verification pattern?"
-Skill routing: lexical-lane match on "small-model" + "output verification"
-Resources loaded: sk-prompt-small-model/references/pattern-index.md
-Expected output: link to cli-devin/references/output-verification.md, marked shipped via Phase 004
+User request: "compose a MiMo-V2.5-Pro prompt for a refactor via cli-opencode"
+Skill routing: model id resolves to mimo-v2.5-pro
+Resources loaded: references/models/_index.md, references/models/mimo-v2.5-pro.md, references/pattern-index.md
+Expected output: COSTAR + lean scaffold from the profile, plus the cli-opencode invocation mechanics
 ```
 
-**Dispatch surfaces the sentinel automatically**
+**Dispatch surfaces the hub automatically**
 
 ```text
-User request: "use cli-devin for SWE-1.6 code review with output verification"
-Skill routing: cli-devin scores high → enhances edge surfaces sk-prompt-small-model
-Resources loaded: cli-devin/SKILL.md + sk-prompt-small-model/SKILL.md + sk-prompt-small-model/references/pattern-index.md
-Expected output: operator sees both the executor instructions and the pattern index in one advisor brief
+User request: "use cli-devin for SWE-1.6 code review"
+Skill routing: cli-devin scores high, the enhances edge surfaces the hub
+Resources loaded: cli-devin/SKILL.md plus sk-prompt-small-model/SKILL.md plus the swe-1.6 profile
+Expected output: executor instructions and the model's prompt-craft profile in one brief
 ```
 
-**Adopting Claude Haiku**
+**Adopting a new provider**
 
 ```text
 User request: "I'm adding Claude Haiku to the rotation. What do I update?"
-Skill routing: lexical-lane match on "haiku"
-Resources loaded: sk-prompt-small-model/references/pattern-index.md § 4 (Adopting a New Provider)
-Expected output: 6-step checklist — populate registry stub, optionally set fallback_target on source models, add trigger phrases, mark index rows shipped, re-index advisor, verify routing
-```
-
-**Pattern moves to a new path**
-
-```text
-User request: "I refactored cli-devin/references/context-budget.md to a new location. What needs updating?"
-Skill routing: lexical-lane match on "context-budget"
-Resources loaded: sk-prompt-small-model/references/pattern-index.md § 5 (Staleness Policy)
-Expected output: update the row's path; if file removed instead, replace path with "(deprecated)" + one-line reason
+Skill routing: alias match on "haiku"
+Resources loaded: references/pattern-index.md section 4
+Expected output: the canonical checklist (registry row, author profile, _index row, dispatch-matrix row, executor trigger, re-index)
 ```
 
 ---
@@ -206,44 +187,30 @@ Expected output: update the row's path; if file removed instead, replace path wi
 
 | What You See | Cause | Fix |
 |---|---|---|
-| `sk-prompt-small-model` not surfacing on small-model prompts | Trigger phrases stale or advisor not re-indexed | Run `skill_advisor.py --force-refresh`; verify with a sample prompt |
-| Surfaces on TypeScript review or non-small-model prompts | Trigger phrases too broad | Tighten phrases in `graph-metadata.json`; re-index |
-| Index points at a missing file | Downstream phase removed or renamed without updating index | Update the row's path or mark `(deprecated)` per § 5 of `pattern-index.md` |
-| Operator can't find a pattern they expect to exist | Phase has not shipped yet | Check the "Shipped In" column in the index; if missing, the phase is still pending |
-| `SKILL.md` exceeds 200 LOC after an edit | Real pattern logic crept in | Move the logic to the executor skill; revert this skill to link-only content |
-| Advisor confidence < 0.8 on clear small-model prompts | Edge weights or trigger weights too low | Inspect `graph-metadata.json` weights; raise from 0.5 to 0.6 if needed |
+| Hub not surfacing on small-model prompts | Trigger phrases stale or advisor not re-indexed | Run `skill_advisor.py --force-refresh`, verify with a sample prompt |
+| A model is unreachable by name | The model name is missing from the dispatching executor's trigger phrases | Add the name to that `cli-*/graph-metadata.json`, then re-index |
+| A profile contradicts the registry | Profile prose drifted from `model-profiles.json` | Re-mirror the profile from its registry row |
+| A model has no profile | Provider adopted without authoring the profile | Follow `pattern-index.md` section 4 |
 
 ---
 
 ## 8. FAQ
 
-**Q: Why is this skill so thin?**
+**Q: What does this hub own versus the executors?**
 
-A: Per the 114 research synthesis (HYBRID-with-Anchor verdict, iter 14), the patterns themselves are runtime-specific to their executor. Duplicating them in a generic skill would rot quickly. The sentinel exists for *discovery*, not for hosting logic.
+A: The hub owns prompt-craft (framework, scaffold, gotchas) per model plus the registry. The `cli-*` executors own mechanics (flags, wrappers, budgets, permissions). `sk-prompt` owns the generic framework definitions.
 
-**Q: Why no `scripts/` directory?**
+**Q: Where do I add a new pattern or mechanic?**
 
-A: There is nothing to put there. All operational scripts and runtime code live with the executor that runs them (`cli-devin/`, `cli-opencode/`, `system-spec-kit/`). This skill owns `assets/model-profiles.json` (the registry DATA) but no executable logic.
-
-**Q: How do I add a new pattern?**
-
-A: Don't add it here. Add it to the executor that runs it, then add a row to `references/pattern-index.md` pointing at the new location.
+A: Add it to the executor that runs it, then add a row to `references/pattern-index.md` pointing at the new location. Do not host mechanics here.
 
 **Q: How do I add a new small-model provider?**
 
-A: Follow the 6-step checklist in `references/pattern-index.md` § 4. Metadata-first; no code edits required when the provider fits an existing quota-pool category.
+A: Follow the canonical checklist in `references/pattern-index.md` section 4. It covers the registry row, the profile, the index rows, the executor trigger, and the re-index.
 
 **Q: Are frontier models supported?**
 
-A: No. The 114 arc explicitly scopes to small models. Opus, Sonnet, gpt-5.5, and GLM-5.1 are out of scope. Quota fallback is pool-aware, not tier-based.
-
-**Q: What if a pattern needs to live in both cli-devin and cli-opencode?**
-
-A: Ship the body in the primary executor and add a sentinel-style mirror (link-only, ≤ 200 LOC) in the secondary. Phase 006's `cli-opencode/references/context-budget.md` is the canonical example.
-
-**Q: Where's the CI check that catches stale index rows?**
-
-A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user direction. Staleness is caught via PR review when patterns move; see `pattern-index.md` § 5 for the policy.
+A: No. The hub scopes to small models. Opus, Sonnet, and gpt-5.5 are out of scope.
 
 ---
 
@@ -251,13 +218,11 @@ A: There isn't one. Phase 007 (hardening CI) was deleted 2026-05-18 per user dir
 
 | Document | Purpose |
 |---|---|
-| [`SKILL.md`](./SKILL.md) | Runtime instructions, smart-router metadata, and rules for keeping the sentinel thin |
-| [`references/pattern-index.md`](./references/pattern-index.md) | Authoritative index of small-model patterns + owners + ship status |
+| [`SKILL.md`](./SKILL.md) | Runtime instructions, the model-keyed router, and the hub rules |
+| [`references/models/_index.md`](./references/models/_index.md) | Per-model index: id, framework, density, status |
+| [`references/pattern-index.md`](./references/pattern-index.md) | Maps each executor-owned mechanic to its canonical location |
+| [`assets/model-profiles.json`](./assets/model-profiles.json) | Unified registry, the DATA each profile mirrors |
 | [`graph-metadata.json`](./graph-metadata.json) | `enhances` edges and trigger phrases consumed by the advisor |
-| [`description.json`](./description.json) | Spec-kit memory metadata |
-| [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md) | Phase parent with the full roadmap |
-| [`../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`](../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md) | Research synthesis (HYBRID-with-Anchor verdict in §RQ5) |
-| [`../cli-devin/SKILL.md`](../cli-devin/SKILL.md) | SWE-1.6 dispatch surface — owns budget, verification, fallback patterns |
-| [`../cli-opencode/SKILL.md`](../cli-opencode/SKILL.md) | DeepSeek / Kimi / Qwen dispatch surface — owns permissions matrix, budget propagation |
-| [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Cross-CLI prompt quality + generic framework definitions |
-| [`../system-spec-kit/SKILL.md`](../system-spec-kit/SKILL.md) | Runtime helpers (bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts) |
+| [`../cli-devin/SKILL.md`](../cli-devin/SKILL.md) | SWE-1.6 dispatch surface, owns budget, verification, fallback mechanics |
+| [`../cli-opencode/SKILL.md`](../cli-opencode/SKILL.md) | DeepSeek / Kimi / Qwen / GLM / MiniMax / MiMo dispatch surface, owns permissions and budget mechanics |
+| [`../sk-prompt/SKILL.md`](../sk-prompt/SKILL.md) | Generic framework definitions and CLEAR scoring |

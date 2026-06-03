@@ -125,6 +125,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 7 | 007-wire-precedence-and-crosslinks/ | One precedence rule in all 5 SKILL.md; sentinel cross-links; template stubs (L2) | Complete |
 | 8 | 008-validate-sweep-changelog-reindex/ | `validate.sh --recursive --strict`; duplication grep; changelogs; advisor re-index (L2) | Complete |
 | 9 | 009-refine-hub-cli-connections/ | Remediate hub↔cli-* seam drift (C1–C10 from the deep research): pointer-ize precedence, de-phantom STAR, repair cluster navigability/discovery, complete the new-provider checklist, extend + CI-wire the sync guard (L1) | Complete |
+| 10 | 010-hub-doc-alignment-and-router/ | Align hub SKILL.md (model-keyed router), README (spec-ref scrub), and the 9 references/models profiles to the sk-doc templates (L1) | Complete |
+| 11 | 011-model-profiles-and-benchmark-merge/ | model-profiles.json comment-hygiene; merge benchmark 006 into 005 (two eval subsets); repoint stale benchmark ids to the 00N scheme (L1) | Pending |
+| 12 | 012-cli-doc-alignment/ | Align the 5 cli-* prompt_quality_card.md + confidence-scoring-rubric + cli-opencode references to the sk-doc asset/reference templates (L1) | Pending |
+| 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Pending |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -144,6 +148,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006-thin-and-standardize-cli-cards | 007 | Framework table de-duplicated; cli-devin reconciled | grep table count 6→2; sync checker green |
 | 007-wire-precedence-and-crosslinks | 008 | Sentinel referenced in all 5 SKILL.md; precedence rule identical | grep sentinel in 5; no dangling links |
 | 008-validate-sweep-changelog-reindex | 009-refine-hub-cli-connections | 001–008 shipped; deep research surfaced the C1–C10 seam-drift backlog | extended sync guard green; validate.sh --recursive --strict PASSED |
+| 009-refine-hub-cli-connections | 010-hub-doc-alignment-and-router | 009 shipped; sk-doc templates identified | hub router + README + 9 profiles aligned; guard green |
+| 010-hub-doc-alignment-and-router | 011-model-profiles-and-benchmark-merge | Hub doc surface aligned | benchmark folders renumbered + merged; stale ids repointed |
+| 011-model-profiles-and-benchmark-merge | 012-cli-doc-alignment | Benchmark refs stable | cli-* cards + references aligned to templates |
+| 012-cli-doc-alignment | 013-card-relocation-and-guard | cli docs aligned | card relocated to hub; guard rewritten + green; validate --strict exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---

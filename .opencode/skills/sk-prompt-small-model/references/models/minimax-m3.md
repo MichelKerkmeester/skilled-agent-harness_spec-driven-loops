@@ -12,7 +12,25 @@ Single source of truth for HOW TO PROMPT `minimax-m3`. Framework choices mirror 
 
 ---
 
-## 1. Identity
+## 1. OVERVIEW
+
+### Purpose
+
+The single source for how to prompt `minimax-m3` when dispatching it through `cli-opencode`, mirroring its `model-profiles.json` registry entry so the framework, scaffold, and gotchas stay in sync with the canonical data.
+
+### When to Use
+
+- Before dispatching `minimax-m3` through `cli-opencode`.
+- When choosing its prompt framework or building its tuned scaffold.
+- When you need its dispatch gotchas (slug, variant, agent, quota pool).
+
+### Core Principle
+
+MiniMax wants guardrail-heavy TIDD-EC framing plus dense pre-planning — more structure, not less.
+
+---
+
+## 2. IDENTITY
 
 | Field | Value |
 |---|---|
@@ -27,7 +45,7 @@ The subscription pool resets on a 5-hour rolling window. `--variant` behavior is
 
 ---
 
-## 2. Recommended Framework
+## 3. RECOMMENDED FRAMEWORK
 
 **Primary:** TIDD-EC (Task → Instructions → Do's → Don'ts → Examples → Context)
 **Fallback:** RCAF (Role → Context → Action → Format)
@@ -43,7 +61,7 @@ The benchmark that produced these numbers was run on `minimax-2.7` in packet `12
 
 ---
 
-## 3. Benchmark Evidence
+## 4. BENCHMARK EVIDENCE
 
 Evidence source for this section: packet `120/003` synthesis.
 
@@ -64,7 +82,7 @@ For `status: "carried"`: the M3-highspeed model slug is newer and its exact beha
 
 ---
 
-## 4. Tuned Template Snippet
+## 5. TUNED TEMPLATE SNIPPET
 
 For the **generic TIDD-EC framework definition** (component meanings, scoring rubric, usage guidance), see [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md). The scaffold below is the MiniMax-M3-specific fill — copy-paste-ready, executor-agnostic (no invocation wrapper).
 
@@ -107,7 +125,7 @@ Output shape: a `<pre-plan>` block (dense, 4-5 steps), then fenced code blocks e
 
 ---
 
-## 5. Dispatch Gotchas
+## 6. DISPATCH GOTCHAS
 
 Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/model-profiles.json`](../../../sk-prompt-small-model/assets/model-profiles.json) → `models[id="minimax-m3"].capability`.
 
@@ -127,7 +145,7 @@ Source of truth for capability fields: [`../../../sk-prompt-small-model/assets/m
 
 ---
 
-## 6. See Also
+## 7. SEE ALSO
 
 - [`../../../sk-prompt-small-model/assets/model-profiles.json#minimax-m3`](../../../sk-prompt-small-model/assets/model-profiles.json) — canonical capability registry entry (model_slug, variant_flag, agent_policy, format_mode, quota_pool, fallback_target, recommended_frameworks)
 - [`../../../sk-prompt/references/patterns_evaluation.md`](../../../sk-prompt/references/patterns_evaluation.md) — generic TIDD-EC and RCAF framework definitions + scoring rubric
