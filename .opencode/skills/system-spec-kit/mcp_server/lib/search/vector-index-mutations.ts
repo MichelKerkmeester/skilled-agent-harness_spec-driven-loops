@@ -23,6 +23,7 @@ import * as bm25Index from './bm25-index.js';
 import {
   clear_search_cache,
 } from './vector-index-aliases.js';
+import { invalidateEntityDensityCache } from './entity-density.js';
 import {
   get_error_message,
   to_embedding_buffer,
@@ -672,7 +673,7 @@ export function delete_memory_from_database(database: Database.Database, id: num
       }
     }
 
-    // BUG-020: Clean ancillary records so deletes do not leave graph residue behind.
+    // Clean ancillary records so deletes do not leave graph residue behind.
     deleteAncillaryMemoryRows(database, id);
 
     if (row?.content_hash) {
@@ -694,6 +695,15 @@ export function delete_memory_from_database(database: Database.Database, id: num
 
   // Remove the BM25 document only after the source row is deleted.
   const deleted = delete_memory_tx();
+  if (deleted) {
+    // Invalidate entity-density cache so deleted memory's tokens are not routed
+    // to the graph channel beyond the 60s TTL window. Best-effort: non-fatal.
+    try {
+      invalidateEntityDensityCache();
+    } catch (_error: unknown) {
+      // Cache invalidation is best-effort; do not mask a successful delete.
+    }
+  }
   if (deleted) {
     try {
       if (bm25Index.isBm25Enabled()) {
@@ -843,6 +853,13 @@ export function delete_memories(
     if (deleted > 0) {
       clear_constitutional_cache();
       clear_search_cache();
+      // Invalidate entity-density cache so deleted memories' tokens are evicted
+      // immediately rather than persisting for up to the 60s TTL. Best-effort.
+      try {
+        invalidateEntityDensityCache();
+      } catch (_error: unknown) {
+        // Cache invalidation is best-effort; do not mask a successful delete.
+      }
       try {
         if (bm25Index.isBm25Enabled()) {
           const bm25 = bm25Index.getIndex();

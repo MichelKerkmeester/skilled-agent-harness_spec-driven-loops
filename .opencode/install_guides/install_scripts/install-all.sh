@@ -28,7 +28,7 @@ readonly MCP_NAMES=(
 
 readonly MCP_SCRIPTS=(
     "install-sequential-thinking.sh"
-    "install-mk-spec-memory.sh"
+    "install-spec-kit-memory.sh"
     "install-code-mode.sh"
     "install-chrome-devtools.sh"
 )

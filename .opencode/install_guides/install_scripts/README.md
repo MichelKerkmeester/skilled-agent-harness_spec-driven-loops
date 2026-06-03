@@ -150,7 +150,7 @@ install_scripts/
 | Script | Component | Description | Prerequisites |
 |--------|-----------|-------------|---------------|
 | `install-sequential-thinking.sh` | Sequential Thinking MCP | Structured problem-solving via flexible thinking | Node.js 18+ |
-| `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 18+, npm |
+| `install-spec-kit-memory.sh` | Spec Kit Memory MCP | Semantic vector search for conversation context | Node.js 20.11+, npm |
 | `install-code-mode.sh` | Code Mode MCP | MCP orchestration via TypeScript execution | Node.js 18+ |
 | `install-chrome-devtools.sh` | Chrome DevTools CLI | Browser debugging via CDP (bdg CLI) | Node.js 18+, Chrome |
 

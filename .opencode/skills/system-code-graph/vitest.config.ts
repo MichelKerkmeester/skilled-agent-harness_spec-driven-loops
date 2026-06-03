@@ -6,7 +6,6 @@ import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 
 const repoRoot = path.resolve(import.meta.dirname, '../../..');
-process.chdir('/private/tmp');
 
 export default defineConfig({
   root: repoRoot,

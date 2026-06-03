@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 import {
   closeDb,
@@ -45,7 +46,7 @@ describe('cg-008 — Context handler', () => {
   let fixtureFile: string;
 
   beforeEach(() => {
-    tmpDir = mkdtempSync(join(process.cwd(), 'stress-cg-008-'));
+    tmpDir = mkdtempSync(join(tmpdir(), 'stress-cg-008-'));
     fixtureFile = join(tmpDir, 'workspace', 'normalization-fixture.ts');
     mkdirSync(join(tmpDir, 'workspace'), { recursive: true });
     mkdirSync(join(tmpDir, 'db'), { recursive: true });

@@ -35,7 +35,7 @@ This agent is LEAF-only.
 Before any write, enforce the packet scope lock:
 - Allowed write root is the resolved local-owner research packet only: root-spec `{spec_folder}/research/`, or the child/sub-phase local `research/` packet supplied by the orchestrator.
 - Allowed write targets are `research/iterations/iteration-NNN.md`, one append-only line to `research/deep-research-state.jsonl`, `research/research.md` only when `progressiveSynthesis == true`, and `research/research-ideas.md` only when dispatch explicitly allows idea capture and the path is packet-local.
-- Reducer-owned files (`research/deep-research-strategy.md`, `research/findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
+- Reducer-owned files (`research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, `research/deep-research-dashboard.md`) are read-only for this agent.
 - If any intended write path escapes the resolved packet root, targets a reducer-owned file, or would overwrite an existing iteration file, STOP and return `Status: error` without writing outside the boundary.
 
 ---
@@ -64,7 +64,7 @@ Read the paths provided in dispatch context:
 - `research/deep-research-config.json` -- lifecycle mode, budgets, packet boundaries
 - `research/deep-research-state.jsonl` -- iteration history
 - `research/deep-research-strategy.md` -- focus, key questions, exhausted approaches
-- `research/findings-registry.json` (if exists) -- open/resolved questions and key findings
+- `research/deep-research-findings-registry.json` (if exists) -- open/resolved questions and key findings
 - `research/research-ideas.md` (if exists) -- deferred tangents
 
 Extract:
@@ -207,7 +207,7 @@ Do not write a placeholder iteration file. If findings are sparse because a tool
 
 ### Step 7: Respect Reducer-Owned State
 
-Do not use `research/deep-research-strategy.md`, `research/findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
+Do not use `research/deep-research-strategy.md`, `research/deep-research-findings-registry.json`, or `research/deep-research-dashboard.md` as primary write targets. Instead:
 1. Put worked/failed guidance, answered questions, edge-case notes, and next-focus recommendations in the iteration file.
 2. Append the structured JSONL record.
 3. Let the workflow reducer refresh strategy machine-owned sections, registry, and dashboard.
@@ -355,7 +355,7 @@ All paths resolve from the target spec folder. Root-spec targets write directly 
 | Config | `research/deep-research-config.json` | Read only |
 | State log | `research/deep-research-state.jsonl` | Read + append exactly one line |
 | Strategy | `research/deep-research-strategy.md` | Read only for focus selection |
-| Findings registry | `research/findings-registry.json` | Read only |
+| Findings registry | `research/deep-research-findings-registry.json` | Read only |
 | Dashboard | `research/deep-research-dashboard.md` | Read only if needed |
 | Iteration findings | `research/iterations/iteration-{NNN}.md` | Write new file only |
 | Research output | `research/research.md` | Read + edit only when `progressiveSynthesis` is true |
@@ -441,7 +441,7 @@ Return this summary to the dispatcher:
 **Files written**:
 - research/iterations/iteration-[NNN].md
 - research/deep-research-state.jsonl (appended exactly one line)
-- workflow reducer refreshes research/deep-research-strategy.md, research/findings-registry.json, and research/deep-research-dashboard.md
+- workflow reducer refreshes research/deep-research-strategy.md, research/deep-research-findings-registry.json, and research/deep-research-dashboard.md
 - research/research.md (updated, if applicable)
 
 **Verification**:

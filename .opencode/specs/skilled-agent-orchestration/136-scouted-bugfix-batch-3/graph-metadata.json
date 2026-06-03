@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/136-scouted-bugfix-batch-3",
+  "spec_folder": "skilled-agent-orchestration/136-scouted-bugfix-batch-3",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": [
+      "skilled-agent-orchestration/135-scouted-bugfix-batch-2",
+      "skilled-agent-orchestration/134-scouted-bugfix-batch-1"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scouted bugfix batch 3",
+      "code-graph stress tmpdir pollution",
+      "convergence persist-snapshot round-id",
+      "devin compact recovery",
+      "mk-spec-memory launcher toctou"
+    ],
+    "key_topics": [
+      "bugfix",
+      "scout",
+      "deep-dive",
+      "verify-first",
+      "partial-but-real",
+      "deep-loop",
+      "convergence",
+      "devin",
+      "launcher"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/system-code-graph/mcp_server/src/handlers/__tests__/scan-stress.vitest.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      ".opencode/skills/cli-devin/src/session-start.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/src/launcher/mk-spec-memory-launcher.cjs",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-mutations.ts"
+    ],
+    "entities": [],
+    "causal_summary": "Ran a verify-first batch fix over a fresh 20 scouted targets from the second scout (batches 1 and 2 covered the first 25): 20 parallel gpt-5.5-fast confirm deep-dives classified each headline (7 CONFIRMED, 9 partial-but-real, 4 REFUTED — gemini-compact already calls sanitizeRecoveredPayload internally; 3 code-graph regex lastIndex claims where the while-exec loop resets correctly). 1 partial EXCLUDED from auto-fix (council scoreVerdictProgression — its fix would change stop-policy, a product decision; flagged not fixed). 12 implement-and-test agents fixed the rest across 23 files (sources + added regression tests), fixing only the REAL part of each partial. Spans code-graph stress test tmpdir isolation (os.tmpdir() + scoped chdir+restore; 45 tests pass), convergence INPUT_VALIDATION on missing --round-id, devin handleCompact full compact recovery lifecycle, install script corrections, mk-spec-memory-launcher TOCTOU-safe lock reclaim via rename-before-delete, _utils.sh full semver compare, vector-index orphan row cascade, memory-search community gating + quality score, agent doc live filenames, deep-ai-council live asset reference, and checkpoint schema v30 fixture. Every diff reviewed; comment-hygiene clean; system-spec-kit npm run build exit 0; launcher + convergence .cjs node --check OK; each fix's regression test passes. First attempt failed (Opus 0-token blip); Sonnet retry succeeded.",
+    "created_at": "2026-06-03T08:00:00Z",
+    "last_save_at": "2026-06-03T08:00:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

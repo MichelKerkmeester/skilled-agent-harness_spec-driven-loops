@@ -994,8 +994,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     );
     if (shouldRunCommunitySearch) {
       const isWeakResult = resultsForFormatting.length === 0 ||
-        (retrievalLevel === 'global') ||
-        (resultsForFormatting.length < 3 && retrievalLevel === 'auto');
+        (resultsForFormatting.length < 3 && (retrievalLevel === 'global' || retrievalLevel === 'auto'));
       if (isWeakResult) {
         try {
           const communityResults = searchCommunities(effectiveQuery, requireDb(), 5);
@@ -1012,11 +1011,17 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
 
             if (memberRows.length > 0) {
-              // Mark community-sourced results and assign a base score
+              // Calibrate score from community match quality, bounded below pipeline threshold
+              const communityScoreScale = 0.02; // aligns with pipeline's minimum quality floor
+              const avgMatchScore = communityResults.results.length > 0
+                ? communityResults.results.reduce((sum, r) => sum + r.matchScore, 0) / communityResults.results.length
+                : 0.5;
+              const calibratedScore = Math.max(0.001, avgMatchScore * communityScoreScale);
+              // Mark community-sourced results and assign calibrated score
               const communityRows = memberRows.map((row) => ({
                 ...row,
                 similarity: typeof row.similarity === 'number' ? row.similarity : 0.5,
-                score: 0.45,
+                score: calibratedScore,
                 _communityFallback: true,
               }));
               // Merge: append community results not already in pipeline results
@@ -1035,7 +1040,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       }
     }
 
-    // Fix 4 (RC1-B): Apply folder boost — multiply similarity for results matching discovered folder
+    // Apply folder boost — multiply similarity for results matching discovered folder
     if (folderBoost && folderBoost.folder && folderBoost.factor > 1) {
       let boostedCount = 0;
       for (const r of resultsForFormatting) {

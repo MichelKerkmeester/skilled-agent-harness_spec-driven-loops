@@ -817,11 +817,20 @@ async function acquireBootstrapLock(options = {}) {
         const ageMs = Date.now() - fs.statSync(lockDir).mtimeMs;
         if (ageMs > BOOTSTRAP_LOCK_STALE_MS) {
           log(`reclaiming stale bootstrap lock ${rel(lockDir)} (age ${Math.round(ageMs / 1000)}s)`);
-          fs.rmSync(lockDir, { recursive: true, force: true });
+          // Atomically CLAIM the stale lockdir via rename before deleting it. Only one
+          // racer wins the rename; a successor that mkdir'd a fresh lockDir after our stat
+          // creates a new inode that our rename/rmSync cannot touch, so we never delete a
+          // live successor lock. A losing racer's rename throws ENOENT and falls through to
+          // the outer retry.
+          const staleClaim = `${lockDir}.stale.${process.pid}.${Date.now()}`;
+          fs.renameSync(lockDir, staleClaim);
+          fs.rmSync(staleClaim, { recursive: true, force: true });
           continue;
         }
       } catch (statErr) {
+        // stat/rename race — lock disappeared or was reclaimed by another launcher; retry mkdirSync
         if (statErr.code === 'ENOENT') continue;
+        if (statErr.code === 'ENOTEMPTY') continue;
         throw statErr;
       }
       if (artifactsReady() && !requireLock) {

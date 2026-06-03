@@ -305,6 +305,21 @@ describe('council graph direct script invocation', () => {
     });
   });
 
+  it('exits 3 with INPUT_VALIDATION when --persist-snapshot is true but --round-id is missing', () => {
+    const namespace = councilNamespace('convergence');
+    expect(seedPassingCouncil(namespace).exitCode).toBe(0);
+
+    const result = runScript('convergence', [
+      ...namespaceArgs(namespace),
+      '--persist-snapshot',
+      'true',
+    ]);
+
+    expect(result.exitCode).toBe(3);
+    expect(result.json).toMatchObject({ status: 'error', code: 'INPUT_VALIDATION' });
+    expect(result.json.error).toContain('--round-id is required when --persist-snapshot is true');
+  });
+
   it('preserves structured exit codes for council script errors', () => {
     const namespace = uniqueNamespace('upsert', 'council');
     const missingArgs = runScript('upsert', ['--loop-type', 'council']);

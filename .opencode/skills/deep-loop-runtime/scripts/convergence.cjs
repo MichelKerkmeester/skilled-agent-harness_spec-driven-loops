@@ -280,6 +280,9 @@ async function main() {
     installSignalHandlers(() => db?.closeDb());
     maybeThrowTestFault();
     if (isCouncil) {
+      if (asBoolean(args.persistSnapshot) && !args.roundId) {
+        throw inputError('--round-id is required when --persist-snapshot is true for council convergence');
+      }
       const councilConvergence = require('../lib/council/convergence.cjs');
       const data = await councilConvergence.evaluateCouncilConvergence(ns, {
         roundId: args.roundId,

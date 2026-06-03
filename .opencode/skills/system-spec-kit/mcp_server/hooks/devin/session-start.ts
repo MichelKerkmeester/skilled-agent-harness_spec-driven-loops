@@ -23,8 +23,20 @@ import {
   SESSION_PRIME_TOKEN_BUDGET,
   type OutputSection,
 } from '../claude/shared.js';
+import {
+  loadState,
+  readCompactPrime,
+  clearCompactPrime,
+  validatePendingCompactPrimeSemantics,
+} from '../claude/hook-state.js';
+import {
+  sanitizeRecoveredPayload,
+  wrapRecoveredCompactPayload,
+} from '../shared-provenance.js';
 import { getStartupBriefFromMarker } from '../../lib/code-graph-boundary.js';
 import type { StartupBriefResult } from '../../lib/code-graph-boundary.js';
+
+const CACHE_TTL_MS = 30 * 60 * 1000;
 
 const IS_CLI_ENTRY = process.argv[1]
   ? resolve(process.argv[1]) === fileURLToPath(import.meta.url)
@@ -171,7 +183,17 @@ function handleStartup(): OutputSection[] {
   }
 }
 
-function handleResume(): OutputSection[] {
+function handleResume(sessionId: string): OutputSection[] {
+  const stateResult = loadState(sessionId);
+  const state = stateResult.ok ? stateResult.state : null;
+
+  if (state?.lastSpecFolder) {
+    return [{
+      title: 'Session Continuity',
+      content: `Last active spec folder: ${state.lastSpecFolder}\nCall \`memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })\` for full context.`,
+    }];
+  }
+
   return [{
     title: 'Session Resume',
     content: 'Call `memory_context({ input: "resume previous work", mode: "resume", profile: "resume" })` to restore session state.',
@@ -185,11 +207,66 @@ function handleClear(): OutputSection[] {
   }];
 }
 
-function handleCompact(): OutputSection[] {
-  return [{
+function handleCompact(sessionId: string): OutputSection[] {
+  const fallback: OutputSection[] = [{
     title: 'Context Recovery',
     content: 'Context was compacted. Call `memory_context({ mode: "resume", profile: "resume" })` to recover session state.',
   }];
+
+  const stateResult = loadState(sessionId);
+  const state = stateResult.ok ? stateResult.state : null;
+  const pendingCompactPrime = readCompactPrime(sessionId);
+
+  if (!pendingCompactPrime) {
+    return fallback;
+  }
+
+  const { payload, cachedAt } = pendingCompactPrime;
+  const cachedAtMs = new Date(cachedAt).getTime();
+  const cacheAgeMs = Date.now() - cachedAtMs;
+  if (Number.isNaN(cachedAtMs) || cacheAgeMs >= CACHE_TTL_MS) {
+    return fallback;
+  }
+
+  const semanticValidation = validatePendingCompactPrimeSemantics(pendingCompactPrime);
+  if (!semanticValidation.ok) {
+    clearCompactPrime(sessionId, {
+      cachedAt: pendingCompactPrime.cachedAt,
+      opaqueId: pendingCompactPrime.opaqueId ?? null,
+    });
+    return fallback;
+  }
+
+  const sanitizedPayload = sanitizeRecoveredPayload(payload);
+  const wrappedPayload = wrapRecoveredCompactPayload(payload, cachedAt, {
+    producer: pendingCompactPrime.payloadContract?.provenance.producer,
+    trustState: pendingCompactPrime.payloadContract?.provenance.trustState,
+    sourceSurface: pendingCompactPrime.payloadContract?.provenance.sourceSurface,
+    sanitizerVersion: pendingCompactPrime.payloadContract?.provenance.sanitizerVersion,
+    runtimeFingerprint: pendingCompactPrime.payloadContract?.provenance.runtimeFingerprint,
+  });
+
+  const sections: OutputSection[] = [
+    { title: 'Recovered Context (Post-Compaction)', content: wrappedPayload },
+    {
+      title: 'Recovery Instructions',
+      content: `Context was compacted and auto-recovered from the cached compact brief (${sanitizedPayload.length} chars). For full session state, call \`memory_context({ mode: "resume", profile: "resume" })\`.`,
+    },
+  ];
+
+  if (state?.lastSpecFolder) {
+    sections.push({
+      title: 'Active Spec Folder',
+      content: `Last active: ${state.lastSpecFolder}`,
+    });
+  }
+
+  clearCompactPrime(sessionId, {
+    cachedAt: pendingCompactPrime.cachedAt,
+    opaqueId: pendingCompactPrime.opaqueId ?? null,
+  });
+
+  return sections;
 }
 
 function parseDevinInput(raw: string): DevinSessionStartInput | null {
@@ -226,18 +303,19 @@ export async function handleDevinSessionStart(
   }
 
   const source = input?.source ?? 'startup';
+  const sessionId = input?.session_id ?? input?.sessionId ?? '';
 
   try {
     let sections: OutputSection[];
     switch (source) {
       case 'resume':
-        sections = handleResume();
+        sections = handleResume(sessionId);
         break;
       case 'clear':
         sections = handleClear();
         break;
       case 'compact':
-        sections = handleCompact();
+        sections = handleCompact(sessionId);
         break;
       default:
         sections = handleStartup();

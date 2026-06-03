@@ -158,22 +158,32 @@ check_command() {
 
 check_node_version() {
     local min_version="${1:-18}"
-    
+
     if ! check_command "node" "Node.js"; then
         log_error "Node.js is not installed"
         log_info "Install Node.js 18+ from: https://nodejs.org/"
         return 1
     fi
-    
-    local node_version
-    node_version=$(node --version | sed 's/v//' | cut -d. -f1)
-    
-    if [[ "$node_version" -lt "$min_version" ]]; then
-        log_error "Node.js version $min_version+ required (found: v$node_version)"
+
+    local actual
+    actual="$(node --version | sed 's/^v//')"
+
+    # Use a node-based semver comparison so dotted minimums like "20.11.0"
+    # are handled correctly (integer-only arithmetic cannot parse them).
+    if ! node -e '
+const a = process.argv[1].split(".").map(Number);
+const m = process.argv[2].split(".").map(Number);
+for (let i = 0; i < 3; i++) {
+  if ((a[i] || 0) > (m[i] || 0)) process.exit(0);
+  if ((a[i] || 0) < (m[i] || 0)) process.exit(1);
+}
+process.exit(0);
+' "$actual" "$min_version"; then
+        log_error "Node.js version ${min_version}+ required (found: v${actual})"
         return 1
     fi
-    
-    log_success "Node.js v$(node --version | sed 's/v//') detected"
+
+    log_success "Node.js v${actual} detected"
     return 0
 }
 

@@ -413,7 +413,7 @@ Ordered by load priority — most-loaded intent first.
 - `assets/deep_ai_council_strategy.md` - operator-maintained round strategy template.
 - `assets/deep_ai_council_dashboard.md` - council status dashboard template.
 - `assets/deep_ai_council_config.json` - run-config template for council sessions.
-- `assets/prompt_pack_round.md.tmpl` - council-seat prompt-pack template.
+- `assets/prompt_pack_round.md` - council-seat prompt-pack template.
 - `assets/runtime_capabilities.json` - runtime parity and validation matrix.
 - `manual_testing_playbook/manual_testing_playbook.md` - operator validation scenarios.
 - `README.md` - human-facing overview.

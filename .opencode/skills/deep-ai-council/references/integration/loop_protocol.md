@@ -65,7 +65,7 @@ Required resources:
 
 - `references/patterns/seat_diversity_patterns.md`
 - `references/scoring/scoring_rubric.md`
-- `assets/prompt_pack_round.md.tmpl`
+- `assets/prompt_pack_round.md`
 
 Acceptance criteria: every seat has a named lens, a distinct mandate, and enough evidence for critique.
 

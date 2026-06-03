@@ -1,0 +1,19 @@
+{
+  "specFolder": "skilled-agent-orchestration/136-scouted-bugfix-batch-3",
+  "description": "Feature Specification: Scouted Bugfix Batch 3",
+  "keywords": [
+    "feature",
+    "specification",
+    "scouted",
+    "bugfix",
+    "batch"
+  ],
+  "lastUpdated": "2026-06-03T08:00:00.000Z",
+  "specId": "136",
+  "folderSlug": "scouted-bugfix-batch-3",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

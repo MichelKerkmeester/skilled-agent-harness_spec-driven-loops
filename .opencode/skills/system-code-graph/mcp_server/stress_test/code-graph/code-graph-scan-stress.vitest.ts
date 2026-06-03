@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 import { performance } from 'node:perf_hooks';
 
 const mocks = vi.hoisted(() => ({
@@ -40,12 +41,15 @@ interface HandlerResponsePayload {
 describe('cg-003 — code_graph_scan', () => {
   let tmpDir: string;
   let rootDir: string;
+  let originalCwd: string;
 
   beforeEach(() => {
-    tmpDir = mkdtempSync(join(process.cwd(), 'stress-cg-003-'));
+    tmpDir = mkdtempSync(join(tmpdir(), 'stress-cg-003-'));
     rootDir = join(tmpDir, 'workspace');
     mkdirSync(rootDir, { recursive: true });
     mkdirSync(join(tmpDir, 'db'), { recursive: true });
+    originalCwd = process.cwd();
+    process.chdir(tmpDir);
     initDb(join(tmpDir, 'db'));
     mocks.executeBattery.mockResolvedValue({
       passed: true,
@@ -67,6 +71,7 @@ describe('cg-003 — code_graph_scan', () => {
 
   afterEach(() => {
     closeDb();
+    process.chdir(originalCwd);
     rmSync(tmpDir, { recursive: true, force: true });
     vi.clearAllMocks();
   });

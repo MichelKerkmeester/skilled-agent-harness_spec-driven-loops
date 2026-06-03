@@ -5,6 +5,7 @@ import Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import * as checkpoints from '../lib/storage/checkpoints';
+import { SCHEMA_VERSION } from '../lib/search/vector-index-schema';
 
 let tempDir = '';
 let dbPath = '';
@@ -16,7 +17,7 @@ function initializeDatabase(db: Database.Database): void {
       id INTEGER PRIMARY KEY CHECK (id = 1),
       version INTEGER NOT NULL
     );
-    INSERT OR REPLACE INTO schema_version (id, version) VALUES (1, 29);
+    INSERT OR REPLACE INTO schema_version (id, version) VALUES (1, ${SCHEMA_VERSION});
 
     CREATE TABLE IF NOT EXISTS memory_index (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +37,11 @@ function initializeDatabase(db: Database.Database): void {
       stability REAL DEFAULT 1.0,
       difficulty REAL DEFAULT 5.0,
       last_review TEXT,
-      review_count INTEGER DEFAULT 0
+      review_count INTEGER DEFAULT 0,
+      post_insert_enrichment_status TEXT NOT NULL DEFAULT 'complete',
+      post_insert_enrichment_state TEXT,
+      post_insert_enrichment_completed_at TEXT,
+      post_insert_enrichment_version INTEGER
     );
 
     CREATE TABLE IF NOT EXISTS checkpoints (
@@ -121,7 +126,7 @@ describe('checkpoint v2 create', () => {
       formatVersion: 2,
       specFolder: null,
       includeEmbeddings: true,
-      schemaVersion: 29,
+      schemaVersion: SCHEMA_VERSION,
       memoryCount: 2,
     });
   });
