@@ -1,0 +1,22 @@
+{
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
+  "description": "Feature Specification: Scouted Bugfix Batch 3",
+  "keywords": [
+    "feature",
+    "specification",
+    "scouted",
+    "bugfix",
+    "batch"
+  ],
+  "lastUpdated": "2026-06-03T08:00:00.000Z",
+  "specId": "003",
+  "folderSlug": "scouted-bugfix-batch-3",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "010-scouted-bugfix-train"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

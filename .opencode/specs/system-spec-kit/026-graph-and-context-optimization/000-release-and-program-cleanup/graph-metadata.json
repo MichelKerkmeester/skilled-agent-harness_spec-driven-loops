@@ -11,7 +11,9 @@
     "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test",
     "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/006-research",
     "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train"
   ],
   "migrated": true,
   "migration_source": "legacy",

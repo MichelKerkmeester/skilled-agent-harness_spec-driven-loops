@@ -11,9 +11,9 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-05-31T00:00:00Z"
+    last_updated_at: "2026-06-03T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
-    recent_action: "Authored wave-7 bridge: merged substrate harness packets 037+038 into 007/016-substrate-harness-hardening"
+    recent_action: "Authored wave-8 bridge: relocated 6 skilled-agent-orchestration packets into their precise 026 tracks"
     next_safe_action: "Resolve old phase paths via this bridge"
     blockers: []
     key_files:
@@ -40,7 +40,32 @@ history — all of it lives here.
 
 ---
 
-## Latest — Wave 7 (2026-05-31): substrate harness packets merged into 007 daemon-reliability
+## Latest — Wave 8 (2026-06-03): 6 skilled-agent-orchestration packets relocated into 026 tracks
+
+Six spec packets had been filed under the sibling top-level track `skilled-agent-orchestration/`
+but were really improvement work on 026 subsystems (operator tooling, the embedding stack,
+program docs, and cross-cutting bugfixes). They were relocated into their precise thematic homes
+inside this program. A new phase parent `000-release-and-program-cleanup/010-scouted-bugfix-train/`
+groups the verify-first scouted bugfix batches. `131-relocate-model-registry-and-benchmarks` was
+NOT moved — it is sk-prompt / model-registry work, not a 026 subsystem, so it stays in
+`skilled-agent-orchestration/`. Historical references to the old `skilled-agent-orchestration/13x`
+paths are NOT rewritten; resolve them via the table below.
+
+| Original Phase | New Home | Status | Notes |
+|----------------|----------|--------|-------|
+| `skilled-agent-orchestration/131-doctor-install-alignment` | `006-operator-tooling/006-doctor-install-alignment` | active | /doctor + install-guide alignment; sibling to `003-install-scripts-doctor-realignment` |
+| `skilled-agent-orchestration/132-embedding-provider-local-first` | `003-memory-and-causal-runtime/016-embedding-provider-local-first` | active | local-first `resolveProvider()` cascade (implements ADR-014); sits with the 003 embedding cluster (008/009/010/011) |
+| `skilled-agent-orchestration/133-readme-and-references-accuracy` | `000-release-and-program-cleanup/009-readme-and-references-accuracy` | active | README + references accuracy audit and remediation |
+| `skilled-agent-orchestration/134-scouted-bugfix-batch-1` | `000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` | active | verify-first bugfix batch 1 |
+| `skilled-agent-orchestration/135-scouted-bugfix-batch-2` | `000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` | active | verify-first bugfix batch 2 |
+| `skilled-agent-orchestration/136-scouted-bugfix-batch-3` | `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` | active | verify-first bugfix batch 3 |
+
+Folder numbers remain topical identity; `timeline.md` is the separate recency view. The next
+scouted bugfix batch (batch-4) lands as `010-scouted-bugfix-train/004-scouted-bugfix-batch-4`.
+
+---
+
+## Wave 7 (2026-05-31): substrate harness packets merged into 007 daemon-reliability
 
 Two top-level `system-spec-kit/` sibling packets — a deep-research VALIDATION packet (`037`) and a
 Level 3 IMPLEMENTATION packet (`038`) — were merged and relocated into a single packet under the

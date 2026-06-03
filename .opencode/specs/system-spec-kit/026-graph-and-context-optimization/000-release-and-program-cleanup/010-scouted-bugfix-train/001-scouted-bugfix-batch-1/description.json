@@ -1,5 +1,5 @@
 {
-  "specFolder": "skilled-agent-orchestration/134-scouted-bugfix-batch-1",
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1",
   "description": "8-agent scout (40 candidates -> top 5); 5 gpt-5.5-fast deep-dives confirm/refute (two pre-try lease-leak headlines refuted); 5 disjoint-file implement agents fix 5 confirmed defects across 10 files (2 shell hardenings, 1 IPC hardening, 2 MCP-server bugs), all stack-verified.",
   "keywords": [
     "bugfix",
@@ -10,10 +10,13 @@
     "hardening"
   ],
   "lastUpdated": "2026-06-03T05:32:00.000Z",
-  "specId": "134",
+  "specId": "001",
   "folderSlug": "scouted-bugfix-batch-1",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "010-scouted-bugfix-train"
   ],
   "memorySequence": 0,
   "memoryNameHistory": [],

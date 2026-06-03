@@ -1,0 +1,22 @@
+{
+  "level": "2",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+  "description": "Feature Specification: Scouted Bugfix Train",
+  "keywords": [
+    "feature",
+    "specification",
+    "scouted",
+    "bugfix",
+    "train"
+  ],
+  "lastUpdated": "2026-06-03T00:00:00.000Z",
+  "specId": "010",
+  "folderSlug": "scouted-bugfix-train",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}
