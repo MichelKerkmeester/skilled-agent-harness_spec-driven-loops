@@ -32,6 +32,10 @@ interface SeedModelPricingRow {
   notes: string;
 }
 
+// Single source of truth for family-level pricing used by all internal cost calculations.
+// Pricing is intentionally hardcoded here rather than read from a DB table because the
+// values are compile-time constants tied to the estimateCost() family rates — keeping
+// them in-process eliminates a redundant DB round-trip and a divergence surface.
 const SEEDED_MODEL_PRICING_ROWS: SeedModelPricingRow[] = [
   {
     pricing_key: 'claude-opus-family-default',
@@ -136,20 +140,6 @@ const SESSION_ANALYTICS_SCHEMA_SQL = `
     UNIQUE(claude_session_id, transcript_path, byte_start)
   );
 
-  CREATE TABLE IF NOT EXISTS model_pricing_versioned (
-    pricing_key TEXT PRIMARY KEY,
-    model_family TEXT NOT NULL,
-    match_pattern TEXT NOT NULL,
-    effective_from TEXT NOT NULL,
-    effective_to TEXT,
-    prompt_price_per_million_usd REAL NOT NULL,
-    completion_price_per_million_usd REAL NOT NULL,
-    cache_write_price_per_million_usd REAL NOT NULL,
-    cache_read_price_per_million_usd REAL NOT NULL,
-    source TEXT NOT NULL,
-    notes TEXT
-  );
-
   CREATE TABLE IF NOT EXISTS cache_tier_normalized (
     cache_tier TEXT PRIMARY KEY,
     source_field TEXT NOT NULL UNIQUE,
@@ -210,20 +200,6 @@ export interface SessionAnalyticsTurnRow {
   created_at: string;
 }
 
-export interface SessionAnalyticsModelPricingRow {
-  pricing_key: string;
-  model_family: string;
-  match_pattern: string;
-  effective_from: string;
-  effective_to: string | null;
-  prompt_price_per_million_usd: number;
-  completion_price_per_million_usd: number;
-  cache_write_price_per_million_usd: number;
-  cache_read_price_per_million_usd: number;
-  source: string;
-  notes: string | null;
-}
-
 export interface SessionAnalyticsCacheTierRow {
   cache_tier: string;
   source_field: string;
@@ -255,22 +231,6 @@ function roundUsd(value: number): number {
 }
 
 function ensureSeedData(db: Database.Database): void {
-  const insertPricing = db.prepare(`
-    INSERT OR IGNORE INTO model_pricing_versioned (
-      pricing_key,
-      model_family,
-      match_pattern,
-      effective_from,
-      effective_to,
-      prompt_price_per_million_usd,
-      completion_price_per_million_usd,
-      cache_write_price_per_million_usd,
-      cache_read_price_per_million_usd,
-      source,
-      notes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-  `) as Database.Statement;
-
   const insertCacheTier = db.prepare(`
     INSERT OR IGNORE INTO cache_tier_normalized (
       cache_tier,
@@ -280,22 +240,6 @@ function ensureSeedData(db: Database.Database): void {
   `) as Database.Statement;
 
   const tx = db.transaction(() => {
-    for (const row of SEEDED_MODEL_PRICING_ROWS) {
-      insertPricing.run(
-        row.pricing_key,
-        row.model_family,
-        row.match_pattern,
-        row.effective_from,
-        row.effective_to,
-        row.prompt_price_per_million_usd,
-        row.completion_price_per_million_usd,
-        row.cache_write_price_per_million_usd,
-        row.cache_read_price_per_million_usd,
-        row.source,
-        row.notes,
-      );
-    }
-
     for (const row of SEEDED_CACHE_TIER_ROWS) {
       insertCacheTier.run(row.cache_tier, row.source_field, row.description);
     }
@@ -304,7 +248,7 @@ function ensureSeedData(db: Database.Database): void {
   tx();
 }
 
-function selectPricingForModel(model: string | null): SessionAnalyticsModelPricingRow {
+function selectPricingForModel(model: string | null): SeedModelPricingRow {
   const normalizedModel = (model ?? '').toLowerCase();
   const matchedSeed = SEEDED_MODEL_PRICING_ROWS.find((row) => normalizedModel.includes(row.match_pattern))
     ?? SEEDED_MODEL_PRICING_ROWS.find((row) => row.model_family === 'sonnet');
@@ -625,15 +569,6 @@ export function listSessionTurns(
     WHERE claude_session_id = ?
     ORDER BY byte_start ASC
   `) as Database.Statement).all(claudeSessionId) as SessionAnalyticsTurnRow[];
-}
-
-export function listModelPricing(): SessionAnalyticsModelPricingRow[] {
-  const db = getSessionAnalyticsDb();
-  return (db.prepare(`
-    SELECT *
-    FROM model_pricing_versioned
-    ORDER BY pricing_key ASC
-  `) as Database.Statement).all() as SessionAnalyticsModelPricingRow[];
 }
 
 export function listNormalizedCacheTiers(): SessionAnalyticsCacheTierRow[] {

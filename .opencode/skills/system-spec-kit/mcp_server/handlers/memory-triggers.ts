@@ -555,7 +555,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       const resultIds = formattedResults.map(r => r.memoryId).filter(id => typeof id === 'number');
       logConsumptionEvent(db, {
         event_type: 'triggers',
-        query_text: prompt,
+        query: prompt,
         result_count: formattedResults.length,
         result_ids: resultIds,
         session_id: sessionId ?? null,

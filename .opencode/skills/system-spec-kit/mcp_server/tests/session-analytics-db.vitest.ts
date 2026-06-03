@@ -11,7 +11,6 @@ import {
   getSessionAnalyticsDb,
   getSessionAnalyticsDbPath,
   ingestSessionAnalytics,
-  listModelPricing,
   listNormalizedCacheTiers,
   listSessionAnalyticsSessions,
   listSessionTurns,
@@ -144,7 +143,6 @@ describe.sequential('session analytics DB', () => {
     `).all() as Array<{ name: string }>).map((row) => row.name);
     expect(tables).toContain('analytics_sessions');
     expect(tables).toContain('analytics_turns');
-    expect(tables).toContain('model_pricing_versioned');
     expect(tables).toContain('cache_tier_normalized');
 
     const turns = listSessionTurns('analytics-session');
@@ -167,11 +165,6 @@ describe.sequential('session analytics DB', () => {
     });
 
     expect(listSessionAnalyticsSessions()).toHaveLength(1);
-    expect(listModelPricing().map((row) => row.pricing_key)).toEqual([
-      'claude-haiku-family-default',
-      'claude-opus-family-default',
-      'claude-sonnet-family-default',
-    ]);
     expect(listNormalizedCacheTiers()).toEqual([
       {
         cache_tier: 'cache_read',

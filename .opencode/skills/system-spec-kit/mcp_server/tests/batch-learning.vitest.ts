@@ -16,6 +16,7 @@ import {
   MAX_BOOST_DELTA,
   BATCH_WINDOW_MS,
   CONFIDENCE_WEIGHTS,
+  SCORE_NORMALIZATION,
   BATCH_LEARNING_LOG_SCHEMA_SQL,
   BATCH_LEARNING_LOG_INDICES_SQL,
 } from '../lib/feedback/batch-learning';
@@ -111,6 +112,10 @@ describe('Batch Learning — Constants', () => {
     expect(CONFIDENCE_WEIGHTS.strong).toBe(1.0);
     expect(CONFIDENCE_WEIGHTS.medium).toBe(0.5);
     expect(CONFIDENCE_WEIGHTS.weak).toBe(0.1);
+  });
+
+  it('SCORE_NORMALIZATION is 10.0', () => {
+    expect(SCORE_NORMALIZATION).toBe(10.0);
   });
 
   it('BATCH_LEARNING_LOG_SCHEMA_SQL references correct table and columns', () => {
@@ -256,13 +261,39 @@ describe('Batch Learning — aggregateEvents', () => {
 
   it('computedBoost is capped at MAX_BOOST_DELTA', () => {
     const db = createTestDb();
-    // Even with many strong events, boost must not exceed MAX_BOOST_DELTA
+    // 50 strong events -> weightedScore=50 -> (50/SCORE_NORMALIZATION)*MAX_BOOST_DELTA
+    // = (50/10)*0.10 = 0.50, capped to MAX_BOOST_DELTA (0.10). Cap genuinely fires.
     const events = Array.from({ length: 50 }, (_, i) =>
       makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-X' })
     );
     seedEvents(db, events);
     const signals = aggregateEvents(db, BASE_TS - 1, BASE_TS + 1);
-    expect(signals[0]!.computedBoost).toBeLessThanOrEqual(MAX_BOOST_DELTA + 1e-9);
+    expect(signals[0]!.computedBoost).toBeCloseTo(MAX_BOOST_DELTA);
+  });
+
+  it('computedBoost scales with volume — low vs high signal counts differ', () => {
+    const dbLow = createTestDb();
+    // 3 strong events -> weightedScore=3 -> (3/SCORE_NORMALIZATION)*MAX_BOOST_DELTA = 0.03
+    seedEvents(dbLow, Array.from({ length: 3 }, (_, i) =>
+      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-vol' })
+    ));
+    const lowSignals = aggregateEvents(dbLow, BASE_TS - 1, BASE_TS + 1);
+    const lowBoost = lowSignals[0]!.computedBoost;
+
+    const dbHigh = createTestDb();
+    // 30 strong events -> weightedScore=30 -> (30/SCORE_NORMALIZATION)*MAX_BOOST_DELTA
+    // = 0.30, capped to MAX_BOOST_DELTA (0.10). Still differs from lowBoost (0.03).
+    seedEvents(dbHigh, Array.from({ length: 30 }, (_, i) =>
+      makeEvent({ confidence: 'strong', sessionId: `sess-${i}`, memoryId: 'mem-vol' })
+    ));
+    const highSignals = aggregateEvents(dbHigh, BASE_TS - 1, BASE_TS + 1);
+    const highBoost = highSignals[0]!.computedBoost;
+
+    // The critical assertion: volume matters — more events = higher boost
+    expect(highBoost).toBeGreaterThan(lowBoost);
+    // Low volume produces a sub-cap boost; high volume saturates the cap
+    expect(lowBoost).toBeCloseTo(0.03);
+    expect(highBoost).toBeCloseTo(MAX_BOOST_DELTA);
   });
 
   it('respects timestamp window boundaries', () => {

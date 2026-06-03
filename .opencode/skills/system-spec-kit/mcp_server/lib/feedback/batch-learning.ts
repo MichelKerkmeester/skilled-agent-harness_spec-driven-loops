@@ -50,6 +50,14 @@ export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
   weak:   0.1,
 };
 
+/**
+ * Normalization denominator for the volume-scaled boost formula.
+ * Roughly 10 strong-equivalent signals in the 7-day window saturate
+ * the cap — tune this to the expected peak weekly signal volume for
+ * your deployment so the cap is reachable under normal conditions.
+ */
+export const SCORE_NORMALIZATION = 10.0;
+
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
 ----------------------------------------------------------------*/
@@ -223,11 +231,14 @@ export function aggregateEvents(
         data.medium * CONFIDENCE_WEIGHTS.medium +
         data.weak   * CONFIDENCE_WEIGHTS.weak;
 
-      // Normalize: divide by total event count to get per-event average,
-      // then scale by MAX_BOOST_DELTA to keep boost in range [0, MAX_BOOST_DELTA].
-      const totalEvents = data.strong + data.medium + data.weak;
-      const normalizedScore = totalEvents > 0 ? weightedScore / totalEvents : 0;
-      const computedBoost = Math.min(normalizedScore * MAX_BOOST_DELTA, MAX_BOOST_DELTA);
+      // Volume-scaled boost: divide the raw weighted score by SCORE_NORMALIZATION
+      // so boost grows with the number of signals, not just their average quality.
+      // Shadow-only: the result is written to batch_learning_log.computed_boost for
+      // observability dashboards; it does NOT mutate live search ranking columns.
+      const computedBoost = Math.min(
+        (weightedScore / SCORE_NORMALIZATION) * MAX_BOOST_DELTA,
+        MAX_BOOST_DELTA
+      );
 
       signals.push({
         memoryId,

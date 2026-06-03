@@ -1437,7 +1437,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
       } catch (_error: unknown) { /* ignore parse errors */ }
       logConsumptionEvent(db, {
         event_type: 'search',
-        query_text: effectiveQuery || null,
+        query: effectiveQuery || null,
         intent: detectedIntent,
         result_count: resultCount,
         result_ids: resultIds,

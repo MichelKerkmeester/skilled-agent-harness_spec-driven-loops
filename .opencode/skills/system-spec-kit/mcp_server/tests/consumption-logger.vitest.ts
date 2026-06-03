@@ -25,7 +25,8 @@ import {
 
 interface ConsumptionEvent {
   event_type: string;
-  query_text?: string | null;
+  // query accepts raw text here; forceLog hashes it before the INSERT (mirrors production path)
+  query?: string | null;
   intent?: string | null;
   mode?: string | null;
   result_count?: number | null;
@@ -44,14 +45,23 @@ function forceLogConsumptionEvent(db: Database.Database, event: ConsumptionEvent
     ? JSON.stringify(event.metadata)
     : null;
 
+  // Compute fingerprint before INSERT — raw text must not reach SQL
+  let queryHash: string | null = null;
+  if (event.query) {
+    const { createHash } = require('node:crypto') as typeof import('node:crypto');
+    const prefix = event.query.slice(0, 8);
+    const hex = createHash('sha256').update(event.query).digest('hex').slice(0, 16);
+    queryHash = `${prefix}:${hex}`;
+  }
+
   db.prepare(`
     INSERT INTO consumption_log
-      (event_type, query_text, intent, mode, result_count, result_ids,
+      (event_type, query_hash, intent, mode, result_count, result_ids,
        session_id, timestamp, latency_ms, spec_folder_filter, metadata)
     VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'), ?, ?, ?)
   `).run(
     event.event_type,
-    event.query_text ?? null,
+    queryHash,
     event.intent ?? null,
     event.mode ?? null,
     event.result_count ?? null,
@@ -95,7 +105,7 @@ describe('T001: initConsumptionLog — table creation', () => {
     const columnNames = columns.map(c => c.name);
     expect(columnNames).toContain('id');
     expect(columnNames).toContain('event_type');
-    expect(columnNames).toContain('query_text');
+    expect(columnNames).toContain('query_hash');
     expect(columnNames).toContain('intent');
     expect(columnNames).toContain('mode');
     expect(columnNames).toContain('result_count');
@@ -150,7 +160,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
   it('T002-A: logs a "search" event', () => {
     forceLogConsumptionEvent(db, {
       event_type: 'search',
-      query_text: 'test search query',
+      query: 'test search query',
       intent: 'add_feature',
       result_count: 5,
       result_ids: [1, 2, 3, 4, 5],
@@ -162,7 +172,10 @@ describe('T002: event logging mechanics (via forceLog)', () => {
     const row = db.prepare(`SELECT * FROM consumption_log WHERE event_type = 'search'`).get() as Record<string, unknown>;
     expect(row).toBeDefined();
     expect(row.event_type).toBe('search');
-    expect(row.query_text).toBe('test search query');
+    // raw text is never stored; the column holds a fingerprint
+    expect(row.query_hash).toBeDefined();
+    expect(typeof row.query_hash).toBe('string');
+    expect(row.query_hash).not.toBe('test search query');
     expect(row.intent).toBe('add_feature');
     expect(row.result_count).toBe(5);
     expect(JSON.parse(row.result_ids as string)).toEqual([1, 2, 3, 4, 5]);
@@ -174,7 +187,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
   it('T002-B: logs a "context" event', () => {
     forceLogConsumptionEvent(db, {
       event_type: 'context',
-      query_text: 'how to implement feature X',
+      query: 'how to implement feature X',
       intent: 'add_feature',
       mode: 'deep',
       result_count: 8,
@@ -194,7 +207,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
   it('T002-C: logs a "triggers" event', () => {
     forceLogConsumptionEvent(db, {
       event_type: 'triggers',
-      query_text: 'gate 1 context surfacing',
+      query: 'gate 1 context surfacing',
       result_count: 3,
       result_ids: [100, 101, 102],
       session_id: 'session-triggers',
@@ -210,7 +223,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
   it('T002-D: logs event with null optional fields', () => {
     forceLogConsumptionEvent(db, {
       event_type: 'search',
-      query_text: null,
+      query: null,
       intent: null,
       result_count: 0,
       result_ids: null,
@@ -220,7 +233,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
 
     const row = db.prepare(`SELECT * FROM consumption_log WHERE event_type = 'search'`).get() as Record<string, unknown>;
     expect(row).toBeDefined();
-    expect(row.query_text).toBeNull();
+    expect(row.query_hash).toBeNull();
     expect(row.result_ids).toBeNull();
     expect(row.session_id).toBeNull();
   });
@@ -228,7 +241,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
   it('T002-E: logs metadata as JSON', () => {
     forceLogConsumptionEvent(db, {
       event_type: 'search',
-      query_text: 'test',
+      query: 'test',
       result_count: 1,
       metadata: { extra: 'info', nested: { value: 42 } },
     });
@@ -242,7 +255,7 @@ describe('T002: event logging mechanics (via forceLog)', () => {
 
   it('T002-F: multiple events accumulate in table', () => {
     for (let i = 0; i < 5; i++) {
-      forceLogConsumptionEvent(db, { event_type: 'search', query_text: `query ${i}`, result_count: i });
+      forceLogConsumptionEvent(db, { event_type: 'search', query: `query ${i}`, result_count: i });
     }
     const countRow = db.prepare(`SELECT COUNT(*) as cnt FROM consumption_log`).get() as { cnt: number };
     expect(countRow.cnt).toBe(5);
@@ -307,9 +320,9 @@ describe('T003: getConsumptionStats — aggregation', () => {
   });
 
   it('T003-F: counts zero_result_queries', () => {
-    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 0, query_text: 'empty' });
-    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 0, query_text: 'also empty' });
-    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 5, query_text: 'got results' });
+    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 0, query: 'empty' });
+    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 0, query: 'also empty' });
+    forceLogConsumptionEvent(db, { event_type: 'search', result_count: 5, query: 'got results' });
     const stats = getConsumptionStats(db);
     expect(stats.zero_result_queries).toBe(2);
   });
@@ -360,22 +373,23 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
   it('T004-B: detects high-frequency-query (>3 repetitions)', () => {
     // Insert same query 5 times
     for (let i = 0; i < 5; i++) {
-      forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'repeated query', result_count: 3 });
+      forceLogConsumptionEvent(db, { event_type: 'search', query: 'repeated query', result_count: 3 });
     }
     // Also insert unique queries
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'unique query', result_count: 2 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'unique query', result_count: 2 });
 
     const patterns = getConsumptionPatterns(db);
     const highFreq = patterns.find(p => p.category === 'high-frequency-query');
     expect(highFreq).toBeDefined();
     expect(highFreq!.count).toBeGreaterThan(0);
-    expect(highFreq!.examples.some(e => e.includes('repeated query'))).toBe(true);
+    // examples contain fingerprints, not raw text; check fingerprint prefix
+    expect(highFreq!.examples.some(e => e.startsWith('fingerprint:repeated'))).toBe(true);
   });
 
   it('T004-C: detects zero-result queries', () => {
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'nothing found', result_count: 0 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'also nothing', result_count: 0 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'has results', result_count: 4 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'nothing found', result_count: 0 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'also nothing', result_count: 0 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'has results', result_count: 4 });
 
     const patterns = getConsumptionPatterns(db);
     const zeroResult = patterns.find(p => p.category === 'zero-result');
@@ -384,9 +398,9 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
   });
 
   it('T004-D: detects low-selection queries (result_count <= 2)', () => {
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'sparse query', result_count: 1 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'sparse query 2', result_count: 2 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'good query', result_count: 8 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'sparse query', result_count: 1 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'sparse query 2', result_count: 2 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'good query', result_count: 8 });
 
     const patterns = getConsumptionPatterns(db);
     const lowSel = patterns.find(p => p.category === 'low-selection');
@@ -395,34 +409,36 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
   });
 
   it('T004-D2: low-selection examples show deterministic range for mixed result_count values', () => {
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'mixed sparse', result_count: 1 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'mixed sparse', result_count: 2 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'mixed sparse', result_count: 1 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'mixed sparse', result_count: 2 });
 
     const patterns = getConsumptionPatterns(db);
     const lowSel = patterns.find(p => p.category === 'low-selection');
 
     expect(lowSel).toBeDefined();
-    expect(lowSel!.examples.some(e => e.includes('mixed sparse') && e.includes('(1-2 results)'))).toBe(true);
+    // examples use fingerprint format; raw text is absent — check range suffix
+    expect(lowSel!.examples.some(e => e.startsWith('fingerprint:mixed sp') && e.includes('(1-2 results)'))).toBe(true);
   });
 
   it('T004-E: detects intent-mismatch (same query, different intents)', () => {
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'fix the bug', intent: 'fix_bug', result_count: 3 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'fix the bug', intent: 'refactor', result_count: 2 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'stable query', intent: 'understand', result_count: 5 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'stable query', intent: 'understand', result_count: 4 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'fix the bug', intent: 'fix_bug', result_count: 3 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'fix the bug', intent: 'refactor', result_count: 2 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'stable query', intent: 'understand', result_count: 5 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'stable query', intent: 'understand', result_count: 4 });
 
     const patterns = getConsumptionPatterns(db);
     const mismatch = patterns.find(p => p.category === 'intent-mismatch');
     expect(mismatch).toBeDefined();
     expect(mismatch!.count).toBe(1);
-    expect(mismatch!.examples.some(e => e.includes('fix the bug'))).toBe(true);
+    // examples use fingerprint format; raw text is absent — check fingerprint prefix
+    expect(mismatch!.examples.some(e => e.startsWith('fingerprint:fix the '))).toBe(true);
   });
 
   it('T004-F: detects session-heavy (>10 queries per session)', () => {
     for (let i = 0; i < 12; i++) {
-      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query_text: `q${i}`, result_count: 1 });
+      forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'heavy-session-001', query: `q${i}`, result_count: 1 });
     }
-    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query_text: 'only one', result_count: 3 });
+    forceLogConsumptionEvent(db, { event_type: 'search', session_id: 'light-session', query: 'only one', result_count: 3 });
 
     const patterns = getConsumptionPatterns(db);
     const heavy = patterns.find(p => p.category === 'session-heavy');
@@ -433,8 +449,8 @@ describe('T004: getConsumptionPatterns — pattern detection', () => {
 
   it('T004-G: returns empty examples when no patterns match', () => {
     // No repeated queries, no zero results, etc.
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'unique A', result_count: 5 });
-    forceLogConsumptionEvent(db, { event_type: 'search', query_text: 'unique B', result_count: 7 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'unique A', result_count: 5 });
+    forceLogConsumptionEvent(db, { event_type: 'search', query: 'unique B', result_count: 7 });
 
     const patterns = getConsumptionPatterns(db);
     // High-frequency, zero-result, low-selection, session-heavy should have count 0
@@ -455,7 +471,7 @@ describe('T005: fail-safe behavior — logging errors never propagate', () => {
     db.close();
     // Should not throw even with closed DB
     expect(() => {
-      logConsumptionEvent(db, { event_type: 'search', query_text: 'test', result_count: 1 });
+      logConsumptionEvent(db, { event_type: 'search', query: 'test', result_count: 1 });
     }).not.toThrow();
   });
 
@@ -467,7 +483,7 @@ describe('T005: fail-safe behavior — logging errors never propagate', () => {
       const db = createTestDb();
       logConsumptionEvent(db, {
         event_type: 'search',
-        query_text: 'should-appear',
+        query: 'should-appear',
         result_count: 5,
       });
       const rows = db.prepare('SELECT COUNT(*) as cnt FROM consumption_log').get() as { cnt: number };
@@ -532,7 +548,7 @@ describe('T005: fail-safe behavior — logging errors never propagate', () => {
 
     try {
       const db = createTestDb();
-      logConsumptionEvent(db, { event_type: 'search', query_text: 'should not log', result_count: 3 });
+      logConsumptionEvent(db, { event_type: 'search', query: 'should not log', result_count: 3 });
       const countRow = db.prepare(`SELECT COUNT(*) as cnt FROM consumption_log`).get() as { cnt: number };
       expect(countRow.cnt).toBe(0);
       db.close();

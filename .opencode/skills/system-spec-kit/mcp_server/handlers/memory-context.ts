@@ -1871,7 +1871,7 @@ async function handleMemoryContext(args: ContextArgs): Promise<MCPResponse> {
         }
         logConsumptionEvent(db, {
           event_type: 'context',
-          query_text: normalizedInput,
+          query: normalizedInput,
           intent: detectedIntent ?? null,
           mode: effectiveMode,
           result_count: resultCount,
