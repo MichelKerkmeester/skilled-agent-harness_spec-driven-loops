@@ -1,0 +1,384 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk_skill_advisor_advisor_recommend {"prompt":"Edit .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md only to fix taxonomy, mirror sync cli card count/list, and add mimo-v2.5-pro to small-model budget list. Spec folder pre-approved skilled-agent-orchestration/130-prompt-knowledge-layering.","options":{"topK":5,"includeAttribution":true,"includeAbstainReasons":true}}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet per deep-review findings.\n\nFix ONLY these file(s): .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md. Make ONLY the described changes; NO deletes of files; NO other files. (1) The pre-planning-density note lists deepseek-v4-pro and kimi-k2.6 among \"frontier models\" — but those are active small-model-hub models (they have profiles in sk-prompt-small-model/references/models/). Fix the taxonomy: move deepseek-v4-pro/kimi-k2.6 into the small-model wording (or remove them from the frontier parenthetical). (2) The Mirror Sync section names only three cli cards — update to say all FIVE cli-* cards delegate here (or list all five). (3) The Budget Awareness small-model list is missing mimo-v2.5-pro — add it beside the other active small models.\n\nReport which specific edits you made per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mSkill "customize-opencode"
+[0m→ [0mSkill "sk-doc"
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=400][0m
+[0m% [0mPatch 1 file
+[0m
+[0m$ [0mgit diff --check -- .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+(no output)
+[0m
+[0m$ [0mgit diff -- .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+diff --git a/.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md b/.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+index bd25b49d92..76b8f64725 100644
+--- a/.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
++++ b/.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+@@ -43,19 +43,19 @@ Load this card before building any CLI dispatch prompt. Select a framework from
+ | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
+ | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
+ 
+-> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For small coding-specialized models (e.g. cli-devin's SWE-1.6), pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models (claude-opus-4.7, gpt-5.5, deepseek-v4-pro, kimi-k2.6, gemini-2.5-pro), pre-planning is recommended for non-trivial dispatches but not mandatory.
++> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For small-model-hub and coding-specialized models (e.g. cli-devin's SWE-1.6, deepseek-v4-pro, kimi-k2.6), pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models (claude-opus-4.7, gpt-5.5, gemini-2.5-pro), pre-planning is recommended for non-trivial dispatches but not mandatory.
+ >
+ > **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model (SWE-1.6, deepseek-v4-pro, kimi-k2.6) — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
+ >
+ > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
+ 
+-> **Per-model framework overrides live in each executor's own card.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the executor card that dispatches the model (e.g. cli-opencode for MiniMax — Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed`). Check the executor's prompt-quality card before composing for a specific small model.
++> **Per-model framework overrides live in the model-craft hub at `sk-prompt-small-model/references/models/<id>.md`.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the per-model profile file (e.g. MiniMax M3 → `sk-prompt-small-model/references/models/minimax-m3.md`). The underlying data — including `recommended_frameworks` — is stored in `sk-prompt/assets/model-profiles.json`. Check the profile before composing for a specific small model.
+ 
+ For per-model defaults, quota pools, and fallback targets, see `sk-prompt/assets/model-profiles.json`.
+ 
+ ### Budget Awareness
+ 
+-Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
++Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
+ 
+ ---
+ 
+@@ -73,9 +73,18 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
+ 
+ ---
+ 
+-## 5. Escalation Triggers
++## 5. Prompt-Composition Precedence
+ 
+-Dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline when any of the following are true:
++Three tiers govern how a prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
++
++**Tier 1 — Fast path (default)**
++Build the prompt directly from this canonical card. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
++
++**Tier 2 — Model override (mandatory when dispatching a profiled model)**
++If the target model has a `recommended_frameworks` entry in `sk-prompt/assets/model-profiles.json` AND a profile at `sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model defaults from this card. The profile may prescribe a different framework, pre-planning density, or bundle-gate strictness than the table above. Read the profile before composing the prompt — skipping this step is the leading cause of underperformance on profiled small models.
++
++**Tier 3 — Deep path (escalation)**
++Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when ANY of the following are true:
+ 
+ - Complexity is `>= 7/10`
+ - Compliance, policy, privacy, or security sensitivity is present
+@@ -110,13 +119,17 @@ ESCALATION_NOTES: <open ambiguity or risk>
+ 
+ ## 7. Mirror Sync
+ 
+-Mirror paths:
++All five cli-* cards (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
+ 
+-- `../../cli-claude-code/assets/prompt_quality_card.md`
+-- `../../cli-codex/assets/prompt_quality_card.md`
+-- `../../cli-gemini/assets/prompt_quality_card.md`
++A duplication guard enforces this contract:
++
++```
++.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
++```
++
++The script asserts that no cli-* card re-inlines the framework selection table or the CLEAR 5-question table from this file. If the guard fails, remove the inlined content from the offending cli-* card and replace it with a link back to this file.
+ 
+-When editing this file, also update the mirrors or run `.opencode/skills/scripts/check-prompt-quality-card-sync.sh`.
++When editing this file, no mirroring step is required — the delegating cards reference it by path.
+ 
+ ---
+[0m
+[0m$ [0mgit diff --name-only
+.claude/settings.local.json
+.opencode/skills/cli-claude-code/SKILL.md
+.opencode/skills/cli-claude-code/assets/prompt_quality_card.md
+.opencode/skills/cli-codex/SKILL.md
+.opencode/skills/cli-codex/assets/prompt_quality_card.md
+.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/023-clear-scoring-quality-card.md
+.opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md
+.opencode/skills/cli-devin/SKILL.md
+.opencode/skills/cli-devin/assets/prompt_quality_card.md
+.opencode/skills/cli-devin/assets/prompt_templates.md
+.opencode/skills/cli-gemini/SKILL.md
+.opencode/skills/cli-gemini/assets/prompt_quality_card.md
+.opencode/skills/cli-opencode/SKILL.md
+.opencode/skills/cli-opencode/assets/prompt_quality_card.md
+.opencode/skills/cli-opencode/references/cli_reference.md
+.opencode/skills/deep-ai-council/assets/prompt_pack_round.md.tmpl
+.opencode/skills/deep-improvement/SKILL.md
+.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
+.opencode/skills/deep-improvement/scripts/model-benchmark/SWEEP.md
+.opencode/skills/deep-improvement/scripts/model-benchmark/tests/sweep-isolation.vitest.ts
+.opencode/skills/deep-improvement/test-fixtures/060-stress-test/.claude/agents/cp-improve-target.md
+.opencode/skills/deep-improvement/test-fixtures/060-stress-test/.codex/agents/cp-improve-target.toml
+.opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
+.opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
+.opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
+.opencode/skills/sk-prompt-small-model/SKILL.md
+.opencode/skills/sk-prompt-small-model/references/pattern-index.md
+.opencode/skills/sk-prompt/SKILL.md
+.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+.opencode/skills/sk-prompt/assets/model-profiles.json
+.opencode/skills/sk-prompt/references/model-profiles.md
+.opencode/skills/system-skill-advisor/SKILL.md
+.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
+.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-respawn.lock
+.opencode/specs/descriptions.json
+.opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability/description.json
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation/description.json
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router/description.json
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track/description.json
+.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements/description.json
+.opencode/specs/skilled-agent-orchestration/125-feature-catalog-template-improvements/description.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration/description.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration/description.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research/description.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/description.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-minimax-m3-high.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/cidi__chunk.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/cidi__parseRange.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/costar__chunk.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/costar__parseRange.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/race__chunk.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/race__parseRange.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/rcaf__chunk.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/rcaf__parseRange.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/tidd-ec__chunk.json
+.opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/tidd-ec__parseRange.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/checklist.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/description.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/plan.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/spec.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/tasks.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/description.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/spec.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/description.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/graph-metadata.json
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/implementation-summary.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/plan.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/deltas/deltas.jsonl
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-001.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-002.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-003.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-004.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-005.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-006.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-007.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-008.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-009.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-010.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/research.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/spec.md
+.opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/tasks.md
+.opencode/specs/skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing/description.json
+.opencode/specs/skilled-agent-orchestration/129-sk-code-animation-mining/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/description.json
+[0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=43, limit=18][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=120, limit=5][0m
+[0m
+[0m$ [0mbash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering --strict
+Auto-enabled recursive validation: phase child folders detected.
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering
+  Level:  phase
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Phase parent lean template shape accepted
++ ANCHORS_VALID: Phase parent lean template shape accepted
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+[0m

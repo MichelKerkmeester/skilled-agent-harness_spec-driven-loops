@@ -1,0 +1,26 @@
+{
+  "id": "t1-echo",
+  "category": "format-adherence",
+  "tier": "T1",
+  "fn_name": "echo",
+  "signature": "function echo(value)",
+  "task": "Implement a JavaScript function `echo(value)` that returns its single argument unchanged. Whatever is passed in is returned exactly as-is: same number, same string, same boolean, same null, the same array or object reference. Do not copy, clone, coerce, stringify, or wrap the value; do not add defaults; do not special-case any input. This is a trivial smoke/identity fixture: its job is to confirm the harness, extraction, and dispatch path work end-to-end, NOT to separate models. It is intentionally a demote-class fixture and is expected to saturate.",
+  "visibleSpec": "echo(value) -> value. Returns the exact argument it was given, with no transformation of any kind.",
+  "scope": "Single pure function. No mutation of the argument, no extra parameters, no helper globals, no I/O, no cloning.",
+  "tests": [
+    { "name": "echoes a number", "args": [42], "expect": 42 },
+    { "name": "echoes a string", "args": ["hello"], "expect": "hello" },
+    { "name": "echoes a boolean", "args": [true], "expect": true },
+    { "name": "echoes null", "args": [null], "expect": null },
+    { "name": "echoes an array", "args": [[1, 2, 3]], "expect": [1, 2, 3] }
+  ],
+  "hidden_tests": [
+    { "name": "echoes zero", "args": [0], "expect": 0 },
+    { "name": "echoes empty string", "args": [""], "expect": "" },
+    { "name": "echoes an object", "args": [{ "a": 1, "b": 2 }], "expect": { "a": 1, "b": 2 } },
+    { "name": "echoes false", "args": [false], "expect": false },
+    { "name": "echoes nested array", "args": [[[1], [2, 3]]], "expect": [[1], [2, 3]] }
+  ],
+  "expectedDifficulty": "trivial",
+  "saturation": { "status": "active" }
+}

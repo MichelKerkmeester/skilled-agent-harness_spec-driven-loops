@@ -1,0 +1,328 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). Remediate deep-review findings in cli-devin prompt quality card, SKILL.md, and prompt_templates.md only.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mSkill "customize-opencode"
+[0m→ [0mSkill "sk-doc"
+[0m
+[0m# [0mTodos
+[•] Inspect the three scoped cli-devin Markdown files
+[ ] Patch only the requested rows, pointers, heading, and guard note
+[ ] Verify the edited text and report per-file changes
+[0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=1, limit=460][0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_templates.md[90m [offset=1, limit=120][0m
+[0m✱ [0mGrep "CLEAR|Tier 3|canonical Tier 3|stakeholder|ambiguous requirement|privacy|policy"[90m in .opencode/skills/sk-prompt/assets · 23 matches[0m
+[0m✱ [0mGrep "~/.config/devin/sessions|session.*lock|lock-file|lockfile|TODO verify|speculative"[90m in .opencode/skills/cli-devin · 23 matches[0m
+[0m✱ [0mGrep "RCAF default|recommended_frameworks|deepseek-v4-pro|glm-5.1|CLEAR"[90m in .opencode/skills/sk-prompt-small-model/references/models · 48 matches[0m
+[0m% [0mPatch 3 files
+[0m
+[0m# [0mTodos
+[✓] Inspect the three scoped cli-devin Markdown files
+[✓] Patch only the requested rows, pointers, heading, and guard note
+[•] Verify the edited text and report per-file changes
+[0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=21, limit=25][0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=54, limit=35][0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=188, limit=8][0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=358, limit=13][0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_templates.md[90m [offset=18, limit=5][0m
+[0m✱ [0mGlob "specs/**/130-prompt-knowledge-layering*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/**/130-prompt-knowledge-layering*"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "TIDD-EC|CRAFT|TODO verify|speculative|ENHANCED_PROMPT|compliance/security signals"[90m in .opencode/skills/cli-devin · 3 matches[0m
+[0m✱ [0mGlob "**/130-prompt-knowledge-layering*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/*prompt*knowledge*layering*"[90m in . · 0 matches[0m
+[0m% [0mPatch 2 files
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=362, limit=8][0m
+[0m✱ [0mGrep "TIDD-EC|CRAFT|TODO verify|speculative|compliance/security signals|compliance/privacy/security signal"[90m in .opencode/skills/cli-devin · 0 matches[0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_templates.md[90m [offset=18, limit=5][0m
+[0m
+[0m$ [0mrg -n "TIDD-EC|CRAFT|TODO verify|speculative|compliance/security signals|compliance/privacy/security signal" ".opencode/skills/cli-devin/assets/prompt_quality_card.md" ".opencode/skills/cli-devin/SKILL.md" ".opencode/skills/cli-devin/assets/prompt_templates.md" || true
+(no output)
+[0m
+[0m$ [0mgit diff --check -- ".opencode/skills/cli-devin/assets/prompt_quality_card.md" ".opencode/skills/cli-devin/SKILL.md" ".opencode/skills/cli-devin/assets/prompt_templates.md"
+(no output)
+[0m
+[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-devin/assets/prompt_quality_card.md" ".opencode/skills/cli-devin/SKILL.md" ".opencode/skills/cli-devin/assets/prompt_templates.md"
+usage: quick_validate.py [-h] [--json]
+                         [--description-soft-target DESCRIPTION_SOFT_TARGET]
+                         skill_directory
+quick_validate.py: error: unrecognized arguments: .opencode/skills/cli-devin/SKILL.md .opencode/skills/cli-devin/assets/prompt_templates.md
+[0m
+[0m$ [0mpython3 ".opencode/skills/sk-doc/scripts/quick_validate.py" ".opencode/skills/cli-devin"
+✅ Skill is valid!
+⚠️  Description is 133 chars, exceeds soft target of 130. Project total budget is ~5,600 chars (default 8,000 minus built-ins); trim per .opencode/skills/sk-doc/assets/frontmatter_templates.md § 'Description Budget & Trim Style'.
+[0m
+[0m$ [0mgit diff -- ".opencode/skills/cli-devin/assets/prompt_quality_card.md" ".opencode/skills/cli-devin/SKILL.md" ".opencode/skills/cli-devin/assets/prompt_templates.md"
+diff --git a/.opencode/skills/cli-devin/SKILL.md b/.opencode/skills/cli-devin/SKILL.md
+index 0b215281bc..cd24ee3d55 100644
+--- a/.opencode/skills/cli-devin/SKILL.md
++++ b/.opencode/skills/cli-devin/SKILL.md
+@@ -2,7 +2,7 @@
+ name: cli-devin
+ description: "Devin CLI orchestrator: dispatch Cognition AI's 'Devin for Terminal' for autonomous coding work with optional local-to-cloud handoff."
+ allowed-tools: [Bash, Read, Glob, Grep]
+-version: 1.0.6.4
++version: 1.0.7.0
+ ---
+ 
+ <!-- Keywords: devin, devin-cli, devin-for-terminal, cognition, swe-1.6, deepseek-v4, glm-5.1, kimi-k2.6, cloud-handoff, autonomous-agent, cross-ai, mcp, acp, permission-modes, complex-task-fallback -->
+@@ -56,7 +56,7 @@ command -v devin || echo "Not installed. Run: curl -fsSL https://cli.devin.ai/in
+ env | grep -q '^DEVIN_' && echo "ERROR: DEVIN_* env detected — already inside a local devin session."
+ # Layer 2: process ancestry — devin in parent tree
+ ps -o command= -p "$PPID" | grep -q '/devin\|devin ' && echo "ERROR: devin parent process detected."
+-# Layer 3: state lock-file probe (TODO verify — Devin's exact session-state layout is not publicly documented at v0.x)
++# Layer 3: best-effort state lock-file probe
+ ls ~/.config/devin/sessions/*/lock 2>/dev/null | head -1 | grep -q lock && echo "ERROR: live devin session lock detected."
+ ```
+ 
+@@ -76,8 +76,7 @@ def detect_self_invocation():
+             return ('ancestry', 'devin')
+     except subprocess.SubprocessError:
+         pass
+-    # Layer 3: state lock-file probe (speculative — adjust path once Devin v1.x docs the session-state directory)
+-    # TODO verify: confirm path against an actual Devin install
++    # Layer 3: best-effort state lock-file probe. Absence is not proof that no Devin session is active.
+     state_dir = os.path.expanduser('~/.config/devin/sessions')
+     if os.path.isdir(state_dir):
+         for entry in os.listdir(state_dir):
+@@ -189,7 +188,7 @@ devin auth status
+ 
+ **Default model + permission mode**: `swe-1.6` · `auto` permission mode. SWE-1.6 is Cognition's coding-specialized model and the natural default for Devin-native dispatches. `auto` is the default permission mode (auto-approves read-only tools; prompts on write/exec, matching the Codex `--ask-for-approval on-request` analog).
+ 
+-> **SWE-1.6 Prompt-Quality Contract (REQUIRED)**: SWE-1.6 is fast and coding-specialized but smaller than the complex-task models — it relies on prompt clarity for reliable output. EVERY cli-devin dispatch with `--model swe-1.6` MUST: (1) be composed through `sk-prompt` (apply a structured framework — **default RCAF (Role/Context/Action/Format)**; fall back to STAR for narrative-heavy tasks or BUILD for multi-file refactors; run the CLEAR 5-check) before composing the final `--prompt-file` payload, AND (2) include an explicit pre-planning block in the prompt body — the calling AI decomposes the task into ordered steps with acceptance criteria BEFORE handing it to SWE-1.6, rather than asking SWE-1.6 to figure out structure on its own. See `assets/prompt_templates.md` §2 for the canonical SWE-1.6 pre-planning template and `assets/prompt_quality_card.md` §3 for the framework selection rules. Skipping this contract is the single largest cause of underwhelming SWE-1.6 output and must be treated as a soft-block in operator review. **Composition guidance**: use medium-density pre-planning (3-4 ordered steps with per-step acceptance and verification); do NOT pair BUILD with strict bundle-gate wording — verbose constraint language pushes SWE 1.6 most strongly toward defensive output rather than direct code, and the same pattern holds on `deepseek-v4` and `kimi-k2.6`, so keep bundle-gate language at "standard" for all cli-devin model presets.
++> **SWE-1.6 Prompt-Quality Contract (REQUIRED)**: SWE-1.6 is fast and coding-specialized but smaller than the complex-task models — it relies on prompt clarity for reliable output. The framework choice (**RCAF primary**; STAR fallback for narrative-heavy tasks, BUILD for multi-file refactors) and the mandatory caller-side pre-planning contract are OWNED by [`../sk-prompt-small-model/references/models/swe-1.6.md`](../sk-prompt-small-model/references/models/swe-1.6.md) (reached via the tier-2 model-override step of the 3-tier precedence rule in §4 ALWAYS). EVERY cli-devin dispatch with `--model swe-1.6` MUST: (1) honor that swe-1.6 profile plus the 3-tier precedence rule when composing the final `--prompt-file` payload, AND (2) include an explicit pre-planning block in the prompt body — the calling AI decomposes the task into ordered steps with acceptance criteria BEFORE handing it to SWE-1.6, rather than asking SWE-1.6 to figure out structure on its own. See `assets/prompt_templates.md` §2 for the executor-owned dispatch template that wraps the profile scaffold, `../sk-prompt/assets/cli_prompt_quality_card.md` §4 for canonical CLEAR, and `assets/prompt_quality_card.md` §3 for local precedence. Skipping this contract is the single largest cause of underwhelming SWE-1.6 output and must be treated as a soft-block in operator review. **Composition guidance** (set by the profile): use medium-density pre-planning (3-4 ordered steps with per-step acceptance and verification); do NOT pair BUILD with strict bundle-gate wording — verbose constraint language pushes SWE 1.6 most strongly toward defensive output rather than direct code, and the same pattern holds on `deepseek-v4` and `kimi-k2.6`, so keep bundle-gate language at "standard" for all cli-devin model presets.
+ 
+ ```bash
+ # Non-interactive dispatch via prompt file (preferred for prompts >2KB or programmatic dispatch)
+@@ -362,15 +361,19 @@ devin update
+ 5. **Redirect devin stdin from `/dev/null`** for non-interactive / background / scripted dispatches as a portability convention. Pattern: `devin --prompt-file "$PROMPT_FILE" --model swe-1.6 -p > "$LOG" 2>&1 </dev/null &`. Empirical testing (2026-05-15, devin 2026.5.6-8) showed Devin does NOT exhibit silent stdin-theft — the redirect is harmless and recommended for cross-binary-version stability, but not load-bearing on the tested version. See `evidence/playbook-run-wave2-2026-05-15.md`.
+ 6. Capture stderr (`2>&1`) so auth errors, rate-limit messages, and dispatch failures surface to the calling AI.
+ 7. **Pass the spec folder to the delegated dispatch** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the operator before delegating — Devin cannot answer Gate 3 in unattended mode.
+-8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. For complexity ≥ 7/10 or compliance/security signals, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
+-9. **Operator-confirmation gate before cloud handoff.** No cli-devin invocation that mentions "cloud handoff", "hand off to cloud", or `devin cloud` proceeds without the operator's explicit confirmation in the same turn. See `references/cloud_handoff.md`.
+-10. **Code Standards Loading (surface-aware contract)** — When dispatching for code generation or review, instruct the dispatched Devin session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: ask for the runtime surface and verification command set if detection is ambiguous.
+-11. Validate Devin-generated code (XSS, injection, eval, syntax checks, surface-specific lint/test) before merging.
+-12. **SWE-1.6 Prompt-Quality Contract** — EVERY dispatch with `--model swe-1.6` MUST (a) be composed through `sk-prompt` with a chosen framework (**default RCAF**; STAR for narrative-heavy tasks, BUILD for well-defined multi-file refactors) and a passing CLEAR 5-check, AND (b) include an explicit pre-planning block in the prompt body: ordered steps + per-step acceptance criteria + stop conditions + verification approach. SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing the structural decomposition upfront. Use medium-density pre-planning (3-4 steps); do NOT tighten bundle-gate language beyond "standard" — verbose constraints push SWE 1.6 most strongly toward defensive output rather than direct code, and the same pattern holds on `deepseek-v4` and `kimi-k2.6`, so keep bundle-gate language at "standard" for all cli-devin model presets. See `assets/prompt_templates.md` §2 for the canonical pre-planning template.
+-13. **Deep-Loop Iter Contract** (v1.0.3.0+) — when cli-devin is dispatched as the executor for `/deep:start-research-loop` or `/deep:start-review-loop` per-iter workers, ALSO pass `--agent-config <path>` pointing at one of the three pinned recipes in `assets/` (research-iter / review-iter / synthesis). The recipe enforces tool allowlist and scoped permission entries (`Read(/path/**)`, `Exec(<cmd>)`) at Devin's strict parser, so the iter cannot drift outside the read-only-research, read-only-review, or scoped-write-synthesis profile. See [`references/deep-loop-iter-contract.md`](./references/deep-loop-iter-contract.md) for the full contract and [`references/agent-config-recipes.md`](./references/agent-config-recipes.md) for per-recipe wording, allowlist rationale, and copy-paste invocations.
+-14. **Sequential_thinking MCP is mandatory pre-output** (v1.0.4.0+) — EVERY cli-devin dispatch regardless of model (SWE-1.6, DeepSeek v4, GLM 5.1, Kimi k2.6) MUST enforce `sequential_thinking` via a **2-layer pattern**: (1) operator-side user-scope MCP registration via `devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` (one-time per profile; the server then loads automatically for every Devin session) AND (2) a `system_instructions` mandate in the `--agent-config` recipe that requires the model to invoke `mcp__sequential_thinking__sequentialthinking` with at least 5 thoughts before producing the structured output. The recipe-level `mcp_servers` field is RESERVED but not yet wired — Devin binary v2026.5.6+ rejects every shape with `untagged enum McpServer` and self-logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. Re-introduce the recipe field once Devin lands `--agent-config mcp_servers` support; until then the 2-layer pattern is the only working enforcement. This requirement applies to research-iter / review-iter / synthesis recipes and any future cli-devin recipe. See `references/deep-loop-iter-contract.md` §SEQUENTIAL_THINKING for the full contract and `references/agent-config-recipes.md` §2 SCHEMA for the canonical 2-layer pattern.
+-15. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-devin, cli-opencode, cli-claude-code, cli-gemini). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "devin --print"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
+-16. **Set `AI_SESSION_CHILD=1` in the dispatched child's env** when sessions may be launched through the per-session worktree wrapper (`.opencode/bin/worktree-session.sh`). A dispatched `devin` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 devin ...`. Harmless when the wrapper is not in use. See `.opencode/bin/README.md` → "Worktree session isolation".
++8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** For Tier 1, compose directly via the canonical card it delegates to: select the framework, apply the CLEAR 5-check, and tag the framework in the Bash invocation comment. Reserve `ENHANCED_PROMPT` for Tier-3 `@prompt-improver` output when a canonical Tier 3 trigger applies.
++9. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../sk-prompt/assets/cli_prompt_quality_card.md`:
++   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
++   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt-small-model** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
++   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when any canonical Tier 3 trigger applies: complexity ≥ 7/10, compliance/policy/privacy/security sensitivity, >1 stakeholder or audience, >1 ambiguous requirement, or the fast-path CLEAR cannot clear its floor.
++10. **Operator-confirmation gate before cloud handoff.** No cli-devin invocation that mentions "cloud handoff", "hand off to cloud", or `devin cloud` proceeds without the operator's explicit confirmation in the same turn. See `references/cloud_handoff.md`.
++11. **Code Standards Loading (surface-aware contract)** — When dispatching for code generation or review, instruct the dispatched Devin session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: ask for the runtime surface and verification command set if detection is ambiguous.
++12. Validate Devin-generated code (XSS, injection, eval, syntax checks, surface-specific lint/test) before merging.
++13. **SWE-1.6 Prompt-Quality Contract** — the SWE-1.6 framework choice (RCAF primary; STAR fallback for narrative-heavy tasks, BUILD for well-defined multi-file refactors) and the mandatory caller-side pre-planning contract are OWNED by [`../sk-prompt-small-model/references/models/swe-1.6.md`](../sk-prompt-small-model/references/models/swe-1.6.md) (per the tier-2 model-override step in rule 9). EVERY dispatch with `--model swe-1.6` MUST honor that swe-1.6 profile plus the 3-tier precedence rule, and MUST still include an explicit pre-planning block in the prompt body: ordered steps + per-step acceptance criteria + stop conditions + verification approach. SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing the structural decomposition upfront, so the pre-planning block stays a soft-block in operator review. The profile sets medium-density pre-planning (3-4 steps) and warns against tightening bundle-gate language beyond "standard"; the same defensive-output pattern holds on `deepseek-v4` and `kimi-k2.6`, so keep bundle-gate language at "standard" for all cli-devin model presets. See `assets/prompt_templates.md` §2 for the executor-owned dispatch template that wraps the profile scaffold.
++14. **Deep-Loop Iter Contract** (v1.0.3.0+) — when cli-devin is dispatched as the executor for `/deep:start-research-loop` or `/deep:start-review-loop` per-iter workers, ALSO pass `--agent-config <path>` pointing at one of the three pinned recipes in `assets/` (research-iter / review-iter / synthesis). The recipe enforces tool allowlist and scoped permission entries (`Read(/path/**)`, `Exec(<cmd>)`) at Devin's strict parser, so the iter cannot drift outside the read-only-research, read-only-review, or scoped-write-synthesis profile. See [`references/deep-loop-iter-contract.md`](./references/deep-loop-iter-contract.md) for the full contract and [`references/agent-config-recipes.md`](./references/agent-config-recipes.md) for per-recipe wording, allowlist rationale, and copy-paste invocations.
++15. **Sequential_thinking MCP is mandatory pre-output** (v1.0.4.0+) — EVERY cli-devin dispatch regardless of model (SWE-1.6, DeepSeek v4, GLM 5.1, Kimi k2.6) MUST enforce `sequential_thinking` via a **2-layer pattern**: (1) operator-side user-scope MCP registration via `devin mcp add sequential_thinking npx @modelcontextprotocol/server-sequential-thinking@2025.12.18` (one-time per profile; the server then loads automatically for every Devin session) AND (2) a `system_instructions` mandate in the `--agent-config` recipe that requires the model to invoke `mcp__sequential_thinking__sequentialthinking` with at least 5 thoughts before producing the structured output. The recipe-level `mcp_servers` field is RESERVED but not yet wired — Devin binary v2026.5.6+ rejects every shape with `untagged enum McpServer` and self-logs `ACP: agent_config mcp_servers are not yet supported in the ACP path and will be ignored`. Re-introduce the recipe field once Devin lands `--agent-config mcp_servers` support; until then the 2-layer pattern is the only working enforcement. This requirement applies to research-iter / review-iter / synthesis recipes and any future cli-devin recipe. See `references/deep-loop-iter-contract.md` §SEQUENTIAL_THINKING for the full contract and `references/agent-config-recipes.md` §2 SCHEMA for the canonical 2-layer pattern.
++16. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-devin, cli-opencode, cli-claude-code, cli-gemini). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "devin --print"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
++17. **Set `AI_SESSION_CHILD=1` in the dispatched child's env** when sessions may be launched through the per-session worktree wrapper (`.opencode/bin/worktree-session.sh`). A dispatched `devin` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 devin ...`. Harmless when the wrapper is not in use. See `.opencode/bin/README.md` → "Worktree session isolation".
+ 
+ ### ❌ NEVER
+ 
+diff --git a/.opencode/skills/cli-devin/assets/prompt_quality_card.md b/.opencode/skills/cli-devin/assets/prompt_quality_card.md
+index 3100d8e4b4..4458884f8f 100644
+--- a/.opencode/skills/cli-devin/assets/prompt_quality_card.md
++++ b/.opencode/skills/cli-devin/assets/prompt_quality_card.md
+@@ -1,139 +1,49 @@
+ ---
+ title: "Devin CLI — Prompt Quality Card"
+-description: "CLEAR 5-check + framework selection for composing cli-devin dispatch prompts. Apply before every Bash invocation; tag the framework in the comment."
++description: "Fast-path prompt discipline for cli-devin dispatches. Frameworks and CLEAR are canonical in sk-prompt; this card carries Devin model-selection mechanics."
+ ---
+ 
+ # Devin CLI — Prompt Quality Card
+ 
+-Pre-dispatch checklist for prompts sent to `devin`. Mirrors the cli-* family card shape.
++Fast-path prompt-quality discipline for cli-devin dispatches. The 7-framework selection table, task-to-framework map, density notes, and CLEAR 5-question check are owned by the canonical card — do not inline them here. This card adds only the Devin-executor mechanics: which Devin model + permission mode fits which task shape.
+ 
+----
+-
+-## 1. OVERVIEW
+-
+-This card provides the pre-dispatch quality discipline for cli-devin prompts. Section 2 is the CLEAR 5-check (Concrete / Limited / Evidence / Acceptance / Risk-Tier). Section 3 is the framework selection table mapping task shape to a structured prompt framework. Section 4 lists common composition patterns. Section 5 covers Memory Handback notes. Apply this card BEFORE every `devin --prompt-file` invocation; tag the chosen framework in the Bash invocation comment.
+-
+----
+-
+-## 2. CLEAR 5-Check
+-
+-Before composing the `devin --prompt-file` payload, verify the prompt is CLEAR:
++## 1. Shared Layer (delegated — do not inline)
+ 
+-| Check | Question | Pass Criteria |
+-|-------|----------|---------------|
+-| **C — Concrete** | Does the prompt name files, line ranges, and verification commands? | Yes — no vague "improve this code" / "make it better" |
+-| **L — Limited** | Is scope bounded? | Yes — explicit "do not modify outside <path>" / "touch only <files>" |
+-| **E — Evidence** | Does it include the evidence the dispatched session needs? | Yes — surface tag (from sk-code), relevant excerpts, prior decisions |
+-| **A — Acceptance** | Are completion criteria stated? | Yes — exact tests, exit-code expectations, behaviors to verify |
+-| **R — Risk-Tier** | Is the permission mode appropriate for what's being asked? | `auto` default; escalate only with operator approval |
++The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here. The canonical CLEAR (Correctness / Logic / Expression / Arrangement / Reusability) is the single CLEAR for the cli-* family — cli-devin does not define its own.
+ 
+-If any check fails → revise the prompt before dispatching. If complexity ≥ 7/10 OR compliance/security signals present → dispatch `@prompt-improver` via the Task tool instead of inline composition.
++-> `../../sk-prompt/assets/cli_prompt_quality_card.md`
++(deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
+ 
+----
+-
+-## 3. Framework Selection
++## 2. Devin Model Selection & Overrides
+ 
+-Choose the prompt framework that matches the task shape. Tag the chosen framework in a comment above the Bash invocation:
++cli-devin dispatches several profiled models. Pick the Devin model + permission mode by task shape, then compose the prompt with the canonical framework named below. These rows are EXECUTOR MECHANICS (model routing + permission mode), NOT prompt frameworks — the framework column points back to the canonical card's owned set.
+ 
+-```bash
+-# FRAMEWORK: ATLAS — Audit / Trace / Localize / Articulate / Suggest (security review)
+-devin --prompt-file /tmp/devin-prompt.md --model deepseek-v4 --permission-mode auto 2>&1 </dev/null
+-```
++| Task shape | Devin model | Permission mode | Canonical framework | Hub profile |
++|------------|-------------|-----------------|---------------------|-------------|
++| Clearly-scoped single-file / small multi-file coding | `swe-1.6` | `auto` | `RCAF` | `../../sk-prompt-small-model/references/models/swe-1.6.md` |
++| Narrative-heavy / context-gathering coding | `swe-1.6` | `auto` | `RCAF` (profile fallback `STAR`) | `../../sk-prompt-small-model/references/models/swe-1.6.md` |
++| Well-defined multi-file refactor | `swe-1.6` (escalate to `deepseek-v4-pro` as complexity grows) | `auto` | `RCAF` (profile fallback `BUILD`) | `../../sk-prompt-small-model/references/models/swe-1.6.md` · `.../deepseek-v4-pro.md` |
++| Security review / RCA / architecture review | `deepseek-v4-pro` | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md`) | `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md` |
++| Complex refactor with cross-cutting context | `deepseek-v4-pro` (large-context fallback `kimi-k2.6`) | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md`) | `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md` · `.../kimi-k2.6.md` |
++| Agentic / tool-use-heavy review (e.g. cross-MCP correlation) | `glm-5.1` | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/glm-5.1.md`) | `../../sk-prompt-small-model/references/models/glm-5.1.md` |
++| Async cloud session | per task shape above | operator-approved | per task shape above | see `../references/cloud_handoff.md` |
+ 
+-| Framework | When | Devin Defaults |
+-|-----------|------|----------------|
+-| **RCAF** (Role / Context / Action / Format) ★ default for SWE-1.6 | Default for SWE-1.6 coding tasks. Clearly-scoped single-file or small multi-file generation. The role anchor gives SWE-1.6 immediate framing without burning tokens on situation-setting, producing tighter and more focused output. | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block (see prompt_templates.md §2) |
+-| **STAR** (Situation / Task / Action / Result) | Narrative-heavy context gathering, tool-use traces, simple-to-medium code tasks where role framing doesn't fit naturally | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block |
+-| **BUILD** (Bounds / User-need / Implementation / Limits / Done-when) | Well-defined multi-file refactor where scope boundaries dominate the prompt design | `--model swe-1.6 --permission-mode auto` (escalate to `deepseek-v4` if complexity grows) — **REQUIRED** for SWE-1.6: dispatch through `sk-prompt` + include pre-planning block. **Don't combine BUILD with strict bundle-gate wording** — verbose constraint language pushes SWE 1.6 toward defensive output (more disclaimers, less direct code) rather than the disciplined output the strict wording is trying to elicit. |
+-| **ATLAS** (Audit / Trace / Localize / Articulate / Suggest) | Complex security review / RCA / architecture review | `--model deepseek-v4 --permission-mode auto` (fallbacks: `glm-5.1` agentic, `kimi-k2.6` large-context) |
+-| **CONTEXT** (Context / Outcome / Notes / Tasks / Examples / Xtra / Tests) | Complex refactor with cross-cutting context | `--model deepseek-v4 --permission-mode auto` (Kimi k2.6 fallback for large context) |
+-| **CLOUD-HANDOFF** (Context / Termination / Return) | Async cloud session | See `references/cloud_handoff.md` |
++Read the hub profile before composing for any profiled model — it may prescribe a different framework, pre-planning density, or bundle-gate strictness than the cross-model defaults (tier-2 of §3). The SWE-1.6 mandatory pre-planning contract (ordered steps + acceptance criteria + stop conditions + verification) is owned by `../../sk-prompt-small-model/references/models/swe-1.6.md` — it is not restated here.
+ 
+-> **SWE-1.6 prompt-quality contract**: Every `--model swe-1.6` dispatch MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative-heavy tasks; BUILD for multi-file refactors) + CLEAR 5-check, AND include an explicit pre-planning block (ordered steps + acceptance criteria + stop conditions + verification approach). SWE-1.6 is coding-specialized but smaller than the complex-task models — the calling AI must do the structural decomposition upfront rather than asking SWE-1.6 to figure it out. Skipping this contract is the largest cause of underwhelming SWE-1.6 output. For complex tasks beyond SWE-1.6's clearly-defined zone, escalate to `deepseek-v4` rather than throwing more freeform prompt at SWE-1.6.
+->
+-> **Composition guidance**: use medium-density pre-planning (3-4 ordered steps with per-step acceptance criteria + verification command); avoid dense pre-plans (4+ steps with full I/O contracts per step) — extra structure does not translate to better output. Framework choice has more impact on output quality than anti-hallucination wording tuning. Keep bundle-gate language at "standard" level; do NOT add strict wording (smoke-run-required, aggressive constraint enforcement) — verbose constraints push SWE 1.6 toward defensive output.
++### Pre-dispatch addendum — permission mode (Devin-specific, not a CLEAR axis)
+ 
+----
++Before each `devin --prompt-file` invocation, confirm the permission mode matches the work: `auto` is the default; `dangerous` and other escalations require explicit operator approval recorded in the dispatch log. This is an executor pre-flight check, NOT a competing CLEAR definition — CLEAR is canonical (§1).
+ 
+-## 4. Common Composition Patterns
+-
+-### Pattern A — Single-file edit
+-```
+-<context>
+-File: src/auth/token.ts
+-Surface: typescript-react
+-</context>
+-
+-<task>
+-<one-line goal>
+-<exact change>
+-<verification: npm test -- --filter token>
+-</task>
+-
+-<constraints>
+-- Permission mode: auto.
+-- Touch only src/auth/token.ts.
+-</constraints>
+-```
+-
+-### Pattern B — Multi-file refactor
+-```
+-<context>
+-Surface: <stack>
+-Affected files: <list>
+-</context>
+-
+-<task>
+-Refactor <name> following <pattern>. Keep behavior identical (verified by <tests>).
+-</task>
+-
+-<constraints>
+-- Permission mode: auto.
+-- Do not modify files outside <scope>.
+-- Run <tests> after every significant change; stop on failure.
+-</constraints>
+-```
+-
+-### Pattern C — Architectural review (read-only intent)
+-```
+-<context>
+-Files: <list or directory>
+-Surface: <stack>
+-</context>
+-
+-<task>
+-Review the architecture of <area>. Identify: <axes>. Produce Markdown report with file:line citations. Do not modify any files.
+-</task>
+-
+-<constraints>
+-- Permission mode: auto. Read-only intent.
+-- Output: P0/P1/P2 finding blocks with rationale and suggested fix.
+-</constraints>
+-```
++## 3. Delegation / Precedence
+ 
+----
++The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`. Apply it in order; stop at the first tier that fully covers the task:
+ 
+-## 5. Memory Handback Notes
++- **Tier 1 (fast path):** build the prompt from the canonical card — select a framework, run the CLEAR check, dispatch.
++- **Tier 2 (model override):** when dispatching a profiled model, honor the model profile at `../../sk-prompt-small-model/references/models/<id>.md` — it overrides the cross-model defaults. (This replaces cli-devin's former "every dispatch MUST be composed through sk-prompt" mandate.)
++- **Tier 3 (deep path):** dispatch `@prompt-improver` via the Task tool when any canonical Tier 3 trigger applies: complexity >= 7/10, compliance/policy/privacy/security sensitivity, >1 stakeholder or audience, >1 ambiguous requirement, or the fast-path CLEAR check cannot clear its floor; hand the returned `ENHANCED_PROMPT` to the `devin` invocation.
+ 
+-If the dispatch produces continuity-worthy state (decisions, new failure modes, surfaced rules), include a `<memory_handback>` block in the prompt asking Devin to emit a `MEMORY_HANDBACK` section. The calling AI then runs the canonical 7-step protocol (see `system-spec-kit/references/cli/memory_handback.md`).
+-
+-Template:
+-```
+-<memory_handback>
+-After completing the task, emit a MEMORY_HANDBACK section containing:
+-- recent_action: <one-line summary>
+-- next_safe_action: <suggested follow-up>
+-- blockers: <list or empty>
+-- key_files: <list>
+-- open_questions: <list or empty>
+-- answered_questions: <list with answers>
+-</memory_handback>
+-```
+-
+----
++## 4. Related
+ 
+-## 6. Related Resources
++-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` (copy-paste templates + composition patterns A/B/C) · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
+ 
+-- [SKILL.md](../SKILL.md) — Smart router + Default Invocation
+-- [prompt_templates.md](./prompt_templates.md) — Copy-paste templates
+-- [shared CLEAR card](../../system-spec-kit/references/cli/shared_prompt_quality_card.md) — Family-wide CLEAR (if present in this repo)
++- Memory Handback: when a dispatch produces continuity-worthy state, request a `MEMORY_HANDBACK` block in the prompt and run the canonical protocol — see `./prompt_templates.md` §8 and `../../system-spec-kit/references/cli/memory_handback.md`.
+diff --git a/.opencode/skills/cli-devin/assets/prompt_templates.md b/.opencode/skills/cli-devin/assets/prompt_templates.md
+index 51e8a17531..5a903cb318 100644
+--- a/.opencode/skills/cli-devin/assets/prompt_templates.md
++++ b/.opencode/skills/cli-devin/assets/prompt_templates.md
+@@ -15,13 +15,13 @@ This file provides copy-paste prompt templates for the most common cli-devin dis
+ 
+ ---
+ 
+-## 2. Default Coding Dispatch (SWE-1.6, auto mode) — REQUIRES sk-prompt + pre-planning
++## 2. Default Coding Dispatch (SWE-1.6, auto mode) — REQUIRES swe-1.6 profile + canonical CLEAR + pre-planning
+ 
+-> **SWE-1.6 prompt-quality contract**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. Every dispatch with `--model swe-1.6` MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative-heavy tasks, BUILD for multi-file refactor) + CLEAR 5-check AND include an explicit `<pre-plan>` block before the `<action>` block. The template below is the canonical pre-planned SWE-1.6 prompt shape, using RCAF.
++> **SWE-1.6 prompt-quality contract**: SWE-1.6 is coding-specialized but smaller than the complex-task models — it relies on the calling AI doing structural decomposition upfront. The framework choice (RCAF primary; STAR fallback, BUILD for multi-file refactor) and the mandatory pre-planning contract are OWNED by [`../../sk-prompt-small-model/references/models/swe-1.6.md`](../../sk-prompt-small-model/references/models/swe-1.6.md) (reached via the tier-2 model-override step of the 3-tier precedence rule in SKILL.md §4). Every dispatch with `--model swe-1.6` MUST honor that swe-1.6 profile plus the 3-tier precedence rule (+ CLEAR 5-check) AND include an explicit `<pre-plan>` block before the `<action>` block. The template below is the executor-owned dispatch wrapper around the profile's canonical pre-planned SWE-1.6 prompt shape, using RCAF.
+ 
+-**Step 1 — pre-prompt through sk-prompt.** Before writing the `--prompt-file` payload, invoke `sk-prompt` with the raw task description. **Default to RCAF (Role / Context / Action / Format)** — the role anchor gives SWE-1.6 immediate framing without burning tokens on situation-setting, producing tighter and more focused output. Use STAR (Situation / Task / Action / Result) for narrative-heavy context-gathering tasks where role framing doesn't fit naturally. Use BUILD (Bounds / User-need / Implementation / Limits / Done-when) for well-defined multi-file refactors where scope boundaries dominate — but DO NOT pair BUILD with strict bundle-gate wording (verbose constraint language pushes SWE 1.6 toward defensive output rather than direct code). Run the CLEAR 5-check. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of inline composition.
++**Step 1 — honor the swe-1.6 profile + 3-tier precedence.** Before writing the `--prompt-file` payload, consult [`../../sk-prompt-small-model/references/models/swe-1.6.md`](../../sk-prompt-small-model/references/models/swe-1.6.md) — the canonical owner of the SWE-1.6 framework choice. The profile sets RCAF primary (the role anchor gives SWE-1.6 immediate framing without burning tokens on situation-setting), STAR fallback for narrative-heavy context-gathering tasks where role framing doesn't fit naturally, and BUILD for well-defined multi-file refactors where scope boundaries dominate — but DO NOT pair BUILD with strict bundle-gate wording (verbose constraint language pushes SWE 1.6 toward defensive output rather than direct code). Run the CLEAR 5-check. If any canonical Tier 3 trigger applies (complexity ≥ 7/10, compliance/policy/privacy/security sensitivity, >1 stakeholder or audience, >1 ambiguous requirement, or the fast-path CLEAR cannot clear its floor), dispatch `@prompt-improver` via the Task tool instead of inline composition.
+ 
+-**Step 2 — compose the prompt with RCAF + explicit pre-planning.** Use this template, filling every placeholder. The framework is RCAF by default; swap to STAR or BUILD only if the task clearly fits one of those shapes better.
++**Step 2 — compose the prompt with RCAF + explicit pre-planning.** Use this template, filling every placeholder. The framework is RCAF by default (per the profile); swap to STAR or BUILD only if the task clearly fits one of those shapes better.
+ 
+ ```
+ <framework>RCAF</framework>
+[0m
+[0m# [0mTodos
+[✓] Inspect the three scoped cli-devin Markdown files
+[✓] Patch only the requested rows, pointers, heading, and guard note
+[✓] Verify the edited text and report per-file changes
+[0m

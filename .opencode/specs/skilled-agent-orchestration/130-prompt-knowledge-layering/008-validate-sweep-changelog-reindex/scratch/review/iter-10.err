@@ -1,0 +1,254 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review DIMENSION (spec-governance): SPEC-FOLDER GOVERNANCE. Read the parent spec.md Phase Documentation Map + 2-3 child implementation-summary.md under .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/. Do the child docs accurately reflect the actual production work (no over-claims, no fabricated evidence)? Are statuses (graph-metadata derived.status, spec Status) consistent parent-vs-child? Flag any doc that claims something not done. Output strictly findings only. Review only, do not modify files.","specFolder":".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m→ [0mRead .opencode/skills/sk-code-review/references/review_core.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/review_ux_single_pass.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/code_quality_checklist.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/**/implementation-summary.md"[90m in . · 8 matches[0m
+[0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/**/graph-metadata.json"[90m in . · 9 matches[0m
+[0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/**/spec.md"[90m in . · 9 matches[0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/graph-metadata.json[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/security_checklist.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/spec.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/fix-completeness-checklist.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "^Status:|"status"|"derived""[90m in .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering · 28 matches[0m
+[0m✱ [0mGrep "\| \*\*Status\*\* \||\|[[:space:]]*Status[[:space:]]*\||Status\s*:|status:"[90m in .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering · 20 matches[0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/implementation-summary.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data/implementation-summary.md[90m [offset=1, limit=280][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles/implementation-summary.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards/implementation-summary.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks/implementation-summary.md[90m [offset=1, limit=320][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/spec.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles/implementation-summary.md[90m [offset=1, limit=280][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract/graph-metadata.json[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/implementation-summary.md[90m [offset=1, limit=320][0m
+[0m✱ [0mGlob ".opencode/skills/cli-*/**/prompt_quality_card.md"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt-small-model/references/models/*.md"[90m in . · 9 matches[0m
+[0m
+[0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering" --recursive --strict
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering
+  Level:  phase
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Phase parent lean template shape accepted
++ ANCHORS_VALID: Phase parent lean template shape accepted
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/pattern-index.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "^## (1\. Identity|2\. Recommended Framework|3\. Benchmark Evidence|4\. Tuned Template Snippet|5\. Dispatch Gotchas|6\. See Also)|^model_id:|^status:|^last_benchmarked:"[90m in .opencode/skills/sk-prompt-small-model/references/models · 72 matches[0m
+[0m✱ [0mGrep "Prompt-composition precedence|3-tier|sk-prompt-small-model|Tier|Fast path|Model override|Deep path"[90m in .opencode/skills · 38 matches[0m
+[0m→ [0mRead .opencode/skills/cli-opencode/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/cli-claude-code/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=120][0m
+[0m✱ [0mGrep "Framework Selection Table|CLEAR 5-Question|STAR|BUILD|ATLAS|canonical|cli_prompt_quality_card|sk-prompt-small-model"[90m in .opencode/skills/cli-devin/assets · 18 matches[0m
+[0m
+[0m$ [0mbash ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+PASS  cli-opencode/assets/prompt_quality_card.md
+PASS  cli-gemini/assets/prompt_quality_card.md
+PASS  cli-devin/assets/prompt_quality_card.md
+PASS  cli-codex/assets/prompt_quality_card.md
+PASS  cli-claude-code/assets/prompt_quality_card.md
+GUARD PASS — no cli-* card inlines the framework or CLEAR table
+[0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex/graph-metadata.json[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards/graph-metadata.json[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data/graph-metadata.json[90m [offset=1, limit=80][0m
+[0m✱ [0mGlob ".opencode/**/skill-graph*.json"[90m in . · 2 matches[0m
+[0m⚙ [0mmk_skill_advisor_advisor_status {"workspaceRoot":"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"}
+[0m⚙ [0mmk_skill_advisor_skill_graph_status Unknown
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/skill-graph.json[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.json[90m [offset=1, limit=80][0m
+[0m✱ [0mGrep "sk-prompt|sk-prompt-small-model|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 1 match[0m
+[0m✱ [0mGrep "sk-prompt|sk-prompt-small-model|cli-opencode|cli-devin|last|generated|skill"[90m in .opencode/skills/system-skill-advisor/mcp_server/database · 49 matches[0m
+[0m✗ [0mGrep "framework|CLEAR|Prompt-Composition|Prompt construction|sk-prompt-small-model|recommended_frameworks|profile_ref" failed[90m in .opencode/skills/cli-*/SKILL.md[0m
+[91m[1mError: [0mNo such file or directory: '/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/cli-*'
+[0m✱ [0mGrep "references/prompt_quality_card|assets/prompt_quality_card"[90m in .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering · 10 matches[0m
+[0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/changelog/*"[90m in . · 0 matches[0m

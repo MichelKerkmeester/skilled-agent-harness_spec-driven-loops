@@ -257,6 +257,81 @@ describe('resume-ladder', () => {
     expect(result.recentAction).toBe('Unicode folder name test');
   });
 
+  // Timestamp-alias coverage: handover files in the wild use field names other than
+  // 'last_updated'. These tests confirm the freshness comparison uses the correct
+  // logical edit time rather than silently falling through to mtime.
+
+  it('reads handover freshness from the short "updated" alias', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+
+    const handover = [
+      '---',
+      'title: "Short-alias handover"',
+      'updated: "2026-05-30T00:00:00Z"',
+      '---',
+      '# Handover',
+      '',
+      '**Recent action**: Used updated field alias',
+      '**Next safe action**: Confirm alias is resolved',
+      '**Blockers**: none',
+      '',
+    ].join('\n');
+    writeDoc(workspacePath, specFolder, 'handover.md', handover);
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary({
+      packetPointer: specFolder,
+      lastUpdatedAt: '2026-04-11T11:00:00Z',
+    }));
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+
+    // Handover's 2026-05-30 is newer than continuity's 2026-04-11, so handover wins.
+    expect(result.source).toBe('handover');
+    expect(result.freshnessWinner).toBe('handover');
+    expect(result.recentAction).toContain('Used updated field alias');
+  });
+
+  it('reads handover freshness from last_updated_at indented under _memory.continuity', () => {
+    const workspacePath = createWorkspace();
+    workspacesToRemove.push(workspacePath);
+    const specFolder = 'system-spec-kit/026-root/004-gate-d';
+
+    // Mirrors the handover.md shape where last_updated_at is
+    // nested 4 spaces inside _memory.continuity rather than at the document root.
+    const handover = [
+      '---',
+      'title: "Nested continuity handover"',
+      '_memory:',
+      '  continuity:',
+      '    packet_pointer: "system-spec-kit/026-root/004-gate-d"',
+      '    last_updated_at: "2026-05-28T00:00:00Z"',
+      '    last_updated_by: "claude-opus"',
+      '    recent_action: "Used indented last_updated_at"',
+      '    next_safe_action: "Confirm continuity-block fallback works"',
+      '    blockers: []',
+      '---',
+      '# Handover',
+      '',
+      '**Recent action**: Used indented last_updated_at',
+      '**Next safe action**: Confirm continuity-block fallback works',
+      '**Blockers**: none',
+      '',
+    ].join('\n');
+    writeDoc(workspacePath, specFolder, 'handover.md', handover);
+    writeDoc(workspacePath, specFolder, 'implementation-summary.md', buildImplementationSummary({
+      packetPointer: specFolder,
+      lastUpdatedAt: '2026-04-11T11:00:00Z',
+    }));
+
+    const result = buildResumeLadder({ specFolder, workspacePath });
+
+    // Handover's 2026-05-28 is newer than continuity's 2026-04-11, so handover wins.
+    expect(result.source).toBe('handover');
+    expect(result.freshnessWinner).toBe('handover');
+    expect(result.recentAction).toContain('Used indented last_updated_at');
+  });
+
   // Deep-review regression coverage for explicit specFolder priority over cached scope.
   it('keeps explicit specFolder overrides ahead of cached scope fallbacks', () => {
     const workspacePath = createWorkspace();

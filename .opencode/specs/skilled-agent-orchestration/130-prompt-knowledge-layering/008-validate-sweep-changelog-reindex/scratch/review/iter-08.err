@@ -1,0 +1,29 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review DIMENSION (hygiene-taxonomy): COMMENT HYGIENE + TAXONOMY. Scan the touched scripts/JSON (check-prompt-quality-card-sync.sh, model-profiles.json) for forbidden code-comment content (spec-folder paths, phase/ADR/REQ/task ids). Then check taxonomy consistency: does sk-prompt/assets/cli_prompt_quality_card.md or any card mislabel small-model-hub models (deepseek-v4-pro, kimi-k2.6) as \"frontier models\"? Flag any frontier-vs-small-model contradiction with the hub. Do NOT modify any files — review only.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m✱ [0mGrep "(ADR|REQ|CHK|task|Task|phase|Phase|specs/|\.opencode/specs|[0-9]{3}-[a-z0-9-]+)"[90m in .opencode/skills/sk-prompt/assets · 5 matches[0m
+[0m✱ [0mGrep "(ADR|REQ|CHK|task|Task|phase|Phase|specs/|\.opencode/specs|[0-9]{3}-[a-z0-9-]+)"[90m in .opencode/skills · 0 matches[0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/review_core.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/sk-code-review/references/code_quality_checklist.md[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "frontier|deepseek-v4-pro|kimi-k2\.6|small-model|small model"[90m in .opencode/skills · 637 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/check-prompt-quality-card-sync.sh"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt/assets/model-profiles.json"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/**/assets/*prompt_quality_card*.md"[90m in . · 6 matches[0m
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=480][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=140][0m
+[0m✱ [0mGrep "frontier models|frontier|deepseek-v4-pro|kimi-k2\.6"[90m in .opencode/skills/sk-prompt/assets · 3 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=1, limit=90][0m
+[0m✱ [0mGrep "frontier models|frontier|deepseek-v4-pro|kimi-k2\.6"[90m in .opencode/skills · 4 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=481, limit=80][0m
+[0m✱ [0mGrep "(^|[^A-Za-z])(ADR|REQ|CHK)-?[0-9]+|specs/|\.opencode/specs|Phase [0-9]+|phase [0-9]+|Task [A-Z0-9]+|task [A-Z0-9]+"[90m in .opencode/skills/sk-prompt/assets · 0 matches[0m
+[0m✱ [0mGrep "(^|[^A-Za-z])(ADR|REQ|CHK)-?[0-9]+|specs/|\.opencode/specs|Phase [0-9]+|phase [0-9]+|Task [A-Z0-9]+|task [A-Z0-9]+"[90m in .opencode/skills/system-skill-advisor/mcp_server/scripts · 0 matches[0m
+[0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=1, limit=60][0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/skills/cli-opencode/assets/prompt_quality_card.md[90m [offset=1, limit=70][0m
+[0m→ [0mRead .opencode/skills/cli-claude-code/assets/prompt_quality_card.md[90m [offset=1, limit=70][0m
+[0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=1, limit=60][0m

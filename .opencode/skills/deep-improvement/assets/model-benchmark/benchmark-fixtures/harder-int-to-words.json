@@ -1,0 +1,186 @@
+{
+  "id": "harder-int-to-words",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "intToWords",
+  "signature": "function intToWords(n)",
+  "task": "Implement a JavaScript function `intToWords(n)` that converts a non-negative integer in the range 0 <= n <= 999,999,999,999 to its American-English cardinal words, returning the lowercase string. Rules: (1) Zero is the single word `zero`. (2) Use AMERICAN style with NO \"and\": 101 is `one hundred one`, not `one hundred and one`. (3) Hyphenate the compound tens 21 through 99 whose ones digit is non-zero: 21 -> `twenty-one`, 45 -> `forty-five`, 77 -> `seventy-seven`; a round ten has no hyphen: 20 -> `twenty`, 30 -> `thirty`. (4) The teens are single words: 13 -> `thirteen`, 19 -> `nineteen`. (5) Group the number in thousands and name the groups with the scale words `thousand`, `million`, `billion`; SKIP any group that is zero (1,000,001 -> `one million one`, NOT `one million zero thousand one`; 2,000,000,003 -> `two billion three`). (6) Join everything with single spaces, all lowercase, with no leading or trailing whitespace and no double spaces. Worked examples: 0 -> `zero`; 7 -> `seven`; 100 -> `one hundred`; 105 -> `one hundred five`; 1000 -> `one thousand`; 1000000 -> `one million`; 1234567 -> `one million two hundred thirty-four thousand five hundred sixty-seven`; 1000000000 -> `one billion`; 999 -> `nine hundred ninety-nine`. These are adversarial cases: the no-\"and\" American rule, hyphenation of compound tens but not round tens, and SKIPPING zero groups so an interior zero scale never prints — exactly where a naive converter that inserts \"and\", forgets the hyphen, or emits empty scale words diverges. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "intToWords(n) -> string. Converts 0 <= n <= 999,999,999,999 to American-English cardinal words, lowercase. 0 -> `zero`; no \"and\" (101 -> `one hundred one`); compound tens 21-99 hyphenated (twenty-one, forty-five) but round tens not (twenty); teens are single words; scale words thousand/million/billion with zero groups skipped (1000001 -> `one million one`); single spaces, no leading/trailing space.",
+  "scope": "Single pure function returning a string. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Input is a non-negative integer in range.",
+  "tests": [
+    {
+      "name": "zero",
+      "args": [
+        0
+      ],
+      "expect": "zero"
+    },
+    {
+      "name": "single digit",
+      "args": [
+        7
+      ],
+      "expect": "seven"
+    },
+    {
+      "name": "exact hundred",
+      "args": [
+        100
+      ],
+      "expect": "one hundred"
+    },
+    {
+      "name": "hundred with trailing one no and",
+      "args": [
+        101
+      ],
+      "expect": "one hundred one"
+    },
+    {
+      "name": "hyphenated compound ten",
+      "args": [
+        45
+      ],
+      "expect": "forty-five"
+    },
+    {
+      "name": "one million scale",
+      "args": [
+        1000000
+      ],
+      "expect": "one million"
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "teen value",
+      "args": [
+        13
+      ],
+      "expect": "thirteen"
+    },
+    {
+      "name": "round ten no hyphen",
+      "args": [
+        20
+      ],
+      "expect": "twenty"
+    },
+    {
+      "name": "hyphenated twenty-one",
+      "args": [
+        21
+      ],
+      "expect": "twenty-one"
+    },
+    {
+      "name": "hundred with five",
+      "args": [
+        105
+      ],
+      "expect": "one hundred five"
+    },
+    {
+      "name": "nine hundred ninety-nine",
+      "args": [
+        999
+      ],
+      "expect": "nine hundred ninety-nine"
+    },
+    {
+      "name": "one thousand exact",
+      "args": [
+        1000
+      ],
+      "expect": "one thousand"
+    },
+    {
+      "name": "full mixed million",
+      "args": [
+        1234567
+      ],
+      "expect": "one million two hundred thirty-four thousand five hundred sixty-seven"
+    },
+    {
+      "name": "one billion exact",
+      "args": [
+        1000000000
+      ],
+      "expect": "one billion"
+    },
+    {
+      "name": "ten",
+      "args": [
+        10
+      ],
+      "expect": "ten"
+    },
+    {
+      "name": "nineteen",
+      "args": [
+        19
+      ],
+      "expect": "nineteen"
+    },
+    {
+      "name": "seventy-seven",
+      "args": [
+        77
+      ],
+      "expect": "seventy-seven"
+    },
+    {
+      "name": "thousand with hundreds",
+      "args": [
+        2500
+      ],
+      "expect": "two thousand five hundred"
+    },
+    {
+      "name": "million no thousands gap",
+      "args": [
+        1000001
+      ],
+      "expect": "one million one"
+    },
+    {
+      "name": "thousand boundary 1100",
+      "args": [
+        1100
+      ],
+      "expect": "one thousand one hundred"
+    },
+    {
+      "name": "max value boundary",
+      "args": [
+        999999999999
+      ],
+      "expect": "nine hundred ninety-nine billion nine hundred ninety-nine million nine hundred ninety-nine thousand nine hundred ninety-nine"
+    },
+    {
+      "name": "billion with remainder",
+      "args": [
+        2000000003
+      ],
+      "expect": "two billion three"
+    },
+    {
+      "name": "hundred thousand",
+      "args": [
+        100000
+      ],
+      "expect": "one hundred thousand"
+    },
+    {
+      "name": "twelve",
+      "args": [
+        12
+      ],
+      "expect": "twelve"
+    }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": {
+    "status": "active"
+  }
+}

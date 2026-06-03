@@ -4,6 +4,8 @@ Config-driven model-benchmark sweeps. One profile drives a **framework bake-off*
 
 This sits on top of the existing Lane B model-benchmark modules and orchestrates them unchanged.
 
+For the six situational modes (A model-vs-model, B framework bake-off, C reasoning-effort ablation, D prompt-vs-prompt, E skill-change regression, F capability profiling) as ready-to-copy profile shapes, see [`MODES.md`](./MODES.md).
+
 ---
 
 ## What it is
@@ -91,4 +93,4 @@ Correctness is a **GATE**: it decides who is eligible to be ranked, but once it 
 
 ## What is NOT here yet (P1 / P2)
 
-The MVP runs `sweep-benchmark.cjs` standalone and ships the minimum stats needed for an honest verdict. Still on the roadmap: the full stats engine (paired bootstrap confidence intervals / noise-floor gating), the normalized dispatch envelope (OpenCode JSON token/cost parsing and `model-profiles.json` capability fields), the guarded `loop-host.cjs` integration that runs the sweep inside the improvement loop, and the tiered fixture taxonomy (more T3/T4 plus long-context/agentic categories). See the roadmap: `../../../../specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/research.md`.
+The MVP runs `sweep-benchmark.cjs` standalone and ships the minimum stats needed for an honest verdict. Still on the roadmap: the full stats engine (paired bootstrap confidence intervals / noise-floor gating), the normalized dispatch envelope (OpenCode JSON token/cost parsing and `model-profiles.json` capability fields), the guarded `loop-host.cjs` integration that runs the sweep inside the improvement loop, and the tiered fixture taxonomy (more T3/T4 plus long-context/agentic categories). See the roadmap: `../../../../specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research/research/research.md`.

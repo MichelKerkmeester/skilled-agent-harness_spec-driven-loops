@@ -1,0 +1,11 @@
+I’ll perform this as a read-only data-contract review and keep the final output to findings plus verdict, as requested.
+SKILL ROUTING: Advisor recommends `sk-code-review` (0.95), so I’m applying review-only severity reporting.
+I found the relevant spec memory for phase 3 and will now inspect only the JSON/prose contract files needed for the requested dimension.
+I’ll run focused JSON contract checks now: counts, active coverage, required keys, enum values, and lowercase framework ids.
+[P1] .opencode/skills/sk-prompt/references/model-profiles.md:18 - Change “The active small-model rotation is” to “The registry contains 8 active models plus 2 optional stubs” or remove lines 28-29 from that active list.
+[P1] .opencode/skills/sk-prompt/references/model-profiles.md:257 - Normalize prose framework ids to lowercase inline ids (`rcaf`, `star`, `tidd-ec`, `costar`, `race`, `cidi`) in the active-model table and prompt-framework paragraphs.
+[P1] .opencode/skills/sk-prompt/references/model-profiles.md:73 - Replace the obsolete top-level `provider` schema section with `executors[].provider`; JSON has provider only inside each executor path.
+[P1] .opencode/skills/sk-prompt/references/model-profiles.md:132 - Replace the obsolete top-level `quota_pool` schema section with `executors[].quota_pool` plus `primary_quota_pool`; JSON has no model-level `quota_pool`.
+[OK] .opencode/skills/sk-prompt/references/model-profiles.md:485 - `jq '.models|length'` returns 10 and the documented expected count is 10.
+[OK] .opencode/skills/sk-prompt/assets/model-profiles.json:35 - All 8 active models have complete schema-valid `recommended_frameworks` objects with lowercase JSON framework ids.
+VERDICT CONDITIONAL

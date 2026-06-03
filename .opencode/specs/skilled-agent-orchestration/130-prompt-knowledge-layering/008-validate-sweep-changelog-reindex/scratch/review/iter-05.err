@@ -1,0 +1,1157 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review DIMENSION crosslink-integrity: exhaustive cross-link integrity for relative markdown links in sk-prompt-small-model profiles/index/pattern-index, cli prompt_quality_card.md, cli SKILL.md precedence blocks, sk-prompt canonical prompt card. Do not modify files; review only.","specFolder":".opencode/specs/130","tenantId":"default","userId":"default","agentId":"opencode","limit":5,"session_id":"review-spec-130-crosslink-integrity","turnNumber":1,"include_cognitive":true}
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review DIMENSION crosslink-integrity: exhaustive cross-link integrity for relative markdown links in sk-prompt-small-model profiles/index/pattern-index, cli prompt_quality_card.md, cli SKILL.md precedence blocks, sk-prompt canonical prompt card. Do not modify files; review only.","specFolder":".opencode/specs/130","tenantId":"default","userId":"default","agentId":"opencode","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m✱ [0mGlob ".opencode/skills/sk-prompt-small-model/references/models/*.md"[90m in . · 9 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt-small-model/references/pattern-index.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/skills/cli-*/assets/prompt_quality_card.md"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/skills/cli-*/SKILL.md"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".agents/skills/cli-*/assets/prompt_quality_card.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".agents/skills/cli-*/SKILL.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".agents/skills/sk-prompt/assets/cli_prompt_quality_card.md"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "(?i)precedence|sk-prompt-small-model|cli_prompt_quality_card|prompt_quality_card|recommended_frameworks"[90m in .opencode/skills/cli-claude-code/SKILL.md · 6 matches[0m
+[0m✱ [0mGrep "(?i)precedence|sk-prompt-small-model|cli_prompt_quality_card|prompt_quality_card|recommended_frameworks"[90m in .opencode/skills/cli-codex/SKILL.md · 6 matches[0m
+[0m✱ [0mGrep "(?i)precedence|sk-prompt-small-model|cli_prompt_quality_card|prompt_quality_card|recommended_frameworks"[90m in .opencode/skills/cli-devin/SKILL.md · 10 matches[0m
+[0m✱ [0mGrep "(?i)precedence|sk-prompt-small-model|cli_prompt_quality_card|prompt_quality_card|recommended_frameworks"[90m in .opencode/skills/cli-gemini/SKILL.md · 6 matches[0m
+[0m✱ [0mGrep "(?i)precedence|sk-prompt-small-model|cli_prompt_quality_card|prompt_quality_card|recommended_frameworks"[90m in .opencode/skills/cli-opencode/SKILL.md · 8 matches[0m
+[0m
+[0m$ [0mnode - <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const root = process.cwd();
+const rel = (...parts) => path.join(...parts);
+const modelIds = ['minimax-m3','mimo-v2.5-pro','minimax-2.7','swe-1.6','deepseek-v4-pro','kimi-k2.6','qwen3.6','glm-5.1'];
+const cliIds = ['cli-claude-code','cli-codex','cli-devin','cli-gemini','cli-opencode'];
+const files = [
+  ...modelIds.map(id => rel('.opencode/skills/sk-prompt-small-model/references/models', `${id}.md`)),
+  rel('.opencode/skills/sk-prompt-small-model/references/models/_index.md'),
+  rel('.opencode/skills/sk-prompt-small-model/references/pattern-index.md'),
+  ...cliIds.map(id => rel('.opencode/skills', id, 'assets/prompt_quality_card.md')),
+  ...cliIds.map(id => rel('.opencode/skills', id, 'SKILL.md')),
+  rel('.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md'),
+];
+function stripCode(line, state) {
+  if (/^\s*```/.test(line)) state.inFence = !state.inFence;
+  return state.inFence ? '' : line;
+}
+function getScopeLines(file, content) {
+  const lines = content.split(/\r?\n/);
+  if (!file.endsWith('/SKILL.md')) return lines.map((text, i) => ({ text, n: i + 1 }));
+  const start = lines.findIndex(l => l.includes('Prompt construction & model-craft (cli-* family precedence).'));
+  if (start < 0) return [];
+  let end = lines.length;
+  for (let i = start + 1; i < lines.length; i++) {
+    if (/^\s*\d+\.\s+\*\*[^*]+\*\*/.test(lines[i]) && !/^\s+\d+\./.test(lines[i])) { end = i; break; }
+    if (/^\s*###\s+/.test(lines[i]) || /^\s*##\s+/.test(lines[i])) { end = i; break; }
+  }
+  return lines.slice(start, end).map((text, i) => ({ text, n: start + i + 1 }));
+}
+function isRelative(target) {
+  if (!target || target.startsWith('#')) return false;
+  if (/^[a-z][a-z0-9+.-]*:/i.test(target)) return false;
+  if (target.startsWith('/')) return false;
+  return true;
+}
+function decodeLink(raw) {
+  return raw.replace(/\\\)/g, ')').trim();
+}
+function checkTarget(file, target) {
+  let clean = target.split('#')[0].split('?')[0];
+  clean = decodeURIComponent(clean);
+  if (clean === '') return { exists: true, resolved: file };
+  const resolved = path.resolve(root, path.dirname(file), clean);
+  return { exists: fs.existsSync(resolved), resolved: path.relative(root, resolved) };
+}
+function extractLinks(file, content) {
+  const scoped = getScopeLines(file, content);
+  const out = [];
+  const state = { inFence: false };
+  for (const { text: orig, n } of scoped) {
+    const text = stripCode(orig, state);
+    if (!text) continue;
+    // Inline markdown links/images: [label](target) or ![label](target)
+    const inline = /!?\[[^\]\n]*(?:\][^\[]*\[[^\]\n]*)*\]\(([^\s)]+(?:\\\)|[^)])*)\)/g;
+    let m;
+    while ((m = inline.exec(text))) {
+      const target = decodeLink(m[1]);
+      if (isRelative(target)) out.push({ line: n, target, syntax: 'inline' });
+    }
+    // Reference definitions: [label]: target
+    const def = /^\s*\[[^\]]+\]:\s*(\S+)/.exec(text);
+    if (def) {
+      const target = decodeLink(def[1]);
+      if (isRelative(target)) out.push({ line: n, target, syntax: 'definition' });
+    }
+  }
+  return out;
+}
+const all = [];
+for (const file of files) {
+  const abs = path.join(root, file);
+  if (!fs.existsSync(abs)) {
+    all.push({ file, missingFile: true });
+    continue;
+  }
+  const content = fs.readFileSync(abs, 'utf8');
+  const links = extractLinks(file, content);
+  for (const link of links) {
+    const result = checkTarget(file, link.target);
+    all.push({ file, line: link.line, target: link.target, resolved: result.resolved, exists: result.exists, syntax: link.syntax });
+  }
+}
+const broken = all.filter(x => x.missingFile || x.exists === false);
+console.log(JSON.stringify({ checkedFiles: files.length, totalRelativeLinks: all.filter(x => !x.missingFile).length, brokenCount: broken.length, broken, all }, null, 2));
+NODE
+{
+  "checkedFiles": 21,
+  "totalRelativeLinks": 110,
+  "brokenCount": 14,
+  "broken": [
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 144,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 145,
+      "target": "../../cli-opencode/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_quality_card.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 164,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 165,
+      "target": "../../cli-opencode/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_quality_card.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 11,
+      "target": "../../../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 150,
+      "target": "../../../../cli-devin/SKILL.md",
+      "resolved": ".opencode/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 151,
+      "target": "../../../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 141,
+      "target": "../../cli-devin/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 142,
+      "target": "../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 143,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 126,
+      "target": "../../cli-devin/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 127,
+      "target": "../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 43,
+      "target": "../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts",
+      "resolved": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 46,
+      "target": "../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+      "resolved": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+      "exists": false,
+      "syntax": "inline"
+    }
+  ],
+  "all": [
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 67,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 110,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 141,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 142,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 143,
+      "target": "./minimax-2.7.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 144,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 145,
+      "target": "../../cli-opencode/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_quality_card.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "line": 146,
+      "target": "../../SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 81,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 162,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 163,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 164,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 165,
+      "target": "../../cli-opencode/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_quality_card.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 166,
+      "target": "./minimax-m3.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "line": 167,
+      "target": "../../SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 38,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 62,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 126,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 127,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 128,
+      "target": "../../../cli-opencode/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 129,
+      "target": "../../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/skills/cli-opencode/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 130,
+      "target": "./minimax-m3.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "line": 131,
+      "target": "./_index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 50,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 104,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 169,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 210,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 213,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 215,
+      "target": "../../../cli-devin/assets/prompt_quality_card.md",
+      "resolved": ".opencode/skills/cli-devin/assets/prompt_quality_card.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 217,
+      "target": "../../../cli-devin/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/cli-devin/assets/prompt_templates.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 220,
+      "target": "../../../cli-devin/references/context-budget.md",
+      "resolved": ".opencode/skills/cli-devin/references/context-budget.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 222,
+      "target": "../../../cli-devin/references/quota-fallback.md",
+      "resolved": ".opencode/skills/cli-devin/references/quota-fallback.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 224,
+      "target": "../../../cli-devin/assets/per-model-budgets.json",
+      "resolved": ".opencode/skills/cli-devin/assets/per-model-budgets.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 226,
+      "target": "./deepseek-v4-pro.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "line": 228,
+      "target": "./_index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 11,
+      "target": "../../../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 73,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 126,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 146,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 147,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 148,
+      "target": "../../SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 149,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 150,
+      "target": "../../../../cli-devin/SKILL.md",
+      "resolved": ".opencode/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 151,
+      "target": "../../../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 152,
+      "target": "./glm-5.1.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "line": 153,
+      "target": "./minimax-2.7.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 38,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 61,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 112,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 139,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 140,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 141,
+      "target": "../../cli-devin/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 142,
+      "target": "../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 143,
+      "target": "../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/assets/prompt_templates.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 144,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "line": 145,
+      "target": "../models/_index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 11,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 37,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 71,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 73,
+      "target": "../../../cli-opencode/",
+      "resolved": ".opencode/skills/cli-opencode",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 117,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 144,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 145,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 146,
+      "target": "../../../cli-opencode/assets/prompt_templates.md",
+      "resolved": ".opencode/skills/cli-opencode/assets/prompt_templates.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 147,
+      "target": "../../../cli-opencode/references/context-budget.md",
+      "resolved": ".opencode/skills/cli-opencode/references/context-budget.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 148,
+      "target": "../../../cli-opencode/references/permissions-matrix.md",
+      "resolved": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 149,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "line": 150,
+      "target": "./_index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 11,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 67,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 99,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 124,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 125,
+      "target": "../../../sk-prompt/references/patterns_evaluation.md",
+      "resolved": ".opencode/skills/sk-prompt/references/patterns_evaluation.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 126,
+      "target": "../../cli-devin/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-devin/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 127,
+      "target": "../../cli-opencode/SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/cli-opencode/SKILL.md",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 128,
+      "target": "./_index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "line": 129,
+      "target": "./qwen3.6.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 8,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 18,
+      "target": "./minimax-m3.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 19,
+      "target": "./mimo-v2.5-pro.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 20,
+      "target": "./minimax-2.7.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-2.7.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 21,
+      "target": "./swe-1.6.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 22,
+      "target": "./deepseek-v4-pro.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 23,
+      "target": "./kimi-k2.6.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 24,
+      "target": "./qwen3.6.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/qwen3.6.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 25,
+      "target": "./glm-5.1.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 38,
+      "target": "../pattern-index.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 39,
+      "target": "../../SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      "line": 40,
+      "target": "../../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 35,
+      "target": "../../cli-devin/references/context-budget.md",
+      "resolved": ".opencode/skills/cli-devin/references/context-budget.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 36,
+      "target": "../../cli-devin/references/output-verification.md",
+      "resolved": ".opencode/skills/cli-devin/references/output-verification.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 37,
+      "target": "../../cli-devin/assets/confidence-scoring-rubric.md",
+      "resolved": ".opencode/skills/cli-devin/assets/confidence-scoring-rubric.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 38,
+      "target": "../../cli-devin/assets/per-model-budgets.json",
+      "resolved": ".opencode/skills/cli-devin/assets/per-model-budgets.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 39,
+      "target": "../../cli-devin/references/quota-fallback.md",
+      "resolved": ".opencode/skills/cli-devin/references/quota-fallback.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 40,
+      "target": "../../sk-prompt/assets/model-profiles.json",
+      "resolved": ".opencode/skills/sk-prompt/assets/model-profiles.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 41,
+      "target": "../../sk-prompt/references/model-profiles.md",
+      "resolved": ".opencode/skills/sk-prompt/references/model-profiles.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 42,
+      "target": "../../cli-devin/references/output-verification.md",
+      "resolved": ".opencode/skills/cli-devin/references/output-verification.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 43,
+      "target": "../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts",
+      "resolved": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 44,
+      "target": "../../cli-opencode/assets/permissions-matrix.schema.json",
+      "resolved": ".opencode/skills/cli-opencode/assets/permissions-matrix.schema.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 45,
+      "target": "../../cli-opencode/references/permissions-matrix.md",
+      "resolved": ".opencode/skills/cli-opencode/references/permissions-matrix.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 46,
+      "target": "../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+      "resolved": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts",
+      "exists": false,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 47,
+      "target": "../../cli-opencode/references/context-budget.md",
+      "resolved": ".opencode/skills/cli-opencode/references/context-budget.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 48,
+      "target": "../../sk-prompt/assets/cli_prompt_quality_card.md",
+      "resolved": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 49,
+      "target": "./models/minimax-m3.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 50,
+      "target": "./models/mimo-v2.5-pro.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 100,
+      "target": "../SKILL.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 101,
+      "target": "../README.md",
+      "resolved": ".opencode/skills/sk-prompt-small-model/README.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 102,
+      "target": "../graph-metadata.json",
+      "resolved": ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 103,
+      "target": "../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/spec.md",
+      "exists": true,
+      "syntax": "inline"
+    },
+    {
+      "file": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
+      "line": 104,
+      "target": "../../../specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md",
+      "resolved": ".opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md",
+      "exists": true,
+      "syntax": "inline"
+    }
+  ]
+}
+[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/pattern-index.md[90m [offset=35, limit=16][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=136, limit=16][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=1, limit=16][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=158, limit=12][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md[90m [offset=144, limit=12][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md[90m [offset=136, limit=11][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md[90m [offset=122, limit=9][0m
+[0m✱ [0mGlob ".opencode/**/permissions-gate.ts"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/**/fallback-router.ts"[90m in . · 1 match[0m
+[0m
+[0m$ [0mnode - <<'NODE'
+const fs = require('fs');
+const path = require('path');
+const root = process.cwd();
+const checks = [
+ ['.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md','../../../cli-opencode/assets/prompt_templates.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md','../../../cli-opencode/assets/prompt_quality_card.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md','../../../cli-opencode/assets/prompt_templates.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md','../../../cli-opencode/assets/prompt_quality_card.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md','../../../cli-devin/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md','../../../cli-opencode/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md','../../../cli-devin/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md','../../../cli-opencode/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md','../../../cli-opencode/assets/prompt_templates.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md','../../../cli-devin/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md','../../../cli-opencode/SKILL.md'],
+ ['.opencode/skills/sk-prompt-small-model/references/pattern-index.md','../../deep-loop-runtime/lib/deep-loop/fallback-router.ts'],
+ ['.opencode/skills/sk-prompt-small-model/references/pattern-index.md','../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts'],
+];
+for (const [file,target] of checks) {
+ const resolved = path.resolve(root, path.dirname(file), target);
+ console.log(`${fs.existsSync(resolved) ? 'OK' : 'MISSING'} ${file} -> ${target} => ${path.relative(root,resolved)}`);
+}
+NODE
+OK .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md -> ../../../cli-opencode/assets/prompt_templates.md => .opencode/skills/cli-opencode/assets/prompt_templates.md
+OK .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md -> ../../../cli-opencode/assets/prompt_quality_card.md => .opencode/skills/cli-opencode/assets/prompt_quality_card.md
+OK .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md -> ../../../cli-opencode/assets/prompt_templates.md => .opencode/skills/cli-opencode/assets/prompt_templates.md
+OK .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md -> ../../../cli-opencode/assets/prompt_quality_card.md => .opencode/skills/cli-opencode/assets/prompt_quality_card.md
+OK .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md -> ../../../cli-devin/SKILL.md => .opencode/skills/cli-devin/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md -> ../../../cli-opencode/SKILL.md => .opencode/skills/cli-opencode/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md -> ../../../cli-devin/SKILL.md => .opencode/skills/cli-devin/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md -> ../../../cli-opencode/SKILL.md => .opencode/skills/cli-opencode/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/models/kimi-k2.6.md -> ../../../cli-opencode/assets/prompt_templates.md => .opencode/skills/cli-opencode/assets/prompt_templates.md
+OK .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md -> ../../../cli-devin/SKILL.md => .opencode/skills/cli-devin/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md -> ../../../cli-opencode/SKILL.md => .opencode/skills/cli-opencode/SKILL.md
+OK .opencode/skills/sk-prompt-small-model/references/pattern-index.md -> ../../deep-loop-runtime/lib/deep-loop/fallback-router.ts => .opencode/skills/deep-loop-runtime/lib/deep-loop/fallback-router.ts
+OK .opencode/skills/sk-prompt-small-model/references/pattern-index.md -> ../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts => .opencode/skills/deep-loop-runtime/lib/deep-loop/permissions-gate.ts
+[0m

@@ -2,7 +2,7 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: sk-doc Doc-Model-Reference Validator
 // ───────────────────────────────────────────────────────────────
-// 022/010 follow-on per ADR-D (Doc-Implementation Cross-Checking Mandate).
+// Enforces the doc-implementation cross-checking mandate.
 // Detects doc drift where markdown cites a non-canonical model name as default.
 
 import fs from 'node:fs';
@@ -34,7 +34,7 @@ function loadCanonicalModels() {
     }
 
     // Extract CLOUD_CANONICAL values
-    // 022/011 bugfix: was missing /g flag → matchAll throws TypeError swallowed by outer
+    // bugfix: was missing /g flag → matchAll throws TypeError swallowed by outer
     // try/catch → canonical set silently empty → false-positive DRIFT on every cited name.
     const cloudCanonicalMatches = registryContent.matchAll(
       /CLOUD_CANONICAL.*?{([^}]+)}/gs
@@ -50,7 +50,7 @@ function loadCanonicalModels() {
     }
 
     // Extract RERANKER_CANONICAL values
-    // 022/011 bugfix: was missing /g flag (same bug as CLOUD_CANONICAL above).
+    // bugfix: was missing /g flag (same bug as CLOUD_CANONICAL above).
     const rerankerCanonicalMatches = registryContent.matchAll(
       /RERANKER_CANONICAL.*?{([^}]+)}/gs
     );
@@ -70,7 +70,7 @@ function loadCanonicalModels() {
     }
   }
 
-  // 022/011 bugfix: normalize wrapper prefixes (e.g. sbert/) so docs that cite
+  // bugfix: normalize wrapper prefixes (e.g. sbert/) so docs that cite
   // the underlying HuggingFace model id (`nomic-ai/CodeRankEmbed`) match
   // canonical entries that include the wrapper prefix (`sbert/nomic-ai/CodeRankEmbed`).
   const WRAPPER_PREFIXES = ['sbert/'];
@@ -146,7 +146,7 @@ const LEGACY_MODEL_NAMES = [
 ];
 
 // Common model org prefixes to help identify actual model names
-// 022/011 bugfix: added `sbert/` wrapper prefix for sbert/-namespaced model ids
+// bugfix: added `sbert/` wrapper prefix for sbert/-namespaced model ids
 // (e.g. sbert/nomic-ai/CodeRankEmbed). Without this, multi-level wrapped names
 // were not extractable by the regex on line 210 and false-positive flagged as drift.
 const MODEL_ORG_PREFIXES = [
@@ -195,13 +195,21 @@ const INTENTIONAL_MARKER_WORDS = [
 // org-prefix regex (e.g. openai/codex/.../discovery.rs), not model identifiers.
 const FILE_LIKE_SUFFIX = /\.(rs|ts|tsx|js|cjs|mjs|py|md|json|jsonc|ya?ml|sh|toml|sqlite|lock)$/i;
 
+// Chat/completion model ids are governed by the cli-* skills and sk-prompt model
+// profiles, not this embeddings-drift check, and are never present in the embeddings
+// registry. Without this skip, an org-prefix match sitting within the 50-char context
+// window of the word "default" (e.g. `openai/gpt-5.5` beside "high reasoning default")
+// always false-positives. Embedding ids under the same orgs (openai/text-embedding-*,
+// google/embeddinggemma-*, cohere/rerank-*) are intentionally NOT matched here.
+const CHAT_MODEL_SKIP = /^(?:openai\/(?:gpt-|o\d|chatgpt-)|anthropic\/claude|google\/gemini|cohere\/command)/i;
+
 function getModelPattern(canonicalModels) {
   // Match specific legacy model names OR org/name pattern with model-like characteristics
   const legacyPattern = LEGACY_MODEL_NAMES.map(escapeRegex).join('|');
   // More specific org/name pattern that looks like actual model identifiers
   // Only match if it starts with known model org prefixes
   const orgPattern = MODEL_ORG_PREFIXES.map(escapeRegex).join('|');
-  // 022/011 bugfix: added `/` to the suffix character class so multi-level wrapped
+  // bugfix: added `/` to the suffix character class so multi-level wrapped
   // names like sbert/nomic-ai/CodeRankEmbed extract as a whole identifier instead
   // of being truncated to nomic-ai/CodeRankEmbed (which then fails canonical lookup).
   const orgNamePattern = `(${orgPattern})[a-zA-Z0-9._/-]+`;
@@ -243,6 +251,11 @@ function scanDoc(filePath, canonicalModels, verbose = false) {
 
       // Skip file paths the org-prefix regex catches (e.g. openai/codex/.../foo.rs)
       if (FILE_LIKE_SUFFIX.test(modelName)) {
+        continue;
+      }
+
+      // Skip chat/completion models — not embedding models, never in the registry.
+      if (CHAT_MODEL_SKIP.test(modelName)) {
         continue;
       }
 

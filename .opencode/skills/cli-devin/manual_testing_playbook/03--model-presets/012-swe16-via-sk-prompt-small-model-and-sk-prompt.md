@@ -75,7 +75,7 @@ Operators run the exact prompt and command sequence for `DV-028` and confirm the
 | `../../SKILL.md` | §3 SWE-1.6 Prompt-Quality Contract + ALWAYS rule #12 |
 | `../../../system-skill-advisor/mcp_server/scripts/skill_advisor.py` | Advisor scorer entry point |
 | `../../../system-skill-advisor/mcp_server/scripts/skill-graph.json` | Compiled skill graph with enhances edges |
-| `../../../sk-prompt/assets/model-profiles.json` | swe-1.6 entry: cognition-free pool, single executor path |
+| `../../../sk-prompt-small-model/assets/model-profiles.json` | swe-1.6 entry: cognition-free pool, single executor path |
 
 ---
 

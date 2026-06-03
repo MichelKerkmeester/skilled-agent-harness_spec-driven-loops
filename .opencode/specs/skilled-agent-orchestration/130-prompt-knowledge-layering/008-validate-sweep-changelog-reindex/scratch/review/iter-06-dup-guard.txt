@@ -1,0 +1,7 @@
+I’ll keep this read-only and check the guard script against the actual thinned CLI cards, then return only severity-prefixed findings.
+The current cards are thinned and do not contain the exact forbidden header rows; I’m checking the canonical header shapes to judge whether the guard’s match strategy is broad enough.
+[P1] `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh:34` False-negative gap: exact `grep -qF` misses re-inlined framework tables with changed whitespace/case or alternate canonical headers; fix with tolerant regex/table-content detection for known framework rows.
+[P1] `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh:35` False-negative gap: CLEAR detection only matches one header shape and misses copied CLEAR matrices with different columns; fix by detecting the five CLEAR dimension rows in table context.
+[P2] `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh:21` Exit-code contract is incomplete because missing cards also return `1`; fix the docs to say exit `1` means missing or inlined cli-* cards.
+[OK] `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh:37` Current five thinned cli-* cards are all enumerated and lack the two exact forbidden header strings, so the current mental run exits `0`.
+VERDICT CONDITIONAL

@@ -1,16 +1,15 @@
 {
   "level": "2",
   "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
-  "description": "Feature Specification: memory_index_scan Self-Maintaining Index Program (phase parent)",
+  "description": "Feature Specification: memory_index_scan Self-Maintaining Index Program",
   "keywords": [
     "feature",
     "specification",
     "self-maintaining",
     "index",
-    "program",
-    "phase-parent"
+    "program"
   ],
-  "lastUpdated": "2026-06-01T16:00:00.000Z",
+  "lastUpdated": "2026-06-02T16:26:46.198Z",
   "specId": "013",
   "folderSlug": "memory-index-scan-implementation",
   "parentChain": [
@@ -18,6 +17,8 @@
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "02-06-26_09-33__shipped-and-deployed-to-main-the-deferred-follow.md"
+  ]
 }

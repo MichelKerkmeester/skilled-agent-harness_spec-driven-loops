@@ -1,0 +1,469 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Spec folder: skilled-agent-orchestration/130-prompt-knowledge-layering (pre-approved, skip Gate 3). This remediates that packet's per-model profiles per a deep-review FAIL finding.\n\nFix factual-sourcing in TWO files ONLY — edit in place, NO deletes of files, NO other files touched:\nA) .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md\nB) .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md\n\nThe §3 Benchmark Evidence sections cite numbers (minimax-m3: '0.775 dense vs 0.767 medium', etc.; mimo: '100% assertion pass', '~2.4x longer output', '10-15% format gap', 'all 10 runs') that a review flagged as not backed by model-profiles.json. RULE: §2 Recommended Framework must mirror model-profiles.json recommended_frameworks. §3 may keep richer numbers ONLY if verifiable in the matching benchmark synthesis doc; cite the packet id as the source (NOT 'the JSON'):\n  - MiniMax 120/003: .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md\n  - MiMo 126/004: .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md\n\nFor EACH numeric/comparative claim in the two profiles' §3: READ the matching synthesis doc; if verified, keep it and attribute it to the benchmark packet (e.g. 'per 126/004 synthesis'); if NOT in the synthesis, delete that specific sentence/number (never invent). Keep minimax-m3 status:carried language, the H1, the frontmatter, and the 6-section structure. Report which claims you kept-with-citation vs deleted, per file.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m
+[0m$ [0mpython3 ".opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py" "Fix factual-sourcing in two sk-prompt-small-model per-model profile markdown files under .opencode/skills by verifying benchmark evidence against synthesis docs" --threshold 0.8
+Skill graph: loaded from SQLite
+[
+  {
+    "skill": "sk-prompt-small-model",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !model profile(signal), !sk-prompt-small-model(explicit), !small-model(keyword), code~, files~",
+    "_graph_boost_count": 0
+  },
+  {
+    "skill": "sk-prompt",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !prompt, !sk-prompt(explicit), !sk-prompt(phrase), !sk-prompt(signal), engineering",
+    "_graph_boost_count": 0
+  },
+  {
+    "skill": "sk-code",
+    "kind": "skill",
+    "confidence": 0.95,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !intent:implementation, !opencode, !opencode(keyword), !opencode(signal), code(name)",
+    "_graph_boost_count": 0
+  },
+  {
+    "skill": "sk-doc",
+    "kind": "skill",
+    "confidence": 0.94,
+    "uncertainty": 0.15,
+    "passes_threshold": true,
+    "reason": "Matched: !graph:family(sk-util), !intent:documentation, !markdown, code~, markdown",
+    "_graph_boost_count": 1
+  },
+  {
+    "skill": "cli-opencode",
+    "kind": "skill",
+    "confidence": 0.93,
+    "uncertainty": 0.2,
+    "passes_threshold": true,
+    "reason": "Matched: !opencode(keyword), code~, opencode(name)",
+    "_graph_boost_count": 0
+  }
+]
+[0m
+[0m→ [0mSkill "sk-prompt-small-model"
+[0m
+[0m# [0mTodos
+[•] Read model profiles, registry, and benchmark synthesis sources
+[ ] Patch only the two requested profile files with sourced §2/§3 content
+[ ] Verify changed files and report kept vs deleted claims per profile
+[0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/_index.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=1200][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis.md[90m [offset=1, limit=500][0m
+[0m
+[0m# [0mTodos
+[✓] Read model profiles, registry, and benchmark synthesis sources
+[•] Patch only the two requested profile files with sourced §2/§3 content
+[ ] Verify changed files and report kept vs deleted claims per profile
+[0m
+[0m% [0mPatch 2 files
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md[90m [offset=30, limit=38][0m
+[0m→ [0mRead .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md[90m [offset=32, limit=46][0m
+[0m
+[0m$ [0mgit diff --check -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+(no output)
+[0m
+[0m$ [0mgit diff -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+(no output)
+[0m
+[0m$ [0mgit status --short
+M .claude/settings.local.json
+ M .opencode/commands/doctor/_routes.yaml
+ M .opencode/commands/doctor/assets/doctor_causal-graph.yaml
+ M .opencode/commands/doctor/assets/doctor_deep-loop.yaml
+ M .opencode/commands/doctor/assets/doctor_mcp_debug.yaml
+ M .opencode/commands/doctor/assets/doctor_mcp_install.yaml
+ M .opencode/commands/doctor/assets/doctor_memory.yaml
+ M .opencode/commands/doctor/assets/doctor_skill-advisor.yaml
+ M .opencode/commands/doctor/assets/doctor_update.yaml
+ M .opencode/commands/doctor/mcp.md
+ M .opencode/commands/doctor/scripts/mcp-doctor.sh
+ M .opencode/commands/doctor/speckit.md
+ M .opencode/commands/doctor/update.md
+ M .opencode/install_guides/README.md
+ M .opencode/skills/cli-claude-code/SKILL.md
+ M .opencode/skills/cli-claude-code/assets/prompt_quality_card.md
+ M .opencode/skills/cli-codex/SKILL.md
+ M .opencode/skills/cli-codex/assets/prompt_quality_card.md
+ M .opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/023-clear-scoring-quality-card.md
+ M .opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md
+ M .opencode/skills/cli-devin/SKILL.md
+ M .opencode/skills/cli-devin/assets/prompt_quality_card.md
+ M .opencode/skills/cli-devin/assets/prompt_templates.md
+ M .opencode/skills/cli-gemini/SKILL.md
+ M .opencode/skills/cli-gemini/assets/prompt_quality_card.md
+ M .opencode/skills/cli-opencode/SKILL.md
+ M .opencode/skills/cli-opencode/assets/prompt_quality_card.md
+ M .opencode/skills/cli-opencode/references/cli_reference.md
+ D .opencode/skills/deep-ai-council/assets/prompt_pack_round.md.tmpl
+ M .opencode/skills/deep-improvement/SKILL.md
+ M .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json
+ M .opencode/skills/deep-improvement/scripts/model-benchmark/SWEEP.md
+ M .opencode/skills/deep-improvement/scripts/model-benchmark/tests/sweep-isolation.vitest.ts
+ D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.claude/agents/cp-improve-target.md
+ D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.codex/agents/cp-improve-target.toml
+ D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.gemini/agents/cp-improve-target.md
+ D .opencode/skills/deep-improvement/test-fixtures/060-stress-test/.opencode/agents/cp-improve-target.md
+ M .opencode/skills/sk-doc/scripts/validate-doc-model-refs.js
+ M .opencode/skills/sk-prompt-small-model/SKILL.md
+ M .opencode/skills/sk-prompt-small-model/references/pattern-index.md
+ M .opencode/skills/sk-prompt/SKILL.md
+ M .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
+ M .opencode/skills/sk-prompt/assets/model-profiles.json
+ M .opencode/skills/sk-prompt/references/model-profiles.md
+ M .opencode/skills/system-skill-advisor/INSTALL_GUIDE.md
+ M .opencode/skills/system-skill-advisor/README.md
+ M .opencode/skills/system-skill-advisor/SKILL.md
+ M .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
+ M .opencode/skills/system-skill-advisor/references/scoring/advisor_scorer.md
+ M .opencode/skills/system-skill-advisor/references/scoring/lane_weight_tuning.md
+ M .opencode/skills/system-spec-kit/README.md
+ M .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/232-setup-native-module-health-and-mcp-installation.md
+ M .opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/README.md
+ M .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md
+ M .opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md
+ M .opencode/skills/system-spec-kit/mcp_server/README.md
+ D .opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-respawn.lock
+ M .opencode/skills/system-spec-kit/scripts/setup/install.sh
+ M .opencode/specs/descriptions.json
+ M .opencode/specs/skilled-agent-orchestration/119-comment-ref-hygiene/001-rule-and-cleanup/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability/description.json
+ M .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation/description.json
+ M .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router/description.json
+ M .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track/description.json
+ M .opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track/graph-metadata.json
+ M .opencode/specs/skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements/description.json
+ M .opencode/specs/skilled-agent-orchestration/125-feature-catalog-template-improvements/description.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration/description.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration/description.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research/description.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/description.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-minimax-m3-high.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/cidi__chunk.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/cidi__parseRange.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/costar__chunk.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/costar__parseRange.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/race__chunk.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/race__parseRange.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/rcaf__chunk.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/rcaf__parseRange.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/tidd-ec__chunk.json
+ M .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/tidd-ec__parseRange.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/checklist.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/description.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/graph-metadata.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/implementation-summary.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/plan.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/spec.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-p0-mvp-implementation/tasks.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/description.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/graph-metadata.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p1-reliability-and-dispatch/spec.md
+ M .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/description.json
+ M .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/graph-metadata.json
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/implementation-summary.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/plan.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/deltas/deltas.jsonl
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-001.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-002.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-003.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-004.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-005.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-006.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-007.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-008.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-009.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/iterations/iteration-010.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/research/research.md
+ M .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/spec.md
+ D .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/tasks.md
+ M .opencode/specs/skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing/description.json
+ M .opencode/specs/skilled-agent-orchestration/129-sk-code-animation-mining/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update/description.json
+ M .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/description.json
+ M .opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/description.json
+ M .opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/description.json
+ M .opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/description.json
+ M .opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/description.json
+ M .opencode/specs/system-spec-kit/028-peck-teachings-adoption/description.json
+ M opencode.json
+?? .opencode/skills/cli-claude-code/changelog/v1.1.8.0.md
+?? .opencode/skills/cli-codex/changelog/v1.4.5.0.md
+?? .opencode/skills/cli-devin/changelog/v1.0.7.0.md
+?? .opencode/skills/cli-gemini/changelog/v1.2.8.0.md
+?? .opencode/skills/cli-opencode/changelog/v1.3.7.0.md
+?? .opencode/skills/deep-ai-council/assets/prompt_pack_round.md
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/README.md
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-eval-expr.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-merge-intervals.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-parse-csv-line.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/hard-roman-to-int.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/harder-int-to-words.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/harder-normalize-path.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/harder-semver-compare.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/t1-smoke-echo.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/t4-adversarial-tokenizer.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/validate-date.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/validate-ipv4.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-fixtures/validate-semver.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v2.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo-v3.json
+?? .opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/capability-m3-vs-mimo.json
+?? .opencode/skills/deep-improvement/changelog/v1.12.0.0.md
+?? .opencode/skills/deep-improvement/scripts/model-benchmark/MODES.md
+?? .opencode/skills/deep-improvement/scripts/model-benchmark/tests/README.md
+?? .opencode/skills/sk-prompt-small-model/changelog/v0.5.0.0.md
+?? .opencode/skills/sk-prompt-small-model/references/models/
+?? .opencode/skills/sk-prompt/changelog/v1.4.0.0.md
+?? .opencode/skills/system-skill-advisor/changelog/v0.4.0.md
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-mimo-v25pro-high.json
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/results-minimax-m3-high-rcafchunk-retry.json
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs-archive/mimo-v25pro-high/
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs-archive/minimax-m3-high/
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/runs/rcaf__chunk.M3-FAILED-empty-exit0.json
+?? .opencode/specs/skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark/eval/synthesis-m3-vs-mimo.md
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research/
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p0-mvp-implementation/
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch/
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/004-capability-discrimination/
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/005-sharper-discrimination/
+?? .opencode/specs/skilled-agent-orchestration/127-reusable-model-benchmark-framework/006-strict-validation-fixtures/
+?? .opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/
+?? .opencode/specs/skilled-agent-orchestration/131-doctor-install-alignment/
+?? .opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review-opus-claude2/
+[0m
+[0m✱ [0mGrep "all six|all 10 runs|--variant high|10.15|2\.4× longer per run|model-profiles\.json#mimo-v2\.5-pro\.recommended_frameworks\.evidence\.confidence"[90m in .opencode/skills/sk-prompt-small-model/references/models · 2 matches[0m
+[0m
+[0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" "skilled-agent-orchestration/130-prompt-knowledge-layering" --strict
+ERROR: Folder not found: skilled-agent-orchestration/130-prompt-knowledge-layering
+[0m
+[0m$ [0mgit status --short -- ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md" ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md"
+?? .opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md
+?? .opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md
+[0m
+[0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering" --strict
+Auto-enabled recursive validation: phase child folders detected.
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering
+  Level:  phase
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Phase parent lean template shape accepted
++ ANCHORS_VALID: Phase parent lean template shape accepted
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+[0m
+[0m✱ [0mGrep "10–15|all six|all 10|2\.4× longer per run|Confidence \| high"[90m in .opencode/skills/sk-prompt-small-model/references/models · 0 matches[0m
+[0m
+[0m# [0mTodos
+[✓] Read model profiles, registry, and benchmark synthesis sources
+[✓] Patch only the two requested profile files with sourced §2/§3 content
+[•] Verify changed files and report kept vs deleted claims per profile
+[0m
+[0m# [0mTodos
+[✓] Read model profiles, registry, and benchmark synthesis sources
+[✓] Patch only the two requested profile files with sourced §2/§3 content
+[✓] Verify changed files and report kept vs deleted claims per profile
+[0m

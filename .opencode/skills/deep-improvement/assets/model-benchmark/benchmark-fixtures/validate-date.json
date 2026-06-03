@@ -1,0 +1,200 @@
+{
+  "id": "validate-date",
+  "category": "strict-validation",
+  "tier": "T4",
+  "fn_name": "isValidDate",
+  "signature": "function isValidDate(s)",
+  "task": "Implement a JavaScript function `isValidDate(s)` that returns the boolean `true` if and only if `s` is a strict ISO-8601 calendar date in the Gregorian calendar formatted exactly as `YYYY-MM-DD`, and `false` otherwise. Rules, all required: (1) The format is EXACTLY four digits, a `-`, two digits, a `-`, two digits — every field zero-padded to its fixed width; no other separator (`/` is invalid), no extra/missing digits, no surrounding or internal whitespace. (2) The month must be `01` through `12`. (3) The day must be `01` through the number of days in that month: 31 for Jan/Mar/May/Jul/Aug/Oct/Dec, 30 for Apr/Jun/Sep/Nov, and 28 for Feb — 29 for Feb ONLY in a leap year. (4) A leap year is one where `year % 4 === 0` AND (`year % 100 !== 0` OR `year % 400 === 0`); so 2000 and 2024 are leap years but 1900 and 2100 are NOT. Return `false` for anything that breaks any rule. These are adversarial cases that a lax-but-plausible validator wrongly accepts: `2021-02-29` (not a leap year), `1900-02-29` and `2100-02-29` (century non-leap), `2021-04-31` and `2021-06-31` (only 30 days), `2021-02-30` (Feb never has 30), `2021-13-01` (month > 12), `2021-00-01` (month 00), `2021-01-32` / `2021-01-00` (day out of range), `2021-1-1` / `2021-2-29` / `2021-12-1` / `2021-1-01` (unpadded field), `2021/01/01` (wrong separator), `21-01-01` (2-digit year), ` 2021-01-01` / `2021-01-01 ` (surrounding whitespace), and the empty string — all must return `false`, while `2020-02-29`, `2000-02-29`, `2024-02-29`, and `0001-01-01` return `true`. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "isValidDate(s) -> boolean. true iff s is a strict Gregorian ISO date 'YYYY-MM-DD', fully zero-padded: 4-digit year, 2-digit month 01-12, 2-digit day valid for that month, with Feb 29 only in a leap year (year%4==0 and (year%100!=0 or year%400==0)). Wrong separator, unpadded field, 2-digit year, month/day out of range, Feb 29 in a non-leap year, surrounding whitespace, or empty string all return false.",
+  "scope": "Single pure function returning a boolean. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Every malformed input returns false rather than throwing.",
+  "tests": [
+    {
+      "name": "valid leap-2020-feb29",
+      "args": [
+        "2020-02-29"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid jan-31",
+      "args": [
+        "2021-01-31"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid leap-2000-feb29",
+      "args": [
+        "2000-02-29"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid feb29-non-leap",
+      "args": [
+        "2021-02-29"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid feb29-century-2100",
+      "args": [
+        "2100-02-29"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid month-00",
+      "args": [
+        "2021-00-01"
+      ],
+      "expect": false
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "valid dec-31",
+      "args": [
+        "2021-12-31"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid min-year-0001",
+      "args": [
+        "0001-01-01"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid leap-2024-feb29",
+      "args": [
+        "2024-02-29"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid leap-1996-feb29",
+      "args": [
+        "1996-02-29"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid feb29-century-1900",
+      "args": [
+        "1900-02-29"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid month-13",
+      "args": [
+        "2021-13-01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid apr-31",
+      "args": [
+        "2021-04-31"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid jun-31",
+      "args": [
+        "2021-06-31"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid unpadded-month-day",
+      "args": [
+        "2021-1-1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid slash-separator",
+      "args": [
+        "2021/01/01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid feb-30",
+      "args": [
+        "2021-02-30"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid unpadded-day-feb",
+      "args": [
+        "2021-2-29"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid two-digit-year",
+      "args": [
+        "21-01-01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid day-32",
+      "args": [
+        "2021-01-32"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid day-00",
+      "args": [
+        "2021-01-00"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid unpadded-day-dec",
+      "args": [
+        "2021-12-1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid unpadded-month",
+      "args": [
+        "2021-1-01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-space",
+      "args": [
+        " 2021-01-01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-space",
+      "args": [
+        "2021-01-01 "
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid empty-string",
+      "args": [
+        ""
+      ],
+      "expect": false
+    }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": {
+    "status": "active"
+  }
+}

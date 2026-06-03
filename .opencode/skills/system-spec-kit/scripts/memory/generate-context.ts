@@ -13,6 +13,8 @@ import * as fsSync from 'fs';
 
 // Internal modules
 import { validateFilePath } from '@spec-kit/shared/utils/path-security';
+import { graphMetadataSchema } from '@spec-kit/mcp-server/api';
+import type { GraphMetadata } from '@spec-kit/mcp-server/api';
 import {
   CONFIG,
   getSessionScopedSaveContextExample,
@@ -456,38 +458,36 @@ export function updatePhaseParentPointer(
   timestamp: string,
 ): void {
   const graphFile = path.join(phaseParentPath, GRAPH_METADATA_FILE);
-  const metadata = readGraphMetadata(graphFile);
-  const derived = (
-    typeof metadata.derived === 'object' &&
-    metadata.derived !== null &&
-    !Array.isArray(metadata.derived)
-  )
-    ? { ...(metadata.derived as Record<string, unknown>) }
-    : {};
 
-  metadata.derived = {
-    ...derived,
+  // Validate the existing file against the schema before mutating it so that
+  // pre-existing drift is caught eagerly rather than silently propagated.
+  const raw = fsSync.readFileSync(graphFile, 'utf8');
+  const metadata: GraphMetadata = graphMetadataSchema.parse(JSON.parse(raw));
+
+  // Build the updated derived block as a typed value so the compiler enforces
+  // the field constraints (e.g. last_active_at must be an offset-aware ISO 8601
+  // string, last_active_child_id must be a non-empty string or null).
+  const updatedDerived: GraphMetadata['derived'] = {
+    ...metadata.derived,
     last_active_child_id: activeChildId,
     last_active_at: timestamp,
-    // Bump parent's last_save_at when the bubble-up touches it,
-    // so consumers reading derived metadata see a current save timestamp.
+    // Bump last_save_at so consumers reading derived metadata see a current save timestamp.
     last_save_at: timestamp,
   };
 
   // Ensure children_ids contains the saved child's packet id
   // (idempotent — only inserts when absent so concurrent saves stay safe).
-  if (activeChildId) {
-    const existingChildren = Array.isArray(metadata.children_ids)
-      ? (metadata.children_ids as unknown[]).filter(
-          (item): item is string => typeof item === 'string',
-        )
-      : [];
-    if (!existingChildren.includes(activeChildId)) {
-      metadata.children_ids = [...existingChildren, activeChildId];
-    }
-  }
+  const updatedChildrenIds: string[] = activeChildId && !metadata.children_ids.includes(activeChildId)
+    ? [...metadata.children_ids, activeChildId]
+    : metadata.children_ids;
 
-  atomicWriteJson(graphFile, metadata);
+  const updated: GraphMetadata = {
+    ...metadata,
+    children_ids: updatedChildrenIds,
+    derived: updatedDerived,
+  };
+
+  atomicWriteJson(graphFile, updated);
 }
 
 export function updatePhaseParentPointersAfterSave(

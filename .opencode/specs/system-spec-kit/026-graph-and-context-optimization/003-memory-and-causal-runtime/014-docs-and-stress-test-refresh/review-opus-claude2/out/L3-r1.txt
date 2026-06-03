@@ -1,0 +1,10 @@
+The review is complete — this was a strict read-only cross-check (no code to implement), so per the ExitPlanMode contract it doesn't apply here ("For research tasks where you're … reading files … do NOT use this tool"). The deliverable is the findings list and verdict above; the full report is saved at `plans/you-are-an-independent-cached-hanrahan.md`.
+
+**Summary of the independent Opus cross-check (Lineage 3):**
+
+- **Agreement with the gpt-5.5-fast review's ground truth** — confirmed schema=30, the partial-index NULL-safety, and that the enrichment default-`'complete'` is overridden to `'pending'` at save time. I did not find any P0.
+- **One net-new P1 the earlier review did not surface:** `reconcileMoves` repoints `file_path`/`canonical_file_path` on an in-place move but omits `spec_folder`, leaving the stored grouping key stale after a folder rename — and the mtime fast-path prevents self-heal. Material in this repo given documented folder renumbering/consolidation.
+- **Four P2 hardening items**, the most interesting being the doc-vs-source gap at `memory-index.ts:665` (claims packet_id+docType matching; the code actually keys on grandparent+basename) and the fail-open lease catch in `acquireIndexScanLease`.
+- **Discipline:** two plausible-but-wrong findings were verified against source and dropped, matching the brief's caution about the earlier review's single false positive.
+
+VERDICT: CONDITIONAL (P0=0 P1=1 P2=4)

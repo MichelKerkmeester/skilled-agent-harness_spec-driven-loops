@@ -9,11 +9,12 @@
     "router",
     "benchmarkability"
   ],
-  "lastUpdated": "2026-06-01T13:35:43.772Z",
-  "specId": "126",
+  "lastUpdated": "2026-06-02T16:26:46.031Z",
+  "specId": "009",
   "folderSlug": "sk-code-router-benchmarkability",
   "parentChain": [
-    "skilled-agent-orchestration"
+    "skilled-agent-orchestration",
+    "122-deep-improvement-skill-benchmark-mode"
   ],
   "memorySequence": 1,
   "memoryNameHistory": [

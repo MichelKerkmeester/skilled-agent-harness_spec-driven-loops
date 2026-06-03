@@ -1,0 +1,33 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review DIMENSION (data-contract): DATA-CONTRACT INTEGRITY. Read sk-prompt/assets/model-profiles.json and sk-prompt/references/model-profiles.md. Verify every active model's recommended_frameworks is schema-valid + complete; prose model count matches jq '.models|length'; prose accurately describes the field; no contradictions between JSON and prose; framework ids are consistent lowercase. Output strictly findings. Do not modify files.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/model-profiles.json[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/skills/sk-prompt/references/model-profiles.md[90m [offset=1, limit=2000][0m
+[0m
+[0m$ [0mjq '{total_models:(.models|length), active_models:([.models[]|select(.status=="active")]|length), active_with_recommended_frameworks:([.models[]|select(.status=="active" and (.recommended_frameworks|type=="object"))]|length), optional_models:([.models[]|select(.status=="optional-unverified")]|length), active_ids:[.models[]|select(.status=="active")|.id], optional_ids:[.models[]|select(.status=="optional-unverified")|.id]}' ".opencode/skills/sk-prompt/assets/model-profiles.json"
+{
+  "total_models": 10,
+  "active_models": 8,
+  "active_with_recommended_frameworks": 8,
+  "optional_models": 2,
+  "active_ids": [
+    "swe-1.6",
+    "deepseek-v4-pro",
+    "kimi-k2.6",
+    "qwen3.6",
+    "glm-5.1",
+    "minimax-m3",
+    "minimax-2.7",
+    "mimo-v2.5-pro"
+  ],
+  "optional_ids": [
+    "haiku",
+    "gemini-flash"
+  ]
+}
+[0m
+[0m$ [0mnode -e 'const fs=require("fs"); const p=".opencode/skills/sk-prompt/assets/model-profiles.json"; const data=JSON.parse(fs.readFileSync(p,"utf8")); const req=["primary","fallback","avoid","preplanning_density","evidence","profile_ref","status"]; const ev=["benchmark","primary_score","fallback_score","sample","confidence"]; const fw=/^[a-z0-9][a-z0-9.-]*$/; const densities=new Set(["lean","medium","dense"]); const statuses=new Set(["empirical","carried","default-unverified"]); const confs=new Set(["low","medium","high"]); const issues=[]; for (const m of data.models.filter(m=>m.status==="active")){ const r=m.recommended_frameworks; if (!r || typeof r!=="object") { issues.push(`${m.id}: missing recommended_frameworks`); continue; } for (const k of req) if (!(k in r)) issues.push(`${m.id}: missing ${k}`); for (const k of Object.keys(r)) if (![...req,"carried_from"].includes(k)) issues.push(`${m.id}: unexpected ${k}`); if (!(typeof r.primary==="string" && fw.test(r.primary))) issues.push(`${m.id}: invalid primary ${r.primary}`); if (!(r.fallback===null || (typeof r.fallback==="string" && fw.test(r.fallback)))) issues.push(`${m.id}: invalid fallback ${r.fallback}`); if (!Array.isArray(r.avoid) || r.avoid.some(x=>typeof x!=="string" || !fw.test(x))) issues.push(`${m.id}: invalid avoid`); if (!densities.has(r.preplanning_density)) issues.push(`${m.id}: invalid density ${r.preplanning_density}`); if (!statuses.has(r.status)) issues.push(`${m.id}: invalid status ${r.status}`); if (r.status==="carried" && typeof r.carried_from!=="string") issues.push(`${m.id}: carried without carried_from`); if (!r.evidence || typeof r.evidence!=="object") { issues.push(`${m.id}: missing evidence`); continue; } for (const k of ev) if (!(k in r.evidence)) issues.push(`${m.id}: missing evidence.${k}`); if (!(r.evidence.benchmark===null || typeof r.evidence.benchmark==="string")) issues.push(`${m.id}: invalid evidence.benchmark`); for (const k of ["primary_score","fallback_score"]) if (!(r.evidence[k]===null || typeof r.evidence[k]==="number")) issues.push(`${m.id}: invalid evidence.${k}`); if (typeof r.evidence.sample!=="string" || !r.evidence.sample) issues.push(`${m.id}: invalid evidence.sample`); if (!confs.has(r.evidence.confidence)) issues.push(`${m.id}: invalid evidence.confidence ${r.evidence.confidence}`); } console.log(issues.length ? issues.join("\n") : "OK: active recommended_frameworks schema, enums, completeness, and lowercase framework ids all pass");'
+OK: active recommended_frameworks schema, enums, completeness, and lowercase framework ids all pass
+[0m

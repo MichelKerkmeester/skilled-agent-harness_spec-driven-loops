@@ -1,0 +1,33 @@
+{
+  "id": "hard-parse-csv-line",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "parseCsvLine",
+  "signature": "function parseCsvLine(line)",
+  "task": "Implement a JavaScript function `parseCsvLine(line)` that parses ONE line of CSV text into an array of field strings, following RFC-4180-style quoting. Apply these rules strictly: (1) Fields are separated by commas. (2) A field MAY be wrapped in double quotes; inside a quoted field a comma is literal (not a separator) and a doubled double-quote `\"\"` is the escape for one literal `\"`. (3) Leading and trailing spaces around an UNQUOTED field are preserved verbatim (do NOT trim) — only quotes change parsing, never whitespace. (4) An empty input string returns a single empty field `['']` (one field, empty). A trailing comma produces a trailing empty field, so 'a,' yields `['a','']`. (5) Quotes are only special when a field STARTS with a quote (after the comma); a quote in the middle of an otherwise-unquoted field is a literal character. (6) MALFORMED input returns the sentinel value `null` instead of throwing: a quoted field that is never closed (an opening quote with no matching closing quote before end-of-line), OR any character other than a comma immediately after a field's closing quote (e.g. `\"a\"b` is malformed because `b` follows the closing quote without a comma). These are adversarial cases: the doubled-quote escape, commas inside quotes, preserved unquoted whitespace, the empty-field and trailing-comma cases, a literal mid-field quote, and the two malformed shapes (unterminated quote, junk-after-close-quote) are exactly where naive `split(',')` or a greedy quote regex breaks. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "parseCsvLine(line) -> Array<string> | null. Comma-separated fields; a field may be double-quoted, inside which commas are literal and \"\" is an escaped quote; unquoted whitespace is preserved; '' => ['']; 'a,' => ['a','']. Malformed (unterminated quote, or non-comma char right after a closing quote) => null. A mid-field quote in an unquoted field is a literal char.",
+  "scope": "Single pure function. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Malformed input returns null rather than throwing.",
+  "tests": [
+    { "name": "simple unquoted fields", "args": ["a,b,c"], "expect": ["a", "b", "c"] },
+    { "name": "quoted field with embedded comma", "args": ["\"a,b\",c"], "expect": ["a,b", "c"] },
+    { "name": "doubled quote is an escaped quote", "args": ["\"she said \"\"hi\"\"\""], "expect": ["she said \"hi\""] },
+    { "name": "single empty field", "args": [""], "expect": [""] },
+    { "name": "unterminated quote is malformed", "args": ["\"abc"], "expect": null }
+  ],
+  "hidden_tests": [
+    { "name": "trailing comma yields trailing empty field", "args": ["a,"], "expect": ["a", ""] },
+    { "name": "leading comma yields leading empty field", "args": [",a"], "expect": ["", "a"] },
+    { "name": "unquoted whitespace preserved", "args": [" a , b "], "expect": [" a ", " b "] },
+    { "name": "two consecutive empty fields", "args": [",,"], "expect": ["", "", ""] },
+    { "name": "quoted empty field", "args": ["\"\",x"], "expect": ["", "x"] },
+    { "name": "mid-field quote in unquoted field is literal", "args": ["a\"b,c"], "expect": ["a\"b", "c"] },
+    { "name": "junk after closing quote is malformed", "args": ["\"a\"b"], "expect": null },
+    { "name": "quoted field followed by comma then field", "args": ["\"x\",y"], "expect": ["x", "y"] },
+    { "name": "doubled quotes around comma stay one field", "args": ["\"a,\"\"b\"\",c\""], "expect": ["a,\"b\",c"] },
+    { "name": "all empty from two commas at start", "args": [",,x"], "expect": ["", "", "x"] },
+    { "name": "quoted field with only a doubled quote", "args": ["\"\"\"\""], "expect": ["\""] },
+    { "name": "plain single field no commas", "args": ["hello"], "expect": ["hello"] }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": { "status": "active" }
+}

@@ -24,7 +24,8 @@
       "Bash(EVAL_LOOP_SKIP_ITER1_REVIEW=true node scripts/loop.cjs --mock --mock-mode high-score --max-iters 3)",
       "Bash(echo \"EXIT: $?\")",
       "Bash(node .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-eval-loop/scripts/seed-fixtures.cjs)",
-      "Bash(echo \"exit: $?\")"
+      "Bash(echo \"exit: $?\")",
+      "Bash(bash .opencode/skills/system-spec-kit/scripts/spec/create.sh --phase --track skilled-agent-orchestration --number 130 --skip-branch --short-name prompt-knowledge-layering --phase-names design-architecture-and-data-contract,repair-and-extend-sync-substrate,land-recommended-frameworks-data,model-hub-and-priority-profiles,backfill-remaining-profiles,thin-and-standardize-cli-cards,wire-precedence-and-crosslinks,validate-sweep-changelog-reindex 'Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub')"
     ]
   },
   "hooks": {

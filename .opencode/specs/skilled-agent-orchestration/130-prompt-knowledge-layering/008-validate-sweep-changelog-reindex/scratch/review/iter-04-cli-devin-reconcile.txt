@@ -1,0 +1,8 @@
+[P1] .opencode/skills/cli-devin/SKILL.md:192 Stale CLEAR pointer sends callers to local card §3, but CLEAR lives in canonical card §4; fix: point to `../sk-prompt/assets/cli_prompt_quality_card.md` §4 via the local delegation card.
+[P1] .opencode/skills/cli-devin/SKILL.md:365 Static local card is described as returning `ENHANCED_PROMPT`; fix: reserve `ENHANCED_PROMPT` for Tier 3 `@prompt-improver` and describe Tier 1 as composing via the canonical card.
+[P2] .opencode/skills/cli-devin/assets/prompt_templates.md:18 Heading still says `REQUIRES sk-prompt + pre-planning`; fix: rename to `REQUIRES swe-1.6 profile + canonical CLEAR + pre-planning`.
+[P2] .opencode/skills/cli-devin/SKILL.md:425 Reference label says local `prompt_quality_card.md` provides CLEAR/framework selection; fix: describe it as delegating canonical CLEAR/framework selection and documenting Devin model-selection mechanics.
+[OK] .opencode/skills/cli-devin/assets/prompt_quality_card.md:12 Canonical CLEAR is adopted and no competing local CLEAR table survives.
+[OK] .opencode/skills/cli-devin/assets/prompt_quality_card.md:19 Devin task-shape rows are explicitly framed as executor mechanics, not prompt frameworks.
+[OK] .opencode/skills/cli-devin/assets/prompt_templates.md:20 SWE-1.6 framework and pre-planning ownership defer to the `swe-1.6` hub profile.
+VERDICT CONDITIONAL

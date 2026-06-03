@@ -1,55 +1,64 @@
 ---
-title: "Feature Specification: Reusable model-benchmark framework for deep-improvement"
-description: "Deep-research (cli-codex gpt-5.5 high/fast, 10 iterations) into how to generalize the one-off prompt-framework benchmark rigs into a reusable, config-driven, model/situation-agnostic benchmark framework that lives in the deep-improvement skill."
+title: "Feature Specification: Reusable, config-driven model-benchmark framework for deep-improvement"
+description: "Phase parent: evolve the one-off prompt-framework benchmark rigs into ONE reusable, config/profile-driven, model/situation-agnostic benchmark framework that lives in the deep-improvement skill — researched (001), P0 MVP built (002), hardened through the P1 reliability tier (003), and given a hard-fixture capability-discrimination harness (004; the live M3-vs-MiMo verdict run is blocked by an opencode MCP dispatch hang and deferred with a documented re-run)."
 trigger_phrases:
+  - "127-reusable-model-benchmark-framework"
+  - "phase parent"
   - "reusable benchmark framework"
-  - "deep-improvement benchmark generalization"
-  - "model-agnostic benchmark"
+  - "sweep-benchmark"
 importance_tier: "important"
-contextType: "research"
+contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "skilled-agent-orchestration/127-reusable-model-benchmark-framework"
-    last_updated_at: "2026-06-02T06:20:00Z"
+    last_updated_at: "2026-06-02T07:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Deep-research complete; research.md + deltas.jsonl synthesized"
-    next_safe_action: "Plan implementation phases from the P0/P1/P2 roadmap in research/research.md"
+    recent_action: "006 n=5 run shipped: M3 more reliable than MiMo (1.0 vs 0.891), reproduced across 004+006"
+    next_safe_action: "Optional P2 only; framework + verdict complete across all 6 phases"
     blockers: []
-    key_files:
-      - ".opencode/skills/deep-improvement/scripts/model-benchmark/run-benchmark.cjs"
-      - ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs"
+    key_files: []
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "scaffold-127"
+      session_id: "scaffold-127-parent"
       parent_session_id: null
     completion_pct: 100
     open_questions: []
     answered_questions:
-      - "New module vs extend Lane B? -> EXTEND Lane B; matrix expander as new sweep-benchmark.cjs called by loop-host"
-      - "How to separate frontier models? -> correctness-as-gate + tiered T3/T4 fixtures + per-dimension separation + saturation auto-detect"
-      - "Minimal profile schema? -> additive mode/models[]/frameworks[]/variants[]/scoring/sampling/reporting over default.json (iter 7)"
+      - "Live OpenCode stream exposes token/cost usage (parsed + confirmed in 003)"
+      - "Harder computational fixtures (005)? Saturated — both 1.0; difficulty alone does not separate them"
+      - "Which is better, M3 or MiMo? M3 — reproduced across 004+006: M3 1.0/gate-eligible, MiMo ~0.89 with ~1-in-5 catastrophic fails"
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: Reusable model-benchmark framework for deep-improvement
 
-<!-- SPECKIT_LEVEL: 1 -->
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
 
----
+# Feature Specification: Reusable, config-driven model-benchmark framework for deep-improvement
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
 
 | Field | Value |
 |-------|-------|
-| **Level** | 1 (research packet) |
+| **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete (6 phases) — framework shipped; M3-vs-MiMo verdict certified (M3 more reliable, reproduced across 004+006) |
 | **Created** | 2026-06-02 |
 | **Branch** | `main` |
 | **Parent Spec** | None (top-level packet in `skilled-agent-orchestration`) |
+| **Parent Packet** | `skilled-agent-orchestration/127-reusable-model-benchmark-framework` |
 | **Predecessor** | `121-deep-agent-improvement-benchmark-mode` (Lane B), `126/004-mimo-prompt-framework-benchmark` (the lean one-off rig this generalizes) |
-| **Successor** | TBD — implementation phases follow the research |
-| **Handoff Criteria** | `research/research.md` produced with a concrete design + prioritized roadmap (deltas) for a reusable, config-driven benchmark framework in deep-improvement |
+| **Successor** | None |
+| **Handoff Criteria** | One profile benchmarks any model/situation by config (framework-bakeoff, model-vs-model, …); correctness is a gate so saturation cannot crown a winner; winner claims are CI/noise-floor gated; dispatch reports latency + nullable tokens/cost; the existing deep-improvement Lane B tests stay green throughout |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -58,10 +67,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-The repo's prompt-framework benchmarks are **one-off, model-specific rigs**: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B (`run-benchmark.cjs` + `dispatch-model.cjs` + a 5-dim scorer), but the **prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are not yet a reusable framework** — each new model or question still needs new rig code. The `126/004` run also exposed a **correctness-saturation** problem: tractable pure-function fixtures don't separate frontier models, so the benchmark only measured format/brevity.
+The repo's prompt-framework benchmarks are **one-off, model-specific rigs** (`120/003` MiniMax 7-fixture, `126/004` MiMo lean 2-fixture) that each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B, but the prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are **not yet a reusable framework** — every new model/technique/situation still needs new rig code. `126/004` also exposed **correctness-saturation** producing misleading "winners."
 
 ### Purpose
-Deep-research (10 iterations, cli-codex `gpt-5.5` high reasoning / fast tier) how to evolve these rigs into **one reusable, config-driven, model/situation-agnostic benchmark framework** that lives in the `deep-improvement` skill — so benchmarking any model, prompt technique, reasoning level, or situation becomes a **profile/config**, not new code. Output: a design + a prioritized implementation roadmap (deltas). Implementation is a follow-on.
+Build ONE reusable, **config/profile-driven**, model/situation-agnostic benchmark framework that lives in the `deep-improvement` skill — so benchmarking any model, prompt technique, reasoning level, or situation becomes a **profile**, not new code — built as an **additive extension of Lane B** (the existing tests stay green). Correctness is a **gate**, winner claims are **CI/noise-floor gated**, and a tiered fixture taxonomy fixes the saturation problem.
+
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed design, planning, tasks, checklists, and implementation summaries live in the child phase folders below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -69,73 +80,63 @@ Deep-research (10 iterations, cli-codex `gpt-5.5` high reasoning / fast tier) ho
 <!-- ANCHOR:scope -->
 ## 3. SCOPE
 
-### In Scope (research)
-- Inventory current benchmark assets (deep-improvement Lane B, `120/003`, `121`, `126/004`) — what is reusable vs one-off; the gap to "any model/situation."
-- Design dimensions to research: fixture taxonomy + difficulty tiers (anti-saturation), multi-dimensional scoring (deterministic + LLM-judge), statistical rigor (multi-sample, noise floor, significance), model-agnostic dispatch (executor/provider/reasoning sweep), pluggable prompt-technique + framework registry, config-driven profiles, reporting/leaderboard/regression, situational modes (model-vs-model, framework bake-off, reasoning ablation, capability profiling).
-- A prioritized design + roadmap (deltas) for building it into deep-improvement.
+### In Scope (across phases)
+- Research the design + roadmap (001).
+- Build the P0 MVP: config-driven sweep (framework-bakeoff + model-vs-model by config), framework registry + slot renderer, correctness-gate, trustworthiness reporter (002).
+- Harden through P1: paired-bootstrap-CI + noise-floor verdict, normalized dispatch envelope (latency + nullable tokens/cost + OpenCode JSON parsing), machine-readable provider capability fields, tiered fixture taxonomy, A–F modes operator guide (003).
 
-### Out of Scope
-- Implementing the framework (follow-on phases).
-- Re-running the MiMo/MiniMax benchmarks (that is `126/004`).
+### Out of Scope (P2 — roadmap)
+- Mutation/hill-climb over framework axes; single-parent profile `extends`/overrides; per-executor cost parsers; capability-radar reducers; long-context/agentic fixture categories. (Documented in `001-design-research/research/research.md`.)
 
-### Files to Change
-
-| File Path | Change Type | Description |
-|-----------|-------------|-------------|
-| `127-.../research/iterations/iteration-NNN.md` | Create | Per-iteration codex findings |
-| `127-.../research/research.md` | Create | Synthesis + design + prioritized roadmap (deltas) |
-| `127-.../research/deltas/deltas.jsonl` | Create | Structured deltas |
+### Files to Change (aggregate — per-phase detail lives in child plans)
+- New benchmark framework modules + data + profiles + fixtures + tests under `.opencode/skills/deep-improvement/scripts/model-benchmark/` and `.opencode/skills/sk-prompt/assets/`. The existing Lane B modules are extended additively or left untouched per phase.
 <!-- /ANCHOR:scope -->
 
 ---
 
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
+<!-- ANCHOR:phase-map -->
+## PHASE DOCUMENTATION MAP
 
-### P0 - Blockers (MUST complete)
+> This spec uses phased decomposition. Each phase is an independently executable child spec folder; all implementation details (plan, tasks, checklist, decisions, continuity) live inside the phase children.
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | 10-iteration deep-research executed via cli-codex gpt-5.5 high/fast | `research/iterations/iteration-001..010.md` present, each a real codex finding |
-| REQ-002 | Concrete reusable-framework design produced | `research/research.md` proposes a config/profile schema + the seam architecture (fixtures, frameworks, scorers, dispatch) enabling any-model/any-situation reuse |
-| REQ-003 | Prioritized roadmap (deltas) | `research/deltas/deltas.jsonl` lists P0/P1/P2 build steps with target files + confidence |
+| Phase | Folder | Focus | Status |
+|-------|--------|-------|--------|
+| 1 | 001-design-research/ | 10-iter deep-research (cli-codex gpt-5.5 high/fast) → the seam architecture, anti-saturation strategy, reuse-vs-net-new map, and the P0/P1/P2 roadmap | Complete |
+| 2 | 002-p0-mvp-implementation/ | The P0 MVP: framework registry + slot renderer, profile validator, sweep matrix-expander (framework-bakeoff + model-vs-model by config, no mode branches), correctness-GATE, trustworthiness reporter (WINNER/TIE/INCONCLUSIVE), T3 fixtures, example profiles | Complete |
+| 3 | 003-p1-reliability-and-dispatch/ | P1 reliability tier: paired-bootstrap-CI + noise-floor verdict, normalized dispatch envelope (latency + nullable tokens/cost + OpenCode JSON parsing), machine-readable capability fields, tiered fixture taxonomy, A–F modes operator guide | Complete |
+| 4 | 004-capability-discrimination/ | Sweep cwd-isolation fix + hard partial-credit fixture pack (oracle-validated) + the live M3-vs-MiMo capability run (24 cells, 0 pollution): **M3 edges MiMo on reliability** — M3 perfectly consistent (gate-eligible), MiMo 0.898 from one 0.0 on roman-to-int. Verdict + caveats in the phase's `eval/synthesis.md` | Complete |
+| 5 | 005-sharper-discrimination/ | Anti-saturation attempt (P2) via harder *computational* fixtures (semver-compare, normalize-path, int-to-words). De-risk gate result: all 3 SATURATED (both models 1.0) — harder compute doesn't separate them. Pivoted to validation (006). | Complete (negative result) |
+| 6 | 006-strict-validation-fixtures/ | Validation-heavy fixtures (ipv4/date/semver-validate, invalid-dominant) + the n=5 run (40 cells, 0 pollution). Finding: **M3 more reliable** — M3 1.0 / gate-eligible (32/32 cells perfect across 004+006); MiMo 0.891 / gate-ineligible with a ~1-in-5 catastrophic-failure rate on hard validation. (The n=2 de-risk's "near-equivalent" read was a small-sample artifact, corrected at n=5.) Verdict in the phase's `eval/synthesis.md` | Complete |
 
-### P1 - Required
+### Phase Transition Rules
 
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-004 | Anti-saturation fixture strategy | research.md addresses how to separate frontier models (harder/graded fixtures) beyond the 126/004 saturation limit |
-| REQ-005 | Reuse vs net-new mapped against deep-improvement Lane B | research.md states what to reuse from 121's Lane B and what is net-new |
-<!-- /ANCHOR:requirements -->
+- Each phase MUST pass `validate.sh` independently before it is claimed complete.
+- The framework is built ADDITIVELY: the existing deep-improvement Lane B vitest suite stays green at every phase.
+- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase.
 
----
+### Phase Handoff Criteria
 
-<!-- ANCHOR:success-criteria -->
-## 5. SUCCESS CRITERIA
-
-- **SC-001**: `research/research.md` present with a config-driven framework design + prioritized roadmap.
-- **SC-002**: Each iteration grounded in real repo evidence (the existing rigs + Lane B).
-- **SC-003**: `validate.sh --strict` on this folder passes.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 6. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Dependency | cli-codex gpt-5.5 (high/fast) | Med — the research executor | codex-cli 0.135.0 has no `--search`; research draws on repo evidence (the existing rigs) + model knowledge, which is the right grounding for a design question |
-| Risk | Design sprawl (too ambitious to build) | Med | Roadmap must phase the work; mark MVP vs later |
-| Risk | Duplicating 121's Lane B instead of extending it | Med | REQ-005 forces a reuse-vs-net-new mapping |
-<!-- /ANCHOR:risks -->
+| From | To | Criteria |
+|------|-----|----------|
+| 001-design-research | 002-p0-mvp-implementation | `research.md` + P0 deltas available; design seams agreed |
+| 002-p0-mvp-implementation | 003-p1-reliability-and-dispatch | MVP green (config-driven sweep + correctness gate + verdict); existing Lane B tests untouched |
+| 003-p1-reliability-and-dispatch | 004-capability-discrimination | CI verdict + dispatch envelope + tiered fixtures shipped; vitest green |
+<!-- /ANCHOR:phase-map -->
 
 ---
 
 <!-- ANCHOR:questions -->
-## 7. OPEN QUESTIONS
+## 4. OPEN QUESTIONS
 
-- Should the framework be a new module or an extension of deep-improvement Lane B's `run-benchmark.cjs`?
-- How to make fixtures separate frontier models without per-model hand-tuning (graded/LLM-judge tasks, difficulty tiers, agentic/multi-file tasks)?
-- What is the minimal profile schema that covers model, executor, reasoning, fixtures, frameworks, scorers, and samples?
+- ~~Does the live OpenCode binary's event stream expose token/cost usage fields?~~ **Resolved (003):** yes — parsed and live-confirmed (39,395 in / 63 out on a real dispatch).
+- Which P2 items (mutation/hill-climb, profile inheritance, capability radar, harder fixtures, OS-level dispatch kill, incremental result writes) are worth building? Open — 004 surfaced fixture saturation (3/4 at 1.0) and the dispatch-bounding gaps as the highest-value next targets.
 <!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: `001-design-research/`, `002-p0-mvp-implementation/`, `003-p1-reliability-and-dispatch/`, `004-capability-discrimination/`, `005-sharper-discrimination/`, `006-strict-validation-fixtures/`
+- **Design + roadmap**: `001-design-research/research/research.md` + `research/deltas/deltas.jsonl`
+- **Operator quickstart**: `.opencode/skills/deep-improvement/scripts/model-benchmark/SWEEP.md`
+- **Graph Metadata**: `graph-metadata.json` (`derived.last_active_child_id` pointer)

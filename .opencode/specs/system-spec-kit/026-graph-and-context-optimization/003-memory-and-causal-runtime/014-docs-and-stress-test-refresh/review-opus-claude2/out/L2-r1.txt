@@ -1,0 +1,23 @@
+I've completed the independent cross-check. Let me present the findings.
+
+## Independent Opus Cross-Check — Lineage 2 (Durability Stress Tests + Fidelity)
+
+I read all four stress tests and the README, then cross-checked each against the actual source it exercises (`checkpoints.ts`, `db-state.ts`, `enrichment-state.ts`, `vector-index-schema.ts`, `launcher-session-proxy.cjs`).
+
+**Ground-truth alignment confirmed:** schema=30 (`vector-index-schema.ts:438`); -32001 LIVE retryable / -32002 terminal (`launcher-session-proxy.cjs:18,23`, regex-pinned by the recycle test); the `snapshotFormat` check is now a **hard** assertion (`toBe('v2')`, ckpt test:157) and the v2 create+restore path is genuinely taken (useV2 gate true on the test DB; restore routes by `snapshot_format`; the injected reopen hook must fire or the test throws).
+
+**Re-scoping question (specifically flagged):** the daemon-recycle re-scope is **accurate, not overclaiming**. Verified line-by-line that the local `replayablePartition` (L94-111) is a structurally faithful mirror of production `replaySnapshot` (L595-605); it uses the REAL `classifyFrame` + REAL tracker, and the no-leak test drives the REAL `handleClientFrame`/`handleBackendFrame`. The header honestly discloses it does not drive the production socket emission (covered in `tests/launcher-session-proxy.vitest.ts`).
+
+**Isolation:** all four hermetic — `os.tmpdir()` mkdtemp + injected reopen (so the production-DB `reopenActiveDatabase` is never called), `:memory:` DBs, mocked post-insert runtime, and a pure `require()`+`__testing` recycle test (no socket/daemon). No access to `~/.mk-spec-memory` or the live socket. Module-path math in the recycle test (`../../../../../..` → repo root) is correct.
+
+**Assertion strength:** no masked/tautological assertions found. The checkpoint catalog-vs-disk reasoning (catalog may outnumber dirs after merge; `listCheckpoints` limit `ROUND_TRIPS+64` safely exceeds the ~linearly-growing catalog) is sound and the bound/orphan checks are meaningful.
+
+### Findings
+
+`[P2]` enrichment "pins the repair partial index" verifies a self-built mirror, not the real schema constant | `enrichment-marker-backfill-stress.vitest.ts:48-52,140-144` | evidence: `INCOMPLETE_INDEX_SQL` is a hand-copy of module-private `POST_INSERT_ENRICHMENT_INCOMPLETE_INDEX_SQL` (`vector-index-schema.ts:144-147`); the test creates the index from its own copy then reads it back, so predicate drift in the real constant goes undetected. `SCHEMA_VERSION===30` gives indirect coverage and the mirror is disclosed in a comment. | fix: export the constant and assert against it.
+
+`[P2]` README row-4 prose slightly overstates per-request -32001 emission | `README.md:24` | evidence: row says "unsafe mutations are refused with the retryable -32001 recycle signal"; the recycle test models the partition decision and separately regex-verifies -32001 liveness, but does not assert a -32001 frame is emitted per unsafe request (that emission is covered in the launcher unit suite, as disclosed). Domain-level prose, minor. | fix: tighten the row to "verifies the retryable-vs-replay partition decision and -32001 liveness; per-request emission covered in the launcher unit suite."
+
+The earlier review's one false positive (R16-P1-001 `includeEmbeddings`) was correctly left unchanged; I found no incorrectly-remediated items and no new P0/P1. The lineage-2 surface is clean apart from two minor precision advisories.
+
+VERDICT: PASS (P0=0 P1=0 P2=2)

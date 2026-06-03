@@ -1,7 +1,10 @@
 {
-  "specFolder": "028-peck-teachings-adoption",
-  "description": "Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system-spec-kit",
+  "level": "phase",
+  "specFolder": "system-spec-kit/028-peck-teachings-adoption",
+  "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
   "keywords": [
+    "feature",
+    "specification",
     "adopt",
     "low-risk",
     "peck",
@@ -13,13 +16,14 @@
     "constitutional",
     "rule",
     "review",
-    "system-spec-kit"
+    "system"
   ],
-  "lastUpdated": "2026-06-02T10:04:51.670Z",
+  "lastUpdated": "2026-06-02T16:26:46.260Z",
   "specId": "028",
   "folderSlug": "peck-teachings-adoption",
-  "parentChain": [],
+  "parentChain": [
+    "system-spec-kit"
+  ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "phase"
+  "memoryNameHistory": []
 }

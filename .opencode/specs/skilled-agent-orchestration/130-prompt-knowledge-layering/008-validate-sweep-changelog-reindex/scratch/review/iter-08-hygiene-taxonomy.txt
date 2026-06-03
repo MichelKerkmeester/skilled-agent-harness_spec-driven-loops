@@ -1,0 +1,4 @@
+[P1] `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md:46` mislabels `deepseek-v4-pro` and `kimi-k2.6` as frontier models, contradicting hub small-model entries at `sk-prompt-small-model/references/models/_index.md:22-23`; fix by moving those slugs into the small-model wording or removing them from the frontier parenthetical.
+[OK] `.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh:10` shell comments reference skill asset paths only; no spec-folder, phase, ADR, REQ, CHK, or task-id comment found.
+[OK] `.opencode/skills/sk-prompt/assets/model-profiles.json:1` JSON contains no code comments and targeted scan found no forbidden spec-folder/ADR/REQ/CHK/task-id comment content.
+VERDICT CONDITIONAL

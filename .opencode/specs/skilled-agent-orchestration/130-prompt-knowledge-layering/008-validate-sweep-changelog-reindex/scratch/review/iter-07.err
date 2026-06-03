@@ -1,0 +1,25 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Review precedence-rule consistency for spec 130 prompt-knowledge architecture. Compare 3-tier precedence block across all 5 cli-*/SKILL.md and prompt_quality_card.md §3 alignment. Do not modify files.","specFolder":"","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "sk-code-review"
+[0m✱ [0mGlob ".opencode/skills/cli-*/SKILL.md"[90m in . · 5 matches[0m
+[0m✱ [0mGrep "(3-tier|three-tier|precedence|sk-prompt|prompt-improver|MUST be composed|CLEAR|recommended_frameworks)"[90m in .opencode/skills · 1325 matches[0m
+[0m✱ [0mGlob ".opencode/skills/cli-*/assets/prompt_quality_card.md"[90m in . · 5 matches[0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=340, limit=90][0m
+[0m→ [0mRead .opencode/skills/cli-codex/SKILL.md[90m [offset=345, limit=45][0m
+[0m→ [0mRead .opencode/skills/cli-opencode/SKILL.md[90m [offset=300, limit=45][0m
+[0m→ [0mRead .opencode/skills/cli-gemini/SKILL.md[90m [offset=280, limit=70][0m
+[0m→ [0mRead .opencode/skills/cli-claude-code/SKILL.md[90m [offset=300, limit=70][0m
+[0m→ [0mRead .opencode/skills/cli-devin/assets/prompt_quality_card.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/cli-opencode/assets/prompt_quality_card.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/cli-codex/assets/prompt_quality_card.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/cli-gemini/assets/prompt_quality_card.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/cli-claude-code/assets/prompt_quality_card.md[90m [offset=1, limit=160][0m
+[0m✱ [0mGrep "(MUST be composed through sk-prompt|composed through sk-prompt|load(ing)? `sk-prompt`|loading `sk-prompt`|@prompt-improver|ENHANCED_PROMPT|complexity >=|complexity ≥|compliance/security|CLEAR cannot|fast-path CLEAR|3-tier precedence|tier-2|Tier 3|Deep path|pre-planning contract)"[90m in .opencode/skills/cli-devin · 13 matches[0m
+[0m✱ [0mGrep "(MUST be composed through sk-prompt|composed through sk-prompt|load(ing)? `sk-prompt`|@prompt-improver|ENHANCED_PROMPT|complexity >=|complexity ≥|compliance/security|CLEAR cannot|fast-path CLEAR|3-tier precedence|Tier 3|Deep path)"[90m in .opencode/skills/cli-claude-code · 18 matches[0m
+[0m✱ [0mGrep "(MUST be composed through sk-prompt|composed through sk-prompt|load(ing)? `sk-prompt`|@prompt-improver|ENHANCED_PROMPT|complexity >=|complexity ≥|compliance/security|CLEAR cannot|fast-path CLEAR|3-tier precedence|Tier 3|Deep path)"[90m in .opencode/skills/cli-gemini · 5 matches[0m
+[0m✱ [0mGrep "(MUST be composed through sk-prompt|composed through sk-prompt|load(ing)? `sk-prompt`|@prompt-improver|ENHANCED_PROMPT|complexity >=|complexity ≥|compliance/security|CLEAR cannot|fast-path CLEAR|3-tier precedence|Tier 3|Deep path)"[90m in .opencode/skills/cli-codex · 8 matches[0m
+[0m✱ [0mGrep "(MUST be composed through sk-prompt|composed through sk-prompt|load(ing)? `sk-prompt`|@prompt-improver|ENHANCED_PROMPT|complexity >=|complexity ≥|compliance/security|CLEAR cannot|fast-path CLEAR|3-tier precedence|Tier 3|Deep path)"[90m in .opencode/skills/cli-opencode · 12 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=1, limit=180][0m
+[0m→ [0mRead .opencode/skills/cli-devin/SKILL.md[90m [offset=180, limit=20][0m

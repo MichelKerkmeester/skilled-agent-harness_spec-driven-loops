@@ -1,0 +1,207 @@
+{
+  "id": "validate-ipv4",
+  "category": "strict-validation",
+  "tier": "T4",
+  "fn_name": "isValidIPv4",
+  "signature": "function isValidIPv4(s)",
+  "task": "Implement a JavaScript function `isValidIPv4(s)` that returns the boolean `true` if and only if `s` is a strict dotted-decimal IPv4 address, and `false` otherwise. Rules, all required: (1) The string is exactly FOUR octets separated by single `.` characters — three dots total, never two consecutive dots, never a leading or trailing dot. (2) Each octet is 1 to 3 decimal digits only (`0`-`9`); no sign, no whitespace, no letters, no `+`/`-`, no other character anywhere in the string. (3) Each octet's decimal value is in the range 0 to 255 inclusive. (4) NO leading zeros: the octet `0` is valid, but `00`, `01`, and `000` are INVALID (a multi-digit octet must not start with `0`). (5) There must be no leading/trailing/internal whitespace and no trailing newline; the WHOLE string must be the address and nothing else. Return `false` for anything that breaks any rule. These are adversarial cases that a lax-but-plausible validator wrongly accepts: `1.2.3.04` and `01.2.3.4` (leading zero), `1.2.3.256` and `256.1.1.1` (octet > 255), `1.2.3` (too few octets), `1.2.3.4.5` (too many), `1.2.3.` and `.1.2.3` (empty octet), `1..2.3` (consecutive dots), `1.2.3.4 ` / ` 1.2.3.4` / `1.2.3.4\\n` (surrounding whitespace), `1.2.3.-1` / `+1.2.3.4` / `1.2.3.4a` (illegal char), `1.2.3.00` (leading-zero zero), and the empty string — all must return `false`, while `0.0.0.0`, `255.255.255.255`, and `192.168.1.1` return `true`. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "isValidIPv4(s) -> boolean. true iff s is a strict dotted-decimal IPv4: exactly 4 dot-separated octets, each 1-3 digits with value 0-255 and NO leading zeros ('0' ok, '00'/'01' invalid), and no whitespace, sign, or other character anywhere. Everything else (wrong octet count, octet > 255, leading zero, empty octet, surrounding whitespace/newline, illegal char, empty string) returns false.",
+  "scope": "Single pure function returning a boolean. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Every malformed input returns false rather than throwing.",
+  "tests": [
+    {
+      "name": "valid all-zero",
+      "args": [
+        "0.0.0.0"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid simple",
+      "args": [
+        "1.2.3.4"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid all-max-255",
+      "args": [
+        "255.255.255.255"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid leading-zero-octet",
+      "args": [
+        "1.2.3.04"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid octet-256",
+      "args": [
+        "1.2.3.256"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid too-few-octets",
+      "args": [
+        "1.2.3"
+      ],
+      "expect": false
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "valid private-class-c",
+      "args": [
+        "192.168.1.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid private-class-a",
+      "args": [
+        "10.0.0.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid loopback",
+      "args": [
+        "127.0.0.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid public-dns",
+      "args": [
+        "8.8.8.8"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid leading-zero-first",
+      "args": [
+        "01.2.3.4"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid first-octet-256",
+      "args": [
+        "256.1.1.1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid too-many-octets",
+      "args": [
+        "1.2.3.4.5"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-dot",
+      "args": [
+        "1.2.3."
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-dot",
+      "args": [
+        ".1.2.3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid consecutive-dots",
+      "args": [
+        "1..2.3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-space",
+      "args": [
+        "1.2.3.4 "
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-space",
+      "args": [
+        " 1.2.3.4"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid negative-octet",
+      "args": [
+        "1.2.3.-1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-letter",
+      "args": [
+        "1.2.3.4a"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid double-zero-octet",
+      "args": [
+        "1.2.3.00"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-plus",
+      "args": [
+        "+1.2.3.4"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-newline",
+      "args": [
+        "1.2.3.4\n"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid empty-string",
+      "args": [
+        ""
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid octet-999",
+      "args": [
+        "1.2.3.999"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid all-999",
+      "args": [
+        "999.999.999.999"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid extra-trailing-dot",
+      "args": [
+        "1.2.3.4."
+      ],
+      "expect": false
+    }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": {
+    "status": "active"
+  }
+}

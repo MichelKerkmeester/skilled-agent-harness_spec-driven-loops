@@ -1,11 +1,14 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
-  "description": "Phase 8: validate-sweep-changelog-reindex",
+  "description": "Feature Specification: Phase 8: validate-sweep-changelog-reindex",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
     "validate-sweep-changelog-reindex"
   ],
-  "lastUpdated": "2026-06-02T18:04:16.632Z",
+  "lastUpdated": "2026-06-03T06:37:53.276Z",
   "specId": "008",
   "folderSlug": "validate-sweep-changelog-reindex",
   "parentChain": [
@@ -13,6 +16,5 @@
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

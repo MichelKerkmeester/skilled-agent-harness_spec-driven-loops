@@ -1,0 +1,19 @@
+I’ll verify the five `cli-*` skill files and their prompt quality cards against the claimed 3-tier precedence contract, without editing anything.
+The target files are present under `.opencode/skills/cli-{claude-code,codex,devin,gemini,opencode}`. I’m checking the exact text and line numbers for both the SKILL precedence blocks and each card’s §3.
+I found the shared SKILL.md 3-tier block itself is text-identical across all five files; the remaining risk is surrounding text and card §3 examples that may narrow or bypass that rule.
+I’m also checking the canonical card once so “aligns with SKILL.md precedence” is measured against the same source the local cards cite.
+[P1] `.opencode/skills/cli-devin/SKILL.md:365` still has a narrower pre-rule escalation path and `ENHANCED_PROMPT` wording before the shared 3-tier rule; fix by deleting rule 8 or rewriting it to defer entirely to rule 9/canonical Tier 1-3 triggers.
+
+[P1] `.opencode/skills/cli-devin/assets/prompt_quality_card.md:43` restates Tier 3 with only complexity/compliance/security triggers, omitting privacy/policy, multi-stakeholder, ambiguity, and CLEAR-floor triggers; fix by copying the full canonical Tier 3 trigger list or saying “any canonical Tier 3 trigger.”
+
+[P1] `.opencode/skills/cli-gemini/assets/prompt_quality_card.md:21` implies Gemini prompts should always obtain `ENHANCED_PROMPT` from `@prompt-improver`, bypassing the fast/model tiers; fix by labeling this as “Tier 3 only” or moving it under the §3 escalation example.
+
+[P1] `.opencode/skills/cli-gemini/assets/prompt_quality_card.md:31` narrows escalation to complexity/compliance/security only; fix by referencing all canonical Tier 3 triggers from `sk-prompt/assets/cli_prompt_quality_card.md` §5.
+
+[P2] `.opencode/skills/cli-codex/assets/prompt_quality_card.md:24` gives a narrower escalation sentence than SKILL.md/canonical Tier 3; fix by changing “Escalate when complexity >= 7/10 or compliance/security signals appear” to “Escalate on any canonical Tier 3 trigger.”
+
+[P2] `.opencode/skills/cli-devin/SKILL.md:192` points to `assets/prompt_quality_card.md` §3 for the CLEAR check, but that section is precedence; fix by pointing CLEAR to `../sk-prompt/assets/cli_prompt_quality_card.md` §4 and local precedence to `assets/prompt_quality_card.md` §3.
+
+[OK] `.opencode/skills/cli-{claude-code,codex,devin,gemini,opencode}/SKILL.md:348,354,366,307,312` the core 3-tier precedence block text is consistent across all five SKILL.md files apart from list numbering.
+
+VERDICT CONDITIONAL

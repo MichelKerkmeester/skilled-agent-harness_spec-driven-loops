@@ -10,7 +10,7 @@ Read the fixture metadata (it carries the task and the pass `rubric`) and the ca
 
 ```json
 {
-  "dim_id": "D4R",
+  "dim_id": "D4-R",
   "score": 0.0_to_1.0,
   "confidence": 0.0_to_1.0,
   "rationale": "one-sentence explanation of the dominant factor",

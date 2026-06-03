@@ -413,13 +413,13 @@ Desired user-visible outcome: A working debounce function plus evidence that the
 
 #### Description
 
-Verify the dispatch matrix in `sk-prompt/assets/model-profiles.json` correctly identifies cli-devin as a Cognition-Pro path for DeepSeek-v4-pro (one of three available paths), that `sk-prompt` composes a complex-task framework (RCAF or BUILD with medium pre-plan density) for the DeepSeek dispatch, and that `cli-devin --model deepseek-v4` runs to completion. Validates the same triple-skill flow on a Pro-tier model where executor choice and quota_pool selection matter.
+Verify the dispatch matrix in `sk-prompt-small-model/assets/model-profiles.json` correctly identifies cli-devin as a Cognition-Pro path for DeepSeek-v4-pro (one of three available paths), that `sk-prompt` composes a complex-task framework (RCAF or BUILD with medium pre-plan density) for the DeepSeek dispatch, and that `cli-devin --model deepseek-v4` runs to completion. Validates the same triple-skill flow on a Pro-tier model where executor choice and quota_pool selection matter.
 
 #### Scenario Contract
 
 Prompt: `Consult sk-prompt-small-model for the DeepSeek-v4-pro dispatch matrix and pick the cli-devin Cognition Pro path. Compose the prompt through sk-prompt with the right framework + medium pre-plan + standard bundle-gate per the cli-devin v1.0.6.x contract. Dispatch a complex multi-step task with --model deepseek-v4 --permission-mode auto and capture the output.`
 
-Expected signals: Operator records the executor selection rationale citing `sk-prompt/assets/model-profiles.json` deepseek-v4-pro entry. The composed prompt uses RCAF or BUILD framework with medium pre-plan density and standard bundle-gate wording (NOT strict). `devin --model deepseek-v4` exits 0. Output addresses all 3 acceptance criteria in the pre-plan.
+Expected signals: Operator records the executor selection rationale citing `sk-prompt-small-model/assets/model-profiles.json` deepseek-v4-pro entry. The composed prompt uses RCAF or BUILD framework with medium pre-plan density and standard bundle-gate wording (NOT strict). `devin --model deepseek-v4` exits 0. Output addresses all 3 acceptance criteria in the pre-plan.
 
 Desired user-visible outcome: A working implementation that demonstrates the model-profile-driven path selection + sk-prompt composition path. Evidence the executor choice (Cognition Pro vs DeepSeek API direct vs opencode-go) was made consciously.
 

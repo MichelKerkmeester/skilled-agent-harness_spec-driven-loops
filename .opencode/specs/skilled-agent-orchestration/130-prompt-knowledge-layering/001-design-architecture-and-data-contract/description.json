@@ -1,11 +1,18 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract",
-  "description": "Phase 1: design-architecture-and-data-contract",
+  "description": "Feature Specification: Design — 3-layer prompt-knowledge architecture + data contract",
   "keywords": [
-    "phase",
-    "design-architecture-and-data-contract"
+    "feature",
+    "specification",
+    "design",
+    "3-layer",
+    "prompt-knowledge",
+    "architecture",
+    "data",
+    "contract"
   ],
-  "lastUpdated": "2026-06-02T18:04:10.826Z",
+  "lastUpdated": "2026-06-03T06:37:53.246Z",
   "specId": "001",
   "folderSlug": "design-architecture-and-data-contract",
   "parentChain": [
@@ -13,6 +20,5 @@
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

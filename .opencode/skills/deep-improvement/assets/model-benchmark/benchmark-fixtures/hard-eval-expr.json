@@ -1,0 +1,34 @@
+{
+  "id": "hard-eval-expr",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "evalExpr",
+  "signature": "function evalExpr(expr)",
+  "task": "Implement a JavaScript function `evalExpr(expr)` that evaluates an integer arithmetic expression string and returns the integer result, or the sentinel value `null` for any malformed expression. The grammar supports non-negative integer literals, the binary operators `+ - * /`, parentheses `( )`, and a UNARY minus. Apply these rules strictly: (1) Standard precedence: `*` and `/` bind tighter than `+` and `-`; evaluate left-to-right within the same precedence level; parentheses override. (2) `/` is INTEGER division that TRUNCATES TOWARD ZERO (so 7/2 = 3 and -7/2 = -3, matching JS `Math.trunc(a/b)`), NOT floor division. (3) Unary minus negates the following factor, so '-5' is -5 and '3 - -2' is 5 and '-(2+3)' is -5. (4) Whitespace (spaces) is insignificant and may appear anywhere between tokens. (5) MALFORMED input returns `null` instead of throwing: an empty or all-whitespace string, unbalanced parentheses, a trailing or doubled binary operator (e.g. '1+' or '1++2'), an empty pair of parens '()', any character outside digits/operators/parens/space, OR a DIVISION BY ZERO. (Division by zero returns null, it does NOT throw and does NOT return Infinity.) These are adversarial cases: trunc-toward-zero on negative division, unary vs binary minus disambiguation, precedence with parentheses, division-by-zero as null, and the several malformed shapes are exactly where a naive left-to-right evaluator, a floor-division `/`, or a `new Function` shortcut diverges. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "evalExpr(expr) -> number | null. Evaluates an integer arithmetic string over + - * / and parens with standard precedence and unary minus; / truncates toward zero (Math.trunc). Returns null for malformed input: empty/whitespace, unbalanced parens, '()', a trailing/doubled binary operator, an illegal character, or division by zero. Whitespace between tokens is insignificant.",
+  "scope": "Single pure function. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries, and no use of eval/new Function. Malformed input returns null rather than throwing.",
+  "tests": [
+    { "name": "simple addition", "args": ["1+2"], "expect": 3 },
+    { "name": "precedence multiply before add", "args": ["2+3*4"], "expect": 14 },
+    { "name": "parentheses override precedence", "args": ["(2+3)*4"], "expect": 20 },
+    { "name": "integer division truncates", "args": ["7/2"], "expect": 3 },
+    { "name": "division by zero is null", "args": ["1/0"], "expect": null }
+  ],
+  "hidden_tests": [
+    { "name": "unary minus on a literal", "args": ["-5"], "expect": -5 },
+    { "name": "binary minus then unary minus", "args": ["3 - -2"], "expect": 5 },
+    { "name": "unary minus on a parenthesized group", "args": ["-(2+3)"], "expect": -5 },
+    { "name": "negative division truncates toward zero", "args": ["-7/2"], "expect": -3 },
+    { "name": "left-to-right within same precedence", "args": ["10-2-3"], "expect": 5 },
+    { "name": "nested parentheses", "args": ["((1+2)*(3+4))"], "expect": 21 },
+    { "name": "whitespace is insignificant", "args": ["  12  *  2 "], "expect": 24 },
+    { "name": "empty string is malformed", "args": [""], "expect": null },
+    { "name": "unbalanced open paren is malformed", "args": ["(1+2"], "expect": null },
+    { "name": "trailing operator is malformed", "args": ["1+"], "expect": null },
+    { "name": "doubled binary operator is malformed", "args": ["1++2"], "expect": null },
+    { "name": "empty parens are malformed", "args": ["()"], "expect": null },
+    { "name": "illegal character is malformed", "args": ["1+a"], "expect": null }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": { "status": "active" }
+}

@@ -1,0 +1,3 @@
+- **[BUG]** `t` declared without initialization → `undefined + number` yields `NaN` -> `let t = 0;`
+- **[BUG]** Loop starts at `i=1`, skips `arr[0]` -> `let i=0`
+- **[BUG]** Condition `i<=arr.length` reads one past end (`arr[length]` is `undefined`) -> `i<arr.length`

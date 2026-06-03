@@ -1,0 +1,25 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+  "description": "Feature Specification: P1 — statistical rigor, dispatch envelope, capability + tiered fixtures",
+  "keywords": [
+    "feature",
+    "specification",
+    "statistical",
+    "rigor",
+    "dispatch",
+    "envelope",
+    "capability",
+    "tiered",
+    "fixtures"
+  ],
+  "lastUpdated": "2026-06-02T16:26:46.121Z",
+  "specId": "003",
+  "folderSlug": "p1-reliability-and-dispatch",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-reusable-model-benchmark-framework"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

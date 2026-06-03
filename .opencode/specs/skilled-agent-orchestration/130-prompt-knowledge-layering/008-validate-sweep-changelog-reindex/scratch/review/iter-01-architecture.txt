@@ -1,0 +1,20 @@
+I’ll review only the prompt-knowledge architecture files and check consistency between the hub docs, selected model profiles, and `model-profiles.json`.
+SKILL ROUTING: Advisor directed → `sk-code-review`. I’m applying findings-first review behavior and will not edit files.
+I found one boundary smell already: the hub declares executor mechanics out of scope, while sampled profiles still include dispatch flags/wrappers. I’m checking the remaining profiles and CLI mirror cards to avoid over-reporting a sample-only issue.
+The remaining files confirm the issue is structural, not isolated: all profiles keep a six-section shape and the sampled `recommended_frameworks` values match the JSON, but several handoff links and ownership boundaries are inconsistent.
+One additional consistency issue is in the SWE profile: it claims to mirror `recommended_frameworks` but adds a tertiary framework and avoid rules that the JSON cannot represent. I’m using that as direct data/prose mismatch evidence.
+[P1] `.opencode/skills/sk-prompt-small-model/SKILL.md:150` conflicts with `.opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md:127`: the hub forbids executor mechanics, but profiles own dispatch flags/wrappers; fix by replacing profile §5 mechanics with cli-X links only.
+
+[P1] `.opencode/skills/cli-devin/assets/prompt_quality_card.md:19` still owns framework selection and contradicts hub profiles at lines 26-28; fix by removing the `Canonical framework` column or making it defer to `sk-prompt-small-model`.
+
+[P1] `.opencode/skills/sk-prompt-small-model/references/models/swe-1.6.md:42` diverges from `.opencode/skills/sk-prompt/assets/model-profiles.json:35`: profile adds `BUILD` tertiary and avoid rules absent from `recommended_frameworks`; fix by extending registry data or deleting those profile claims.
+
+[P2] `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md:46` calls `deepseek-v4-pro` and `kimi-k2.6` frontier models while the hub treats them as active small-model profiles; fix taxonomy and say profiled models must use Tier 2.
+
+[P2] `.opencode/skills/sk-prompt/SKILL.md:335` and `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md:122` have stale mirror counts/scope; fix to five cli mirrors and the 3-tier fast/model/deep precedence.
+
+[P2] `.opencode/skills/sk-prompt-small-model/references/models/deepseek-v4-pro.md:150` and `.opencode/skills/sk-prompt-small-model/references/models/glm-5.1.md:126` contain broken relative links to cli-X mechanics; fix all profile cli-X links from `references/models/` to `../../../cli-*`.
+
+[OK] `.opencode/skills/sk-prompt-small-model/references/models/_index.md:18` covers all eight active model profiles, and sampled MiniMax/MiMo/default-RCAF primary/fallback/pre-planning data mostly matches JSON.
+
+VERDICT CONDITIONAL

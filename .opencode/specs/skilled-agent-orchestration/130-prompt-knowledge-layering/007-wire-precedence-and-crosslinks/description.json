@@ -1,11 +1,16 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
-  "description": "Phase 7: wire-precedence-and-crosslinks",
+  "description": "Feature Specification: Phase 7 — Wire precedence + crosslinks",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
-    "wire-precedence-and-crosslinks"
+    "wire",
+    "precedence",
+    "crosslinks"
   ],
-  "lastUpdated": "2026-06-02T18:04:15.700Z",
+  "lastUpdated": "2026-06-03T06:37:53.272Z",
   "specId": "007",
   "folderSlug": "wire-precedence-and-crosslinks",
   "parentChain": [
@@ -13,6 +18,5 @@
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }

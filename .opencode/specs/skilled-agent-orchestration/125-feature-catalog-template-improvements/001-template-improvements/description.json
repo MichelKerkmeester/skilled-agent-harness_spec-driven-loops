@@ -6,17 +6,16 @@
   "track": "skilled-agent-orchestration",
   "created": "2026-05-31",
   "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
-  "description": "Phase 001: Establish the correct feature catalog template standard — rewrite snippet template to 5 sections, update master template scaffolds and prose.",
+  "description": "Feature Catalog Standards — Templates & Retroactive Rework",
   "keywords": [
-    "phase",
-    "001",
-    "template",
-    "improvements",
-    "feature-catalog",
-    "snippet-template",
-    "master-template"
+    "feature",
+    "catalog",
+    "standards",
+    "templates",
+    "retroactive",
+    "rework"
   ],
-  "lastUpdated": "2026-06-02T00:00:00.000Z",
+  "lastUpdated": "2026-06-02T16:26:46.087Z",
   "specId": "001",
   "folderSlug": "template-improvements",
   "parentChain": [

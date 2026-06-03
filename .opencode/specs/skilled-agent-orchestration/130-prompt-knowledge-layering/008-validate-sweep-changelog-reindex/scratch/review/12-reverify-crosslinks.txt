@@ -1,0 +1,3 @@
+SKILL ROUTING: sk-code-review selected by advisor for a read-only re-review. I’ll verify only the requested Markdown cross-links and won’t modify files.
+I’m locating the prompt-profile documents first, then I’ll run a filesystem-backed link resolver against only those requested files.
+The profile index is at `references/models/_index.md`, not `references/_index.md`; I’m including that plus the 8 non-index profiles and `references/pattern-index.md`.

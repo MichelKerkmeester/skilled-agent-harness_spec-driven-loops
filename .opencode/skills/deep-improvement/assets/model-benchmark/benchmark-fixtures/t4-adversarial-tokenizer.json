@@ -1,0 +1,31 @@
+{
+  "id": "t4-tokenize-expr",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "tokenize",
+  "signature": "function tokenize(expr)",
+  "task": "Implement a JavaScript function `tokenize(expr)` that scans a tiny arithmetic-expression string left to right and returns an array of token objects. The grammar: a NUMBER is a maximal run of ASCII digits 0-9 and the '.' character; an OPERATOR is one of `+ - * /`; a PAREN is `(` or `)`; spaces and tabs are separators and produce no token. Emit tokens in source order. Apply these rules strictly: (1) A number token is `{ type: 'num', value: <the exact literal substring> }` — accumulate consecutive digit/'.' characters into ONE token (so '12' and '345' are two tokens but '12' is never split into '1','2'). (2) An operator token is `{ type: 'op', value: <the operator char> }`; EVERY `-` is an operator token (there is no negative-number literal in this grammar), so '1+-2' is num,op,op,num. (3) A paren token is `{ type: 'paren', value: <the paren char> }`. (4) Whitespace (space or tab) is skipped entirely and never appears in the output. (5) ERROR HANDLING — instead of throwing, return the sentinel value `null` for malformed input: a numeric literal containing more than one '.' (e.g. '1.2.3'), a bare '.' that is not part of a digit run (e.g. the input '.'), or any character outside digits, '.', the four operators, the two parens, space, and tab (e.g. '$' or a letter). An empty or all-whitespace input is NOT an error: it returns an empty array `[]`. These are adversarial cases: multi-digit/decimal number accumulation, treating every '-' as an operator, distinguishing the empty-array (no tokens) result from the null (malformed) result, and the single-'.' / double-'.' rejection are exactly where naive single-character or regex-greedy tokenizers diverge.",
+  "visibleSpec": "tokenize(expr) -> Array<{type:'num'|'op'|'paren', value:string}> | null. Numbers are maximal digit/'.' runs kept as one token carrying the literal substring; operators are + - * / (every '-' is an operator); parens are ( ); whitespace is skipped. Malformed input (a literal with two or more dots, a bare '.', or any unsupported character) returns null. Empty or all-whitespace input returns []. Tokens are returned in source order.",
+  "scope": "Single pure function. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Malformed input returns null rather than throwing.",
+  "tests": [
+    { "name": "single number", "args": ["7"], "expect": [{ "type": "num", "value": "7" }] },
+    { "name": "simple addition", "args": ["1+2"], "expect": [{ "type": "num", "value": "1" }, { "type": "op", "value": "+" }, { "type": "num", "value": "2" }] },
+    { "name": "multi-digit numbers stay whole", "args": ["12*345"], "expect": [{ "type": "num", "value": "12" }, { "type": "op", "value": "*" }, { "type": "num", "value": "345" }] },
+    { "name": "parentheses and spaces", "args": ["( 1 + 2 )"], "expect": [{ "type": "paren", "value": "(" }, { "type": "num", "value": "1" }, { "type": "op", "value": "+" }, { "type": "num", "value": "2" }, { "type": "paren", "value": ")" }] },
+    { "name": "invalid character returns null", "args": ["1$2"], "expect": null }
+  ],
+  "hidden_tests": [
+    { "name": "empty string yields empty token list", "args": [""], "expect": [] },
+    { "name": "decimal number stays one token", "args": ["3.14"], "expect": [{ "type": "num", "value": "3.14" }] },
+    { "name": "decimal inside an expression", "args": ["1.5/2"], "expect": [{ "type": "num", "value": "1.5" }, { "type": "op", "value": "/" }, { "type": "num", "value": "2" }] },
+    { "name": "minus is always the operator token", "args": ["8-3"], "expect": [{ "type": "num", "value": "8" }, { "type": "op", "value": "-" }, { "type": "num", "value": "3" }] },
+    { "name": "adjacent operators each tokenize", "args": ["1+-2"], "expect": [{ "type": "num", "value": "1" }, { "type": "op", "value": "+" }, { "type": "op", "value": "-" }, { "type": "num", "value": "2" }] },
+    { "name": "nested parens", "args": ["((9))"], "expect": [{ "type": "paren", "value": "(" }, { "type": "paren", "value": "(" }, { "type": "num", "value": "9" }, { "type": "paren", "value": ")" }, { "type": "paren", "value": ")" }] },
+    { "name": "all whitespace yields empty token list", "args": ["   "], "expect": [] },
+    { "name": "leading and trailing spaces trimmed", "args": ["  5  "], "expect": [{ "type": "num", "value": "5" }] },
+    { "name": "double-dot literal returns null", "args": ["1.2.3"], "expect": null },
+    { "name": "bare dot returns null", "args": ["."], "expect": null }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": { "status": "active" }
+}

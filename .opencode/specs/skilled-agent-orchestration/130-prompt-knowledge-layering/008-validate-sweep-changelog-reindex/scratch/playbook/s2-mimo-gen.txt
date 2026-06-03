@@ -1,0 +1,13 @@
+```typescript
+function expandRanges(spec: string): number[] {
+  return spec
+    .split(",")
+    .flatMap((part) => {
+      const [start, end] = part.split("-").map(Number);
+      return Array.from({ length: (end ?? start) - start + 1 }, (_, i) => start + i);
+    })
+    .sort((a, b) => a - b);
+}
+```
+
+Empty segments and malformed tokens produce `NaN` entries — guard upstream if input isn't trusted.

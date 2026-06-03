@@ -1,0 +1,214 @@
+{
+  "id": "validate-semver",
+  "category": "strict-validation",
+  "tier": "T4",
+  "fn_name": "isValidSemver",
+  "signature": "function isValidSemver(s)",
+  "task": "Implement a JavaScript function `isValidSemver(s)` that returns the boolean `true` if and only if `s` is a strictly valid Semantic Versioning 2.0.0 version string per semver.org §2 and the §9 backus-naur grammar, and `false` otherwise. Rules, all required: (1) The core is `major.minor.patch`, three dot-separated numeric identifiers; each is a non-negative integer with NO leading zeros — `0` is valid but `00`, `01`, `1.02.3`, `01.2.3` are INVALID. (2) An OPTIONAL pre-release follows a single `-`: a dot-separated series of identifiers, each NON-EMPTY and made only of `[0-9A-Za-z-]`; an identifier that is purely numeric must NOT have a leading zero (`01` invalid as a pre-release id, but alphanumeric `0a` is fine). Empty identifiers (a trailing `-`, a leading `.`, or `..`) are INVALID. (3) An OPTIONAL build metadata follows a single `+`: a dot-separated series of identifiers, each NON-EMPTY and made only of `[0-9A-Za-z-]`; leading zeros ARE allowed in build identifiers. Empty build identifiers are INVALID. (4) No other characters anywhere; no leading or trailing whitespace; non-ASCII letters are invalid. Return `false` for anything that breaks any rule. These are adversarial cases that a lax-but-plausible validator wrongly accepts: `1.2` (missing patch), `1.2.3.4` (extra field), `01.2.3` / `1.02.3` / `1.2.03` (leading-zero core), `1.2.3-` (empty pre-release), `1.2.3-01` (numeric pre-release id with leading zero), `1.2.3-alpha..1` / `1.2.3-alpha.` / `1.2.3-.alpha` (empty identifier), `1.2.3+` / `1.2.3+build..1` (empty build identifier), `v1.2.3` (leading v), `1.2.3 ` (trailing space), `1.2.-3` (negative), `1.2.3-α` (non-ASCII), and the empty string — all must return `false`, while `1.2.3`, `0.0.0`, `1.2.3-alpha.1`, `1.2.3-0.3.7`, `1.2.3+build.1`, and `1.2.3-beta+exp.sha.5114f85` return `true`. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "isValidSemver(s) -> boolean. true iff s is a strict SemVer 2.0.0 string: major.minor.patch each a non-negative integer with no leading zeros ('0' ok, '01' invalid); optional '-prerelease' of non-empty dot-separated [0-9A-Za-z-] identifiers where a purely-numeric id has no leading zero; optional '+build' of non-empty dot-separated [0-9A-Za-z-] identifiers (leading zeros allowed). Empty identifiers, extra/missing core fields, leading-zero numerics, non-ASCII, surrounding whitespace, or empty string all return false.",
+  "scope": "Single pure function returning a boolean. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Every malformed input returns false rather than throwing.",
+  "tests": [
+    {
+      "name": "valid core-only",
+      "args": [
+        "1.2.3"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid prerelease-alpha",
+      "args": [
+        "1.2.3-alpha"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid all-zero-core",
+      "args": [
+        "0.0.0"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid missing-patch",
+      "args": [
+        "1.2"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-zero-major",
+      "args": [
+        "01.2.3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-zero-patch",
+      "args": [
+        "1.2.03"
+      ],
+      "expect": false
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "valid prerelease-alpha-num",
+      "args": [
+        "1.2.3-alpha.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid prerelease-numeric-ids",
+      "args": [
+        "1.2.3-0.3.7"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid prerelease-mixed",
+      "args": [
+        "1.2.3-x.7.z.92"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid build-meta",
+      "args": [
+        "1.2.3+build.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid prerelease-and-build",
+      "args": [
+        "1.2.3-beta+exp.sha.5114f85"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid rc-prerelease",
+      "args": [
+        "1.0.0-rc.1"
+      ],
+      "expect": true
+    },
+    {
+      "name": "valid hyphen-in-prerelease",
+      "args": [
+        "1.2.3-alpha-beta"
+      ],
+      "expect": true
+    },
+    {
+      "name": "invalid extra-core-field",
+      "args": [
+        "1.2.3.4"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-zero-minor",
+      "args": [
+        "1.02.3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid empty-prerelease",
+      "args": [
+        "1.2.3-"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid numeric-prerelease-leading-zero",
+      "args": [
+        "1.2.3-01"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid double-dot-prerelease",
+      "args": [
+        "1.2.3-alpha..1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-dot-prerelease",
+      "args": [
+        "1.2.3-alpha."
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid empty-build",
+      "args": [
+        "1.2.3+"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid double-dot-build",
+      "args": [
+        "1.2.3+build..1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-v",
+      "args": [
+        "v1.2.3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid trailing-space",
+      "args": [
+        "1.2.3 "
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid negative-patch",
+      "args": [
+        "1.2.-3"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid non-ascii-prerelease",
+      "args": [
+        "1.2.3-α"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid empty-string",
+      "args": [
+        ""
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid underscore-in-prerelease",
+      "args": [
+        "1.2.3-alpha_1"
+      ],
+      "expect": false
+    },
+    {
+      "name": "invalid leading-dot-prerelease",
+      "args": [
+        "1.2.3-.alpha"
+      ],
+      "expect": false
+    }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": {
+    "status": "active"
+  }
+}

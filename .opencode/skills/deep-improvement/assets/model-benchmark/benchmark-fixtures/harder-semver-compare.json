@@ -1,0 +1,210 @@
+{
+  "id": "harder-semver-compare",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "semverCompare",
+  "signature": "function semverCompare(a, b)",
+  "task": "Implement a JavaScript function `semverCompare(a, b)` that compares two Semantic Versioning 2.0.0 version strings per semver.org §11 and returns `-1` when a has lower precedence than b, `1` when a has higher precedence, and `0` when they are of equal precedence. Parse each version as `major.minor.patch[-prerelease][+build]`. Rules, applied in order: (1) Compare major, then minor, then patch as NUMBERS (so 1.0.2 < 1.0.10 and 1.2.0 < 1.10.0 — never a string compare). (2) When the major.minor.patch core is equal, a version WITH a pre-release has LOWER precedence than one WITHOUT a pre-release (`1.0.0-alpha` < `1.0.0`). (3) When both carry a pre-release, split each on `.` and compare identifiers left to right: identifiers that are all digits compare NUMERICALLY; identifiers with letters compare by ASCII lexical order; a purely numeric identifier ALWAYS has lower precedence than an alphanumeric one (so `1.0.0-999` < `1.0.0-alpha`); and if every compared identifier is equal, the version with MORE pre-release fields has higher precedence (`1.0.0-alpha` < `1.0.0-alpha.1`). (4) Build metadata (everything from a `+`) is IGNORED for precedence, so `1.0.0+build` compares EQUAL to `1.0.0` (return 0). The canonical ascending chain each adjacent pair of which must compare to -1 is: `1.0.0-1` < `1.0.0-alpha` < `1.0.0-alpha.1` < `1.0.0-alpha.beta` < `1.0.0-beta` < `1.0.0-beta.2` < `1.0.0-beta.11` < `1.0.0-rc.1` < `1.0.0` < `1.0.1` < `1.1.0` < `2.0.0`. These are adversarial cases: numeric-vs-lexical core comparison (`1.0.0-beta.2` < `1.0.0-beta.11`), pre-release-below-release, numeric-identifier-below-alpha, more-fields-wins, and build-metadata-ignored — exactly where a naive string compare, a forgotten pre-release rule, or a lexical numeric compare diverges. Comparisons must be symmetric: swapping the arguments negates the result. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "semverCompare(a, b) -> -1 | 0 | 1. Compares two SemVer 2.0.0 strings by precedence. major.minor.patch compared numerically; a pre-release version is lower than the same core without one; pre-release identifiers compared dot-by-dot (numeric numerically, alphanumeric by ASCII, numeric < alphanumeric, more fields wins on equal prefix); build metadata (+...) is ignored so 1.0.0+x equals 1.0.0. Returns -1 if a<b, 1 if a>b, 0 if equal precedence; symmetric.",
+  "scope": "Single pure function returning -1, 0, or 1. No mutation of the inputs, no extra parameters, no helper globals, no I/O, no external libraries. Inputs are well-formed semver strings.",
+  "tests": [
+    {
+      "name": "patch less than",
+      "args": [
+        "1.0.0",
+        "1.0.1"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "pre-release lower than release",
+      "args": [
+        "1.0.0-alpha",
+        "1.0.0"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "numeric pre-release identifiers",
+      "args": [
+        "1.0.0-beta.2",
+        "1.0.0-beta.11"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "build metadata ignored equals",
+      "args": [
+        "1.0.0+build",
+        "1.0.0"
+      ],
+      "expect": 0
+    },
+    {
+      "name": "equal versions",
+      "args": [
+        "1.2.3",
+        "1.2.3"
+      ],
+      "expect": 0
+    },
+    {
+      "name": "major dominates",
+      "args": [
+        "2.0.0",
+        "1.9.9"
+      ],
+      "expect": 1
+    }
+  ],
+  "hidden_tests": [
+    {
+      "name": "chain numeric vs alpha pre",
+      "args": [
+        "1.0.0-1",
+        "1.0.0-alpha"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain alpha vs alpha.1 more fields",
+      "args": [
+        "1.0.0-alpha",
+        "1.0.0-alpha.1"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain alpha.1 vs alpha.beta",
+      "args": [
+        "1.0.0-alpha.1",
+        "1.0.0-alpha.beta"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain alpha.beta vs beta",
+      "args": [
+        "1.0.0-alpha.beta",
+        "1.0.0-beta"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain beta vs beta.2",
+      "args": [
+        "1.0.0-beta",
+        "1.0.0-beta.2"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain beta.11 vs rc.1",
+      "args": [
+        "1.0.0-beta.11",
+        "1.0.0-rc.1"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "chain rc.1 vs release",
+      "args": [
+        "1.0.0-rc.1",
+        "1.0.0"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "minor dominates patch",
+      "args": [
+        "1.1.0",
+        "1.0.9"
+      ],
+      "expect": 1
+    },
+    {
+      "name": "symmetric release vs pre",
+      "args": [
+        "1.0.0",
+        "1.0.0-alpha"
+      ],
+      "expect": 1
+    },
+    {
+      "name": "symmetric beta.11 vs beta.2",
+      "args": [
+        "1.0.0-beta.11",
+        "1.0.0-beta.2"
+      ],
+      "expect": 1
+    },
+    {
+      "name": "symmetric build both sides",
+      "args": [
+        "1.0.0",
+        "1.0.0+meta"
+      ],
+      "expect": 0
+    },
+    {
+      "name": "build on both, different meta, equal",
+      "args": [
+        "1.0.0+a.b",
+        "1.0.0+c.d"
+      ],
+      "expect": 0
+    },
+    {
+      "name": "numeric pre always below alpha pre",
+      "args": [
+        "1.0.0-999",
+        "1.0.0-alpha"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "multidigit patch numeric not lexical",
+      "args": [
+        "1.0.2",
+        "1.0.10"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "multidigit minor numeric not lexical",
+      "args": [
+        "1.2.0",
+        "1.10.0"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "ascii lexical alpha identifiers",
+      "args": [
+        "1.0.0-alpha",
+        "1.0.0-beta"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "equal prefix more fields wins",
+      "args": [
+        "1.0.0-rc",
+        "1.0.0-rc.1"
+      ],
+      "expect": -1
+    },
+    {
+      "name": "identical pre-release equal",
+      "args": [
+        "1.0.0-alpha.1",
+        "1.0.0-alpha.1"
+      ],
+      "expect": 0
+    }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": {
+    "status": "active"
+  }
+}

@@ -1,0 +1,28 @@
+```typescript
+function expandRanges(spec: string): number[] {
+  if (typeof spec !== 'string' || spec.trim() === '') return [];
+
+  const result: number[] = [];
+  for (const raw of spec.split(',')) {
+    const seg = raw.trim();
+    if (seg === '') continue;
+
+    const dashIdx = seg.indexOf('-');
+    if (dashIdx > 0) {
+      const a = Number(seg.slice(0, dashIdx));
+      const b = Number(seg.slice(dashIdx + 1));
+      if (!Number.isInteger(a) || !Number.isInteger(b) || a > b) {
+        throw new Error(`Invalid range: "${seg}"`);
+      }
+      for (let i = a; i <= b; i++) result.push(i);
+    } else {
+      const n = Number(seg);
+      if (!Number.isInteger(n)) throw new Error(`Invalid integer: "${seg}"`);
+      result.push(n);
+    }
+  }
+  return result;
+}
+```
+
+Malformed input handling: non-integer segments and descending ranges throw an `Error`; empty/whitespace-only input and empty segments (e.g. `"1,,3"`) yield `[]` or skip silently.

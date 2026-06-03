@@ -1,0 +1,32 @@
+{
+  "id": "hard-merge-intervals",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "mergeIntervals",
+  "signature": "function mergeIntervals(intervals)",
+  "task": "Implement a JavaScript function `mergeIntervals(intervals)` that merges all overlapping intervals and returns the merged set. The input is an array of two-element arrays `[start, end]` where start <= end, integers that may be negative, and the array is NOT guaranteed to be sorted. Apply these rules strictly: (1) Two intervals overlap when they share at least one point; they also merge when they merely TOUCH at an endpoint, so [1,3] and [3,5] merge into [1,5]. (2) One interval fully nested inside another collapses into the outer one, so [1,10] and [2,4] merge into [1,10]. (3) The output MUST be sorted ascending by start, with each merged interval as a two-element array `[start, end]`. (4) An empty input array returns an empty array `[]`. (5) A single interval returns a single-element array containing a COPY-equivalent two-element array (same numbers). Do NOT mutate the input. These are adversarial cases: touching-but-not-overlapping endpoints, fully nested intervals, unsorted input, negative coordinates, and a non-overlapping interval that sits between two that DO overlap are exactly where a naive sort-then-scan that uses strict `<` instead of `<=` for the touch case, or that forgets to take the max of the two ends when nesting, diverges. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "mergeIntervals(intervals) -> Array<[number, number]>. Input is an unsorted array of [start,end] integer pairs (start<=end, may be negative). Overlapping OR touching intervals merge (closed intervals: [1,3] and [3,5] => [1,5]); nested intervals collapse into the outer; output is sorted ascending by start. [] => []. Input is not mutated.",
+  "scope": "Single pure function. No mutation of the input array or its elements, no extra parameters, no helper globals, no I/O, no external libraries.",
+  "tests": [
+    { "name": "two overlapping intervals merge", "args": [[[1, 3], [2, 6]]], "expect": [[1, 6]] },
+    { "name": "touching endpoints merge (closed intervals)", "args": [[[1, 3], [3, 5]]], "expect": [[1, 5]] },
+    { "name": "disjoint intervals stay separate", "args": [[[1, 2], [5, 6]]], "expect": [[1, 2], [5, 6]] },
+    { "name": "unsorted input is sorted in output", "args": [[[8, 10], [1, 3], [2, 6]]], "expect": [[1, 6], [8, 10]] },
+    { "name": "empty input yields empty array", "args": [[]], "expect": [] }
+  ],
+  "hidden_tests": [
+    { "name": "fully nested interval collapses into outer", "args": [[[1, 10], [2, 4]]], "expect": [[1, 10]] },
+    { "name": "nested given in reverse order still collapses", "args": [[[2, 4], [1, 10]]], "expect": [[1, 10]] },
+    { "name": "single interval returns a single pair", "args": [[[4, 7]]], "expect": [[4, 7]] },
+    { "name": "negative coordinates sort and merge", "args": [[[-5, -1], [-3, 2], [4, 6]]], "expect": [[-5, 2], [4, 6]] },
+    { "name": "non-overlapping interval between two overlapping ones", "args": [[[1, 4], [10, 12], [3, 6]]], "expect": [[1, 6], [10, 12]] },
+    { "name": "chain of touching intervals merges to one", "args": [[[1, 2], [2, 3], [3, 4]]], "expect": [[1, 4]] },
+    { "name": "duplicate identical intervals collapse", "args": [[[2, 5], [2, 5]]], "expect": [[2, 5]] },
+    { "name": "zero-width point interval inside a range", "args": [[[1, 5], [3, 3]]], "expect": [[1, 5]] },
+    { "name": "adjacent-by-one but not touching stays separate", "args": [[[1, 3], [5, 7]]], "expect": [[1, 3], [5, 7]] },
+    { "name": "later end smaller than running end keeps larger end", "args": [[[1, 9], [2, 3], [4, 5]]], "expect": [[1, 9]] },
+    { "name": "many mixed intervals", "args": [[[15, 18], [1, 3], [8, 10], [2, 6]]], "expect": [[1, 6], [8, 10], [15, 18]] }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": { "status": "active" }
+}

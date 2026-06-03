@@ -46,7 +46,6 @@
       "lib/test-helpers/env-snapshot.ts",
       ".claude/mcp.json",
       ".gemini/settings.json",
-      ".vscode/mcp.json",
       ".devin/config.json",
       ".devin/config.local.json",
       ".codex/config.toml",
@@ -62,7 +61,8 @@
       "spec.md",
       "shared/embeddings/registry.ts",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -180,6 +180,12 @@
         "source": "derived"
       },
       {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement Inline",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "AI assistants routinely embed pointers to ephemeral tracking artifacts — spec folders, packet/phase numbers, feature-catalog entries, ADR ids, and task/checklist ids — directly into inline code comments. Those artifacts get renamed, renumbered, or archived while the code lives on, so the comment rots into a dangling, misleading pointer. This packet adds a durable rule to the `sk-code` skill (covering both the OpenCode and Webflow surfaces) that forbids the practice, reconciles the existing sk-code guidance that currently *teaches* it, and cleans the existing offenders out of the deep and system skills' source-code comments.",
     "created_at": "2026-05-27T00:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.079Z",
+    "last_save_at": "2026-06-02T07:38:39.557Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

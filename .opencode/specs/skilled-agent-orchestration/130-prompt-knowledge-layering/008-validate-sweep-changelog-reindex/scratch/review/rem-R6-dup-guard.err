@@ -1,0 +1,401 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Fix ONLY .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh. Make duplication guard more robust for framework table and CLEAR matrix detection; update exit-code doc/comment. Spec folder pre-approved: skilled-agent-orchestration/130-prompt-knowledge-layering.","specFolder":"skilled-agent-orchestration/130-prompt-knowledge-layering","tenantId":"","userId":"","agentId":"","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mSkill "customize-opencode"
+[0m→ [0mSkill "sk-code"
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/sk-code/assets/opencode/checklists/shell_checklist.md[90m [offset=1, limit=240][0m
+[0m✱ [0mGrep "RCAF|Role, Context, Action, Format|\| Dimension \||Specific|Layered|Actionable|Grounded|Constrained"[90m in .opencode/skills/sk-prompt · 106 matches[0m
+[0m✱ [0mGrep "Framework \| Best for|Dimension \| Floor|RCAF|CLEAR"[90m in .opencode/skills/cli-opencode/assets · 12 matches[0m
+[0m→ [0mRead .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md[90m [offset=20, limit=90][0m
+[0m% [0mPatch 1 file
+[0m→ [0mRead .opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh[90m [offset=1, limit=140][0m
+[0m✱ [0mGlob ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/130-prompt-knowledge-layering/**/spec.md"[90m in . · 9 matches[0m
+[0m
+[0m$ [0mbash -n ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+(no output)
+[0m
+[0m$ [0mbash ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 15: 
+Comment hygiene checker — detects ephemeral-artifact pointers in code comment lines.
+
+Usage: check-comment-hygiene.sh <file>
+
+Exit codes:
+  0 — file is clean (no violations found)
+  1 — violations found (reported to stdout as FILEPATH:LINE: excerpt)
+  2 — file skipped (binary, unknown extension, or in excluded dir)
+
+Escape: add hygiene-ok anywhere on a comment line to suppress it.
+
+See: .opencode/skills/sk-code/references/universal/code_style_guide.md §4
+: File name too long
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 16: import: command not found
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 17: import: command not found
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 18: import: command not found
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 20: syntax error near unexpected token `('
+.opencode/skills/sk-code/scripts/check-comment-hygiene.sh: line 20: `def main():'
+[0m
+[0m$ [0mbash ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh" "."
+PASS  cli-opencode/assets/prompt_quality_card.md
+PASS  cli-gemini/assets/prompt_quality_card.md
+PASS  cli-devin/assets/prompt_quality_card.md
+PASS  cli-codex/assets/prompt_quality_card.md
+PASS  cli-claude-code/assets/prompt_quality_card.md
+GUARD PASS — no cli-* card inlines the framework or CLEAR table
+[0m
+[0m$ [0mpython3 ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py" --root ".opencode/skills/system-skill-advisor"
+[alignment-drift] PASS
+Scanned files: 261
+Findings: 0
+Errors: 0
+Warnings: 0
+Violations: 0
+[0m
+[0m$ [0mbash ".opencode/skills/system-spec-kit/scripts/spec/validate.sh" ".opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering" --strict
+Auto-enabled recursive validation: phase child folders detected.
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering
+  Level:  phase
+
++ FILE_EXISTS: All required files present for Level phase
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Phase parent lean template shape accepted
++ ANCHORS_VALID: Phase parent lean template shape accepted
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+
+Spec Folder Validation v3.0.0
+
+  Folder: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex
+  Level:  1
+
++ FILE_EXISTS: All required files present for Level 1
++ PLACEHOLDER_FILLED: No unfilled template placeholders found
++ TEMPLATE_SOURCE: Template source headers present
++ TEMPLATE_HEADERS: Template headers match in 4 file(s)
++ ANCHORS_VALID: Template anchors match in 4 file(s)
++ PRIORITY_TAGS: No checklist found
++ FRONTMATTER_VALID: Frontmatter continuity basics present
++ FRONTMATTER_MEMORY_BLOCK: All spec-doc frontmatter memory blocks are structurally valid
++ SPEC_DOC_SUFFICIENCY: All targeted spec-doc anchors meet the sufficiency baseline
++ SECTIONS_PRESENT: Section presence covered by per-document manifest anchors
++ GRAPH_METADATA_PRESENT: Graph metadata checked
+
+Summary: Errors: 0  Warnings: 0
+
+RESULT: PASSED
+[0m
+[0m$ [0mpython3 ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh" ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+(no output)
+[0m
+[0m$ [0mgit diff -- ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+diff --git a/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh b/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
+index 16998ac202..05a7db207b 100755
+--- a/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
++++ b/.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
+@@ -1,58 +1,104 @@
+ #!/usr/bin/env bash
+ # ====================================================================
+-# check-prompt-quality-card-sync.sh — Verify prompt quality card sync
++# check-prompt-quality-card-sync.sh — Duplication guard for prompt
++#                                     quality card framework tables
+ # ====================================================================
+-# Verifies that prompt quality framework tables stay in sync across CLI skills.
++# Asserts that the 7-framework selection table and the CLEAR table
++# exist ONLY in their canonical sk-prompt home and are NOT inlined
++# in any of the 5 cli-* executor cards.
++#
++# Canonical locations (allowed to carry the tables):
++#   .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md
++#   .opencode/skills/sk-prompt/references/patterns_evaluation.md
++#
++# Checked cli-* cards (must NOT inline the tables):
++#   .opencode/skills/cli-opencode/assets/prompt_quality_card.md
++#   .opencode/skills/cli-gemini/assets/prompt_quality_card.md
++#   .opencode/skills/cli-devin/assets/prompt_quality_card.md
++#   .opencode/skills/cli-codex/assets/prompt_quality_card.md
++#   .opencode/skills/cli-claude-code/assets/prompt_quality_card.md
++#
++# Exit codes:
++#   0 — no cli-* card inlines either table (guard passes)
++#   1 — a cli-* card is missing OR inlines a canonical table (guard fails)
+ #
+ # Usage: check-prompt-quality-card-sync.sh [repo-root]
+ set -euo pipefail
+ 
+ ROOT="${1:-.}"
+ 
+-files=(
+-  "$ROOT/.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md"
+-  "$ROOT/.opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
+-  "$ROOT/.opencode/skills/cli-codex/assets/prompt_quality_card.md"
++# These patterns identify semantic table signals that must not appear
++# in cli-* executor cards.  They tolerate spacing and case changes so
++# copied canonical tables are still caught after light reformatting.
++FRAMEWORK_HEADER_PATTERN='^[[:space:]]*\|[[:space:]]*Framework[[:space:]]*\|[[:space:]]*Best[[:space:]]+for[[:space:]]*\|[[:space:]]*Complexity[[:space:]]+band[[:space:]]*\|'
++FRAMEWORK_ROW_PATTERN='^[[:space:]]*\|[^|]*`?RCAF`?[^|]*\|.*Role[[:space:]]*,[[:space:]]*Context[[:space:]]*,[[:space:]]*Action[[:space:]]*,[[:space:]]*Format'
++CLEAR_DIMENSIONS=(Correctness Logic Expression Arrangement Reusability)
++
++has_framework_table() {
++  local card="$1"
++
++  grep -Eiq -- "$FRAMEWORK_HEADER_PATTERN" "$card" \
++    || grep -Eiq -- "$FRAMEWORK_ROW_PATTERN" "$card"
++}
++
++has_clear_matrix() {
++  local card="$1"
++  local dimension
++
++  for dimension in "${CLEAR_DIMENSIONS[@]}"; do
++    if ! grep -Eiq -- "^[[:space:]]*\|[^|]*${dimension}[^|]*\|" "$card"; then
++      return 1
++    fi
++  done
++
++  return 0
++}
++
++cli_cards=(
++  "$ROOT/.opencode/skills/cli-opencode/assets/prompt_quality_card.md"
+   "$ROOT/.opencode/skills/cli-gemini/assets/prompt_quality_card.md"
++  "$ROOT/.opencode/skills/cli-devin/assets/prompt_quality_card.md"
++  "$ROOT/.opencode/skills/cli-codex/assets/prompt_quality_card.md"
++  "$ROOT/.opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
+ )
+ 
+-extract_table() {
+-  awk '
+-    /^## .*Framework Selection Table/ { in_section=1; next }
+-    in_section && /^## / && seen_table { exit }
+-    in_section && /^\|/ { print; seen_table=1; next }
+-    in_section && seen_table && !/^\|/ && $0 == "" { next }
+-  ' "$1"
+-}
++overall_exit=0
+ 
+-baseline_hash=""
+-baseline_file=""
++for card in "${cli_cards[@]}"; do
++  label="$(basename "$(dirname "$(dirname "$card")")")/assets/$(basename "$card")"
+ 
+-for file in "${files[@]}"; do
+-  if [[ ! -f "$file" ]]; then
+-    echo "MISSING: $file" >&2
+-    exit 1
++  if [[ ! -f "$card" ]]; then
++    echo "MISSING: $label"
++    overall_exit=1
++    continue
+   fi
+ 
+-  table="$(extract_table "$file")"
+-  if [[ -z "$table" ]]; then
+-    echo "NO FRAMEWORK TABLE: $file" >&2
+-    exit 1
+-  fi
++  has_framework=0
++  has_clear=0
+ 
+-  hash="$(printf '%s\n' "$table" | shasum -a 256 | awk '{print $1}')"
+-  echo "$hash  $file"
++  if has_framework_table "$card"; then
++    has_framework=1
++  fi
+ 
+-  if [[ -z "$baseline_hash" ]]; then
+-    baseline_hash="$hash"
+-    baseline_file="$file"
+-    continue
++  if has_clear_matrix "$card"; then
++    has_clear=1
+   fi
+ 
+-  if [[ "$hash" != "$baseline_hash" ]]; then
+-    echo "DRIFT DETECTED: $file differs from $baseline_file" >&2
+-    exit 1
++  if [[ $has_framework -eq 1 || $has_clear -eq 1 ]]; then
++    reasons=()
++    [[ $has_framework -eq 1 ]] && reasons+=("framework-table")
++    [[ $has_clear -eq 1 ]]    && reasons+=("CLEAR-table")
++    printf 'FAIL  %s  [inlines: %s]\n' "$label" "$(IFS=','; echo "${reasons[*]}")"
++    overall_exit=1
++  else
++    printf 'PASS  %s\n' "$label"
+   fi
+ done
+ 
+-echo "SYNC OK"
++if [[ $overall_exit -eq 0 ]]; then
++  echo "GUARD PASS — no cli-* card inlines the framework or CLEAR table"
++else
++  echo "GUARD FAIL — see FAIL lines above; thin the inlined tables from those cards" >&2
++fi
++
++exit $overall_exit
+[0m
+[0m$ [0mgit diff --check -- ".opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh"
+(no output)
+[0m

@@ -1,0 +1,30 @@
+I’ll make the requested scoped edits only in the three named files, after loading the relevant packet/skill context and reading those files first.
+SKILL ROUTING: system-spec-kit was already recommended and loaded; customize-opencode applies because the target files are opencode skill assets. I’m also loading the documentation skill because all scoped edits are Markdown.
+The scope is clear and narrow: three Markdown files only, no deletes, and no adjacent cleanup. I’m reading those exact files before patching.
+I found the requested targets in the expected sections. The self-invocation note still has an unverified lockfile comment, so I’m checking whether this skill already documents a verified Devin session-lock path before deciding whether to document it or remove the speculation.
+I’m patching only the requested Markdown text: framework cells, Tier-3 trigger wording, the CLEAR pointer, Tier-1/ENHANCED_PROMPT wording, the prompt-template heading, and the speculative lockfile comments.
+The scoped patch is applied. I’m verifying the changed text and checking for leftover stale wording in the edited files before running the packet validation path if it exists.
+The edited snippets now reflect the requested wording. I didn’t find a spec folder at the exact conventional `.opencode/specs/**/130-prompt-knowledge-layering*` or `specs/**/130-prompt-knowledge-layering*` path yet, so I’m doing one broader path lookup before deciding whether strict spec validation can run.
+One remaining Tier-3 restatement in `prompt_templates.md` still used the old shortened trigger set, and `SKILL.md` rule 9 omitted `policy`. I’m aligning those two restatements to the same canonical trigger wording.
+The Tier-3 wording is now consistent across all requested/restated locations. I’m running lightweight verification on the three edited Markdown files and checking for leftover stale terms.
+The broader spec-folder lookup did not find a filesystem packet matching `130-prompt-knowledge-layering`, so strict packet validation cannot be run against that path. I’m still running scoped Markdown/diff verification against the three files.
+Whitespace checks passed and the stale-term scan returned no matches in the three edited files. The first sk-doc validation call used the wrong argument shape, so I’m rerunning it against the skill directory as the script expects.
+The `cli-devin` skill validation reports the skill as valid, with one soft description-length warning unrelated to the requested text edits. I’m doing one final diff review so the per-file report is precise.
+Implemented the requested scoped edits only in:
+
+- `.opencode/skills/cli-devin/assets/prompt_quality_card.md`
+- `.opencode/skills/cli-devin/SKILL.md`
+- `.opencode/skills/cli-devin/assets/prompt_templates.md`
+
+**Per-File Edits**
+- `prompt_quality_card.md`: DeepSeek/GLM framework cells now defer to the hub profiles with RCAF default links; Tier-3 escalation now uses the full canonical trigger set.
+- `SKILL.md`: Removed speculative/TODO lockfile wording; fixed SWE-1.6 CLEAR pointer to `../sk-prompt/assets/cli_prompt_quality_card.md` §4 while keeping local card §3 for precedence; clarified Tier 1 composition and reserved `ENHANCED_PROMPT` for Tier-3 `@prompt-improver`; aligned Tier-3 trigger wording.
+- `prompt_templates.md`: Updated the §2 heading as requested and aligned the local Tier-3 restatement to the canonical trigger set.
+
+**Verification**
+- `git diff --check` passed.
+- Stale wording scan found no remaining `TIDD-EC`, `CRAFT`, `TODO verify`, `speculative`, or old shortened Tier-3 trigger phrasing in the three edited files.
+- `python3 .opencode/skills/sk-doc/scripts/quick_validate.py .opencode/skills/cli-devin` reports: `Skill is valid`, with one soft warning that the description is 133 chars vs 130 target.
+- Strict spec validation was not run because no filesystem folder matching `130-prompt-knowledge-layering` was found under `specs/` or `.opencode/specs/`.
+
+Restart OpenCode for changed skill content to be reloaded.

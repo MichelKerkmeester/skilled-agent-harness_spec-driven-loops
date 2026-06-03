@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-01T13:46:49.560Z",
+  "generated": "2026-06-03T06:37:59.293Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -2471,7 +2471,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -2485,6 +2485,101 @@
         "run"
       ],
       "lastUpdated": "2026-05-31T17:50:44.535Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
+      "description": "Feature Specification: sk-code Router Benchmarkability",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-code",
+        "router",
+        "benchmarkability"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.031Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
+      "description": "Feature Specification: Lane C Skill-Benchmark Live Playbook Mode (Mode B)",
+      "keywords": [
+        "feature",
+        "specification",
+        "lane",
+        "skill-benchmark",
+        "live",
+        "playbook",
+        "mode"
+      ],
+      "lastUpdated": "2026-06-01T14:22:41.913Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
+      "description": "Feature Specification: sk-code Routing-Efficiency and Usefulness Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-code",
+        "routing-efficiency",
+        "usefulness",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.038Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
+      "description": "Feature Specification: sk-code Surface-Nested Router (D3/D4 remediation build)",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-code",
+        "surface-nested",
+        "router",
+        "remediation",
+        "build"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.043Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+      "description": "Feature Specification: Skill-Benchmark D3/D4 Fidelity Track",
+      "keywords": [
+        "feature",
+        "specification",
+        "skill-benchmark",
+        "fidelity",
+        "track"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.048Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
+      "description": "Feature Specification: D4-R Grader Fidelity + Doc Reconciliation Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "d4-r",
+        "grader",
+        "fidelity",
+        "doc",
+        "reconciliation",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.054Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review",
+      "description": "Feature Specification: Post-Remediation Dual-Pass Deep Review (skill:deep-improvement)",
+      "keywords": [
+        "feature",
+        "specification",
+        "post-remediation",
+        "dual-pass",
+        "deep",
+        "review",
+        "skill",
+        "deep-improvement"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.059Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/123-deep-loop-parallel-fanout",
@@ -2636,7 +2731,20 @@
         "retroactive",
         "rework"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.513Z"
+      "lastUpdated": "2026-06-02T16:26:46.065Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/001-template-improvements",
+      "description": "Feature Catalog Standards — Templates & Retroactive Rework",
+      "keywords": [
+        "feature",
+        "catalog",
+        "standards",
+        "templates",
+        "retroactive",
+        "rework"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.087Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/002-mechanical-sweep",
@@ -2736,16 +2844,402 @@
       "lastUpdated": "2026-06-01T11:13:19.554Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/009-sk-code-router-benchmarkability",
-      "description": "Feature Specification: sk-code Router Benchmarkability",
+      "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization",
+      "description": "Feature Specification: Xiaomi MiMo-V2.5-Pro optimization for cli-opencode + deep-skill executor integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "xiaomi",
+        "mimo-v2",
+        "5-pro",
+        "optimization",
+        "cli-opencode",
+        "deep-skill",
+        "executor",
+        "integration"
+      ],
+      "lastUpdated": "2026-06-01T21:27:49.855Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/001-mimo-provider-integration",
+      "description": "Feature Specification: Phase 1: mimo-provider-integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "mimo-provider-integration"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.093Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/002-deep-skills-executor-integration",
+      "description": "Feature Specification: Phase 2: deep-skills-executor-integration",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "deep-skills-executor-integration"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.098Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/003-mimo-efficiency-deep-research",
+      "description": "Feature Specification: Phase 3: mimo-efficiency-deep-research",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "mimo-efficiency-deep-research"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.103Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/126-cli-opencode-mimo-pro-optimization/004-mimo-prompt-framework-benchmark",
+      "description": "Feature Specification: Phase 4: mimo-prompt-framework-benchmark",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "mimo-prompt-framework-benchmark"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.107Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework",
+      "description": "Feature Specification: Reusable, config-driven model-benchmark framework for deep-improvement",
+      "keywords": [
+        "feature",
+        "specification",
+        "reusable",
+        "config-driven",
+        "model-benchmark",
+        "framework",
+        "deep-improvement"
+      ],
+      "lastUpdated": "2026-06-02T12:57:48.083Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/001-design-research",
+      "description": "Feature Specification: Reusable model-benchmark framework for deep-improvement",
+      "keywords": [
+        "feature",
+        "specification",
+        "reusable",
+        "model-benchmark",
+        "framework",
+        "deep-improvement"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.111Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+      "description": "Feature Specification: P0 MVP — reusable config-driven benchmark framework",
+      "keywords": [
+        "feature",
+        "specification",
+        "mvp",
+        "reusable",
+        "config-driven",
+        "benchmark",
+        "framework"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.116Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/003-p1-reliability-and-dispatch",
+      "description": "Feature Specification: P1 — statistical rigor, dispatch envelope, capability + tiered fixtures",
+      "keywords": [
+        "feature",
+        "specification",
+        "statistical",
+        "rigor",
+        "dispatch",
+        "envelope",
+        "capability",
+        "tiered",
+        "fixtures"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.121Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/004-capability-discrimination",
+      "description": "Feature Specification: Capability discrimination",
+      "keywords": [
+        "feature",
+        "specification",
+        "capability",
+        "discrimination"
+      ],
+      "lastUpdated": "2026-06-02T12:06:06.932Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/005-sharper-discrimination",
+      "description": "Feature Specification: Sharper discrimination",
+      "keywords": [
+        "feature",
+        "specification",
+        "sharper",
+        "discrimination"
+      ],
+      "lastUpdated": "2026-06-02T12:06:06.172Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/006-strict-validation-fixtures",
+      "description": "Feature Specification: Strict-validation fixtures",
+      "keywords": [
+        "feature",
+        "specification",
+        "strict",
+        "validation",
+        "fixtures"
+      ],
+      "lastUpdated": "2026-06-02T12:04:13.476Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
+      "description": "Feature Specification: sk-git Worktree Convention (wt/NNNN-name) + Skill-Advisor Routing Optimization",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-git",
+        "worktree",
+        "convention",
+        "nnnn-name",
+        "skill-advisor",
+        "routing",
+        "optimization"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.126Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/129-sk-code-animation-mining",
+      "description": "Feature Specification: sk-code Animation Surface Mining (web-motion-skill)",
       "keywords": [
         "feature",
         "specification",
         "sk-code",
-        "router",
-        "benchmarkability"
+        "animation",
+        "surface",
+        "mining",
+        "web-motion-skill"
       ],
-      "lastUpdated": "2026-06-01T13:35:43.772Z"
+      "lastUpdated": "2026-06-02T16:26:46.132Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+      "description": "Remediate hub-cli layering drift: pointer-ize precedence rule, fix STAR phantom, extend and CI-wire the sync guard, coordinated cluster treatment for ",
+      "keywords": [
+        "remediate",
+        "hub-cli",
+        "layering",
+        "drift",
+        "pointer-ize",
+        "precedence",
+        "rule",
+        "fix",
+        "star",
+        "phantom",
+        "extend",
+        "ci-wire",
+        "sync",
+        "guard",
+        "coordinated",
+        "cluster",
+        "treatment",
+        "default-unverified",
+        "models"
+      ],
+      "lastUpdated": "2026-06-03T06:13:44.738Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract",
+      "description": "Feature Specification: Design — 3-layer prompt-knowledge architecture + data contract",
+      "keywords": [
+        "feature",
+        "specification",
+        "design",
+        "3-layer",
+        "prompt-knowledge",
+        "architecture",
+        "data",
+        "contract"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.246Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
+      "description": "Feature Specification: Phase 2: repair-and-extend-sync-substrate",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "repair-and-extend-sync-substrate"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.251Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+      "description": "Feature Specification: Phase 3: land-recommended-frameworks-data",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "land-recommended-frameworks-data"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.255Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+      "description": "Feature Specification: Phase 4: model-hub-and-priority-profiles",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "model-hub-and-priority-profiles"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.260Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/005-backfill-remaining-profiles",
+      "description": "Feature Specification: Phase 5: backfill-remaining-profiles",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "backfill-remaining-profiles"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.264Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+      "description": "Feature Specification: Phase 6: Thin + standardize CLI cards",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "thin",
+        "standardize",
+        "cli",
+        "cards"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.268Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
+      "description": "Feature Specification: Phase 7 — Wire precedence + crosslinks",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "wire",
+        "precedence",
+        "crosslinks"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.272Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
+      "description": "Feature Specification: Phase 8: validate-sweep-changelog-reindex",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "validate-sweep-changelog-reindex"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.276Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+      "description": "Feature Specification: refine-hub-cli-connections",
+      "keywords": [
+        "feature",
+        "specification",
+        "refine-hub-cli-connections"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.280Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/131-doctor-install-alignment",
+      "description": "Feature Specification: /doctor + Install-Guide Alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "install-guide",
+        "alignment"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.285Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/131-relocate-model-registry-and-benchmarks",
+      "description": "Feature Specification: Relocate the model registry + all model benchmarks into sk-prompt-small-model; make sk-prompt a forkable standalone framework e",
+      "keywords": [
+        "feature",
+        "specification",
+        "relocate",
+        "model",
+        "registry",
+        "benchmarks",
+        "sk-prompt-small-model",
+        "make",
+        "sk-prompt",
+        "forkable",
+        "standalone",
+        "framework"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.290Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/132-embedding-provider-local-first",
+      "description": "Make resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort); repair stale embedder fixtures.",
+      "keywords": [
+        "embedding",
+        "provider",
+        "local-first",
+        "resolveProvider",
+        "ollama",
+        "hf-local"
+      ],
+      "lastUpdated": "2026-06-02T21:06:00.000Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/133-readme-and-references-accuracy",
+      "description": "Feature Specification: README & References Accuracy Audit + Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "readme",
+        "references",
+        "accuracy",
+        "audit",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.295Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/134-scouted-bugfix-batch-1",
+      "description": "8-agent scout (40 candidates -> top 5); 5 gpt-5.5-fast deep-dives confirm/refute (two pre-try lease-leak headlines refuted); 5 disjoint-file implement agents fix 5 confirmed defects across 10 files (2 shell hardenings, 1 IPC hardening, 2 MCP-server bugs), all stack-verified.",
+      "keywords": [
+        "bugfix",
+        "security",
+        "scout",
+        "deep-dive",
+        "verify-first",
+        "hardening"
+      ],
+      "lastUpdated": "2026-06-03T05:32:00.000Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/135-scouted-bugfix-batch-2",
+      "description": "Feature Specification: Scouted Bugfix Batch 2",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "batch"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.299Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -3571,7 +4065,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -6240,7 +6734,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -6266,7 +6760,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -7912,7 +8406,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -8434,7 +8928,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -8823,7 +9317,7 @@
         "causal",
         "runtime"
       ],
-      "lastUpdated": "2026-05-26T16:53:24.642Z"
+      "lastUpdated": "2026-06-01T19:57:48.418Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/001-continuity-memory-runtime",
@@ -10079,7 +10573,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -12417,6 +12911,18 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
+      "description": "Feature Specification: memory_index_scan Self-Maintaining Index Program",
+      "keywords": [
+        "feature",
+        "specification",
+        "self-maintaining",
+        "index",
+        "program"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.198Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
       "description": "Feature Specification: memory_index_scan Self-Maintaining Index Implementation",
       "keywords": [
         "feature",
@@ -12425,7 +12931,143 @@
         "index",
         "implementation"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.712Z"
+      "lastUpdated": "2026-06-02T16:26:46.203Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot",
+      "description": "Feature Specification: Checkpoint v2 File-Based Full-DB Snapshots",
+      "keywords": [
+        "feature",
+        "specification",
+        "checkpoint",
+        "file-based",
+        "full-db",
+        "snapshots"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.209Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy",
+      "description": "Feature Specification: MCP Launcher-as-Reconnecting-Frame-Proxy with In-Place Daemon Recycle",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "front-proxy",
+        "in-place-recycle",
+        "transparent-reconnect"
+      ],
+      "lastUpdated": "2026-06-01T21:32:38.012Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair",
+      "description": "Feature Specification: memory_save Replay Enrichment Repair",
+      "keywords": [
+        "feature",
+        "specification",
+        "replay",
+        "enrichment",
+        "repair"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.215Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel",
+      "description": "Feature Specification: checkpoint-v2 .needs-rebuild Sentinel",
+      "keywords": [
+        "feature",
+        "specification",
+        "checkpoint-v2",
+        "needs-rebuild",
+        "sentinel"
+      ],
+      "lastUpdated": "2026-06-02T05:39:47.601Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh",
+      "description": "Feature Specification: Docs and Stress-Test Refresh",
+      "keywords": [
+        "feature",
+        "specification",
+        "docs",
+        "stress-test",
+        "refresh"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.220Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update",
+      "description": "Feature Specification: Manual Testing Playbook Refresh for Checkpoint-v2, Enrichment v30, index_scan, Front-Proxy, sk-git",
+      "keywords": [
+        "feature",
+        "specification",
+        "manual",
+        "testing",
+        "playbook",
+        "refresh",
+        "checkpoint-v2",
+        "enrichment",
+        "v30",
+        "front-proxy",
+        "sk-git"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.225Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update",
+      "description": "Feature Specification: Feature Catalog Update for Checkpoint-v2, Front-Proxy, Schema History, and Error Codes",
+      "keywords": [
+        "feature",
+        "specification",
+        "catalog",
+        "update",
+        "checkpoint-v2",
+        "front-proxy",
+        "schema",
+        "history",
+        "error",
+        "codes"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.231Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update",
+      "description": "Feature Specification: README Cluster Update",
+      "keywords": [
+        "feature",
+        "specification",
+        "readme",
+        "cluster",
+        "update"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.236Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain",
+      "description": "Feature Specification: Durability Stress Domain",
+      "keywords": [
+        "feature",
+        "specification",
+        "durability",
+        "stress",
+        "domain"
+      ],
+      "lastUpdated": "2026-06-02T11:27:53.627Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/015-opus-review-runtime-remediation",
+      "description": "Feature Specification: Opus Review Runtime Remediation (013 cross-review)",
+      "keywords": [
+        "feature",
+        "specification",
+        "opus",
+        "review",
+        "runtime",
+        "remediation",
+        "013",
+        "cross-review"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.356Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
@@ -12922,7 +13564,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -14502,7 +15144,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -14542,7 +15184,7 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
@@ -14713,6 +15355,75 @@
         "closeout"
       ],
       "lastUpdated": "2026-06-01T11:13:19.860Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-peck-teachings-adoption",
+      "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
+      "keywords": [
+        "feature",
+        "specification",
+        "adopt",
+        "low-risk",
+        "peck",
+        "teachings",
+        "self-check",
+        "templates",
+        "current-state",
+        "discipline",
+        "constitutional",
+        "rule",
+        "review",
+        "system"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.260Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+      "description": "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit",
+      "keywords": [
+        "feature",
+        "specification",
+        "analysis",
+        "peck",
+        "framework",
+        "teachings",
+        "applicable",
+        "system-spec-kit"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.264Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-peck-teachings-adoption/002-self-check-templates",
+      "description": "Feature Specification: Phase 2: self-check-templates",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "self-check-templates"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.270Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline",
+      "description": "Feature Specification: Phase 3: current-state-discipline",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "current-state-discipline"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.275Z"
+    },
+    {
+      "specFolder": "system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review",
+      "description": "Feature Specification: Phase 4: constitutional-rule-review",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "constitutional-rule-review"
+      ],
+      "lastUpdated": "2026-06-02T16:26:46.280Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -19105,7 +19816,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-01T13:46:49.560Z"
+      "lastUpdated": "2026-06-03T06:37:59.293Z"
     }
   ]
 }

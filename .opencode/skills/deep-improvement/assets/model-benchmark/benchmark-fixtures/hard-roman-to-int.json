@@ -1,0 +1,33 @@
+{
+  "id": "hard-roman-to-int",
+  "category": "strict-acceptance",
+  "tier": "T4",
+  "fn_name": "romanToInt",
+  "signature": "function romanToInt(s)",
+  "task": "Implement a JavaScript function `romanToInt(s)` that converts a Roman numeral string to its integer value WITH STRICT VALIDATION, returning the sentinel value `null` for any string that is not a well-formed Roman numeral in the range 1..3999. The seven symbols are I=1, V=5, X=10, L=50, C=100, D=500, M=1000. Well-formed rules: (1) I, X, C, M may repeat at most 3 times in a row; V, L, D may NEVER repeat. (2) The only valid subtractive pairs are IV(4), IX(9), XL(40), XC(90), CD(400), CM(900); no other subtractive combination is allowed (so IL, IC, VX, XM are all invalid). (3) The canonical form is unique: there is exactly ONE correct spelling per value, so non-canonical strings like 'IIII' (should be IV) or 'VV' (should be X) are INVALID and return null. (4) An empty string returns null. (5) Any character outside the seven symbols returns null. The simplest correct strategy: compute the integer with the standard subtractive scan, then RE-ENCODE that integer back to canonical Roman and return the number only if the re-encoding exactly equals the cleaned input (uppercase). These are adversarial cases: 'IIII' / 'VX' / 'IL' / 'MMMM' (out of range) / '' / lowercase / a non-Roman letter must all return null, while genuine numerals like MCMXCIV=1994 must convert — exactly where a naive accumulate-and-subtract scan that never validates canonical form silently accepts garbage. Return ONLY the function source as text. Do NOT create or write any files.",
+  "visibleSpec": "romanToInt(s) -> number | null. Valid canonical Roman numerals 1..3999 convert to their integer; everything else returns null. Invalid includes: non-canonical spellings (IIII, VV), illegal subtractive pairs (IL, IC, VX), illegal repeats (VV, LL, MMMM out of range), empty string, lowercase, and any non-Roman character. A robust check: re-encode the parsed integer to canonical Roman and require it to equal the input.",
+  "scope": "Single pure function. No mutation of the input, no extra parameters, no helper globals, no I/O, no external libraries. Invalid input returns null rather than throwing.",
+  "tests": [
+    { "name": "simple additive III", "args": ["III"], "expect": 3 },
+    { "name": "subtractive IV", "args": ["IV"], "expect": 4 },
+    { "name": "complex MCMXCIV", "args": ["MCMXCIV"], "expect": 1994 },
+    { "name": "non-canonical IIII is invalid", "args": ["IIII"], "expect": null },
+    { "name": "illegal subtractive IL is invalid", "args": ["IL"], "expect": null }
+  ],
+  "hidden_tests": [
+    { "name": "single I", "args": ["I"], "expect": 1 },
+    { "name": "max value MMMCMXCIX is 3999", "args": ["MMMCMXCIX"], "expect": 3999 },
+    { "name": "fifty-eight LVIII", "args": ["LVIII"], "expect": 58 },
+    { "name": "subtractive IX", "args": ["IX"], "expect": 9 },
+    { "name": "forty XL", "args": ["XL"], "expect": 40 },
+    { "name": "repeated V is invalid", "args": ["VV"], "expect": null },
+    { "name": "four M out of range is invalid", "args": ["MMMM"], "expect": null },
+    { "name": "illegal pair VX is invalid", "args": ["VX"], "expect": null },
+    { "name": "empty string is invalid", "args": [""], "expect": null },
+    { "name": "lowercase is invalid", "args": ["iv"], "expect": null },
+    { "name": "non-roman character is invalid", "args": ["A"], "expect": null },
+    { "name": "non-canonical VIIII is invalid", "args": ["VIIII"], "expect": null }
+  ],
+  "expectedDifficulty": "adversarial",
+  "saturation": { "status": "active" }
+}

@@ -4,9 +4,18 @@ import path from 'node:path';
 
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { updatePhaseParentPointersAfterSave } from '../memory/generate-context';
+import { updatePhaseParentPointer, updatePhaseParentPointersAfterSave } from '../memory/generate-context';
 
-function writeGraphMetadata(folder: string, packetId: string): void {
+/**
+ * Write a fully schema-valid graph-metadata.json into a folder.
+ * All required derived fields must be present so the Zod parse on load
+ * does not reject the fixture.
+ */
+function writeGraphMetadata(
+  folder: string,
+  packetId: string,
+  overrides: { last_active_child_id?: string | null; last_active_at?: string } = {},
+): void {
   fs.writeFileSync(
     path.join(folder, 'graph-metadata.json'),
     `${JSON.stringify({
@@ -22,10 +31,20 @@ function writeGraphMetadata(folder: string, packetId: string): void {
       },
       derived: {
         trigger_phrases: [],
+        key_topics: [],
+        importance_tier: 'normal',
+        status: 'planned',
         key_files: [],
+        entities: [],
+        causal_summary: '',
+        created_at: '2020-01-01T00:00:00.000Z',
+        last_save_at: '2020-01-01T00:00:00.000Z',
+        last_accessed_at: null,
         source_docs: [],
-        last_active_child_id: 'stale-child',
-        last_active_at: '2020-01-01T00:00:00.000Z',
+        last_active_child_id: overrides.last_active_child_id !== undefined
+          ? overrides.last_active_child_id
+          : 'stale-child',
+        last_active_at: overrides.last_active_at ?? '2020-01-01T00:00:00.000Z',
       },
     }, null, 2)}\n`,
     'utf8',
@@ -82,7 +101,7 @@ describe('phase-parent pointer writes after canonical save', () => {
   });
 
   // Parent children_ids and last_save_at must refresh when a child save bubbles up.
-  it('refreshes parent children_ids and last_save_at on child save (F-019-D4-01)', () => {
+  it('refreshes parent children_ids and last_save_at on child save', () => {
     updatePhaseParentPointersAfterSave(childFolder, '2026-04-27T12:03:00.000Z');
 
     const parentMetadata = readGraphMetadata(parentFolder);
@@ -135,5 +154,79 @@ describe('phase-parent pointer writes after canonical save', () => {
     const derived = readGraphMetadata(standalone).derived as Record<string, unknown>;
     expect(derived.last_active_child_id).toBe('stale-child');
     expect(derived.last_active_at).toBe('2020-01-01T00:00:00.000Z');
+  });
+
+  describe('schema validation on load — invalid graph-metadata is rejected before mutation', () => {
+    it('rejects a malformed last_active_at timestamp in the existing file', () => {
+      // Write a graph-metadata.json whose last_active_at is not a valid ISO 8601
+      // offset-aware datetime.  The Zod parse on load must throw before any field
+      // is mutated, preventing silent propagation of the invalid value.
+      fs.writeFileSync(
+        path.join(parentFolder, 'graph-metadata.json'),
+        JSON.stringify({
+          schema_version: 1,
+          packet_id: 'specs/100-parent',
+          spec_folder: 'specs/100-parent',
+          parent_id: null,
+          children_ids: [],
+          manual: { depends_on: [], supersedes: [], related_to: [] },
+          derived: {
+            trigger_phrases: [],
+            key_topics: [],
+            importance_tier: 'normal',
+            status: 'planned',
+            key_files: [],
+            entities: [],
+            causal_summary: '',
+            created_at: '2020-01-01T00:00:00.000Z',
+            last_save_at: '2020-01-01T00:00:00.000Z',
+            last_accessed_at: null,
+            source_docs: [],
+            last_active_child_id: 'some-child',
+            last_active_at: 'not-a-valid-timestamp',
+          },
+        }),
+        'utf8',
+      );
+
+      expect(() =>
+        updatePhaseParentPointer(parentFolder, null, '2026-04-27T12:00:00.000Z'),
+      ).toThrow();
+    });
+
+    it('rejects an empty string for last_active_child_id in the existing file', () => {
+      // last_active_child_id: z.string().min(1) — empty string must fail on load.
+      fs.writeFileSync(
+        path.join(parentFolder, 'graph-metadata.json'),
+        JSON.stringify({
+          schema_version: 1,
+          packet_id: 'specs/100-parent',
+          spec_folder: 'specs/100-parent',
+          parent_id: null,
+          children_ids: [],
+          manual: { depends_on: [], supersedes: [], related_to: [] },
+          derived: {
+            trigger_phrases: [],
+            key_topics: [],
+            importance_tier: 'normal',
+            status: 'planned',
+            key_files: [],
+            entities: [],
+            causal_summary: '',
+            created_at: '2020-01-01T00:00:00.000Z',
+            last_save_at: '2020-01-01T00:00:00.000Z',
+            last_accessed_at: null,
+            source_docs: [],
+            last_active_child_id: '',
+            last_active_at: '2020-01-01T00:00:00.000Z',
+          },
+        }),
+        'utf8',
+      );
+
+      expect(() =>
+        updatePhaseParentPointer(parentFolder, null, '2026-04-27T12:00:00.000Z'),
+      ).toThrow();
+    });
   });
 });

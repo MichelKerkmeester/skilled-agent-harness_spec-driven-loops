@@ -330,9 +330,17 @@ function parseHandoverSignal(snapshot: StableDocumentSnapshot): ResumeSignal | n
     return null;
   }
 
+  // Extract frontmatter once; try all known field aliases before falling back to mtime.
+  // 'updated' covers handover files that use the shorter alias; the continuity-block
+  // lookup handles last_updated_at written as an indented child of _memory.continuity
+  // (regex ^field:\s* does not match leading-space lines, so block extraction is needed).
+  const _hFrontmatter = extractFrontmatter(snapshot.content);
+  const _hContinuityBlock = extractContinuityBlock(_hFrontmatter);
   const updatedAtMs = parseIsoMs(
-    extractTopLevelField(extractFrontmatter(snapshot.content), 'last_updated')
-    ?? extractTopLevelField(extractFrontmatter(snapshot.content), 'last_updated_at')
+    extractTopLevelField(_hFrontmatter, 'last_updated')
+    ?? extractTopLevelField(_hFrontmatter, 'last_updated_at')
+    ?? extractTopLevelField(_hFrontmatter, 'updated')
+    ?? (_hContinuityBlock ? extractContinuityField(_hContinuityBlock, 'last_updated_at') : null)
     ?? snapshot.modifiedAt,
   ) ?? snapshot.modifiedAtMs;
 

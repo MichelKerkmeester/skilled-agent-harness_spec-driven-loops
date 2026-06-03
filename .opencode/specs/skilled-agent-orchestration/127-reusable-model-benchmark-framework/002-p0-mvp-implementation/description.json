@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": "skilled-agent-orchestration/127-reusable-model-benchmark-framework/002-p0-mvp-implementation",
+  "description": "Feature Specification: P0 MVP — reusable config-driven benchmark framework",
+  "keywords": [
+    "feature",
+    "specification",
+    "mvp",
+    "reusable",
+    "config-driven",
+    "benchmark",
+    "framework"
+  ],
+  "lastUpdated": "2026-06-02T16:26:46.116Z",
+  "specId": "002",
+  "folderSlug": "p0-mvp-implementation",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "127-reusable-model-benchmark-framework"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

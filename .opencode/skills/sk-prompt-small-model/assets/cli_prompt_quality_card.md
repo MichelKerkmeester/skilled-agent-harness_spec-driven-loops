@@ -43,11 +43,14 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
 | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
 
-> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
->
-> **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
->
-> **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
+**Pre-planning density**: 
+For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For smaller or coding-specialized executor models, pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models, pre-planning is recommended for non-trivial dispatches but not mandatory.
+
+**Bundle-gate strictness**:
+Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
+
+**Anti-hallucination wording is a secondary lever, not the primary on:** 
+Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
 
 ---
 

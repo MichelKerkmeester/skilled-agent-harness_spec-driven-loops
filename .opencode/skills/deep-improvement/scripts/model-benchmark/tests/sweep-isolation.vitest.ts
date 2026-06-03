@@ -217,3 +217,171 @@ describe('capability profile: loads and selects the hard pack', () => {
     expect(profile.reporting.groupBy).toBe('model');
   });
 });
+
+// The "harder" pack is the de-saturated successor: the prior hard pack let both
+// frontier models hit 1.0 on 3 of 4 fixtures, so these three single-function
+// tasks were authored to keep a plausible-but-wrong solution off 1.0. Every oracle
+// expected value was generated from a reference impl that scores 1.0 through the
+// real code-task-scorer, with a deliberately-wrong impl confirmed strictly < 1.0.
+const HARDER_IDS = [
+  'harder-semver-compare',
+  'harder-normalize-path',
+  'harder-int-to-words',
+];
+
+describe('harder fixture pack: shape + de-saturation oracle density', () => {
+  it('all three harder fixtures parse and carry the required code-task keys', () => {
+    for (const id of HARDER_IDS) {
+      const fx = readJson(path.join(FIXTURE_DIR, id + '.json'));
+      expect(fx.id).toBe(id);
+      expect(typeof fx.fn_name).toBe('string');
+      expect(fx.fn_name.length).toBeGreaterThan(0);
+      expect(typeof fx.signature).toBe('string');
+      expect(typeof fx.task).toBe('string');
+      expect(fx.tier).toBe('T4');
+      expect(fx.saturation).toEqual({ status: 'active' });
+      // The isolation contract must be stated in-prompt (no file writes).
+      expect(fx.task).toMatch(/do not create or write any files/i);
+    }
+  });
+
+  it('every harder fixture carries hidden_tests and >= 18 oracle cases', () => {
+    for (const id of HARDER_IDS) {
+      const fx = readJson(path.join(FIXTURE_DIR, id + '.json'));
+      expect(Array.isArray(fx.tests)).toBe(true);
+      expect(Array.isArray(fx.hidden_tests)).toBe(true);
+      // Held-out cases dominate so a model cannot pattern-match the prompt examples.
+      expect(fx.hidden_tests.length).toBeGreaterThanOrEqual(10);
+      const total = fx.tests.length + fx.hidden_tests.length;
+      // The harder pack is specced at 18-30 oracle cases per fixture.
+      expect(total).toBeGreaterThanOrEqual(18);
+      expect(total).toBeLessThanOrEqual(30);
+      // Each oracle case is a {name, args, expect} triple the deep-equal runner consumes.
+      for (const t of fx.tests.concat(fx.hidden_tests)) {
+        expect(typeof t.name).toBe('string');
+        expect(Array.isArray(t.args)).toBe(true);
+        expect('expect' in t).toBe(true);
+      }
+    }
+  });
+});
+
+describe('capability v2 profile: loads and selects the harder pack', () => {
+  const V2_FIXTURES = [...HARDER_IDS, 'hard-roman-to-int'];
+
+  it('capability-m3-vs-mimo-v2.json validates and selects the 3 harder + retained roman fixtures', () => {
+    const validator = require(
+      path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
+    );
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
+    expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
+    expect(profile.mode).toBe('model-vs-model');
+    expect(profile.models.length).toBe(2);
+    expect(profile.fixtures.sort()).toEqual([...V2_FIXTURES].sort());
+    expect(profile.sampling.samplesPerCell).toBe(5);
+    expect(profile.reporting.groupBy).toBe('model');
+    // Correctness gate is retained so a format/brevity winner cannot crown a model.
+    expect(profile.scoring.correctnessGate.threshold).toBe(1.0);
+  });
+
+  it('every fixture the v2 profile references resolves on disk and parses', () => {
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v2.json'));
+    for (const id of profile.fixtures) {
+      const p = path.join(FIXTURE_DIR, id + '.json');
+      expect(fs.existsSync(p)).toBe(true);
+      const fx = readJson(p);
+      expect(fx.id).toBe(id);
+      expect(fx.tier).toBe('T4');
+    }
+  });
+});
+
+// The "validation" pack tests strictness on input validation: boolean validators
+// whose oracle sets are DOMINATED by adversarial-invalid inputs. A validator that
+// skips a single rule (a leading-zero check, a leap-year check, an empty-identifier
+// check) still passes the happy path and only fails on the malformed cases, so it
+// lands strictly below 1.0. Every oracle `expect` was generated from a reference
+// impl certified 1.0 through the real code-task-scorer, with a deliberately-lax
+// impl confirmed strictly < 1.0.
+const VALIDATION_IDS = ['validate-ipv4', 'validate-date', 'validate-semver'];
+
+describe('validation fixture pack: shape + adversarial-invalid dominance', () => {
+  it('all three validation fixtures parse and carry the required code-task keys', () => {
+    for (const id of VALIDATION_IDS) {
+      const fx = readJson(path.join(FIXTURE_DIR, id + '.json'));
+      expect(fx.id).toBe(id);
+      expect(typeof fx.fn_name).toBe('string');
+      expect(fx.fn_name.length).toBeGreaterThan(0);
+      expect(typeof fx.signature).toBe('string');
+      expect(typeof fx.task).toBe('string');
+      expect(fx.tier).toBe('T4');
+      expect(fx.saturation).toEqual({ status: 'active' });
+      // The isolation contract must be stated in-prompt (no file writes).
+      expect(fx.task).toMatch(/do not create or write any files/i);
+    }
+  });
+
+  it('every validation fixture carries hidden_tests and >= 26 oracle cases', () => {
+    for (const id of VALIDATION_IDS) {
+      const fx = readJson(path.join(FIXTURE_DIR, id + '.json'));
+      expect(Array.isArray(fx.tests)).toBe(true);
+      expect(Array.isArray(fx.hidden_tests)).toBe(true);
+      // Held-out cases dominate so a model cannot pattern-match the prompt examples.
+      expect(fx.hidden_tests.length).toBeGreaterThanOrEqual(10);
+      const total = fx.tests.length + fx.hidden_tests.length;
+      // The validation pack is specced at 26-30 oracle cases per fixture.
+      expect(total).toBeGreaterThanOrEqual(26);
+      expect(total).toBeLessThanOrEqual(30);
+      // Each oracle case is a {name, args, expect} triple the deep-equal runner consumes,
+      // and every `expect` is a boolean (these are boolean validators).
+      for (const t of fx.tests.concat(fx.hidden_tests)) {
+        expect(typeof t.name).toBe('string');
+        expect(Array.isArray(t.args)).toBe(true);
+        expect('expect' in t).toBe(true);
+        expect(typeof t.expect).toBe('boolean');
+      }
+    }
+  });
+
+  it('every validation fixture is dominated by adversarial-INVALID cases (>= 60% expect false)', () => {
+    for (const id of VALIDATION_IDS) {
+      const fx = readJson(path.join(FIXTURE_DIR, id + '.json'));
+      const all = fx.tests.concat(fx.hidden_tests);
+      const invalid = all.filter((t: any) => t.expect === false).length;
+      // The discrimination property: a lax validator that misses ANY rule drops
+      // below 1.0 only because the invalid cases dominate the oracle.
+      expect(invalid / all.length).toBeGreaterThanOrEqual(0.6);
+    }
+  });
+});
+
+describe('capability v3 profile: loads and selects the validation pack', () => {
+  const V3_FIXTURES = [...VALIDATION_IDS, 'hard-roman-to-int'];
+
+  it('capability-m3-vs-mimo-v3.json validates and selects the 3 validation + retained roman fixtures', () => {
+    const validator = require(
+      path.join(MB_ROOT, 'lib', 'profile-validator.cjs'),
+    );
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
+    expect(validator.validateProfile(profile)).toEqual({ valid: true, errors: [] });
+    expect(profile.mode).toBe('model-vs-model');
+    expect(profile.models.length).toBe(2);
+    expect(profile.fixtures.sort()).toEqual([...V3_FIXTURES].sort());
+    expect(profile.fixtureSelection.include.sort()).toEqual([...V3_FIXTURES].sort());
+    expect(profile.sampling.samplesPerCell).toBe(5);
+    expect(profile.reporting.groupBy).toBe('model');
+    // Correctness gate is retained so a format/brevity winner cannot crown a model.
+    expect(profile.scoring.correctnessGate.threshold).toBe(1.0);
+  });
+
+  it('every fixture the v3 profile references resolves on disk and parses', () => {
+    const profile = readJson(path.join(PROFILE_DIR, 'capability-m3-vs-mimo-v3.json'));
+    for (const id of profile.fixtures) {
+      const p = path.join(FIXTURE_DIR, id + '.json');
+      expect(fs.existsSync(p)).toBe(true);
+      const fx = readJson(p);
+      expect(fx.id).toBe(id);
+      expect(fx.tier).toBe('T4');
+    }
+  });
+});

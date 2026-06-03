@@ -1,0 +1,5 @@
+[BUG] L1: `let t;` leaves `t` undefined, so `t += arr[i]` produces `NaN` → `let t = 0;`
+[BUG] L1: loop starts `i=1`, skipping `arr[0]` → `for (let i = 0; ...)`
+[BUG] L1: `i <= arr.length` reads one past the end (`arr[arr.length]` is `undefined` → `NaN`) → `i < arr.length`
+[BUG] L1: empty array returns `undefined` instead of `0` (same root cause as #1) → fixed by initializing `t = 0`
+[BUG] L1: no input guard; non-array / null / undefined `arr` throws on `.length` → `if (!Array.isArray(arr)) return 0;` (or validate per contract)

@@ -1,11 +1,14 @@
 {
+  "level": "1",
   "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
-  "description": "Phase 4: model-hub-and-priority-profiles",
+  "description": "Feature Specification: Phase 4: model-hub-and-priority-profiles",
   "keywords": [
+    "feature",
+    "specification",
     "phase",
     "model-hub-and-priority-profiles"
   ],
-  "lastUpdated": "2026-06-02T18:04:13.322Z",
+  "lastUpdated": "2026-06-03T06:37:53.260Z",
   "specId": "004",
   "folderSlug": "model-hub-and-priority-profiles",
   "parentChain": [
@@ -13,6 +16,5 @@
     "130-prompt-knowledge-layering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "1"
+  "memoryNameHistory": []
 }
