@@ -308,14 +308,21 @@ export function computeResearchQuestionCoverageFromData(
  * claim nodes, where verified means verification_status exists and is not
  * "unresolved".
  *
+ * Zero claim nodes is a vacuous pass (returns 1.0): there is nothing to verify,
+ * so this signal must not block convergence. Returning 0 would mark the trace
+ * entry failed and force a claimless-but-otherwise-converged graph to loop
+ * forever, since no unverified-claims blocker is raised for the empty case.
+ * This mirrors p0ResolutionRate, which also returns 1.0 when its denominator
+ * is zero.
+ *
  * @param nodes - Research nodes in the graph.
- * @returns Verification rate in [0, 1].
+ * @returns Verification rate in [0, 1]; 1.0 when there are no claim nodes.
  */
 export function computeResearchClaimVerificationRateFromData(
   nodes: ReadonlyArray<ResearchSignalNodeLike>,
 ): number {
   const claims = nodes.filter(node => node.kind === 'CLAIM');
-  if (claims.length === 0) return 0;
+  if (claims.length === 0) return 1.0;
 
   let verifiedClaims = 0;
   for (const claim of claims) {

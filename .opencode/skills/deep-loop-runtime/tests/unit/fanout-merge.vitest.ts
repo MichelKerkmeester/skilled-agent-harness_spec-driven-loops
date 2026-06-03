@@ -97,6 +97,60 @@ describe('mergeResearchRegistries', () => {
     const result = mergeResearchRegistries(data as Parameters<typeof mergeResearchRegistries>[0]);
     expect((result.keyFindings as unknown[]).length).toBe(1);
   });
+
+  it('merges resolvedQuestions across lineages and dedupes shared ids', () => {
+    const data = [
+      {
+        label: 'a',
+        registry: {
+          keyFindings: [],
+          openQuestions: [],
+          resolvedQuestions: [
+            { id: 'Q1', text: 'Shared question', addedAtIteration: 1, resolvedAtIteration: 2 },
+            { id: 'Q2', text: 'A-only question', addedAtIteration: 1, resolvedAtIteration: 3 },
+          ],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 2, convergenceScore: 0.8, openQuestions: 0, resolvedQuestions: 2, keyFindings: 0, coverageBySources: {} },
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          keyFindings: [],
+          openQuestions: [],
+          resolvedQuestions: [
+            { id: 'Q1', text: 'Shared question', addedAtIteration: 1, resolvedAtIteration: 2 },
+            { id: 'Q3', text: 'B-only question', addedAtIteration: 1, resolvedAtIteration: 4 },
+          ],
+          ruledOutDirections: [],
+          metrics: { iterationsCompleted: 1, convergenceScore: 0.6, openQuestions: 0, resolvedQuestions: 2, keyFindings: 0, coverageBySources: {} },
+        },
+      },
+    ];
+
+    const result = mergeResearchRegistries(data);
+    const resolved = result.resolvedQuestions as Array<{ id: string; _lineages: string[] }>;
+    const metrics = result.metrics as { resolvedQuestions: number };
+
+    // Q1 (shared), Q2 (a), Q3 (b) → 3 deduplicated entries
+    expect(resolved).toHaveLength(3);
+    expect(metrics.resolvedQuestions).toBe(3);
+
+    const q1 = resolved.find((q) => q.id === 'Q1')!;
+    expect(q1._lineages).toContain('a');
+    expect(q1._lineages).toContain('b');
+    // Shared label must not be duplicated in _lineages
+    expect(q1._lineages.filter((l) => l === 'a')).toHaveLength(1);
+  });
+
+  it('emits empty resolvedQuestions when lineages report none', () => {
+    const data = [
+      { label: 'a', registry: { keyFindings: [], openQuestions: [], ruledOutDirections: [], metrics: { iterationsCompleted: 1, convergenceScore: 0.5, openQuestions: 0, resolvedQuestions: 0, keyFindings: 0, coverageBySources: {} } } },
+    ];
+    const result = mergeResearchRegistries(data);
+    expect(result.resolvedQuestions as unknown[]).toHaveLength(0);
+    expect((result.metrics as { resolvedQuestions: number }).resolvedQuestions).toBe(0);
+  });
 });
 
 // ─── Review merge unit tests (strongest-restriction) ──────────────────────
@@ -158,6 +212,52 @@ describe('mergeReviewRegistries — strongest-restriction', () => {
     const result = mergeReviewRegistries(data);
     expect(result.mergedVerdict).toBe('PASS');
     expect(result.activeP0).toBe(0);
+  });
+
+  it('merges resolvedFindings across lineages and dedupes shared findingId', () => {
+    const data = [
+      {
+        label: 'a',
+        registry: {
+          openFindings: [],
+          resolvedFindings: [
+            { findingId: 'R1', severity: 'P2', status: 'resolved_fixed', title: 'Shared resolved' },
+            { findingId: 'R2', severity: 'P1', status: 'resolved_fixed', title: 'A-only resolved' },
+          ],
+        },
+      },
+      {
+        label: 'b',
+        registry: {
+          openFindings: [],
+          resolvedFindings: [
+            { findingId: 'R1', severity: 'P2', status: 'resolved_fixed', title: 'Shared resolved' },
+          ],
+        },
+      },
+    ];
+
+    const result = mergeReviewRegistries(data);
+    const resolved = result.resolvedFindings as Array<{ findingId: string; _lineages: string[] }>;
+
+    // R1 (shared) + R2 (a) → 2 deduplicated entries; open findings stay empty
+    expect(resolved).toHaveLength(2);
+    expect(result.resolvedFindingsCount).toBe(2);
+    expect((result.openFindings as unknown[]).length).toBe(0);
+    expect(result.mergedVerdict).toBe('PASS');
+
+    const r1 = resolved.find((f) => f.findingId === 'R1')!;
+    expect(r1._lineages).toContain('a');
+    expect(r1._lineages).toContain('b');
+  });
+
+  it('keeps resolvedFindings empty when lineages report none', () => {
+    const data = [
+      { label: 'a', registry: { openFindings: [{ findingId: 'F1', severity: 'P2', status: 'active', title: 'Advisory' }] } },
+    ];
+    const result = mergeReviewRegistries(data);
+    expect(result.resolvedFindings as unknown[]).toHaveLength(0);
+    expect(result.resolvedFindingsCount).toBe(0);
   });
 });
 

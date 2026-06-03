@@ -109,15 +109,31 @@ function mergeResearchRegistries(lineageData) {
 
   const mergedFindings = [...findingById.values()];
   const openQuestionsById = new Map();
+  const resolvedQuestionsById = new Map();
   const ruledOutById = new Map();
 
   for (const { label, registry } of lineageData) {
     if (!registry) continue;
     for (const q of registry.openQuestions ?? []) {
-      const id = q.id || q.question;
+      const id = q.id || q.question || q.text;
       if (!id) continue;
       if (!openQuestionsById.has(id)) openQuestionsById.set(id, { ...q, _lineages: [label] });
-      else openQuestionsById.get(id)._lineages.push(label);
+      else {
+        const existing = openQuestionsById.get(id);
+        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+      }
+    }
+    // Resolved questions are produced per-lineage by the research reducer but
+    // were previously dropped here, under-reporting answered coverage in the
+    // merged registry. Collect them with the same id/_lineages discipline.
+    for (const q of registry.resolvedQuestions ?? []) {
+      const id = q.id || q.question || q.text;
+      if (!id) continue;
+      if (!resolvedQuestionsById.has(id)) resolvedQuestionsById.set(id, { ...q, _lineages: [label] });
+      else {
+        const existing = resolvedQuestionsById.get(id);
+        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+      }
     }
     for (const d of registry.ruledOutDirections ?? []) {
       const id = d.id || d.direction;
@@ -139,13 +155,13 @@ function mergeResearchRegistries(lineageData) {
   return {
     mergedFrom: lineageData.map(({ label }) => label),
     openQuestions: [...openQuestionsById.values()],
-    resolvedQuestions: [],
+    resolvedQuestions: [...resolvedQuestionsById.values()],
     keyFindings: mergedFindings,
     ruledOutDirections: [...ruledOutById.values()],
     metrics: {
       iterationsCompleted: totalIters,
       openQuestions: openQuestionsById.size,
-      resolvedQuestions: 0,
+      resolvedQuestions: resolvedQuestionsById.size,
       keyFindings: mergedFindings.length,
       convergenceScore: Math.round(avgConvergence * 1000) / 1000,
       coverageBySources: {},
@@ -187,6 +203,25 @@ function mergeReviewRegistries(lineageData) {
     }
   }
 
+  // Resolved findings are tracked separately per lineage and were previously
+  // dropped here, zeroing the merged resolved coverage. Collect them by id with
+  // _lineages attribution, without touching open-finding/verdict semantics.
+  const resolvedFindingById = new Map();
+  for (const { label, registry } of lineageData) {
+    if (!registry || !Array.isArray(registry.resolvedFindings)) continue;
+    for (const finding of registry.resolvedFindings) {
+      const id = finding.findingId || finding.title;
+      if (!id) continue;
+      if (resolvedFindingById.has(id)) {
+        const existing = resolvedFindingById.get(id);
+        if (!existing._lineages.includes(label)) existing._lineages.push(label);
+      } else {
+        resolvedFindingById.set(id, { ...finding, _lineages: [label] });
+      }
+    }
+  }
+  const mergedResolvedFindings = [...resolvedFindingById.values()];
+
   const mergedFindings = [...findingById.values()];
   const activeP0 = mergedFindings.filter((f) => f.severity === 'P0' && f.status === 'active').length;
   const activeP1 = mergedFindings.filter((f) => f.severity === 'P1' && f.status === 'active').length;
@@ -206,10 +241,10 @@ function mergeReviewRegistries(lineageData) {
     mergedFrom: lineageData.map(({ label }) => label),
     mergedVerdict,
     openFindings: mergedFindings,
-    resolvedFindings: [],
+    resolvedFindings: mergedResolvedFindings,
     findingsBySeverity: { P0: activeP0, P1: activeP1, P2: activeP2 },
     openFindingsCount: mergedFindings.length,
-    resolvedFindingsCount: 0,
+    resolvedFindingsCount: mergedResolvedFindings.length,
     activeP0,
     activeP1,
     activeP2,

@@ -60,6 +60,10 @@ const REQUIRED_INDEXES_BY_TABLE: Readonly<Record<string, readonly string[]>> = {
     'idx_post_insert_enrichment_incomplete',
     'idx_save_parent_content_hash_scope',
     'idx_save_parent_canonical_path',
+    // Active-row uniqueness guard: every v30+ DB builds this unique index. Listing it
+    // here lets the compatibility check detect a DB whose guard was dropped or never
+    // built, instead of silently passing a database with a broken active-row invariant.
+    'idx_memory_logical_key_active_unique',
   ],
   memory_conflicts: [
     'idx_conflicts_memory',

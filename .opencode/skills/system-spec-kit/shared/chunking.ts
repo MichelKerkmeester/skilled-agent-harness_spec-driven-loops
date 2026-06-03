@@ -31,6 +31,34 @@ const PRIORITY_PATTERNS: PriorityPatterns = {
   medium: /implementation|file|change|technical|approach|solution|method|function|class|component/i,
 };
 
+/**
+ * Truncate `text` to at most `maxLength` UTF-16 code units without splitting a
+ * surrogate pair, preferring the nearest preceding whitespace so words are not
+ * cut mid-token. Falls back to a code-point-aligned hard cut when the truncated
+ * region contains no usable whitespace. The returned length never exceeds
+ * `maxLength` — downstream embedders rely on that hard cap.
+ */
+function truncateToLength(text: string, maxLength: number): string {
+  if (maxLength <= 0) return '';
+  if (text.length <= maxLength) return text;
+
+  // Walk code points so a multi-unit character is never partially included.
+  let cutIndex = 0;
+  let unitCount = 0;
+  for (const ch of text) {
+    if (unitCount + ch.length > maxLength) break;
+    unitCount += ch.length;
+    cutIndex += ch.length;
+  }
+
+  let sliced = text.slice(0, cutIndex);
+  const lastWhitespace = sliced.search(/\s\S*$/);
+  if (lastWhitespace > 0) {
+    sliced = sliced.slice(0, lastWhitespace);
+  }
+  return sliced;
+}
+
 // ---------------------------------------------------------------
 // 2. SEMANTIC CHUNKING
 // ---------------------------------------------------------------
@@ -80,6 +108,10 @@ export function semanticChunk(text: string, maxLength: number = MAX_TEXT_LENGTH)
   const includedSections: string[] = [];
 
   for (const section of priorities.critical) {
+    // Critical sections are highest priority but still bounded by the budget;
+    // without this guard, many oversized critical sections drive the budget
+    // deeply negative and force a mid-content hard truncate downstream.
+    if (remainingBudget <= 0) break;
     includedSections.push(section);
     remainingBudget -= section.length + 2;
   }
@@ -102,7 +134,7 @@ export function semanticChunk(text: string, maxLength: number = MAX_TEXT_LENGTH)
   result += '\n\n' + outcome;
 
   if (result.length > maxLength) {
-    result = result.substring(0, maxLength);
+    result = truncateToLength(result, maxLength);
   }
 
   console.warn(`[chunking] Semantic chunking: ${originalLength} -> ${result.length} chars (${Math.round((1 - result.length / originalLength) * 100)}% reduced)`);

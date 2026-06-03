@@ -1,6 +1,6 @@
 // TEST: RRF FUSION
 // Converted from: rrf-fusion.test.ts (custom runner)
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll, afterAll } from 'vitest';
 import {
   fuseResults,
   fuseResultsMulti,
@@ -26,6 +26,21 @@ function expectDefined<T>(value: T | undefined, label: string): T {
 }
 
 describe('RRF Fusion Core Tests (T021-T030)', () => {
+  // These tests assert exact raw RRF formula values (1/(k+rank) plus convergence bonus).
+  // Score normalization is graduated-ON by default and would remap fuseResults output
+  // to [0,1], so disable it here to exercise the raw scoring formula directly.
+  const savedScoreNormalization = process.env.SPECKIT_SCORE_NORMALIZATION;
+  beforeAll(() => {
+    process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
+  });
+  afterAll(() => {
+    if (savedScoreNormalization === undefined) {
+      delete process.env.SPECKIT_SCORE_NORMALIZATION;
+    } else {
+      process.env.SPECKIT_SCORE_NORMALIZATION = savedScoreNormalization;
+    }
+  });
+
   it('T021: RRF fusion with default k=40 parameter', () => {
     expect(DEFAULT_K).toBe(40);
   });
@@ -211,4 +226,74 @@ describe('Module Exports Verification', () => {
       expect(value).toBeDefined();
     });
   }
+});
+
+describe('fuseResults score normalization parity', () => {
+  const savedScoreNormalization = process.env.SPECKIT_SCORE_NORMALIZATION;
+  afterAll(() => {
+    if (savedScoreNormalization === undefined) {
+      delete process.env.SPECKIT_SCORE_NORMALIZATION;
+    } else {
+      process.env.SPECKIT_SCORE_NORMALIZATION = savedScoreNormalization;
+    }
+  });
+
+  it('normalizes fuseResults scores to [0,1] when normalization is enabled (default)', () => {
+    delete process.env.SPECKIT_SCORE_NORMALIZATION;
+
+    const listA = [
+      { id: 'doc1', content: 'a1' },
+      { id: 'doc2', content: 'a2' },
+      { id: 'doc3', content: 'a3' },
+    ];
+    const listB = [
+      { id: 'doc2', content: 'b2' },
+      { id: 'doc1', content: 'b1' },
+    ];
+
+    const fused = fuseResults(listA, listB);
+
+    expect(fused.length).toBeGreaterThan(0);
+    for (const r of fused) {
+      expect(r.rrfScore).toBeGreaterThanOrEqual(0);
+      expect(r.rrfScore).toBeLessThanOrEqual(1);
+    }
+    // Top-ranked entry normalizes to the max of the range.
+    expect(fused[0].rrfScore).toBeCloseTo(1, 6);
+  });
+
+  it('matches fuseResultsMulti score range parity for equivalent two-list input', () => {
+    delete process.env.SPECKIT_SCORE_NORMALIZATION;
+
+    const vectorList = [
+      { id: 'shared', content: 'shared' },
+      { id: 'vec_only', content: 'vector only' },
+    ];
+    const ftsList = [
+      { id: 'shared', content: 'shared' },
+      { id: 'fts_only', content: 'fts only' },
+    ];
+
+    const fusedPair = fuseResults(vectorList, ftsList, DEFAULT_K, SOURCE_TYPES.VECTOR, SOURCE_TYPES.FTS);
+    const fusedMulti = fuseResultsMulti([
+      { source: SOURCE_TYPES.VECTOR, results: vectorList },
+      { source: SOURCE_TYPES.FTS, results: ftsList },
+    ]);
+
+    // Both entry points now apply normalization, so each top result lands at 1.0.
+    expect(fusedPair[0].rrfScore).toBeCloseTo(1, 6);
+    expect(fusedMulti[0].rrfScore).toBeCloseTo(1, 6);
+    // The same shared id dominates both rankings.
+    expect(fusedPair[0].id).toBe('shared');
+    expect(fusedMulti[0].id).toBe('shared');
+  });
+
+  it('preserves raw RRF scores when normalization is explicitly disabled', () => {
+    process.env.SPECKIT_SCORE_NORMALIZATION = 'false';
+
+    const fused = fuseResults([{ id: 'single', content: 's' }], []);
+    const expectedRaw = 1 / (DEFAULT_K + 0 + 1);
+
+    expect(fused[0].rrfScore).toBeCloseTo(expectedRaw, 6);
+  });
 });

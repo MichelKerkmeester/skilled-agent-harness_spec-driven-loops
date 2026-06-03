@@ -419,4 +419,21 @@ describe('vector-index schema migration refinements', () => {
       `).run(sharedPath, sharedPath);
     }).toThrow();
   });
+
+  it('reports a v30 DB missing the active-row unique index as backward-incompatible', () => {
+    const database = createTestDatabase();
+    openDatabases.add(database);
+
+    // A healthy fully-migrated DB is compatible and carries the guard.
+    const healthy = validateBackwardCompatibility(database);
+    expect(healthy.compatible).toBe(true);
+    expect(healthy.missingIndexes).not.toContain('idx_memory_logical_key_active_unique');
+
+    // Simulate a DB whose active-row uniqueness guard was dropped after migration.
+    database.exec('DROP INDEX IF EXISTS idx_memory_logical_key_active_unique');
+
+    const degraded = validateBackwardCompatibility(database);
+    expect(degraded.compatible).toBe(false);
+    expect(degraded.missingIndexes).toContain('idx_memory_logical_key_active_unique');
+  });
 });

@@ -109,7 +109,7 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
           ...skill.derivedTriggers,
         ]) * 0.8, 1),
         evidence: ['shadow:test-fallback'],
-        shadowOnly: true,
+        shadowOnly: false,
       }))
       .filter((match) => match.score > 0.08);
   }
@@ -157,17 +157,17 @@ export function scoreSemanticShadowLane(prompt: string, projection: AdvisorProje
       }
 
       // The cutoff suppresses random near-zero vector noise. The semantic lane is
-      // LIVE in the registry (weight 0.05, live=true). This raw match still tags
-      // shadowOnly:true, but fusion derives the effective shadowOnly from lane
-      // liveness (isLiveScorerLane), so attribution reports shadowOnly:false for
-      // this live lane.
+      // LIVE in the registry (weight 0.05, live=true), so the raw match tags
+      // shadowOnly:false to match lane liveness. Fusion independently derives the
+      // effective shadowOnly from isLiveScorerLane, so the two values now agree and
+      // any direct reader of the raw LaneMatch sees the same answer as attribution.
       const roundedScore = Math.round(score * 1_000_000) / 1_000_000;
       return {
         skillId: skill.id,
         lane: 'semantic_shadow' as const,
         score: roundedScore,
         evidence: [`cosine:${score.toFixed(4)}`],
-        shadowOnly: true,
+        shadowOnly: false,
       };
     })
     .filter((match): match is LaneMatch => match !== null);

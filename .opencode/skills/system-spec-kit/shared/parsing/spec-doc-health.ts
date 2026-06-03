@@ -56,6 +56,13 @@ const REQUIRED_FILES: Record<number, string[]> = {
   3: ['spec.md', 'plan.md', 'tasks.md', 'checklist.md', 'decision-record.md'],
 };
 
+// Phase parents hold only the control trio; heavy docs live in the phase
+// children where they stay accurate to that phase's work.
+const PHASE_PARENT_REQUIRED_FILES = ['spec.md', 'description.json', 'graph-metadata.json'];
+
+// A direct child folder qualifies as a phase when it matches NNN-slug.
+const PHASE_CHILD_RE = /^[0-9]{3}-[a-z0-9][a-z0-9-]*$/;
+
 // ---------------------------------------------------------------
 // Level Detection
 // ---------------------------------------------------------------
@@ -84,9 +91,37 @@ function detectLevel(folderPath: string): number | null {
 // Rule Checks
 // ---------------------------------------------------------------
 
+// Mirrors the single-source-of-truth contract enforced by validate.sh /
+// check-files.sh: a folder is a phase parent when it has at least one direct
+// NNN-slug child that carries spec.md or description.json. Kept local because
+// this shared module is the leaf layer consumed by mcp_server and scripts; it
+// must not depend on the mcp_server copy of the detector.
+function isPhaseParent(folderPath: string): boolean {
+  let entries: fs.Dirent[];
+  try {
+    entries = fs.readdirSync(folderPath, { withFileTypes: true });
+  } catch {
+    return false;
+  }
+
+  for (const entry of entries) {
+    if (!entry.isDirectory() || !PHASE_CHILD_RE.test(entry.name)) continue;
+    const childPath = path.join(folderPath, entry.name);
+    if (
+      fs.existsSync(path.join(childPath, 'spec.md')) ||
+      fs.existsSync(path.join(childPath, 'description.json'))
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
 function checkFileExists(folderPath: string, level: number): SpecDocHealthIssue[] {
   const issues: SpecDocHealthIssue[] = [];
-  const required = REQUIRED_FILES[Math.min(level, 3)] || REQUIRED_FILES[1];
+  const required = isPhaseParent(folderPath)
+    ? PHASE_PARENT_REQUIRED_FILES
+    : REQUIRED_FILES[Math.min(level, 3)] || REQUIRED_FILES[1];
 
   for (const file of required) {
     if (!fs.existsSync(path.join(folderPath, file))) {

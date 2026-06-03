@@ -5,7 +5,8 @@
 // consumers without in-process imports.
 
 import { mkdirSync, renameSync, unlinkSync, writeFileSync } from 'node:fs';
-import path, { dirname, resolve } from 'node:path';
+import path, { basename, dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { getStats, queryStartupHighlights } from './code-graph-db.js';
 import { getGraphReadinessSnapshot } from './ensure-ready.js';
 import type {
@@ -15,12 +16,35 @@ import type {
   StartupGraphQualitySummary,
 } from './shared/code-graph-contracts.js';
 
-// fix#1: skill-local DB location (matches core/config.ts DATABASE_DIR when CWD == workspace root).
-// CG-013 (cwd-divergence: share the canonical resolver) is intentionally deferred — see audit
-// 011/002-deferred — because importing core/config here runs resolveCanonicalDbDir at module load
-// and breaks tests that mock node:fs without realpathSync.native.
+// Anchor the marker to the same skill-local DB location as core/config.ts DATABASE_DIR so the
+// readiness snapshot always lands beside the SQLite DB, independent of the process CWD. We derive
+// the workspace root from THIS file's own path (mirroring core/config.ts resolveWorkspaceRoot)
+// rather than importing DATABASE_DIR directly: that import would run resolveCanonicalDbDir at module
+// load (mkdirSync + realpathSync.native), which breaks consumers that mock node:fs without those.
+// The walk below touches no fs APIs, so it is safe under those mocks. An absolute
+// SPECKIT_CODE_GRAPH_DB_DIR still wins because resolve() ignores its base when the second arg is absolute.
+function resolveMarkerWorkspaceRoot(): string {
+  const fromUrl = (() => {
+    try {
+      return dirname(fileURLToPath(import.meta.url));
+    } catch {
+      return process.cwd();
+    }
+  })();
+  let current = fromUrl;
+  for (let i = 0; i < 12; i++) {
+    if (basename(current) === '.opencode') {
+      return dirname(current);
+    }
+    const parent = dirname(current);
+    if (parent === current) break;
+    current = parent;
+  }
+  return process.cwd();
+}
+
 export const CODE_GRAPH_READINESS_MARKER_BASE_DIR = resolve(
-  process.cwd(),
+  resolveMarkerWorkspaceRoot(),
   process.env.SPECKIT_CODE_GRAPH_DB_DIR || '.opencode/skills/system-code-graph/mcp_server/database',
 );
 export const CODE_GRAPH_READINESS_MARKER_PATH = resolve(CODE_GRAPH_READINESS_MARKER_BASE_DIR, '.code-graph-readiness.json');

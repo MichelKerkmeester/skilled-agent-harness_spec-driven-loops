@@ -37,6 +37,7 @@ vi.mock('../lib/ensure-ready.js', () => ({
 
 import * as fs from 'node:fs';
 import {
+  CODE_GRAPH_READINESS_MARKER_BASE_DIR,
   validateMarkerPath,
   writeMarkerFileAtomic,
 } from '../lib/readiness-marker.js';
@@ -108,5 +109,15 @@ describe('readiness-marker atomic write', () => {
     expect(() => validateMarkerPath('../../../etc/passwd', tempDir)).toThrow('Marker path traversal rejected');
     expect(() => validateMarkerPath('/etc/passwd', tempDir)).toThrow('Marker path traversal rejected');
     expect(() => validateMarkerPath(join(tempDir, '.code-graph-readiness.json'), tempDir)).not.toThrow();
+  });
+
+  it('anchors the marker base dir to the skill-local DB regardless of CWD', () => {
+    // The base dir is computed at module load from this file's own path, not process.cwd(),
+    // so the marker always lands beside the SQLite DB even when the server is loaded from a
+    // subdirectory. Assert it is absolute and ends at the skill-local database path.
+    expect(CODE_GRAPH_READINESS_MARKER_BASE_DIR.startsWith('/')).toBe(true);
+    expect(CODE_GRAPH_READINESS_MARKER_BASE_DIR.endsWith(
+      'system-code-graph/mcp_server/database',
+    )).toBe(true);
   });
 });

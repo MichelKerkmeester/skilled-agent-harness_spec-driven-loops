@@ -6,11 +6,13 @@
  * API provider). Adapted from 113's dispatch-swe16.cjs — same interface, only
  * the invocation layer differs (opencode run instead of devin --prompt-file).
  *
- *   - opencode run --model minimax/MiniMax-M2.7 --agent general --dir <repo> "<prompt>"
+ *   - opencode run --model minimax/MiniMax-M2.7 --dir <repo> "<prompt>"
+ *     (--agent omitted for the default `general`: current opencode rejects a
+ *      top-level `--agent general`; passed only for an explicit non-general agent)
  *   - stdin is closed (equivalent of </dev/null) to avoid opencode's stdin-hang bug
  *   - Timeout enforcement + rate-limit detection + backoff (60s/120s/240s, 3-strike pause)
  *   - --variant is intentionally NOT passed: the framework bake-off holds it constant
- *     (omit-by-default, per 120/002 research) so only the framework varies.
+ *     (omitted by default) so the framework is the only independent variable.
  *
  * Interface (matches loop.cjs expectations):
  *   dispatch({ prompt_file, mock, mock_mode }) -> { ok, stdout, stderr, exit_code, attempts, paused?, pause_reason?, mock? }
@@ -79,12 +81,17 @@ function dispatchReal(promptFile, opts) {
   let lastStdout = '';
   let lastStderr = '';
 
+  // Omit `--agent` for the default `general`: current opencode treats `general`
+  // as a subagent and rejects it at the top level (warns + falls back), and the
+  // MiniMax Direct API path rejects it outright. Pass `--agent` only for an
+  // explicit non-general primary agent.
+  const baseArgs = ['run', '--model', MODEL];
+  if (AGENT && AGENT !== 'general') baseArgs.push('--agent', AGENT);
+  baseArgs.push('--dir', dir);
+
   for (let attempt = 0; attempt < BACKOFF_MS.length + 1; attempt++) {
     const res = spawnSync(OPENCODE_BIN, [
-      'run',
-      '--model', MODEL,
-      '--agent', AGENT,
-      '--dir', dir,
+      ...baseArgs,
       promptText,
     ], {
       // stdin 'ignore' closes stdin (equivalent of </dev/null) — required for opencode automation.

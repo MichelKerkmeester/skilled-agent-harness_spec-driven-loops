@@ -251,8 +251,16 @@ function fuseResults(
     }
   }
 
-  return Array.from(scoreMap.values())
+  const results = Array.from(scoreMap.values())
     .sort((a, b) => b.rrfScore - a.rrfScore);
+
+  // Normalize RRF scores to [0,1] when enabled, matching fuseResultsMulti and
+  // fuseResultsCrossVariant so every fusion entry point yields the same score range.
+  if (isScoreNormalizationEnabled()) {
+    normalizeRrfScores(results);
+  }
+
+  return results;
 }
 
 /**

@@ -40,6 +40,7 @@ describe('Vector index schema compatibility validator', () => {
           agent_id TEXT,
           parent_id INTEGER,
           canonical_file_path TEXT,
+          anchor_id TEXT,
           created_at TEXT,
           updated_at TEXT,
           post_insert_enrichment_status TEXT,
@@ -76,6 +77,17 @@ describe('Vector index schema compatibility validator', () => {
         CREATE INDEX idx_save_parent_canonical_path
           ON memory_index(spec_folder, canonical_file_path, id DESC)
           WHERE parent_id IS NULL;
+        CREATE UNIQUE INDEX idx_memory_logical_key_active_unique
+          ON memory_index (
+            spec_folder,
+            COALESCE(NULLIF(canonical_file_path, ''), file_path),
+            COALESCE(NULLIF(TRIM(anchor_id), ''), '_'),
+            COALESCE(tenant_id, ''),
+            COALESCE(user_id, ''),
+            COALESCE(agent_id, ''),
+            COALESCE(session_id, '')
+          )
+          WHERE COALESCE(importance_tier, 'normal') NOT IN ('constitutional', 'deprecated');
 
         CREATE TABLE memory_history (
           id INTEGER PRIMARY KEY,

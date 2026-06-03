@@ -186,9 +186,11 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   }
 
   if (kind === 'cli-gemini') {
+    // Default must stay inside GEMINI_SUPPORTED_MODELS (executor-config), since
+    // the null-model lineage skips the whitelist check and reaches the CLI as-is.
     return {
       command: 'gemini',
-      args: [prompt, '-m', lineage.model || 'gemini-2.5-pro', '-s', resolvedSandbox, '-y', '-o', 'text'],
+      args: [prompt, '-m', lineage.model || 'gemini-3.1-pro-preview', '-s', resolvedSandbox, '-y', '-o', 'text'],
     };
   }
 

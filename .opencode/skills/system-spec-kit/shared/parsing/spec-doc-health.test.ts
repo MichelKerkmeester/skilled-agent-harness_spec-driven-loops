@@ -220,4 +220,62 @@ const VALID_TASKS = `<!-- SPECKIT_LEVEL: 1 -->
   cleanup(tmp);
 }
 
+// 12. Lean phase parent → no FILE_EXISTS errors for missing heavy docs
+{
+  const tmp = createTempDir();
+  const dir = path.join(tmp, '130-prompt-knowledge-layering');
+  fs.mkdirSync(dir);
+  writeFile(dir, 'spec.md', VALID_SPEC);
+  writeFile(dir, 'description.json', '{}');
+  writeFile(dir, 'graph-metadata.json', '{}');
+  const child = path.join(dir, '001-first-phase');
+  fs.mkdirSync(child);
+  writeFile(child, 'spec.md', VALID_SPEC);
+
+  const result = evaluateSpecDocHealth(dir);
+  const hasFileExistsError = result.perFile.some(f =>
+    f.issues.some(i => i.includes('FILE_EXISTS'))
+  );
+  assertEqual(hasFileExistsError, false, 'lean phase parent has no FILE_EXISTS errors despite missing plan/tasks');
+  cleanup(tmp);
+}
+
+// 13. Phase parent missing description.json → exactly that FILE_EXISTS error
+{
+  const tmp = createTempDir();
+  const dir = path.join(tmp, '130-prompt-knowledge-layering');
+  fs.mkdirSync(dir);
+  writeFile(dir, 'spec.md', VALID_SPEC);
+  writeFile(dir, 'graph-metadata.json', '{}');
+  const child = path.join(dir, '001-first-phase');
+  fs.mkdirSync(child);
+  writeFile(child, 'description.json', '{}');
+
+  const result = evaluateSpecDocHealth(dir);
+  const descriptionMissing = result.perFile.some(f =>
+    f.issues.some(i => i.includes('FILE_EXISTS') && i.includes('description.json'))
+  );
+  const planMissing = result.perFile.some(f =>
+    f.issues.some(i => i.includes('FILE_EXISTS') && i.includes('plan.md'))
+  );
+  assertEqual(descriptionMissing, true, 'phase parent missing description.json reports FILE_EXISTS');
+  assertEqual(planMissing, false, 'phase parent does not require plan.md');
+  cleanup(tmp);
+}
+
+// 14. Ordinary L1 folder (no phase children) still requires plan/tasks
+{
+  const tmp = createTempDir();
+  const dir = path.join(tmp, '001-ordinary');
+  fs.mkdirSync(dir);
+  writeFile(dir, 'spec.md', VALID_SPEC);
+
+  const result = evaluateSpecDocHealth(dir);
+  const planMissing = result.perFile.some(f =>
+    f.issues.some(i => i.includes('FILE_EXISTS') && i.includes('plan.md'))
+  );
+  assertEqual(planMissing, true, 'ordinary L1 folder still requires plan.md');
+  cleanup(tmp);
+}
+
 console.log('\nAll spec-doc-health tests passed.');

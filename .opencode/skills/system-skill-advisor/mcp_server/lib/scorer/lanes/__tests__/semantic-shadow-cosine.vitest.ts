@@ -177,7 +177,7 @@ describe('semantic shadow cosine lane', () => {
         lane: 'semantic_shadow',
         score: 1,
         evidence: ['cosine:1.0000'],
-        shadowOnly: true,
+        shadowOnly: false,
       },
     ]);
   });

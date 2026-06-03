@@ -112,4 +112,23 @@ describe('coverage-graph-signals', () => {
     const review = signalsModule.computeReviewSignals(reviewNs);
     expect(research).not.toEqual(review);
   });
+
+  it('computeResearchClaimVerificationRateFromData vacuous-passes (1.0) when there are no claim nodes', () => {
+    // A graph with QUESTION/FINDING/SOURCE nodes but zero CLAIM nodes has
+    // nothing to verify; the rate must be 1.0 so convergence is not blocked.
+    const nodes = [
+      { id: 'q1', kind: 'QUESTION' },
+      { id: 'f1', kind: 'FINDING' },
+      { id: 's1', kind: 'SOURCE' },
+    ];
+    expect(signalsModule.computeResearchClaimVerificationRateFromData(nodes)).toBe(1.0);
+  });
+
+  it('computeResearchClaimVerificationRateFromData computes the verified fraction when claims exist', () => {
+    const nodes = [
+      { id: 'c1', kind: 'CLAIM', metadata: JSON.stringify({ verification_status: 'verified' }) },
+      { id: 'c2', kind: 'CLAIM', metadata: JSON.stringify({ verification_status: 'unresolved' }) },
+    ];
+    expect(signalsModule.computeResearchClaimVerificationRateFromData(nodes)).toBe(0.5);
+  });
 });

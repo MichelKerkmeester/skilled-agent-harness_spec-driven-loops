@@ -435,15 +435,24 @@ async function probeOllama(context: ProbeContext): Promise<ProbeOutcome> {
 }
 
 async function probeHfLocal(context: ProbeContext): Promise<ProbeOutcome> {
-  const model = context.env.HF_LOCAL_MODEL || context.env.HF_EMBEDDINGS_MODEL || HF_LOCAL_MODEL;
+  // Model name must resolve identically to HfLocalProvider, which only reads
+  // HF_EMBEDDINGS_MODEL. Reading a separate HF_LOCAL_MODEL alias here would let
+  // the cascade persist a model name the provider never uses.
+  const model = context.env.HF_EMBEDDINGS_MODEL || HF_LOCAL_MODEL;
   const availability = await context.probeHfLocalServer(context.timeoutMs);
   if (!availability.available) {
     return { reason: availability.reason ?? 'hf-local model server is unreachable' };
   }
+  // Only the canonical Nomic model has a known dimension at probe time. A custom
+  // model's true dimension is unknown until its first embed, so persist 0 and let
+  // HfLocalProvider's first-embed drift hook resolve and reconcile it — mirroring
+  // the provider's own `model === DEFAULT_MODEL ? CANONICAL_DEFAULT_DIM : 0` rule.
+  // Persisting a hardcoded 768 for a non-Nomic model would write a wrong dim.
+  const dim = model === HF_LOCAL_MODEL ? HF_LOCAL_DIM : 0;
   return {
     embedder: {
       name: model,
-      dim: HF_LOCAL_DIM,
+      dim,
       provider: 'hf-local',
     },
     reason: `hf-local model server reachable via /api/health; selected ${model}`,

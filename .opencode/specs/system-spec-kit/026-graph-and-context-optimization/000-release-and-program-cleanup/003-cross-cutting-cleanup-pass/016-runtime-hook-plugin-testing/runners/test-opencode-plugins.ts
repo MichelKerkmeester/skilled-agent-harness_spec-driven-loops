@@ -1,4 +1,4 @@
-import SpecKitSkillAdvisorPlugin from '../../../../../../../plugins/spec-kit-skill-advisor.js';
+import MkSkillAdvisorPlugin from '../../../../../../../plugins/mk-skill-advisor.js';
 
 import {
   REPO_ROOT,
@@ -17,7 +17,7 @@ import {
 
 import type { HookTestInput, HookTestResult, SandboxDetection } from './common.ts';
 
-const CONFIG_PATH = '.opencode/plugins/spec-kit-skill-advisor.js';
+const CONFIG_PATH = '.opencode/plugins/mk-skill-advisor.js';
 
 export async function runOpenCodePluginTests(sandbox: SandboxDetection = detectSandbox()): Promise<HookTestResult[]> {
   const input: HookTestInput = {
@@ -37,7 +37,7 @@ export async function runOpenCodePluginTests(sandbox: SandboxDetection = detectS
   }
 
   const output = { system: [] as string[] };
-  const hooks = await SpecKitSkillAdvisorPlugin(
+  const hooks = await MkSkillAdvisorPlugin(
     { directory: REPO_ROOT },
     {
       bridgeTimeoutMs: 3000,
@@ -69,8 +69,8 @@ export async function runOpenCodePluginTests(sandbox: SandboxDetection = detectS
       },
     },
     [
-      '.opencode/plugins/spec-kit-skill-advisor.js:627',
-      '.opencode/plugins/spec-kit-skill-advisor.js:663',
+      '.opencode/plugins/mk-skill-advisor.js:627',
+      '.opencode/plugins/mk-skill-advisor.js:663',
     ],
     CONFIG_PATH,
   );
@@ -118,7 +118,7 @@ export async function runOpenCodePluginTests(sandbox: SandboxDetection = detectS
           [CONFIG_PATH]: readSnippet(CONFIG_PATH),
         },
       },
-      ['.opencode/plugins/spec-kit-skill-advisor.js'],
+      ['.opencode/plugins/mk-skill-advisor.js'],
       CONFIG_PATH,
     ),
   ];

@@ -166,6 +166,38 @@ describe('embedder bootstrap auto-selection', () => {
     });
   });
 
+  it('persists dim 0 for a custom hf-local model so the true dim resolves at first embed', async () => {
+    const selected = await autoSelectActiveEmbedder({
+      env: { HF_EMBEDDINGS_MODEL: 'BAAI/bge-large-en-v1.5' },
+      fetchImpl: vi.fn(async () => {
+        throw new Error('connection refused');
+      }) as typeof fetch,
+      probeHfLocalServer: async () => ({ available: true }),
+    });
+
+    expect(selected).toMatchObject({
+      name: 'BAAI/bge-large-en-v1.5',
+      dim: 0,
+      provider: 'hf-local',
+    });
+  });
+
+  it('ignores the legacy HF_LOCAL_MODEL alias so the model name matches HfLocalProvider', async () => {
+    const selected = await autoSelectActiveEmbedder({
+      env: { HF_LOCAL_MODEL: 'BAAI/bge-large-en-v1.5' },
+      fetchImpl: vi.fn(async () => {
+        throw new Error('connection refused');
+      }) as typeof fetch,
+      probeHfLocalServer: async () => ({ available: true }),
+    });
+
+    expect(selected).toMatchObject({
+      name: 'nomic-ai/nomic-embed-text-v1.5',
+      dim: 768,
+      provider: 'hf-local',
+    });
+  });
+
   it('throws a clear tier-by-tier error when no provider is available', async () => {
     await expect(autoSelectActiveEmbedder({
       env: {},
