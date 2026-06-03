@@ -14,8 +14,12 @@ export function formatAgeString(dateString: string | null): string {
   if (!dateString) return 'never';
 
   const date = new Date(dateString);
+  const timestamp = date.getTime();
+  // Reject strings that parse to an invalid Date (e.g. corrupt DB values).
+  if (Number.isNaN(timestamp)) return 'never';
+
   const now = Date.now();
-  const ageMs = now - date.getTime();
+  const ageMs = now - timestamp;
   const ageDays = Math.floor(ageMs / (24 * 60 * 60 * 1000));
 
   if (ageDays < 1) {

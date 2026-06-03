@@ -1280,6 +1280,20 @@ function registerContextServerHandlers(targetServer: Server): void {
               if (data && data.count !== undefined) {
                 data.count = innerResults.length;
               }
+              // Recompute constitutionalCount from the results that survived truncation
+              // so consumers reading data.constitutionalCount or envelope.summary see
+              // counts that agree with data.results.length.
+              if (data) {
+                const survivingConstitutionalCount = innerResults.filter(
+                  (r: unknown) => r !== null && typeof r === 'object' && (r as Record<string, unknown>).isConstitutional === true
+                ).length;
+                data.constitutionalCount = survivingConstitutionalCount;
+                if (typeof envelope.summary === 'string') {
+                  envelope.summary = survivingConstitutionalCount > 0
+                    ? `Found ${innerResults.length} memories (${survivingConstitutionalCount} constitutional)`
+                    : `Found ${innerResults.length} memories`;
+                }
+              }
               if (Array.isArray(envelope.hints)) {
                 envelope.hints.push(`Token budget enforced: truncated ${originalCount} → ${innerResults.length} results to fit ${budget} token budget`);
               }

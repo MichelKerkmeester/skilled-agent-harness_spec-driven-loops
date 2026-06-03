@@ -159,7 +159,7 @@ export async function runCliAdapter(args: RunCliAdapterInput): Promise<AdapterRe
       clearTimeout(timer);
       const code = errorCode(error);
       finish({
-        status: SPAWN_BLOCKED_CODES.has(code) ? 'BLOCKED' : 'BLOCKED',
+        status: SPAWN_BLOCKED_CODES.has(code) ? 'BLOCKED' : 'FAIL',
         evidence: { stdout, stderr: stderr || error.message, exitCode: -1 },
         reason: `${args.adapterName} spawn error ${code}: ${error.message}`,
       });

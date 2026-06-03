@@ -19,7 +19,7 @@ import { toErrorMessage } from '../utils/index.js';
 import { createFilePathValidator } from '../utils/validators.js';
 
 // Formatters
-import { calculateTokenMetrics, type TokenMetrics } from '../formatters/index.js';
+import { calculateTokenMetrics, estimateTokens, type TokenMetrics } from '../formatters/index.js';
 
 // Lib modules
 import * as triggerMatcher from '../lib/parsing/trigger-matcher.js';
@@ -154,27 +154,41 @@ function fetchMemoryRecords(memoryIds: number[]): Map<number, TierInput> {
   return records;
 }
 
+/** Result shape returned by getTieredContent */
+interface TieredContentResult {
+  /** Truncated content for MCP output (full for HOT, 150-char summary for WARM, empty for COLD) */
+  content: string;
+  /**
+   * Token count of the complete file before any truncation. Populated for WARM entries
+   * so calculateTokenMetrics can use the real file size as the hypothetical baseline
+   * rather than scaling up the summary window with a fixed multiplier.
+   */
+  fullContentTokens: number;
+}
+
 /** Get tiered content for a memory based on its tier state (HOT=full, WARM=summary, COLD=excluded) */
 async function getTieredContent(
   memoryInfo: { filePath: string; title: string | null; triggerPhrases: string[] },
   tier: string
-): Promise<string> {
-  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return '';
+): Promise<TieredContentResult> {
+  if (tier === 'COLD' || tier === 'DORMANT' || tier === 'ARCHIVED') return { content: '', fullContentTokens: 0 };
   try {
     const fs = await import('fs');
     const validatedPath = validateTieredFilePath(memoryInfo.filePath);
     const canonicalPath = validateTieredFilePath(fs.realpathSync(validatedPath));
     const content = fs.readFileSync(canonicalPath, 'utf-8');
-    if (tier === 'HOT') return content;
-    // WARM tier returns truncated summary
-    return content.substring(0, 150) + (content.length > 150 ? '...' : '');
+    if (tier === 'HOT') return { content, fullContentTokens: estimateTokens(content) };
+    // WARM tier: capture full token count before truncating to summary window
+    const fullContentTokens = estimateTokens(content);
+    const summary = content.substring(0, 150) + (content.length > 150 ? '...' : '');
+    return { content: summary, fullContentTokens };
   } catch (_error: unknown) {
     console.warn('[memory-triggers] getTieredContent failed', {
       filePath: memoryInfo.filePath, // server-side only; safe to log
       tier,
       error: _error instanceof Error ? _error.message : String(_error),
     });
-    return '';
+    return { content: '', fullContentTokens: 0 };
   }
 }
 
@@ -443,25 +457,32 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
 
     const tieredResults = tierClassifier.filterAndLimitByState(enrichedResults, null, limit);
 
-    formattedResults = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) => {
-      const content: string = await getTieredContent({
-        filePath: r.filePath,
-        title: r.title,
-        triggerPhrases: r.matchedPhrases
-      }, r.tier);
+    // Resolve tiered content for each result. getTieredContent returns the display
+    // content (truncated for WARM) plus a pre-truncation token count used only for
+    // savings% calculation — the latter is never forwarded to MCP output.
+    const tieredContent = await Promise.all(tieredResults.map(async (r: EnrichedTriggerMatch) =>
+      getTieredContent({ filePath: r.filePath, title: r.title, triggerPhrases: r.matchedPhrases }, r.tier)
+    ));
 
-      return {
-        memoryId: r.memoryId,
-        specFolder: r.specFolder,
-        filePath: r.filePath,
-        title: r.title,
-        matchedPhrases: r.matchedPhrases,
-        importanceWeight: r.importanceWeight,
-        tier: r.tier,
-        attentionScore: r.attentionScore,
-        content: content,
-        coActivated: r.coActivated || false
-      };
+    formattedResults = tieredResults.map((r: EnrichedTriggerMatch, i: number) => ({
+      memoryId: r.memoryId,
+      specFolder: r.specFolder,
+      filePath: r.filePath,
+      title: r.title,
+      matchedPhrases: r.matchedPhrases,
+      importanceWeight: r.importanceWeight,
+      tier: r.tier,
+      attentionScore: r.attentionScore,
+      content: tieredContent[i].content,
+      coActivated: r.coActivated || false
+    }));
+
+    // Metrics-only view: pairs each result with its pre-truncation token count so
+    // calculateTokenMetrics can compute accurate savings% for WARM entries.
+    const metricsResults = tieredResults.map((r: EnrichedTriggerMatch, i: number) => ({
+      tier: r.tier,
+      content: tieredContent[i].content,
+      fullContentTokens: tieredContent[i].fullContentTokens,
     }));
 
     cognitiveStats = {
@@ -472,7 +493,7 @@ async function handleMemoryMatchTriggers(args: TriggerArgs): Promise<MCPResponse
       memoriesActivated: activatedMemories.length,
       coActivations: coActivatedMemories.length,
       tierDistribution: tierClassifier.getStateStats(enrichedResults),
-      tokenMetrics: calculateTokenMetrics(results, formattedResults)
+      tokenMetrics: calculateTokenMetrics(results, metricsResults)
     };
 
   } else {

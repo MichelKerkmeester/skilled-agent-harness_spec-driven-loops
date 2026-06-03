@@ -160,14 +160,14 @@ function getRelevanceFeedback(
   }));
   const maxAbsoluteSignalTotal = Math.max(...rawSignalTotals.map((row) => Math.abs(row.raw)), 0);
 
-  const relevanceByMemoryId = new Map<number, number>();
   if (maxAbsoluteSignalTotal === 0) {
-    for (const row of rawSignalTotals) {
-      relevanceByMemoryId.set(row.memoryId, 0.5);
-    }
-
-    return relevanceByMemoryId;
+    // All adaptive signals are zero or perfectly cancel out — no useful label
+    // can be derived from this data. Return an empty map so callers treat this
+    // cycle as unlabeled and skip recording an is_improvement result.
+    return new Map<number, number>();
   }
+
+  const relevanceByMemoryId = new Map<number, number>();
 
   for (const row of rawSignalTotals) {
     const normalizedScore = (row.raw + maxAbsoluteSignalTotal) / (2 * maxAbsoluteSignalTotal);

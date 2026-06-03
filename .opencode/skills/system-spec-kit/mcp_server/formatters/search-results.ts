@@ -994,12 +994,15 @@ export async function formatSearchResults(
               anchorsFound: foundCount
             };
           } else {
-            // No anchors found - return warning
+            // No anchors found - return warning; the warning string itself
+            // consumes tokens that budget accounting must account for.
             content = `<!-- WARNING: Requested anchors not found: ${anchors.join(', ')} -->`;
+            const newTokens = estimateTokens(content);
+            const savings = Math.round((1 - newTokens / Math.max(originalTokens, 1)) * 100);
             formattedResult.tokenMetrics = {
               originalTokens: originalTokens,
-              returnedTokens: 0,
-              savingsPercent: 100,
+              returnedTokens: newTokens,
+              savingsPercent: savings,
               anchorsRequested: anchors.length,
               anchorsFound: 0
             };

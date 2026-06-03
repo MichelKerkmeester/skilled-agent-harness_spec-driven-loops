@@ -92,7 +92,11 @@ try {
 } catch (_error) {}
 EOF
 )
-        if [[ -n "$last_active_child_id" && ! -d "$folder/$last_active_child_id" ]]; then
+        # Accept a full packet_id (e.g. track/parent/004-child) by also testing
+        # the final path component, so callers that store the full id don't
+        # produce a spurious warning when the bare child dir exists.
+        local last_active_child_basename="${last_active_child_id##*/}"
+        if [[ -n "$last_active_child_id" && ! -d "$folder/$last_active_child_id" && ! -d "$folder/$last_active_child_basename" ]]; then
             warnings+=("derived.last_active_child_id '$last_active_child_id' does not match a real child folder")
         fi
     fi

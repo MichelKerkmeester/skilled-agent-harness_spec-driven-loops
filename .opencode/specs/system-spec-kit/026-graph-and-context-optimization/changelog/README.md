@@ -17,7 +17,7 @@ Spec 026 (graph-and-context-optimization) shipped across 8 tracks and about 634 
 
 | Track | Leaf changelogs | Rollups | Top rollup |
 |-------|-----------------|---------|------------|
-| 000 release and program cleanup | 125 | 14 | [changelog-000-release-and-program-cleanup-root.md](./000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
+| 000 release and program cleanup | 126 | 14 | [changelog-000-release-and-program-cleanup-root.md](./000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
 | 001 research and baseline | 6 | 1 | [changelog-001-research-and-baseline-root.md](./001-research-and-baseline/changelog-001-research-and-baseline-root.md) |
 | 002 spec-kit internals | 120 | 13 | [changelog-002-spec-kit-internals-root.md](./002-spec-kit-internals/changelog-002-spec-kit-internals-root.md) |
 | 003 memory and causal runtime | 240 | 27 | [changelog-003-memory-and-causal-runtime-root.md](./003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) |

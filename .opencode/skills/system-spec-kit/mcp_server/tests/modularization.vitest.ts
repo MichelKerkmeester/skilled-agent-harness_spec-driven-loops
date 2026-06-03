@@ -371,4 +371,47 @@ describe('Token Metrics Tests (mocked DB)', () => {
     }));
     expect(metrics.actualTokens).toBeGreaterThan(0);
   });
+
+  // Regression: WARM savings% must reflect real file size, not the fixed summary window.
+  // A large file (8000 chars) truncated to 150 chars should yield ~98% savings, not ~67%.
+  it('calculateTokenMetrics WARM savings% uses pre-truncation fullContentTokens', async () => {
+    const formatters = await loadFormattersIndex();
+
+    // Simulate an 8000-char file truncated to 150 chars for the WARM summary.
+    // Pre-truncation token count: ceil(8000 / 4) = 2000.
+    // Actual (summary) token count: ceil(150 / 4) = 38.
+    // Expected savings: 1 - 38/2000 = ~98%.
+    const warmSummary = 'x'.repeat(150);
+    const preFullTokens = Math.ceil(8000 / 4); // 2000
+
+    const metrics = formatters.calculateTokenMetrics(
+      [{ id: 1 }],
+      [{ tier: 'WARM', content: warmSummary, fullContentTokens: preFullTokens }],
+    );
+
+    // Should be well above 90% — nowhere near the locked-67% seen without the fix.
+    expect(metrics.estimatedSavingsPercent).toBeGreaterThan(90);
+    expect(metrics.estimatedSavingsPercent).toBeLessThanOrEqual(100);
+  });
+
+  // Regression: when fullContentTokens is absent and the file is small enough that
+  // the summary window covers it entirely (~450 chars), the 3x fallback still applies
+  // and savings converge toward ~67%. This is expected behaviour for small files.
+  it('calculateTokenMetrics WARM falls back to 3x heuristic when fullContentTokens is absent', async () => {
+    const formatters = await loadFormattersIndex();
+
+    // A ~450-char "full" file whose content fits inside the 150-char summary window.
+    // Without fullContentTokens the hypothetical baseline = estimateTokens(150-char) * 3.
+    // actualTokens / hypotheticalFullTokens ≈ 1/3 → savings ≈ 67%.
+    const warmSummary = 'y'.repeat(150);
+
+    const metrics = formatters.calculateTokenMetrics(
+      [{ id: 1 }],
+      [{ tier: 'WARM', content: warmSummary }], // no fullContentTokens
+    );
+
+    // 3x fallback: savings should be around 67% (within ±5% floating-point tolerance).
+    expect(metrics.estimatedSavingsPercent).toBeGreaterThanOrEqual(60);
+    expect(metrics.estimatedSavingsPercent).toBeLessThanOrEqual(75);
+  });
 });

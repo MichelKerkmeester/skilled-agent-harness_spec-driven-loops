@@ -1,5 +1,6 @@
 // TEST: ANCHOR PREFIX MATCHING
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+import { estimateTokens } from '../formatters/token-metrics';
 import {
   formatSearchResults,
   type MemoryParserLike,
@@ -378,7 +379,31 @@ describe('ANCHOR PREFIX MATCHING — formatSearchResults integration', () => {
 
     expect(res.content).toContain('WARNING: Requested anchors not found: summary');
     expect(res.tokenMetrics.anchorsFound).toBe(0);
-    expect(res.tokenMetrics.savingsPercent).toBe(100);
+    // returnedTokens must reflect the warning string, not be hardcoded 0.
+    expect(res.tokenMetrics.returnedTokens).toBeGreaterThan(0);
+  });
+
+  it('I07: all-anchors-missing branch computes returnedTokens from warning string', async () => {
+    // When no requested anchor exists in the extracted map the else-branch
+    // emits a warning comment. That warning is non-empty so returnedTokens
+    // must equal estimateTokens(warningString), not the previously hardcoded 0.
+    const requestedAnchor = 'summary';
+    const res = await formatWithAnchors(
+      {}, // empty anchor map — guaranteed all-miss
+      [requestedAnchor]
+    );
+
+    const expectedContent = `<!-- WARNING: Requested anchors not found: ${requestedAnchor} -->`;
+    expect(res.content).toBe(expectedContent);
+
+    const expectedTokens = estimateTokens(expectedContent);
+    // Core invariant: returned tokens reflect the actual warning string length.
+    expect(res.tokenMetrics.returnedTokens).toBe(expectedTokens);
+    expect(res.tokenMetrics.returnedTokens).toBeGreaterThan(0);
+
+    // anchorsFound is 0 and anchorsRequested matches the input.
+    expect(res.tokenMetrics.anchorsFound).toBe(0);
+    expect(res.tokenMetrics.anchorsRequested).toBe(1);
   });
 
   it('I04: mix of found and missing anchors includes warning', async () => {

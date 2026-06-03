@@ -34,6 +34,14 @@ export const PROMOTION_THRESHOLD_WEEKS = 2;
 /** Standard evaluation window: 7 days in milliseconds. */
 export const EVALUATION_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
 
+/**
+ * Minimum NDCG delta required to count a cycle as a genuine improvement.
+ * A cycle with zero or near-zero delta (e.g. from uniform-relevance signal)
+ * must not advance the promotion counter; requiring a positive epsilon prevents
+ * no-op cycles from being counted as progress.
+ */
+export const MIN_NDCG_IMPROVEMENT = 0.001;
+
 /* ───────────────────────────────────────────────────────────────
    2. TYPES
 ----------------------------------------------------------------*/
@@ -679,7 +687,7 @@ export function runShadowEvaluation(
       totalImproved,
       totalDegraded,
       totalUnchanged,
-      isImprovement: meanNdcgDelta >= 0,
+      isImprovement: queryCount > 0 && meanNdcgDelta > MIN_NDCG_IMPROVEMENT,
     };
 
     // Step 7: Record cycle result

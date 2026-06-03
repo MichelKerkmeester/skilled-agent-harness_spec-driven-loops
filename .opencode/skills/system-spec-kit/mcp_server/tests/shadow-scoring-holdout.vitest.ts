@@ -15,6 +15,7 @@ import {
   // Constants
   DEFAULT_HOLDOUT_PERCENT,
   PROMOTION_THRESHOLD_WEEKS,
+  MIN_NDCG_IMPROVEMENT,
 
   // Holdout selection
   selectHoldoutQueries,
@@ -1453,5 +1454,127 @@ describe('Edge Cases', () => {
     const result = compareRanks('q-large', live, shadow);
     expect(result.deltas).toHaveLength(n);
     expect(result.metrics.kendallTau).toBe(-1);
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   PROMOTION GATE — SPURIOUS TRIGGER GUARD
+   Two cycles where live and shadow produce identical uniform relevance (0.5)
+   must NOT advance the promotion counter or emit a 'promote' recommendation.
+   ──────────────────────────────────────────────────────────────── */
+
+describe('Promotion gate: uniform-relevance zero-signal cycles', () => {
+  let db: InstanceType<typeof Database>;
+  let dbPath: string;
+
+  beforeEach(() => {
+    ({ db, dbPath } = createTestDb());
+    initShadowScoringLog(db);
+  });
+
+  afterEach(() => {
+    cleanupDb(db, dbPath);
+  });
+
+  it('uniform-relevance cycle produces meanNdcgDelta===0 and isImprovement===false', () => {
+    // Both live and shadow use identical uniform relevance — delta is 0.
+    const ids = ['r1', 'r2', 'r3'];
+    const uniformRelevance = [0.5, 0.5, 0.5];
+    const liveItems = makeRankedItems(ids, uniformRelevance);
+    const shadowItems = makeRankedItems(ids, uniformRelevance);
+
+    const comparison = compareRanks('q-uniform', liveItems, shadowItems);
+    const ndcgDelta = comparison.metrics.ndcgDelta;
+
+    // Zero delta must not satisfy the improvement threshold.
+    expect(ndcgDelta).toBe(0);
+    expect(ndcgDelta).toBeLessThanOrEqual(MIN_NDCG_IMPROVEMENT);
+
+    // Record as it would be after runShadowEvaluation with queryCount=1 and delta=0.
+    const cycle: CycleResult = {
+      cycleId: 'zero-signal-1',
+      evaluatedAt: 1000,
+      queryCount: 1,
+      meanNdcgDelta: ndcgDelta,
+      meanMrrDelta: 0,
+      meanKendallTau: 1,
+      totalImproved: 0,
+      totalDegraded: 0,
+      totalUnchanged: 1,
+      // Reflects the fixed guard: queryCount > 0 && meanNdcgDelta > MIN_NDCG_IMPROVEMENT
+      isImprovement: 1 > 0 && ndcgDelta > MIN_NDCG_IMPROVEMENT,
+    };
+
+    expect(cycle.isImprovement).toBe(false);
+    recordCycleResult(db, cycle);
+
+    expect(getConsecutiveImprovements(db)).toBe(0);
+  });
+
+  it('two zero-signal cycles do not trigger promote recommendation', () => {
+    // Simulate two back-to-back no-op cycles (uniform relevance, delta=0).
+    for (let i = 0; i < PROMOTION_THRESHOLD_WEEKS; i++) {
+      recordCycleResult(db, {
+        cycleId: `zero-cycle-${i}`,
+        evaluatedAt: (i + 1) * 1000,
+        queryCount: 1,
+        meanNdcgDelta: 0,       // zero delta from uniform signal
+        meanMrrDelta: 0,
+        meanKendallTau: 1,
+        totalImproved: 0,
+        totalDegraded: 0,
+        totalUnchanged: 1,
+        isImprovement: false,   // must be false per fix — queryCount > 0 && delta > epsilon
+      });
+    }
+
+    const consecutiveCount = getConsecutiveImprovements(db);
+    expect(consecutiveCount).toBe(0);
+
+    const gate = evaluatePromotionGate(db);
+    expect(gate.ready).toBe(false);
+    expect(gate.recommendation).not.toBe('promote');
+  });
+
+  it('queryCount===0 cycle is never an improvement regardless of delta', () => {
+    // Empty cycle (no holdout queries matched) — must not count as improvement.
+    recordCycleResult(db, {
+      cycleId: 'empty-cycle',
+      evaluatedAt: 1000,
+      queryCount: 0,
+      meanNdcgDelta: 0,     // as computed when queryCount===0
+      meanMrrDelta: 0,
+      meanKendallTau: 0,
+      totalImproved: 0,
+      totalDegraded: 0,
+      totalUnchanged: 0,
+      isImprovement: 0 > 0 && 0 > MIN_NDCG_IMPROVEMENT,  // always false
+    });
+
+    expect(getConsecutiveImprovements(db)).toBe(0);
+    expect(evaluatePromotionGate(db).recommendation).not.toBe('promote');
+  });
+
+  it('genuine improvement (delta well above epsilon) still advances the counter', () => {
+    // Confirm the guard does not block real improvements.
+    const genuineDelta = 0.05; // well above MIN_NDCG_IMPROVEMENT (0.001)
+
+    for (let i = 0; i < PROMOTION_THRESHOLD_WEEKS; i++) {
+      recordCycleResult(db, {
+        cycleId: `good-cycle-${i}`,
+        evaluatedAt: (i + 1) * 1000,
+        queryCount: 5,
+        meanNdcgDelta: genuineDelta,
+        meanMrrDelta: 0.02,
+        meanKendallTau: 0.8,
+        totalImproved: 3,
+        totalDegraded: 1,
+        totalUnchanged: 1,
+        isImprovement: 5 > 0 && genuineDelta > MIN_NDCG_IMPROVEMENT,
+      });
+    }
+
+    expect(getConsecutiveImprovements(db)).toBe(PROMOTION_THRESHOLD_WEEKS);
+    expect(evaluatePromotionGate(db).recommendation).toBe('promote');
   });
 });

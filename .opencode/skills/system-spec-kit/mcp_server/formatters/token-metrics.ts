@@ -11,6 +11,13 @@
 export interface TieredResult {
   tier?: string;
   content?: string | null;
+  /**
+   * Pre-truncation token count for WARM entries, measured against the full file
+   * before the summary substring was taken. When present, used as the hypothetical
+   * full-content baseline so savings% reflects the real file size rather than the
+   * fixed ~150-char summary window. Not forwarded to MCP output.
+   */
+  fullContentTokens?: number;
   [key: string]: unknown;
 }
 
@@ -41,9 +48,17 @@ export const estimateTokens = estimateTokenCount;
 // ────────────────────────────────────────────────────────────────
 
 export function calculateTokenMetrics(allMatches: unknown[], returnedResults: TieredResult[]): TokenMetrics {
-  // Estimate tokens if ALL matches returned full content
+  // Estimate tokens if ALL matches returned full content.
+  // For WARM entries, prefer the pre-truncation token count captured before the
+  // summary substring was taken; fall back to the 3x heuristic only when that
+  // measurement is unavailable (e.g. legacy callers or files shorter than the
+  // summary window where truncation never happened).
   const hypotheticalFullTokens = returnedResults.reduce((sum: number, r: TieredResult) => {
-    return sum + (r.tier === 'WARM' ? estimateTokens(r.content as string) * 3 : estimateTokens(r.content as string));
+    if (r.tier === 'WARM') {
+      const baseline = r.fullContentTokens ?? estimateTokens(r.content as string) * 3;
+      return sum + baseline;
+    }
+    return sum + estimateTokens(r.content as string);
   }, 0);
 
   // Actual tokens returned

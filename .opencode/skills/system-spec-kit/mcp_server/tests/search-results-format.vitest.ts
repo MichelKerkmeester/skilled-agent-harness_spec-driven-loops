@@ -7,7 +7,9 @@ import {
   safeJsonParse,
   validateFilePathLocal,
   formatSearchResults,
+  toTrustBadges,
   type MemoryResultEnvelope,
+  type TrustBadgeSnapshot,
 } from '../formatters/search-results';
 import { formatAgeString } from '../lib/utils/format-helpers';
 import type { MCPEnvelope, MCPResponse } from '../lib/response/envelope';
@@ -549,8 +551,20 @@ describe('formatAgeString', () => {
     expect(formatAgeString(futureDate)).toBe('today');
   });
 
-  it('D13: Invalid date string returns a string (no crash)', () => {
-    const result = formatAgeString('not-a-date');
-    expect(typeof result).toBe('string');
+  it('D13: Invalid date string returns "never"', () => {
+    expect(formatAgeString('not-a-date')).toBe('never');
+  });
+
+  it('D14: toTrustBadges with invalid extractedAt returns "never" for extractionAge', () => {
+    const snapshot: TrustBadgeSnapshot = {
+      confidence: 0.9,
+      extractedAt: 'not-a-date',
+      lastAccessed: 'also-invalid',
+      orphan: false,
+      weightHistoryChanged: false,
+    };
+    const result = toTrustBadges(snapshot);
+    expect(result?.extractionAge).toBe('never');
+    expect(result?.lastAccessAge).toBe('never');
   });
 });
