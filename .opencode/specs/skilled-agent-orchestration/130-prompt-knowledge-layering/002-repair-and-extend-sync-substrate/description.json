@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/002-repair-and-extend-sync-substrate",
+  "description": "Phase 2: repair-and-extend-sync-substrate",
+  "keywords": [
+    "phase",
+    "repair-and-extend-sync-substrate"
+  ],
+  "lastUpdated": "2026-06-02T18:04:11.631Z",
+  "specId": "002",
+  "folderSlug": "repair-and-extend-sync-substrate",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

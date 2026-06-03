@@ -1,0 +1,29 @@
+{
+  "level": "phase",
+  "is_phase_parent": true,
+  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "description": "Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub",
+  "keywords": [
+    "prompt-knowledge",
+    "layering",
+    "across",
+    "cli",
+    "skills",
+    "sk-prompt",
+    "frameworks",
+    "sk-prompt-small-model",
+    "model-craft",
+    "hub"
+  ],
+  "lastUpdated": "2026-06-02T20:34:38.062Z",
+  "specId": "130",
+  "folderSlug": "prompt-knowledge-layering",
+  "parentChain": [
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 2,
+  "memoryNameHistory": [
+    "02-06-26_20-11__next-steps.md",
+    "02-06-26_21-34__next-steps.md"
+  ]
+}

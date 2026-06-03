@@ -2,7 +2,7 @@
 name: cli-claude-code
 description: "Claude Code CLI executor for Anthropic-backed reasoning, edits, reviews, and structured cross-AI handoff."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.1.7.0
+version: 1.1.8.0
 ---
 
 <!-- Keywords: claude-code, claude-cli, anthropic, cross-ai, deep-reasoning, extended-thinking, code-editing, structured-output, agent-delegation, opus, sonnet, haiku -->
@@ -255,9 +255,9 @@ claude -p "prompt" --output-format text 2>&1
 |-------|----|----------|
 | **Opus** | `claude-opus-4-6` | Deep reasoning, complex architecture, extended thinking |
 | **Sonnet** | `claude-sonnet-4-6` | Balanced performance/cost — default for most tasks |
-| **Haiku** | `claude-haiku-4-5-20251001` | Fast, lightweight tasks (classification, formatting, simple queries) |
+| **Haiku** | `claude-haiku-4-5-20251001` | Optional-unverified; use only when explicitly requested or after adoption for fast, lightweight tasks |
 
-**Selection guidance**: Default to Sonnet unless the task specifically needs deep reasoning (Opus + `--effort high`) or is trivially simple (Haiku for batch ops where speed > depth).
+**Selection guidance**: Default to Sonnet unless the task specifically needs deep reasoning (Opus + `--effort high`). Use Haiku only when explicitly requested or after adoption.
 
 ### Claude Code Agent Delegation
 
@@ -342,10 +342,15 @@ claude -p "Now refactor the auth module based on the review" --continue --output
 2. Use `--permission-mode plan` for review/analysis/exploration (no file writes); `--output-format text` unless JSON is specifically needed.
 3. Validate output before applying — correctness, completeness, alignment, syntax checks if code generated.
 4. Capture stderr (`2>&1`) to catch errors and warnings.
-5. Specify `--model` explicitly: default `claude-sonnet-4-6` unless task needs Opus (deep reasoning) or Haiku (fast/cheap).
+5. Specify `--model` explicitly: default `claude-sonnet-4-6` unless task needs Opus (deep reasoning). Use Haiku only when explicitly requested or after adoption.
 6. Route to the appropriate `--agent <name>` when the task matches a specialization (see Section 3 routing table).
 7. **Pass the spec folder to the delegated agent** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the delegated agent cannot answer Gate 3 interactively.
-8. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline.
+8. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../sk-prompt/assets/cli_prompt_quality_card.md`:
+   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt-small-model** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
+   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when complexity ≥ 7/10, compliance/privacy/security signal, >1 stakeholder, >1 ambiguous requirement, or the fast-path CLEAR cannot clear its floor.
+
+   Tag the framework in the Bash invocation comment and use the returned `ENHANCED_PROMPT`. Apply the CLEAR 5-question check from the canonical card via the local delegating card.
 9. **Code Standards Loading (surface-aware contract)** — When dispatching for code review or code generation, instruct the dispatched session to: (1) load `sk-code`; (2) let `sk-code` emit a surface tag matching the detected stack from markers and target files; (3) load the selected surface resources and run its verification commands; (4) add `sk-code-review` only for formal findings-first review output. Fallback: if the surface cannot be determined confidently, ask for the runtime surface and verification command set. NEVER hardcode obsolete sibling code skills in dispatch prompts.
 10. **Single-dispatch discipline (operator-gated, session-scoped)** — Default: launch ONE cli-* dispatch at a time across the cli-* family (cli-codex, cli-devin, cli-opencode, cli-claude-code, cli-gemini). Wait for the dispatched agent's work to return, verify outputs exist, then SIGKILL the dispatcher process + any orphan children (`pkill -9 -f "claude -p"` for this skill, plus `gtimeout` / `positional_scoring_fallback:app` cleanup). Only launch the next dispatch (this skill OR a sibling) after the prior one is dead and RSS has dropped. **Within a deep-flow session** (deep-review / deep-research): the operator authorizes the whole multi-iteration session at start — iterations chain back-to-back with kill-between as the safety mechanism, NOT a per-iteration operator confirmation prompt. **Exception (cross-skill parallel)**: when the operator explicitly authorizes N parallel dispatches, run N concurrently — but still SIGKILL each as its work returns.
 11. **Set `AI_SESSION_CHILD=1` in the dispatched child's env** when sessions may be launched through the per-session worktree wrapper (`.opencode/bin/worktree-session.sh`). A dispatched `claude -p` run is an orchestrated sub-session, not a new top-level session, so it must SHARE the parent's worktree rather than allocate its own. The wrapper checks `AI_SESSION_CHILD` (plus a `git --git-common-dir` structural backstop) and exec's in place when set. Pattern: `AI_SESSION_CHILD=1 claude -p ...`. Harmless when the wrapper is not in use. See `.opencode/bin/README.md` → "Worktree session isolation".

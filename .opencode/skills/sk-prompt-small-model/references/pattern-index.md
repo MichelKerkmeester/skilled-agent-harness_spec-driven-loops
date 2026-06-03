@@ -39,15 +39,15 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Quota-pool-aware fallback (no same-pool retry; fail-fast when no different-pool target) | `cli-devin` | [`../../cli-devin/references/quota-fallback.md`](../../cli-devin/references/quota-fallback.md) | Phase 005 |
 | Model-profile registry (unified per-model metadata) | `sk-prompt` | [`../../sk-prompt/assets/model-profiles.json`](../../sk-prompt/assets/model-profiles.json) | Phase 005 |
 | Model-profile registry doc (schema + adoption protocol) | `sk-prompt` | [`../../sk-prompt/references/model-profiles.md`](../../sk-prompt/references/model-profiles.md) | Phase 005 |
-| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `cli-devin` | [`../../system-spec-kit/mcp_server/lib/deep-loop/bayesian-scorer.ts`](../../system-spec-kit/mcp_server/lib/deep-loop/bayesian-scorer.ts) + [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) § Tool scoring state file format | Phase 005 |
-| Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts`](../../system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts) | Phase 005 |
+| Bayesian tool scoring (Laplace-smoothed per-call scoring) | `system-spec-kit` + `cli-devin` | [`../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts`](../../deep-loop-runtime/lib/deep-loop/bayesian-scorer.ts) + [`../../cli-devin/references/output-verification.md`](../../cli-devin/references/output-verification.md) § Tool scoring state file format | Phase 005 |
+| Fallback router (TS helper applied via recipe field) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/fallback-router.ts`](../../deep-loop-runtime/lib/deep-loop/fallback-router.ts) | Phase 005 |
 | Structured permissions schema (JSON Schema for tool-call gating) | `cli-opencode` | [`../../cli-opencode/assets/permissions-matrix.schema.json`](../../cli-opencode/assets/permissions-matrix.schema.json) | Phase 003 |
 | Structured permissions reference (schema fields + 3 examples + RM-8 walkthrough) | `cli-opencode` | [`../../cli-opencode/references/permissions-matrix.md`](../../cli-opencode/references/permissions-matrix.md) | Phase 003 |
-| Permissions gate runtime (pre-tool-call enforcer) | `system-spec-kit` | [`../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts`](../../system-spec-kit/mcp_server/lib/deep-loop/permissions-gate.ts) | Phase 003 |
+| Permissions gate runtime (pre-tool-call enforcer) | `system-spec-kit` | [`../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts`](../../deep-loop-runtime/lib/deep-loop/permissions-gate.ts) | Phase 003 |
 | cli-opencode budget propagation (sentinel mirror of cli-devin canonical) | `cli-opencode` | [`../../cli-opencode/references/context-budget.md`](../../cli-opencode/references/context-budget.md) | Phase 006 |
 | sk-prompt budget awareness (subsection in cross-CLI quality card) | `sk-prompt` | [`../../sk-prompt/assets/cli_prompt_quality_card.md`](../../sk-prompt/assets/cli_prompt_quality_card.md) § Budget Awareness | Phase 006 |
-| MiniMax M2.7 prompt framework (empirical winner: TIDD-EC + dense pre-plan) | `cli-opencode` | [`../../cli-opencode/assets/prompt_templates.md`](../../cli-opencode/assets/prompt_templates.md) § Template 14 + [`./prompt_quality_card.md`](../../cli-opencode/assets/prompt_quality_card.md) § per-model override | 120/003 |
-| MiMo-V2.5-Pro prompt framework (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `cli-opencode` | [`../../cli-opencode/assets/prompt_templates.md`](../../cli-opencode/assets/prompt_templates.md) § Template 15 + [`../../cli-opencode/assets/prompt_quality_card.md`](../../cli-opencode/assets/prompt_quality_card.md) § per-model override | 126/004 |
+| MiniMax prompt-framework guidance (M2.7: TIDD-EC + dense pre-plan; M3: see profile) | `sk-prompt-small-model` | [`./models/minimax-2.7.md`](./models/minimax-2.7.md) + [`./models/minimax-m3.md`](./models/minimax-m3.md) | 120/003 |
+| MiMo-V2.5-Pro prompt-framework guidance (empirical winner: **COSTAR + lean**; RACE fallback — frame for format/brevity, NOT guardrails; TIDD-EC ranked last) | `sk-prompt-small-model` | [`./models/mimo-v2.5-pro.md`](./models/mimo-v2.5-pro.md) | 126/004 |
 
 ---
 
@@ -56,7 +56,7 @@ The index is the contract; executor skills own the patterns. If a path here is m
 | Executor / Skill | Owns | Surface |
 | --- | --- | --- |
 | `cli-devin` | SWE-1.6 (free) + DeepSeek-v4-pro / Kimi-k2.6 / GLM-5.1 via Cognition Pro | Budget engine, output verification, confidence rubric, per-model budgets, quota fallback |
-| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`, `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling) | Permissions matrix, budget propagation mirror, MiniMax prompt-framework template (TIDD-EC + dense), MiMo prompt-framework template (COSTAR + lean) |
+| `cli-opencode` | DeepSeek-v4-pro via DeepSeek API direct + DeepSeek/Kimi/Qwen/GLM via opencode-go pool + MiniMax via the Token Plan (`minimax-coding-plan`, default — M3-highspeed/M2.7-highspeed) and Direct API (`minimax`, pay-per-token) + MiMo-V2.5-Pro via the Xiaomi Token Plan (`xiaomi-token-plan-ams`, `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling) | Permissions matrix, budget propagation mirror. Prompt-CRAFT (framework selection, pre-planning density, per-model guidance) now lives in the hub profiles at `sk-prompt-small-model/references/models/`; cli-opencode owns only invocation MECHANICS (binary flags, provider id, quota pool). |
 | `sk-prompt` | Cross-CLI prompt quality + model registry | Model-profiles.json (each entry has `executors` array), cli_prompt_quality_card.md |
 | `system-spec-kit` | Runtime helpers (TypeScript) | bayesian-scorer.ts, fallback-router.ts, permissions-gate.ts |
 | `sk-prompt-small-model` (this skill) | Discovery + index only | This file, SKILL.md, graph-metadata.json |
@@ -69,7 +69,7 @@ If a pattern needs to span two executors, the rule is: ship the body in the prim
 
 When adopting Claude Haiku, Gemini Flash, or any future small-model provider, follow this checklist in order:
 
-1. **Populate the registry stub** at `sk-prompt/assets/model-profiles.json` — set `quota_pool`, `context_length`, `tool_calling`, `provider`, and any other required fields.
+1. **Populate the registry stub** at `sk-prompt/assets/model-profiles.json` — set the executor entry's `provider` + `quota_pool` (nested under `executors[]`), plus the model-level `context_length`, `tool_calling`, `primary_quota_pool`, and `recommended_frameworks` fields.
 2. **Optional: set `fallback_target`** on existing models that should fall back to the new provider (only if the new provider's quota pool differs from the source).
 3. **Add trigger phrases** in `sk-prompt-small-model/graph-metadata.json` if the new provider has a distinct dispatch keyword (e.g. `haiku dispatch`).
 4. **Mark the affected rows** in this index as shipped — no rows need to be added if the existing patterns already cover the new provider's needs.

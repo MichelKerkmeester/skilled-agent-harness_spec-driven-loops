@@ -1,139 +1,49 @@
 ---
 title: "Devin CLI — Prompt Quality Card"
-description: "CLEAR 5-check + framework selection for composing cli-devin dispatch prompts. Apply before every Bash invocation; tag the framework in the comment."
+description: "Fast-path prompt discipline for cli-devin dispatches. Frameworks and CLEAR are canonical in sk-prompt; this card carries Devin model-selection mechanics."
 ---
 
 # Devin CLI — Prompt Quality Card
 
-Pre-dispatch checklist for prompts sent to `devin`. Mirrors the cli-* family card shape.
+Fast-path prompt-quality discipline for cli-devin dispatches. The 7-framework selection table, task-to-framework map, density notes, and CLEAR 5-question check are owned by the canonical card — do not inline them here. This card adds only the Devin-executor mechanics: which Devin model + permission mode fits which task shape.
 
----
+## 1. Shared Layer (delegated — do not inline)
 
-## 1. OVERVIEW
+The 7-framework selection table, the task-to-framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here. The canonical CLEAR (Correctness / Logic / Expression / Arrangement / Reusability) is the single CLEAR for the cli-* family — cli-devin does not define its own.
 
-This card provides the pre-dispatch quality discipline for cli-devin prompts. Section 2 is the CLEAR 5-check (Concrete / Limited / Evidence / Acceptance / Risk-Tier). Section 3 is the framework selection table mapping task shape to a structured prompt framework. Section 4 lists common composition patterns. Section 5 covers Memory Handback notes. Apply this card BEFORE every `devin --prompt-file` invocation; tag the chosen framework in the Bash invocation comment.
+-> `../../sk-prompt/assets/cli_prompt_quality_card.md`
+(deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
----
+## 2. Devin Model Selection & Overrides
 
-## 2. CLEAR 5-Check
+cli-devin dispatches several profiled models. Pick the Devin model + permission mode by task shape, then compose the prompt with the canonical framework named below. These rows are EXECUTOR MECHANICS (model routing + permission mode), NOT prompt frameworks — the framework column points back to the canonical card's owned set.
 
-Before composing the `devin --prompt-file` payload, verify the prompt is CLEAR:
+| Task shape | Devin model | Permission mode | Canonical framework | Hub profile |
+|------------|-------------|-----------------|---------------------|-------------|
+| Clearly-scoped single-file / small multi-file coding | `swe-1.6` | `auto` | `RCAF` | `../../sk-prompt-small-model/references/models/swe-1.6.md` |
+| Narrative-heavy / context-gathering coding | `swe-1.6` | `auto` | `RCAF` (profile fallback `STAR`) | `../../sk-prompt-small-model/references/models/swe-1.6.md` |
+| Well-defined multi-file refactor | `swe-1.6` (escalate to `deepseek-v4-pro` as complexity grows) | `auto` | `RCAF` (profile fallback `BUILD`) | `../../sk-prompt-small-model/references/models/swe-1.6.md` · `.../deepseek-v4-pro.md` |
+| Security review / RCA / architecture review | `deepseek-v4-pro` | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md`) | `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md` |
+| Complex refactor with cross-cutting context | `deepseek-v4-pro` (large-context fallback `kimi-k2.6`) | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md`) | `../../sk-prompt-small-model/references/models/deepseek-v4-pro.md` · `.../kimi-k2.6.md` |
+| Agentic / tool-use-heavy review (e.g. cross-MCP correlation) | `glm-5.1` | `auto` | Hub profile (RCAF default; see `../../sk-prompt-small-model/references/models/glm-5.1.md`) | `../../sk-prompt-small-model/references/models/glm-5.1.md` |
+| Async cloud session | per task shape above | operator-approved | per task shape above | see `../references/cloud_handoff.md` |
 
-| Check | Question | Pass Criteria |
-|-------|----------|---------------|
-| **C — Concrete** | Does the prompt name files, line ranges, and verification commands? | Yes — no vague "improve this code" / "make it better" |
-| **L — Limited** | Is scope bounded? | Yes — explicit "do not modify outside <path>" / "touch only <files>" |
-| **E — Evidence** | Does it include the evidence the dispatched session needs? | Yes — surface tag (from sk-code), relevant excerpts, prior decisions |
-| **A — Acceptance** | Are completion criteria stated? | Yes — exact tests, exit-code expectations, behaviors to verify |
-| **R — Risk-Tier** | Is the permission mode appropriate for what's being asked? | `auto` default; escalate only with operator approval |
+Read the hub profile before composing for any profiled model — it may prescribe a different framework, pre-planning density, or bundle-gate strictness than the cross-model defaults (tier-2 of §3). The SWE-1.6 mandatory pre-planning contract (ordered steps + acceptance criteria + stop conditions + verification) is owned by `../../sk-prompt-small-model/references/models/swe-1.6.md` — it is not restated here.
 
-If any check fails → revise the prompt before dispatching. If complexity ≥ 7/10 OR compliance/security signals present → dispatch `@prompt-improver` via the Task tool instead of inline composition.
+### Pre-dispatch addendum — permission mode (Devin-specific, not a CLEAR axis)
 
----
+Before each `devin --prompt-file` invocation, confirm the permission mode matches the work: `auto` is the default; `dangerous` and other escalations require explicit operator approval recorded in the dispatch log. This is an executor pre-flight check, NOT a competing CLEAR definition — CLEAR is canonical (§1).
 
-## 3. Framework Selection
+## 3. Delegation / Precedence
 
-Choose the prompt framework that matches the task shape. Tag the chosen framework in a comment above the Bash invocation:
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`. Apply it in order; stop at the first tier that fully covers the task:
 
-```bash
-# FRAMEWORK: ATLAS — Audit / Trace / Localize / Articulate / Suggest (security review)
-devin --prompt-file /tmp/devin-prompt.md --model deepseek-v4 --permission-mode auto 2>&1 </dev/null
-```
+- **Tier 1 (fast path):** build the prompt from the canonical card — select a framework, run the CLEAR check, dispatch.
+- **Tier 2 (model override):** when dispatching a profiled model, honor the model profile at `../../sk-prompt-small-model/references/models/<id>.md` — it overrides the cross-model defaults. (This replaces cli-devin's former "every dispatch MUST be composed through sk-prompt" mandate.)
+- **Tier 3 (deep path):** dispatch `@prompt-improver` via the Task tool when any canonical Tier 3 trigger applies: complexity >= 7/10, compliance/policy/privacy/security sensitivity, >1 stakeholder or audience, >1 ambiguous requirement, or the fast-path CLEAR check cannot clear its floor; hand the returned `ENHANCED_PROMPT` to the `devin` invocation.
 
-| Framework | When | Devin Defaults |
-|-----------|------|----------------|
-| **RCAF** (Role / Context / Action / Format) ★ default for SWE-1.6 | Default for SWE-1.6 coding tasks. Clearly-scoped single-file or small multi-file generation. The role anchor gives SWE-1.6 immediate framing without burning tokens on situation-setting, producing tighter and more focused output. | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block (see prompt_templates.md §2) |
-| **STAR** (Situation / Task / Action / Result) | Narrative-heavy context gathering, tool-use traces, simple-to-medium code tasks where role framing doesn't fit naturally | `--model swe-1.6 --permission-mode auto` — **REQUIRED**: dispatch through `sk-prompt` + include pre-planning block |
-| **BUILD** (Bounds / User-need / Implementation / Limits / Done-when) | Well-defined multi-file refactor where scope boundaries dominate the prompt design | `--model swe-1.6 --permission-mode auto` (escalate to `deepseek-v4` if complexity grows) — **REQUIRED** for SWE-1.6: dispatch through `sk-prompt` + include pre-planning block. **Don't combine BUILD with strict bundle-gate wording** — verbose constraint language pushes SWE 1.6 toward defensive output (more disclaimers, less direct code) rather than the disciplined output the strict wording is trying to elicit. |
-| **ATLAS** (Audit / Trace / Localize / Articulate / Suggest) | Complex security review / RCA / architecture review | `--model deepseek-v4 --permission-mode auto` (fallbacks: `glm-5.1` agentic, `kimi-k2.6` large-context) |
-| **CONTEXT** (Context / Outcome / Notes / Tasks / Examples / Xtra / Tests) | Complex refactor with cross-cutting context | `--model deepseek-v4 --permission-mode auto` (Kimi k2.6 fallback for large context) |
-| **CLOUD-HANDOFF** (Context / Termination / Return) | Async cloud session | See `references/cloud_handoff.md` |
+## 4. Related
 
-> **SWE-1.6 prompt-quality contract**: Every `--model swe-1.6` dispatch MUST be composed through `sk-prompt` (**default RCAF**; STAR for narrative-heavy tasks; BUILD for multi-file refactors) + CLEAR 5-check, AND include an explicit pre-planning block (ordered steps + acceptance criteria + stop conditions + verification approach). SWE-1.6 is coding-specialized but smaller than the complex-task models — the calling AI must do the structural decomposition upfront rather than asking SWE-1.6 to figure it out. Skipping this contract is the largest cause of underwhelming SWE-1.6 output. For complex tasks beyond SWE-1.6's clearly-defined zone, escalate to `deepseek-v4` rather than throwing more freeform prompt at SWE-1.6.
->
-> **Composition guidance**: use medium-density pre-planning (3-4 ordered steps with per-step acceptance criteria + verification command); avoid dense pre-plans (4+ steps with full I/O contracts per step) — extra structure does not translate to better output. Framework choice has more impact on output quality than anti-hallucination wording tuning. Keep bundle-gate language at "standard" level; do NOT add strict wording (smoke-run-required, aggressive constraint enforcement) — verbose constraints push SWE 1.6 toward defensive output.
+-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` (copy-paste templates + composition patterns A/B/C) · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)
 
----
-
-## 4. Common Composition Patterns
-
-### Pattern A — Single-file edit
-```
-<context>
-File: src/auth/token.ts
-Surface: typescript-react
-</context>
-
-<task>
-<one-line goal>
-<exact change>
-<verification: npm test -- --filter token>
-</task>
-
-<constraints>
-- Permission mode: auto.
-- Touch only src/auth/token.ts.
-</constraints>
-```
-
-### Pattern B — Multi-file refactor
-```
-<context>
-Surface: <stack>
-Affected files: <list>
-</context>
-
-<task>
-Refactor <name> following <pattern>. Keep behavior identical (verified by <tests>).
-</task>
-
-<constraints>
-- Permission mode: auto.
-- Do not modify files outside <scope>.
-- Run <tests> after every significant change; stop on failure.
-</constraints>
-```
-
-### Pattern C — Architectural review (read-only intent)
-```
-<context>
-Files: <list or directory>
-Surface: <stack>
-</context>
-
-<task>
-Review the architecture of <area>. Identify: <axes>. Produce Markdown report with file:line citations. Do not modify any files.
-</task>
-
-<constraints>
-- Permission mode: auto. Read-only intent.
-- Output: P0/P1/P2 finding blocks with rationale and suggested fix.
-</constraints>
-```
-
----
-
-## 5. Memory Handback Notes
-
-If the dispatch produces continuity-worthy state (decisions, new failure modes, surfaced rules), include a `<memory_handback>` block in the prompt asking Devin to emit a `MEMORY_HANDBACK` section. The calling AI then runs the canonical 7-step protocol (see `system-spec-kit/references/cli/memory_handback.md`).
-
-Template:
-```
-<memory_handback>
-After completing the task, emit a MEMORY_HANDBACK section containing:
-- recent_action: <one-line summary>
-- next_safe_action: <suggested follow-up>
-- blockers: <list or empty>
-- key_files: <list>
-- open_questions: <list or empty>
-- answered_questions: <list with answers>
-</memory_handback>
-```
-
----
-
-## 6. Related Resources
-
-- [SKILL.md](../SKILL.md) — Smart router + Default Invocation
-- [prompt_templates.md](./prompt_templates.md) — Copy-paste templates
-- [shared CLEAR card](../../system-spec-kit/references/cli/shared_prompt_quality_card.md) — Family-wide CLEAR (if present in this repo)
+- Memory Handback: when a dispatch produces continuity-worthy state, request a `MEMORY_HANDBACK` block in the prompt and run the canonical protocol — see `./prompt_templates.md` §8 and `../../system-spec-kit/references/cli/memory_handback.md`.

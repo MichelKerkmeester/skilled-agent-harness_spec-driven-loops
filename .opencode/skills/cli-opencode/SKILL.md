@@ -2,7 +2,7 @@
 name: cli-opencode
 description: "OpenCode CLI orchestrator: external dispatch, in-OpenCode parallel sessions, cross-AI handback with full runtime context."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.3.6.0
+version: 1.3.7.0
 ---
 
 <!-- Keywords: opencode, opencode-cli, opencode-run, cross-ai, spec-kit-runtime, plugin-runtime, parallel-sessions, share-url, detached-session, agent-delegation, opencode-go, deepseek, openai, minimax, minimax-coding-plan, minimax-m3, minimax-m3-highspeed, token-plan, xiaomi, xiaomi-token-plan, xiaomi-token-plan-ams, mimo, mimo-v2.5-pro -->
@@ -260,7 +260,7 @@ Core flags: `--model`, `--agent`, `--variant`, `--format json`, `--dir`, continu
 
 ### Model Selection
 
-Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; omit `--agent`), the pay-per-token `minimax/MiniMax-M2.7` (Direct API), `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (Xiaomi Token Plan Europe — MiMo; high reasoning default; omit `--agent`), and `openai/*` (e.g. `openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) remain available when explicitly requested.
+Run `opencode providers list` to confirm credentials and `opencode models <provider>` for live choices. Default to `opencode-go/deepseek-v4-pro --variant high`; direct `deepseek/*`, the MiniMax Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed` (fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`; omit `--agent`), the pay-per-token `minimax/MiniMax-M2.7` (Direct API), and `xiaomi-token-plan-ams/mimo-v2.5-pro --variant high` (Xiaomi Token Plan Europe — MiMo; high reasoning preset; omit `--agent`) remain available. OpenAI chat models (`openai/gpt-5.5`, `openai/gpt-5.5-pro`, `openai/gpt-5.5-fast`) are usable when explicitly requested.
 
 Shared small-model facts, context defaults, quota pools, and fallback targets live in `../sk-prompt/assets/model-profiles.json`.
 
@@ -309,7 +309,10 @@ Install missing binaries, refuse ambiguous self-invocation, run provider pre-fli
 4. Pass `--format json` unless the calling AI explicitly wants formatted output — JSON event stream is what external runtimes parse incrementally.
 5. **Append `</dev/null` to every non-interactive `opencode run` invocation** that redirects stdout and/or stderr to files OR runs inside `while read` loops. opencode v1.14.39 reads stdin at startup before session creation; without explicit closed stdin, automation hangs forever at 0% CPU after the `+60s service=snapshot prune=7.days cleanup` log line. Position: AFTER the prompt positional argument, BEFORE the `> stdout 2> stderr` redirects. Foreground `| tail` happens to provide closed stdin (pipe stage upstream is empty) and accidentally bypasses the bug, but `> stdout.log 2> stderr.log` does not. The 9-character `</dev/null` redirect provides immediate EOF on stdin, unblocking the dispatch. **DO NOT auto-kill external operator-owned opencode sessions** when sweeping orphans between dispatches; exclude `opencode run` from pkill (per 2026-05-23 operator directive captured in memory `feedback_proactive_orphan_cleanup.md`). See `references/integration_patterns.md` §6 + memory `feedback_opencode_run_requires_dev_null_stdin.md` + CHANGELOG-2026-05-08-tool-name-regex-fix.md §Fix 4.
 6. **Pass the spec folder to the dispatched session** in the prompt: if the calling AI has an active Gate-3 spec folder, include `Spec folder: <path> (pre-approved, skip Gate 3)`. If none, ASK the user before delegating — the dispatched session cannot answer Gate 3 interactively in non-interactive `run` mode.
-7. **Load `assets/prompt_quality_card.md` before building any dispatch prompt.** Apply the CLEAR 5-question check, tag the framework in the Bash invocation comment, and use the returned `ENHANCED_PROMPT`. If complexity ≥ 7/10 or compliance/security signals appear, dispatch `@prompt-improver` via the Task tool first.
+7. **Prompt construction & model-craft (cli-* family precedence).** Compose every dispatch prompt via the 3-tier rule canonical in `../sk-prompt/assets/cli_prompt_quality_card.md`:
+   1. **Fast path (default).** Build from the local `assets/prompt_quality_card.md`, which delegates the framework table + CLEAR check to the canonical card.
+   2. **Model override (mandatory for a profiled model).** If the target model has a profile at `../sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model default. The **sk-prompt-small-model** hub owns per-model prompt-craft (framework + scaffold + gotchas, mirroring `sk-prompt/assets/model-profiles.json` `recommended_frameworks`); consult it before composing for any small model.
+   3. **Deep path (escalation).** Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when complexity ≥ 7/10, compliance/privacy/security signal, >1 stakeholder, >1 ambiguous requirement, or the fast-path CLEAR cannot clear its floor.
 8. Validate dispatched session output: parse JSON events incrementally (tool calls, partial messages, final summary), run syntax checks if code generated, and cross-reference against project standards via `sk-code` surface detection plus `sk-code-review` when findings-first review is requested (see ALWAYS rule 12).
 9. Capture stderr (`2>&1`) to catch tool errors and warnings.
 10. Classify the use case (1 / 2 / 3) before dispatching — the smart router refuses dispatches that do not map to one of the three.
@@ -361,7 +364,7 @@ printf '%s' "$JSON_PAYLOAD" | node .opencode/skills/system-spec-kit/scripts/dist
 ### Templates and Assets
 
 - [prompt_templates.md](./assets/prompt_templates.md) - 13 numbered copy-paste templates per use case + agent + handback
-- [prompt_quality_card.md](./assets/prompt_quality_card.md) - Framework selection, CLEAR 5-check, escalation triggers
+- [prompt_quality_card.md](./assets/prompt_quality_card.md) - Executor-specific model overrides (MiniMax, MiMo); delegates shared framework table and CLEAR check to canonical card
 
 ### Shared (cli-* family)
 - [shared_smart_router.md](../system-spec-kit/references/cli/shared_smart_router.md) - Helper-function bodies for the smart router.

@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "description": "Phase 6: thin-and-standardize-cli-cards",
+  "keywords": [
+    "phase",
+    "thin-and-standardize-cli-cards"
+  ],
+  "lastUpdated": "2026-06-02T18:04:14.899Z",
+  "specId": "006",
+  "folderSlug": "thin-and-standardize-cli-cards",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

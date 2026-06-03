@@ -15,7 +15,7 @@ This scenario validates the CLEAR 5-check workflow from `prompt_quality_card.md`
 
 ### Why This Matters
 
-`assets/prompt_quality_card.md` §4 (CLEAR 5-Check) and §3 (Task to Framework Map) are the explicit quality gate before any non-trivial dispatch. SKILL.md §4 ALWAYS rule 10 makes loading the card mandatory. This scenario keeps the discipline auditable by requiring operators to record CLEAR scores BEFORE dispatch and produce evidence the upgrade actually mattered.
+The canonical card at `sk-prompt/assets/cli_prompt_quality_card.md` §4 (CLEAR 5-Check) and §3 (Task to Framework Map) are the explicit quality gate before any non-trivial dispatch (reached via the local `assets/prompt_quality_card.md` delegation). SKILL.md §4 ALWAYS rule 9 (Prompt construction & model-craft) makes loading the card mandatory. This scenario keeps the discipline auditable by requiring operators to record CLEAR scores BEFORE dispatch and produce evidence the upgrade actually mattered.
 
 ---
 
@@ -37,9 +37,9 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 
 ### Recommended Orchestration Process
 
-1. Read `assets/prompt_quality_card.md` §4 (CLEAR check) and §3 (Task to Framework Map).
+1. Read the canonical card at `sk-prompt/assets/cli_prompt_quality_card.md` §4 (CLEAR check) and §3 (Task to Framework Map), reached via the local `assets/prompt_quality_card.md` delegation.
 2. Score the weak prompt "Fix auth" on Correctness, Logic, Expression, Arrangement, Reusability.
-3. Pick a framework from §2 (RCAF for general implementation) and rewrite the prompt.
+3. Pick a framework from the canonical card §2 (RCAF for general implementation) and rewrite the prompt.
 4. Re-score the improved prompt and confirm it scores higher.
 5. Dispatch the improved prompt against a deliberately weak `auth.ts` seed file and inspect the result.
 
@@ -49,7 +49,7 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 
 ### Optional Supplemental Checks
 
-- For complexity >= 7/10 prompts, escalate to `@prompt-improver` per `assets/prompt_quality_card.md` §5 Escalation. Capture the returned `ENHANCED_PROMPT` as additional evidence.
+- For complexity >= 7/10 prompts, escalate to `@prompt-improver` per the canonical card `sk-prompt/assets/cli_prompt_quality_card.md` §5 (Prompt-Composition Precedence). Capture the returned `ENHANCED_PROMPT` as additional evidence.
 
 ---
 
@@ -60,14 +60,14 @@ Operators run the exact prompt and command sequence for `CX-022` and confirm the
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../assets/prompt_quality_card.md` (§2 Framework Selection, §3 Task to Framework Map, §4 CLEAR 5-Check, §5 Escalation) | Authoritative quality card |
-| `../../SKILL.md` (§4 ALWAYS rule 10) | Mandates loading the quality card |
+| `../../assets/prompt_quality_card.md` → delegates to `../../../sk-prompt/assets/cli_prompt_quality_card.md` (§2 Framework Selection, §3 Task to Framework Map, §4 CLEAR 5-Check, §5 Prompt-Composition Precedence) | Authoritative quality card |
+| `../../SKILL.md` (§4 ALWAYS rule 9) | Mandates loading the quality card |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../assets/prompt_quality_card.md` | §4 CLEAR 5-Check |
+| `../../../sk-prompt/assets/cli_prompt_quality_card.md` | §4 CLEAR 5-Check (via local card delegation) |
 | `../../assets/prompt_templates.md` | §1 OVERVIEW Flag Reference + §11 Template Variables |
 
 ---

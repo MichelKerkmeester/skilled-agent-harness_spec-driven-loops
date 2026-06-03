@@ -1,0 +1,18 @@
+{
+  "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/003-land-recommended-frameworks-data",
+  "description": "Phase 3: land-recommended-frameworks-data",
+  "keywords": [
+    "phase",
+    "land-recommended-frameworks-data"
+  ],
+  "lastUpdated": "2026-06-02T18:04:12.385Z",
+  "specId": "003",
+  "folderSlug": "land-recommended-frameworks-data",
+  "parentChain": [
+    "skilled-agent-orchestration",
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

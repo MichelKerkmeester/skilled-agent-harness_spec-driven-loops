@@ -1,95 +1,37 @@
 ---
-title: Prompt Quality Card
-description: Fast-path framework selection and CLEAR checks for OpenCode CLI prompt construction.
+title: OpenCode CLI — Prompt Quality Card
+description: Fast-path prompt discipline for OpenCode CLI dispatches; frameworks and CLEAR are canonical in sk-prompt.
 ---
 
-# Prompt Quality Card
+# OpenCode CLI — Prompt Quality Card
 
-Fast-path prompt-quality guidance for OpenCode CLI dispatches. Use this asset before building a routine `opencode run` prompt so the router stays lightweight while still applying framework selection and a quick CLEAR pass.
+Fast-path dispatch discipline for `opencode run` prompts. The 7-framework table, task-to-framework map, pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are owned by the canonical card — do not inline them here.
 
-## 1. OVERVIEW
+## 1. Shared Layer (delegated — do not inline)
 
-### Purpose
+The 7-framework selection table, the task->framework map, the pre-planning-density / bundle-gate / anti-hallucination notes, and the CLEAR 5-question check are OWNED by the canonical card. Do NOT copy them here.
 
-Provide a small, always-load asset for OpenCode CLI prompt construction that improves quality without pulling in the full prompt-engineering skill on routine dispatches.
+-> `../../sk-prompt/assets/cli_prompt_quality_card.md`  (deep theory: `../../sk-prompt/references/patterns_evaluation.md`)
 
-### Usage
+## 2. OpenCode Model Overrides
 
-Select a framework from the task map, run the CLEAR 5-check, and escalate to `@prompt-improver` when the task crosses the fast-path risk threshold.
+OpenCode dispatches the MiniMax and MiMo small models, which override the cross-model defaults from the canonical card:
 
----
+| Model (dispatchable here) | Override | Profile |
+|---|---|---|
+| MiniMax M3 (Token Plan default) | TIDD-EC + dense | `../../sk-prompt-small-model/references/models/minimax-m3.md` |
+| MiniMax M2.7 (fallback) | TIDD-EC + dense | `../../sk-prompt-small-model/references/models/minimax-2.7.md` |
+| MiMo V2.5 Pro | COSTAR + lean, `--variant high` | `../../sk-prompt-small-model/references/models/mimo-v2.5-pro.md` |
+| deepseek-v4-pro / kimi-k2.6 / qwen3.6 / glm-5.1 | default RCAF (no model-specific benchmark) | `../../sk-prompt-small-model/references/models/` |
 
-## 2. Framework Selection Table
+**Executor notes:** Omit `--agent` for all small-model dispatches listed above. OpenCode maps `--variant low/medium/high` to MiMo's reasoning effort; `high` is the standing default for MiMo. Ambiguous use-case (1 vs 2 vs 3) prevents the router from picking a path — resolve before dispatch. Always include a self-invocation guard signal when the dispatched session could loop back.
 
-| Framework | Best for | Complexity band | Core components |
-|-----------|----------|-----------------|-----------------|
-| `RCAF` | General implementation, edit, and documentation prompts | 1-6 | Role, Context, Action, Format |
-| `COSTAR` | Audience-aware communication and content generation | 3-6 | Context, Objective, Style, Tone, Audience, Response |
-| `RACE` | Fast single-output tasks where speed matters most | 1-3 | Role, Action, Context, Execute |
-| `CIDI` | Process instructions, tutorials, and SOP-style prompts | 4-6 | Context, Instructions, Details, Input |
-| `TIDD-EC` | Compliance, review, and quality-critical prompts | 6-8 | Task, Instructions, Do's, Don'ts, Examples, Context |
-| `CRISPE` | Research, strategic exploration, and option generation | 5-7 | Capacity, Insight, Statement, Personality, Experiment |
-| `CRAFT` | Complex multi-stakeholder planning and analysis | 7-10 | Context, Role, Action, Format, Target |
+## 3. Delegation / Precedence
 
----
+The 3-tier precedence rule (fast path -> model override -> deep path) is canonical in `../../sk-prompt/assets/cli_prompt_quality_card.md` and restated in `../SKILL.md`.
 
-## 3. Task to Framework Map
+OpenCode-specific escalation example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first, then pass that result to OpenCode.
 
-| Task | Framework |
-|------|-----------|
-| Generation | `RCAF` |
-| Review | `TIDD-EC` |
-| Research | `CRISPE` |
-| Edit | `RCAF + TIDD-EC` |
-| Analyze / plan | `CRAFT` |
-| Parallel detached session (use case 2) | `CIDI` |
-| Cross-AI handback (use case 3) | `RCAF + TIDD-EC` |
+## 4. Related
 
-> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything touching more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans leave too much structural decision-making to the model.
->
-> **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model — verbose constraints push models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
->
-> **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references), but don't expect it to outweigh framework choice or pre-planning density.
->
-> **Per-model override — MiniMax (Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed`, fallback `minimax-coding-plan/MiniMax-M2.7-highspeed`) → TIDD-EC + dense pre-planning.** The 120/003 benchmark (real MiniMax M2.7 runs across the 7-fixture rig) found MiniMax diverges from the cross-model defaults above: **TIDD-EC** (guardrail-heavy: Task/Instructions/Do's/Don'ts/Examples/Context) beats RCAF (0.767 vs 0.742), and **dense** pre-planning beats medium (0.775 vs 0.767) — the opposite of the medium-pre-plan default. For MiniMax dispatches, default to TIDD-EC with a dense 4-5 step pre-plan (carried forward to M3 until re-benchmarked); RCAF is the fallback. Omit `--agent`. See `cli-opencode/assets/prompt_templates.md` §MiniMax and `.opencode/specs/skilled-agent-orchestration/120-cli-opencode-minimax-optimization/003-minimax-prompt-framework-benchmark/eval-loop/synthesis.md`.
->
-> **Per-model override — MiMo (`xiaomi-token-plan-ams/mimo-v2.5-pro`) → COSTAR + lean (RACE fallback).** The 126/004 benchmark (10/10 real MiMo-V2.5-Pro runs) found MiMo is the **opposite of MiniMax**: **COSTAR** wins (composite 1.0000), **RACE** is a statistical tie (0.9934), and the guardrail-heavy **TIDD-EC that won for MiniMax came DEAD LAST** for MiMo. MiMo is frontier-correct on every framework (100% assertion pass across the board), so the discriminator is **format adherence + token efficiency, not correctness** — lean output/audience-framed prompts (COSTAR `Style: "no preamble"` + `Audience: "automated suite"`) suppress the explanatory preamble that CIDI/RCAF/TIDD-EC leak. Default to **COSTAR with lean-to-medium pre-planning**; RACE is the fallback. Do **not** use TIDD-EC/dense (ranked last; ~2.4× longer output) and avoid CIDI (intermittent tool-only file-writes instead of inline code). Always pass **`--variant high`** (opencode maps low/medium/high to MiMo's reasoning effort; high is the standing default). Omit `--agent`. (Re-benchmarked at `--variant high`: COSTAR co-wins; at high reasoning the framework field compresses so the choice matters *less*, but COSTAR/RACE-lean stays the safe default.) See `cli-opencode/assets/prompt_templates.md` §MiMo, `.../004-mimo-prompt-framework-benchmark/eval/synthesis.md`, and `.../eval/synthesis-high-reasoning.md`.
-
----
-
-## 4. CLEAR 5-Check
-
-- Correctness: Does the prompt describe the real task and files without contradiction?
-- Logic: Does it explain how the dispatched OpenCode session should reason or decide?
-- Expression: Is the wording specific enough to avoid guesswork?
-- Arrangement: Is the order task -> context -> constraints -> output -> verification?
-- Reusability: Could this prompt be reused by swapping placeholders?
-
----
-
-## 5. Escalate to `@prompt-improver`
-
-Use Task-based escalation when complexity is `>= 7/10`, compliance or security sensitivity appears, more than one stakeholder matters, or more than one requirement is unclear.
-
-OpenCode-specific example: if the task would otherwise need a long `opencode run` prompt plus an explicit Memory Epilogue and a parallel-session decision, ask `@prompt-improver` for the final `ENHANCED_PROMPT` first and then pass that result to OpenCode.
-
----
-
-## 6. Failure Patterns
-
-- Missing output format or success criteria
-- Unbounded scope
-- Vague verbs
-- No repo or file anchors
-- No "do not change" guardrails
-- Ambiguous use case (1 vs 2 vs 3) — the smart router cannot pick a path
-- Missing self-invocation guard signal in dispatched session
-
----
-
-## 7. Related Resources
-
-- `../../sk-prompt/assets/cli_prompt_quality_card.md`
-- `./prompt_templates.md`
-- `../SKILL.md`
-
+-> `../../sk-prompt/assets/cli_prompt_quality_card.md` · `./prompt_templates.md` · `../SKILL.md` · `../../sk-prompt-small-model/references/models/` (per-model profiles)

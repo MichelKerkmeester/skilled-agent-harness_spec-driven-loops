@@ -612,13 +612,13 @@ Desired user-visible outcome: A real working health-check server generated from 
 
 #### Description
 
-Verify the prompt_quality_card.md CLEAR 5-check is applied before dispatch and that an under-scored prompt is escalated to `@prompt-improver` per the documented threshold.
+Verify the CLEAR 5-check is applied before dispatch (via the canonical card at `sk-prompt/assets/cli_prompt_quality_card.md`, reached through the local `assets/prompt_quality_card.md` delegation) and that an under-scored prompt is escalated to `@prompt-improver` per the documented threshold.
 
 #### Scenario Contract
 
-Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the prompt_quality_card.md CLEAR 5-check (Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it to a structured prompt by applying the RCAF framework from §3 of the card. Dispatch the improved prompt against /tmp/cli-codex-playbook-cx022/auth.ts with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast". Verify the operator records the CLEAR scores for both versions, names the framework selected, and Codex produces a meaningfully better implementation from the improved prompt than the weak prompt would have. Return a verdict including both CLEAR score sets and the framework selected.`
+Prompt: `Spec folder: /tmp/cli-codex-playbook (pre-approved, skip Gate 3). As a cross-AI orchestrator constructing a non-trivial dispatch, FIRST take a deliberately weak prompt ("Fix auth"), score it with the CLEAR 5-check from the canonical card (sk-prompt/assets/cli_prompt_quality_card.md §4: Correctness, Logic, Expression, Arrangement, Reusability), THEN escalate it to a structured prompt by applying the RCAF framework from §3 of the canonical card (CLI Task to Framework Map). Dispatch the improved prompt against /tmp/cli-codex-playbook-cx022/auth.ts with --model gpt-5.5 --sandbox workspace-write -c model_reasoning_effort="medium" -c service_tier="fast". Verify the operator records the CLEAR scores for both versions, names the framework selected, and Codex produces a meaningfully better implementation from the improved prompt than the weak prompt would have. Return a verdict including both CLEAR score sets and the framework selected.`
 
-Expected signals: Operator records CLEAR scores for the weak prompt (low on Expression and Arrangement). Operator names the chosen framework from `prompt_quality_card.md` §2 (e.g., RCAF). Improved prompt scores higher. Dispatched command line uses the improved prompt and exits 0.
+Expected signals: Operator records CLEAR scores for the weak prompt (low on Expression and Arrangement). Operator names the chosen framework from the canonical card `sk-prompt/assets/cli_prompt_quality_card.md` §2 (e.g., RCAF). Improved prompt scores higher. Dispatched command line uses the improved prompt and exits 0.
 
 Desired user-visible outcome: An auditable trail showing the prompt-quality discipline was applied before the dispatch and a working file demonstrating the upgrade actually mattered.
 

@@ -43,19 +43,19 @@ Load this card before building any CLI dispatch prompt. Select a framework from 
 | Edit | `RCAF + TIDD-EC` | Pair execution clarity with explicit guardrails |
 | Analyze / plan | `CRAFT` | Prefer when dependencies, stakeholders, or phases matter |
 
-> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For small coding-specialized models (e.g. cli-devin's SWE-1.6), pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models (claude-opus-4.7, gpt-5.5, deepseek-v4-pro, kimi-k2.6, gemini-2.5-pro), pre-planning is recommended for non-trivial dispatches but not mandatory.
+> **Pre-planning density**: For non-trivial dispatches (multi-step tasks, code generation with acceptance criteria, anything that touches more than one file), prefer **medium-density pre-planning** — 3-4 ordered steps with per-step acceptance criteria + verification command. Dense pre-plans (4+ steps with full I/O contracts per step) add prompt cost without clear yield — medium pre-planning matches or beats dense on every measured model. Lighter pre-plans (no steps, or fewer than 3) leave too much structural decision-making to the model. For small-model-hub and coding-specialized models (e.g. cli-devin's SWE-1.6, deepseek-v4-pro, kimi-k2.6), pre-planning is the calling AI's job and skipping it is the largest cause of underwhelming output; for frontier models (claude-opus-4.7, gpt-5.5, gemini-2.5-pro), pre-planning is recommended for non-trivial dispatches but not mandatory.
 >
 > **Bundle-gate strictness**: Keep bundle-gate / acceptance-verification language at the "standard" level (single-layer check or implicit acceptance verification matching the fixture's stated criteria). Strict bundle-gate wording (multi-layer enforcement clauses, "smoke-run required", aggressive validation insistence) underperforms standard across every measured model (SWE-1.6, deepseek-v4-pro, kimi-k2.6) — verbose constraint language pushes models toward defensive output (more disclaimers, fewer direct code blocks) rather than the discipline the strict wording is trying to elicit.
 >
 > **Anti-hallucination wording is a secondary lever, not the primary one.** Framework choice (RCAF role anchor) is ~2.4× more impactful than aggressive anti-hallucination wording across measured models. Anti-hallucination wording is useful as a backstop for high-risk fixture clusters (CLI flag invention, library symbol references, defensive validation of unverifiable claims), but don't expect it to outweigh framework choice or pre-planning density.
 
-> **Per-model framework overrides live in each executor's own card.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the executor card that dispatches the model (e.g. cli-opencode for MiniMax — Token Plan default `minimax-coding-plan/MiniMax-M3-highspeed`). Check the executor's prompt-quality card before composing for a specific small model.
+> **Per-model framework overrides live in the model-craft hub at `sk-prompt-small-model/references/models/<id>.md`.** Some models beat the cross-model defaults above with a different framework or pre-planning density; that guidance is recorded in the per-model profile file (e.g. MiniMax M3 → `sk-prompt-small-model/references/models/minimax-m3.md`). The underlying data — including `recommended_frameworks` — is stored in `sk-prompt/assets/model-profiles.json`. Check the profile before composing for a specific small model.
 
 For per-model defaults, quota pools, and fallback targets, see `sk-prompt/assets/model-profiles.json`.
 
 ### Budget Awareness
 
-Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
+Prompts targeting small models (`swe-1.6`, `deepseek-v4-pro`, `kimi-k2.6`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`) must respect the per-model context windows and quota metadata in `sk-prompt/assets/model-profiles.json`. Use `cli-devin/references/context-budget.md` as the canonical Phase 004 source for budget composition patterns; if evidence is trimmed, mark the boundary with `[... truncated N tokens]`, where `N` is the estimated token deficit and the model must not infer the omitted content.
 
 ---
 
@@ -73,9 +73,18 @@ Use one question per dimension before every CLI dispatch. If any answer is "no",
 
 ---
 
-## 5. Escalation Triggers
+## 5. Prompt-Composition Precedence
 
-Dispatch `@prompt-improver` via the Task tool instead of loading `sk-prompt` inline when any of the following are true:
+Three tiers govern how a prompt is built, from fastest to most thorough. Evaluate in order — stop at the first tier that fully covers the task.
+
+**Tier 1 — Fast path (default)**
+Build the prompt directly from this canonical card. Select a framework from the table in section 2, apply the task-to-framework map in section 3, run the CLEAR pre-dispatch check in section 4, and dispatch. No additional skill loading required for routine work.
+
+**Tier 2 — Model override (mandatory when dispatching a profiled model)**
+If the target model has a `recommended_frameworks` entry in `sk-prompt/assets/model-profiles.json` AND a profile at `sk-prompt-small-model/references/models/<id>.md`, that profile OVERRIDES the cross-model defaults from this card. The profile may prescribe a different framework, pre-planning density, or bundle-gate strictness than the table above. Read the profile before composing the prompt — skipping this step is the leading cause of underperformance on profiled small models.
+
+**Tier 3 — Deep path (escalation)**
+Dispatch `@prompt-improver` via the Task tool (never load full `sk-prompt` inline) when ANY of the following are true:
 
 - Complexity is `>= 7/10`
 - Compliance, policy, privacy, or security sensitivity is present
@@ -110,13 +119,17 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ## 7. Mirror Sync
 
-Mirror paths:
+All five cli-* cards (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
-- `../../cli-claude-code/assets/prompt_quality_card.md`
-- `../../cli-codex/assets/prompt_quality_card.md`
-- `../../cli-gemini/assets/prompt_quality_card.md`
+A duplication guard enforces this contract:
 
-When editing this file, also update the mirrors or run `.opencode/skills/scripts/check-prompt-quality-card-sync.sh`.
+```
+.opencode/skills/system-skill-advisor/mcp_server/scripts/check-prompt-quality-card-sync.sh
+```
+
+The script asserts that no cli-* card re-inlines the framework selection table or the CLEAR 5-question table from this file. If the guard fails, remove the inlined content from the offending cli-* card and replace it with a link back to this file.
+
+When editing this file, no mirroring step is required — the delegating cards reference it by path.
 
 ---
 

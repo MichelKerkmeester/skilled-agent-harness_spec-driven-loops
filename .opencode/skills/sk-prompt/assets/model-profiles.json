@@ -31,7 +31,22 @@
         "best with narrow acceptance criteria"
       ],
       "avg_iter_wall_clock_min": 7,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "contract: mandatory caller-side pre-planning",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/swe-1.6.md",
+        "status": "default-unverified"
+      }
     },
     {
       "id": "deepseek-v4-pro",
@@ -76,7 +91,22 @@
         "needs timeout headroom"
       ],
       "avg_iter_wall_clock_min": 18,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "no model-specific benchmark",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/deepseek-v4-pro.md",
+        "status": "default-unverified"
+      }
     },
     {
       "id": "kimi-k2.6",
@@ -114,7 +144,22 @@
         "not the default for tight feedback loops"
       ],
       "avg_iter_wall_clock_min": 22,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "no model-specific benchmark",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/kimi-k2.6.md",
+        "status": "default-unverified"
+      }
     },
     {
       "id": "qwen3.6",
@@ -145,7 +190,22 @@
         "needs tight scope and explicit file anchors"
       ],
       "avg_iter_wall_clock_min": 12,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "no model-specific benchmark",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/qwen3.6.md",
+        "status": "default-unverified"
+      }
     },
     {
       "id": "glm-5.1",
@@ -181,7 +241,22 @@
         "shared opencode-go credit pool when via cli-opencode"
       ],
       "avg_iter_wall_clock_min": 16,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "rcaf",
+        "fallback": null,
+        "avoid": [],
+        "preplanning_density": "medium",
+        "evidence": {
+          "benchmark": null,
+          "primary_score": null,
+          "fallback_score": null,
+          "sample": "no model-specific benchmark",
+          "confidence": "low"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/glm-5.1.md",
+        "status": "default-unverified"
+      }
     },
     {
       "id": "minimax-m3",
@@ -200,6 +275,16 @@
       "primary_quota_pool": "minimax-token-plan",
       "fallback_target": "minimax-2.7",
       "free_tier": false,
+      "capability": {
+        "model_slug": "minimax-coding-plan/MiniMax-M3",
+        "default_variant": "high",
+        "variant_flag": "--variant",
+        "agent_policy": "omit-general",
+        "format_mode": "json",
+        "quota_pool": "minimax-token-plan",
+        "variant_status": "omitted-by-default-historically",
+        "notes": "Plain `minimax-coding-plan/MiniMax-M3` confirmed live (2026-06-02); the `-highspeed` variant slug is account-holder-directed. agent_policy omit-general: `--agent` is rejected on opencode 1.15.13. format_mode json: dispatch via `opencode run --format json` for the normalized token/cost/latency envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant."
+      },
       "strengths": [
         "subscription billing (no pay-per-token burn) via the MiniMax Token Plan",
         "separate quota pool (minimax-token-plan) independent of cognition/opencode-go",
@@ -211,7 +296,23 @@
         "--variant behavior unverified (omitted by default)"
       ],
       "avg_iter_wall_clock_min": null,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "tidd-ec",
+        "fallback": "rcaf",
+        "avoid": [],
+        "preplanning_density": "dense",
+        "evidence": {
+          "benchmark": "120/003",
+          "primary_score": 0.767,
+          "fallback_score": 0.742,
+          "sample": "7-fixture rig, real MiniMax M2.7 runs",
+          "confidence": "medium"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/minimax-m3.md",
+        "carried_from": "minimax-2.7",
+        "status": "carried"
+      }
     },
     {
       "id": "minimax-2.7",
@@ -237,6 +338,16 @@
       "primary_quota_pool": "minimax-token-plan",
       "fallback_target": null,
       "free_tier": false,
+      "capability": {
+        "model_slug": "minimax-coding-plan/MiniMax-M2.7-highspeed",
+        "default_variant": "high",
+        "variant_flag": "--variant",
+        "agent_policy": "omit-general",
+        "format_mode": "json",
+        "quota_pool": "minimax-token-plan",
+        "variant_status": "omitted-by-default-historically",
+        "notes": "Live slug `minimax-coding-plan/MiniMax-M2.7-highspeed` confirmed on opencode 1.15.13; standard `minimax-coding-plan/MiniMax-M2.7` also resolves. agent_policy omit-general: `--agent` is rejected on this provider. format_mode json: dispatch via `opencode run --format json` for the normalized envelope. default_variant high is the dispatch-layer default; `--variant` forwarding for this provider was historically omitted (unverified) — confirm acceptance before relying on a non-default variant. Direct API path (provider `minimax`, quota_pool minimax-api) is a selectable pay-per-token alternative not covered by this capability default."
+      },
       "strengths": [
         "204,800-token context",
         "two executor paths: Token Plan highspeed (subscription) + Direct API (pay-per-token)",
@@ -247,7 +358,22 @@
         "--variant behavior unverified (omitted by default)"
       ],
       "avg_iter_wall_clock_min": null,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "tidd-ec",
+        "fallback": "rcaf",
+        "avoid": [],
+        "preplanning_density": "dense",
+        "evidence": {
+          "benchmark": "120/003",
+          "primary_score": 0.767,
+          "fallback_score": 0.742,
+          "sample": "7-fixture rig, real MiniMax M2.7 runs",
+          "confidence": "medium"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/minimax-2.7.md",
+        "status": "empirical"
+      }
     },
     {
       "id": "mimo-v2.5-pro",
@@ -266,6 +392,16 @@
       "primary_quota_pool": "xiaomi-token-plan",
       "fallback_target": null,
       "free_tier": false,
+      "capability": {
+        "model_slug": "xiaomi-token-plan-ams/mimo-v2.5-pro",
+        "default_variant": "high",
+        "variant_flag": "--variant",
+        "agent_policy": "omit-general",
+        "format_mode": "json",
+        "quota_pool": "xiaomi-token-plan",
+        "variant_status": "confirmed",
+        "notes": "Live slug `xiaomi-token-plan-ams/mimo-v2.5-pro` confirmed responsive on opencode 1.15.13 (2026-06-01). default_variant high: `--variant` maps to MiMo reasoning effort (low/medium/high) and `--variant high` is confirmed accepted — always dispatch with it. agent_policy omit-general: `--agent` warns and falls back on 1.15.13. format_mode json: OpenAI-compatible endpoint; dispatch via `opencode run --format json` for the normalized envelope. Free cheap-iteration sibling `opencode/mimo-v2.5-free` (opencode-go gateway) is a separate path not covered by this capability default."
+      },
       "strengths": [
         "1,000,000-token context window (largest in the small-model rotation)",
         "strongly agentic — sustains 1000+ sequential tool calls (SWE-bench Pro 57.2)",
@@ -280,7 +416,25 @@
         "prompt-framework benchmark (126/004) used 2 fixtures / single-sample — COSTAR vs RACE tie is within noise"
       ],
       "avg_iter_wall_clock_min": null,
-      "status": "active"
+      "status": "active",
+      "recommended_frameworks": {
+        "primary": "costar",
+        "fallback": "race",
+        "avoid": [
+          "tidd-ec",
+          "cidi"
+        ],
+        "preplanning_density": "lean",
+        "evidence": {
+          "benchmark": "126/004",
+          "primary_score": 1.0,
+          "fallback_score": 0.9934,
+          "sample": "10/10 real MiMo-V2.5-Pro runs at --variant high",
+          "confidence": "high"
+        },
+        "profile_ref": "sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+        "status": "empirical"
+      }
     },
     {
       "id": "haiku",
