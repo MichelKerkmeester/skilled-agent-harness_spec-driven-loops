@@ -97,6 +97,11 @@ code-graph.sqlite
 node_modules/
 **/node_modules
 
+# Benchmark/eval fixture-seed lockfiles are install artifacts (their package.json +
+# node_modules are ignored too); keep them untracked so dependabot does not scan
+# stale fixture deps. Real MCP-server lockfiles elsewhere stay tracked + scanned.
+**/seed/package-lock.json
+
 # ───────────────────────────────────────────
 # Environment & local files
 # ───────────────────────────────────────────
