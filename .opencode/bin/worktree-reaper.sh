@@ -33,7 +33,9 @@ for arg in "$@"; do
 done
 
 log() { echo "[worktree-reaper] $*" >&2; }
-act() { if [ "$DRY_RUN" = "1" ]; then echo "DRY_RUN would: $*"; else eval "$@"; fi; }
+# Run a command as an argv array (never as a re-parsed shell string) so values
+# carrying quotes/metacharacters cannot inject. Dry-run prints %q-escaped tokens.
+act() { if [ "$DRY_RUN" = "1" ]; then printf 'DRY_RUN would:'; printf ' %q' "$@"; printf '\n'; else "$@"; fi; }
 
 MAIN_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
 if [ -z "$MAIN_ROOT" ]; then log "not in a git repo"; exit 1; fi
@@ -44,7 +46,7 @@ MAIN_TOPLEVEL="$(cd "$(dirname "$COMMON")" && pwd -P)"
 WT_BASE="$MAIN_TOPLEVEL/.worktrees"
 
 log "pruning stale worktree admin entries"
-act "git -C '$MAIN_TOPLEVEL' worktree prune"
+act git -C "$MAIN_TOPLEVEL" worktree prune
 
 if [ ! -d "$WT_BASE" ]; then
   log "no .worktrees/ dir — nothing to prune"
@@ -65,8 +67,8 @@ else
     # Merged check: branch tip reachable from main -> safe to remove.
     if [ "$branch" != "DETACHED" ] && git -C "$MAIN_TOPLEVEL" merge-base --is-ancestor "$branch" main 2>/dev/null; then
       log "prune (merged + clean): $wt_path [$branch]"
-      act "git -C '$MAIN_TOPLEVEL' worktree remove '$wt_path'"
-      act "git -C '$MAIN_TOPLEVEL' branch -d '$branch'"
+      act git -C "$MAIN_TOPLEVEL" worktree remove "$wt_path"
+      act git -C "$MAIN_TOPLEVEL" branch -d "$branch"
     else
       log "keep (unmerged or detached): $wt_path [$branch]"
     fi
@@ -89,7 +91,7 @@ while IFS= read -r pid; do
   ORPHANS=$((ORPHANS+1))
   if [ "$REAP_DAEMONS" = "1" ]; then
     log "reaping orphan daemon pid=$pid"
-    act "kill -TERM '$pid'"
+    act kill -TERM "$pid"
   else
     log "orphan daemon (report only; use --reap-daemons to kill) pid=$pid :: $cmdline"
   fi
@@ -103,7 +105,7 @@ if [ -d "$SOCK_BASE" ]; then
     slug="$(basename "$sd")"
     if [ ! -d "$WT_BASE/$slug" ]; then
       log "prune stale socket dir (no matching worktree): $sd"
-      act "rm -rf '$sd'"
+      act rm -rf -- "$sd"
     fi
   done
 fi

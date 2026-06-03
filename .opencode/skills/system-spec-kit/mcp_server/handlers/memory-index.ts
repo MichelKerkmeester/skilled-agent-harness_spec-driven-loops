@@ -387,7 +387,23 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
 
   const checkpointRepair = runCheckpointNeedsRebuildRepairForScan();
 
+  // Keep the scan lease alive for the full duration of a long, multi-batch scan.
+  // processBatches() runs all batches sequentially and may exceed the lease expiry
+  // window (each batch waits on embedding/API latency). Without a periodic refresh
+  // the lease can expire mid-scan, letting a concurrent caller treat it as stale and
+  // launch a second parallel scan. Refresh well inside the expiry window (a third of
+  // it) so a single missed beat never lets the lease lapse. .unref() keeps the timer
+  // from holding the event loop open at shutdown; finally clears it before release.
+  const leaseExpiryMs = lease.leaseExpiryMs;
+  const leaseHeartbeatMs = Math.max(10000, Math.floor(leaseExpiryMs / 3));
+  let leaseHeartbeat: ReturnType<typeof setInterval> | null = null;
+
   try {
+  leaseHeartbeat = setInterval(() => {
+    refreshScanLease();
+  }, leaseHeartbeatMs);
+  leaseHeartbeat.unref?.();
+
   const workspacePath: string = DEFAULT_BASE_PATH;
 
   const constitutionalFiles: string[] = include_constitutional ? findConstitutionalFiles(workspacePath) : [];
@@ -803,9 +819,6 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         });
       }
     }
-
-    // Heartbeat: refresh lease after batch processing to prevent expiry on long scans.
-    refreshScanLease();
   }
 
   // Update mtimes ONLY for successfully indexed files, not before indexing.
@@ -1013,6 +1026,10 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
     hints
   });
   } finally {
+    if (leaseHeartbeat) {
+      clearInterval(leaseHeartbeat);
+      leaseHeartbeat = null;
+    }
     await releaseScanLease();
   }
 }

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-scouted-bugfix-batch-1",
+  "spec_folder": "skilled-agent-orchestration/134-scouted-bugfix-batch-1",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "scouted bugfix batch 1",
+      "worktree reaper eval injection",
+      "setup cp sandbox rmrf guard",
+      "advisor ipc socket hardening",
+      "scan lease heartbeat fix"
+    ],
+    "key_topics": [
+      "bugfix",
+      "security",
+      "scout",
+      "deep-dive",
+      "verify-first",
+      "command-injection",
+      "lease-heartbeat"
+    ],
+    "importance_tier": "important",
+    "status": "complete",
+    "key_files": [
+      ".opencode/bin/worktree-reaper.sh",
+      ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
+    ],
+    "entities": [],
+    "causal_summary": "Ran a verify-first batch fix over the top 5 of 40 scouted candidate defects: an 8-agent scout selected the targets, 5 parallel gpt-5.5-fast deep-dives confirmed/refuted each headline (the two pre-try lease-leak headlines REFUTED — all throws precede lease acquisition; the one post-acquisition call swallows its errors — but each target still had a real lesser defect), and 5 disjoint-file implement agents fixed the confirmed defects across 10 files. Three security hardenings (worktree-reaper eval->argv-array, setup-cp-sandbox rm-rf guard, advisor IPC DR-008 port) and two MCP-server bug fixes (file-watcher close()-blocks-on-backoff hang, scan lease heartbeat). Every fix stack-verified; both MCP builds exit 0.",
+    "created_at": "2026-06-03T05:32:00Z",
+    "last_save_at": "2026-06-03T05:32:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
+    ]
+  }
+}

@@ -361,6 +361,54 @@ describe('file-watcher runtime behavior', () => {
     await closeTrackedWatcher(watcher);
   });
 
+  it('close() resolves while a reindex is parked in a SQLITE_BUSY backoff sleep without advancing timers', async () => {
+    const { emit, watchFactory } = createWatchFactoryHarness();
+    const filePath = await createTempMarkdown('close-mid-retry');
+    const tempDir = path.dirname(filePath);
+    const sqliteBusyError = Object.assign(new Error('busy'), { code: 'SQLITE_BUSY' });
+    let reindexCallCount = 0;
+
+    // Throws SQLITE_BUSY on every attempt so the task stays parked in the
+    // backoff sleep — close() must abort that sleep rather than wait it out.
+    const reindexFn = vi.fn(async () => {
+      reindexCallCount += 1;
+      throw sqliteBusyError;
+    });
+
+    const watcher = startFileWatcher({
+      paths: [tempDir],
+      watchFactory,
+      reindexFn,
+      debounceMs: 30,
+    });
+    trackWatcher(watcher);
+
+    await waitForWatcherReady(watcher);
+
+    await fs.writeFile(filePath, 'close-mid-retry-updated', 'utf8');
+    emit('change', filePath);
+
+    // Let the debounce fire and the first reindex attempt fail, parking the
+    // task in abortableSleep. advanceOrDelay drives fake timers here.
+    await waitFor(() => reindexCallCount >= 1, { timeoutMs: 1000 });
+    const callsAtClose = reindexCallCount;
+
+    // Close WITHOUT advancing timers past this point. If close blocked on the
+    // backoff timer it would never resolve under fake timers.
+    let closeResolved = false;
+    const closePromise = closeTrackedWatcher(watcher).then(() => {
+      closeResolved = true;
+    });
+
+    // Flush microtasks only — no timer advancement — and assert close settled.
+    await Promise.resolve();
+    await closePromise;
+    expect(closeResolved).toBe(true);
+
+    // The parked retry was aborted, not retried, so no further attempts ran.
+    expect(reindexCallCount).toBe(callsAtClose);
+  });
+
   // File watcher timing test — changed file re-indexed within 5 seconds
   it('CHK-077: changed .md file re-indexed within 5 seconds of save', async () => {
     const { emit, watchFactory } = createWatchFactoryHarness();

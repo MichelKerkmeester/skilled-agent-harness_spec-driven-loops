@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 const mocks = vi.hoisted(() => ({
   mockAcquireIndexScanLease: vi.fn(),
   mockCompleteIndexScanLease: vi.fn(),
+  mockRefreshScanLease: vi.fn(),
   mockCheckDatabaseUpdated: vi.fn(),
   mockProcessBatches: vi.fn(),
   mockFindSpecDocuments: vi.fn((): string[] => []),
@@ -55,6 +56,7 @@ vi.mock('../core/db-state', async (importOriginal) => {
     ...actual,
     acquireIndexScanLease: mocks.mockAcquireIndexScanLease,
     completeIndexScanLease: mocks.mockCompleteIndexScanLease,
+    refreshScanLease: mocks.mockRefreshScanLease,
   };
 });
 
@@ -133,6 +135,7 @@ describe('handler-memory-index cooldown behavior', () => {
   beforeEach(() => {
     mocks.mockAcquireIndexScanLease.mockReset();
     mocks.mockCompleteIndexScanLease.mockReset();
+    mocks.mockRefreshScanLease.mockReset();
     mocks.mockCheckDatabaseUpdated.mockReset();
     mocks.mockFindSpecDocuments.mockReset();
     mocks.mockProcessBatches.mockReset();
@@ -414,5 +417,54 @@ describe('handler-memory-index cooldown behavior', () => {
       ])
     );
     expect(mocks.mockRunPostMutationHooks).not.toHaveBeenCalled();
+  });
+
+  it('refreshes the scan lease periodically during a long batch run, then clears the heartbeat', async () => {
+    // leaseExpiryMs = 120000 (from the default mock lease), so the heartbeat fires
+    // every max(10000, floor(120000/3)) = 40000ms. Hold processBatches open across two
+    // intervals to prove the lease is kept alive mid-scan rather than only after.
+    vi.useFakeTimers();
+    try {
+      mocks.mockFindSpecDocuments.mockReturnValue(['/tmp/long-scan.md']);
+      mocks.mockCategorizeFilesForIndexing.mockReturnValue({
+        toIndex: ['/tmp/long-scan.md'],
+        toUpdate: [],
+        toSkip: [],
+        toDelete: [],
+      });
+
+      let resolveBatch: (value: unknown[]) => void = () => {};
+      const batchGate = new Promise<unknown[]>((resolve) => {
+        resolveBatch = resolve;
+      });
+      mocks.mockProcessBatches.mockReturnValue(batchGate);
+
+      const scanPromise = handler.handleMemoryIndexScan({
+        includeConstitutional: false,
+        includeSpecDocs: true,
+      });
+
+      // Let the synchronous setup (including setInterval) run, then advance past two
+      // heartbeat windows while the batch is still pending.
+      await Promise.resolve();
+      expect(mocks.mockRefreshScanLease).not.toHaveBeenCalled();
+      await vi.advanceTimersByTimeAsync(40000);
+      expect(mocks.mockRefreshScanLease.mock.calls.length).toBeGreaterThanOrEqual(1);
+      await vi.advanceTimersByTimeAsync(40000);
+      expect(mocks.mockRefreshScanLease.mock.calls.length).toBeGreaterThanOrEqual(2);
+
+      resolveBatch([{ status: 'indexed', id: 1, specFolder: 'specs/test' }]);
+      await vi.runAllTimersAsync();
+      await scanPromise;
+
+      const beatsDuringScan = mocks.mockRefreshScanLease.mock.calls.length;
+      expect(mocks.mockCompleteIndexScanLease).toHaveBeenCalledTimes(1);
+
+      // Heartbeat is cleared in finally before lease release: no further beats fire.
+      await vi.advanceTimersByTimeAsync(120000);
+      expect(mocks.mockRefreshScanLease.mock.calls.length).toBe(beatsDuringScan);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });

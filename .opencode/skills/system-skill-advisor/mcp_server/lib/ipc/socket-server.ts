@@ -4,6 +4,7 @@
 
 import fs from 'node:fs';
 import net from 'node:net';
+import os from 'node:os';
 import path from 'node:path';
 
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
@@ -56,11 +57,90 @@ function parseMaxClients(rawValue = process.env.SPECKIT_MAX_SECONDARY_CLIENTS): 
   return parsed;
 }
 
+// Canonicalize a path via realpath, even when the leaf does not exist yet. realpath the nearest
+// existing ancestor (so symlinked roots like macOS `/tmp` -> `/private/tmp` normalize) and
+// re-append the missing tail. Without ancestor canonicalization, a socket dir that was cleared
+// (e.g. `/tmp/<service>` after a reboot) stays literal `/tmp/...` and fails the allowed-root
+// check below — which canonicalizes `/tmp` to `/private/tmp` — crashing the server.
+function canonicalizePath(target: string): string {
+  const resolved = path.resolve(target);
+  const tail: string[] = [];
+  let current = resolved;
+  while (!fs.existsSync(current)) {
+    const parent = path.dirname(current);
+    if (parent === current) {
+      return resolved;
+    }
+    tail.unshift(path.basename(current));
+    current = parent;
+  }
+  try {
+    return path.join(fs.realpathSync.native(current), ...tail);
+  } catch {
+    return resolved;
+  }
+}
+
+// Prefix-match containment: true iff `candidate` is `root` itself or a descendant of it.
+// Both inputs MUST already be canonicalized. Inlined here because the advisor has no shared
+// workspace-path utility (the code-graph copy imports one); keeping the logic local avoids a
+// cross-module dependency for a single call site.
+function isWithinRoot(root: string, candidate: string): boolean {
+  if (candidate === root) {
+    return true;
+  }
+  const prefix = root.endsWith(path.sep) ? root : `${root}${path.sep}`;
+  return candidate.startsWith(prefix);
+}
+
+// Allowed roots for the IPC socket directory: the workspace itself plus the system temp dirs.
+// The macOS `sun_path` limit (104 chars) forces deep in-workspace socket paths into a short
+// `/tmp` path, so a workspace-only constraint is incompatible with the documented config.
+// `os.tmpdir()` is portable (Linux/CI; macOS resolves to `/var/folders/...`), and `/tmp` covers
+// the project convention (`SPECKIT_IPC_SOCKET_DIR=/tmp/<service>`). The owner check in
+// `canUnlinkExistingSocket` preserves the unlink-hardening intent.
+function allowedSocketRoots(): string[] {
+  const roots = new Set<string>();
+  roots.add(canonicalizePath(process.cwd()));
+  roots.add(canonicalizePath(os.tmpdir()));
+  roots.add(canonicalizePath('/tmp'));
+  return [...roots];
+}
+
+function isWithinAllowedSocketRoot(candidate: string): boolean {
+  return allowedSocketRoots().some((root) => isWithinRoot(root, candidate));
+}
+
 function resolveIpcSocketPath(dbDir: string): string {
-  const socketDir = process.env.SPECKIT_IPC_SOCKET_DIR
+  const rawSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR
     ? path.resolve(process.env.SPECKIT_IPC_SOCKET_DIR)
     : path.resolve(dbDir);
+  const socketDir = canonicalizePath(rawSocketDir);
+  if (!isWithinAllowedSocketRoot(socketDir)) {
+    throw new Error(
+      `IPC socket directory must stay within the workspace root or a system temp dir: ${socketDir}`,
+    );
+  }
   return path.join(socketDir, SOCKET_FILE_NAME);
+}
+
+// Only remove a stale socket at `socketPath` when it is provably ours: the parent dir resolves
+// inside an allowed root, the path is an actual socket, and it is owned by the current uid.
+// Guards against socket-hijack on shared hosts where an attacker plants a non-socket file or a
+// socket they own at the bind path.
+function canUnlinkExistingSocket(socketPath: string): boolean {
+  const parent = fs.realpathSync.native(path.dirname(socketPath));
+  if (!isWithinAllowedSocketRoot(parent)) {
+    return false;
+  }
+  const stat = fs.lstatSync(socketPath);
+  if (!stat.isSocket()) {
+    return false;
+  }
+  if (typeof process.getuid === 'function' && stat.uid !== process.getuid()) {
+    return false;
+  }
+  return true;
 }
 
 function getIpcBridgeStats(): IpcBridgeStats {
@@ -101,7 +181,24 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
   const maxClients = options.maxClients ?? parseMaxClients();
   const onActivity = options.onActivity ?? (() => undefined);
   if (!socketPath.startsWith('tcp://')) {
-    fs.mkdirSync(path.dirname(socketPath), { recursive: true, mode: 0o700 });
+    const socketDir = path.dirname(socketPath);
+    fs.mkdirSync(socketDir, { recursive: true, mode: 0o700 });
+    // `mode: 0o700` only applies when mkdir CREATES the dir. A pre-existing socket dir
+    // (e.g. an attacker-planted dir on a shared host) is not protected by the mkdir above,
+    // so refuse to bind under a dir not owned by us or that is group/world-writable.
+    try {
+      const st = fs.statSync(socketDir);
+      const uid = typeof process.getuid === 'function' ? process.getuid() : null;
+      if (uid !== null && st.uid !== uid) {
+        throw new Error(`IPC socket dir ${socketDir} not owned by current user (uid ${st.uid} != ${uid})`);
+      }
+      if ((st.mode & 0o022) !== 0) {
+        throw new Error(`IPC socket dir ${socketDir} is group/world-writable (mode ${(st.mode & 0o777).toString(8)})`);
+      }
+    } catch (error: unknown) {
+      const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+      if (code !== 'ENOENT') throw error;
+    }
   }
 
   const server = net.createServer((socket) => {
@@ -153,6 +250,9 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
   } catch (error: unknown) {
     const err = error as NodeJS.ErrnoException;
     if (err.code !== 'EADDRINUSE' || socketPath.startsWith('tcp://')) {
+      throw err;
+    }
+    if (!canUnlinkExistingSocket(socketPath)) {
       throw err;
     }
     try {

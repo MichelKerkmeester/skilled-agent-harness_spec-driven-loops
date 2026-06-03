@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_ROOT="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../.." && pwd)"
 SANDBOX_DIR="/tmp/cp-improve-sandbox"
 FIXTURE_ROOT="${REPO_ROOT}/.opencode/skills/deep-improvement/test-fixtures/060-stress-test"
 
@@ -42,6 +43,31 @@ require_path() {
   exit 1
 }
 
+# Guard the destructive rm -rf: the sandbox dir must be a concrete absolute
+# path strictly under /tmp/ with no '..' traversal, so a stray or malicious
+# --sandbox-dir value can never wipe a real directory outside the sandbox.
+validate_sandbox_dir() {
+  local dir="$1"
+  if [[ -z "$dir" ]]; then
+    echo "ERROR: sandbox dir must not be empty" >&2
+    exit 2
+  fi
+  if [[ "$dir" != /* ]]; then
+    echo "ERROR: sandbox dir must be an absolute path: $dir" >&2
+    exit 2
+  fi
+  case "$dir" in
+    ..|../*|*/..|*/../*)
+      echo "ERROR: sandbox dir must not contain '..': $dir" >&2
+      exit 2
+      ;;
+  esac
+  if [[ "$dir" != /tmp/* ]]; then
+    echo "ERROR: sandbox dir must be under /tmp/: $dir" >&2
+    exit 2
+  fi
+}
+
 copy_dir() {
   local source="$1"
   local target="$2"
@@ -65,6 +91,8 @@ require_path "${FIXTURE_ROOT}/.opencode/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.claude/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.gemini/agents/cp-improve-target.md"
 require_path "${FIXTURE_ROOT}/.codex/agents/cp-improve-target.toml"
+
+validate_sandbox_dir "$SANDBOX_DIR"
 
 rm -rf "$SANDBOX_DIR"
 mkdir -p "$SANDBOX_DIR"

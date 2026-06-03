@@ -78,6 +78,69 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+/**
+ * Coordinates early wake-up of in-flight retry sleeps so a watcher shutdown
+ * never has to wait for a pending backoff timer to expire. A retry sleep
+ * registers a `wake` callback; `wakeAll()` settles every outstanding sleep
+ * immediately, letting each one re-check its abort condition. This keeps
+ * `close()` from blocking on a non-cancellable timer (and from deadlocking
+ * under fake timers, where the backoff timeout would otherwise never fire).
+ */
+interface RetryWaker {
+  register(wake: () => void): () => void;
+  wakeAll(): void;
+}
+
+function createRetryWaker(): RetryWaker {
+  const waiters = new Set<() => void>();
+  let woken = false;
+  return {
+    register(wake: () => void): () => void {
+      // Sticky after wakeAll(): a sleep entered after shutdown began is woken
+      // at once, so a task that hits SQLITE_BUSY mid-close still exits promptly
+      // instead of stalling close() on a fresh retry timer.
+      if (woken) {
+        wake();
+        return () => undefined;
+      }
+      waiters.add(wake);
+      return () => { waiters.delete(wake); };
+    },
+    wakeAll(): void {
+      woken = true;
+      const pending = Array.from(waiters);
+      waiters.clear();
+      for (const wake of pending) {
+        wake();
+      }
+    },
+  };
+}
+
+/**
+ * Sleep that resolves either when `ms` elapses or when woken early via the
+ * supplied waker. On early wake the backoff timer is cleared so no stray timer
+ * survives shutdown.
+ */
+function abortableSleep(ms: number, waker?: RetryWaker): Promise<void> {
+  if (!waker) {
+    return sleep(ms);
+  }
+  return new Promise((resolve) => {
+    let settled = false;
+    let unregister = (): void => undefined;
+    const finish = (): void => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      unregister();
+      resolve();
+    };
+    const timer = setTimeout(finish, ms);
+    unregister = waker.register(finish);
+  });
+}
+
 async function loadChokidarModule(): Promise<ChokidarModule | null> {
   if (chokidarModule !== null) {
     return chokidarModule;
@@ -184,9 +247,21 @@ async function hashFileContent(filePath: string): Promise<string> {
   return createHash('sha256').update(content).digest('hex');
 }
 
-async function withBusyRetry(operation: () => Promise<void>): Promise<void> {
+interface BusyRetryOptions {
+  shouldAbort?: () => boolean;
+  waker?: RetryWaker;
+}
+
+async function withBusyRetry(
+  operation: () => Promise<void>,
+  options: BusyRetryOptions = {},
+): Promise<void> {
+  const { shouldAbort, waker } = options;
   let retryCount = 0;
   while (true) {
+    if (shouldAbort?.()) {
+      return;
+    }
     try {
       await operation();
       return;
@@ -195,7 +270,13 @@ async function withBusyRetry(operation: () => Promise<void>): Promise<void> {
       if (!shouldRetry) {
         throw error;
       }
-      await sleep(RETRY_DELAYS_MS[retryCount]);
+      // Abort-aware backoff: the sleep can be woken early so a watcher
+      // shutdown is never gated on a non-cancellable retry timer. After
+      // waking, re-check the abort condition and bail out without retrying.
+      await abortableSleep(RETRY_DELAYS_MS[retryCount], waker);
+      if (shouldAbort?.()) {
+        return;
+      }
       retryCount += 1;
     }
   }
@@ -218,6 +299,9 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
   const canonicalPaths = new Map<string, string>();
   const inFlightReindex = new Set<Promise<void>>();
   let isClosing = false;
+  // Wakes in-flight SQLITE_BUSY backoff sleeps on close() so shutdown never
+  // blocks on a pending retry timer.
+  const retryWaker = createRetryWaker();
 
   // C3 fix: Bounded concurrency — prevent unbounded parallel reindex operations
   const MAX_CONCURRENT_REINDEX = 2;
@@ -438,7 +522,8 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
           const reindexStart = Date.now();
           await withBusyRetry(async () => {
             await config.reindexFn(resolvedPath);
-          });
+          }, { shouldAbort: () => isClosing, waker: retryWaker });
+          if (isClosing) return;
           const reindexElapsed = Date.now() - reindexStart;
           filesReindexed++;
           totalReindexTimeMs += reindexElapsed;
@@ -481,7 +566,8 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
 
       await withBusyRetry(async () => {
         await config.removeFn?.(filePath);
-      });
+      }, { shouldAbort: () => isClosing, waker: retryWaker });
+      if (isClosing) return;
       console.error(`[file-watcher] Removed indexed entries for ${path.basename(filePath)}`);
     });
   };
@@ -512,6 +598,11 @@ export function startFileWatcher(config: WatcherConfig): FSWatcher {
     // work. The waiters reject with QUEUE_CLOSED_REASON; their wrapping
     // operation()s catch and log without re-entering the watcher.
     abortPendingReindexQueue();
+
+    // Wake any in-flight SQLITE_BUSY backoff sleeps so a task mid-retry exits
+    // immediately (it re-checks isClosing) instead of holding close() until a
+    // non-cancellable retry timer expires.
+    retryWaker.wakeAll();
 
     while (inFlightReindex.size > 0) {
       await Promise.allSettled(Array.from(inFlightReindex));
