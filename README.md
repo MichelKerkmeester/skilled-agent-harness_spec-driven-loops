@@ -859,7 +859,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 **system-spec-kit**
 - Mandatory orchestrator for all file modifications - activates automatically for any code file change
 - Creates numbered spec folders with manifest templates rendered through Level contracts across 4 levels (1-3+)
-- Integrates the 36-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
+- Integrates the 37-tool memory surface with constitutional-tier support, session bootstrap and hybrid 5-channel retrieval
 - Manages the manifest template source, 20 validation rules, the spec-kit script suite and the feature-catalog / testing-playbook documentation surfaces
 
 **system-code-graph**
@@ -1207,7 +1207,7 @@ Canonical native server set:
 
 | Server                 | Tools | Purpose                                                                |
 | ---------------------- | ----- | ---------------------------------------------------------------------- |
-| `mk-spec-memory`      | 36    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
+| `mk-spec-memory`      | 37    | Cognitive memory, session recovery, causal/eval tools and graph loops  |
 | `mk_skill_advisor`     | 9     | Gate 2 advisor routing plus skill-graph scan/query/status/validation   |
 | `mk_code_index`        | 8     | Structural code graph, `detect_changes` and impact analysis            |
 | `code_mode`            | 7     | External tool orchestration via TypeScript execution                   |
@@ -1454,7 +1454,7 @@ A: Define the agent in `.opencode/agents/` (the source of truth), then mirror th
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 
-A: 61 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 36 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
+A: 62 total across 5 native MCP servers, sourced from registered MCP-dispatched tools only. Breakdown: 37 `mk-spec-memory` tools from `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts`, 9 `mk_skill_advisor` tools from `.opencode/skills/system-skill-advisor/mcp_server/advisor-server.ts`, 8 `mk_code_index` tools from `.opencode/skills/system-code-graph/mcp_server/tool-schemas.ts`, 7 code mode tools and 1 sequential thinking tool. Canonical advisor/skill-graph docs use `mk_skill_advisor` / `mcp__mk_skill_advisor__*`. Canonical code-graph docs use `mk_code_index` / `mcp__mk_code_index__*`.
 &nbsp;
 
 **Q: What is the feature catalog?**
@@ -1499,4 +1499,4 @@ A: The feature catalog is the current technical reference documenting the memory
 <!-- /ANCHOR:related-documents -->
 
 
-*Documentation version: 4.15 | Last updated: 2026-06-01 | Framework: 11 agents, 22 skills, 24 commands, 61 MCP tools (36 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*
+*Documentation version: 4.15 | Last updated: 2026-06-03 | Framework: 11 agents, 22 skills, 24 commands, 62 MCP tools (37 mk-spec-memory + 9 mk_skill_advisor + 8 mk_code_index + 7 code mode + 1 sequential thinking. Deferred / internal-only handlers do NOT count).*

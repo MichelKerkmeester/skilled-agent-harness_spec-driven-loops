@@ -10,20 +10,20 @@ audited_post_018: true
 
 This scenario validates Causal edge deletion (memory_causal_unlink) for `EX-021`. It focuses on Edge correction.
 
-> **Surface status (verified 2026-06-03):** `memory_causal_unlink` has a request handler (`mcp_server/handlers/causal-graph.ts`) and an input schema (`memoryCausalUnlinkSchema`, required arg `edgeId`), but it is **not advertised in the MCP tool registry** (`mcp_server/tool-schemas.ts` lists `memory_causal_link` and `memory_causal_stats` only). It is therefore **not callable through the MCP surface**, so step 2 below cannot be executed via MCP. Treat this scenario as **UNAUTOMATABLE via MCP** until the tool is registered. Exposing a destructive edge-deletion tool is a deliberate decision — track it as a follow-up rather than asserting a defect here.
+> **Surface status (2026-06-03):** `memory_causal_unlink` is now exposed via MCP — registered in `mcp_server/tool-schemas.ts` (advertised), the `MEMORY_RUNTIME_TOOL_NAMES` allow-list, and the `tools/causal-tools.ts` dispatch, on top of the pre-existing handler (`handlers/causal-graph.ts`) and input schema (`memoryCausalUnlinkSchema`, required arg `edgeId`). The scenario is runnable end-to-end. It is destructive (deletes a causal edge by ID), so checkpoint first; the handler returns `{ deleted: boolean }` and reports `deleted:false` for an unknown edge id rather than erroring.
 
 ---
 
 ## 2. SCENARIO CONTRACT
 
 
-- Objective: Edge correction. (Blocked: the unlink tool is not exposed via MCP — see Surface status above.)
+- Objective: Edge correction — remove an erroneous causal edge and confirm it no longer appears in the trace.
 - Real user request: `Please validate Causal edge deletion (memory_causal_unlink) against checkpoint_create({ name:"pre-ex021-causal-unlink", specFolder:"<sandbox-spec>" }) and tell me whether the expected signals are present: Removed edge absent in trace.`
 - Prompt: `Validate memory_causal_unlink removes the target edge after checkpoint creation; return pass/fail with cited evidence.`
-- Expected execution process: Confirm tool availability first. If `memory_causal_unlink` is not in the advertised MCP tool list, classify UNAUTOMATABLE (no exposed unlink surface) and stop. If/when registered, run the documented command sequence and compare against the expected signals.
-- Expected signals: Removed edge absent in trace
-- Desired user-visible outcome: A concise pass/fail (or UNAUTOMATABLE) verdict with the main reason and cited evidence.
-- Pass/fail: PASS if edge removed and checkpoint exists; **UNAUTOMATABLE** while `memory_causal_unlink` is absent from the advertised MCP tool registry
+- Expected execution process: Create a checkpoint, create a throwaway edge with memory_causal_link, delete it with memory_causal_unlink, then confirm via memory_drift_why that the edge is gone. Compare against the expected signals and return the verdict.
+- Expected signals: Removed edge absent in trace; memory_causal_unlink returns `{ deleted: true }` for a valid edge id
+- Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
+- Pass/fail: PASS if the edge is removed (`deleted:true`, absent from the trace) and the checkpoint exists
 
 ---
 
@@ -37,28 +37,27 @@ Validate memory_causal_unlink removes the target edge after checkpoint creation;
 
 ### Commands
 
-0. Confirm `memory_causal_unlink` is in the advertised MCP tool list. If absent → classify **UNAUTOMATABLE** and stop (current state).
 1. checkpoint_create({ name:"pre-ex021-causal-unlink", specFolder:"<sandbox-spec>" })
-2. memory_causal_unlink({ edgeId:"<edge-id>" })  — *not exposed via MCP at time of writing*
-3. memory_drift_why({ memoryId:"<memory-id>", direction:"both", maxDepth:4 })
+2. memory_causal_link({ sourceId:"<a>", targetId:"<b>", relation:"supports" }) → note the returned `edge` id
+3. memory_causal_unlink({ edgeId:<edge-id> }) → expect `{ deleted: true }`
+4. memory_drift_why({ memoryId:"<b>", direction:"both", maxDepth:4 }) → the removed edge must be absent
 
 ### Expected
 
-Removed edge absent in trace (only verifiable once the tool is exposed)
+memory_causal_unlink returns `{ deleted: true }`; the removed edge is absent from the memory_drift_why trace. A non-existent edge id returns `{ deleted: false }` (no error).
 
 ### Evidence
 
-Tool-availability check; checkpoint_create output; (when runnable) unlink + trace outputs
+checkpoint_create output; memory_causal_link edge id; memory_causal_unlink `{ deleted }` result; memory_drift_why trace before/after
 
 ### Pass / Fail
 
-- **Pass**: edge removed and checkpoint exists
-- **UNAUTOMATABLE**: `memory_causal_unlink` absent from the advertised MCP tool registry (current state) — handler + input schema exist but the tool is not registered in `tool-schemas.ts`
-- **Fail**: tool exposed but contradicting evidence appears or the pass condition is not met
+- **Pass**: `deleted:true` for the valid edge id, edge absent from the trace, and the checkpoint exists
+- **Fail**: `deleted:false` for a valid edge id, the edge still appears in the trace, or the tool is not callable
 
 ### Failure Triage
 
-If UNAUTOMATABLE: register `memory_causal_unlink` in `mcp_server/tool-schemas.ts` (decision required — destructive edge deletion) before this scenario can run. If runnable: verify edgeId exists; restore `pre-ex021-causal-unlink` if wrong edge removed.
+Verify the edge id exists (via the memory_causal_link result or memory_drift_why `allEdges[].id`). Restore `pre-ex021-causal-unlink` if the wrong edge was removed. If the tool is not callable, confirm the daemon is running the current dist (registration lives in `tool-schemas.ts` + `tools/causal-tools.ts`).
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)

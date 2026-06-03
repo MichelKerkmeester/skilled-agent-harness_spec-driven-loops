@@ -268,6 +268,7 @@ const MEMORY_RUNTIME_TOOL_NAMES = new Set<string>([
   'memory_drift_why',
   'memory_causal_link',
   'memory_causal_stats',
+  'memory_causal_unlink',
 ]);
 
 interface GraphContextNeighborSummary {

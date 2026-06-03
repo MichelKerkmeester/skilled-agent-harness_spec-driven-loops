@@ -457,6 +457,12 @@ const memoryCausalStats: ToolDefinition = {
   inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
 };
 
+const memoryCausalUnlink: ToolDefinition = {
+  name: 'memory_causal_unlink',
+  description: '[L6:Analysis] Delete a causal edge between two spec-doc records (causal-graph nodes) by its edge ID. Use to correct an erroneous link created by memory_causal_link; find edge IDs via memory_drift_why (allEdges[].id) or the id returned by memory_causal_link. Returns { deleted: boolean }. Destructive — create a checkpoint first if the edge may need restoring. Token Budget: 1200.',
+  inputSchema: { type: 'object', additionalProperties: false, properties: { edgeId: { type: 'number', description: 'ID of the causal edge to delete (from a memory_causal_link result or memory_drift_why allEdges[].id)' } }, required: ['edgeId'] },
+};
+
 const evalRunAblation: ToolDefinition = {
   name: 'eval_run_ablation',
   description: '[L6:Analysis] Run a controlled channel ablation study (R13-S3) and optionally persist Recall@20 deltas to eval_metric_snapshots. Requires SPECKIT_ABLATION=true. Token Budget: 1200.',
@@ -705,6 +711,7 @@ export const TOOL_DEFINITIONS: ToolDefinition[] = [
   memoryDriftWhy,
   memoryCausalLink,
   memoryCausalStats,
+  memoryCausalUnlink,
   evalRunAblation,
   evalReportingDashboard,
   // L7: Maintenance

@@ -159,7 +159,7 @@ describe('Context Server', () => {
   // =================================================================
   // GROUP 2: Tool Definition Completeness
   // =================================================================
-  describe('Group 2: Tool Definitions (36 tools)', () => {
+  describe('Group 2: Tool Definitions (37 tools)', () => {
     const EXPECTED_TOOLS = [
       'memory_context',
       'memory_search',
@@ -184,6 +184,7 @@ describe('Context Server', () => {
       'memory_drift_why',
       'memory_causal_link',
       'memory_causal_stats',
+      'memory_causal_unlink',
       'eval_run_ablation',
       'eval_reporting_dashboard',
       'memory_index_scan',
@@ -291,7 +292,7 @@ describe('Context Server', () => {
       'memory_validate', 'memory_save', 'memory_index_scan', 'memory_health',
       'task_preflight', 'task_postflight', 'memory_get_learning_history',
       'memory_ingest_start', 'memory_ingest_status', 'memory_ingest_cancel',
-      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats',
+      'memory_drift_why', 'memory_causal_link', 'memory_causal_stats', 'memory_causal_unlink',
       'eval_run_ablation', 'eval_reporting_dashboard',
       'session_health', 'session_resume', 'session_bootstrap',
     ]
