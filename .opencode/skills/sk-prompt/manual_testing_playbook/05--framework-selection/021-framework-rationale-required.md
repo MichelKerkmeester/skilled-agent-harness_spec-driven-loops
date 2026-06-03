@@ -86,7 +86,7 @@ Verify the rejected alternative is plausible for the task, not a strawman unrela
 | File | Role |
 |---|---|
 | `../../references/patterns_evaluation.md` | Framework selection algorithm and alternative reasoning |
-| `../../assets/cli_prompt_quality_card.md` | Compact framework map used for fast-path comparison |
+| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Compact framework map used for fast-path comparison |
 
 ---
 

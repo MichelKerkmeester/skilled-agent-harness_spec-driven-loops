@@ -53,7 +53,7 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 
 1. Working directory is project root.
 2. `.opencode/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, §7 agent invocation contract, and §8 fast-path asset section.
-3. `.opencode/skills/sk-prompt/references/depth_framework.md`, `.opencode/skills/sk-prompt/references/patterns_evaluation.md`, `.opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`, `assets/format_guide_markdown.md`, `assets/format_guide_json.md`, and `assets/format_guide_yaml.md` resolve on disk.
+3. `.opencode/skills/sk-prompt/references/depth_framework.md`, `.opencode/skills/sk-prompt/references/patterns_evaluation.md`, `.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`, `assets/format_guide_markdown.md`, `assets/format_guide_json.md`, and `assets/format_guide_yaml.md` resolve on disk.
 4. `@prompt-improver` agent is canonical at `.opencode/agents/prompt-improver.md` (verify with `ls .opencode/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.
 

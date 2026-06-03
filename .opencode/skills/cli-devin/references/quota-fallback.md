@@ -9,7 +9,7 @@ description: One-step small-model fallback rules for Cognition free, Cognition P
 
 Phase 005 ships a quota-pool-aware fallback contract for the user's small-only model ecosystem.
 
-The fallback engine reads `sk-prompt/assets/model-profiles.json`.
+The fallback engine reads `sk-prompt-small-model/assets/model-profiles.json`.
 
 It uses two fields:
 
@@ -23,6 +23,8 @@ Fallback is opt-in.
 Fallback is off today because every active model has `fallback_target: null`.
 
 The default behavior is fail-fast with a message naming the exhausted pool.
+
+---
 
 ## Why This Is NOT A Tier Escalator
 
@@ -50,6 +52,8 @@ Implementation follows that rationale.
 
 The safe result is explicit failure when no configured separate-pool target exists.
 
+---
+
 ## Pool-Membership Table
 
 | Quota pool | Active members | Optional members | Notes |
@@ -65,12 +69,14 @@ They are not display names.
 
 They decide whether fallback is allowed.
 
+---
+
 ## Fallback Decision Algorithm
 
 Input:
 
 - `failedModelId`
-- parsed registry from `sk-prompt/assets/model-profiles.json`
+- parsed registry from `sk-prompt-small-model/assets/model-profiles.json`
 
 Output:
 
@@ -101,6 +107,8 @@ No implicit default target is allowed.
 
 No frontier target is allowed in Phase 005.
 
+---
+
 ## Pseudocode
 
 ```typescript
@@ -126,6 +134,8 @@ The production helper is:
 ```text
 .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/fallback-router.ts
 ```
+
+---
 
 ## Worked Examples
 
@@ -356,11 +366,13 @@ This is a separate-pool fallback.
 
 It is only relevant after optional stubs become active.
 
+---
+
 ## Adoption Checklist For Haiku
 
 1. Confirm Haiku is actually in the user's dispatch rotation.
 2. Confirm the exact executor and model id.
-3. Populate the `haiku` stub in `sk-prompt/assets/model-profiles.json`.
+3. Populate the `haiku` stub in `sk-prompt-small-model/assets/model-profiles.json`.
 4. Set `context_length` from current official/runtime information.
 5. Set `avg_iter_wall_clock_min` from a measured iteration.
 6. Change `status` from `optional-unverified` to `active`.
@@ -368,12 +380,14 @@ It is only relevant after optional stubs become active.
 8. Run `jq empty` on the registry.
 9. Run `fallback-router` unit tests.
 10. Re-index the advisor.
+
+---
 
 ## Adoption Checklist For Gemini Flash
 
 1. Confirm Gemini Flash is actually in the user's dispatch rotation.
 2. Confirm the exact executor and model id.
-3. Populate the `gemini-flash` stub in `sk-prompt/assets/model-profiles.json`.
+3. Populate the `gemini-flash` stub in `sk-prompt-small-model/assets/model-profiles.json`.
 4. Set `context_length` from current official/runtime information.
 5. Set `avg_iter_wall_clock_min` from a measured iteration.
 6. Change `status` from `optional-unverified` to `active`.
@@ -381,6 +395,8 @@ It is only relevant after optional stubs become active.
 8. Run `jq empty` on the registry.
 9. Run `fallback-router` unit tests.
 10. Re-index the advisor.
+
+---
 
 ## Error Message Templates
 
@@ -426,6 +442,8 @@ unknown model {model_id}; no quota pool available for fallback routing
 {quota_pool} pool exhausted, routing {source_id} to separate {target_pool} pool target {target_id}
 ```
 
+---
+
 ## Recipe Contract
 
 The shipped `--agent-config` recipes do NOT carry a `fallback_chain` field. Devin's strict `--agent-config` parser rejects unknown top-level fields (the same constraint that defers `mcp_servers`), so the recipe-level fallback declaration is deferred until Devin supports custom agent-config fields. The intended shape was:
@@ -442,6 +460,8 @@ Recipe instructions tell workers to consult registry `fallback_target` semantics
 
 The registry remains the source of truth.
 
+---
+
 ## Verification
 
 Focused tests:
@@ -457,6 +477,8 @@ Empirical simulations to keep:
 - in-memory `swe-1.6.fallback_target = "haiku"` routes to Haiku
 - default `resolveFallback("deepseek-v4-pro", registry)` fails fast
 - same-pool `deepseek-v4-pro -> kimi-k2.6` is rejected
+
+---
 
 ## Operator Rules
 

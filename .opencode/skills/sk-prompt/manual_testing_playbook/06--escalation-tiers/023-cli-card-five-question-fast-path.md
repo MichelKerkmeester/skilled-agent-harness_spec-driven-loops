@@ -44,7 +44,7 @@ As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-comp
 ### Commands
 
 1. `sk-prompt: Quick check on my CLI dispatch prompt — apply the 5-question quality card without escalation.`
-2. `bash: rg 'CLEAR 5-Question|Escalation Triggers|@prompt-improver' .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`
+2. `bash: rg 'CLEAR 5-Question|Escalation Triggers|@prompt-improver' .opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`
 
 ### Expected
 
@@ -84,7 +84,7 @@ Verify the checked prompt includes task, context, constraints, output, and verif
 
 | File | Role |
 |---|---|
-| `../../assets/cli_prompt_quality_card.md` | Fast-path five-question CLEAR card and escalation triggers |
+| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Fast-path five-question CLEAR card and escalation triggers |
 | `../../references/patterns_evaluation.md` | Full CLEAR dimension definitions mirrored by the card |
 
 ---

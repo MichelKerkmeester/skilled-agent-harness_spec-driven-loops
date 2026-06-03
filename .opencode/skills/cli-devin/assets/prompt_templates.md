@@ -7,8 +7,6 @@ description: "Six copy-paste prompt templates covering the common cli-devin disp
 
 Six copy-paste templates. Pick the closest match, fill the placeholders, dispatch.
 
----
-
 ## 1. OVERVIEW
 
 This file provides copy-paste prompt templates for the most common cli-devin dispatch shapes. Section 2 is the default coding dispatch (SWE-1.6, auto mode). Sections 3-4 cover complex tasks via DeepSeek v4 with fallback notes. Section 5 is multi-file autonomous refactor. Section 6 covers profile-scoped agent-surface delegation. Section 7 is the cloud-handoff initiation template (operator-confirmed only). Section 8 is the Memory Handback epilogue. Section 9 holds usage notes. Pick the closest match, fill the placeholders, dispatch.

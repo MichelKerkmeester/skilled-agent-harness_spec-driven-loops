@@ -88,7 +88,7 @@ Installs the `devin` binary to a location on `$PATH`. Verify with `command -v de
 | Flag | Purpose |
 |------|---------|
 | `--model <id>` | Set AI model — one of: `swe-1.6` (default for cli-devin), `deepseek-v4`, `glm-5.1`, `kimi-k2.6` |
-| `--permission-mode <mode>` | Choose `auto` (default), `dangerous`, or `dangerous` |
+| `--permission-mode <mode>` | Choose `auto` (default) or `dangerous` |
 | `--prompt-file <path>` | Load initial prompt from file (preferred for prompts >2KB) |
 | `--config <path>` | Specify configuration file location (default: `~/.config/devin/config.json`) |
 | `--continue` / `-c` | Resume most recent session |
@@ -155,10 +155,9 @@ Devin does not expose a `--reasoning-effort` flag. Model choice is the lever —
 | Mode | Behavior | Operator Approval | Family Analog |
 |------|----------|-------------------|---------------|
 | `auto` (default) | Confirms risky actions; pauses for input on destructive ops | Default | Codex `--ask-for-approval on-request` |
-| `dangerous` | Mostly auto; few prompts | REQUIRED — record in dispatch log | Codex `--full-auto` |
 | `dangerous` | Auto-approves all actions; no prompts | REQUIRED — record in dispatch log | `--dangerously-skip-permissions` / `--sandbox danger-full-access` |
 
-The skill MUST NOT silently escalate. Operator must explicitly approve `dangerous` or `dangerous`.
+The skill MUST NOT silently escalate. Operator must explicitly approve `dangerous`.
 
 ---
 
@@ -206,7 +205,7 @@ If structured output is required, prompt the dispatched session to emit a determ
 
 Recheck the official commands reference periodically. Failure modes specific to drift:
 - Flag name changes (e.g. `--permission-mode` rename) → `devin` returns "unknown flag" error
-- New permission mode added → not in the 3-tier risk taxonomy this skill documents
+- New permission mode added → not among the 2 permission modes this skill documents
 - Model preset changes (Cognition rotates SWE-x versions) → `--model <id>` returns "unknown model"
 - Cloud-handoff entry point moves — currently operator-initiated from live TUI
 

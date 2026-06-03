@@ -7,8 +7,6 @@ description: Copy-paste ready prompt templates for common Claude Code CLI tasks 
 
 Copy-paste ready prompt templates for common Claude Code CLI tasks. Replace `[placeholders]` with your values.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

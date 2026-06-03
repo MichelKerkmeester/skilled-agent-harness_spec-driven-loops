@@ -45,7 +45,7 @@ As a CLI orchestrator, evaluate a HIPAA-bound prompt with the sk-prompt fast-pat
 
 1. `sk-prompt: Help with a compliance-sensitive prompt for HIPAA-bound data handling — escalate to @prompt-improver.`
 2. `agent: @prompt-improver raw_task="Enhance a HIPAA-bound data-handling prompt for safe CLI dispatch." task_type=review target_cli=codex complexity_hint=8 constraints="HIPAA compliance; preserve privacy and safety requirements."`
-3. `bash: rg 'Complexity is `>= 7/10`|Compliance|@prompt-improver' .opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md`
+3. `bash: rg 'Complexity is `>= 7/10`|Compliance|@prompt-improver' .opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`
 
 ### Expected
 
@@ -85,7 +85,7 @@ Run a multi-stakeholder variant and verify it also escalates with a different tr
 
 | File | Role |
 |---|---|
-| `../../assets/cli_prompt_quality_card.md` | Escalation thresholds and fast/deep path split |
+| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Escalation thresholds and fast/deep path split |
 | `../../references/depth_framework.md` | Deep-path DEPTH processing after escalation |
 
 ---

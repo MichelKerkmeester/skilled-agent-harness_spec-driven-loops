@@ -86,7 +86,7 @@ Run a second low-complexity variant and verify RACE or RCAF becomes more likely 
 | File | Role |
 |---|---|
 | `../../references/patterns_evaluation.md` | Seven-framework library and selection algorithm |
-| `../../assets/cli_prompt_quality_card.md` | Fast-path framework table used before escalation |
+| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Fast-path framework table used before escalation |
 
 ---
 

@@ -1,0 +1,17 @@
+{
+  "specFolder": "130-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+  "description": "Phase 1: deferred-cleanup-entangled-playbook-assets",
+  "keywords": [
+    "phase",
+    "deferred-cleanup-entangled-playbook-assets"
+  ],
+  "lastUpdated": "2026-06-03T11:04:15.774Z",
+  "specId": "015",
+  "folderSlug": "deferred-cleanup-entangled-playbook-assets",
+  "parentChain": [
+    "130-prompt-knowledge-layering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

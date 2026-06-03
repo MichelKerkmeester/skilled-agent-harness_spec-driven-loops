@@ -7,8 +7,6 @@ description: Copy-paste ready prompt templates for common Gemini CLI tasks organ
 
 Copy-paste ready prompt templates for common Gemini CLI tasks. Replace `[placeholders]` with your values.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

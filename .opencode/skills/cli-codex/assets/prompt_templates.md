@@ -7,8 +7,6 @@ description: Copy-paste ready prompt templates for common Codex CLI tasks organi
 
 Copy-paste ready prompt templates for common Codex CLI tasks. Replace `[placeholders]` with your values.
 
----
-
 ## 1. OVERVIEW
 
 ### Purpose

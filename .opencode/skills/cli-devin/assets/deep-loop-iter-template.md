@@ -9,8 +9,6 @@ description: "Copy-paste prompt-body skeletons for cli-devin iter dispatches whe
 >
 > For the full contract: [`references/deep-loop-iter-contract.md`](../references/deep-loop-iter-contract.md). For recipe selection: [`references/agent-config-recipes.md`](../references/agent-config-recipes.md).
 
----
-
 ## 1. OVERVIEW
 
 Three skeletons follow — one per recipe / stage of the deep-loop pipeline. Each skeleton is the prompt body that ships in `--prompt-file`, paired with the matching `--agent-config` recipe. The Block ordering section below codifies the four-block contract that every iter prompt MUST honor; the three skeletons (research, review, synthesis) demonstrate the contract concretely for each stage.

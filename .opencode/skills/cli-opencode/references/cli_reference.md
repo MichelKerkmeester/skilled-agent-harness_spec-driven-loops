@@ -36,6 +36,8 @@ Provide a single-source reference for the OpenCode CLI surface — every subcomm
 | **Version baseline** | v1.3.17 (pinned in this reference) |
 | **Runtime** | Node.js 18+ for the npm install path; standalone binary on macOS |
 
+---
+
 ## 2. INSTALLATION
 
 | Method | Command | Notes |
@@ -47,6 +49,8 @@ Provide a single-source reference for the OpenCode CLI surface — every subcomm
 | **Uninstall** | `opencode uninstall` | Removes the binary and related state |
 
 After installation, run `opencode --version` to confirm. The cli-opencode skill is pinned to v1.3.17. Newer binaries may add or rename flags — consult Section 9 (Version Drift) before relying on a non-pinned flag.
+
+---
 
 ## 3. SUBCOMMAND MAP
 
@@ -72,6 +76,8 @@ OpenCode exposes a multi-subcommand surface. The cli-opencode skill primarily in
 | `opencode plugin <module>` (alias `plug`) | Install a plugin | No (operator-driven setup) |
 | `opencode upgrade [target]` | Upgrade the binary | No (operator-driven) |
 | `opencode uninstall` | Uninstall the binary | No (operator-driven) |
+
+---
 
 ## 4. `opencode run` FLAGS
 
@@ -206,6 +212,8 @@ opencode auth login          # → provider xiaomi-token-plan-ams (Xiaomi Token 
 
 **On auth-error mid-dispatch** (`401 Unauthorized`, `provider/model not found`): invalidate the cache, rerun the pre-flight, and apply the same decision tree before retrying. Never substitute a model the user didn't approve.
 
+---
+
 ## 5. MODEL SELECTION
 
 OpenCode resolves models through configured providers. The cli-opencode skill supports `opencode-go` (default), `deepseek`, `minimax-coding-plan` (MiniMax Token Plan — default MiniMax path), `minimax` (MiniMax Direct API — pay-per-token alternative), and `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe — MiMo, explicitly-selectable) — confirmed against `opencode providers list` and `opencode models`. Run `opencode models [provider]` for the full live list on a given install.
@@ -220,6 +228,7 @@ OpenCode resolves models through configured providers. The cli-opencode skill su
 | `deepseek` | `deepseek/deepseek-v4-pro` | Direct DeepSeek API — bypasses opencode-go |
 | `deepseek` | `deepseek/deepseek-v4-flash` | Latency-optimized direct-API sibling |
 | `minimax-coding-plan` (DEFAULT MiniMax) | `minimax-coding-plan/MiniMax-M3-highspeed` | MiniMax Token Plan (subscription) — default MiniMax dispatch; omit `--agent`; verify with `opencode models minimax-coding-plan` |
+| `minimax-coding-plan` | `minimax-coding-plan/MiniMax-M3` | MiniMax-M3 (plain) — **confirmed live + `--variant high` accepted** (2026-06-02, 20 clean benchmark dispatches). The `-highspeed` variant above remains account-asserted; plain `MiniMax-M3` is the verified dispatchable id |
 | `minimax-coding-plan` | `minimax-coding-plan/MiniMax-M2.7-highspeed` | Token Plan highspeed fallback (confirmed live); standard `minimax-coding-plan/MiniMax-M2.7` also resolves |
 | `minimax` | `minimax/MiniMax-M2.7` | MiniMax Direct API — pay-per-token alternative; needs `MINIMAX_API_KEY` (`minimax-api` quota pool); confirm the live id via `opencode models minimax` |
 | `xiaomi-token-plan-ams` | `xiaomi-token-plan-ams/mimo-v2.5-pro` | Xiaomi Token Plan (Europe) — MiMo-V2.5-Pro: 1M-token context, strongly agentic (1000+ tool calls), token-efficient; omit `--agent`; verify with `opencode models xiaomi-token-plan-ams` |
@@ -240,6 +249,8 @@ The `--variant` flag maps to provider-specific reasoning effort. Underlying-mode
 | `xiaomi-token-plan-ams` (mimo-v2.5-pro) | `--variant` maps to MiMo reasoning effort (low/medium/high); **always use `--variant high`** (confirmed accepted on opencode 1.15.13) |
 
 Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators may override via the prompt template's variant field.
+
+---
 
 ## 6. AGENT FLAG
 
@@ -270,6 +281,8 @@ Default skill behavior: pass `--variant high` for cross-AI dispatches. Operators
 
 The cli-opencode skill defers to the calling AI on agent selection — see `references/agent_delegation.md` for the routing matrix and `assets/prompt_templates.md` for canonical invocation shapes.
 
+---
+
 ## 7. OUTPUT FORMAT AND EVENT STREAM
 
 `--format default` produces a human-formatted log. `--format json` emits a newline-delimited JSON event stream.
@@ -287,6 +300,8 @@ Each line is a JSON object with at minimum:
 
 External runtimes parse the stream incrementally to surface tool calls, partial messages, and the final summary. cli-opencode prompt templates always pass `--format json` so the calling AI parses structured events instead of guessing format boundaries.
 
+---
+
 ## 8. STATE LOCATION AND SHARE URLS
 
 ### State directory
@@ -302,6 +317,8 @@ The cli-opencode self-invocation guard probes this directory as the third-layer 
 ### Share URLs
 
 `--share` publishes a session URL via OpenCode's share infrastructure. The skill ONLY appends `--share` for use case 2 (in-OpenCode parallel detached sessions). The CHK-033 P1 checklist item requires operator confirmation before publishing a share URL because the URL exposes the session contents.
+
+---
 
 ## 9. VERSION DRIFT
 
@@ -321,6 +338,8 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 | `unknown option --format json` | v1.0 — JSON event stream was the default and the flag did not exist |
 | `MODULE_NOT_FOUND` | Plugin loader crash; rerun with `--pure` to bypass plugins |
 
+---
+
 ## 10. TROUBLESHOOTING
 
 | Symptom | Cause | Fix |
@@ -333,6 +352,8 @@ This reference is pinned to OpenCode v1.3.17. If the live binary reports a diffe
 | Plugin load crash | Misconfigured plugin | Rerun with `--pure` to bypass all plugins |
 | Self-invocation refused | cli-opencode detected an in-OpenCode runtime | Use a sibling cli-* skill or a fresh shell session — see ADR-001 |
 | `--share` URL leaks | Share infrastructure published a session containing secrets | Operator MUST confirm before publishing per CHK-033 |
+
+---
 
 ## 11. RELATED RESOURCES
 
