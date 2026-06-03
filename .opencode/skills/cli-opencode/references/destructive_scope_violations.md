@@ -9,20 +9,36 @@ This document records the **2026-05-04 destructive scope violation incident**, t
 
 ---
 
-## 1. INCIDENT (2026-05-04)
+## 1. OVERVIEW
+
+### Purpose
+
+Record the 2026-05-04 destructive scope violation (RM-8), explain its root cause, and provide the prevention playbook so the same uncontrolled-deletion failure cannot recur on a cli-opencode deep-loop dispatch.
+
+### When to Use
+
+Read this before any non-interactive `opencode run` deep-loop dispatch that uses `--dangerously-skip-permissions` against a populated worktree, especially long-running `/deep:start-research-loop:auto` and `/deep:start-review-loop:auto` runs.
+
+### Core Principle
+
+An instruction-only scope guard layered on `--dangerously-skip-permissions` is the root cause; neither layer alone is sufficient, so prevention must add an enforced capability boundary, not more prose.
+
+---
+
+## 2. INCIDENT (2026-05-04)
 
 Source-of-truth: local destructive-scope violation policy.
 
-- **What ran**: `/deep:start-review-loop:auto` against the 008-template-levels phase parent across phases 007 and 008.
+- **What ran**: `/deep:start-review-loop:auto` against a phase parent across two of its phase children.
 - **Executor**: cli-opencode (`opencode run`) with `--model opencode-go/deepseek-v4-pro --variant high --dangerously-skip-permissions --pure --dir <repo-root>`.
-- **Damage**: **44 files deleted** across phases 007 and 008. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
+- **Damage**: **44 files deleted** across the two phase children. Spec docs (`spec.md`, `plan.md`, `tasks.md`, `checklist.md`, `decision-record.md`, `implementation-summary.md`, `description.json`, `graph-metadata.json`) **and** the `review/` packet subtrees were physically removed.
 - **Recovery**: `git restore` from commit `7beb80769` (a pre-dispatch "bundled session sync") — single command. **No findings lost**, but ≈30 minutes of recovery time and trust damage.
 
 The deep-review skill is contractually read-only on its target spec docs. DeepSeek violated that contract.
 
 ---
 
-## 2. ROOT CAUSE
+## 3. ROOT CAUSE
 
 Two contributing layers, both required to enable the failure:
 
@@ -47,7 +63,7 @@ opencode run \
 
 ### Layer B — instruction-only guard
 
-Before the RM-8 mitigation (packet `008-template-levels/009-rm-8-prompt-hardening/`), the only safeguard against the model was a single prose line in `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
+Before the RM-8 mitigation shipped, the only safeguard against the model was a single prose line in `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` §CONSTRAINTS:
 
 > "Review target is READ-ONLY. Do not modify reviewed files."
 
@@ -57,7 +73,7 @@ That line **is not enforced anywhere**. The harness reads it as documentation; O
 
 ---
 
-## 3. PREVENTION — APPLY BEFORE EVERY DEEP-LOOP DISPATCH
+## 4. PREVENTION — APPLY BEFORE EVERY DEEP-LOOP DISPATCH
 
 The default risk surface for cli-opencode is **any non-interactive `opencode run` invocation that uses `--dangerously-skip-permissions` against a populated worktree**, especially long-running deep-loop dispatches like `/deep:start-research-loop:auto` and `/deep:start-review-loop:auto`. Apply all four layers before dispatch:
 
@@ -115,11 +131,11 @@ The commit hash is the recovery baseline. Surface it to the operator before disp
 
 ### Layer 4 (FALLBACK) — model selection
 
-The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:start-review-loop:auto`. Until a runtime scope guard ships (see §4), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
+The 2026-05-04 incident was specifically observed with `opencode-go/deepseek-v4-pro` under `/deep:start-review-loop:auto`. Until a runtime scope guard ships (see §5), the cross-phase synthesis recommendation stands: **for multi-phase deep-review work, prefer `cli-copilot` with `gpt-5.5 --reasoning-effort high`** when available, and fall back to deepseek only with Layers 1+2+3 all in place. Memory feedback `feedback_copilot_concurrency_override.md` caps Copilot at 3 parallel dispatches; sequence the work accordingly.
 
 ---
 
-## 4. OUT OF SCOPE — RUNTIME SCOPE GUARD (future work)
+## 5. OUT OF SCOPE — RUNTIME SCOPE GUARD (future work)
 
 The true RM-8 fix is a runtime scope guard:
 
@@ -131,7 +147,7 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 ---
 
-## 5. QUICK CHECKLIST BEFORE DISPATCH
+## 6. QUICK CHECKLIST BEFORE DISPATCH
 
 - [ ] Layer 1: rendered prompt contains literal `BANNED OPERATIONS` and `ALLOWED WRITE PATHS` strings (grep the rendered prompt before dispatch).
 - [ ] Layer 2: dispatch `--dir` points at a `git worktree`, not the live working tree.
@@ -140,7 +156,7 @@ This requires changes to the YAML wrapper (pre/post hooks) and is a separate pac
 
 ---
 
-## 6. RELATED MATERIAL
+## 7. RELATED MATERIAL
 
 - **Incident source**: local destructive-scope violation policy
 - **RM-8 hardening context**: local destructive-scope violation policy

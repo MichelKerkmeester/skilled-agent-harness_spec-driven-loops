@@ -2,7 +2,7 @@
 name: cli-codex
 description: "Codex CLI executor for OpenAI-backed coding, repo analysis, PR review, web research, and cross-model validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.4.6.0
+version: 1.4.7.0
 ---
 
 <!-- Keywords: codex, codex-cli, openai, cross-ai, web-search, code-generation, code-review, second-opinion, agent-delegation, gpt-5, session-management -->
@@ -168,7 +168,7 @@ codex login
 ```bash
 # One-shot pre-flight: capture auth status for routing
 [ -n "$OPENAI_API_KEY" ] && OPENAI_KEY_OK=1 || OPENAI_KEY_OK=0
-CODEX_AUTH=$(codex auth status 2>&1)
+CODEX_AUTH=$(codex login status 2>&1)
 echo "$CODEX_AUTH" | grep -qi "logged in\|chatgpt-oauth" && CODEX_OAUTH_OK=1 || CODEX_OAUTH_OK=0
 ```
 

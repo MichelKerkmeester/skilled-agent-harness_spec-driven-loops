@@ -2,7 +2,7 @@
 name: cli-gemini
 description: "Gemini CLI executor for Google Search-backed research, architecture sweeps, large-context analysis, and validation."
 allowed-tools: [Bash, Read, Glob, Grep]
-version: 1.2.9.0
+version: 1.2.10.0
 ---
 
 <!-- Keywords: gemini, gemini-cli, google, cross-ai, web-search, codebase-investigator, code-generation, code-review, second-opinion, agent-delegation -->
@@ -165,8 +165,7 @@ gemini
 ```bash
 # One-shot pre-flight: capture auth status for routing
 [ -n "$GEMINI_API_KEY" ] && GEMINI_KEY_OK=1 || GEMINI_KEY_OK=0
-GEMINI_AUTH=$(gemini config list 2>&1 || echo "")
-echo "$GEMINI_AUTH" | grep -qi "oauth\|logged in" && GOOGLE_OAUTH_OK=1 || GOOGLE_OAUTH_OK=0
+[ -s "$HOME/.gemini/oauth_creds.json" ] && GOOGLE_OAUTH_OK=1 || GOOGLE_OAUTH_OK=0
 [ -n "$GOOGLE_GENAI_USE_VERTEXAI" ] && VERTEX_OK=1 || VERTEX_OK=0
 ```
 

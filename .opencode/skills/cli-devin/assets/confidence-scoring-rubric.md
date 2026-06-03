@@ -5,7 +5,21 @@ description: "Compact rubric for opt-in cli-devin output verification."
 
 # cli-devin Confidence Scoring Rubric
 
-## Code Output Formula
+Weighted scoring rubric and thresholds for opt-in verification of cli-devin code and research output.
+
+## 1. OVERVIEW
+
+### Purpose
+
+The confidence-scoring rubric for cli-devin output: it defines the weighted formula, per-stage definitions, and accept/retry thresholds used to judge whether a dispatched cli-devin result is trustworthy.
+
+### Usage
+
+The post-dispatch verifier applies the code-output formula (or the research-iteration adaptation when the output is markdown), runs the per-language verifier commands, clamps the score to `[0.0, 1.0]`, and compares it against the thresholds to accept, warn, mark degraded, or retry/escalate.
+
+---
+
+## 2. CODE OUTPUT FORMULA
 
 Use the SmallCode-derived weighted score:
 
@@ -20,7 +34,7 @@ score =
 
 Clamp the result to `[0.0, 1.0]`.
 
-## Thresholds
+## 3. THRESHOLDS
 
 | Score | Meaning | Action |
 | ---: | --- | --- |
@@ -29,9 +43,9 @@ Clamp the result to `[0.0, 1.0]`.
 | `0.30 - 0.49` | Degraded | Mark iteration degraded |
 | `< 0.30` | Hard-fail candidate | Retry, narrow scope, or escalate |
 
-Phase 004 default threshold: `0.50`.
+Default threshold: `0.50`.
 
-## Per-Language Verifier Commands
+## 4. PER-LANGUAGE VERIFIER COMMANDS
 
 | Language | Compile / syntax | Execute | Lint / static check |
 | --- | --- | --- | --- |
@@ -43,7 +57,7 @@ Phase 004 default threshold: `0.50`.
 
 Commands that execute generated code must run only in a constrained sandbox with timeouts.
 
-## Code Stage Definitions
+## 5. CODE STAGE DEFINITIONS
 
 ### Compile Pass
 
@@ -93,9 +107,9 @@ Examples:
 
 Subtract `0.05` when the verifier had to repair the output before scoring.
 
-Phase 004's static validator does not auto-fix; the field remains part of the rubric for future sandboxed verification.
+The current static validator does not auto-fix; the field remains part of the rubric for future sandboxed verification.
 
-## Research-Iteration Adaptation
+## 6. RESEARCH-ITERATION ADAPTATION
 
 Research iters often produce markdown rather than code. When compile is N/A, renormalize to:
 
@@ -109,7 +123,7 @@ score =
 
 Use this adaptation for self-verification instructions and future research-output validators.
 
-## Research Stage Definitions
+## 7. RESEARCH STAGE DEFINITIONS
 
 ### Cite Accuracy
 
@@ -156,7 +170,7 @@ Failure examples:
 - "will work" claims without verification.
 - recommendations that depend on uninspected code.
 
-## Recipe Contract
+## 8. RECIPE CONTRACT
 
 The shipped `--agent-config` recipes do NOT carry `verification_enabled` / `verification_languages` fields. Devin's strict `--agent-config` parser rejects unknown top-level fields (the same constraint that defers `mcp_servers`), so recipe-level opt-in is deferred until Devin supports custom agent-config fields. The intended shape was:
 
@@ -179,7 +193,7 @@ When supplied through a Devin-supported channel, `verification_enabled` defaults
 
 Empty means all supported fenced-code languages are eligible when verification is enabled.
 
-## Phase 004 Implementation Notes
+## 9. IMPLEMENTATION NOTES
 
 The current post-dispatch validator uses static scoring only.
 
@@ -190,3 +204,10 @@ It appends `verification_degraded` to the JSONL state log when an enabled verifi
 It skips verification when no supported code block exists.
 
 It preserves backward compatibility when verification is absent or false.
+
+---
+
+## 10. RELATED RESOURCES
+
+- [cli-devin SKILL.md](../SKILL.md) - Dispatch contract and verification opt-in surface.
+- [output-verification.md](../references/output-verification.md) - Output-verification reference that applies this rubric.

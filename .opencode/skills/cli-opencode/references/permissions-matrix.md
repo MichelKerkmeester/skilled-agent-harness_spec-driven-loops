@@ -5,16 +5,25 @@ description: "Structured permissions-matrix schema, examples, RM-8 replay reason
 
 # cli-opencode permissions matrix
 
-This reference documents the Phase 003 structured gate that replaces the RM-8
-four-layer prose mitigation as the primary defense when a cli-opencode deep-loop
-dispatch has a permissions matrix configured.
+Structured permissions-matrix schema, resolution semantics, example matrices, RM-8 replay reasoning, and migration checklist for cli-opencode deep-loop dispatches.
 
-The design follows ADR-001 in
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix/decision-record.md`:
-a flat `rules[]` array, most-specific glob wins, and first-in-array breaks exact
-ties.
+## 1. OVERVIEW
 
-## 1. Schema fields
+### Purpose
+
+This reference documents the structured gate that replaces the RM-8 four-layer prose mitigation as the primary defense when a cli-opencode deep-loop dispatch has a permissions matrix configured. The design uses a flat `rules[]` array where the most-specific glob wins and first-in-array breaks exact ties.
+
+### When to Use
+
+Read this when configuring or auditing a permissions matrix for a cli-opencode `opencode run` deep-loop dispatch (deep-research or deep-review), when converting a prose-constrained recipe to a structured matrix, or when reasoning about how the gate blocks destructive scope violations.
+
+### Core Principle
+
+The structured gate checks each tool call against deterministic `rules[]` before the tool runs; no matching rule means deny, so the matrix is the primary control whenever it is configured.
+
+---
+
+## 2. SCHEMA FIELDS
 
 Schema file:
 
@@ -30,7 +39,7 @@ Top-level fields:
 
 | Field | Required | Type | Meaning |
 | --- | --- | --- | --- |
-| `version` | yes | string | Must be `"1.0"` for Phase 003. |
+| `version` | yes | string | Must be `"1.0"`. |
 | `description` | no | string | Human-readable purpose and resolution note. |
 | `rules` | yes | array | Flat rule list evaluated by deterministic specificity. |
 
@@ -47,10 +56,10 @@ Rule fields:
 Rule objects set `additionalProperties: false`.
 
 The schema intentionally keeps the rule object small. Conditions, nested
-allow/deny maps, and generated tokens were left out of Phase 003 because
-ADR-001 optimizes for auditability and deterministic runtime matching.
+allow/deny maps, and generated tokens were left out by design because the
+schema optimizes for auditability and deterministic runtime matching.
 
-## 2. Resolution semantics
+## 3. RESOLUTION SEMANTICS
 
 Runtime matching does four things.
 
@@ -68,12 +77,12 @@ Specificity is measured as:
 | Array order | Earlier rule wins exact ties. |
 
 This means an allow rule for
-`.opencode/specs/.../003-permissions-matrix/**` beats a broad deny rule for
+`.opencode/specs/<track>/<packet>/**` beats a broad deny rule for
 `**`, but two identical globs keep the first rule's effect.
 
 No matching rule means deny. Empty or malformed matrix means deny.
 
-## 3. Example matrix: read-only
+## 4. EXAMPLE MATRIX: READ-ONLY
 
 Use `permissions-matrix.example-readonly.json` for audit, review, and research
 iterations that should not mutate the repository.
@@ -91,7 +100,7 @@ The read-only matrix is the closest match for deep-review mode. It blocks the
 RM-8 class in two independent ways: direct write/edit/delete tool calls deny,
 and the Bash command targets used for deletion deny before shell execution.
 
-## 4. Example matrix: packet-local
+## 5. EXAMPLE MATRIX: PACKET-LOCAL
 
 Use `permissions-matrix.example-packet-local.json` when the operator approves a
 specific packet or small file set.
@@ -101,18 +110,18 @@ Core intent:
 | Rule shape | Effect | Why |
 | --- | --- | --- |
 | `read` on `**` | allow | Implementation needs evidence from the whole repo. |
-| `write`/`edit` on Phase 003 packet docs | allow | Packet docs are the approved continuity scope. |
-| `write`/`edit` on Phase 003 schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
-| `edit` on `cli-opencode/SKILL.md` | allow | Phase 003 updates only ALWAYS #13. |
-| `edit` on `sk-prompt-small-model/references/pattern-index.md` | allow | Phase 003 marks the downstream pattern shipped. |
+| `write`/`edit` on the approved packet docs | allow | Packet docs are the approved continuity scope. |
+| `write`/`edit` on the packet schema, examples, reference doc, gate, and test | allow | These are the explicit implementation files. |
+| `edit` on `cli-opencode/SKILL.md` | allow | The packet updates only the relevant ALWAYS entry. |
+| `edit` on `sk-prompt-small-model/references/pattern-index.md` | allow | The packet marks the downstream pattern shipped. |
 | `execute` on read-only shell commands | allow | Search and inspection stay usable. |
 | `execute` on destructive commands | deny | RM-8 prevention. |
-| `write`, `edit`, `delete` on `**` | deny | Anything outside explicit Phase 003 paths blocks. |
+| `write`, `edit`, `delete` on `**` | deny | Anything outside the explicit approved packet paths blocks. |
 
 This is the matrix to use for implementation packets where broad reads are safe
 but mutation must stay narrow.
 
-## 5. Example matrix: repo-wide `.opencode`
+## 6. EXAMPLE MATRIX: REPO-WIDE `.opencode`
 
 Use `permissions-matrix.example-repo-wide.json` for trusted refactors across
 `.opencode`.
@@ -132,7 +141,7 @@ Core intent:
 This profile has wider authoring scope but still keeps delete and external
 configuration operations blocked.
 
-## 6. Runtime gate behavior
+## 7. RUNTIME GATE BEHAVIOR
 
 The implementation lives at:
 
@@ -170,19 +179,13 @@ Bash calls are normalized to `Exec(<command>)`. Examples:
 If a command contains multiple segments, every command target must pass. A
 single denied command denies the whole Bash call.
 
-## 7. RM-8 counter-example walkthrough
+## 8. RM-8 COUNTER-EXAMPLE WALKTHROUGH
 
 Incident source:
 
 `.opencode/skills/cli-opencode/references/destructive_scope_violations.md`
 
-Research source:
-
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/research.md`
-
-Patch-ready deepening source:
-
-`.opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/001-smallcode-deep-research/research/iterations/iteration-009.md`
+Research source: the SmallCode deep-research record and its patch-ready deepening iteration (iter 009), which concluded the structured matrix would have blocked the recorded RM-8 deletions.
 
 The incident doc records:
 
@@ -190,7 +193,7 @@ The incident doc records:
 - Executor: `opencode-go/deepseek-v4-pro`.
 - Mode: `/deep:start-review-loop:auto`.
 - Flag: `--dangerously-skip-permissions`.
-- Damage: 44 files deleted across phases 007 and 008.
+- Damage: 44 files deleted across two phase children.
 - File classes: spec docs and `review/` packet subtrees.
 
 Research iter 009 concludes the structured matrix would have blocked all 44
@@ -200,8 +203,8 @@ write deny or an `Exec(rm*)`/`Exec(rm)` deny before execution.
 The exact historical deletion manifest is not embedded in the incident doc. The
 replay harness therefore uses the two recorded RM-8 classes:
 
-1. canonical spec docs under phase 007 and phase 008;
-2. review subtree artifacts under phase 007 and phase 008.
+1. canonical spec docs under the two affected phase children;
+2. review subtree artifacts under the two affected phase children.
 
 That yields a 44-entry replay set matching the recorded damage count and classes.
 
@@ -211,14 +214,14 @@ For each phase child, the canonical spec docs are:
 
 | File | Operation | Packet-local decision |
 | --- | --- | --- |
-| `spec.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `plan.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `tasks.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `checklist.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `decision-record.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `implementation-summary.md` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `description.json` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
-| `graph-metadata.json` | `write` deletion attempt | denied by broad `write` deny outside Phase 003 scope |
+| `spec.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `plan.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `tasks.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `checklist.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `decision-record.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `implementation-summary.md` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `description.json` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
+| `graph-metadata.json` | `write` deletion attempt | denied by broad `write` deny outside the approved packet scope |
 
 Across two phases, that accounts for 16 blocked deletions.
 
@@ -228,14 +231,14 @@ The recorded review subtree deletion class is blocked twice.
 
 | Attempt shape | Operation | Packet-local decision |
 | --- | --- | --- |
-| `Write(file_path=<phase>/review/deep-review-config.json)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/deep-review-state.jsonl)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/deep-review-strategy.md)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/deep-review-findings-registry.json)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/review-report.md)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/deltas/iter-*.jsonl)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/iterations/iteration-*.md)` | `write` | denied by broad `write` deny outside Phase 003 scope |
-| `Write(file_path=<phase>/review/prompts/iteration-*.md)` | `write` | denied by broad `write` deny outside Phase 003 scope |
+| `Write(file_path=<phase>/review/deep-review-config.json)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/deep-review-state.jsonl)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/deep-review-strategy.md)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/deep-review-findings-registry.json)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/review-report.md)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/deltas/iter-*.jsonl)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/iterations/iteration-*.md)` | `write` | denied by broad `write` deny outside the approved packet scope |
+| `Write(file_path=<phase>/review/prompts/iteration-*.md)` | `write` | denied by broad `write` deny outside the approved packet scope |
 | `Bash(command="rm -rf <phase>/review")` | `execute` | denied by `Exec(rm*)` |
 
 Across the current reconstructed review artifacts, the replay set uses 28 review
@@ -256,7 +259,7 @@ Layers 2-4 remain useful as defense in depth:
 
 But when a matrix is configured, the structured gate is the primary control.
 
-## 8. Migration checklist
+## 9. MIGRATION CHECKLIST
 
 Use this checklist when converting a prose-constrained cli-opencode recipe.
 
@@ -273,7 +276,7 @@ Use this checklist when converting a prose-constrained cli-opencode recipe.
 - Run a dry replay with representative denied writes before dispatch.
 - If no matrix is loaded, keep using the legacy four-layer prose mitigation.
 
-## 9. `**` glob smell warning
+## 10. `**` GLOB SMELL WARNING
 
 `**` is sometimes necessary as a final deny or broad read allow. It is a smell
 when used as a broad write or edit allow.
@@ -291,10 +294,10 @@ Risky shapes:
 - `delete` on `**` with `effect: "allow"`;
 - `execute` on `**` with `effect: "allow"`.
 
-Phase 003 logs broad-glob warnings as a smoke check. A future CI lint can turn
+The gate logs broad-glob warnings as a smoke check. A future CI lint can turn
 the smell into a blocking rule if the team wants enforcement.
 
-## 10. Validation commands
+## 11. VALIDATION COMMANDS
 
 Schema examples:
 
@@ -314,5 +317,5 @@ npx vitest run tests/deep-loop/permissions-gate.vitest.ts
 Packet validation:
 
 ```bash
-bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/114-small-ai-model-optimization/003-structured-permissions-matrix --strict
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --strict
 ```
