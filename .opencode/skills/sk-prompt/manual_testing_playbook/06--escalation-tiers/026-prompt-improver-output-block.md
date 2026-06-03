@@ -85,7 +85,6 @@ Verify `ESCALATION_NOTES` says `none` or equivalent when no ambiguity remains, r
 
 | File | Role |
 |---|---|
-| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Expected compact structured return mirrored by fast-path escalation |
 | `../../references/patterns_evaluation.md` | CLEAR score dimensions used in the output block |
 
 ---

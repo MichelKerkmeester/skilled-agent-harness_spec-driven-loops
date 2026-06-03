@@ -30,12 +30,12 @@ Canonical package artifacts:
 
 This playbook provides 28 deterministic scenarios across 7 categories validating the `sk-prompt` skill surface and its escalation agent `@prompt-improver`. Each feature keeps its original ID and links to a dedicated feature file with the full execution contract.
 
-Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing through `cli_prompt_quality_card.md` and `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. `sk-prompt` does not ship a `feature_catalog/`, so per-feature files anchor directly to `SKILL.md`, `references/`, and `assets/` on disk.
+Coverage note (2026-05-06): the playbook covers mode detection across 7 command prefixes, INTENT_MODEL keyword scoring, the DEPTH+CLEAR processing loop with phase exit gates, CLEAR five-dimension scoring with floors, framework selection across 7 frameworks, escalation routing to `@prompt-improver`, and on-demand format-guide loading for `$json` and `$yaml`. `sk-prompt` does not ship a `feature_catalog/`, so per-feature files anchor directly to `SKILL.md`, `references/`, and `assets/` on disk.
 
 ### Realistic Test Model
 
 1. A realistic user request (a draft prompt or an ask to improve one) is given to an orchestrator that routes through `sk-prompt`.
-2. The orchestrator decides whether to keep the request inline (fast path with `cli_prompt_quality_card.md`) or escalate to `@prompt-improver` for full DEPTH+CLEAR processing.
+2. The orchestrator decides whether to keep the request inline (fast path) or escalate to `@prompt-improver` for full DEPTH+CLEAR processing.
 3. The operator captures both the routing decision and the user-visible enhanced prompt with its transparency report.
 4. The scenario passes only when the workflow is sound and the returned prompt would dispatch cleanly to a downstream CLI without another framework-selection pass.
 
@@ -52,8 +52,8 @@ Coverage note (2026-05-06): the playbook covers mode detection across 7 command 
 ## 2. GLOBAL PRECONDITIONS
 
 1. Working directory is project root.
-2. `.opencode/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, §7 agent invocation contract, and §8 fast-path asset section.
-3. `.opencode/skills/sk-prompt/references/depth_framework.md`, `.opencode/skills/sk-prompt/references/patterns_evaluation.md`, `.opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`, `assets/format_guide_markdown.md`, `assets/format_guide_json.md`, and `assets/format_guide_yaml.md` resolve on disk.
+2. `.opencode/skills/sk-prompt/SKILL.md` is at HEAD-of-main and contains §2 Smart Routing (INTENT_MODEL, RESOURCE_MAP, ON_DEMAND_KEYWORDS, AMBIGUITY_DELTA, UNKNOWN_FALLBACK_CHECKLIST), §3 operating modes table, and §7 agent invocation contract.
+3. `.opencode/skills/sk-prompt/references/depth_framework.md`, `.opencode/skills/sk-prompt/references/patterns_evaluation.md`, `assets/format_guide_markdown.md`, `assets/format_guide_json.md`, and `assets/format_guide_yaml.md` resolve on disk.
 4. `@prompt-improver` agent is canonical at `.opencode/agents/prompt-improver.md` (verify with `ls .opencode/agents/prompt-improver.md`).
 5. Destructive scenario: none in this playbook. All scenarios are read+score+return, no file mutation outside the operator's own evidence capture under `/tmp/`.
 
@@ -143,9 +143,9 @@ This section records wave planning and capacity guidance for executing the 28-sc
 
 ### Operational Rules
 
-1. Probe runtime capacity at start (cli-claude-code, cli-codex, cli-opencode availability).
+1. Probe runtime capacity at start (available executor skills).
 2. Reserve one coordinator to maintain the verdict table.
-3. Saturate remaining worker slots; cap at 3 concurrent for cli-copilot per upstream throttle.
+3. Saturate remaining worker slots; cap concurrency per upstream throttle.
 4. Pre-assign explicit scenario IDs and matching per-feature files to each wave before execution.
 5. Run framework-selection scenarios (SP-019..SP-022) as a dedicated wave to keep the framework-decision audit consistent.
 6. After each wave, save context and evidence, then begin the next wave.
@@ -589,19 +589,19 @@ Desired user-visible outcome: Transparency report containing `Framework switch: 
 
 ## 12. ESCALATION TIERS (`SP-023..SP-026`)
 
-### SP-023 | `cli_prompt_quality_card.md` 5-question fast path
+### SP-023 | Inline fast path: low-complexity prompts are not escalated
 
 #### Description
 
-Verify that the fast-path card runs its 5-question CLEAR check inline without escalating to `@prompt-improver` for low-complexity routine prompts.
+Verify that a low-complexity routine prompt passes the CLEAR check inline without escalating to `@prompt-improver`.
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.`
+Prompt: `Run sk-prompt on a low-complexity prompt. Verify it passes the CLEAR check inline and does not dispatch @prompt-improver. Return the verdict.`
 
 Fast-path execution: inline. Desired outcome: no agent escalation.
 
-Desired user-visible outcome: Notice "Fast-path: 5/5 CLEAR questions passed; dispatching as-is" with no `@prompt-improver` invocation.
+Desired user-visible outcome: Notice "Handled inline; CLEAR passed; no @prompt-improver escalation."
 
 #### Test Execution
 
@@ -615,7 +615,7 @@ Verify that any of (complexity >= 7, compliance constraints, multi-stakeholder a
 
 #### Scenario Contract
 
-Prompt: `As a CLI orchestrator, evaluate a HIPAA-bound prompt with the sk-prompt fast-path card. Verify compliance sensitivity escalates to @prompt-improver and the routing decision names the trigger. Return the escalation payload.`
+Prompt: `Run sk-prompt on a HIPAA-bound, high-complexity prompt. Verify it escalates to @prompt-improver and the routing decision names the reason. Return the escalation payload.`
 
 Escalation count: 4/4. Desired outcome: all four trigger deep path.
 
@@ -739,7 +739,7 @@ Desired user-visible outcome: Routing trace listing `format_guide_json.md` only 
 | SP-020 | User-named framework override | Framework Selection | [SP-020](05--framework-selection/020-user-named-framework-override.md) |
 | SP-021 | Framework rationale required | Framework Selection | [SP-021](05--framework-selection/021-framework-rationale-required.md) |
 | SP-022 | Framework switch mid-flight | Framework Selection | [SP-022](05--framework-selection/022-framework-switch-mid-flight.md) |
-| SP-023 | CLI card 5-question fast path | Escalation Tiers | [SP-023](06--escalation-tiers/023-cli-card-five-question-fast-path.md) |
+| SP-023 | Inline fast path (no escalation) | Escalation Tiers | [SP-023](06--escalation-tiers/023-cli-card-five-question-fast-path.md) |
 | SP-024 | Escalation trigger thresholds | Escalation Tiers | [SP-024](06--escalation-tiers/024-escalation-trigger-thresholds.md) |
 | SP-025 | `@prompt-improver` input payload | Escalation Tiers | [SP-025](06--escalation-tiers/025-prompt-improver-input-payload.md) |
 | SP-026 | `@prompt-improver` output block | Escalation Tiers | [SP-026](06--escalation-tiers/026-prompt-improver-output-block.md) |

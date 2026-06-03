@@ -1,9 +1,9 @@
 ---
-title: "SP-023 -- CLI card 5-question fast path"
-description: "This scenario validates the CLI prompt quality fast path for `SP-023`. It focuses on passing routine prompts inline without escalating to `@prompt-improver`."
+title: "SP-023 -- Inline fast path: low-complexity prompts are not escalated"
+description: "This scenario validates the inline fast path for `SP-023`. It focuses on passing routine prompts inline through the CLEAR check without escalating to `@prompt-improver`."
 ---
 
-# SP-023 -- CLI card 5-question fast path
+# SP-023 -- Inline fast path: low-complexity prompts are not escalated
 
 This document captures the realistic user-testing contract, current behavior, execution flow, source anchors, and metadata for `SP-023`.
 
@@ -11,11 +11,11 @@ This document captures the realistic user-testing contract, current behavior, ex
 
 ## 1. OVERVIEW
 
-This scenario validates that low-complexity CLI dispatch prompts can use `cli_prompt_quality_card.md` inline. The operator asks for a quick check and verifies no `@prompt-improver` escalation occurs when all five CLEAR questions pass.
+This scenario validates that a low-complexity routine prompt is handled inline by `sk-prompt` -- it passes the CLEAR check and is delivered without dispatching the `@prompt-improver` deep path.
 
 ### Why This Matters
 
-The fast path keeps routine CLI prompts lightweight. Escalating everything would burn context and slow down simple dispatches.
+The fast path keeps routine prompts lightweight. Escalating everything to the fresh-context `@prompt-improver` agent would burn context and slow down simple work.
 
 ---
 
@@ -23,13 +23,13 @@ The fast path keeps routine CLI prompts lightweight. Escalating everything would
 
 Operators run the exact prompt and command sequence for `SP-023` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm the 5-question CLEAR card passes low-risk prompts inline without agent escalation.
-- Real user request: `Quick check on my CLI dispatch prompt — apply the 5-question quality card without escalation.`
-- Prompt: `As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.`
-- Expected execution process: The orchestrator loads the card, checks Correctness, Logic, Expression, Arrangement, and Reusability questions, and stays inline because no escalation trigger is present.
-- Expected signals: Five `yes` answers; `Fast path`; no `agent: @prompt-improver` invocation.
-- Desired user-visible outcome: `Fast-path: 5/5 CLEAR questions passed; no @prompt-improver escalation.`
-- Pass/fail: PASS if the inline card passes and no escalation occurs; FAIL if `@prompt-improver` is invoked despite no trigger or a failed question is ignored.
+- Objective: Confirm a low-complexity prompt passes the five CLEAR dimensions inline without `@prompt-improver` escalation.
+- Real user request: `Quick check on my prompt -- handle it inline without escalating to a deep pass.`
+- Prompt: `Run sk-prompt on a low-complexity prompt. Verify it passes the CLEAR check inline and does not dispatch @prompt-improver. Return the verdict.`
+- Expected execution process: sk-prompt scores the five CLEAR dimensions (Correctness, Logic, Expression, Arrangement, Reusability), all pass, and it stays inline because no escalation condition is present.
+- Expected signals: Five CLEAR dimensions pass; `Inline`; no `agent: @prompt-improver` invocation.
+- Desired user-visible outcome: `Handled inline; CLEAR passed; no @prompt-improver escalation.`
+- Pass/fail: PASS if the prompt is handled inline and no escalation occurs; FAIL if `@prompt-improver` is dispatched despite no escalation condition or a failed CLEAR dimension is ignored.
 
 ---
 
@@ -38,36 +38,36 @@ Operators run the exact prompt and command sequence for `SP-023` and confirm the
 ### Prompt
 
 ```
-As a CLI orchestrator, apply the sk-prompt cli_prompt_quality_card to a low-complexity dispatch prompt. Verify all five checks pass inline and no @prompt-improver dispatch occurs. Return the card verdict.
+Run sk-prompt on a low-complexity prompt. Verify it passes the CLEAR check inline and does not dispatch @prompt-improver. Return the verdict.
 ```
 
 ### Commands
 
-1. `sk-prompt: Quick check on my CLI dispatch prompt — apply the 5-question quality card without escalation.`
-2. `bash: rg 'CLEAR 5-Question|Escalation Triggers|@prompt-improver' .opencode/skills/sk-prompt-small-model/assets/cli_prompt_quality_card.md`
+1. `sk-prompt: Quick check on my prompt -- handle it inline without escalating to a deep pass.`
+2. `bash: rg 'CLEAR|Correctness|Logic|Expression|Arrangement|Reusability' .opencode/skills/sk-prompt/references/patterns_evaluation.md`
 
 ### Expected
 
-The orchestrator reports five passed checklist questions and explicitly states that escalation was not needed.
+The skill reports five passed CLEAR dimensions and explicitly states that escalation was not needed.
 
 ### Evidence
 
-Capture the five-question checklist result and routing decision.
+Capture the five-dimension CLEAR result and routing decision.
 
 ### Pass / Fail
 
-- **Pass**: All five card questions pass inline and no `@prompt-improver` dispatch occurs.
-- **Fail**: Escalation occurs without a trigger, or a failed card question is ignored.
+- **Pass**: All five CLEAR dimensions pass inline and no `@prompt-improver` dispatch occurs.
+- **Fail**: Escalation occurs without a condition, or a failed CLEAR dimension is ignored.
 
 ### Failure Triage
 
-1. Inspect `cli_prompt_quality_card.md` §4 for the five checklist questions.
-2. Inspect §5 escalation triggers and confirm none apply.
-3. Re-run with `complexity_hint=2` and no compliance, policy, or multi-stakeholder language.
+1. Inspect `references/patterns_evaluation.md` for the CLEAR dimension definitions and floors.
+2. Inspect `SKILL.md` §7 for when `@prompt-improver` escalation applies (Quick vs Standard DEPTH energy).
+3. Re-run with a simpler prompt and no compliance, policy, or multi-stakeholder language.
 
 ### Optional Supplemental Checks
 
-Verify the checked prompt includes task, context, constraints, output, and verification order.
+Verify the delivered prompt includes role, context, constraints, output, and verification order.
 
 ---
 
@@ -78,14 +78,14 @@ Verify the checked prompt includes task, context, constraints, output, and verif
 | File | Role |
 |---|---|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../SKILL.md` | sk-prompt skill source: §8 fast-path asset and §7 escalation contract |
+| `../../SKILL.md` | sk-prompt skill source: §7 `@prompt-improver` escalation contract |
 
 ### Implementation And Test Anchors
 
 | File | Role |
 |---|---|
-| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Fast-path five-question CLEAR card and escalation triggers |
-| `../../references/patterns_evaluation.md` | Full CLEAR dimension definitions mirrored by the card |
+| `../../references/patterns_evaluation.md` | CLEAR five-dimension definitions and floors |
+| `../../references/depth_framework.md` | Quick vs Standard DEPTH energy that distinguishes inline from escalated handling |
 
 ---
 

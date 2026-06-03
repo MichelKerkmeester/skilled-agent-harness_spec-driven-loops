@@ -85,7 +85,7 @@ Verify `target_cli=codex` influences output wording toward Codex-compatible veri
 
 | File | Role |
 |---|---|
-| `../../../sk-prompt-small-model/assets/cli_prompt_quality_card.md` | Escalation surface that dispatches the payload |
+| `../../SKILL.md` | §7 `@prompt-improver` contract -- the escalation surface that dispatches the payload |
 | `../../references/depth_framework.md` | DEPTH processing applied after payload acceptance |
 
 ---

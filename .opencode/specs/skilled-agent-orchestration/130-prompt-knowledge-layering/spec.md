@@ -131,6 +131,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 13 | 013-card-relocation-and-guard/ | Relocate cli_prompt_quality_card.md from sk-prompt to the hub; repoint ~15 files; rewrite the sync guard's canonical path (L1) | Complete |
 | 14 | 014-doc-divider-sweep-and-sk-prompt-cleanup/ | Add missing sk-doc section dividers across the 5 cli skills' reference/asset docs; scrub stale card refs from sk-prompt SKILL.md (L1) | Complete |
 | 15 | 015-deferred-cleanup-entangled-playbook-assets/ | Land 3 deferred entangled cli docs (permission-mode typo fix, model-profiles path repoint, MiniMax-M3 row + dividers); repoint sk-prompt playbook card paths to the hub; remove the extra leading divider from 6 asset docs (L1) | Complete |
+| 16 | 016-sk-prompt-playbook-forkability-decouple/ | Decouple the sk-prompt manual-testing-playbook from sk-prompt-small-model + cli skills (reframe 2 card scenarios to sk-prompt's own surface, repoint refs, scrub stale §8, genericize cli mentions) so the skill is fully forkable (L1) | Complete |
 ### Phase Transition Rules
 
 - Each phase MUST pass `validate.sh` independently before the next phase begins
@@ -156,6 +157,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 012-cli-doc-alignment | 013-card-relocation-and-guard | cli docs aligned | card relocated to hub; guard rewritten + green; validate --strict exit 0 |
 | 013-card-relocation-and-guard | 014-doc-divider-sweep-and-sk-prompt-cleanup | every non-first H2 in the 5 cli skills' docs has its section divider; sk-prompt card-ref-free | strict scout +0; content-skeleton diff clean; adversarial workflow PASS; validate --strict exit 0 |
 | 014-doc-divider-sweep-and-sk-prompt-cleanup | 015-deferred-cleanup-entangled-playbook-assets | entangled docs landed with content verified; playbook card paths resolve; assets have no extra leading divider | content-skeleton diff confirms intent; old card paths grep 0; first-H2 check clean; validate --strict exit 0 |
+| 015-deferred-cleanup-entangled-playbook-assets | 016-sk-prompt-playbook-forkability-decouple | sk-prompt playbook has zero references to sk-prompt-small-model or cli-* skills; reframed scenarios test sk-prompt's own surface | token grep all 0; all rg targets point only at sk-prompt/; validate_document.py VALID on all touched files; validate --strict exit 0 |
 <!-- /ANCHOR:phase-map -->
 
 ---
