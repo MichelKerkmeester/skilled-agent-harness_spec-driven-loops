@@ -1,0 +1,7 @@
+{"type":"config","topic":"Validate two launcher/MCP/embedder runtime root causes (T1 hf-local spurious spawn; T2 code-index+advisor daemon bridge not serving) and produce a unified design-conformance fix plan.","maxIterations":5,"convergenceThreshold":0.05,"resource_map_present":false,"resource_map":{"emit":true},"createdAt":"2026-06-04T17:40:59Z","specFolder":".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation"}
+{"type":"iteration","iteration":1,"newInfoRatio":0.9,"status":"insight","focus":"T2 daemon bridge not serving","graphEvents":[]}
+{"type":"iteration","iteration":2,"newInfoRatio":0.7,"status":"insight","focus":"T2 root-cause lock","graphEvents":[]}
+{"type":"iteration","iteration":3,"newInfoRatio":0.6,"status":"insight","focus":"T1 probe=demand + fix conformance","graphEvents":[]}
+{"type":"iteration","iteration":4,"newInfoRatio":0.5,"status":"insight","focus":"unified fix plan","graphEvents":[]}
+{"type":"iteration","iteration":5,"newInfoRatio":0.35,"status":"insight","focus":"completeness critic + go/no-go","graphEvents":[]}
+{"type":"event","event":"synthesis_complete","totalIterations":5,"answeredCount":5,"totalQuestions":5,"stopReason":"maxIterationsReached","timestamp":"2026-06-04T18:05:00Z"}
