@@ -98,12 +98,12 @@ existing replay/backfill repair path.
 <!-- ANCHOR:requirements -->
 ## 4. REQUIREMENTS
 
-- R1: With no env set, a normal `memory_save` runs post-insert enrichment, save reconsolidation, and quality auto-fix by default.
-- R2: Each feature is disabled by setting its env to `false` (`SPECKIT_POST_INSERT_ENRICHMENT_ENABLED=false`, etc.).
-- R3: Enrichment does not block the save response; it runs in the background and the response reports `enrichmentStatus = deferred` (executionStatus reason `async-background`).
+- R1: With no env set, a normal `memory_save` runs post-insert enrichment and quality auto-fix by default. Save reconsolidation stays **opt-in** (`SPECKIT_RECONSOLIDATION_ENABLED=true`) — post-review it was kept opt-in because it gates a destructive merge/deprecate path.
+- R2: Each default-on feature is disabled by setting its env to `false`. Caveat: `plannerMode: full-auto` runs enrichment/reconsolidation regardless of the env (the gate is `full-auto || flag`), so the `=false` opt-out applies to the default (`plan-only`/`hybrid`) save path.
+- R3: Enrichment does not block the save response; it runs in the background and the response reports `postInsertEnrichment.status = deferred` (executionStatus reason `async-background`).
 - R4: A save followed by a crash leaves the row `post_insert_enrichment_status = pending`, recoverable by the existing replay/backfill repair.
 - R5: `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` restores synchronous enrichment for callers needing immediate graph freshness.
-- R6: Full test suite green; comment hygiene clean; docs reflect default-on + async.
+- R6: Affected save/enrichment/flag suites green; comment hygiene clean; docs reflect default-on + async. (2 pre-existing `handler-memory-index` scan-fixture failures are unrelated — red on HEAD; the full suite was not run to completion.)
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -111,7 +111,7 @@ existing replay/backfill repair path.
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: With no env set, a normal `memory_save` runs enrichment + reconsolidation + quality auto-fix; each disables with its `=false` env.
+- **SC-001**: With no env set, a normal `memory_save` runs enrichment + quality auto-fix (reconsolidation opt-in); each default-on feature disables with its `=false` env.
 - **SC-002**: Enrichment runs async (response `enrichmentStatus = deferred`); the causal/entity graph gains non-`manual` edges/entities after real saves.
 - **SC-003**: Build clean; affected test suites green; `validate.sh --strict` Errors 0.
 <!-- /ANCHOR:success-criteria -->
@@ -161,5 +161,5 @@ Low. Three one-line flag-helper flips + one async branch (setImmediate) reusing 
 <!-- ANCHOR:questions -->
 ## 10. OPEN QUESTIONS
 
-None — flag scope (all three) and execution model (async) confirmed with the user.
+Resolved post-review: reconsolidation reverted to opt-in (it gates a destructive merge/deprecate path); enrichment + quality-auto-fix remain default-on; enrichment runs async/background.
 <!-- /ANCHOR:questions -->

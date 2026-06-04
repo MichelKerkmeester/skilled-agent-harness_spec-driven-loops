@@ -1,0 +1,18 @@
+{
+  "topic": "deep-review: session work — E081 classification, playbook 048/049, memory_causal_unlink exposure, pipeline-enforcement fixture, checkpoint includeEmbeddings schema, enrichment+reconsolidation+quality-auto-fix default-on (async)",
+  "sessionId": "deep-review-session-work-20260604",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on",
+  "createdAt": "2026-06-04T05:10:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": { "kind": "cli-opencode", "model": "openai/gpt-5.5-fast", "reasoningEffort": "high", "serviceTier": null, "timeoutSeconds": 1200 },
+  "mode": "review",
+  "reviewTarget": "ALL work done this session across commits c0bb8aefd6, e93acb8e24, deee30b319, 637f83ad36, 15d2e4988d, 0060a097b3",
+  "reviewTargetType": "files",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"]
+}

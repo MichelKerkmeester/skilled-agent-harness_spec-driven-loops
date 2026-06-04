@@ -135,11 +135,13 @@ export function resolveSavePlannerMode(): SavePlannerMode {
 }
 
 /**
- * Save-time reconsolidation gate (FSRS stability reinforcement on re-save).
- * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION_ENABLED=false to disable.
+ * Save-time reconsolidation gate. Opt-in (default OFF): it enables the destructive
+ * reconsolidate() path that can merge near-duplicate rows and deprecate older ones — itself
+ * further gated on a per-spec-folder "pre-reconsolidation" checkpoint. Kept opt-in so a
+ * destructive merge never happens without explicit intent. Set SPECKIT_RECONSOLIDATION_ENABLED=true to enable.
  */
 export function isSaveReconsolidationEnabled(): boolean {
-  return isFeatureEnabled('SPECKIT_RECONSOLIDATION_ENABLED');
+  return isOptInEnabled('SPECKIT_RECONSOLIDATION_ENABLED');
 }
 
 /**

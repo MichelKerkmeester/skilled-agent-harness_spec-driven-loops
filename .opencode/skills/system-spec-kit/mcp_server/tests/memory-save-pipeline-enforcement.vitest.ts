@@ -330,6 +330,7 @@ afterEach(() => {
   // Restore env vars
   process.env.SPECKIT_QUALITY_LOOP = ORIGINAL_ENV.SPECKIT_QUALITY_LOOP;
   process.env.SPECKIT_SAVE_QUALITY_GATE = ORIGINAL_ENV.SPECKIT_SAVE_QUALITY_GATE;
+  process.env.SPECKIT_QUALITY_AUTO_FIX = ORIGINAL_ENV.SPECKIT_QUALITY_AUTO_FIX;
   resetActivationTimestamp();
 });
 
@@ -484,6 +485,7 @@ describe('Cat 1: Parser Validation', () => {
 describe('Cat 2: Quality Loop', () => {
   it('returns advisory-only failures for low-quality content on the planner-default path', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
+    process.env.SPECKIT_QUALITY_AUTO_FIX = 'false'; // exercise the advisory (no-auto-fix) path
     const content = 'Short content without any structure or anchors.';
     const metadata: Record<string, unknown> = { triggerPhrases: [] };
 
@@ -1047,6 +1049,7 @@ describe('Cat 6: Cross-Gate Interactions', () => {
 
   it('planner-default quality advisories do not preempt downstream sufficiency evaluation', async () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
+    process.env.SPECKIT_QUALITY_AUTO_FIX = 'false'; // exercise the advisory (no-auto-fix) path
 
     // Content that would fail quality loop (no triggers, short, no anchors)
     const content = 'no structure at all';

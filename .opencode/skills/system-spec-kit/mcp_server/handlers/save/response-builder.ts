@@ -508,15 +508,26 @@ export function classifySaveErrorCode(errorMessage: string): string {
   if (lower.includes('sqlite_busy') || lower.includes('database is locked')) {
     return 'E087'; // MEMORY_SAVE_SQLITE_BUSY
   }
-  if (lower.includes('sqlite') || lower.includes('database error')) {
-    return 'E088'; // MEMORY_SAVE_DB_ERROR
+  if (
+    lower.includes('sqlite')
+    || lower.includes('database error')
+    || lower.includes('reconsolidation failed')
+    || lower.includes('save-time reconsolidation failed')
+    || lower.includes('candidate_changed')
+    || lower.includes('aborted before commit')
+    || lower.includes('save aborted')
+  ) {
+    return 'E088'; // MEMORY_SAVE_DB_ERROR (DB + save-flow failures)
   }
   if (
     lower.includes('validation failed')
     || lower.includes('must be a canonical spec document')
     || lower.includes('filepath is required')
+    || lower.includes('access denied')
+    || lower.includes('path must not contain')
+    || lower.includes('traversal')
   ) {
-    return 'E089'; // MEMORY_SAVE_VALIDATION_FAILED
+    return 'E089'; // MEMORY_SAVE_VALIDATION_FAILED (validation + path-safety failures)
   }
   return 'E081'; // MEMORY_SAVE_FAILED (true catch-all for unknown error shapes)
 }

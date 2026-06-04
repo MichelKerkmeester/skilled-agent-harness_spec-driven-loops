@@ -2688,18 +2688,7 @@ async function processPreparedMemory(
     // forces synchronous execution when a caller needs the graph fresh in the same response.
     let postInsertEnrichmentResult: PostInsertEnrichmentResult;
     if (shouldRunPostInsertEnrichment(plannerMode) && isPostInsertEnrichmentAsync()) {
-      const backgroundId = id;
-      const backgroundParsed = routedParsed;
-      setImmediate(() => {
-        runPostInsertEnrichment(database, backgroundId, backgroundParsed)
-          .then((result) => {
-            recordEnrichmentResult(database, backgroundId, result);
-            invalidateEntityDensityCacheAfterSave();
-          })
-          .catch((bgErr: unknown) => {
-            console.warn(`[memory-save] background enrichment failed for #${backgroundId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
-          });
-      });
+      scheduleBackgroundEnrichment(id, routedParsed);
       postInsertEnrichmentResult = buildDeferredEnrichmentResult('async-background');
     } else {
       postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(
@@ -2823,13 +2812,108 @@ async function indexMemoryFileFromScan(
   });
 }
 
+/* --- 8b. BACKGROUND ENRICHMENT SCHEDULER --- */
+
+// Concurrency cap so a save burst cannot schedule unbounded background enrichment (each run does
+// entity extraction + a summary embedding + graph lifecycle). Excess work queues and drains as
+// slots free.
+const MAX_BACKGROUND_ENRICHMENTS = 4;
+let activeBackgroundEnrichments = 0;
+const backgroundEnrichmentQueue: Array<() => void> = [];
+
+/**
+ * Run post-insert enrichment for a just-saved row in the background, bounded and crash-safe:
+ * - re-resolves the DB handle at run time (the save-time handle may have been recycled),
+ * - skips rows that were superseded/deprecated before the deferred run starts, so it never
+ *   repopulates purged entity/graph data for an inactive row,
+ * - caps concurrency. The row was marked enrichment-pending inside the commit transaction, so a
+ *   skipped or dropped run is recovered by the pending-marker replay/backfill path.
+ */
+function scheduleBackgroundEnrichment(
+  memoryId: number,
+  parsed: ReturnType<typeof memoryParser.parseMemoryFile>,
+): void {
+  const run = (): void => {
+    activeBackgroundEnrichments++;
+    void (async () => {
+      try {
+        let db: ReturnType<typeof requireDb>;
+        try {
+          db = requireDb();
+        } catch {
+          return; // DB unavailable (e.g. recycle in flight) — row stays pending for backfill repair
+        }
+        const row = db
+          .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
+          .get(memoryId) as { importance_tier?: string } | undefined;
+        if (!row || row.importance_tier === 'deprecated') {
+          return; // superseded/removed since the save — do not repopulate stale graph/entity data
+        }
+        const result = await runPostInsertEnrichment(db, memoryId, parsed);
+        recordEnrichmentResult(db, memoryId, result);
+        invalidateEntityDensityCacheAfterSave();
+      } catch (bgErr: unknown) {
+        console.warn(`[memory-save] background enrichment failed for #${memoryId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
+      } finally {
+        activeBackgroundEnrichments--;
+        const next = backgroundEnrichmentQueue.shift();
+        if (next) next();
+      }
+    })();
+  };
+  if (activeBackgroundEnrichments < MAX_BACKGROUND_ENRICHMENTS) {
+    setImmediate(run);
+  } else {
+    backgroundEnrichmentQueue.push(run);
+  }
+}
+
 /* --- 9. MEMORY SAVE HANDLER --- */
 
 /** Handle memory_save tool - validates, indexes, and persists a memory file to the database */
 async function handleMemorySave(args: SaveArgs): Promise<MCPResponse> {
-  await ensureMemoryRuntimeInitialized('handler:memory_save');
-  // Generate requestId for incident correlation in error responses
+  // Top-level classify-catch: any throw that escapes the inner handler (pre-index path/DB
+  // validation, governance runtime setup, etc.) is mapped to a specific code instead of the
+  // generic E081 catch-all the dispatcher would otherwise apply. A thrown error that already
+  // carries a code (e.g. preflight.PreflightError) keeps it.
   const requestId = randomUUID();
+  try {
+    return await handleMemorySaveInner(args, requestId);
+  } catch (error: unknown) {
+    if (error instanceof VRuleUnavailableError) {
+      return createMCPErrorResponse({
+        tool: 'memory_save',
+        error: error.message,
+        code: 'E_RUNTIME',
+        details: { requestId },
+        recovery: {
+          hint: 'Build the Spec Kit scripts workspace and retry the save.',
+          actions: ['Run npm run build --workspace=@spec-kit/scripts', 'Retry memory_save'],
+          severity: 'warning',
+        },
+      });
+    }
+    const message = error instanceof Error ? error.message : String(error);
+    const existingCode = (error as { code?: string }).code;
+    const code = typeof existingCode === 'string' && existingCode.length > 0
+      ? existingCode
+      : classifySaveErrorCode(message);
+    return createMCPErrorResponse({
+      tool: 'memory_save',
+      error: message,
+      code,
+      details: { requestId, ...extractSaveErrorDetails(message) },
+      recovery: {
+        hint: 'Inspect the error message for the specific failure; transient DB locks are usually retryable.',
+        actions: ['Resolve the reported cause', 'Retry memory_save'],
+        severity: 'warning',
+      },
+    });
+  }
+}
+
+async function handleMemorySaveInner(args: SaveArgs, requestId: string): Promise<MCPResponse> {
+  await ensureMemoryRuntimeInitialized('handler:memory_save');
 
   // Fail fast with a clear message when the target file does not exist, before any
   // path/db processing flattens it into the generic "unexpected error" (E081). The

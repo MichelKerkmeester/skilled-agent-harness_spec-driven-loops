@@ -249,19 +249,20 @@ describe('Search Flags: Planner and Save Flags (T254)', () => {
     expect(resolveSavePlannerMode()).toBe('plan-only');
   });
 
-  it('save reconsolidation, post-insert enrichment, quality auto-fix default to ON (opt-out)', () => {
-    expect(isSaveReconsolidationEnabled()).toBe(true);
+  it('post-insert enrichment + quality auto-fix default ON (opt-out); reconsolidation stays opt-in (OFF)', () => {
     expect(isPostInsertEnrichmentEnabled()).toBe(true);
     expect(isQualityAutoFixEnabled()).toBe(true);
+    // Reconsolidation gates a destructive merge/deprecate path — kept opt-in (default OFF).
+    expect(isSaveReconsolidationEnabled()).toBe(false);
   });
 
-  it('opt-out flags disable only when explicitly set to false', () => {
-    process.env.SPECKIT_RECONSOLIDATION_ENABLED = 'false';
+  it('opt-out flags disable on =false; reconsolidation enables on =true', () => {
     process.env.SPECKIT_POST_INSERT_ENRICHMENT_ENABLED = 'false';
     process.env.SPECKIT_QUALITY_AUTO_FIX = 'false';
-    expect(isSaveReconsolidationEnabled()).toBe(false);
+    process.env.SPECKIT_RECONSOLIDATION_ENABLED = 'true';
     expect(isPostInsertEnrichmentEnabled()).toBe(false);
     expect(isQualityAutoFixEnabled()).toBe(false);
+    expect(isSaveReconsolidationEnabled()).toBe(true);
   });
 
   it('post-insert enrichment runs async by default; SYNC=true forces synchronous', () => {

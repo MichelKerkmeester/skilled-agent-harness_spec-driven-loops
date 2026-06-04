@@ -58,7 +58,8 @@ export type EnrichmentSkipReason =
   | 'entity_linking_disabled'
   | 'empty_content'
   | 'extraction_not_ran'
-  | 'summary_not_stored';
+  | 'summary_not_stored'
+  | 'async_background';
 
 export type EnrichmentFailureReason =
   | 'causal_links_exception'
@@ -156,6 +157,7 @@ function normalizeEnrichmentSkipReason(reason: EnrichmentSkipReason): Enrichment
     case 'empty_content':
     case 'extraction_not_ran':
     case 'summary_not_stored':
+    case 'async_background':
       return reason;
     default:
       return assertNever(reason, 'enrichment-skip-reason');
@@ -181,8 +183,8 @@ function makeSkipped(reason: EnrichmentSkipReason): EnrichmentStepResult {
   return { status: 'skipped', reason: normalizeEnrichmentSkipReason(reason) };
 }
 
-function makeDeferred(): EnrichmentStepResult {
-  return { status: 'deferred', reason: normalizeEnrichmentSkipReason('planner_first_mode') };
+function makeDeferred(reason: EnrichmentSkipReason = 'planner_first_mode'): EnrichmentStepResult {
+  return { status: 'deferred', reason: normalizeEnrichmentSkipReason(reason) };
 }
 
 function makeFailed(reason: EnrichmentFailureReason, warnings?: string[]): EnrichmentStepResult {
@@ -357,7 +359,10 @@ async function runSummariesStep(
         console.error(`[memory-summaries] Generated summary for memory #${id}`);
         return { status: 'ran' };
       }
-      return makeSkipped('summary_not_stored');
+      // A summary that ran but did not store is an incomplete enrichment, not a skip. Returning
+      // skipped would let the overall status roll up to 'complete' and exclude the row from
+      // future repair; mark it failed so the marker stays repairable and a later pass retries.
+      return makeFailed(deriveFailureReason('summaries'), ['summary generated but not stored']);
     },
   );
 }
@@ -601,14 +606,17 @@ export async function runPostInsertEnrichmentIfEnabled(
 export function buildDeferredEnrichmentResult(
   reason: PostInsertExecutionReason = 'async-background',
 ): PostInsertEnrichmentResult {
+  // Match the per-lane deferral reason to the execution reason so clients inspecting
+  // enrichmentStatus do not see async-queued work mislabeled as planner-first skip.
+  const laneReason: EnrichmentSkipReason = reason === 'async-background' ? 'async_background' : 'planner_first_mode';
   return {
     causalLinksResult: null,
     enrichmentStatus: {
-      causalLinks: makeDeferred(),
-      entityExtraction: makeDeferred(),
-      summaries: makeDeferred(),
-      entityLinking: makeDeferred(),
-      graphLifecycle: makeDeferred(),
+      causalLinks: makeDeferred(laneReason),
+      entityExtraction: makeDeferred(laneReason),
+      summaries: makeDeferred(laneReason),
+      entityLinking: makeDeferred(laneReason),
+      graphLifecycle: makeDeferred(laneReason),
     },
     executionStatus: {
       status: 'deferred',

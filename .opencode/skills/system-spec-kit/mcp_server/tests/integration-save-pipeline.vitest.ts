@@ -74,22 +74,21 @@ describe('Integration Save Pipeline (T526) [deferred - requires DB test fixtures
 
     it('T526-5: Force flag accepted as parameter', async () => {
       const fakePath = path.join(os.tmpdir(), 'mcp-test-nonexistent-' + Date.now(), 'memory', 'fake.md');
-      try {
-        await saveHandler.handleMemorySave({ filePath: fakePath, force: true });
-      } catch (error: unknown) {
-        // Force flag should NOT be the reason for the error — file-not-found is expected
-        expect(getErrorMessage(error)).not.toMatch(/force/);
-      }
+      // Returns a classified error (missing file), not a throw — assert force is accepted (not the cause).
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({ filePath: fakePath, force: true })
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).not.toMatch(/force/);
     });
 
     it('T526-6: dryRun flag accepted as parameter', async () => {
       const fakePath = path.join(os.tmpdir(), 'mcp-test-nonexistent-' + Date.now(), 'memory', 'fake.md');
-      try {
-        await saveHandler.handleMemorySave({ filePath: fakePath, dryRun: true });
-      } catch (error: unknown) {
-        // DryRun flag should NOT be the reason for the error
-        expect(getErrorMessage(error)).not.toMatch(/dryRun/);
-      }
+      const err = expectClassifiedError(
+        await saveHandler.handleMemorySave({ filePath: fakePath, dryRun: true })
+      );
+      expect(err.code).toBe('E089');
+      expect(err.error).not.toMatch(/dryRun/);
     });
 
   });
