@@ -692,7 +692,7 @@ function releaseRespawnLockFile(lock) {
   }
 }
 
-function buildLeaseObject(childPid = null, startedAt = null, modelServerPid = null) {
+function buildLeaseObject(childPid = null, startedAt = null, modelServerPid = null, socketPath = null) {
   const payload = {
     pid: process.pid,
     startedAt: startedAt || new Date().toISOString(),
@@ -703,6 +703,13 @@ function buildLeaseObject(childPid = null, startedAt = null, modelServerPid = nu
   }
   if (Number.isInteger(modelServerPid) && modelServerPid > 0) {
     payload.modelServerPid = modelServerPid;
+  }
+  // Record the owner's actual IPC socket path so a secondary launcher bridges to the path the
+  // owner truly listens on, instead of recomputing one that can diverge under a different
+  // SPECKIT_IPC_SOCKET_DIR (e.g. worktree env). Optional + additive: leases without it fall back
+  // to recomputation, so existing readers and the other launchers are unaffected.
+  if (typeof socketPath === 'string' && socketPath.length > 0) {
+    payload.socketPath = socketPath;
   }
   return payload;
 }

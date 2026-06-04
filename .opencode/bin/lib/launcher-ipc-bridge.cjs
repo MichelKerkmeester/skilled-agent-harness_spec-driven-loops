@@ -332,7 +332,19 @@ async function maybeBridgeLeaseHolder(options) {
     return { action: 'report', reason: 'bridge-disabled' };
   }
 
-  const socketPath = getIpcSocketPath(serviceName, { dbDir });
+  // Prefer the path the lease owner actually recorded over recomputing one from env. Under a
+  // divergent SPECKIT_IPC_SOCKET_DIR (e.g. a secondary launcher in a different worktree env), the
+  // recomputed path can miss the live socket and false-report 'no-bridge-socket'. Only trust the
+  // stored path when it still exists on disk; tcp:// endpoints bypass the existence check. Fall back
+  // to recomputation for legacy leases that predate socketPath and for the other launchers whose
+  // leases never carry it.
+  const storedSocketPath = leaseResult.socketPath;
+  const usableStoredSocketPath = typeof storedSocketPath === 'string'
+    && storedSocketPath.length > 0
+    && (storedSocketPath.startsWith('tcp://') || fs.existsSync(storedSocketPath))
+    ? storedSocketPath
+    : null;
+  const socketPath = usableStoredSocketPath ?? getIpcSocketPath(serviceName, { dbDir });
   if (!socketPath.startsWith('tcp://') && !fs.existsSync(socketPath)) {
     writeLeaseHeld(' (no-bridge-socket)');
     return { action: 'report', reason: 'no-bridge-socket', socketPath };

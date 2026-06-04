@@ -1,5 +1,7 @@
 import { EventEmitter } from 'node:events';
+import { mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -8,10 +10,19 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 const require = createRequire(import.meta.url);
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../..');
 const bridgeModulePath = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
+const supervisionModulePath = join(repoRoot, '.opencode/bin/lib/model-server-supervision.cjs');
 const { maybeBridgeLeaseHolder, probeDaemon, probeModelServer } = require(bridgeModulePath) as {
-  maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string }>;
+  maybeBridgeLeaseHolder: (options: Record<string, unknown>) => Promise<{ action: string; reason?: string; socketPath?: string }>;
   probeDaemon: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
   probeModelServer: (socketPath: string, options: Record<string, unknown>) => Promise<{ status: string; reason?: string }>;
+};
+const { buildLeaseObject } = require(supervisionModulePath) as {
+  buildLeaseObject: (
+    childPid?: number | null,
+    startedAt?: string | null,
+    modelServerPid?: number | null,
+    socketPath?: string | null,
+  ) => Record<string, unknown>;
 };
 
 const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
@@ -249,5 +260,114 @@ describe('launcher IPC bridge liveness probe', () => {
     await vi.advanceTimersByTimeAsync(25);
     await expect(decision).resolves.toMatchObject({ action: 'respawn', reason: 'timeout' });
     expect(bridge).not.toHaveBeenCalled();
+  });
+});
+
+describe('lease socketPath: stored owner path preferred over recomputed', () => {
+  const tempDirs: string[] = [];
+  const originalSocketDir = process.env.SPECKIT_IPC_SOCKET_DIR;
+
+  afterEach(() => {
+    process.env.SPECKIT_IPC_SOCKET_DIR = originalSocketDir;
+    while (tempDirs.length > 0) {
+      const dir = tempDirs.pop();
+      if (dir) rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  function tempDir(prefix: string): string {
+    const dir = mkdtempSync(join(tmpdir(), prefix));
+    tempDirs.push(dir);
+    return dir;
+  }
+
+  // (1) A freshly written mk-spec-memory lease now carries the owner's actual socket path.
+  it('emits socketPath in the lease payload when the owner supplies one', () => {
+    const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z', null, '/tmp/owner-env/daemon-ipc.sock');
+    expect(lease.socketPath).toBe('/tmp/owner-env/daemon-ipc.sock');
+  });
+
+  // (4) Leases without a socketPath (legacy mk-spec-memory writes and every skill-advisor /
+  // code-index lease, which never records one) omit the field entirely so existing readers and
+  // the recompute fallback are unaffected.
+  it('omits socketPath entirely when no owner path is supplied', () => {
+    const lease = buildLeaseObject(4242, '2026-05-28T00:00:00.000Z');
+    expect(Object.prototype.hasOwnProperty.call(lease, 'socketPath')).toBe(false);
+  });
+
+  // (2) The bridge prefers the stored path when present and still on disk, even when the env-based
+  // recompute would resolve a different (divergent worktree) directory.
+  it('bridges to the stored socketPath instead of the recomputed one', async () => {
+    const ownerDir = tempDir('lease-owner-sock-');
+    const storedSocket = join(ownerDir, 'daemon-ipc.sock');
+    writeFileSync(storedSocket, '');
+    // Divergent recompute target: a directory with no live socket, mimicking a secondary launcher's
+    // worktree env. If the bridge recomputed from this dir it would report no-bridge-socket.
+    const divergentDir = tempDir('lease-divergent-');
+    delete process.env.SPECKIT_IPC_SOCKET_DIR; // force recompute to resolve from dbDir, not host env
+
+    const bridged: string[] = [];
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'mk-spec-memory',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z', socketPath: storedSocket },
+      loggerPrefix: 'test-launcher',
+      dbDir: divergentDir,
+      connect: createAliveConnect(),
+      bridge: (socketPath: string) => {
+        bridged.push(socketPath);
+      },
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'bridge', socketPath: storedSocket });
+    expect(bridged).toEqual([storedSocket]);
+  });
+
+  // (3) A legacy lease WITHOUT socketPath still bridges via the recompute fallback.
+  it('falls back to the recomputed socket path for a legacy lease without socketPath', async () => {
+    const ownerDir = tempDir('lease-legacy-sock-');
+    const recomputedSocket = join(ownerDir, 'daemon-ipc.sock');
+    writeFileSync(recomputedSocket, '');
+    // The recompute resolves SPECKIT_IPC_SOCKET_DIR -> <dir>/daemon-ipc.sock.
+    process.env.SPECKIT_IPC_SOCKET_DIR = ownerDir;
+
+    const bridged: string[] = [];
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'mk-spec-memory',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
+      loggerPrefix: 'test-launcher',
+      dbDir: ownerDir,
+      connect: createAliveConnect(),
+      bridge: (socketPath: string) => {
+        bridged.push(socketPath);
+      },
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'bridge', socketPath: recomputedSocket });
+    expect(bridged).toEqual([recomputedSocket]);
+  });
+
+  // (4) A skill-advisor / code-index style lease (no socketPath) is unaffected: same recompute path
+  // as a legacy mk-spec-memory lease, and a missing recomputed socket still reports no-bridge-socket.
+  it('reports no-bridge-socket for a no-socketPath lease whose recomputed socket is absent', async () => {
+    const divergentDir = tempDir('lease-advisor-');
+    delete process.env.SPECKIT_IPC_SOCKET_DIR; // force recompute to resolve from dbDir, not host env
+
+    const bridged: string[] = [];
+    const decision = await maybeBridgeLeaseHolder({
+      serviceName: 'mk-skill-advisor',
+      leaseResult: { ownerPid: 123, startedAt: '2026-05-28T00:00:00.000Z' },
+      loggerPrefix: 'test-launcher',
+      dbDir: divergentDir,
+      connect: createAliveConnect(),
+      bridge: (socketPath: string) => {
+        bridged.push(socketPath);
+      },
+      probeTimeoutMs: 100,
+    });
+
+    expect(decision).toMatchObject({ action: 'report', reason: 'no-bridge-socket' });
+    expect(bridged).toEqual([]);
   });
 });

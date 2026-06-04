@@ -252,15 +252,18 @@ function readLeaseFile(filePath = leasePath()) {
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
   const lease = readLeaseFile(filePath);
-  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath };
+  if (!lease) return { held: false, ownerPid: null, staleReclaimable: false, startedAt: null, legacyPath, socketPath: null };
   const startedAt = lease.startedAt ?? new Date(0).toISOString();
+  // Surface the owner-recorded socket path so the bridge can prefer it over recomputing one that
+  // may diverge under a different SPECKIT_IPC_SOCKET_DIR. Null when the lease predates this field.
+  const socketPath = typeof lease.socketPath === 'string' && lease.socketPath.length > 0 ? lease.socketPath : null;
   try {
     process.kill(lease.pid, 0);
-    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
   } catch (error) {
-    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath };
+    if (error.code === 'ESRCH') return { held: false, ownerPid: lease.pid, staleReclaimable: true, startedAt, legacyPath, socketPath };
     // Mirror skill-advisor parity — EPERM means the process exists but we lack permission (e.g. sandbox); treat as live lease.
-    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath };
+    if (error.code === 'EPERM') return { held: true, ownerPid: lease.pid, staleReclaimable: false, startedAt, legacyPath, socketPath };
     throw error;
   }
 }
@@ -448,16 +451,17 @@ function getContextServerPid() {
   return isChildRunning(childProcess) ? childProcess.pid : null;
 }
 
-// Pure lease-payload builder (exported for tests). `childPid` and `modelServerPid` are ADDITIVE
-// fields present only when the corresponding launcher-owned child exists; existing readers consume
-// only pid/startedAt/ownerPid and ignore the extra fields.
-function buildLeaseObject(childPid = null, startedAt = leaseStartedAt, modelServerPid = null) {
-  return buildSharedLeaseObject(childPid, startedAt || new Date().toISOString(), modelServerPid);
+// Pure lease-payload builder (exported for tests). `childPid`, `modelServerPid`, and `socketPath`
+// are ADDITIVE fields; existing readers consume only pid/startedAt/ownerPid and ignore the extras.
+// `socketPath` records the IPC path this owner actually listens on so a secondary launcher prefers
+// it over recomputing one that can diverge under a different SPECKIT_IPC_SOCKET_DIR.
+function buildLeaseObject(childPid = null, startedAt = leaseStartedAt, modelServerPid = null, socketPath = null) {
+  return buildSharedLeaseObject(childPid, startedAt || new Date().toISOString(), modelServerPid, socketPath);
 }
 
 function writeLeaseFile(childPid = getContextServerPid(), modelServerPid = hfControl.getPid()) {
   if (!leaseStartedAt) leaseStartedAt = new Date().toISOString();
-  const payload = buildLeaseObject(childPid, leaseStartedAt, modelServerPid);
+  const payload = buildLeaseObject(childPid, leaseStartedAt, modelServerPid, resolveSessionProxySocketPath());
   return writeAtomicJsonFile(leasePath(), payload, 'lease write');
 }
 
