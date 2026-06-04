@@ -1,0 +1,8 @@
+{
+  "run": 2,
+  "status": "complete",
+  "focus": "correctness",
+  "newFindings": ["P1-002"],
+  "newFindingsRatio": 0.25,
+  "verdict": "FAIL"
+}

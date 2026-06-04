@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "mode": "research",
+  "sessionId": "fanout-codex-2-1780597406873-hzqkj0",
+  "lineage": "codex-2",
+  "status": "complete",
+  "stopReason": "converged",
+  "metrics": {
+    "iterationsCompleted": 5,
+    "keyQuestionsAnswered": 5,
+    "convergenceScore": 0.92,
+    "remainingUnknowns": 0
+  },
+  "findings": [
+    {
+      "id": "R001-contract-drift",
+      "severity": "P1",
+      "status": "active",
+      "title": "Tool contracts drift across docs, public schemas, runtime schemas, handlers, and helpers",
+      "rootCause": "No single generated or tested source of truth for MCP tool input contracts.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299"
+      ],
+      "impact": "Operators can call documented options that do nothing, and dead options can stay exposed without runtime effect.",
+      "recommendation": "Generate public schemas and docs from runtime schemas or add contract tests that diff every exposed parameter against implementation usage."
+    },
+    {
+      "id": "R002-governance-drop",
+      "severity": "P1",
+      "status": "active",
+      "title": "Bulk governed ingest validates governance metadata but drops it before indexing",
+      "rootCause": "Governance validation is implemented at the boundary, but indexing/job queue APIs do not carry normalized scope.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:596",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:330",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:721",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:146",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:253"
+      ],
+      "impact": "Governed bulk import/scan callers can believe metadata is persisted when it is not.",
+      "recommendation": "Thread normalized governance scope through scan, async ingest jobs, queue processing, and indexMemoryFile."
+    },
+    {
+      "id": "R003-metadata-systemic",
+      "severity": "P1",
+      "status": "active",
+      "title": "Program metadata drift is systemic across 026, 027, and audit-control packets",
+      "rootCause": "Generated control artifacts are not freshness-validated against canonical specs, timelines, implementation summaries, and live child inventories.",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/review/lineages/codex-4/review-report.md:26",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/review/lineages/codex-1/review-report.md:23",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/review/lineages/codex-1/review-report.md:67",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-3/review-report.md:35"
+      ],
+      "impact": "Resume, release-readiness, and audit synthesis can point at stale or non-executable packet state.",
+      "recommendation": "Add recursive metadata freshness checks and regenerate graph metadata/description/changelog rollups from canonical packet state."
+    },
+    {
+      "id": "R004-memory-correctness",
+      "severity": "P1",
+      "status": "active",
+      "title": "Memory correctness defects split into bounded stale routing and persistent DB/file divergence",
+      "rootCause": "Cache invalidation coverage and atomic file/DB ordering are incomplete.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:21",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:20",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:362",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2653"
+      ],
+      "impact": "Search routing can be stale for up to the TTL after CRUD mutations; save failure paths can leave DB rows ahead of file promotion/finalization.",
+      "recommendation": "Add entity-density invalidation to shared mutation hooks and make DB commit/file promotion rollback semantics explicit and test-covered."
+    },
+    {
+      "id": "R005-security-calibration",
+      "severity": "P1-local-P0-shared",
+      "status": "active",
+      "title": "Governance bypasses are real but P0 severity depends on deployment trust boundary",
+      "rootCause": "Fallback and causal mutation paths bypass or lack scoped ownership checks.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:406",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743"
+      ],
+      "impact": "P0 in shared or multi-tenant MCP contexts; P1 in the stated local single-user MCP context.",
+      "recommendation": "Apply governance filters to fallback member fetches and add scoped ownership checks to causal link/unlink."
+    },
+    {
+      "id": "R006-fanout-failure-accounting",
+      "severity": "P1",
+      "status": "active",
+      "title": "Fan-out can count non-zero CLI subprocess exits as fulfilled lineages",
+      "rootCause": "fanout-run returns subprocess exitCode inside fulfilled worker output, while the pool counts failures only when workers reject.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:362",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:207",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:376"
+      ],
+      "impact": "Review/research fan-out orchestration can report success or weak partial success despite failed CLI lineages.",
+      "recommendation": "Treat non-zero subprocess exit as lineage failure unless salvage proves a complete terminal marker and required artifacts exist."
+    },
+    {
+      "id": "R007-fanout-current-state-correction",
+      "severity": "P2",
+      "status": "corrected",
+      "title": "Current CLI fan-out is concurrency-capped, not serial",
+      "rootCause": "Earlier serial-spawn concern is stale relative to current fanout-pool wiring.",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:307",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:174",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-pool.vitest.ts:102"
+      ],
+      "impact": "Do not prioritize a serialism fix unless a different non-CLI/native path is under review.",
+      "recommendation": "Keep concurrency tests; focus remediation on exit-code accounting and iteration-budget propagation."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": "deep-review.findings-registry.v1",
+  "sessionId": "fanout-codex-3-1780594677741-z9tid3",
+  "verdict": "CONDITIONAL",
+  "severityCounts": {
+    "P0": 0,
+    "P1": 5,
+    "P2": 3
+  },
+  "activeFindings": [
+    {
+      "id": "DR-CAT-P1-001",
+      "severity": "P1",
+      "category": "catalog-code-traceability",
+      "finding_class": "stale-measured-coverage",
+      "content_hash": "728a57fbb9e3ec4b",
+      "title": "Feature catalog code-reference coverage is materially stale",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26",
+        ".opencode/skills/system-spec-kit/mcp_server/api/search.ts:1"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P1-002",
+      "severity": "P1",
+      "category": "playbook-coverage",
+      "finding_class": "stale-release-readiness-count",
+      "content_hash": "a10163490a62373e",
+      "title": "Playbook release-readiness file count expects 380 scenarios but current tree has 384",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:139",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P1-003",
+      "severity": "P1",
+      "category": "playbook-root-index",
+      "finding_class": "orphan-scenario-index-gap",
+      "content_hash": "f47de555bcac894a",
+      "title": "Root cross-reference index does not link all scenario files",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:142",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3675",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/031-detect-changes-preflight.md:1"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P1-004",
+      "severity": "P1",
+      "category": "feature-to-playbook-coverage",
+      "finding_class": "missing-scenario-reference",
+      "content_hash": "127203a3a9a1c2fb",
+      "title": "Dozens of feature catalog files have no playbook scenario source reference",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:172",
+        ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/012-search-api-surface.md:15",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/239-codex-hook-freshness-smoke-check.md:17"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P1-005",
+      "severity": "P1",
+      "category": "link-integrity",
+      "finding_class": "broken-cross-reference-links",
+      "content_hash": "d88b438e15c00c00",
+      "title": "Manual playbook contains broken cross-reference links in root and scenario files",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3675",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3682",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md:146"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P2-001",
+      "severity": "P2",
+      "category": "portability",
+      "finding_class": "case-sensitive-path-risk",
+      "content_hash": "cfecb8e7e9ea35d6",
+      "title": "Validation docs use FEATURE_CATALOG.md while the canonical catalog source is lower-case",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:38"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P2-002",
+      "severity": "P2",
+      "category": "playbook-capability",
+      "finding_class": "scope-under-sampling",
+      "content_hash": "2973966acd9bee44",
+      "title": "Grep traceability scenario samples only mcp_server despite catalog scope naming shared too",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md:38",
+        ".opencode/skills/system-spec-kit/shared/embeddings.ts:4"
+      ],
+      "active": true
+    },
+    {
+      "id": "DR-CAT-P2-003",
+      "severity": "P2",
+      "category": "playbook-quality",
+      "finding_class": "malformed-scenario-prompt",
+      "content_hash": "90cca5460583247f",
+      "title": "Annotation-name validity scenario has malformed request and expected-signal text",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:21"
+      ],
+      "active": true
+    }
+  ],
+  "closedFindings": []
+}

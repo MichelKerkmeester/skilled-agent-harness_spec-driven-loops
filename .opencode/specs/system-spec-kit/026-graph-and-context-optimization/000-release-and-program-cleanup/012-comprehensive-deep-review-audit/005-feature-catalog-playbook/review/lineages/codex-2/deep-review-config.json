@@ -1,0 +1,78 @@
+{
+  "topic": "Feature catalog + manual testing playbook verification slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "reviewTargetType": "spec-folder",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-2",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-codex-2-1780594677741-ms6atg",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "selfInvocationGuard": "Current process is already Codex, so the lineage executed locally without nested codex exec dispatch."
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "createdAt": "2026-06-04T17:43:38Z",
+  "completedAt": "2026-06-04T17:43:38Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "topic": "Review: 027 launch-state",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": true,
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/graph-metadata.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json"
+  ],
+  "sessionId": "fanout-codex-1-1780596675702-e5bokn",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/review/lineages/codex-1",
+  "createdAt": "2026-06-04T18:12:00.000Z",
+  "status": "complete",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "selfInvocationHandledAsLaunchedLineage": true
+  },
+  "resource_map": {
+    "emit": true
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "run": 4,
+  "mode": "review",
+  "status": "complete",
+  "dimensions": [
+    "maintainability"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 1
+  },
+  "findingRefs": [
+    "P2-001"
+  ],
+  "newFindingsRatio": 0.0909,
+  "iterationFile": "iterations/iteration-004.md"
+}

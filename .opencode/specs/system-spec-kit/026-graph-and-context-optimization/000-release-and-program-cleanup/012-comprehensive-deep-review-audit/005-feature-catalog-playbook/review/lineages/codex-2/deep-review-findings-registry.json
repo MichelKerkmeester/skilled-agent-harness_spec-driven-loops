@@ -1,0 +1,104 @@
+{
+  "sessionId": "fanout-codex-2-1780594677741-ms6atg",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Master catalog overstates universal feature annotation coverage",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "line": 3946,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "finding_class": "docs-code-drift",
+      "content_hash": "sha256:codex2-f001",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Catalog cleanup claim is false while phase-style labels remain in non-test source comments",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+      "line": 30,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "finding_class": "docs-code-drift",
+      "content_hash": "sha256:codex2-f002",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Detailed scenario 136 has malformed request and expected-signal text",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+      "line": 18,
+      "firstSeen": 3,
+      "lastSeen": 4,
+      "finding_class": "playbook-clarity",
+      "content_hash": "sha256:codex2-f003",
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002",
+    "F003"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.75,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

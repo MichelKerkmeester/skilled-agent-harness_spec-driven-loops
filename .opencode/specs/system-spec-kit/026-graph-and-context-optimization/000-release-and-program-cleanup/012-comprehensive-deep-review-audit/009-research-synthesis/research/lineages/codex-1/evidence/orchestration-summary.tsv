@@ -1,0 +1,9 @@
+slice	total_cli_lineages	total	succeeded	failed
+001-mcp-core-review	1	1	1	0
+002-mcp-retrieval-causal-review	1	1	1	0
+003-mcp-session-index-schema-review	1	1	1	0
+004-026-integrity-and-metadata-review	1	1	1	0
+005-catalog-playbook-comments-review	1	1	1	0
+006-governance-skdoc-skcode-review	1	1	1	0
+007-interconnected-mcps-and-deep-loops-review	1	1	1	0
+008-027-launch-state-readiness-review	1	1	1	0

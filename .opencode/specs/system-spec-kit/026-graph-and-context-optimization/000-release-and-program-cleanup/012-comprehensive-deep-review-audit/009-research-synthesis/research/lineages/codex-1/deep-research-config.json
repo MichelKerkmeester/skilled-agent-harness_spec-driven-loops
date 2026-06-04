@@ -1,0 +1,69 @@
+{
+  "session_id": "fanout-codex-1-1780597406873-0x2cpu",
+  "loop_type": "research",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "self_invocation": "not used; current Codex runtime executed loop in-process"
+  },
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "artifact_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1",
+  "artifact_binding": {
+    "mode": "config.fanout_lineage_artifact_dir override",
+    "resolveArtifactRoot_executed": false,
+    "reason": "User explicitly required direct binding and prohibited touching paths outside the lineage artifact directory."
+  },
+  "created_at": "2026-06-04T00:00:00.000Z",
+  "updated_at": "2026-06-04T00:00:00.000Z",
+  "status": "complete",
+  "convergence": {
+    "threshold": 0.05,
+    "final_new_info_ratio": 0.03,
+    "stop_reason": "converged",
+    "iterations": 5
+  },
+  "state_paths": {
+    "state_jsonl": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/deep-research-state.jsonl",
+    "strategy": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/deep-research-strategy.md",
+    "registry": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/deep-research-findings-registry.json",
+    "dashboard": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/deep-research-dashboard.md",
+    "resource_map": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/resource-map.md",
+    "synthesis": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/research.md",
+    "iterations_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/iterations",
+    "deltas_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/deltas",
+    "prompts_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/prompts",
+    "evidence_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence"
+  },
+  "phases": [
+    {
+      "name": "phase_init",
+      "status": "complete",
+      "output": [
+        "deep-research-config.json",
+        "deep-research-state.jsonl",
+        "deep-research-strategy.md",
+        "deep-research-findings-registry.json"
+      ]
+    },
+    {
+      "name": "phase_main_loop",
+      "status": "complete",
+      "iterations": 5,
+      "output": [
+        "iterations/iteration-001.md",
+        "iterations/iteration-002.md",
+        "iterations/iteration-003.md",
+        "iterations/iteration-004.md",
+        "iterations/iteration-005.md"
+      ]
+    },
+    {
+      "name": "phase_synthesis",
+      "status": "complete",
+      "output": [
+        "resource-map.md",
+        "research.md"
+      ]
+    }
+  ]
+}

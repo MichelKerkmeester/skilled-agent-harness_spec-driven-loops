@@ -1,0 +1,18 @@
+{
+  "run": 1,
+  "mode": "review",
+  "status": "complete",
+  "dimensions": [
+    "correctness"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingRefs": [
+    "P1-001"
+  ],
+  "newFindingsRatio": 0.5,
+  "iterationFile": "iterations/iteration-001.md"
+}

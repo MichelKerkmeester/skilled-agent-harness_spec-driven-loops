@@ -1,0 +1,88 @@
+{
+  "topic": "MCP Retrieval + Causal Review Slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-codex-3-1780592070775-otue7r",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/review/lineages/codex-3",
+  "createdAt": "2026-06-04T16:55:43Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "requested": "cli-codex model=gpt-5.5",
+    "effective": "in-process-codex",
+    "reason": "cli-codex self-invocation is refused when the current runtime is Codex"
+  },
+  "fanout": {
+    "lineage": "codex-3",
+    "artifactDirOverride": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/review/lineages/codex-3"
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  },
+  "targetFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+  ]
+}

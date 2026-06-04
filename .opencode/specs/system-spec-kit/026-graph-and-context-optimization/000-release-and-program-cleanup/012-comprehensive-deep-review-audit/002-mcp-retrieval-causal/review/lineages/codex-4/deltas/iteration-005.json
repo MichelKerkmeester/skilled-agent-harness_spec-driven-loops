@@ -1,0 +1,19 @@
+{
+  "run": 5,
+  "focus": "stabilization",
+  "dimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "findingsNew": [],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "newFindingsRatio": 0,
+  "verdict": "CONDITIONAL",
+  "stopReason": "converged"
+}

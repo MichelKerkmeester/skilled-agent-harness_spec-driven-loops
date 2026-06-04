@@ -1,0 +1,13 @@
+{
+  "status": "complete",
+  "verdict": "FAIL",
+  "releaseReadinessState": "release-blocking",
+  "stopReason": "converged",
+  "iterations": 5,
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 1
+  },
+  "activeBlockers": ["P0-001"]
+}

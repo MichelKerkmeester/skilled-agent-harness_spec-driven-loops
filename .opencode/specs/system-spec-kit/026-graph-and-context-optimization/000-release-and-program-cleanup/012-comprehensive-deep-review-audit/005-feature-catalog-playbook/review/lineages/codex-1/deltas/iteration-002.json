@@ -1,0 +1,21 @@
+{
+  "run": 2,
+  "mode": "review",
+  "focus": "security",
+  "dimensions": [
+    "security"
+  ],
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/361-paraphrase-recall.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/364-disambiguation-under-context.md"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingRefs": [],
+  "newFindingsRatio": 0,
+  "status": "complete"
+}

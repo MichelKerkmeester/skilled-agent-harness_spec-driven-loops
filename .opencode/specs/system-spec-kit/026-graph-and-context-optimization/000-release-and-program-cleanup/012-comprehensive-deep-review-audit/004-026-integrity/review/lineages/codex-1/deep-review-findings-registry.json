@@ -1,0 +1,174 @@
+{
+  "sessionId": "fanout-codex-1-1780593922589-43mju8",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Program graph metadata last-active and track status fields are stale",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
+      "line": 156,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "content_hash": "ad6044a556cd463077a29cbac8b8a649df4ac569144d08f57fe72f6c3da3bc67",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:139",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json:156-157",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/timeline.md:76-78"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Top-level changelog rollups omit live child rollups and misroute current entries",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md",
+      "line": 21,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "ef815c99b4d8ff24da05bd88c8db8c0ad192a119b67e5a319434facdcdb72557",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:20",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md:21",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md:21"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Recent completed packets still advertise in-progress status in packet metadata",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/spec.md",
+      "line": 46,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "4693434c10aa52b5acb46de7db5460c716e5d3be12948c0f7e08dcef9dc922a4",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/spec.md:46",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/implementation-summary.md:44",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first/spec.md:45",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first/implementation-summary.md:44"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "resource-map-coverage",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Resource map still carries stale OK rows for renamed paths",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
+      "line": 44,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "content_hash": "59962a01a54c18af7fbcf20f14133959d99c126792b6771940da42f1cec56953",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:24-35",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:44",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:62",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md:138"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Recent changelog entries violate the declared voice/template rules",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md",
+      "line": 44,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "content_hash": "fe93a487b47893f5d1ad13d2100e26b233377ff9824e25da51446824ba86a95c",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:44",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-010-003-scouted-bugfix-batch-3.md:25",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/006-operator-tooling/changelog-006-006-doctor-install-alignment.md:35"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.78,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

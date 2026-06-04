@@ -1,0 +1,133 @@
+{
+  "sessionId": "fanout-codex-3-1780592962034-hmdvp1",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "status": "open",
+      "dimension": "security",
+      "title": "retentionPolicy ephemeral does not trigger governed-ingest enforcement",
+      "firstSeenIteration": 2,
+      "lastSeenIteration": 5,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:225-230",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:235-242",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:261-280",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3051-3061",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3196-3200",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts:325-348"
+      ],
+      "impact": "Ephemeral retention can be accepted and persisted without required tenant/session/provenance metadata, contrary to the local governance contract.",
+      "remediation": "Treat any provided retentionPolicy as governed ingest, and require explicit future deleteAfter plus governed scope/provenance for ephemeral rows unless the contract is deliberately changed.",
+      "claimAdjudication": {
+        "decision": "accepted",
+        "alternateExplanation": "Ephemeral retention may have been intended as safe-by-default because it expires.",
+        "reason": "The same file documents retention fields as governed-ingest triggers, and the save path persists the normalized decision."
+      }
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "status": "open",
+      "dimension": "traceability",
+      "title": "bulk scan and async ingest accept governance fields but drop them before indexing",
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 5,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455-462",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:596-598",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:254-269",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:330-333",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:278-292",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:721-725",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:146-149",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263-267",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:45-55",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:253-295",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:624-628",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2074-2077",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3393-3400",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3431-3447"
+      ],
+      "impact": "Bulk indexed rows can miss tenant/user/agent/session/provenance/retention metadata even though callers supplied accepted governance parameters.",
+      "remediation": "Carry normalized governance metadata into indexMemoryFile for scan, and persist it on async ingest jobs so the worker can apply it per file.",
+      "claimAdjudication": {
+        "decision": "accepted",
+        "alternateExplanation": "The governance validation might be intended as preflight-only on bulk paths.",
+        "reason": "The accepted schemas, handler argument types, and direct save implementation establish an expected persistence contract that scan and async ingest do not fulfill."
+      }
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "status": "open",
+      "dimension": "traceability",
+      "title": "session bootstrap playbook documents removed input and includeGraphStatus parameters",
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 5,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:608",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:653-660",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md:37"
+      ],
+      "impact": "The documented manual call shape is rejected by strict schema validation.",
+      "remediation": "Update the playbook command to the live specFolder-only input contract."
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "status": "open",
+      "dimension": "traceability",
+      "title": "session resume playbook expects codeGraph.available and binaryPath fields not returned by the handler",
+      "firstSeenIteration": 3,
+      "lastSeenIteration": 5,
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:104-110",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:710-723",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md:18-22",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md:91-100"
+      ],
+      "impact": "A correct live session_resume payload can fail the documented manual validation.",
+      "remediation": "Align the playbook to status/count fields or add available and binaryPath to the handler contract."
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": ["F001", "F002", "F003", "F004"],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": true,
+    "checklist_evidence": true,
+    "feature_catalog_code": true,
+    "playbook_capability": true
+  },
+  "traceabilityNotes": {
+    "checklist_evidence": "Target packet has no checklist.md; protocol completed as not applicable.",
+    "feature_catalog_code": "Feature catalog references were searched; stale session-resume expectations were found in the manual playbook rather than feature catalog.",
+    "playbook_capability": "Manual playbook drift recorded as F003 and F004."
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.91,
+  "graphConvergenceScore": 0,
+  "graphDecision": "GRAPHLESS_FALLBACK",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "releaseReadinessState": "release-blocking",
+  "finalVerdict": "CONDITIONAL",
+  "updatedAt": "2026-06-04T17:15:17Z"
+}

@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp core review",
+      "memory save audit",
+      "mutation path audit"
+    ],
+    "key_topics": [
+      "mcp",
+      "core",
+      "review",
+      "memory",
+      "save",
+      "audit",
+      "mutation",
+      "path",
+      "spec-kit",
+      "write",
+      "hooks",
+      "pipeline"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/mutation-hooks.ts",
+      "mcp_server/handlers/memory-embedding-reconcile.ts",
+      "mcp_server/lib/embedders/embedding-reconcile.ts",
+      "mcp_server/lib/search/entity-density.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "mutation-hooks.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-update.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-bulk-delete.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-embedding-reconcile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Memory Mutation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Reconcile Review Slice",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deeply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The spec-kit MCP memory write path (mutation hooks, the save pipeline, CRUD update/delete/bulk-delete, and embedding reconcile) was heavily modified across the 026 program. A calibration pass already surfaced real P1 bugs here (stale entity-density cache after update/delete; reconcile dry-run/apply count drift; operator-doc contract drift). This slice audits the full write path in depth for correctness, security, and traceability or contract drift.",
+    "created_at": "2026-06-04T18:53:35.317Z",
+    "last_save_at": "2026-06-04T18:53:35.317Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

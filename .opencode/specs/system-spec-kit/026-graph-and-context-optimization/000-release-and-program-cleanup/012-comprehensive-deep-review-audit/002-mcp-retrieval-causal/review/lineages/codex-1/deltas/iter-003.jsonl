@@ -1,0 +1,1 @@
+{"type":"delta","iteration":3,"sessionId":"fanout-codex-1-1780592070775-ubdboy","dimensions":["security","traceability"],"newFindings":{"P0":0,"P1":2,"P2":0},"newFindingsRatio":0.4,"findingsSummary":{"P0":1,"P1":4,"P2":0},"findingIds":["F004","F005"],"iterationFile":"iterations/iteration-003.md","verdict":"FAIL","deltaCount":2,"timestamp":"2026-06-04T17:03:12Z"}

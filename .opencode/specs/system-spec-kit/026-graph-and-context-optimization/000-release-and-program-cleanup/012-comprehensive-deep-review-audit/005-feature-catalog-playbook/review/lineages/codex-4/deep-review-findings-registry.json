@@ -1,0 +1,135 @@
+{
+  "sessionId": "fanout-codex-4-1780594677742-rrgf8b",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "status": "active",
+      "category": "catalog-code-traceability",
+      "finding_class": "doc_claim_drift",
+      "title": "Master catalog overstates feature annotation coverage as every source file",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "line": 3946,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26"
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "content_hash": "5f446d30c70a6e3d37aa2f2c929f99f4f269957c3e66c8c9fb3d2d0f95b68c7f"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "status": "active",
+      "category": "playbook-coverage",
+      "finding_class": "stale_release_gate",
+      "title": "Manual playbook deterministic count expects 380 files but current tree has 384",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "line": 166,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166"
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "content_hash": "3d5a9fa2c3e76da7a3760453e581bde8a359492dbfb73f8ac11b59e27fd2c568"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "status": "active",
+      "category": "playbook-capability",
+      "finding_class": "non_executable_validation_step",
+      "title": "MODULE header scenario points to the old verifier path",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+      "line": 38,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:50",
+        ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:1"
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "content_hash": "6fe11665cab24581d0e9f4c1971d1c7cbf8a5cb369628c160c37c9e11e69450d"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "status": "active",
+      "category": "feature-catalog-code",
+      "finding_class": "stale_path_pattern",
+      "title": "Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+      "line": 47,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:28",
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:47",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/361-paraphrase-recall.md:2"
+      ],
+      "dimensions": [
+        "traceability",
+        "maintainability"
+      ],
+      "content_hash": "8391e978a62aa17b2ac962d750ebd38d263ce87c4f4b428d962e7d13523022fa"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "graphConvergenceScore": 1.0,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "searchCoverage": {
+    "graphCoverageMode": "graphless_fallback",
+    "requiredBugClasses": [
+      "catalog-code-traceability",
+      "playbook-coverage",
+      "playbook-capability"
+    ],
+    "covered": [
+      "catalog-code-traceability",
+      "playbook-coverage",
+      "playbook-capability"
+    ]
+  },
+  "candidateCoverage": {
+    "covered": [
+      "doc_claim_drift",
+      "stale_release_gate",
+      "non_executable_validation_step",
+      "stale_path_pattern"
+    ]
+  },
+  "searchDebt": [],
+  "ruledOutCandidates": [
+    "Scenario 231 sample greps returned handler and lib hits for Hybrid search pipeline, Classification-based decay, and Prediction-error save arbitration.",
+    "Scenario 232 annotation-name validation found 0 invalid annotation names against FEATURE_CATALOG.md.",
+    "Correct verifier path ../sk-code/assets/scripts/verify_alignment_drift.py reports PASS with 0 findings."
+  ],
+  "corruptionWarnings": []
+}

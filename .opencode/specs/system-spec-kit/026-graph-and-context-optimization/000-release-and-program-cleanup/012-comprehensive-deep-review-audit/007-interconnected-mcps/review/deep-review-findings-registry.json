@@ -1,0 +1,300 @@
+{
+  "mergedFrom": [
+    "codex-1",
+    "codex-2",
+    "codex-3",
+    "codex-4",
+    "codex-5"
+  ],
+  "mergedVerdict": "FAIL",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "concurrency-correctness",
+      "finding_class": "runtime-contract",
+      "title": "Fan-out CLI lineages are serialized by spawnSync despite a concurrency cap",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:174",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:307",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f001-concurrency-spawnsync",
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "executor-config-contract",
+      "finding_class": "config-drift",
+      "title": "Per-lineage iterations is documented as a max-iteration override but only affects timeout sizing",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:292",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:128",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:155"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f002-iterations-timeout-only",
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "category": "comment-hygiene",
+      "finding_class": "policy-drift",
+      "title": "Reviewed code contains ephemeral phase, packet, and ADR labels in comments",
+      "evidence": [
+        ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:14",
+        ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:33",
+        ".opencode/skills/system-code-graph/mcp_server/core/config.ts:19",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:8"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f004-ephemeral-comment-labels",
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "category": "integration-contract-drift",
+      "finding_class": "operator-guidance-drift",
+      "title": "System-spec-kit stale graph guidance says code_graph_query still works, but code-graph read paths block non-fresh graphs",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:953",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:966",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:865",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1244"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f003-stale-graph-guidance",
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Non-zero CLI lineage exits are counted as successful fan-out results",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "line": 362,
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P0",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Synchronous CLI worker serializes fan-out despite the concurrency cap",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "line": 344,
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Per-lineage iterations only sizes timeout and never reaches the loop bound",
+      "file": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "line": 291,
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Codex dispatch emits service-tier values outside the validated executor schema",
+      "file": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      "line": 174,
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Review lineage write scope is prompt-only while the default sandbox permits workspace writes",
+      "file": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      "line": 83,
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 2,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "System-spec-kit bootstrap guidance says stale code-graph queries work, but the handler blocks every non-fresh read",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+      "line": 953,
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "The review slice names a non-existent system-code-graph mcp_server/scripts entrypoint directory",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/spec.md",
+      "line": 26,
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F008",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Deep-loop-runtime SKILL.md still says scripts has four files while the same section lists fan-out scripts",
+      "file": ".opencode/skills/deep-loop-runtime/SKILL.md",
+      "line": 249,
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "findingId": "F009",
+      "severity": "P2",
+      "category": "maintainability",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Code-graph dispatch keeps phase-number placeholder comments in code",
+      "file": ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+      "line": 14,
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-5"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 6,
+    "P2": 6
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "activeP0": 1,
+  "activeP1": 6,
+  "activeP2": 6
+}

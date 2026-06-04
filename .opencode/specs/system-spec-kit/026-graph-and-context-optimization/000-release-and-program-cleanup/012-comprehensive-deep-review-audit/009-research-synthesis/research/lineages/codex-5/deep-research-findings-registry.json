@@ -1,0 +1,133 @@
+{
+  "openQuestions": [],
+  "resolvedQuestions": [
+    {
+      "question": "Common root cause for doc/schema-to-code drift",
+      "answer": "Divergent hand-maintained contract surfaces: public tool definitions, runtime Zod schemas, allowed-parameter maps, handlers, docs, catalog, and playbook.",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338",
+        "file:.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455",
+        "file:.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:575",
+        "file:.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654"
+      ]
+    },
+    {
+      "question": "Metadata-drift systemic-ness",
+      "answer": "Systemic enough for tooling. Backfill and canonical save refresh metadata, but current checks do not enforce all semantic status, last-active, renumbering, and placeholder invariants.",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:193",
+        "file:.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts:455",
+        "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json:156",
+        "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/timeline.md:76"
+      ]
+    },
+    {
+      "question": "Memory-correctness real impact",
+      "answer": "Entity-density staleness affects graph-channel routing until invalidation/TTL; atomic save ordering can create an indexed row before final file promotion.",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:153",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:20",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2534"
+      ]
+    },
+    {
+      "question": "P0 security severity calibration",
+      "answer": "Community fallback is P0 if governed scope is a data boundary; causal bare-ID mutation is P1 under strictly local single-user operation and P0 if tenant/user/agent scope is security isolation.",
+      "confidence": "medium-high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:946",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:688"
+      ]
+    },
+    {
+      "question": "Deep-loop blast radius",
+      "answer": "Prior fan-out orchestration summaries can mask failed CLI exits and under-delivered concurrency. The eight slice summaries in this audit report one CLI lineage despite five report files per slice.",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:85",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:362",
+        "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/review/orchestration-summary.json"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "codex5-finding-contract-drift",
+      "severity": "P1",
+      "title": "MCP tool contracts are split across multiple maintained sources",
+      "impact": "Docs and tool schemas drift because no single generated contract forces parity.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338",
+        "file:.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583"
+      ]
+    },
+    {
+      "id": "codex5-finding-metadata-drift",
+      "severity": "P1",
+      "title": "Graph metadata and launch metadata require semantic freshness checks",
+      "impact": "Resume, launch, and completion routing can trust stale pointers or placeholder-complete children.",
+      "sources": [
+        "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json:156",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42"
+      ]
+    },
+    {
+      "id": "codex5-finding-memory-write-path",
+      "severity": "P1",
+      "title": "Memory write path has real stale-routing and DB/file-ordering failure modes",
+      "impact": "Normal operator actions can cause temporary retrieval/routing drift or indexed records pointing at non-promoted files.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:153",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:362"
+      ]
+    },
+    {
+      "id": "codex5-finding-security-calibration",
+      "severity": "P0/P1 calibrated",
+      "title": "Governed-scope bypasses are real, but severity depends on the declared boundary",
+      "impact": "Community fallback can leak out-of-scope rows; causal ID tools can mutate or delete out-of-scope edges if scope is a security boundary.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743"
+      ]
+    },
+    {
+      "id": "codex5-finding-fanout-summary",
+      "severity": "P0/P1",
+      "title": "Fan-out orchestration can count failed child exits as success",
+      "impact": "Prior review/research campaign summaries may understate failed lineages and overstate concurrency.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:207",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:362"
+      ]
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "approach": "Fix docs only",
+      "reason": "The failure is contract parity across runtime schemas, docs, and tests."
+    },
+    {
+      "approach": "Trust existing metadata backfill as sufficient",
+      "reason": "The backfill identifies thin/ambiguous metadata but does not prove launch/completion truth."
+    },
+    {
+      "approach": "Trust orchestration summaries alone",
+      "reason": "The summary source can count failed subprocess returns as fulfilled lineage work."
+    }
+  ],
+  "convergence": {
+    "stopReason": "converged",
+    "iterationsCompleted": 5,
+    "answeredCount": 5,
+    "totalQuestions": 5,
+    "averageNewInfoRatio": 0.56
+  }
+}

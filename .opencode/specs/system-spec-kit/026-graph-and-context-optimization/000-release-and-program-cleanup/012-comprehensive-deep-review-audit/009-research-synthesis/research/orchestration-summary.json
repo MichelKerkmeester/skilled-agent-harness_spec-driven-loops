@@ -1,0 +1,11 @@
+{
+  "run_id": "1780597406873-czz1rs",
+  "loop_type": "research",
+  "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "base_artifact_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research",
+  "total_cli_lineages": 1,
+  "total": 1,
+  "succeeded": 1,
+  "failed": 0,
+  "all_failed": false
+}

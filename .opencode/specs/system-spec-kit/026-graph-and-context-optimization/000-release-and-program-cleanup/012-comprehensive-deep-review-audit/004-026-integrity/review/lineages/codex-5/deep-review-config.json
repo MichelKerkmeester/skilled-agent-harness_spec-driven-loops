@@ -1,0 +1,87 @@
+{
+  "topic": "026 Program Integrity Review Slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "reviewTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/review/lineages/codex-5",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": true,
+  "resourceMapPath": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
+  "sessionId": "fanout-codex-5-1780593922588-e82609",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability",
+      "resource_map_coverage"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "requested": {
+      "kind": "cli-codex",
+      "model": "gpt-5.5"
+    },
+    "actual": {
+      "kind": "codex-in-process",
+      "model": "gpt-5.5",
+      "reason": "cli-codex self-invocation guard forbids dispatch from an active Codex runtime"
+    }
+  },
+  "createdAt": "2026-06-04T17:29:05Z",
+  "completedAt": "2026-06-04T17:58:00Z",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-except-final-status",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

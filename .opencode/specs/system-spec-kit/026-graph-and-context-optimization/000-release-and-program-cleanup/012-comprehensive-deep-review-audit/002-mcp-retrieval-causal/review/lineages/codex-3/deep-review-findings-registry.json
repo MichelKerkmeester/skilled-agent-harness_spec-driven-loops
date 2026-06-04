@@ -1,0 +1,130 @@
+{
+  "sessionId": "fanout-codex-3-1780592070775-otue7r",
+  "generation": 1,
+  "lineageMode": "new",
+  "updatedAt": "2026-06-04T17:00:36Z",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "memory_context omitted-session calls reuse a process-wide fallback",
+      "category": "correctness/security",
+      "status": "open",
+      "primaryFile": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:44",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:421",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:164",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1128",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1561",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1634"
+      ],
+      "impact": "Anonymous omitted-session calls in one process can share working-memory and persisted session state despite being reported as ephemeral.",
+      "recommendation": "Use the trusted session manager's minted UUID for omitted-session calls and add a two-call regression test.",
+      "introducedInIteration": 1,
+      "claimAdjudicated": true,
+      "confidence": "high"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "memory_search accepts raw caller sessionId for dedup and retrieval state",
+      "category": "security",
+      "status": "open",
+      "primaryFile": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:646",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:687",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1301",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1375",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/session-state.ts:92",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:223"
+      ],
+      "impact": "A caller can use another session ID to suppress future results or inspect/mutate retrieval session state.",
+      "recommendation": "Validate memory_search.sessionId through resolveTrustedSession before scope, cache, dedup, or retrieval-state use.",
+      "introducedInIteration": 2,
+      "claimAdjudicated": true,
+      "confidence": "high"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "memory_match_triggers filters scoped matches after a capped global query",
+      "category": "correctness",
+      "status": "open",
+      "primaryFile": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:248",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:307",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:871",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts:322"
+      ],
+      "impact": "Scoped trigger calls can miss valid in-scope continuity when out-of-scope matches fill the initial global result window.",
+      "recommendation": "Apply scope before limiting or refill after filtering until the scoped limit is satisfied or the corpus is exhausted.",
+      "introducedInIteration": 1,
+      "claimAdjudicated": true,
+      "confidence": "high"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "memory_causal_stats implements backfill args that public schema rejects",
+      "category": "traceability",
+      "status": "open",
+      "primaryFile": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:92",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:803",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:825",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:454",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts:34",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts:71"
+      ],
+      "impact": "Operators see an advertised backfill capability that cannot be invoked through the public MCP schema.",
+      "recommendation": "Expose the bounded backfill object in the schema or remove the public hint and keep the path internal.",
+      "introducedInIteration": 3,
+      "claimAdjudicated": true,
+      "confidence": "medium-high"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": true,
+    "checklist_evidence": true,
+    "feature_catalog_code": true,
+    "playbook_capability": true
+  },
+  "traceabilityNotes": {
+    "checklist_evidence": "No checklist.md exists in the Level 1 review packet; iteration evidence is source-cited."
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.72,
+  "graphConvergenceScore": 0,
+  "graphDecision": "GRAPH_UNAVAILABLE",
+  "graphBlockers": [
+    "Code Graph unavailable; graphless fallback used direct reads and line-cited evidence."
+  ],
+  "corruptionWarnings": []
+}

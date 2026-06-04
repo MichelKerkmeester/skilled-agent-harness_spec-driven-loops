@@ -1,0 +1,1 @@
+STATE SUMMARY: iteration 5 of 7, focus stabilization replay. Active findings P1:6. Re-run representative annotation and grep checks to look for P0/P1 escalation or downgrades. Output iteration-005.md and JSONL delta.

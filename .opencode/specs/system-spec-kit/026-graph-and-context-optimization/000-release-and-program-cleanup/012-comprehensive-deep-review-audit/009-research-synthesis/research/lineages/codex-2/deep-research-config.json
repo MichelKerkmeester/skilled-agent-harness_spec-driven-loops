@@ -1,0 +1,38 @@
+{
+  "type": "deep-research-config",
+  "mode": "research",
+  "status": "complete",
+  "sessionId": "fanout-codex-2-1780597406873-hzqkj0",
+  "lineage": {
+    "label": "codex-2",
+    "mode": "fanout",
+    "generation": 1,
+    "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-2"
+  },
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "researchTopic": "Root-cause synthesis for the system-spec-kit / 026 comprehensive deep-review audit",
+  "maxIterations": 5,
+  "convergenceThreshold": 0.1,
+  "executor": {
+    "type": "cli-codex",
+    "model": "gpt-5.5",
+    "note": "Recorded from fan-out prompt. This lineage was executed by the current Codex process without nesting another Codex CLI."
+  },
+  "config": {
+    "fanout_lineage_artifact_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-2"
+  },
+  "keyQuestions": [
+    "What common root cause explains doc/schema-to-code drift?",
+    "Is metadata drift systemic or isolated?",
+    "What is the real impact of memory-correctness findings?",
+    "How should P0 security findings be calibrated under the local single-user MCP threat model?",
+    "What is the blast radius of deep-loop fan-out and lineage failure handling defects?"
+  ],
+  "resourceMap": {
+    "emit": true,
+    "path": "resource-map.md"
+  },
+  "createdAt": "2026-06-04T00:00:00Z",
+  "completedAt": "2026-06-04T00:00:00Z",
+  "stopReason": "converged"
+}

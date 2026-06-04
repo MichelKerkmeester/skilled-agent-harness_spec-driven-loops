@@ -1,0 +1,127 @@
+{
+  "sessionId": "fanout-codex-1-1780596001496-m01bgp",
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "release-blocking",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P0",
+      "category": "fanout-artifact-routing",
+      "title": "deep-review reducer ignores fan-out artifact_dir override",
+      "evidence": [
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:118",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:1059",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:1673",
+        ".opencode/skills/deep-review/scripts/reduce-state.cjs:1786"
+      ],
+      "finding_class": "correctness",
+      "content_hash": "sha256:f001-reducer-fanout-artifact-root"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "fanout-concurrency",
+      "title": "spawnSync in the fan-out worker serializes CLI lineages",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:174",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344",
+        ".opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts:92"
+      ],
+      "finding_class": "correctness",
+      "content_hash": "sha256:f002-spawnsync-serializes-pool"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "executor-config",
+      "title": "per-lineage iterations only sizes timeout and never reaches child maxIterations",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:292",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:154",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:129"
+      ],
+      "finding_class": "traceability",
+      "content_hash": "sha256:f003-iterations-timeout-only"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P1",
+      "category": "executor-contract",
+      "title": "Codex service tier defaults drift between cli-codex, YAML, and fanout-run",
+      "evidence": [
+        ".opencode/skills/cli-codex/SKILL.md:206",
+        ".opencode/skills/cli-codex/SKILL.md:241",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:774",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:177"
+      ],
+      "finding_class": "traceability",
+      "content_hash": "sha256:f004-codex-service-tier-default"
+    },
+    {
+      "findingId": "F005",
+      "severity": "P1",
+      "category": "executor-recursion-guard",
+      "title": "fanout-run bypasses the shared executor recursion guard and env allowlist",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:404",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-audit.ts:466",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:348"
+      ],
+      "finding_class": "security",
+      "content_hash": "sha256:f005-fanout-bypasses-executor-guard"
+    },
+    {
+      "findingId": "F006",
+      "severity": "P2",
+      "category": "sandbox-scope",
+      "title": "fan-out lineage write boundary is prompt-only while sandbox defaults to workspace-write",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:83",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:180",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:142"
+      ],
+      "finding_class": "maintainability",
+      "content_hash": "sha256:f006-prompt-only-write-boundary"
+    },
+    {
+      "findingId": "F007",
+      "severity": "P2",
+      "category": "comment-hygiene",
+      "title": "reviewed code comments still contain perishable packet and finding labels",
+      "evidence": [
+        ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:7",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/detect-changes.ts:190",
+        ".opencode/skills/system-code-graph/mcp_server/lib/ensure-ready.ts:180"
+      ],
+      "finding_class": "maintainability",
+      "content_hash": "sha256:f007-perishable-comment-labels"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 4,
+    "P2": 2
+  },
+  "openFindingsCount": 7,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.61,
+  "graphConvergenceScore": 0,
+  "graphDecision": "not_run_graph_unavailable",
+  "graphBlockers": [
+    "activeP0",
+    "activeP1"
+  ],
+  "corruptionWarnings": []
+}

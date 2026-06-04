@@ -1,0 +1,178 @@
+{
+  "sessionId": "fanout-codex-2-1780591417922-vq3a9z",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "memory_update leaves entity-density cache stale after title or trigger phrase changes",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+      "line": 619,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "content_hash": "sha256:f001-update-entity-density",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489-495",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619-625",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:153-159"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Embedding reconcile dry-run undercounts success rows missing only the active dimension vector",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts",
+      "line": 281,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "content_hash": "sha256:f002-reconcile-coverage",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281-286",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361-363",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:417-420"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Atomic save can commit a DB row before the pending file is promoted",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      "line": 362,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "content_hash": "sha256:f003-atomic-promote-order",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360-378",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:387-409",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3581-3616",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2534-2639"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Public docs still instruct dryRun:false for memory_embedding_reconcile apply mode",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      "line": 737,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "sha256:f004-dryrun-docs",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:342",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:19"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "activeOnly is exposed as an input but is not consumed by reconcile runtime logic",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "line": 343,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "sha256:f005-activeonly",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:19-22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299-302",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:43-44"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [
+    "F001",
+    "F002",
+    "F003",
+    "F004",
+    "F005"
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

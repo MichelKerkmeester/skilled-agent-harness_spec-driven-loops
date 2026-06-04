@@ -1,0 +1,108 @@
+{
+  "sessionId": "fanout-codex-3-1780591417922-o2y9it",
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "converged",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "contract_safety",
+      "title": "memory_update leaves entity-density cache stale after title or trigger phrase changes",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:4",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:97",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:9",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts:112"
+      ],
+      "content_hash": "16321ae8b10fbc77edabfa8a4289b318a931896482303b34a9f4defcfd8c494e",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "status": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "contract_safety",
+      "title": "success-coverage dry-run undercounts rows missing only the active dimension vector",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:285",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:409",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:83"
+      ],
+      "content_hash": "9dc4b2858cc0547d68b39c9a41f81451051c8cf189bacbda4c7aae2a404f4cef",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "status": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "contract_safety",
+      "title": "operator docs use unsupported dryRun:false for memory_embedding_reconcile",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:76"
+      ],
+      "content_hash": "0948043df6a7e842fd8aef279e7ee11ba440b7e465e1c230860836e4d39bbba8",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "status": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "finding_class": "maintainability",
+      "title": "activeOnly is advertised but ignored by reconcile implementation",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:308",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299"
+      ],
+      "content_hash": "db2866bdef81d93ffbaf4f55f11c56c3b94de98688e976f751521623e7980e56",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": "partial",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "partial",
+    "playbook_capability": "partial"
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "convergenceScore": 1,
+  "stopReason": "converged",
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "updatedAt": "2026-06-04T16:46:51Z"
+}

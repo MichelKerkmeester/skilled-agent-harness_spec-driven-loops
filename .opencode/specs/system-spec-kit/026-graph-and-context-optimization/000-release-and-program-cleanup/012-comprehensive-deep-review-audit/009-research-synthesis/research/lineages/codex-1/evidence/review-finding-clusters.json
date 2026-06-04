@@ -1,0 +1,21 @@
+{
+  "contractDrift": [
+    "Public MCP schemas and docs disagree with runtime accepted shapes, including memory_embedding_reconcile mode versus documented dryRun.",
+    "Governed ingest fields are accepted and validated at the tool boundary but dropped before index persistence.",
+    "Comment-hygiene and routing guidance describe stricter behavior than implementation enforces."
+  ],
+  "metadataDrift": [
+    "Graph metadata status often diverges from spec status, partly because implementation-summary fallback marks complete without checklist evidence.",
+    "Renumbered or consolidated phase identifiers remain in child metadata, links, and catalogs."
+  ],
+  "memoryCorrectness": [
+    "Entity-density cache invalidation does not cover update/title-trigger changes.",
+    "Atomic save indexes before pending file promotion, creating a crash/promotion failure window.",
+    "Causal graph writers can create orphan or cross-scope edges when called with bare IDs."
+  ],
+  "deepLoopOrchestration": [
+    "Fanout worker uses spawnSync inside capped pool, defeating intended concurrency.",
+    "Pool success accounting counts fulfilled worker promises rather than subprocess exit codes.",
+    "Per-lineage iterations affects timeout sizing but does not enforce loop iteration count."
+  ]
+}

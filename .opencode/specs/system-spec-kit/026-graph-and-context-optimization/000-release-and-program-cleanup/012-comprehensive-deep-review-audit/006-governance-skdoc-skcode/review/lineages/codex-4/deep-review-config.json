@@ -1,0 +1,55 @@
+{
+  "type": "config",
+  "mode": "review",
+  "run": {
+    "id": "fanout-codex-4-1780595350529-muaf3m",
+    "started_at": "2026-06-04T18:12:00Z",
+    "spec_folder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+    "artifact_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-4",
+    "lineage": "codex-4",
+    "fanout_lineage_artifact_dir_override": true
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "self_invocation": "not_attempted",
+    "execution_mode": "in_process_codex_lineage",
+    "note": "cli-codex SKILL.md prohibits Codex self-invocation; executor parameters are preserved as lineage metadata."
+  },
+  "loop": {
+    "max_iterations": 7,
+    "convergence_threshold": 0.1,
+    "stabilization_passes_required": 1,
+    "dimensions_required": [
+      "correctness",
+      "security",
+      "traceability",
+      "maintainability"
+    ],
+    "phases": [
+      "phase_init",
+      "phase_main_loop",
+      "phase_synthesis"
+    ]
+  },
+  "scope": {
+    "from_spec_lines": "49-60",
+    "reviewed_paths": [
+      ".opencode/skills/system-spec-kit/constitutional/",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/assets/",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/assets/"
+    ],
+    "focus": [
+      "constitutional rule enforcement drift",
+      "sk-doc and sk-code standards drift",
+      "contradictions between root/project instructions and constitutional rules"
+    ]
+  },
+  "resource_map": {
+    "input_present": false,
+    "generated_for_review": true
+  },
+  "created_at": "2026-06-04T18:12:00Z"
+}

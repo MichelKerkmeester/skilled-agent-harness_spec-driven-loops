@@ -1,0 +1,98 @@
+{
+  "sessionId": "fanout-codex-1-1780592962034-hpff4r",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P0-001",
+      "severity": "P0",
+      "title": "Governed bulk ingest and scan validate tenant scope, then index rows without that scope",
+      "category": "security",
+      "dimension": "security",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:143",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:41",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:146",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:45",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2074",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:260",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:330",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:721",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2745",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3393"
+      ],
+      "findingClass": "tenant-scope-loss",
+      "content_hash": "sha256:codex1-p0-001-governed-bulk-scope-loss",
+      "disposition": "active"
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "title": "Scoped memory_index_scan still performs global stale and orphan deletes",
+      "category": "correctness",
+      "dimension": "correctness",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:551",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:522",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:410",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:551",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:554",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:558",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:844",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:299",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:321",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:452"
+      ],
+      "findingClass": "scoped-operation-global-mutation",
+      "content_hash": "sha256:codex1-p1-002-scoped-scan-global-cleanup",
+      "disposition": "active"
+    },
+    {
+      "id": "P2-003",
+      "severity": "P2",
+      "title": "Review slice has no executable evidence trail beyond spec.md",
+      "category": "traceability",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/spec.md:13",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/spec.md:13",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/spec.md:95",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/spec.md:105",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/"
+      ],
+      "findingClass": "missing-review-evidence-trail",
+      "content_hash": "sha256:codex1-p2-003-spec-only-evidence-gap",
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": true,
+    "checklist_evidence": true,
+    "feature_catalog_code": true,
+    "playbook_capability": true
+  },
+  "findingsBySeverity": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.04,
+  "graphConvergenceScore": null,
+  "graphDecision": "STOP",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,1 @@
+STATE SUMMARY: Iteration 1 of 7. Target: governance + sk-doc + sk-code drift review slice. Focus dimension: correctness. Artifact dir is the fan-out lineage override. Target files are read-only. Write iteration output and JSONL delta only under this lineage directory.

@@ -1,0 +1,118 @@
+{
+  "sessionId": "fanout-codex-5-1780595350529-5jk4vx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "standards-drift",
+      "finding_class": "contradictory-standard-and-enforcement-gap",
+      "content_hash": "6c18aefec538fd5232654d4f753b05411d80f259288013f11497a68ee455044f",
+      "evidence": [
+        ".opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md:75",
+        ".opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md:148",
+        ".opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md:159",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:85",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:97"
+      ],
+      "summary": "sk-code forbids ticket ids in comments while recommending ticket-number TODO comments, and the checker does not enforce ticket ids.",
+      "firstSeen": 1,
+      "status": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P2",
+      "category": "stale-enforcement-path",
+      "finding_class": "documentation-path-drift",
+      "content_hash": "a6540dbb0aa59e720bb44383fb717a5820aa01a1c3ef6d6c886eb0568fdbc28c",
+      "evidence": [
+        ".opencode/skills/sk-code/SKILL.md:216",
+        ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh:3",
+        ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh:13"
+      ],
+      "summary": "sk-code names the Claude write-time hook as scripts/hooks/claude-posttooluse.sh, but the checked-in hook lives under the skill-local scripts/hooks path.",
+      "firstSeen": 1,
+      "status": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "security-enforcement-bypass",
+      "finding_class": "whole-line-allowlist-bypass",
+      "content_hash": "35c05c76055c9542b506f02793a00d688076ffacbd2120afa41d79954d649a8a",
+      "evidence": [
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:70",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:112",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:114",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:116",
+        ".opencode/hooks/pre-commit:21",
+        ".github/workflows/comment-hygiene.yml:27"
+      ],
+      "summary": "Allowed durable-reference patterns short-circuit comment-hygiene detection for the whole line, so a mixed allowed-plus-forbidden comment can pass the gate.",
+      "firstSeen": 2,
+      "status": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "category": "sk-doc-template-drift",
+      "finding_class": "machine-rule-vs-template-required-section-drift",
+      "content_hash": "398714a87da33fd4a7ab8fd1200b7767ffe9c7f8e395d002e557e0e7eaa68033",
+      "evidence": [
+        ".opencode/skills/sk-doc/assets/template_rules.json:62",
+        ".opencode/skills/sk-doc/assets/template_rules.json:64",
+        ".opencode/skills/sk-doc/assets/template_rules.json:68",
+        ".opencode/skills/sk-doc/assets/skill/skill_md_template.md:112",
+        ".opencode/skills/sk-doc/assets/skill/skill_md_template.md:115"
+      ],
+      "summary": "sk-doc's machine-readable skill rules omit the REFERENCES section that its own skill template says packaging requires.",
+      "firstSeen": 3,
+      "status": "active"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "category": "sk-doc-navigation-drift",
+      "finding_class": "broken-relative-link",
+      "content_hash": "1175825ff5b8dd7d3cff2e8969d34f1b3b18637a5372344d68efab3d1a496159",
+      "evidence": [
+        ".opencode/skills/sk-doc/assets/skill/skill_md_template.md:79",
+        ".opencode/skills/sk-doc/assets/skill/skill_md_template.md:98",
+        ".opencode/skills/sk-doc/assets/frontmatter_templates.md:1"
+      ],
+      "summary": "sk-doc's skill template has a stale same-directory link to frontmatter_templates.md; the actual asset is one directory up.",
+      "firstSeen": 4,
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": true,
+    "checklist_evidence": true,
+    "feature_catalog_code": true,
+    "playbook_capability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": null,
+  "graphDecision": "STOP_ALLOWED_WITH_GRAPHLESS_FALLBACK",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

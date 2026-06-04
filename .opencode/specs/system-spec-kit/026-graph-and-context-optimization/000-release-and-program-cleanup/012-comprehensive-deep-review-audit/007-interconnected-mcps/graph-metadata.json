@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "interconnected mcp audit",
+      "code-graph skill-advisor review",
+      "deep-loop-runtime review"
+    ],
+    "key_topics": [
+      "interconnected",
+      "mcp",
+      "audit",
+      "code-graph",
+      "skill-advisor",
+      "review",
+      "deep-loop-runtime",
+      "skills",
+      "deep-loop",
+      "runtime",
+      "correctness",
+      "integration-contract"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-code-graph/SKILL.md",
+      ".opencode/skills/system-skill-advisor/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+      ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+      ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-code-graph/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-run.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "fanout-pool.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "executor-config.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Review Slice",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope Review",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Audit the interconnected MCP skills and the deep-loop runtime for correctness, integration-contract drift, and concurrency/lifecycle bugs, reporting P0/P1/P2 findings with evidence. READ-ONLY review.",
+    "created_at": "2026-06-04T18:53:35.322Z",
+    "last_save_at": "2026-06-04T18:53:35.322Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

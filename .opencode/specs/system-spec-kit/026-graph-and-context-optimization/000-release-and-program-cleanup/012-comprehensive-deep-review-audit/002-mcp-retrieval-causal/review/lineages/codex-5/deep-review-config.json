@@ -1,0 +1,94 @@
+{
+  "topic": "Review: MCP Retrieval + Causal Review Slice",
+  "sessionId": "fanout-codex-5-1780592070774-skng7g",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "createdAt": "2026-06-04T16:58:41Z",
+  "status": "complete",
+  "releaseReadinessState": "release-blocking",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "effectiveExecutionNote": "Executed in-process by Codex lineage agent; nested cli-codex self-invocation was not used."
+  },
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+  ],
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "runtimeCapabilityResolver": ".opencode/skills/deep-review/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-review/scripts/reduce-state.cjs",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "latestJSONLDelta",
+      "newIterationFile",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

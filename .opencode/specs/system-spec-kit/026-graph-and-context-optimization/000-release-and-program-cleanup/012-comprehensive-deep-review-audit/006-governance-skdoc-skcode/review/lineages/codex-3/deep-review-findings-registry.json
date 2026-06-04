@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "deep-review-findings-registry/v1",
+  "sessionId": "fanout-codex-3-1780595350529-mur2m0",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-3",
+  "generatedAt": "2026-06-04T17:55:00Z",
+  "summary": {
+    "totalFindings": 6,
+    "activeP0": 0,
+    "activeP1": 4,
+    "activeP2": 2,
+    "verdict": "CONDITIONAL"
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "status": "active",
+      "contentHash": "98e161c36dbbaeaa06d6261776b63855c1fcf4fa4dd73a07ffd41e28881dc5d6",
+      "title": "Strict spec validation exits before the documented shell fallback can run",
+      "category": "correctness",
+      "primaryLocation": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1044",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:841",
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:849",
+        ".opencode/skills/system-spec-kit/scripts/spec/validate.sh:1044",
+        "command: bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <target-spec> --strict -> exit 1 with no diagnostics"
+      ],
+      "impact": "The completion verification gate can fail silently in a source-only checkout, so agents cannot distinguish a real spec error from an orchestrator bootstrap miss.",
+      "fix": "Call `run_node_orchestrator` inside a conditional and fall through to shell validators when it returns 1; preserve hard failures from the orchestrator separately."
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "status": "active",
+      "contentHash": "c202b34646e0b328b4f83e1d540f25894e55746a6d7769dd2ef60e6741f0b034",
+      "title": "Level 1 documentation requires implementation-summary.md, but the file rule treats it as optional until completion",
+      "category": "traceability",
+      "primaryLocation": ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh:89",
+      "evidence": [
+        "AGENTS.md:281",
+        ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh:12",
+        ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh:65",
+        ".opencode/skills/system-spec-kit/scripts/rules/check-files.sh:89",
+        "command: node .opencode/skills/system-spec-kit/scripts/utils/template-structure.js docs 1 -> includes implementation-summary.md"
+      ],
+      "impact": "Spec packets can validate under one enforcement path while missing a file that the global framework and template structure call mandatory.",
+      "fix": "Make the Level 1 file rule and template structure agree, or explicitly amend the framework table to say implementation-summary.md is conditional."
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "status": "active",
+      "contentHash": "ff73ab0cc6c7842f6657eaddc904528d79257244d70e6c7366f21ac647f56b17",
+      "title": "Comment hygiene is documented as two non-bypassable gates, but the authorized owner flow can bypass both",
+      "category": "security",
+      "primaryLocation": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:66",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:30",
+        ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:66",
+        ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:71",
+        ".opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md:24",
+        ".github/workflows/comment-hygiene.yml:2",
+        ".opencode/scripts/git-hooks/pre-commit:48",
+        ".opencode/hooks/README.md:70",
+        ".opencode/hooks/README.md:73"
+      ],
+      "impact": "A direct owner push to main can skip the PR-only workflow and local hooks, so the constitutional claim overstates the effective enforcement surface.",
+      "fix": "Either enforce comment hygiene on push/main CI as well, or soften the constitutional rule to name the documented bypass cases and required audit trail."
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "status": "active",
+      "contentHash": "639eb62f68dcf42e0c32628e7699110d08724b80885f8b5d44e90f2221a22c08",
+      "title": "The review target packet is Level 1 but is missing required docs and metadata",
+      "category": "traceability",
+      "primaryLocation": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/spec.md:23",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/spec.md:23",
+        "AGENTS.md:281",
+        "AGENTS.md:291",
+        "missing files observed: plan.md, tasks.md, implementation-summary.md, description.json, graph-metadata.json"
+      ],
+      "impact": "The target is harder to resume, search, and validate because the packet-level metadata and continuity files are absent.",
+      "fix": "Create the Level 1 docs and mandatory metadata for this packet, or explicitly convert it into a documented fan-out-only review control artifact with its own validation rule."
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "status": "active",
+      "contentHash": "836b64cb324184bfeaca9c05aca37a5fb96f016096f9f4815ee95cedae369d9e",
+      "title": "sk-code authoring checklist assets fail sk-doc asset validation",
+      "category": "maintainability",
+      "primaryLocation": ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md:8",
+      "evidence": [
+        ".opencode/skills/sk-doc/assets/template_rules.json:303",
+        ".opencode/skills/sk-doc/assets/template_rules.json:305",
+        ".opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md:8",
+        "command: python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sk-code/assets/opencode/checklists/skill_authoring.md -> missing_required_section overview"
+      ],
+      "impact": "The resources sk-code tells authors to load can fail the documentation validator that governs asset files.",
+      "fix": "Rename or add an `Overview` section in the affected checklist assets, or add a more specific sk-code checklist document type to sk-doc's rules."
+    },
+    {
+      "id": "F006",
+      "severity": "P2",
+      "status": "active",
+      "contentHash": "36cdcce15996cb22460af55ada33b077841eaa167a163ef8a123a9aa17bc0c56",
+      "title": "Python implementations with .sh names trigger sk-code shell verifier warnings",
+      "category": "maintainability",
+      "primaryLocation": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:1",
+      "evidence": [
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:1",
+        ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh:1",
+        ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:31",
+        ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:39",
+        ".opencode/skills/sk-code/assets/opencode/checklists/shell_checklist.md:32",
+        ".opencode/skills/sk-code/assets/opencode/checklists/shell_checklist.md:49"
+      ],
+      "impact": "`verify_alignment_drift.py --root .opencode/skills/sk-code` passes only because warnings are non-fatal; `--fail-on-warn` turns the current sk-code tree red.",
+      "fix": "Rename the Python scripts to `.py` and update callers, or teach the verifier to classify by shebang before extension."
+    }
+  ]
+}

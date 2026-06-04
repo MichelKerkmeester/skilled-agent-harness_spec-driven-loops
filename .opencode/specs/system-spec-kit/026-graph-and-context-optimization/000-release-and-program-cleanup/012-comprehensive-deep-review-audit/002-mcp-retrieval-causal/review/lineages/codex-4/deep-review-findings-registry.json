@@ -1,0 +1,119 @@
+{
+  "sessionId": "fanout-codex-4-1780592070776-ladjto",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "dimension": "correctness",
+      "status": "open",
+      "title": "Ambiguous causal references resolve to newest partial path/title match",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:290",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:307",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:320",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:330",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:367",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:412"
+      ],
+      "finalSeverity": "P1",
+      "confidence": 0.88,
+      "iterations": [
+        1
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "dimension": "security",
+      "status": "open",
+      "title": "Scoped progressive cursors drop scope on chained continuation",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:704",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1258",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:329",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:367",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/progressive-disclosure.ts:402"
+      ],
+      "finalSeverity": "P1",
+      "confidence": 0.93,
+      "iterations": [
+        2
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "dimension": "security",
+      "status": "open",
+      "title": "Causal graph link/unlink endpoints mutate raw IDs without governed scope checks",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:691",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:757",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:996",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:406",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:433",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743"
+      ],
+      "finalSeverity": "P1",
+      "confidence": 0.86,
+      "iterations": [
+        2
+      ]
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "dimension": "maintainability",
+      "status": "open",
+      "title": "Handler comments retain perishable bug/finding labels instead of durable rationale",
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:73",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:643",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:738",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:850",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1454",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1630",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1692",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:43",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:113",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:307",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:329"
+      ],
+      "finalSeverity": "P2",
+      "confidence": 0.95,
+      "iterations": [
+        4
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": null,
+  "graphDecision": "GRAPH_UNAVAILABLE_FALLBACK_USED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

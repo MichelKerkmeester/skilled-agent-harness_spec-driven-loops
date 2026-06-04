@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mcp retrieval review",
+      "causal graph audit",
+      "memory search audit"
+    ],
+    "key_topics": [
+      "mcp",
+      "retrieval",
+      "review",
+      "causal",
+      "graph",
+      "audit",
+      "memory",
+      "search",
+      "causal-graph",
+      "read",
+      "path",
+      "semantic"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+      "mcp_server/handlers/memory-search.ts",
+      "mcp_server/handlers/memory-context.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/handlers/causal-links-processor.ts",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "memory-search.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-context.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-links-processor.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Causal Review Slice",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deeply",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The MCP retrieval and causal-graph read path (semantic search, unified context, trigger matching, causal links) was heavily reworked across 026 (graph-channel routing, query intelligence, scoring/calibration). This slice audits it for correctness, security, and contract/traceability drift.",
+    "created_at": "2026-06-04T18:53:35.318Z",
+    "last_save_at": "2026-06-04T18:53:35.318Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

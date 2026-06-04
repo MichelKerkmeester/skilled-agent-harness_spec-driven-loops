@@ -1,0 +1,53 @@
+{
+  "topic": "MCP session, index, ingest, embedder, context-server, and schema parity review",
+  "mode": "review",
+  "loopType": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "resource_map_present": false,
+  "sessionId": "fanout-codex-1-1780592962034-hpff4r",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code", "playbook_capability"]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "release-blocking",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/review/lineages/codex-1",
+  "artifactRootBinding": "config.fanout_lineage_artifact_dir override",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "createdAt": "2026-06-04T17:11:14Z",
+  "status": "running",
+  "executionMode": "auto",
+  "fileProtection": {
+    "deep-review-config.json": "immutable",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": ["latestJSONLDelta", "newIterationFile", "priorReducedState"],
+    "outputs": ["findingsRegistry", "dashboardMetrics", "strategyUpdates"],
+    "metrics": ["dimensionsCovered", "findingsBySeverity", "openFindings", "resolvedFindings", "convergenceScore"]
+  }
+}

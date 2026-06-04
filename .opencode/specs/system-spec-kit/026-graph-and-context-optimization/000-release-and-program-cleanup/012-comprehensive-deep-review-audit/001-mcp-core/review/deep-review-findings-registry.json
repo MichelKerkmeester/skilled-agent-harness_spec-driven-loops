@@ -1,0 +1,337 @@
+{
+  "mergedFrom": [
+    "codex-1",
+    "codex-2",
+    "codex-3",
+    "codex-4",
+    "codex-5"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "memory_update leaves entity-density cache stale after title or trigger phrase changes",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+      "line": 619,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "content_hash": "sha256:f001-update-entity-density",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489-495",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619-625",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:153-159"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Embedding reconcile dry-run undercounts success rows missing only the active dimension vector",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts",
+      "line": 281,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "content_hash": "sha256:f002-reconcile-coverage",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281-286",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361-363",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:417-420"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "maintainability",
+      "title": "Atomic save can commit a DB row before the pending file is promoted",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+      "line": 362,
+      "firstSeen": 4,
+      "lastSeen": 5,
+      "content_hash": "sha256:f003-atomic-promote-order",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360-378",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:387-409",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3581-3616",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2534-2639"
+      ],
+      "transitions": [
+        {
+          "iteration": 4,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Public docs still instruct dryRun:false for memory_embedding_reconcile apply mode",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+      "line": 737,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "sha256:f004-dryrun-docs",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:342",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:19"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "activeOnly is exposed as an input but is not consumed by reconcile runtime logic",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "line": 343,
+      "firstSeen": 3,
+      "lastSeen": 5,
+      "content_hash": "sha256:f005-activeonly",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:19-22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299-302",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:43-44"
+      ],
+      "transitions": [
+        {
+          "iteration": 3,
+          "from": null,
+          "to": "P2",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2"
+      ]
+    },
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "contract_safety",
+      "title": "memory_update leaves entity-density cache stale after title or trigger phrase changes",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:4",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:97",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:9",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts:112"
+      ],
+      "content_hash": "16321ae8b10fbc77edabfa8a4289b318a931896482303b34a9f4defcfd8c494e",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "status": "active",
+      "_lineages": [
+        "codex-3"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "contract_safety",
+      "title": "success-coverage dry-run undercounts rows missing only the active dimension vector",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:285",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:409",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:83"
+      ],
+      "content_hash": "9dc4b2858cc0547d68b39c9a41f81451051c8cf189bacbda4c7aae2a404f4cef",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "status": "active",
+      "_lineages": [
+        "codex-3"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "contract_safety",
+      "title": "operator docs use unsupported dryRun:false for memory_embedding_reconcile",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts:99",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:76"
+      ],
+      "content_hash": "0948043df6a7e842fd8aef279e7ee11ba440b7e465e1c230860836e4d39bbba8",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "status": "active",
+      "_lineages": [
+        "codex-3"
+      ]
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "finding_class": "maintainability",
+      "title": "activeOnly is advertised but ignored by reconcile implementation",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:308",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299"
+      ],
+      "content_hash": "db2866bdef81d93ffbaf4f55f11c56c3b94de98688e976f751521623e7980e56",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "status": "active",
+      "_lineages": [
+        "codex-3"
+      ]
+    },
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "memory_update leaves entity-density routing cache stale after title or trigger phrase changes",
+      "category": "cache-invalidation",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:81",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:159",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:97"
+      ],
+      "status": "active",
+      "content_hash": "f001-entity-density-update",
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "memory_embedding_reconcile dry-run under-reports success-coverage repairs for rows missing only the active dimension vector",
+      "category": "dry-run-apply-parity",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:356",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:409",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:82"
+      ],
+      "status": "active",
+      "content_hash": "f002-reconcile-success-coverage",
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "operator docs tell users to run unsupported memory_embedding_reconcile({ dryRun: false })",
+      "category": "operator-contract-drift",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:342",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:653",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:75",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654"
+      ],
+      "status": "active",
+      "content_hash": "f003-reconcile-docs-dryrun",
+      "_lineages": [
+        "codex-5"
+      ]
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "memory_embedding_reconcile accepts activeOnly but never reads it",
+      "category": "unused-public-option",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts:155",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:36"
+      ],
+      "status": "active",
+      "content_hash": "f004-reconcile-activeonly-unused",
+      "_lineages": [
+        "codex-5"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 4
+  },
+  "openFindingsCount": 13,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 9,
+  "activeP2": 4
+}

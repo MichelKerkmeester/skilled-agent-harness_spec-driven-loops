@@ -1,0 +1,27 @@
+{
+  "run": 1,
+  "mode": "review",
+  "focus": "correctness",
+  "dimensions": [
+    "correctness"
+  ],
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+    ".opencode/skills/system-spec-kit/README.md",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "findingRefs": [
+    "P1-001",
+    "P1-002"
+  ],
+  "newFindingsRatio": 0.4,
+  "status": "complete"
+}

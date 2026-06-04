@@ -1,0 +1,244 @@
+{
+  "mergedFrom": [
+    "codex-1",
+    "codex-2",
+    "codex-3",
+    "codex-4",
+    "codex-5"
+  ],
+  "mergedVerdict": "CONDITIONAL",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "title": "Catalog master still says feature annotations cover every source file while the feature leaf says coverage is partial",
+      "category": "catalog-code-traceability",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26"
+      ],
+      "recommendation": "Align the master catalog with the partial-coverage contract and refresh the measured count from a checked script.",
+      "status": "active",
+      "finding_class": "docs-vs-docs-code-drift",
+      "content_hash": "sha256:codex1-p1-001",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "title": "The MCP tool count is split between 37 in catalog/tests and 36 in README/tests",
+      "category": "catalog-code-traceability",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:48",
+        ".opencode/skills/system-spec-kit/README.md:45",
+        ".opencode/skills/system-spec-kit/README.md:256",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:681",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:725",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:117"
+      ],
+      "recommendation": "Pick TOOL_DEFINITIONS.length as canonical, update README references, and reconcile the stale test expectation.",
+      "status": "active",
+      "finding_class": "catalog-code-test-drift",
+      "content_hash": "sha256:codex1-p1-002",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "title": "The root playbook release gate expects 380 scenario files, but the current tree has 384",
+      "category": "playbook-coverage",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:173",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md:60"
+      ],
+      "recommendation": "Update the release-readiness count/check to the current package shape or narrow the glob so README/category files are not counted as scenarios.",
+      "status": "active",
+      "finding_class": "playbook-release-gate-drift",
+      "content_hash": "sha256:codex1-p1-003",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "id": "P1-004",
+      "severity": "P1",
+      "title": "Five playbook scenarios link to catalog files that do not exist at their referenced paths",
+      "category": "broken-cross-reference",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md:55",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md:60",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md:57",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md:146",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md:59"
+      ],
+      "recommendation": "Rewrite those links to the current catalog file names/locations and add a link-integrity check to the playbook validation path.",
+      "status": "active",
+      "finding_class": "broken-cross-reference",
+      "content_hash": "sha256:codex1-p1-004",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "id": "P1-005",
+      "severity": "P1",
+      "title": "Scenario 136's feature file has a malformed validation contract for annotation-name validity",
+      "category": "playbook-capability",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:21",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:2692"
+      ],
+      "recommendation": "Regenerate scenario 136 from the root contract so the command sequence is executable and path casing is portable.",
+      "status": "active",
+      "finding_class": "manual-playbook-contract-drift",
+      "content_hash": "sha256:codex1-p1-005",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "id": "P1-006",
+      "severity": "P1",
+      "title": "The local-LLM catalog category points at stale implementation paths for shared embeddings and drift handlers",
+      "category": "catalog-code-traceability",
+      "dimension": "maintainability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:40",
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:45",
+        ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts:1",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:28",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468"
+      ],
+      "recommendation": "Update the category source table to the actual shared embedding package and consolidated causal-graph handler paths.",
+      "status": "active",
+      "finding_class": "stale-source-reference",
+      "content_hash": "sha256:codex1-p1-006",
+      "_lineages": [
+        "codex-1"
+      ]
+    },
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Master catalog overstates universal feature annotation coverage",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+      "line": 3946,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "finding_class": "docs-code-drift",
+      "content_hash": "sha256:codex2-f001",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2",
+        "codex-4"
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Catalog cleanup claim is false while phase-style labels remain in non-test source comments",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+      "line": 30,
+      "firstSeen": 1,
+      "lastSeen": 4,
+      "finding_class": "docs-code-drift",
+      "content_hash": "sha256:codex2-f002",
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery"
+        }
+      ],
+      "_lineages": [
+        "codex-2",
+        "codex-4"
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "status": "active",
+      "category": "playbook-capability",
+      "finding_class": "non_executable_validation_step",
+      "title": "MODULE header scenario points to the old verifier path",
+      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+      "line": 38,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:50",
+        ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:1"
+      ],
+      "dimensions": [
+        "correctness",
+        "traceability"
+      ],
+      "content_hash": "6fe11665cab24581d0e9f4c1971d1c7cbf8a5cb369628c160c37c9e11e69450d",
+      "_lineages": [
+        "codex-2",
+        "codex-4"
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "status": "active",
+      "category": "feature-catalog-code",
+      "finding_class": "stale_path_pattern",
+      "title": "Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375",
+      "file": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+      "line": 47,
+      "evidenceRefs": [
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:28",
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:47",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/361-paraphrase-recall.md:2"
+      ],
+      "dimensions": [
+        "traceability",
+        "maintainability"
+      ],
+      "content_hash": "8391e978a62aa17b2ac962d750ebd38d263ce87c4f4b428d962e7d13523022fa",
+      "_lineages": [
+        "codex-4"
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 9,
+    "P2": 1
+  },
+  "openFindingsCount": 10,
+  "resolvedFindingsCount": 0,
+  "activeP0": 0,
+  "activeP1": 9,
+  "activeP2": 1
+}

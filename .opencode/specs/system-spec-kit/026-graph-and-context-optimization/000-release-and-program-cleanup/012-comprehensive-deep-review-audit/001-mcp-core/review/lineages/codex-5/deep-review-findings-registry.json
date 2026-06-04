@@ -1,0 +1,101 @@
+{
+  "sessionId": "fanout-codex-5-1780591417923-ro731l",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "memory_update leaves entity-density routing cache stale after title or trigger phrase changes",
+      "category": "cache-invalidation",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:81",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:159",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:97"
+      ],
+      "status": "active",
+      "content_hash": "f001-entity-density-update"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "memory_embedding_reconcile dry-run under-reports success-coverage repairs for rows missing only the active dimension vector",
+      "category": "dry-run-apply-parity",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:356",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:409",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:82"
+      ],
+      "status": "active",
+      "content_hash": "f002-reconcile-success-coverage"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "operator docs tell users to run unsupported memory_embedding_reconcile({ dryRun: false })",
+      "category": "operator-contract-drift",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:342",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:653",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:75",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654"
+      ],
+      "status": "active",
+      "content_hash": "f003-reconcile-docs-dryrun"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "memory_embedding_reconcile accepts activeOnly but never reads it",
+      "category": "unused-public-option",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts:155",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:22",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:36"
+      ],
+      "status": "active",
+      "content_hash": "f004-reconcile-activeonly-unused"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

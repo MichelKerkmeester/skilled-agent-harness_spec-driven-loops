@@ -1,0 +1,112 @@
+{
+  "sessionId": "fanout-codex-4-1780591417923-pmkg63",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "cache-invalidation",
+      "title": "memory_update leaves entity-density cache stale after title or trigger phrase changes",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:91",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:92",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:494",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:619",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:81",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:96",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:112"
+      ],
+      "dimension": "correctness",
+      "findingClass": "stale-cache-after-mutation",
+      "contentHash": "f001-memory-update-entity-density-cache",
+      "disposition": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "dry-run-apply-parity",
+      "title": "repairSuccessCoverage dry-run undercounts success rows missing only the active dimension vector",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:285",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:417",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:420",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:84",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:89"
+      ],
+      "dimension": "correctness",
+      "findingClass": "dry-run-apply-drift",
+      "contentHash": "f002-reconcile-success-coverage-or-predicate",
+      "disposition": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "operator-contract-drift",
+      "title": "operator docs still instruct unsupported dryRun:false for memory_embedding_reconcile apply mode",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:19",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:76"
+      ],
+      "dimension": "traceability",
+      "findingClass": "schema-doc-drift",
+      "contentHash": "f003-reconcile-docs-dryrun-false",
+      "disposition": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "public-option-noop",
+      "title": "activeOnly is exposed as an option but has no implementation branch",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:308",
+        ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts:155",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:20",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:302"
+      ],
+      "dimension": "traceability",
+      "findingClass": "unused-public-option",
+      "contentHash": "f004-reconcile-activeonly-noop",
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

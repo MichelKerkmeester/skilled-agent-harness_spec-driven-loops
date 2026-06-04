@@ -1,0 +1,80 @@
+{
+  "topic": "MCP memory mutation, save, and embedding reconcile review slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "reviewTargetType": "spec-folder",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/review/lineages/codex-1",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-codex-1-1780591417923-0rq1ay",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "createdAt": "2026-06-04T16:46:56Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "effectiveExecution": "current-codex-runtime",
+    "selfInvocationConstraint": "cli-codex forbids nested Codex self-invocation; lineage executed in this runtime"
+  },
+  "artifactRootResolution": {
+    "source": "config.fanout_lineage_artifact_dir",
+    "resolveArtifactRootCalled": false
+  },
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "review-report-v*.md": "write-once",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ],
+    "metrics": [
+      "dimensionsCovered",
+      "findingsBySeverity",
+      "openFindings",
+      "resolvedFindings",
+      "convergenceScore"
+    ]
+  }
+}

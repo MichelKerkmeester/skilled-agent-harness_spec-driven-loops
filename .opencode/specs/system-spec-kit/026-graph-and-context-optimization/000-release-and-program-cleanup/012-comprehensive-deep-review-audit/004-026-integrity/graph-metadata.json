@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "026 integrity audit",
+      "changelog accuracy",
+      "completion claim reconciliation"
+    ],
+    "key_topics": [
+      "026",
+      "integrity",
+      "audit",
+      "changelog",
+      "accuracy",
+      "completion",
+      "claim",
+      "reconciliation",
+      "program",
+      "tracks",
+      "634",
+      "sub-packets"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
+      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "context-index.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
+        "source": "derived"
+      },
+      {
+        "name": "timeline.md",
+        "kind": "doc",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Program Integrity Review Slice",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated. This slice independently audits the program-level control docs and changelog rollups for accuracy, internal consistency, and reconciliation with the actual shipped state.",
+    "created_at": "2026-06-04T18:53:35.320Z",
+    "last_save_at": "2026-06-04T18:53:35.320Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

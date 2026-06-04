@@ -1,0 +1,114 @@
+{
+  "sessionId": "fanout-codex-5-1780592070774-skng7g",
+  "generation": 1,
+  "lineageMode": "new",
+  "releaseReadinessState": "release-blocking",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Causal edge writers can create wrong-target or orphan edges",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      "line": 757,
+      "firstSeen": 1,
+      "lastSeen": 7,
+      "content_hash": "4374d3304202f1b2fc7239c6ad90514a53dc45f41fbf31c64cfbd4aad238f478",
+      "transitions": [
+        { "iteration": 1, "from": null, "to": "P1", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F002",
+      "severity": "P0",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Community fallback bypasses governed retrieval scope",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+      "line": 1000,
+      "firstSeen": 2,
+      "lastSeen": 7,
+      "content_hash": "b7cc41331080451809827c0127b6292a8deb7a56900ea2d14de752e0f7aafbbc",
+      "transitions": [
+        { "iteration": 2, "from": null, "to": "P0", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F003",
+      "severity": "P0",
+      "category": "security",
+      "status": "active",
+      "dimension": "security",
+      "title": "Causal graph tools operate on bare IDs without scope authorization",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      "line": 76,
+      "firstSeen": 3,
+      "lastSeen": 7,
+      "content_hash": "8c6cd2d0559d3c656ba6777936f5587d4bd36dded33b00426c77269436a96299",
+      "transitions": [
+        { "iteration": 3, "from": null, "to": "P0", "reason": "Initial discovery" }
+      ]
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "memory_causal_stats public schema hides runtime backfill capability",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+      "line": 454,
+      "firstSeen": 4,
+      "lastSeen": 7,
+      "content_hash": "8977b8e62fe56e0054d7c5e6d4de434b9d2ff9394be54c393b48c2165f21c4dd",
+      "transitions": [
+        { "iteration": 4, "from": null, "to": "P2", "reason": "Initial discovery" }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [
+    {
+      "run": 5,
+      "blockedBy": ["p0ResolutionGate"],
+      "recoveryStrategy": "Replay active P0/P1 evidence and synthesize FAIL if max iterations are reached without remediation.",
+      "timestamp": "2026-06-04T17:01:13Z"
+    },
+    {
+      "run": 6,
+      "blockedBy": ["p0ResolutionGate"],
+      "recoveryStrategy": "No legal PASS/CONDITIONAL stop while active P0s remain; continue to max-iteration synthesis.",
+      "timestamp": "2026-06-04T17:01:46Z"
+    }
+  ],
+  "persistentSameSeverity": ["F001", "F002", "F003", "F004"],
+  "severityChanged": [],
+  "repeatedFindings": ["F001", "F002", "F003", "F004"],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": "fail",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "partial",
+    "playbook_capability": "partial"
+  },
+  "findingsBySeverity": {
+    "P0": 2,
+    "P1": 1,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_BLOCKED",
+  "graphBlockers": ["p0ResolutionGate"],
+  "corruptionWarnings": []
+}

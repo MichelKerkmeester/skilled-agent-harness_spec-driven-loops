@@ -1,0 +1,1 @@
+{"type":"finding_refinement","iteration":3,"id":"F001","severity":"P1","status":"open","contentHash":"sha256:52e71f5223e18dc47a2c12530d78e38a4b436c7f476adca50d51faafec1fc2b7","summary":"Traceability pass confirmed public TOOL_DEFINITIONS and Zod TOOL_SCHEMAS disagree for governed scan/ingest.","newFindingsRatio":0.0}

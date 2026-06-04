@@ -1,0 +1,73 @@
+{
+  "topic": "Review: feature catalog and manual testing playbook verification slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "sessionId": "fanout-codex-4-1780594677742-rrgf8b",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+  "createdAt": "2026-06-04T17:42:28Z",
+  "completedAt": "2026-06-04T17:42:28Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "selfInvocationGuard": "not spawned; current runtime is already Codex"
+  },
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/review/lineages/codex-4",
+  "reviewScopeFiles": [
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/233-multi-feature-annotation-coverage.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init-with-final-status",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "sessionId": "fanout-codex-3-1780596675702-bd9jq2",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "metadata_consistency",
+      "title": "027 parent metadata advertises placeholder 000-release-cleanup as an executable child",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/spec.md:57",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:180",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:28",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:6",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7"
+      ],
+      "content_hash": "eb430889787cb856e45080e72f524e7dd8cf3a3d70416141061c558c099171a3",
+      "firstSeenRun": 1,
+      "status": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "metadata_consistency",
+      "title": "Renumbered 027 child descriptions still expose stale phase IDs and trigger phrases",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:128",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:41",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:4",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:5",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53"
+      ],
+      "content_hash": "9a4722f46db7bccce1af33b5ae2ee815e320ed939d4dc80c64ea7835d3862fbb",
+      "firstSeenRun": 3,
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "stabilization": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 0
+  },
+  "openFindingsCount": 2,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "releaseReadinessState": "converged",
+  "updatedAt": "2026-06-04T18:14:42Z"
+}

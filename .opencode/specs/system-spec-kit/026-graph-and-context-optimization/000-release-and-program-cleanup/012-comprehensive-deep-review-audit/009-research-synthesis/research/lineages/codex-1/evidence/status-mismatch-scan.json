@@ -1,0 +1,12 @@
+{
+  "totalGraphMetadataFilesScanned": 732,
+  "filesWithBothGraphAndSpecStatus": 623,
+  "rawStatusMismatches": 381,
+  "draftSpecMarkedGraphComplete": 23,
+  "inProgressSpecWithCompletionDocs": 64,
+  "scanScope": [
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization",
+    ".opencode/specs/system-spec-kit/027-*"
+  ],
+  "caveat": "Raw mismatch count is noisy because spec status text is free-form; draft-marked-complete and in-progress-with-completion-docs are conservative lower-bound buckets."
+}

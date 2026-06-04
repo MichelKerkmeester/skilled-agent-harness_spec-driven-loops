@@ -1,0 +1,76 @@
+{
+  "topic": "Governance + sk-doc + sk-code drift review slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "reviewTargetType": "spec-folder",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-5",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-5",
+  "sessionId": "fanout-codex-5-1780595350529-5jk4vx",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "loopType": "review",
+  "executionMode": "auto",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "resource_map_present": false,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "status": "complete",
+  "createdAt": "2026-06-04T17:51:36Z",
+  "completedAt": "2026-06-04T17:58:13Z",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init-except-final-status",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reviewScope": {
+    "include": [
+      ".opencode/skills/system-spec-kit/constitutional/**",
+      ".opencode/skills/sk-doc/SKILL.md",
+      ".opencode/skills/sk-doc/assets/**",
+      ".opencode/skills/sk-code/SKILL.md",
+      ".opencode/skills/sk-code/assets/**"
+    ],
+    "contextOnly": [
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      ".opencode/hooks/pre-commit",
+      ".github/workflows/comment-hygiene.yml",
+      ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/**"
+    ],
+    "excludeWritesOutsideArtifactDir": true
+  }
+}

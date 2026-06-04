@@ -1,0 +1,88 @@
+{
+  "sessionId": "fanout-codex-2-1780596001497-312vj2",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "concurrency-correctness",
+      "finding_class": "runtime-contract",
+      "title": "Fan-out CLI lineages are serialized by spawnSync despite a concurrency cap",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:174",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:307",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:344"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f001-concurrency-spawnsync"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "executor-config-contract",
+      "finding_class": "config-drift",
+      "title": "Per-lineage iterations is documented as a max-iteration override but only affects timeout sizing",
+      "evidence": [
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:292",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:128",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:155"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f002-iterations-timeout-only"
+    },
+    {
+      "id": "F004",
+      "severity": "P1",
+      "category": "comment-hygiene",
+      "finding_class": "policy-drift",
+      "title": "Reviewed code contains ephemeral phase, packet, and ADR labels in comments",
+      "evidence": [
+        ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:14",
+        ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts:33",
+        ".opencode/skills/system-code-graph/mcp_server/core/config.ts:19",
+        ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:8"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f004-ephemeral-comment-labels"
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "category": "integration-contract-drift",
+      "finding_class": "operator-guidance-drift",
+      "title": "System-spec-kit stale graph guidance says code_graph_query still works, but code-graph read paths block non-fresh graphs",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:953",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:966",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:865",
+        ".opencode/skills/system-code-graph/mcp_server/handlers/query.ts:1244"
+      ],
+      "status": "active",
+      "content_hash": "sha256:f003-stale-graph-guidance"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "graphConvergenceScore": 0,
+  "graphDecision": "GRAPHLESS_FALLBACK",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

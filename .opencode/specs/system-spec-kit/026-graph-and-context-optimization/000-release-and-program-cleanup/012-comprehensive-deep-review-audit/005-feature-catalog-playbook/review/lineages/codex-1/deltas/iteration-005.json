@@ -1,0 +1,23 @@
+{
+  "run": 5,
+  "mode": "review",
+  "focus": "stabilization replay",
+  "dimensions": [
+    "correctness",
+    "traceability"
+  ],
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 0,
+    "P2": 0
+  },
+  "findingRefs": [],
+  "newFindingsRatio": 0,
+  "status": "complete"
+}

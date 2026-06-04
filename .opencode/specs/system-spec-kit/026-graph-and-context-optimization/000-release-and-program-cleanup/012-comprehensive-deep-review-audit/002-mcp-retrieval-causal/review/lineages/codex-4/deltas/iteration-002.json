@@ -1,0 +1,18 @@
+{
+  "run": 2,
+  "focus": "security",
+  "dimensions": [
+    "security"
+  ],
+  "findingsNew": [
+    "F002",
+    "F003"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0
+  },
+  "newFindingsRatio": 0.6667,
+  "verdict": "CONDITIONAL"
+}

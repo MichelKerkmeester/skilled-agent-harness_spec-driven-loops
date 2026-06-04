@@ -1,0 +1,1 @@
+STATE SUMMARY: Iteration 5 of 7. Focus: stabilization. Active findings: F001-F004 P1 and F005 P2. Replay coverage, adjudication, and convergence gates. Do not add findings without new file:line evidence.

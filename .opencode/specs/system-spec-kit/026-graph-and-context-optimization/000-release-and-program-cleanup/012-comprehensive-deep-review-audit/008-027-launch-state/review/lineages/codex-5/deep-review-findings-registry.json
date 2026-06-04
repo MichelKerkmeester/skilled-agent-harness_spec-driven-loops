@@ -1,0 +1,125 @@
+{
+  "sessionId": "fanout-codex-5-1780596675702-bahixt",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "phase-parent-structure",
+      "finding_class": "missing-child-scaffold",
+      "title": "Parent declares 000-release-cleanup as a phase child, but it is only a placeholder shell",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:28",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7"
+      ],
+      "content_hash": "sha256:ce1e60f3974c15a501f743a4ca1980b1462e9e9c6bf5fc30ac3eca94da433c5b",
+      "iterations": [
+        1
+      ],
+      "status": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "metadata-renumbering",
+      "finding_class": "stale-spec-id-and-phase-label",
+      "title": "Renumbered child metadata still exposes old phase ids and titles",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:29",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2"
+      ],
+      "content_hash": "sha256:99e40008a113f8140d31f3f4cdfe2adfad5cda8b79f4095e011805fcb31ef3aa",
+      "iterations": [
+        3
+      ],
+      "status": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "metadata-status-truth",
+      "finding_class": "derived-status-contradicts-spec",
+      "title": "Graph derived status marks draft children complete",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:48",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:49",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/graph-metadata.json:42"
+      ],
+      "content_hash": "sha256:092e474b744bd7f7233a3228717b072b0f26f3407117df88bc45151c2f7df50a",
+      "iterations": [
+        4
+      ],
+      "status": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "resource-map-accuracy",
+      "finding_class": "resource-map-overstates-renumbering-readiness",
+      "title": "027 resource map overstates renumbered metadata readiness",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:32",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:78",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33"
+      ],
+      "content_hash": "sha256:cb878e2a485b56f851e4a613df837bfc239afc18d3b6fafaa7315ea7c91fb04a",
+      "iterations": [
+        5
+      ],
+      "status": "active"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "category": "026-alignment",
+      "finding_class": "ambiguous-handoff-claim",
+      "title": "027 launch review does not pin which 026 completion surface it builds on",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/spec.md:37",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state/spec.md:62",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:43",
+        ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/spec.md:39"
+      ],
+      "content_hash": "sha256:818c70e9303ccb5c1a586cc1a3a45d2868a4b0f802f33ed92ccac7a3258b6941",
+      "iterations": [
+        3
+      ],
+      "status": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "traceabilityCoverage": {
+    "spec_code": "partial",
+    "checklist_evidence": "pass",
+    "feature_catalog_code": "partial",
+    "playbook_capability": "partial"
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.91,
+  "graphConvergenceScore": null,
+  "graphDecision": "UNAVAILABLE_FALLBACK_USED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

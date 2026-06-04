@@ -1,0 +1,29 @@
+{
+  "run": 3,
+  "mode": "review",
+  "focus": "traceability",
+  "dimensions": [
+    "traceability"
+  ],
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md"
+  ],
+  "findingsNew": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 0
+  },
+  "findingRefs": [
+    "P1-003",
+    "P1-004",
+    "P1-005"
+  ],
+  "newFindingsRatio": 0.43,
+  "status": "complete"
+}

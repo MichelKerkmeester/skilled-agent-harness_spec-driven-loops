@@ -1,0 +1,53 @@
+{
+  "session_id": "fanout-codex-1-1780597406873-0x2cpu",
+  "status": "complete",
+  "questions": {
+    "q1_common_root_cause": {
+      "status": "answered",
+      "answer": "Contract governance drift across docs, schemas, validators, generated metadata, and handlers."
+    },
+    "q2_metadata_systemicness": {
+      "status": "answered",
+      "answer": "Systemic; generator fallback and broad scan show recurring drift."
+    },
+    "q3_memory_correctness_impact": {
+      "status": "answered",
+      "answer": "Mixed: transient routing quality, rare durability window, real scoped-integrity defects."
+    },
+    "q4_p0_calibration": {
+      "status": "answered",
+      "answer": "P0 only under shared untrusted principal model; local single-user MCP calibrates most findings to P1/high correctness and privacy risk."
+    },
+    "q5_deep_loop_blast_radius": {
+      "status": "answered",
+      "answer": "High for multi-lineage fanout accounting; current eight source slices were single-lineage but still require exit-code evidence for subprocess success."
+    }
+  },
+  "clusters": {
+    "contractDrift": [
+      "Public MCP schemas and docs disagree with runtime accepted shapes, including memory_embedding_reconcile mode versus documented dryRun.",
+      "Governed ingest fields are accepted and validated at the tool boundary but dropped before index persistence.",
+      "Comment-hygiene and routing guidance describe stricter behavior than implementation enforces."
+    ],
+    "metadataDrift": [
+      "Graph metadata status often diverges from spec status, partly because implementation-summary fallback marks complete without checklist evidence.",
+      "Renumbered or consolidated phase identifiers remain in child metadata, links, and catalogs."
+    ],
+    "memoryCorrectness": [
+      "Entity-density cache invalidation does not cover update/title-trigger changes.",
+      "Atomic save indexes before pending file promotion, creating a crash/promotion failure window.",
+      "Causal graph writers can create orphan or cross-scope edges when called with bare IDs."
+    ],
+    "deepLoopOrchestration": [
+      "Fanout worker uses spawnSync inside capped pool, defeating intended concurrency.",
+      "Pool success accounting counts fulfilled worker promises rather than subprocess exit codes.",
+      "Per-lineage iterations affects timeout sizing but does not enforce loop iteration count."
+    ]
+  },
+  "final_new_info_ratio": 0.03,
+  "evidence": {
+    "statusMismatchScan": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence/status-mismatch-scan.json",
+    "orchestrationSummary": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence/orchestration-summary.tsv",
+    "reviewFindingClusters": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence/review-finding-clusters.json"
+  }
+}

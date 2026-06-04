@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "deep-review.findings.v1",
+  "sessionId": "fanout-codex-2-1780592962035-w7xlfk",
+  "generatedAt": "2026-06-04T17:14:56Z",
+  "summary": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0,
+    "open": 1,
+    "closed": 0
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "status": "open",
+      "contentHash": "sha256:52e71f5223e18dc47a2c12530d78e38a4b436c7f476adca50d51faafec1fc2b7",
+      "title": "memory_index_scan and memory_ingest_start validate governance inputs but drop scope/provenance/retention before indexing",
+      "firstSeenIteration": 1,
+      "lastSeenIteration": 5,
+      "dimensions": [
+        "correctness",
+        "security",
+        "traceability"
+      ],
+      "affectedTools": [
+        "memory_index_scan",
+        "memory_ingest_start"
+      ],
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455 accepts governance fields for memory_index_scan.",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472 accepts governance fields for memory_ingest_start.",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:522 advertises memory_index_scan without those governance fields.",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:536 advertises memory_ingest_start without those governance fields.",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:330 validates governed ingest, but .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:721 calls indexSingleFile without scope/provenance/retention options.",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:146 validates governed ingest, but .opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263 persists only id, paths, and specFolder.",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:45 and .opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:208 define ingest jobs/tables without governance columns.",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2074 initializes the async ingest worker with processFile(filePath) only."
+      ],
+      "impact": "Governed scan or async ingest callers can submit tenant/session/provenance/retention parameters that validate successfully, but the indexed memory rows are written without the corresponding scope, provenance, delete_after or retention metadata. That breaks the contract implied by governed validation and can make later retrieval or retention controls operate on unscoped rows.",
+      "recommendedFix": "Either remove hidden governance acceptance from scan/ingest until the path can honor it, or make the public schemas, Zod schemas, handlers and job queue carry the same normalized governance object. The robust fix is to persist governance metadata on ingest_jobs, pass scope to indexSingleFile/indexMemoryFile, and apply the same post-insert governance metadata/audit fields used by memory_save."
+    }
+  ],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "convergence": {
+    "status": "converged",
+    "finalVerdict": "CONDITIONAL",
+    "reason": "No new findings after stabilization; active P1 remains unresolved."
+  }
+}

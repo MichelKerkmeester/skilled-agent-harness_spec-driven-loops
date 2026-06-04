@@ -1,0 +1,61 @@
+{
+  "topic": "026 Program Integrity Review Slice",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "reviewTargetType": "spec-folder",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity/review/lineages/codex-2",
+  "artifactRootBinding": "config.fanout_lineage_artifact_dir",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "selfInvocationGuard": "current Codex session executed lineage without nested codex exec"
+  },
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "resourceMapAuditTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
+  "sessionId": "fanout-codex-2-1780593922588-29dcia",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "rollingStopThreshold": 0.08,
+  "noProgressThreshold": 0.05,
+  "stuckThreshold": 2,
+  "minStabilizationPasses": 1,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "converged",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+  "createdAt": "2026-06-04T17:27:26Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "loopType": "review",
+  "fanoutLineage": "codex-2",
+  "fileProtection": {
+    "deep-review-config.json": "immutable-until-synthesis-status",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    ".deep-review-pause": "operator-controlled",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  }
+}

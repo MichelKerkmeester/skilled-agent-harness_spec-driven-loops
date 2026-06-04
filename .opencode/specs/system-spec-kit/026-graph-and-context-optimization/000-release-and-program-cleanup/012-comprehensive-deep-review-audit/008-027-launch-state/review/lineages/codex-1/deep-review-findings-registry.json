@@ -1,0 +1,171 @@
+{
+  "sessionId": "fanout-codex-1-1780596675702-e5bokn",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "title": "Listed child phase 000-release-cleanup is not an executable spec folder",
+      "dimension": "correctness",
+      "dimensions": [
+        "correctness"
+      ],
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 130,
+      "description": "Parent metadata lists 000-release-cleanup as a child phase even though the folder lacks child spec metadata.",
+      "recommendation": "Remove or fully scaffold the placeholder child and clarify whether it is executable.",
+      "status": "active",
+      "firstSeen": 1,
+      "lastSeen": 1,
+      "findingClass": "phase-child-scaffolding",
+      "scopeProof": "Parent phase-map and child metadata comparison plus file inventory.",
+      "affectedSurfaceHints": [
+        "phase-parent resume",
+        "recursive validation",
+        "graph traversal"
+      ],
+      "contentHash": "768b5db90a965fe16f41c44cf519ed222a533087a30d0051da154a2d4a9b8422"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "title": "Renumbered child metadata and docs still advertise old phase numbers",
+      "dimension": "traceability",
+      "dimensions": [
+        "traceability"
+      ],
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json",
+      "line": 53,
+      "description": "Active metadata and dependency text still use pre-renumbering phase numbers.",
+      "recommendation": "Refresh active metadata to current ids and keep old numbers only in context-index history.",
+      "status": "active",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "findingClass": "renumbering-metadata-drift",
+      "scopeProof": "Parent map and child metadata comparison.",
+      "affectedSurfaceHints": [
+        "memory search triggers",
+        "resume routing",
+        "graph metadata"
+      ],
+      "contentHash": "b552cac29fb3aed23e1a7297091622001f2e1b3333dc80e394682581e6df7cfa"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "title": "Graph metadata marks draft placeholder phases complete",
+      "dimension": "traceability",
+      "dimensions": [
+        "traceability"
+      ],
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json",
+      "line": 42,
+      "description": "Graph metadata status contradicts canonical spec and implementation-summary state for draft phases.",
+      "recommendation": "Regenerate graph metadata status from current docs.",
+      "status": "active",
+      "firstSeen": 3,
+      "lastSeen": 3,
+      "findingClass": "status-drift",
+      "scopeProof": "Phase status and implementation summary comparison.",
+      "affectedSurfaceHints": [
+        "resume routing",
+        "memory graph traversal",
+        "release readiness"
+      ],
+      "contentHash": "f7af5e12ecb0a7b7fb34be036c8d6b694d11477abf504ed21889bc91168385c5"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "title": "Parent note overstates the lean-parent document rule",
+      "dimension": "maintainability",
+      "dimensions": [
+        "maintainability"
+      ],
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      "line": 88,
+      "description": "The parent note makes valid support docs look invalid by saying spec.md is the only authored parent-level document.",
+      "recommendation": "Clarify the distinction between heavy planning docs and optional cross-cutting support docs.",
+      "status": "active",
+      "firstSeen": 4,
+      "lastSeen": 4,
+      "findingClass": "parent-doc-wording",
+      "scopeProof": "Parent doc wording and support-doc presence comparison.",
+      "affectedSurfaceHints": [
+        "operator maintenance",
+        "phase-parent documentation"
+      ],
+      "contentHash": "ab652002a4935b1c0884e2bb2234949f2ffdc6e10a050c9b3e9b380ea7004bf4"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.85,
+  "graphConvergenceScore": 0.85,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "traceabilityRollup": {
+    "summary": {
+      "required": 2,
+      "executed": 2,
+      "pass": 0,
+      "partial": 2,
+      "fail": 0,
+      "blocked": 0,
+      "notApplicable": 2,
+      "gatingFailures": 0
+    },
+    "results": [
+      {
+        "protocol": "spec_code",
+        "level": "core",
+        "status": "partial",
+        "evidenceRefs": [
+          ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:164"
+        ]
+      },
+      {
+        "protocol": "checklist_evidence",
+        "level": "core",
+        "status": "partial",
+        "evidenceRefs": [
+          ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/implementation-summary.md:53"
+        ]
+      }
+    ]
+  },
+  "searchCoverage": {
+    "requiredBugClasses": [],
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "graphCoverageMode": "graphless_fallback"
+  },
+  "candidateCoverage": {
+    "covered": [],
+    "ruledOut": [],
+    "deferred": [],
+    "blocked": [],
+    "byBugClass": {}
+  },
+  "searchDebt": [],
+  "corruptionWarnings": []
+}

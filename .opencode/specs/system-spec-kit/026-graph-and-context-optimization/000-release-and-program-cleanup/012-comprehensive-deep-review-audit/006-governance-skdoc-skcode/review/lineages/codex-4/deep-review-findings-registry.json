@@ -1,0 +1,103 @@
+{
+  "type": "findings_registry",
+  "mode": "review",
+  "run": "fanout-codex-4-1780595350529-muaf3m",
+  "lineage": "codex-4",
+  "updated_at": "2026-06-04T18:52:00Z",
+  "counts": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "dimension_coverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true,
+    "stabilization": true
+  },
+  "release_readiness_state": "converged_conditional",
+  "findings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Comment-hygiene checker misses forbidden requirement/checklist IDs on mixed stable-reference lines",
+      "content_hash": "sha256:comment-hygiene-mixed-stable-reference-v1",
+      "first_seen_iteration": 1,
+      "confidence": "high",
+      "evidence": [
+        ".opencode/skills/sk-code/references/universal/code_style_guide.md:116",
+        ".opencode/skills/sk-code/references/universal/code_style_guide.md:120",
+        ".opencode/skills/sk-code/references/universal/code_style_guide.md:154",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:70",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:88",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:89",
+        ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:112"
+      ],
+      "fix": "Do not exempt whole lines when a stable standard reference appears; still scan for forbidden labels and widen REQ/CHK regexes to word-boundary matches."
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "status": "active",
+      "dimension": "security",
+      "title": "Direct-main workflow bypasses the only CI comment-hygiene gate while local hooks remain opt-in and bypassable",
+      "content_hash": "sha256:direct-main-pr-only-hygiene-gate-v1",
+      "first_seen_iteration": 1,
+      "confidence": "high",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md:20",
+        ".opencode/skills/system-spec-kit/constitutional/main-branch-direct-push.md:24",
+        ".github/workflows/comment-hygiene.yml:1",
+        ".github/workflows/comment-hygiene.yml:4",
+        ".opencode/hooks/README.md:13",
+        ".opencode/hooks/README.md:70",
+        ".opencode/hooks/README.md:73",
+        ".opencode/hooks/install-hooks.sh:6",
+        ".opencode/hooks/install-hooks.sh:7"
+      ],
+      "fix": "Add direct-main push-side enforcement or soften the governance wording; make hook installation use git rev-parse --git-path hooks."
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "Constitutional deep-review executor rule is stale relative to the command/runtime executor model",
+      "content_hash": "sha256:constitutional-deep-review-executor-drift-v1",
+      "first_seen_iteration": 3,
+      "confidence": "high",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md:24",
+        ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md:50",
+        ".opencode/skills/system-spec-kit/constitutional/post-implementation-deep-review.md:57",
+        ".opencode/commands/deep/assets/deep_start-review-loop_auto.yaml:741",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:7",
+        ".opencode/skills/deep-loop-runtime/lib/deep-loop/executor-config.ts:189",
+        ".opencode/skills/system-spec-kit/changelog/v3.4.1.0.md:245"
+      ],
+      "fix": "Delegate executor choice to deep-loop executor config; keep SWE-1.6 as a default or profile only if still desired."
+    },
+    {
+      "id": "P2-002",
+      "severity": "P2",
+      "status": "active",
+      "dimension": "traceability",
+      "title": "sk-doc and sk-code version metadata drift across SKILL, README, and changelog surfaces",
+      "content_hash": "sha256:skdoc-skcode-version-drift-v1",
+      "first_seen_iteration": 3,
+      "confidence": "high",
+      "evidence": [
+        ".opencode/skills/sk-doc/SKILL.md:5",
+        ".opencode/skills/sk-doc/README.md:35",
+        ".opencode/skills/sk-doc/changelog/v1.7.0.0.md:1",
+        ".opencode/skills/sk-code/SKILL.md:5",
+        ".opencode/skills/sk-code/README.md:92",
+        ".opencode/skills/sk-code/changelog/v3.3.1.0.md:1"
+      ],
+      "fix": "Keep version in one source of truth and update README/SKILL/changelog together, or generate README version claims."
+    }
+  ]
+}

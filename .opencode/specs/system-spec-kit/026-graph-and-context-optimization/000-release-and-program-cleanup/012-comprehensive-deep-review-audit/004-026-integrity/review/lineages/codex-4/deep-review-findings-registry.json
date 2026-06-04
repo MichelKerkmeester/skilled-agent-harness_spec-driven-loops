@@ -1,0 +1,78 @@
+{
+  "sessionId": "fanout-codex-4-1780593922589-c2lmlx",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "Graph metadata recency and track status fields are stale",
+      "dimension": "correctness",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json:156",
+      "status": "active",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "findingClass": "status-reconciliation",
+      "content_hash": "1c0d4823724341a6c9699720529093b83deb7370a68229558bead554fc817072"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "Changelog inventory omits existing shipped entries",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:23",
+      "status": "active",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "findingClass": "changelog-inventory",
+      "content_hash": "fa204c0248b6904f710cf8cd4c3262dd9a0d35a4231334f5139f90f2874c36fd"
+    },
+    {
+      "id": "F003",
+      "severity": "P2",
+      "title": "Resource map reports OK for historical paths that are absent",
+      "dimension": "traceability",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:44",
+      "status": "active",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "findingClass": "resource-map-coverage",
+      "content_hash": "57c7b4f79ab52ff0a5dfa0e5b3e382ecd0f11745a2d4c59b65b5cbe28423d66c"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "Changelog voice rules are not enforced in recent entries",
+      "dimension": "maintainability",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:44",
+      "status": "active",
+      "firstSeenIteration": 4,
+      "latestSeenIteration": 5,
+      "findingClass": "template-conformance",
+      "content_hash": "7ddd72de71e2f312c543544641d5ab2a486b55c8169da780091f331c7cce8069"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 2
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.82,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

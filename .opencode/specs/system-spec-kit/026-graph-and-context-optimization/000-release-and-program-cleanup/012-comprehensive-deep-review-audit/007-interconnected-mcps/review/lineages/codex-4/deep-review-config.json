@@ -1,0 +1,27 @@
+{
+  "type": "config",
+  "mode": "review",
+  "loopType": "review",
+  "sessionId": "fanout-codex-4-1780596001496-dj6z7c",
+  "parentSessionId": null,
+  "lineageMode": "fanout",
+  "generation": 1,
+  "continuedFromRun": null,
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/review/lineages/codex-4",
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "dimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "graphCoverageMode": "graphless_fallback",
+  "targetResourceMapPresent": false,
+  "createdAt": "2026-06-04T12:00:00.000Z"
+}

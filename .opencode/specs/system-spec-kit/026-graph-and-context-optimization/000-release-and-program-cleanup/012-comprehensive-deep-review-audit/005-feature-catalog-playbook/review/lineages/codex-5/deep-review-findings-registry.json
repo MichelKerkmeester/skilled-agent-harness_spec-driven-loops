@@ -1,0 +1,96 @@
+{
+  "sessionId": "fanout-codex-5-1780594677742-nigkgb",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "title": "Root catalog promises universal feature annotations even though current coverage is partial",
+      "category": "feature_catalog_code",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26",
+        ".opencode/skills/system-spec-kit/mcp_server/api/eval.ts:1"
+      ],
+      "content_hash": "sha256:2d4b0dfb8e5af6c3",
+      "disposition": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "title": "Annotation-name validity scenario uses the wrong-case catalog filename",
+      "category": "playbook_capability",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:38",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:13"
+      ],
+      "content_hash": "sha256:9649ce8e24af9182",
+      "disposition": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "title": "MODULE header compliance scenario invokes the verifier from a stale path",
+      "category": "playbook_capability",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38",
+        ".opencode/skills/sk-code/SKILL.md:192",
+        ".opencode/skills/sk-code/references/opencode/shared/alignment_verification_automation.md:22"
+      ],
+      "content_hash": "sha256:f7ad216d86d74f29",
+      "disposition": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "title": "Root playbook scenario count is stale by one file",
+      "category": "playbook_capability",
+      "dimension": "maintainability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140"
+      ],
+      "content_hash": "sha256:a6c14f83d7769d5b",
+      "disposition": "active"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "title": "Representative implementation row cites a file that does not actually carry a feature annotation",
+      "category": "feature_catalog_code",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:40",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:1"
+      ],
+      "content_hash": "sha256:3772be8d116cb2dd",
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.9,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

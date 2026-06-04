@@ -1,0 +1,63 @@
+{
+  "topic": "Root-cause synthesis of the system-spec-kit / 026 comprehensive deep-review audit",
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 120,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-4",
+  "resource_map_present": false,
+  "resource_map": {
+    "emit": true
+  },
+  "createdAt": "2026-06-04T18:25:37Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": "medium",
+    "serviceTier": "fast",
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900,
+    "dispatchNote": "Self-invocation guard applied; lineage executed directly by the current Codex agent without spawning nested codex exec."
+  },
+  "lineage": {
+    "sessionId": "fanout-codex-4-1780597406874-fpys3k",
+    "parentSessionId": null,
+    "lineageMode": "new",
+    "allowedModes": [
+      "new",
+      "resume",
+      "restart"
+    ],
+    "deferredModes": [
+      "fork",
+      "completed-continue"
+    ],
+    "generation": 1,
+    "continuedFromRun": null
+  },
+  "reducer": {
+    "enabled": false,
+    "version": "manual-lineage-compatible",
+    "registryFile": "deep-research-findings-registry.json",
+    "dashboardFile": "deep-research-dashboard.md",
+    "strategyFile": "deep-research-strategy.md",
+    "note": "The checked-in reducer resolves artifact roots from spec_folder; it was not run because this fan-out lineage is bound to an override directory."
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "deep-research-findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "deltas/iter-*.jsonl": "write-once",
+    "research.md": "mutable",
+    "resource-map.md": "workflow-owned"
+  }
+}

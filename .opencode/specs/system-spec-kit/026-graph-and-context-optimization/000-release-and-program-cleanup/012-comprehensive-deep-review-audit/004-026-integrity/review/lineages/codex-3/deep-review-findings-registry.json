@@ -1,0 +1,108 @@
+{
+  "sessionId": "fanout-codex-3-1780593922589-m3j24v",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "completion-claim-reconciliation",
+      "title": "Top-level track graph metadata still reports planned after specs report complete, in progress, or deferred",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/graph-metadata.json:50",
+      "finding_class": "metadata-status-drift",
+      "content_hash": "c7bc4930458fc083415b63e712dfb33e0f5e98f7d8dbc3bbfcafec9f9d94e234",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "dimensions": [
+        "correctness"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "changelog-integrity",
+      "title": "Top-level changelog rollups omit post-reorg child groups while the index calls them authoritative",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md:21",
+      "finding_class": "changelog-rollup-drift",
+      "content_hash": "65fcf3071b6b37d1675929b13b9f6734649687d1efe78c8c1ac379c18f6f2e0d",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "dimensions": [
+        "traceability"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "resource-map-coverage",
+      "title": "Resource map marks obsolete pre-reorg paths OK while warning readers not to navigate from it",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:62",
+      "finding_class": "stale-path-catalog",
+      "content_hash": "5d2647f7fd3526929d6c73e03eb02cdad3266c50ec34fdf50dac0a6376e646ec",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "dimensions": [
+        "correctness"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "count-drift",
+      "title": "Program packet counts disagree across the audit spec, changelog index, and generated timeline",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:14",
+      "finding_class": "documentation-count-drift",
+      "content_hash": "15b5d59791698c3166a5c88c731f2de905ca5f9e359282bf228742ec90883e0a",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "dimensions": [
+        "traceability"
+      ],
+      "disposition": "active"
+    },
+    {
+      "id": "F005",
+      "severity": "P2",
+      "category": "template-conformance",
+      "title": "Changelog voice rules are declared non-negotiable but violated in current entries",
+      "file": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:44",
+      "finding_class": "template-style-drift",
+      "content_hash": "8fcd606d829e62c9137a2b1f33e2ef6fde069c58ecade657c0b3e7db1bda70db",
+      "firstSeenIteration": 4,
+      "latestSeenIteration": 5,
+      "dimensions": [
+        "maintainability"
+      ],
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": null,
+  "graphDecision": "STOP_ALLOWED_WITH_GRAPHLESS_FALLBACK",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "releaseReadinessState": "converged",
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true
+}

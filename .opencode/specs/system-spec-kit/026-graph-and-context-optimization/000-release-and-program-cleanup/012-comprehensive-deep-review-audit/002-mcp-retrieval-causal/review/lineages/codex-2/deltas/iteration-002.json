@@ -1,0 +1,26 @@
+{
+  "type": "iteration_delta",
+  "run": 2,
+  "focus": "traceability/contracts",
+  "dimensions": ["traceability"],
+  "status": "insight",
+  "filesReviewed": [
+    ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal/spec.md",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/handler-memory-triggers.vitest.ts"
+  ],
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 1 },
+  "findingsSummary": { "P0": 1, "P1": 1, "P2": 1 },
+  "newFindingsRatio": 0.33,
+  "newFindingIds": ["F003"],
+  "repeatedFindingIds": ["F001", "F002"],
+  "traceabilityChecks": {
+    "spec_code": "pass",
+    "checklist_evidence": "skipped:no_checklist_level1",
+    "feature_catalog_code": "partial:limit_contract_drift",
+    "playbook_capability": "skipped:no_playbook_in_scope"
+  },
+  "timestamp": "2026-06-04T17:01:30Z"
+}

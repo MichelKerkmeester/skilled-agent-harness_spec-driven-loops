@@ -1,0 +1,99 @@
+{
+  "sessionId": "fanout-codex-4-1780596675702-s19q6b",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "category": "metadata-status-drift",
+      "title": "Child graph metadata marks draft phases complete while evidence remains placeholder-shaped",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:133",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md:59",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md:112"
+      ],
+      "finding_class": "completion-claim-drift",
+      "content_hash": "3fda310468a4fa0850b7bf402764cd1b4c506e2908eac3942f976bc9cabb5573",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 5,
+      "disposition": "active",
+      "adjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.9
+      }
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "category": "metadata-naming-drift",
+      "title": "Renumbered 027 child descriptions still advertise old specId values",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:131",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53"
+      ],
+      "finding_class": "spec-folder-naming",
+      "content_hash": "3316b8cb8d068f2b0e4736ccfb988ee5a623b82f88f0ef2cea53cd71e37aee72",
+      "firstSeenIteration": 3,
+      "latestSeenIteration": 5,
+      "disposition": "active",
+      "adjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.95
+      }
+    },
+    {
+      "id": "P2-001",
+      "severity": "P2",
+      "category": "phase-parent-readiness",
+      "title": "Placeholder 000 child is listed as an independently executable phase but carries no spec metadata",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:126",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:126",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:180"
+      ],
+      "finding_class": "phase-scaffold-ambiguity",
+      "content_hash": "922ba38b81f2b18f36df3e59ea038fd9459c257dde814b016a2b3eab43288c20",
+      "firstSeenIteration": 4,
+      "latestSeenIteration": 4,
+      "disposition": "active"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "P1-001",
+    "P1-002"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 2,
+    "P2": 1
+  },
+  "openFindingsCount": 3,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0.91,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "validation": {
+    "strictValidatorExitCode": 1,
+    "strictValidatorOutput": "Auto-enabled recursive validation: phase child folders detected.",
+    "note": "The validator failure was recorded as a quality-gate observation, not promoted to a finding because it emitted no file-level diagnostic."
+  }
+}

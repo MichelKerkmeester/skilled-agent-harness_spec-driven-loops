@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "deep-review.v1",
+  "sessionId": "fanout-codex-2-1780592962035-w7xlfk",
+  "loopType": "review",
+  "executor": {
+    "name": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema/review/lineages/codex-2",
+  "artifactRootBinding": "config.fanout_lineage_artifact_dir",
+  "resolveArtifactRootCommandRun": false,
+  "createdAt": "2026-06-04T17:14:56Z",
+  "maxIterations": 7,
+  "iterationsRun": 5,
+  "resourceMapPresentAtInit": false,
+  "reviewTarget": {
+    "type": "spec_folder",
+    "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+    "title": "MCP Session + Index + Schema/Entrypoint Review Slice"
+  },
+  "dimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "inScopeFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/session-bootstrap.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/session-health.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/session-learning.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-discovery.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-alias.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-list.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-set.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/embedder-status.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/README.md"
+  ],
+  "supportingFilesRead": [
+    ".opencode/skills/system-spec-kit/mcp_server/tools/index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tools/lifecycle-tools.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tools/memory-tools.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/index.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/context/caller-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save/create-record.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/schema.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts"
+  ],
+  "convergence": {
+    "status": "converged",
+    "reason": "All required review dimensions were covered and the final stabilization pass produced no new findings.",
+    "finalVerdict": "CONDITIONAL"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "iteration_delta",
+  "run": 4,
+  "focus": "stabilization/replay",
+  "dimensions": ["correctness", "security", "traceability", "maintainability"],
+  "status": "release-blocking",
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts"
+  ],
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsSummary": { "P0": 1, "P1": 1, "P2": 1 },
+  "newFindingsRatio": 0,
+  "newFindingIds": [],
+  "repeatedFindingIds": ["F001", "F002", "F003"],
+  "stopReason": "converged",
+  "releaseReadinessState": "release-blocking",
+  "timestamp": "2026-06-04T17:03:10Z"
+}

@@ -1,0 +1,9 @@
+{
+  "run": 5,
+  "status": "complete",
+  "focus": "stabilization",
+  "newFindings": [],
+  "newFindingsRatio": 0,
+  "verdict": "FAIL",
+  "stopReason": "converged"
+}

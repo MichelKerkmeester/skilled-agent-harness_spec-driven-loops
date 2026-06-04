@@ -1,0 +1,76 @@
+{
+  "sessionId": "fanout-codex-5-1780592962034-iuktuj",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "status": "active",
+      "dimension": "correctness",
+      "title": "Governed ingest metadata is accepted and validated, then discarded on scan/async ingest paths",
+      "file": ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      "line": 455,
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "finding_class": "schema-handler-drift",
+      "content_hash": "sha256:fd4f0a5b6d4c8f1c9dfc69cc3f93f9f2f4f21e8f9d17ad3a2fbdb57a0d1f001",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:455",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:596",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:598",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:522",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:531",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:721",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:278",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:263",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:38",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:253",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:268",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts:627",
+        ".opencode/skills/system-spec-kit/mcp_server/context-server.ts:2074"
+      ],
+      "transitions": [
+        {
+          "iteration": 1,
+          "from": null,
+          "to": "P1",
+          "reason": "Initial discovery from schema-to-handler propagation review"
+        }
+      ]
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "firstSeen": 1,
+      "lastSeen": 5,
+      "reason": "Same content hash and severity persisted through correctness, security, traceability, maintainability, and stabilization passes."
+    }
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 1,
+    "P2": 0
+  },
+  "openFindingsCount": 1,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1,
+  "graphConvergenceScore": 0,
+  "graphDecision": null,
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

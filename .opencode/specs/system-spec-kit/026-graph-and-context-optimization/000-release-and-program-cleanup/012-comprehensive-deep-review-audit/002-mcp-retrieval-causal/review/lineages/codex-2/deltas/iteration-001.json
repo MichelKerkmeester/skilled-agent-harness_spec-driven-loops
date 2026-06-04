@@ -1,0 +1,86 @@
+{
+  "type": "iteration",
+  "mode": "review",
+  "run": 1,
+  "sessionId": "fanout-codex-2-1780592070775-fi9ygq",
+  "generation": 1,
+  "status": "insight",
+  "dimensions": [
+    "correctness",
+    "security"
+  ],
+  "focus": "Security and correctness",
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/cognitive/rollout-policy.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/governance/scope-governance.ts"
+  ],
+  "findingsSummary": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 0
+  },
+  "findingsNew": {
+    "P0": 1,
+    "P1": 1,
+    "P2": 0
+  },
+  "newFindingsRatio": 1,
+  "findingDetails": [
+    {
+      "id": "F001",
+      "severity": "P0",
+      "category": "security",
+      "finding_class": "scope_bypass",
+      "title": "Community fallback bypasses scoped retrieval and can return cross-tenant rows",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:987",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1006",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1031",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/community-search.ts:124",
+        ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts:934"
+      ],
+      "content_hash": "e16b553007ea53cf88333a8336153a30bbea9f466b429185cd017e226de3c2fe",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 1,
+      "claimAdjudication": {
+        "finalSeverity": "P0",
+        "confidence": 0.91
+      }
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "security",
+      "finding_class": "session_scope",
+      "title": "memory_search accepts untrusted sessionId while neighboring handlers enforce server-managed sessions",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:664",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1085",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1375",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1112",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:228",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/session/session-manager.ts:413"
+      ],
+      "content_hash": "22cacfa2b6fad0bb1c5223de2d0ba9276fdb00ec93fd0ad07eb08a97483c7c7d",
+      "firstSeenIteration": 1,
+      "latestSeenIteration": 1,
+      "claimAdjudication": {
+        "finalSeverity": "P1",
+        "confidence": 0.84
+      }
+    }
+  ],
+  "traceabilityChecks": {
+    "results": [],
+    "summary": "Traceability not covered in iteration 001."
+  },
+  "timestamp": "2026-06-04T17:00:04Z"
+}

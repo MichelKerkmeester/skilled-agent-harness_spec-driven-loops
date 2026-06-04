@@ -1,0 +1,1 @@
+STATE SUMMARY: iteration 1 of 7, focus correctness. Review target is the feature catalog/playbook verification slice. Read state/config/strategy, then compare master catalog claims against dedicated feature leaves and live code/test anchors. Output iteration-001.md and JSONL delta.

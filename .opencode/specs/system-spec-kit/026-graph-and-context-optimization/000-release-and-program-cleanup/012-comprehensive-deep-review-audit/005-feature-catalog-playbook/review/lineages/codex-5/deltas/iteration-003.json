@@ -1,0 +1,8 @@
+{
+  "run": 3,
+  "dimensions": ["traceability"],
+  "findingsNew": {"P0": 0, "P1": 2, "P2": 1},
+  "findingRefs": ["F002", "F003", "F005"],
+  "newFindingsRatio": 0.71,
+  "verdict": "CONDITIONAL"
+}

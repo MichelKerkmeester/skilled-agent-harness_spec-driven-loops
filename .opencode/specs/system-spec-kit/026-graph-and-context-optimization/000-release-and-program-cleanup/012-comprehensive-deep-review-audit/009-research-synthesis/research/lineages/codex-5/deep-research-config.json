@@ -1,0 +1,41 @@
+{
+  "type": "deep-research-config",
+  "sessionId": "fanout-codex-5-1780597406873-021qp7",
+  "loopType": "research",
+  "lineageLabel": "codex-5",
+  "lineageMode": "new",
+  "generation": 1,
+  "status": "complete",
+  "topic": "Root-cause synthesis of the system-spec-kit / 026 deep-review audit",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-5",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-5",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5"
+  },
+  "maxIterations": 10,
+  "iterationsCompleted": 5,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "resource_map_present": false,
+  "progressiveSynthesis": true,
+  "stopReason": "converged",
+  "createdAt": "2026-06-04T18:27:26Z",
+  "completedAt": "2026-06-04T18:27:26Z",
+  "pathResolution": {
+    "resolvedByOverride": true,
+    "resolveArtifactRootCommandRun": false
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable-after-init",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "deltas/iter-NNN.jsonl": "write-once",
+    "deep-research-strategy.md": "workflow-managed",
+    "deep-research-findings-registry.json": "workflow-managed",
+    "deep-research-dashboard.md": "auto-generated",
+    "resource-map.md": "workflow-owned",
+    "research.md": "workflow-owned"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "type": "deep-research-config",
+  "schemaVersion": "1.13.1.0",
+  "topic": "Root-cause synthesis of the system-spec-kit / 026 deep-review audit",
+  "researchTopic": "Root-cause synthesis of the system-spec-kit / 026 deep-review audit",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-3",
+  "sessionId": "fanout-codex-3-1780597406873-czz1rs",
+  "loopType": "research",
+  "executionMode": "auto",
+  "lineageMode": "new",
+  "generation": 1,
+  "maxIterations": 10,
+  "convergenceThreshold": 0.05,
+  "stuckThreshold": 3,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 10,
+  "progressiveSynthesis": true,
+  "status": "initialized",
+  "createdAt": "2026-06-04T18:26:16Z",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": "workspace-write",
+    "timeoutSeconds": 900
+  },
+  "fanout_lineage_artifact_dir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-3",
+  "resource_map": {
+    "presentAtInit": false,
+    "emit": true
+  },
+  "statePaths": {
+    "config": "deep-research-config.json",
+    "stateLog": "deep-research-state.jsonl",
+    "strategy": "deep-research-strategy.md",
+    "registry": "deep-research-findings-registry.json",
+    "dashboard": "deep-research-dashboard.md",
+    "iterationPattern": "iterations/iteration-NNN.md",
+    "synthesis": "research.md",
+    "resourceMap": "resource-map.md",
+    "pauseSentinel": ".deep-research-pause"
+  },
+  "fileProtection": {
+    "deep-research-config.json": "immutable-after-init",
+    "deep-research-state.jsonl": "append-only",
+    "iterations/iteration-NNN.md": "write-once",
+    "deep-research-strategy.md": "reducer-managed",
+    "deep-research-findings-registry.json": "auto-generated",
+    "deep-research-dashboard.md": "auto-generated",
+    "research.md": "workflow-owned",
+    "resource-map.md": "workflow-owned"
+  }
+}

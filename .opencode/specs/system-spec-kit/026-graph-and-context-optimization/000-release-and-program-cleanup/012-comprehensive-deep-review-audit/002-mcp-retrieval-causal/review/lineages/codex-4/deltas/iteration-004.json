@@ -1,0 +1,17 @@
+{
+  "run": 4,
+  "focus": "maintainability",
+  "dimensions": [
+    "maintainability"
+  ],
+  "findingsNew": [
+    "F004"
+  ],
+  "findingsSummary": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "newFindingsRatio": 0.0625,
+  "verdict": "CONDITIONAL"
+}

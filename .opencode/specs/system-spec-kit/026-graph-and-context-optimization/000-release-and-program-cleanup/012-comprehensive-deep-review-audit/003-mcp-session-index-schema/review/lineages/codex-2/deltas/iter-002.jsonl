@@ -1,0 +1,1 @@
+{"type":"finding_refinement","iteration":2,"id":"F001","severity":"P1","status":"open","contentHash":"sha256:52e71f5223e18dc47a2c12530d78e38a4b436c7f476adca50d51faafec1fc2b7","summary":"Security pass confirmed the impact is governed scope/retention loss rather than only documentation drift.","newFindingsRatio":0.0}

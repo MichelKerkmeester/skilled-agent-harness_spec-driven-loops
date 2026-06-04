@@ -1,0 +1,137 @@
+{
+  "sessionId": "fanout-codex-1-1780594677741-5jdby6",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "id": "P1-001",
+      "severity": "P1",
+      "title": "Catalog master still says feature annotations cover every source file while the feature leaf says coverage is partial",
+      "category": "catalog-code-traceability",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950",
+        ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26"
+      ],
+      "recommendation": "Align the master catalog with the partial-coverage contract and refresh the measured count from a checked script.",
+      "status": "active",
+      "finding_class": "docs-vs-docs-code-drift",
+      "content_hash": "sha256:codex1-p1-001"
+    },
+    {
+      "id": "P1-002",
+      "severity": "P1",
+      "title": "The MCP tool count is split between 37 in catalog/tests and 36 in README/tests",
+      "category": "catalog-code-traceability",
+      "dimension": "correctness",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:48",
+        ".opencode/skills/system-spec-kit/README.md:45",
+        ".opencode/skills/system-spec-kit/README.md:256",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:681",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:725",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts:117"
+      ],
+      "recommendation": "Pick TOOL_DEFINITIONS.length as canonical, update README references, and reconcile the stale test expectation.",
+      "status": "active",
+      "finding_class": "catalog-code-test-drift",
+      "content_hash": "sha256:codex1-p1-002"
+    },
+    {
+      "id": "P1-003",
+      "severity": "P1",
+      "title": "The root playbook release gate expects 380 scenario files, but the current tree has 384",
+      "category": "playbook-coverage",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:173",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md:60"
+      ],
+      "recommendation": "Update the release-readiness count/check to the current package shape or narrow the glob so README/category files are not counted as scenarios.",
+      "status": "active",
+      "finding_class": "playbook-release-gate-drift",
+      "content_hash": "sha256:codex1-p1-003"
+    },
+    {
+      "id": "P1-004",
+      "severity": "P1",
+      "title": "Five playbook scenarios link to catalog files that do not exist at their referenced paths",
+      "category": "broken-cross-reference",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md:55",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md:60",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md:57",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md:146",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md:59"
+      ],
+      "recommendation": "Rewrite those links to the current catalog file names/locations and add a link-integrity check to the playbook validation path.",
+      "status": "active",
+      "finding_class": "broken-cross-reference",
+      "content_hash": "sha256:codex1-p1-004"
+    },
+    {
+      "id": "P1-005",
+      "severity": "P1",
+      "title": "Scenario 136's feature file has a malformed validation contract for annotation-name validity",
+      "category": "playbook-capability",
+      "dimension": "traceability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:21",
+        ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:2692"
+      ],
+      "recommendation": "Regenerate scenario 136 from the root contract so the command sequence is executable and path casing is portable.",
+      "status": "active",
+      "finding_class": "manual-playbook-contract-drift",
+      "content_hash": "sha256:codex1-p1-005"
+    },
+    {
+      "id": "P1-006",
+      "severity": "P1",
+      "title": "The local-LLM catalog category points at stale implementation paths for shared embeddings and drift handlers",
+      "category": "catalog-code-traceability",
+      "dimension": "maintainability",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:40",
+        ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:45",
+        ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts:1",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:28",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468"
+      ],
+      "recommendation": "Update the category source table to the actual shared embedding package and consolidated causal-graph handler paths.",
+      "status": "active",
+      "finding_class": "stale-source-reference",
+      "content_hash": "sha256:codex1-p1-006"
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 6,
+    "P2": 0
+  },
+  "openFindingsCount": 6,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.86,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": [],
+  "releaseReadinessState": "converged",
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": false
+}

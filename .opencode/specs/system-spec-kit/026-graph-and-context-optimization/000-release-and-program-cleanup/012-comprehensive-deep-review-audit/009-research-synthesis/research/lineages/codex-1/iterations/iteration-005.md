@@ -1,0 +1,37 @@
+# Iteration 005: Convergence pass: negative checks, eliminated alternatives, and final synthesis readiness.
+
+## Focus
+
+Convergence pass: negative checks, eliminated alternatives, and final synthesis readiness.
+
+## Findings
+
+1. No additional root-cause family is needed: the same governance gap explains API/schema drift, metadata readiness drift, memory persistence/routing correctness, and deep-loop orchestration accounting. [SOURCE: .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence/review-finding-clusters.json:2]
+2. The final severity calibration remains conditional: scope governance helpers exist, but some fallback/writer paths bypass or lack scope binding. That is high-severity correctness/privacy risk under shared-scope use, not proven remote code-execution or unauthenticated network exposure. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/src/scope-governance.ts:428] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/src/memory-search.ts:1181]
+
+## Sources Consulted
+
+- .opencode/skills/system-spec-kit/mcp_server/src/memory-search.ts:1181
+- .opencode/skills/system-spec-kit/mcp_server/src/scope-governance.ts:428
+- .opencode/skills/system-spec-kit/mcp_server/src/memory/atomic-index-memory.ts:362
+- .opencode/skills/system-spec-kit/graph/graph-metadata-parser.ts:1027
+- .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis/research/lineages/codex-1/evidence/review-finding-clusters.json:2
+
+## Assessment
+
+Converged. Final new-information ratio is below 0.05, all five charter questions have cited answers, and remaining unknowns are bounded.
+
+## Reflection
+
+The synthesis should recommend contract tests and derivation hardening before more documentation sweeps.
+
+## Recommended Next Focus
+
+SYNTHESIS COMPLETE
+
+## Iteration Metrics
+
+- Status: complete
+- Findings count: 2
+- New information ratio: 0.03
+- Novelty justification: No new root-cause family emerged; final pass only clarified eliminated alternatives and open questions.

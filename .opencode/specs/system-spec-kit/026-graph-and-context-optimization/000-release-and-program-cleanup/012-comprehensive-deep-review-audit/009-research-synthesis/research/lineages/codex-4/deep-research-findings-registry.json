@@ -1,0 +1,215 @@
+{
+  "openQuestions": [
+    {
+      "id": "Q1",
+      "question": "Are schemas, handlers, docs, and catalog/playbook maintained from divergent sources of truth, and is there a generator or contract that would close most doc/schema-to-code drift?",
+      "status": "resolved",
+      "resolvedBy": "iteration-001",
+      "answer": "The common cause is divergent source-of-truth maintenance across public tool schemas, Zod schemas, handler forwarding, operator docs, and catalog/playbook surfaces. A generator or round-trip test boundary across those contracts would close the largest class."
+    },
+    {
+      "id": "Q2",
+      "question": "Is metadata drift a generate-context / graph-metadata-backfill systemic defect or mostly isolated edits, and how many packets appear affected?",
+      "status": "resolved",
+      "resolvedBy": "iteration-002",
+      "answer": "Metadata drift is systemic. The graph metadata derivation reads frontmatter status and then falls back to implementation-summary/checklist completion, while current specs expose status in markdown metadata tables. A read-only 026 scan found 163 strong status contradictions."
+    },
+    {
+      "id": "Q3",
+      "question": "Do entity-density cache staleness and atomic-save ordering corrupt retrieval or graph-channel routing under normal single-user operation?",
+      "status": "resolved",
+      "resolvedBy": "iteration-003",
+      "answer": "Entity-density staleness is a transient graph/degree routing correctness bug for memory_update, not durable data corruption. Atomic-save ordering is a durable consistency risk because DB indexing can commit before pending-file promotion."
+    },
+    {
+      "id": "Q4",
+      "question": "Under the local single-user MCP threat model, should the two P0 scope/auth findings remain P0 or be recalibrated?",
+      "status": "resolved",
+      "resolvedBy": "iteration-004",
+      "answer": "Recalibrate to conditional P0: P0 for governed or multi-tenant isolation claims, P1 under the default trusted local stdio single-user model."
+    },
+    {
+      "id": "Q5",
+      "question": "Did deep-loop fan-out reliability defects make prior review or research artifacts suspect?",
+      "status": "resolved",
+      "resolvedBy": "iteration-005",
+      "answer": "Prior artifacts are suspect at the orchestration/provenance layer, but not wholly invalid as review content. Use lineage reports and merged findings with caveats; do not trust summaries/attribution as release-gate proof."
+    }
+  ],
+  "resolvedQuestions": [
+    {
+      "id": "Q1",
+      "iteration": 1,
+      "answer": "Drift is caused by divergent source-of-truth maintenance across schemas, docs, handlers, and catalog/playbook surfaces.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:294",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:316",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts:262"
+      ]
+    },
+    {
+      "id": "Q2",
+      "iteration": 2,
+      "answer": "Metadata drift is systemic. Status-source precedence ignores the spec template's visible metadata table and can mark draft/planned specs complete from implementation-summary/checklist evidence.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:987",
+        "file:.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:159",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:41",
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:35"
+      ]
+    },
+    {
+      "id": "Q3",
+      "iteration": 3,
+      "answer": "Entity-density staleness affects query routing freshness; atomic save ordering can create a durable DB/file mismatch on crash or promotion failure.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:90",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:20",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:247",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360"
+      ]
+    },
+    {
+      "id": "Q4",
+      "iteration": 4,
+      "answer": "The scope/auth findings are real for governed scope but should be conditional P0 rather than unconditional P0 under trusted local stdio.",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:757",
+        "file:.opencode/skills/system-spec-kit/mcp_server/context-server.ts:573",
+        "file:.opencode/skills/system-spec-kit/changelog/v3.2.0.0.md:373"
+      ]
+    },
+    {
+      "id": "Q5",
+      "iteration": 5,
+      "answer": "The weak layer is orchestration/provenance, not the existence of per-lineage review content.",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:362",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:207",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:335",
+        "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps/review/deep-review-findings-registry.json:82"
+      ]
+    }
+  ],
+  "keyFindings": [
+    {
+      "id": "F1",
+      "iteration": 1,
+      "title": "Doc/schema drift is a contract-boundary problem, not one stale page",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:338",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:294",
+        "file:.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:735",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:277"
+      ]
+    },
+    {
+      "id": "F2",
+      "iteration": 2,
+      "title": "Graph metadata status drift is systemic and caused by status-source precedence",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:987",
+        "file:.opencode/skills/system-spec-kit/scripts/graph/backfill-graph-metadata.ts:159",
+        "file:.opencode/skills/system-spec-kit/scripts/tests/graph-metadata-backfill.vitest.ts:95"
+      ],
+      "blastRadius": "Read-only scan found 163 strong status contradictions under 026; exact count may shift with free-form status classification."
+    },
+    {
+      "id": "F3",
+      "iteration": 3,
+      "title": "memory_update can stale graph-channel preservation until entity-density cache TTL expiry",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:90",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:68",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:21",
+        "file:.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts:247"
+      ],
+      "blastRadius": "Short entity-rich queries can over-route or under-route graph/degree until TTL expiry or an unrelated invalidation."
+    },
+    {
+      "id": "F4",
+      "iteration": 3,
+      "title": "Atomic save commits index rows before final file promotion",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:362",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:378",
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2637"
+      ],
+      "blastRadius": "Crash or promotion failure after DB commit can leave retrieval indexed to content not present at the canonical file path."
+    },
+    {
+      "id": "F5",
+      "iteration": 4,
+      "title": "Scope/auth P0s are conditional on governed or multi-tenant isolation claims",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:1000",
+        "file:.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:442",
+        "file:.opencode/skills/system-spec-kit/mcp_server/context-server.ts:573",
+        "file:.opencode/skills/system-spec-kit/changelog/v3.2.0.0.md:179"
+      ],
+      "blastRadius": "Default local stdio: P1 correctness/security-hardening. Governed or multi-tenant mode: P0 isolation bypass."
+    },
+    {
+      "id": "F6",
+      "iteration": 5,
+      "title": "Prior fan-out artifacts are content-usable but orchestration-suspect",
+      "confidence": "high",
+      "sources": [
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:362",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:207",
+        "file:.opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:335",
+        "command:count fanout-lineage.out completion sentinels over 001-008"
+      ],
+      "blastRadius": "Lineage reports and merged findings can inform remediation; orchestration summaries, executor provenance, concurrency claims, and iteration-cap compliance need rerun after fan-out fixes."
+    }
+  ],
+  "ruledOutDirections": [
+    {
+      "iteration": 1,
+      "approach": "Treat drift as one stale operator doc page",
+      "reason": "The evidence spans schemas, docs, runtime forwarding, catalog/playbook assertions, and governance docs."
+    },
+    {
+      "iteration": 2,
+      "approach": "Treat metadata drift as isolated parent-pointer staleness",
+      "reason": "Strong status contradictions recur across many child packets and at least one 027 packet."
+    },
+    {
+      "iteration": 3,
+      "approach": "Treat entity-density staleness as durable data corruption",
+      "reason": "The cache feeds graph/degree routing decisions and has TTL/invalidation semantics; durable inconsistency comes from atomic-save ordering."
+    },
+    {
+      "iteration": 4,
+      "approach": "Dismiss scope/auth findings because stdio is trusted",
+      "reason": "Governed scope fields and fail-closed scope helpers create an isolation contract once callers supply scope."
+    },
+    {
+      "iteration": 5,
+      "approach": "Discard prior fan-out review content wholesale",
+      "reason": "Each review slice has five lineage reports, registries, logs, and completion sentinels; the weak layer is orchestration truth."
+    }
+  ],
+  "metrics": {
+    "iterationsCompleted": 5,
+    "openQuestions": 0,
+    "resolvedQuestions": 5,
+    "keyFindings": 6,
+    "convergenceScore": 1.0,
+    "coverageBySources": {
+      "review-registry": 6,
+      "code": 20,
+      "docs": 6,
+      "commands": 5,
+      "tests": 2
+    }
+  }
+}

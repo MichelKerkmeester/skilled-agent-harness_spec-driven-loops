@@ -1,0 +1,87 @@
+{
+  "topic": "Review: MCP memory mutation, save, and embedding reconcile core",
+  "mode": "review",
+  "reviewTarget": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "resource_map_present": false,
+  "sessionId": "fanout-codex-2-1780591417922-vq3a9z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.1,
+  "stuckThreshold": 2,
+  "severityThreshold": "P2",
+  "crossReference": {
+    "core": [
+      "spec_code",
+      "checklist_evidence"
+    ],
+    "overlay": [
+      "feature_catalog_code",
+      "playbook_capability"
+    ]
+  },
+  "qualityGateThreshold": true,
+  "releaseReadinessState": "in-progress",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core/review/lineages/codex-2",
+  "createdAt": "2026-06-04T16:47:27Z",
+  "status": "complete",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "selfInvocationGuard": "Current runtime is already Codex, so the lineage was executed directly instead of spawning nested codex exec."
+  },
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/create-record.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/dedup.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/reconsolidation-bridge.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
+    ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+  ],
+  "fileProtection": {
+    "deep-review-config.json": "immutable-after-init",
+    "deep-review-state.jsonl": "append-only",
+    "deep-review-findings-registry.json": "auto-generated",
+    "deep-review-strategy.md": "mutable",
+    "deep-review-dashboard.md": "auto-generated",
+    "review-report.md": "mutable",
+    "iteration-*.md": "write-once"
+  },
+  "reducer": {
+    "enabled": true,
+    "inputs": [
+      "fullJSONLHistory",
+      "iterationFiles",
+      "priorReducedState"
+    ],
+    "outputs": [
+      "findingsRegistry",
+      "dashboardMetrics",
+      "strategyUpdates"
+    ]
+  }
+}

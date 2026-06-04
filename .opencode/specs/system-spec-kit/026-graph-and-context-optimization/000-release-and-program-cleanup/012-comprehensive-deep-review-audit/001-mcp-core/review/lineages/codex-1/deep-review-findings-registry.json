@@ -1,0 +1,113 @@
+{
+  "sessionId": "fanout-codex-1-1780591417923-0rq1ay",
+  "generation": 1,
+  "lineageMode": "new",
+  "verdict": "CONDITIONAL",
+  "hasAdvisories": true,
+  "releaseReadinessState": "in-progress",
+  "openFindings": [
+    {
+      "id": "F001",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "stale-cache",
+      "summary": "memory_update and memory_delete leave entity-density cache stale until TTL expiry.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:20",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:97",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:304",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts:244",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:136",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:159"
+      ],
+      "content_hash": "9b60cdfb51e177497b6e5279d7327f830499faa64bba16dfd399bdad990fa383",
+      "firstSeenRun": 1,
+      "lastSeenRun": 5,
+      "active": true
+    },
+    {
+      "id": "F002",
+      "severity": "P1",
+      "category": "correctness",
+      "finding_class": "dry-run-apply-drift",
+      "summary": "memory_embedding_reconcile dry-run undercounts success-coverage rows that apply will mutate.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:356",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:361",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:409",
+        ".opencode/skills/system-spec-kit/mcp_server/tests/vector-coverage-hygiene.vitest.ts:84"
+      ],
+      "content_hash": "34d067bc3ab25f035fa7178f01ba2845d1be18b7b9361acbb65198b08a75e31b",
+      "firstSeenRun": 1,
+      "lastSeenRun": 5,
+      "active": true
+    },
+    {
+      "id": "F003",
+      "severity": "P1",
+      "category": "traceability",
+      "finding_class": "public-contract-drift",
+      "summary": "Operator docs still instruct dryRun:false for memory_embedding_reconcile, but the live schema exposes mode:'apply'.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:737",
+        ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md:955",
+        ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:654",
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:341",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:306",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-embedding-reconcile.ts:19"
+      ],
+      "content_hash": "8292749e04da426e49a0577cc92afec3890136852a4b8d40e7f13d6f4529d707",
+      "firstSeenRun": 3,
+      "lastSeenRun": 5,
+      "active": true
+    },
+    {
+      "id": "F004",
+      "severity": "P2",
+      "category": "traceability",
+      "finding_class": "ignored-option",
+      "summary": "activeOnly is accepted and advertised but not read by the reconcile implementation.",
+      "evidence": [
+        ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:343",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:308",
+        ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:583",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:20",
+        ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:299"
+      ],
+      "content_hash": "6f6c31342a315065ac5a15b699f0cae1c6a03a04af3ffdb9e30e2d2d05b513df",
+      "firstSeenRun": 3,
+      "lastSeenRun": 5,
+      "active": true
+    }
+  ],
+  "resolvedFindings": [],
+  "blockedStopHistory": [],
+  "persistentSameSeverity": [
+    "F001",
+    "F002",
+    "F003",
+    "F004"
+  ],
+  "severityChanged": [],
+  "repeatedFindings": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 1
+  },
+  "openFindingsCount": 4,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.86,
+  "graphConvergenceScore": 1,
+  "graphDecision": "STOP_ALLOWED",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

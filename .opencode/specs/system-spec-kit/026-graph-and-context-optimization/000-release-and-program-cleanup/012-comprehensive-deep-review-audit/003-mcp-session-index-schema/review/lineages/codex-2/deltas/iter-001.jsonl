@@ -1,0 +1,1 @@
+{"type":"finding","iteration":1,"id":"F001","severity":"P1","status":"new","contentHash":"sha256:52e71f5223e18dc47a2c12530d78e38a4b436c7f476adca50d51faafec1fc2b7","summary":"Governance parameters validate for memory_index_scan and memory_ingest_start but are dropped before indexed records are created.","newFindingsRatio":1.0}

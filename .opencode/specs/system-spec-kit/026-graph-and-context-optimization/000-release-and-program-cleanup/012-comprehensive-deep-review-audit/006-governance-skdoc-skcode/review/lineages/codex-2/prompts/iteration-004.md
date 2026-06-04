@@ -1,0 +1,1 @@
+STATE SUMMARY: Iteration 4 of 7. Focus dimension: maintainability. Active findings: F001-F003 P1. Audit sk-doc and sk-code standards drift across prose, templates, machine rules, validators, and verification scripts.

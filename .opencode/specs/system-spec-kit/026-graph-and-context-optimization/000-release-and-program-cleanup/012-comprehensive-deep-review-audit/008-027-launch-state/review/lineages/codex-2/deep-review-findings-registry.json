@@ -1,0 +1,96 @@
+{
+  "sessionId": "fanout-codex-2-1780596675702-cpi67p",
+  "generation": 1,
+  "lineageMode": "new",
+  "openFindings": [
+    {
+      "findingId": "F001",
+      "severity": "P1",
+      "category": "status-truth",
+      "finding_class": "metadata_status_drift",
+      "title": "Phases 003-006 are graph-complete while their specs and implementation summaries still read draft/placeholder",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:48",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md:3"
+      ],
+      "content_hash": "sha256:5c2ed0b5a5f7a9d0b8a2f001"
+    },
+    {
+      "findingId": "F002",
+      "severity": "P1",
+      "category": "dependency-safety",
+      "finding_class": "stale_dependency_path",
+      "title": "Memory-write-safety still gates a nonexistent 027/009 reducer packet instead of current 008 reducers",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:164",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:37"
+      ],
+      "content_hash": "sha256:e09980c6dcf73e3c4a880002"
+    },
+    {
+      "findingId": "F003",
+      "severity": "P1",
+      "category": "metadata-identity",
+      "finding_class": "spec_id_drift",
+      "title": "Top-level child description specIds are stale after renumbering",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:14",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:40",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53"
+      ],
+      "content_hash": "sha256:2c2fb41312021cd73f030003"
+    },
+    {
+      "findingId": "F004",
+      "severity": "P2",
+      "category": "phase-map",
+      "finding_class": "placeholder_child_advertised",
+      "title": "The 000 placeholder is advertised as a child phase even though it has no spec or metadata",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:27",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:6"
+      ],
+      "content_hash": "sha256:7fe4df6ac553bb064b040004"
+    },
+    {
+      "findingId": "F005",
+      "severity": "P2",
+      "category": "phase-parent-docs",
+      "finding_class": "lean_trio_wording_ambiguity",
+      "title": "The parent says spec.md is the only authored parent document while parent-level context/resource maps also exist",
+      "evidence": [
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:88",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:1",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:22"
+      ],
+      "content_hash": "sha256:a6119d735e605a7226f50005"
+    }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": [],
+  "blockedStopHistory": [],
+  "dimensionCoverage": {
+    "correctness": true,
+    "security": true,
+    "traceability": true,
+    "maintainability": true
+  },
+  "findingsBySeverity": {
+    "P0": 0,
+    "P1": 3,
+    "P2": 2
+  },
+  "openFindingsCount": 5,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 0.72,
+  "graphConvergenceScore": null,
+  "graphDecision": "graph-unavailable",
+  "graphBlockers": [],
+  "corruptionWarnings": []
+}

@@ -1,0 +1,20 @@
+{
+  "type": "iteration_delta",
+  "run": 3,
+  "focus": "causal/maintainability",
+  "dimensions": ["maintainability", "correctness"],
+  "status": "clean",
+  "filesReviewed": [
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tools/causal-tools.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-integration.vitest.ts"
+  ],
+  "findingsNew": { "P0": 0, "P1": 0, "P2": 0 },
+  "findingsSummary": { "P0": 1, "P1": 1, "P2": 1 },
+  "newFindingsRatio": 0,
+  "newFindingIds": [],
+  "repeatedFindingIds": ["F001", "F002", "F003"],
+  "timestamp": "2026-06-04T17:02:20Z"
+}

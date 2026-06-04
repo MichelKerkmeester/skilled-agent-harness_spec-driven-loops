@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "deep-review-lineage/v1",
+  "sessionId": "fanout-codex-3-1780595350529-mur2m0",
+  "loopType": "review",
+  "mode": "review",
+  "phase": "phase_init",
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+  "artifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-3",
+  "fanoutLineageArtifactDir": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-3",
+  "artifactResolution": {
+    "method": "direct_config_override",
+    "resolveArtifactRootSkipped": true,
+    "reason": "User explicitly required direct binding to config.fanout_lineage_artifact_dir and forbade running resolveArtifactRoot."
+  },
+  "executor": {
+    "kind": "cli-codex",
+    "model": "gpt-5.5",
+    "dispatchStatus": "self_invocation_refused",
+    "reason": "cli-codex/SKILL.md prohibits Codex from invoking Codex recursively; review executed in the current Codex runtime with executor metadata recorded."
+  },
+  "reviewTarget": {
+    "type": "spec_folder",
+    "path": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+    "declaredScope": [
+      ".opencode/skills/system-spec-kit/constitutional/",
+      ".opencode/skills/sk-doc/",
+      ".opencode/skills/sk-code/"
+    ]
+  },
+  "dimensions": [
+    "correctness",
+    "security",
+    "traceability",
+    "maintainability"
+  ],
+  "severityThreshold": "P2",
+  "maxIterations": 5,
+  "convergence": {
+    "dimensionCoverageRequired": true,
+    "activeP0Allowed": false,
+    "activeP1AllowedForPass": false,
+    "stabilizationIterationsRequired": 1
+  },
+  "resourceMap": {
+    "sourceResourceMapPresent": false,
+    "emitReviewResourceMap": true
+  },
+  "fileWriteBoundary": {
+    "allowedRoot": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode/review/lineages/codex-3",
+    "outsideWritesAllowed": false
+  },
+  "reducer": {
+    "canonicalReducerExecuted": false,
+    "reason": "reduce-state.cjs resolves artifact roots internally; user required direct artifact_dir binding and forbade resolveArtifactRoot.",
+    "derivedViews": "manual_jsonl_replay"
+  },
+  "createdAt": "2026-06-04T17:55:00Z",
+  "status": "initialized"
+}
