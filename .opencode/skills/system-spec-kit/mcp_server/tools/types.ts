@@ -313,7 +313,8 @@ export interface CausalLinkArgs {
 
 /** Arguments for causal statistics requests. */
 export interface CausalStatsArgs {
-  _?: never;
+  // Optional bounded relation-inference backfill; dryRun-default so reads stay side-effect-free.
+  backfill?: { dryRun?: boolean; limit?: number; actor?: string };
 }
 
 /** Arguments for causal link removal requests. */

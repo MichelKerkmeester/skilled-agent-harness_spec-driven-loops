@@ -24,9 +24,10 @@ interface RelationCoverageState {
   backfillJob: {
     name: string;
     scope: string;
-    // Honest signal: the autonomous relation-backfill is NOT wired. No command balances relations —
-    // 'supports' edges grow via post-insert enrichment on save (default-on); typed relations require
-    // explicit memory_causal_link. `implemented` stays false and `command` null until a real job exists.
+    // Honest signal: a bounded relation-inference backfill IS now wired. It infers typed edges from
+    // strong EXISTING signals only (spec-document chains + lineage predecessor links), all created_by
+    // 'auto' and subject to insertEdge's guards. `command` names the real callable entry point;
+    // `lastBackfillAt` is the latest auto-edge timestamp (null until the job has run at least once).
     implemented: boolean;
     command: string | null;
     lastBackfillAt: string | null;
@@ -46,7 +47,10 @@ const DEFAULT_RELATION_TARGETS: RelationCoverageTarget[] = [
   { relation: 'cited_by', minimumShare: 0, minimumCount: 0 },
 ];
 
-const BACKFILL_COMMAND = 'memory_health({ autoRepair: true, confirmed: true })';
+// Real, callable entry point for the bounded relation-inference backfill.
+// Wired in handlers/causal-graph.ts (handleMemoryCausalStats accepts { backfill }).
+// Defaults to a dry run; pass dryRun:false to commit bounded auto edges.
+const BACKFILL_COMMAND = 'memory_causal_stats({ backfill: { dryRun: false } })';
 
 function clampShare(value: number): number {
   if (!Number.isFinite(value)) return 0;
@@ -106,8 +110,8 @@ function buildRelationCoverageState(
     backfillJob: {
       name: 'autonomous-causal-relation-backfill',
       scope: 'memory causal graph relation balancing across caused/supports/contradicts/supersedes/produced/cited_by',
-      implemented: false,
-      command: null,
+      implemented: true,
+      command: BACKFILL_COMMAND,
       lastBackfillAt: readLastBackfillAt(db),
     },
     targets,
@@ -115,7 +119,7 @@ function buildRelationCoverageState(
     status,
     remediationHint: status === 'met'
       ? null
-      : `Relation balancing is not auto-backfilled: 'supports' edges come from post-insert enrichment on save (default-on); typed relations (caused/contradicts/supersedes/produced/cited_by) require explicit memory_causal_link. Below target: ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}.`,
+      : `Below target: ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}. Run ${BACKFILL_COMMAND} to infer typed edges from spec-document chains + lineage links (bounded, created_by='auto', idempotent); 'supports' also grows via post-insert enrichment on save, and any typed relation can be set explicitly via memory_causal_link.`,
   };
 }
 

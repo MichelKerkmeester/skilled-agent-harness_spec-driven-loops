@@ -11,6 +11,7 @@ import * as vectorIndex from '../lib/search/vector-index.js';
 import * as causalEdges from '../lib/storage/causal-edges.js';
 import type { CausalChainNode, CausalEdge } from '../lib/storage/causal-edges.js';
 import { buildRelationCoverageState } from '../lib/causal/relation-coverage.js';
+import { backfillRelationInference } from '../lib/causal/relation-backfill.js';
 
 // Core utilities
 import { checkDatabaseUpdated } from '../core/index.js';
@@ -89,7 +90,20 @@ interface CausalLinkArgs {
 }
 
 interface CausalStatsArgs {
+  // Retained for structural compatibility with the tool-layer CausalStatsArgs
+  // (tools/types.ts), which the dispatcher passes through parseArgs.
   _?: never;
+  /**
+   * Optional bounded relation-inference backfill. When present, the handler
+   * infers typed causal edges from strong existing signals (spec-document
+   * chains + lineage predecessor links) before computing stats. Defaults to a
+   * dry run (no writes); pass { dryRun: false } to commit bounded auto edges.
+   */
+  backfill?: {
+    dryRun?: boolean;
+    limit?: number;
+    actor?: string;
+  };
 }
 
 interface CausalUnlinkArgs {
@@ -779,9 +793,10 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
 ──────────────────────────────────────────────────────────────── */
 
 /** Handle memory_causal_stats tool - returns graph coverage and health metrics */
-async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPResponse> {
+async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPResponse> {
   await ensureMemoryRuntimeInitialized('handler:memory_causal_stats');
   const startTime = Date.now();
+  const backfillRequest = args?.backfill;
 
   try {
     await checkDatabaseUpdated();
@@ -799,6 +814,22 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
       });
     }
     causalEdges.init(db);
+
+    // Optional bounded relation-inference backfill. Runs before stats so the
+    // reported coverage reflects any edges just inferred. Defaults to a dry run.
+    let backfillResult: ReturnType<typeof backfillRelationInference> | null = null;
+    if (backfillRequest) {
+      try {
+        backfillResult = backfillRelationInference(db, {
+          dryRun: backfillRequest.dryRun !== false,
+          limit: backfillRequest.limit,
+          actor: backfillRequest.actor ?? 'memory_causal_stats:backfill',
+        });
+      } catch (error: unknown) {
+        logCausalHandlerError('memory_causal_stats:backfill', error);
+        backfillResult = null;
+      }
+    }
 
     const stats = causalEdges.getGraphStats();
     const orphanedEdges: CausalEdge[] = causalEdges.findOrphanedEdges();
@@ -857,6 +888,13 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
     if (stats.totalEdges === 0) {
       hints.push('No causal links exist yet - use memory_causal_link to create relationships');
     }
+    if (backfillResult) {
+      hints.push(
+        backfillResult.dryRun
+          ? `Relation-inference backfill (dry run): ${backfillResult.inferred} candidate edges from ${backfillResult.scanned} scanned rows. Re-run with backfill.dryRun=false to commit.`
+          : `Relation-inference backfill: wrote ${backfillResult.written} auto edges from ${backfillResult.scanned} scanned rows.`,
+      );
+    }
 
     return createMCPSuccessResponse({
       tool: 'memory_causal_stats',
@@ -870,6 +908,7 @@ async function handleMemoryCausalStats(_args: CausalStatsArgs): Promise<MCPRespo
         unique_targets: stats.uniqueTargets,
         ...relationBalance,
         relationCoverage,
+        backfill: backfillResult,
         link_coverage_percent: coveragePercent + '%',
         orphanedEdges: orphanedEdges.length,
         health,

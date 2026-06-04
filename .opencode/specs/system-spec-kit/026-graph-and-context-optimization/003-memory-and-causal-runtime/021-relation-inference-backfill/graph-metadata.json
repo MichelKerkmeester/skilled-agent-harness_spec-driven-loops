@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [
+      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty"
+    ],
+    "supersedes": [],
+    "related_to": [
+      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on"
+    ]
+  },
+  "derived": {
+    "trigger_phrases": [
+      "relation inference backfill",
+      "causal relation auto edges",
+      "memory_causal_stats backfill",
+      "entity density cache invalidation causal",
+      "spec document chain causal edges"
+    ],
+    "key_topics": [
+      "causal",
+      "relation-inference",
+      "backfill",
+      "memory-causal-stats",
+      "entity-density",
+      "spec-document-chains",
+      "lineage-links"
+    ],
+    "importance_tier": "important",
+    "status": "in_progress",
+    "key_files": [
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts"
+    ],
+    "entities": [],
+    "causal_summary": "Built the bounded relation-inference backfill that makes packet 019's honest memory_causal_stats stat true. New lib/causal/relation-backfill.ts exports backfillRelationInference(db, { dryRun=true, limit, actor }), mirroring backfillLineageState: it scans bounded memory_index + memory_lineage rows and infers typed causal edges from strong EXISTING deterministic signals only (spec-document chains via the createSpecDocumentChain pairing rules, plus lineage predecessor->successor caused links), all created_by='auto' so they inherit insertEdge's guards (MAX_AUTO_STRENGTH, MAX_EDGES_PER_NODE, window cap, self-loop/orphan rejection), wrapped in a transaction and idempotent via upsert. Default dryRun=true keeps the recovered production DB safe; writes require explicit dryRun:false. After committing it explicitly calls invalidateEntityDensityCache() because raising outgoing-edge counts changes the >=3-outgoing-edge entity-density routing signal that no causal mutation invalidated before. relation-coverage.ts flips backfillJob.implemented=true and sets command to memory_causal_stats({ backfill: { dryRun: false } }); the entry point is wired onto handleMemoryCausalStats (no new MCP tool) with an optional backfill arg added to the strict memoryCausalStatsSchema. Tests prove dryRun-zero-writes, bounded guard-respecting writes + idempotency, entity-density cache invalidation on non-dry runs, and the implemented:true/non-null-command stat flip. Similarity/contradiction signals are deferred best-effort extensions.",
+    "created_at": "2026-06-04T12:30:00Z",
+    "last_save_at": "2026-06-04T12:30:00Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
+    ]
+  }
+}

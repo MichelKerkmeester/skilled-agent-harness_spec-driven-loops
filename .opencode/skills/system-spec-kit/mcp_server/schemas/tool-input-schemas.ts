@@ -411,7 +411,15 @@ const memoryCausalLinkSchema = getSchema({
   evidence: z.string().optional(),
 });
 
-const memoryCausalStatsSchema = getSchema({});
+const memoryCausalStatsSchema = getSchema({
+  // Optional bounded relation-inference backfill. Defaults to a dry run; pass
+  // { dryRun: false } to commit bounded, idempotent, created_by='auto' edges.
+  backfill: z.object({
+    dryRun: z.boolean().optional(),
+    limit: positiveIntMax(2000).optional(),
+    actor: z.string().optional(),
+  }).optional(),
+});
 
 const memoryCausalUnlinkSchema = getSchema({
   edgeId: positiveInt,
@@ -572,7 +580,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   task_postflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'gapsClosed', 'newGapsDiscovered', 'sessionId'],
   memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
   memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
-  memory_causal_stats: [],
+  memory_causal_stats: ['backfill'],
   memory_causal_unlink: ['edgeId'],
   eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],
   eval_reporting_dashboard: ['sprintFilter', 'channelFilter', 'metricFilter', 'limit', 'format'],
