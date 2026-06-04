@@ -80,8 +80,8 @@ Implementation surfaces backing this routing contract:
 | Tool | Source File | Role |
 |------|-------------|------|
 | `mcp__mk_code_index__code_graph_query` | `.opencode/skills/system-code-graph/SKILL.md` | Semantic code search via vector embeddings |
-| `code_graph_query` | `.opencode/skills/system-code-graph/mcp_server/code_graph/tools/code-graph-tools.ts` | Structural query handler (callers/imports/deps) |
-| `code_graph_context` | `.opencode/skills/system-code-graph/mcp_server/code_graph/tools/code-graph-tools.ts` | Bounded code-graph context retrieval |
+| `code_graph_query` | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts` | Structural query handler (callers/imports/deps) |
+| `code_graph_context` | `.opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts` | Bounded code-graph context retrieval |
 | `memory_search` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts` | 3-channel hybrid search with RRF fusion |
 | `memory_context` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts` | Intent-routed context retrieval (L1 entry point) |
 | `memory_match_triggers` | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` | Trigger-phrase matcher (constitutional + tier-aware) |
