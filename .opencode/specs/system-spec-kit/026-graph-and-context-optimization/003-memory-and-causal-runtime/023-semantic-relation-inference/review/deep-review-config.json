@@ -1,0 +1,46 @@
+{
+  "topic": "Review: relation-inference backfill subsystem (021 + 023)",
+  "sessionId": "2026-06-04T11:55:41.000Z",
+  "parentSessionId": null,
+  "lineageMode": "new",
+  "generation": 1,
+  "continuedFromRun": null,
+  "maxIterations": 7,
+  "convergenceThreshold": 0.10,
+  "stuckThreshold": 2,
+  "maxDurationMinutes": 120,
+  "progressiveSynthesis": false,
+  "specFolder": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference",
+  "createdAt": "2026-06-04T11:55:41.000Z",
+  "status": "initialized",
+  "releaseReadinessState": "in-progress",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "native",
+    "model": "opus",
+    "reasoningEffort": null,
+    "serviceTier": null,
+    "sandboxMode": null,
+    "timeoutSeconds": 900
+  },
+  "mode": "review",
+  "reviewTarget": "relation-inference backfill subsystem (021 + 023)",
+  "reviewTargetType": "spec-folder",
+  "reviewDimensions": ["correctness", "security", "traceability", "maintainability"],
+  "severityThreshold": "P2",
+  "reviewScopeFiles": [
+    ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tools/types.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-similarity.vitest.ts",
+    ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts"
+  ],
+  "crossReference": {
+    "core": ["spec_code", "checklist_evidence"],
+    "overlay": ["feature_catalog_code"]
+  },
+  "qualityGateThreshold": true,
+  "resource_map": { "emit": true }
+}

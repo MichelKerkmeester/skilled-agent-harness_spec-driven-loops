@@ -79,7 +79,8 @@ See `decision-record.md` (ADR-001..003):
 - `npx tsc --noEmit --composite false -p tsconfig.json` → 0 errors.
 - `npx vitest run tests/relation-backfill-similarity.vitest.ts tests/relation-backfill-unit.vitest.ts tests/relation-coverage-unit.vitest.ts tests/causal-stats-output.vitest.ts tests/causal-edges-unit.vitest.ts tests/handler-causal-graph.vitest.ts tests/mcp-input-validation.vitest.ts` → 166 passed across 7 files.
 - New `relation-backfill-similarity.vitest.ts` proves the P0 requirements: (1) opt-in off by default writes no similarity/contradicts edges; (2) dryRun=true writes zero even with both collectors on; (3) non-dry + similarity:true writes bounded `supports` auto edges respecting threshold>=75, K<=5, strength<=0.5; (4) non-dry + contradicts:true writes the predecessor->successor `contradicts` edge. Plus idempotent re-run + graceful no-op on empty/unparseable.
-- Post-deploy (pending): `memory_causal_stats({ backfill: { dryRun:false, similarity:true, contradicts:true } })` on the production DB.
+- Post-deploy dry-run (executed via daemon IPC, read-only): `memory_causal_stats({ backfill: { dryRun:true, similarity:true, contradicts:true } })` → scanned 600, inferred 421 (caused 218 / contradicts 200 / supports 3), written 0.
+- Post-deploy non-dry run is user-gated and NOT yet executed. The `contradicts` collector is unsafe for a non-dry run until the deep-review SEC-001 fix lands (see `review/review-report.md` + packet 026); run with `contradicts:false` until then.
 <!-- /ANCHOR:verification -->
 
 ---
@@ -90,4 +91,5 @@ See `decision-record.md` (ADR-001..003):
 - The similarity collector is only as fresh as the cached `related_memories` column; a backfill re-run picks up updated caches but does not recompute neighbours itself.
 - `contradicts` coverage is limited to recorded supersession pairs; other contradictions still require explicit `memory_causal_link`.
 - Both collectors remain OPT-IN; they do not run for default `memory_causal_stats({ backfill })` callers until the flags are passed.
+- Deep-review (`review/review-report.md`) confirmed SEC-001: the opt-in `contradicts` collector can silently invalidate the `caused` edge on the same reciprocal lineage pair (and pre-existing valid edges). Remediation tracked in packet 026. Until it lands, do NOT enable `contradicts` in a non-dry run.
 <!-- /ANCHOR:limitations -->

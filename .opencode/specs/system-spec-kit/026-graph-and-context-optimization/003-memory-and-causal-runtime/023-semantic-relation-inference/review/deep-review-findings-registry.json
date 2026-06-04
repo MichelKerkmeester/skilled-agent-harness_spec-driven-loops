@@ -1,0 +1,30 @@
+{
+  "sessionId": "2026-06-04T11:55:41.000Z",
+  "generation": 1,
+  "lineageMode": "new",
+  "status": "complete",
+  "verdict": "PASS",
+  "hasAdvisories": true,
+  "dimensionCoverage": { "correctness": true, "security": true, "traceability": true, "maintainability": true },
+  "findingsBySeverity": { "P0": 0, "P1": 0, "P2": 11 },
+  "openFindingsCount": 11,
+  "resolvedFindingsCount": 0,
+  "convergenceScore": 1.0,
+  "stopReason": "all_dimensions_clean",
+  "openFindings": [
+    { "id": "SEC-001", "severity": "P2", "adjudicatedFrom": "P1", "dimension": "security", "confirmed": true, "title": "contradicts collector silently invalidates the caused edge it just created (reciprocal lineage pair)", "remediation": "026-relation-backfill-review-remediation" },
+    { "id": "COR-001", "severity": "P2", "dimension": "correctness", "title": "written/byRelation over-reports upserts on idempotent re-run", "remediation": "026" },
+    { "id": "COR-002", "severity": "P2", "dimension": "correctness", "title": "inner backfill schema not strict; typo'd opt-in keys silently dropped", "remediation": "026" },
+    { "id": "SEC-002", "severity": "P2", "dimension": "security", "title": "handler forwards raw limit/threshold relying on collector clamp (safe)", "remediation": "none (awareness)" },
+    { "id": "SEC-003", "severity": "P2", "dimension": "security", "title": "PRAGMA table_info interpolation (safe; hardcoded literals)", "remediation": "none (awareness)" },
+    { "id": "TRACE-001", "severity": "P2", "dimension": "traceability", "title": "review strategy referenced ADR-004 which does not exist", "remediation": "fixed in review/deep-review-strategy.md" },
+    { "id": "TRACE-002", "severity": "P2", "dimension": "traceability", "title": "executed dry-run yield undocumented in packet", "remediation": "documented in 023 implementation-summary" },
+    { "id": "M-004-1", "severity": "P2", "dimension": "maintainability", "title": "unused createSpecDocumentChain import", "remediation": "026" },
+    { "id": "M-004-2", "severity": "P2", "dimension": "maintainability", "title": "dead bumpRelation(...,0) no-op loop + misleading comment", "remediation": "026" },
+    { "id": "M-004-3", "severity": "P2", "dimension": "maintainability", "title": "spec-chain strength bare 0.4 literal x6 (no named constant)", "remediation": "026" },
+    { "id": "M-004-4", "severity": "P2", "dimension": "maintainability", "title": "four near-identical collector write blocks (duplication)", "remediation": "026" },
+    { "id": "M-004-5", "severity": "P2", "dimension": "maintainability", "title": "committed-run byRelation accuracy untested", "remediation": "026" }
+  ],
+  "resolvedFindings": [],
+  "repeatedFindings": []
+}
