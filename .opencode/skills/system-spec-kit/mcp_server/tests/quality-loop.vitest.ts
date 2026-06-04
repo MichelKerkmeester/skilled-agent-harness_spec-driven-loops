@@ -435,6 +435,7 @@ describe('runQualityLoop', () => {
   beforeEach(() => {
     savedEnv.SPECKIT_QUALITY_LOOP = process.env.SPECKIT_QUALITY_LOOP;
     savedEnv.SPECKIT_EVAL_LOGGING = process.env.SPECKIT_EVAL_LOGGING;
+    savedEnv.SPECKIT_QUALITY_AUTO_FIX = process.env.SPECKIT_QUALITY_AUTO_FIX;
     // Disable eval logging during tests to avoid DB writes
     process.env.SPECKIT_EVAL_LOGGING = 'false';
   });
@@ -442,6 +443,7 @@ describe('runQualityLoop', () => {
   afterEach(() => {
     process.env.SPECKIT_QUALITY_LOOP = savedEnv.SPECKIT_QUALITY_LOOP;
     process.env.SPECKIT_EVAL_LOGGING = savedEnv.SPECKIT_EVAL_LOGGING;
+    process.env.SPECKIT_QUALITY_AUTO_FIX = savedEnv.SPECKIT_QUALITY_AUTO_FIX;
   });
 
   it('passes immediately for high-quality content when enabled', () => {
@@ -456,6 +458,7 @@ describe('runQualityLoop', () => {
 
   it('enforces quality loop when SPECKIT_QUALITY_LOOP is not set (graduated default-ON)', () => {
     delete process.env.SPECKIT_QUALITY_LOOP;
+    process.env.SPECKIT_QUALITY_AUTO_FIX = 'false'; // isolate the advisory (no-auto-fix) path
     const result = runQualityLoop(BAD_CONTENT, BAD_METADATA);
     // Quality loop is now active by default, but planner-default mode stays advisory.
     expect(result.score.total).toBeLessThan(0.6);
@@ -492,6 +495,7 @@ describe('runQualityLoop', () => {
 
   it('stays advisory by default when content remains below threshold', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
+    process.env.SPECKIT_QUALITY_AUTO_FIX = 'false'; // exercise advisory: no auto-fix attempts
     const result = runQualityLoop('x', { triggerPhrases: [] }, { maxRetries: 2 });
     expect(result.passed).toBe(false);
     expect(result.rejected).toBe(false);

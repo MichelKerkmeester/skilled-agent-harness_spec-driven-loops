@@ -49,3 +49,32 @@ Scope: commits c0bb8aefd6, e93acb8e24, deee30b319, 637f83ad36, 15d2e4988d, 0060a
 3. **Complete E081 classification** (A1, A2) — wrap the pre-index setup block; extend `classifySaveErrorCode`.
 4. **Doc accuracy** (D1, D2, D3, P2 counts) — finish the feature_catalog/README/spec corrections.
 5. **Test gaps** (F1-F3) — assert in the acceptance tests; add an async-save behavior test + a backfill-failure regression.
+
+---
+
+## Remediation Status — DONE (commit a2d1a9bc9e + quality-loop test fix)
+
+All P1-confirmed + actioned P2 findings remediated; verdict cleared from CONDITIONAL.
+
+| Finding | Resolution |
+|---------|-----------|
+| **C1** (reconsolidation destructive default) | **Reverted to opt-in** — `isSaveReconsolidationEnabled()` → `isOptInEnabled('SPECKIT_RECONSOLIDATION_ENABLED')`. Enrichment + quality-auto-fix stay default-on. Live-verified against built dist. |
+| **B1** (superseded-row mutation) | Background scheduler re-checks `importance_tier`; skips `deprecated`/removed rows before enriching. |
+| **B2/B3** (unbounded concurrency) | Bounded scheduler — `MAX_BACKGROUND_ENRICHMENTS=4` + FIFO queue. |
+| **B4** (stale DB handle) | Scheduler re-acquires `requireDb()` at run time; bails (row stays pending for backfill) if unavailable. |
+| **B5** (summary-fail → complete) | `runSummariesStep` not-stored now returns `failed`, not `skipped` → no false `complete`. |
+| **A1/A2** (E081 escape) | Thin `handleMemorySave` classify-catch wrapper + extended `classifySaveErrorCode` (reconsolidation/abort → E088; access-denied/traversal → E089). |
+| **D1/D2/D3** (doc drift / overclaims) | `feature_catalog` quality-loop → default-ON + tool count 37; `ENV_REFERENCE` reconsolidation → opt-in; spec R2 `full-auto` bypass caveat; **R6/SC-003 corrected below**. |
+| **F1** (trivial-pass tests) | `T526-5/6` assert classified `E089` + force/dryRun not the cause. |
+| **F2** (async behavior) | New `enrichment-async-deferred.vitest.ts` asserts every lane deferred + `async_background` reason. |
+| **P2** | `edgeId` schema → positive-int; async lanes reason `async_background`; R3 field `postInsertEnrichment.status`. |
+
+**D3 / SC-003 (overclaim) — now verified:** affected-area suite **green** (1331 passed) except **2 pre-existing** `handler-memory-index` scan-fixture failures — definitively unrelated (root-caused to `203fb19cbc`'s `markEnrichmentPending` call site against a fixture lacking `memory_index`; my session never touched that test, `enrichment-state.ts`, or the call site). `quality-loop.vitest.ts` 52/52 after isolating its 2 advisory tests to the no-auto-fix path (auto-fix-default-on fallout).
+
+**Open follow-up:** **F3** (backfill-failure-mode regression test) deferred as a small follow-up — B5 fixes the root cause and F2/existing tests cover the deferred-lane behavior.
+
+---
+
+## Post-Deploy Operational Incident — memory DB corruption (contained)
+
+During R6 verification, `PRAGMA quick_check` found real B-tree corruption in `memory_index` (rootpage 4) of the live `context-index.sqlite`. **Root cause:** the one-time enrichment backfill ran as a **direct second SQLite connection** against the production DB while the daemon was also live — concurrent cross-process writers violated the single-writer discipline and corrupted overflow pages. **Not** caused by the remediation or the daemon recycle (the recycled child had the DB closed). **Containment:** backfill writer killed; corrupt files backed up (`/tmp/context-index-corrupt-backup/`); non-destructive `.recover` produced a clean DB (`quick_check: ok`, 9932/10023 rows; ~91 on damaged pages, re-fillable from source markdown). Recovery (swap-in vs full reindex) pending operator decision. **Lesson:** future backfills must route through the daemon (single writer) or run with the daemon stopped — never a concurrent direct connection.
