@@ -25,7 +25,7 @@ _memory:
       session_id: "010-sidecar-investigation-002"
       parent_session_id: null
     completion_pct: 0
-    status: "active"
+    status: "complete"
     open_questions: []
     answered_questions:
       - "User pre-approved branch main, no commit, scaffold-only scope, and rule-20 compliant remediation packet naming."
@@ -59,10 +59,10 @@ Evidence sources:
 
 | Phase | Focus | Priority | Status |
 |---|---|---|---|
-| `001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/` | Close the 3 P0 security findings around unbounded JSON parsing and predictable temp files. | P0 | Planned |
-| `002-fix-investigation-p1s-for-resource-bounds-and-input-validation/` | Close selected P1 resource-bound, input-validation, and predictable-ID findings. | P1 | Planned |
-| `003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle/` | Close selected P1 lifecycle and process-ownership findings. | P1 | Planned |
-| `004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity/` | Close selected P1 TS/CJS/Python parity and rerank twin drift findings. | P1 | Planned |
+| `001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack/` | Close the 3 P0 security findings around unbounded JSON parsing and predictable temp files. | P0 | Completed |
+| `002-fix-investigation-p1s-for-resource-bounds-and-input-validation/` | Close selected P1 resource-bound, input-validation, and predictable-ID findings. | P1 | Completed |
+| `003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle/` | Close selected P1 lifecycle and process-ownership findings. | P1 | Completed |
+| `004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity/` | Close selected P1 TS/CJS/Python parity and rerank twin drift findings. | P1 | Completed |
 
 ### Phase Transition Rules
 

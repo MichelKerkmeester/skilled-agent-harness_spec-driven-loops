@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Shipped then removed |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (010 arc) |
@@ -107,10 +107,10 @@ Implement the three-layer reaper (B sidecar self-check + D launcher pre-flight r
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-implement-ledger-v2-schema-and-identity-verified-pid/` | sidecar_ledger.py v2 schema (pid+create_timestamp+comm) + identity-verified liveness helpers + cross-runtime fixture matrix + Python unit tests | Planned |
-| 002 | `002-implement-layer-b-sidecar-self-check-and-in-flight-gate/` | rerank_sidecar.py background reaper task + in-flight request gate + Layer A idle backstop + telemetry JSONL + Python tests | Pending 001 |
-| 003 | `003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures/` | ensure-rerank-sidecar.cjs + .py pre-flight reap + owner identity register + JS/Python parity tests consuming shared fixtures | Pending 002 |
-| 004 | `004-implement-env-knobs-and-skill-docs/` | start.sh env allowlist + SKILL.md + README.md + integration smoke test | Pending 003 |
+| 001 | `001-implement-ledger-v2-schema-and-identity-verified-pid/` | sidecar_ledger.py v2 schema (pid+create_timestamp+comm) + identity-verified liveness helpers + cross-runtime fixture matrix + Python unit tests | Completed |
+| 002 | `002-implement-layer-b-sidecar-self-check-and-in-flight-gate/` | rerank_sidecar.py background reaper task + in-flight request gate + Layer A idle backstop + telemetry JSONL + Python tests | Completed |
+| 003 | `003-implement-layer-d-launcher-pre-flight-reap-and-parity-fixtures/` | ensure-rerank-sidecar.cjs + .py pre-flight reap + owner identity register + JS/Python parity tests consuming shared fixtures | Completed |
+| 004 | `004-implement-env-knobs-and-skill-docs/` | start.sh env allowlist + SKILL.md + README.md + integration smoke test | Completed |
 
 ### Phase Transition Rules
 

@@ -35,7 +35,7 @@
       "fix"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],

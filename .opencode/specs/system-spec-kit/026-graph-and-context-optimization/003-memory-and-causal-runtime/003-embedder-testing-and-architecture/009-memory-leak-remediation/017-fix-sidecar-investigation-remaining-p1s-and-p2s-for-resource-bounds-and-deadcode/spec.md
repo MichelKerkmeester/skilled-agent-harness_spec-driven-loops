@@ -39,7 +39,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Shipped then removed |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (010 sidecar-investigation arc) |
@@ -97,12 +97,12 @@ Close 24 remaining P1 findings via 4 surface-grouped surgical batches, then 68 P
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode/` | 7 P1 in sidecar-worker.ts: F5, F14, F19, F26, F30, F94, F95 | Planned |
-| 002 | `002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks/` | 7 P1 in execution-router.ts: F6, F31, F52, F53, F58, F61, F74 | Pending 001 |
-| 003 | `003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers/` | 7 P1 in sidecar-client.ts: F18, F20, F25, F57, F62, F73, F91 | Pending 002 |
-| 004 | `004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/` | 3 P1: F15, F49 (ensure-rerank-sidecar.cjs), F105 (reindex.ts) | Pending 003 |
-| 005 | `005-fix-investigation-p2s-for-sidecar-client-launcher-worker-cleanup/` | 34 P2: 13 sidecar-client + 13 ensure-rerank + 8 sidecar-worker | Pending 004 |
-| 006 | `006-fix-investigation-p2s-for-reindex-router-barrel-deadcode/` | 34 P2: 16 reindex + 8 execution-router + 10 barrel (index/registry/schema/types) | Pending 005 |
+| 001 | `001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode/` | 7 P1 in sidecar-worker.ts: F5, F14, F19, F26, F30, F94, F95 | Completed |
+| 002 | `002-fix-investigation-p1s-for-execution-router-policy-and-shutdown-hooks/` | 7 P1 in execution-router.ts: F6, F31, F52, F53, F58, F61, F74 | Completed |
+| 003 | `003-fix-investigation-p1s-for-sidecar-client-constructor-and-helpers/` | 7 P1 in sidecar-client.ts: F18, F20, F25, F57, F62, F73, F91 | Completed |
+| 004 | `004-fix-investigation-p1s-for-launcher-and-reindex-deadcode/` | 3 P1: F15, F49 (ensure-rerank-sidecar.cjs), F105 (reindex.ts) | Completed |
+| 005 | `005-fix-investigation-p2s-for-sidecar-client-launcher-worker-cleanup/` | 34 P2: 13 sidecar-client + 13 ensure-rerank + 8 sidecar-worker | Completed |
+| 006 | `006-fix-investigation-p2s-for-reindex-router-barrel-deadcode/` | 34 P2: 16 reindex + 8 execution-router + 10 barrel (index/registry/schema/types) | Completed |
 
 ### Phase Transition Rules
 

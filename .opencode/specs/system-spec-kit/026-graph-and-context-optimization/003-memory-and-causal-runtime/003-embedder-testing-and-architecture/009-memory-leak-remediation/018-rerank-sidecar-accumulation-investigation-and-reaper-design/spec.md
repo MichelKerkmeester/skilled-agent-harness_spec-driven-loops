@@ -46,7 +46,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Draft |
+| **Status** | Completed |
 | **Created** | 2026-05-23 |
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` (010 arc) |
@@ -105,7 +105,7 @@ Investigate the exact current lifecycle (file:line citations), confirm or refute
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 001 | `001-investigate-and-design-reaper-architecture/` | cli-codex GPT-5.5 xhigh fast investigation: map lifecycle, verify no reaper today, evaluate B+D+A design, emit ≥ 5 ADRs + Files-to-Change list | Planned |
+| 001 | `001-investigate-and-design-reaper-architecture/` | cli-codex GPT-5.5 xhigh fast investigation: map lifecycle, verify no reaper today, evaluate B+D+A design, emit ≥ 5 ADRs + Files-to-Change list | Completed |
 
 ### Phase Transition Rules
 

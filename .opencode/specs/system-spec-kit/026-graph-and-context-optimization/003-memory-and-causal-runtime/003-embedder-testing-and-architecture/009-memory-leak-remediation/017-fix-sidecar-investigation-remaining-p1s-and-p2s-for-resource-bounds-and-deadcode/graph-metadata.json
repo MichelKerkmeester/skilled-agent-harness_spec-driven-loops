@@ -39,7 +39,7 @@
       "via"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/execution-router.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/reindex.ts",

@@ -37,7 +37,7 @@
       "without"
     ],
     "importance_tier": "critical",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
