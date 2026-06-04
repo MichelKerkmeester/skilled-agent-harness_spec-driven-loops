@@ -133,7 +133,7 @@ handlers/save/
 | `reconsolidation-bridge.ts` | Runs optional checkpoint-gated reconsolidation before normal record creation. |
 | `create-record.ts` | Inserts memory rows, records lineage/history, writes vector/BM25 data and applies post-insert metadata. |
 | `db-helpers.ts` | Applies guarded metadata updates and checks reconsolidation checkpoint prerequisites. |
-| `post-insert.ts` | Runs feature-flagged enrichment for causal links, entities, summaries and cross-document entity links. |
+| `post-insert.ts` | Runs feature-flagged enrichment for causal links, entities, summaries and cross-document entity links. Default-on; runs async/deferred via a background scheduler unless `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true`. |
 | `response-builder.ts` | Converts save results and planner payloads into MCP success or error envelopes. |
 | `atomic-index-memory.ts` | Coordinates pending-file writes, file promotion, rollback, retry and save-result mapping for atomic save paths. |
 | `markdown-evidence-builder.ts` | Extracts headings, lists, tables and summary evidence from markdown for memory sufficiency checks. |
@@ -176,7 +176,8 @@ Main flow:
                   │
                   ▼
 ┌──────────────────────────────────────────┐
-│ create record and post-insert enrichment  │
+│ create record; post-insert enrichment     │
+│ scheduled async (deferred) by default     │
 └──────────────────────────────────────────┘
                   │
                   ▼
@@ -199,7 +200,7 @@ Main flow:
 | `createMemoryRecord()` | Function | Inserts a parsed memory and related index metadata after validation and PE routing. |
 | `generateOrCacheEmbedding()` | Function | Resolves the embedding vector or pending status for save/index flows. |
 | `evaluateAndApplyPeDecision()` | Function | Applies prediction-error decisions against similar memories. |
-| `runPostInsertEnrichment()` | Function | Runs optional enrichment steps after a row exists. |
+| `runPostInsertEnrichment()` | Function | Runs the default-on enrichment steps after a row exists. Default is async/deferred: the save returns immediately with `enrichmentStatus: deferred` and a bounded background scheduler runs the steps after commit. `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` forces synchronous execution. |
 | `buildSaveResponse()` | Function | Produces the final MCP success payload for a save result. |
 | `withSpecFolderLock()` | Function | Wraps critical save sections with a per-spec-folder mutex. |
 | `atomicIndexMemory()` | Function | Coordinates pending file promotion and indexing for atomic file-save callers. |
