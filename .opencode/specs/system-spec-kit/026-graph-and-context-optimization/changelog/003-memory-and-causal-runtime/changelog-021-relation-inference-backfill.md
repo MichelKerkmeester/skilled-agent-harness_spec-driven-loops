@@ -57,15 +57,15 @@ This packet built the missing piece, a bounded, safe, reversible relation-infere
 
 | File | What changed |
 |------|--------------|
-| `mcp_server/lib/causal/relation-backfill.ts` | NEW. Bounded dryRun-default relation-inference backfill |
-| `mcp_server/lib/causal/relation-coverage.ts` | Flip `implemented:true`, set the real command, honest hint |
-| `mcp_server/handlers/causal-graph.ts` | Wire optional `backfill` into `memory_causal_stats` |
-| `mcp_server/schemas/tool-input-schemas.ts` | Add optional `backfill` to the causal-stats schema |
-| `mcp_server/tools/types.ts` | Add optional `backfill` to `CausalStatsArgs` |
-| `mcp_server/lib/causal/README.md` | STRUCTURE table and code-file count refreshed |
-| `mcp_server/tests/relation-backfill-unit.vitest.ts` | NEW. 8 tests proving the P0 contract |
-| `mcp_server/tests/relation-coverage-unit.vitest.ts` | Updated to the implemented:true contract |
-| `mcp_server/tests/causal-stats-output.vitest.ts` | Updated to the implemented:true contract |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts` | NEW. Bounded dryRun-default relation-inference backfill |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts` | Flip `implemented:true`, set the real command, honest hint |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Wire optional `backfill` into `memory_causal_stats` |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Add optional `backfill` to the causal-stats schema |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` | Add optional `backfill` to `CausalStatsArgs` |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/README.md` | STRUCTURE table and code-file count refreshed |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts` | NEW. 8 tests proving the P0 contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts` | Updated to the implemented:true contract |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/causal-stats-output.vitest.ts` | Updated to the implemented:true contract |
 
 ### Follow-Ups
 

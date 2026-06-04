@@ -48,7 +48,7 @@ None. Additive opt-in collectors. The existing default `memory_causal_stats({ ba
 | Check | Result |
 |-------|--------|
 | `tsc --noEmit --composite false -p tsconfig.json` | PASS (0 errors) |
-| `vitest run` over the new plus keep-green suites (7 files) | PASS (166 passed) |
+| `vitest run` over the new plus keep-green suites (7 files) | PASS (169 passed) |
 | 4 P0 requirements in `relation-backfill-similarity.vitest.ts` | PASS (opt-in off by default, dryRun zero with both on, bounded supports writes threshold/K/strength, contradicts-from-supersession) |
 | Post-deploy dry run (read-only, via daemon IPC) | `memory_causal_stats({ backfill: { dryRun:true, similarity:true, contradicts:true } })` reported scanned 600, inferred 421 (caused 218 / contradicts 200 / supports 3), written 0 |
 
@@ -56,12 +56,13 @@ None. Additive opt-in collectors. The existing default `memory_causal_stats({ ba
 
 | File | What changed |
 |------|--------------|
-| `mcp_server/lib/causal/relation-backfill.ts` | Two opt-in collectors plus parse/column/pair helpers plus options |
-| `mcp_server/lib/causal/relation-coverage.ts` | Honest hint advertises the opt-in collectors |
-| `mcp_server/handlers/causal-graph.ts` | Thread similarity/contradicts/similarityThreshold |
-| `mcp_server/schemas/tool-input-schemas.ts` | Add similarity/contradicts/similarityThreshold to the backfill object |
-| `mcp_server/tools/types.ts` | Extend `CausalStatsArgs.backfill` |
-| `mcp_server/tests/relation-backfill-similarity.vitest.ts` | NEW. 11 tests for opt-in/dry/bounded/idempotent/no-op |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts` | Two opt-in collectors plus parse/column/pair helpers plus options |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts` | Honest hint advertises the opt-in collectors |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Thread similarity/contradicts/similarityThreshold |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Add similarity/contradicts/similarityThreshold to the backfill object |
+| `.opencode/skills/system-spec-kit/mcp_server/tools/types.ts` | Extend `CausalStatsArgs.backfill` |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-similarity.vitest.ts` | NEW. 11 tests for opt-in/dry/bounded/idempotent/no-op |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/README.md` | STRUCTURE entry for relation-backfill.ts notes the two opt-in collectors |
 
 ### Follow-Ups
 

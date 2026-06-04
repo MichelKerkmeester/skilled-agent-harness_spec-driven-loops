@@ -61,11 +61,11 @@ This packet added a relation-agnostic conflict guard that suppresses any conflic
 
 | File | What changed |
 |------|--------------|
-| `mcp_server/lib/causal/relation-backfill.ts` | Conflict guard, honest delta counting, single insert helper, P2 cleanups |
-| `mcp_server/lib/graph/contradiction-detection.ts` | Exported `relationsConflict` for reuse |
-| `mcp_server/schemas/tool-input-schemas.ts` | Strict inner `backfill` object via `getSchema` |
-| `mcp_server/handlers/causal-graph.ts` | Honest hint wording plus `skippedConflicting` surfacing |
-| `mcp_server/tests/relation-backfill-conflict.vitest.ts` | NEW. 5 conflict-guard plus honesty plus strict-schema cases |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts` | Conflict guard, honest delta counting, single insert helper, P2 cleanups |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts` | Exported `relationsConflict` for reuse |
+| `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts` | Strict inner `backfill` object via `getSchema` |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts` | Honest hint wording plus `skippedConflicting` surfacing |
+| `.opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts` | NEW. 5 conflict-guard plus honesty plus strict-schema cases |
 
 ### Follow-Ups
 
