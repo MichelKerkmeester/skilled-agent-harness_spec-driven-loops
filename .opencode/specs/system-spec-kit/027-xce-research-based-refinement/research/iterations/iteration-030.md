@@ -1,7 +1,7 @@
 ---
 iteration: 030
 rq: RQ-N1
-phase_target: 001-memory-write-safety
+phase_target: 002-memory-write-safety
 newInfoRatio: 0.72
 verdict: ADOPT
 ---

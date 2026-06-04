@@ -1,0 +1,96 @@
+---
+title: "Implementation Summary — 003 Session-Trace Causal Reducer"
+description: "Scaffolded implementation summary for the causal reducer."
+trigger_phrases:
+  - "009 causal reducer implementation summary"
+importance_tier: "normal"
+contextType: "implementation"
+_memory:
+  continuity:
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer"
+    last_updated_at: "2026-05-12T07:20:00Z"
+    last_updated_by: "cli-codex"
+    recent_action: "Scaffolded Level 2 child packet"
+    next_safe_action: "Implement tasks.md"
+    blockers: []
+    key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
+    completion_pct: 0
+---
+# Implementation Summary: Session-Trace Causal Reducer
+
+<!-- SPECKIT_LEVEL: 2 -->
+<!-- SPECKIT_TEMPLATE_SOURCE: impl-summary-core + level2-verify | v2.2 -->
+
+---
+
+<!-- ANCHOR:metadata -->
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| **Spec Folder** | `009-feedback-reducers/003-causal-reducer` |
+| **Level** | 2 |
+| **Status** | Not implemented |
+<!-- /ANCHOR:metadata -->
+
+---
+
+<!-- ANCHOR:what-built -->
+## What Was Built
+
+Pending. Expected file: `mcp_server/lib/feedback/session-trace-causal-reducer.ts`.
+<!-- /ANCHOR:what-built -->
+
+---
+
+<!-- ANCHOR:how-delivered -->
+## HOW IT WAS DELIVERED
+
+Delivery evidence will be recorded after the child work lands.
+<!-- /ANCHOR:how-delivered -->
+
+---
+
+<!-- ANCHOR:decisions -->
+## Key Decisions
+
+Reducer is deferred-only and emits weak `auto-session` edges.
+<!-- /ANCHOR:decisions -->
+
+---
+
+<!-- ANCHOR:verification -->
+## Verification
+
+Scaffold validation command:
+
+```bash
+bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer --strict
+```
+
+Implementation tests are recorded here after the child work lands.
+<!-- /ANCHOR:verification -->
+
+---
+
+<!-- ANCHOR:nfr-verify -->
+## NFR Verification
+
+Pending.
+<!-- /ANCHOR:nfr-verify -->
+
+---
+
+<!-- ANCHOR:limitations -->
+## Known Limitations
+
+No live edge learning is allowed in v1.
+<!-- /ANCHOR:limitations -->
+
+---
+
+<!-- ANCHOR:deviations -->
+## Deviations from Plan
+
+None at scaffold time.
+<!-- /ANCHOR:deviations -->

@@ -1,0 +1,29 @@
+# Iteration 043: Peck T3/T4/T2 revalidation
+
+## Scope
+Revalidate `001-peck-teachings-adoption` remaining planned phases against the current repository templates, validation rules, and constitutional rule files. This iteration also checks whether T1 should remain deferred.
+
+## Method
+- Read packet state first: `deep-research-config.json`, `deep-research-state.jsonl`, `deep-research-strategy.md`, `findings-registry.json`, and `research.md` in this artifact root.
+- Compared the phase parent and child specs against current manifest templates, validator registry/rule implementation, and constitutional files.
+- Used current repository evidence only; stale memory was not used.
+
+## Cited Findings
+1. T3 is still unimplemented and still correctly scoped to the three manifest templates: the phase spec targets `spec.md.tmpl`, `plan.md.tmpl`, and `checklist.md.tmpl` only [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/spec.md:93], while the current spec template shows normal requirements/risk sections without a self-check/failure-modes guidance block in the corresponding area [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl:84]. The current checklist template has verification items but no concise self-check/failure-modes block [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl:36].
+2. The T3 warning about not adding tracked `##` guidance remains valid: the current manifest templates are still organized around exact anchored markdown headings [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl:37], and the child spec explicitly requires HTML-comment guidance with no line-start `## ` inside comments to avoid header validation drift [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates/spec.md:96].
+3. T4 remains planned and should be adjusted to current registry terminology: the child spec says INFO severity in prose [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline/spec.md:94], but its file table still says `validator-registry.json` severity `warn` [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline/spec.md:110]. Current registry supports `PHASE_PARENT_CONTENT` as a warning rule only [SOURCE: .opencode/skills/system-spec-kit/scripts/lib/validator-registry.json:115], and the current rule scans only phase-parent `spec.md`, skipping non-phase-parent folders entirely [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh:19].
+4. T4's technical reuse premise remains sound: current `check-phase-parent-content.sh` is fence- and HTML-comment-aware [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh:33], and it detects migration-history tokens such as `consolidat*`, `merged from`, `renamed from`, `collapsed`, `reorganization`, and numeric arrow patterns [SOURCE: .opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh:42].
+5. T2 remains unimplemented and still relevant: constitutional files currently declare `importanceTier: constitutional` [SOURCE: .opencode/skills/system-spec-kit/constitutional/gate-enforcement.md:3], and the phase requires adding `last_confirmed` plus provenance [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review/spec.md:92]. Current grep found constitutional rule frontmatter but no `last_confirmed` matches in constitutional rule files [INFERENCE: based on repository grep for `last_confirmed|importanceTier: constitutional` under `.opencode/skills/system-spec-kit`, which returned constitutional `importanceTier` lines but no constitutional `last_confirmed` entries].
+6. T1 should remain deferred: the parent explicitly excludes the per-criterion coverage completion gate because it has the highest blast radius [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md:82], while current validation evidence shows existing completion validation is checklist/file/rule oriented rather than a per-AC coverage gate [SOURCE: .opencode/skills/system-spec-kit/scripts/spec/validate.sh:109]. The current checklist only asks that all acceptance criteria are met as a single checklist item [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl:72].
+
+## Negative Knowledge / Ruled-Out Directions
+- Do not implement T1 in this packet; current validation/checklist structures do not provide per-criterion coverage machinery, so adding it would be a broad completion-gate redesign.
+- Do not add T3 as tracked markdown headings; the child spec's HTML-comment decision still matches current anchored-template structure.
+- Do not widen T4 directly to non-parent `spec.md` in wave 1; the child spec already limits wave 1 to `implementation-summary.md` to reduce false positives.
+- Do not put T2 behind a mutating management command first; the child spec's standalone read-only diagnostic remains aligned with the current constitutional files.
+
+## Answer / Decision
+Keep the `001-peck-teachings-adoption` phase order and remaining scope: T3, then T4, then T2. T1 should remain deferred to a separate packet. The only revalidation caveat is that T4 implementation should reconcile the child spec's `INFO` wording with the current registry's severity vocabulary before implementation.
+
+## Next-Step Recommendation
+Implement T3 first as HTML-comment guidance in the three manifest templates and validate a fresh scaffold. For T4, decide whether to represent non-blocking advisory output as an existing `warn` registry rule with strict-mode handling or to add/confirm an `info` severity contract before coding.

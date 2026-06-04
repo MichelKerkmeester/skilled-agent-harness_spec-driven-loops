@@ -1,0 +1,41 @@
+{
+  "level": "phase",
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement",
+  "status": "phase-parent",
+  "is_phase_parent": true,
+  "children": [
+    "001-peck-teachings-for-spec-kit",
+    "002-self-check-templates",
+    "003-current-state-discipline",
+    "004-constitutional-rule-review"
+  ],
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
+  "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
+  "keywords": [
+    "feature",
+    "specification",
+    "adopt",
+    "low-risk",
+    "peck",
+    "teachings",
+    "self-check",
+    "templates",
+    "current-state",
+    "discipline",
+    "constitutional",
+    "rule",
+    "review",
+    "system"
+  ],
+  "lastUpdated": "2026-06-04T06:37:58.694Z",
+  "specId": "008",
+  "folderSlug": "peck-teachings-adoption",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

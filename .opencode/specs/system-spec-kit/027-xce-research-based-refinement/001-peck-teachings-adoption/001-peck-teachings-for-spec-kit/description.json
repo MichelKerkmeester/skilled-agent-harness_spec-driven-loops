@@ -1,0 +1,25 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+  "description": "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit",
+  "keywords": [
+    "feature",
+    "specification",
+    "analysis",
+    "peck",
+    "framework",
+    "teachings",
+    "applicable",
+    "system-spec-kit"
+  ],
+  "lastUpdated": "2026-06-04T00:00:00Z",
+  "specId": "001",
+  "folderSlug": "peck-teachings-for-spec-kit",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

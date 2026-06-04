@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones",
+  "description": "Feature Specification: 004 — Causal Edge Tombstones",
+  "keywords": [
+    "feature",
+    "specification",
+    "004",
+    "causal",
+    "edge",
+    "tombstones"
+  ],
+  "lastUpdated": "2026-06-01T11:13:19.815Z",
+  "specId": "003",
+  "folderSlug": "causal-edge-tombstones",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,0 +1,21 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review",
+  "description": "Feature Specification: Phase 4: constitutional-rule-review",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "constitutional-rule-review"
+  ],
+  "lastUpdated": "2026-06-04T00:00:00Z",
+  "specId": "004",
+  "folderSlug": "constitutional-rule-review",
+  "parentChain": [
+    "system-spec-kit",
+    "027-xce-research-based-refinement",
+    "001-peck-teachings-adoption"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

@@ -1,5 +1,5 @@
 {
-  "title": "XCE-Derived Memory System Refinement",
+  "title": "XCE-Derived Spec Kit Refinement",
   "trigger_phrases": [
     "027 xce memory refinement",
     "memory semantic triggers",
@@ -10,7 +10,11 @@
     "frontmatter causal edge promoter",
     "statediff reconciliation layer",
     "incremental memory index",
-    "memory feedback reducers"
+    "memory feedback reducers",
+    "peck teachings adoption",
+    "self-check templates",
+    "current-state discipline",
+    "constitutional rule review"
   ],
   "level": 2,
   "schema_version": 1,
@@ -22,27 +26,28 @@
   "is_phase_parent": true,
   "children": [
     "000-release-cleanup",
-    "001-memory-write-safety",
-    "002-incremental-index-foundation",
-    "003-causal-edge-tombstones",
-    "004-metadata-edge-promoter",
-    "005-write-path-reconciliation",
-    "006-semantic-trigger-fallback",
-    "007-learning-feedback-reducers"
+    "001-peck-teachings-adoption",
+    "002-memory-write-safety",
+    "003-incremental-index-foundation",
+    "004-causal-edge-tombstones",
+    "005-metadata-edge-promoter",
+    "006-write-path-reconciliation",
+    "007-semantic-trigger-fallback",
+    "008-learning-feedback-reducers"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-  "description": "Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)",
+  "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
   "keywords": [
     "feature",
     "specification",
     "xce-derived",
-    "memory",
-    "system",
+    "spec",
+    "kit",
     "refinement",
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.800Z",
+  "lastUpdated": "2026-06-04T06:37:58.681Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [

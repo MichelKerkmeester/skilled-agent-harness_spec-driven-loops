@@ -1,7 +1,7 @@
 ---
 iteration: 033
 rq: RQ-N4
-phase_target: 004-metadata-edge-promoter
+phase_target: 005-metadata-edge-promoter
 newInfoRatio: 0.82
 verdict: ADAPT
 ---
@@ -16,7 +16,7 @@ What specific fields in `description.json` and `graph-metadata.json` can be dete
 
 ## Context Files Read
 
-- `004-metadata-edge-promoter/spec.md` (lines 1-60): Phase spec. Predecessor is 004, successor is 006. Handoff criterion: "Indexing a packet with structured relationship metadata creates idempotent auto causal edges with deterministic provenance."
+- `005-metadata-edge-promoter/spec.md` (lines 1-60): Phase spec. Predecessor is 004, successor is 006. Handoff criterion: "Indexing a packet with structured relationship metadata creates idempotent auto causal edges with deterministic provenance."
 - `lib/graph/graph-metadata-schema.ts`: Zod schema defining the canonical `GraphMetadata` type.
 - `lib/graph/graph-metadata-parser.ts`: Parser that populates `GraphMetadata` from on-disk JSON; exports `packetReferencesToCausalLinks()` at line 1338.
 - `lib/parsing/memory-parser.ts`: Calls `extractCausalLinksFromGraphMetadata()` at line 318 when document type is `graph_metadata`; imports `packetReferencesToCausalLinks` from graph-metadata-parser at line 28.

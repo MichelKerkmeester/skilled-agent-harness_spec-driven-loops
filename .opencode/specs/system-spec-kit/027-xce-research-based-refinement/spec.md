@@ -1,6 +1,6 @@
 ---
-title: "XCE-Derived Memory System Refinement"
-description: "Phase-parent packet for Spec Kit Memory refinements: feedback correctness, incremental indexing, causal graph lifecycle, frontmatter edge promotion, statediff reconciliation, semantic trigger matching, and learning feedback reducers."
+title: "XCE-Derived Spec Kit Refinement"
+description: "Phase-parent packet for Spec Kit refinements: memory-system correctness, indexing, causal graph lifecycle, trigger matching, learning feedback reducers, and peck-derived documentation/process improvements."
 trigger_phrases:
   - "027 xce memory refinement"
   - "memory semantic triggers"
@@ -12,79 +12,53 @@ trigger_phrases:
   - "statediff reconciliation layer"
   - "incremental memory index"
   - "memory feedback reducers"
+  - "peck teachings adoption"
+  - "self-check templates"
+  - "current-state discipline"
+  - "constitutional rule review"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-05-31T00:00:00Z"
-    last_updated_by: "system-agent"
-    recent_action: "Merged research iterations 030-039; updated phase specs with synthesis findings."
-    next_safe_action: "Implement phase 002 or 003 per iteration-038 sequencing."
+    packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
+    last_updated_at: "2026-06-04T00:00:00Z"
+    last_updated_by: "markdown-agent"
+    recent_action: "Updated phase-parent control doc so peck-derived planned work is represented as child phase 001."
+    next_safe_action: "001-peck-teachings-adoption/002-self-check-templates"
     blockers: []
     key_files:
       - "spec.md"
-      - "research/027-xce-research-pt-04/research.md"
-      - "001-memory-write-safety/spec.md"
-      - "002-incremental-index-foundation/spec.md"
-      - "003-causal-edge-tombstones/spec.md"
-      - "004-metadata-edge-promoter/spec.md"
-      - "005-write-path-reconciliation/spec.md"
-      - "006-semantic-trigger-fallback/spec.md"
-      - "007-learning-feedback-reducers/spec.md"
+      - "001-peck-teachings-adoption/spec.md"
+      - "002-memory-write-safety/spec.md"
+      - "003-incremental-index-foundation/spec.md"
+      - "004-causal-edge-tombstones/spec.md"
+      - "005-metadata-edge-promoter/spec.md"
+      - "006-write-path-reconciliation/spec.md"
+      - "007-semantic-trigger-fallback/spec.md"
+      - "008-learning-feedback-reducers/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "2026-05-28-027-memory-root-rewrite"
+      session_id: "2026-06-04-027-peck-phase-adoption"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
     answered_questions:
-      - "027 remains the memory refinement packet."
+      - "027 is the parent packet for the peck-derived planned work; the peck work lives under child phase 001."
 ---
 <!-- SPECKIT_TEMPLATE_SOURCE: spec-core | v2.2 -->
-# Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)
-
 <!-- SPECKIT_LEVEL: 2 -->
+<!-- CONTENT DISCIPLINE: PHASE PARENT
+  FORBIDDEN content (do NOT author at phase-parent level):
+    - merge/migration/consolidation narratives (consolidate*, merged from, renamed from, collapsed, X→Y, reorganization history)
+    - migrated from, ported from, originally in
+    - heavy docs: plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md — these belong in child phase folders only
+  REQUIRED content (MUST author at phase-parent level):
+    - Root purpose: what problem does this entire phased decomposition solve?
+    - Sub-phase list: which child phase folders exist and what each one does
+    - What needs done: the high-level outcome the phases work toward
+-->
 
-> **Phase Parent**: This packet coordinates the remaining memory-system phases from the XCE-derived refinement stream. Implementation details live inside the child phase folders.
-
-## PHASES
-
-| Phase | Title | Level | Depends on |
-|-------|-------|------:|-----------|
-| **[000-release-cleanup](./000-release-cleanup/)** | Release Cleanup Placeholder | n/a | none |
-| **[001-memory-write-safety](./001-memory-write-safety/spec.md)** | Memory Write Safety | 2 | none |
-| **[002-incremental-index-foundation](./002-incremental-index-foundation/spec.md)** | Incremental Index Foundation | 1 | none |
-| **[003-causal-edge-tombstones](./003-causal-edge-tombstones/spec.md)** | Causal Edge Tombstones | 1 | 002 |
-| **[004-metadata-edge-promoter](./004-metadata-edge-promoter/spec.md)** | Metadata Edge Promoter | 1 | 003 |
-| **[005-write-path-reconciliation](./005-write-path-reconciliation/spec.md)** | Write-Path Reconciliation | 1 | 002, 004 |
-| **[006-semantic-trigger-fallback](./006-semantic-trigger-fallback/spec.md)** | Semantic Trigger Fallback | 3 | none |
-| **[007-learning-feedback-reducers](./007-learning-feedback-reducers/spec.md)** | Learning Feedback Reducers | phase-parent | 001 |
-
-## Cross-packet dependencies -> 028
-
-- `027/006-semantic-trigger-fallback` soft-needs shadow-eval evidence from `028/004-code-graph-adoption-eval` before live-mode semantic trigger promotion.
-- `027/007-learning-feedback-reducers` soft-depends on `028/004-code-graph-adoption-eval` and consumes telemetry from `028/007-retrieval-rerank-clients`.
-
----
-
-## EXECUTIVE SUMMARY
-
-This packet owns Spec Kit Memory refinement work: P0 feedback correctness, incremental indexing, causal graph lifecycle safety, deterministic frontmatter edge promotion, statediff reconciliation, semantic trigger matching, and learning feedback reducers.
-
-The originating research remains useful as provenance, but this root spec coordinates only the memory-system phases listed below.
-
-**Key Decisions in this Spec**:
-- Keep 027 focused on memory-system implementation and memory feedback loops.
-- Keep research provenance in `research/`, with implementation ownership expressed through the eight remaining child folders.
-- Treat 028 dependencies as cross-packet evidence or telemetry inputs, not internal 027 phase edges.
-
-**Critical Constraints**:
-- Child phase docs remain the source of truth for implementation detail.
-- The root `PHASES` table uses real folder numbers, not stale research ordinals.
-- Non-memory implementation content belongs outside this root spec.
-
----
+# Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -95,7 +69,7 @@ The originating research remains useful as provenance, but this root spec coordi
 | **Priority** | P1 |
 | **Status** | Phase Parent |
 | **Created** | 2026-05-08 |
-| **Updated** | 2026-05-28 |
+| **Updated** | 2026-06-04 |
 | **Branch** | `main` |
 | **Executor** | local spec authoring |
 <!-- /ANCHOR:metadata -->
@@ -106,20 +80,12 @@ The originating research remains useful as provenance, but this root spec coordi
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-
-Spec Kit Memory has several correctness and maintainability gaps that limit reliable retrieval, causal graph hygiene, and learning feedback loops:
-
-1. Feedback correctness fixes need to land before learned reducers can safely mutate causal or retention behavior.
-2. The indexer needs memoization, dependency edges, and chunk fingerprints so unchanged derived work can be skipped.
-3. Causal graph deletion paths need lifecycle tombstones before generated edges increase write volume.
-4. Structured packet metadata should promote deterministic causal edges without manual maintenance.
-5. Storage reconciliation should move from scattered post-mutation hooks to typed statediff planning.
-6. Trigger matching needs a semantic fallback while preserving lexical command precision.
-7. Feedback reducers need a safe aggregation foundation and default-off consumers.
+Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.
 
 ### Purpose
+Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible.
 
-Coordinate the remaining memory-system phases so they can ship independently while preserving a clear dependency order. Success means each child phase can be resumed or validated from this parent without stale non-memory numbering leaking into the memory workstream.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -128,178 +94,31 @@ Coordinate the remaining memory-system phases so they can ship independently whi
 ## 3. SCOPE
 
 ### In Scope
-
-- `001-memory-write-safety`: auto-provenance cap, manual-edge overwrite guard, retention tier basement.
-- `002-incremental-index-foundation`: canonical fingerprints, memo records, dependency edges, chunk fingerprints.
-- `003-causal-edge-tombstones`: tombstone audit rows and unified causal-edge sweep behavior.
-- `004-metadata-edge-promoter`: deterministic causal edges from `description.json` and `graph-metadata.json`.
-- `005-write-path-reconciliation`: desired/prior diff model and storage target sinks.
-- `006-semantic-trigger-fallback`: hybrid lexical plus semantic trigger matching.
-- `007-learning-feedback-reducers`: learning reducer phase parent after P0 feedback correctness.
-- `000-release-cleanup`: placeholder folder retained on disk.
+- Spec Kit Memory safety, indexing, causal-edge lifecycle, metadata edge promotion, statediff reconciliation, semantic trigger matching, and learning feedback reducers.
+- Low-risk peck-derived documentation/process improvements: self-check template guidance, current-state discipline, and constitutional rule review.
+- Root-level child phase routing, dependency visibility, and resume wayfinding.
 
 ### Out of Scope
+- Implementing the peck-derived T1 per-acceptance-criterion coverage gate.
+- Detailed implementation plans at the parent level.
+- Changing child phase implementation scope beyond the phase map.
 
-- Non-memory implementation streams.
-- Moving or renumbering child phase folders.
+### Files to Change
+Summary of aggregate file scope. Per-phase detail lives in child plans.
 
-### Files Read
-
-| Path | Purpose |
-|------|---------|
-| `research/027-xce-research-pt-04/research.md` | Research provenance and audit boundary |
-| `001-memory-write-safety/spec.md` | P0 feedback correctness scope |
-| `002-incremental-index-foundation/spec.md` | Memoization/indexing phase scope |
-| `003-causal-edge-tombstones/spec.md` | Causal lifecycle phase scope |
-| `004-metadata-edge-promoter/spec.md` | Metadata edge promotion phase scope |
-| `005-write-path-reconciliation/spec.md` | Statediff phase scope |
-| `006-semantic-trigger-fallback/spec.md` | Semantic trigger phase scope |
-| `007-learning-feedback-reducers/spec.md` | Feedback reducer phase-parent scope |
-
-### Files Created or Updated
-
-| Path | Purpose |
-|------|---------|
-| `spec.md` | Root phase-parent control doc |
-| `context-index.md` | Migration bridge for the 027 -> 028 split |
+| File Path | Change Type | Phase | Description |
+|-----------|-------------|-------|-------------|
+| `templates/manifest/**`, validation docs, constitutional review surfaces | Modify/Create | 001 | Peck-derived documentation/process improvements |
+| `mcp_server/handlers/save/**` and memory docs | Modify | 002 | Memory write-safety and feedback correctness |
+| `mcp_server/lib/indexing/**` and memory index docs | Modify | 003 | Incremental indexing foundation |
+| `mcp_server/lib/causal/**` | Modify | 004 | Causal edge tombstones |
+| `description.json`, `graph-metadata.json`, edge promotion code | Modify | 005 | Deterministic metadata edge promotion |
+| Memory save/index reconciliation paths | Modify | 006 | Desired/prior statediff reconciliation |
+| Trigger matching and search fallback paths | Modify | 007 | Semantic trigger fallback |
+| Feedback reducer pipeline paths | Modify | 008 | Learning feedback reducers |
 <!-- /ANCHOR:scope -->
 
 ---
-
-<!-- ANCHOR:requirements -->
-## 4. REQUIREMENTS
-
-### P0 - Blockers
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-001 | Root phase table matches the real remaining 027 child folders. | `PHASES` lists exactly `001`, `002`, `003`, `004`, `005`, `006`, `011`, and `012`. |
-| REQ-002 | Non-memory implementation phases are excluded from 027 scope. | No moved child folder appears in the 027 `PHASES` table, trigger phrases, scope, or phase map. |
-| REQ-003 | Internal dependency references use remaining 027 folder numbers only. | Dependencies resolve to existing 027 child folders or `none`. |
-| REQ-004 | Cross-packet links to 028 are explicit. | The root spec lists the `011` shadow-eval evidence link and `012` eval/telemetry links to 028. |
-
-### P1 - Required
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-005 | Research questions describe memory-system axes only. | Non-memory implementation axes are absent from `RESEARCH QUESTIONS`. |
-| REQ-006 | Phase documentation map matches disk folders. | Bottom phase map has no stale ordinals or moved folder names. |
-| REQ-007 | Continuity metadata points at 027 and references only in-packet key files. | `_memory.continuity.packet_pointer` remains this packet; `key_files` contains no moved 028 child folder. |
-
-### P2 - Nice to have
-
-| ID | Requirement | Acceptance Criteria |
-|----|-------------|---------------------|
-| REQ-008 | Root spec remains compact enough to serve as a control doc. | Detailed implementation requirements stay in child specs. |
-<!-- /ANCHOR:requirements -->
-
----
-
-<!-- ANCHOR:research-questions -->
-## 5. RESEARCH QUESTIONS
-
-- **RQ-M1 - Feedback Safety**: Which correctness fixes must ship before reducers can learn from feedback without overwriting curated causal or retention state?
-- **RQ-M2 - Incremental Indexing**: Which memoization and chunk-fingerprint primitives are needed to avoid reprocessing unchanged memory documents?
-- **RQ-M3 - Causal Lifecycle**: How should active causal edges be deleted while preserving tombstone auditability and repair context?
-- **RQ-M4 - Structured Edge Promotion**: Which packet metadata fields can be deterministically promoted into causal edges without LLM extraction?
-- **RQ-M5 - Reconciliation Model**: Where should desired/prior statediff planning replace scattered handler branches and post-mutation hooks?
-- **RQ-M6 - Trigger Recall**: How can semantic trigger fallback improve paraphrase recall without weakening lexical command precision?
-- **RQ-M7 - Learning Feedback Reducers**: Which reducer consumers should be enabled only after aggregation, P0 correctness, and external eval evidence are available?
-<!-- /ANCHOR:research-questions -->
-
----
-
-<!-- ANCHOR:success-criteria -->
-## 6. SUCCESS CRITERIA
-
-- **SC-001**: The 027 root spec strict-validates as a phase-parent control document.
-- **SC-002**: A reader can identify all remaining memory phases and their dependencies from the root `PHASES` table.
-- **SC-003**: Cross-packet dependencies to 028 are visible without treating 028 children as internal 027 phases.
-- **SC-004**: No stale non-memory phase appears in 027 root scope, triggers, research questions, or phase map.
-<!-- /ANCHOR:success-criteria -->
-
----
-
-<!-- ANCHOR:risks -->
-## 7. RISKS & DEPENDENCIES
-
-| Type | Item | Impact | Mitigation |
-|------|------|--------|------------|
-| Risk | Child specs still contain historical references from before the split. | Medium. Readers may see old numbering inside child docs. | Root table resolves by current disk folder; child refresh is explicitly out of scope for this edit. |
-| Risk | 028 evidence or telemetry is unavailable when 011/012 need it. | Medium. Live promotion or reducer tuning may block. | Keep 028 links soft and document standalone phase scope in child specs. |
-| Dependency | `001-memory-write-safety` | Hard prerequisite for `007-learning-feedback-reducers`. | Ship P0 correctness before reducer consumers. |
-| Dependency | `002-incremental-index-foundation` | Foundation for chunk identity and statediff keys. | Keep 006 dependent on 003. |
-| Dependency | `003-causal-edge-tombstones` | Foundation for generated edge cleanup. | Keep 005 dependent on 004. |
-<!-- /ANCHOR:risks -->
-
----
-
-<!-- ANCHOR:nfr -->
-## L2: NON-FUNCTIONAL REQUIREMENTS
-
-### Maintainability
-- **NFR-M01**: Root spec stays a control document; implementation detail remains in children.
-- **NFR-M02**: Phase references use folder slugs and current disk numbers.
-
-### Auditability
-- **NFR-A01**: Migration history is documented in `context-index.md`, not narrated in this root spec.
-- **NFR-A02**: Cross-packet dependencies name both packet and child slug.
-<!-- /ANCHOR:nfr -->
-
----
-
-<!-- ANCHOR:edge-cases -->
-## L2: EDGE CASES
-
-### Data Boundaries
-- `000-release-cleanup` is a placeholder with `.gitkeep` only. It remains listed as `n/a`.
-- `011` and `012` retain non-contiguous folder numbers because they are real disk folders and should not be renumbered in this packet.
-- Cross-packet 028 dependencies are not blockers for root validation.
-
-### State Transitions
-- `draft` -> `phase-parent` when root docs match disk and child packets can be resumed independently.
-- Individual child status transitions remain owned by child phase docs.
-<!-- /ANCHOR:edge-cases -->
-
----
-
-<!-- ANCHOR:complexity -->
-## L2: COMPLEXITY ASSESSMENT
-
-| Dimension | Score | Notes |
-|-----------|-------|-------|
-| Scope | 8/25 | Root control doc for eight remaining memory folders. |
-| Risk | 8/25 | Numbering drift and stale child prose are the main risks. |
-| Research | 6/20 | Research is already present; this doc only routes memory work. |
-| **Total** | **22/70** | **Level 2** phase-parent control. |
-<!-- /ANCHOR:complexity -->
-
----
-
-<!-- ANCHOR:questions -->
-## 10. OPEN QUESTIONS
-
-- Should `000-release-cleanup` remain a placeholder indefinitely, or should a future cleanup packet remove it?
-- Should child phase specs be refreshed to remove stale historical numbering after this root split lands?
-<!-- /ANCHOR:questions -->
-
----
-
-<!-- SCAFFOLD_VALIDATION_COUNTS:
-REQ-001
-REQ-002
-REQ-003
-REQ-004
-REQ-005
-REQ-006
-REQ-007
-REQ-008
-**Given** 027 owns only memory-system phase folders
-**Given** 028 owns non-memory implementation phase folders
-**Given** child specs may still contain historical numbering
-**Given** cross-packet dependencies are documented explicitly
-**Given** migration history lives in context-index.md
--->
 
 <!-- ANCHOR:phase-map -->
 ## PHASE DOCUMENTATION MAP
@@ -309,13 +128,27 @@ REQ-008
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
-| 001 | `001-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
-| 002 | `002-incremental-index-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
-| 003 | `003-causal-edge-tombstones/` | Causal edge tombstone lifecycle | Draft |
-| 004 | `004-metadata-edge-promoter/` | Deterministic frontmatter causal edges | Draft |
-| 005 | `005-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
-| 006 | `006-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
-| 007 | `007-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
+| 001 | `001-peck-teachings-adoption/` | Low-risk peck-derived docs/process improvements | Phase-parent |
+| 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
+| 003 | `003-incremental-index-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
+| 004 | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle | Draft |
+| 005 | `005-metadata-edge-promoter/` | Deterministic frontmatter causal edges | Draft |
+| 006 | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
+| 007 | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
+| 008 | `008-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
+
+### Continuation Research Planning Amendments
+
+- Iterations 040-042 are planning hygiene inputs: root `research/` is canonical, path/command naming must be explicit by surface, and XCE ideas remain evidence signals rather than direct requirements.
+- Iteration 043 is owned by `001-peck-teachings-adoption/`: keep T3, then T4, then T2; keep T1 deferred.
+- Iteration 044 is owned by `002-memory-write-safety/`: treat `auto-*` provenance, manual-edge overwrite protection, and tier/pin-aware retention as P0 safety gates.
+- Iteration 045 is owned by `003-incremental-index-foundation/`: add memo records, dependency edges, chunk fingerprints, chunk kinds, and chunk line spans before handler scan changes.
+- Iteration 046 is owned by `004-causal-edge-tombstones/`: all active causal-edge delete paths must tombstone before hard-delete.
+- Iteration 047 is owned by `005-metadata-edge-promoter/`: promote validated parent/child/parent-chain metadata and avoid duplicating already-wired manual metadata links.
+- Iteration 048 is owned by `006-write-path-reconciliation/`: statediff is an explicit action/subscriber aid, not an implicit source of truth.
+- Iterations 049 and 058 are planned together under `007-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
+- Iterations 050 and 059 are planned together under `008-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
+- Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation separate from 028 Coco extras.
 
 ### Phase Transition Rules
 
@@ -328,8 +161,32 @@ REQ-008
 
 | From | To | Criteria | Verification |
 |------|----|----------|--------------|
-| 001-memory-write-safety | 007-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 001 validation evidence and tests. |
-| 002-incremental-index-foundation | 003-causal-edge-tombstones | Incremental indexing foundation available before lifecycle expansion. | 002 implementation summary. |
-| 003-causal-edge-tombstones | 004-metadata-edge-promoter | Generated edge cleanup has tombstone support. | 003 validation evidence. |
-| 004-metadata-edge-promoter | 005-write-path-reconciliation | Generated edge sets are available as statediff target candidates. | 004 implementation summary. |
+| 002-memory-write-safety | 008-learning-feedback-reducers | P0 feedback safety fixes landed before reducers learn from feedback. | 002 validation evidence and tests. |
+| 003-incremental-index-foundation | 004-causal-edge-tombstones | Incremental indexing foundation available before lifecycle expansion. | 003 implementation summary. |
+| 004-causal-edge-tombstones | 005-metadata-edge-promoter | Generated edge cleanup has tombstone support. | 004 validation evidence. |
+| 005-metadata-edge-promoter | 006-write-path-reconciliation | Generated edge sets are available as statediff target candidates. | 005 implementation summary. |
+| 001-peck-teachings-adoption/001-peck-teachings-for-spec-kit | 001-peck-teachings-adoption/002-self-check-templates | Peck teachings analysis complete; T3/T4/T2 order and T1 deferral are documented. | 001/001 implementation summary and analysis report. |
+| 001-peck-teachings-adoption/002-self-check-templates | 001-peck-teachings-adoption/003-current-state-discipline | Template self-check guidance ships without breaking scaffold validation. | Fresh scaffold plus strict validation evidence. |
+| 001-peck-teachings-adoption/003-current-state-discipline | 001-peck-teachings-adoption/004-constitutional-rule-review | Advisory current-state rule is registered without adding strict-mode errors. | Sample validation evidence. |
+| 007-semantic-trigger-fallback shadow mode | 007-semantic-trigger-fallback union mode | Resumable backfill complete or explicitly failed; shadow false-positive, recall, latency, cost, and rollback evidence pass. | 007 promotion checklist evidence. |
+| 008-learning-feedback-reducers shadow consumers | 008-learning-feedback-reducers active mutation/ranking | Ledger quality, shadow replay, and consumer-specific promotion criteria pass for each consumer. | 008/005 integration gate evidence. |
 <!-- /ANCHOR:phase-map -->
+
+---
+
+<!-- ANCHOR:questions -->
+## 4. OPEN QUESTIONS
+
+- Should `000-release-cleanup` remain a placeholder indefinitely, or should a future cleanup packet remove it?
+- Should child phase specs be refreshed to remove stale historical numbering after each implementation phase closes?
+- Should the deferred peck-derived T1 coverage gate become a separate future packet after the lower-risk 001 peck phases ship?
+<!-- /ANCHOR:questions -->
+
+---
+
+## RELATED DOCUMENTS
+
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **Peck adoption child**: See `001-peck-teachings-adoption/spec.md`.
+- **Research provenance**: See `research/` and child-phase research folders.
+- **Graph Metadata**: See `graph-metadata.json` for child phase pointers.

@@ -1,0 +1,6 @@
+{"type":"config","topic":"peck-teachings-adoption planned-work research","maxIterations":5,"convergenceThreshold":0.05,"createdAt":"2026-06-02T12:12:36Z","specFolder":".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/001-peck-teachings-for-spec-kit","executor":{"kind":"cli-opencode","model":"openai/gpt-5.5","reasoningEffort":"xhigh"}}
+{"type":"iteration","iteration":1,"newInfoRatio":0.86,"status":"evidence","focus":"T3 feasibility + prior art"}
+{"type":"iteration","iteration":2,"newInfoRatio":0.78,"status":"evidence","focus":"T4 advisory rule"}
+{"type":"iteration","iteration":3,"newInfoRatio":0.69,"status":"evidence","focus":"T2 constitutional review"}
+{"type":"iteration","iteration":4,"newInfoRatio":0.74,"status":"evidence","focus":"T1 AC-coverage gate"}
+{"type":"iteration","iteration":5,"newInfoRatio":0.68,"status":"evidence","focus":"cross-cutting rollout"}

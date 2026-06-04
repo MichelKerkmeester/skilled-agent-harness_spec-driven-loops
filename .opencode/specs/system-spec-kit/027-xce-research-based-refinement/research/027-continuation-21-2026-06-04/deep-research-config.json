@@ -1,0 +1,15 @@
+{
+  "topic": "Continuation revalidation of 027 XCE-derived Spec Kit refinement against external/xce-mcp, current system-spec-kit implementation, and existing 027 plans; 21 targeted iterations.",
+  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement",
+  "artifactDir": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04",
+  "maxIterations": 21,
+  "convergenceThreshold": 0.01,
+  "executionMode": "auto-fallback-orchestrated",
+  "resource_map_present": true,
+  "progressiveSynthesis": true,
+  "lineage": {
+    "lineageMode": "restart",
+    "parentArtifactDir": "../",
+    "reason": "existing flat research state is stale/inconsistent; continuation uses isolated artifact root"
+  }
+}
