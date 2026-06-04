@@ -342,6 +342,7 @@ const memoryHealthSchema = getSchema({
 
 const checkpointCreateSchema = getSchema({
   name: z.string().min(1),
+  includeEmbeddings: z.boolean().optional(),
   specFolder: optionalPathString(),
   tenantId: z.string().min(1).optional(),
   userId: z.string().min(1).optional(),
@@ -563,7 +564,7 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   memory_bulk_delete: ['tier', 'specFolder', 'confirm', 'olderThanDays', 'skipCheckpoint'],
   memory_retention_sweep: ['dryRun'],
   memory_embedding_reconcile: ['mode', 'activeOnly', 'resetMissing', 'missingFailureScope', 'maskedFailedPolicy', 'providerFailurePolicy', 'requireActiveShard', 'repairSuccessCoverage'],
-  checkpoint_create: ['name', 'specFolder', 'tenantId', 'userId', 'agentId', 'metadata'],
+  checkpoint_create: ['name', 'includeEmbeddings', 'specFolder', 'tenantId', 'userId', 'agentId', 'metadata'],
   checkpoint_list: ['specFolder', 'tenantId', 'userId', 'agentId', 'limit'],
   checkpoint_restore: ['name', 'tenantId', 'userId', 'agentId', 'clearExisting'],
   checkpoint_delete: ['name', 'tenantId', 'userId', 'agentId', 'confirmName'],
