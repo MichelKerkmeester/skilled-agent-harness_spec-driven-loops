@@ -8,10 +8,10 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill"
     last_updated_at: "2026-06-04T12:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Folded causal README + dispatch-type into packet; combined verify green (tsc clean + 343 tests pass); dist rebuilt"
-    next_safe_action: "Commit + deploy (dist built; daemon recycle pending to go live)"
+    recent_action: "Committed d32d90c3f1 + deployed; verify green (tsc + 343 tests)"
+    next_safe_action: "Done; shipped + deployed. Actual backfill run stays user-gated"
     blockers: []
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Similarity/contradiction signals are deferred best-effort extensions; the two deterministic signals satisfy all P0 requirements."
@@ -29,7 +29,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Status** | Implementation complete; deploy pending |
+| **Status** | Shipped (committed + deployed) |
 | **Date** | 2026-06-04 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->

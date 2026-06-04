@@ -12,15 +12,15 @@ _memory:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path"
     last_updated_at: "2026-06-04T13:00:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Implemented lease.socketPath + bridge prefer-fallback; tests green"
-    next_safe_action: "Deploy on next launcher spawn"
+    recent_action: "Shipped: committed 1f1e52ca8e; lease.socketPath + bridge prefer-fallback, tests green"
+    next_safe_action: "Done. .cjs change activates on next launcher spawn (no daemon recycle needed)"
     blockers: []
     key_files:
       - ".opencode/bin/lib/model-server-supervision.cjs"
       - ".opencode/bin/mk-spec-memory-launcher.cjs"
       - ".opencode/bin/lib/launcher-ipc-bridge.cjs"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/launcher-ipc-bridge-probe.vitest.ts"
-    completion_pct: 95
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Additive/optional schema: leases without socketPath fall back to recompute; skill-advisor and code-index are unaffected."

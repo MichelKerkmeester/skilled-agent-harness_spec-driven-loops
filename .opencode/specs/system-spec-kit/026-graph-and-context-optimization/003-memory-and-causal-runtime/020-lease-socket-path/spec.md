@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P2 |
-| **Status** | In Progress |
+| **Status** | Shipped |
 | **Created** | 2026-06-04 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
