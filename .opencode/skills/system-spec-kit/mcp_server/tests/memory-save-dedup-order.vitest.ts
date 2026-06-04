@@ -57,7 +57,9 @@ describe('Memory-save dedup ordering regressions', () => {
     const transactionReturnIndex = source.indexOf('return memoryId;', markPendingIndex);
     const transactionEndIndex = source.indexOf('});', transactionReturnIndex);
 
-    const runPostInsertIndex = source.indexOf('const postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(');
+    // Enrichment moved behind an async/sync branch (let-declared above the if); the synchronous
+    // branch preserves the pending-then-record ordering this test guards.
+    const runPostInsertIndex = source.indexOf('postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(');
     const recordResultIndex = source.indexOf('recordEnrichmentResult(database, id, postInsertEnrichmentResult);', runPostInsertIndex);
     const invalidateIndex = source.indexOf('invalidateEntityDensityCacheAfterSave();', recordResultIndex);
 

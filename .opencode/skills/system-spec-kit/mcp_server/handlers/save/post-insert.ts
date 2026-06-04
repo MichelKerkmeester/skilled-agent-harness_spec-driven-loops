@@ -87,6 +87,7 @@ export type EnrichmentStepName = keyof EnrichmentStatus;
 
 export type PostInsertExecutionReason =
   | 'planner-first-mode'
+  | 'async-background'
   | 'enrichment_step_failed'
   | 'enrichment_step_partial';
 
@@ -589,4 +590,30 @@ export async function runPostInsertEnrichmentIfEnabled(
   }
 
   return runPostInsertEnrichment(database, id, parsed);
+}
+
+/**
+ * Build an all-deferred enrichment result for the async/background path. The row is marked
+ * enrichment-pending inside the commit transaction and the actual bundle runs later via
+ * setImmediate, so the save response reports every step deferred with a runEnrichmentBackfill
+ * follow-up (and the pending marker drives crash-recovery replay/backfill).
+ */
+export function buildDeferredEnrichmentResult(
+  reason: PostInsertExecutionReason = 'async-background',
+): PostInsertEnrichmentResult {
+  return {
+    causalLinksResult: null,
+    enrichmentStatus: {
+      causalLinks: makeDeferred(),
+      entityExtraction: makeDeferred(),
+      summaries: makeDeferred(),
+      entityLinking: makeDeferred(),
+      graphLifecycle: makeDeferred(),
+    },
+    executionStatus: {
+      status: 'deferred',
+      reason,
+      followUpAction: 'runEnrichmentBackfill',
+    },
+  };
 }

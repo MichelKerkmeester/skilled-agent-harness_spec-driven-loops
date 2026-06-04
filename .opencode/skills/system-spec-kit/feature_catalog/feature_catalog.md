@@ -2459,7 +2459,7 @@ Before saving a new spec-doc record, the system checks whether it meets quality 
 
 #### How It Works
 
-The quality loop is opt-in. When `SPECKIT_QUALITY_LOOP` is unset or not equal to `true`, the runtime still computes a quality score but the save passes without retries or rejection. When the flag is enabled, the save pipeline runs an initial quality evaluation and then up to 2 immediate auto-fix retries by default (`maxRetries=2`). Auto-fixes can re-extract trigger phrases from headings/title, normalize unclosed anchors and trim content to the shared token budget.
+The quality loop runs by default (`SPECKIT_QUALITY_LOOP=false` to disable). It computes a quality score, then — when auto-fix is enabled (`SPECKIT_QUALITY_AUTO_FIX`, default ON; set `=false` to disable) — runs an initial quality evaluation and up to 2 immediate auto-fix retries by default (`maxRetries=2`). Auto-fixes can re-extract trigger phrases from headings/title, normalize unclosed anchors and trim content to the shared token budget.
 
 `attempts` reports the actual number of evaluations used, not the configured ceiling. If a retry applies no fixes, the loop breaks early, so a case with `maxRetries=5` can still reject after only 2 total attempts (1 initial evaluation + 1 no-op retry). The rejection reason also reports the actual auto-fix attempt count.
 
@@ -2995,7 +2995,7 @@ See [`13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runn
 
 #### Description
 
-When a memory is saved in planner-first modes, some enrichment (causal links, entity extraction, graph signals) runs after the row is inserted rather than blocking the save. Each `memory_index` row records whether that post-insert enrichment completed, so an incomplete row is discoverable and repairable on a later pass instead of being silently left under-enriched.
+When a memory is saved, the post-insert enrichment bundle (causal links, entity extraction, summaries, graph signals) runs by default after the row is inserted rather than blocking the save — asynchronously in the background (set `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED=false` to disable, or `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` to run it synchronously). Each `memory_index` row records whether that post-insert enrichment completed, so an incomplete row is discoverable and repairable on a later pass instead of being silently left under-enriched.
 
 #### How It Works
 

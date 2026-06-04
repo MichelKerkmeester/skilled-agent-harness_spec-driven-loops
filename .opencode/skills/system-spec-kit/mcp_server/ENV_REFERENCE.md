@@ -41,9 +41,9 @@ Generated from `lib/search/search-flags.ts`. "Default state" is the shipped beha
 | Search fallback | ON | `SPECKIT_SEARCH_FALLBACK` | Quality-aware 3-tier search fallback chain | PI-A2 |
 | Folder discovery | ON | `SPECKIT_FOLDER_DISCOVERY` | Automatic spec folder discovery via description cache | PI-B3 |
 | Save planner mode | OFF | `SPECKIT_SAVE_PLANNER_MODE` | Mutation-first canonical save behavior; default is `plan-only` | planner-first save |
-| Save reconsolidation | OFF | `SPECKIT_RECONSOLIDATION_ENABLED` | Save-time reconsolidation in planner-first flows | planner-first save |
-| Post-insert enrichment | OFF | `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | Save-time enrichment bundle in planner-first flows | planner-first save |
-| Quality auto-fix retries | OFF | `SPECKIT_QUALITY_AUTO_FIX` | Save-time quality auto-fix retry loop | planner-first save |
+| Save reconsolidation | ON | `SPECKIT_RECONSOLIDATION_ENABLED` | Save-time reconsolidation in planner-first flows (default ON, opt-out) | spec 017 |
+| Post-insert enrichment | ON | `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | Save-time enrichment bundle: causal links + entities + summaries + graph lifecycle (populates graph; async by default) | spec 017 |
+| Quality auto-fix retries | ON | `SPECKIT_QUALITY_AUTO_FIX` | Save-time quality auto-fix retry loop (trigger phrases, char-budget trim, anchor normalize) | spec 017 |
 | Docscore aggregation | ON | `SPECKIT_DOCSCORE_AGGREGATION` | Document-level chunk-to-memory score aggregation | R1 MPAB |
 | Save quality gate | ON | `SPECKIT_SAVE_QUALITY_GATE` | Pre-storage quality gate for memory saves | graduated |
 | Dynamic token budget | ON | `SPECKIT_DYNAMIC_TOKEN_BUDGET` | Query-complexity token budget allocation | graduated |
@@ -162,9 +162,10 @@ the publication guard helpers used by the evaluation dashboard.
 | `SPECKIT_VRULE_OPTIONAL` | `false` | boolean | When `true`, V-rule validation bypasses if the module fails to load. Opt-in. | `handlers/v-rule-bridge.ts` |
 | `SPECKIT_SAVE_PLANNER_MODE` | `plan-only` | string | Canonical save planner mode: `plan-only` (default), `full-auto`, or `hybrid`. All modes refresh packet metadata on `/memory:save`; `plan-only` no longer leaves `description.json.lastUpdated` or `graph-metadata.json` untouched. `full-auto` keeps the legacy atomic apply path; `hybrid` is reserved for future mixed flows and currently behaves the same as `plan-only`. | `lib/search/search-flags.ts` |
 | `MCP_SESSION_RESUME_AUTH_MODE` | `strict` | string | Session-resume auth binding mode. `strict` (default) rejects `args.sessionId` mismatches against the transport caller context from `getCallerContext()`. `permissive` logs the mismatch and continues for canary rollout. | `handlers/session-resume.ts` |
-| `SPECKIT_RECONSOLIDATION_ENABLED` | `false` | boolean | Opt-in save-time reconsolidation for planner-first flows. Disabled by default on saves. | `lib/search/search-flags.ts` |
-| `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | `false` | boolean | Opt-in save-time post-insert enrichment bundle for planner-first flows. Disabled by default on saves. | `lib/search/search-flags.ts` |
-| `SPECKIT_QUALITY_AUTO_FIX` | `false` | boolean | Opt-in save-time quality auto-fix retries for planner-first flows. Disabled by default on saves. | `lib/search/search-flags.ts` |
+| `SPECKIT_RECONSOLIDATION_ENABLED` | `true` | boolean | Save-time reconsolidation for planner-first flows. Enabled by default; set `false` to disable. | `lib/search/search-flags.ts` |
+| `SPECKIT_POST_INSERT_ENRICHMENT_ENABLED` | `true` | boolean | Save-time post-insert enrichment bundle (causal links, entity extraction, summaries, entity linking, graph lifecycle; populates the causal/entity graph). Enabled by default; set `false` to disable. | `lib/search/search-flags.ts` |
+| `SPECKIT_POST_INSERT_ENRICHMENT_SYNC` | `false` | boolean | When `true`, the post-insert enrichment bundle runs synchronously inside the save (immediate graph freshness). Default `false` runs it asynchronously in the background so the save returns immediately. | `lib/search/search-flags.ts` |
+| `SPECKIT_QUALITY_AUTO_FIX` | `true` | boolean | Save-time quality auto-fix retries (re-extract trigger phrases, trim to char budget, normalize anchors). Enabled by default; set `false` to disable. | `lib/search/search-flags.ts` |
 | `SPECKIT_CODEX_HOOK_TIMEOUT_MS` | `3000` | number | Timeout (ms) for the Codex `UserPromptSubmit` hook and the skill-advisor subprocess execution when invoked from Codex. On timeout, the Codex hook returns a stale advisory brief instead of empty output, so operators who raise this value trade responsiveness for fresher advisor data. Set via environment variable before launching Codex. [026/009/012, flagged by 03] | `hooks/codex/user-prompt-submit.ts`, `skill-advisor/lib/subprocess.ts` |
 
 ---

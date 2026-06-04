@@ -185,6 +185,7 @@ import {
   resolveSavePlannerMode,
   isSaveReconsolidationEnabled,
   isPostInsertEnrichmentEnabled,
+  isPostInsertEnrichmentAsync,
   isQualityAutoFixEnabled,
   isDocscoreAggregationEnabled,
   isSaveQualityGateEnabled,
@@ -201,6 +202,7 @@ describe('Search Flags: Planner and Save Flags (T254)', () => {
     'SPECKIT_SAVE_PLANNER_MODE',
     'SPECKIT_RECONSOLIDATION_ENABLED',
     'SPECKIT_POST_INSERT_ENRICHMENT_ENABLED',
+    'SPECKIT_POST_INSERT_ENRICHMENT_SYNC',
     'SPECKIT_QUALITY_AUTO_FIX',
   ] as const;
 
@@ -247,19 +249,25 @@ describe('Search Flags: Planner and Save Flags (T254)', () => {
     expect(resolveSavePlannerMode()).toBe('plan-only');
   });
 
-  it('save reconsolidation, post-insert enrichment, quality auto-fix default to false (opt-in)', () => {
+  it('save reconsolidation, post-insert enrichment, quality auto-fix default to ON (opt-out)', () => {
+    expect(isSaveReconsolidationEnabled()).toBe(true);
+    expect(isPostInsertEnrichmentEnabled()).toBe(true);
+    expect(isQualityAutoFixEnabled()).toBe(true);
+  });
+
+  it('opt-out flags disable only when explicitly set to false', () => {
+    process.env.SPECKIT_RECONSOLIDATION_ENABLED = 'false';
+    process.env.SPECKIT_POST_INSERT_ENRICHMENT_ENABLED = 'false';
+    process.env.SPECKIT_QUALITY_AUTO_FIX = 'false';
     expect(isSaveReconsolidationEnabled()).toBe(false);
     expect(isPostInsertEnrichmentEnabled()).toBe(false);
     expect(isQualityAutoFixEnabled()).toBe(false);
   });
 
-  it('opt-in flags enable only when explicitly set to true', () => {
-    process.env.SPECKIT_RECONSOLIDATION_ENABLED = 'true';
-    process.env.SPECKIT_POST_INSERT_ENRICHMENT_ENABLED = 'true';
-    process.env.SPECKIT_QUALITY_AUTO_FIX = 'true';
-    expect(isSaveReconsolidationEnabled()).toBe(true);
-    expect(isPostInsertEnrichmentEnabled()).toBe(true);
-    expect(isQualityAutoFixEnabled()).toBe(true);
+  it('post-insert enrichment runs async by default; SYNC=true forces synchronous', () => {
+    expect(isPostInsertEnrichmentAsync()).toBe(true);
+    process.env.SPECKIT_POST_INSERT_ENRICHMENT_SYNC = 'true';
+    expect(isPostInsertEnrichmentAsync()).toBe(false);
   });
 
   it('graduated default-on flags are enabled without env vars', () => {

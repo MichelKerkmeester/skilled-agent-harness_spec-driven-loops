@@ -41,6 +41,7 @@ import * as causalEdges from '../lib/storage/causal-edges.js';
 import { runQualityGate, isQualityGateEnabled } from '../lib/validation/save-quality-gate.js';
 import {
   isPostInsertEnrichmentEnabled,
+  isPostInsertEnrichmentAsync,
   isSaveQualityGateEnabled,
   isSaveReconsolidationEnabled,
   resolveSavePlannerMode,
@@ -104,7 +105,13 @@ import {
   getRequestedScope,
   runReconsolidationIfEnabled,
 } from './save/reconsolidation-bridge.js';
-import { runPostInsertEnrichmentIfEnabled } from './save/post-insert.js';
+import {
+  runPostInsertEnrichmentIfEnabled,
+  runPostInsertEnrichment,
+  shouldRunPostInsertEnrichment,
+  buildDeferredEnrichmentResult,
+} from './save/post-insert.js';
+import type { PostInsertEnrichmentResult } from './save/post-insert.js';
 import {
   markEnrichmentPending,
   needsEnrichmentRepair,
@@ -2673,14 +2680,36 @@ async function processPreparedMemory(
       }
     }
 
-    // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking
-    const postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(
-      database,
-      id,
-      routedParsed,
-      { plannerMode },
-    );
-    recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+    // POST-INSERT ENRICHMENT: causal links, entities, summaries, entity linking.
+    // When enrichment is enabled and async (default), run the bundle in the background so the
+    // save returns immediately. The row was marked enrichment-pending inside the commit
+    // transaction (markEnrichmentPending), so a crash before the background run completes is
+    // recovered by the pending-marker replay/backfill path. SPECKIT_POST_INSERT_ENRICHMENT_SYNC
+    // forces synchronous execution when a caller needs the graph fresh in the same response.
+    let postInsertEnrichmentResult: PostInsertEnrichmentResult;
+    if (shouldRunPostInsertEnrichment(plannerMode) && isPostInsertEnrichmentAsync()) {
+      const backgroundId = id;
+      const backgroundParsed = routedParsed;
+      setImmediate(() => {
+        runPostInsertEnrichment(database, backgroundId, backgroundParsed)
+          .then((result) => {
+            recordEnrichmentResult(database, backgroundId, result);
+            invalidateEntityDensityCacheAfterSave();
+          })
+          .catch((bgErr: unknown) => {
+            console.warn(`[memory-save] background enrichment failed for #${backgroundId}: ${bgErr instanceof Error ? bgErr.message : String(bgErr)}`);
+          });
+      });
+      postInsertEnrichmentResult = buildDeferredEnrichmentResult('async-background');
+    } else {
+      postInsertEnrichmentResult = await runPostInsertEnrichmentIfEnabled(
+        database,
+        id,
+        routedParsed,
+        { plannerMode },
+      );
+      recordEnrichmentResult(database, id, postInsertEnrichmentResult);
+    }
     const { causalLinksResult, enrichmentStatus, executionStatus } = postInsertEnrichmentResult;
     invalidateEntityDensityCacheAfterSave();
 

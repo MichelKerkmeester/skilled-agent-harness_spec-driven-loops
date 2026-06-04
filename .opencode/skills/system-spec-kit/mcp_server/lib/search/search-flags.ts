@@ -135,27 +135,38 @@ export function resolveSavePlannerMode(): SavePlannerMode {
 }
 
 /**
- * Save-time reconsolidation gate for planner-first flows.
- * Default: FALSE. Set SPECKIT_RECONSOLIDATION_ENABLED=true to enable.
+ * Save-time reconsolidation gate (FSRS stability reinforcement on re-save).
+ * Default: TRUE (graduated). Set SPECKIT_RECONSOLIDATION_ENABLED=false to disable.
  */
 export function isSaveReconsolidationEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_RECONSOLIDATION_ENABLED');
+  return isFeatureEnabled('SPECKIT_RECONSOLIDATION_ENABLED');
 }
 
 /**
- * Save-time post-insert enrichment bundle gate for planner-first flows.
- * Default: FALSE. Set SPECKIT_POST_INSERT_ENRICHMENT_ENABLED=true to enable.
+ * Save-time post-insert enrichment bundle gate (causal links, entity extraction,
+ * summaries, entity linking, graph lifecycle — populates the causal/entity graph).
+ * Default: TRUE (graduated). Set SPECKIT_POST_INSERT_ENRICHMENT_ENABLED=false to disable.
  */
 export function isPostInsertEnrichmentEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_POST_INSERT_ENRICHMENT_ENABLED');
+  return isFeatureEnabled('SPECKIT_POST_INSERT_ENRICHMENT_ENABLED');
 }
 
 /**
- * Save-time quality auto-fix retries gate for planner-first flows.
- * Default: FALSE. Set SPECKIT_QUALITY_AUTO_FIX=true to enable.
+ * Whether the post-insert enrichment bundle runs in the background (non-blocking save).
+ * Default: TRUE (async). Set SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true to run it synchronously
+ * when a caller needs the causal/entity graph fresh within the same save response.
+ */
+export function isPostInsertEnrichmentAsync(): boolean {
+  return !isOptInEnabled('SPECKIT_POST_INSERT_ENRICHMENT_SYNC');
+}
+
+/**
+ * Save-time quality auto-fix retries gate (regenerates trigger phrases, trims oversized
+ * content to the char budget, normalizes anchors on save).
+ * Default: TRUE (graduated). Set SPECKIT_QUALITY_AUTO_FIX=false to disable.
  */
 export function isQualityAutoFixEnabled(): boolean {
-  return isOptInEnabled('SPECKIT_QUALITY_AUTO_FIX');
+  return isFeatureEnabled('SPECKIT_QUALITY_AUTO_FIX');
 }
 
 // -- Hybrid RAG Fusion Refinement flags --
