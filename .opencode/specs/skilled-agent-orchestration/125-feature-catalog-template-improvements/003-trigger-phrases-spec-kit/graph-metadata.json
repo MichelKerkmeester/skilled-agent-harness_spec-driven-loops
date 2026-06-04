@@ -1,1 +1,122 @@
-{"id":"003-trigger-phrases-spec-kit","title":"Trigger Phrases — system-spec-kit","status":"planned","derived":{"last_active_child_id":null,"child_ids":[]}}
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "spec_folder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/003-trigger-phrases-spec-kit",
+  "parent_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [],
+    "key_topics": [
+      "add",
+      "frontmatter",
+      "313",
+      "system-spec-kit",
+      "snippets",
+      "derived",
+      "root",
+      "catalog",
+      "headings",
+      "feature",
+      "file",
+      "content"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Trigger Phrases",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel AI",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. SCOPE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "parallel",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "this",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "fewer",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. DERIVATION ALGORITHM",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add trigger_phrases frontmatter to all 313 system-spec-kit snippets, derived from root catalog H3 headings and feature file content. Batched by category with parallel AI agents.",
+    "created_at": "2026-06-04T13:19:25.658Z",
+    "last_save_at": "2026-06-04T13:19:25.658Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

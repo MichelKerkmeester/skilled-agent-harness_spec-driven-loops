@@ -1,1 +1,126 @@
-{"id":"002-mechanical-sweep","title":"Mechanical Sweep — All Skills","status":"planned","derived":{"last_active_child_id":null,"child_ids":[]}}
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements/002-mechanical-sweep",
+  "spec_folder": "skilled-agent-orchestration/125-feature-catalog-template-improvements/002-mechanical-sweep",
+  "parent_id": "skilled-agent-orchestration/125-feature-catalog-template-improvements",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "mechanical sweep",
+      "catalog heading rename",
+      "bulk catalog fix"
+    ],
+    "key_topics": [
+      "mechanical",
+      "sweep",
+      "catalog",
+      "heading",
+      "rename",
+      "bulk",
+      "fix",
+      "script-driven",
+      "fixes",
+      "across",
+      "370",
+      "files"
+    ],
+    "importance_tier": "normal",
+    "status": "planned",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mechanical Sweep",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "All Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Acceptance Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "filepath",
+        "kind": "key_phrase",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. METADATA",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. PROBLEM & PURPOSE",
+        "kind": "heading",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Validation And Tests",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Use Python",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "re.MULTILINE",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Type",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Script-driven bulk fixes across all 370 catalog files: rename CURRENT REALITY heading, insert template marker, fix validation table columns.",
+    "created_at": "2026-06-04T13:19:25.656Z",
+    "last_save_at": "2026-06-04T13:19:25.657Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
