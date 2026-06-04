@@ -10,7 +10,11 @@ const {
 
 const PROBE_BACKOFF_MS = [100, 250, 500, 1000, 1500];
 const DEFAULT_MAX_REATTACH_ATTEMPTS = 40;
-const DEFAULT_MAX_COLD_START_ATTEMPTS = 120;
+// Bounded so a dead/booting daemon surfaces a retryable -32001 to the client in ~tens of
+// seconds (~41s with the backoff ladder) instead of ~176s of silent "connecting…". A healthy
+// daemon answers the deep probe within the first few attempts; the only thing this shortens is
+// the pathological wait when the backend cannot come up. Tunable via SPECKIT_PROXY_COLD_START_ATTEMPTS.
+const DEFAULT_MAX_COLD_START_ATTEMPTS = 30;
 const INTERNAL_HANDSHAKE_TIMEOUT_MS = 7000;
 const DEFAULT_KEEPALIVE_INTERVAL_MS = 10_000;
 const DEFAULT_KEEPALIVE_TIMEOUT_MS = 5_000;
@@ -192,6 +196,11 @@ function createPendingRequestsTracker(classify = classifyFrame) {
   };
 }
 
+function resolveColdStartAttempts() {
+  const fromEnv = Number.parseInt(process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS ?? '', 10);
+  return Number.isInteger(fromEnv) && fromEnv > 0 ? fromEnv : DEFAULT_MAX_COLD_START_ATTEMPTS;
+}
+
 async function waitForDaemonReady(socketPath, probe, connect, log, options = {}) {
   const maxAttempts = Number.isInteger(options.maxAttempts) && options.maxAttempts > 0
     ? options.maxAttempts
@@ -339,7 +348,7 @@ function createSessionProxy(options) {
     : DEFAULT_MAX_REATTACH_ATTEMPTS;
   const maxColdStartAttempts = Number.isInteger(options?.maxColdStartAttempts) && options.maxColdStartAttempts > 0
     ? options.maxColdStartAttempts
-    : DEFAULT_MAX_COLD_START_ATTEMPTS;
+    : resolveColdStartAttempts();
   const keepaliveIntervalMs = Number.isInteger(options?.keepaliveIntervalMs) && options.keepaliveIntervalMs > 0
     ? options.keepaliveIntervalMs
     : DEFAULT_KEEPALIVE_INTERVAL_MS;
@@ -799,5 +808,6 @@ module.exports = {
     createFrameSplitter,
     createPendingRequestsTracker,
     parseFrame,
+    resolveColdStartAttempts,
   },
 };

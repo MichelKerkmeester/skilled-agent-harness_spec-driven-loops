@@ -981,7 +981,23 @@ async function main() {
     if (strictSingleWriter) {
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        await bridgeOrReportLeaseHeld(leaseResult);
+        const decision = await bridgeOrReportLeaseHeld(leaseResult);
+        // A 'report' decision means this secondary session could NOT be bridged to the owner
+        // daemon (bridge disabled / socket missing / bridge module missing). The only thing
+        // written so far is the plaintext "LEASE_HELD_BY:" diagnostic, which is not a JSON-RPC
+        // frame — so the MCP client would wait on its initialize forever. Emit a retryable
+        // JSON-RPC error so the client fails fast and reconnects instead of hanging.
+        if (decision && decision.action === 'report') {
+          process.stdout.write(`${JSON.stringify({
+            jsonrpc: '2.0',
+            id: null,
+            error: {
+              code: -32001,
+              message: `mk-spec-memory: lease held by pid ${leaseResult.ownerPid} but session bridge unavailable (${decision.reason}); reconnect`,
+              data: { retryable: true },
+            },
+          })}\n`);
+        }
         return;
       }
       if (leaseResult.staleReclaimable) {

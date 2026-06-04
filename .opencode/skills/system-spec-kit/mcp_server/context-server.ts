@@ -1726,7 +1726,10 @@ async function main(): Promise<void> {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`[context-server] FATAL: ${message}`);
-    process.exit(1);
+    // Throw (not process.exit) so a bad first call fails THAT caller's tool request with a
+    // structured error while the shared daemon stays alive. The init guard resets and retries
+    // on the next memory-runtime call, so a transient embedder failure self-heals.
+    throw new Error(`memory runtime init failed (embedder): ${message}`);
   }
 
   // Pre-Flight API Key Validation
@@ -1766,7 +1769,13 @@ async function main(): Promise<void> {
           console.error('[context-server] =====================================');
           console.error('[context-server] FATAL: Cannot start MCP server with invalid API key');
           console.error('[context-server] Set SPECKIT_SKIP_API_VALIDATION=true to bypass (not recommended)');
-          process.exit(1);
+          // Throw (not process.exit) so the shared daemon survives one bad first call. Tagged so
+          // the enclosing transient-error catch RE-THROWS it (rather than swallowing it into the
+          // "continue" path), letting the init guard surface it as a structured tool error + retry.
+          throw Object.assign(
+            new Error(`embedding API key validation failed: ${validation.error ?? validation.errorCode ?? 'invalid key'}`),
+            { speckitInitHardFail: true },
+          );
         }
       }
 
@@ -1778,6 +1787,13 @@ async function main(): Promise<void> {
         console.error(`[context-server] API key validated (provider: ${validation.provider})`);
       }
     } catch (validationError: unknown) {
+      // A tagged hard-fail (invalid API key) must propagate to the init guard so the daemon does
+      // not silently start with a known-bad key; only genuine transient validation errors fall
+      // through to "continue, validate on first use".
+      if (validationError && typeof validationError === 'object'
+          && (validationError as { speckitInitHardFail?: boolean }).speckitInitHardFail) {
+        throw validationError;
+      }
       const message = validationError instanceof Error ? validationError.message : String(validationError);
       console.error(`[context-server] API key validation error: ${message}`);
       console.error('[context-server] Continuing startup - validation will occur on first use');

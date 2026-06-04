@@ -25,6 +25,7 @@ type ProxyTesting = {
   classifyFrame(frame: string | Record<string, unknown>): boolean;
   createFrameSplitter(onFrame: (frame: string) => void): FrameSplitter;
   createPendingRequestsTracker(classify?: (frame: string) => boolean): PendingTracker;
+  resolveColdStartAttempts(): number;
 };
 type SessionProxy = { start(): Promise<void>; stop(): void };
 type SessionProxyFactory = (options: Record<string, unknown>) => SessionProxy;
@@ -472,6 +473,31 @@ describe('launcher session proxy frame engine', () => {
     expect(logs.some((message) => message.includes('reattach loop guard restarting'))).toBe(false);
     expect(probeCalls).toBe(probesAfterGiveUp);
     proxy.stop();
+  });
+
+  describe('resolveColdStartAttempts (cold-start bound)', () => {
+    const savedEnv = process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS;
+    afterEach(() => {
+      if (savedEnv === undefined) delete process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS;
+      else process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS = savedEnv;
+    });
+
+    it('defaults to a bounded 30 attempts (not the old ~176s / 120-attempt silent window)', () => {
+      delete process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS;
+      expect(__testing.resolveColdStartAttempts()).toBe(30);
+    });
+
+    it('honors a positive SPECKIT_PROXY_COLD_START_ATTEMPTS override', () => {
+      process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS = '8';
+      expect(__testing.resolveColdStartAttempts()).toBe(8);
+    });
+
+    it('falls back to the default for non-positive or non-numeric env', () => {
+      process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS = '0';
+      expect(__testing.resolveColdStartAttempts()).toBe(30);
+      process.env.SPECKIT_PROXY_COLD_START_ATTEMPTS = 'nope';
+      expect(__testing.resolveColdStartAttempts()).toBe(30);
+    });
   });
 
   it('primes coalesced post-handshake frames into the backend splitter', async () => {
