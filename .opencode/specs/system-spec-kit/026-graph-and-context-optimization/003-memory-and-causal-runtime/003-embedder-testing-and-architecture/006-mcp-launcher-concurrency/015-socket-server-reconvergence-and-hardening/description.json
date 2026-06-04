@@ -1,0 +1,29 @@
+{
+  "specFolder": "015-socket-server-reconvergence-and-hardening",
+  "description": "Feature Specification: socket-server reconvergence + spec-memory hardening",
+  "keywords": [
+    "feature",
+    "specification",
+    "socket-server",
+    "reconvergence",
+    "spec-memory",
+    "hardening"
+  ],
+  "lastUpdated": "2026-06-04T20:36:31.198Z",
+  "specId": "015",
+  "folderSlug": "socket-server-reconvergence-and-hardening",
+  "parentChain": [
+    "..",
+    ".opencode",
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime",
+    "003-embedder-testing-and-architecture",
+    "006-mcp-launcher-concurrency"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "04-06-26_21-36__levelled-spec-memory-s-ipc-socket-server-up-to.md"
+  ]
+}

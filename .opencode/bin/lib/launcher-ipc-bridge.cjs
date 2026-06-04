@@ -237,7 +237,10 @@ function probeModelServer(socketPath, options = {}) {
     );
   const nowMs = typeof options.nowMs === 'function' ? options.nowMs : () => Date.now();
   const connect = options.connect ?? ((connectionOptions) => net.createConnection(connectionOptions));
-  const request = `GET ${MODEL_SERVER_HEALTH_PATH} HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nConnection: close\r\n\r\n`;
+  // Mark this as the launcher's internal liveness probe so a cold-state demand listener can answer
+  // without spawning a model server. Genuine embed consumers do not send this header, so their
+  // wake-on-demand path is unchanged.
+  const request = `GET ${MODEL_SERVER_HEALTH_PATH} HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nX-Speckit-Probe: liveness\r\nConnection: close\r\n\r\n`;
 
   return new Promise((resolve) => {
     let socket;

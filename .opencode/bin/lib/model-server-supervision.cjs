@@ -1203,6 +1203,18 @@ function createModelServerControl(deps = {}) {
 
   function handleModelServerDemand(request, response) {
     const routePath = new URL(request.url || '/', 'http://127.0.0.1').pathname;
+    // A launcher liveness probe must never be treated as embed demand. A sibling launcher's
+    // boot-time health check would otherwise wake — and on a host where the local model is
+    // unsupported, crash-loop — a model server that no consumer actually needs. Genuine consumers
+    // never send this marker, so their lazy wake-on-demand path is unaffected.
+    const probeMarker = request.headers && request.headers['x-speckit-probe'];
+    if (typeof probeMarker === 'string' && probeMarker.toLowerCase() === 'liveness') {
+      writeDemandResponse(response, MODEL_SERVER_DEMAND_STATUS, {
+        state: 'no-resident',
+        reason: 'liveness-probe',
+      });
+      return;
+    }
     const cooldown = activeGiveUpCooldown(state.demandTarget || resolveSocketPath());
     if (cooldown) {
       logger(`hf-model-server demand received ${request.method || 'GET'} ${routePath}; crash-loop cooldown active for ${cooldown.retryAfterMs}ms`);
