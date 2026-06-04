@@ -314,7 +314,15 @@ export interface CausalLinkArgs {
 /** Arguments for causal statistics requests. */
 export interface CausalStatsArgs {
   // Optional bounded relation-inference backfill; dryRun-default so reads stay side-effect-free.
-  backfill?: { dryRun?: boolean; limit?: number; actor?: string };
+  // similarity/contradicts are OPT-IN collectors (default false); similarityThreshold gates similarity.
+  backfill?: {
+    dryRun?: boolean;
+    limit?: number;
+    actor?: string;
+    similarity?: boolean;
+    contradicts?: boolean;
+    similarityThreshold?: number;
+  };
 }
 
 /** Arguments for causal link removal requests. */

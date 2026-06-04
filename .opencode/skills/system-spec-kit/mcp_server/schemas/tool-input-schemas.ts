@@ -418,6 +418,12 @@ const memoryCausalStatsSchema = getSchema({
     dryRun: z.boolean().optional(),
     limit: positiveIntMax(2000).optional(),
     actor: z.string().optional(),
+    // OPT-IN collectors (default false): similarity 'supports' edges from the
+    // cached related_memories column; contradicts edges from structural
+    // supersession. similarityThreshold gates the similarity collector (1-100).
+    similarity: z.boolean().optional(),
+    contradicts: z.boolean().optional(),
+    similarityThreshold: positiveIntMax(100).optional(),
   }).optional(),
 });
 

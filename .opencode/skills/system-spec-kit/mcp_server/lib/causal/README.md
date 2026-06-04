@@ -67,7 +67,7 @@ Load this folder through the owning skill workflow or MCP server entrypoint.
 | Path | Purpose |
 |---|---|
 | `relation-coverage.ts` | Pure reporter for `memory_causal_stats` relation-coverage: per-relation share/status and the honest backfill-job hint. |
-| `relation-backfill.ts` | Bounded, dryRun-default relation-inference backfill — infers typed `created_by='auto'` edges from existing deterministic signals (spec-document chains, lineage predecessor→successor) and invalidates the entity-density cache after commit. |
+| `relation-backfill.ts` | Bounded, dryRun-default relation-inference backfill — infers typed `created_by='auto'` edges from existing deterministic signals (spec-document chains, lineage predecessor→successor) plus opt-in similarity (`supports`, from cached `related_memories`) and supersession (`contradicts`) collectors, both default-off, and invalidates the entity-density cache after commit. |
 
 ---
 

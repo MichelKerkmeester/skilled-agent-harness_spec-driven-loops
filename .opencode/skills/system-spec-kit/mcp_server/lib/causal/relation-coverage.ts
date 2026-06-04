@@ -119,7 +119,7 @@ function buildRelationCoverageState(
     status,
     remediationHint: status === 'met'
       ? null
-      : `Below target: ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}. Run ${BACKFILL_COMMAND} to infer typed edges from spec-document chains + lineage links (bounded, created_by='auto', idempotent); 'supports' also grows via post-insert enrichment on save, and any typed relation can be set explicitly via memory_causal_link.`,
+      : `Below target: ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}. Run ${BACKFILL_COMMAND} to infer typed edges from spec-document chains + lineage links (bounded, created_by='auto', idempotent). Additional similarity-derived 'supports' and structural-supersession 'contradicts' edges are available via the OPT-IN collectors: memory_causal_stats({ backfill: { dryRun:false, similarity:true, contradicts:true } }). 'supports' also grows via post-insert enrichment on save, and any typed relation can be set explicitly via memory_causal_link.`,
   };
 }
 

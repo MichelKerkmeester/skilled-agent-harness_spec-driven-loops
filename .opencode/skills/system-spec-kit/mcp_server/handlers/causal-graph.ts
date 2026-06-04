@@ -103,6 +103,10 @@ interface CausalStatsArgs {
     dryRun?: boolean;
     limit?: number;
     actor?: string;
+    // OPT-IN collectors (default false): see backfillRelationInference.
+    similarity?: boolean;
+    contradicts?: boolean;
+    similarityThreshold?: number;
   };
 }
 
@@ -824,6 +828,9 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
           dryRun: backfillRequest.dryRun !== false,
           limit: backfillRequest.limit,
           actor: backfillRequest.actor ?? 'memory_causal_stats:backfill',
+          similarity: backfillRequest.similarity,
+          contradicts: backfillRequest.contradicts,
+          similarityThreshold: backfillRequest.similarityThreshold,
         });
       } catch (error: unknown) {
         logCausalHandlerError('memory_causal_stats:backfill', error);
