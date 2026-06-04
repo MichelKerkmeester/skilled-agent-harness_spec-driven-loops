@@ -4,12 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -20,31 +20,191 @@
       "lazy init process exit daemon"
     ],
     "key_topics": [
-      "front-proxy",
-      "launcher",
-      "cold-start",
-      "lazy-init",
-      "daemon-recycle",
-      "mcp-connect"
+      "front",
+      "proxy",
+      "hardening",
+      "mcp",
+      "connecting",
+      "forever",
+      "daemon",
+      "recycle",
+      "hang",
+      "cold",
+      "start",
+      "timeout"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/bin/lib/launcher-session-proxy.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      "mcp_server/context-server.ts",
+      "mcp_server/tests/launcher-session-proxy.vitest.ts",
+      "lib/runtime/memory-runtime-guard.ts",
+      "tests/launcher-session-proxy.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Three defensive front-proxy fixes so an externally-killed or slow-booting mk-spec-memory daemon never presents as an indefinite 'connecting…' hang: bound the proxy cold-start probe window (120->30 attempts, ~176s->~41s, env-tunable), fail-fast with a retryable -32001 JSON-RPC error on an unbridgeable lease-held secondary session, and make the daemon lazy-init FATALs throw (caller gets a structured tool error + the init guard retries) instead of process.exit downing the shared daemon for every client.",
+    "entities": [
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/launcher-session-proxy.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-runtime-guard.ts",
+        "kind": "code",
+        "path": "lib/runtime/memory-runtime-guard.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Proxy Recycle Hardening",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "1. SUMMARY",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "2. QUALITY GATES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "3. ARCHITECTURE",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "FIX ADDENDUM: AFFECTED SURFACES",
+        "kind": "heading",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria All",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "the",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A 2026-06-04 incident left `mk-spec-memory` stuck at `connecting…` in new sessions after an operator externally SIGTERM-killed the daemon child during a from-source DB rebuild. A parallel-agent deep review root-caused three latent defects that turn a transient teardown race into an *apparently permanent* hang:",
     "created_at": "2026-06-04T09:30:00Z",
-    "last_save_at": "2026-06-04T09:30:00Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-04T09:45:55.207Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }
