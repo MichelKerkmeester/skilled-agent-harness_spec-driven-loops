@@ -1,17 +1,17 @@
 ---
 title: "Implementation Summary: Relation-Backfill Review Remediation"
-description: "Remediated the relation-inference backfill deep-review findings: a relation-agnostic conflict guard (hasConflictingValidEdge, reusing relationsConflict) stops a committed backfill from silently invalidating a pre-existing valid edge; written/byRelation now come from a committed valid-auto-edge delta (honest on re-runs); the inner backfill schema is strict; and five maintainability P2s are cleared. tsc clean; 179 tests green across 9 suites; commit + deploy stay user-gated."
+description: "Remediated the relation-inference backfill deep-review findings: a relation-agnostic conflict guard (hasConflictingValidEdge, reusing relationsConflict) stops a committed backfill from silently invalidating a pre-existing valid edge; written/byRelation now come from a committed valid-auto-edge delta (honest on re-runs); the inner backfill schema is strict; and five maintainability P2s are cleared. tsc clean; 179 tests green across 9 suites; committed bb61e8864e, deployed, and the production backfill was executed (302 new edges, skippedConflicting 0)."
 importance_tier: "important"
 contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation"
-    last_updated_at: "2026-06-04T14:30:00Z"
+    last_updated_at: "2026-06-04T15:30:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "All fixes landed; tsc clean; 179 tests green; packet docs written"
-    next_safe_action: "Strict-validate packet; commit + deploy stay user-gated"
+    recent_action: "Committed bb61e8864e + deployed, production backfill executed (302 edges)"
+    next_safe_action: "Done. Shipped + deployed + backfilled, guard held (skippedConflicting 0)"
     blockers: []
-    completion_pct: 90
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "Suppress the conflicting backfill emission rather than alter the contradiction-detection labeling; the contradicts direction is intentional."
@@ -29,7 +29,7 @@ _memory:
 | Field | Value |
 |-------|-------|
 | **Level** | 3 |
-| **Status** | Complete (commit + deploy user-gated) |
+| **Status** | Shipped (committed + deployed + production backfill executed) |
 | **Date** | 2026-06-04 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -79,7 +79,7 @@ See `decision-record.md` (ADR-001..004):
 - `npx vitest run` over the required + keep-green suites (`relation-backfill-unit`, `relation-backfill-similarity`, `relation-backfill-conflict`, `relation-coverage-unit`, `causal-stats-output`, `causal-edges-unit`, `handler-causal-graph`, `mcp-input-validation`, `contradiction-detection`) → 179 passed across 9 files.
 - New `relation-backfill-conflict.vitest.ts` proves the four P0 requirements + the two P1 honesty requirements: reciprocal `caused` stays valid while the conflicting `contradicts` is skipped (`skippedConflicting >= 1`); a pre-existing manual `caused` survives; `written===0` on a second committed run; `result.byRelation` deep-equals the live valid-auto-edge distribution.
 - Comment-hygiene: grep confirms no spec-path/packet/ADR/REQ/CHK/finding ids remain in production code comments.
-- Post-deploy (pending, user-gated): `memory_causal_stats({ backfill: { dryRun: false, contradicts: true } })` on the production DB writes only non-conflicting auto edges and reports any suppressed pairs under `skippedConflicting`.
+- Post-deploy (executed 2026-06-04): `memory_causal_stats({ backfill: { dryRun:false, similarity:true, contradicts:true, limit:2000 } })` ran on the production DB. Scanned 2926, inferred 1810, written 302 (caused 102, contradicts 100, supports 100, each at the per-relation 100/15min window cap), skippedConflicting 0 (no invalidation, the SEC-001 guard held in production). Coverage rose 39.91% to 43.59% (total_edges 9258 to 9608), caused 3 to 103 (still below the 5% target structurally because `supports` dominates the inferred distribution).
 <!-- /ANCHOR:verification -->
 
 ---
