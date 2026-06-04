@@ -69,6 +69,10 @@ describe('memory_causal_stats output schema', () => {
     }
 
     expect(parsed.data.relationCoverage.backfillJob.name).toBe('autonomous-causal-relation-backfill');
+    expect(parsed.data.relationCoverage.backfillJob.implemented).toBe(false);
+    expect(parsed.data.relationCoverage.backfillJob.command).toBeNull();
+    // The autonomous relation-backfill is not wired; surfaced hints must not promise the no-op autoRepair command.
+    expect(parsed.hints.join('\n')).not.toContain('autoRepair');
     expect(parsed.data.relationCoverage.current.map((entry: { relation: string }) => entry.relation)).toEqual([
       'caused',
       'supports',

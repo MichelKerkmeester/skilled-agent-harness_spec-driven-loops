@@ -24,7 +24,11 @@ interface RelationCoverageState {
   backfillJob: {
     name: string;
     scope: string;
-    command: string;
+    // Honest signal: the autonomous relation-backfill is NOT wired. No command balances relations —
+    // 'supports' edges grow via post-insert enrichment on save (default-on); typed relations require
+    // explicit memory_causal_link. `implemented` stays false and `command` null until a real job exists.
+    implemented: boolean;
+    command: string | null;
     lastBackfillAt: string | null;
   };
   targets: RelationCoverageTarget[];
@@ -102,7 +106,8 @@ function buildRelationCoverageState(
     backfillJob: {
       name: 'autonomous-causal-relation-backfill',
       scope: 'memory causal graph relation balancing across caused/supports/contradicts/supersedes/produced/cited_by',
-      command: BACKFILL_COMMAND,
+      implemented: false,
+      command: null,
       lastBackfillAt: readLastBackfillAt(db),
     },
     targets,
@@ -110,7 +115,7 @@ function buildRelationCoverageState(
     status,
     remediationHint: status === 'met'
       ? null
-      : `Run ${BACKFILL_COMMAND} to backfill relation coverage; prioritize ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}.`,
+      : `Relation balancing is not auto-backfilled: 'supports' edges come from post-insert enrichment on save (default-on); typed relations (caused/contradicts/supersedes/produced/cited_by) require explicit memory_causal_link. Below target: ${failing.map((entry) => entry.relation).join(', ') || 'unlinked records'}.`,
   };
 }
 
