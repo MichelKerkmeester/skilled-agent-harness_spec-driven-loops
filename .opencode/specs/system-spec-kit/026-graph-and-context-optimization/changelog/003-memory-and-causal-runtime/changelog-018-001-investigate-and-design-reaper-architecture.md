@@ -68,3 +68,7 @@ None. Research-only phase.
 - Implement the three-layer B+D+A reaper in follow-on packet 010/005-fix-rerank-sidecar-accumulation-with-three-layer-reaper using the Files-to-Change list and ADRs produced here.
 - Run the parity fixture matrix after implementation to confirm JS and Python twins agree on identity-check semantics.
 - Validate the identity-verified PID check against macOS `ps -p PID -o lstart= -o comm=` format contracts in the implementation test suite.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

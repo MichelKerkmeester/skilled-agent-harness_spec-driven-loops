@@ -68,3 +68,7 @@ All three findings were closed with surgical edits and fixture coverage. The lau
 
 - Verify the bin-test path after sidecar coupling removal. The `cd .opencode/skills/system-spec-kit && node node_modules/vitest/vitest.mjs` path referenced in the plan was absent at run time. Equivalent tests ran from `.opencode/` using the installed `skills/system-spec-kit/mcp_server/node_modules/vitest/vitest.mjs`.
 - Wire mid-run reindex cancellation when a production caller exists. The initial queued-cancellation guard remains active. Runtime cancellation is unsupported until a real caller is introduced, per ADR-003.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

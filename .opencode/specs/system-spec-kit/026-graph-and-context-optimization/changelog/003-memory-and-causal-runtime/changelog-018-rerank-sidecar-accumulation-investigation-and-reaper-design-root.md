@@ -51,3 +51,7 @@ This phase parent groups 1 child phases spanning 2026-05-23 to 2026-05-23. Each 
 ### Follow-Ups
 
 - None.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

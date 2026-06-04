@@ -69,3 +69,7 @@ This phase delivered the foundation layer: the ledger v2 schema with owner ident
 - Integrate owner identity data into the launcher pre-flight reaper phase (covered by child packet 003).
 - Add app self-reaper behavior using `should_reap_row` in the app self-check phase (covered by child packet 002).
 - Verify live `ps` output shape once a non-sandboxed environment is available. The `/bin/ps -p PID -o lstart= -o comm=` command was blocked by the build sandbox during implementation.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

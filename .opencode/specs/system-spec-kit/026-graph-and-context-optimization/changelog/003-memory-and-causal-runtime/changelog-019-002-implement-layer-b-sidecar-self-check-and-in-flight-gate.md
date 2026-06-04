@@ -68,3 +68,7 @@ Layer B owner self-check, Layer A idle backstop, a shared `InFlightGate` plus st
 
 - Forward the new reaper env knobs through `start.sh` and launcher twins. Env forwarding is owned by later 010/005 child phases and was intentionally out of scope here.
 - Integrate launcher owner registration so the app can safely Layer B self-reap empty-owner legacy rows. Until that lands, idle cleanup remains the only active exit path for orphaned rows with no registered owners.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

@@ -80,3 +80,7 @@ Nine findings were closed in a single commit. Schema and location drifts (F2, F3
 - Validate strict packet validation once the spec folder is finalized and confirm `validate.sh --strict` exits 0.
 - Track remaining 21 P1 and 68 P2 deferred findings from arc 010/001 investigation for future prioritization.
 - Confirm `test_concurrent_sidecar_adds_do_not_lose_rows` coverage remains valid against the `.lock` file pattern added for F69 after any future ledger refactoring.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

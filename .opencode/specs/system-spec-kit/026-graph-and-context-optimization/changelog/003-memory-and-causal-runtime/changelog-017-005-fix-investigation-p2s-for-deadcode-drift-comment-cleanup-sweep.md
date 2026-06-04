@@ -71,3 +71,7 @@ Arc 010/001 had recorded 68 P2 cleanup findings across embedder module surfaces.
 - Address the 34 deferred findings. These require dedicated hardening packets covering env policy, signal handling, filesystem durability, credential cache, public response shape and test-only API constraints.
 - Investigate the F48 random-id monotonic flake observed on the first embedder vitest run to determine whether it is a test infrastructure issue or a timing race in the production path.
 - Resolve the CJS test command path discrepancy. The literal command in the spec references a `node_modules/vitest/vitest.mjs` path that does not exist in the current checkout.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.

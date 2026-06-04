@@ -64,3 +64,7 @@ The rerank sidecar launcher was silently dropping the four approved reaper contr
 
 - Integration smoke is a manual post-merge runbook. The sandbox blocks the local port bind during the bounded smoke run, so the owner-death telemetry check requires an operator environment with full launcher access.
 - The `system-rerank-sidecar` skill was removed in a subsequent cleanup commit (`696c889887`). If the skill is reinstated, the env forwarding and operator docs from this phase should be treated as the baseline.
+
+## Later Update (2026-06-04)
+
+The rerank-sidecar runtime files referenced in this changelog were later removed in cleanup commits 74b9677494, b564013c0e and 696c889887. This entry records the work as it shipped at the time. The parent packet status is now Shipped then removed.
