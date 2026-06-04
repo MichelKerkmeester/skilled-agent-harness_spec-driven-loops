@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "tool layer map drift",
+      "memory_causal_unlink missing layer",
+      "layer-definitions vitest failing",
+      "registered tool no layer definition",
+      "L6 analysis causal unlink",
+      "tool layer map drift plan",
+      "memory_causal_unlink l6 plan",
+      "layer-definitions fix plan",
+      "tool layer map drift tasks",
+      "memory_causal_unlink l6 tasks",
+      "layer-definitions fix tasks",
+      "tool layer map drift summary"
+    ],
+    "key_topics": [
+      "tool",
+      "layer",
+      "map",
+      "drift",
+      "memory_causal_unlink",
+      "layer-definitions",
+      "l6",
+      "analysis",
+      "vitest",
+      "registry",
+      "parity",
+      "prefix"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "lib/architecture/layer-definitions.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/architecture/layer-definitions.ts",
+      "tool-schemas.ts",
+      "tests/layer-definitions.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "layer-definitions.ts",
+        "kind": "code",
+        "path": "lib/architecture/layer-definitions.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-schemas.ts",
+        "kind": "code",
+        "path": "tool-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "code",
+        "path": "tests/layer-definitions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Add memory_causal_unlink to the L6 (Analysis) tools array so the derived TOOL_LAYER_MAP gains the entry.",
+    "created_at": "2026-06-04T00:00:00.000Z",
+    "last_save_at": "2026-06-04T00:00:00.000Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}
