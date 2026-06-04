@@ -18,11 +18,11 @@ import type Database from 'better-sqlite3';
 import {
   init as initCausalEdges,
   insertEdgesBatch,
-  createSpecDocumentChain,
   RELATION_TYPES,
   type RelationType,
 } from '../storage/causal-edges.js';
 import { invalidateEntityDensityCache } from '../search/entity-density.js';
+import { relationsConflict } from '../graph/contradiction-detection.js';
 
 /* ───────────────────────────────────────────────────────────────
    1. CONSTANTS
@@ -46,6 +46,13 @@ const SIMILARITY_SUPPORTS_STRENGTH = 0.35;
 // Structural supersession is a strong-but-not-document-chain signal, so the
 // 'contradicts' edge sits just under the lineage 'caused' strength.
 const SUPERSESSION_CONTRADICTS_STRENGTH = 0.3;
+
+// Spec-document-chain inferred-edge strengths. These mirror the lineage/similarity
+// constants above and deliberately differ from createSpecDocumentChain's manual
+// strengths (0.7-0.9): an inferred auto edge is a low-confidence promotion of
+// recorded structure, not the high-confidence manual chain the creator emits.
+const SPEC_CHAIN_CAUSED_STRENGTH = 0.4;
+const SPEC_CHAIN_SUPPORTS_STRENGTH = 0.4;
 
 // Defaults for the opt-in similarity collector. The cached related_memories
 // column stores similarity on a 0-100 scale; we only promote a neighbour to a
@@ -93,6 +100,12 @@ interface BackfillRelationInferenceResult {
   inferred: number;
   skipped: number;
   written: number;
+  // Auto edges suppressed because the (source,target) pair already carries a
+  // VALID edge with a conflicting relation (e.g. a lineage 'caused' edge blocks
+  // the supersession 'contradicts' for the same directed pair). These are NOT
+  // counted as written and never reach the contradiction-detection invalidation
+  // path, so they cannot silently invalidate a pre-existing valid edge.
+  skippedConflicting: number;
   byRelation: Record<string, number>;
 }
 
@@ -360,6 +373,7 @@ export function backfillRelationInference(
     inferred: 0,
     skipped: 0,
     written: 0,
+    skippedConflicting: 0,
     byRelation: {},
   };
 
@@ -496,98 +510,68 @@ export function backfillRelationInference(
       inferred,
       skipped: inferred,
       written: 0,
+      skippedConflicting: 0,
       byRelation,
     };
   }
 
   // ── EXECUTE: transactional, guard-respecting writes ─────────────
+  // Order matters for the conflict guard: the NON-conflicting collectors
+  // (spec-chain + lineage 'caused', plus similarity 'supports' which never
+  // conflicts with another auto inference) are inserted FIRST so the
+  // conflict-prone collectors (supersession 'contradicts', and 'supports' if a
+  // pre-existing conflicting edge exists) can see them as valid in-transaction
+  // edges and SKIP rather than invalidate them.
   let written = 0;
+  let skippedConflicting = 0;
+
+  // Per-relation snapshot of VALID auto edges before the write. `written` and
+  // `byRelation` are derived from the DELTA against this snapshot so pre-existing
+  // (upserted) edges and edges silently invalidated by contradiction-detection
+  // are never miscounted as freshly written — the count stays honest on re-runs.
+  const beforeCounts = countValidAutoEdgesByRelation(db);
+
+  const specChainEdges: InferredEdge[] = [];
+  for (const chain of specChains) {
+    specChainEdges.push(...predictSpecChainEdges(chain));
+  }
 
   const execute = db.transaction(() => {
-    let total = 0;
+    // Insert the non-conflicting structural edges first. Spec-chain + lineage
+    // are 'caused'/'supports'; createSpecDocumentChain defaults created_by to
+    // 'manual', but we want 'auto' for auditability, so we re-emit through
+    // insertEdgesBatch with createdBy:'auto' (every edge is still bound-checked,
+    // window-capped, and auto-strength clamped by insertEdge).
+    insertInferredEdges(specChainEdges);
+    insertInferredEdges(lineageEdges);
 
-    // Spec-document chains via the established creator (it batches through
-    // insertEdge, so every edge is bound-checked + window-capped + auto-strength
-    // clamped). createSpecDocumentChain hard-codes created_by via its batch
-    // default ('manual'); we instead want created_by='auto' for auditability,
-    // so we re-emit the same edges through insertEdgesBatch with created_by.
-    for (const chain of specChains) {
-      const edges = predictSpecChainEdges(chain).map((edge) => ({
-        sourceId: edge.sourceId,
-        targetId: edge.targetId,
-        relation: edge.relation,
-        strength: edge.strength,
-        evidence: edge.evidence,
-        createdBy: 'auto',
-      }));
-      if (edges.length === 0) continue;
-      const result = insertEdgesBatch(edges);
-      total += result.inserted;
-      for (const edge of edges) {
-        // Best-effort per-relation accounting; batch reports an aggregate
-        // inserted count, so we attribute proportionally by emitting per edge
-        // only when the batch inserted at least that many.
-        bumpRelation(edge.relation, 0); // ensure key exists
-      }
-    }
-
-    // Lineage 'caused' edges.
-    if (lineageEdges.length > 0) {
-      const result = insertEdgesBatch(lineageEdges.map((edge) => ({
-        sourceId: edge.sourceId,
-        targetId: edge.targetId,
-        relation: edge.relation,
-        strength: edge.strength,
-        evidence: edge.evidence,
-        createdBy: 'auto',
-      })));
-      total += result.inserted;
-    }
-
-    // OPT-IN similarity 'supports' edges (from cached related_memories).
-    if (similarityEdges.length > 0) {
-      const result = insertEdgesBatch(similarityEdges.map((edge) => ({
-        sourceId: edge.sourceId,
-        targetId: edge.targetId,
-        relation: edge.relation,
-        strength: edge.strength,
-        evidence: edge.evidence,
-        createdBy: 'auto',
-      })));
-      total += result.inserted;
-    }
-
-    // OPT-IN supersession 'contradicts' edges (from structural lineage).
-    if (supersessionEdges.length > 0) {
-      const result = insertEdgesBatch(supersessionEdges.map((edge) => ({
-        sourceId: edge.sourceId,
-        targetId: edge.targetId,
-        relation: edge.relation,
-        strength: edge.strength,
-        evidence: edge.evidence,
-        createdBy: 'auto',
-      })));
-      total += result.inserted;
-    }
-
-    return total;
+    // Now the conflict-prone collectors. hasConflictingValidEdge sees the edges
+    // just inserted above within THIS transaction, so a supersession
+    // 'contradicts' whose pair already has a valid lineage 'caused' is skipped
+    // (it would otherwise mislabel an evolution as a contradiction and trigger
+    // contradiction-detection to invalidate the valid 'caused' edge). The same
+    // guard protects any PRE-EXISTING manual/higher-strength conflicting edge.
+    skippedConflicting += insertNonConflictingEdges(db, similarityEdges);
+    skippedConflicting += insertNonConflictingEdges(db, supersessionEdges);
   });
 
   try {
-    written = execute();
+    execute();
   } catch {
-    written = 0;
+    // best-effort: a failed transaction leaves the DB unchanged; written stays 0
   }
 
-  // Recompute byRelation from what is now present for the inferred pairs so the
-  // summary reflects committed reality, not the candidate population.
-  if (written > 0) {
-    countWrittenByRelation(
-      db,
-      specChains,
-      [...lineageEdges, ...similarityEdges, ...supersessionEdges],
-      byRelation,
-    );
+  // Derive written + byRelation from the committed delta (newly-valid auto edges
+  // only). This is honest across re-runs (upserts add nothing) and immune to the
+  // contradiction-detection invalidation path (an invalidated edge drops out of
+  // the valid count, so it is never reported as written).
+  const afterCounts = countValidAutoEdgesByRelation(db);
+  for (const relation of Object.keys(afterCounts)) {
+    const delta = afterCounts[relation] - (beforeCounts[relation] ?? 0);
+    if (delta > 0) {
+      bumpRelation(relation, delta);
+      written += delta;
+    }
   }
 
   // FRESHNESS: edge writers call invalidateDegreeCache() internally, but no
@@ -602,6 +586,7 @@ export function backfillRelationInference(
     inferred,
     written,
     skipped: Math.max(0, inferred - written),
+    skippedConflicting,
     byRelation,
   };
 }
@@ -611,9 +596,12 @@ export function backfillRelationInference(
 ----------------------------------------------------------------*/
 
 /**
- * Predict the typed edges createSpecDocumentChain would emit for one
- * document-type map. Kept in lock-step with createSpecDocumentChain's pairing
- * rules so dryRun reporting and the actual write agree.
+ * Predict the typed edges this backfill emits for one document-type map. The
+ * PAIRING (which document types link to which, and the relation) mirrors
+ * createSpecDocumentChain so dryRun reporting and the actual write agree, but the
+ * STRENGTHS deliberately differ: these are low-confidence auto inferences
+ * (SPEC_CHAIN_*_STRENGTH), not the high-confidence manual strengths (0.7-0.9)
+ * the creator hard-codes.
  */
 function predictSpecChainEdges(ids: Record<string, number>): InferredEdge[] {
   const edges: InferredEdge[] = [];
@@ -634,12 +622,12 @@ function predictSpecChainEdges(ids: Record<string, number>): InferredEdge[] {
     });
   };
 
-  push(ids.spec, ids.plan, RELATION_TYPES.CAUSED, 0.4, 'spec->plan chain');
-  push(ids.plan, ids.tasks, RELATION_TYPES.CAUSED, 0.4, 'plan->tasks chain');
-  push(ids.tasks, ids.implementation_summary, RELATION_TYPES.CAUSED, 0.4, 'tasks->impl chain');
-  push(ids.checklist, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'checklist supports spec');
-  push(ids.decision_record, ids.plan, RELATION_TYPES.SUPPORTS, 0.4, 'decision-record supports plan');
-  push(ids.research, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'research supports spec');
+  push(ids.spec, ids.plan, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'spec->plan chain');
+  push(ids.plan, ids.tasks, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'plan->tasks chain');
+  push(ids.tasks, ids.implementation_summary, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'tasks->impl chain');
+  push(ids.checklist, ids.spec, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'checklist supports spec');
+  push(ids.decision_record, ids.plan, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'decision-record supports plan');
+  push(ids.research, ids.spec, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'research supports spec');
 
   return edges;
 }
@@ -653,42 +641,96 @@ function specChainCandidateCount(chains: Array<Record<string, number>>): number 
 }
 
 /**
- * After a committed run, read the actual auto edges back for the inferred
- * source/target pairs and tally them by relation. This gives an accurate
- * byRelation distribution that reflects guard-rejected duplicates/bounds.
+ * Re-emit inferred edges through insertEdgesBatch with createdBy:'auto'. Every
+ * edge still flows through insertEdge's guards (bounds, window cap, auto-strength
+ * clamp, self-loop/orphan rejection). Used by all collectors whose edges can
+ * never conflict with another auto inference on the same pair.
  */
-function countWrittenByRelation(
-  db: Database.Database,
-  specChains: Array<Record<string, number>>,
-  directEdges: InferredEdge[],
-  byRelation: Record<string, number>,
-): void {
-  const candidates: InferredEdge[] = [];
-  for (const chain of specChains) {
-    candidates.push(...predictSpecChainEdges(chain));
-  }
-  candidates.push(...directEdges);
+function insertInferredEdges(edges: InferredEdge[]): void {
+  if (edges.length === 0) return;
+  insertEdgesBatch(edges.map((edge) => ({
+    sourceId: edge.sourceId,
+    targetId: edge.targetId,
+    relation: edge.relation,
+    strength: edge.strength,
+    evidence: edge.evidence,
+    createdBy: 'auto',
+  })));
+}
 
-  let stmt: Database.Statement;
-  try {
-    stmt = db.prepare(`
-      SELECT 1 AS found FROM causal_edges
-      WHERE source_id = ? AND target_id = ? AND relation = ? AND created_by = 'auto'
-    `);
-  } catch {
-    return;
-  }
-
-  for (const edge of candidates) {
-    try {
-      const row = stmt.get(edge.sourceId, edge.targetId, edge.relation) as { found?: number } | undefined;
-      if (row?.found === 1) {
-        byRelation[edge.relation] = (byRelation[edge.relation] ?? 0) + 1;
-      }
-    } catch {
-      // skip
+/**
+ * Insert inferred edges, but FIRST drop any whose (source,target) pair already
+ * carries a VALID edge with a conflicting relation (per relationsConflict).
+ * Returns the number skipped. The check runs against the live connection inside
+ * the caller's transaction, so it observes edges inserted earlier in the SAME
+ * transaction — this is what stops a supersession 'contradicts' from
+ * invalidating a lineage 'caused' inserted moments before, and protects any
+ * pre-existing manual/higher-strength conflicting edge.
+ */
+function insertNonConflictingEdges(db: Database.Database, edges: InferredEdge[]): number {
+  if (edges.length === 0) return 0;
+  const safe: InferredEdge[] = [];
+  let skipped = 0;
+  for (const edge of edges) {
+    if (hasConflictingValidEdge(db, edge.sourceId, edge.targetId, edge.relation)) {
+      skipped++;
+      continue;
     }
+    safe.push(edge);
   }
+  insertInferredEdges(safe);
+  return skipped;
+}
+
+/**
+ * True if the (sourceId,targetId) pair already has a VALID (invalid_at IS NULL)
+ * edge whose relation conflicts with `relation` per the shared conflict rules.
+ * Mirrors detectContradictions' valid-edge query so the backfill suppresses an
+ * edge that contradiction-detection would otherwise resolve by invalidating the
+ * pre-existing valid edge. Fails open (returns false) on any query error.
+ */
+function hasConflictingValidEdge(
+  db: Database.Database,
+  sourceId: string,
+  targetId: string,
+  relation: RelationType,
+): boolean {
+  try {
+    const hasInvalidAt = columnExists(db, 'causal_edges', 'invalid_at');
+    const validClause = hasInvalidAt ? "AND (invalid_at IS NULL OR invalid_at = '')" : '';
+    const rows = db.prepare(`
+      SELECT relation FROM causal_edges
+      WHERE source_id = ? AND target_id = ? ${validClause}
+    `).all(sourceId, targetId) as Array<{ relation: string }>;
+    return rows.some((row) => relationsConflict(row.relation, relation));
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Tally VALID (invalid_at IS NULL) created_by='auto' edges grouped by relation.
+ * Snapshotting this before/after the write lets the caller report only the
+ * committed delta as `written`/`byRelation`, which is honest across re-runs and
+ * immune to contradiction-detection invalidation. Returns {} on any error.
+ */
+function countValidAutoEdgesByRelation(db: Database.Database): Record<string, number> {
+  const out: Record<string, number> = {};
+  try {
+    const hasInvalidAt = columnExists(db, 'causal_edges', 'invalid_at');
+    const validClause = hasInvalidAt ? "AND (invalid_at IS NULL OR invalid_at = '')" : '';
+    const rows = db.prepare(`
+      SELECT relation, COUNT(*) AS count FROM causal_edges
+      WHERE created_by = 'auto' ${validClause}
+      GROUP BY relation
+    `).all() as Array<{ relation: string; count: number }>;
+    for (const row of rows) {
+      out[row.relation] = row.count;
+    }
+  } catch {
+    // best-effort: an empty snapshot yields written=0 rather than a crash
+  }
+  return out;
 }
 
 /* ───────────────────────────────────────────────────────────────

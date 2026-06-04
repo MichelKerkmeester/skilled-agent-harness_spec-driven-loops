@@ -43,7 +43,6 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
       ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
       "spec.md",
@@ -62,12 +61,6 @@
         "name": "cli_reference.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 1** of the MiniMax 2.7 direct-API provider optimization for cli-opencode and sk-prompt-small-model specification.",
     "created_at": "2026-05-28T08:38:26Z",
-    "last_save_at": "2026-05-30T10:12:01.084Z",
+    "last_save_at": "2026-06-04T03:35:27.242Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

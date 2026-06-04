@@ -120,15 +120,3 @@ Phase 001 catalogues every edge case with concrete file paths.
 | Advisor cache stale during multi-phase run | High | Medium | Rebuild advisor in Phase 002 + final rebuild in Phase 006 |
 | Parallel cli-codex stepping on same files | Low | Medium | Phases 003/004/005 partition by directory; each cli-codex owns a subtree |
 | Test fixtures embed old names as expected output | Medium | Low | Phase 001 inventory flags fixtures; Phase 003 updates them; Phase 006 runs full test suite |
-| z_archive references accidentally edited | Low | Low | All cli-codex briefs explicitly exclude `z_archive/` |
-| Historical commit messages get rewritten | Low | High | NEVER rewrite history; only forward changes; commit messages for THIS work use new names |
-
----
-
-## 5. EXECUTION CONTRACT
-
-- **Spec doc creation**: Claude (this orchestrator)
-- **Implementation work**: cli-codex (gpt-5.5, high reasoning, fast tier, --full-auto sandbox)
-- **Parallelism**: Phases 003/004/005 may dispatch multiple cli-codex in parallel (different file subtrees)
-- **Verification**: Claude orchestrates final probe + Opus @review sub-agent
-- **Branch policy**: stay on `main`; no feature branches per repo memory rule

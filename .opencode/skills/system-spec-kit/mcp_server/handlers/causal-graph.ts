@@ -896,11 +896,20 @@ async function handleMemoryCausalStats(args: CausalStatsArgs = {}): Promise<MCPR
       hints.push('No causal links exist yet - use memory_causal_link to create relationships');
     }
     if (backfillResult) {
-      hints.push(
-        backfillResult.dryRun
-          ? `Relation-inference backfill (dry run): ${backfillResult.inferred} candidate edges from ${backfillResult.scanned} scanned rows. Re-run with backfill.dryRun=false to commit.`
-          : `Relation-inference backfill: wrote ${backfillResult.written} auto edges from ${backfillResult.scanned} scanned rows.`,
-      );
+      if (backfillResult.dryRun) {
+        hints.push(
+          `Relation-inference backfill (dry run): ${backfillResult.inferred} candidate edges from ${backfillResult.scanned} scanned rows. Re-run with backfill.dryRun=false to commit.`,
+        );
+      } else {
+        // `written` is the count of NEWLY-inserted valid auto edges (a re-run
+        // upserts and reports 0); it does not over-claim pre-existing edges.
+        const skippedNote = backfillResult.skippedConflicting > 0
+          ? ` (${backfillResult.skippedConflicting} skipped: conflicting valid edge already present)`
+          : '';
+        hints.push(
+          `Relation-inference backfill: wrote ${backfillResult.written} new auto edges from ${backfillResult.scanned} scanned rows${skippedNote}.`,
+        );
+      }
     }
 
     return createMCPSuccessResponse({

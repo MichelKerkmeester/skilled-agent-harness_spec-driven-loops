@@ -16,7 +16,9 @@
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/010-skill-benchmark-live-playbook-mode",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation",
     "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/012-sk-code-surface-nested-router",
-    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track"
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/013-skill-benchmark-fidelity-track",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/014-d4r-grader-fidelity-remediation",
+    "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/015-post-remediation-deep-review"
   ],
   "manual": {
     "depends_on": [],
@@ -109,7 +111,7 @@
     ],
     "causal_summary": "Evolve the `deep-agent-improvement` skill into a broader **`deep-improvement`** evaluation skill and add a third evaluation lane that benchmarks *skills themselves*.",
     "created_at": "2026-05-30T07:27:05.678Z",
-    "last_save_at": "2026-06-02T04:30:36.750Z",
+    "last_save_at": "2026-06-04T03:35:27.271Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

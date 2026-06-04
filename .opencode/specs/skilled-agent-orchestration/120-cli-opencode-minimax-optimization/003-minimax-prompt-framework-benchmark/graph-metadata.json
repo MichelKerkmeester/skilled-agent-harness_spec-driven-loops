@@ -41,25 +41,15 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "eval-loop/synthesis.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
-      "eval-loop/scripts/dispatch-minimax.cjs",
       "spec.md",
       "plan.md",
       "tasks.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "synthesis.md",
-        "kind": "doc",
-        "path": "eval-loop/synthesis.md",
-        "source": "derived"
-      },
       {
         "name": "prompt_templates.md",
         "kind": "doc",
@@ -76,24 +66,6 @@
         "name": "pattern-index.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli_prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
-        "source": "derived"
-      },
-      {
-        "name": "dispatch-minimax.cjs",
-        "kind": "file",
-        "path": "eval-loop/scripts/dispatch-minimax.cjs",
         "source": "derived"
       },
       {
@@ -197,11 +169,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of the Benchmark prompt frameworks for MiniMax 2.7 against coding fixtures and integrate the empirically-best framework specification.",
     "created_at": "2026-05-28T11:03:05Z",
-    "last_save_at": "2026-05-30T10:12:01.087Z",
+    "last_save_at": "2026-06-04T03:35:27.245Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

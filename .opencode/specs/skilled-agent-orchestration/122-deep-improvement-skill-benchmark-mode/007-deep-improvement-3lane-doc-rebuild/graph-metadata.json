@@ -4,6 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/007-deep-improvement-3lane-doc-rebuild",
   "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -119,8 +121,8 @@
       }
     ],
     "causal_summary": "Re-architect both `.opencode/skills/deep-improvement/feature_catalog/` and",
-    "created_at": "2026-05-31T14:05:02.640Z",
-    "last_save_at": "2026-05-31T14:05:02.640Z",
+    "created_at": "2026-06-04T10:32:49.989Z",
+    "last_save_at": "2026-06-04T10:32:49.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

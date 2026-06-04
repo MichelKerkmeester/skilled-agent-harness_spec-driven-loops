@@ -40,7 +40,6 @@
     "key_files": [
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
       ".opencode/skills/sk-prompt-small-model/SKILL.md",
       "spec.md"
     ],
@@ -55,12 +54,6 @@
         "name": "cli_reference.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-opencode/references/cli_reference.md",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
         "source": "derived"
       },
       {
@@ -108,7 +101,7 @@
     ],
     "causal_summary": "Make MiniMax 2.7 a first-class, efficiently-used model in the cli-opencode dispatch path. Phase 001 wires the `minimax` direct-API provider into cli-opencode + the small-model registry + the `sk-prompt-small-model` sentinel. Phase 002 runs a deep-research loop to determine how to best use and maximize the efficiency of MiniMax 2.7 through that path, producing concrete deltas for `sk-prompt-small-model` and `cli-opencode`.",
     "created_at": "2026-05-28T08:38:25Z",
-    "last_save_at": "2026-06-01T06:51:08.073Z",
+    "last_save_at": "2026-06-04T03:35:27.241Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

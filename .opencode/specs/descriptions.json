@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-03T06:37:59.293Z",
+  "generated": "2026-06-04T06:37:59.160Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -2471,7 +2471,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -3027,29 +3027,22 @@
     },
     {
       "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering",
-      "description": "Remediate hub-cli layering drift: pointer-ize precedence rule, fix STAR phantom, extend and CI-wire the sync guard, coordinated cluster treatment for ",
+      "description": "Feature Specification: Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub",
       "keywords": [
-        "remediate",
-        "hub-cli",
+        "feature",
+        "specification",
+        "prompt-knowledge",
         "layering",
-        "drift",
-        "pointer-ize",
-        "precedence",
-        "rule",
-        "fix",
-        "star",
-        "phantom",
-        "extend",
-        "ci-wire",
-        "sync",
-        "guard",
-        "coordinated",
-        "cluster",
-        "treatment",
-        "default-unverified",
-        "models"
+        "across",
+        "cli",
+        "skills",
+        "sk-prompt",
+        "frameworks",
+        "sk-prompt-small-model",
+        "model-craft",
+        "hub"
       ],
-      "lastUpdated": "2026-06-03T06:13:44.738Z"
+      "lastUpdated": "2026-06-03T14:51:58.036Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/001-design-architecture-and-data-contract",
@@ -3156,19 +3149,77 @@
         "specification",
         "refine-hub-cli-connections"
       ],
-      "lastUpdated": "2026-06-03T06:37:53.280Z"
+      "lastUpdated": "2026-06-03T07:05:22.966Z"
     },
     {
-      "specFolder": "skilled-agent-orchestration/131-doctor-install-alignment",
-      "description": "Feature Specification: /doctor + Install-Guide Alignment",
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+      "description": "Feature Specification: hub-doc-alignment-and-router",
       "keywords": [
         "feature",
         "specification",
-        "doctor",
-        "install-guide",
-        "alignment"
+        "hub-doc-alignment-and-router"
       ],
-      "lastUpdated": "2026-06-03T06:37:53.285Z"
+      "lastUpdated": "2026-06-03T14:51:58.049Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+      "description": "Feature Specification: model-profiles-and-benchmark-merge",
+      "keywords": [
+        "feature",
+        "specification",
+        "model-profiles-and-benchmark-merge"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.055Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/012-cli-doc-alignment",
+      "description": "Feature Specification: cli-doc-alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "cli-doc-alignment"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.061Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/013-card-relocation-and-guard",
+      "description": "Feature Specification: card-relocation-and-guard",
+      "keywords": [
+        "feature",
+        "specification",
+        "card-relocation-and-guard"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.068Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+      "description": "Feature Specification: doc-divider-sweep-and-sk-prompt-cleanup",
+      "keywords": [
+        "feature",
+        "specification",
+        "doc-divider-sweep-and-sk-prompt-cleanup"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.073Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+      "description": "Feature Specification: deferred-cleanup-entangled-playbook-assets",
+      "keywords": [
+        "feature",
+        "specification",
+        "deferred-cleanup-entangled-playbook-assets"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.079Z"
+    },
+    {
+      "specFolder": "skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+      "description": "Feature Specification: sk-prompt-playbook-forkability-decouple",
+      "keywords": [
+        "feature",
+        "specification",
+        "sk-prompt-playbook-forkability-decouple"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.083Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/131-relocate-model-registry-and-benchmarks",
@@ -3188,58 +3239,6 @@
         "framework"
       ],
       "lastUpdated": "2026-06-03T06:37:53.290Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/132-embedding-provider-local-first",
-      "description": "Make resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort); repair stale embedder fixtures.",
-      "keywords": [
-        "embedding",
-        "provider",
-        "local-first",
-        "resolveProvider",
-        "ollama",
-        "hf-local"
-      ],
-      "lastUpdated": "2026-06-02T21:06:00.000Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/133-readme-and-references-accuracy",
-      "description": "Feature Specification: README & References Accuracy Audit + Remediation",
-      "keywords": [
-        "feature",
-        "specification",
-        "readme",
-        "references",
-        "accuracy",
-        "audit",
-        "remediation"
-      ],
-      "lastUpdated": "2026-06-03T06:37:53.295Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/134-scouted-bugfix-batch-1",
-      "description": "8-agent scout (40 candidates -> top 5); 5 gpt-5.5-fast deep-dives confirm/refute (two pre-try lease-leak headlines refuted); 5 disjoint-file implement agents fix 5 confirmed defects across 10 files (2 shell hardenings, 1 IPC hardening, 2 MCP-server bugs), all stack-verified.",
-      "keywords": [
-        "bugfix",
-        "security",
-        "scout",
-        "deep-dive",
-        "verify-first",
-        "hardening"
-      ],
-      "lastUpdated": "2026-06-03T05:32:00.000Z"
-    },
-    {
-      "specFolder": "skilled-agent-orchestration/135-scouted-bugfix-batch-2",
-      "description": "Feature Specification: Scouted Bugfix Batch 2",
-      "keywords": [
-        "feature",
-        "specification",
-        "scouted",
-        "bugfix",
-        "batch"
-      ],
-      "lastUpdated": "2026-06-03T06:37:53.299Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/001-cli-gemini-creation",
@@ -4065,7 +4064,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -6734,7 +6733,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -6760,7 +6759,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -7799,6 +7798,105 @@
       "lastUpdated": "2026-06-01T13:35:43.799Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
+      "description": "Feature Specification: README & References Accuracy Audit + Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "readme",
+        "references",
+        "accuracy",
+        "audit",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.295Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
+      "description": "Feature Specification: Scouted Bugfix Train",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "train"
+      ],
+      "lastUpdated": "2026-06-03T14:51:58.171Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1",
+      "description": "8-agent scout (40 candidates -> top 5); 5 gpt-5.5-fast deep-dives confirm/refute (two pre-try lease-leak headlines refuted); 5 disjoint-file implement agents fix 5 confirmed defects across 10 files (2 shell hardenings, 1 IPC hardening, 2 MCP-server bugs), all stack-verified.",
+      "keywords": [
+        "bugfix",
+        "security",
+        "scout",
+        "deep-dive",
+        "verify-first",
+        "hardening"
+      ],
+      "lastUpdated": "2026-06-03T05:32:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
+      "description": "Feature Specification: Scouted Bugfix Batch 2",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "batch"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.299Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
+      "description": "Feature Specification: Scouted Bugfix Batch 3",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "batch"
+      ],
+      "lastUpdated": "2026-06-03T08:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
+      "description": "Feature Specification: Scouted Bugfix Batch 4",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "batch"
+      ],
+      "lastUpdated": "2026-06-03T09:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
+      "description": "Feature Specification: Scouted Bugfix Batch 5",
+      "keywords": [
+        "feature",
+        "specification",
+        "scouted",
+        "bugfix",
+        "batch"
+      ],
+      "lastUpdated": "2026-06-03T11:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
+      "description": "Feature Specification: Analytics and Learning Remediation",
+      "keywords": [
+        "analytics",
+        "learning",
+        "remediation",
+        "consumption-log",
+        "pii"
+      ],
+      "lastUpdated": "2026-06-03T11:00:00.000Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
       "description": "Feature Specification: Graph and Context Systems Master Research Packet",
       "keywords": [
@@ -8406,7 +8504,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -8928,7 +9026,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -10573,7 +10671,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -13070,6 +13168,32 @@
       "lastUpdated": "2026-06-03T06:37:53.356Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first",
+      "description": "Make resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort); repair stale embedder fixtures.",
+      "keywords": [
+        "embedding",
+        "provider",
+        "local-first",
+        "resolveProvider",
+        "ollama",
+        "hf-local"
+      ],
+      "lastUpdated": "2026-06-02T21:06:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on",
+      "description": "Feature Specification: Enrichment + Reconsolidation Default-On (Async)",
+      "keywords": [
+        "feature",
+        "specification",
+        "enrichment",
+        "reconsolidation",
+        "default-on",
+        "async"
+      ],
+      "lastUpdated": "2026-06-04T06:19:38.516Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
       "description": "Feature Specification: Code Graph",
       "keywords": [
@@ -13564,7 +13688,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -14362,6 +14486,18 @@
       "lastUpdated": "2026-06-01T11:13:19.742Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling/006-doctor-install-alignment",
+      "description": "Feature Specification: /doctor + Install-Guide Alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "doctor",
+        "install-guide",
+        "alignment"
+      ],
+      "lastUpdated": "2026-06-03T06:37:53.285Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability",
       "description": "Feature Specification: MCP daemon reliability (socket-dir, lifecycle, build-safety, embedding-provider memory)",
       "keywords": [
@@ -15144,7 +15280,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -15184,22 +15320,22 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
-      "description": "Feature Specification: XCE-Derived Memory System Refinement (Phase Parent)",
+      "description": "Feature Specification: XCE-Derived Spec Kit Refinement (Phase Parent)",
       "keywords": [
         "feature",
         "specification",
         "xce-derived",
-        "memory",
-        "system",
+        "spec",
+        "kit",
         "refinement",
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.800Z"
+      "lastUpdated": "2026-06-04T06:37:58.681Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-memory-write-safety",
@@ -15357,7 +15493,7 @@
       "lastUpdated": "2026-06-01T11:13:19.860Z"
     },
     {
-      "specFolder": "system-spec-kit/028-peck-teachings-adoption",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption",
       "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
       "keywords": [
         "feature",
@@ -15375,10 +15511,10 @@
         "review",
         "system"
       ],
-      "lastUpdated": "2026-06-02T16:26:46.260Z"
+      "lastUpdated": "2026-06-04T06:37:58.694Z"
     },
     {
-      "specFolder": "system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
       "description": "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit",
       "keywords": [
         "feature",
@@ -15390,10 +15526,10 @@
         "applicable",
         "system-spec-kit"
       ],
-      "lastUpdated": "2026-06-02T16:26:46.264Z"
+      "lastUpdated": "2026-06-04T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/028-peck-teachings-adoption/002-self-check-templates",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/002-self-check-templates",
       "description": "Feature Specification: Phase 2: self-check-templates",
       "keywords": [
         "feature",
@@ -15401,10 +15537,10 @@
         "phase",
         "self-check-templates"
       ],
-      "lastUpdated": "2026-06-02T16:26:46.270Z"
+      "lastUpdated": "2026-06-04T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/003-current-state-discipline",
       "description": "Feature Specification: Phase 3: current-state-discipline",
       "keywords": [
         "feature",
@@ -15412,10 +15548,10 @@
         "phase",
         "current-state-discipline"
       ],
-      "lastUpdated": "2026-06-02T16:26:46.275Z"
+      "lastUpdated": "2026-06-04T00:00:00Z"
     },
     {
-      "specFolder": "system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/004-constitutional-rule-review",
       "description": "Feature Specification: Phase 4: constitutional-rule-review",
       "keywords": [
         "feature",
@@ -15423,7 +15559,7 @@
         "phase",
         "constitutional-rule-review"
       ],
-      "lastUpdated": "2026-06-02T16:26:46.280Z"
+      "lastUpdated": "2026-06-04T00:00:00Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -19816,7 +19952,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-03T06:37:59.293Z"
+      "lastUpdated": "2026-06-04T06:37:59.160Z"
     }
   ]
 }

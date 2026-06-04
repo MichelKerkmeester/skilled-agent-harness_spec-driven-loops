@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
       ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
@@ -62,12 +61,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "cli_prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
-        "source": "derived"
-      },
       {
         "name": "prompt_quality_card.md",
         "kind": "doc",
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Master",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 113/006 records completed cross-CLI propagation of the 113/003 eval-loop finding that medium-density pre-planning beats dense pre-planning on SWE 1.6. The work updates the sk-prompt master CLI prompt quality card, mirrors the same guidance into four sibling CLI prompt quality cards, bumps sibling skill frontmatter versions, and adds sibling changelog entries.",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-05-30T10:12:00.903Z",
+    "last_save_at": "2026-06-04T03:35:27.085Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

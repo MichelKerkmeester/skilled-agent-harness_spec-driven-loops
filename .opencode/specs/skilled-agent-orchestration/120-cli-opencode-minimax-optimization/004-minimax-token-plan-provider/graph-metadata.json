@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
@@ -51,7 +50,6 @@
       ".opencode/skills/sk-prompt-small-model/description.json",
       ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
       ".opencode/skills/sk-prompt-small-model/graph-metadata.json",
-      ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
       ".opencode/skills/deep-improvement/scripts/model-benchmark/dispatch-model.cjs",
       ".opencode/skills/deep-loop-runtime/tests/unit/executor-config.vitest.ts",
       ".opencode/skills/sk-prompt-small-model/README.md",
@@ -62,12 +60,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -108,12 +100,6 @@
         "name": "pattern-index.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "cli_prompt_quality_card.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/assets/cli_prompt_quality_card.md",
         "source": "derived"
       },
       {
@@ -205,11 +191,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Switch",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The account holder switched from MiniMax pay-per-token (Direct API) to the **MiniMax Token Plan** (subscription, minimax.io). Phase 001 wired MiniMax in as a *direct-API* provider (`minimax` → `MINIMAX_API_KEY`, model `minimax/MiniMax-M2.7`). This phase re-points the default MiniMax path at the Token Plan while keeping the Direct API selectable.",
     "created_at": "2026-06-01T06:32:01.035Z",
-    "last_save_at": "2026-06-01T06:51:07.987Z",
+    "last_save_at": "2026-06-04T03:35:27.247Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

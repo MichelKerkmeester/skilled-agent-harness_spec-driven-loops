@@ -414,7 +414,10 @@ const memoryCausalLinkSchema = getSchema({
 const memoryCausalStatsSchema = getSchema({
   // Optional bounded relation-inference backfill. Defaults to a dry run; pass
   // { dryRun: false } to commit bounded, idempotent, created_by='auto' edges.
-  backfill: z.object({
+  // Built via getSchema so the nested object inherits the same strict/unknown-key
+  // rejection as the outer schema — a typo'd opt-in key (e.g. 'contradict') is
+  // rejected, not silently dropped.
+  backfill: getSchema({
     dryRun: z.boolean().optional(),
     limit: positiveIntMax(2000).optional(),
     actor: z.string().optional(),

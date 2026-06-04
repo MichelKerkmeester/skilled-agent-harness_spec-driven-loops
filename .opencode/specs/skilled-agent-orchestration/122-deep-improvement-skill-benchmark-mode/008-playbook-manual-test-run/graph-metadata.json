@@ -4,6 +4,8 @@
   "spec_folder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
   "parent_id": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -106,21 +108,15 @@
         "source": "derived"
       },
       {
-        "name": "Manual Test Run",
-        "kind": "proper_noun",
-        "path": "handover.md",
-        "source": "derived"
-      },
-      {
-        "name": "Scan Known Agent",
-        "kind": "proper_noun",
+        "name": "a",
+        "kind": "key_phrase",
         "path": "handover.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Run every scenario in `.opencode/skills/deep-improvement/manual_testing_playbook/`",
-    "created_at": "2026-05-31T15:06:19.898Z",
-    "last_save_at": "2026-05-31T15:06:19.898Z",
+    "created_at": "2026-06-04T10:32:49.990Z",
+    "last_save_at": "2026-06-04T10:32:49.990Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

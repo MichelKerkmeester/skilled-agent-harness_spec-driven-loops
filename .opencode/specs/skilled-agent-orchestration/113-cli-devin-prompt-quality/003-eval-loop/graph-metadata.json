@@ -40,73 +40,14 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "state/eval-loop-state.jsonl",
-      "state/best-variant.json",
-      "state/mutation-coverage.json",
-      "state/eval-loop-dashboard.md",
-      "iterations/iteration-001.md",
-      "scripts/loop.cjs",
-      "variants/v-001-baseline-star.md",
-      "state/eval-loop-config.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "scripts/converge.cjs",
-      "scripts/mutate.cjs",
-      "scripts/synthesize.cjs",
       "spec.md",
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "eval-loop-state.jsonl",
-        "kind": "file",
-        "path": "state/eval-loop-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "best-variant.json",
-        "kind": "config",
-        "path": "state/best-variant.json",
-        "source": "derived"
-      },
-      {
-        "name": "mutation-coverage.json",
-        "kind": "config",
-        "path": "state/mutation-coverage.json",
-        "source": "derived"
-      },
-      {
-        "name": "eval-loop-dashboard.md",
-        "kind": "doc",
-        "path": "state/eval-loop-dashboard.md",
-        "source": "derived"
-      },
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "loop.cjs",
-        "kind": "file",
-        "path": "scripts/loop.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "v-001-baseline-star.md",
-        "kind": "doc",
-        "path": "variants/v-001-baseline-star.md",
-        "source": "derived"
-      },
-      {
-        "name": "eval-loop-config.json",
-        "kind": "config",
-        "path": "state/eval-loop-config.json",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -129,24 +70,6 @@
         "name": "decision-record.md",
         "kind": "doc",
         "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
-        "name": "converge.cjs",
-        "kind": "file",
-        "path": "scripts/converge.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "mutate.cjs",
-        "kind": "file",
-        "path": "scripts/mutate.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "synthesize.cjs",
-        "kind": "file",
-        "path": "scripts/synthesize.cjs",
         "source": "derived"
       },
       {
@@ -202,11 +125,77 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Loop",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Externalized",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "require",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "insights",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Run the bespoke deep-loop. Each iteration picks a council-seeded variant or mutates the current best along one axis, dispatches cli-devin against SWE 1.6 for each fixture (parallel wave of 3), scores via the 002 rig (deterministic + grader, cached), aggregates a variant score, then evaluates convergence via 3-signal weighted vote. Loop legal-stops when stopScore > 0.60 AND coverage + quality + budget gates pass. Min 6 iterations. Synthesis ranks variants with confidence scores and key insights. Output is `synthesis.md` — the binding handoff for 004 to apply winners.",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-05-30T10:12:00.898Z",
+    "last_save_at": "2026-06-04T03:35:27.080Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

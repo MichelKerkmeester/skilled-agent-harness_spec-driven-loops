@@ -40,7 +40,6 @@
       "research/orchestration-status.log",
       ".codex/config.toml",
       "research/gpt55/iterations/iteration-002.md",
-      ".opencode/skills/README.md",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -69,12 +68,6 @@
         "name": "iteration-002.md",
         "kind": "doc",
         "path": "research/gpt55/iterations/iteration-002.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.md",
-        "kind": "doc",
-        "path": ".opencode/skills/README.md",
         "source": "derived"
       },
       {
@@ -122,7 +115,7 @@
       {
         "name": "the",
         "kind": "key_phrase",
-        "path": "spec.md",
+        "path": "research/research.md",
         "source": "derived"
       },
       {
@@ -182,7 +175,7 @@
       {
         "name": "The Opus",
         "kind": "proper_noun",
-        "path": "research/research.md",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -190,11 +183,17 @@
         "kind": "proper_noun",
         "path": "research/research.md",
         "source": "derived"
+      },
+      {
+        "name": "every",
+        "kind": "key_phrase",
+        "path": "research/research.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Run a GPT-5.5-primary deep-research loop (with Opus 4.8 agent verification) to determine the best WAY TO IMPLEMENT the `deep-agent-improvement` → `deep-improvement` rename and Lane C (\"skill-benchmark\"). Phase 001 converged the DESIGN (what to measure, scoring, harness, fixtures, report, rename impact map); this phase produces the build-ready IMPLEMENTATION PLAYBOOK consumed by Phase 003 (rename) and Phase 004 (Lane C build).",
     "created_at": "2026-05-30T00:00:00Z",
-    "last_save_at": "2026-05-31T14:05:02.635Z",
+    "last_save_at": "2026-06-04T10:32:49.985Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

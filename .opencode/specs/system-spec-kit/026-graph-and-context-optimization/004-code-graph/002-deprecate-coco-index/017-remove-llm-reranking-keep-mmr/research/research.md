@@ -61,19 +61,3 @@ Executor: `cli-opencode` / `deepseek/deepseek-v4-pro` (reasoningEffort=high). 5 
 The deprecation's code + primary-doc cleanup was thorough, but three classes were systematically under-swept: (1) **model-facing command prompts** (`/memory:search` in gemini + opencode) vs the tool schema — the same stale text in 3 surfaces; (2) **secondary config mirrors** (.vscode, .devin) missed by the tool-count/Voyage cleanup that reached the primary configs; (3) **type unions + validators + code-org docs** that still encode the removed `cross-encoder` concept. The prior 30-surface deep-review (013) and the 017 doc alignment caught the high-traffic surfaces but missed these.
 
 ## 9. REMEDIATION SEED
-A scoped remediation packet should fix the 4 P1 (align the `rerank` param description to MMR across tool-schema + both command prompts; fix the stale test) + the 8 P2 (configs, type unions, comments, validator, code-org doc) + the 1 P3 (cli-* ccc pkill). All are doc/schema/type/test edits — no production-code behavior change. Estimated: low-risk mechanical alignment, ~14 edits across ~13 files.
-
-## 10. CONVERGENCE REPORT
-- Stop reason: all_questions_answered (5/5; newInfoRatio collapsed to 0.10)
-- Total iterations: 5 of 10 (converged early — findings exhausted)
-- Questions answered: 5 / 5
-- newInfoRatio trajectory: 0.45, 0.50, 0.40, 0.35, 0.10
-- Executor: cli-opencode / deepseek-v4-pro / high, one-at-a-time with kill+RSS between
-- Corruption count: 0
-
-## 11. ITERATION TRAIL
-- iter 1: live-code sweep — 2 P1 (tool-schema, broken test) + 2 P2 + 4 INFO; zero dangling imports.
-- iter 2: 4-runtime/config sweep — P1 gemini search.toml + 2 P2 (vscode/devin); 16 surfaces clean.
-- iter 3: capability-gap — P1 opencode search.md + 6 stranded promises; REAL-GAP (semantic search) + COVERED (MMR/rescue).
-- iter 4: regressions (empirical) — BROKEN-TEST confirmed (3 fails) + NO-REGRESSION across pipeline/workflows/confidence-math.
-- iter 5: final doc sweep — command-mirror bounded to 2 search commands; 1 new P3; rest intentional-historical; CONVERGED.

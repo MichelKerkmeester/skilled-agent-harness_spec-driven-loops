@@ -114,11 +114,3 @@ The CI workflow excludes the symlink from the reverse-direction audit (`--glob '
 ---
 
 ## RM-8 compliance
-
-All 7 of my cli-opencode + deepseek-v4-pro dispatches across 040 (A through E) ran with the L1-L4 mitigation stack:
-- L1: hardened prompts with explicit allowed/never-modify lists + Gate 3 pre-answer (after 040-B v1 stalled on Gate 3)
-- L2: pre-dispatch lockout grep verified clean
-- L3: per-phase commit baselines captured
-- L4: deepseek-v4-pro variant=max (RM-8-validated)
-
-Zero scope violations across all 7 dispatches. The parallel-agent lockout (SKILL.md, README.md, references/) was honored throughout.

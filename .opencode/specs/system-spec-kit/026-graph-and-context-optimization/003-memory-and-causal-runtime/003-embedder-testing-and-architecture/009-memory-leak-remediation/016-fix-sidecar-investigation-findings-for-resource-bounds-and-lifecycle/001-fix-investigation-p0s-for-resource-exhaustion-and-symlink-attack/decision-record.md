@@ -126,3 +126,7 @@ Set `MAX_INPUT_ITEMS = 500`. In `parseRequest()`, reject embed requests where `i
 - Defense-in-depth: client-side `SidecarClient.embed()` controls batch sizes, but the worker should not trust the client
 - Fails with a typed error message that propagates to the parent via the error response channel
 - Can be increased later if batch sizes grow, via a simple constant change
+<!-- /ANCHOR: adr-001 -->
+<!-- /ANCHOR: adr-002 -->
+<!-- /ANCHOR: adr-003 -->
+<!-- /ANCHOR: adr-004 -->

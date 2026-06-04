@@ -44,7 +44,7 @@ const CONFLICTING_RELATIONS: ReadonlyArray<[string, string]> = [
 /**
  * Check whether two relations conflict according to the conflict rules.
  */
-function relationsConflict(existingRelation: string, newRelation: string): boolean {
+export function relationsConflict(existingRelation: string, newRelation: string): boolean {
   const existingLower = existingRelation.toLowerCase();
   const newLower = newRelation.toLowerCase();
   for (const [a, b] of CONFLICTING_RELATIONS) {

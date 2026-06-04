@@ -44,7 +44,6 @@
       ".opencode/skills/cli-devin/assets/prompt_templates.md",
       ".opencode/skills/cli-devin/assets/prompt_quality_card.md",
       ".opencode/skills/cli-devin/changelog/v1.0.5.0.md",
-      "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop/synthesis.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -75,12 +74,6 @@
         "name": "v1.0.5.0.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-devin/changelog/v1.0.5.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "synthesis.md",
-        "kind": "doc",
-        "path": "specs/skilled-agent-orchestration/113-cli-devin-prompt-quality/003-eval-loop/synthesis.md",
         "source": "derived"
       },
       {
@@ -196,11 +189,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Quality Contract",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Read `../003-eval-loop/synthesis.md` and apply the top-ranked variant's patterns to `.opencode/skills/cli-devin/`. Targeted sections: SKILL.md §2 SMART ROUTING (knob tuning), SKILL.md §4 RULES (e.g., revised pre-planning contract, sequential_thinking threshold), `assets/prompt_templates.md` (replace template variants with winners), `assets/prompt_quality_card.md` (refine CLEAR cutoffs if council found better). Add `changelog/v1.0.5.0.md` entry documenting the uplift. Strict-validate after each authored doc write. No 4-runtime mirror — cli-devin is `.opencode`-only.",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-05-30T10:12:00.900Z",
+    "last_save_at": "2026-06-04T03:35:27.082Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

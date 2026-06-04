@@ -11,8 +11,10 @@ set -euo pipefail
 # 1. PATHS
 # ───────────────────────────────────────────────────────────────
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/../../../../../.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
+# Derive repo root by stripping at /.opencode/ rather than counting parent dirs,
+# so it resolves correctly at any nesting depth (e.g. a wrapped <root>/coder/.opencode layout).
+REPO_ROOT="${SCRIPT_DIR%%/.opencode/*}"
 SQLITE_PATH="${REPO_ROOT}/.opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite"
 JSON_PATH="${SCRIPT_DIR}/skill-graph.json"
 

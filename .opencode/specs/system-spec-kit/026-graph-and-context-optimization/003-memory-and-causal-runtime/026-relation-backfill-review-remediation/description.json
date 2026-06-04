@@ -1,0 +1,22 @@
+{
+  "level": "3",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+  "description": "Feature Specification: Relation-Backfill Review Remediation",
+  "keywords": [
+    "feature",
+    "specification",
+    "relation-backfill",
+    "review",
+    "remediation"
+  ],
+  "lastUpdated": "2026-06-04T12:33:53.261Z",
+  "specId": "026",
+  "folderSlug": "relation-backfill-review-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "003-memory-and-causal-runtime"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

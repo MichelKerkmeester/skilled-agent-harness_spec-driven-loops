@@ -40,10 +40,6 @@
     "importance_tier": "normal",
     "status": "in_progress",
     "key_files": [
-      "scripts/extract-files-from-markdown.cjs",
-      "scripts/loop-v2.cjs",
-      "scripts/synthesize-v2.cjs",
-      "scripts/synthesize-v3.cjs",
       "plan.md",
       "tasks.md",
       "checklist.md",
@@ -52,30 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "extract-files-from-markdown.cjs",
-        "kind": "file",
-        "path": "scripts/extract-files-from-markdown.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "loop-v2.cjs",
-        "kind": "file",
-        "path": "scripts/loop-v2.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "synthesize-v2.cjs",
-        "kind": "file",
-        "path": "scripts/synthesize-v2.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "synthesize-v3.cjs",
-        "kind": "file",
-        "path": "scripts/synthesize-v3.cjs",
-        "source": "derived"
-      },
       {
         "name": "plan.md",
         "kind": "doc",
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "conservative",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "output",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "new",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 113/003 eval-loop run measured prompt-text quality on 7 fixtures, but SWE 1.6's `--print` mode returns markdown rather than files-on-disk. The D2 bundle-gate hard-fired on 4/7 fixtures because acceptance commands (`bash -n`, `npx vitest run`) couldn't find the referenced files. D1 was capped to 0.0 on those fixtures. The RCAF winner (v-004-rcaf-medium @ 0.5796) was selected on D2+D3+D4+D5 text signals alone.",
     "created_at": "2026-05-17T05:35:00Z",
-    "last_save_at": "2026-05-30T10:12:00.902Z",
+    "last_save_at": "2026-06-04T03:35:27.084Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
