@@ -281,6 +281,24 @@ describe('Context Server', () => {
     })
   })
 
+  describe('Structural bootstrap guidance honesty', () => {
+    // The code-graph read handler is false-safe: a stale graph BLOCKS reads
+    // (code_graph_not_ready) until refreshed. The bootstrap guidance must not
+    // claim queries "still work" on a stale graph.
+    it('stale-branch guidance does not claim code_graph_query still works', () => {
+      expect(sourceCode).not.toContain('mcp__mk_code_index__code_graph_query still works')
+    })
+
+    it('stale-branch guidance recommends a session_bootstrap refresh before querying', () => {
+      expect(sourceCode).toContain('"stale": mcp__mk_code_index__code_graph_query will block (code_graph_not_ready) until you run session_bootstrap to refresh')
+    })
+
+    it('routing rule emits the direct structural-query rule only for a fresh graph', () => {
+      expect(sourceCode).toContain("if (snap.graphFreshness === 'fresh') {")
+      expect(sourceCode).toMatch(/snap\.graphFreshness === 'stale'[\s\S]*?run session_bootstrap to refresh first/)
+    })
+  })
+
   // =================================================================
   // GROUP 3: Tool Dispatch Coverage (dispatchTool replaces switch)
   // =================================================================
@@ -2556,7 +2574,7 @@ describe('Context Server', () => {
     })
 
     it('T47c: ingest queue uses indexSingleFile sync semantics', () => {
-      expect(sourceCode).toMatch(/processFile:\s*async\s*\(filePath:\s*string\)\s*=>\s*\{[\s\S]*?await\s+indexSingleFile\(filePath,\s*false\);?[\s\S]*?\}/)
+      expect(sourceCode).toMatch(/processFile:\s*async\s*\(filePath:\s*string,\s*governance\)\s*=>\s*\{[\s\S]*?await\s+indexSingleFile\(filePath,\s*false[,)][\s\S]*?\}/)
     })
 
     it('T47d: file watcher reindex uses indexSingleFile sync semantics', () => {

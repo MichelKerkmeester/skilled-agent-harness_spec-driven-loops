@@ -340,13 +340,13 @@ const memoryEmbeddingReconcile: ToolDefinition = {
   description: '[L4:Mutation] Reconcile memory_index.embedding_status against active vector coverage: flip vector-present failed/pending/retry rows to success, and optionally reset genuinely missing-vector retention failures to retry. Dry-run by default; resolves and verifies the active shard from runtime metadata and fails closed on mismatch. Token Budget: 500.',
   inputSchema: { type: 'object', additionalProperties: false, properties: {
     mode: { type: 'string', enum: ['dry-run', 'apply'], default: 'dry-run', description: 'dry-run (default) previews buckets; apply mutates in one transaction.' },
-    activeOnly: { type: 'boolean', default: true, description: 'Resolve and verify the active shard from runtime metadata (never a caller path).' },
+    activeOnly: { type: 'boolean', default: true, description: 'Reserved / no-op. The active shard is always resolved and verified from runtime metadata (never a caller path); this flag has no runtime effect and is retained for contract stability.' },
     resetMissing: { type: 'boolean', default: true, description: 'Reset genuinely missing-vector retention failures to retry-eligible.' },
     missingFailureScope: { type: 'string', enum: ['retry-retention'], default: 'retry-retention', description: 'Which missing-vector failures may be reset.' },
     maskedFailedPolicy: { type: 'string', enum: ['reconcile'], default: 'reconcile', description: 'Masked duplicate failed rows are reconciled to success, never pruned here.' },
     providerFailurePolicy: { type: 'string', enum: ['report-only'], default: 'report-only', description: 'Non-retention provider failures are reported, not mutated.' },
     requireActiveShard: { type: 'boolean', default: true, description: 'Fail closed when the active shard cannot be verified.' },
-    repairSuccessCoverage: { type: 'boolean', default: false, description: '[Phase 007] Also reset success rows missing an active vector surface to retry for re-embedding.' }
+    repairSuccessCoverage: { type: 'boolean', default: false, description: 'Also reset success rows missing an active vector surface to retry for re-embedding.' }
   } },
 };
 
@@ -442,19 +442,38 @@ const memoryDriftWhy: ToolDefinition = {
   name: 'memory_drift_why',
   description: '[L6:Analysis] Trace causal chain for a spec-doc record (causal-graph node) to answer "why was this decision made?" Traverses causal edges up to maxDepth hops, grouping results by relationship type (caused, enabled, supersedes, contradicts, derived_from, supports). Use to understand decision lineage and causal-graph node relationships. Token Budget: 1200.',
   // oneOf removed from property definitions — Claude Code MCP client rejects nested oneOf in some cases
-  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Spec-doc record ID (causal-graph node) to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full spec-doc record details in results' } }, required: ['memoryId'] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { memoryId: { type: 'string', description: 'Spec-doc record ID (causal-graph node) to trace causal lineage for (number or string, required)' }, maxDepth: { type: 'number', default: 3, minimum: 1, maximum: 10, description: 'Maximum traversal depth (default: 3, max: 10)' }, direction: { type: 'string', description: 'Traversal direction: outgoing, incoming, or both (default: both)' }, relations: { type: 'array', items: { type: 'string' }, description: 'Filter to specific relationship types: caused, enabled, supersedes, contradicts, derived_from, supports' }, includeMemoryDetails: { type: 'boolean', default: true, description: 'Include full spec-doc record details in results' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal traversal.' }, userId: { type: 'string', description: 'User boundary for governed causal traversal.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal traversal.' } }, required: ['memoryId'] },
 };
 
 const memoryCausalLink: ToolDefinition = {
   name: 'memory_causal_link',
   description: '[L6:Analysis] Create a causal relationship between two spec-doc records (causal-graph nodes). Links represent decision lineage (caused, enabled), versioning (supersedes), contradictions, derivation, or support. Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { type: 'string', description: 'Source spec-doc record ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target spec-doc record ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' } }, required: ['sourceId', 'targetId', 'relation'] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { sourceId: { type: 'string', description: 'Source spec-doc record ID (the cause/enabler/superseder, number or string)' }, targetId: { type: 'string', description: 'Target spec-doc record ID (the effect/superseded, number or string)' }, relation: { type: 'string', description: 'Relationship type: caused, enabled, supersedes, contradicts, derived_from, or supports' }, strength: { type: 'number', default: 1.0, minimum: 0, maximum: 1, description: 'Relationship strength (0.0-1.0)' }, evidence: { type: 'string', description: 'Evidence or reason for this relationship' }, tenantId: { type: 'string', description: 'Tenant boundary for governed causal edge writes.' }, userId: { type: 'string', description: 'User boundary for governed causal edge writes.' }, agentId: { type: 'string', description: 'Agent boundary for governed causal edge writes.' } }, required: ['sourceId', 'targetId', 'relation'] },
 };
 
 const memoryCausalStats: ToolDefinition = {
   name: 'memory_causal_stats',
-  description: '[L6:Analysis] Get statistics about the causal-graph node store. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of spec-doc records linked (CHK-065). Token Budget: 1200.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: {}, required: [] },
+  description: '[L6:Analysis] Get statistics about the causal-graph node store. Shows total edges, coverage percentage, and breakdown by relationship type. Target: 60% of spec-doc records linked (CHK-065). Optionally runs a bounded relation-inference backfill: omitting backfill or passing { dryRun: true } only previews candidate edges; passing { dryRun: false } commits bounded, idempotent, created_by=auto edges (this is the only write path on this tool). Token Budget: 1200.',
+  inputSchema: {
+    type: 'object',
+    additionalProperties: false,
+    properties: {
+      backfill: {
+        type: 'object',
+        additionalProperties: false,
+        description: 'Optional bounded relation-inference backfill. Defaults to a dry run that only previews candidate edges; pass { dryRun: false } to commit bounded, idempotent, created_by=auto edges.',
+        properties: {
+          dryRun: { type: 'boolean', default: true, description: 'Preview candidate edges without committing. Default true; set false to write bounded auto edges.' },
+          limit: { type: 'number', minimum: 1, maximum: 2000, description: 'Maximum candidate edges to consider (1-2000).' },
+          actor: { type: 'string', description: 'Optional actor label recorded on committed edges.' },
+          similarity: { type: 'boolean', description: 'Opt-in: derive supports edges from cached related-memory similarity (default false).' },
+          contradicts: { type: 'boolean', description: 'Opt-in: derive contradicts edges from structural supersession (default false).' },
+          similarityThreshold: { type: 'number', minimum: 1, maximum: 100, description: 'Threshold gating the similarity collector (1-100).' },
+        },
+      },
+    },
+    required: [],
+  },
 };
 
 const memoryCausalUnlink: ToolDefinition = {
@@ -519,7 +538,7 @@ const evalReportingDashboard: ToolDefinition = {
 const memoryIndexScan: ToolDefinition = {
   name: 'memory_index_scan',
   description: '[L7:Maintenance] Scan workspace for new/changed spec-doc files and index them. Useful for bulk indexing after creating multiple spec-doc files. Token Budget: 1000.',
-  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' } }, required: [] },
+  inputSchema: { type: 'object', additionalProperties: false, properties: { specFolder: { type: 'string', description: 'Limit scan to specific spec folder (e.g., "005-memory")' }, force: { type: 'boolean', default: false, description: 'Force re-index all files (ignore content hash)' }, includeConstitutional: { type: 'boolean', default: true, description: 'Whether to scan .opencode/skills/*/constitutional/ directories' }, includeSpecDocs: { type: 'boolean', default: true, description: 'Whether to scan .opencode/specs/ directories for spec folder documents (spec.md, plan.md, tasks.md, checklist.md, decision-record.md, implementation-summary.md, research/research.md, handover.md, resource-map.md). Iteration artifacts under research/iterations/ and review/iterations/ are excluded from spec-doc indexing. Set SPECKIT_INDEX_SPEC_DOCS=false env var to disable globally.' }, incremental: { type: 'boolean', default: true, description: 'Enable incremental indexing. When true (default), skips files whose mtime and content hash are unchanged since last index. Set to false to re-evaluate all files regardless of change detection.' }, tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' }, userId: { type: 'string', description: 'User boundary for governed ingest.' }, agentId: { type: 'string', description: 'Agent boundary for governed ingest.' }, sessionId: { type: 'string', description: 'Session boundary for governed ingest.' }, provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' }, provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' }, governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' }, retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' }, deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' } }, required: [] },
 };
 
 const memoryGetLearningHistory: ToolDefinition = {
@@ -546,6 +565,15 @@ const memoryIngestStart: ToolDefinition = {
         type: 'string',
         description: 'Optional spec folder label attached to the ingest job.',
       },
+      tenantId: { type: 'string', description: 'Tenant boundary for governed ingest.' },
+      userId: { type: 'string', description: 'User boundary for governed ingest.' },
+      agentId: { type: 'string', description: 'Agent boundary for governed ingest.' },
+      sessionId: { type: 'string', description: 'Session boundary for governed ingest.' },
+      provenanceSource: { type: 'string', description: 'Required provenance source when governed ingest validation applies.' },
+      provenanceActor: { type: 'string', description: 'Required provenance actor when governed ingest validation applies.' },
+      governedAt: { type: 'string', description: 'ISO timestamp for governed ingest. Defaults to now when omitted.' },
+      retentionPolicy: { type: 'string', enum: ['keep', 'ephemeral'], description: 'Retention class applied to the saved spec-doc record.' },
+      deleteAfter: { type: 'string', description: 'Optional ISO timestamp after which retention sweep may delete the spec-doc record.' },
     },
     required: ['paths'],
   },

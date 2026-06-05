@@ -34,7 +34,7 @@ Run session_bootstrap for the current workspace and verify it returns bounded co
 
 ### Commands
 
-1. `session_bootstrap({ input: "resume mk-spec-memory playbook audit", includeGraphStatus: true })`
+1. `session_bootstrap({})`
 2. Inspect the response for `profile`, `graph`, `recommendedNextAction`, and bounded context sections.
 3. If graph state is stale or absent, confirm the response names a recovery action instead of throwing.
 

@@ -128,6 +128,6 @@ _memory:
 ### Ship status
 
 - [x] CHK-070 [P1] description.json + graph-metadata.json present
-- [ ] CHK-071 [P0] `validate.sh --strict` → Errors 0
-- [ ] CHK-072 [P1] Completion metadata reconciled across packet docs
+- [x] CHK-071 [P0] `validate.sh --strict` → Errors 0 (re-run: PASSED, Errors: 0)
+- [x] CHK-072 [P1] Completion metadata reconciled across packet docs (spec Status, graph derived.status, impl-summary, continuity all set to complete)
 <!-- /ANCHOR:summary -->

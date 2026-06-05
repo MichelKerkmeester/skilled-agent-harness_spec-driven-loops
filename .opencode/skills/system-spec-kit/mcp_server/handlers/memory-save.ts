@@ -68,6 +68,7 @@ import {
   recordGovernanceAudit,
   recordTierDowngradeAudit,
   validateGovernedIngest,
+  type GovernanceDecision,
 } from '../lib/governance/scope-governance.js';
 import { delete_memory_from_database } from '../lib/search/vector-index-mutations.js';
 import {
@@ -2750,6 +2751,10 @@ type BaseIndexMemoryFileOptions = {
   scope?: MemoryScopeMatch;
   qualityGateMode?: 'enforce' | 'warn-only';
   routing?: RoutedSaveOptions;
+  // Validated governance decision threaded from the bulk scan/ingest paths so
+  // their indexed rows carry the same provenance/retention/scope metadata the
+  // direct memory_save path applies post-insert. Omitted for ungoverned saves.
+  governance?: GovernanceDecision;
 };
 
 type IndexMemoryFileOptions = BaseIndexMemoryFileOptions & {
@@ -2773,6 +2778,7 @@ async function indexMemoryFile(
     scope = {} as MemoryScopeMatch,
     qualityGateMode = 'enforce' as 'enforce' | 'warn-only',
     routing,
+    governance,
     ...originOptions
   }: IndexMemoryFileOptions | LegacyIndexMemoryFileOptions = {},
 ): Promise<IndexResult> {
@@ -2789,17 +2795,39 @@ async function indexMemoryFile(
     console.error(`[memory-save] Quality loop applied ${prepared.qualityLoopResult.fixes.length} auto-fix(es) for ${path.basename(filePath)}`);
   }
 
-  return processPreparedMemory(prepared, filePath, {
+  // When a governance decision is threaded in (bulk scan/ingest), derive the
+  // scope tuple from it so the row is created under the governed scope, matching
+  // how the direct save path seeds saveScope from governanceDecision.normalized.
+  const effectiveScope: MemoryScopeMatch = governance
+    ? {
+        tenantId: governance.normalized.tenantId ?? null,
+        userId: governance.normalized.userId ?? null,
+        agentId: governance.normalized.agentId ?? null,
+        sessionId: governance.normalized.sessionId ?? null,
+      }
+    : scope;
+
+  const result = await processPreparedMemory(prepared, filePath, {
     force,
     asyncEmbedding,
     plannerMode,
     origin: indexingOrigin,
     persistQualityLoopContent: true,
     refreshFromDiskAfterLock: parsedOverride !== null,
-    scope,
+    scope: effectiveScope,
     qualityGateMode,
     routing,
   });
+
+  // Apply provenance/retention/deleteAfter metadata post-insert, mirroring the
+  // direct memory_save path so governed bulk/scan/async ingests are not silently
+  // downgraded to ungoverned rows. Only for freshly written rows.
+  if (governance && typeof result.id === 'number' && result.id > 0
+    && result.status !== 'unchanged' && result.status !== 'duplicate') {
+    applyPostInsertMetadata(database, result.id, buildGovernancePostInsertFields(governance));
+  }
+
+  return result;
 }
 
 async function indexMemoryFileFromScan(

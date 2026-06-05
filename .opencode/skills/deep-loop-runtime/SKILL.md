@@ -246,7 +246,7 @@ Shipped layout:
 |------|--------------|---------|
 | `lib/deep-loop/` | 10 files | Shared executor config, audit, prompt-pack, validation, state, repair, locking, permissions, scoring, and fallback routing. |
 | `lib/coverage-graph/` | 3 files | Coverage-graph schema owner, query helpers, and signal interpretation. |
-| `scripts/` | 4 files | Direct `status`, `query`, `upsert`, and `convergence` entry points replacing the removed deep-loop MCP tools. |
+| `scripts/` | 8 `.cjs` files | `status`/`query`/`upsert`/`convergence` shims replacing the removed deep-loop MCP tools, plus the fan-out (multi-executor) entry points `fanout-run`/`fanout-pool`/`fanout-salvage`/`fanout-merge`. |
 | `database/` | SQLite | Runtime-owned `deep-loop-graph.sqlite`. |
 | `tests/` | Unit, integration, lifecycle | Runtime-owned tests discovered by the system-spec-kit MCP server Vitest config. |
 

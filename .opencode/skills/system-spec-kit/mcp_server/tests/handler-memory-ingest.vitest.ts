@@ -111,6 +111,49 @@ describe('Handler Memory Ingest (Sprint 9 P0-3)', () => {
     expect((envelope.data as Record<string, unknown>).state).toBe('queued');
   });
 
+  it('start threads the validated governance decision into createIngestJob', async () => {
+    mocks.mockCreateIngestJob.mockResolvedValue({
+      id: 'job_governed',
+      state: 'queued',
+      specFolder: 'specs/001-test',
+      paths: ['/tmp/a.md'],
+      filesTotal: 1,
+      filesProcessed: 0,
+      errors: [],
+      createdAt: '2026-03-05T00:00:00.000Z',
+      updatedAt: '2026-03-05T00:00:00.000Z',
+      governance: null,
+    });
+
+    await handler.handleMemoryIngestStart({
+      paths: ['/tmp/a.md'],
+      specFolder: 'specs/001-test',
+      tenantId: 'tenant-a',
+      userId: 'user-a',
+      sessionId: 'session-a',
+      provenanceSource: 'cli',
+      provenanceActor: 'tester',
+      retentionPolicy: 'ephemeral',
+      deleteAfter: '2026-12-31T00:00:00.000Z',
+    });
+
+    // The async worker re-indexes each path under the persisted governance, so
+    // the provenance/retention decision must reach createIngestJob, not be
+    // dropped after the validation gate.
+    expect(mocks.mockCreateIngestJob).toHaveBeenCalledWith(expect.objectContaining({
+      governance: expect.objectContaining({
+        allowed: true,
+        normalized: expect.objectContaining({
+          tenantId: 'tenant-a',
+          provenanceSource: 'cli',
+          provenanceActor: 'tester',
+          retentionPolicy: 'ephemeral',
+          deleteAfter: '2026-12-31T00:00:00.000Z',
+        }),
+      }),
+    }));
+  });
+
   it('start surfaces overlength path rejections alongside queued paths', async () => {
     const longPath = `/tmp/${'x'.repeat(520)}.md`;
     mocks.mockCreateIngestJob.mockResolvedValue({

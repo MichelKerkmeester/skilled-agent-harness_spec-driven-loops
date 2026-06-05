@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "packet_id": "013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "spec_folder": "013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "parent_id": null,
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+    "derived": {
+    "trigger_phrases": [],
+    "key_topics": [],
+    "importance_tier": "important",
+    "status": "planned",
+    "key_files": ["spec.md","plan.md","tasks.md"],
+    "entities": [],
+    "causal_summary": "Phase 5: metadata-status-derivation",
+    "created_at": "2026-06-04T20:45:43Z",
+    "last_save_at": "2026-06-04T20:45:43Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": ["spec.md","plan.md","tasks.md"]
+  }
+}

@@ -27,7 +27,7 @@
       "documentation-drift"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/install_guides",
       ".opencode/skills/README.md",

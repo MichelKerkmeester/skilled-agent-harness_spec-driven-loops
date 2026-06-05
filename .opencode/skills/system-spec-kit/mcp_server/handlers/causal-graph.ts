@@ -22,6 +22,9 @@ import { ErrorCodes, getRecoveryHint } from '../lib/errors.js';
 // Standardized response structure
 import { createMCPSuccessResponse, createMCPErrorResponse, createMCPEmptyResponse } from '../lib/response/envelope.js';
 
+// Governed retrieval scope (tenant/user/agent boundary — sessionId is NOT a boundary)
+import { createScopeFilterPredicate } from '../lib/governance/scope-governance.js';
+
 // Shared handler types
 import type { MCPResponse } from './types.js';
 
@@ -79,6 +82,11 @@ interface DriftWhyArgs {
   direction?: string;
   relations?: string[] | null;
   includeMemoryDetails?: boolean;
+  // Optional governed retrieval scope. When supplied, traversal results are
+  // post-filtered so a caller cannot trace chains for out-of-scope memories.
+  tenantId?: string;
+  userId?: string;
+  agentId?: string;
 }
 
 interface CausalLinkArgs {
@@ -87,6 +95,11 @@ interface CausalLinkArgs {
   relation: string;
   strength?: number;
   evidence?: string | null;
+  // Optional governed retrieval scope. When supplied, both endpoints must exist
+  // and match the scope before an edge is created.
+  tenantId?: string;
+  userId?: string;
+  agentId?: string;
 }
 
 interface CausalStatsArgs {
@@ -473,10 +486,21 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
     maxDepth: rawMaxDepth = 3,
     direction = 'both',
     relations = null,
-    includeMemoryDetails = true
+    includeMemoryDetails = true,
+    tenantId,
+    userId,
+    agentId,
   } = args;
   // Clamp maxDepth to [1, 10] server-side
   const maxDepth = Math.min(Math.max(1, Math.floor(rawMaxDepth)), 10);
+
+  // Governed retrieval scope: when supplied, traversal results are post-filtered
+  // so a caller cannot trace causal chains for memories outside its scope.
+  // sessionId is intentionally not part of this boundary. No scope => unchanged.
+  const hasGovernanceScope = Boolean(tenantId || userId || agentId);
+  const scopeMatches = hasGovernanceScope
+    ? createScopeFilterPredicate({ tenantId, userId, agentId })
+    : null;
 
   const startTime = Date.now();
 
@@ -531,6 +555,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
       combinedChain: FlattenedChain;
       memoryDetails: Record<string, unknown> | null;
       relatedMemories: Record<string, Record<string, unknown>>;
+      scopeDenied: boolean;
     } => {
       let incomingChain = createEmptyChain();
       let outgoingChain = createEmptyChain();
@@ -555,6 +580,28 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
 
       let memoryDetails: Record<string, unknown> | null = null;
       const relatedMemories: Record<string, Record<string, unknown>> = {};
+      let scopeDenied = false;
+
+      // Fail-closed scope authorization on the source memory. Done independently
+      // of includeMemoryDetails so denial cannot be skipped by omitting details.
+      if (scopeMatches) {
+        const sourceScopeRow = db.prepare(`
+          SELECT tenant_id, user_id, agent_id, session_id
+          FROM memory_index
+          WHERE id = ? OR CAST(id AS TEXT) = ?
+        `).get(memoryId, String(memoryId)) as Record<string, unknown> | undefined;
+        if (!sourceScopeRow || !scopeMatches(sourceScopeRow)) {
+          scopeDenied = true;
+          return {
+            incomingChain,
+            outgoingChain,
+            combinedChain,
+            memoryDetails,
+            relatedMemories,
+            scopeDenied,
+          };
+        }
+      }
 
       if (includeMemoryDetails) {
         const sourceMemory = db.prepare(`
@@ -577,6 +624,18 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
         if (memoryIds.size > 0) {
           const idsArray = Array.from(memoryIds);
           for (const id of idsArray) {
+            // When scope is enforced, gate the related row on a scope-column
+            // lookup but keep the returned detail shape unchanged.
+            if (scopeMatches) {
+              const scopeRow = db.prepare(`
+                SELECT tenant_id, user_id, agent_id, session_id
+                FROM memory_index
+                WHERE id = ? OR CAST(id AS TEXT) = ?
+              `).get(id, String(id)) as Record<string, unknown> | undefined;
+              if (!scopeRow || !scopeMatches(scopeRow)) {
+                continue;
+              }
+            }
             const memory = db.prepare(`
               SELECT id, title, spec_folder, importance_tier, created_at
               FROM memory_index
@@ -595,6 +654,7 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
         combinedChain,
         memoryDetails,
         relatedMemories,
+        scopeDenied,
       };
     };
 
@@ -607,7 +667,27 @@ async function handleMemoryDriftWhy(args: DriftWhyArgs): Promise<MCPResponse> {
       combinedChain,
       memoryDetails,
       relatedMemories,
+      scopeDenied,
     } = traversalSnapshot;
+
+    // Fail-closed: the source memory is outside the supplied governed scope.
+    // Return the same empty shape as "no relationships" rather than leaking the
+    // chain or signalling existence of an out-of-scope memory.
+    if (scopeDenied) {
+      return createMCPEmptyResponse({
+        tool: 'memory_drift_why',
+        summary: `No causal relationships found for memory ${memoryId}`,
+        data: {
+          memoryId: String(memoryId),
+          memory: null
+        },
+        hints: [
+          'Use memory_causal_link to create relationships',
+          'Consider linking to related decisions or contexts'
+        ],
+        startTime: startTime
+      });
+    }
 
     if (combinedChain.total_edges === 0) {
       return createMCPEmptyResponse({
@@ -693,10 +773,14 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
     targetId,
     relation,
     strength = 1.0,
-    evidence = null
+    evidence = null,
+    tenantId,
+    userId,
+    agentId,
   } = args;
 
   const startTime = Date.now();
+  const hasGovernanceScope = Boolean(tenantId || userId || agentId);
 
   if ((sourceId === undefined || sourceId === null) || (targetId === undefined || targetId === null) || !relation) {
     const missing: string[] = [];
@@ -754,6 +838,50 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
       });
     }
     const safeRelation = relation as causalEdges.RelationType;
+
+    // FK existence validation at the production handler boundary (not inside the
+    // shared insertEdge, which intentionally defers FK checks so unit tests can
+    // use synthetic IDs). Reject before writing so the handler cannot create
+    // orphan edges that the orphan sweep would later have to remove.
+    const lookupEndpoint = (id: string): Record<string, unknown> | undefined =>
+      db.prepare(`
+        SELECT tenant_id, user_id, agent_id, session_id
+        FROM memory_index
+        WHERE id = ? OR CAST(id AS TEXT) = ?
+      `).get(id, id) as Record<string, unknown> | undefined;
+
+    const sourceRow = lookupEndpoint(String(sourceId));
+    const targetRow = lookupEndpoint(String(targetId));
+    const missingEndpoints: string[] = [];
+    if (!sourceRow) missingEndpoints.push('sourceId');
+    if (!targetRow) missingEndpoints.push('targetId');
+    if (missingEndpoints.length > 0) {
+      return createMCPErrorResponse({
+        tool: 'memory_causal_link',
+        error: `Memory id(s) not found in memory_index: ${missingEndpoints.join(', ')}`,
+        code: ErrorCodes.CAUSAL_GRAPH_ERROR,
+        details: { sourceId, targetId, missing: missingEndpoints },
+        recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+        startTime: startTime
+      });
+    }
+
+    // Governed scope authorization (fail-closed). When scope is supplied, both
+    // endpoints must match it before an edge is created. No scope => unchanged.
+    if (hasGovernanceScope) {
+      const scopeMatches = createScopeFilterPredicate({ tenantId, userId, agentId });
+      if (!scopeMatches(sourceRow as Record<string, unknown>) || !scopeMatches(targetRow as Record<string, unknown>)) {
+        return createMCPErrorResponse({
+          tool: 'memory_causal_link',
+          error: 'sourceId/targetId not authorized for the supplied scope',
+          code: ErrorCodes.CAUSAL_GRAPH_ERROR,
+          details: { sourceId, targetId },
+          recovery: getRecoveryHint('memory_causal_link', ErrorCodes.CAUSAL_GRAPH_ERROR),
+          startTime: startTime
+        });
+      }
+    }
+
     const edge = causalEdges.insertEdge(String(sourceId), String(targetId), safeRelation, strength ?? 1.0, evidence ?? null);
 
     if (!edge) {

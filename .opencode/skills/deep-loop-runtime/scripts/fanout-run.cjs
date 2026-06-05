@@ -18,7 +18,7 @@
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
-const { spawnSync } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
 
 const {
   classifyExitCode,
@@ -125,21 +125,31 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
       ? '.opencode/skills/deep-review/SKILL.md'
       : '.opencode/skills/deep-research/SKILL.md';
   const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
-  return [
-    `You are a ${agentName} agent running a fan-out lineage.`,
-    ``,
-    `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
+  const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
+  const stopClause = hasIterationCap
+    ? 'to convergence OR config.maxIterations, whichever comes first'
+    : 'to convergence';
+  const params = [
     `  spec_folder: ${specFolder}`,
     `  config.fanout_lineage_artifact_dir: ${lineageDir}`,
     `  session_id: ${sessionId}`,
     `  executor: ${lineage.kind} model=${lineage.model || 'default'}`,
     `  loop_type: ${loopType}`,
+  ];
+  if (hasIterationCap) {
+    params.push(`  config.maxIterations: ${lineage.iterations}`);
+  }
+  return [
+    `You are a ${agentName} agent running a fan-out lineage.`,
+    ``,
+    `Read ${skillFile} and execute the ${loopType} loop with these parameters:`,
+    ...params,
     ``,
     `The step_resolve_artifact_root step will bind artifact_dir to ${lineageDir} via the`,
     `config.fanout_lineage_artifact_dir override — do NOT run the resolveArtifactRoot node`,
     `command; bind artifact_dir directly to the override value.`,
     ``,
-    `Run phase_init, phase_main_loop (to convergence), and phase_synthesis.`,
+    `Run phase_init, phase_main_loop (${stopClause}), and phase_synthesis.`,
     `Write all outputs to ${lineageDir}. Do not touch any path outside ${lineageDir}.`,
     ``,
     `When complete, output a single line: FANOUT_LINEAGE_COMPLETE:${lineage.label}`,
@@ -158,6 +168,89 @@ function computeLineageTimeoutMs(lineage) {
 }
 
 /**
+ * Run a lineage subprocess without blocking the Node event loop.
+ *
+ * Resolves a spawnSync-shaped result ({ status, signal, stdout, error }) so the
+ * pool's K-in-flight cap actually overlaps lineages. spawnSync blocked the single
+ * thread until each child exited, serializing every lineage regardless of the
+ * concurrency cap; an awaited async spawn yields to the loop so K run at once.
+ *
+ * On timeout the child is killed with SIGTERM and result.signal is set to
+ * 'SIGTERM', preserving the timeout-as-failure signal the caller relies on.
+ *
+ * @param {string} command - Executable to run.
+ * @param {string[]} cmdArgs - Arguments for the executable.
+ * @param {Object} opts - { cwd, env, timeoutMs, maxBuffer, input? }.
+ * @returns {Promise<{status:number|null, signal:string|null, stdout:string, error?:Error}>}
+ */
+function runLineageProcess(command, cmdArgs, opts) {
+  const { cwd, env, timeoutMs, maxBuffer } = opts;
+  const hasInput = typeof opts.input === 'string';
+
+  return new Promise((resolvePromise) => {
+    let child;
+    try {
+      child = spawn(command, cmdArgs, {
+        cwd,
+        env,
+        stdio: [hasInput ? 'pipe' : 'ignore', 'pipe', 'pipe'],
+      });
+    } catch (error) {
+      resolvePromise({ status: null, signal: null, stdout: '', error });
+      return;
+    }
+
+    let stdout = '';
+    let stdoutBytes = 0;
+    let truncated = false;
+    let timedOut = false;
+    let settled = false;
+    let spawnError;
+
+    const timer = setTimeout(() => {
+      timedOut = true;
+      child.kill('SIGTERM');
+    }, timeoutMs);
+
+    child.stdout?.setEncoding('utf8');
+    child.stdout?.on('data', (chunk) => {
+      if (truncated) return;
+      stdoutBytes += Buffer.byteLength(chunk, 'utf8');
+      if (stdoutBytes > maxBuffer) {
+        truncated = true;
+        child.kill('SIGTERM');
+        return;
+      }
+      stdout += chunk;
+    });
+    // Drain stderr so the child never blocks on a full pipe; we do not capture it.
+    child.stderr?.resume();
+
+    child.on('error', (error) => {
+      spawnError = error;
+    });
+
+    child.on('close', (code, signal) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      const effectiveSignal = timedOut ? 'SIGTERM' : signal;
+      resolvePromise({
+        status: timedOut ? null : code,
+        signal: effectiveSignal,
+        stdout,
+        ...(spawnError ? { error: spawnError } : {}),
+      });
+    });
+
+    if (hasInput) {
+      child.stdin?.on('error', () => {});
+      child.stdin?.end(opts.input);
+    }
+  });
+}
+
+/**
  * Build the subprocess command for a CLI lineage.
  * Returns { command, args, input?, env } where input is stdin content when applicable.
  */
@@ -165,22 +258,23 @@ function buildLineageCommand(lineage, prompt, resolvedSandbox, resolvedPermissio
   const kind = lineage.kind;
 
   if (kind === 'cli-codex') {
+    // Only emit -c service_tier when a validated tier is set; otherwise omit the
+    // pair so the Codex CLI applies its own account default. Substituting the
+    // literal 'default' would push a value outside the validated tier enum.
+    const args = [
+      'exec',
+      '--model',
+      lineage.model || 'o4-mini',
+      '-c',
+      `model_reasoning_effort=${lineage.reasoningEffort || 'medium'}`,
+    ];
+    if (lineage.serviceTier) {
+      args.push('-c', `service_tier=${lineage.serviceTier}`);
+    }
+    args.push('-c', 'approval_policy=never', '--sandbox', resolvedSandbox, '-');
     return {
       command: 'codex',
-      args: [
-        'exec',
-        '--model',
-        lineage.model || 'o4-mini',
-        '-c',
-        `model_reasoning_effort=${lineage.reasoningEffort || 'medium'}`,
-        '-c',
-        `service_tier=${lineage.serviceTier || 'default'}`,
-        '-c',
-        'approval_policy=never',
-        '--sandbox',
-        resolvedSandbox,
-        '-',
-      ],
+      args,
       input: prompt,
     };
   }
@@ -317,6 +411,13 @@ async function main() {
       const sessionId = `fanout-${lineage.label}-${runId}`;
       const prompt = buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage);
 
+      // Sandbox resolution stays write-capable by default even for review lineages:
+      // the review subprocess writes its own iteration artifacts (iterations/iteration-NNN.md,
+      // deep-review-state.jsonl, review-report.md, resource-map.md) INTO lineageDir, so a
+      // blanket read-only default would break those writes. The lineageDir-only write boundary
+      // is enforced by the prompt ('Do not touch any path outside lineageDir') rather than by a
+      // narrower sandbox; a path-scoped workspace-write would be the stronger fix if the CLIs
+      // exposed one. Callers can still pass an explicit sandboxMode to override.
       const resolvedSandbox = resolveCodexSandboxMode(lineage.sandboxMode);
       const resolvedPermission = resolveClaudePermissionMode(lineage.sandboxMode);
       const resolvedGeminiSandbox = resolveGeminiSandboxMode(lineage.sandboxMode);
@@ -341,10 +442,9 @@ async function main() {
 
       const timeoutMs = computeLineageTimeoutMs(lineage);
 
-      const result = spawnSync(command, cmdArgs, {
+      const result = await runLineageProcess(command, cmdArgs, {
         cwd: process.cwd(),
-        encoding: 'utf8',
-        timeout: timeoutMs,
+        timeoutMs,
         env: { ...process.env, ...extraEnv },
         maxBuffer: 20 * 1024 * 1024,
         ...(typeof input === 'string' ? { input } : {}),
@@ -356,11 +456,30 @@ async function main() {
       const savedStdout = typeof result.stdout === 'string' ? result.stdout : '';
       fs.writeFileSync(path.join(logsDir, 'fanout-lineage.out'), savedStdout, 'utf8');
 
-      // Recover missing iteration files from captured stdout when possible.
+      // Recover missing iteration files from captured stdout when possible. Runs
+      // BEFORE the failure throw below so iteration recovery is never lost.
       const salvage = runSalvageSweep(lineageDir, loopType, savedStdout);
 
       const exitCode = result.status ?? (result.error ? 1 : 0);
-      return { label: lineage.label, exitCode, timedOut: result.signal === 'SIGTERM', salvage };
+      const timedOut = result.signal === 'SIGTERM';
+
+      // A lineage whose CLI exits non-zero or is killed by the timeout is a FAILURE,
+      // not a success. Throw so the pool settles this item as rejected and counts it
+      // in summary.failed/all_failed, which drives the process exit code. Returning a
+      // plain object here would let the pool record any completed worker as fulfilled
+      // regardless of the underlying CLI exit, masking failed/timed-out lineages.
+      if (timedOut || exitCode !== 0) {
+        const failure = new Error(
+          `lineage ${lineage.label} ${timedOut ? 'timed out' : `exited with code ${exitCode}`}`,
+        );
+        failure.label = lineage.label;
+        failure.exitCode = exitCode;
+        failure.timedOut = timedOut;
+        failure.salvage = salvage;
+        throw failure;
+      }
+
+      return { label: lineage.label, exitCode, timedOut, salvage };
     },
   });
 

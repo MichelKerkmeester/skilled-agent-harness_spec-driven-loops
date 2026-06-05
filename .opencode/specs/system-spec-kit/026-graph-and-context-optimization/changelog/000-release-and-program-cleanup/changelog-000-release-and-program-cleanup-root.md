@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: release and program cleanup"
-description: "Rollup of 1 child phase changelogs under 000-release-and-program-cleanup. Each child shipped independently and is listed in the Included Phases table. Detail lives in the child changelogs."
+description: "Rollup of 129 leaf changelogs under 000-release-and-program-cleanup. Each child shipped independently and is listed in its own leaf changelog. Detail lives in the child changelogs."
 trigger_phrases:
   - "000-release-and-program-cleanup rollup"
   - "000-release-and-program-cleanup phase parent"
@@ -18,7 +18,7 @@ contextType: "implementation"
 
 ### Summary
 
-This phase parent groups 1 child phases spanning 2026-04-25 to 2026-04-25. Each child phase shipped independently and carries its own changelog with full detail. The Included Phases table below is the authoritative child inventory. Read each child changelog for the per-phase summary, verification, and files changed.
+This phase parent groups 129 leaf changelogs that sit flat in this directory. Each child phase shipped independently and carries its own changelog with full detail. The authoritative child inventory is the full set of `changelog-*.md` files in this directory (excluding this root rollup). The Included Phases table below highlights the representative child rollup rather than re-listing all 129 leaves. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
@@ -40,13 +40,13 @@ This phase parent groups 1 child phases spanning 2026-04-25 to 2026-04-25. Each 
 
 ### Verification
 
-- All 1 child phases were verified independently. See each child changelog for per-phase verification evidence.
+- All 129 leaf phases were verified independently. See each child changelog for per-phase verification evidence.
 
 ### Files Changed
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `000-release-and-program-cleanup/` (child phases) | n/a | Rollup of 1 child phase changelogs, no direct source changes at the parent level |
+| `000-release-and-program-cleanup/` (child phases) | n/a | Rollup of 129 leaf changelogs, no direct source changes at the parent level |
 
 ### Follow-Ups
 

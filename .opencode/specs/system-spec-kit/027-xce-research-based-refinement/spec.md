@@ -83,9 +83,9 @@ _memory:
 Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.
 
 ### Purpose
-Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible.
+Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible. This refinement builds on the completed 026 track-000 release-and-program-cleanup surface. The 026 program parent itself remains In Progress for its other in-flight tracks.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
+> **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level; optional cross-cutting docs (the `context-index.md` migration bridge and `resource-map.md`) may also live here. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---

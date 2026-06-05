@@ -11,9 +11,7 @@ import {
   handleCodeGraphVerify,
   handleCodeGraphApply,
   handleDetectChanges,
-  // PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)
-  // PHASE-003-IMPORT-SLOT: handleCodeGraphTrace (027/003)
-  // PHASE-004-IMPORT-SLOT: handleCodeGraphImpactAnalysis (027/004)
+  // Reserved import slots for future hld/lld, trace, and impact-analysis handlers.
 } from '../handlers/index.js';
 
 import type { MCPResponse } from '../lib/shared/mcp-types.js';
@@ -30,9 +28,7 @@ export const TOOL_NAMES = new Set([
   'code_graph_verify',
   'code_graph_apply',
   'detect_changes',
-  // PHASE-002-TOOLNAME-SLOT: 'code_graph_hld_lld' (027/002)
-  // PHASE-003-TOOLNAME-SLOT: 'code_graph_trace' (027/003)
-  // PHASE-004-TOOLNAME-SLOT: 'code_graph_impact_analysis' (027/004)
+  // Reserved tool-name slots for future hld/lld, trace, and impact-analysis tools.
 ]);
 
 /** Coerce handler response to MCPResponse (fix type literal narrowing) */
@@ -118,9 +114,7 @@ export async function handleTool(name: string, args: Record<string, unknown>): P
       }
       return toMCP(await handleDetectChanges(parseArgs<Parameters<typeof handleDetectChanges>[0]>(args)));
     }
-    // PHASE-002-DISPATCH-SLOT: case 'code_graph_hld_lld' (027/002)
-    // PHASE-003-DISPATCH-SLOT: case 'code_graph_trace' (027/003)
-    // PHASE-004-DISPATCH-SLOT: case 'code_graph_impact_analysis' (027/004)
+    // Reserved dispatch slots for future hld/lld, trace, and impact-analysis cases.
     default:
       return null;
   }

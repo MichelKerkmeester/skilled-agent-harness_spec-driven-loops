@@ -105,3 +105,28 @@ describe('Gate D regression session dedup', () => {
     expect(filtered.every((row) => row.source !== 'legacy')).toBe(true);
   });
 });
+
+// B4: memory_search must validate caller-supplied sessionId through the same
+// resolveTrustedSession gate as memory_context / memory_match_triggers. These
+// cases pin the trust contract the handler relies on (forged id -> error;
+// omitted id -> fresh server-minted untrusted session).
+describe('B4 session trust gate (memory_search parity)', () => {
+  it('rejects a forged/untracked sessionId with an error (would map to E_SESSION_SCOPE)', () => {
+    const trusted = sessionManager.resolveTrustedSession('forged-not-a-real-session', {
+      tenantId: 'A',
+    });
+    expect(trusted.error).toBeTruthy();
+    expect(trusted.trusted).toBe(false);
+    expect(trusted.effectiveSessionId).toBe('');
+  });
+
+  it('mints a fresh server-generated session when sessionId is omitted', () => {
+    const a = sessionManager.resolveTrustedSession(null, {});
+    const b = sessionManager.resolveTrustedSession(null, {});
+    expect(a.trusted).toBe(false);
+    expect(a.error).toBeUndefined();
+    expect(a.effectiveSessionId).toBeTruthy();
+    // Each no-session resolution is independent (fresh UUID), not collapsed.
+    expect(a.effectiveSessionId).not.toBe(b.effectiveSessionId);
+  });
+});

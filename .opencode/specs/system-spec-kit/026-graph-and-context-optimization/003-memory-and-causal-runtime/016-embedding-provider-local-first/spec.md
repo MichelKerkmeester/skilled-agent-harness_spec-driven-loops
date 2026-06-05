@@ -14,8 +14,8 @@ _memory:
     packet_pointer: "skilled-agent-orchestration/132-embedding-provider-local-first"
     last_updated_at: "2026-06-02T18:50:00Z"
     last_updated_by: "claude-opus"
-    recent_action: "Traced 3 provider-order definitions; only resolveProvider is non-local-first"
-    next_safe_action: "Edit resolveProvider + cascade triggers; rebuild shared; run tests"
+    recent_action: "resolveProvider local-first shipped and committed; embedder gate green"
+    next_safe_action: "None packet complete daemon recycle user-gated"
     blockers: []
     key_files:
       - ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts"
@@ -23,7 +23,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "embedding-localfirst-session"
       parent_session_id: null
-    completion_pct: 10
+    completion_pct: 100
     open_questions: []
     answered_questions:
       - "User directive: Ollama > HF > OpenAI/Voyage; ollama is default. Confirmed via /memory_health live provider=ollama."
@@ -42,7 +42,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | In Progress |
+| **Status** | Complete |
 | **Created** | 2026-06-02 |
 | **Branch** | `132-embedding-provider-local-first` |
 <!-- /ANCHOR:metadata -->

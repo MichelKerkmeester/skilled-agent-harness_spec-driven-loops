@@ -1,11 +1,13 @@
 // TEST: HANDLER CAUSAL GRAPH
-import { describe, it, expect, afterEach, vi } from 'vitest';
+import { describe, it, expect, afterEach, beforeEach, vi } from 'vitest';
+import Database from 'better-sqlite3';
 import * as handler from '../handlers/causal-graph';
 import * as core from '../core';
 import * as vectorIndex from '../lib/search/vector-index';
 import * as causalEdges from '../lib/storage/causal-edges';
 
 type HandlerExportName = keyof typeof handler;
+type SqliteDatabase = InstanceType<typeof Database>;
 
 function invalidArgs<T>(value: unknown): T {
   return value as T;
@@ -414,5 +416,177 @@ describe('Handler Causal Graph (T523) [deferred - requires DB test fixtures]', (
       const parsed = JSON.parse(result.content[0].text);
       expect(typeof parsed).toBe('object');
     });
+  });
+});
+
+/* ───────────────────────────────────────────────────────────────
+   GOVERNED SCOPE + FK EXISTENCE (real in-memory DB)
+──────────────────────────────────────────────────────────────── */
+
+describe('Causal graph governed scope + FK existence', () => {
+  let testDb: SqliteDatabase;
+
+  function buildSchema(database: SqliteDatabase): void {
+    database.exec(`
+      CREATE TABLE IF NOT EXISTS memory_index (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        spec_folder TEXT NOT NULL DEFAULT '',
+        file_path TEXT NOT NULL DEFAULT '',
+        title TEXT,
+        importance_tier TEXT DEFAULT 'normal',
+        importance_weight REAL DEFAULT 1.0,
+        context_type TEXT DEFAULT 'general',
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        updated_at TEXT,
+        tenant_id TEXT,
+        user_id TEXT,
+        agent_id TEXT,
+        session_id TEXT
+      )
+    `);
+    database.exec(`
+      CREATE TABLE IF NOT EXISTS causal_edges (
+        id INTEGER PRIMARY KEY,
+        source_id TEXT NOT NULL,
+        target_id TEXT NOT NULL,
+        relation TEXT NOT NULL CHECK(relation IN (
+          'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+        )),
+        strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+        evidence TEXT,
+        extracted_at TEXT DEFAULT (datetime('now')),
+        created_by TEXT DEFAULT 'manual',
+        source_anchor TEXT,
+        target_anchor TEXT,
+        last_accessed TEXT,
+        UNIQUE(source_id, target_id, relation)
+      )
+    `);
+    database.exec(`
+      CREATE TABLE IF NOT EXISTS weight_history (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        edge_id INTEGER NOT NULL REFERENCES causal_edges(id) ON DELETE CASCADE,
+        old_strength REAL NOT NULL,
+        new_strength REAL NOT NULL,
+        changed_by TEXT DEFAULT 'manual',
+        changed_at TEXT DEFAULT (datetime('now')),
+        reason TEXT
+      )
+    `);
+  }
+
+  function seedMemory(
+    id: number,
+    scope: { tenantId?: string | null; userId?: string | null; agentId?: string | null },
+  ): void {
+    testDb.prepare(`
+      INSERT INTO memory_index (id, spec_folder, file_path, title, tenant_id, user_id, agent_id)
+      VALUES (?, 'spec', '/mem/' || ? || '.md', 'Memory ' || ?, ?, ?, ?)
+    `).run(id, id, id, scope.tenantId ?? null, scope.userId ?? null, scope.agentId ?? null);
+  }
+
+  beforeEach(() => {
+    testDb = new Database(':memory:');
+    buildSchema(testDb);
+    vi.spyOn(core, 'checkDatabaseUpdated').mockResolvedValue(false);
+    vi.spyOn(vectorIndex, 'initializeDb').mockImplementation(() => undefined);
+    vi.spyOn(vectorIndex, 'getDb').mockReturnValue(testDb as unknown as ReturnType<typeof vectorIndex.getDb>);
+    causalEdges.init(testDb);
+  });
+
+  afterEach(() => {
+    try { testDb.close(); } catch { /* noop */ }
+    vi.restoreAllMocks();
+  });
+
+  // B3: FK existence at the production handler boundary
+  it('B3: rejects causal_link when sourceId/targetId are not in memory_index', async () => {
+    const result = await handler.handleMemoryCausalLink({
+      sourceId: '900001',
+      targetId: '900002',
+      relation: 'caused',
+    });
+    const parsed = parseResponse(result);
+    expect(parsed.data.error).toContain('not found in memory_index');
+    // No edge created
+    const edgeCount = testDb.prepare('SELECT COUNT(*) AS c FROM causal_edges').get() as { c: number };
+    expect(edgeCount.c).toBe(0);
+  });
+
+  it('B3: creates the edge when both endpoints exist (no scope)', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'A' });
+    const result = await handler.handleMemoryCausalLink({
+      sourceId: '1',
+      targetId: '2',
+      relation: 'caused',
+    });
+    const parsed = parseResponse(result);
+    expect(parsed.data.success).toBe(true);
+    const edgeCount = testDb.prepare('SELECT COUNT(*) AS c FROM causal_edges').get() as { c: number };
+    expect(edgeCount.c).toBe(1);
+  });
+
+  // B2: scope authorization on causal_link
+  it('B2: rejects causal_link when an endpoint is outside the supplied scope', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'B' });
+    const result = await handler.handleMemoryCausalLink({
+      sourceId: '1',
+      targetId: '2',
+      relation: 'caused',
+      tenantId: 'A',
+    });
+    const parsed = parseResponse(result);
+    expect(parsed.data.error).toContain('not authorized for the supplied scope');
+    const edgeCount = testDb.prepare('SELECT COUNT(*) AS c FROM causal_edges').get() as { c: number };
+    expect(edgeCount.c).toBe(0);
+  });
+
+  it('B2: allows causal_link when both endpoints match the supplied scope', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'A' });
+    const result = await handler.handleMemoryCausalLink({
+      sourceId: '1',
+      targetId: '2',
+      relation: 'caused',
+      tenantId: 'A',
+    });
+    const parsed = parseResponse(result);
+    expect(parsed.data.success).toBe(true);
+  });
+
+  // B2: scope authorization on drift_why
+  it('B2: drift_why denies (empty) when the source memory is out of scope', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'A' });
+    // Edge exists between two tenant-A memories
+    causalEdges.insertEdge('1', '2', causalEdges.RELATION_TYPES.CAUSED, 1.0, null);
+
+    // A tenant-B caller asking about a tenant-A memory must get an empty result
+    const result = await handler.handleMemoryDriftWhy({ memoryId: 1, tenantId: 'B' });
+    const parsed = parseResponse(result);
+    expect(parsed.data.memory).toBeNull();
+    expect(parsed.data.totalEdges ?? 0).toBe(0);
+  });
+
+  it('B2: drift_why returns the chain when the source memory matches scope', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'A' });
+    causalEdges.insertEdge('1', '2', causalEdges.RELATION_TYPES.CAUSED, 1.0, null);
+
+    const result = await handler.handleMemoryDriftWhy({ memoryId: 1, tenantId: 'A' });
+    const parsed = parseResponse(result);
+    expect(parsed.data.totalEdges).toBeGreaterThan(0);
+  });
+
+  it('B2: drift_why is unchanged when no scope is supplied', async () => {
+    seedMemory(1, { tenantId: 'A' });
+    seedMemory(2, { tenantId: 'A' });
+    causalEdges.insertEdge('1', '2', causalEdges.RELATION_TYPES.CAUSED, 1.0, null);
+
+    const result = await handler.handleMemoryDriftWhy({ memoryId: 1 });
+    const parsed = parseResponse(result);
+    expect(parsed.data.totalEdges).toBeGreaterThan(0);
   });
 });

@@ -35,7 +35,7 @@ Validate MODULE: header compliance via verify_alignment_drift.py against cd .ope
 ### Commands
 
 1. `cd .opencode/skills/system-spec-kit`
-2. `python3 ../sk-code/scripts/verify_alignment_drift.py --root .`
+2. `python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root .`
 3. Grep output for `TS-MODULE-HEADER` findings
 4. Verify 0 findings
 

@@ -114,7 +114,7 @@ describe('H5: all tool schemas have additionalProperties: false', () => {
   // 014+: code-graph/advisor tool families moved to dedicated MCP servers; this server exposes the memory/checkpoint/session/embedder surface.
   it('total tool count matches expected', () => {
     // Ensures no schema was accidentally dropped during bulk edit
-    expect(TOOL_DEFINITIONS.length).toBe(36);
+    expect(TOOL_DEFINITIONS.length).toBe(37);
   });
 });
 

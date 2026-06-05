@@ -15,8 +15,8 @@ const envDir = process.env.SPECKIT_CODE_GRAPH_DB_DIR;
 // (operator directive 2026-05-29: keep code-graph state inside the skill folder, which every runtime
 // already shares via the `.opencode/skills` symlink, so a skill-local DB is a single shared instance).
 // Resolved against the workspace root so it is stable regardless of CWD. `SPECKIT_CODE_GRAPH_DB_DIR`
-// overrides it. This supersedes the former shared `.opencode/.spec-kit/code-graph/database` location
-// (reverses ADR-002/004/005). (resolveWorkspaceRoot is a hoisted function declaration, safe here.)
+// overrides it. This supersedes the former shared `.opencode/.spec-kit/code-graph/database` location.
+// (resolveWorkspaceRoot is a hoisted function declaration, safe here.)
 const defaultDir = resolve(resolveWorkspaceRoot(), '.opencode/skills/system-code-graph/mcp_server/database');
 
 function resolveWorkspaceRoot(): string {

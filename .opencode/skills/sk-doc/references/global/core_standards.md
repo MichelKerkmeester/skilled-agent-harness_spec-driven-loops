@@ -40,6 +40,7 @@ This reference provides deep-dive technical guidance on structure validation, do
 **Exceptions** (never modify):
 - `README.md` (standard convention)
 - `SKILL.md` (in `.opencode/skills/` only)
+- Packet-local numbered docs (`NNN-name.md`) may use hyphens to match spec-folder naming conventions.
 
 ---
 
@@ -114,7 +115,8 @@ This reference provides deep-dive technical guidance on structure validation, do
 - Missing YAML frontmatter
 - Missing required fields: `description`
 - H1 has subtitle (should not have)
-- Missing required sections: INPUTS, WORKFLOW, OUTPUTS
+- Missing required sections: purpose, instructions
+- (Recommended sections: contract, examples, notes)
 
 **Fix template** (frontmatter):
 ```yaml

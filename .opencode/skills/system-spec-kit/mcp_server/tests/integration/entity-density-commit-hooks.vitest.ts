@@ -9,6 +9,7 @@ import type Database from 'better-sqlite3';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
 import { handleMemoryBulkDelete } from '../../handlers/memory-bulk-delete';
+import { handleMemoryUpdate } from '../../handlers/memory-crud-update';
 import {
   getEntityDensityScore,
   invalidateEntityDensityCache,
@@ -116,5 +117,32 @@ describe('entity-density commit hooks', () => {
     invalidateEntityDensityCache();
 
     expect(getEntityDensityScore(query, db)).toBe(0);
+  });
+
+  it('entity-density cache reflects memory_update trigger-phrase rewrite without TTL wait', async () => {
+    const oldToken = 'memoryupdatehook';
+    seedHighDegreeMemory({
+      id: 301,
+      title: 'Memory update cache fixture',
+      triggerPhrase: oldToken,
+    });
+
+    // The old trigger phrase is a high-degree token before the update.
+    expect(getEntityDensityScore(oldToken, db)).toBeGreaterThan(0);
+
+    // memory_update rewrites trigger_phrases through the production handler, whose
+    // shared post-mutation hook must invalidate the entity-density cache. No manual
+    // invalidateEntityDensityCache() call and no TTL wait below.
+    const response = await handleMemoryUpdate({
+      id: 301,
+      triggerPhrases: ['memoryupdatereplacement'],
+    });
+    const envelope = JSON.parse(response.content[0].text);
+    expect(envelope.data?.updated).toBe(301);
+    expect(envelope.data?.postMutationHooks?.errors).toEqual([]);
+
+    // Old token no longer matches; new token does — proving the hook cleared the cache.
+    expect(getEntityDensityScore(oldToken, db)).toBe(0);
+    expect(getEntityDensityScore('memoryupdatereplacement document', db)).toBeGreaterThan(0);
   });
 });

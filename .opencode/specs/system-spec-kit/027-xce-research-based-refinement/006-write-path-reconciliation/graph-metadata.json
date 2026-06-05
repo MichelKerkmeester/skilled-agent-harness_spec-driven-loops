@@ -39,7 +39,7 @@
       "target"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "handlers/memory-index.ts",
       "handlers/memory-save.ts",

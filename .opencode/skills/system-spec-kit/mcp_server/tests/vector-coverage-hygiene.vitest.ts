@@ -76,19 +76,40 @@ describe('success-vector-coverage hygiene (007)', () => {
     if (dir) fs.rmSync(dir, { recursive: true, force: true });
   });
 
-  // Detect success rows missing the active vector rowid presence marker.
-  it('counts success rows missing active vector rowids', () => {
+  // Detect success rows missing EITHER active vector surface (rowids OR dim row).
+  // The dry-run count must match the apply repair predicate exactly.
+  it('counts success rows missing either active vector surface', () => {
     ({ db, dir } = createFixture());
     addRow(db, { id: 1, status: 'success', hasVec768: true, hasVecMemories: true });   // fully covered
     addRow(db, { id: 2, status: 'success', hasVec768: false, hasVecMemories: false });  // missing both
-    addRow(db, { id: 3, status: 'success', hasVec768: false, hasVecMemories: true });   // covered by rowids
+    addRow(db, { id: 3, status: 'success', hasVec768: false, hasVecMemories: true });   // missing dim row only
     addRow(db, { id: 4, status: 'success', hasVec768: true, hasVecMemories: false });   // missing rowids only
 
     const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
     expect(dry.safety.activeShardVerified).toBe(true);
-    expect(dry.coverage?.successMissingActiveVector).toBe(2);
+    // id=3 (has rowids but missing the vec_768 dim row) is now countable because
+    // the dry-run predicate matches the apply repair's rowid-OR-dim check.
+    expect(dry.coverage?.successMissingActiveVector).toBe(3);
     // dry-run mutates nothing
     expect(rowStatus(db, 2).embedding_status).toBe('success');
+  });
+
+  // Dry-run/apply parity: the dry-run coverage count predicts exactly which rows
+  // the apply repair mutates, including a row missing ONLY the dim vector row.
+  it('dry-run coverage equals apply repair count when a row is missing only the dim row', () => {
+    ({ db, dir } = createFixture());
+    addRow(db, { id: 1, status: 'success', hasVec768: true, hasVecMemories: true });   // fully covered
+    addRow(db, { id: 3, status: 'success', hasVec768: false, hasVecMemories: true });   // missing dim row only
+
+    const dry = runMemoryEmbeddingReconcile(db, { mode: 'dry-run' });
+    expect(dry.coverage?.successMissingActiveVector).toBe(1);
+
+    const applied = runMemoryEmbeddingReconcile(db, { mode: 'apply', repairSuccessCoverage: true });
+    expect(applied.applied?.successCoverageReset).toBe(dry.coverage?.successMissingActiveVector);
+    expect(applied.applied?.successCoverageReset).toBe(1);
+    // the dim-row-missing row was reset; the fully covered row was not
+    expect(rowStatus(db, 3).embedding_status).toBe('retry');
+    expect(rowStatus(db, 1).embedding_status).toBe('success');
   });
 
   // Apply with repairSuccessCoverage resets rowid-missing success rows to retry.

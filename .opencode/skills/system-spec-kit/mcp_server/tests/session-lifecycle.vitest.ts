@@ -1,7 +1,8 @@
 // TEST: SESSION LIFECYCLE CONTRACT
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import Database from 'better-sqlite3';
 import * as workingMemory from '../lib/cognitive/working-memory';
+import { resolveNoSessionAnchor, PROCESS_MEMORY_SESSION_ID } from '../handlers/memory-context';
 
 function createDb() {
   const db = new Database(':memory:');
@@ -65,5 +66,51 @@ describe('Session lifecycle contract (T027k-T027n)', () => {
     const promptContext = workingMemory.getSessionPromptContext('resume-session', 0.05, 5);
     expect(promptContext.length).toBeGreaterThan(0);
     expect(promptContext[0].attentionScore).toBeGreaterThan(0.05);
+  });
+});
+
+// B5: no-session callers with distinct governance scopes must not collapse onto
+// one shared process-wide session bucket, while the unscoped single-user path
+// keeps stable resume continuity.
+describe('B5 no-session continuity anchor isolation', () => {
+  const baseArgs = { input: 'x' } as Parameters<typeof resolveNoSessionAnchor>[0];
+  let savedEnv: string | undefined;
+
+  beforeEach(() => {
+    savedEnv = process.env.SPECKIT_MEMORY_SESSION_ID;
+    delete process.env.SPECKIT_MEMORY_SESSION_ID;
+  });
+
+  afterEach(() => {
+    if (savedEnv === undefined) {
+      delete process.env.SPECKIT_MEMORY_SESSION_ID;
+    } else {
+      process.env.SPECKIT_MEMORY_SESSION_ID = savedEnv;
+    }
+  });
+
+  it('unscoped no-session callers share the stable process-wide anchor', () => {
+    expect(resolveNoSessionAnchor({ ...baseArgs })).toBe(PROCESS_MEMORY_SESSION_ID);
+    expect(resolveNoSessionAnchor({ ...baseArgs })).toBe(PROCESS_MEMORY_SESSION_ID);
+  });
+
+  it('distinct scopes derive distinct anchors (no cross-contamination)', () => {
+    const userA = resolveNoSessionAnchor({ ...baseArgs, userId: 'alice' });
+    const userB = resolveNoSessionAnchor({ ...baseArgs, userId: 'bob' });
+    expect(userA).not.toBe(userB);
+    // Scoped anchors are still distinct from the bare process-wide id.
+    expect(userA).not.toBe(PROCESS_MEMORY_SESSION_ID);
+    expect(userB).not.toBe(PROCESS_MEMORY_SESSION_ID);
+  });
+
+  it('identical scope derives a stable anchor (continuity preserved)', () => {
+    const first = resolveNoSessionAnchor({ ...baseArgs, tenantId: 'acme', userId: 'alice' });
+    const second = resolveNoSessionAnchor({ ...baseArgs, tenantId: 'acme', userId: 'alice' });
+    expect(first).toBe(second);
+  });
+
+  it('explicit SPECKIT_MEMORY_SESSION_ID overrides scope derivation', () => {
+    process.env.SPECKIT_MEMORY_SESSION_ID = 'env-pinned-session';
+    expect(resolveNoSessionAnchor({ ...baseArgs, userId: 'alice' })).toBe('env-pinned-session');
   });
 });

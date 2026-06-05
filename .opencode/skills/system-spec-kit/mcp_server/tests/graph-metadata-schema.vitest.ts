@@ -21,6 +21,7 @@ interface GraphMetadataFixtureOptions {
   track?: string;
   packetId?: string;
   specStatus?: string | null;
+  specMetadataTableStatus?: string | null;
   planStatus?: string | null;
   implementationSummaryStatus?: string | null;
   includeChecklist?: boolean;
@@ -51,11 +52,20 @@ function createSpecFolder(options: GraphMetadataFixtureOptions = {}): string {
     specFrontmatter.push(`status: "${options.specStatus ?? 'planned'}"`);
   }
   specFrontmatter.push('---');
+  const specMetadataTableLines = options.specMetadataTableStatus
+    ? [
+      '| Field | Value |',
+      '|-------|-------|',
+      `| **Status** | ${options.specMetadataTableStatus} |`,
+      '',
+    ]
+    : [];
   fs.writeFileSync(path.join(specFolder, 'spec.md'), [
     ...specFrontmatter,
     '',
     '# Graph Metadata Packet',
     '',
+    ...specMetadataTableLines,
     '### Overview',
     '',
     'Defines the packet graph metadata contract for packet-aware save and retrieval flows.',
@@ -318,6 +328,36 @@ describe('graph metadata schema and parser', () => {
     const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
 
     expect(metadata.derived.status).toBe('complete');
+  });
+
+  it('honors a spec.md metadata-table Draft status over implementation-summary presence', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      specMetadataTableStatus: 'Draft',
+      planStatus: null,
+      implementationSummaryStatus: null,
+      includeChecklist: false,
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('draft');
+    expect(metadata.derived.status).not.toBe('complete');
+  });
+
+  it('honors a spec.md metadata-table Placeholder status over implementation-summary presence', () => {
+    const specFolder = createSpecFolder({
+      specStatus: null,
+      specMetadataTableStatus: 'Placeholder',
+      planStatus: null,
+      implementationSummaryStatus: null,
+      includeChecklist: false,
+    });
+
+    const metadata = deriveGraphMetadata(specFolder, null, { now: '2026-04-12T12:00:00.000Z' });
+
+    expect(metadata.derived.status).toBe('placeholder');
+    expect(metadata.derived.status).not.toBe('complete');
   });
 
   it('derives unknown status when a canonical doc is unreadable', () => {

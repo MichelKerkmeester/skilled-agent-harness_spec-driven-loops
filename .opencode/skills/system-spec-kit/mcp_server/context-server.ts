@@ -943,28 +943,33 @@ async function buildServerInstructions(): Promise<string> {
   // Structural bootstrap guidance for
   // non-hook runtimes. Readiness vocabulary is aligned across bootstrap,
   // resume, health, and mcp__mk_code_index__code_graph_query (ready | stale | absent |
-  // unavailable). mcp__mk_code_index__code_graph_query is only recommended when structural
-  // context is actually reachable; 'absent' and 'unavailable' route to
+  // unavailable). The read handler is false-safe: only a fresh/ready graph answers
+  // mcp__mk_code_index__code_graph_query — 'stale' blocks (code_graph_not_ready) and
+  // requires a session_bootstrap refresh first; 'absent' and 'unavailable' route to
   // repair/recovery, not query.
   lines.push('');
-  lines.push('## Structural Bootstrap (Phase 027)');
+  lines.push('## Structural Bootstrap');
   lines.push('Non-hook runtimes receive automatic structural context via session_bootstrap, session_resume, and auto-prime.');
   lines.push('- If structural context shows "ready": mcp__mk_code_index__code_graph_query is available for structural lookups');
-  lines.push('- If "stale": mcp__mk_code_index__code_graph_query still works, but a session_bootstrap refresh is recommended');
+  lines.push('- If "stale": mcp__mk_code_index__code_graph_query will block (code_graph_not_ready) until you run session_bootstrap to refresh; run it first');
   lines.push('- If "absent" (empty/missing graph): run mcp__mk_code_index__code_graph_scan first, then session_bootstrap');
   lines.push('- If "unavailable" (DB unreachable / readiness probe failed): call memory_health for repair guidance instead of mcp__mk_code_index__code_graph_query');
   lines.push('- Recovery priority: session_bootstrap → session_resume → mcp__mk_code_index__code_graph_scan');
 
   // Tool routing decision tree.
-  // mcp__mk_code_index__code_graph_query is only surfaced when graph freshness is 'fresh' or
-  // 'stale' (queryable). 'empty' → recommend mcp__mk_code_index__code_graph_scan; 'error' →
-  // recommend memory_health because the database probe failed.
+  // mcp__mk_code_index__code_graph_query is only surfaced when graph freshness is
+  // 'fresh' (the read handler blocks every non-fresh read with code_graph_not_ready).
+  // 'stale' → recommend session_bootstrap to refresh before querying; 'empty' →
+  // recommend mcp__mk_code_index__code_graph_scan; 'error' → recommend memory_health
+  // because the database probe failed.
   try {
     const { getSessionSnapshot: getSnap } = await import('./lib/session/session-snapshot.js');
     const snap = getSnap();
     const routingRules: string[] = [];
-    if (snap.graphFreshness === 'fresh' || snap.graphFreshness === 'stale') {
+    if (snap.graphFreshness === 'fresh') {
       routingRules.push('Structural queries (callers, imports, deps) → mcp__mk_code_index__code_graph_query');
+    } else if (snap.graphFreshness === 'stale') {
+      routingRules.push('Structural queries → run session_bootstrap to refresh first (stale graph blocks mcp__mk_code_index__code_graph_query with code_graph_not_ready)');
     } else if (snap.graphFreshness === 'empty') {
       routingRules.push('Structural queries → unavailable: run mcp__mk_code_index__code_graph_scan first (graph is absent)');
     } else if (snap.graphFreshness === 'error') {
@@ -2072,8 +2077,8 @@ async function main(): Promise<void> {
     // Async ingestion job queue initialization + crash recovery reset.
     try {
       const ingestInit = initIngestJobQueue({
-        processFile: async (filePath: string) => {
-          await indexSingleFile(filePath, false);
+        processFile: async (filePath: string, governance) => {
+          await indexSingleFile(filePath, false, governance ? { governance } : undefined);
         },
       });
       if (ingestInit.resetCount > 0) {

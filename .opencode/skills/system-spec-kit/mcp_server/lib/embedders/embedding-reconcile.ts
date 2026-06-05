@@ -18,7 +18,11 @@ export type EmbeddingReconcileMode = 'dry-run' | 'apply';
 /** Arguments for memory_embedding_reconcile. Dry-run defaults across the board. */
 export interface EmbeddingReconcileArgs {
   mode?: EmbeddingReconcileMode;
-  /** Resolve + verify the active shard from runtime metadata (default true). */
+  /**
+   * Reserved / no-op. The active shard is ALWAYS resolved and verified from
+   * runtime metadata; this flag has no runtime effect and is retained only for
+   * contract stability.
+   */
   activeOnly?: boolean;
   /** Reset genuinely missing-vector retention failures to retry-eligible (default true). */
   resetMissing?: boolean;
@@ -274,15 +278,19 @@ function computeBuckets(database: Database.Database, dimTable: string): Reconcil
 }
 
 /**
- * Count `success` rows MISSING an active vector rowid — the
- * inverse hazard of status-stale rows. The dimension table is already validated
- * by the active-shard guard, but the rowids table is the vector-presence source.
+ * Count `success` rows MISSING an active vector surface — the inverse hazard of
+ * status-stale rows. A success row is repairable when EITHER the rowid marker OR
+ * the active-dim vector row is absent; both surfaces are checked so this dry-run
+ * count predicts exactly what the apply repair UPDATE will mutate.
  */
-function computeSuccessCoverage(database: Database.Database, _dimTable: string): number {
+function computeSuccessCoverage(database: Database.Database, dimTable: string): number {
   return (database.prepare(`
     SELECT COUNT(*) AS n FROM memory_index m
     WHERE m.embedding_status = 'success'
-      AND NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
+      AND (
+        NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id)
+        OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${dimTable} v WHERE v.id = m.id)
+      )
   `).get() as { n: number }).n;
 }
 

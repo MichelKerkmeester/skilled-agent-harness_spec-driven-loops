@@ -38,7 +38,7 @@ Route code search queries using this priority order:
 
 | Query Type | Primary Tool | Fallback |
 |-----------|-------------|----------|
-| **Semantic/concept** (meaning-based) | `mcp__mk_code_index__code_graph_query` (Code Graph) | `memory_search` |
+| **Semantic/concept** (meaning-based) | `mcp__mk_code_index__code_graph_query` (Code Graph) | `Grep` / `Glob` |
 | **Structural** (callers, imports, deps) | `code_graph_query` (Code Graph) | `Grep` / `Glob` |
 | **Exact text/regex** (string literal) | `Grep` | `Glob` |
 

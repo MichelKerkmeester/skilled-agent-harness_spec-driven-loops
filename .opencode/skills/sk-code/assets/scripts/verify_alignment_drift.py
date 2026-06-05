@@ -53,7 +53,15 @@ EXCLUDED_DIRS = {
     "venv",
 }
 
-INTEGRITY_RULE_PREFIXES = ("COMMON-", "JSON-", "JSONC-")
+INTEGRITY_RULE_PREFIXES = (
+    "COMMON-",
+    "JSON-",
+    "JSONC-",
+    "SH-SHEBANG",
+    "SH-STRICT-MODE",
+    "PY-SHEBANG",
+    "TS-MODULE-HEADER",
+)
 CONTEXT_ADVISORY_SEGMENTS = {
     "z_archive",
     "scratch",
@@ -308,6 +316,9 @@ def check_python(path: str, lines: List[str]) -> List[Finding]:
 def check_shell(path: str, lines: List[str]) -> List[Finding]:
     findings: List[Finding] = []
     first_line = lines[0].strip() if lines else ""
+    # Python script with a .sh extension — shebang validity is checked by check_python.
+    if first_line == "#!/usr/bin/env python3":
+        return findings
     if first_line != "#!/usr/bin/env bash":
         findings.append(
             Finding(

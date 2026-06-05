@@ -16,6 +16,7 @@ vi.mock('../lib/search/search-flags', () => ({
 }));
 
 import { searchCommunities } from '../lib/search/community-search';
+import { filterRowsByScope } from '../lib/governance/scope-governance';
 
 let db: InstanceType<typeof Database>;
 
@@ -126,5 +127,104 @@ describe('searchCommunities()', () => {
     const result = searchCommunities('search pipeline', db);
 
     expect(result.totalMemberIds).toEqual([1, 2, 3, 4]);
+  });
+});
+
+// B1: the community-search fallback must apply the governed retrieval scope to
+// the member rows it fetches, so it cannot bypass the tenant/user/agent
+// boundary the canonical pipeline enforces. These cases replicate the handler's
+// member-row SELECT (now including scope columns) + filterRowsByScope step.
+describe('community fallback governed scope (B1)', () => {
+  beforeEach(() => {
+    db = new Database(':memory:');
+  });
+
+  afterEach(() => {
+    db.close();
+  });
+
+  function createMemoryIndex(): void {
+    db.exec(`
+      CREATE TABLE memory_index (
+        id INTEGER PRIMARY KEY,
+        title TEXT,
+        similarity REAL,
+        content TEXT,
+        file_path TEXT,
+        anchor_id TEXT,
+        document_type TEXT,
+        importance_tier TEXT,
+        context_type TEXT,
+        quality_score REAL,
+        created_at TEXT,
+        tenant_id TEXT,
+        user_id TEXT,
+        agent_id TEXT,
+        session_id TEXT
+      )
+    `);
+  }
+
+  function seedMember(
+    id: number,
+    scope: { tenantId?: string | null; userId?: string | null; agentId?: string | null; sessionId?: string | null },
+  ): void {
+    db.prepare(`
+      INSERT INTO memory_index (id, title, similarity, content, file_path, anchor_id,
+        document_type, importance_tier, context_type, quality_score, created_at,
+        tenant_id, user_id, agent_id, session_id)
+      VALUES (?, 'm' || ?, 0.5, 'c', '/m/' || ? || '.md', 'a', 'spec_doc', 'normal',
+        'general', 0.5, datetime('now'), ?, ?, ?, ?)
+    `).run(
+      id, id, id,
+      scope.tenantId ?? null,
+      scope.userId ?? null,
+      scope.agentId ?? null,
+      scope.sessionId ?? null,
+    );
+  }
+
+  function fetchMembers(memberIds: number[]): Array<Record<string, unknown> & { id: number }> {
+    const placeholders = memberIds.map(() => '?').join(', ');
+    return db.prepare(`
+      SELECT id, title, similarity, content, file_path, anchor_id, document_type,
+             importance_tier, context_type, quality_score, created_at,
+             tenant_id, user_id, agent_id
+      FROM memory_index
+      WHERE id IN (${placeholders})
+    `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
+  }
+
+  it('drops cross-tenant rows when a tenant scope is supplied', () => {
+    createMemoryIndex();
+    seedMember(1, { tenantId: 'A' });
+    seedMember(2, { tenantId: 'B' });
+
+    const rows = fetchMembers([1, 2]);
+    const scoped = filterRowsByScope(rows, { tenantId: 'A' });
+
+    expect(scoped.map((r) => r.id)).toEqual([1]);
+  });
+
+  it('returns all member rows when no governance scope is supplied', () => {
+    createMemoryIndex();
+    seedMember(1, { tenantId: 'A' });
+    seedMember(2, { tenantId: 'B' });
+
+    const rows = fetchMembers([1, 2]);
+    // No scope -> handler skips filterRowsByScope entirely; rows are unchanged.
+    expect(rows.map((r) => r.id)).toEqual([1, 2]);
+  });
+
+  it('does not treat sessionId as a row-access boundary', () => {
+    createMemoryIndex();
+    seedMember(1, { tenantId: 'A', sessionId: 's1' });
+    seedMember(2, { tenantId: 'A', sessionId: 's2' });
+
+    const rows = fetchMembers([1, 2]);
+    // Scope carries tenant only (mirrors the handler, which excludes sessionId);
+    // both same-tenant rows survive regardless of session.
+    const scoped = filterRowsByScope(rows, { tenantId: 'A' });
+    expect(scoped.map((r) => r.id)).toEqual([1, 2]);
   });
 });

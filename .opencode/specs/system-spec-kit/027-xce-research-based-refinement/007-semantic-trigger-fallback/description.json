@@ -1,7 +1,7 @@
 {
-  "title": "Phase 008 — Semantic Trigger Fallback (Hybrid)",
+  "title": "Phase 007 — Semantic Trigger Fallback (Hybrid)",
   "trigger_phrases": [
-    "027 phase 008",
+    "027 phase 007",
     "memory semantic triggers",
     "hybrid trigger matching",
     "semantic trigger fallback",
@@ -37,8 +37,8 @@
     "trigger",
     "fallback"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.830Z",
-  "specId": "006",
+  "lastUpdated": "2026-06-04T12:33:53.340Z",
+  "specId": "007",
   "folderSlug": "semantic-trigger-fallback",
   "parentChain": [
     "system-spec-kit",

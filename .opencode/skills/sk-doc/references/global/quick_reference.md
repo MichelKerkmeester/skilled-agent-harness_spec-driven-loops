@@ -125,7 +125,8 @@ python scripts/package_skill.py skill-path        # Package skill
 **Command** (Strict):
 - YAML frontmatter required (description, argument-hint, allowed-tools)
 - H1 without subtitle
-- Required sections: Purpose, Contract, Instructions, Example Usage
+- Required sections: purpose, instructions
+- Recommended sections: contract, examples, notes
 - Template: `assets/command_template.md`
 
 **llms.txt** (Moderate):

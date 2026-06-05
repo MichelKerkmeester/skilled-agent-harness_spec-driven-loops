@@ -264,6 +264,9 @@ async function handleMemoryIngestStart(args: MemoryIngestStartArgs): Promise<MCP
     id: jobId,
     paths,
     specFolder: args.specFolder,
+    // Persist the validated governance decision so the async worker re-indexes
+    // each path under the same provenance/retention/scope as the sync path.
+    governance: governanceDecision,
   });
 
   enqueueIngestJob(job.id);

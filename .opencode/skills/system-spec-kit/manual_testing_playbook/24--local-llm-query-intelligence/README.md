@@ -55,34 +55,34 @@ which gemini && gemini --version
 which claude && claude --version
 ```
 
-If only one external CLI is available, the cross-AI scenarios (414, 415) can still run using a single CLI in two separate invocations — note that the test is then weaker (same provider on both sides).
+If only one external CLI is available, the cross-AI scenarios (374, 375) can still run using a single CLI in two separate invocations — note that the test is then weaker (same provider on both sides).
 
 ## Scenario inventory
 
-### A. Query intelligence (401-410)
+### A. Query intelligence (361-370)
 
 | # | Title | Probes | Pass signal |
 |---|-------|--------|-------------|
-| 401 | Paraphrase recall | Same concept, different wording → same memory surfaces | Top-3 includes the paraphrased target, score > 0.5 |
-| 402 | Synonymy across vocabularies | Domain jargon vs plain language | >= 2/4 query pairs at >= 25% top-5 Jaccard + live canonical targets present |
-| 403 | Code-intent matching | Question-form query finds implementation | Implementation file ranks higher than its README in ≥ 3/4 |
-| 404 | Disambiguation under context | Polysemous query token | All 3 variants correctly disambiguate to intended sense |
-| 405 | Multi-aspect query synthesis | 3-concept compound query | Top-5 covers all 3 concepts with ≥ 2 multi-aspect results |
-| 406 | Specificity ladder | Same topic at 3 abstraction levels | Each level returns the most-specific match |
-| 407 | Adversarial near-miss | Lexical overlap, semantic distance | Semantically-correct result outranks lexical decoy in ≥ 2/3 |
-| 408 | Compound concept synthesis | Concept not directly stated in any single doc | ≥ 2/4 constituents in top-3, ≥ 3/4 in top-5 |
-| 409 | LLM-made memory recall | Quality of memories the local LLM has indexed | >= 8/10 deterministic fixture rows in top-3, mean rank <= 2 |
-| 410 | Query latency + throughput under load | Real-world query load on local stack | p50 ≤ 200ms, p95 ≤ 800ms, p99 ≤ 2s, ≥ 5 qps |
+| 361 | Paraphrase recall | Same concept, different wording → same memory surfaces | Top-3 includes the paraphrased target, score > 0.5 |
+| 362 | Synonymy across vocabularies | Domain jargon vs plain language | >= 2/4 query pairs at >= 25% top-5 Jaccard + live canonical targets present |
+| 363 | Code-intent matching | Question-form query finds implementation | Implementation file ranks higher than its README in ≥ 3/4 |
+| 364 | Disambiguation under context | Polysemous query token | All 3 variants correctly disambiguate to intended sense |
+| 365 | Multi-aspect query synthesis | 3-concept compound query | Top-5 covers all 3 concepts with ≥ 2 multi-aspect results |
+| 366 | Specificity ladder | Same topic at 3 abstraction levels | Each level returns the most-specific match |
+| 367 | Adversarial near-miss | Lexical overlap, semantic distance | Semantically-correct result outranks lexical decoy in ≥ 2/3 |
+| 368 | Compound concept synthesis | Concept not directly stated in any single doc | ≥ 2/4 constituents in top-3, ≥ 3/4 in top-5 |
+| 369 | LLM-made memory recall | Quality of memories the local LLM has indexed | >= 8/10 deterministic fixture rows in top-3, mean rank <= 2 |
+| 370 | Query latency + throughput under load | Real-world query load on local stack | p50 ≤ 200ms, p95 ≤ 800ms, p99 ≤ 2s, ≥ 5 qps |
 
-### B. Causal graph + memory substrate (411-415)
+### B. Causal graph + memory substrate (371-375)
 
 | # | Title | Probes | Pass signal |
 |---|-------|--------|-------------|
-| 411 | Causal graph link quality | Does the local LLM connect a 3-step causal chain? | ≥ 2 of 2 chain edges with confidence ≥ 0.5 |
-| 412 | Causal coverage under bulk save | Intra-cluster cohesion + inter-cluster separation across 4 topics | intra/inter edge ratio ≥ 2×, diagonal is row-leader in 4/4 topics |
-| 413 | Drift detection quality | `memory_drift_why` ranks contradicting memories correctly | ≥ 3/5 variants surfaced; strongest contradiction in top-2 |
-| 414 | Cross-AI memory handoff | AI-A stores → AI-B finds | External CLI returns stored memory in top-3, score ≥ 0.6 |
-| 415 | Concurrent multi-AI safety | 50 reads interleaved with 10 writes from a different CLI | All reads internally consistent, 0 errors, 0 duplicates |
+| 371 | Causal graph link quality | Does the local LLM connect a 3-step causal chain? | ≥ 2 of 2 chain edges with confidence ≥ 0.5 |
+| 372 | Causal coverage under bulk save | Intra-cluster cohesion + inter-cluster separation across 4 topics | intra/inter edge ratio ≥ 2×, diagonal is row-leader in 4/4 topics |
+| 373 | Drift detection quality | `memory_drift_why` ranks contradicting memories correctly | ≥ 3/5 variants surfaced; strongest contradiction in top-2 |
+| 374 | Cross-AI memory handoff | AI-A stores → AI-B finds | External CLI returns stored memory in top-3, score ≥ 0.6 |
+| 375 | Concurrent multi-AI safety | 50 reads interleaved with 10 writes from a different CLI | All reads internally consistent, 0 errors, 0 duplicates |
 
 ## How to read a scenario file
 
@@ -110,6 +110,6 @@ Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--l
 - Quality property checks: `mcp_server/tests/local-llm-features/ollama-quality.vitest.ts` (determinism, L2 norm, similarity ordering, 10 tests)
 - Embedding architecture: `shared/embeddings/README.md`, `references/memory/embedding_resilience.md`
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
-- Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/memory-causal-*.ts`
-- Drift detection: `mcp_server/handlers/memory-drift-why.ts`
+- Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/causal-graph.ts`
+- Drift detection: `mcp_server/handlers/causal-graph.ts` (memory_drift_why handler)
 - Cross-AI MCP wiring: `.codex/config.toml`, `.gemini/settings.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)

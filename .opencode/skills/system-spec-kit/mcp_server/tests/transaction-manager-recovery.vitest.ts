@@ -7,6 +7,7 @@ import {
   recoverAllPendingFiles,
   getPendingPath,
   findPendingFiles,
+  isPendingFile,
   resetMetrics,
   getMetrics,
 } from '../lib/storage/transaction-manager';
@@ -293,5 +294,31 @@ describe('transaction-manager recovery committed vs uncommitted (T007)', () => {
     expect(result.error).toContain('Database file missing');
     expect(fs.existsSync(pendingPath)).toBe(true);
     expect(fs.existsSync(originalPath)).toBe(false);
+  });
+
+  it('T011-R4: recovers the uuid-suffixed atomic-save orphan when the row is committed', () => {
+    // The atomic-save path writes its pending file with a unique 8-hex suffix
+    // (foo_pending.md.<uuid8>) so concurrent saves never collide. A hard crash
+    // between the DB commit and the rename leaves exactly this orphan shape with
+    // no original file. Startup recovery must rename it to the final path.
+    const dir = createTempDir('t011-r4');
+    const originalPath = path.join(dir, 'specs/011/memory/atomic-orphan.md');
+    fs.mkdirSync(path.dirname(originalPath), { recursive: true });
+
+    const orphanPath = `${getPendingPath(originalPath)}.deadbeef`;
+    fs.writeFileSync(orphanPath, '# atomic pending content', 'utf-8');
+
+    // The orphan must be recognized as a pending file despite the double suffix.
+    expect(isPendingFile(orphanPath)).toBe(true);
+    expect(findPendingFiles(dir)).toContain(orphanPath);
+
+    const results = recoverAllPendingFiles(dir, () => true);
+
+    expect(results).toHaveLength(1);
+    expect(results[0].path).toBe(orphanPath);
+    expect(results[0].recovered).toBe(true);
+    expect(fs.existsSync(orphanPath)).toBe(false);
+    expect(fs.existsSync(originalPath)).toBe(true);
+    expect(fs.readFileSync(originalPath, 'utf-8')).toBe('# atomic pending content');
   });
 });

@@ -73,7 +73,7 @@ import type { MCPResponse, IntentClassification } from './types.js';
 // Retrieval trace contracts (C136-08)
 import { createTrace } from '@spec-kit/shared/contracts/retrieval-trace';
 import { buildAdaptiveShadowProposal } from '../lib/cognitive/adaptive-ranking.js';
-import { normalizeScopeContext } from '../lib/governance/scope-governance.js';
+import { normalizeScopeContext, filterRowsByScope } from '../lib/governance/scope-governance.js';
 import {
   attachSessionTransitionTrace,
   type SessionTransitionTrace,
@@ -661,7 +661,7 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
     includeContent: includeContent = false,
     anchors,
     bypassCache: bypassCache = false,
-    sessionId,
+    sessionId: rawSessionId,
     enableDedup: enableDedup = true,
     intent: explicitIntent,
     autoDetectIntent: autoDetectIntent = true,
@@ -684,6 +684,32 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
   const includeTraceByFlag = process.env.SPECKIT_RESPONSE_TRACE === 'true';
   const includeTrace = includeTraceByFlag || includeTraceArg === true;
   const includeArchived = false;
+
+  // Validate any caller-supplied sessionId through the server-side session
+  // manager to prevent IDOR: a caller must not read or mutate another
+  // session's sent-memory dedup state by forging an arbitrary session id.
+  // Omitting sessionId stays unchanged (downstream treats it as no-session).
+  let sessionId: string | undefined = rawSessionId;
+  if (rawSessionId) {
+    const trustedSession = sessionManager.resolveTrustedSession(rawSessionId, {
+      tenantId,
+      userId,
+      agentId,
+    });
+    if (trustedSession.error) {
+      return createMCPErrorResponse({
+        tool: 'memory_search',
+        error: trustedSession.error,
+        code: 'E_SESSION_SCOPE',
+        details: { requestedSessionId: rawSessionId },
+        recovery: {
+          hint: 'Omit sessionId to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.',
+        },
+      });
+    }
+    sessionId = trustedSession.effectiveSessionId;
+  }
+
   const normalizedScope = normalizeScopeContext({ tenantId, userId, agentId, sessionId });
   const progressiveScopeKey = JSON.stringify({
     tenantId: normalizedScope.tenantId ?? null,
@@ -1003,12 +1029,28 @@ async function handleMemorySearch(args: SearchArgs): Promise<MCPResponse> {
             const memberIds = communityResults.totalMemberIds.slice(0, 20);
             const placeholders = memberIds.map(() => '?').join(', ');
             const db = requireDb();
-            const memberRows = db.prepare(`
+            const rawMemberRows = db.prepare(`
               SELECT id, title, similarity, content, file_path, anchor_id, document_type,
-                     importance_tier, context_type, quality_score, created_at
+                     importance_tier, context_type, quality_score, created_at,
+                     tenant_id, user_id, agent_id
               FROM memory_index
               WHERE id IN (${placeholders})
             `).all(...memberIds) as Array<Record<string, unknown> & { id: number }>;
+
+            // Apply governed retrieval scope to the community fallback so it cannot
+            // bypass the tenant/user/agent boundary the canonical pipeline enforces.
+            // sessionId is deliberately excluded — it is a dedup/continuity key, not
+            // a row-access boundary. Unscoped (single-user) callers are unaffected.
+            const hasGovernanceScope = Boolean(
+              normalizedScope.tenantId || normalizedScope.userId || normalizedScope.agentId,
+            );
+            const memberRows = hasGovernanceScope
+              ? filterRowsByScope(rawMemberRows, {
+                  tenantId: normalizedScope.tenantId,
+                  userId: normalizedScope.userId,
+                  agentId: normalizedScope.agentId,
+                })
+              : rawMemberRows;
 
             if (memberRows.length > 0) {
               // Calibrate score from community match quality, bounded below pipeline threshold

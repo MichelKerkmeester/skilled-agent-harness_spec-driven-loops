@@ -124,7 +124,7 @@ _memory:
 ### Ship status
 
 - [x] CHK-070 [P1] description.json + graph-metadata.json present
-- [ ] CHK-071 [P0] `validate.sh --strict` → Errors 0
-- [ ] CHK-072 [P1] Committed to main with explicit pathspec (no `-A`)
+- [x] CHK-071 [P0] `validate.sh --strict` → Errors 0 (re-run: PASSED, Errors: 0)
+- [x] CHK-072 [P1] Committed to main with explicit pathspec (no `-A`) (commit 79cb4e4d21)
 - [ ] CHK-073 [P2] (deferred, user-gated) daemon recycle to deploy live
 <!-- /ANCHOR:summary -->

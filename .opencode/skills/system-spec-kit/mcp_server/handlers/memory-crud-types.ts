@@ -98,6 +98,9 @@ interface MutationHookResult {
   toolCacheInvalidated: number;
   graphSignalsCacheCleared: boolean;
   coactivationCacheCleared: boolean;
+  // Optional so existing handlers and fallback literals that omit it keep
+  // typechecking; only the shared post-mutation hook populates it today.
+  entityDensityCacheCleared?: boolean;
   errors: string[];
 }
 

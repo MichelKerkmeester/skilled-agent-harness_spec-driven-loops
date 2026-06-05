@@ -105,7 +105,7 @@ When you reach Phase 1.5 Code Quality Gate:
 1. Identify the file type and code surface (the smart router does this; or check via the surface-detection block in SKILL.md §2).
 2. Run the comment-hygiene checker on each modified file before committing:
    ```bash
-   bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
+   .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>
    ```
    Zero violations required. To suppress a specific line that is a known false-positive, append `// hygiene-ok` to that line.
 

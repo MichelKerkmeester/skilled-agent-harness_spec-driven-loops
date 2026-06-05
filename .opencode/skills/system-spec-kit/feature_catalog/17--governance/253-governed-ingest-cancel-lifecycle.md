@@ -25,7 +25,7 @@ The job ID is stable across all three calls. Status returns a terminal state (`c
 
 `mcp_server/handlers/memory-ingest.ts` implements all three tools against a shared job store. Start validates the paths, registers a job, and returns the job ID synchronously while ingest runs in the background. Status reads the job store directly. Cancel writes a cancellation flag that the ingest loop checks between batches.
 
-- `memory_ingest_start(paths, dryRun)`: returns `jobId` synchronously
+- `memory_ingest_start({ paths: [...] })`: returns `jobId` synchronously
 - `memory_ingest_status(jobId)`: returns current state and progress fields
 - `memory_ingest_cancel(jobId)`: acknowledges cancellation; terminal state follows shortly
 

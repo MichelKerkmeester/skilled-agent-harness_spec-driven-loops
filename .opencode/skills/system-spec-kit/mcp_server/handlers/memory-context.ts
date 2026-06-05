@@ -1102,6 +1102,40 @@ async function executeResumeStrategy(input: string, intent: string | null, optio
    6. HANDLER HELPERS
 ──────────────────────────────────────────────────────────────── */
 
+/**
+ * Derive the no-session continuity anchor for callers that omit a sessionId.
+ *
+ * The process-wide id intentionally keeps hookless single-user stdio resume
+ * continuity stable across calls. But when a caller supplies an explicit
+ * governance scope (tenant/user/agent) without a sessionId, two genuinely
+ * distinct scoped callers in the same process must NOT collapse onto one
+ * shared session bucket (inferred mode, dedup, working memory). So we mix the
+ * normalized scope into the anchor hash for that case only. An explicit
+ * SPECKIT_MEMORY_SESSION_ID override and the bare unscoped single-user path are
+ * preserved unchanged. sessionId is never part of this anchor — it is not a
+ * governance boundary.
+ */
+function resolveNoSessionAnchor(args: ContextArgs): string {
+  const envOverride = process.env.SPECKIT_MEMORY_SESSION_ID?.trim();
+  if (envOverride) {
+    return envOverride;
+  }
+
+  const tenantId = typeof args.tenantId === 'string' ? args.tenantId.trim() : '';
+  const userId = typeof args.userId === 'string' ? args.userId.trim() : '';
+  const agentId = typeof args.agentId === 'string' ? args.agentId.trim() : '';
+  const hasScope = Boolean(tenantId || userId || agentId);
+  if (!hasScope) {
+    return PROCESS_MEMORY_SESSION_ID;
+  }
+
+  const scopeDigest = createHash('sha256')
+    .update(`${PROCESS_MEMORY_SESSION_ID}:${tenantId}:${userId}:${agentId}`)
+    .digest('hex')
+    .slice(0, 16);
+  return `${PROCESS_MEMORY_SESSION_ID}:scope:${scopeDigest}`;
+}
+
 function resolveSessionLifecycle(
   args: ContextArgs,
   db: ReturnType<typeof vectorIndex.getDb> | null,
@@ -1128,7 +1162,7 @@ function resolveSessionLifecycle(
   const requestedSessionId = trustedSession.requestedSessionId;
   const effectiveSessionId = requestedSessionId
     ? trustedSession.effectiveSessionId
-    : (process.env.SPECKIT_MEMORY_SESSION_ID?.trim() || PROCESS_MEMORY_SESSION_ID);
+    : resolveNoSessionAnchor(args);
   const priorMode = workingMemory.getSessionInferredMode(effectiveSessionId);
   const counter = workingMemory.getSessionEventCounter(effectiveSessionId);
   const resumed = trustedSession.trusted || counter > 0 || priorMode !== null;
@@ -1954,6 +1988,9 @@ export {
   CONTEXT_MODES,
   INTENT_TO_MODE,
   enforceTokenBudget,
+  // Exported for scope-isolation tests of the no-session continuity anchor.
+  resolveNoSessionAnchor,
+  PROCESS_MEMORY_SESSION_ID,
 };
 
 // Backward-compatible aliases (snake_case)

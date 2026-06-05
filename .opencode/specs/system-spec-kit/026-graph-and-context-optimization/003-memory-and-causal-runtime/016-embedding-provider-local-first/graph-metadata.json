@@ -29,7 +29,7 @@
       "factory"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts",
       ".opencode/skills/system-spec-kit/mcp_server/tests/embeddings.vitest.ts",

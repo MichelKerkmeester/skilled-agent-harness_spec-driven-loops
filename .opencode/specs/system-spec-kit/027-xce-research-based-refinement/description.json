@@ -25,7 +25,6 @@
   "created_at": "2026-05-08T00:00:00Z",
   "is_phase_parent": true,
   "children": [
-    "000-release-cleanup",
     "001-peck-teachings-adoption",
     "002-memory-write-safety",
     "003-incremental-index-foundation",
@@ -47,7 +46,7 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-04T06:37:58.681Z",
+  "lastUpdated": "2026-06-04T21:14:22.681Z",
   "specId": "027",
   "folderSlug": "xce-research-based-refinement",
   "parentChain": [

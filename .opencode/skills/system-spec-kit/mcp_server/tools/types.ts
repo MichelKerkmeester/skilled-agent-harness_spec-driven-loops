@@ -211,6 +211,18 @@ export interface ScanArgs {
   includeConstitutional?: boolean;
   includeSpecDocs?: boolean;
   incremental?: boolean;
+  // Governed-ingest metadata, validated and threaded onto each indexed row so a
+  // governed scan does not silently downgrade rows to ungoverned. Optional;
+  // omitted for the default local single-user scan.
+  tenantId?: string;
+  userId?: string;
+  agentId?: string;
+  sessionId?: string;
+  provenanceSource?: string;
+  provenanceActor?: string;
+  governedAt?: string;
+  retentionPolicy?: 'keep' | 'ephemeral';
+  deleteAfter?: string;
 }
 
 /** Arguments for session resume requests. */

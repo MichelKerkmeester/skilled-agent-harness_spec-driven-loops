@@ -137,7 +137,7 @@ Release is `READY` only when:
 1. No feature verdict is `FAIL`.
 2. All critical scenarios are `PASS`.
 3. Coverage is 100% of playbook scenarios defined by the root index and backed by per-scenario files (`COVERED_SCENARIOS == TOTAL_SCENARIOS`).
-4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 380 scenario files while the feature catalog contains 318 feature files.
+4. Feature-catalog cross-reference coverage has been reviewed separately; scenario coverage does not imply a 1:1 feature-file count because the playbook currently contains 384 scenario files while the feature catalog contains 318 feature files.
 5. No unresolved blocking triage item remains.
 6. Orphan scenario count is zero (every scenario file is linked in Section 12).
 
@@ -163,14 +163,14 @@ count += sum(
 print(count)
 PY
 )
-if [ "$TOTAL_FEATURES" -ne 380 ]; then
-  echo "Expected 380 scenario files, found $TOTAL_FEATURES" >&2
+if [ "$TOTAL_FEATURES" -ne 384 ]; then
+  echo "Expected 384 scenario files, found $TOTAL_FEATURES" >&2
   exit 1
 fi
 ```
 
 Final verdict report must include `COVERED_SCENARIOS/TOTAL_SCENARIOS` and should call out any remaining feature-catalog entries that are automated-only, indirect, or intentionally operator-only.
-As of 2026-05-24, the deterministic file count is 380. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Broader legacy index reconciliation remains governed by the release-readiness rule above.
+As of 2026-06-04, the deterministic file count is 384. Scenario 419 is the runtime lifecycle guardrail entry for orphan MCP cleanup. Broader legacy index reconciliation remains governed by the release-readiness rule above.
 
 ### Destructive Scenario Rules
 
@@ -300,7 +300,7 @@ Non-empty result set with trace evidence of multi-channel contribution; aligned 
 
 #### Test Execution
 > **Feature File:** [EX-004](01--retrieval/006-hybrid-search-pipeline.md)
-> **Catalog:** [01--retrieval/006-hybrid-search-pipeline.md](../feature_catalog/01--retrieval/006-hybrid-search-pipeline.md)
+> **Catalog:** [01--retrieval/004-hybrid-search-pipeline.md](../feature_catalog/01--retrieval/004-hybrid-search-pipeline.md)
 
 ### EX-005 | 4-stage pipeline architecture
 
@@ -314,7 +314,7 @@ Deep-mode reformulation and HyDE candidates pass the same scope, tier, contextTy
 
 #### Test Execution
 > **Feature File:** [EX-005](01--retrieval/007-4-stage-pipeline-architecture.md)
-> **Catalog:** [01--retrieval/007-4-stage-pipeline-architecture.md](../feature_catalog/01--retrieval/007-4-stage-pipeline-architecture.md)
+> **Catalog:** [01--retrieval/005-4-stage-pipeline-architecture.md](../feature_catalog/01--retrieval/005-4-stage-pipeline-architecture.md)
 
 ### EX-006 | Memory indexing (memory_save)
 
@@ -750,7 +750,7 @@ Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics
 
 #### Test Execution
 > **Feature File:** [EX-035](04--maintenance/036-startup-runtime-compatibility-guards.md)
-> **Catalog:** [04--maintenance/036-startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/036-startup-runtime-compatibility-guards.md)
+> **Catalog:** [04--maintenance/035-startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/035-startup-runtime-compatibility-guards.md)
 
 ### EX-036 | Embedding reconciliation (memory_embedding_reconcile)
 
@@ -2689,7 +2689,7 @@ Verify all annotation names cross-reference against catalog H3 headings with 0 i
 #### Scenario Contract
 Prompt: `Validate Feature catalog annotation name validity against the documented validation surface and report cited pass/fail evidence.`
 
-sort -u` 2) Extract all H3 headings from `feature_catalog/feature_catalog.md`: `grep "^### " feature_catalog.md` 3) Cross-reference: every annotation name must match an H3 heading exactly 4) Report any mismatches
+Expected signals: verify_alignment_drift.py or grep output shows 0 annotation names that fail to match an H3 heading in feature_catalog.md.
 
 #### Test Execution
 > **Feature File:** [136](16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md)
@@ -3679,8 +3679,8 @@ This split playbook keeps automated coverage references in three places:
 | EX-001 | Existing Features | Unified context retrieval (memory_context) | [EX-001](01--retrieval/001-unified-context-retrieval-memory-context.md) | [01--retrieval/001-unified-context-retrieval-memorycontext.md](../feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md) |
 | EX-002 | Existing Features | Semantic and lexical search (memory_search) | [EX-002](01--retrieval/004-semantic-and-lexical-search-memory-search.md) | [01--retrieval/002-semantic-and-lexical-search-memorysearch.md](../feature_catalog/01--retrieval/002-semantic-and-lexical-search-memorysearch.md) |
 | EX-003 | Existing Features | Trigger phrase matching (memory_match_triggers) | [EX-003](01--retrieval/005-trigger-phrase-matching-memory-match-triggers.md) | [01--retrieval/003-trigger-phrase-matching-memorymatchtriggers.md](../feature_catalog/01--retrieval/003-trigger-phrase-matching-memorymatchtriggers.md) |
-| EX-004 | Existing Features | Hybrid search pipeline | [EX-004](01--retrieval/006-hybrid-search-pipeline.md) | [01--retrieval/006-hybrid-search-pipeline.md](../feature_catalog/01--retrieval/006-hybrid-search-pipeline.md) |
-| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](01--retrieval/007-4-stage-pipeline-architecture.md) | [01--retrieval/007-4-stage-pipeline-architecture.md](../feature_catalog/01--retrieval/007-4-stage-pipeline-architecture.md) |
+| EX-004 | Existing Features | Hybrid search pipeline | [EX-004](01--retrieval/006-hybrid-search-pipeline.md) | [01--retrieval/004-hybrid-search-pipeline.md](../feature_catalog/01--retrieval/004-hybrid-search-pipeline.md) |
+| EX-005 | Existing Features | 4-stage pipeline architecture | [EX-005](01--retrieval/007-4-stage-pipeline-architecture.md) | [01--retrieval/005-4-stage-pipeline-architecture.md](../feature_catalog/01--retrieval/005-4-stage-pipeline-architecture.md) |
 | EX-006 | Existing Features | Memory indexing (memory_save) | [EX-006](02--mutation/017-memory-indexing-memory-save.md) | [02--mutation/016-memory-indexing-memorysave.md](../feature_catalog/02--mutation/016-memory-indexing-memorysave.md) |
 | EX-007 | Existing Features | Memory metadata update (memory_update) | [EX-007](02--mutation/018-memory-metadata-update-memory-update.md) | [02--mutation/017-memory-metadata-update-memoryupdate.md](../feature_catalog/02--mutation/017-memory-metadata-update-memoryupdate.md) |
 | EX-008 | Existing Features | Single and folder delete (memory_delete) | [EX-008](02--mutation/020-single-and-folder-delete-memory-delete.md) | [02--mutation/018-single-and-folder-delete-memorydelete.md](../feature_catalog/02--mutation/018-single-and-folder-delete-memorydelete.md) |
@@ -3710,7 +3710,7 @@ This split playbook keeps automated coverage references in three places:
 | EX-032 | Existing Features | 5. Embedding and API | [EX-032](19--feature-flag-reference/308-5-embedding-and-api.md) | [19--feature-flag-reference/277-5-embedding-and-api.md](../feature_catalog/19--feature-flag-reference/277-5-embedding-and-api.md) |
 | EX-033 | Existing Features | 6. Debug and Telemetry | [EX-033](19--feature-flag-reference/309-6-debug-and-telemetry.md) | [19--feature-flag-reference/278-6-debug-and-telemetry.md](../feature_catalog/19--feature-flag-reference/278-6-debug-and-telemetry.md) |
 | EX-034 | Existing Features | 7. CI and Build (informational) | [EX-034](19--feature-flag-reference/310-7-ci-and-build-informational.md) | [19--feature-flag-reference/279-7-ci-and-build-informational.md](../feature_catalog/19--feature-flag-reference/279-7-ci-and-build-informational.md) |
-| EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](04--maintenance/036-startup-runtime-compatibility-guards.md) | [04--maintenance/036-startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/036-startup-runtime-compatibility-guards.md) |
+| EX-035 | Existing Features | Startup runtime compatibility guards | [EX-035](04--maintenance/036-startup-runtime-compatibility-guards.md) | [04--maintenance/035-startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/035-startup-runtime-compatibility-guards.md) |
 | 001 | Features | Graph channel ID fix (G1) | [001](08--bug-fixes-and-data-integrity/060-graph-channel-id-fix-g1.md) | [08--bug-fixes-and-data-integrity/056-graph-channel-id-fix.md](../feature_catalog/08--bug-fixes-and-data-integrity/056-graph-channel-id-fix.md) |
 | 002 | Features | Chunk collapse deduplication (G3) | [002](08--bug-fixes-and-data-integrity/061-chunk-collapse-deduplication-g3.md) | [08--bug-fixes-and-data-integrity/057-chunk-collapse-deduplication.md](../feature_catalog/08--bug-fixes-and-data-integrity/057-chunk-collapse-deduplication.md) |
 | 003 | Features | Co-activation fan-effect divisor (R17) | [003](08--bug-fixes-and-data-integrity/062-co-activation-fan-effect-divisor-r17.md) | [08--bug-fixes-and-data-integrity/058-co-activation-fan-effect-divisor.md](../feature_catalog/08--bug-fixes-and-data-integrity/058-co-activation-fan-effect-divisor.md) |
@@ -3905,7 +3905,7 @@ This split playbook keeps automated coverage references in three places:
 | M-005 | Dedicated Memory/Spec-Kit Scenarios | Outsourced Agent Memory Capture Round-Trip | [M-005](13--memory-quality-and-indexing/139-outsourced-agent-memory-capture-round-trip.md) | [13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md](../feature_catalog/13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md) |
 | M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](13--memory-quality-and-indexing/140-session-enrichment-and-alignment-guardrails.md) | [13--memory-quality-and-indexing/150-session-enrichment-and-alignment-guards.md](../feature_catalog/13--memory-quality-and-indexing/150-session-enrichment-and-alignment-guards.md) |
 | M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](16--tooling-and-scripts/219-session-capturing-pipeline-quality.md) | [16--tooling-and-scripts/215-session-capturing-pipeline-quality.md](../feature_catalog/16--tooling-and-scripts/215-session-capturing-pipeline-quality.md) |
-| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/008-feature-09-direct-manual-scenario-per-record-history-log.md) | [02--mutation/10-per-record-history-log.md](../feature_catalog/02--mutation/10-per-record-history-log.md) |
+| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/008-feature-09-direct-manual-scenario-per-record-history-log.md) | [02--mutation/024-per-memory-history-log.md](../feature_catalog/02--mutation/024-per-memory-history-log.md) |
 | 190 | Features | Session recovery via /spec_kit:resume | [190](01--retrieval/016-session-recovery-spec-kit-resume.md) | [01--retrieval/011-session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/011-session-recovery-spec-kit-resume.md) |
 | 125-map | Features | Audit phase mapping note (020) | — | [19--feature-flag-reference/280-audit-phase-020-mapping-note.md](../feature_catalog/19--feature-flag-reference/280-audit-phase-020-mapping-note.md) |
 | 020-stub | Features | Remediation and revalidation (stub) | — | [20--remediation-revalidation/285-category-stub.md](../feature_catalog/20--remediation-revalidation/285-category-stub.md) |

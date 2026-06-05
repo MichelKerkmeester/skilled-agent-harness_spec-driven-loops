@@ -4,7 +4,6 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
   "parent_id": null,
   "children_ids": [
-    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
     "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
     "system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation",

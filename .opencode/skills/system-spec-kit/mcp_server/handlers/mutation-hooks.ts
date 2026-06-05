@@ -7,6 +7,7 @@ import { clearConstitutionalCache } from '../hooks/memory-surface.js';
 import { clearGraphSignalsCache } from '../lib/graph/graph-signals.js';
 import { clearRelatedCache } from '../lib/cognitive/co-activation.js';
 import { clearDegreeCache } from '../lib/search/graph-search-fn.js';
+import { invalidateEntityDensityCache } from '../lib/search/entity-density.js';
 
 import type { MutationHookResult } from './memory-crud-types.js';
 
@@ -94,6 +95,25 @@ function runPostMutationHooks(
     coactivationCacheCleared = false;
   }
 
+  // Entity-density routing keys off title + trigger_phrases. Clearing it here,
+  // in the shared hook every mutation handler calls, guarantees a rename or
+  // trigger-phrase rewrite is reflected immediately instead of lingering until
+  // the 60s TTL. Lower-layer invalidations on save/delete stay in place and are
+  // idempotent (a second clear just leaves the cache empty/stale).
+  let entityDensityCacheCleared = false;
+  try {
+    invalidateEntityDensityCache();
+    entityDensityCacheCleared = true;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(
+      `[mutation-hooks] invalidateEntityDensityCache failed for operation="${operation}":`,
+      message
+    );
+    errors.push(`invalidateEntityDensityCache: ${message}`);
+    entityDensityCacheCleared = false;
+  }
+
   return {
     latencyMs: Date.now() - startTime,
     triggerCacheCleared,
@@ -101,6 +121,7 @@ function runPostMutationHooks(
     toolCacheInvalidated,
     graphSignalsCacheCleared,
     coactivationCacheCleared,
+    entityDensityCacheCleared,
     errors,
   };
 }

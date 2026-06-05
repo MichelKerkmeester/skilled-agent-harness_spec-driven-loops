@@ -39,7 +39,7 @@
       "implementation"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "lib/storage/incremental-index.ts",
       "lib/parsing/memory-parser.ts",

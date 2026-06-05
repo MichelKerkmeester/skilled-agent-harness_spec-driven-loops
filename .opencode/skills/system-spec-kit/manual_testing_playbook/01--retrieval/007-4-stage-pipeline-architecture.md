@@ -54,7 +54,7 @@ Inspect stage metadata and flags
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/007-4-stage-pipeline-architecture.md](../../feature_catalog/01--retrieval/007-4-stage-pipeline-architecture.md)
+- Feature catalog: [01--retrieval/005-4-stage-pipeline-architecture.md](../../feature_catalog/01--retrieval/005-4-stage-pipeline-architecture.md)
 
 ---
 

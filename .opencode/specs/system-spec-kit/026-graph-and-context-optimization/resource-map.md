@@ -33,6 +33,10 @@ _memory:
 > Current top-level children are **eight**: `000-release-and-program-cleanup`, `001-research-and-baseline`,
 > `002-spec-kit-internals`, `003-memory-and-causal-runtime`, `004-code-graph`, `005-graph-impact-and-affordance`,
 > `006-operator-tooling`, `007-mcp-daemon-reliability`. A full regeneration of this catalog is deferred.
+> Because regeneration is deferred, 19 cited rows below still read Status `OK` while their paths were
+> renamed or nested away (e.g. `000-release-cleanup/`, `002-resource-map-deep-loop-fix/`, `005-code-graph/`,
+> `006-skill-advisor/`, `007-hook-parity/`). Those rows do not reflect current disk reality; resolve current
+> homes via `context-index.md`.
 
 ---
 
@@ -41,7 +45,7 @@ _memory:
 
 - **Total references**: 61
 - **By category**: READMEs=0, Documents=28, Commands=0, Agents=0, Skills=0, Specs=28, Scripts=0, Tests=0, Config=5, Meta=0
-- **Missing on disk**: 0
+- **Missing on disk**: 19 (renamed or nested away in the wave-4/wave-5 reorganizations; the per-row `OK` Status below is stale snapshot state, not current disk reality — use `context-index.md` for current homes)
 - **Scope**: parent-aggregate map for `.opencode/specs/system-spec-kit/026-graph-and-context-optimization` covering the phase parent root plus its then-current direct phase children (HISTORICAL 2026-04-27 snapshot; current top-level = 8 tracks — see `timeline.md`)
 - **Generated**: 2026-04-27T15:14:08Z
 

@@ -683,8 +683,8 @@ Document type detected?
 │   └─ No frontmatter? → Valid (no action)
 │
 ├─► Spec
-│   ├─ Has frontmatter? → Suggest removal
-│   └─ No frontmatter? → Valid (no action)
+│   ├─ Has frontmatter? → Validate required fields (title, description, trigger_phrases, importance_tier, _memory.continuity)
+│   └─ No frontmatter? → Auto-generate from Spec Kit template
 │
 └─► README
     ├─ In .opencode/skills/*/? → Optional skill-style

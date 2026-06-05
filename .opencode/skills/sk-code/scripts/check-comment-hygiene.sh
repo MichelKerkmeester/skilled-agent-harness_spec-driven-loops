@@ -83,17 +83,20 @@ def main():
     # --- Violation patterns ---
     # Each is (pattern, description) for clear reporting.
     VIOLATION_PATTERNS = [
-        (re.compile(r'\b\d{3}/\d{3}\b'),                 "packet/phase reference"),
-        (re.compile(r'\bADR-\d+\b'),                     "ADR reference"),
-        (re.compile(r'\bREQ-\d+[-:]'),                   "REQ reference"),
-        (re.compile(r'\bCHK-\d+[-:]'),                   "CHK reference"),
-        (re.compile(r'\bT\d{3,4}[-/]'),                  "task ID reference"),
-        (re.compile(r'\bpacket\s+\d+\b', re.IGNORECASE), "packet number reference"),
-        (re.compile(r'\bphase\s+\d{3}\b', re.IGNORECASE), "3-digit phase reference"),
-        (re.compile(r'specs/[a-z0-9-]+/\d{3}-'),         "spec path reference"),
-        (re.compile(r'\bWS-\d+-\d+\b'),                  "worktree session reference"),
-        (re.compile(r'\bDR-\d+-\d+\b'),                  "deep review reference"),
-        (re.compile(r'\breview\s+finding\b', re.IGNORECASE), "review finding reference"),
+        (re.compile(r'\b\d{3}/\d{3}\b'),                            "packet/phase reference"),
+        (re.compile(r'\bADR-\d+\b'),                                "ADR reference"),
+        (re.compile(r'\bREQ-\d+\b'),                                "REQ reference"),
+        (re.compile(r'\bCHK-\d+\b'),                                "CHK reference"),
+        (re.compile(r'\bT\d{3,4}\b'),                               "task ID reference"),
+        (re.compile(r'\bpacket\s+\d+\b', re.IGNORECASE),            "packet number reference"),
+        (re.compile(r'\bphase\s+\d{3}\b', re.IGNORECASE),           "3-digit phase reference"),
+        (re.compile(r'specs/[a-z0-9]+-[a-z0-9-]*/'),               "spec path reference"),
+        (re.compile(r'\bWS-\d+-\d+\b'),                             "worktree session reference"),
+        (re.compile(r'\bDR-\d+-\d+\b'),                             "deep review reference"),
+        (re.compile(r'\breview\s+finding\b', re.IGNORECASE),        "review finding reference"),
+        (re.compile(r'\bchecklist\s+item\s+\d+\b', re.IGNORECASE), "checklist item reference"),
+        (re.compile(r'\b[Pp]\d-finding[-\s]\d+\b'),                 "finding id reference"),
+        (re.compile(r'\bfinding\s+#\d+\b', re.IGNORECASE),         "finding id reference"),
     ]
 
     violations = []

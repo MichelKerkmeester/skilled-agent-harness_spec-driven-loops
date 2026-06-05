@@ -27,7 +27,7 @@ Measured audit coverage at HEAD is approximately 69%: `192` of `280` non-test Ty
 
 The `// MODULE: Name` header convention provides a standardized 3-line block at the top of every `.ts` file (separator → module name → separator) using box-drawing characters (`───`) in `mcp_server/` and dashes (`---`) in `shared/` and `scripts/`.
 
-Stale references to "Sprint N", "Phase NNN", or "spec NNN" in non-test comments have been removed and replaced with name-only catalog references. The `verify_alignment_drift.py` script enforces `MODULE:` header presence across all non-test `.ts` files.
+Stale references to "Sprint N", "Phase NNN", or "spec NNN" in non-test comments have been removed, along with the residual tool-description and context-server header-string labels. The `verify_alignment_drift.py` script enforces `MODULE:` header presence across all non-test `.ts` files.
 
 ---
 

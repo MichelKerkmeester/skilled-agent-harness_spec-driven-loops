@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "description": "Feature Specification: Phase 5: metadata-status-derivation",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "metadata-status-derivation"
+  ],
+  "lastUpdated": "2026-06-04T21:14:22.608Z",
+  "specId": "005",
+  "folderSlug": "metadata-status-derivation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "013-comprehensive-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

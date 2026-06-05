@@ -1,7 +1,7 @@
 {
-  "title": "Phase 012 — Memory Write Safety (3 fixes split from 009)",
+  "title": "Phase 002 — Memory Write Safety",
   "trigger_phrases": [
-    "027 phase 012",
+    "027 phase 002",
     "feedback P0 correctness",
     "auto-provenance cap broadening",
     "manual-edge overwrite guard",
@@ -34,8 +34,8 @@
     "write",
     "safety"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.805Z",
-  "specId": "001",
+  "lastUpdated": "2026-06-04T12:33:53.315Z",
+  "specId": "002",
   "folderSlug": "memory-write-safety",
   "parentChain": [
     "system-spec-kit",

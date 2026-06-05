@@ -5,8 +5,8 @@
 // ║ ("fan-out") layer above the single-executor deep-loop. Generalizes the    ║
 // ║ council parallel dispatcher (lib/council/multi-seat-dispatch.cjs) by      ║
 // ║ adding a concurrency cap so N executor lineages run with at most K in      ║
-// ║ flight, plus a status-ledger writer mirroring the proven packet-122       ║
-// ║ orchestration-status.log.                                                  ║
+// ║ flight, plus a status-ledger writer following the proven                  ║
+// ║ orchestration-status.log ledger pattern.                                   ║
 // ║                                                                           ║
 // ║ Design: pure pool primitive (worker is INJECTED) + ledger helpers, fully  ║
 // ║ unit-tested. The real spawn worker and the CLI entry that wires it        ║
@@ -226,7 +226,7 @@ function buildPoolSummary(results) {
 /**
  * Append one JSONL event to the orchestration status ledger.
  *
- * Generalizes the packet-122 `orchestration-status.log`: one line per lineage
+ * Follows the `orchestration-status.log` ledger pattern: one line per lineage
  * lifecycle event (started / completed / failed / salvaged / converged).
  *
  * @param {string} ledgerPath - Path to the JSONL ledger file.

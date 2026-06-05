@@ -118,6 +118,7 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             self.assertFalse(any(item.rule_id == "TS-MODULE-HEADER" for item in findings))
 
     def test_warning_only_exit_code_is_zero_by_default(self) -> None:
+        # JS-USE-STRICT is intentionally kept as WARN (not promoted to ERROR).
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             self.write_file(root / "warning.js", "const value = 1;\n")
@@ -125,6 +126,25 @@ class VerifyAlignmentDriftTests(unittest.TestCase):
             result = self.run_cli(root)
             self.assertEqual(0, result.returncode)
             self.assertIn("[JS-USE-STRICT] [WARN]", result.stdout)
+
+    def test_sh_shebang_missing_is_error_without_fail_on_warn(self) -> None:
+        # SH-SHEBANG and SH-STRICT-MODE are promoted to ERROR; missing shebang must exit 1.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "script.sh", "echo hello\n")
+
+            result = self.run_cli(root)
+            self.assertEqual(1, result.returncode)
+            self.assertIn("[SH-SHEBANG] [ERROR]", result.stdout)
+
+    def test_python_sh_shebang_skips_shell_checks(self) -> None:
+        # A .sh file with a python3 shebang must produce no SH-SHEBANG or SH-STRICT-MODE findings.
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            self.write_file(root / "pyscript.sh", '#!/usr/bin/env python3\n"""Module docstring."""\n')
+
+            findings = self.module.check_file(str(root / "pyscript.sh"))
+            self.assertFalse(any(item.rule_id in ("SH-SHEBANG", "SH-STRICT-MODE") for item in findings))
 
     def test_fail_on_warn_exit_code_is_one(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:

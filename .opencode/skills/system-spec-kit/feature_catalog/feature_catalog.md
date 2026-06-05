@@ -3943,11 +3943,11 @@ See [`16--tooling-and-scripts/211-watcher-delete-rename-cleanup.md`](16--tooling
 
 #### Description
 
-Feature catalog code references embed inline traceability comments in every source file, linking implementation code back to the feature catalog by name. Each file declares which catalog features it implements via `// Feature catalog: <feature-name>` comments, and every non-test TypeScript file carries a standardized `// MODULE: Name` header block. This is like labeling warehouse boxes by product name instead of aisle number — anyone can grep for a feature and find every file that implements it.
+Feature catalog code references embed inline traceability comments in a measured majority (~69%) of non-test TypeScript source files, linking implementation code back to the feature catalog by name. Annotated files declare which catalog features they implement via `// Feature catalog: <feature-name>` comments, and every non-test TypeScript file carries a standardized `// MODULE: Name` header block. This is like labeling warehouse boxes by product name instead of aisle number — anyone can grep for a feature and find many of the annotated files that implement it.
 
 #### How It Works
 
-Every non-test `.ts` file under `mcp_server/`, `shared/`, and `scripts/` carries a `// MODULE: Name` header in its first 5 lines, enforced by `verify_alignment_drift.py`. Implementation files also carry one or more `// Feature catalog: <feature-name>` annotations whose names must exactly match H3 headings in this catalog. Pure utility, type-definition, and barrel-export files are exempt from feature annotations. Stale Sprint/Phase/spec-number references have been removed from all non-test comments.
+Every non-test `.ts` file under `mcp_server/`, `shared/`, and `scripts/` carries a `// MODULE: Name` header in its first 5 lines, enforced by `verify_alignment_drift.py`. Implementation files also carry one or more `// Feature catalog: <feature-name>` annotations whose names must exactly match H3 headings in this catalog. Measured audit coverage at HEAD is approximately 69%: 192 of 280 non-test TypeScript files carry the annotation; some pure utility, type, and barrel-export files are exempt, and the convention is still only partial rather than universal. Stale Sprint/Phase/spec-number references have been removed from non-test comments and from the residual tool-description and context-server header strings.
 
 #### Source Files
 

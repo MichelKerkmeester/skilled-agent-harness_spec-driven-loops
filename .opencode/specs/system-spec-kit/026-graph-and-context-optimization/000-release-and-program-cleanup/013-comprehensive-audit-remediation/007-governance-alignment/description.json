@@ -1,0 +1,22 @@
+{
+  "level": "1",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
+  "description": "Feature Specification: Phase 7: governance-alignment",
+  "keywords": [
+    "feature",
+    "specification",
+    "phase",
+    "governance-alignment"
+  ],
+  "lastUpdated": "2026-06-04T21:14:22.616Z",
+  "specId": "007",
+  "folderSlug": "governance-alignment",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup",
+    "013-comprehensive-audit-remediation"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

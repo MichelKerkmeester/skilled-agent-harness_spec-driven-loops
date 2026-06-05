@@ -24,6 +24,40 @@ function writeStubBinary(binDir: string, name: string): string {
   return stubPath;
 }
 
+/**
+ * Write a stub binary at `binDir/{name}` that exits with `code`.
+ * Used to assert that a non-zero CLI exit is counted as a fan-out failure.
+ */
+function writeFailingStubBinary(binDir: string, name: string, code: number): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(stubPath, `#!/bin/sh\necho "stub-fail"\nexit ${code}\n`, { mode: 0o755 });
+  return stubPath;
+}
+
+/**
+ * Write a stub binary that sleeps `seconds` then exits 0.
+ * Used to assert lineages run concurrently (parallel) rather than serially.
+ */
+function writeSleepingStubBinary(binDir: string, name: string, seconds: number): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(stubPath, `#!/bin/sh\nsleep ${seconds}\necho "slept"\nexit 0\n`, { mode: 0o755 });
+  return stubPath;
+}
+
+/**
+ * Write a stub binary that echoes its argv and stdin so tests can assert the
+ * exact dispatched arguments and prompt text.
+ */
+function writeEchoStubBinary(binDir: string, name: string): string {
+  const stubPath = join(binDir, name);
+  writeFileSync(
+    stubPath,
+    '#!/bin/sh\necho "ARGV: $@"\necho "STDIN_START"\ncat\necho "STDIN_END"\nexit 0\n',
+    { mode: 0o755 },
+  );
+  return stubPath;
+}
+
 afterEach(() => {
   while (tempDirs.length > 0) {
     const dir = tempDirs.pop();
@@ -140,8 +174,10 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     const firstEvent = JSON.parse(lines[0]) as Record<string, unknown>;
     expect(firstEvent['event']).toBeDefined();
 
-    // Script exits 0 (both stubs succeed) or 2 (stub exits 0 but pool records non-zero — acceptable)
-    expect(result.exitCode === 0 || result.exitCode === 2).toBe(true);
+    // Both stubs exit 0, so the run must report success (exit 0).
+    expect(result.exitCode).toBe(0);
+    expect((summary as { failed?: number }).failed).toBe(0);
+    expect((summary as { succeeded?: number }).succeeded).toBe(2);
   });
 
   it('sets distinct SPECKIT_CODEX_STATE_DIR for each same-kind replica to prevent lockfile collisions', async () => {
@@ -191,5 +227,193 @@ describe('fanout-run.cjs — pool integration with stub binaries', () => {
     expect(existsSync(stateAlpha)).toBe(true);
     expect(existsSync(stateBeta)).toBe(true);
     expect(stateAlpha).not.toBe(stateBeta);
+  });
+});
+
+describe('fanout-run.cjs — non-zero CLI exit is a fan-out failure', () => {
+  it('records exit 3 (all failed) when the only lineage exits non-zero', async () => {
+    const binDir = makeTempDir('fanout-run-fail-bin-');
+    writeFailingStubBinary(binDir, 'codex', 2);
+    const baseDir = makeTempDir('fanout-run-fail-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ label: 'lineage-fail', kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 2,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-fail',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    // A single lineage that exits non-zero means all-failed -> exit 3.
+    expect(result.exitCode).toBe(3);
+    const summary = JSON.parse(
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+    ) as { failed?: number; succeeded?: number; all_failed?: boolean };
+    expect(summary.failed).toBe(1);
+    expect(summary.succeeded).toBe(0);
+    expect(summary.all_failed).toBe(true);
+  });
+
+  it('records exit 2 (some failed) when one of two lineages exits non-zero', async () => {
+    const binDir = makeTempDir('fanout-run-mixed-bin-');
+    // codex stub fails; gemini stub succeeds.
+    writeFailingStubBinary(binDir, 'codex', 5);
+    writeStubBinary(binDir, 'gemini');
+    const baseDir = makeTempDir('fanout-run-mixed-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'fails', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'passes', kind: 'cli-gemini', model: 'gemini-3.1-pro-preview', count: 1 },
+      ],
+      concurrency: 2,
+    });
+
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-mixed',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    expect(result.exitCode).toBe(2);
+    const summary = JSON.parse(
+      readFileSync(join(baseDir, 'orchestration-summary.json'), 'utf8'),
+    ) as { failed?: number; succeeded?: number; all_failed?: boolean };
+    expect(summary.failed).toBe(1);
+    expect(summary.succeeded).toBe(1);
+    expect(summary.all_failed).toBe(false);
+  });
+});
+
+describe('fanout-run.cjs — lineages run concurrently (not serialized by spawnSync)', () => {
+  it('runs two ~1s lineages in roughly 1s wall-clock with concurrency 2', async () => {
+    const binDir = makeTempDir('fanout-run-parallel-bin-');
+    writeSleepingStubBinary(binDir, 'codex', 1);
+    const baseDir = makeTempDir('fanout-run-parallel-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [
+        { label: 'sleep-a', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+        { label: 'sleep-b', kind: 'cli-codex', model: 'o4-mini', count: 1 },
+      ],
+      concurrency: 2,
+    });
+
+    const startedAt = Date.now();
+    const result = await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-parallel',
+        '--loop-type',
+        'research',
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+    const elapsedMs = Date.now() - startedAt;
+
+    expect(result.exitCode).toBe(0);
+    // Serial execution would take ~2s; parallel ~1s. Allow generous headroom for
+    // process startup while still proving the two ~1s sleeps overlapped (< 1.9s).
+    expect(elapsedMs).toBeLessThan(1900);
+  });
+});
+
+describe('fanout-run.cjs — buildLineageCommand / buildLoopPrompt via echo stub', () => {
+  async function runCodexEcho(
+    lineage: Record<string, unknown>,
+    loopType: 'research' | 'review',
+  ): Promise<{ stdout: string; baseDir: string }> {
+    const binDir = makeTempDir('fanout-run-echo-bin-');
+    writeEchoStubBinary(binDir, 'codex');
+    const baseDir = makeTempDir('fanout-run-echo-base-');
+
+    const fanoutConfig = JSON.stringify({
+      executors: [{ ...lineage, kind: 'cli-codex', model: 'o4-mini', count: 1 }],
+      concurrency: 1,
+    });
+
+    await spawnCjs(
+      fanoutRunScript,
+      [
+        '--spec-folder',
+        'specs/test-fanout-run-echo',
+        '--loop-type',
+        loopType,
+        '--fanout-config-json',
+        fanoutConfig,
+        '--base-artifact-dir',
+        baseDir,
+      ],
+      {
+        env: { ...process.env, PATH: `${binDir}:${process.env['PATH'] ?? ''}` },
+        timeoutMs: 15_000,
+      },
+    );
+
+    const label = String(lineage['label']);
+    const stdout = readFileSync(
+      join(baseDir, 'lineages', label, 'logs', 'fanout-lineage.out'),
+      'utf8',
+    );
+    return { stdout, baseDir };
+  }
+
+  it('omits service_tier from codex argv when serviceTier is unset (A4)', async () => {
+    const { stdout } = await runCodexEcho({ label: 'no-tier' }, 'research');
+    const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
+    expect(argvLine).not.toContain('service_tier');
+  });
+
+  it('includes service_tier=standard in codex argv when serviceTier is set (A4)', async () => {
+    const { stdout } = await runCodexEcho({ label: 'with-tier', serviceTier: 'standard' }, 'research');
+    const argvLine = stdout.split('\n').find((l) => l.startsWith('ARGV:')) ?? '';
+    expect(argvLine).toContain('service_tier=standard');
+  });
+
+  it('adds config.maxIterations to the prompt when lineage.iterations is set (A3)', async () => {
+    const { stdout } = await runCodexEcho({ label: 'capped', iterations: 4 }, 'research');
+    expect(stdout).toContain('config.maxIterations: 4');
+    expect(stdout).toContain('whichever comes first');
+  });
+
+  it('omits config.maxIterations from the prompt when iterations is null (A3)', async () => {
+    const { stdout } = await runCodexEcho({ label: 'uncapped' }, 'research');
+    expect(stdout).not.toContain('config.maxIterations');
+    expect(stdout).toContain('(to convergence)');
   });
 });

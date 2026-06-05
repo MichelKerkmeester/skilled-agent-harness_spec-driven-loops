@@ -1,0 +1,783 @@
+{
+  "summary": "Re-verify all packet-012 audit findings against current code; produce scope-locked fix specs per cluster",
+  "agentCount": 7,
+  "logs": [],
+  "result": [
+    {
+      "cluster": "A-deep-loop",
+      "findings": [
+        {
+          "id": "A1",
+          "severity": "P0",
+          "title": "Non-zero CLI lineage exits / timeouts counted as successful fan-out results",
+          "status": "CONFIRMED",
+          "currentLocation": "fanout-run.cjs:344-363 (worker), fanout-run.cjs:376 (exit code from summary); fanout-pool.cjs:76-119 (settleItem) + 207-220 (buildPoolSummary)",
+          "evidence": "The worker at fanout-run.cjs:344 runs spawnSync and at line 362-363 returns `{ label, exitCode, timedOut: result.signal === 'SIGTERM', salvage }` WITHOUT ever throwing on a non-zero exitCode or timeout. settleItem (fanout-pool.cjs:85-99) marks a result `status:'fulfilled'` for ANY worker that does not throw. buildPoolSummary (fanout-pool.cjs:207-219) computes `succeeded = results.filter(r => r.status === 'fulfilled')` and `failed = total - succeeded`, never inspecting `output.exitCode` or `output.timedOut`. Therefore a lineage whose CLI exits non-zero or times out is counted as succeeded. fanout-run.cjs:376 then derives the process exit code purely from `summary.all_failed`/`summary.failed`, so a failed/timed-out lineage yields exit 0 and status 'ok'. The existing test even concedes the gap at tests/unit/fanout-run.vitest.ts:143 ('stub exits 0 but pool records non-zero — acceptable'); no test asserts that a non-zero exit becomes a failure.",
+          "fix": "In the fanout-run.cjs worker (lines 359-363), treat a non-zero exitCode or a timeout as a failure so settleItem records it as rejected. Minimal change: after computing `const exitCode = result.status ?? (result.error ? 1 : 0);` and `const timedOut = result.signal === 'SIGTERM';`, if `timedOut || exitCode !== 0` then `throw` an Error carrying the label/exitCode/timedOut/salvage context (e.g. `const e = new Error(...); e.exitCode = exitCode; e.timedOut = timedOut; e.salvage = salvage; throw e;`) instead of returning the success object. This routes through settleItem's catch (fanout-pool.cjs:100-118) and is counted in summary.failed/all_failed, which then propagates to the exit code at fanout-run.cjs:376. Do NOT alter buildPoolSummary's fulfilled/rejected contract (other callers, incl. council, rely on it). Keep the salvage write (lines 354-360) BEFORE the throw so stdout/iteration recovery still runs.",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+          ],
+          "verification": "Add a regression case in .opencode/skills/deep-loop-runtime/tests/unit/fanout-run.vitest.ts using a stub binary that exits non-zero (the existing writeStubBinary helper plus an exit-code variant), asserting result.exitCode === 2 (or 3 when all fail) and that orchestration-summary.json has failed>=1. Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts ../../deep-loop-runtime/tests/unit/fanout-pool.vitest.ts",
+          "risk": "settleItem/buildPoolSummary are SHARED with the council dispatcher (lib/council/multi-seat-dispatch.cjs) and tested directly by tests/unit/fanout-pool.vitest.ts — do NOT change pool semantics; confine the fix to the worker so the pool contract is preserved. The throw must occur AFTER the salvage sweep (fanout-run.cjs:354-360) so iteration recovery is not lost. Coupling with A4 (same worker/buildLineageCommand path) and A2 (same spawnSync site) — sequence A1 first since it changes the worker's return/throw behavior the other two touch nearby."
+        },
+        {
+          "id": "A2",
+          "severity": "P1",
+          "title": "spawnSync serializes lineages despite the concurrency cap (concurrency=N still runs one at a time)",
+          "status": "CONFIRMED",
+          "currentLocation": "fanout-run.cjs:344 (spawnSync inside the async worker); fanout-pool.cjs:174-194 (pump loop)",
+          "evidence": "fanout-pool.cjs:174-194 (pump) launches up to `concurrency` workers via `settleItem(...).then/.catch/.finally`, expecting each worker to yield to the event loop so K run concurrently. But the worker at fanout-run.cjs:344 calls the BLOCKING `spawnSync(command, cmdArgs, {... timeout: timeoutMs ...})`. Because the worker is `async` but its body is synchronous up to and through spawnSync, the first worker blocks the single Node thread until its child process exits; only then does control return to pump to start the next. Net effect: the pool's K-in-flight cap is defeated — lineages execute serially regardless of fanoutConfig.concurrency (default 2, schema executor-config.ts:306).",
+          "fix": "Replace the blocking spawnSync at fanout-run.cjs:344-351 with an async non-blocking spawn that the worker awaits (e.g. `child_process.spawn` wrapped in a Promise that resolves `{ status, signal, stdout, error }`, honoring the same `timeout`, `env`, `maxBuffer`, `cwd`, and stdin `input` options). The async import at the top (line 21 currently destructures only `spawnSync`) must also bring in `spawn`. Preserve the exact result shape consumed downstream: `result.status`, `result.signal` (SIGTERM on timeout), `result.stdout`, `result.error`. Keep maxBuffer 20MB and the timeout-kill semantics (kill the child on timeout and set signal to SIGTERM so the A1 timedOut check still fires).",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+          ],
+          "verification": "Extend tests/unit/fanout-run.vitest.ts with a timing assertion: two stub binaries that each sleep ~1s with concurrency:2 should complete in ~1s (parallel) not ~2s (serial). Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+          "risk": "Highest-coupling fix in the cluster: it rewrites the same spawn site A1 and A4 sit on, and changes I/O + timeout handling. The stdin `input` path (fanout-run.cjs:350, used by cli-codex/cli-devin/cli-opencode) and SIGTERM-on-timeout signal must be preserved exactly or A1's timedOut detection breaks. Sequence AFTER A1 (so A1's throw-on-failure logic is in place) and coordinate with A4 since both edit buildLineageCommand-adjacent code. The TSX bootstrap (fanout-run.cjs:52-66) also uses spawnSync — leave it untouched; only the worker's spawnSync changes."
+        },
+        {
+          "id": "A3",
+          "severity": "P1",
+          "title": "Per-lineage `iterations` only sizes the timeout, never caps the loop (runs to convergence)",
+          "status": "CONFIRMED",
+          "currentLocation": "executor-config.ts:299 (schema field + doc comment 290-292); fanout-run.cjs:122-147 (buildLoopPrompt), fanout-run.cjs:154-158 (computeLineageTimeoutMs)",
+          "evidence": "lineageExecutorSchema declares `iterations: z.number().int().positive().nullable().default(null)` (executor-config.ts:299) documented as 'per-lineage max-iterations override' (line 292). But the only consumer of `lineage.iterations` is computeLineageTimeoutMs (fanout-run.cjs:154-157: `const iters = lineage.iterations || 12; ... return Math.min(iters * perIterSecs * 2 * 1000, 4h)`) — it merely sizes the subprocess timeout. buildLoopPrompt (fanout-run.cjs:128-146) hard-codes 'execute the loop ... to convergence' and 'Run phase_init, phase_main_loop (to convergence), and phase_synthesis' (lines 131,143) and NEVER passes a max_iterations / iteration cap to the subprocess. So `iterations` does not cap the loop; the lineage runs until convergence and `iterations` only controls how long before the timeout kills it.",
+          "fix": "Thread `lineage.iterations` into the loop prompt as an explicit cap. In buildLoopPrompt (fanout-run.cjs:122-147), when `lineage.iterations` is a positive number, add a parameter line to the prompt params block (alongside `loop_type: ${loopType}` at line 136), e.g. `  config.max_iterations: ${lineage.iterations}` and change the convergence instruction (lines 131/143) to 'to convergence OR config.max_iterations, whichever comes first'. This makes the cap honored by the subprocess loop. No schema change needed; the field already exists. Confirm the downstream deep-research/deep-review loop reads a max_iterations/config override (the prompt already relies on config.fanout_lineage_artifact_dir override at line 133, same mechanism).",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+          ],
+          "verification": "Add a unit assertion on the exported/exercised buildLoopPrompt output (if not exported, assert via the prompt captured by a stub binary that echoes argv/stdin in tests/unit/fanout-run.vitest.ts) that the prompt contains the iteration cap when lineage.iterations is set and omits it when null. Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+          "risk": "Behavioral change to what the subprocess does (caps a previously-unbounded loop). Must verify the deep-research/deep-review loop actually consumes a `config.max_iterations`-style override or the prompt line is inert. Low coupling with A1/A2 (different function, buildLoopPrompt vs worker), but shares fanout-run.cjs so coordinate edits to avoid conflicts. Keep the timeout sizing in computeLineageTimeoutMs unchanged — it remains a safety backstop."
+        },
+        {
+          "id": "A4",
+          "severity": "P1",
+          "title": "Codex dispatch emits service_tier=default, outside the validated enum (priority/standard/fast)",
+          "status": "CONFIRMED",
+          "currentLocation": "fanout-run.cjs:176-177 (`service_tier=${lineage.serviceTier || 'default'}`); enum at executor-config.ts:13 (SERVICE_TIERS = ['priority','standard','fast'])",
+          "evidence": "buildLineageCommand for cli-codex (fanout-run.cjs:167-186) passes `'-c', \\`service_tier=${lineage.serviceTier || 'default'}\\`` at line 176-177. When lineage.serviceTier is null/undefined the fallback is the literal string 'default', which is NOT a member of SERVICE_TIERS (`['priority','standard','fast']`, executor-config.ts:13). The validator (parseExecutorConfig, executor-config.ts:180-258) only validates serviceTier when it is non-null via the zod enum at line 27 (`z.enum(SERVICE_TIERS).nullable().default(null)`), so a null serviceTier passes validation and then this code injects the unvalidated 'default' string straight onto the Codex CLI `-c service_tier=` flag.",
+          "fix": "Make the cli-codex branch omit the `-c service_tier=...` pair entirely when lineage.serviceTier is falsy, instead of substituting 'default'. Build the args array conditionally: include `['-c', \\`service_tier=${lineage.serviceTier}\\`]` only when `lineage.serviceTier` is set; otherwise drop both tokens. This keeps every emitted service_tier value inside the validated enum and lets the Codex CLI apply its own default. Confine the change to the cli-codex block (fanout-run.cjs:167-186); leave model/reasoningEffort/sandbox handling untouched.",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+          ],
+          "verification": "Add/extend a case in tests/unit/fanout-run.vitest.ts (or tests/unit/cli-matrix.vitest.ts which already exercises per-kind arg shapes) asserting that buildLineageCommand for cli-codex with serviceTier=null produces args WITHOUT 'service_tier=default', and with serviceTier='standard' includes 'service_tier=standard'. Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/cli-matrix.vitest.ts ../../deep-loop-runtime/tests/unit/fanout-run.vitest.ts",
+          "risk": "Shares the buildLineageCommand function and the same spawn path as A1/A2 — sequence after/with them to avoid edit conflicts. Low semantic risk: only changes the codex arg list when serviceTier is unset. Verify the Codex CLI tolerates absence of the -c service_tier flag (it should fall back to its account default)."
+        },
+        {
+          "id": "A5",
+          "severity": "P2",
+          "title": "Sandbox default is workspace-write even for read-only review lineages (write scope is prompt-only)",
+          "status": "CONFIRMED",
+          "currentLocation": "executor-config.ts:83-85 (normalizeSandboxMode defaults to 'workspace-write')",
+          "evidence": "normalizeSandboxMode (executor-config.ts:83-85) returns `mode ?? 'workspace-write'` — so any lineage with sandboxMode=null (the schema default, line 28) resolves to a sandbox that PERMITS workspace writes. For a review loop, the only thing constraining writes to the lineage dir is the prompt text in buildLoopPrompt (fanout-run.cjs:143: 'Do not touch any path outside ${lineageDir}') — a soft, model-honored instruction, not an enforced sandbox boundary. resolveCodexSandboxMode (line 129-131), resolveGeminiSandboxMode (139-141), resolveClaudePermissionMode (149-158), and resolveDevinPermissionMode (166-168) all route through this same default, so unless the caller explicitly sets read-only, every executor gets write-capable sandbox/permission. The loopType ('research' vs 'review') is not consulted when choosing the default.",
+          "fix": "Scope-locked option: leave normalizeSandboxMode's general default as-is (other callers depend on workspace-write) and instead make the review fan-out path pass an explicit read-only sandboxMode. Minimal: in fanout-run.cjs main()/worker (around the resolve* calls at lines 320-326), when `loopType === 'review'` and `lineage.sandboxMode` is null, resolve sandbox/permission as if 'read-only' (pass 'read-only' into the resolve* helpers for that case). This makes review lineages read-only by default without changing the shared normalize default that research/native rely on. Do NOT broaden scope to rework the schema default.",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs"
+          ],
+          "verification": "Add a unit case (tests/unit/cli-matrix.vitest.ts or fanout-run.vitest.ts) asserting that for loopType 'review' with sandboxMode null, the resolved codex sandbox is 'read-only' and the claude permission is 'plan'; and that 'research' still resolves to workspace-write/acceptEdits. Run: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/cli-matrix.vitest.ts",
+          "risk": "P2 — policy/hardening change. Touches the same fanout-run.cjs resolve* block as A1/A2/A4; sequence to avoid conflicts. Verify read-only mode does not break review lineages that legitimately need to write iteration artifacts INTO lineageDir — if review subprocesses write their own iteration files, read-only would block them, so confirm the artifact-write path before defaulting to read-only (may need workspace-write scoped to lineageDir rather than full read-only). This nuance must be settled before implementing."
+        },
+        {
+          "id": "A6",
+          "severity": "P2",
+          "title": "deep-loop SKILL.md says scripts/ has 4 files while the dir actually ships more (incl. fan-out scripts)",
+          "status": "CONFIRMED",
+          "currentLocation": "SKILL.md:249 ('| `scripts/` | 4 files | Direct `status`, `query`, `upsert`, and `convergence` entry points ...')",
+          "evidence": "SKILL.md:249 states scripts/ is 'Populated By: 4 files' covering only status/query/upsert/convergence. The actual directory listing is: convergence.cjs, fanout-merge.cjs, fanout-pool.cjs, fanout-run.cjs, fanout-salvage.cjs, query.cjs, status.cjs, upsert.cjs (8 .cjs files) plus README.md and a lib/ subdir (lib/cli-guards.cjs). The fan-out scripts (fanout-run/pool/salvage/merge) are not reflected in the count or the purpose text, while §6 ARCHITECTURE (line 239) and other sections do reference fan-out behavior — so the table row is stale.",
+          "fix": "Update SKILL.md:249 to reflect reality: change the count from '4 files' to the actual count and expand the Purpose to mention the fan-out (multi-executor) entry points alongside the status/query/upsert/convergence shims. Keep it a durable description (e.g. '8 .cjs files' or 'status/query/upsert/convergence shims + fan-out pool/run/salvage/merge'). Documentation-only edit; no code change. Respect comment-hygiene is N/A here (markdown doc, not code comment), but do not introduce packet/ADR ids.",
+          "filesToEdit": [
+            ".opencode/skills/deep-loop-runtime/SKILL.md"
+          ],
+          "verification": "Manual: `ls -1 .opencode/skills/deep-loop-runtime/scripts/*.cjs | wc -l` must match the stated count, and each named entry point file exists. No test harness for SKILL.md prose.",
+          "risk": "Doc-only, zero runtime coupling. This file is OWNED by this cluster but note the cluster ownership instruction targets deep-loop-runtime/** code; SKILL.md is in-scope. If a doc cluster (Sonnet) also touches SKILL.md, coordinate to avoid a merge conflict on the same line."
+        },
+        {
+          "id": "A7",
+          "severity": "P2",
+          "title": "Ephemeral phase/packet/ADR labels embedded in shipped CODE comments (comment-hygiene violation)",
+          "status": "CONFIRMED",
+          "currentLocation": "code-graph-tools.ts:14-16 and 33-35 (PHASE-00x-...-SLOT + (027/00x) refs); core/config.ts:19 ('(reverses ADR-002/004/005)'); fanout-pool.cjs:8 and 232 ('packet-122')",
+          "evidence": "All four cited comment-hygiene violations are present in current code. (1) code-graph-tools.ts:14 `// PHASE-002-IMPORT-SLOT: handleCodeGraphHldLld (027/002)` and :15-16 the same for 003/004; :33 `// PHASE-002-TOOLNAME-SLOT: 'code_graph_hld_lld' (027/002)` and :34-35 — all carry phase numbers and spec-folder refs '(027/00x)'. (2) core/config.ts:19 ends `(reverses ADR-002/004/005).` — ADR ids in a code comment. (3) fanout-pool.cjs:8 header `mirroring the proven packet-122` and a SECOND occurrence at fanout-pool.cjs:232 `Generalizes the packet-122 \\`orchestration-status.log\\`` — packet labels in code comments. These match the CLAUDE.md Comment Hygiene HARD BLOCK (no packet/phase/ADR/spec-folder labels in code comments).",
+          "fix": "Strip the perishable labels, keep the durable WHY. (1) code-graph-tools.ts:14-16 and 33-35: either remove the SLOT placeholder comments or rephrase to drop '(027/00x)' and the 'PHASE-00x' tokens (e.g. a neutral '// reserved import slot for future hld/lld handler' if a placeholder is still wanted). (2) core/config.ts:19: drop '(reverses ADR-002/004/005)' — keep the sentence explaining the default DB dir and override; the ADR id is the perishable part. (3) fanout-pool.cjs:8 and 232: replace 'packet-122' with a durable phrase (e.g. 'the orchestration-status.log ledger pattern') removing the packet number. Make ONLY these comment edits; no logic changes. Allowed stable refs (CWE/RFC/POSIX) are not involved here.",
+          "filesToEdit": [
+            ".opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts",
+            ".opencode/skills/system-code-graph/mcp_server/core/config.ts",
+            ".opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs"
+          ],
+          "verification": "Grep proves the fix: `grep -rnE '(PHASE-0|ADR-0|packet-1|027/00)' .opencode/skills/system-code-graph/mcp_server/tools/code-graph-tools.ts .opencode/skills/system-code-graph/mcp_server/core/config.ts .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs` must return no hits in code comments after the edit. Then typecheck code-graph: cd .opencode/skills/system-code-graph/mcp_server && npx tsc --noEmit (comment-only edits must not change types).",
+          "risk": "Comment-only, no behavioral coupling. NOTE the cited fanout-pool.cjs:8 has a sibling occurrence at line 232 in the SAME file (same 'packet-122' violation) — both must be fixed for the finding to be fully resolved; fixing only line 8 leaves a PARTIAL. code-graph-tools.ts and config.ts are under system-code-graph/mcp_server/** which the cluster owns for 'the comment fixes' only — do NOT touch logic. The SLOT comments may be referenced by future phase work (027/002-004); confirm with the owner whether to delete vs neutralize the placeholders rather than removing the slot markers wholesale."
+        }
+      ],
+      "notes": "All 7 findings CONFIRMED against the current working tree; none were already fixed by the ~26 uncommitted changes. Cited line numbers were largely accurate with minor drift (A1 worker now at 344-363; A3 schema field at executor-config.ts:299 with doc comment 290-292; A4 at fanout-run.cjs:176-177).\n\nHeadline P0 (A1) trace, exactly as requested: spawnSync result -> worker returns {exitCode, timedOut} WITHOUT throwing (fanout-run.cjs:362-363) -> settleItem marks it status:'fulfilled' because no throw (fanout-pool.cjs:85-99) -> buildPoolSummary counts succeeded purely by status==='fulfilled' and never reads output.exitCode/output.timedOut (fanout-pool.cjs:207-219) -> main() derives the process exit code from summary.all_failed/summary.failed only (fanout-run.cjs:376). Net: a non-zero exit, a missing FANOUT_LINEAGE_COMPLETE sentinel, or a SIGTERM timeout is reported as success (exit 0, status 'ok'). The fix MUST live in the worker (throw on failure), NOT in buildPoolSummary, because the pool primitive is shared with the council dispatcher and is directly contract-tested by tests/unit/fanout-pool.vitest.ts.\n\nSequencing within the cluster: A1, A2, A4, A5 all edit the SAME spawn/worker/buildLineageCommand region of fanout-run.cjs (lines ~320-363) — implement in order A1 -> A2 -> A4 -> A5 to avoid edit collisions, since A2 (async spawn rewrite) is the most invasive and depends on A1's throw-on-failure being in place to count timeouts/non-zero as failures. A3 is isolated (buildLoopPrompt). A6 (SKILL.md) and A7 (comments) are doc/comment-only and independent.\n\nOwnership note honored: context-server.ts (cluster D) was NOT touched. For A7, the cluster owns ONLY the comment fixes in system-code-graph/mcp_server/**; the actual logic there is out of scope.\n\nTwo items need a decision before coding, flagged in their risk fields: (A5) whether review lineages must write iteration artifacts into lineageDir — if so, full read-only is wrong and a lineageDir-scoped workspace-write is needed instead; (A7) whether the PHASE-00x SLOT placeholders should be deleted or merely neutralized given future 027/002-004 phase work may rely on them as anchors. Also for A7, fanout-pool.cjs has a SECOND 'packet-122' occurrence at line 232 (beyond the cited line 8) that must also be fixed to avoid a PARTIAL."
+    },
+    {
+      "cluster": "B-retrieval-scope",
+      "findings": [
+        {
+          "id": "B1",
+          "severity": "P1",
+          "title": "Community-search fallback bypasses governed retrieval scope (fetches member rows WHERE id IN (...) with no tenant/user/agent filter)",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:995-1041 (member-row SELECT at 1006-1011, merge at 1027-1033)",
+          "evidence": "The fallback at lines 1000-1011 calls searchCommunities() then runs `SELECT id, title, similarity, content, file_path, anchor_id, document_type, importance_tier, context_type, quality_score, created_at FROM memory_index WHERE id IN (${placeholders})` and merges the rows directly into resultsForFormatting (1027-1033). No scope predicate is applied. The canonical scoped pipeline DOES filter: stage1-candidate-gen.ts:1072-1092 builds scopeFilter={tenantId,userId,agentId} and calls filterRowsByScope(candidates, scopeFilter) (also re-applied at 1140, 1207, 1262, 1348). Per the pipeline's own P0 comment (stage1-candidate-gen.ts:1069-1071), sessionId is NOT a governance boundary — only tenantId/userId/agentId are. normalizedScope {tenantId,userId,agentId,sessionId} is already in scope at memory-search.ts:687, and the file already imports from scope-governance.js at line 76. The community SELECT does not even select tenant_id/user_id/agent_id columns, so a post-filter would have nothing to match on today.",
+          "fix": "In memory-search.ts: (1) extend the community SELECT (lines 1007-1008) to also select `tenant_id, user_id, agent_id`; (2) add `filterRowsByScope` to the existing `import { normalizeScopeContext } from '../lib/governance/scope-governance.js'` at line 76; (3) only when governance scope is present (Boolean(normalizedScope.tenantId || normalizedScope.userId || normalizedScope.agentId)), wrap memberRows with `filterRowsByScope(memberRows, { tenantId: normalizedScope.tenantId, userId: normalizedScope.userId, agentId: normalizedScope.agentId })` BEFORE the calibratedScore mapping at line 1021. Do NOT include sessionId in the scope object (mirror pipeline P0 behavior exactly). Keep the unscoped behavior identical when no governance scope is set, so single-user stdio is unaffected.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+          ],
+          "verification": "Add/extend a test in .opencode/skills/system-spec-kit/mcp_server/tests/community-search.vitest.ts: seed two memory_index rows in the same community with different tenant_id values, invoke memory_search with retrievalLevel='global', a weak query, and a tenantId scope; assert the fallback returns only the same-tenant row. Run: npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/community-search.vitest.ts",
+          "risk": "Schema field note for cluster D: no new schema field needed — tenantId/userId/agentId already exist on the memory_search input schema. Coupling: the scope-filter helper and the {tenantId,userId,agentId} (NOT sessionId) contract must stay identical to stage1-candidate-gen.ts:1072-1092; if cluster B5's sessionId hardening changes that contract, sequence B1 after it. filterRowsByScope returns [] when scope is set but rows lack matching columns, so step (1) extending the SELECT is mandatory or all fallback rows would be dropped under scope."
+        },
+        {
+          "id": "B2",
+          "severity": "P1",
+          "title": "Causal-graph tools operate on bare IDs without governed scope authorization",
+          "status": "CONFIRMED",
+          "currentLocation": "handleMemoryDriftWhy at .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:469-687 (memory_index reads at 560-588); handleMemoryCausalLink at 689-793",
+          "evidence": "handleMemoryDriftWhy (line 469) accepts only { memoryId, maxDepth, direction, relations, includeMemoryDetails } (interface DriftWhyArgs at 76-82) — no tenantId/userId/agentId. It traverses causal chains for any memoryId and reads memory_index rows via `SELECT ... FROM memory_index WHERE id = ? OR CAST(id AS TEXT) = ?` (lines 560-565 and 580-584) with no scope predicate. handleMemoryCausalLink (interface CausalLinkArgs at 84-90) takes only { sourceId, targetId, relation, strength, evidence } and inserts an edge (line 757) without verifying the caller is scoped to those memory IDs. Neither handler imports normalizeScopeContext/filterRowsByScope nor calls resolveTrustedSession. Contrast: memory-context.ts:1112 and memory-triggers.ts:228 both derive trusted scope from server context.",
+          "fix": "Minimal fail-closed post-filter, calibrated for single-user stdio (do NOT build auth): in handleMemoryDriftWhy, after fetching sourceMemory (line 560-565) and when an explicit governance scope is supplied, verify the source memory row matches scope via createScopeFilterPredicate({tenantId,userId,agentId}); if it does not match, return createMCPEmptyResponse (same shape as the existing total_edges===0 branch at 612-625) instead of leaking the chain. Apply the same predicate to relatedMemories rows (lines 580-588) before adding to the map. For handleMemoryCausalLink, when scope is supplied, confirm both source and target memory_index rows exist AND match scope before insertEdge (line 757); reject with createMCPErrorResponse otherwise. When NO governance scope is supplied (the default local case), preserve current behavior unchanged.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts"
+          ],
+          "verification": "Extend .opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts: seed memory_index rows under tenant A and tenant B, create an edge, then call memory_drift_why with tenant B scope on a tenant A memoryId and assert an empty/denied response. Run: npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/integration-causal-graph.vitest.ts",
+          "risk": "Schema fields needed — cluster D owns this: DriftWhyArgs and CausalLinkArgs (causal-graph.ts:76-90) and their tool-input-schemas would need optional tenantId/userId/agentId added so callers can pass scope. WITHOUT those schema fields the post-filter is dead code for real MCP traffic (args never carry scope), so B2 is partially gated on D. Document for D: add optional tenantId/userId/agentId to memory_drift_why and memory_causal_link schemas. Coupling with B3 (both touch handleMemoryCausalLink near line 757) — sequence B2 and B3 as one edit to that handler to avoid conflicting inserts."
+        },
+        {
+          "id": "B3",
+          "severity": "P1",
+          "title": "Causal edge writers can create wrong-target/orphan edges (FK existence validation deferred for synthetic test IDs leaks into the production handler path)",
+          "status": "CONFIRMED",
+          "currentLocation": "insertEdge FK-deferral comment at .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:279-280; production call at handlers/causal-graph.ts:757",
+          "evidence": "causal-edges.ts:279-280 states `// FK check deferred — test environments use synthetic IDs not in memory_index. // Implementing FK validation would require seeding memory_index in 20+ causal edge tests.` insertEdge (253-262, body to ~400) only guards self-loops (275-277), strength clamping, and auto-edge bounds — it never checks that source_id/target_id exist in memory_index. The production handler handleMemoryCausalLink (causal-graph.ts:757) calls insertEdge(String(sourceId), String(targetId), ...) with createdBy defaulting to 'manual' and no prior existence check (the only validation at 701-755 is null/relation-type). The codebase already has the orphan-detection pattern (`NOT EXISTS (SELECT 1 FROM memory_index m WHERE CAST(m.id AS TEXT) = ce.source_id/target_id)` at causal-edges.ts:818-819, used by findOrphanedEdges), so an orphan edge created here is a known-bad state that has to be swept later.",
+          "fix": "Scope-locked: add FK existence validation at the PRODUCTION handler boundary (handleMemoryCausalLink in causal-graph.ts), NOT inside the shared insertEdge — this keeps the 20+ synthetic-ID unit tests passing. Between the relation-validation block (ends line 755) and the insertEdge call (line 757), add a guarded existence check: `SELECT 1 FROM memory_index WHERE id = ? OR CAST(id AS TEXT) = ?` for both String(sourceId) and String(targetId); if either is missing, return createMCPErrorResponse({ tool: 'memory_causal_link', code: ErrorCodes.CAUSAL_GRAPH_ERROR (or a dedicated not-found code if D adds one), error: 'sourceId/targetId not found in memory_index', details: { sourceId, targetId } }). Do not modify insertEdge or its deferral comment. Preserve all existing behavior for valid IDs.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts"
+          ],
+          "verification": "Add a case to .opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts: call memory_causal_link with a sourceId/targetId not present in memory_index and assert an error response (no edge created). Confirm existing synthetic-ID unit tests still pass: npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges-unit.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/causal-edges.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/handler-causal-graph.vitest.ts",
+          "risk": "Must place the FK check in the handler, NOT in insertEdge: causal-edges-unit.vitest.ts seeds memory_index ids 1-? (lines 83-85) but ~20 other tests use unseeded synthetic IDs — a check inside insertEdge would break them (the deferral comment documents exactly this). Coupling with B2: both edits land in handleMemoryCausalLink around lines 755-757; do them as one coordinated change. The handler already has `db` from vectorIndex.getDb() (line 732), so no new DB plumbing is needed."
+        },
+        {
+          "id": "B4",
+          "severity": "P1",
+          "title": "memory_search does not validate caller sessionId via resolveTrustedSession like memory_context/memory_match_triggers do",
+          "status": "CONFIRMED",
+          "currentLocation": "sessionId destructured at .opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts:664; used raw at 604-614, 970, 1283-1296, 1301+",
+          "evidence": "memory-search.ts destructures the caller-supplied sessionId (line 664) and uses it directly for session-state dedup (deduplicateWithSessionState(existingResults, sessionId) at 1291), session-manager dedup (sessionManager.filterSearchResults/markResultsSent at 611-614, gated only by `sessionId && enableDedup && sessionManager.isEnabled()` at 604/1301), and as the progressiveScopeKey component (687-693, 970). It never calls sessionManager.resolveTrustedSession. By contrast memory-triggers.ts:226-246 explicitly validates rawSessionId through resolveTrustedSession with a `// SECURITY: ... prevent IDOR` comment and rejects untrusted ids, and memory-context.ts:1112 does the same. So memory_search lets a caller pass an arbitrary sessionId and read/mutate another session's sent-memory dedup state (markResultsSent writes session_sent_memories keyed by session_id).",
+          "fix": "Mirror the memory-triggers.ts:226-246 pattern. After destructuring (line 664) and before sessionId is first consumed for dedup/boost, when sessionId is provided, call sessionManager.resolveTrustedSession(sessionId, { tenantId, userId, agentId }); if trustedSession.error, return createMCPErrorResponse({ tool: 'memory_search', code: 'E_SESSION_SCOPE', error: trustedSession.error, recovery: { hint: 'Omit sessionId to start a new server-generated session, or reuse the effectiveSessionId returned by memory_context.' } }); otherwise replace the local sessionId with trustedSession.effectiveSessionId so all downstream dedup/boost/progressiveScopeKey use the validated id. Keep behavior identical when sessionId is omitted (current callers that omit it are unaffected). sessionManager is already imported (memory-search.ts:10).",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts"
+          ],
+          "verification": "Add a test in .opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts (or memory-search-integration.vitest.ts): call memory_search with an untracked/forged sessionId and assert an E_SESSION_SCOPE error; call with a server-minted trusted sessionId and assert dedup still works. Run: npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/gate-d-regression-session-dedup.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/memory-search-integration.vitest.ts",
+          "risk": "Behavior change for callers currently passing an arbitrary (untracked) sessionId: they will now get an error instead of silently sharing/forging dedup state. That is the intended fail-closed hardening, but verify no internal caller (hooks, bootstrap) passes a non-server-minted sessionId to memory_search — grep callers before shipping. Coupling with B5: both concern session-id trust; resolveTrustedSession mints a fresh UUID for null sessionId (session-manager.ts:421-427), which is the correct no-session behavior memory_search should keep (do NOT collapse to a process-wide id here)."
+        },
+        {
+          "id": "B5",
+          "severity": "P1",
+          "title": "No-session callers get collapsed onto one shared process-wide session (memory_context replaces freshly-minted per-call session id with a process-wide id)",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts:1128-1131 (PROCESS_MEMORY_SESSION_ID defined at 164-167)",
+          "evidence": "resolveTrustedSession returns a fresh crypto.randomUUID() as effectiveSessionId when no sessionId is supplied (session-manager.ts:421-427, trusted:false). But memory-context.ts:1128-1131 discards that per-call UUID: `const effectiveSessionId = requestedSessionId ? trustedSession.effectiveSessionId : (process.env.SPECKIT_MEMORY_SESSION_ID?.trim() || PROCESS_MEMORY_SESSION_ID)`. PROCESS_MEMORY_SESSION_ID (164-167) is a deterministic sha256 of cwd:pid:ppid — a single value per process. This effectiveSessionId then drives session inferred-mode and event counters (1132-1133), session-state persistence (1634), working-memory prompt context (1717), and sent-memory dedup (1879). So every no-session caller in one process shares one session bucket: their inferred mode, dedup state, and working memory cross-contaminate.",
+          "fix": "Calibrated for single-user stdio (per cluster note, do NOT introduce per-request identity infra): the safest minimal change is to keep the process-wide id ONLY as the continuity anchor it was designed to be, but stop letting it collapse genuinely distinct concurrent callers. Minimal option that preserves current single-user continuity: leave behavior as-is when SPECKIT_MEMORY_SESSION_ID is set or no scope is provided, but when an explicit governance scope (tenantId/userId/agentId) IS provided without a sessionId, derive the no-session anchor from that scope (e.g. include the normalized scope in the hash) instead of the bare process id, so two scoped callers do not share one session bucket. Do NOT replace PROCESS_MEMORY_SESSION_ID with trustedSession.effectiveSessionId unconditionally — that would break the intended stable resume continuity for the hookless single-user case. Document the trade-off in the existing comment at 1111 (do not add packet/ADR ids).",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts"
+          ],
+          "verification": "Add a test in .opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts: invoke the lifecycle resolver twice with no sessionId but two distinct {userId} scopes and assert the resulting effectiveSessionId values differ; invoke twice with identical/no scope and assert they stay stable (continuity preserved). Run: npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/session-lifecycle.vitest.ts .opencode/skills/system-spec-kit/mcp_server/tests/session-manager.vitest.ts",
+          "risk": "Highest-judgment finding: PROCESS_MEMORY_SESSION_ID is intentional design for hookless single-user stdio continuity (stable resume across calls), so an over-aggressive fix REGRESSES legitimate continuity. Keep the change scope-locked to the explicitly-scoped multi-caller case. Strong coupling with B4 (both about session trust) and with B1 (B1 deliberately excludes sessionId from the scope filter per stage1-candidate-gen.ts:1069 — do not let a B5 change reintroduce sessionId as a retrieval governance boundary). Sequence B4 then B5. Confirm no test asserts the literal PROCESS_MEMORY_SESSION_ID value before changing its derivation."
+        }
+      ],
+      "notes": "All 5 findings CONFIRMED against the current working tree; line numbers had drifted from the cited values and are corrected above. Verified evidence, not cited lines.\n\nSchema work to hand to cluster D (I did not touch any schema files): (a) B2 needs optional tenantId/userId/agentId added to the memory_drift_why and memory_causal_link input schemas (interfaces DriftWhyArgs/CausalLinkArgs at causal-graph.ts:76-90 plus tool-input-schemas) — without them the B2 post-filter is dead code for real MCP traffic. (b) B3 may want a dedicated not-found error code (currently would reuse ErrorCodes.CAUSAL_GRAPH_ERROR). (c) B1/B4 need no new schema fields — tenantId/userId/agentId/sessionId already exist on memory_search.\n\nCanonical scope contract to respect everywhere in this cluster: the retrieval governance boundary is {tenantId, userId, agentId} ONLY — sessionId is explicitly NOT a governance boundary (stage1-candidate-gen.ts:1069-1071 P0 comment). B1's fallback post-filter and any B5 change must honor this; sessionId is for dedup/state/continuity, not row-level access control.\n\nSequencing: do B2 and B3 as one coordinated edit to handleMemoryCausalLink (both land at causal-graph.ts ~755-757). Do B4 before B5 (both about session trust). B5 is the highest-judgment item — PROCESS_MEMORY_SESSION_ID is intentional single-user-stdio continuity design; the fix must be scope-locked to the explicitly-scoped multi-caller case to avoid regressing legitimate resume continuity. Per the cluster calibration note, all fixes apply a minimal fail-closed scope/post-filter and must NOT be expanded into a full multi-tenant auth system.\n\nExisting verification anchors found: tests/community-search.vitest.ts (B1), tests/handler-causal-graph.vitest.ts + tests/integration-causal-graph.vitest.ts (B2/B3), tests/causal-edges-unit.vitest.ts (B3 regression — seeds memory_index, exercises findOrphanedEdges), tests/gate-d-regression-session-dedup.vitest.ts + tests/memory-search-integration.vitest.ts (B4), tests/session-lifecycle.vitest.ts + tests/session-manager.vitest.ts (B5)."
+    },
+    {
+      "cluster": "C-write-correctness",
+      "findings": [
+        {
+          "id": "C1",
+          "severity": "P1",
+          "title": "Entity-density cache not invalidated after memory_update (stale graph-channel routing until 60s TTL/restart)",
+          "status": "CONFIRMED",
+          "currentLocation": "Shared hook missing invalidation: .opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts:20-106 (runPostMutationHooks clears trigger/tool/constitutional/graphSignals/degree/coactivation, NOT entity-density). Update path that relies on it: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-update.ts:306 (runPostMutationHooks('update',...)). Underlying writer that mutates title/trigger_phrases without invalidation: .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts:489-495 (update_memory tx writes title + trigger_phrases). Cache + invalidator: .opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts:78-103 (buildIndex reads title + trigger_phrases) and :159-163 (invalidateEntityDensityCache).",
+          "evidence": "mutation-hooks.ts runPostMutationHooks does NOT import or call invalidateEntityDensityCache — only triggerMatcher.clearCache, toolCache.invalidateOnWrite, clearConstitutionalCache, clearGraphSignalsCache, clearDegreeCache, clearRelatedCache. grep for invalidateEntityDensityCache across the server shows callers ONLY in: relation-backfill.ts:581, vector-index-mutations.ts:702 (delete_memory_from_database) + :859 (delete_memories), memory-save.ts:2703/2854 (save), memory-bulk-delete.ts:151/258. The memory_update handler (memory-crud-update.ts) invalidates BM25, degree, trigger, constitutional, graph caches via the transaction + runPostMutationHooks('update'), but entity-density is never touched. update_memory (vector-index-mutations.ts:489-495) directly UPDATEs title and trigger_phrases — the exact two columns buildIndex (entity-density.ts:80-100) reads to build the high-degree token set. Net effect: after a memory_update that renames a high-degree memory or rewrites its trigger phrases, getEntityDensityScore keeps matching old tokens / missing new ones until the 60s CACHE_TTL_MS lapses (entity-density.ts:22,112). entity-density.ts:155-157 docstring even enumerates current invalidation entry points (save + bulk-delete) and omits update, corroborating the gap. The existing test tests/integration/entity-density-commit-hooks.vitest.ts covers save (REQ-T1-001) and bulk-delete (REQ-T1-002) invalidation but has NO update-path case.",
+          "fix": "Wire entity-density invalidation into the shared post-mutation hook so it cannot be forgotten on any path. In mutation-hooks.ts: add import { invalidateEntityDensityCache } from '../lib/search/entity-density.js'; add a new guarded block inside runPostMutationHooks (mirroring the existing try/catch blocks) that calls invalidateEntityDensityCache() and records a boolean (e.g. entityDensityCacheCleared) into the returned MutationHookResult. Add the corresponding optional field to MutationHookResult in memory-crud-types.ts and surface it in buildMutationHookFeedback if that fn enumerates fields. This single addition fixes the update path (memory-crud-update.ts:306 already calls runPostMutationHooks('update')) and also covers atomic-save (memory-save.ts:3646 runPostMutationHooks('atomic-save')). Do NOT remove the existing redundant invalidations in vector-index-mutations.ts:702/859 or memory-save.ts in the same change — leave them (they are at a lower layer and harmless); removing them is out of scope and risks the delete/save fast paths. Keep comment hygiene: explain WHY (entity-density routing must reflect title/trigger_phrase mutations immediately) with no spec/packet/ADR ids.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/mutation-hooks.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-types.ts"
+          ],
+          "verification": "Add an update-path case to .opencode/skills/system-spec-kit/mcp_server/tests/integration/entity-density-commit-hooks.vitest.ts: seed a high-degree memory, assert getEntityDensityScore(oldToken)>0, call handleMemoryUpdate to rename title / replace triggerPhrases, then assert getEntityDensityScore(oldToken)===0 (or new token >0) WITHOUT a TTL wait. Run: npx vitest run tests/integration/entity-density-commit-hooks.vitest.ts (from the mcp_server dir). Also run tsc/typecheck for the MutationHookResult field addition.",
+          "risk": "Coupling: MutationHookResult is shared by memory-crud-update.ts, memory-crud-delete.ts, memory-save.ts (atomic-save), and buildMutationHookFeedback (hooks/mutation-feedback.ts) — adding a field must be optional or all consumers updated, else typecheck breaks. Side effect: atomic-save and delete will now invalidate entity-density via the shared hook in addition to their existing lower-layer calls — double invalidation is idempotent (invalidateEntityDensityCache just resets to empty/stale) so behavior is preserved. Sequence after C2 is not required; C1 and C2 touch disjoint files except both are within the same handler tree. memory-crud-types.ts is shared with the delete handler cluster — coordinate if another cluster also edits the MutationHookResult type."
+        },
+        {
+          "id": "C2",
+          "severity": "P1",
+          "title": "Atomic save commits the DB row before promoting the pending file; hard-crash window leaves an unpromoted .pending file (mitigation exists + wired, but the uuid-suffixed orphan shape is untested)",
+          "status": "PARTIAL",
+          "currentLocation": "Ordering: .opencode/skills/system-spec-kit/mcp_server/handlers/save/atomic-index-memory.ts:360 (writePendingFile) -> :362 (indexPrepared = DB commit) -> :378 (promotePendingFile = rename). Wiring of those callbacks: .opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:3581-3630 (indexPrepared/processPreparedMemory, getPendingPath with .<uuid8> at :3618, promotePendingFile renameSync at :3627-3629). Mitigation: .opencode/skills/system-spec-kit/mcp_server/lib/storage/transaction-manager.ts:364-431 (recoverPendingFile/recoverAllPendingFiles) and the doubly-suffixed path parser :101-136 (parsePendingPath + PENDING_UNIQUE_SUFFIX_PATTERN at :17). Startup wiring: .opencode/skills/system-spec-kit/mcp_server/context-server.ts:1386-1431 (recoverPendingFiles with isCommittedInDb) called from startupScan at :1442. Second (non-atomic) DB-before-file instance: memory-save.ts:2639 (writeTransaction.immediate) then :2653-2659 (finalizeMemoryFileContent after commit, explicitly warns 'DB row committed — manual file recovery may be needed').",
+          "evidence": "The defect described (DB indexed before file promoted) is REAL: atomic-index-memory.ts runs dependencies.indexPrepared (DB insert/commit inside processPreparedMemory) at line 362, and only renames the pending file at line 378. A SIGKILL/power-loss between commit and rename leaves a committed memory_index row whose file_path target still holds old content (or no file), with new content orphaned at the .pending.<uuid8> path. HOWEVER the crash-window mitigation is already implemented AND wired: transaction-manager.ts:283-284 documents 'recoverAllPendingFiles() can be called on startup'; context-server.ts:1442 startupScan -> recoverPendingFiles -> recoverAllPendingFiles(location, isCommittedInDb) at :1403. For the C2 scenario isCommittedInDb(originalPath) returns true (the row WAS committed), so committedInDb!==false and recoverPendingFile renames pending->final (transaction-manager.ts:409). parsePendingPath (:118-132) correctly decodes the atomic-save double-suffix foo_pending.md.a1b2c3d4 because PENDING_UNIQUE_SUFFIX_PATTERN (:17) accepts an 8-hex slice (matching randomUUID().slice(0,8) used at memory-save.ts:3618). Tests transaction-manager-recovery.vitest.ts T011-R2 (:163) prove committed-row rename works. THE GAP: every recovery test (transaction-manager.vitest.ts, transaction-manager-recovery.vitest.ts) constructs pending files via plain getPendingPath() (single _pending suffix) — none exercise the uuid-suffixed atomic-save orphan shape through findPendingFiles/recoverAllPendingFiles end-to-end, so the exact orphan form C2 produces is not regression-protected.",
+          "fix": "Do NOT reorder the DB-commit/promote sequence — true two-phase commit across SQLite + filesystem is not achievable and the audit's reorder option would just swap which artifact is orphaned (a promoted file with no DB row). The minimal durable fix is to lock in the already-implemented startup-reconciliation path with a regression test for the uuid-suffixed orphan, since that is the only unprotected link in the chain. Add a failure-injection test (see verification) asserting that a foo_pending.md.<uuid8> file plus a committed DB row is renamed to foo.md by recoverAllPendingFiles. No source change is required for correctness; if any source change is wanted, it is limited to a clarifying WHY-comment near atomic-index-memory.ts:362-378 noting that startup recovery (recoverAllPendingFiles) closes this window — with strict comment hygiene (no spec/packet/ADR ids).",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/tests/transaction-manager-recovery.vitest.ts"
+          ],
+          "verification": "Add to transaction-manager-recovery.vitest.ts: write an orphan at `${getPendingPath(original)}.deadbeef` (8-hex unique suffix) with new content, omit the original file (simulating a never-finalized new record) and provide an original file with stale content for the supersede case; call recoverAllPendingFiles(dir, () => true) and assert the orphan is renamed to `original` and its content matches the pending content. Also assert findPendingFiles(dir) includes the uuid-suffixed orphan and isPendingFile returns true for it. Run: npx vitest run tests/transaction-manager-recovery.vitest.ts tests/transaction-manager.vitest.ts. Optionally add a context-server startup test asserting recoverPendingFiles renames a uuid-suffixed orphan when isCommittedInDb is true.",
+          "risk": "Low. Test-only change in a file already owned by the recovery test suite; no production behavior change. Coupling: parsePendingPath/PENDING_UNIQUE_SUFFIX_PATTERN are shared by the atomic-save wiring (memory-save.ts:3618) and recovery — if any other cluster edits the suffix format, this test must track it. Note the SECOND DB-before-file instance at memory-save.ts:2653-2659 (non-atomic quality-loop finalize) is OUTSIDE the atomic pending/recovery mechanism and is NOT covered by recoverAllPendingFiles — flag for sequencing if the cluster owner wants full coverage, but it is out of the stated C2 scope (cited lines are the atomic path)."
+        }
+      ],
+      "notes": "Both findings verified by reading current code in the working tree (line numbers were close to those cited; no major drift). C1 is CONFIRMED and tightly scoped to the memory_update path: runPostMutationHooks (mutation-hooks.ts) is the shared hook every mutation handler calls, and it is the single place still missing invalidateEntityDensityCache — wiring it there (per cluster guidance) fixes update and durably prevents future omissions; delete and save already invalidate at lower layers. C2 is downgraded from a clean defect to PARTIAL: the DB-commit-before-file-rename ordering is real (atomic-index-memory.ts:362 before :378), but the crash-window mitigation (recoverAllPendingFiles with isCommittedInDb) is already implemented in transaction-manager.ts AND wired into startupScan (context-server.ts:1442), and parsePendingPath correctly handles the atomic-save uuid-suffixed pending shape. The only genuine residual gap is missing regression-test coverage for the uuid-suffixed orphan recovery path; reordering the commit/promote sequence is NOT advisable (no real 2PC across SQLite+FS). One extra observation for the cluster owner: a second, structurally similar DB-before-file write exists at memory-save.ts:2653-2659 (non-atomic quality-loop finalize) which is NOT protected by the pending-file recovery mechanism and self-documents 'manual file recovery may be needed' — out of the cited C2 scope but worth tracking."
+    },
+    {
+      "cluster": "D-contract-parity",
+      "findings": [
+        {
+          "id": "D1",
+          "severity": "P1",
+          "title": "memory_embedding_reconcile success-coverage dry-run undercounts vs apply: dry-run counts only rows missing the rowid marker; apply repairs rows missing rowid OR the active-dim vector row",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts:281-287 (computeSuccessCoverage), :356-363 (plannedMutations uses coverage.successMissingActiveVector), :409-421 (apply repair predicate)",
+          "evidence": "computeSuccessCoverage (281-287) counts `success` rows with `NOT EXISTS (vec_memories_rowids r WHERE r.rowid = m.id)` ONLY — it never checks the active-dim vector table (the `_dimTable` param is unused, prefixed `_`). The apply repair UPDATE (417-421) uses `NOT EXISTS rowid OR NOT EXISTS ${dimTable}`. So a `success` row that HAS the rowid marker but is MISSING the dim vector row is repaired by apply (counted in applied.successCoverageReset) yet never counted in dry-run coverage.successMissingActiveVector. Line 362 derives the plannedMutations `repair_success_missing_active_vector_to_retry` row count from coverage.successMissingActiveVector — so dry-run plannedMutations under-reports what apply will mutate. The existing test tests/vector-coverage-hygiene.vitest.ts proves the dry-run gap (id=3: hasVec768=false,hasVecMemories=true is excluded from the count=2 at line 100), but its apply assertions (lines 100-104) only use id=1/id=2 where the two predicates happen to agree, so the divergence is currently untested for apply.",
+          "fix": "Make computeSuccessCoverage's predicate match the apply repair exactly. In embedding-reconcile.ts:282-286 change the COUNT query to include the dim-table surface: `WHERE m.embedding_status = 'success' AND (NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.vec_memories_rowids r WHERE r.rowid = m.id) OR NOT EXISTS (SELECT 1 FROM ${ACTIVE_SCHEMA}.${_dimTable} v WHERE v.id = m.id))`, and rename the now-used param from `_dimTable` to `dimTable`. This aligns the dry-run count, the coverage diagnostic, and plannedMutations[362] with the apply UPDATE so dry-run truthfully predicts apply.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts"
+          ],
+          "verification": "Run `vitest run tests/vector-coverage-hygiene.vitest.ts` from .opencode/skills/system-spec-kit/mcp_server. Add a case: insert a success row with hasVec768=false, hasVecMemories=true, assert dry-run coverage.successMissingActiveVector counts it AND an apply with repairSuccessCoverage:true resets exactly that row (applied.successCoverageReset matches the dry-run count). The existing first test's expectation `toBe(2)` must be updated to `toBe(3)` if id=3 is kept, since id=3 (has rowids, missing vec768) becomes countable.",
+          "risk": "Changing the existing test's expected count (2 -> 3 for the current fixture) is required and must be done deliberately, not silently. Behavior of the apply UPDATE is unchanged; only the dry-run count converges to it. Low coupling with other D findings. The doc comment block at 276-280 references the rowids table as 'the vector-presence source' — update the comment WHY only (no spec/packet ids) to reflect the dual-surface check."
+        },
+        {
+          "id": "D2",
+          "severity": "P1",
+          "title": "memory_embedding_reconcile contract drift across public schema / Zod / handler / docs; activeOnly accepted but never read",
+          "status": "PARTIAL",
+          "currentLocation": "tool-schemas.ts:337-353 (public memoryEmbeddingReconcile inputSchema), schemas/tool-input-schemas.ts:306-314 (Zod memoryEmbeddingReconcileSchema), :583 (ALLOWED_PARAMETERS), tools/types.ts:152-162 (ReconcileArgs), lib/embedders/embedding-reconcile.ts:19-39 (EmbeddingReconcileArgs), :22 (activeOnly declared)",
+          "evidence": "The schema/Zod/allow-list/type drift described in the original finding is ALREADY_FIXED: all four sources now agree on the same 8 fields {mode, activeOnly, resetMissing, missingFailureScope, maskedFailedPolicy, providerFailurePolicy, requireActiveShard, repairSuccessCoverage}. The cited claims 'public exposes dryRun/force/activeOnly' and 'Zod permits only mode/limit' no longer match current code — the public schema (tool-schemas.ts:337-353) lists all 8, Zod (tool-input-schemas.ts:306-314) defines all 8 with proper enums/booleans, the allow-list (:583) lists all 8, and ReconcileArgs (types.ts:152-162) mirrors them. REMAINING defect (PARTIAL): `activeOnly` is a dead parameter — `grep -rn activeOnly` across lib/embedders/ and the handler shows it ONLY at the interface declaration (embedding-reconcile.ts:22); runMemoryEmbeddingReconcile never reads args.activeOnly (it always resolves+verifies the active shard via readActiveEmbedder/verifyActiveShard regardless). So the schema advertises a knob (default true) that has no runtime effect.",
+          "fix": "Resolve the dead `activeOnly` param. Minimal scope-locked options: (a) document it as a no-op/reserved in the public schema description at tool-schemas.ts:344 (the field always behaves as true), OR (b) wire it: if `args.activeOnly === false` is intended to be unsupported, reject it in the handler. Recommended minimal change: update the tool-schemas.ts:344 description to state the active shard is ALWAYS resolved from runtime metadata and this flag is reserved/no-op, so the contract stops advertising a non-functional toggle. Do NOT add new runtime branching unless product intent requires activeOnly:false to skip verification (which would weaken the fail-closed safety model in embedding-reconcile.ts:8-11). The canonical contract is mode:'apply'|'dry-run' (default dry-run) — that is already consistent everywhere.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/lib/embedders/embedding-reconcile.ts"
+          ],
+          "verification": "Run `vitest run tests/tool-input-schema.vitest.ts` to confirm schema still validates. Confirm parity via the D7 test (which would now pass for this tool since all 4 sources agree). For the activeOnly no-op: `grep -rn 'args.activeOnly\\|\\.activeOnly' lib/embedders handlers/memory-embedding-reconcile.ts` returns nothing, proving it is unread.",
+          "risk": "Low. The schema/Zod/type alignment is already done — do NOT re-do it. Only the activeOnly dead-param remains. Avoid scope creep into changing the safety model. Note: tool-schemas.ts:346 contains '[Phase 007]' inside a JSON `description` string (data, not a code comment) — leave it; comment-hygiene applies to code comments, not advertised schema description text, but flag separately if doc-cluster wants it cleaned."
+        },
+        {
+          "id": "D3",
+          "severity": "P1",
+          "title": "Governed ingest metadata (provenance/retention/deleteAfter + scope tuple) validated then dropped before indexing on scan and async-ingest paths",
+          "status": "CONFIRMED",
+          "currentLocation": "handlers/memory-index.ts:330-332 (validateGovernedIngest gate-only), :287-292 (indexSingleFile forwards no governance), :721-725 (scan loop call); handlers/memory-ingest.ts:146-148 (validate), :260-281 (createIngestJob called with only {id,paths,specFolder}); lib/ops/job-queue.ts:45-55 (IngestJob has no governance fields), :253-295 (createIngestJob persists only spec_folder), :626-627 (worker calls processFileFn(nextPath) with no metadata); handlers/memory-save.ts:2745-2777 (IndexMemoryFileOptions lacks provenance/retention/deleteAfter)",
+          "evidence": "Both bulk paths validate governance then discard it. SCAN path: memory-index.ts:330 calls validateGovernedIngest(args) but only uses governanceDecision.allowed as a boolean gate (331-332); the normalized provenance/retention/deleteAfter is never read. indexSingleFile (287-292) forwards only {force, qualityGateMode, fromScan, asyncEmbedding} to indexMemoryFile, and the scan loop at 721-725 passes no governance. IndexMemoryFileOptions (memory-save.ts:2745-2763) accepts `scope` (tenant/user/agent/session) but NOT provenanceSource/provenanceActor/governedAt/retentionPolicy/deleteAfter, and the scan path doesn't even set `scope`. INGEST/async path: memory-ingest.ts:146 validates, then createIngestJob (ingest call at 260-263) is invoked with only {id, paths, specFolder}. job-queue.ts has ZERO references to provenance/retention/governance — IngestJob interface (45-55) and the ingest_jobs table INSERT (263-281) persist only spec_folder, so the worker (626-627) re-indexes with no governance context. By contrast the direct handleMemorySave path DOES thread governanceDecision.normalized (memory-save.ts:2972-2976, 3056-3060, 3446) — proving the propagation exists but is absent on bulk/scan/async. Note: there is NO `scope` governance FIELD in the current Zod schema; the fields are provenanceSource/provenanceActor/governedAt/retentionPolicy/deleteAfter plus the tenant/user/agent/session scope tuple. The finding's term 'scope' should be read as that tuple, not a single field.",
+          "fix": "Thread governanceDecision.normalized through both bulk paths to the save layer, mirroring handleMemorySave. (1) Extend BaseIndexMemoryFileOptions (memory-save.ts:2745-2753) to accept the governance fields (provenanceSource/provenanceActor/governedAt/retentionPolicy/deleteAfter) and pass them into processPreparedMemory exactly as handleMemorySave already does (2972-2976/3056-3060). (2) memory-index.ts: pass governanceDecision.normalized fields (and the scope tuple) through indexSingleFile -> indexMemoryFile at the 721 call site. (3) memory-ingest.ts + job-queue.ts: add governance columns to the ingest_jobs schema + IngestJob interface + createIngestJob INSERT, persist governanceDecision.normalized at enqueue (262-263), and rehydrate them when the worker indexes each path (job-queue.ts:626). Keep changes additive; do not alter the validateGovernedIngest gate semantics.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-ingest.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/lib/ops/job-queue.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts"
+          ],
+          "verification": "Add a vitest that calls handleMemoryIndexScan and handleMemoryIngestStart with retentionPolicy:'ephemeral' + deleteAfter + provenanceSource, then asserts the resulting memory_index rows carry those values (query delete_after / provenance columns) — paralleling memory-save-integration.vitest.ts which already exercises the direct save path. Run `vitest run tests/memory-save-integration.vitest.ts` for the existing baseline and the new scan/ingest case.",
+          "risk": "HIGH coupling — touches 4 files including memory-save.ts (shared with the working direct-save path) and job-queue.ts (adds a DB column → schema migration needed for ingest_jobs; coordinate with any schema-migration test). Sequence AFTER D1/D2 since it also edits memory-save.ts and the reconcile owner files. The ingest_jobs ALTER must be backward-compatible (nullable columns) to not break in-flight jobs. Confirm scope-governance.ts normalized shape before wiring. This is the largest fix in the cluster."
+        },
+        {
+          "id": "D4",
+          "severity": "P2",
+          "title": "Public ListTools definitions for memory_index_scan / memory_ingest_start hide governance fields that runtime validation accepts",
+          "status": "STALE_LOCATION",
+          "currentLocation": "tool-schemas.ts:519-521 (memoryIndexScan def, properties: specFolder/force/includeConstitutional/includeSpecDocs/incremental only), :531-552 (memoryIngestStart def, properties: paths/specFolder only); schemas/tool-input-schemas.ts:254-261 (memoryIndexScanSchema spreads ...governanceSchemaFields), :291-295 (memoryIngestStartSchema spreads ...governanceSchemaFields), :233-243 (governanceSchemaFields), :605/:608 (allow-list includes governance); context-server.ts:1029-1030 (ListTools serves TOOL_DEFINITIONS)",
+          "evidence": "Defect CONFIRMED but the cited context-server.ts:1028,1052 locations are STALE — context-server.ts only serves TOOL_DEFINITIONS verbatim via the ListTools handler at 1029-1030; the actual hiding lives in the tool-schemas.ts definitions. Public memory_index_scan (tool-schemas.ts:519-521) advertises only specFolder/force/includeConstitutional/includeSpecDocs/incremental. Public memory_ingest_start (531-552) advertises only paths + specFolder. But the Zod schemas spread ...governanceSchemaFields (tool-input-schemas.ts:255-261 and 291-295) and the allow-list permits tenantId/userId/agentId/sessionId/provenanceSource/provenanceActor/governedAt/retentionPolicy/deleteAfter (lines 605, 608). So runtime accepts governance args the public schema never declares (additionalProperties:false in the public def would even reject them if validated against it — they only pass because dispatch validates against Zod TOOL_SCHEMAS). memory_save (tool-schemas.ts:217) already exposes all governance fields publicly — the pattern exists but wasn't applied to scan/ingest.",
+          "fix": "Add the governance properties to the public inputSchema for memoryIndexScan (tool-schemas.ts:521) and memoryIngestStart (tool-schemas.ts:545-551), copying the exact property descriptions already used on memory_save's def (tool-schemas.ts:217): tenantId, userId, agentId, sessionId, provenanceSource, provenanceActor, governedAt, retentionPolicy(enum keep|ephemeral), deleteAfter. This makes ListTools advertise what the runtime actually accepts. No Zod/allow-list change needed — those already include the fields.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+          ],
+          "verification": "Run `vitest run tests/tool-input-schema.vitest.ts`. The D7 parity test is the durable proof: after this fix, public property keys for memory_index_scan/memory_ingest_start equal the Zod shape keys. Manual: diff Object.keys(memoryIndexScan.inputSchema.properties) against the Zod schema shape.",
+          "risk": "Low and additive — only edits one file (tool-schemas.ts), shared with D2/D5 (also tool-schemas.ts) so sequence these together to avoid edit conflicts. No behavior change; purely makes the public contract honest. Tightly coupled to D7 (the parity test will enforce this fix stays)."
+        },
+        {
+          "id": "D5",
+          "severity": "P2",
+          "title": "memory_causal_stats public schema hides the runtime backfill capability",
+          "status": "CONFIRMED",
+          "currentLocation": "tool-schemas.ts:454-458 (memoryCausalStats def: properties:{}, additionalProperties:false); schemas/tool-input-schemas.ts:414-431 (memoryCausalStatsSchema defines nested `backfill`), :592 (allow-list: ['backfill']); handlers/causal-graph.ts:102-117 (CausalStatsArgs.backfill), :803-836 (handler reads args.backfill and runs backfillRelationInference)",
+          "evidence": "CONFIRMED. Public schema (tool-schemas.ts:457) is `properties: {}, required: []` — advertises NO inputs. But the Zod schema (tool-input-schemas.ts:414-431) defines a full nested `backfill` object (dryRun/limit/actor/similarity/contradicts/similarityThreshold), the allow-list (:592) permits `backfill`, and the handler (causal-graph.ts:803 reads args.backfill, 824-836 invokes backfillRelationInference, which CAN commit edges when dryRun:false per the comment at 414-416). So a write-capable backfill knob is fully wired in runtime but invisible to ListTools — callers cannot discover it.",
+          "fix": "Add the `backfill` object to the public memoryCausalStats inputSchema (tool-schemas.ts:457), mirroring the Zod shape: an optional object with dryRun(boolean,default true), limit(number 1-2000), actor(string), similarity(boolean), contradicts(boolean), similarityThreshold(number 1-100), and a description noting default is a dry run and {dryRun:false} commits bounded auto edges. Keep additionalProperties:false on the nested object to match the strict Zod getSchema nesting.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts"
+          ],
+          "verification": "Run `vitest run tests/tool-input-schema.vitest.ts`. D7 parity test enforces public-vs-Zod agreement for memory_causal_stats afterwards. Manual: validateToolArgs('memory_causal_stats', { backfill: { dryRun: true } }) already passes Zod; after the fix the public schema declares it too.",
+          "risk": "Low/additive, single-file (tool-schemas.ts — sequence with D2/D4). NOTE governance: memory_causal_stats becomes a `mutates` route when backfill.dryRun:false — exposing it publicly surfaces a write capability under an L6:Analysis-labelled tool; ensure the description makes the dry-run default and write-on-opt-in explicit so the mutation boundary is visible. No code-comment hygiene concern (schema description text)."
+        },
+        {
+          "id": "D6",
+          "severity": "P2",
+          "title": "Bootstrap/stale-graph guidance claims code_graph_query still works on a stale graph, but the code-graph handler blocks every non-fresh read",
+          "status": "CONFIRMED",
+          "currentLocation": "context-server.ts:953 (guidance: 'If \"stale\": ...code_graph_query still works...'), :966-967 (surfaces query routing when freshness is 'fresh' OR 'stale'); system-code-graph/mcp_server/handlers/query.ts:866-875 (shouldBlockReadPath: freshness !== 'fresh' → block), :887-889 (non-fresh needs scan), :1244-1250 (call site returns status:'blocked')",
+          "evidence": "CONFIRMED contradiction. context-server.ts:953 tells non-hook runtimes: 'If \"stale\": mcp__mk_code_index__code_graph_query still works, but a session_bootstrap refresh is recommended', and 966-967 only surfaces the query routing rule when freshness is 'fresh' or 'stale'. But query.ts shouldBlockReadPath (866-875) returns true whenever `readiness.freshness !== 'fresh'` (explicitly a 'false-safe contract' that refuses to answer on a stale graph — comment 866-873), and the read handler at 1244 returns `status:'blocked'` / `code_graph_not_ready` for that case. So on a stale graph code_graph_query does NOT work — it blocks. The guidance is wrong.",
+          "fix": "Correct the guidance text in context-server.ts:953 to match the handler's false-safe contract: a stale graph BLOCKS reads and requires a refresh (session_bootstrap, or code_graph_scan) before code_graph_query returns results — e.g. 'If \"stale\": code_graph_query will block (code_graph_not_ready) until you run session_bootstrap to refresh; run it first.' Also reconcile the routing-rule gate at 966-967 so the 'Structural queries → code_graph_query' rule is only emitted for 'fresh' (stale should route to a refresh action, not a direct query). This is a docs/guidance-string fix in code, not a behavior change to the handler (the handler's fail-closed block is correct and should stay).",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+          ],
+          "verification": "No unit test currently asserts the guidance strings. Add a small test (or extend an existing context-server instructions test if present) asserting the stale-branch guidance does NOT say 'still works' and recommends a refresh-before-query. Cross-check behavior with system-code-graph query.ts: a stale readiness yields status:'blocked' (verify via existing code-graph handler tests). Lowest-risk verification: grep that context-server.ts:953 no longer contains 'still works' for the stale branch.",
+          "risk": "Very low — string-only change in one file (context-server.ts), and that file is shared with D4's stale cite but D4's real edits are in tool-schemas.ts, so no conflict. Cross-cluster coupling: this concerns system-code-graph behavior (read-only here — do NOT change query.ts, the block is correct). Pure documentation-honesty fix."
+        },
+        {
+          "id": "D7",
+          "severity": "P1",
+          "title": "RC1 structural fix: no single source of truth / no parity test guarding public JSON schema vs Zod allow-list vs handler args",
+          "status": "CONFIRMED",
+          "currentLocation": "schemas/tool-input-schemas.ts:519 (TOOL_SCHEMAS exported), :569 (ALLOWED_PARAMETERS — PRIVATE const, not exported), :679 (validateToolArgs uses Zod path); tool-schemas.ts:681 (TOOL_DEFINITIONS exported — public ListTools schemas); tests/tool-input-schema.vitest.ts (per-tool structural checks only, no cross-source parity)",
+          "evidence": "CONFIRMED no parity test exists. Two independent validation sources can drift silently: ListTools serves the public TOOL_DEFINITIONS (tool-schemas.ts:681) whose per-tool inputSchema.properties define the advertised params, while runtime dispatch validates via validateToolArgs → Zod TOOL_SCHEMAS (tool-input-schemas.ts:519,679) gated by the private ALLOWED_PARAMETERS allow-list (:569). The existing tests/tool-input-schema.vitest.ts checks structural integrity of each TOOL_DEFINITIONS entry and validateToolInputSchema behavior, but never compares the public property keys against the Zod schema shape / allow-list — exactly the drift class that produced D2 (historically), D4, D5. ALLOWED_PARAMETERS is NOT exported, so a parity test should consume the exported Zod TOOL_SCHEMAS (z.ZodObject.shape keys) and the exported TOOL_DEFINITIONS.",
+          "fix": "Add tests/tool-contract-parity.vitest.ts scoped to the four tools in this cluster: memory_embedding_reconcile, memory_index_scan, memory_ingest_start, memory_causal_stats. For each, compute three key-sets: (a) PUBLIC = Object.keys(TOOL_DEFINITIONS.find(t=>t.name===X).inputSchema.properties); (b) ZOD = Object.keys((TOOL_SCHEMAS[X] as z.ZodObject).shape) — TOOL_SCHEMAS is exported from tool-input-schemas.ts; (c) optionally export ALLOWED_PARAMETERS (one-line `export`) to assert ALLOWED === ZOD keys. Assert PUBLIC set === ZOD set for each tool (fail listing the symmetric difference). For nested-object params (causal_stats.backfill) assert presence of the top-level key only in this pass. This fails the moment public and Zod disagree, making D2/D4/D5 regressions impossible to merge unnoticed.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/tests/tool-contract-parity.vitest.ts",
+            ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts"
+          ],
+          "verification": "Run `vitest run tests/tool-contract-parity.vitest.ts` from .opencode/skills/system-spec-kit/mcp_server. Before fixes D4/D5 it should FAIL for memory_index_scan/memory_ingest_start/memory_causal_stats (public missing governance/backfill keys) and PASS for memory_embedding_reconcile (already aligned per D2). After D4/D5 land, all four pass — proving both the test's discriminating power and the fixes.",
+          "risk": "Low. The only source change is a one-line `export` to expose ALLOWED_PARAMETERS (tool-input-schemas.ts:569) if you assert the allow-list too; otherwise consume the already-exported TOOL_SCHEMAS and TOOL_DEFINITIONS with zero source edits. The test is the highest-leverage RC1 fix and is the natural gate for D2/D4/D5 — sequence it to RUN RED first (proving it catches the drift), then land D4/D5, then GREEN. Keep scope to the 4 named tools; do not attempt all ~37 tools this pass."
+        }
+      ],
+      "notes": "Re-verified all 7 D-cluster findings against the current working tree (uncommitted changes did not touch the contract files — none of tool-schemas.ts, tool-input-schemas.ts, the reconcile/ingest/index handlers, job-queue.ts, or context-server.ts appear in `git diff --name-only`; the dirty files are IPC/socket-server + spec-folder metadata). So cited line numbers were mostly accurate; the notable drifts are recorded below.\\n\\nStatus tally: D1 CONFIRMED, D2 PARTIAL (schema/Zod/type/allow-list drift ALREADY_FIXED — all 4 sources now agree on 8 fields; only the dead `activeOnly` param remains), D3 CONFIRMED (3 paths drop governance), D4 CONFIRMED but STALE_LOCATION (real source is tool-schemas.ts:519/531, not context-server.ts:1028/1052 which just serves TOOL_DEFINITIONS verbatim at 1029-1030), D5 CONFIRMED, D6 CONFIRMED, D7 CONFIRMED (no parity test).\\n\\nKey corrections vs the original packet-012 findings:\\n- D2: the most-emphasized drift claims ('public exposes dryRun/force/activeOnly', 'Zod permits only mode/limit') are STALE — current code is aligned. Implementer must NOT redo schema alignment; only address the activeOnly no-op. The contract is canonically mode:'apply'|'dry-run' (default dry-run) as the orchestrator instructed, and that is already consistent everywhere.\\n- D3: the term 'scope' is not a single field in current code; governance = provenanceSource/provenanceActor/governedAt/retentionPolicy/deleteAfter + the tenant/user/agent/session tuple. The direct handleMemorySave path already threads governanceDecision.normalized (memory-save.ts:2972-2976/3056-3060/3446) — copy that pattern to scan + ingest. D3 is the heaviest fix (4 files incl. an ingest_jobs schema column → migration).\\n- D4: cite stale; fix is in tool-schemas.ts. memory_save already models the correct public-governance shape to copy.\\n\\nSequencing & coupling: tool-schemas.ts is edited by D2/D4/D5 — batch them to avoid conflicts. memory-save.ts is touched by D1(no), D3(yes); embedding-reconcile.ts by D1/D2. context-server.ts by D6 (string-only) and is the stale-cite for D4 (no edit there). D7 is the gate for D2/D4/D5 — run it RED first to prove discriminating power, land D4/D5, then GREEN. Do NOT edit system-code-graph query.ts for D6 — its fail-closed stale block is correct; only the context-server guidance string is wrong.\\n\\nVerification baseline: tests run via `vitest run <file>` from .opencode/skills/system-spec-kit/mcp_server (test:core script = `vitest run`). Existing relevant tests: tests/vector-coverage-hygiene.vitest.ts (D1), tests/tool-input-schema.vitest.ts (D2/D4/D5 structural), tests/memory-save-integration.vitest.ts (D3 baseline). New test for D7: tests/tool-contract-parity.vitest.ts. ALLOWED_PARAMETERS (tool-input-schemas.ts:569) is private; the parity test should consume the exported TOOL_SCHEMAS (Zod) + TOOL_DEFINITIONS (public), or add a one-line export.\\n\\nNo files were modified — read-only verification only."
+    },
+    {
+      "cluster": "E-metadata",
+      "findings": [
+        {
+          "id": "E1",
+          "severity": "P1",
+          "title": "026 program graph-metadata stale (last-active child pointer + spec prose claim do not match timeline reality)",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json:156-157 (last_active_child_id + last_active_at); spec.md:139 (prose claim); timeline.md:76-77 (rank-1 rows)",
+          "evidence": "graph-metadata.json:156 last_active_child_id = '.../004-code-graph' with last_active_at '2026-05-29T18:21:38+02:00'. timeline.md:76-77 shows the most-recently-active tracks are '006-operator-tooling/' and '003-memory-and-causal-runtime/' at '2026-06-03 10:18' — both newer than the pointer. spec.md:139 asserts the pointer 'now points to the most recently active track', which is false. This file is NOT in the uncommitted change set (already committed stale). 004-code-graph still exists on disk so the pointer is stale, not broken.",
+          "fix": "Update graph-metadata.json:156-157 last_active_child_id to 'system-spec-kit/026-graph-and-context-optimization/006-operator-tooling' (the rank-1 track) and last_active_at to '2026-06-03T10:18' (timeline rank-1 timestamp, in the existing +02:00 offset form). Do NOT hand-edit if you instead re-run the canonical chronology updater — prefer regenerating via updatePhaseParentPointer/generate-context.ts so the pointer is derived from the real last save rather than typed. Either way reconcile spec.md:139 prose to name the actual current track or soften to 'points to a recently active track' if a derived pointer cannot guarantee strict recency.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md"
+          ],
+          "verification": "After edit: `node -e` JSON.parse the graph-metadata.json to confirm valid; run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/026-graph-and-context-optimization --strict`. Confirm derived.last_active_child_id resolves to an existing child dir and its date is >= timeline rank-1.",
+          "risk": "Pure data fix. last_active_child_id drives /speckit:resume redirect (graph-metadata-parser.ts deriveGraphMetadata carries it forward via existing?.derived.last_active_child_id at line 1098), so a wrong value misroutes resume. Couples with E7 only in that the canonical generator owns this pointer; manual edit is safe but a regenerate is more durable. Shared file with cluster-A/B if they touch 026 program docs — sequence after their reads."
+        },
+        {
+          "id": "E2",
+          "severity": "P1",
+          "title": "026 top-level changelog rollups under-report child inventory and the README track table count is wrong",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md:20 (track-000 row); changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md:21-23 (Included Phases table) and :17 ('groups 1 child phases')",
+          "evidence": "Track-000 root rollup 'Included Phases' table lists exactly 1 changelog and its Summary says 'groups 1 child phases', but `find` shows 129 non-root (leaf) changelog-*.md files flat in that directory. README.md:20 claims '128' leaf changelogs for track 000 vs actual 129. The README itself states 'Per-directory rollups are the authoritative child inventory' (README.md:46) and 'Each track rollup has an Included Phases table linking to its child phase rollups and leaf changelogs' — both violated. No changelog files are in the uncommitted set (committed as-is).",
+          "fix": "Regenerate the track-000 root rollup's Included Phases table from the actual 129 leaf changelogs (or correct the Summary count + table to match reality) rather than leaving '1 child phases'. Correct README.md:20 leaf count 128 -> 129. Do NOT hand-list 129 rows blindly; if a rollup generator exists run it; otherwise the table must at minimum stop claiming '1'. Keep voice rules (no em-dashes/semicolons/Oxford commas) per README conventions.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md"
+          ],
+          "verification": "`find .opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup -name 'changelog-*.md' ! -name '*-root.md' | wc -l` must equal the count stated in the rollup Summary and README track-000 leaf column. Spot-check 2-3 other track rows for the same drift.",
+          "risk": "Doc-only. Large manual table is error-prone — prefer a generator. Other E2-style discrepancies likely exist in tracks 003/004 (240/27 and 76/10 claimed) but only track-000 is in-scope per cited evidence; flag-only for the rest to avoid scope creep. No code coupling."
+        },
+        {
+          "id": "E3",
+          "severity": "P1",
+          "title": "026 packets carry bidirectional completion contradiction (impl-summary says shipped/Completed; spec.md + graph-metadata + checklist + continuity say in-progress)",
+          "status": "CONFIRMED",
+          "currentLocation": "026/000-release-and-program-cleanup/009-readme-and-references-accuracy: spec.md:46 Status='In Progress', graph-metadata.json:30 status='in_progress', implementation-summary.md:6/44 'shipped'/'Completed 2026-06-03', checklist.md:131-132 CHK-071/CHK-072 unchecked, spec.md:18 next_safe_action='remediate confirmed set'. Also 026/003-memory-and-causal-runtime/016-embedding-provider-local-first: spec.md:45 'In Progress', graph-metadata.json:32 'in_progress', implementation-summary.md:6/44 'shipped'/'Completed 2026-06-02', 3 unchecked checklist items, spec.md:18 next_safe_action='Edit resolveProvider ... run tests'.",
+          "evidence": "Finding title framed it as 'completed packets advertise in-progress' but current reality is a two-way contradiction: implementation-summary claims completion while spec metadata-table, graph-metadata derived.status, checklist, and _memory.continuity all say in-progress. For 009 the unchecked item CHK-072 is literally 'Completion metadata reconciled across packet docs' — unreconciled. Neither packet dir is in the uncommitted change set.",
+          "fix": "Per packet, resolve to ONE truth via the COMPLETION VERIFICATION reconciliation rule. If genuinely complete: check remaining checklist items with evidence, set spec.md Status -> Complete, set graph-metadata derived.status -> complete, update _memory.continuity recent/next_safe_action to a closed state. If NOT complete: correct the implementation-summary 'shipped/Completed' claims to in-progress and keep spec/graph/checklist as-is. Decide per actual test/validate evidence in each packet; do not blanket-flip. Run validate.sh --strict per packet.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/spec.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/graph-metadata.json",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/checklist.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy/implementation-summary.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first/spec.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first/graph-metadata.json"
+          ],
+          "verification": "`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <each-packet> --strict` (CHK-071 for 009 is literally '`validate.sh --strict` -> Errors 0'). After reconciliation, grep each packet: spec Status, graph derived.status, impl-summary completion field, and continuity next_safe_action must agree.",
+          "risk": "graph-metadata derived.status is RE-DERIVED by E7's deriveStatus on next save — if you hand-set complete but leave spec.md table Status='In Progress' AND there is no YAML status frontmatter, a future re-derive will recompute from impl-summary/checklist and may overwrite. STRONG coupling with E7: the table-status fix in E7 must land so manual graph-metadata edits here survive re-derive. Sequence: land E7 code fix first, then reconcile E3 data (and prefer regenerating graph-metadata via the generator after spec.md status is corrected)."
+        },
+        {
+          "id": "E4",
+          "severity": "P1",
+          "title": "027 parent metadata advertises placeholder 000-release-cleanup as an executable child though the folder has no child spec metadata",
+          "status": "CONFIRMED",
+          "currentLocation": "027 parent description.json:28 children[0]='000-release-cleanup'; graph-metadata.json:7 children_ids[0]='.../000-release-cleanup'; spec.md:130 Phase 000 row labels it 'Placeholder'. Folder 027/000-release-cleanup/ contains only .gitkeep + five empty grandchild dirs (001-release-readiness..005-stress-test, all empty) — NO spec.md, NO description.json, NO graph-metadata.json.",
+          "evidence": "Verified on disk: `ls 027/000-release-cleanup` -> only .gitkeep and empty scaffold dirs; spec.md/description.json/graph-metadata.json all absent. Yet parent description.json children[] and graph-metadata.json children_ids[] list it as a real child without any placeholder marker. spec.md:130 at least labels it 'Placeholder' (honest) and OPEN QUESTIONS:180 asks whether it should remain. The contradiction is description.json/graph-metadata.json treat a hollow shell as executable.",
+          "fix": "Two scope-locked options (pick one, do not both): (a) Mark it placeholder in machine metadata — remove '000-release-cleanup' from description.json children[] and graph-metadata.json children_ids[] so graph traversal/resume does not treat it as an executable child, keeping only the spec.md Phase table row labeled 'Placeholder'; OR (b) scaffold the minimal trio (spec.md/description.json/graph-metadata.json) for 000-release-cleanup via generate-description.js + graph-metadata backfill if it is meant to be real. Given OPEN QUESTIONS already frames it as an indefinite placeholder, (a) is the minimal/honest fix.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json"
+          ],
+          "verification": "After edit: JSON.parse both files; run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement --strict`. Confirm every remaining children_ids entry resolves to a dir containing at least spec.md or description.json (isPhaseParent contract).",
+          "risk": "027 parent description.json + graph-metadata.json are in the uncommitted change set — read `git diff` before editing; current diff only touched lastUpdated/specId, not children arrays, so children still list 000. Removing a child id changes graph traversal and could affect E5/E6 sibling renumbering work — sequence with E5/E6 since they share the same two parent files. /speckit:resume child-listing will stop offering the placeholder, which is the intent."
+        },
+        {
+          "id": "E5",
+          "severity": "P1",
+          "title": "027 renumbered children still expose old phase IDs in description.json title + trigger_phrases (specId already fixed by uncommitted change, title/triggers not)",
+          "status": "PARTIAL",
+          "currentLocation": "027/002-memory-write-safety/description.json:2 title='Phase 012 ...', :4 trigger '027 phase 012'; 027/007-semantic-trigger-fallback/description.json:2 title='Phase 008 ...', :4 trigger '027 phase 008'; 027/008-learning-feedback-reducers/description.json:2 title='Phase Parent — 009 ...', :4-5 triggers '027 phase 009'/'009 feedback reducers'. context-index.md:25-33 correctly records the 028->008->001 rename history.",
+          "evidence": "The uncommitted change set already fixed the `specId` field in these description.json files (e.g. 003 specId 002->003, 006 specId 005->006 in git diff) but left the stale phase numbers embedded in `title` and `trigger_phrases`. 027/002 folder still titled 'Phase 012', 027/007 still 'Phase 008', 027/008 still '009'. context-index.md:25-33 is the migration bridge and CORRECTLY contains old IDs (that is its purpose) — that part is not a defect, so the cited context-index.md:29 is MISREPORTED for E5 (it is the intended home for old IDs).",
+          "fix": "Update each renumbered child description.json so title and trigger_phrases reflect the CURRENT folder number: 002 title -> 'Phase 002 — Memory Write Safety ...' and trigger '027 phase 002'; 007 -> 'Phase 007 ...' / '027 phase 007'; 008 -> 'Phase 008 — Learning Feedback Reducers' / '027 phase 008'. Verify 001-peck-teachings-adoption/description.json:33 similarly (specId 001 is correct; confirm its title/triggers say 001 not 008/028). Leave context-index.md historical table untouched. Prefer regenerating via generate-description.js so derived title/triggers come from current spec.md rather than hand-editing, but the durable folder-number alignment is the requirement.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json"
+          ],
+          "verification": "`rg -n 'phase 0(08|09|12|28)' .opencode/specs/system-spec-kit/027-xce-research-based-refinement/*/description.json` should return zero matches in current-child description.json after fix (context-index.md excluded). Run validate.sh --strict on 027 parent.",
+          "risk": "All these description.json are in the uncommitted change set — read `git diff` first; the staged edits only moved specId/lastUpdated, so title/triggers are still stale and safe to edit. trigger_phrases feed memory search indexing; changing them re-indexes those packets (run memory_index_scan after). If regenerating via generator, sequence after E6 spec status fixes so derived title pulls correct status context. Shares 027 parent tree with E4/E6."
+        },
+        {
+          "id": "E6",
+          "severity": "P1",
+          "title": "027 graph derived.status marks Draft phases 'complete' (003 + 006)",
+          "status": "CONFIRMED",
+          "currentLocation": "027/003-incremental-index-foundation/spec.md:51 Status='Draft' but graph-metadata.json:42 derived.status='complete'; 027/006-write-path-reconciliation/spec.md:49 Status='Draft' but graph-metadata.json:42 derived.status='complete'.",
+          "evidence": "Both spec.md files have NO YAML frontmatter `status:` key (verified frontmatter head ends at key_files block, no status) but DO carry a metadata table row `| **Status** | Draft |`. graph-metadata derived.status reads 'complete' in both. This is exactly the E7 root-cause symptom: deriveStatus ignores the table status, and because both packets have an implementation-summary.md but no checklist.md (or a checklist that the heuristic passes), the heuristic at graph-metadata-parser.ts:1030-1033 returns 'complete'. The uncommitted description.json diffs for these two packets only fixed specId, not graph-metadata derived.status.",
+          "fix": "Data: set graph-metadata.json:42 derived.status -> 'draft' (or 'planned' if 'draft' is not an accepted derived value — normalizeDerivedStatus passes unknown values through verbatim, so 'draft' would persist) for both 003 and 006 to match the spec.md table. BUT this is overwritten on next re-derive until E7 lands. Correct sequencing: land E7 code fix (table-status fallback) first, THEN regenerate graph-metadata via the backfill script (`backfill-graph-metadata.ts`) so derived.status is recomputed honestly from the Draft table rows rather than hand-edited. Hand-edit is a stopgap only.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/graph-metadata.json"
+          ],
+          "verification": "After E7 + regen: `rg -n '\"status\"' 027/003.../graph-metadata.json 027/006.../graph-metadata.json` must show the Draft-derived value, not 'complete'. Add/extend graph-metadata-schema.vitest.ts with a fixture that has a Draft metadata-table status and no YAML status frontmatter, asserting derived.status != 'complete'.",
+          "risk": "HARD coupling with E7 — data fix alone is non-durable. Both graph-metadata.json are NOT in the current uncommitted set (only the sibling description.json are), so editing them is a fresh change. After fix these packets' resume/derived status flips, which is the intent. Sequence: E7 code -> backfill regen -> E6 verified."
+        },
+        {
+          "id": "E7",
+          "severity": "P1",
+          "title": "ROOT: deriveStatus() ignores spec.md metadata-table Status, marking Draft/Placeholder specs 'complete' from implementation-summary presence",
+          "status": "CONFIRMED",
+          "currentLocation": "graph-metadata-parser.ts:623 (collectPacketDocs sets doc.status = normalizeDerivedStatus(extractFrontmatterScalar(content,'status')) — frontmatter ONLY); :987-1038 deriveStatus; the offending branch is :1030-1033 (no checklist.md -> return 'complete') and :1012-1015 (frontmatterStatus never populated for table-only specs). extractFrontmatterScalar:436-449 calls extractFrontmatter first so it never reads the markdown table.",
+          "evidence": "Verified: extractFrontmatterScalar only parses YAML frontmatter. Real 027 specs (003/006) and many 026 specs declare status ONLY in the `| **Status** | Draft/In Progress |` metadata table, with NO YAML `status:` key. Therefore doc.status is null for spec.md, frontmatterStatus (deriveStatus:1012) is empty, and the heuristic falls to :1030-1033: when implementation-summary.md exists and checklist.md is absent, it returns 'complete' — overriding a Draft/Placeholder spec. No table-status parser exists anywhere in the parser (grep confirmed). The cited generate-context.ts:455 is now updatePhaseParentPointer (STALE line) — the status heuristic lives solely in graph-metadata-parser.ts; generate-context.ts only orchestrates and does not re-derive status. backfill-graph-metadata.ts:159-193 (collectReviewFlags/runBackfill) calls deriveGraphMetadata and inherits the same bug.",
+          "fix": "Add a metadata-table status fallback that is consulted with HIGHER precedence than the implementation-summary/checklist heuristic. Minimal: add a helper extractMetadataTableStatus(content) that matches `^\\|\\s*\\**\\s*Status\\s*\\**\\s*\\|\\s*([^|]+?)\\s*\\|` (case-insensitive, multiline) and normalizes via normalizeDerivedStatus; in collectPacketDocs:623 set status = frontmatter status ?? table status. Critically, a spec with table Status 'Draft'/'Placeholder' must yield a non-complete derived status: ensure normalizeDerivedStatus maps 'draft'/'placeholder' to themselves (they already pass through default branch) and that deriveStatus returns the spec.md table status before reaching the :1030 'complete' branch. Do NOT broaden scope to redesign the whole precedence chain — only inject the table-status read into the existing frontmatterStatus path (deriveStatus ranked list at :1006-1011 already reads doc.status for spec.md, so populating spec.md doc.status from the table is the single load-bearing change). No spec-path/ADR/packet ids in comments.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts"
+          ],
+          "verification": "Existing: `npx vitest run .opencode/skills/system-spec-kit/mcp_server/tests/graph-metadata-schema.vitest.ts .opencode/skills/system-spec-kit/scripts/tests/graph-metadata-refresh.vitest.ts` must stay green (they use YAML status frontmatter, unaffected). NEW test: add a fixture spec.md with NO YAML status but `| **Status** | Draft |` table row plus an implementation-summary.md and no checklist, assert deriveGraphMetadata(...).derived.status === 'draft' (not 'complete'); and a 'Placeholder' variant. Then re-run backfill dry-run over 026/027 and confirm the 163 reported contradictions collapse.",
+          "risk": "HIGHEST coupling node — E3/E6 data fixes are non-durable until this lands, and a backfill regen after this will REWRITE derived.status across 026/027 (the '163 contradictions'). That mass rewrite is the intended remediation but must be reviewed: a too-greedy table regex could capytalize wrong rows or mis-handle phase-parents (which legitimately have no status table). Guard: only override when the table status normalizes to a known/explicit value; keep the lean-phase-parent existingStatus preservation at :1027 intact (graph-metadata-refresh.vitest.ts asserts it). compiled dist must be rebuilt (parser is TS in mcp_server) before backfill uses it. Sequence FIRST in the cluster."
+        },
+        {
+          "id": "E8",
+          "severity": "P2",
+          "title": "026 resource-map rows claim 'OK'/'Missing on disk: 0' for renamed-away paths; 027 resource-map overstates renumbering readiness",
+          "status": "CONFIRMED",
+          "currentLocation": "026 resource-map.md:62 row '.../000-release-cleanup/spec.md | Cited | OK' (path renamed to 000-release-and-program-cleanup, OLD GONE) and :64 '.../002-resource-map-deep-loop-fix/spec.md | Cited | OK' (GONE); :44 'Missing on disk: 0' is false; a STALE banner at :24-35 mitigates navigation. 027 resource-map.md:32 'Missing on disk: 0' and :78 row claims 001-peck description.json 'Updated | OK' while E5 shows its sibling description.json still carry stale phase IDs.",
+          "evidence": "Verified on disk: 026/000-release-cleanup GONE (renamed), 026/002-resource-map-deep-loop-fix GONE, yet resource-map.md:62-64 list them with Status 'OK' and the summary says Missing-on-disk 0. The :24-35 banner explicitly flags the catalog as pre-wave-4 stale ('Do not navigate from this file'), which softens severity to P2. 027 resource-map asserts renumbering is done/OK but E5 confirms title/trigger drift remains, so its readiness claims overstate.",
+          "fix": "026: either (a) regenerate the resource-map path catalog so rows reflect current names and Missing-on-disk is accurate, OR (b) since the banner already says 'regeneration deferred', append the absent paths to the banner's known-stale list and correct the literal 'Missing on disk: 0' to reflect the renamed entries — do not leave individual rows asserting 'OK' for absent files. 027: downgrade the 'OK' rows that claim renumbering complete to note residual title/trigger drift (or fix E5 first then the claim becomes true). Minimal honest fix: reconcile the Missing-on-disk count and per-row Status to disk reality; prefer regeneration over hand-editing 60+ rows.",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md"
+          ],
+          "verification": "For each 'OK' row in 026 resource-map, `test -f <path>` must pass; rows for absent paths must not say OK. `rg -c 'GONE|renamed'` cross-checked against disk. For 027, after E5 lands, the 'renumbering OK' claim holds; until then it overstates.",
+          "risk": "Doc-only, P2 (banner mitigates 026 navigation risk). 027 resource-map readiness claim couples with E5 — fix E5 first so the 'OK' becomes truthful rather than editing the claim twice. Large row count favors regeneration; manual edits risk introducing new drift. No code coupling."
+        },
+        {
+          "id": "E9",
+          "severity": "P2",
+          "title": "027 lean-parent note overstates 'ONLY authored document' (parent has valid context-index.md + resource-map.md); 027 launch does not pin which 026 completion surface it builds on (026 parent 'In Progress' vs child 000 'Complete')",
+          "status": "PARTIAL",
+          "currentLocation": "027 spec.md:88 '> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level.' Parent dir also contains context-index.md and resource-map.md (both present, both framework-sanctioned optional cross-cutting docs). 026 spec.md:43 parent Status='In Progress'; 026/000-release-and-program-cleanup/spec.md:39 child Status='Complete' — divergent surfaces; cited 026 spec.md:43 in the finding pointed at the 'Created' row region but the load-bearing Status row is line 43.",
+          "evidence": "027 spec.md:88 literally claims spec.md is the ONLY authored parent doc, but `ls 027/*.md` returns context-index.md, resource-map.md, spec.md. The framework explicitly permits 'Optional cross-cutting docs (any level): handover.md ... resource-map.md' and 'context-index.md provides a migration bridge' — so the note mislabels two valid docs as out-of-policy. Part 2: 026 parent spec Status 'In Progress' while child 000 spec Status 'Complete' (and timeline shows ongoing 2026-06-03 activity) — 027, which builds on 026, has no statement pinning which 026 completion surface it depends on. STALE_LOCATION note: finding cited 026 spec.md:43 as 'Created' but the actual Status is at :43 'In Progress'; the divergence is real.",
+          "fix": "027 spec.md:88: soften the note to 'This spec.md is the only REQUIRED authored document at the parent level; optional cross-cutting docs (context-index.md migration bridge, resource-map.md) may also live here.' — preserving the lean-parent intent without invalidating sanctioned support docs. Part 2: add one sentence to 027 spec.md launch/Purpose pinning the 026 surface it builds on (e.g. 'Builds on 026 track-000 release-cleanup completion; the 026 program parent remains In Progress for other tracks'), and reconcile 026 parent spec.md:43 Status against E3 once those packets are resolved. No comment-hygiene concern (markdown prose).",
+          "filesToEdit": [
+            ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+            ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md"
+          ],
+          "verification": "`rg -n 'ONLY authored' 027/spec.md` must return zero after fix. Run validate.sh --strict on both 027 and 026 parents; phase-parent validation must still pass (the note change does not add required docs). Confirm the 026-surface sentence names a concrete, true completion state.",
+          "risk": "Doc-only, P2. Part 2 couples with E3 (026 parent Status reconciliation) and E1 (026 program metadata) — pin the 026 surface only after E3 settles the child statuses, else you cite a surface that itself changes. 026 spec.md is shared with E1/E3 — sequence after them. The 027 note softening is independent and safe."
+        }
+      ],
+      "notes": "All 9 findings re-verified against the current working tree by direct Read/Grep/ls; every line number below was confirmed (not trusted from the audit). KEY DRIFT vs the cited audit: (1) E7 generate-context.ts:455 is STALE — that line is now updatePhaseParentPointer; the status heuristic lives ONLY in graph-metadata-parser.ts deriveStatus (:987-1038) and the load-bearing bug is collectPacketDocs:623 reading status from YAML frontmatter only, never the spec.md metadata table. (2) E5 is PARTIAL — the uncommitted change set already corrected `specId` in the 027 child description.json files, but left stale phase numbers in `title`/`trigger_phrases`; and the cited context-index.md:29 is the INTENDED home for old IDs (migration bridge), so that sub-cite is misattributed. (3) E3's framing inverted — it is a bidirectional contradiction (impl-summary 'shipped/Completed' vs spec/graph/checklist/continuity 'in-progress'), not one-directional. (4) E1 026 program graph-metadata.json is already committed (NOT in the uncommitted set), so it is freshly editable.\\n\\nCRITICAL SEQUENCING for the implementation phase: E7 (parser code) is the root and MUST land first; rebuild the mcp_server dist; THEN run backfill-graph-metadata.ts to regenerate derived.status across 026/027 — this is what resolves the '163 contradictions' and makes the E6/E3 graph-metadata data fixes DURABLE (hand-editing derived.status before E7 will be overwritten on the next re-derive). Data reconciliation (E1/E3/E6 graph-metadata, E2/E8 changelog+resource-map, E4 children arrays, E5 description.json titles) should prefer the generators (generate-context.js / generate-description.js / backfill) over hand-editing 163 files, per the cluster ownership note. Shared-file coupling to watch: 026 spec.md (E1+E3+E9), 027 parent description.json+graph-metadata.json (E4+E5+E6), 027 resource-map (E8+E5). No files were modified — read-only verification only."
+    },
+    {
+      "cluster": "F-catalog-playbook",
+      "findings": [
+        {
+          "id": "F1",
+          "severity": "P1",
+          "title": "Master catalog claims feature annotations cover every source file while the feature leaf says coverage is partial",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946,3950",
+          "evidence": "feature_catalog.md line 3946 says 'embed inline traceability comments in every source file' and line 3950 says 'Every non-test .ts file ... carries a // Feature catalog: ... annotation'. The leaf file 214-feature-catalog-code-references.md line 26 says 'Measured audit coverage at HEAD is approximately 69%: 192 of 280 non-test TypeScript files ... the convention is still only partial rather than universal'. The two claims directly contradict.",
+          "fix": "In feature_catalog.md lines 3946 and 3950, replace 'every source file' and 'Every non-test .ts file ... carries ... one or more // Feature catalog: annotations' with the measured partial-coverage language already present in the leaf: 'a measured majority (~69%) of non-test TypeScript source files ... Some pure utility, type, and barrel-export files are exempt, and the convention is still only partial.' The leaf file 214 already has the accurate wording — copy the qualified claim into the master.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+          ],
+          "verification": "After edit: grep -n 'every source file\\|Every non-test .ts file' feature_catalog/feature_catalog.md should return 0 hits on the 'every' claim near line 3946/3950.",
+          "risk": "Master catalog description is regenerated by generate-context.js; verify that the master's How It Works section (lines ~3948-3950) is the only conflicting location before patching."
+        },
+        {
+          "id": "F2",
+          "severity": "P1",
+          "title": "MCP tool count split: 37 in catalog vs 36 in README/test. Canonical TOOL_DEFINITIONS.length = 37",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/README.md:45,256,581,1003,1038 and mcp_server/tests/review-fixes.vitest.ts:117",
+          "evidence": "TOOL_DEFINITIONS array in mcp_server/tool-schemas.ts contains exactly 37 entries (verified by Python count). feature_catalog.md line 48 correctly says 37. README.md lines 45, 256, 581, 1003, and 1038 all say '36-tool'. review-fixes.vitest.ts line 117 asserts toBe(36) — this test currently fails.",
+          "fix": "1) In README.md, replace all five occurrences of '36-tool' with '37-tool'. 2) In mcp_server/tests/review-fixes.vitest.ts line 117, change toBe(36) to toBe(37). No source changes needed — the canonical source already has 37.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/README.md",
+            ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
+          ],
+          "verification": "Run: cd .opencode/skills/system-spec-kit && npm test -- --run tests/review-fixes.vitest.ts. The 'total tool count matches expected' test must pass.",
+          "risk": "mcp_server/README.md does not state a numeric count so no change needed there. Only the skill-level README and the test file need updating."
+        },
+        {
+          "id": "F3",
+          "severity": "P1",
+          "title": "Root playbook release gate expects 380 scenario files; current tree has 384",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:140,166,173",
+          "evidence": "Running the playbook's own deterministic count script (glob [0-9][0-9]--*/*.md + _deprecated) returns 384 files. The release gate at line 166 asserts '-ne 380' and exits 1. Line 173 states 'As of 2026-05-24, the deterministic file count is 380'. Both are stale by 4 files.",
+          "fix": "In manual_testing_playbook.md: 1) Line 166: change 380 to 384 in the bash check. 2) Line 173: update 'the deterministic file count is 380' to 384 and update the date stamp to reflect the current HEAD audit date.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+          ],
+          "verification": "Run the deterministic check block from the playbook directly: python3 script returns 384; bash check passes when threshold is 384.",
+          "risk": "Also check manual_testing_playbook/24--local-llm-query-intelligence/README.md line 60's scenario inventory table if it states a total — it does not state a file count so no change needed there."
+        },
+        {
+          "id": "F4",
+          "severity": "P1",
+          "title": "Five playbook scenarios link to catalog files that do not exist at referenced paths",
+          "status": "CONFIRMED",
+          "currentLocation": "Multiple files — see evidence",
+          "evidence": "Verified with ls: (1) 02--mutation/019 links to feature_catalog/02--mutation/10-per-record-history-log.md — does not exist; actual file is 024-per-memory-history-log.md. (2) 01--retrieval/006 links to feature_catalog/01--retrieval/006-hybrid-search-pipeline.md — does not exist; actual is 004-hybrid-search-pipeline.md. (3) 01--retrieval/007 links to feature_catalog/01--retrieval/007-4-stage-pipeline-architecture.md — does not exist; actual is 005-4-stage-pipeline-architecture.md. (4) 14--stress-testing/170 links to feature_catalog/14--stress-testing/01-stress-test-cycle.md — does not exist; only file in directory is 162-category-overview.md. (5) 04--maintenance/036 links to feature_catalog/04--maintenance/036-startup-runtime-compatibility-guards.md — does not exist; actual is 035-startup-runtime-compatibility-guards.md.",
+          "fix": "In each scenario file, update the broken catalog path in the SOURCE FILES section: (1) 019: change 02--mutation/10-per-record-history-log.md to 02--mutation/024-per-memory-history-log.md. (2) 006: change 01--retrieval/006-hybrid-search-pipeline.md to 01--retrieval/004-hybrid-search-pipeline.md. (3) 007: change 01--retrieval/007-4-stage-pipeline-architecture.md to 01--retrieval/005-4-stage-pipeline-architecture.md. (4) 170: change 14--stress-testing/01-stress-test-cycle.md to 14--stress-testing/162-category-overview.md (the only file that exists; if a dedicated stress-cycle catalog file is needed, that is a separate addition task). (5) 036 scenario: change 04--maintenance/036-startup-runtime-compatibility-guards.md to 04--maintenance/035-startup-runtime-compatibility-guards.md.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md"
+          ],
+          "verification": "For each file, resolve the relative path from the scenario file to the catalog file and confirm ls returns the file. Example: ls .opencode/skills/system-spec-kit/feature_catalog/02--mutation/024-per-memory-history-log.md",
+          "risk": "Scenario 170's stress-test catalog has only a category overview file; linking to 162-category-overview.md is the minimal fix. If a dedicated stress-test-cycle feature file is expected, that is a separate catalog addition."
+        },
+        {
+          "id": "F5",
+          "severity": "P1",
+          "title": "Scenario 232 (annotation-name validity) has a malformed/non-executable validation contract",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18,21 and manual_testing_playbook.md:2692",
+          "evidence": "Scenario file line 18 (Real user request field) and line 21 (Expected signals field) both contain a bare fragment: 'sort -u` 2) Extract all H3 headings ...' — this is a truncated mid-sentence code pipeline with a dangling backtick and no enclosing structure. Root playbook line 2692 has the same dangling fragment as a bare paragraph. The Commands section (lines 37-40) is well-formed. Only the narrative fields are garbled.",
+          "fix": "In 232-feature-catalog-annotation-name-validity.md: (1) Replace line 18 (Real user request) with a clean natural-language request, e.g.: 'Please validate Feature catalog annotation name validity against the documented validation surface and tell me whether the expected signals are present: 0 invalid annotation names.' (2) Replace line 21 (Expected signals) with: 'verify_alignment_drift.py or grep output shows 0 annotation names that fail to match an H3 heading in feature_catalog.md'. In manual_testing_playbook.md, replace the bare fragment at line 2692 with the same clean expected-signals sentence.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
+          ],
+          "verification": "After fix: grep -n 'sort -u' manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md should return 0 hits in the scenario contract fields; grep -n 'sort -u' manual_testing_playbook.md at line 2692 should return 0.",
+          "risk": "The Commands section (lines 37-40) must not be touched — it is the correct, executable command sequence and is unrelated to the malformed narrative fields."
+        },
+        {
+          "id": "F6",
+          "severity": "P1",
+          "title": "Local-LLM catalog category (313) points at stale implementation paths for shared embeddings and drift handler",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:40-47",
+          "evidence": "The SOURCE FILES table in 313-category-overview.md lists: (1) 'mcp_server/shared/embeddings/factory.ts' — actual path is 'shared/embeddings/factory.ts'. (2) 'mcp_server/handlers/memory-causal-*.ts' — no files matching that pattern exist under mcp_server/handlers/; the causal handlers are in mcp_server/handlers/causal-graph.ts and causal-links-processor.ts. (3) 'mcp_server/handlers/memory-drift-why.ts' — this file does not exist; the memory_drift_why handler is in mcp_server/handlers/causal-graph.ts lines 468+. (4) 'manual_testing_playbook/24--local-llm-query-intelligence/40*.md' — no such files exist; actual scenario files are 361-375.md.",
+          "fix": "In 313-category-overview.md SOURCE FILES table: (1) Change 'mcp_server/shared/embeddings/factory.ts' to 'shared/embeddings/factory.ts'. (2) Change 'mcp_server/handlers/memory-causal-*.ts' to 'mcp_server/handlers/causal-graph.ts' (and optionally add 'mcp_server/handlers/causal-links-processor.ts'). (3) Change 'mcp_server/handlers/memory-drift-why.ts' to 'mcp_server/handlers/causal-graph.ts' (same file, note the handler lives there). (4) Change '40*.md' to '36[1-9].md, 37[0-5].md' or 'per-scenario files 361-375 in playbook category 24'.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md"
+          ],
+          "verification": "After fix: verify each listed path with ls from repo root. shared/embeddings/factory.ts and mcp_server/handlers/causal-graph.ts must both exist.",
+          "risk": "Cluster D owns the .ts source files; this fix is doc-only, touching only the catalog markdown table."
+        },
+        {
+          "id": "F7",
+          "severity": "P1",
+          "title": "Catalog 'cleanup complete' claim is false — phase-style labels still exist in non-test source comments",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:30 and feature_catalog/feature_catalog.md:3950",
+          "evidence": "The leaf file 214 line 30 says 'Stale references to Sprint N, Phase NNN, or spec NNN in non-test comments have been removed'. The master feature_catalog.md line 3950 echoes the same claim. However current non-test source files contain: mcp_server/tool-schemas.ts line 349: '[Phase 007] Also reset success rows...' in a tool description string; mcp_server/context-server.ts line 950: '## Structural Bootstrap (Phase 027)' in a runtime string. Both are non-test source. The claim 'have been removed' is false for these two instances.",
+          "fix": "In 214-feature-catalog-code-references.md line 30 and feature_catalog.md line 3950, qualify the 'cleanup complete' claim: change 'have been removed' to 'have been removed in most non-test files; two known residual instances remain in tool-schemas.ts (line 349 description string) and context-server.ts (line 950 section header string)'. Alternatively keep the claim and add a note: '(two known residual instances in tool description and context-server header strings are tracked for remediation by cluster A)'. Note: the actual code fixes (removing '[Phase 007]' and 'Phase 027' from those strings) are owned by cluster A, not this cluster.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+            ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md"
+          ],
+          "verification": "grep -rn 'Phase [0-9]' .opencode/skills/system-spec-kit/mcp_server/ --include='*.ts' | grep -v '.test.\\|.vitest.\\|tests/' should show exactly the two known instances. After code cluster A fixes those, the catalog claim can be updated to fully accurate.",
+          "risk": "Depends on cluster A removing '[Phase 007]' from tool-schemas.ts:349 and 'Phase 027' from context-server.ts:950. The catalog fix here should be sequenced AFTER or coordinated WITH those code fixes to avoid re-introducing a false claim."
+        },
+        {
+          "id": "F8",
+          "severity": "P1",
+          "title": "MODULE-header scenario (234) points to an old verifier path",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38",
+          "evidence": "Scenario 234 line 38 (Commands step 2) says: 'python3 ../sk-code/scripts/verify_alignment_drift.py --root .' (run from system-spec-kit). The actual script is at .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py — i.e. the path should be '../sk-code/assets/scripts/verify_alignment_drift.py'. Confirmed by: find .opencode/skills/sk-code -name verify_alignment_drift.py returns .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py.",
+          "fix": "In 234-module-header-compliance-via-verify-alignment-drift-py.md line 38, change: 'python3 ../sk-code/scripts/verify_alignment_drift.py --root .' to: 'python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root .'",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md"
+          ],
+          "verification": "From .opencode/skills/system-spec-kit run: python3 ../sk-code/assets/scripts/verify_alignment_drift.py --root . and confirm it executes without 'No such file or directory'.",
+          "risk": "Low. Single path correction in one scenario file. No coupling to other findings."
+        },
+        {
+          "id": "F9",
+          "severity": "P2",
+          "title": "Local-LLM category references 40*.md scenario files while actual files are numbered 361-375",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:47 and manual_testing_playbook/24--local-llm-query-intelligence/README.md (scenario inventory references 401-415)",
+          "evidence": "313-category-overview.md line 47: 'manual_testing_playbook/24--local-llm-query-intelligence/40*.md' — no such files exist. Actual files in that directory are 361-375.md. The playbook README also lists scenario IDs as 401-410 (Band A) and 411-415 (Band B) but actual files are 361-375. The catalog overview and playbook README both use the stale 401-415 numbering.",
+          "fix": "In 313-category-overview.md line 47, change '40*.md' glob to '36[1-9].md' or the range description '361-375'. In manual_testing_playbook/24--local-llm-query-intelligence/README.md, update all scenario number references: Band A header from '401-410' to '361-370', Band B header from '411-415' to '371-375', and each row number (401→361, 402→362, ... 415→375). Also update the cross-AI reference '(414, 415)' to '(374, 375)'.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
+          ],
+          "verification": "After fix: the glob or range in 313-category-overview.md resolves to existing files. In README.md, all scenario IDs in the inventory table match actual filenames in the directory.",
+          "risk": "Any other playbook or catalog files that cross-reference scenarios 401-415 in this category will also need updating. grep -rn '40[1-9]\\|41[0-5]' .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/ to find all references before patching."
+        },
+        {
+          "id": "F10",
+          "severity": "P2",
+          "title": "Playbook/catalog examples use stale MCP call shapes (session_bootstrap input/includeGraphStatus; memory_ingest_start dryRun)",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md:37 and feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md:28",
+          "evidence": "Scenario 032 line 37: 'session_bootstrap({ input: \"resume mk-spec-memory playbook audit\", includeGraphStatus: true })'. Current tool-schemas.ts session_bootstrap inputSchema (lines 651-660) accepts only 'specFolder' (optional string). Parameters 'input' and 'includeGraphStatus' do not exist in the schema. Catalog 253 line 28: 'memory_ingest_start(paths, dryRun)'. Current tool-schemas.ts memory_ingest_start inputSchema (lines 531-551) accepts 'paths' (array, required) and 'specFolder' (optional string). Parameter 'dryRun' does not exist.",
+          "fix": "In 032-session-bootstrap-reader-ready-context.md line 37, replace the stale call shape with the current schema: 'session_bootstrap({})' or 'session_bootstrap({ specFolder: \"<optional-folder>\" })'. In 253-governed-ingest-cancel-lifecycle.md line 28, replace 'memory_ingest_start(paths, dryRun)' with 'memory_ingest_start({ paths: [...] })' (dryRun removed, specFolder is the optional second param).",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md",
+            ".opencode/skills/system-spec-kit/feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md"
+          ],
+          "verification": "After fix: grep the two files for 'includeGraphStatus' and 'dryRun' (in the ingest context) should return 0 hits. The canonical call shapes come from mcp_server/tool-schemas.ts session_bootstrap (line 651) and memoryIngestStart (line 531).",
+          "risk": "The cluster-D note says the canonical call shapes come from cluster D. Coordinate: confirm no cluster D fix changes the session_bootstrap or memory_ingest_start schemas before applying doc fixes here."
+        }
+      ],
+      "notes": "All 10 findings verified against current working tree. TOOL_DEFINITIONS.length confirmed at 37 by direct Python parse of the array. Scenario file count confirmed at 384 by running the playbook's own glob logic. All 5 broken catalog paths in F4 confirmed with ls. Phase-style labels '[Phase 007]' and 'Phase 027' confirmed present in mcp_server/tool-schemas.ts:349 and mcp_server/context-server.ts:950. The verify_alignment_drift.py script is at sk-code/assets/scripts/ not sk-code/scripts/. session_bootstrap schema has only specFolder; memory_ingest_start schema has paths+specFolder, no dryRun. No findings are ALREADY_FIXED or MISREPORTED. F7 code fix (removing the phase labels) is owned by cluster A; this cluster owns only the catalog claim accuracy."
+    },
+    {
+      "cluster": "G-governance",
+      "findings": [
+        {
+          "id": "G1",
+          "severity": "P1",
+          "title": "sk-doc instructs agents to REMOVE spec YAML frontmatter that Spec Kit templates now REQUIRE",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-doc/assets/frontmatter_templates.md:685-687",
+          "evidence": "Line 685-687 reads: `Spec / Has frontmatter? → Suggest removal / No frontmatter? → Valid (no action)`. But .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl line 2 and .opencode/skills/system-spec-kit/templates/examples/level_1/spec.md line 1 both open with `---` YAML frontmatter blocks that are required for memory indexing and graph traversal.",
+          "fix": "In .opencode/skills/sk-doc/assets/frontmatter_templates.md, change the Spec row (lines 685-687) from `Has frontmatter? → Suggest removal / No frontmatter? → Valid` to `Has frontmatter? → Validate required fields (title, description, trigger_phrases, importance_tier, _memory.continuity) / No frontmatter? → Auto-generate from Spec Kit template`.",
+          "filesToEdit": [
+            ".opencode/skills/sk-doc/assets/frontmatter_templates.md"
+          ],
+          "verification": "Read .opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl and .opencode/skills/sk-doc/assets/frontmatter_templates.md side-by-side to confirm the Spec row no longer contradicts the template. No automated test exists; manual review suffices.",
+          "risk": "Only the Spec row in frontmatter_templates.md changes. The Knowledge row (which correctly says 'Remove it') must not be touched. No coupling to other clusters."
+        },
+        {
+          "id": "G2",
+          "severity": "P1",
+          "title": "sk-doc command requirements split across three incompatible contracts",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-doc/assets/template_rules.json:111-114; .opencode/skills/sk-doc/references/global/quick_reference.md:125-129; .opencode/skills/sk-doc/references/global/core_standards.md:113-117",
+          "evidence": "template_rules.json requires only ['purpose','instructions'] for commands. quick_reference.md line 128 says required sections are 'Purpose, Contract, Instructions, Example Usage'. core_standards.md line 113-117 says required sections include 'INPUTS, WORKFLOW, OUTPUTS'. Three diverging lists. validate_document.py reads template_rules.json (line 408), so only purpose+instructions are actually enforced at runtime.",
+          "fix": "Pick one canonical list (the template_rules.json set is what the validator enforces, so that is ground truth). Update quick_reference.md lines 125-129 and core_standards.md lines 113-117 to match template_rules.json: required = [purpose, instructions], recommended = [contract, examples, notes]. Remove 'INPUTS, WORKFLOW, OUTPUTS' from the required list in core_standards.md.",
+          "filesToEdit": [
+            ".opencode/skills/sk-doc/references/global/quick_reference.md",
+            ".opencode/skills/sk-doc/references/global/core_standards.md"
+          ],
+          "verification": "After edit, grep 'required' across the three files and confirm they all list the same sections. python3 .opencode/skills/sk-doc/scripts/validate_document.py --help to confirm no behavior change in the validator.",
+          "risk": "Purely documentation change. validate_document.py behavior unchanged. No coupling to other clusters."
+        },
+        {
+          "id": "G3",
+          "severity": "P2",
+          "title": "sk-doc filename standards still require snake_case despite hyphenated shipped docs",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-doc/SKILL.md:47; .opencode/skills/sk-doc/references/global/core_standards.md:31-35",
+          "evidence": "core_standards.md lines 31-35 say rule is 'lowercase snake_case' with transform 'Hyphens → underscores'. SKILL.md line 47 says 'Auto-correct filename violations (ALL CAPS to lowercase, hyphens to underscores)'. But dozens of actual shipped files under .opencode/skills/sk-doc/manual_testing_playbook/ use hyphenated names (e.g. 001-doc-quality.md, 018-markdown-agent-cli-claude-code.md). The cited validate_document.py:466 is the apply_fixes function — there is no filename validation there; that line citation is stale.",
+          "fix": "In core_standards.md lines 31-35, add an exception clause: 'Packet-local numbered docs (NNN-name.md) may use hyphens to match spec-folder naming conventions.' Alternatively, rename the shipped test-playbook files to snake_case — but given the scale, the exception clause is the minimal fix.",
+          "filesToEdit": [
+            ".opencode/skills/sk-doc/references/global/core_standards.md"
+          ],
+          "verification": "Grep the sk-doc directory for *-*.md files, confirm count matches expectation. No automated validator currently enforces filename conventions (validate_document.py does not check filenames), so no test to run.",
+          "risk": "Documentation-only change. Low risk. No coupling to other clusters."
+        },
+        {
+          "id": "G4",
+          "severity": "P1",
+          "title": "comment-hygiene checker misses several EXACT forbidden examples that the constitutional rule lists",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:85-97",
+          "evidence": "Tested all forbidden examples from comment-hygiene.md table against current VIOLATION_PATTERNS. MISSED: (1) bare spec path '.opencode/specs/012-foo/' — current pattern `specs/[a-z0-9-]+/\\d{3}-` requires a sub-path segment so a top-level spec-folder path with no child is not caught; (2) 'REQ-042' without trailing dash/colon — pattern is `\\bREQ-\\d+[-:]` so bare REQ-042 is missed; (3) 'CHK-007' without trailing dash/colon — same issue; (4) bare 'T042' — pattern is `\\bT\\d{3,4}[-/]` requiring suffix; (5) 'checklist item 3' — no pattern; (6) 'P1-finding-2' — only 'review finding' phrase is caught, not Pn-finding-N form; (7) 'finding #7' — not caught.",
+          "fix": "In check-comment-hygiene.sh VIOLATION_PATTERNS (lines 85-97), make the following targeted changes: (a) Change REQ pattern from `\\bREQ-\\d+[-:]` to `\\bREQ-\\d+\\b` to catch bare REQ-042. (b) Change CHK pattern from `\\bCHK-\\d+[-:]` to `\\bCHK-\\d+\\b`. (c) Change T-id pattern from `\\bT\\d{3,4}[-/]` to `\\bT\\d{3,4}\\b` (note: verify this does not false-positive on variable names like T0 or common abbreviations — the 3-4 digit constraint provides reasonable specificity). (d) Add pattern `(re.compile(r'\\bchecklist\\s+item\\s+\\d+\\b', re.IGNORECASE), 'checklist item reference')`. (e) Add pattern `(re.compile(r'\\b[Pp]\\d-finding[-\\s]\\d+\\b'), 'finding id reference')`. (f) Add pattern `(re.compile(r'\\bfinding\\s+#\\d+\\b', re.IGNORECASE), 'finding id reference')`. (g) Change spec-path pattern from `specs/[a-z0-9-]+/\\d{3}-` to `specs/[a-z0-9]+-[a-z0-9-]*/` to also catch top-level spec-folder paths.",
+          "filesToEdit": [
+            ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh"
+          ],
+          "verification": "python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh on a scratch .ts file containing each of the missed patterns — each must exit 1. Run the existing test file if one exists: grep -r 'test.*hygiene\\|hygiene.*test' .opencode/",
+          "risk": "Broadening regex patterns risks false-positives. The T\\d{3,4} change is the highest risk — existing code with variable names like T1234 would be flagged. Consider restricting to comment-only context (already done by is_comment_line) which reduces false-positives significantly. No coupling to other clusters."
+        },
+        {
+          "id": "G5",
+          "severity": "P1",
+          "title": "A broad `hygiene-ok` escape can bypass an unconditional constitutional comment rule",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh:12,108-110",
+          "evidence": "Line 12 (docstring): 'Escape: add \"hygiene-ok\" anywhere on a comment line to suppress it.' Lines 108-110: `if \"hygiene-ok\" in raw_line: continue` — this unconditionally skips the entire violation check for that line. The constitutional rule (comment-hygiene.md line 71) says 'Neither gate can be bypassed by --no-verify without an explicit user override and a documented reason.' The hygiene-ok escape requires no user override and no documented reason — a single token on a comment line silently drops enforcement for that line. This is broader than --no-verify (which blocks the whole commit); hygiene-ok operates per-line with zero audit trail.",
+          "fix": "The escape itself is intentional (it is documented and serves real false-positive suppression). The constitutional doc needs updating to acknowledge the per-line escape. In comment-hygiene.md line 71, change 'Neither gate can be bypassed by --no-verify without an explicit user override and a documented reason.' to 'The pre-commit gate cannot be bypassed by --no-verify. Individual lines may be exempted by appending `// hygiene-ok` — use only for documented false-positives (e.g. stable standard-body refs that trigger a pattern).'",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md"
+          ],
+          "verification": "Read the updated line in comment-hygiene.md and verify it accurately describes both the --no-verify protection and the hygiene-ok per-line escape.",
+          "risk": "Documentation-only fix. The checker behavior is unchanged. No coupling to other clusters."
+        },
+        {
+          "id": "G6",
+          "severity": "P1",
+          "title": "comment-hygiene enforcement is documented protecting more paths than it actually does",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md:66-69; .opencode/scripts/git-hooks/pre-commit:50-54",
+          "evidence": "comment-hygiene.md lines 66-69 says 'Two gates check every code comment write' listing only pre-commit and PostToolUse. In reality there are THREE enforcement surfaces: (1) claude-posttooluse.sh (warn-only, exits 0 always per line 88), (2) .opencode/hooks/pre-commit (blocking), (3) .github/workflows/comment-hygiene.yml (CI, blocking on PRs). Additionally, the constitutional doc line 71 claims 'Neither gate can be bypassed by --no-verify' but git-hooks/pre-commit line 50 shows `SPECKIT_SKIP_COMMENT_HYGIENE=1` env-var bypass is available.",
+          "fix": "In comment-hygiene.md, update the Enforcement section (lines 66-71): (a) Change 'Two gates' to 'Three gates'. (b) Add the CI gate as point 3: '3. CI gate — .github/workflows/comment-hygiene.yml re-validates on every PR to main; this gate cannot be bypassed with --no-verify.' (c) Update line 71 to: 'The pre-commit gate cannot be bypassed with --no-verify but can be skipped with SPECKIT_SKIP_COMMENT_HYGIENE=1 (requires explicit operator intent). The CI gate cannot be bypassed from the command line.'",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/constitutional/comment-hygiene.md"
+          ],
+          "verification": "Read the updated Enforcement section and cross-check against .opencode/hooks/pre-commit, .opencode/scripts/git-hooks/pre-commit, claude-posttooluse.sh, and comment-hygiene.yml to confirm all three gates and the bypass mechanism are accurately described.",
+          "risk": "Documentation-only. No code changes. No coupling to other clusters."
+        },
+        {
+          "id": "G7",
+          "severity": "P1",
+          "title": "tool-routing rule says semantic code-search falls back to memory_search even though memory does not index arbitrary code",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md:41",
+          "evidence": "Line 41 of gate-tool-routing.md: `| Semantic/concept (meaning-based) | mcp__mk_code_index__code_graph_query (Code Graph) | memory_search |`. AGENTS.md line 106 explicitly contradicts this: 'Use memory_search only for spec docs, saved decisions, and memory context. It does not index arbitrary project code.' The gate-tool-routing.md constitutional doc's fallback column creates direct conflict with the AGENTS.md routing contract.",
+          "fix": "In gate-tool-routing.md line 41, change the Fallback column for Semantic/concept from `memory_search` to `Grep / Glob` to match the AGENTS.md routing contract.",
+          "filesToEdit": [
+            ".opencode/skills/system-spec-kit/constitutional/gate-tool-routing.md"
+          ],
+          "verification": "After edit, confirm gate-tool-routing.md line 41 Fallback column reads 'Grep / Glob' and no longer says 'memory_search'. Cross-check AGENTS.md line 106 to confirm the two docs now agree.",
+          "risk": "Single cell change in a table. No code behavior changes. Low risk. However, gate-tool-routing.md is a constitutional doc — confirm the CLAUDE.md search routing table (which correctly shows Code Graph + Grep for concept search with no memory_search fallback for code) is consistent after the fix."
+        },
+        {
+          "id": "G8",
+          "severity": "P1",
+          "title": "Documented comment-hygiene command invocation via bash is broken — file is Python",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-code/SKILL.md:216; .opencode/skills/sk-code/references/universal/code_quality_standards.md:108; .opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md:254",
+          "evidence": "All three docs instruct: `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>`. Verified: running `bash check-comment-hygiene.sh` fails immediately with 'import: command not found' and 'syntax error near unexpected token def main()' because the file is a Python3 script (shebang: #!/usr/bin/env python3) named with a .sh extension. The working invocations are `python3 .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` or bare `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` (shebang-direct). The pre-commit hook at .opencode/hooks/pre-commit line 21 uses `$CHECKER_PATH` directly (no `bash` prefix) so it works correctly already.",
+          "fix": "In SKILL.md line 216, code_quality_standards.md line 108, and universal_checklist.md line 254, change every occurrence of `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` to `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh <file>` (remove the `bash` prefix; rely on the shebang).",
+          "filesToEdit": [
+            ".opencode/skills/sk-code/SKILL.md",
+            ".opencode/skills/sk-code/references/universal/code_quality_standards.md",
+            ".opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md"
+          ],
+          "verification": "After edit, run: `.opencode/skills/sk-code/scripts/check-comment-hygiene.sh <any-.ts-file>` and confirm exit 0 or 1 (not a shell parse error). Verify no remaining `bash .opencode/skills/sk-code/scripts/check-comment-hygiene.sh` in any doc: `rg 'bash .opencode/skills/sk-code/scripts/check-comment-hygiene' .`",
+          "risk": "Documentation-only change. The pre-commit hook already uses the correct invocation. Changing the docs is safe and has no side effects."
+        },
+        {
+          "id": "G9",
+          "severity": "P2",
+          "title": "sk-code alignment verifier reports Python .sh entrypoints as shell-style drift (SH-SHEBANG + SH-STRICT-MODE)",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:308-333 (check_shell); line 39 (SUPPORTED_EXTENSIONS .sh→shell)",
+          "evidence": "verify_alignment_drift.py line 39 maps .sh extension to 'shell', then check_shell (lines 308-333) requires first line to equal `#!/usr/bin/env bash` and looks for `set -euo pipefail`. check-comment-hygiene.sh line 1 is `#!/usr/bin/env python3` and claude-posttooluse.sh line 1 is `#!/usr/bin/env python3` — both use Python shebangs. The verifier will emit SH-SHEBANG and SH-STRICT-MODE findings (both WARN) on every scan that includes these files.",
+          "fix": "In verify_alignment_drift.py check_shell function (lines 308-333), add an early-exit guard: if `first_line == '#!/usr/bin/env python3'`, return an empty findings list (the file is a Python script with a .sh extension; Python shebang validity is checked by check_python). This keeps the shebang-based routing accurate without misrouting Python content.",
+          "filesToEdit": [
+            ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py"
+          ],
+          "verification": "Run: `python3 .opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py --root .opencode/skills/sk-code/scripts` — confirm no SH-SHEBANG or SH-STRICT-MODE findings for check-comment-hygiene.sh or claude-posttooluse.sh. Run the existing test suite: `python3 -m pytest .opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py -v`",
+          "risk": "The early-exit guard in check_shell only fires on the exact string `#!/usr/bin/env python3`. Legitimate shell scripts with bash shebangs are unaffected. If a third .sh Python file is added later it will also benefit from this guard. Couples with G8 (both involve the Python-.sh naming pattern)."
+        },
+        {
+          "id": "G10",
+          "severity": "P2",
+          "title": "Default sk-code alignment verification can PASS with warning-only P0 checklist gaps",
+          "status": "CONFIRMED",
+          "currentLocation": ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py:235-239,456-458",
+          "evidence": "classify_severity (lines 235-239): only rules whose rule_id starts with INTEGRITY_RULE_PREFIXES ('COMMON-', 'JSON-', 'JSONC-') get severity ERROR; all language-specific rules (SH-SHEBANG, SH-STRICT-MODE, PY-SHEBANG, JS-USE-STRICT, TS-MODULE-HEADER) get severity WARN. main() line 458: `should_fail = error_count > 0 or (args.fail_on_warn and warning_count > 0)` — without --fail-on-warn, WARNs are ignored and the tool prints PASS. But universal_checklist.md lines 20-23 defines P0 as 'HARD BLOCKER — Must fix before commit', and the checklist's P0 section (lines 28-48) explicitly lists file headers as P0, citing verify_alignment_drift.py as the verifier. The verifier thus reports PASS for P0-level violations.",
+          "fix": "In verify_alignment_drift.py, add language-specific shebang and module-header rules to INTEGRITY_RULE_PREFIXES, or create a dedicated set of rule IDs that are always ERROR. Minimal change: in classify_severity (line 236), extend the ERROR condition to also include rules with prefixes 'SH-', 'PY-', 'TS-MODULE', 'JS-STRICT' (the header/shebang rules that map to P0 checklist items). Specifically: `ERROR_PREFIXES = ('COMMON-', 'JSON-', 'JSONC-', 'SH-SHEBANG', 'SH-STRICT-MODE', 'PY-SHEBANG', 'TS-MODULE-HEADER')` and change `INTEGRITY_RULE_PREFIXES` to `ERROR_PREFIXES` in the startswith check.",
+          "filesToEdit": [
+            ".opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py"
+          ],
+          "verification": "Run: `python3 -m pytest .opencode/skills/sk-code/assets/scripts/test_verify_alignment_drift.py -v` — the existing test `test_warning_only_exit_code_is_zero_by_default` (line 120) checks that a JS-USE-STRICT warning exits 0. If JS-USE-STRICT becomes an ERROR that test will fail and must be updated to reflect the new intent. Also run the verifier on a temp .py file missing a shebang and confirm exit 1.",
+          "risk": "This change tightens enforcement and will cause existing PASS results on repos with missing headers to become FAIL. The test at test_verify_alignment_drift.py line 120 explicitly tests the old behavior and will break — it must be updated together with the verifier. Couples with G9: G9's fix (ignoring Python shebangs on .sh files) must land before or alongside G10 to avoid false failures on check-comment-hygiene.sh."
+        }
+      ],
+      "notes": "All 10 findings verified against current working tree. Line numbers mostly match cited locations with two exceptions: G3 cites validate_document.py:466 as filename enforcement — that line is actually the apply_fixes function, not filename validation; the filename rule lives in core_standards.md:31-35 and SKILL.md:47 (both confirmed). G8 is the most immediately impactful operational defect: `bash check-comment-hygiene.sh` is the documented invocation in 3 separate docs but fails at runtime because the file is Python. The pre-commit hook already uses the correct bare invocation so the gate works — only the developer-facing docs are broken. G9 and G10 are coupled: fix G9 before G10 to avoid false-positive SH-SHEBANG errors being promoted to ERROR severity."
+    }
+  ]
+}

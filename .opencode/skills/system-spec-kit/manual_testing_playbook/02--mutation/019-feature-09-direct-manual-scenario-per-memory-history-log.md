@@ -52,7 +52,7 @@ verify sandbox file path and spec scope -> rerun with `force:true` -> inspect me
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/10-per-record-history-log.md](../../feature_catalog/02--mutation/10-per-record-history-log.md)
+- Feature catalog: [02--mutation/024-per-memory-history-log.md](../../feature_catalog/02--mutation/024-per-memory-history-log.md)
 
 ---
 

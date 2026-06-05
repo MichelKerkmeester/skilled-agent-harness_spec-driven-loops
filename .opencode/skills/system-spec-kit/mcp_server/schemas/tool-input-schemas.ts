@@ -401,6 +401,9 @@ const memoryDriftWhySchema = getSchema({
   direction: z.enum(['outgoing', 'incoming', 'both']).optional(),
   relations: z.array(relationEnum).optional(),
   includeMemoryDetails: z.boolean().optional(),
+  tenantId: z.string().optional(),
+  userId: z.string().optional(),
+  agentId: z.string().optional(),
 });
 
 const memoryCausalLinkSchema = getSchema({
@@ -409,6 +412,9 @@ const memoryCausalLinkSchema = getSchema({
   relation: relationEnum,
   strength: boundedNumber(0, 1).optional(),
   evidence: z.string().optional(),
+  tenantId: z.string().optional(),
+  userId: z.string().optional(),
+  agentId: z.string().optional(),
 });
 
 const memoryCausalStatsSchema = getSchema({
@@ -587,8 +593,8 @@ const ALLOWED_PARAMETERS: Record<string, string[]> = {
   checkpoint_delete: ['name', 'tenantId', 'userId', 'agentId', 'confirmName'],
   task_preflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'knowledgeGaps', 'sessionId'],
   task_postflight: ['specFolder', 'taskId', 'knowledgeScore', 'uncertaintyScore', 'contextScore', 'gapsClosed', 'newGapsDiscovered', 'sessionId'],
-  memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails'],
-  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence'],
+  memory_drift_why: ['memoryId', 'maxDepth', 'direction', 'relations', 'includeMemoryDetails', 'tenantId', 'userId', 'agentId'],
+  memory_causal_link: ['sourceId', 'targetId', 'relation', 'strength', 'evidence', 'tenantId', 'userId', 'agentId'],
   memory_causal_stats: ['backfill'],
   memory_causal_unlink: ['edgeId'],
   eval_run_ablation: ['mode', 'channels', 'queries', 'groundTruthQueryIds', 'recallK', 'storeResults', 'includeFormattedReport'],

@@ -63,11 +63,12 @@ conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
 
 ## Enforcement
 
-Two gates check every code comment write:
+Three gates check every code comment write:
 
 1. **Pre-commit gate** — `check-comment-hygiene.sh` runs as a pre-commit hook and fails the commit if any staged file contains forbidden patterns in comments.
 2. **Claude Code PostToolUse hook** — fires after every Edit/Write tool call and flags violations inline before the response is returned.
+3. **CI gate** — `.github/workflows/comment-hygiene.yml` re-validates on every PR to main; this gate cannot be bypassed with `--no-verify`.
 
-Neither gate can be bypassed by `--no-verify` without an explicit user override and a documented reason.
+The pre-commit gate cannot be bypassed with `--no-verify` but can be skipped with `SPECKIT_SKIP_COMMENT_HYGIENE=1` (requires explicit operator intent). The CI gate cannot be bypassed from the command line. Individual lines may be exempted by appending `// hygiene-ok` — use only for documented false-positives (e.g. stable standard-body refs that trigger a pattern).
 
 *Constitutional Memory — Always surfaces at top of search results*

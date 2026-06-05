@@ -1,8 +1,8 @@
 {
-  "title": "Phase Parent — 009 Learning Feedback Reducers",
+  "title": "Phase 008 — Learning Feedback Reducers (Phase Parent)",
   "trigger_phrases": [
-    "027 phase 009",
-    "009 feedback reducers",
+    "027 phase 008",
+    "008 feedback reducers",
     "feedback reducer phase parent",
     "learning reducers",
     "feedback aggregation"
@@ -49,8 +49,8 @@
     "phase",
     "parent"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.835Z",
-  "specId": "007",
+  "lastUpdated": "2026-06-04T12:33:53.346Z",
+  "specId": "008",
   "folderSlug": "learning-feedback-reducers",
   "parentChain": [
     "system-spec-kit",

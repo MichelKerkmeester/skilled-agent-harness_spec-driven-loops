@@ -273,6 +273,7 @@ interface ScanArgs {
 ──────────────────────────────────────────────────────────────── */
 
 import { indexMemoryFile } from './memory-save.js';
+import type { GovernanceDecision } from '../lib/governance/scope-governance.js';
 
 /** Index a single memory file, delegating to the shared indexMemoryFile logic */
 async function indexSingleFile(
@@ -282,6 +283,7 @@ async function indexSingleFile(
     qualityGateMode?: 'enforce' | 'warn-only';
     fromScan?: boolean;
     asyncEmbedding?: boolean;
+    governance?: GovernanceDecision;
   },
 ): Promise<IndexResult> {
   return indexMemoryFile(filePath, {
@@ -289,6 +291,7 @@ async function indexSingleFile(
     qualityGateMode: options?.qualityGateMode,
     fromScan: options?.fromScan,
     asyncEmbedding: options?.asyncEmbedding,
+    governance: options?.governance,
   });
 }
 
@@ -722,6 +725,7 @@ async function handleMemoryIndexScan(args: ScanArgs): Promise<MCPResponse> {
         ...(useWarnOnly ? { qualityGateMode: 'warn-only' as const } : {}),
         fromScan: true,
         asyncEmbedding: true,
+        governance: governanceDecision,
       });
     }, scanBatchSize);
 

@@ -136,4 +136,4 @@ Deliver graph indexing, context/memory continuity, embedding architecture, skill
 - **Chronological timeline (newest→oldest spec folders)**: See `timeline.md` — the recency view, separate from folder numbers
 - **Phase migration bridge / old-path resolution**: See `context-index.md`
 - **Phase children**: See sub-folders `000-*` … `007-*` for per-phase spec.md, plan.md, tasks.md
-- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer (now points to the most recently active track)
+- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer (currently `006-operator-tooling`, a recently active track)

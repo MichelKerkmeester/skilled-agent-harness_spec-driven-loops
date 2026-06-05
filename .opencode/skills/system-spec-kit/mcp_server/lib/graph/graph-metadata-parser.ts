@@ -448,6 +448,18 @@ function extractFrontmatterScalar(content: string, key: string): string | null {
   return raw.replace(/^['"]|['"]$/g, '').trim() || null;
 }
 
+// Many specs declare their status only in the markdown metadata table row
+// (`| **Status** | Draft |`) and carry no YAML `status:` key. Reading that row
+// lets a Draft/Placeholder spec report a non-complete status instead of being
+// mislabelled 'complete' purely because an implementation-summary.md exists.
+function extractMetadataTableStatus(content: string): string | null {
+  const match = content.match(/^\|\s*\**\s*Status\s*\**\s*\|\s*([^|]+?)\s*\|/im);
+  if (!match) {
+    return null;
+  }
+  return match[1].trim() || null;
+}
+
 function extractFrontmatterArray(content: string, key: string): string[] {
   const frontmatter = extractFrontmatter(content);
   if (!frontmatter) {
@@ -613,6 +625,17 @@ function collectPacketDocs(specFolderPath: string): CollectedPacketDocs {
       continue;
     }
 
+    const frontmatterStatus = normalizeDerivedStatus(
+      extractFrontmatterScalar(readResult.content, 'status'),
+    );
+    // spec.md commonly carries status only in its metadata table; consult that
+    // table when the YAML frontmatter has no explicit status so a Draft spec is
+    // not derived as 'complete' from implementation-summary presence alone.
+    const tableStatus =
+      relativePath === 'spec.md'
+        ? normalizeDerivedStatus(extractMetadataTableStatus(readResult.content))
+        : null;
+
     docs.push({
       relativePath: relativePath.replace(/\\/g, '/'),
       content: readResult.content,
@@ -620,7 +643,7 @@ function collectPacketDocs(specFolderPath: string): CollectedPacketDocs {
       description: extractFrontmatterScalar(readResult.content, 'description'),
       triggerPhrases: extractFrontmatterArray(readResult.content, 'trigger_phrases'),
       importanceTier: extractFrontmatterScalar(readResult.content, 'importance_tier'),
-      status: normalizeDerivedStatus(extractFrontmatterScalar(readResult.content, 'status')),
+      status: frontmatterStatus ?? tableStatus,
     });
   }
 

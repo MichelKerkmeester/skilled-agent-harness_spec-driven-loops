@@ -11,6 +11,7 @@
 
 import path from 'node:path';
 import { requireDb, toErrorMessage } from '../../utils/index.js';
+import type { GovernanceDecision } from '../governance/scope-governance.js';
 
 // Feature catalog: Async ingestion job lifecycle
 
@@ -52,6 +53,10 @@ export interface IngestJob {
   errors: IngestJobError[];
   createdAt: string;
   updatedAt: string;
+  // Validated governance decision captured at enqueue time so the worker
+  // re-indexes each path under the same provenance/retention/scope the
+  // synchronous save path applies. Null for ungoverned jobs (the default).
+  governance: GovernanceDecision | null;
 }
 
 export interface IngestJobForecast {
@@ -72,10 +77,11 @@ interface IngestJobRow {
   errors_json: string;
   created_at: string;
   updated_at: string;
+  governance_json?: string | null;
 }
 
 interface JobQueueConfig {
-  processFile: (filePath: string) => Promise<unknown>;
+  processFile: (filePath: string, governance?: GovernanceDecision | null) => Promise<unknown>;
 }
 
 /* ───────────────────────────────────────────────────────────────
@@ -105,7 +111,7 @@ const RETRY_DELAYS_MS = [50, 200, 500];
 // True sequential queue — only one job processes at a time.
 const pendingQueue: string[] = [];
 let workerActive = false;
-let processFileFn: ((filePath: string) => Promise<unknown>) | null = null;
+let processFileFn: ((filePath: string, governance?: GovernanceDecision | null) => Promise<unknown>) | null = null;
 const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
 
@@ -182,6 +188,19 @@ function parseJsonArray<T>(value: string | null | undefined, fallback: T[]): T[]
   }
 }
 
+function parseGovernanceJson(value: string | null | undefined): GovernanceDecision | null {
+  if (!value) return null;
+  try {
+    const parsed = JSON.parse(value) as unknown;
+    if (parsed && typeof parsed === 'object' && 'normalized' in (parsed as Record<string, unknown>)) {
+      return parsed as GovernanceDecision;
+    }
+    return null;
+  } catch (_error: unknown) {
+    return null;
+  }
+}
+
 function mapRowToJob(row: IngestJobRow | undefined): IngestJob | null {
   if (!row) return null;
   return {
@@ -194,6 +213,7 @@ function mapRowToJob(row: IngestJobRow | undefined): IngestJob | null {
     errors: parseJsonArray<IngestJobError>(row.errors_json, []),
     createdAt: row.created_at,
     updatedAt: row.updated_at,
+    governance: parseGovernanceJson(row.governance_json),
   };
 }
 
@@ -217,9 +237,17 @@ function ensureIngestJobsTable(): void {
       files_processed INTEGER,
       errors_json TEXT,
       created_at TEXT,
-      updated_at TEXT
+      updated_at TEXT,
+      governance_json TEXT
     )
   `);
+  // Backward-compatible migration: add the nullable governance column to tables
+  // created before governed ingest existed. In-flight jobs simply carry a null
+  // governance and remain ungoverned, exactly as before.
+  const columns = db.prepare(`PRAGMA table_info(ingest_jobs)`).all() as Array<{ name: string }>;
+  if (!columns.some((column) => column.name === 'governance_json')) {
+    db.exec(`ALTER TABLE ingest_jobs ADD COLUMN governance_json TEXT`);
+  }
 }
 
 // Restart interrupted jobs from the beginning on process startup.
@@ -254,6 +282,7 @@ async function createIngestJob(args: {
   id: string;
   paths: string[];
   specFolder?: string;
+  governance?: GovernanceDecision | null;
 }): Promise<IngestJob> {
   const db = requireDb();
   const timestamp = nowIso();
@@ -263,11 +292,14 @@ async function createIngestJob(args: {
     throw new Error('paths must include at least one file path');
   }
 
+  const governance = args.governance ?? null;
+  const governanceJson = governance ? JSON.stringify(governance) : null;
+
   await withBusyRetry(() =>
     db.prepare(`
       INSERT INTO ingest_jobs (
-        id, state, spec_folder, paths_json, files_total, files_processed, errors_json, created_at, updated_at
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        id, state, spec_folder, paths_json, files_total, files_processed, errors_json, created_at, updated_at, governance_json
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `).run(
       args.id,
       'queued',
@@ -278,6 +310,7 @@ async function createIngestJob(args: {
       JSON.stringify([]),
       timestamp,
       timestamp,
+      governanceJson,
     )
   );
 
@@ -291,13 +324,14 @@ async function createIngestJob(args: {
     errors: [],
     createdAt: timestamp,
     updatedAt: timestamp,
+    governance,
   };
 }
 
 function getIngestJob(jobId: string): IngestJob | null {
   const db = requireDb();
   const row = db.prepare(`
-    SELECT id, state, spec_folder, paths_json, files_total, files_processed, errors_json, created_at, updated_at
+    SELECT id, state, spec_folder, paths_json, files_total, files_processed, errors_json, created_at, updated_at, governance_json
     FROM ingest_jobs
     WHERE id = ?
   `).get(jobId) as IngestJobRow | undefined;
@@ -624,7 +658,7 @@ async function processQueuedJob(jobId: string): Promise<void> {
     // Continue on file error instead of aborting the entire job.
     try {
       await access(nextPath);
-      await processFileFn(nextPath);
+      await processFileFn(nextPath, current.governance);
     } catch (error: unknown) {
       const normalizedError = error instanceof Error
         && 'code' in error
