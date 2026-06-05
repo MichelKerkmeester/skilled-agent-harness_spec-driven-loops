@@ -42,7 +42,7 @@
       "operator-tooling"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "spec.md"
     ],
@@ -98,7 +98,7 @@
     "source_docs": [
       "spec.md"
     ],
-    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
-    "last_active_at": "2026-06-03T10:18:00+02:00"
+    "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
+    "last_active_at": "2026-06-05T15:12:00+02:00"
   }
 }

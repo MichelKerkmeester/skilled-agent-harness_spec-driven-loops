@@ -12,13 +12,13 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
-## 2026-05-26
+## 2026-06-03
 
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-operator-tooling` (Phase Parent)
 
 ### Summary
 
-This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2026-05-26. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group.
+This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2026-06-03. Each child group is its own phase parent with a rollup and per-phase changelogs. The Included Phases table below links to each child group.
 
 ### Included Phases
 

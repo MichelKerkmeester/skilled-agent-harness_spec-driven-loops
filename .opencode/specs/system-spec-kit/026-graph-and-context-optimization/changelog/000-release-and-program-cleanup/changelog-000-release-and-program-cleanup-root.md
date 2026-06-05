@@ -1,6 +1,6 @@
 ---
 title: "Phase Parent Rollup: release and program cleanup"
-description: "Rollup of 129 leaf changelogs under 000-release-and-program-cleanup. Each child shipped independently and is listed in its own leaf changelog. Detail lives in the child changelogs."
+description: "Rollup of 150 leaf changelogs under 000-release-and-program-cleanup. Each child shipped independently and is listed in its own leaf changelog. Detail lives in the child changelogs."
 trigger_phrases:
   - "000-release-and-program-cleanup rollup"
   - "000-release-and-program-cleanup phase parent"
@@ -12,13 +12,13 @@ contextType: "implementation"
 
 <!-- SPECKIT_TEMPLATE_SOURCE: changelog/root.md | v1.0 -->
 
-## 2026-04-25
+## 2026-06-05
 
 > Spec folder: `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup` (Level 2, Phase Parent)
 
 ### Summary
 
-This phase parent groups 129 leaf changelogs that sit flat in this directory. Each child phase shipped independently and carries its own changelog with full detail. The authoritative child inventory is the full set of `changelog-*.md` files in this directory (excluding this root rollup). The Included Phases table below highlights the representative child rollup rather than re-listing all 129 leaves. Read each child changelog for the per-phase summary, verification, and files changed.
+This phase parent groups 150 leaf changelogs that sit flat in this directory. Each child phase shipped independently and carries its own changelog with full detail. The authoritative child inventory is the full set of `changelog-*.md` files in this directory (excluding this root rollup). The Included Phases table below highlights the representative child rollup rather than re-listing all 150 leaves. Read each child changelog for the per-phase summary, verification, and files changed.
 
 ### Included Phases
 
