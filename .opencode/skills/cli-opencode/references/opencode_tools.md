@@ -5,13 +5,13 @@ description: "Documents the value props that distinguish opencode run from raw m
 
 # OpenCode CLI - Unique Capabilities
 
-What `opencode run` brings that the four sibling cli-* dispatches do not. Each capability includes the invocation shape and the use case where it pays off.
+What `opencode run` brings that the sibling cli-* dispatches do not. Each capability includes the invocation shape and the use case where it pays off.
 
 ---
 
 ## 1. OVERVIEW
 
-The three sibling cli-* skills (cli-claude-code, cli-codex, cli-gemini) dispatch a raw model behind a thin CLI wrapper. The model loads no project context, no plugins, no skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
+The sibling cli-* skills (cli-claude-code, cli-codex, cli-devin) dispatch a raw model or external autonomous CLI behind a thin wrapper. The dispatched tool loads no OpenCode project plugin runtime, no OpenCode skills, no MCP tools, and no Spec Kit Memory unless the calling AI manually attaches files or pastes context.
 
 `opencode run` is different. It spawns a full OpenCode session. That session loads:
 
@@ -180,7 +180,6 @@ opencode run \
 |---------|-------------------|-------------------|----------------|
 | cli-claude-code | Per-session conversation log | `--continue` / `--resume <id>` | None (raw Claude) |
 | cli-codex | `~/.codex/sessions/` | `codex resume <id>` / `codex fork <id>` | None (raw Codex agent) |
-| cli-gemini | None (one-shot) | None | None |
 | **cli-opencode** | `~/.opencode/state/<session_id>/` | `--continue` / `-s <id>` / `--fork` | **Full plugin + skill + MCP + Spec Kit Memory** |
 
 The persistent state directory at `~/.opencode/state/` is what makes use case 2 (parallel detached sessions) possible — each session has an independent file-system footprint that the operator can inspect, archive, or replay.

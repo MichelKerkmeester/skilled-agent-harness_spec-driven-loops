@@ -48,7 +48,6 @@ Static `import` analysis (e.g. `tsc --noUnusedLocals`, `ts-prune`, `knip`) walks
 |---|---|---|
 | Claude | `.claude/settings.local.json` | Nested `hooks.<Event>[].hooks[]` array; each entry has `type: "command"` + `command` string |
 | Codex | `.codex/settings.json` | Nested `hooks.<Event>[].hooks[]` array; same shape as Claude |
-| Gemini | `.gemini/settings.json` | Nested `hooks.<Event>[].hooks[]` array; entries also carry a `name` field |
 | Copilot | `mcp_server/hooks/copilot/README.md` | Custom-instructions writer (no native hook contract); invoked from a Copilot-supported command surface |
 
 The audit at packet `003-dead-code-audit` reached the same conclusion: 15 hook entrypoints classified `dynamic-only-reference` with `keep-with-rationale` (audit report §"Category: `dynamic-only-reference`"). KEEP unless a hook-removal packet proves the wiring is gone.
@@ -132,15 +131,7 @@ Codex hook stdin JSON wins over argv JSON when both are present (per advisor hoo
 
 ## 5. GEMINI HOOKS
 
-`mcp_server/hooks/gemini/` - 5 wired entrypoints + shared helpers.
-
-| Entrypoint | Runtime event | Settings line |
-|---|---|---|
-| `session-prime.ts` | `SessionStart` | `.gemini/settings.json:77` |
-| `compact-cache.ts` | `PreCompress` | `.gemini/settings.json:89` |
-| `compact-inject.ts` | `BeforeAgent` | `.gemini/settings.json:101` |
-| `user-prompt-submit.ts` | `BeforeAgent` (paired with `compact-inject`) | `.gemini/settings.json:107` |
-| `session-stop.ts` | `SessionEnd` | `.gemini/settings.json:119` |
+`mcp_server/hooks/gemini/` contains retained adapter entrypoints and shared helpers for operators who wire Gemini CLI hooks outside this repository. This repo no longer ships project-level Gemini hook registration.
 
 Helper module: `shared.ts`.
 
@@ -260,7 +251,6 @@ Hooks are RUNTIME-SPECIFIC. Adding `compact-inject` to Claude does NOT auto-add 
 
 - `.claude/settings.local.json`
 - `.codex/settings.json`
-- `.gemini/settings.json`
 - `mcp_server/hooks/copilot/README.md` (Copilot has no settings.json contract)
 
 ### Framework Context

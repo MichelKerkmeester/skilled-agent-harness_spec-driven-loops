@@ -46,8 +46,7 @@ export function detectRuntime(): RuntimeInfo {
     return { runtime: 'copilot-cli', hookPolicy };
   }
 
-  // Gemini CLI: sets specific env patterns
-  // Gemini supports hooks when .gemini/settings.json has a 'hooks' or 'hooksConfig' block.
+  // Gemini CLI: sets specific env patterns. This repo does not ship project-level Gemini hooks.
   if (env.GEMINI_CLI === '1' || env.GOOGLE_GENAI_USE_VERTEXAI) {
     const hookPolicy = detectGeminiHookPolicy();
     return { runtime: 'gemini-cli', hookPolicy };
@@ -61,28 +60,7 @@ export function detectRuntime(): RuntimeInfo {
  * Accepts both Gemini-native names and the normalized aliases used in docs/tests.
  */
 function detectGeminiHookPolicy(): HookPolicy {
-  try {
-    const settingsPath = resolve(process.cwd(), '.gemini', 'settings.json');
-    if (!existsSync(settingsPath)) return 'unavailable';
-    const raw = readFileSync(settingsPath, 'utf-8');
-    const parsed = JSON.parse(raw);
-    const hooks = parsed?.hooks;
-    const hasHookSurface = hooks && typeof hooks === 'object' && (
-      hasNamedHookEntries(hooks, 'BeforeAgent')
-      || hasNamedHookEntries(hooks, 'SessionStart')
-      || hasNamedHookEntries(hooks, 'PreCompress')
-      || hasNamedHookEntries(hooks, 'SessionEnd')
-      || hasNamedHookEntries(hooks, 'UserPromptSubmit')
-      || hasNamedHookEntries(hooks, 'PreCompact')
-      || hasNamedHookEntries(hooks, 'Stop')
-    );
-    if (hasHookSurface) {
-      return 'enabled';
-    }
-    return 'disabled_by_scope';
-  } catch {
-    return 'unavailable';
-  }
+  return 'unavailable';
 }
 
 /**
@@ -108,14 +86,6 @@ function detectCopilotHookPolicy(): HookPolicy {
   } catch {
     return 'unavailable';
   }
-}
-
-function hasNamedHookEntries(hooks: unknown, eventName: string): boolean {
-  if (typeof hooks !== 'object' || hooks === null) {
-    return false;
-  }
-  const entries = (hooks as Record<string, unknown>)[eventName];
-  return Array.isArray(entries) && entries.length > 0;
 }
 
 function hasCopilotWrapper(hooks: unknown, eventName: string, commandNeedle: string): boolean {

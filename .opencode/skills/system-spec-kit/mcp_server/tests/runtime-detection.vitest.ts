@@ -132,7 +132,7 @@ describe('runtime detection', () => {
       expect(result.runtime).toBe('unknown');
     });
 
-    it('treats null Gemini hooks blocks as disabled_by_scope', () => {
+    it('uses tool fallback for gemini-cli without project hooks', () => {
       delete process.env.CLAUDE_CODE;
       delete process.env.CLAUDE_SESSION_ID;
       delete process.env.MCP_SERVER_NAME;
@@ -143,18 +143,9 @@ describe('runtime detection', () => {
       delete process.env.COPILOT_CLI;
       process.env.GEMINI_CLI = '1';
 
-      tempDir = mkdtempSync(join(tmpdir(), 'gemini-runtime-'));
-      mkdirSync(join(tempDir, '.gemini'), { recursive: true });
-      writeFileSync(
-        join(tempDir, '.gemini', 'settings.json'),
-        JSON.stringify({ hooks: null, hooksConfig: null }),
-        'utf8',
-      );
-      process.chdir(tempDir);
-
       const result = detectRuntime();
       expect(result.runtime).toBe('gemini-cli');
-      expect(result.hookPolicy).toBe('disabled_by_scope');
+      expect(result.hookPolicy).toBe('unavailable');
     });
   });
 

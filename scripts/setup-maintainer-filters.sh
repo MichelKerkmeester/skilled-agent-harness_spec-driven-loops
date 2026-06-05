@@ -40,8 +40,8 @@ echo "Installed clean+smudge filters for opencode.json maintainer flags."
 echo
 echo "To rehydrate your working tree through the smudge filter so flags"
 echo "show as \"true\" locally (one-time after install):"
-echo "  git rm --cached opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml"
-echo "  git checkout -- opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml"
+echo "  git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml"
+echo "  git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml"
 echo
 echo "Verify:"
 echo "  grep SPECKIT_CODE_GRAPH_INDEX_SKILLS opencode.json     # should show \"true\""

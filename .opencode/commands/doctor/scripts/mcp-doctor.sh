@@ -66,7 +66,6 @@ Config Files Scanned:
   opencode.json         OpenCode CLI
   .claude/mcp.json      Claude Code CLI
   .codex/config.toml    Codex CLI
-  .gemini/settings.json Gemini CLI
   .vscode/mcp.json      VS Code / Copilot
 HELP
 }
@@ -701,7 +700,6 @@ detect_and_check_configs() {
     "opencode.json|json-mcp|OpenCode"
     ".claude/mcp.json|json-mcpServers|Claude Code"
     ".codex/config.toml|toml|Codex CLI"
-    ".gemini/settings.json|json-mcpServers|Gemini CLI"
     ".vscode/mcp.json|json-vscode-mcp|VS Code / Copilot"
   )
 

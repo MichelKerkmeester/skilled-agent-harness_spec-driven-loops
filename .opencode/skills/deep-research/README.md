@@ -250,7 +250,6 @@ The workflow resolves the runtime mirror from the active CLI, but every mirror m
 | OpenCode / Copilot | `.opencode/agents/deep-research.md` |
 | Claude | `.claude/agents/deep-research.md` |
 | Codex | `.codex/agents/deep-research.toml` |
-| Gemini | `.gemini/agents/deep-research.md` |
 
 Read `.opencode/skills/deep-research/references/guides/capability_matrix.md` for the parity checklist and `.opencode/skills/deep-research/assets/runtime_capabilities.json` plus `.opencode/skills/deep-research/scripts/runtime-capabilities.cjs` for the machine-readable lookup path.
 

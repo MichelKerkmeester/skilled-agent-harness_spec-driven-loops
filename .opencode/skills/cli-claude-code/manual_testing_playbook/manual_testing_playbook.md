@@ -652,7 +652,6 @@ The cli-claude-code skill is a thin orchestration wrapper around the external An
 | Adjacent Skill | Test Coverage | Playbook Overlap |
 |---|---|---|
 | `cli-codex` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output) |
-| `cli-gemini` | Manual playbook only | Cross-AI delegation pattern parallels (research, web grounding) |
 | `cli-opencode` | Manual playbook only | Cross-AI delegation pattern parallels (cross-runtime handback) |
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.

@@ -48,7 +48,6 @@ runtime_agent_path_resolution:
   default: .opencode/agent
   codex: .codex/agents
   claude: .claude/agents
-  gemini: .gemini/agents
 
 # ─────────────────────────────────────────────────────────────────
 # CONFIDENCE & CLARIFICATION FRAMEWORK

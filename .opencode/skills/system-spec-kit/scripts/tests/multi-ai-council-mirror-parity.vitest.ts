@@ -10,7 +10,6 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const mirrors = [
   '.opencode/agents/ai-council.md',
   '.claude/agents/ai-council.md',
-  '.gemini/agents/ai-council.md',
   '.codex/agents/ai-council.toml',
 ];
 
@@ -60,7 +59,7 @@ function firstHeaderDrift(expected: string[], actual: string[]): string {
 
 describe('ai-council runtime mirror parity', () => {
   // followup-actual: runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('keeps section headers, markers, and body size aligned across 4 runtimes', () => {
+  it.fails.skip('keeps section headers, markers, and body size aligned across repo-managed runtimes', () => {
     const canonicalFile = mirrors[0];
     const canonicalBody = bodyFor(canonicalFile);
     const canonicalHeaders = sectionHeaders(canonicalBody);

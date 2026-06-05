@@ -281,7 +281,7 @@ workflow:
             4. Find command entry points referencing this skill
             5. Set scope = all discovered files
           agent: |
-            1. Find agent definition across all runtimes (.claude/agents/, .opencode/agents/, .codex/agents/, .agents/, .gemini/agents/)
+            1. Find agent definition across repo-managed runtimes (.claude/agents/, .opencode/agents/, .codex/agents/, .agents/)
             2. Compare agent definitions for consistency
             3. Set scope = all discovered agent files
           track: |
@@ -1417,7 +1417,7 @@ reference_only_appendix:
       - { check: "Checklist vs Evidence", source: "[x] items", target: "cited evidence" }
     overlay_protocols:
       - { check: "SKILL.md vs Agent", source: "Skill contracts", target: "agent files" }
-      - { check: "Agent Cross-Runtime", source: ".claude", target: ".codex/.opencode/.agents/.gemini" }
+      - { check: "Agent Cross-Runtime", source: ".claude", target: ".codex/.opencode/.agents" }
       - { check: "Feature Catalog vs Code", source: "Catalog claims", target: "implementation" }
       - { check: "Playbook vs Support", source: "Scenario preconditions", target: "actual support" }
 

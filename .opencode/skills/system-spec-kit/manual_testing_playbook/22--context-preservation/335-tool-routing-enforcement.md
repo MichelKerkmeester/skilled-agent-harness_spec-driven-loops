@@ -122,7 +122,7 @@ Validate 267d runtime instruction routing tables
 
 ### Commands
 
-1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md .gemini/GEMINI.md
+1. cd /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public && rg -n "Code Graph|semantic search|Tool Routing Enforcement|SEARCH ROUTING" CLAUDE.md .claude/CLAUDE.md .codex/CODEX.md
 
 ### Expected
 

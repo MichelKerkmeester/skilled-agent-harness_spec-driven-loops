@@ -25,11 +25,11 @@ These hooks keep the canonical recovery chain aligned with `handover.md`, `_memo
 
 ## 2. HOOK REGISTRATION
 
-All four Gemini lifecycle hooks register through `.gemini/settings.json` under
-`hooks.<EventName>[]`. The advisor brief, startup brief, post-compaction
-recovery, and session-end persistence each own a dedicated subsection below
-with its own smoke command. Run smoke checks from the repository root after
-`npm run build`.
+The Gemini hook adapters are retained for operators who wire Gemini CLI hooks
+outside this repository. The repo no longer ships a project-level Gemini hook
+registration file. The advisor brief, startup brief, post-compaction recovery,
+and session-end persistence each own a dedicated subsection below with its own
+smoke command. Run smoke checks from the repository root after `npm run build`.
 
 Set `SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1` to skip the advisor path for the
 current process session. The full contract lives at

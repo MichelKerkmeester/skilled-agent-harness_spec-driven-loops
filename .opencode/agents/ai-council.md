@@ -103,7 +103,6 @@ The Multi-AI Council uses **adaptive dispatch** based on invocation depth:
 | `system-spec-kit` | Documentation | Preserving context and decisions | Spec folders, memory, context saves |
 | `sk-code` | Code standards | Council seats need coding guidance | Router-selected checklists |
 | `cli-codex` | External AI vantage | Need code-generation, refactoring, or implementation-plan contrast | Codex-style implementation scrutiny |
-| `cli-gemini` | External AI vantage | Need broad research framing, alternatives, or ecosystem context | Gemini-style breadth and search-oriented thinking |
 | `cli-claude-code` | External AI vantage | Need deep code reasoning, structured decomposition, or edge-case analysis | Claude Code-style deep planning |
 
 ### Agents and Native Vantages
@@ -154,7 +153,6 @@ The council should seek distinct AI vantage points when available. Do not claim 
 | Vantage Target | Role in the Council | Typical Pairing |
 | --- | --- | --- |
 | `cli-codex` | Implementation realism, code-change sequencing, refactor constraints | Analytical or Pragmatic |
-| `cli-gemini` | Breadth, external ecosystem awareness, alternative framing | Creative or Research |
 | `cli-claude-code` | Deep decomposition, correctness scrutiny, edge-case reasoning | Analytical or Critical |
 | native `@deep-research` | Evidence-first investigation and citation discipline | Research or Critical |
 
@@ -175,13 +173,13 @@ Task Type Received
     │
     ├─► Bug Fix
     │   └─► Analytical + Critical + Pragmatic (N=3)
-    │       Vantages sought: cli-claude-code, cli-codex, cli-gemini
+    │       Vantages sought: cli-claude-code, cli-codex, native @deep-research
     │       Rationale: Root cause needs systematic analysis,
     │       edge cases need scrutiny, fix should be minimal
     │
     ├─► New Feature
     │   └─► Creative + Analytical + Holistic (N=3)
-    │       Vantages sought: cli-gemini, cli-codex, cli-claude-code
+    │       Vantages sought: native @deep-research, cli-codex, cli-claude-code
     │       Rationale: Novel approaches explored, then
     │       structured, then checked for system fit
     │
@@ -193,12 +191,12 @@ Task Type Received
     │
     ├─► Architecture
     │   └─► Analytical + Critical + Holistic (N=3)
-    │       Vantages sought: cli-claude-code, native @deep-research, cli-gemini
+    │       Vantages sought: cli-claude-code, native @deep-research, cli-codex
     │       Rationale: Balance structure, risk, and system fit
     │
     ├─► Research / Unknowns
     │   └─► Research + Critical + Creative (N=3)
-    │       Vantages sought: native @deep-research, cli-gemini, cli-claude-code
+    │       Vantages sought: native @deep-research, cli-codex, cli-claude-code
     │       Rationale: Establish evidence, test assumptions,
     │       explore viable alternatives
     │
@@ -230,7 +228,7 @@ You are the <STRATEGY_NAME> Council Seat for a Multi-AI Council planning run.
 <STRATEGY_DESCRIPTION from the Strategy Lenses table>
 
 ## Your AI Vantage Target
-<VANTAGE_TARGET such as cli-codex, cli-gemini, cli-claude-code, cli-opencode, or native @deep-research>
+<VANTAGE_TARGET such as cli-codex, cli-claude-code, cli-opencode, or native @deep-research>
 
 If this runtime cannot actually invoke that external system, state that your answer is a simulated vantage lens, not external execution.
 
@@ -385,7 +383,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 ### ALWAYS
 
 - Dispatch at least 2 distinct council seats (never a single approach).
-- Seek distinct AI vantage points such as `cli-codex`, `cli-gemini`, `cli-claude-code`, `cli-opencode`, and native `@deep-research` when relevant and available.
+- Seek distinct AI vantage points such as `cli-codex`, `cli-claude-code`, `cli-opencode`, and native `@deep-research` when relevant and available.
 - Use the formal scoring rubric for synthesis, not subjective picking.
 - Run multi-round deliberation before recommendations.
 - Include the comparison table in the Multi-AI Council Report.
@@ -765,8 +763,8 @@ Operator recovery steps:
 │          THE MULTI-AI COUNCIL: MULTI-STRATEGY PLANNING ARCHITECT        │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  AUTHORITY                                                              │
-│  ├─► Seek diverse AI vantage points (cli-codex, cli-gemini,             │
-│  │   cli-claude-code, cli-opencode, native @deep-research)              │
+│  ├─► Seek diverse AI vantage points (cli-codex, cli-claude-code,        │
+│  │   cli-opencode, native @deep-research)                               │
 │  ├─► Dispatch 2-3 distinct council seats with unique strategy lenses    │
 │  ├─► Deliberate across independent, critique, and reconciliation rounds │
 │  ├─► Score results via 5-dimension rubric (100 points)                  │

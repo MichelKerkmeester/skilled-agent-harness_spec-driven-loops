@@ -45,12 +45,12 @@ Operators need one current dispatch name across runtimes so council prompts do n
 
 ### Commands
 
-1. `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/`
-2. `bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/`
+1. `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/`
+2. `bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/`
 
 ### Expected
 
-`deep-ai-council` appears in the four mirrors. `multi-ai-council` does not appear as an active mirror name.
+`deep-ai-council` appears in the repo-managed mirrors. `multi-ai-council` does not appear as an active mirror name.
 
 ### Evidence
 
@@ -67,7 +67,7 @@ Check the mirror frontmatter/name first, then Codex TOML name, then any converte
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/ -> bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ .gemini/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `deep-ai-council` | Inspect mirror name fields |
+| DAC-001 | Runtime rename | Verify active runtime identity | `Use the deep AI council to compare two implementation plans and show which runtime agent name is active.` | `bash: rg -n "deep-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/ -> bash: rg -n "multi-ai-council" .opencode/agents/ .claude/agents/ .codex/agents/` | New identity appears; old identity is not active | Grep transcript | PASS if mirrors use `deep-ai-council` | Inspect mirror name fields |
 
 ---
 
@@ -87,7 +87,6 @@ Check the mirror frontmatter/name first, then Codex TOML name, then any converte
 | `.opencode/agents/ai-council.md` | OpenCode runtime mirror |
 | `.claude/agents/ai-council.md` | Claude runtime mirror |
 | `.codex/agents/ai-council.toml` | Codex runtime mirror |
-| `.gemini/agents/ai-council.md` | Gemini runtime mirror |
 
 ---
 

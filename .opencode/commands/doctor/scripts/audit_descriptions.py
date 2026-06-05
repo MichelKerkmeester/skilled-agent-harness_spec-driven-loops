@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ───────────────────────────────────────────────────────────────
-# COMPONENT: SKILL/COMMAND/AGENT DESCRIPTION BUDGET AUDIT (Packet 086)
+# COMPONENT: SKILL/COMMAND/AGENT DESCRIPTION BUDGET AUDIT
 # ───────────────────────────────────────────────────────────────
 
 """
@@ -12,10 +12,9 @@ Surfaces walked:
 - .opencode/commands/**/<name>.md             (YAML frontmatter)
 - .opencode/agents/<name>.md                  (YAML frontmatter)
 - .claude/agents/<name>.md                   (YAML frontmatter, often a symlink)
-- .gemini/agents/<name>.md                   (YAML frontmatter)
 - .codex/agents/<name>.toml                  (TOML `description = "..."`)
 
-For agents, the four runtime mirrors usually share identical text. The audit
+For agents, the repo-managed runtime mirrors usually share identical text. The audit
 reports unique-by-name with a `mirrored: N surfaces` annotation so the budget
 math is honest (Claude Code only counts the runtime it actively loads, but the
 unique-by-name view is the most useful drift signal).
@@ -25,8 +24,8 @@ Outputs:
 - JSON envelope (`--json`) for CI/pre-commit consumption
 - Non-zero exit when project total exceeds `--fail-over=N`
 
-Constants come from the same source-of-truth as quick_validate.py
-(packet 086): 130/110 soft, 1536 hard, 5600 project ceiling.
+Constants come from the same source-of-truth as quick_validate.py:
+130/110 soft, 1536 hard, 5600 project ceiling.
 
 Reference: .opencode/skills/sk-doc/assets/frontmatter_templates.md
            § "Description Budget & Trim Style"
@@ -215,11 +214,10 @@ def walk_commands(repo: Path) -> List[Item]:
 
 
 def walk_agents(repo: Path) -> List[Item]:
-    """Walk all four runtime agent surfaces, dedupe by name, annotate mirrors."""
+    """Walk repo-managed runtime agent surfaces, dedupe by name, annotate mirrors."""
     surfaces = [
         (repo / ".opencode" / "agents", "yaml"),
         (repo / ".claude" / "agents", "yaml"),
-        (repo / ".gemini" / "agents", "yaml"),
         (repo / ".codex" / "agents", "toml"),
     ]
     by_name: Dict[str, Item] = {}

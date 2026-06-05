@@ -56,23 +56,6 @@
       "hookBootstrap": true,
       "schemaAdaptation": "medium",
       "fallbackBridgeEligible": true
-    },
-    {
-      "id": "gemini",
-      "label": "Gemini",
-      "mirrorPath": ".gemini/agents/deep-research.md",
-      "toolSurface": [
-        "read_file",
-        "write_file",
-        "replace",
-        "run_shell_command",
-        "grep_search",
-        "list_directory",
-        "google_web_search"
-      ],
-      "hookBootstrap": true,
-      "schemaAdaptation": "high",
-      "fallbackBridgeEligible": true
     }
   ]
 }

@@ -155,9 +155,6 @@ Choose an embedding provider:
 # Default when no cloud keys are set: nomic-embed-text-v1.5 (768 dim)
 # served by a local Ollama HTTP endpoint. Pull the model once:
 #   ollama pull nomic-embed-text:v1.5
-# (jina-embeddings-v3 is the second-priority fallback; pull via:
-#   ollama pull hf.co/gaianet/jina-embeddings-v3-GGUF:Q4_K_M)
-
 # Option A: Voyage AI (cloud, requires API key, opt-in only)
 export VOYAGE_API_KEY="your-key-here"
 
@@ -179,7 +176,7 @@ node .opencode/bin/mk-code-index-launcher.cjs --help
 # Confirm the active runtime's MCP config references the launchers
 # (only the runtime you use needs to exist. .codex/config.toml ships in the repo)
 grep -l 'mk-spec-memory\|mk_skill_advisor\|mk_code_index' \
-  opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json 2>/dev/null
+  opencode.json .claude/mcp.json .codex/config.toml .vscode/mcp.json 2>/dev/null
 ```
 
 ### First Use
@@ -393,12 +390,12 @@ The `mk-spec-memory` tools are organized into a layered architecture. Code graph
 | **L3** | Discovery       | 4      | 800          | List, stats, health checks and session readiness                             |
 | **L4** | Mutation        | 6      | 500          | Delete, update, validate, bulk cleanup, retention sweep, embedding reconcile |
 | **L5** | Lifecycle       | 4      | 600          | Checkpoints and lifecycle state                                              |
-| **L6** | Analysis        | 6      | 1,200        | Causal graph (link/stats/drift_why), quick search, evaluations and dashboards |
+| **L6** | Analysis        | 7      | 1,200        | Causal graph (link/unlink/stats/drift_why), quick search, evaluations and dashboards |
 | **L7** | Maintenance     | 5      | 1,000        | Memory index scans, async ingest and learning history                        |
 | **L8** | Embedder        | 3      | 400          | Embedder list, set and status                                                |
 | **L9** | Task            | 2      | 300          | Task preflight and postflight                                                |
 | **—**  | Moved Surfaces  | 0      | -            | Code graph → `mk_code_index`; advisor + skill graph → `mk_skill_advisor`; coverage + council graph → `deep-loop-runtime` CLI scripts (not MCP tools) |
-|        | **Total**       | **36** | **~8,300**   |                                                                              |
+|        | **Total**       | **37** | **~8,300**   |                                                                              |
 
 Lower layers load only when needed. L1 is always available. L2 loads for any search. L3-L7 load based on the specific command being used.
 
@@ -546,7 +543,7 @@ Preview all checks without saving using `dryRun: true`. Learned relevance feedba
 
 The mk-spec-memory text embedder layer is pluggable. Swap defaults through the memory embedder controls without touching code. Canonical narrative: [embedder_pluggability.md](.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md).
 
-- **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`. The cascade falls back to `jina-embeddings-v3` (1024d Q4_K_M) when nomic isn't pulled.
+- **Ollama (nomic-embed-text-v1.5)** - Default since 2026-05-19 (ADR-013/014). Free, local, 768d retrieval-tuned. Pull once with `ollama pull nomic-embed-text:v1.5`.
 - **HuggingFace Local** - Fallback when the Ollama probe fails. Free, local, 768d q8 ONNX.
 - **Voyage AI** - Cloud opt-in. Set `VOYAGE_API_KEY`. 1024d. Gated by egress guard.
 - **OpenAI** - Cloud opt-in. Set `OPENAI_API_KEY`. 1536d.
@@ -914,13 +911,9 @@ The shared runtime plus the four loop skills behind the autonomous loops. See th
 &nbsp;
 #### CROSS-AI CLI
 
-These skills let you run **cross-CLI agent teams from any starting CLI**. Whichever assistant you're talking to (Claude Code, Codex, Copilot, Gemini, OpenCode, raw shell), it can dispatch the other AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns. Use this to compose a Gemini web search + Codex implementation + Claude review pipeline from inside any one of them.
+These skills let you run **cross-CLI agent teams from any starting CLI**. Whichever assistant you're talking to (Claude Code, Codex, Copilot, OpenCode, raw shell), it can dispatch the other AI CLIs as specialist sub-tools, each one a one-shot non-interactive call that streams structured output back to the caller. The conducting AI stays in charge. The dispatched CLI handles the part it's best at and returns. Use this to compose a Codex implementation + Claude review pipeline from inside any one of them.
 
 > **Self-invocation guard:** every skill refuses to call itself. A Claude Code session never dispatches `cli-claude-code`, an OpenCode session never dispatches `cli-opencode`, etc. Cross-AI delegation only, no cycles.
-
-**cli-gemini**
-- Gemini CLI orchestrator. Use it for **real-time web search via Google Search grounding** (no other CLI skill has this) and for analyzing very large codebases (1M+ token context).
-- Single model: `gemini-3.1-pro-preview`.
 
 **cli-codex**
 - OpenAI Codex CLI orchestrator. Use it for **code generation, diff-aware review (`/review`), web browsing (`--search`) and screenshot analysis (`--image`)**. Supports session resume/fork, agent profiles and cost control via `--max-budget-usd`.
@@ -974,7 +967,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 ### 🤖 Agent Network
 
-11 custom specialist agents. Defined in `.opencode/agents/` (source of truth), mirrored for Claude Code (`.claude/agents/`), Codex CLI (`.codex/agents/`) and Gemini CLI (`.gemini/agents/`) runtime surfaces. OpenCode and Copilot CLI use runtime-specific MCP and startup integration rather than a dedicated agent mirror.
+11 custom specialist agents. Defined in `.opencode/agents/` (source of truth), mirrored for Claude Code (`.claude/agents/`) and Codex CLI (`.codex/agents/`) runtime surfaces. OpenCode and Copilot CLI use runtime-specific MCP and startup integration rather than a dedicated agent mirror.
 
 #### AGENT ORCHESTRATION
 
@@ -1014,7 +1007,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 #### DEEP LOOP
 
 **AI Council**
-- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-codex, cli-gemini, cli-claude-code and native, then deliberates over multiple rounds
+- **Several AI strategies, one vetted plan.** Dispatches distinct reasoning lenses across cli-codex, cli-claude-code and native, then deliberates over multiple rounds
 - Planning-only, scored on a 5-dimension rubric. See [Deep Loop](#deep-loop)
 
 **Deep Research**
@@ -1110,7 +1103,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 
 **Agent**
 - Scaffolds a new agent definition with proper frontmatter, behavioral rules and tool permissions
-- Creates source-of-truth file in `.opencode/agents/` and mirrors for Claude, Codex, Gemini runtimes
+- Creates source-of-truth file in `.opencode/agents/` and mirrors for Claude and Codex runtimes
 - Modes: `:auto`, `:confirm`
 
 **Readme**
@@ -1133,7 +1126,7 @@ These skills let you run **cross-CLI agent teams from any starting CLI**. Whiche
 - Generates scenario files with test steps, expected results and verification evidence fields
 - Validates against established playbook format
 
-The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp_server/](.opencode/skills/system-spec-kit/mcp_server/) for the dedicated [stress_test/](.opencode/skills/system-spec-kit/mcp_server/stress_test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session and matrix subsystems. [matrix_runners/](.opencode/skills/system-spec-kit/mcp_server/matrix_runners/) provides four per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across `cli-codex`, `cli-gemini`, `cli-claude-code` and `cli-opencode`.
+The MCP server also ships explicit stress and matrix execution surfaces. Run `npm run stress` from [mcp_server/](.opencode/skills/system-spec-kit/mcp_server/) for the dedicated [stress_test/](.opencode/skills/system-spec-kit/mcp_server/stress_test/) suite, which covers search-quality, memory, skill-advisor, code-graph, session and matrix subsystems. [matrix_runners/](.opencode/skills/system-spec-kit/mcp_server/matrix_runners/) provides per-CLI adapters plus a manifest and meta-runner for the F1-F14 feature matrix across the remaining active CLI skill surfaces.
 
 &nbsp;
 #### DEEP
@@ -1300,7 +1293,6 @@ The other shipped skills will continue working unchanged: `sk-doc` will still va
 - **`.utcp_config.json`** - Code Mode external tool registrations. Used by `mcp-code-mode` skill.
 - **`.claude/mcp.json`** - Claude Code MCP configuration. Claude Code only.
 - **`.codex/config.toml`** - Codex CLI MCP configuration and profile definitions.
-- **`.gemini/settings.json`** - Gemini CLI configuration. Gemini CLI only.
 - **`.vscode/mcp.json`** - VS Code / Copilot MCP configuration wrapper.
 
 &nbsp;
@@ -1318,7 +1310,7 @@ The memory server reads configuration from environment variables:
 Default repo-local database path: `.opencode/skills/system-spec-kit/mcp_server/database/context-index__ollama__nomic-embed-text-v1.5__768.sqlite` (default since ADR-013/014 2026-05-19; previously `__jina-embeddings-v3__1024__q4_k_m.sqlite`). The filename encodes provider, model, dimension and dtype so multiple backends can coexist on disk without mixing vectors.
 
 > [!TIP]
-> If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **nomic-embed-text-v1.5** (current default per ADR-013/014), falls back to **jina-embeddings-v3** if nomic isn't pulled, then to **HuggingFace Local** embeddings.
+> If no API key is set, the memory engine auto-detects the local Ollama endpoint serving **nomic-embed-text-v1.5** (current default per ADR-013/014), then falls back to **HuggingFace Local** embeddings.
 
 
 &nbsp;
@@ -1376,7 +1368,7 @@ Abbreviated shape. Runtime config files can temporarily differ while the `mk_cod
 &nbsp;
 ### Maintainer-Mode Code-Graph Flags (already disabled for end users)
 
-All 5 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
+All 4 runtime MCP configs (`opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.vscode/mcp.json`) carry five opt-in maintainer flags:
 
 ```text
 SPECKIT_CODE_GRAPH_INDEX_SKILLS    (covers .opencode/skills/**)
@@ -1396,17 +1388,17 @@ SPECKIT_CODE_GRAPH_DB_DIR          (optional code-graph SQLite directory overrid
 <a id="git-clean-filter--maintainer-mode-stays-local"></a>
 #### Git clean filter: maintainer mode stays local
 
-The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the 5 config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index. The smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
+The repo ships a `.gitattributes` rule that runs an idempotent sed-based clean filter on the 4 config files: every `"true"` for these flags is rewritten to `"false"` when the file enters the git index. The smudge filter rewrites `"false"` → `"true"` on checkout/pull/clone for installed maintainers. Net effect:
 
-- **End users cloning the template** → all 5 configs show `"false"` (framework default, correct out of box)
-- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → all 5 configs show `"true"` locally. Commits + pushes still ship `"false"` to the remote
+- **End users cloning the template** → all 4 configs show `"false"` (framework default, correct out of box)
+- **Maintainers after running `./scripts/setup-maintainer-filters.sh`** → all 4 configs show `"true"` locally. Commits + pushes still ship `"false"` to the remote
 
 To opt into maintainer mode on a fresh clone (only relevant if you're contributing upstream):
 
 ```bash
 ./scripts/setup-maintainer-filters.sh
-git rm --cached opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml
-git checkout -- opencode.json .claude/mcp.json .gemini/settings.json .vscode/mcp.json .codex/config.toml
+git rm --cached opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml
+git checkout -- opencode.json .claude/mcp.json .vscode/mcp.json .codex/config.toml
 ```
 
 After that, `cat opencode.json` shows `"true"`. `git show HEAD:opencode.json` shows `"false"` (what the remote sees).
@@ -1450,7 +1442,7 @@ A: The memory database is a SQLite file on your local machine. No session data, 
 &nbsp;
 **Q: How do I contribute a new agent definition?**
 
-A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/`, `.codex/agents/` and `.gemini/agents/`. Use `/create:agent` to scaffold the file from the agent template.
+A: Define the agent in `.opencode/agents/` (the source of truth), then mirror the adapter into `.claude/agents/` and `.codex/agents/`. Use `/create:agent` to scaffold the file from the agent template.
 &nbsp;
 **Q: How many MCP tools are there and where are they defined?**
 

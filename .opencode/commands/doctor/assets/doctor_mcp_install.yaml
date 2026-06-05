@@ -200,11 +200,6 @@ config_files:
     format: "toml"
     label: "Codex CLI"
     guide_section: "Option F: Codex CLI"
-  gemini:
-    path: ".gemini/settings.json"
-    format: "json-mcpServers"
-    label: "Gemini CLI"
-    guide_section: "Option D: Gemini CLI"
   vscode:
     path: ".vscode/mcp.json"
     format: "json-mcpServers"

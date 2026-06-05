@@ -691,24 +691,6 @@ Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-open
 
 > **Feature File:** [DV-023](08--cross-ai-dispatch/027-from-cli-opencode.md)
 
-### DV-024 | Dispatch from cli-gemini
-
-#### Description
-
-Verify a calling AI inside a `cli-gemini` session can dispatch a `devin` task and integrate the output.
-
-#### Scenario Contract
-
-Prompt: `From a cli-gemini session, dispatch devin --prompt-file /tmp/devin-from-gemini.md --model swe-1.6 --permission-mode auto and confirm Gemini captures stdout and integrates the result.`
-
-Expected signals: cli-gemini's Bash invocation runs successfully. `devin` exits 0. The output integrates cleanly.
-
-Desired user-visible outcome: A working cross-AI dispatch demonstrating cli-gemini → cli-devin works end-to-end.
-
-#### Test Execution
-
-> **Feature File:** [DV-024](08--cross-ai-dispatch/028-from-cli-gemini.md)
-
 ---
 
 ## 15. ACP BRIDGE (`DV-025`)
@@ -801,7 +783,6 @@ There is no automated coverage for default-dispatch, permission-mode, model-pres
 - DV-021: [Dispatch from cli-codex (gpt-5.5 medium)](08--cross-ai-dispatch/025-from-cli-codex.md)
 - DV-022: [Dispatch from cli-claude-code](08--cross-ai-dispatch/026-from-cli-claude-code.md)
 - DV-023: [Dispatch from cli-opencode](08--cross-ai-dispatch/027-from-cli-opencode.md)
-- DV-024: [Dispatch from cli-gemini](08--cross-ai-dispatch/028-from-cli-gemini.md)
 
 ### ACP BRIDGE
 

@@ -93,7 +93,6 @@ Mid-window audit while preparing for the 2026-08-16 removal:
 **Runtime configs — ALL migrated to NEW:**
 - `.claude/settings.local.json` — no hook entries (Claude consumes MCP only).
 - `.codex/config.toml` — no hook entries.
-- `.gemini/settings.json` — no hook entries.
 - `.devin/hooks.v1.json` — `UserPromptSubmit` points at `system-skill-advisor/mcp_server/dist/...`; `SessionStart` points at `.opencode/skills/system-spec-kit/mcp_server/dist/hooks/devin/session-start.js` (corrected 2026-05-27 — see §2 Correction; the previously-recorded `system-code-graph/dist/system-spec-kit/...` path never existed and the hook did not fire until packet 029 phase 004 repointed it).
 - OpenCode plugin (`.opencode/plugins/spec-kit-skill-advisor.js`) — owns its own loading, not affected.
 - Cross-runtime grep for `system-spec-kit/mcp_server/hooks/`: zero hits in active runtime config files. Two hits in documentation (`README.md` lines 767, 769 and `DEPLOYMENT.md` line 7). Remaining hits are historical research/impl logs.

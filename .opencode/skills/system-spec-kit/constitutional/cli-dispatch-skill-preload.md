@@ -7,7 +7,6 @@ triggerPhrases:
   - cli-devin
   - cli-codex
   - cli-claude-code
-  - cli-gemini
   - cli-opencode
   - devin
   - codex
@@ -37,7 +36,7 @@ triggerPhrases:
 
 ## Rule
 
-**Before composing any prompt for `cli-X` (devin / codex / claude-code / gemini / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first.**
+**Before composing any prompt for `cli-X` (devin / codex / claude-code / opencode), you MUST `Read` `.opencode/skills/cli-X/SKILL.md` first.**
 
 Advisor confidence ≥ 0.8 recommending the skill does NOT waive this. The recommendation is a routing signal; loading the file is the enforcement step.
 
@@ -59,6 +58,7 @@ These rules ONLY live in the skill files. Authoring a dispatch without reading t
 2. For deep-loop / deep-review iter dispatches: ALSO read `references/deep-loop-iter-contract.md` (cli-devin) or the equivalent contract for the chosen CLI
 3. If `sk-prompt` skill is available, hand prompt composition to `sk-prompt` per the cli-X skill's directive
 4. When dispatching: use the canonical invocation shape from the skill's §3 Core Invocation Pattern — copy-edit, not synthesize from memory
+5. The external Gemini binary has no project `cli-gemini` skill; use the owning executor workflow documentation instead of trying to preload a deleted skill.
 
 ## When this rule does NOT apply
 

@@ -15,7 +15,7 @@ This scenario validates cross-AI dispatch from `cli-claude-code` to `cli-devin` 
 
 ### Why This Matters
 
-cli-claude-code is the Anthropic-side sibling in the family. Validating dispatch from Claude Code is the natural counterpart to DV-021 (cli-codex) and DV-024 (cli-gemini). Operators in Claude Code sessions need to know the cli-devin contract works under Claude's tool stack.
+cli-claude-code is the Anthropic-side sibling in the family. Validating dispatch from Claude Code is the natural counterpart to DV-021 (cli-codex) and DV-023 (cli-opencode). Operators in Claude Code sessions need to know the cli-devin contract works under Claude's tool stack.
 
 ---
 

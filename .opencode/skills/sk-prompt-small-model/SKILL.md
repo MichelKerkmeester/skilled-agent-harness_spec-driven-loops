@@ -5,7 +5,7 @@ allowed-tools: []
 version: 0.7.2.0
 ---
 
-<!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, gemini-flash, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
+<!-- Keywords: small-model, swe-1.6, deepseek-v4-pro, kimi-k2.6, qwen3.6, glm-5.1, minimax-m3, minimax-2.7, minimax-coding-plan, minimax-token-plan, minimax-api, haiku, opencode-go, deepseek-api, context-budget, output-verification, model-profiles, structured-permissions, quota-fallback -->
 
 # Small-Model Prompt-Craft Hub
 
@@ -23,14 +23,14 @@ The model-knowledge hub for small-model dispatch: per-model prompt-craft profile
 - Qwen3.6 (via `cli-opencode`)
 - MiniMax-M3 / MiniMax-2.7 (via `cli-opencode`)
 - MiMo-V2.5-Pro (via `cli-opencode`)
-- Optional future targets: Claude Haiku, Gemini Flash
+- Optional future target: Claude Haiku
 - Asking "what framework / scaffold does small-model X want?" or "where is the small-model X pattern?"
 
 The exact provider, quota pool, and dispatch flags for each path live in the §3 dispatch matrix and the executor `cli-X` skills (MECHANICS), not in this trigger list.
 
 **Keyword Triggers**:
 - `small model`, `small-model dispatch`
-- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4-pro`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`, `haiku`, `gemini-flash`
+- Model names: `swe-1.6`, `kimi-k2.6`, `deepseek-v4-pro`, `qwen3.6`, `glm-5.1`, `minimax-m3`, `minimax-2.7`, `mimo-v2.5-pro`, `haiku`
 - Provider names: `opencode-go`, `deepseek-api`, `minimax-coding-plan` (Token Plan) / `minimax` (Direct API), `minimax-token-plan` / `minimax-api`, `xiaomi-token-plan-ams` (Xiaomi Token Plan Europe), `cognition pro`, `cognition free`
 - Pattern names: `context budget`, `output verification`, `model profile`, `structured permissions`, `quota fallback`, `tool scoring`
 
@@ -210,7 +210,6 @@ invocation loads the right profile.
 | MiniMax-M2.7 | `cli-opencode` → minimax-coding-plan (minimax-token-plan) · `cli-opencode` → minimax (minimax-api) | active (2 paths: Token Plan highspeed fallback + pay-per-token Direct API) |
 | MiMo-V2.5-Pro | `cli-opencode` → xiaomi-token-plan-ams (xiaomi-token-plan) | active — Xiaomi Token Plan Europe; `mimo-v2.5-pro`; free `opencode/mimo-v2.5-free` sibling |
 | Haiku | `cli-claude-code` → anthropic (anthropic) | optional-unverified |
-| Gemini Flash | `cli-gemini` → google (google) | optional-unverified |
 
 Canonical source: `sk-prompt-small-model/assets/model-profiles.json` (each entry's `executors` array enumerates the paths above).
 
@@ -218,7 +217,7 @@ Canonical source: `sk-prompt-small-model/assets/model-profiles.json` (each entry
 
 This skill OWNS per-model prompt-craft profiles (`references/models/<id>.md`) and the model registry DATA (`assets/model-profiles.json`); `cli-devin`/`cli-opencode` own executor MECHANICS (flags, wrappers, budgets, permissions); `sk-prompt` owns generic framework definitions; `system-spec-kit` owns runtime helpers. See the Skill Boundary Map in §5.
 
-### Adopting a New Provider (Haiku, Gemini Flash, others)
+### Adopting a New Provider (Haiku, others)
 
 Follow the single canonical checklist in [`references/pattern-index.md`](./references/pattern-index.md) §4 "Adopting a New Provider" — it is the one source for the adoption steps (registry entry → author the profile → `_index.md` row → this §3 dispatch-matrix row → the dispatching executor's trigger phrase → re-index + verify). Do not maintain a second copy of the steps here. No executor-MECHANICS or code edits are needed when the quota pool is already represented.
 
@@ -232,7 +231,7 @@ Follow the single canonical checklist in [`references/pattern-index.md`](./refer
 2. **Mirror the DATA and cite it.** Each profile MUST reflect that model's `recommended_frameworks` (primary, fallback, avoid, pre-planning density, evidence) from `sk-prompt-small-model/assets/model-profiles.json` and cite it as the source of truth. When the registry changes, the profile follows.
 3. **Keep trigger phrases honest.** Add a phrase only when a model or profile actually exists. Stale triggers degrade advisor confidence.
 4. **Update the index when models ship or move.** `_index.md` and `pattern-index.md` are contracts; broken links and missing rows erode trust.
-5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3/M2.7, MiMo-V2.5-Pro active; Haiku, Gemini Flash optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
+5. **Honor the in-scope model set** — SWE-1.6, DeepSeek-v4-pro, Kimi-k2.6, Qwen3.6, GLM-5.1, MiniMax-M3/M2.7, MiMo-V2.5-Pro active; Haiku optional. Frontier models (Opus, Sonnet, gpt-5.5) are explicitly out of scope.
 
 ### NEVER
 

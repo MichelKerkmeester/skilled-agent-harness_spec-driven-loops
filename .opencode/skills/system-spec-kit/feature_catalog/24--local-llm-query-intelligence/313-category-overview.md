@@ -46,7 +46,7 @@ Every scenario uses the AI-to-CLI handoff prompt shape that mirrors production u
 | `manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Playbook | Why-this-category brief, prompt convention, pre-flight, scenario inventory, grading rubric |
 | `manual_testing_playbook/24--local-llm-query-intelligence/36[1-9].md`, `37[0-5].md` | Playbook | Per-scenario Markdown specs for query intelligence (361-370) and substrate (371-375) |
 | `manual_testing_playbook/24--local-llm-query-intelligence/409-fixture.json` | Fixture | Deterministic fixture rows for the LLM-made memory recall scenario |
-| `.codex/config.toml`, `.gemini/settings.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` | Wiring | Cross-AI MCP client configs that point at the same Memory MCP database |
+| `.codex/config.toml`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` | Wiring | Cross-AI MCP client configs that point at the same Memory MCP database |
 
 ### Validation
 

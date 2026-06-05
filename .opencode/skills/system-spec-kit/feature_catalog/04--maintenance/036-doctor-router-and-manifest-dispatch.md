@@ -64,7 +64,6 @@ The router itself never mutates anything. Each YAML workflow declares its own mu
 | Path | Role |
 |------|------|
 | `.claude/commands/doctor/speckit.md` + `.claude/commands/doctor/{mcp,update}.md` | Auto-synced from `.opencode` (APFS clone) |
-| `.gemini/commands/doctor/speckit.toml` + `.gemini/commands/doctor/{mcp,update}.toml` | Manual TOML mirrors (regenerated from .opencode markdown via converter) |
 | `.codex/prompts` | Symlink to `.opencode/commands` |
 
 ### Specification

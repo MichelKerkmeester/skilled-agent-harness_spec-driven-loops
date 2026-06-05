@@ -35,7 +35,6 @@ This snippet preserves the canonical memory/spec-kit operator workflow for `M-00
   find .opencode/agent -maxdepth 1 -type f -name '*.md' | wc -l
   find .claude/agents -maxdepth 1 -type f -name '*.md' | wc -l
   find .codex/agents -maxdepth 1 -type f -name '*.toml' | wc -l
-  find -L .gemini/agents -maxdepth 1 -type f -name '*.md' | wc -l
   ```
 ### Expected
 

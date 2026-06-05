@@ -26,12 +26,6 @@
       "supportsInCliSeats": true,
       "supportsExternalCliCapture": true,
       "notes": "Codex seats use the active runtime unless a caller explicitly delegates an external round."
-    },
-    "gemini": {
-      "agentPath": ".gemini/agents/ai-council.md",
-      "supportsInCliSeats": true,
-      "supportsExternalCliCapture": true,
-      "notes": "Gemini mirrors the same report and artifact contract."
     }
   },
   "validation": {

@@ -24,11 +24,6 @@
         "context": "CLI orchestrator peer"
       },
       {
-        "target": "cli-gemini",
-        "weight": 0.5,
-        "context": "CLI orchestrator peer"
-      },
-      {
         "target": "cli-devin",
         "weight": 0.5,
         "context": "CLI orchestrator peer"
@@ -44,7 +39,6 @@
     "related_to": [
       "cli-claude-code",
       "cli-codex",
-      "cli-gemini",
       "deep-research",
       "deep-review",
       "mcp-code-mode",

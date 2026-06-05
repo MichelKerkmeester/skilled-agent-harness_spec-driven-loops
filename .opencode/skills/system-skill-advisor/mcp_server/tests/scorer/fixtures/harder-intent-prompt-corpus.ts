@@ -95,16 +95,16 @@ export const HARDER_INTENT_PROMPT_CORPUS: ReadonlyArray<HarderIntentEntry> = [
     reason: 'Avoids Chrome/DevTools/console while using page/network terms that overlap frontend code work.',
   },
   {
-    prompt: 'Ask the search-grounded external model to sweep the architecture and report what this repo is missing.',
-    expectedSkill: 'cli-gemini',
+    prompt: 'Ask Codex with web search to sweep the architecture and report what this repo is missing.',
+    expectedSkill: 'cli-codex',
     category: 'lexical-mis-route',
-    reason: 'Search-grounded external model implies Gemini, but repo architecture terms can route to cli-codex/sk-code.',
+    reason: 'Codex web search should route to cli-codex, but repo architecture terms can route to sk-code.',
   },
   {
-    prompt: 'Use the Google-backed second opinion for a wide-context read before we decide on the design.',
-    expectedSkill: 'cli-gemini',
+    prompt: 'Use a Codex second opinion for a wide-context read before we decide on the design.',
+    expectedSkill: 'cli-codex',
     category: 'lexical-mis-route',
-    reason: 'Google-backed wide-context read describes Gemini CLI but avoids its explicit skill and CLI phrases.',
+    reason: 'Second-opinion language should route to cli-codex when Codex is named explicitly.',
   },
   {
     prompt: 'Run repeated evidence-gathering passes until the question stops producing new information, then synthesize.',

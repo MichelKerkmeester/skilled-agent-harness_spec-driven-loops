@@ -114,7 +114,7 @@ ESCALATION_NOTES: <open ambiguity or risk>
 
 ## 7. Mirror Sync
 
-All five cli-* cards (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
+All four cli-* cards (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-opencode`) are THIN DELEGATING mirrors: they link to this card as the authoritative source and do not copy the framework table or CLEAR scoring table. Each card contains a short header, a link here, and any model-specific addenda — nothing more.
 
 A duplication guard enforces this contract:
 
@@ -135,4 +135,3 @@ When editing this file, no mirroring step is required — the delegating cards r
 - `../../sk-prompt/references/depth_framework.md`
 - `../../cli-claude-code/assets/prompt_quality_card.md`
 - `../../cli-codex/assets/prompt_quality_card.md`
-- `../../cli-gemini/assets/prompt_quality_card.md`

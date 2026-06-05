@@ -18,7 +18,6 @@ Runtime path resolution:
 - OpenCode/Copilot runtime: `.opencode/agents/*.md`
 - Claude runtime: `.claude/agents/*.md`
 - Codex runtime: `.codex/agents/*.toml`
-- Gemini runtime: `.gemini/agents/*.md`
 
 Operator contract precedence for this skill surface:
 - Command entrypoint syntax in `.opencode/commands/deep/start-research-loop.md`

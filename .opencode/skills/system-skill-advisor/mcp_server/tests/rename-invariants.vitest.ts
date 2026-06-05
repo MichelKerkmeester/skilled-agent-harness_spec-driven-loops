@@ -41,9 +41,6 @@ describe('mk_skill_advisor rename invariants', () => {
     const claudeConfig = JSON.parse(readRepoFile('.claude/mcp.json')) as {
       mcpServers?: Record<string, { args?: string[] }>;
     };
-    const geminiConfig = JSON.parse(readRepoFile('.gemini/settings.json')) as {
-      mcpServers?: Record<string, { args?: string[] }>;
-    };
     const codexConfig = readRepoFile('.codex/config.toml');
 
     expect(Object.keys(opencodeConfig.mcp ?? {})).toContain('mk_skill_advisor');
@@ -51,9 +48,6 @@ describe('mk_skill_advisor rename invariants', () => {
 
     expect(Object.keys(claudeConfig.mcpServers ?? {})).toContain('mk_skill_advisor');
     expect(claudeConfig.mcpServers?.mk_skill_advisor.args).toContain('.opencode/bin/mk-skill-advisor-launcher.cjs');
-
-    expect(Object.keys(geminiConfig.mcpServers ?? {})).toContain('mk_skill_advisor');
-    expect(geminiConfig.mcpServers?.mk_skill_advisor.args).toContain('.opencode/bin/mk-skill-advisor-launcher.cjs');
 
     expect(codexConfig).toMatch(/\[mcp_servers\.mk_skill_advisor\]/);
     expect(codexConfig).toContain('args = [".opencode/bin/mk-skill-advisor-launcher.cjs"]');
@@ -63,7 +57,6 @@ describe('mk_skill_advisor rename invariants', () => {
     const configs = [
       readRepoFile('opencode.json'),
       readRepoFile('.claude/mcp.json'),
-      readRepoFile('.gemini/settings.json'),
       readRepoFile('.codex/config.toml'),
     ];
 

@@ -503,7 +503,7 @@ The dashboard now also includes a dedicated **Sample Quality** section. This sep
 - Preserve repeatability evidence when benchmark claims are made
 - Prefer the simpler candidate when scores tie
 - Keep benchmark evidence separate from mirror-drift packaging work
-- Require integration evidence to name each expected runtime mirror path explicitly (`.claude/agents`, `.codex/agents`, `.gemini/agents`, plus any declared extra mirrors) before trusting `integrationGate`
+- Require integration evidence to name each expected runtime mirror path explicitly (`.claude/agents`, `.codex/agents`, plus any declared extra mirrors) before trusting `integrationGate`
 
 ### ❌ NEVER
 

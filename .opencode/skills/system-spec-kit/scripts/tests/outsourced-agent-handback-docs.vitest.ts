@@ -15,17 +15,15 @@ describe('outsourced agent handback docs', () => {
   const skillDocs = [
     '.opencode/skills/cli-codex/SKILL.md',
     '.opencode/skills/cli-claude-code/SKILL.md',
-    '.opencode/skills/cli-gemini/SKILL.md',
   ];
 
   const promptDocs = [
     '.opencode/skills/cli-codex/assets/prompt_templates.md',
     '.opencode/skills/cli-claude-code/assets/prompt_templates.md',
-    '.opencode/skills/cli-gemini/assets/prompt_templates.md',
   ];
 
   // Followup-actual: vitest-recovery-followup runtime regression exceeds the 30 LOC single-file repair rule
-  it.fails.skip('keeps all four skill docs aligned on post-010 handback guidance', () => {
+  it.fails.skip('keeps remaining skill docs aligned on post-010 handback guidance', () => {
     for (const docPath of skillDocs) {
       const content = readWorkspaceFile(docPath);
 
@@ -43,7 +41,7 @@ describe('outsourced agent handback docs', () => {
     }
   });
 
-  it('keeps all four prompt templates aligned on richer payload guidance', () => {
+  it('keeps remaining prompt templates aligned on richer payload guidance', () => {
     for (const docPath of promptDocs) {
       const content = readWorkspaceFile(docPath);
 
@@ -63,7 +61,7 @@ describe('outsourced agent handback docs', () => {
 
   it('keeps the feature catalog aligned to the 015 handback phase', () => {
     const content = readWorkspaceFile(
-      '.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/17-outsourced-agent-memory-capture.md',
+      '.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md',
     );
 
     expect(content).toContain('015-outsourced-agent-handback');

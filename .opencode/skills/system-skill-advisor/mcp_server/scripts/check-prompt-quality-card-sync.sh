@@ -4,7 +4,7 @@
 #                                      prompt-knowledge architecture
 # ====================================================================
 # Enforces "one home per fact" across sk-prompt (framework engine),
-# sk-prompt-small-model (per-model hub), and the 5 cli-* executors.
+# sk-prompt-small-model (per-model hub), and the 4 cli-* executors.
 # Four structural checks (no semantic/NLP matching — pointer presence,
 # table absence, registry completeness, trigger membership):
 #
@@ -32,7 +32,7 @@
 #   1 — any check fails (see FAIL lines)
 #
 # Usage: check-prompt-quality-card-sync.sh [repo-root]
-set -uo pipefail
+set -euo pipefail
 
 ROOT="${1:-.}"
 export ROOT
@@ -60,7 +60,6 @@ has_clear_matrix() {
 
 cli_cards=(
   "$ROOT/.opencode/skills/cli-opencode/assets/prompt_quality_card.md"
-  "$ROOT/.opencode/skills/cli-gemini/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skills/cli-devin/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skills/cli-codex/assets/prompt_quality_card.md"
   "$ROOT/.opencode/skills/cli-claude-code/assets/prompt_quality_card.md"
@@ -91,7 +90,7 @@ done
 # A cli-*/SKILL.md that re-enumerates it (signature: a line naming both
 # "stakeholder" and "ambiguous requirement") has drifted — must point.
 echo "CHECK 2 — Tier-3 pointer-only (no inlined escalation triggers)"
-cli_skills=(cli-opencode cli-gemini cli-devin cli-codex cli-claude-code)
+cli_skills=(cli-opencode cli-devin cli-codex cli-claude-code)
 for skill in "${cli_skills[@]}"; do
   f="$ROOT/.opencode/skills/$skill/SKILL.md"
   if [[ ! -f "$f" ]]; then echo "  MISSING: $skill/SKILL.md"; overall_exit=1; continue; fi

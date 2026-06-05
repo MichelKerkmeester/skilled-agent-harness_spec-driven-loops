@@ -354,7 +354,7 @@ wait
 
 **What you see**: `ERROR: cli-opencode self-invocation refused. You are already inside OpenCode...`
 **Common causes**: The smart router detected an `OPENCODE_*` env var, an `opencode` parent process, or a live `~/.opencode/state/<id>/lock`.
-**Fix**: Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-gemini) OR open a fresh shell session OR add explicit "parallel detached" / "ablation suite" / "worker farm" / "share URL" keywords to the prompt to switch the router into use case 2.
+**Fix**: Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-devin) OR open a fresh shell session OR add explicit "parallel detached" / "ablation suite" / "worker farm" / "share URL" keywords to the prompt to switch the router into use case 2.
 
 ### Authentication Failure
 
@@ -390,7 +390,7 @@ wait
 A: Use cli-opencode when the task needs the project's full plugin / skill / MCP / Spec Kit Memory runtime, when you want a parallel detached session for ablation or worker farms, or when a non-Anthropic CLI needs OpenCode-specific plugins. For raw model dispatches, use the appropriate sibling.
 
 **Q: Can OpenCode CLI search the web?**
-A: Indirectly: the dispatched session can call Code Mode (mcp-code-mode) to reach external services / ClickUp / Figma / Chrome DevTools, or call Code Graph for semantic code search, but there is no first-class `--search` flag. For Google Search grounding use cli-gemini; for Codex's `--search` use cli-codex.
+A: Indirectly: the dispatched session can call Code Mode (mcp-code-mode) to reach external services / ClickUp / Figma / Chrome DevTools, or call Code Graph for semantic code search, but there is no first-class `--search` flag. For Codex's web search, use cli-codex with `--search`.
 
 **Q: How does the self-invocation guard work?**
 A: Three layers (per ADR-001). Layer 1 checks for any `OPENCODE_*` env var. Layer 2 walks the process ancestry looking for `opencode`. Layer 3 probes `~/.opencode/state/<id>/lock`. ANY positive trips the guard. The router then refuses unless the prompt has explicit parallel-session keywords.
@@ -438,5 +438,4 @@ A: Yes via the dispatched session's native Task tool, but NOT via nested `openco
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-- [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 - [system-spec-kit](../system-spec-kit/): Spec folder workflow + Spec Kit Memory (cross-AI handback target)

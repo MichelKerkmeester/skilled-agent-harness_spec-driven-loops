@@ -81,7 +81,6 @@ Examples:
 .opencode/agents/my-agent.md
 .claude/agents/my-agent.md
 .codex/agents/my-agent.md
-.gemini/agents/my-agent.md
 ```
 
 **Invariants**:
@@ -94,7 +93,6 @@ Examples:
 - Copilot/default OpenCode profile -> `.opencode/agents/`
 - Claude profile -> `.claude/agents/`
 - Codex CLI profile -> `.codex/agents/`
-- Gemini CLI profile -> `.gemini/agents/`
 
 Do not create the file in one runtime directory and document it as if it belongs to another. The runtime path is part of the contract.
 

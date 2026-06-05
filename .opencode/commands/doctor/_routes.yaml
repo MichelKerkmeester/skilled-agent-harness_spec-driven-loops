@@ -158,7 +158,7 @@ mcp_subroutes:
     yaml: doctor_mcp_install.yaml
     allowed_flags: ["--server <name>", "--runtime <name>"]
     mutating: mutates
-    gate3_location: "MCP server install dirs + runtime config (.opencode.json / .claude/settings.json / .codex/config.toml / .gemini/settings.json)"
+    gate3_location: "MCP server install dirs + runtime config (.opencode.json / .claude/settings.json / .codex/config.toml)"
     trigger_phrases:
       - "MCP install"
       - "MCP server fresh install"

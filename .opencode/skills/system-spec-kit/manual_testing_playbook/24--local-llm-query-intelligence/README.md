@@ -112,4 +112,4 @@ Aggregate the 15 scenarios into a single packet-level summary in `_sandbox/24--l
 - Cascade behavior: `shared/embeddings/factory.ts:resolveProvider`, `shared/embeddings/profile.ts:resolveActiveProfileProvider`
 - Causal graph: `shared/embeddings/causal-graph-db.ts`, `mcp_server/handlers/causal-graph.ts`
 - Drift detection: `mcp_server/handlers/causal-graph.ts` (memory_drift_why handler)
-- Cross-AI MCP wiring: `.codex/config.toml`, `.gemini/settings.json`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)
+- Cross-AI MCP wiring: `.codex/config.toml`, `.claude/mcp.json`, `opencode.json`, `.mcp.json`, `.vscode/mcp.json` (all point at the same Memory MCP DB)

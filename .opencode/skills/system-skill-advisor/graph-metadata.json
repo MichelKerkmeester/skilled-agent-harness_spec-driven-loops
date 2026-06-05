@@ -17,11 +17,6 @@
         "context": "routes codex delegation requests"
       },
       {
-        "target": "cli-gemini",
-        "weight": 0.7,
-        "context": "routes gemini delegation requests"
-      },
-      {
         "target": "mcp-chrome-devtools",
         "weight": 0.7,
         "context": "routes browser debugging requests"

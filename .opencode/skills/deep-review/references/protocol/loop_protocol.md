@@ -298,7 +298,7 @@ During iterations focused on the Traceability dimension, the agent executes appl
 | `spec_code` | Compare normative claims in spec.md against shipped implementation | Pass/partial/fail per claim with file:line evidence |
 | `checklist_evidence` | Verify every `[x]` mark in checklist.md has supporting evidence | Pass/partial/fail per checked item |
 | `skill_agent` | Compare SKILL.md contracts against runtime agent definitions | Agreement/drift/disagreement per capability |
-| `agent_cross_runtime` | Compare agent definitions across runtimes (.opencode, .claude, .codex, .gemini) | Parity/drift/divergence per runtime pair |
+| `agent_cross_runtime` | Compare agent definitions across runtimes (.opencode, .claude, .codex) | Parity/drift/divergence per runtime pair |
 | `feature_catalog_code` | Compare catalog claims against discoverable implementation | Match/stale/missing per feature |
 | `playbook_capability` | Validate playbook scenarios against executable reality | Executable/needs-update/impossible per scenario |
 
@@ -754,4 +754,3 @@ The executor-agnostic iteration prompt lives at `assets/prompt_pack_iteration.md
 ### Code-Graph Readiness TrustState Surface
 
 On this skill surface, the live code-graph readiness contract only reaches four TrustState values: `live`, `stale`, `absent`, and `unavailable`. The values `cached`, `imported`, `rebuilt`, and `rehomed` remain declared in the shared TrustState type for compatibility and downstream schema stability, but the seven code-graph handlers and readiness helpers used here do not emit them today.
-- Gemini: `.gemini/agents/deep-review.md`

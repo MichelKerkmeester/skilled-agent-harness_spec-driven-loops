@@ -62,30 +62,7 @@ function detectCopilotHookPolicy(): HookPolicy {
 }
 
 function detectGeminiHookPolicy(): HookPolicy {
-  try {
-    const settingsPath = resolve(process.cwd(), '.gemini', 'settings.json');
-    if (!existsSync(settingsPath)) return 'unavailable';
-    const parsed = JSON.parse(readFileSync(settingsPath, 'utf-8')) as { hooks?: unknown };
-    const hooks = parsed.hooks;
-    const hasHookSurface = hooks && typeof hooks === 'object' && (
-      hasNamedHookEntries(hooks, 'BeforeAgent')
-      || hasNamedHookEntries(hooks, 'SessionStart')
-      || hasNamedHookEntries(hooks, 'PreCompress')
-      || hasNamedHookEntries(hooks, 'SessionEnd')
-      || hasNamedHookEntries(hooks, 'UserPromptSubmit')
-      || hasNamedHookEntries(hooks, 'PreCompact')
-      || hasNamedHookEntries(hooks, 'Stop')
-    );
-    return hasHookSurface ? 'enabled' : 'disabled_by_scope';
-  } catch {
-    return 'unavailable';
-  }
-}
-
-function hasNamedHookEntries(hooks: unknown, eventName: string): boolean {
-  if (typeof hooks !== 'object' || hooks === null) return false;
-  const entries = (hooks as Record<string, unknown>)[eventName];
-  return Array.isArray(entries) && entries.length > 0;
+  return 'unavailable';
 }
 
 function hasCopilotWrapper(hooks: unknown, eventName: string, commandNeedles: string[]): boolean {

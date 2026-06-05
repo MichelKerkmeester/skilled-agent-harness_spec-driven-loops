@@ -103,7 +103,7 @@ Prompt hooks and lifecycle hooks are separate support. A runtime can support pro
 | Claude | yes (`UserPromptSubmit`) | yes (`SessionStart`) | yes (`PreCompact`) | yes (`Stop`) | `.claude/settings.local.json` hook events | `/spec_kit:resume`, `/memory:save`, direct MCP tools |
 | Codex | yes (`UserPromptSubmit`) | yes (`SessionStart`, live only when `codex_hooks` and `hooks.json` are both present) | no | no Spec Kit cleanup hook | `[features].codex_hooks = true` plus user/workspace `hooks.json`; `.codex/settings.json` is template-only | `/spec_kit:resume`, `session_bootstrap()`, prompt-wrapper fallback |
 | Copilot | yes (file-based custom instructions; NEXT-PROMPT freshness; current prompt sees PRIOR turn's brief) | yes (`SessionStart` writer) | limited cache/writer path; no model-visible precompute injection | n/a | Copilot-supported writer scripts; see `mcp_server/hooks/copilot/README.md` | Managed instructions file or `/spec_kit:resume` |
-| Gemini | yes (`BeforeAgent`) | yes (`SessionStart`) | yes (`PreCompress`) | yes (`SessionEnd`) | `.gemini/settings.json` hook events | `/spec_kit:resume`, `/memory:save` |
+| Gemini | no checked-in project hook | no checked-in project hook | no checked-in project hook | no checked-in project hook | External CLI only | `/spec_kit:resume`, `/memory:save` |
 | OpenCode | yes (`experimental.chat.system.transform`) | yes (`event` startup handlers) | yes (`event` compact handlers / compact plugin) | yes (`event` cleanup handlers) | Plugin bridge and event handlers | `/spec_kit:resume`, direct MCP tools |
 
 ### Codex Timeout Fallback Semantics

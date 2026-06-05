@@ -233,7 +233,7 @@ claude -p "Full security audit of the entire src/ directory" \
 | **Read-Only Mode** | `--permission-mode plan` | N/A | `--sandbox read-only` |
 | **Web Search** | N/A (use Gemini/Codex) | Google Search grounding | `--search` flag |
 | **Cost Control** | `--max-budget-usd` | N/A | N/A |
-| **Agent System** | 9 agents via `--agent` | 8 agents via `.gemini/agents/` | 9 agents via `-p` profiles |
+| **Agent System** | 9 agents via `--agent` | explicit role prompts | 9 agents via `-p` profiles |
 | **Session Continuity** | `--continue`, `--resume` | `--session` | `resume`, `fork` |
 | **Image Input** | N/A | `--image` | `--image` / `-i` |
 | **Memory System** | Spec Kit Memory MCP | N/A | N/A |
@@ -322,4 +322,3 @@ if echo "$OUTPUT" | grep -q "CLAUDECODE"; then
     echo "Nesting detected — cannot run Claude Code inside itself"
 fi
 ```
-

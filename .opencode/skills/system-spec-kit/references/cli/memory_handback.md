@@ -1,17 +1,17 @@
 ---
 title: Memory Handback Protocol for cli-* Skills
-description: Canonical 7-step Memory Handback procedure shared across the five cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+description: Canonical 7-step Memory Handback procedure shared across the four cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
 ---
 
 # Memory Handback Protocol (cli-* family)
 
-When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-gemini`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all five sibling skills except for the Step 2 extraction delimiter: the four HTML-comment-form skills (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`) emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->`, while `cli-devin` emits the plain-text `BEGIN_MEMORY_HANDBACK` / `END_MEMORY_HANDBACK` form. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
+When a calling AI delegates a task to one of the cli-* skills (`cli-claude-code`, `cli-codex`, `cli-devin`, `cli-opencode`) and needs to preserve the resulting session context, the agent runs the same 7-step procedure documented below. The procedure is identical across all four sibling skills except for the Step 2 extraction delimiter: the three HTML-comment-form skills (`cli-claude-code`, `cli-codex`, `cli-opencode`) emit `<!-- MEMORY_HANDBACK_START -->` / `<!-- MEMORY_HANDBACK_END -->`, while `cli-devin` emits the plain-text `BEGIN_MEMORY_HANDBACK` / `END_MEMORY_HANDBACK` form. This reference holds the canonical copy. Each cli-* SKILL.md cites the prompt_templates.md §N anchor for its own Memory Epilogue template — see the skill's SKILL.md §4 Memory Handback Protocol for the file-specific anchor reference.
 
 ---
 
 ## 1. OVERVIEW
 
-Canonical 7-step Memory Handback procedure shared across the five cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
+Canonical 7-step Memory Handback procedure shared across the four cli-* sibling skills. Covers MEMORY_HANDBACK extraction, structured-JSON normalization, generate-context.js dispatch modes, and the post-010 save gates.
 
 ---
 
@@ -19,7 +19,7 @@ Canonical 7-step Memory Handback procedure shared across the five cli-* sibling 
 
 1. **Include epilogue**: Append the Spec-Doc Record Epilogue template (see the cli-* skill's `assets/prompt_templates.md` §N — the section number is cited inline in the skill's §4) to the delegated prompt.
 2. **Extract section**: After receiving agent output, extract the `MEMORY_HANDBACK` section. The delimiter format differs by provider:
-   - **HTML-comment form** (`cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`): `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
+   - **HTML-comment form** (`cli-claude-code`, `cli-codex`, `cli-opencode`): `/<!-- MEMORY_HANDBACK_START -->([\s\S]*?)<!-- MEMORY_HANDBACK_END -->/`
    - **Plain-text form** (`cli-devin`): `/BEGIN_MEMORY_HANDBACK([\s\S]*?)END_MEMORY_HANDBACK/`
 3. **Convert to structured JSON**: Build the JSON-primary payload that `generate-context.js` documents. Use `specFolder`, `user_prompts`, `observations`, and `recent_context` as the canonical field names in new examples. Add `FILES`, `sessionSummary`, `keyDecisions`, `nextSteps`, `triggerPhrases`, `toolCalls`, `exchanges`, `preflight`, and `postflight` when the delegated run produced that evidence.
 4. **Redact and scrub**: Remove secrets, tokens, credentials, and any unnecessary sensitive values before writing the JSON file or sending the payload to the save script.

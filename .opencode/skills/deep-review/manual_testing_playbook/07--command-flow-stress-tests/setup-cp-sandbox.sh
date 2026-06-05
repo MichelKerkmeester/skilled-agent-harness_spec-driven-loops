@@ -90,7 +90,6 @@ require_path "${REPO_ROOT}/.opencode/skills/system-spec-kit"
 require_path "${REPO_ROOT}/.opencode/skills/sk-code-review"
 require_path "${REPO_ROOT}/.opencode/agents/deep-review.md"
 require_path "${REPO_ROOT}/.claude/agents/deep-review.md"
-require_path "${REPO_ROOT}/.gemini/agents/deep-review.md"
 require_path "${REPO_ROOT}/.codex/agents/deep-review.toml"
 
 validate_sandbox_dir "$SANDBOX_DIR"
@@ -105,7 +104,6 @@ copy_dir "${REPO_ROOT}/.opencode/skills/sk-code-review" "${SANDBOX_DIR}/.opencod
 
 copy_file "${REPO_ROOT}/.opencode/agents/deep-review.md" "${SANDBOX_DIR}/.opencode/agents/deep-review.md"
 copy_file "${REPO_ROOT}/.claude/agents/deep-review.md" "${SANDBOX_DIR}/.claude/agents/deep-review.md"
-copy_file "${REPO_ROOT}/.gemini/agents/deep-review.md" "${SANDBOX_DIR}/.gemini/agents/deep-review.md"
 copy_file "${REPO_ROOT}/.codex/agents/deep-review.toml" "${SANDBOX_DIR}/.codex/agents/deep-review.toml"
 
 mkdir -p "${SANDBOX_DIR}/targets"

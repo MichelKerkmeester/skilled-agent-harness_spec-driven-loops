@@ -145,14 +145,13 @@ Current code-graph behavior is intentionally bounded:
 
 ### Runtime Coverage Note (2026-04-04)
 
-The repo contains checked-in MCP wiring for OpenCode, Claude Code, Codex, Gemini, and VS Code / Copilot, but startup-context surfacing is not identical across those runtimes:
+The repo contains checked-in MCP wiring for OpenCode, Claude Code, Codex, and VS Code / Copilot, but startup-context surfacing is not identical across those runtimes:
 
 | Runtime | Checked-in MCP config | Startup / recovery surface currently visible in repo |
 |---|---|---|
 | OpenCode | `opencode.json` | MCP wiring is checked in. A plugin-based startup digest implementation exists under `.opencode/plugins/`, but repo registration of that plugin is runtime-dependent and not shown in `opencode.json`. |
 | Claude Code | `.claude/mcp.json` | Checked-in SessionStart / PreCompact / Stop hooks in `.claude/settings.local.json`. |
 | Codex | `.codex/config.toml` | Checked-in MCP config plus native `SessionStart` and `UserPromptSubmit` hooks when `[features].codex_hooks = true` in `~/.codex/config.toml` and `~/.codex/hooks.json` is wired. When those hooks are unavailable, recover via `/spec_kit:resume` or `session_bootstrap`. |
-| Gemini | `.gemini/settings.json` | Checked-in MCP config plus SessionStart / PreCompress / BeforeAgent / SessionEnd hook wiring. |
 | Copilot | `.vscode/mcp.json` | Checked-in MCP wrapper config plus merged `.claude/settings.local.json` matcher wrappers. Copilot reads the top-level `type` / `bash` / `timeoutSec` fields there, with writer-backed `UserPromptSubmit` and `SessionStart` commands handling managed custom-instructions refresh. |
 
 `Claude Desktop` remains documented here as a generic MCP configuration example, but it is outside the repo-checked runtime set above. Treat this table as repository configuration evidence, not as a blanket claim of live startup parity in every client.
@@ -294,12 +293,11 @@ Checklist:
 
 Phase 4 connects Spec Kit Memory to your AI assistant.
 
-The repo ships checked-in configuration examples for OpenCode, Claude Code, Codex, Gemini, and Copilot. This guide keeps full copy-paste walkthroughs for OpenCode and Claude surfaces, while the checked-in project configs are the canonical setup references for the other repo-backed CLIs:
+The repo ships checked-in configuration examples for OpenCode, Claude Code, Codex, and Copilot. This guide keeps full copy-paste walkthroughs for OpenCode and Claude surfaces, while the checked-in project configs are the canonical setup references for the other repo-backed CLIs:
 
 - `opencode.json`
 - `.claude/mcp.json`
 - `.codex/config.toml`
-- `.gemini/settings.json`
 - `.vscode/mcp.json`
 
 ### Option A: OpenCode

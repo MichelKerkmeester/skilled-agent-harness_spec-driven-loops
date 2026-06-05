@@ -41,7 +41,7 @@ The system comprises 4 components spanning references, agent definitions, and va
 
 ### Agent Knowledge Embedding (Layer 1)
 
-**2. Compact structural contract in 4 CLI distributed-governance spec-authoring flow definitions:** A 49-line compact version of the structural contract is embedded in each of the four `distributed-governance spec authoring` agent definitions — Claude Code (`.claude/agents/speckit.md`), Copilot (`.opencode/agents/speckit.md`), Codex (`.codex/agents/speckit.toml`), and Gemini (`.gemini/agents/speckit.md`). This gives every agent pre-write knowledge of anchor-to-H2 mappings for each document type at each level.
+**2. Compact structural contract in 3 CLI distributed-governance spec-authoring flow definitions:** A 49-line compact version of the structural contract is embedded in each repo-managed `distributed-governance spec authoring` agent definition — Claude Code (`.claude/agents/speckit.md`), Copilot (`.opencode/agents/speckit.md`), and Codex (`.codex/agents/speckit.toml`). This gives every agent pre-write knowledge of anchor-to-H2 mappings for each document type at each level.
 
 ### Content Minimums (Layer 3)
 
@@ -63,7 +63,6 @@ The system comprises 4 components spanning references, agent definitions, and va
 | `.claude/agents/speckit.md` | Agent Def | Claude Code distributed-governance spec authoring with embedded contract |
 | `.opencode/agents/speckit.md` | Agent Def | Copilot distributed-governance spec authoring with embedded contract |
 | `.codex/agents/speckit.toml` | Agent Def | Codex distributed-governance spec authoring with embedded contract |
-| `.gemini/agents/speckit.md` | Agent Def | Gemini distributed-governance spec authoring with embedded contract |
 | `.opencode/skills/system-spec-kit/scripts/utils/template-structure.js` | Engine | Contract extraction CLI |
 
 ---

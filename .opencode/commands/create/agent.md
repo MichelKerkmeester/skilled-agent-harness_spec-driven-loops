@@ -262,7 +262,6 @@ Use `[runtime_agent_path]` based on the active runtime profile:
 - Default/Copilot: `.opencode/agent`
 - Claude: `.claude/agents`
 - Codex: `.codex/agents`
-- Gemini CLI: `.gemini/agents`
 
 ---
 

@@ -145,11 +145,11 @@ cli-devin/
     ├── 05--session-continuity/       # 3 scenarios
     ├── 06--cloud-handoff/            # 2 scenarios (5-check gate + live round trip)
     ├── 07--self-invocation-guard/    # 2 scenarios
-    ├── 08--cross-ai-dispatch/        # 4 scenarios (one per sibling cli-* runtime)
+    ├── 08--cross-ai-dispatch/        # sibling cli-* runtime scenarios
     └── 09--acp-bridge/               # 1 scenario (devin acp lifecycle)
 ```
 
-Family parity, this 7-entry directory shape matches `cli-claude-code`, `cli-codex`, `cli-gemini`, `cli-opencode`. Per-version changelog files (`v{MAJOR}.{MINOR}.{PATCH}.{BUILD}.md`) and the root `manual_testing_playbook.md` follow the family canonical shape.
+Family parity, this 7-entry directory shape matches `cli-claude-code`, `cli-codex`, and `cli-opencode`. Per-version changelog files (`v{MAJOR}.{MINOR}.{PATCH}.{BUILD}.md`) and the root `manual_testing_playbook.md` follow the family canonical shape.
 
 ---
 
@@ -301,7 +301,6 @@ A: No. The skill targets only the official Cognition Rust `devin` binary (instal
 ### Related Skills
 - [cli-claude-code](../cli-claude-code/): Anthropic Claude Code CLI orchestrator
 - [cli-codex](../cli-codex/): OpenAI Codex CLI orchestrator
-- [cli-gemini](../cli-gemini/): Google Gemini CLI orchestrator
 - [cli-opencode](../cli-opencode/): OpenCode CLI orchestrator (full plugin/skill/MCP runtime)
 - [sk-code](../sk-code/): Surface-aware code quality contracts
 - [mcp-code-mode](../mcp-code-mode/): External MCP work

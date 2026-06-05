@@ -432,7 +432,6 @@ Use `[runtime_agent_path]` based on active profile:
 - Default profile -> `.opencode/agent`
 - Codex profile -> `.codex/agents`
 - Claude profile -> `.claude/agents`
-- Gemini profile -> `.gemini/agents`
 
 ---
 

@@ -72,7 +72,7 @@ Public MCP namespace: `mcp__mk_code_index__*`. Hyphens in the server name become
 - Node.js >= 20.11.0 (matches `mcp-doctor.sh` minimum threshold; check with `node --version`).
 - npm available on PATH.
 - Repository root as the current working directory.
-- Runtime MCP configuration with an entry for `mk_code_index` in the active config (one of: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.gemini/settings.json`, `.devin/config.json`, `.vscode/mcp.json`).
+- Runtime MCP configuration with an entry for `mk_code_index` in the active config (one of: `opencode.json`, `.claude/mcp.json`, `.codex/config.toml`, `.devin/config.json`, `.vscode/mcp.json`).
 
 `mk-spec-memory` is NOT a prerequisite. Code Graph does not need the memory MCP server to be running first. The TypeScript build emits only this package's runtime files under `mcp_server/dist/`.
 
@@ -146,7 +146,6 @@ Runtime-config locations:
 | OpenCode | `opencode.json` |
 | Claude Code | `.claude/mcp.json` |
 | Codex CLI | `.codex/config.toml` |
-| Gemini CLI | `.gemini/settings.json` |
 | Devin CLI | `.devin/config.json` |
 | VSCode | `.vscode/mcp.json` |
 
@@ -246,7 +245,7 @@ echo 'SPECKIT_CODE_GRAPH_MAINTAINER_MODE=true' >> .env.local
 | Config still uses `system_code_graph` namespace | Pre-packet-010 config not updated. | Rename the entry to `mk_code_index`, point at `.opencode/bin/mk-code-index-launcher.cjs`, and use `mcp__mk_code_index__*` for all tool references. |
 | Root-level `.opencode/skills/system-code-graph/dist/` exists | Stale pre-cleanup build output is still present. | Run `npm --prefix .opencode/skills/system-code-graph run clean && npm --prefix .opencode/skills/system-code-graph run build`. |
 | `/doctor:mcp debug --server mk_code_index` fails `root_dist_absent` | Doctor detected stale root-level build output. | Run `/doctor:mcp debug --server mk_code_index --fix`, or run the clean and build commands above manually. |
-| Cross-runtime config audit needed | Want to verify all 6 runtimes are consistent. | `for f in opencode.json .claude/mcp.json .codex/config.toml .gemini/settings.json .devin/config.json .vscode/mcp.json; do printf '%-30s ' "$f"; grep -c 'mk_code_index\|mk-code-index' "$f"; done` should show >= 1 hit per file. |
+| Cross-runtime config audit needed | Want to verify checked-in runtimes are consistent. | `for f in opencode.json .claude/mcp.json .codex/config.toml .devin/config.json .vscode/mcp.json; do printf '%-30s ' "$f"; grep -c 'mk_code_index\|mk-code-index' "$f"; done` should show >= 1 hit per file. |
 | `/doctor:mcp install --server mk_code_index` fails with "Unknown server" | `doctor_mcp_install.yaml` was not updated to include `mk_code_index` in `valid_values`. | Run `/doctor:update` to refresh subsystem coverage, or patch `valid_values` directly. |
 
 Runtime diagnostics are available via the `/doctor code-graph` slash-command surface (read-only Phase A by default). See `.opencode/install_guides/SET-UP - Code Graph.md` for the full diagnostic walkthrough.

@@ -17,11 +17,6 @@
         "context": "prompt quality card"
       },
       {
-        "target": "cli-gemini",
-        "weight": 0.4,
-        "context": "prompt quality card"
-      },
-      {
         "target": "cli-devin",
         "weight": 0.4,
         "context": "prompt quality card"
@@ -48,8 +43,7 @@
       "sk-doc",
       "sk-code",
       "cli-claude-code",
-      "cli-codex",
-      "cli-gemini"
+      "cli-codex"
     ]
   },
   "domains": [

@@ -330,7 +330,6 @@ Use the agent directory that matches the active runtime/provider profile:
 | **Opencode**      | `.opencode/agents/` |
 | **Claude Code**   | `.claude/agents/`   |
 | **Codex CLI**     | `.codex/agents/`    |
-| **Gemini CLI**    | `.gemini/agents/`   |
 
 **Resolution rule:** pick one directory by runtime and stay consistent for that workflow phase.
 

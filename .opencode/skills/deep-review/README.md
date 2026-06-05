@@ -243,7 +243,6 @@ Created under the resolved `{artifact_dir}` during initialization. First runs wi
 | OpenCode / Copilot | `.opencode/agents/deep-review.md` |
 | Claude | `.claude/agents/deep-review.md` |
 | Codex | `.codex/agents/deep-review.toml` |
-| Gemini | `.gemini/agents/deep-review.md` |
 
 ---
 
@@ -434,7 +433,6 @@ A: Each iteration appends `graphEvents` to its JSONL record. The coverage-graph 
 | OpenCode / Copilot | [`.opencode/agents/deep-review.md`](../../agents/deep-review.md) |
 | Claude | `.claude/agents/deep-review.md` |
 | Codex | `.codex/agents/deep-review.toml` |
-| Gemini | `.gemini/agents/deep-review.md` |
 
 ### Commands
 

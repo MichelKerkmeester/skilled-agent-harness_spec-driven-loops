@@ -26,23 +26,21 @@
   "targets": [],
 
   // `fixed` declares files deep-improvement MUST NEVER mutate. These paths
-  // belong to LIVE spec-kit surfaces (commands + templates) outside this
-  // skill; they are protections, not static profiles for the handover agent.
-  "fixed": [
-    ".opencode/commands/speckit/handover.md",
-    ".agents/commands/speckit/handover.toml",
-    ".gemini/commands/speckit/handover.toml",
-    ".opencode/skills/system-spec-kit/templates/handover.md"
-  ],
+    // belong to LIVE spec-kit surfaces (commands + templates) outside this
+    // skill; they are protections, not static profiles for the handover agent.
+    "fixed": [
+      ".opencode/commands/speckit/handover.md",
+      ".agents/commands/speckit/handover.toml",
+      ".opencode/skills/system-spec-kit/templates/handover.md"
+    ],
 
   // `forbidden` declares files deep-improvement MUST NEVER write to even
   // when a candidate superficially matches. Same rationale as `fixed`.
-  "forbidden": [
-    ".opencode/commands/speckit/handover.md",
-    ".agents/commands/speckit/handover.toml",
-    ".gemini/commands/speckit/handover.toml",
-    ".opencode/skills/system-spec-kit/templates/handover.md"
-  ],
+    "forbidden": [
+      ".opencode/commands/speckit/handover.md",
+      ".agents/commands/speckit/handover.toml",
+      ".opencode/skills/system-spec-kit/templates/handover.md"
+    ],
   "packaging": {
     "mirrorSyncMode": "downstream-only",
     "forbidMirrorEvidenceAsBenchmarkTruth": true

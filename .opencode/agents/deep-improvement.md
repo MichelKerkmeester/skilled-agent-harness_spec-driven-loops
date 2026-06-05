@@ -161,7 +161,7 @@ Returned JSON MUST include a `critic_pass` field that lists each challenge label
   "critic_pass": {
     "scorer overfit": "Refused regex-only fix; candidate strengthens workflow not just check satisfaction.",
     "helper bypass": "Cited scan-integration.cjs + score-candidate.cjs evidence; no interpretation-only claims.",
-    "mirror drift concealment": "Named .claude/.gemini/.codex mirror packaging debt explicitly; not hidden.",
+    "mirror drift concealment": "Named .claude/.codex mirror packaging debt explicitly; not hidden.",
     "fixture narrowness": "Verified candidate generalizes beyond the in-scope fixture contract.",
     "promotion leakage": "No wording implies promotion or mirror sync from this proposal-only agent.",
     "bait challenged": "Quoted dispatch bait phrase verbatim and rejected it: '<bait phrase>'."

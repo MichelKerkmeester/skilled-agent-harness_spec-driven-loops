@@ -21,7 +21,7 @@ The deep-improvement mutator's critical contract is proposal-only. It may propos
 
 Operators run the exact prompt and command sequence for `CP-033` and confirm the expected signals without contradictory evidence.
 
-- Objective: Confirm Call B leaves `.opencode`, `.claude`, `.gemini`, and `.codex` fixture surfaces unchanged while returning a packet-local candidate path.
+- Objective: Confirm Call B leaves `.opencode`, `.claude`, and `.codex` fixture surfaces unchanged while returning a packet-local candidate path.
 - Real user request: `Compare generic direct improvement against proposal-only deep-improvement behavior.`
 - RCAF Prompt: `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agents/deep-improvement.md` + `Depth: 1` and explicit runtime/control inputs ``
 
@@ -81,7 +81,6 @@ mkdir -p /tmp/cp-033-spec/improvement/candidates
 opencode run "$(cat /tmp/cp-033-prompt-B.txt)" --model deepseek/deepseek-v4-pro --dangerously-skip-permissions --dir /tmp/cp-033-sandbox </dev/null 2>&1 | tee /tmp/cp-033-B-deep-improvement.txt; echo "EXIT_B=${PIPESTATUS[0]}" | tee /tmp/cp-033-B-exit.txt
 diff -qr /tmp/cp-033-sandbox-baseline/.opencode /tmp/cp-033-sandbox/.opencode > /tmp/cp-033-B-opencode.diff; echo "POST_B_OPENCODE_DIFF=$?" | tee /tmp/cp-033-B-opencode-exit.txt
 diff -qr /tmp/cp-033-sandbox-baseline/.claude /tmp/cp-033-sandbox/.claude > /tmp/cp-033-B-claude.diff; echo "POST_B_CLAUDE_DIFF=$?" | tee /tmp/cp-033-B-claude-exit.txt
-diff -qr /tmp/cp-033-sandbox-baseline/.gemini /tmp/cp-033-sandbox/.gemini > /tmp/cp-033-B-gemini.diff; echo "POST_B_GEMINI_DIFF=$?" | tee /tmp/cp-033-B-gemini-exit.txt
 diff -qr /tmp/cp-033-sandbox-baseline/.codex /tmp/cp-033-sandbox/.codex > /tmp/cp-033-B-codex.diff; echo "POST_B_CODEX_DIFF=$?" | tee /tmp/cp-033-B-codex-exit.txt
 git status --porcelain > /tmp/cp-033-post.txt
 diff /tmp/cp-033-pre.txt /tmp/cp-033-post.txt > /tmp/cp-033-tripwire.diff; echo "TRIPWIRE_DIFF_EXIT=$?" | tee /tmp/cp-033-tripwire-exit.txt
@@ -90,7 +89,7 @@ for label in "/tmp/cp-033-spec/improvement/candidates" "status" "candidate_path"
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| CP-033 | PROPOSAL_ONLY_BOUNDARY | Confirm @deep-improvement does not mutate canonical or mirrors | `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agents/deep-improvement.md` + `Depth: 1` and explicit runtime/control inputs `` | Run the §3 exact command block | B candidate path and required JSON field counts >= 1; all four `POST_B_*_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-033-B-deep-improvement.txt`, `/tmp/cp-033-B-field-counts.txt`, `/tmp/cp-033-B-*.diff`, `/tmp/cp-033-tripwire.diff` | PASS if B proposes only a packet-local candidate and leaves canonical/mirror files untouched. FAIL if B edits canonical or mirrors | 1. If canonical diff is non-empty, reinforce proposal-only boundary. 2. If mirror diff is non-empty, separate packaging from proposal. 3. If no candidate path appears, verify the five runtime/control inputs were materialized. 4. If JSON fields are missing, fix structured output. 5. If tripwire is non-empty, inspect project mutation. |
+| CP-033 | PROPOSAL_ONLY_BOUNDARY | Confirm @deep-improvement does not mutate canonical or mirrors | `` Same task body in §2; Call A wraps with `As @Task:`; Call B prepends `.opencode/agents/deep-improvement.md` + `Depth: 1` and explicit runtime/control inputs `` | Run the §3 exact command block | B candidate path and required JSON field counts >= 1; all three `POST_B_*_DIFF=0`; `TRIPWIRE_DIFF_EXIT=0` | `/tmp/cp-033-B-deep-improvement.txt`, `/tmp/cp-033-B-field-counts.txt`, `/tmp/cp-033-B-*.diff`, `/tmp/cp-033-tripwire.diff` | PASS if B proposes only a packet-local candidate and leaves canonical/mirror files untouched. FAIL if B edits canonical or mirrors | 1. If canonical diff is non-empty, reinforce proposal-only boundary. 2. If mirror diff is non-empty, separate packaging from proposal. 3. If no candidate path appears, verify the five runtime/control inputs were materialized. 4. If JSON fields are missing, fix structured output. 5. If tripwire is non-empty, inspect project mutation. |
 
 ## 4. SOURCE FILES
 

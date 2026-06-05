@@ -491,7 +491,7 @@ STATUS=OK ITERATIONS=3 BEST_SCORE=97 REASON="converged"
 - **Promotion**: Promotion remains guarded by evidence, repeatability, and operator approval.
 - **Scoring**: All 5 dimensions are deterministic (regex, string matching, file existence). No LLM-as-judge.
 - **Stop rules**: Loop stops on `converged` (legal-stop bundle pass + stable trajectory), max iterations, or infra failure threshold.
-- **Runtime parity**: Agent exists across 4 runtimes (.opencode, .claude, .gemini, .codex). Scanner checks all (`.gemini/agents/` path corrected in 060/002).
+- **Runtime parity**: Agent exists across repo-managed runtimes (.opencode, .claude, .codex). Scanner checks all configured mirror paths.
 - **Benchmark assets** (post-060/005): static at `.opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json` + `assets/model-benchmark/benchmark-fixtures/*.json`. Materializer at `.opencode/skills/deep-improvement/scripts/shared/materialize-benchmark-fixtures.cjs` writes fixture markdown to `{spec_folder}/improvement/benchmark-outputs/` before `run-benchmark.cjs` consumes them. `benchmark_completed` event is gated on `report.json` existing.
 - **Legal-stop emission** (post-060/005): YAML emits nested `legal_stop_evaluated.details.gateResults.{contractGate,behaviorGate,integrationGate,evidenceGate,improvementGate}` matching the reducer consumer shape. Flat `gateResult/gateName` is retired.
 - **Stop-reason enum** (post-060/005): canonical values are `converged | maxIterationsReached | blockedStop | manualStop | error | stuckRecovery`. Old `plateau`/`benchmarkPlateau` retired.

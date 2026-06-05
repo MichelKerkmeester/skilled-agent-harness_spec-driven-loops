@@ -42,7 +42,7 @@ When promotion is enabled, the shipped promotion script enforces:
 - a matching `benchmark-pass` report (when benchmarks are configured for the target)
 - a passing repeatability report
 - explicit operator approval plus manifest boundary enforcement for the specific target
-- a hard four-runtime mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, or `.gemini/agents/`
+- a hard repo-managed mirror sync gate when the target is an agent definition under `.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`
 
 ---
 

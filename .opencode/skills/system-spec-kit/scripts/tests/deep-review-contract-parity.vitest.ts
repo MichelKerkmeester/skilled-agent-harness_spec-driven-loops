@@ -37,7 +37,6 @@ function readWorkspaceFile(relativePath: string): string {
   const runtimeMirrors = [
     '.opencode/agents/deep-review.md',
     '.claude/agents/deep-review.md',
-    '.gemini/agents/deep-review.md',
     '.codex/agents/deep-review.toml',
   ];
 
@@ -202,7 +201,7 @@ function readWorkspaceFile(relativePath: string): string {
   // Add executable coverage for deep-review runtime-capabilities.cjs
   it('exposes a machine-readable capability matrix for every supported deep-review runtime', () => {
     const runtimeIds = reviewCapabilityModule!.listRuntimeCapabilityIds();
-    expect(runtimeIds).toEqual(['opencode', 'claude', 'codex', 'gemini']);
+    expect(runtimeIds).toEqual(['opencode', 'claude', 'codex']);
 
     const matrix = reviewCapabilityModule!.loadRuntimeCapabilities().matrix;
     for (const runtime of matrix.runtimes) {

@@ -1,6 +1,6 @@
 ---
 title: "Devin CLI — Unique Capabilities + Cross-CLI Comparison"
-description: "Devin-specific capabilities (cloud handoff, four-model preset, ACP, MCP, rules/skills) with the cross-CLI comparison table cli-codex / cli-claude-code / cli-gemini / cli-opencode."
+description: "Devin-specific capabilities (cloud handoff, four-model preset, ACP, MCP, rules/skills) with the cross-CLI comparison table cli-codex / cli-claude-code / cli-opencode."
 ---
 
 # Devin CLI — Unique Capabilities + Cross-CLI Comparison
@@ -11,7 +11,7 @@ What sets Devin apart in the cli-* family, and the comparison table the calling 
 
 ## 1. OVERVIEW
 
-This reference documents the Devin-specific capabilities that distinguish cli-devin from its four sibling cli-* skills. Section 2 enumerates Devin-unique features (local-to-cloud handoff, four-model preset, two-tier permission modes, `devin acp`, `devin mcp`, rules + skills, slash commands). Section 3 provides the cross-CLI comparison matrix. Section 4 maps task types to the right cli-* skill. Section 5 details permission-mode mappings vs the family. Section 6 lists current limitations. Section 7 links related resources.
+This reference documents the Devin-specific capabilities that distinguish cli-devin from its sibling cli-* skills. Section 2 enumerates Devin-unique features (local-to-cloud handoff, four-model preset, two-tier permission modes, `devin acp`, `devin mcp`, rules + skills, slash commands). Section 3 provides the cross-CLI comparison matrix. Section 4 maps task types to the right cli-* skill. Section 5 details permission-mode mappings vs the family. Section 6 lists current limitations. Section 7 links related resources.
 
 ---
 
@@ -71,7 +71,6 @@ Cross-CLI analogs:
 - cli-claude-code: skills + agents
 - cli-codex: profiles (`-p <name>`)
 - cli-opencode: agents (`--agent <slug>`)
-- cli-gemini: GEMINI.md project context
 
 ### 2.7 Slash Commands (12)
 
@@ -86,26 +85,26 @@ Inside the interactive TUI:
 
 ## 3. CROSS-CLI COMPARISON
 
-How Devin compares to the four siblings on the dimensions that drive cli-* routing decisions.
+How Devin compares to the siblings on the dimensions that drive cli-* routing decisions.
 
-| Capability | cli-claude-code | cli-codex | cli-gemini | cli-opencode | cli-devin |
-|------------|-----------------|-----------|------------|--------------|-----------|
-| **Default model** | Sonnet 4.6 | GPT-5.5 medium fast | Gemini 2.5 Pro | opencode-go/deepseek-v4 | SWE-1.6 normal |
-| **Multi-model preset in one binary** | No | No | No | Many via provider gateway | Yes (4 frontier models: SWE-1.6 default + DeepSeek v4 + GLM 5.1 + Kimi k2.6) |
-| **Web search** | No | `--search` live | Google Search | Via plugins | No |
-| **Code review** | Agent-based | `/review` diff-aware | Manual prompt | `@review` agent | Built-in agent loop |
-| **Sandbox / permission control** | Permission modes | 3 sandbox modes + approval policies | `--yolo` flag | Permission system | 2 permission modes (`auto`/`dangerous`) |
-| **Image input** | No | `--image` | No | No | No |
-| **Session resume** | Continue / resume | Resume / fork / history | Memory tool | `--continue` / `-s <id>` / `--fork` / share URL | `--continue` / `--resume <id>` / `list` |
-| **Cloud execution** | No | `codex cloud` (remote task exec) | No | Via `--attach <url>` to remote server | **Async cloud handoff with PR return** |
-| **MCP support** | Native | `codex mcp` | No | Native | `devin mcp` + OAuth |
-| **ACP server** | No | No | No | `acp` mode | `devin acp` |
-| **Profile / agent / skill surface** | Skills + agents | `-p <profile>` | GEMINI.md | `--agent <slug>` | Rules + skills + MCP (profile-scoped) |
-| **JSON output** | No | Capture last message `-o file.txt` | `-o json` flag | `--format json` event stream | **UNVERIFIED** (claimed by web search, not in official docs) |
-| **Cross-repo dispatch** | No | No | No | `--dir <path>` | No |
-| **Hooks** | Settings-based | Native hooks via `~/.codex/hooks.json` | No | Plugin system | Yes — Claude-Code-compatible hooks via `.devin/hooks.v1.json` (see <https://cli.devin.ai/docs/extensibility/hooks/overview>) |
-| **Self-invocation guard** | Yes | Yes | Yes | Yes (ADR-001 layered detection) | Yes (DEVIN_* env + ancestry + lockfile speculation) |
-| **Family stdin-redirect convention** | Standard | Standard (per memory) | Standard | Standard (`</dev/null` required) | Standard (`</dev/null` required) |
+| Capability | cli-claude-code | cli-codex | cli-opencode | cli-devin |
+|------------|-----------------|-----------|--------------|-----------|
+| **Default model** | Sonnet 4.6 | GPT-5.5 medium fast | opencode-go/deepseek-v4 | SWE-1.6 normal |
+| **Multi-model preset in one binary** | No | No | Many via provider gateway | Yes (4 frontier models: SWE-1.6 default + DeepSeek v4 + GLM 5.1 + Kimi k2.6) |
+| **Web search** | No | `--search` live | Via plugins | No |
+| **Code review** | Agent-based | `/review` diff-aware | `@review` agent | Built-in agent loop |
+| **Sandbox / permission control** | Permission modes | 3 sandbox modes + approval policies | Permission system | 2 permission modes (`auto`/`dangerous`) |
+| **Image input** | No | `--image` | No | No |
+| **Session resume** | Continue / resume | Resume / fork / history | `--continue` / `-s <id>` / `--fork` / share URL | `--continue` / `--resume <id>` / `list` |
+| **Cloud execution** | No | `codex cloud` (remote task exec) | Via `--attach <url>` to remote server | **Async cloud handoff with PR return** |
+| **MCP support** | Native | `codex mcp` | Native | `devin mcp` + OAuth |
+| **ACP server** | No | No | `acp` mode | `devin acp` |
+| **Profile / agent / skill surface** | Skills + agents | `-p <profile>` | `--agent <slug>` | Rules + skills + MCP (profile-scoped) |
+| **JSON output** | No | Capture last message `-o file.txt` | `--format json` event stream | **UNVERIFIED** (claimed by web search, not in official docs) |
+| **Cross-repo dispatch** | No | No | `--dir <path>` | No |
+| **Hooks** | Settings-based | Native hooks via `~/.codex/hooks.json` | Plugin system | Yes — Claude-Code-compatible hooks via `.devin/hooks.v1.json` (see <https://cli.devin.ai/docs/extensibility/hooks/overview>) |
+| **Self-invocation guard** | Yes | Yes | Yes (ADR-001 layered detection) | Yes (DEVIN_* env + ancestry + lockfile speculation) |
+| **Family stdin-redirect convention** | Standard | Standard (per memory) | Standard (`</dev/null` required) | Standard (`</dev/null` required) |
 
 ---
 
@@ -119,7 +118,7 @@ How Devin compares to the four siblings on the dimensions that drive cli-* routi
 | Complex task that didn't fit DeepSeek v4 (large context) | cli-devin (Kimi k2.6 fallback) | Kimi k2.6 is the documented complex-task fallback for large-context shape |
 | Long-running work, operator stepping away | cli-devin (cloud handoff) | Only family member with async cloud-VM handoff |
 | Pure one-shot code generation with GPT-5.5 | cli-codex | Devin does not include GPT-5.5 in its model preset; cli-codex owns OpenAI-backed dispatch |
-| Web research (live browsing) | cli-codex (`--search`) or cli-gemini (Google Search) | Devin does not have a web-search flag |
+| Web research (live browsing) | cli-codex (`--search`) | Devin does not have a web-search flag |
 | Full plugin/skill/MCP/Spec-Kit-Memory runtime | cli-opencode | OpenCode is the runtime-bridge skill |
 | Image input | cli-codex (`--image`) | Devin does not have image input |
 | Cross-repo dispatch | cli-opencode (`--dir`) | Only OpenCode has explicit cross-repo flag |
@@ -141,7 +140,7 @@ When mapping across CLIs, choose the LOWEST permission tier that still completes
 
 ## 6. LIMITATIONS
 
-- No web search (use cli-codex `--search` or cli-gemini Google Search).
+- No web search (use cli-codex `--search`).
 - No image input (use cli-codex `--image`).
 - No `--reasoning-effort` flag (model choice is the lever).
 - `--json` flag unverified (treat output as free-form unless empirically confirmed).

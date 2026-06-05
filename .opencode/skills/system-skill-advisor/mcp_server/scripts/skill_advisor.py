@@ -1414,12 +1414,6 @@ INTENT_BOOSTERS = {
     "require": ("sk-code", 0.6),
     "strict": ("sk-code", 0.5),
 
-    # ─────────────────────────────────────────────────────────────────
-    # CLI-GEMINI: Cross-AI orchestration via Gemini CLI
-    # ─────────────────────────────────────────────────────────────────
-    "gemini": ("cli-gemini", 2.0),
-    "grounding": ("cli-gemini", 1.0),
-
     # ─────────────────────────────────────────────────────────────────────────────────
     # CLI-CODEX: Cross-AI orchestration via OpenAI Codex CLI
     # ─────────────────────────────────────────────────────────────────────────────────
@@ -1494,9 +1488,9 @@ MULTI_SKILL_BOOSTERS = {
     "test": [("sk-code", 0.3), ("mcp-chrome-devtools", 0.2)],
     "update": [("mcp-code-mode", 0.3), ("sk-git", 0.2), ("sk-code", 0.2)],
     "review": [("sk-code-review", 0.8)],
-    "delegate": [("cli-gemini", 0.5), ("cli-codex", 0.5), ("cli-claude-code", 0.5)],
-    "opinion": [("cli-gemini", 0.3), ("cli-codex", 0.3), ("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
-    "validate": [("cli-gemini", 0.2), ("cli-codex", 0.2), ("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
+    "delegate": [("cli-codex", 0.5), ("cli-claude-code", 0.5)],
+    "opinion": [("cli-codex", 0.3), ("cli-claude-code", 0.3), ("sk-code-review", 0.2)],
+    "validate": [("cli-codex", 0.2), ("cli-claude-code", 0.2), ("sk-code-review", 0.3)],
     "improve": [("sk-prompt", 0.6), ("sk-code", 0.2)],
     "enhance": [("sk-prompt", 0.8)],
     "refine": [("sk-prompt", 0.6), ("sk-code", 0.2)],
@@ -1664,19 +1658,6 @@ PHRASE_INTENT_BOOSTERS = {
     "sk-code-review": [("sk-code-review", 2.8)],
     "/sk-code-review": [("sk-code-review", 2.8)],
     ".opencode/skills/sk-code-review": [("sk-code-review", 3.0)],
-    # --- Gemini CLI cross-AI orchestration ---
-    "use gemini": [("cli-gemini", 2.5)],
-    "gemini cli": [("cli-gemini", 2.5)],
-    "gemini agent": [("cli-gemini", 2.0)],
-    "google search grounding": [("cli-gemini", 2.0)],
-    "second opinion": [("cli-gemini", 1.5)],
-    "cross-ai validation": [("cli-gemini", 2.0)],
-    "cross-ai review": [("cli-gemini", 2.0), ("sk-code-review", 0.4)],
-    "codebase investigator": [("cli-gemini", 2.0)],
-    "delegate to gemini": [("cli-gemini", 2.5)],
-    "cli-gemini": [("cli-gemini", 2.8)],
-    "/cli-gemini": [("cli-gemini", 2.8)],
-    ".opencode/skills/cli-gemini": [("cli-gemini", 3.0)],
     # --- Codex CLI cross-AI orchestration ---
     "use codex": [("cli-codex", 2.5)],
     "codex cli": [("cli-codex", 2.5)],

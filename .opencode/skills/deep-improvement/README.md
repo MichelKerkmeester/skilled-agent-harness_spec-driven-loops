@@ -281,7 +281,6 @@ The `/deep:start-agent-improvement-loop` command and the `@deep-improvement` age
 | OpenCode / Copilot | `.opencode/agents/` | `.opencode/commands/deep/` |
 | Claude | `.claude/agents/` | uses agent mirror |
 | Codex | `.codex/agents/` | uses agent mirror |
-| Gemini | `.gemini/agents/` | uses agent mirror |
 
 ---
 

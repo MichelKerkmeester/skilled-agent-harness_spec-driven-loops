@@ -35,7 +35,7 @@ allowed-tools: Read, Bash, Grep, Glob, Edit, Write
 
 | Aspect      | Value                                                                                                                                       |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| Location    | MCP server install dirs + runtime config files (`.opencode.json`, `.claude/settings.json`, `.codex/config.toml`, `.gemini/settings.json`)   |
+| Location    | MCP server install dirs + runtime config files (`.opencode.json`, `.claude/settings.json`, `.codex/config.toml`)                            |
 | Reason      | MCP infrastructure repair; not authored spec packet docs                                                                                    |
 | Alternative | Per-server install guides + `mcp-doctor.sh` health probes; rollback by deleting the offending dir and reinstalling from canonical guide     |
 

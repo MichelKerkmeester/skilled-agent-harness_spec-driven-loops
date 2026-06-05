@@ -40,7 +40,8 @@
     "skilled-agent-orchestration/100-multi-ai-council-main-agent-write-enforcement",
     "skilled-agent-orchestration/114-small-ai-model-optimization",
     "skilled-agent-orchestration/115-cmd-speckit-family-rename",
-    "skilled-agent-orchestration/124-mcp-click-up-task-management"
+    "skilled-agent-orchestration/124-mcp-click-up-task-management",
+    "skilled-agent-orchestration/132-cli-gemini-deprecation"
   ],
   "manual": {
     "depends_on": [],
@@ -82,12 +83,12 @@
     "entities": [],
     "causal_summary": "Track folder for skilled-agent-orchestration packets — improving how skills, agents, commands, and CLI executors collaborate across the OpenCode runtime. Hosts spec folders 051-070+ covering CLI providers, skill patterns + removals, sk-code merger + fullstack split, command-spec-kit UX, agent improvements, deep-loop stress tests, sk-doc alignment, agent creation, skill-advisor re-indexing, MCP transfers, sk-doc reorg, motion.dev integration, and rename refactors.",
     "created_at": "2026-05-05T11:35:00.000Z",
-    "last_save_at": "2026-06-01T14:22:43.084Z",
+    "last_save_at": "2026-06-05T07:40:49.692Z",
     "last_accessed_at": null,
     "source_docs": [
       "description.json"
     ],
-    "last_active_child_id": null,
-    "last_active_at": "2026-06-01T14:22:43.084Z"
+    "last_active_child_id": "skilled-agent-orchestration/132-cli-gemini-deprecation",
+    "last_active_at": "2026-06-05T07:40:49.692Z"
   }
 }

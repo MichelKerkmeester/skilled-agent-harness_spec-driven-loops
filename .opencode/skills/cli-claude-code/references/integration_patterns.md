@@ -13,7 +13,7 @@ Proven patterns for orchestrating Claude Code CLI from external AI sessions (Gem
 
 ### Core Principle
 
-The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-gemini and cli-codex skills where Claude Code conducts. Here, Claude Code is the executor.
+The calling AI acts as the orchestrator (planner, validator, integrator) while Claude Code CLI executes targeted tasks. This is the **reverse** of the cli-codex and cli-opencode skills where Claude Code conducts. Here, Claude Code is the executor.
 
 ### Purpose
 
@@ -409,4 +409,3 @@ Rule of thumb:
 
 Always use --max-budget-usd for batch operations.
 ```
-

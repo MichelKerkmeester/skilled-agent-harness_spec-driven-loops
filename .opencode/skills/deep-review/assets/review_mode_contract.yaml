@@ -423,19 +423,6 @@ render:
         - quality-gates
         - cross-reference-protocols
         - outputs
-    - id: agent-gemini
-      path: .gemini/agents/deep-review.md
-      ownership: mixed
-      format: markdown
-      markers:
-        begin: "<!-- BEGIN GENERATED: review-mode-contract/agent-gemini -->"
-        end: "<!-- END GENERATED: review-mode-contract/agent-gemini -->"
-      sections:
-        - dimensions
-        - severities
-        - quality-gates
-        - cross-reference-protocols
-        - outputs
     - id: quick-reference-review-mode
       path: .opencode/skills/deep-review/references/protocol/quick_reference.md
       ownership: mixed

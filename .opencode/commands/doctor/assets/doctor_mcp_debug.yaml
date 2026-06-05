@@ -105,7 +105,6 @@ config_files:
   - { path: "opencode.json", format: "json-mcp", label: "OpenCode" }
   - { path: ".claude/mcp.json", format: "json-mcpServers", label: "Claude Code" }
   - { path: ".codex/config.toml", format: "toml", label: "Codex CLI" }
-  - { path: ".gemini/settings.json", format: "json-mcpServers", label: "Gemini CLI" }
   - { path: ".vscode/mcp.json", format: "json-mcpServers", label: "VS Code / Copilot" }
 
 # ─────────────────────────────────────────────────────────────────

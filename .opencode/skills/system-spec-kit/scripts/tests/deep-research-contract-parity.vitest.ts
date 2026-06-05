@@ -36,7 +36,6 @@ function readWorkspaceFile(relativePath: string): string {
   const runtimeMirrors = [
     '.opencode/agents/deep-research.md',
     '.claude/agents/deep-research.md',
-    '.gemini/agents/deep-research.md',
     '.codex/agents/deep-research.toml',
   ];
 
@@ -126,7 +125,7 @@ function readWorkspaceFile(relativePath: string): string {
 
   it('exposes a machine-readable capability matrix for every supported runtime surface', () => {
     const runtimeIds = capabilityModule!.listRuntimeCapabilityIds();
-    expect(runtimeIds).toEqual(['opencode', 'claude', 'codex', 'gemini']);
+    expect(runtimeIds).toEqual(['opencode', 'claude', 'codex']);
 
     const matrix = capabilityModule!.loadRuntimeCapabilities().matrix;
     for (const runtime of matrix.runtimes) {

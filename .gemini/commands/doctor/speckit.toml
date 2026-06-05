@@ -1,1 +1,0 @@
-description = "Router for /doctor <target>; dispatches per-subsystem diagnostic to the right YAML via the _routes.yaml manifest."

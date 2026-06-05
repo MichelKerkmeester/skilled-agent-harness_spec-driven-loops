@@ -33,7 +33,7 @@ Every rename touches some subset of these categories. Map each before starting.
 |---|---|---|
 | **The thing being renamed** | `.opencode/skills/<old>/` dir or `.opencode/agents/<old>.md` | `git mv` (preserves history) |
 | **Live cross-references** | Sibling skill `graph-metadata.json` `enhances`/`related_to`, command files, manual playbooks | Literal substitution |
-| **Live runtime mirrors** | `.claude/agents/`, `.codex/agents/`, `.gemini/agents/` + corresponding READMEs | `git mv` + literal substitution |
+| **Live runtime mirrors** | `.claude/agents/`, `.codex/agents/` + corresponding READMEs | `git mv` + literal substitution |
 | **Live root behavioral docs** | `AGENTS.md`, `CLAUDE.md` (often symlinked), `README.md` | Literal substitution |
 | **Live auto-memory** | `~/.claude/projects/.../memory/MEMORY.md` index + current-state memory files | Literal substitution; preserve filename slugs to avoid breaking inbound `[[wikilinks]]` |
 | **Live compiled indexes** | `skill-graph.json`, SQLite caches | REGENERATE (never hand-edit) |

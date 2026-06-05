@@ -205,9 +205,6 @@ When dispatching cli-devin from another cli-* runtime, honor the calling CLI's c
 ### From cli-claude-code
 - Use the Claude Code Bash tool to dispatch `devin`; Read tool to parse `/tmp/devin-output.log` after.
 
-### From cli-gemini
-- `--yolo` is not the analog of `--permission-mode dangerous`; the calling AI MUST set Devin's permission mode explicitly.
-
 ### From cli-opencode
 - Dispatch `devin` from inside the OpenCode session's shell — does NOT count as self-invocation (cli-opencode is a different runtime). Standard `devin --prompt-file ... 2>&1 </dev/null` pattern.
 

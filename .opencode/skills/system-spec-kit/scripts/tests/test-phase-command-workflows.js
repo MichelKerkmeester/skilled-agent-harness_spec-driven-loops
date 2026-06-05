@@ -162,7 +162,6 @@ function testTemplateCompliancePromptContracts() {
     path.join(REPO_ROOT, '.agents', 'agents', 'speckit.md'),
     path.join(REPO_ROOT, '.opencode', 'agent', 'speckit.md'),
     path.join(REPO_ROOT, '.claude', 'agents', 'speckit.md'),
-    path.join(REPO_ROOT, '.gemini', 'agents', 'speckit.md'),
   ];
 
   for (const agentDoc of agentDocs) {

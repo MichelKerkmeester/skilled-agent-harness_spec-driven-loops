@@ -166,7 +166,7 @@ A: The command reads the most recent changelog entry in the target component fol
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
-| Phase 0 fails | @general agent not available | Verify agent files exist in the runtime path (`.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, or `.gemini/agents/`) |
+| Phase 0 fails | @general agent not available | Verify agent files exist in the runtime path (`.opencode/agents/`, `.claude/agents/`, or `.codex/agents/`) |
 | YAML workflow not found | Missing asset file | Check `assets/` contains the matching YAML for operation and mode |
 | Skill not found for skill operation | Wrong skill name | Use the exact folder name from `.opencode/skills/` |
 | Catalog or playbook update target missing | `update` used before the package exists | Re-run with `create` or point to the correct skill root |

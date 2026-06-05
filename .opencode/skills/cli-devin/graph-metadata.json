@@ -24,11 +24,6 @@
         "context": "CLI orchestrator peer"
       },
       {
-        "target": "cli-gemini",
-        "weight": 0.5,
-        "context": "CLI orchestrator peer"
-      },
-      {
         "target": "cli-opencode",
         "weight": 0.5,
         "context": "CLI orchestrator peer"
@@ -44,7 +39,6 @@
     "related_to": [
       "cli-claude-code",
       "cli-codex",
-      "cli-gemini",
       "cli-opencode",
       "sk-code",
       "mcp-code-mode",
@@ -164,7 +158,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Devin CLI orchestrator enabling any AI assistant to invoke Cognition AI's official Devin for Terminal (Rust binary) for autonomous coding work, with the unique capability of local-to-cloud handoff: a local devin session can delegate to a cloud-hosted Devin VM that keeps working after the laptop closes and returns a PR. This skill makes Devin a peer executor in the cli-* family so any of the four sibling skills (cli-claude-code, cli-codex, cli-gemini, cli-opencode) can dispatch to Devin via the same orchestration contract.",
+    "causal_summary": "Devin CLI orchestrator enabling any AI assistant to invoke Cognition AI's official Devin for Terminal (Rust binary) for autonomous coding work, with the unique capability of local-to-cloud handoff: a local devin session can delegate to a cloud-hosted Devin VM that keeps working after the laptop closes and returns a PR. This skill makes Devin a peer executor in the cli-* family so sibling skills can dispatch to Devin via the same orchestration contract.",
     "source_docs": [
       "SKILL.md",
       "README.md",

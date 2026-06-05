@@ -10,7 +10,6 @@ const WORKSPACE_ROOT = resolve(TEST_DIR, '../../../../../');
 const markdownMirrors = [
   '.opencode/agents/ai-council.md',
   '.claude/agents/ai-council.md',
-  '.gemini/agents/ai-council.md',
 ];
 
 function read(path: string): string {
@@ -48,9 +47,6 @@ describe('ai-council runtime mirror parity', () => {
     expect(canonical).toContain('bash: deny');
     expect(canonical).toContain('patch: deny');
 
-    // Gemini uses the OpenCode frontmatter schema verbatim — full byte-equivalence required.
-    expect(frontmatter(read('.gemini/agents/ai-council.md')), '.gemini').toBe(canonical);
-
     // Claude uses a translated frontmatter schema (commit 85bd60b9f) — `tools:` list
     // instead of the OpenCode `mode:`/`temperature:`/`permission:` block. Path-scope
     // is enforced by the same OUT_OF_SCOPE_WRITE rejection in the helper library.
@@ -68,7 +64,7 @@ describe('ai-council runtime mirror parity', () => {
     expect(claudeFM, '.claude tools includes Edit').toContain('Edit');
   });
 
-  it('keeps all four body mirrors aligned and removes planning-only persistence text', () => {
+  it('keeps repo-managed body mirrors aligned and removes planning-only persistence text', () => {
     const canonicalFM = frontmatter(read(markdownMirrors[0]));
     const nameMatch = canonicalFM.match(/^name:\s*"?(.+?)"?$/m);
     const descMatch = canonicalFM.match(/^description:\s*"?(.+?)"?$/m);

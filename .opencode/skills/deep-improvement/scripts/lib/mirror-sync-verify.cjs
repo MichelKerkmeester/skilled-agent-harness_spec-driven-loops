@@ -1,5 +1,5 @@
 // ╔══════════════════════════════════════════════════════════════════════════╗
-// ║ mirror-sync-verify — four-runtime agent mirror sync verifier            ║
+// ║ mirror-sync-verify — repo-managed agent mirror sync verifier            ║
 // ╚══════════════════════════════════════════════════════════════════════════╝
 'use strict';
 
@@ -18,7 +18,6 @@ const RUNTIME_MIRRORS = Object.freeze([
   { runtime: 'opencode', template: '.opencode/agents/{name}.md', format: 'markdown' },
   { runtime: 'claude', template: '.claude/agents/{name}.md', format: 'markdown' },
   { runtime: 'codex', template: '.codex/agents/{name}.toml', format: 'codex-toml' },
-  { runtime: 'gemini', template: '.gemini/agents/{name}.md', format: 'markdown' },
 ]);
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -69,9 +68,9 @@ function extractAgentBody(content, format = 'markdown') {
 
 function normalizeRuntimeSpecificText(body) {
   return String(body || '')
-    .replace(/\.(?:opencode|claude|gemini)\/agents\/\*\.md/g, '<runtime-agent-path>')
+    .replace(/\.(?:opencode|claude)\/agents\/\*\.md/g, '<runtime-agent-path>')
     .replace(/\.codex\/agents\/\*\.toml/g, '<runtime-agent-path>')
-    .replace(/\.(?:opencode|claude|gemini)\/agents\/[A-Za-z0-9_-]+\.md/g, '<runtime-agent-file>')
+    .replace(/\.(?:opencode|claude)\/agents\/[A-Za-z0-9_-]+\.md/g, '<runtime-agent-file>')
     .replace(/\.codex\/agents\/[A-Za-z0-9_-]+\.toml/g, '<runtime-agent-file>')
     .replace(/\r\n/g, '\n')
     .replace(/[ \t]+$/gm, '')
@@ -137,7 +136,7 @@ function runtimePaths(agentName, repoRoot = process.cwd()) {
 // ─────────────────────────────────────────────────────────────────────────────
 
 /**
- * Verify that all runtime mirrors of an agent are present and in sync.
+ * Verify that all repo-managed runtime mirrors of an agent are present and in sync.
  *
  * @param {string} agentName - Agent name to verify across runtime mirrors.
  * @param {string} content - Canonical agent content to compare mirrors against.

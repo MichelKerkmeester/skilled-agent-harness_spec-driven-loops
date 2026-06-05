@@ -29,7 +29,7 @@ const CATEGORY_ORDER = [
   {
     key: 'Agents',
     heading: '## 4. Agents',
-    description: '> `.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`, `.gemini/agents/**`.',
+    description: '> `.opencode/agents/**`, `.claude/agents/**`, `.codex/agents/**`.',
   },
   {
     key: 'Skills',
@@ -488,7 +488,6 @@ function classifyPath(resourcePath) {
     normalized.startsWith('.opencode/agents/')
     || normalized.startsWith('.claude/agents/')
     || normalized.startsWith('.codex/agents/')
-    || normalized.startsWith('.gemini/agents/')
   ) {
     return 'Agents';
   }

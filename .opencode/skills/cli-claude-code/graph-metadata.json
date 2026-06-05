@@ -13,11 +13,6 @@
         "context": "CLI orchestrator peer"
       },
       {
-        "target": "cli-gemini",
-        "weight": 0.5,
-        "context": "CLI orchestrator peer"
-      },
-      {
         "target": "cli-opencode",
         "weight": 0.5,
         "context": "CLI orchestrator peer"
@@ -37,7 +32,6 @@
     ],
     "related_to": [
       "cli-codex",
-      "cli-gemini",
       "sk-code",
       "mcp-code-mode",
       "system-spec-kit",

@@ -257,7 +257,7 @@ Asking cli-opencode to delegate this exact prompt back to OpenCode would create
 a circular dispatch.
 
 Options:
-1. Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-gemini)
+1. Use a sibling cli-* skill (cli-claude-code, cli-codex, cli-devin)
    to dispatch a different model.
 2. Open a fresh shell session (no OpenCode parent) and re-run from there.
 3. If you wanted a parallel detached session (different session id, separate

@@ -37,7 +37,7 @@ Mirror drift is real maintenance work, but it is downstream from experiment trut
 
 Runtime mirrors are not phase-one experiment targets. They are downstream packaging surfaces.
 
-For guarded promotion of agent definitions, downstream does not mean optional. Before an agent-definition candidate can be promoted, `.opencode/agents/`, `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/` must all contain the corresponding agent and must match the proposed body. Codex TOML is compared by its extracted `developer_instructions` body tokens so runtime wrapper metadata does not create false drift.
+For guarded promotion of agent definitions, downstream does not mean optional. Before an agent-definition candidate can be promoted, `.opencode/agents/`, `.claude/agents/`, and `.codex/agents/` must all contain the corresponding agent and must match the proposed body. Codex TOML is compared by its extracted `developer_instructions` body tokens so runtime wrapper metadata does not create false drift.
 
 ---
 
@@ -45,7 +45,7 @@ For guarded promotion of agent definitions, downstream does not mean optional. B
 
 After a canonical promotion:
 
-1. Run a drift review against `.claude/agents/`, `.codex/agents/`, and `.gemini/agents/`
+1. Run a drift review against `.claude/agents/` and `.codex/agents/`
 2. Record the sync work under a packaging-specific note or follow-up packet
 3. Decide whether to sync immediately or record explicit follow-up debt
 4. Do not treat mirror changes as evaluator evidence for the original experiment

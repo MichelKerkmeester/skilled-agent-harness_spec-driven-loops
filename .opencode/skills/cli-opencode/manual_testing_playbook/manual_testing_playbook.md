@@ -788,7 +788,6 @@ The cli-opencode skill is a thin orchestration wrapper around the external `open
 |---|---|---|
 | `cli-claude-code` | Manual playbook only | Cross-AI delegation pattern parallels (generate-review-fix, structured output, agent routing) |
 | `cli-codex` | Manual playbook only | Cross-AI delegation pattern parallels (sandbox modes, reasoning effort, agent profiles, web search) |
-| `cli-gemini` | Manual playbook only | Cross-AI delegation pattern parallels (research, web grounding) |
 | `system-spec-kit` | Validator script + manual playbook | Spec folder workflows (use case 3 handback target) |
 
 Validator support: the shared `validate_document.py` validates this root playbook structurally but does not recurse into category folders. Per-feature file completeness is checked manually via the link integrity and feature ID count gates documented in section 5.

@@ -61,12 +61,11 @@ ${body}
 `;
 }
 
-function writeAllMirrors(options: { codexBody?: string; omitGemini?: boolean } = {}): void {
+function writeAllMirrors(options: { codexBody?: string; omitCodex?: boolean } = {}): void {
   writeFile(`.opencode/agents/${AGENT_NAME}.md`, CANONICAL);
   writeFile(`.claude/agents/${AGENT_NAME}.md`, CANONICAL.replace('.opencode/agents/*.md', '.claude/agents/*.md'));
-  writeFile(`.codex/agents/${AGENT_NAME}.toml`, codexToml(options.codexBody || CANONICAL.replace(/^---[\s\S]*?---\n/, '').trim()));
-  if (!options.omitGemini) {
-    writeFile(`.gemini/agents/${AGENT_NAME}.md`, CANONICAL.replace('.opencode/agents/*.md', '.gemini/agents/*.md'));
+  if (!options.omitCodex) {
+    writeFile(`.codex/agents/${AGENT_NAME}.toml`, codexToml(options.codexBody || CANONICAL.replace(/^---[\s\S]*?---\n/, '').trim()));
   }
 }
 
@@ -79,24 +78,24 @@ afterEach(() => {
 });
 
 describe('mirror-sync-verify', () => {
-  it('reports allInSync when all four runtime mirrors match', () => {
+  it('reports allInSync when all repo-managed runtime mirrors match', () => {
     writeAllMirrors();
 
     const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
 
     expect(result.allInSync).toBe(true);
-    expect(result.presentRuntimes.sort()).toEqual(['claude', 'codex', 'gemini', 'opencode']);
+    expect(result.presentRuntimes.sort()).toEqual(['claude', 'codex', 'opencode']);
     expect(result.missingRuntimes).toEqual([]);
     expect(result.driftRuntimes).toEqual([]);
   });
 
   it('reports a missing runtime when one mirror is absent', () => {
-    writeAllMirrors({ omitGemini: true });
+    writeAllMirrors({ omitCodex: true });
 
     const result = mirrorSync.verifyMirrorSync(AGENT_NAME, CANONICAL, { repoRoot: tmpDir });
 
     expect(result.allInSync).toBe(false);
-    expect(result.missingRuntimes).toEqual(['gemini']);
+    expect(result.missingRuntimes).toEqual(['codex']);
   });
 
   it('reports Codex drift when TOML body tokens differ while markdown mirrors match', () => {

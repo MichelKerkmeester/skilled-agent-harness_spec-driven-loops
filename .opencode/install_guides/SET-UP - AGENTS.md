@@ -504,7 +504,6 @@ Discovery: search_tools(), list_tools(), or read .utcp_config.json
 | ---------------------- | -------- | --------------------------------------------------------- | ------------------------------------------------ |
 | `cli-claude-code`      | v1.1.5.0 | "claude", "cross-AI", "second opinion"                   | Claude Code CLI orchestration                    |
 | `cli-codex`            | v1.4.2.0 | "codex", "cross-AI", "review"                            | Codex CLI orchestration                          |
-| `cli-gemini`           | v1.2.5.0 | "gemini", "research", "web search"                        | Gemini CLI orchestration                         |
 | `cli-opencode`         | v1.3.0.0 | "opencode", "parallel", "handoff"                         | OpenCode CLI orchestration                       |
 | `mcp-chrome-devtools`  | v1.0.7.0 | "screenshot", "bdg", "browser debug", "DOM"               | Chrome DevTools Protocol debugging               |
 | `mcp-code-mode`        | v1.0.7.0 | "Webflow", "external tool"                                | MCP orchestration for external tools             |
@@ -1199,7 +1198,7 @@ Update AGENTS.md to reference only the commands that exist in your `.opencode/co
 
 | Category          | Count  | Items                                                                                                                       |
 | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
-| **Skills**        | 14     | mcp-chrome-devtools, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, cli-gemini, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
+| **Skills**        | 13     | mcp-chrome-devtools, mcp-code-mode, system-spec-kit, cli-codex, cli-claude-code, sk-code, sk-code-review, deep-research, sk-doc, sk-git, sk-prompt |
 | **MCP Servers**   | 3      | sequential-thinking, mk-spec-memory, code-mode                                                                             |
 | **Commands**      | 22     | /create:* (7), /memory:* (6), /speckit:* (8), agent_router (1)                                                             |
 | **Gates + Rules** | 3 + 3  | Gate 1-3 (Understanding, Skill Routing, Spec Folder) + Behavioral Rules (Memory Context Loading, Memory Save Rule, Completion Verification) |

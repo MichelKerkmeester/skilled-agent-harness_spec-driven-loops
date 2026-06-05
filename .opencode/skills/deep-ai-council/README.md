@@ -175,14 +175,13 @@ Runtime packet layout (what a council run writes):
 
 ### Runtime Mirrors
 
-The council agent ships across four runtimes under its established `ai-council` filename:
+The council agent ships across repo-managed runtimes under its established `ai-council` filename:
 
 | Runtime | Agent File |
 |---|---|
 | OpenCode | `.opencode/agents/ai-council.md` |
 | Claude | `.claude/agents/ai-council.md` |
 | Codex | `.codex/agents/ai-council.toml` |
-| Gemini | `.gemini/agents/ai-council.md` |
 
 ---
 
