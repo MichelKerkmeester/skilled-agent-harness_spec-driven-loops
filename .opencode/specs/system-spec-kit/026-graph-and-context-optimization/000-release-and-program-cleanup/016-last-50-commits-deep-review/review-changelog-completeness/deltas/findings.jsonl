@@ -1,0 +1,13 @@
+{"id":"P1-1","sev":"P1","status":"confirmed","title":"docs/config drift remediation has no changelog","evidence":"commit a8e180a222","iter":1,"confidence":0.92}
+{"id":"P1-2","sev":"P1","status":"confirmed","title":"gemini runtime-surface removal has no dedicated changelog","evidence":"commit 8683890935","iter":1,"confidence":0.90}
+{"id":"P1-3","sev":"P2","status":"downgraded-exempt","title":"027 research packet (none) in timeline D","evidence":"timeline.md:878; commit 6c462c5a51 is deep-research (changelog-exempt)","iter":1,"confidence":0.50}
+{"id":"P1-4","sev":"P1","status":"confirmed","title":"006 operator-tooling root rollup stale + broken pre-flatten links","evidence":"changelog-006-operator-tooling-root.md:21,30-31","iter":8,"confidence":0.93}
+{"id":"P1-5","sev":"P1","status":"confirmed","title":"007 daemon-reliability root rollup omits 014/015 child rollups","evidence":"changelog-007-mcp-daemon-reliability-root.md","iter":8,"confidence":0.95}
+{"id":"P1-6","sev":"P1","status":"confirmed","title":"stale TBD strict-validation cell vs commit PASSED","evidence":"changelog-016-004-...rerank-twin-parity.md:63; commit 3e92f88627","iter":9,"confidence":0.95}
+{"id":"P2-1","sev":"P2","status":"open","title":"605-line wording uses total insertions","evidence":"v3.5.0.0.md:63; f86a80ca65","iter":3,"confidence":0.92}
+{"id":"P2-2","sev":"P2","status":"open","title":"prompt-numbering scope over-compresses 01a3063ca8","evidence":"v3.5.0.0.md:124","iter":4,"confidence":0.86}
+{"id":"P2-3","sev":"P2","status":"confirmed","title":"002 root rollup 3 stale pre-flatten child links","evidence":"changelog-002-spec-kit-internals-root.md:30-32","iter":7,"confidence":0.96}
+{"id":"P2-4","sev":"P2","status":"open","title":"020-026 cohort Oxford-comma house-voice drift","evidence":"changelog-020/023/026 in 003 track","iter":9,"confidence":0.90}
+{"id":"P2-5","sev":"P2","status":"open","title":"later-removed hyphen vs later removed marker wording","evidence":"v3.5.0.0.md:148","iter":10,"confidence":0.95}
+{"id":"U-1","sev":"info","status":"resolved","title":"bb61e8864e metric attribution","evidence":"numbers sourced in changelog-026-relation-backfill-review-remediation.md","iter":2,"confidence":0.90}
+{"id":"U-2","sev":"info","status":"uncertain","title":"cross-model triple-verification claim unverified","evidence":"changelog-026-relation-backfill-review-remediation.md:56","iter":9,"confidence":0.40}
