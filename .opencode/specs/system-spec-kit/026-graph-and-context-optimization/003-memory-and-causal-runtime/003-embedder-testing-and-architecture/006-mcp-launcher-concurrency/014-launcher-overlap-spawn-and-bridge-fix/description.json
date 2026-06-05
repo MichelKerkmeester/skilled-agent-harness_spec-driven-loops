@@ -1,5 +1,5 @@
 {
-  "specFolder": "014-launcher-overlap-spawn-and-bridge-fix",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix",
   "description": "Feature Specification: Launcher-overlap spawn & bridge fix (T1 probe-marker + T2 race-safe reclaim)",
   "keywords": [
     "feature",
@@ -12,13 +12,10 @@
     "race-safe",
     "reclaim"
   ],
-  "lastUpdated": "2026-06-04T19:02:45.735Z",
+  "lastUpdated": "2026-06-04T21:14:22.632Z",
   "specId": "014",
   "folderSlug": "launcher-overlap-spawn-and-bridge-fix",
   "parentChain": [
-    "..",
-    ".opencode",
-    "specs",
     "system-spec-kit",
     "026-graph-and-context-optimization",
     "003-memory-and-causal-runtime",

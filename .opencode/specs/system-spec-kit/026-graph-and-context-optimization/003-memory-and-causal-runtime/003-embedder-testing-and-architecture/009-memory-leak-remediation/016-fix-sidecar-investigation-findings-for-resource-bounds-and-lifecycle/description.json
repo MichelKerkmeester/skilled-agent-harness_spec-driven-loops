@@ -11,7 +11,7 @@
     "bounds",
     "lifecycle"
   ],
-  "lastUpdated": "2026-05-26T17:25:48.013Z",
+  "lastUpdated": "2026-06-04T21:14:22.638Z",
   "specId": "016",
   "folderSlug": "fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle",
   "parentChain": [

@@ -18,7 +18,7 @@
     "three-layer",
     "reaper"
   ],
-  "lastUpdated": "2026-05-26T17:26:00.375Z",
+  "lastUpdated": "2026-06-04T21:14:22.653Z",
   "specId": "019",
   "folderSlug": "fix-rerank-sidecar-accumulation-with-three-layer-reaper",
   "parentChain": [

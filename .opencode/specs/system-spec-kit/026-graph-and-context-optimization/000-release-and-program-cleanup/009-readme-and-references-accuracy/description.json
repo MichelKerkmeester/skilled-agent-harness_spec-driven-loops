@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
   "description": "Feature Specification: README & References Accuracy Audit + Remediation",
   "keywords": [
     "feature",
@@ -11,7 +11,7 @@
     "audit",
     "remediation"
   ],
-  "lastUpdated": "2026-06-03T06:37:53.295Z",
+  "lastUpdated": "2026-06-04T21:14:22.581Z",
   "specId": "009",
   "folderSlug": "readme-and-references-accuracy",
   "parentChain": [

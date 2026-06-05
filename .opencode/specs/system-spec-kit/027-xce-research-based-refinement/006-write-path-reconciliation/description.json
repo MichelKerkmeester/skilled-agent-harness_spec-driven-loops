@@ -9,8 +9,8 @@
     "write-path",
     "reconciliation"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.824Z",
-  "specId": "005",
+  "lastUpdated": "2026-06-04T12:33:53.335Z",
+  "specId": "006",
   "folderSlug": "write-path-reconciliation",
   "parentChain": [
     "system-spec-kit",

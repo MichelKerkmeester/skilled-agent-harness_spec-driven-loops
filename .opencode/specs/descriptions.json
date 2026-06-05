@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-06-04T06:37:59.160Z",
+  "generated": "2026-06-05T04:50:02.544Z",
   "folders": [
     {
       "specFolder": "anobel.com/001-button-text-link-disabled-state",
@@ -2471,7 +2471,7 @@
         "doc",
         "rebuild"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/008-playbook-manual-test-run",
@@ -4064,7 +4064,7 @@
         "folder",
         "convention"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "skilled-agent-orchestration/z_archive/043-cli-skill-improved-prompting",
@@ -6047,7 +6047,7 @@
         "context",
         "optimization"
       ],
-      "lastUpdated": "2026-06-01T11:13:19.587Z"
+      "lastUpdated": "2026-06-04T21:14:22.569Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
@@ -6733,7 +6733,7 @@
         "standards",
         "contract"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/023-fix-baseline-test-failures",
@@ -6759,7 +6759,7 @@
         "concurrency",
         "fixes"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/025-readme-architecture-diagrams-topology",
@@ -7798,6 +7798,18 @@
       "lastUpdated": "2026-06-01T13:35:43.799Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit",
+      "description": "Spec: 026 Changelog Accuracy Re-Audit",
+      "keywords": [
+        "spec",
+        "026",
+        "changelog",
+        "accuracy",
+        "re-audit"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/009-readme-and-references-accuracy",
       "description": "Feature Specification: README & References Accuracy Audit + Remediation",
       "keywords": [
@@ -7809,7 +7821,7 @@
         "audit",
         "remediation"
       ],
-      "lastUpdated": "2026-06-03T06:37:53.295Z"
+      "lastUpdated": "2026-06-04T21:14:22.581Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
@@ -7895,6 +7907,242 @@
         "pii"
       ],
       "lastUpdated": "2026-06-03T11:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit",
+      "description": "Comprehensive deep-review + research audit of system-spec-kit, 026, interconnected MCPs, and 027 launch",
+      "keywords": [
+        "comprehensive",
+        "deep-review",
+        "research",
+        "audit",
+        "system-spec-kit",
+        "026",
+        "interconnected",
+        "mcps",
+        "027",
+        "launch"
+      ],
+      "lastUpdated": "2026-06-04T18:56:27.510Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core",
+      "description": "Feature Specification: MCP Memory Mutation + Save + Reconcile Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "memory",
+        "mutation",
+        "save",
+        "reconcile",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal",
+      "description": "Feature Specification: MCP Retrieval + Causal Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "retrieval",
+        "causal",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema",
+      "description": "Feature Specification: MCP Session + Index + Schema/Entrypoint Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "mcp",
+        "session",
+        "index",
+        "schema",
+        "entrypoint",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity",
+      "description": "Feature Specification: 026 Program Integrity Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "026",
+        "program",
+        "integrity",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook",
+      "description": "Feature Specification: Feature Catalog + Testing Playbook Verification Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "catalog",
+        "testing",
+        "playbook",
+        "verification",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode",
+      "description": "Feature Specification: Governance + sk-doc + sk-code Drift Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "governance",
+        "sk-doc",
+        "sk-code",
+        "drift",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps",
+      "description": "Feature Specification: Interconnected MCPs Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "interconnected",
+        "mcps",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state",
+      "description": "Feature Specification: 027 Launch-State Review Slice",
+      "keywords": [
+        "feature",
+        "specification",
+        "027",
+        "launch-state",
+        "review",
+        "slice"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis",
+      "description": "Research Charter: Root-Cause Synthesis of the system-spec-kit / 026 Deep-Review Audit",
+      "keywords": [
+        "research",
+        "charter",
+        "root-cause",
+        "synthesis",
+        "system-spec-kit",
+        "026",
+        "deep-review",
+        "audit"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
+      "description": "Feature Specification: Comprehensive Audit Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "comprehensive",
+        "audit",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-05T04:50:02.276Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability",
+      "description": "Feature Specification: Phase 1: deep-loop-fanout-reliability",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "deep-loop-fanout-reliability"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.592Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening",
+      "description": "Feature Specification: Phase 2: retrieval-scope-hardening",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "retrieval-scope-hardening"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.596Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness",
+      "description": "Feature Specification: Phase 3: memory-write-correctness",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "memory-write-correctness"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.600Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
+      "description": "Feature Specification: Phase 4: mcp-contract-parity",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "mcp-contract-parity"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.604Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+      "description": "Feature Specification: Phase 5: metadata-status-derivation",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "metadata-status-derivation"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.608Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+      "description": "Feature Specification: Phase 6: catalog-playbook-accuracy",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "catalog-playbook-accuracy"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.612Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment",
+      "description": "Feature Specification: Phase 7: governance-alignment",
+      "keywords": [
+        "feature",
+        "specification",
+        "phase",
+        "governance-alignment"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.616Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/001-research-and-baseline",
@@ -8504,7 +8752,7 @@
         "coverage",
         "audit"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/027-typescript-header-normalization",
@@ -9026,7 +9274,7 @@
         "template",
         "alignment"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation",
@@ -10671,7 +10919,7 @@
         "audit",
         "deep-research"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc",
@@ -11759,6 +12007,35 @@
       "lastUpdated": "2026-05-26T17:27:10.510Z"
     },
     {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix",
+      "description": "Feature Specification: Launcher-overlap spawn & bridge fix (T1 probe-marker + T2 race-safe reclaim)",
+      "keywords": [
+        "feature",
+        "specification",
+        "launcher-overlap",
+        "spawn",
+        "bridge",
+        "fix",
+        "probe-marker",
+        "race-safe",
+        "reclaim"
+      ],
+      "lastUpdated": "2026-06-04T21:14:22.632Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening",
+      "description": "Feature Specification: socket-server reconvergence + spec-memory hardening",
+      "keywords": [
+        "feature",
+        "specification",
+        "socket-server",
+        "reconvergence",
+        "spec-memory",
+        "hardening"
+      ],
+      "lastUpdated": "2026-06-04T20:36:31.198Z"
+    },
+    {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion",
       "description": "Spec: 016/013 Ollama + BGE Promotion Arc",
       "keywords": [
@@ -12254,7 +12531,7 @@
         "bounds",
         "lifecycle"
       ],
-      "lastUpdated": "2026-05-26T17:25:48.013Z"
+      "lastUpdated": "2026-06-04T21:14:22.638Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack",
@@ -12328,7 +12605,7 @@
         "dead",
         "code"
       ],
-      "lastUpdated": "2026-05-26T17:26:16.015Z"
+      "lastUpdated": "2026-06-04T21:14:22.643Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode/001-fix-investigation-p1s-for-sidecar-worker-liveness-and-deadcode",
@@ -12409,7 +12686,7 @@
         "reaper",
         "design"
       ],
-      "lastUpdated": "2026-05-26T17:26:36.348Z"
+      "lastUpdated": "2026-06-04T21:14:22.648Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design/001-investigate-and-design-reaper-architecture",
@@ -12438,7 +12715,7 @@
         "three-layer",
         "reaper"
       ],
-      "lastUpdated": "2026-05-26T17:26:00.375Z"
+      "lastUpdated": "2026-06-04T21:14:22.653Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper/001-implement-ledger-v2-schema-and-identity-verified-pid",
@@ -13169,16 +13446,16 @@
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/016-embedding-provider-local-first",
-      "description": "Make resolveProvider() local-first (ollama -> hf-local; cloud opt-in/last-resort); repair stale embedder fixtures.",
+      "description": "Feature Specification: Embedding Provider Local-First Resolution",
       "keywords": [
+        "feature",
+        "specification",
         "embedding",
         "provider",
         "local-first",
-        "resolveProvider",
-        "ollama",
-        "hf-local"
+        "resolution"
       ],
-      "lastUpdated": "2026-06-02T21:06:00.000Z"
+      "lastUpdated": "2026-06-04T21:14:22.662Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on",
@@ -13192,6 +13469,138 @@
         "async"
       ],
       "lastUpdated": "2026-06-04T06:19:38.516Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/018-front-proxy-recycle-hardening",
+      "description": "Feature Specification: Front-Proxy Recycle Hardening",
+      "keywords": [
+        "feature",
+        "specification",
+        "front-proxy",
+        "launcher",
+        "cold-start",
+        "daemon-recycle"
+      ],
+      "lastUpdated": "2026-06-04T09:45:55.207Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty",
+      "description": "Feature Specification: Causal Relation-Coverage Reporting Honesty",
+      "keywords": [
+        "feature",
+        "specification",
+        "causal",
+        "relation-coverage",
+        "reporter",
+        "honesty"
+      ],
+      "lastUpdated": "2026-06-04T09:45:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/020-lease-socket-path",
+      "description": "Feature Specification: Lease Socket-Path Persistence",
+      "keywords": [
+        "feature",
+        "specification",
+        "lease",
+        "socket-path",
+        "persistence"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.246Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
+      "description": "Feature Specification: Relation-Inference Backfill",
+      "keywords": [
+        "feature",
+        "specification",
+        "relation-inference",
+        "backfill"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.254Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/022-readme-doc-sync",
+      "description": "Feature Specification: Save-Handler README Doc-Sync (Default-On Async Enrichment)",
+      "keywords": [
+        "feature",
+        "specification",
+        "save-handler",
+        "readme",
+        "doc-sync",
+        "default-on",
+        "async",
+        "enrichment"
+      ],
+      "lastUpdated": "2026-06-04T10:50:21.149Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/023-semantic-relation-inference",
+      "description": "Feature Specification: Semantic Relation Inference",
+      "keywords": [
+        "feature",
+        "specification",
+        "semantic",
+        "relation",
+        "inference"
+      ],
+      "lastUpdated": "2026-06-04T11:35:41.667Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/024-launcher-lease-integration-test",
+      "description": "Feature Specification: Launcher Lease Integration Test De-Flake",
+      "keywords": [
+        "feature",
+        "specification",
+        "launcher",
+        "lease",
+        "integration",
+        "test",
+        "de-flake"
+      ],
+      "lastUpdated": "2026-06-04T11:36:56.483Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/025-tool-layer-map-unlink",
+      "description": "Feature Specification: TOOL_LAYER_MAP Drift Fix (memory_causal_unlink L6)",
+      "keywords": [
+        "feature",
+        "specification",
+        "tool-layer-map",
+        "drift",
+        "memory_causal_unlink",
+        "layer-definitions",
+        "L6",
+        "analysis"
+      ],
+      "lastUpdated": "2026-06-04T00:00:00.000Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/026-relation-backfill-review-remediation",
+      "description": "Feature Specification: Relation-Backfill Review Remediation",
+      "keywords": [
+        "feature",
+        "specification",
+        "relation-backfill",
+        "review",
+        "remediation"
+      ],
+      "lastUpdated": "2026-06-04T13:09:17.577Z"
+    },
+    {
+      "specFolder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation",
+      "description": "Feature Specification: Launcher Concurrency Spawn & Bridge Investigation (deep-research)",
+      "keywords": [
+        "feature",
+        "specification",
+        "launcher",
+        "concurrency",
+        "spawn",
+        "bridge",
+        "investigation",
+        "deep-research"
+      ],
+      "lastUpdated": "2026-06-04T18:16:47.573Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph",
@@ -13688,7 +14097,7 @@
         "isolation",
         "finalize"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/004-code-graph/007-docs-and-readmes",
@@ -15280,7 +15689,7 @@
         "deep-review",
         "remediation"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/026-graph-and-context-optimization/z_archive/wave-3-deep-archives/007-039-system-code-graph-deferred-followon",
@@ -15320,7 +15729,7 @@
         "reorg",
         "renumber"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     },
     {
       "specFolder": "system-spec-kit/027-xce-research-based-refinement",
@@ -15335,165 +15744,10 @@
         "phase",
         "parent"
       ],
-      "lastUpdated": "2026-06-04T06:37:58.681Z"
+      "lastUpdated": "2026-06-04T21:14:22.681Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-memory-write-safety",
-      "description": "Feature Specification: 002 — Memory Write Safety",
-      "keywords": [
-        "feature",
-        "specification",
-        "002",
-        "memory",
-        "write",
-        "safety"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.805Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-incremental-index-foundation",
-      "description": "Feature Specification: 003 — Incremental Index Foundation",
-      "keywords": [
-        "feature",
-        "specification",
-        "003",
-        "incremental",
-        "index",
-        "foundation"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.810Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-causal-edge-tombstones",
-      "description": "Feature Specification: 004 — Causal Edge Tombstones",
-      "keywords": [
-        "feature",
-        "specification",
-        "004",
-        "causal",
-        "edge",
-        "tombstones"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.815Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-metadata-edge-promoter",
-      "description": "Feature Specification: 005 — Metadata Edge Promoter",
-      "keywords": [
-        "feature",
-        "specification",
-        "005",
-        "metadata",
-        "edge",
-        "promoter"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.820Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-write-path-reconciliation",
-      "description": "Feature Specification: 006 — Write-Path Reconciliation",
-      "keywords": [
-        "feature",
-        "specification",
-        "006",
-        "write-path",
-        "reconciliation"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.824Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-semantic-trigger-fallback",
-      "description": "Feature Specification: 007 — Semantic Trigger Fallback",
-      "keywords": [
-        "feature",
-        "specification",
-        "007",
-        "semantic",
-        "trigger",
-        "fallback"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.830Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers",
-      "description": "Feature Specification: 008 — Learning Feedback Reducers (Phase Parent)",
-      "keywords": [
-        "feature",
-        "specification",
-        "008",
-        "learning",
-        "feedback",
-        "reducers",
-        "phase",
-        "parent"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.835Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers/001-aggregator",
-      "description": "Feature Specification: Shared Feedback Aggregation",
-      "keywords": [
-        "feature",
-        "specification",
-        "shared",
-        "feedback",
-        "aggregation"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.840Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers/002-coco-rerank-consumer",
-      "description": "Feature Specification: Coco Rerank Feedback Consumer",
-      "keywords": [
-        "feature",
-        "specification",
-        "coco",
-        "rerank",
-        "feedback",
-        "consumer"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.845Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers/003-causal-reducer",
-      "description": "Feature Specification: Session-Trace Causal Reducer",
-      "keywords": [
-        "feature",
-        "specification",
-        "session-trace",
-        "causal",
-        "reducer"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.850Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers/004-retention-reducer",
-      "description": "Feature Specification: Feedback Retention Reducer",
-      "keywords": [
-        "feature",
-        "specification",
-        "feedback",
-        "retention",
-        "reducer"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.855Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-learning-feedback-reducers/005-env-tests-integration",
-      "description": "Feature Specification: Feedback Reducer Env and Integration Closeout",
-      "keywords": [
-        "feature",
-        "specification",
-        "feedback",
-        "reducer",
-        "env",
-        "integration",
-        "closeout"
-      ],
-      "lastUpdated": "2026-06-01T11:13:19.860Z"
-    },
-    {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
       "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
       "keywords": [
         "feature",
@@ -15511,10 +15765,10 @@
         "review",
         "system"
       ],
-      "lastUpdated": "2026-06-04T06:37:58.694Z"
+      "lastUpdated": "2026-06-04T12:33:53.291Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
       "description": "Feature Specification: Analysis of peck framework teachings applicable to system-spec-kit",
       "keywords": [
         "feature",
@@ -15526,10 +15780,10 @@
         "applicable",
         "system-spec-kit"
       ],
-      "lastUpdated": "2026-06-04T00:00:00Z"
+      "lastUpdated": "2026-06-04T12:33:53.296Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/002-self-check-templates",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates",
       "description": "Feature Specification: Phase 2: self-check-templates",
       "keywords": [
         "feature",
@@ -15537,10 +15791,10 @@
         "phase",
         "self-check-templates"
       ],
-      "lastUpdated": "2026-06-04T00:00:00Z"
+      "lastUpdated": "2026-06-04T12:33:53.301Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/003-current-state-discipline",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline",
       "description": "Feature Specification: Phase 3: current-state-discipline",
       "keywords": [
         "feature",
@@ -15548,10 +15802,10 @@
         "phase",
         "current-state-discipline"
       ],
-      "lastUpdated": "2026-06-04T00:00:00Z"
+      "lastUpdated": "2026-06-04T12:33:53.306Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-peck-teachings-adoption/004-constitutional-rule-review",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review",
       "description": "Feature Specification: Phase 4: constitutional-rule-review",
       "keywords": [
         "feature",
@@ -15559,7 +15813,162 @@
         "phase",
         "constitutional-rule-review"
       ],
-      "lastUpdated": "2026-06-04T00:00:00Z"
+      "lastUpdated": "2026-06-04T12:33:53.310Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
+      "description": "Feature Specification: 002 — Memory Write Safety",
+      "keywords": [
+        "feature",
+        "specification",
+        "002",
+        "memory",
+        "write",
+        "safety"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.315Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation",
+      "description": "Feature Specification: 003 — Incremental Index Foundation",
+      "keywords": [
+        "feature",
+        "specification",
+        "003",
+        "incremental",
+        "index",
+        "foundation"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.320Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones",
+      "description": "Feature Specification: 004 — Causal Edge Tombstones",
+      "keywords": [
+        "feature",
+        "specification",
+        "004",
+        "causal",
+        "edge",
+        "tombstones"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.326Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter",
+      "description": "Feature Specification: 005 — Metadata Edge Promoter",
+      "keywords": [
+        "feature",
+        "specification",
+        "005",
+        "metadata",
+        "edge",
+        "promoter"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.330Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation",
+      "description": "Feature Specification: 006 — Write-Path Reconciliation",
+      "keywords": [
+        "feature",
+        "specification",
+        "006",
+        "write-path",
+        "reconciliation"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.335Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback",
+      "description": "Feature Specification: 007 — Semantic Trigger Fallback",
+      "keywords": [
+        "feature",
+        "specification",
+        "007",
+        "semantic",
+        "trigger",
+        "fallback"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.340Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers",
+      "description": "Feature Specification: 008 — Learning Feedback Reducers (Phase Parent)",
+      "keywords": [
+        "feature",
+        "specification",
+        "008",
+        "learning",
+        "feedback",
+        "reducers",
+        "phase",
+        "parent"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.346Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator",
+      "description": "Feature Specification: Shared Feedback Aggregation",
+      "keywords": [
+        "feature",
+        "specification",
+        "shared",
+        "feedback",
+        "aggregation"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.350Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer",
+      "description": "Feature Specification: Coco Rerank Feedback Consumer",
+      "keywords": [
+        "feature",
+        "specification",
+        "coco",
+        "rerank",
+        "feedback",
+        "consumer"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.356Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer",
+      "description": "Feature Specification: Session-Trace Causal Reducer",
+      "keywords": [
+        "feature",
+        "specification",
+        "session-trace",
+        "causal",
+        "reducer"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.361Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer",
+      "description": "Feature Specification: Feedback Retention Reducer",
+      "keywords": [
+        "feature",
+        "specification",
+        "feedback",
+        "retention",
+        "reducer"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.365Z"
+    },
+    {
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration",
+      "description": "Feature Specification: Feedback Reducer Env and Integration Closeout",
+      "keywords": [
+        "feature",
+        "specification",
+        "feedback",
+        "reducer",
+        "env",
+        "integration",
+        "closeout"
+      ],
+      "lastUpdated": "2026-06-04T12:33:53.370Z"
     },
     {
       "specFolder": "system-spec-kit/z_archive/001-fix-command-dispatch",
@@ -19952,7 +20361,7 @@
         "knowledge",
         "base"
       ],
-      "lastUpdated": "2026-06-04T06:37:59.160Z"
+      "lastUpdated": "2026-06-05T04:50:02.544Z"
     }
   ]
 }

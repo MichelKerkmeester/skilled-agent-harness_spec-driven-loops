@@ -10,8 +10,8 @@
     "index",
     "foundation"
   ],
-  "lastUpdated": "2026-06-01T11:13:19.810Z",
-  "specId": "002",
+  "lastUpdated": "2026-06-04T12:33:53.320Z",
+  "specId": "003",
   "folderSlug": "incremental-index-foundation",
   "parentChain": [
     "system-spec-kit",
