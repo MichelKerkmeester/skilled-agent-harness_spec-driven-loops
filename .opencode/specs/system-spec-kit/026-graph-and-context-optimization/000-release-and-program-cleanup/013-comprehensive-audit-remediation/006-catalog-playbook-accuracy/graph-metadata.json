@@ -1,26 +1,225 @@
 {
   "schema_version": 1,
-  "packet_id": "013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
-  "spec_folder": "013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 6: catalog-playbook-accuracy",
+  "derived": {
+    "trigger_phrases": [
+      "catalog playbook accuracy",
+      "feature catalog defects",
+      "playbook scenario links",
+      "tool count 37",
+      "catalog playbook remediation",
+      "catalog playbook accuracy plan",
+      "feature catalog doc fixes",
+      "playbook remediation plan",
+      "catalog playbook tasks",
+      "F-catalog-playbook tasks",
+      "catalog playbook accuracy summary",
+      "F-catalog-playbook complete"
+    ],
+    "key_topics": [
+      "catalog",
+      "playbook",
+      "accuracy",
+      "feature",
+      "defects",
+      "scenario",
+      "links",
+      "tool",
+      "count",
+      "remediation",
+      "plan",
+      "doc"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "shared/embeddings/factory.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "feature_catalog/feature_catalog.md",
+      "feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+      "mcp_server/tests/review-fixes.vitest.ts",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md",
+      "manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md",
+      "manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md",
+      "manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md",
+      "manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+      "feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+      "manual_testing_playbook/24--local-llm-query-intelligence/README.md",
+      "manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+      "manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md",
+      "feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "factory.ts",
+        "kind": "code",
+        "path": "shared/embeddings/factory.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "214-feature-catalog-code-references.md",
+        "kind": "doc",
+        "path": "feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+        "source": "derived"
+      },
+      {
+        "name": "review-fixes.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/review-fixes.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "006-hybrid-search-pipeline.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md",
+        "source": "derived"
+      },
+      {
+        "name": "007-4-stage-pipeline-architecture.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md",
+        "source": "derived"
+      },
+      {
+        "name": "170-run-stress-cycle.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "036-startup-runtime-compatibility-guards.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md",
+        "source": "derived"
+      },
+      {
+        "name": "232-feature-catalog-annotation-name-validity.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+        "source": "derived"
+      },
+      {
+        "name": "313-category-overview.md",
+        "kind": "doc",
+        "path": "feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/24--local-llm-query-intelligence/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "234-module-header-compliance-via-verify-alignment-drift-py.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+        "source": "derived"
+      },
+      {
+        "name": "032-session-bootstrap-reader-ready-context.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md",
+        "source": "derived"
+      },
+      {
+        "name": "253-governed-ingest-cancel-lifecycle.md",
+        "kind": "doc",
+        "path": "feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 6** of the comprehensive audit remediation specification.",
     "created_at": "2026-06-04T20:45:44Z",
-    "last_save_at": "2026-06-04T20:45:44Z",
+    "last_save_at": "2026-06-05T05:20:54.803Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -1,26 +1,216 @@
 {
   "schema_version": 1,
-  "packet_id": "013-comprehensive-audit-remediation/004-mcp-contract-parity",
-  "spec_folder": "013-comprehensive-audit-remediation/004-mcp-contract-parity",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 4: mcp-contract-parity",
+  "derived": {
+    "trigger_phrases": [
+      "mcp contract parity",
+      "tool schema drift",
+      "governance ingest metadata",
+      "embedding reconcile coverage",
+      "stale graph guidance",
+      "mcp contract parity plan",
+      "tool schema alignment",
+      "governance ingest threading",
+      "embedding reconcile parity",
+      "mcp contract parity tasks",
+      "tool schema tasks",
+      "governance ingest tasks"
+    ],
+    "key_topics": [
+      "mcp",
+      "contract",
+      "parity",
+      "tool",
+      "schema",
+      "drift",
+      "governance",
+      "ingest",
+      "metadata",
+      "embedding",
+      "reconcile",
+      "coverage"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "schemas/tool-input-schemas.ts",
+      "tools/types.ts",
+      "lib/embedders/embedding-reconcile.ts",
+      "handlers/memory-index.ts",
+      "handlers/memory-ingest.ts",
+      "handlers/memory-save.ts",
+      "lib/ops/job-queue.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-reconcile.ts",
+        "kind": "code",
+        "path": "lib/embedders/embedding-reconcile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-ingest.ts",
+        "kind": "code",
+        "path": "handlers/memory-ingest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "handlers/memory-save.ts",
+        "source": "derived"
+      },
+      {
+        "name": "job-queue.ts",
+        "kind": "code",
+        "path": "lib/ops/job-queue.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Each",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Layered",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow For",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 4** of the comprehensive audit remediation specification.",
     "created_at": "2026-06-04T20:45:42Z",
-    "last_save_at": "2026-06-04T20:45:42Z",
+    "last_save_at": "2026-06-05T05:20:54.801Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

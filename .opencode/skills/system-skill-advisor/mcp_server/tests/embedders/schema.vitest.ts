@@ -38,35 +38,35 @@ describe('skill-advisor embedder schema', () => {
       dim: 0,
     });
 
-    setActiveEmbedder(database, 'jina-embeddings-v3', 1024);
+    setActiveEmbedder(database, 'nomic-embed-text-v1.5', 768);
 
     expect(getActiveEmbedder(database)).toEqual({
-      name: 'jina-embeddings-v3',
-      dim: 1024,
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
     });
   });
 
-  it('creates vec_1024 idempotently', () => {
+  it('creates vec_768 idempotently', () => {
     const database = memoryDb();
 
-    ensureVecTableForDim(database, 1024);
-    ensureVecTableForDim(database, 1024);
+    ensureVecTableForDim(database, 768);
+    ensureVecTableForDim(database, 768);
 
     const table = database.prepare(`
       SELECT name
       FROM sqlite_master
       WHERE type = 'table'
-        AND name = 'vec_1024'
+        AND name = 'vec_768'
     `).get();
 
-    expect(table).toEqual({ name: 'vec_1024' });
+    expect(table).toEqual({ name: 'vec_768' });
   });
 
   it('rolls back table creation when active embedder setup fails mid-transaction', () => {
     const database = memoryDb();
 
     expect(() => {
-      __embedderSchemaTestables.setActiveEmbedderTransactional(database, 'jina-embeddings-v3', 1024, () => {
+      __embedderSchemaTestables.setActiveEmbedderTransactional(database, 'nomic-embed-text-v1.5', 768, () => {
         throw new Error('simulated crash after schema creation');
       });
     }).toThrow('simulated crash after schema creation');
@@ -75,7 +75,7 @@ describe('skill-advisor embedder schema', () => {
       SELECT name
       FROM sqlite_master
       WHERE type = 'table'
-        AND name = 'vec_1024'
+        AND name = 'vec_768'
     `).get();
     const metadataTable = database.prepare(`
       SELECT name

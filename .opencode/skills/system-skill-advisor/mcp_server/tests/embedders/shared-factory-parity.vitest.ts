@@ -36,7 +36,7 @@ import {
 describe('shared-factory parity: skill-advisor shim path vs @spec-kit/shared path', () => {
   it('exports the same MANIFESTS reference through both paths', () => {
     expect(MANIFESTS_VIA_SHIM).toBe(MANIFESTS_VIA_SHARED);
-    expect(MANIFESTS_VIA_SHIM.length).toBeGreaterThanOrEqual(7);
+    expect(MANIFESTS_VIA_SHIM).toHaveLength(1);
   });
 
   it('exports the same NotImplementedError class through both paths', () => {
@@ -50,8 +50,8 @@ describe('shared-factory parity: skill-advisor shim path vs @spec-kit/shared pat
   });
 
   it('returns equivalent adapters for the production-default manifest', () => {
-    const viaShim = getAdapterViaShim('jina-embeddings-v3');
-    const viaShared = getAdapterViaShared('jina-embeddings-v3');
+    const viaShim = getAdapterViaShim('nomic-embed-text-v1.5');
+    const viaShared = getAdapterViaShared('nomic-embed-text-v1.5');
 
     expect(viaShim).toBeDefined();
     expect(viaShared).toBeDefined();

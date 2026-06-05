@@ -7,7 +7,7 @@
 //
 // Scenarios:
 //   1. Pointer is 'auto' → cascade fires → winner persisted.
-//   2. Pointer is set (jina-v3) → cascade skipped → existing pointer returned.
+//   2. Pointer is set (nomic) → cascade skipped → existing pointer returned.
 //   3. Pointer is orphan (embeddinggemma-300m, post-purge) → cascade fires
 //      → winner persisted (migration safety net).
 //   4. `contentType` parameter is plumbed through to the cascade.
@@ -60,14 +60,14 @@ describe('ensureActiveEmbedder', () => {
 
   it('skips the cascade when a concrete known pointer is already persisted', async () => {
     const db = memoryDb();
-    setActiveEmbedder(db, 'jina-embeddings-v3', 1024);
+    setActiveEmbedder(db, 'nomic-embed-text-v1.5', 768);
 
     const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
 
     const result = await ensureActiveEmbedder(db, { autoSelect });
 
     expect(autoSelect).not.toHaveBeenCalled();
-    expect(result).toEqual({ name: 'jina-embeddings-v3', dim: 1024 });
+    expect(result).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
   });
 
   it('runs the cascade when pointer references a manifest no longer in the registry', async () => {
@@ -106,13 +106,13 @@ describe('ensureActiveEmbedder', () => {
 
   it('persists the winner so a second call is a no-op', async () => {
     const db = memoryDb();
-    const autoSelect = vi.fn(async () => fakeWinner('bge-m3', 1024, 'ollama'));
+    const autoSelect = vi.fn(async () => fakeWinner('nomic-embed-text-v1.5', 768, 'ollama'));
 
     const first = await ensureActiveEmbedder(db, { autoSelect });
     const second = await ensureActiveEmbedder(db, { autoSelect });
 
     expect(autoSelect).toHaveBeenCalledTimes(1);
     expect(first).toEqual(second);
-    expect(first).toEqual({ name: 'bge-m3', dim: 1024 });
+    expect(first).toEqual({ name: 'nomic-embed-text-v1.5', dim: 768 });
   });
 });

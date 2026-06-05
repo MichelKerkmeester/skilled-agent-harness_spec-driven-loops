@@ -1,12 +1,9 @@
 // ───────────────────────────────────────────────────────────────
 // MODULE: Embedder registry tests
 // ───────────────────────────────────────────────────────────────
-// The umbrella aligned skill-advisor to the shared
-// canonical registry. The previous skill-advisor-specific entries
-// `embeddinggemma-300m` and `jina-embeddings-v2-base-code` were removed
-// (purge parity + text-only TS registry per content-type split).
-// The previous `DEFAULT_EMBEDDER_NAME` constant was removed because the
-// active default is now the `'auto'` sentinel that triggers the cascade.
+// The umbrella aligned skill-advisor to the shared canonical registry.
+// The registry intentionally exposes one local Ollama text embedder; older
+// secondary and cloud entries stay removed.
 // ───────────────────────────────────────────────────────────────
 
 import { describe, expect, it } from 'vitest';
@@ -18,33 +15,30 @@ import {
 
 describe('skill-advisor embedder registry (shared canonical)', () => {
   it('exposes the shared canonical text-tuned manifests', () => {
-    expect(MANIFESTS.length).toBeGreaterThanOrEqual(7);
+    expect(MANIFESTS).toHaveLength(1);
 
-    expect(MANIFESTS.map((manifest) => manifest.name)).toEqual(expect.arrayContaining([
+    expect(MANIFESTS.map((manifest) => manifest.name)).toEqual([
       'nomic-embed-text-v1.5',
-      'jina-embeddings-v3',
-      'mxbai-embed-large-v1',
-      'bge-m3',
-    ]));
+    ]);
 
     expect(MANIFESTS.map((manifest) => manifest.name)).not.toEqual(expect.arrayContaining([
       'embeddinggemma-300m',
       'jina-embeddings-v2-base-code',
     ]));
 
-    expect(getManifest('jina-embeddings-v3')).toEqual(expect.objectContaining({
-      name: 'jina-embeddings-v3',
-      dim: 1024,
+    expect(getManifest('nomic-embed-text-v1.5')).toEqual(expect.objectContaining({
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
       backend: 'ollama',
     }));
   });
 
-  it('resolves jina-v3 to a valid Ollama adapter', () => {
-    const adapter = getAdapter('jina-embeddings-v3');
+  it('resolves nomic text to a valid Ollama adapter', () => {
+    const adapter = getAdapter('nomic-embed-text-v1.5');
 
     expect(adapter).toEqual(expect.objectContaining({
-      name: 'jina-embeddings-v3',
-      dim: 1024,
+      name: 'nomic-embed-text-v1.5',
+      dim: 768,
       backend: 'ollama',
     }));
     expect(adapter?.embed).toEqual(expect.any(Function));

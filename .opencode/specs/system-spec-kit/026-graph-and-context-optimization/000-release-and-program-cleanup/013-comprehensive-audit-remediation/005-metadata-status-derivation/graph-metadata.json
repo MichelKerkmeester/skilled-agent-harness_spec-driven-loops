@@ -1,26 +1,211 @@
 {
   "schema_version": 1,
-  "packet_id": "013-comprehensive-audit-remediation/005-metadata-status-derivation",
-  "spec_folder": "013-comprehensive-audit-remediation/005-metadata-status-derivation",
-  "parent_id": null,
+  "packet_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation",
+  "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/013-comprehensive-audit-remediation",
   "children_ids": [],
   "manual": {
     "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
-    "derived": {
-    "trigger_phrases": [],
-    "key_topics": [],
-    "importance_tier": "important",
-    "status": "planned",
-    "key_files": ["spec.md","plan.md","tasks.md"],
-    "entities": [],
-    "causal_summary": "Phase 5: metadata-status-derivation",
+  "derived": {
+    "trigger_phrases": [
+      "metadata status derivation",
+      "derived status complete",
+      "graph metadata parser table status",
+      "027 placeholder child",
+      "026 last active child pointer",
+      "metadata status derivation plan",
+      "table status fallback plan",
+      "026 027 metadata reconciliation",
+      "deriveStatus precedence",
+      "graph metadata parser plan",
+      "metadata status derivation tasks",
+      "table status fallback tasks"
+    ],
+    "key_topics": [
+      "metadata",
+      "status",
+      "derivation",
+      "derived",
+      "complete",
+      "graph",
+      "parser",
+      "table",
+      "027",
+      "placeholder",
+      "child",
+      "026"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "mcp_server/lib/graph/graph-metadata-parser.ts",
+      "mcp_server/tests/graph-metadata-schema.vitest.ts",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-schema.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/graph-metadata-schema.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Single",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Spec",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Author Draft",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "project",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 5** of the comprehensive audit remediation specification.",
     "created_at": "2026-06-04T20:45:43Z",
-    "last_save_at": "2026-06-04T20:45:43Z",
+    "last_save_at": "2026-06-05T05:20:54.802Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
-    "source_docs": ["spec.md","plan.md","tasks.md"]
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

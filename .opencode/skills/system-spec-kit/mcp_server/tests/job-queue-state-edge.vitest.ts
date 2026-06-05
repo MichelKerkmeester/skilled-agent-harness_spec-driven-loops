@@ -34,7 +34,8 @@ function createTestDb(): Database.Database {
       files_processed INTEGER,
       errors_json TEXT,
       created_at TEXT,
-      updated_at TEXT
+      updated_at TEXT,
+      governance_json TEXT
     )
   `);
   databases.push(db);
@@ -310,6 +311,6 @@ describe('ingest job queue state + edge tests (T005b)', () => {
     expect(updated?.errors.length).toBe(1);
     expect(updated?.errors[0]?.filePath).toBe(path.basename(missingPath));
     expect(processFile).toHaveBeenCalledTimes(1);
-    expect(processFile).toHaveBeenCalledWith(validPath);
+    expect(processFile).toHaveBeenCalledWith(validPath, null);
   });
 });
