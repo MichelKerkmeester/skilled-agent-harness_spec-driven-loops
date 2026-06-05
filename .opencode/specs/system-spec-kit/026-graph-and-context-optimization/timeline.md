@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-06-05T09:53:07Z"
+    last_updated_at: "2026-06-05T13:47:32Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** 2026-06-05T09:53:07Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-05T13:47:32Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `000-release-and-program-cleanup/015-docs-drift-review`
+> **Most recent live spec folder:** `000-release-and-program-cleanup/017-last-50-commits-review-remediation`
 > **Oldest live spec folder:** `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs`
-> **Counts:** 695 live spec folders · 34 archived (`z_archive/`).
+> **Counts:** 697 live spec folders · 34 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-05 09:58  000-release-and-program-cleanup/015-docs-drift-review
- 2. 2026-06-05 09:58  000-release-and-program-cleanup
- 3. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening
- 4. 2026-06-05 08:31  003-memory-and-causal-runtime
- 5. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
- 6. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture
- 7. 2026-06-05 08:31  000-release-and-program-cleanup/014-pre-existing-failure-remediation
- 8. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix
- 9. 2026-06-05 07:34  000-release-and-program-cleanup/009-readme-and-references-accuracy
-10. 2026-06-05 07:34  003-memory-and-causal-runtime/016-embedding-provider-local-first
-11. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper
-12. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design
-13. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode
-14. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle
-15. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation
+ 1. 2026-06-05 15:12  000-release-and-program-cleanup/017-last-50-commits-review-remediation
+ 2. 2026-06-05 15:12  000-release-and-program-cleanup
+ 3. 2026-06-05 14:54  000-release-and-program-cleanup/015-docs-drift-review
+ 4. 2026-06-05 14:53  000-release-and-program-cleanup/016-last-50-commits-deep-review
+ 5. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening
+ 6. 2026-06-05 08:31  003-memory-and-causal-runtime
+ 7. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
+ 8. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture
+ 9. 2026-06-05 08:31  000-release-and-program-cleanup/014-pre-existing-failure-remediation
+10. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix
+11. 2026-06-05 07:34  000-release-and-program-cleanup/009-readme-and-references-accuracy
+12. 2026-06-05 07:34  003-memory-and-causal-runtime/016-embedding-provider-local-first
+13. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper
+14. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design
+15. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode
 ```
 
 ---
@@ -73,7 +73,7 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-05 09:58 | 2026-04-27 | `000-release-and-program-cleanup/` |
+| 1 | 2026-06-05 15:12 | 2026-04-27 | `000-release-and-program-cleanup/` |
 | 2 | 2026-06-05 08:31 | 2026-05-26 | `003-memory-and-causal-runtime/` |
 | 3 | 2026-06-04 14:37 | 2026-05-28 | `007-mcp-daemon-reliability/` |
 | 4 | 2026-06-04 14:37 | 2026-05-26 | `006-operator-tooling/` |
@@ -94,8 +94,10 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
-2026-06-05 09:58  born:2026-06-05  impl  000-release-and-program-cleanup/015-docs-drift-review
-2026-06-05 09:58  born:2026-04-27        000-release-and-program-cleanup
+2026-06-05 15:12  born:2026-06-05  impl  000-release-and-program-cleanup/017-last-50-commits-review-remediation
+2026-06-05 15:12  born:2026-04-27        000-release-and-program-cleanup
+2026-06-05 14:54  born:2026-06-05  impl  000-release-and-program-cleanup/015-docs-drift-review
+2026-06-05 14:53  born:2026-06-05  impl  000-release-and-program-cleanup/016-last-50-commits-deep-review
 2026-06-05 08:31  born:2026-06-05  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening
 2026-06-05 08:31  born:2026-05-26        003-memory-and-causal-runtime
 2026-06-05 08:31  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
@@ -129,9 +131,9 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal
 2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core
 2026-06-04 20:59  born:2026-06-04  impl  000-release-and-program-cleanup/012-comprehensive-deep-review-audit
+2026-06-04 17:09  born:2026-06-05        000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit
 2026-06-04 17:09  born:2026-06-04  impl  003-memory-and-causal-runtime/021-relation-inference-backfill
 2026-06-04 17:09  born:2026-06-01        000-release-and-program-cleanup/008-docs-and-catalogs-rollup
-2026-06-04 17:09  born:??????????        000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit
 2026-06-04 16:05  born:2026-06-04  impl  003-memory-and-causal-runtime/026-relation-backfill-review-remediation
 2026-06-04 14:44  born:2026-06-04  impl  003-memory-and-causal-runtime/020-lease-socket-path
 2026-06-04 14:37  born:2026-06-04  impl  003-memory-and-causal-runtime/023-semantic-relation-inference
@@ -847,8 +849,10 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `000-release-and-program-cleanup/015-docs-drift-review` | impl | [changelog-000-015-docs-drift-review.md](./changelog/000-release-and-program-cleanup/changelog-000-015-docs-drift-review.md) |
+| `000-release-and-program-cleanup/017-last-50-commits-review-remediation` | impl | [changelog-000-017-last-50-commits-review-remediation.md](./changelog/000-release-and-program-cleanup/changelog-000-017-last-50-commits-review-remediation.md) |
 | `000-release-and-program-cleanup` |  | [changelog-000-release-and-program-cleanup-root.md](./changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
+| `000-release-and-program-cleanup/015-docs-drift-review` | impl | [changelog-000-015-docs-drift-review.md](./changelog/000-release-and-program-cleanup/changelog-000-015-docs-drift-review.md) |
+| `000-release-and-program-cleanup/016-last-50-commits-deep-review` | impl | [changelog-000-016-last-50-commits-deep-review.md](./changelog/000-release-and-program-cleanup/changelog-000-016-last-50-commits-deep-review.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening` | impl | [changelog-006-016-spec-memory-launcher-ownership-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-006-016-spec-memory-launcher-ownership-hardening.md) |
 | `003-memory-and-causal-runtime` |  | [changelog-003-memory-and-causal-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) (rollup indexes +1) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency` |  | [changelog-006-mcp-launcher-concurrency-root.md](./changelog/003-memory-and-causal-runtime/changelog-006-mcp-launcher-concurrency-root.md) |
@@ -882,9 +886,9 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal` |  | [changelog-012-002-mcp-retrieval-causal.md](./changelog/000-release-and-program-cleanup/changelog-012-002-mcp-retrieval-causal.md) |
 | `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core` |  | [changelog-012-001-mcp-core.md](./changelog/000-release-and-program-cleanup/changelog-012-001-mcp-core.md) |
 | `000-release-and-program-cleanup/012-comprehensive-deep-review-audit` | impl | [changelog-012-comprehensive-deep-review-audit-root.md](./changelog/000-release-and-program-cleanup/changelog-012-comprehensive-deep-review-audit-root.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` |  | (none) |
 | `003-memory-and-causal-runtime/021-relation-inference-backfill` | impl | [changelog-021-relation-inference-backfill.md](./changelog/003-memory-and-causal-runtime/changelog-021-relation-inference-backfill.md) |
 | `000-release-and-program-cleanup/008-docs-and-catalogs-rollup` |  | [changelog-008-docs-and-catalogs-rollup-root.md](./changelog/000-release-and-program-cleanup/changelog-008-docs-and-catalogs-rollup-root.md) |
-| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` |  | (none) |
 | `003-memory-and-causal-runtime/026-relation-backfill-review-remediation` | impl | [changelog-026-relation-backfill-review-remediation.md](./changelog/003-memory-and-causal-runtime/changelog-026-relation-backfill-review-remediation.md) |
 | `003-memory-and-causal-runtime/020-lease-socket-path` | impl | [changelog-020-lease-socket-path.md](./changelog/003-memory-and-causal-runtime/changelog-020-lease-socket-path.md) |
 | `003-memory-and-causal-runtime/023-semantic-relation-inference` | impl | [changelog-023-semantic-relation-inference.md](./changelog/003-memory-and-causal-runtime/changelog-023-semantic-relation-inference.md) |
