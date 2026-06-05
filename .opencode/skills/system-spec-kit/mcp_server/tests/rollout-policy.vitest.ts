@@ -104,6 +104,28 @@ describe('rollout policy', () => {
     expect(isFeatureEnabled('SPECKIT_EXTRACTION', '   ')).toBe(true);
   });
 
+  it('buckets a provided identity through the 1-99 partial-rollout branch', () => {
+    // Lock the deterministic bucket assignment these assertions rely on, so a
+    // future hash change surfaces here instead of silently shifting the in/out
+    // boundary the percentage-bucketing test exercises below.
+    expect(deterministicBucket('gamma')).toBe(15);
+    expect(deterministicBucket('beta')).toBe(72);
+
+    process.env.SPECKIT_EXTRACTION = 'true';
+
+    // gamma -> bucket 15: inside a 50% rollout (15 < 50), outside a 10% rollout (15 >= 10).
+    process.env.SPECKIT_ROLLOUT_PERCENT = '50';
+    expect(isFeatureEnabled('SPECKIT_EXTRACTION', 'gamma')).toBe(true);
+    process.env.SPECKIT_ROLLOUT_PERCENT = '10';
+    expect(isFeatureEnabled('SPECKIT_EXTRACTION', 'gamma')).toBe(false);
+
+    // beta -> bucket 72: outside a 50% rollout (72 >= 50), inside an 80% rollout (72 < 80).
+    process.env.SPECKIT_ROLLOUT_PERCENT = '50';
+    expect(isFeatureEnabled('SPECKIT_EXTRACTION', 'beta')).toBe(false);
+    process.env.SPECKIT_ROLLOUT_PERCENT = '80';
+    expect(isFeatureEnabled('SPECKIT_EXTRACTION', 'beta')).toBe(true);
+  });
+
   it("treats '0' as an explicit feature disable signal", () => {
     process.env.SPECKIT_ROLLOUT_PERCENT = '100';
     process.env.SPECKIT_EXTRACTION = '0';

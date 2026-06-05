@@ -79,6 +79,9 @@ function sleep(ms: number): Promise<void> {
 // re-append the missing tail. Without ancestor canonicalization, a socket dir that was cleared
 // (e.g. `/tmp/<service>` after a reboot) stays literal `/tmp/...` and fails the allowed-root
 // check below — which canonicalizes `/tmp` to `/private/tmp` — crashing the server.
+// Fail closed: an existing ancestor that cannot be canonicalized (permission/loop error) must
+// abort rather than return a non-canonical path, which would weaken the allowed-root containment
+// check that downstream binds rely on.
 function canonicalizePath(target: string): string {
   const resolved = path.resolve(target);
   const tail: string[] = [];
@@ -91,11 +94,7 @@ function canonicalizePath(target: string): string {
     tail.unshift(path.basename(current));
     current = parent;
   }
-  try {
-    return path.join(fs.realpathSync.native(current), ...tail);
-  } catch {
-    return resolved;
-  }
+  return path.join(fs.realpathSync.native(current), ...tail);
 }
 
 // Prefix-match containment: true iff `candidate` is `root` itself or a descendant of it.
@@ -232,7 +231,30 @@ async function retryTcpListenAfterEaddrInUse(
   return false;
 }
 
+// Tear down any server still registered in the module-global slots before a new bind reuses them.
+// startIpcSocketServer tracks its server/sockets in module globals, so a second start without a
+// dispose would orphan the prior listener (leaking the socket and its clients) and corrupt the
+// shared stats. Re-entrancy must close the prior server first.
+async function disposeActiveServer(): Promise<void> {
+  const priorServer = activeServer;
+  for (const socket of activeSockets) {
+    socket.destroy();
+  }
+  activeSockets.clear();
+  activeTransports.clear();
+  if (priorServer) {
+    await new Promise<void>((resolve) => {
+      priorServer.close(() => resolve());
+    });
+  }
+  activeServer = null;
+  activeSocketPath = null;
+}
+
 async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<IpcSocketServerHandle> {
+  if (activeServer) {
+    await disposeActiveServer();
+  }
   const socketPath = options.socketPath.startsWith('tcp://')
     ? options.socketPath
     : path.resolve(options.socketPath);
@@ -253,6 +275,19 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
       }
       if ((st.mode & 0o022) !== 0) {
         throw new Error(`IPC socket dir ${socketDir} is group/world-writable (mode ${(st.mode & 0o777).toString(8)})`);
+      }
+    } catch (error: unknown) {
+      const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
+      if (code !== 'ENOENT') throw error;
+    }
+    // Refuse to bind over a symlink planted at the socket path. The EADDRINUSE reclaim branch
+    // fences a stale node via canUnlinkExistingSocket (lstat); the fresh-bind path needs the same
+    // protection so a symlink whose target we would later chmod cannot be used to redirect the
+    // permission change onto an arbitrary file.
+    try {
+      const linkStat = fs.lstatSync(socketPath);
+      if (linkStat.isSymbolicLink()) {
+        throw new Error(`IPC socket path ${socketPath} is a symlink; refusing to bind`);
       }
     } catch (error: unknown) {
       const code = error && typeof error === 'object' && 'code' in error ? (error as NodeJS.ErrnoException).code : undefined;
@@ -352,6 +387,12 @@ async function startIpcSocketServer(options: IpcSocketServerOptions): Promise<Ip
     ? `tcp://${address.address}:${address.port}`
     : socketPath;
   if (!socketPath.startsWith('tcp://')) {
+    // Do not chmod through a symlink. lstat first and only chmod a real socket node so the 0o600
+    // tightening cannot be redirected onto an attacker-pointed target between bind and chmod.
+    const boundStat = fs.lstatSync(socketPath);
+    if (boundStat.isSymbolicLink() || !boundStat.isSocket()) {
+      throw new Error(`IPC socket path ${socketPath} is not a bound socket; refusing to chmod`);
+    }
     fs.chmodSync(socketPath, 0o600);
   }
   activeServer = server;

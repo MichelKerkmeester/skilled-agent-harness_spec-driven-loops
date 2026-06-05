@@ -19,6 +19,7 @@
         "SPECKIT_RETRY_BATCH_SIZE": "100",
         "SPECKIT_RETRY_INTERVAL_MS": "5000",
         "SPECKIT_RETRY_QUEUE_MAX_AGE_MS": "3153600000000",
+        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket. Pinned identically for mk-spec-memory AND mk_skill_advisor so both consume ONE resident nomic server (single-owner via the socket-keyed respawn lock). Short /tmp path stays under the macOS sun_path 104-char limit. Do not diverge the two services.",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~7,000–8,000 tokens (largest MCP surface; 37 tools across 8 families). Project-wide MCP context budget: ~16–21K tokens total — see code_mode env block for the rollup.",
         "_NOTE_RETRY_TUNING": "Bulk re-embed retry tuning: raised pending cap + max-age + faster batch/interval so a large embedding backlog drains instead of being parked as failed (defaults park excess/old pending: cap 1000, 24h age, 5-per-5min).",
         "_NOTE_SOCKET": "macOS sun_path limit (104 chars): the default bridge socket path under database/daemon-ipc.sock exceeds the limit and the launcher fails with EINVAL. Pin to a short /tmp path so the multi-client bridge can bind.",
@@ -44,6 +45,7 @@
         "MK_SKILL_ADVISOR_DB_DIR": ".opencode/skills/system-skill-advisor/mcp_server/database",
         "SPECKIT_ADVISOR_SHADOW_MODE": "0",
         "SPECKIT_SKILL_ADVISOR_HOOK_DISABLED": "0",
+        "_NOTE_HF_EMBED_SOCKET": "Shared hf-local model-server socket — identical to mk-spec-memory's so both services share ONE resident nomic server. (skill-advisor only spawns it when SPECKIT_SKILL_ADVISOR_MODEL_SERVER_ENABLED=1; otherwise it just connects to mk-spec-memory's.)",
         "_NOTE_CONTEXT_BUDGET": "Tool-schema wire payload: ~2,200 tokens (9 tools).",
         "_NOTE_1_DB": "Database lives at .opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite by default; MK_SKILL_ADVISOR_DB_DIR overrides, with SYSTEM_SKILL_ADVISOR_DB_DIR as a legacy fallback (both still recognized by the launcher + handlers).",
         "_NOTE_2_TOOLS": "Registers 9 tools (8 public + 1 internal trusted-caller): advisor_recommend/rebuild/status/validate plus skill_graph_scan/query/status/validate/propagate_enhances. MCP namespace: mcp__mk_skill_advisor__*",
@@ -75,7 +77,8 @@
         ".opencode/skills/mcp-code-mode/mcp_server/dist/index.js"
       ],
       "env": {
-        "UTCP_CONFIG_FILE": ".utcp_config.json"
+        "UTCP_CONFIG_FILE": ".utcp_config.json",
+        "_NOTE_TOTAL_MCP_BUDGET": "Project-wide MCP context-token rollup (rough, wire-payload estimates at ~3.5 chars/token): mk-spec-memory ~7–8K + mk_code_index ~2.2K + mk_skill_advisor ~2.2K + sequential_thinking ~0.3K + code_mode ~1–3K = ~13–16K tokens total. On a 200K-context model this is ~8–11% of total budget; on 1M-context Opus ~2%. mk-spec-memory remains the dominant single-MCP cost. Methodology: source-byte ÷ 3.5 × wire-compression factor 0.5; full repro in .opencode/skills/system-spec-kit/scripts/ (or pipe `tools/list` JSON-RPC to each launcher for exact wire bytes)."
       }
     }
   }

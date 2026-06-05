@@ -281,7 +281,17 @@ function readOwnerLeaseFile(filePath = ownerLeasePath()) {
 function writeOwnerLeaseFile(lease) {
   const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
   const tmp = `${currentLeasePath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
-  fs.writeFileSync(tmp, `${JSON.stringify(lease, null, 2)}\n`, { mode: 0o600, flag: 'wx' });
+  // fsync the temp file before the atomic rename so the lease contents survive a crash, matching
+  // the durability of the exclusive write path; a renamed-but-unsynced lease can resurface empty
+  // after power loss and break ownership detection.
+  let fd;
+  try {
+    fd = fs.openSync(tmp, 'wx', 0o600);
+    fs.writeFileSync(fd, `${JSON.stringify(lease, null, 2)}\n`, 'utf8');
+    fs.fsyncSync(fd);
+  } finally {
+    if (typeof fd === 'number') fs.closeSync(fd);
+  }
   fs.renameSync(tmp, currentLeasePath);
 }
 

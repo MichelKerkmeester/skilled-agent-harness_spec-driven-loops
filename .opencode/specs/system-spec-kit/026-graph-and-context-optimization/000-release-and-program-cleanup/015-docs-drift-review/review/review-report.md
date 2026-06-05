@@ -6,14 +6,14 @@
 
 ## 1. VERDICT
 
-**CONDITIONAL PASS** — the documentation is broadly accurate, but a focused set of real drift items must be corrected before the docs match shipped code. The dominant theme is the **single-manifest embedder registry** (advisor/shared) and a few **tool-count** inconsistencies. No finding blocks a shipped runtime path; the P0-class items are doc-internal contradictions a reader would act on.
+**CONDITIONAL PASS** — the documentation is broadly accurate, but a focused set of real drift items must be corrected before the docs match shipped code. The dominant theme is the **single-manifest embedder registry** (advisor/shared) and a few **tool-count** inconsistencies. No finding blocks a shipped runtime path; the P0-class item is a doc-internal contradiction a reader would act on.
 
 | Severity | Count | Meaning |
 |----------|-------|---------|
-| **P0** | 2 | Actively misleading: a reader would trust a stated count/list that the doc itself contradicts elsewhere or that no longer exists |
+| **P0** | 1 | Actively misleading: a reader would trust a stated count/list that the doc itself contradicts elsewhere or that no longer exists |
 | **P1** | 8 | Wrong fact a reader would rely on |
 | **P2** | 12 | Minor / cosmetic / enumeration-gap / low-confidence staleness |
-| **Total** | 22 | (consolidated; multi-line repeats of one claim counted once) |
+| **Total** | 21 | (consolidated; multi-line repeats of one claim counted once) |
 
 **Method note:** 10 partitioned `gpt-5.5-fast high` review passes (one bounded doc area each) produced ~70 raw candidate findings. Every candidate was adversarially verified by the orchestrator against the real code on `origin/main`. **~45 raw candidates were REJECTED as false positives** — almost entirely one error class: the passes over-applied the *advisor-scoped* embedder/reranker removal (change #2) to **mk-spec-memory**, which retains its 4-provider embedder cascade and its algorithmic MMR. See §5.
 
@@ -118,7 +118,7 @@ Confirmed accurate (NOT drift) — explicitly verified and REJECTED as false pos
 | F22 | `cli-opencode/README.md:38` | "Spec Kit Memory's **40+** tools … all callable" | #1 | Ground truth 37. Correct → "37 tools". | **P1** |
 | F23 | `.opencode/skills/README.md:28` + `:46` | "four `advisor_*` tools and **four** `skill_graph_*` tools"; "Native advisor tools \| **8**" | #1 | These count the public surface (8). Canonical total is 9 (the root README + advisor SKILL.md say 9 = 4 + 5 incl. internal `skill_graph_propagate_enhances`). Either say "five `skill_graph_*`" / "9" or label the count "public surface" for consistency. | P2 |
 
-(F22/F23 surfaced in the cli/skills passes; folded here for completeness — net P0=2, P1=8, P2=12.)
+(F22/F23 surfaced in the cli/skills passes; folded here for completeness — net P0=1, P1=8, P2=12.)
 
 ---
 

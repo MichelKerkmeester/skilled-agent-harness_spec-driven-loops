@@ -100,6 +100,35 @@ function seedReciprocalLineage(db: SqliteDatabase): void {
   `).run();
 }
 
+// Three-node transitive contradiction cycle 30->31->32->30. Each consecutive
+// directed pair is reciprocal in the SAME way as seedReciprocalLineage: the
+// successor records predecessor_memory_id (lineage emits 'caused' pred->succ) AND
+// the predecessor records superseded_by_memory_id (supersession emits 'contradicts'
+// on the SAME directed pair). So all three directed pairs carry both a 'caused'
+// and a conflicting 'contradicts' candidate, forming a transitive cycle of
+// conflicts the guard must resolve independently per pair.
+//   pair 30->31 : 31.predecessor=30, 30.superseded_by=31
+//   pair 31->32 : 32.predecessor=31, 31.superseded_by=32
+//   pair 32->30 : 30.predecessor=32, 32.superseded_by=30
+function seedThreeNodeCycle(db: SqliteDatabase): void {
+  const mem = db.prepare(
+    `INSERT INTO memory_index (id, spec_folder, file_path, title) VALUES (?, '', ?, ?)`,
+  );
+  mem.run(30, '/n30.md', 'N30');
+  mem.run(31, '/n31.md', 'N31');
+  mem.run(32, '/n32.md', 'N32');
+  const lin = db.prepare(`
+    INSERT INTO memory_lineage (memory_id, logical_key, version_number, root_memory_id, predecessor_memory_id, superseded_by_memory_id)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `);
+  // 30: predecessor 32 (closes cycle), superseded_by 31
+  lin.run(30, 'cyc', 1, 30, 32, 31);
+  // 31: predecessor 30, superseded_by 32
+  lin.run(31, 'cyc', 2, 30, 30, 32);
+  // 32: predecessor 31, superseded_by 30 (closes cycle)
+  lin.run(32, 'cyc', 3, 30, 31, 30);
+}
+
 function selectEdge(
   db: SqliteDatabase,
   source: string,
@@ -204,6 +233,40 @@ describe('Relation Backfill — conflict guard + honest counting', () => {
     for (const row of liveRows) live[row.relation] = row.c;
 
     expect(result.byRelation).toEqual(live);
+  });
+
+  it('(f) 3-node transitive contradiction cycle: all caused survive, all contradicts skipped', () => {
+    seedThreeNodeCycle(db);
+
+    const result = backfillRelationInference(db, { dryRun: false, contradicts: true });
+
+    // The three lineage 'caused' edges that form the cycle all exist and stay valid.
+    const causedPairs: Array<[string, string]> = [['32', '30'], ['30', '31'], ['31', '32']];
+    for (const [src, tgt] of causedPairs) {
+      const caused = selectEdge(db, src, tgt, 'caused');
+      expect(caused, `caused ${src}->${tgt}`).toBeDefined();
+      expect(caused?.invalid_at, `caused ${src}->${tgt} valid`).toBeNull();
+    }
+
+    // The three conflicting supersession 'contradicts' candidates on the SAME
+    // directed pairs were all skipped — none inserted, none invalidated a caused.
+    const contradictsPairs: Array<[string, string]> = [['30', '31'], ['31', '32'], ['32', '30']];
+    for (const [src, tgt] of contradictsPairs) {
+      expect(selectEdge(db, src, tgt, 'contradicts'), `contradicts ${src}->${tgt}`).toBeUndefined();
+    }
+
+    // Counts are honest: exactly the 3 caused edges written, exactly 3 conflicts skipped.
+    expect(result.written).toBe(3);
+    expect(result.skippedConflicting).toBe(3);
+    expect(result.byRelation.caused).toBe(3);
+    expect(result.byRelation.contradicts ?? 0).toBe(0);
+
+    // No contradicts edge is left valid anywhere in the cycle.
+    const liveContradicts = db.prepare(`
+      SELECT COUNT(*) AS c FROM causal_edges
+      WHERE relation = 'contradicts' AND (invalid_at IS NULL OR invalid_at = '')
+    `).get() as { c: number };
+    expect(liveContradicts.c).toBe(0);
   });
 
   it('(e) strict inner backfill schema rejects a typo\'d opt-in key', () => {

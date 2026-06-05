@@ -503,6 +503,48 @@ describe('runQualityLoop', () => {
     expect(result.fixes).toHaveLength(0);
   });
 
+  it('engages auto-fix in advisory mode when SPECKIT_QUALITY_AUTO_FIX is unset (default-true OR-path)', () => {
+    // Real default config: quality loop on, advisory mode (no mode override),
+    // SPECKIT_QUALITY_AUTO_FIX unset. The OR-path auto-fix gate resolves through
+    // isQualityAutoFixEnabled()'s default-true branch (NOT the mode==='full-auto'
+    // short-circuit), so auto-fix must actually run end-to-end. None of the other
+    // runQualityLoop tests exercise this combination: they either pass mode:'full-auto'
+    // (which short-circuits the OR's right side) or set SPECKIT_QUALITY_AUTO_FIX='false'.
+    process.env.SPECKIT_QUALITY_LOOP = 'true';
+    delete process.env.SPECKIT_QUALITY_AUTO_FIX;
+
+    // Content below threshold but auto-fixable: no triggers (0), no anchors (0.5
+    // neutral), budget ok (1.0), good coherence (1.0). Auto-fix re-extracts
+    // triggers from the headings, lifting the score above the 0.65 threshold.
+    const fixableContent = [
+      '# Important Sprint Documentation',
+      '',
+      '## Overview of the Sprint',
+      'This sprint covers important improvements to the retrieval pipeline.',
+      'We implemented several key features including eval logging and metrics.',
+      '',
+      '## Implementation Details',
+      'The implementation involved changes to multiple modules across the codebase.',
+      'Each module was carefully tested with unit and integration tests.',
+      '',
+      '## Quality Metrics',
+      'Quality was measured using MRR and NDCG metrics at various cutoff points.',
+    ].join('\n');
+    const fixableMetadata = { triggerPhrases: [], title: 'Important Sprint Documentation' };
+
+    // No mode passed → defaults to 'advisory'. Auto-fix can ONLY engage via the
+    // isQualityAutoFixEnabled() default-true side of the OR.
+    const result = runQualityLoop(fixableContent, fixableMetadata, { threshold: 0.65 });
+
+    // Auto-fix actually ran: more than one attempt, fixes recorded, and the
+    // re-extracted triggers persisted — proof the OR-path drove auto-fix, not mode.
+    expect(result.attempts).toBeGreaterThan(1);
+    expect(result.fixes.length).toBeGreaterThan(0);
+    expect(result.fixes.some(f => /trigger/i.test(f))).toBe(true);
+    expect(result.passed).toBe(true);
+    expect(result.fixedTriggerPhrases?.length).toBeGreaterThan(0);
+  });
+
   it('succeeds after auto-fix improves quality above threshold', () => {
     process.env.SPECKIT_QUALITY_LOOP = 'true';
     // Content that is close to threshold but below 0.6 without triggers.

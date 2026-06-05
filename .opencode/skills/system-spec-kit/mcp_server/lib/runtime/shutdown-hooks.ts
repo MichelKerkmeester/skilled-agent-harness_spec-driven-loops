@@ -126,12 +126,12 @@ function installProcessHooks(): void {
   if (installed) return;
   installed = true;
 
-  process.once('SIGTERM', () => {
-    void handleShutdownSignal('SIGTERM', process.exit);
-  });
-  process.once('SIGINT', () => {
-    void handleShutdownSignal('SIGINT', process.exit);
-  });
+  // Signal-driven shutdown (SIGTERM/SIGINT/SIGHUP/SIGQUIT) is owned by the
+  // single ordered shutdown path in context-server, which drains these hooks via
+  // runShutdownHooks() as one of its ordered cleanup steps. Registering signal
+  // handlers here as well produced two competing handler stacks that raced and
+  // exited with conflicting codes. Only the beforeExit backstop remains, for
+  // non-signal exits where no ordered path runs.
   process.once('beforeExit', () => {
     void runShutdownHooks();
   });

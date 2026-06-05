@@ -144,7 +144,7 @@ import * as toolCache from './lib/cache/tool-cache.js';
 import { initExtractionAdapter, rebindExtractionAdapter } from './lib/extraction/extraction-adapter.js';
 import { migrateLearnedTriggers, verifyFts5Isolation } from './lib/storage/learned-triggers-schema.js';
 import { isLearnedFeedbackEnabled } from './lib/search/learned-feedback.js';
-import { initIngestJobQueue } from './lib/ops/job-queue.js';
+import { initIngestJobQueue, stopWorker as stopIngestWorker } from './lib/ops/job-queue.js';
 import { startFileWatcher, type FSWatcher } from './lib/ops/file-watcher.js';
 import { getCanonicalPathKey } from './lib/utils/canonical-path.js';
 import { runBatchLearning } from './lib/feedback/batch-learning.js';
@@ -1588,6 +1588,12 @@ async function fatalShutdown(reason: string, exitCode: number): Promise<void> {
         await fileWatcher.close();
         fileWatcher = null;
       }
+    });
+    // Fence the ingest worker before closeDb for the same reason as the file
+    // watcher above: the worker writes through the DB and would otherwise reopen
+    // a closed connection, re-dirtying the WAL and the unclean-shutdown marker.
+    await runAsyncCleanupStep('ingestWorker', async () => {
+      await stopIngestWorker();
     });
     runCleanupStep('vectorIndex', () => vectorIndex.closeDb());
     // Close MCP transport on shutdown

@@ -5,7 +5,7 @@ This directory contains agent definitions for the OpenCode Copilot runtime.
 Each .md file defines one agent with frontmatter (tools, permissions, model)
 and behavioral instructions.
 
-Mirrored to: .claude/agents/, .gemini/agents/, .codex/agents/
+Mirrored to: .claude/agents/, .codex/agents/
 
 Agents:
   code          — Application-code implementation (write-capable LEAF; sk-code stack delegation)

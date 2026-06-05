@@ -249,7 +249,6 @@ Runtime mirrors are downstream packaging surfaces, not write targets for this ag
 |--------|-----------------|----------------|
 | `.claude/agents/deep-review.md` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
 | `.codex/agents/deep-review.toml` | Mirror of canonical agent | Read-only context if explicitly in review scope; never edit |
-| `.gemini/agents/deep-review.md` | Gemini runtime mirror | Read-only context if explicitly in review scope; never edit |
 
 ---
 

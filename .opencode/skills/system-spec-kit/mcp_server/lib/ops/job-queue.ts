@@ -111,6 +111,11 @@ const RETRY_DELAYS_MS = [50, 200, 500];
 // True sequential queue — only one job processes at a time.
 const pendingQueue: string[] = [];
 let workerActive = false;
+// Drain fence. Once set, the worker stops draining and refuses to touch the
+// database. This prevents the worker from reopening a connection that shutdown
+// has already checkpointed and closed, which would otherwise re-dirty the WAL
+// and the unclean-shutdown marker at rest.
+let shuttingDown = false;
 let processFileFn: ((filePath: string, governance?: GovernanceDecision | null) => Promise<unknown>) | null = null;
 const MAX_STORED_ERRORS = 50;
 const MAX_PENDING_INGEST_JOBS = parsePositiveIntEnv('SPECKIT_INGEST_QUEUE_MAX_PENDING', 1_000);
@@ -225,6 +230,17 @@ function isTransitionAllowed(from: IngestJobState, to: IngestJobState): boolean 
   return ALLOWED_TRANSITIONS[from]?.has(to) ?? false;
 }
 
+// DB accessor for the worker path. While shutting down it refuses to acquire a
+// connection so the worker can never travel the requireDb -> getDb -> reopen
+// path after shutdown has closed the database. The throw is caught by the
+// worker's surrounding error handling and the drain unwinds cleanly.
+function acquireWorkerDb(): ReturnType<typeof requireDb> {
+  if (shuttingDown) {
+    throw new Error('Ingest worker is shutting down; database access refused');
+  }
+  return requireDb();
+}
+
 function ensureIngestJobsTable(): void {
   const db = requireDb();
   db.exec(`
@@ -329,7 +345,7 @@ async function createIngestJob(args: {
 }
 
 function getIngestJob(jobId: string): IngestJob | null {
-  const db = requireDb();
+  const db = acquireWorkerDb();
   const row = db.prepare(`
     SELECT id, state, spec_folder, paths_json, files_total, files_processed, errors_json, created_at, updated_at, governance_json
     FROM ingest_jobs
@@ -339,7 +355,7 @@ function getIngestJob(jobId: string): IngestJob | null {
 }
 
 async function setIngestJobState(jobId: string, nextState: IngestJobState): Promise<IngestJob> {
-  const db = requireDb();
+  const db = acquireWorkerDb();
   const current = getIngestJob(jobId);
   if (!current) {
     throw new Error(`Ingest job not found: ${jobId}`);
@@ -374,7 +390,7 @@ async function setIngestJobState(jobId: string, nextState: IngestJobState): Prom
 }
 
 async function incrementProcessed(jobId: string): Promise<IngestJob> {
-  const db = requireDb();
+  const db = acquireWorkerDb();
   const updatedAt = nowIso();
   await withBusyRetry(() =>
     db.prepare(`
@@ -392,7 +408,7 @@ async function incrementProcessed(jobId: string): Promise<IngestJob> {
 }
 
 async function appendIngestError(jobId: string, filePath: string, error: unknown): Promise<IngestJob> {
-  const db = requireDb();
+  const db = acquireWorkerDb();
   const current = getIngestJob(jobId);
   if (!current) {
     throw new Error(`Ingest job not found: ${jobId}`);
@@ -646,6 +662,9 @@ async function processQueuedJob(jobId: string): Promise<void> {
   let failCount = 0;
 
   while (currentIndex < job.paths.length) {
+    // Stop touching the DB the moment shutdown begins. The job stays in an
+    // active state and boot crash-recovery re-enqueues it on the next start.
+    if (shuttingDown) return;
     const current = getIngestJob(jobId);
     if (!current) return;
     if (current.state === 'cancelled') return;
@@ -697,6 +716,8 @@ async function drainQueue(): Promise<void> {
 
   try {
     while (pendingQueue.length > 0) {
+      // Halt draining once shutdown begins so no new job opens the DB.
+      if (shuttingDown) break;
       // PendingQueue.length > 0 in the loop condition guarantees shift() returns a job id
       const jobId = pendingQueue.shift()!;
       try {
@@ -722,6 +743,10 @@ async function drainQueue(): Promise<void> {
 }
 
 function enqueueIngestJob(jobId: string): void {
+  // Never admit work or respawn the worker once shutdown has begun.
+  if (shuttingDown) {
+    return;
+  }
   // Prevent duplicate enqueue of the same job.
   if (pendingQueue.includes(jobId)) {
     return;
@@ -770,12 +795,38 @@ function initIngestJobQueue(config: JobQueueConfig): { resetCount: number } {
   return { resetCount: resetJobIds.length };
 }
 
+// Default ceiling for how long stopWorker waits for the active drain to settle.
+// The worker yields between files and between jobs, so it observes the fence
+// quickly; the bound only guards against a wedged in-flight processFile call.
+const STOP_WORKER_DRAIN_DEADLINE_MS = 2_000;
+
+// Fence the ingest worker for shutdown: refuse new work, drop the pending
+// queue, and wait (bounded) for any in-flight drain to unwind before the
+// database is closed. Must run before closeDb() so the worker cannot reopen a
+// closed connection. Idempotent and safe to call when the worker is idle.
+async function stopWorker(options: { drainDeadlineMs?: number } = {}): Promise<void> {
+  shuttingDown = true;
+  pendingQueue.length = 0;
+
+  if (!workerActive) return;
+
+  const deadline = Date.now()
+    + (Number.isFinite(options.drainDeadlineMs) && (options.drainDeadlineMs as number) > 0
+      ? (options.drainDeadlineMs as number)
+      : STOP_WORKER_DRAIN_DEADLINE_MS);
+
+  while (workerActive && Date.now() < deadline) {
+    await sleep(10);
+  }
+}
+
 /* ───────────────────────────────────────────────────────────────
    8. EXPORTS
 ──────────────────────────────────────────────────────────────── */
 
 export {
   initIngestJobQueue,
+  stopWorker,
   createIngestJob,
   getIngestJob,
   cancelIngestJob,

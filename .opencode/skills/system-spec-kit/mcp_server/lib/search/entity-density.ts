@@ -153,8 +153,9 @@ function getEntityDensityScore(query: string, db: Database.Database | null): num
 /**
  * Force the next score lookup to rebuild the cache. Safe to call from any
  * handler and idempotent: repeated calls leave the cache empty and stale.
- * Current mutation entry points are memory-save.ts:2583 and
- * memory-bulk-delete.ts:149,256.
+ * Invoked after any mutation that changes high-degree rows or causal edges
+ * (memory save, bulk delete, relation backfill, vector-index mutations, and
+ * the shared post-mutation hooks) so graph-channel routing sees fresh state.
  */
 function invalidateEntityDensityCache(): void {
   cachedTerms = new Set();

@@ -2,6 +2,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 
 import Database from 'better-sqlite3';
@@ -350,5 +351,113 @@ describe('sequential processing: only 1 job active at a time', () => {
 
     // All 3 files were processed in order
     expect(processingOrder).toHaveLength(3);
+  });
+});
+
+describe('shutdown fence: worker must not reopen the DB once shutdown begins', () => {
+  it('refuses DB acquisition (throws) once stopWorker has set the shutting-down fence', async () => {
+    const db = createTestDb();
+    const mod = await loadJobQueueModule(db);
+    mod.initIngestJobQueue({ processFile: async () => undefined });
+
+    // Before shutdown, the worker DB path is live: getIngestJob acquires the DB and returns null
+    // for a missing job rather than throwing.
+    expect(mod.getIngestJob('nonexistent')).toBeNull();
+
+    // Begin shutdown. stopWorker is idempotent and safe to call when the worker is idle; it sets the
+    // drain fence that the worker's DB accessor honors.
+    await mod.stopWorker();
+
+    // After the fence is set, any worker-path DB acquisition must throw instead of reopening the DB.
+    expect(() => mod.getIngestJob('nonexistent')).toThrow(/shutting down/i);
+  });
+
+  it('stops a draining worker and the in-flight worker never re-acquires the DB after stopWorker resolves', async () => {
+    let dbAccessAfterStop = false;
+    let stopRequested = false;
+
+    // Sentinel DB wrapper: once stopWorker has resolved, any further requireDb() acquisition by the
+    // worker is recorded as a fence violation. Before stop, it behaves like the real in-memory DB.
+    const db = createTestDb();
+    vi.resetModules();
+    vi.doMock('../utils', () => ({
+      requireDb: () => {
+        if (stopRequested) {
+          dbAccessAfterStop = true;
+        }
+        return db;
+      },
+      toErrorMessage: (error: unknown) => (error instanceof Error ? error.message : String(error)),
+    }));
+    const mod = await import('../lib/ops/job-queue');
+
+    // A slow processFile keeps the worker inside its drain loop so we can race stopWorker against it.
+    let releaseFile: () => void = () => undefined;
+    const fileGate = new Promise<void>((resolve) => {
+      releaseFile = resolve;
+    });
+    let processing = false;
+    mod.initIngestJobQueue({
+      processFile: async () => {
+        processing = true;
+        await fileGate;
+      },
+    });
+
+    const filePath = createTempFile('shutdown-fence-inflight');
+    const job = await mod.createIngestJob({
+      id: 'job_shutdown_fence',
+      paths: [filePath],
+      specFolder: 'specs/test',
+    });
+    mod.enqueueIngestJob(job.id);
+
+    // Wait until the worker is parked inside the gated processFile call.
+    await waitFor(() => processing, { timeoutMs: 3000 });
+
+    // Begin shutdown while the worker is mid-flight, then release the gated file so the drain unwinds.
+    stopRequested = true;
+    const stopPromise = mod.stopWorker();
+    releaseFile();
+    await stopPromise;
+
+    // The fence held: after stopWorker resolved, the worker did not reopen / re-acquire the DB to
+    // advance the job to a terminal state. Any post-stop requireDb() would have flipped the sentinel.
+    expect(dbAccessAfterStop).toBe(false);
+
+    // The fenced worker-path accessor refuses to touch the DB once shutdown began.
+    expect(() => mod.getIngestJob(job.id)).toThrow(/shutting down/i);
+
+    // Reading the row directly (bypassing the worker-path fence) shows the job left in a non-terminal
+    // active state for boot crash-recovery to re-enqueue — it was never advanced to complete/failed.
+    const row = db
+      .prepare(`SELECT state FROM ingest_jobs WHERE id = ?`)
+      .get(job.id) as { state: string } | undefined;
+    expect(['queued', 'parsing', 'embedding', 'indexing']).toContain(row?.state);
+  });
+});
+
+describe('shutdown ordering: ingest worker is stopped before the DB is closed', () => {
+  it('invokes the ingest worker stop step before vectorIndex.closeDb in fatalShutdown', () => {
+    const here = path.dirname(fileURLToPath(import.meta.url));
+    const contextServerPath = path.resolve(here, '..', 'context-server.ts');
+    const source = fs.readFileSync(contextServerPath, 'utf8').replace(/\r\n/g, '\n');
+
+    const fnStart = source.indexOf('async function fatalShutdown(');
+    expect(fnStart).toBeGreaterThan(-1);
+    // Bound the scan to the fatalShutdown body so an unrelated closeDb call elsewhere cannot satisfy
+    // the ordering check.
+    const nextFn = source.indexOf('\nasync function ', fnStart + 1);
+    const fnEnd = nextFn === -1 ? source.length : nextFn;
+    const body = source.slice(fnStart, fnEnd);
+
+    const stopWorkerIdx = body.indexOf('stopIngestWorker(');
+    const closeDbIdx = body.indexOf('vectorIndex.closeDb(');
+
+    expect(stopWorkerIdx, 'fatalShutdown must fence the ingest worker (stopIngestWorker)').toBeGreaterThan(-1);
+    expect(closeDbIdx, 'fatalShutdown must close the vector index DB (vectorIndex.closeDb)').toBeGreaterThan(-1);
+    // The worker must be fenced BEFORE the DB is closed; otherwise the still-live worker reopens the
+    // closed connection and re-dirties the WAL + unclean-shutdown marker at rest.
+    expect(stopWorkerIdx).toBeLessThan(closeDbIdx);
   });
 });

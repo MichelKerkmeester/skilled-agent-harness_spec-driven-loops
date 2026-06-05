@@ -289,6 +289,15 @@ function extractSessionIds(content: string): { sessionIds: string[]; parentSessi
   return { sessionIds, parentSessionIds };
 }
 
+// Bounds for the session-lineage tree walk so a pathological/hostile specs
+// tree (millions of dirs, deep nesting) cannot turn a --strict run into a DoS.
+// Sized well above any realistic specs layout, so normal trees are never
+// truncated; on overrun the walk stops early and lineage validation degrades to
+// a best-effort warning rather than hanging.
+const SESSION_SCAN_MAX_DIRS = 50_000;
+const SESSION_SCAN_MAX_DEPTH = 24;
+const SESSION_SCAN_MAX_MS = 5_000;
+
 function collectKnownSessionIds(folder: string): Set<string> {
   const root = (() => {
     const marker = `${path.sep}.opencode${path.sep}specs${path.sep}`;
@@ -296,9 +305,13 @@ function collectKnownSessionIds(folder: string): Set<string> {
     return index >= 0 ? folder.slice(0, index + marker.length - 1) : path.dirname(folder);
   })();
   const known = new Set<string>();
-  const stack = [root];
+  const stack: Array<{ dir: string; depth: number }> = [{ dir: root, depth: 0 }];
+  const startedAt = Date.now();
+  let dirsScanned = 0;
   while (stack.length > 0) {
-    const current = stack.pop()!;
+    if (dirsScanned >= SESSION_SCAN_MAX_DIRS || Date.now() - startedAt > SESSION_SCAN_MAX_MS) break;
+    const { dir: current, depth } = stack.pop()!;
+    dirsScanned += 1;
     let entries: fs.Dirent[];
     try {
       entries = fs.readdirSync(current, { withFileTypes: true });
@@ -309,7 +322,7 @@ function collectKnownSessionIds(folder: string): Set<string> {
       const full = path.join(current, dirent.name);
       if (dirent.isDirectory()) {
         if (dirent.name === 'node_modules' || dirent.name === '.git' || dirent.name === 'scratch') continue;
-        stack.push(full);
+        if (depth + 1 <= SESSION_SCAN_MAX_DEPTH) stack.push({ dir: full, depth: depth + 1 });
       } else if (dirent.isFile() && dirent.name.endsWith('.md')) {
         const content = readIfExists(full);
         if (!content) continue;

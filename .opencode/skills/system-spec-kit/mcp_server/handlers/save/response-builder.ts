@@ -523,7 +523,10 @@ export function classifySaveErrorCode(errorMessage: string): string {
     lower.includes('validation failed')
     || lower.includes('must be a canonical spec document')
     || lower.includes('filepath is required')
-    || lower.includes('access denied')
+    // Match the path-safety validator's structured prefix ("Access denied:"),
+    // not a bare "access denied" substring, so OS permission errors (EACCES,
+    // "permission denied") are not misrouted here.
+    || lower.includes('access denied:')
     || lower.includes('path must not contain')
     || lower.includes('traversal')
   ) {

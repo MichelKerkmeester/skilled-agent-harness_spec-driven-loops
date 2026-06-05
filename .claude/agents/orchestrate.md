@@ -18,7 +18,7 @@ You are the **single point of accountability**. The user receives ONE coherent r
 
 **Path Convention**: Use only `.claude/agents/*.md` as the canonical runtime path reference.
 
-**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`; Gemini profile reads `.gemini/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
+**Runtime Directory Resolution**: OpenCode profile reads `.opencode/agents/`; Claude profile reads `.claude/agents/`; Codex profile reads `.codex/agents/`. Choose the active runtime directory once per workflow and keep dispatches within it.
 
 **CRITICAL**: You primarily orchestrate via the `task` tool. You MAY use `read` to load agent definitions or command specs needed for correct dispatch, but you MUST NOT perform implementation or codebase exploration directly. Execution work remains delegated to sub-agents.
 

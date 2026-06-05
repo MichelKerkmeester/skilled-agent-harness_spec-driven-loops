@@ -2874,8 +2874,8 @@ function scheduleBackgroundEnrichment(
         const row = db
           .prepare('SELECT importance_tier FROM memory_index WHERE id = ?')
           .get(memoryId) as { importance_tier?: string } | undefined;
-        if (!row || row.importance_tier === 'deprecated') {
-          return; // superseded/removed since the save — do not repopulate stale graph/entity data
+        if (!row || row.importance_tier === 'deprecated' || row.importance_tier === 'archived') {
+          return; // superseded/removed/archived since the save — do not repopulate stale graph/entity data (mirrors the search layer's inactive-tier exclusion)
         }
         const result = await runPostInsertEnrichment(db, memoryId, parsed);
         recordEnrichmentResult(db, memoryId, result);

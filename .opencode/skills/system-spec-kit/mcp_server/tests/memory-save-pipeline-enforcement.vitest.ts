@@ -32,18 +32,19 @@ import {
 
 const TEST_DB_DIR = path.join(os.tmpdir(), `speckit-pipeline-enforcement-${process.pid}`);
 const TEST_DB_PATH = path.join(TEST_DB_DIR, 'speckit-memory.db');
-// Replace the previous fixed `tmp-test-fixtures/` repo-local path
-// with a per-test mkdtemp root that has a unique random suffix. Two concurrent
-// runs no longer collide on a shared path, and a crashed run's leftover dir
-// has a unique suffix so the next run is not affected by stale fixtures.
+// Per-test mkdtemp root with a unique random suffix: two concurrent runs no
+// longer collide on a shared path, and a crashed run's leftover dir carries a
+// unique suffix so the next run is unaffected by stale fixtures.
 //
-// Note: the mkdtemp root stays inside process.cwd() (not os.tmpdir()) because
-// handleMemorySave's ALLOWED_BASE_PATHS validator rejects paths outside the
-// repo unless MEMORY_BASE_PATH is set at module load. Adjusting that gate
-// would require product-code changes that are out of scope for this test-only
-// remediation; the per-test mkdtemp suffix already solves the collision/leftover
-// problem the finding flagged.
-const FIXTURE_TEMP_ROOT = fs.mkdtempSync(path.join(process.cwd(), 'tmp-test-fixtures-'));
+// The mkdtemp root stays inside process.cwd() because handleMemorySave's
+// ALLOWED_BASE_PATHS validator rejects paths outside the repo (process.cwd() is
+// allowed) unless MEMORY_BASE_PATH is set at module load. To keep that gate
+// intact while NOT polluting the working tree, the root nests under a
+// `vitest-tmp/` parent — already covered by the repo .gitignore's `**/vitest-tmp/`
+// rule — so any fixture a crashed run leaks is ignored by git rather than staged.
+const FIXTURE_TEMP_PARENT = path.join(process.cwd(), 'vitest-tmp');
+fs.mkdirSync(FIXTURE_TEMP_PARENT, { recursive: true });
+const FIXTURE_TEMP_ROOT = fs.mkdtempSync(path.join(FIXTURE_TEMP_PARENT, 'pipeline-enforcement-'));
 const FIXTURE_ROOT = path.join(FIXTURE_TEMP_ROOT, 'specs', '998-pipeline-enforcement');
 
 // ───────────────────────────────────────────────────────────────
@@ -678,11 +679,14 @@ describe('Cat 3: Sufficiency', () => {
 
     const result = evaluateMemorySufficiency(snapshot);
 
-    // Even if unique words < 40, if semantic chars >= 250 it should pass the substance check
-    // The pass also requires primary evidence >= 1, total >= 2, and specific title
-    if (result.evidenceCounts.primary >= 1 && result.evidenceCounts.total >= 2) {
-      expect(result.reasons.some(r => /semantic substance/i.test(r))).toBe(false);
-    }
+    // This fixture deterministically produces enough primary + total evidence, so
+    // the precondition is asserted (not merely guarded) before the substance claim.
+    // Asserting both unconditionally means a regression that drops evidence below
+    // the bar, or that re-introduces a substance complaint, fails loudly.
+    expect(result.evidenceCounts.primary).toBeGreaterThanOrEqual(1);
+    expect(result.evidenceCounts.total).toBeGreaterThanOrEqual(2);
+    // Even though unique words may be < 40, semantic chars >= 250 satisfies the OR.
+    expect(result.reasons.some(r => /semantic substance/i.test(r))).toBe(false);
   });
 
   it('passes with >= 40 unique words even with < 250 chars (OR logic)', () => {
@@ -699,10 +703,13 @@ describe('Cat 3: Sufficiency', () => {
 
     const result = evaluateMemorySufficiency(snapshot);
 
-    // The substance check should pass due to word count even if chars < 250
-    if (result.evidenceCounts.uniqueWords >= 40) {
-      expect(result.reasons.some(r => /semantic substance/i.test(r))).toBe(false);
-    }
+    // This fixture deterministically yields >= 40 unique words, so the precondition
+    // is asserted (not merely guarded) before the substance claim. Asserting both
+    // unconditionally means a regression that drops word count, or re-adds a
+    // substance complaint, fails loudly instead of silently no-opping.
+    expect(result.evidenceCounts.uniqueWords).toBeGreaterThanOrEqual(40);
+    // The substance check passes on word count even though chars may be < 250.
+    expect(result.reasons.some(r => /semantic substance/i.test(r))).toBe(false);
   });
 
   it('filters placeholder descriptions from evidence count', () => {
@@ -1017,11 +1024,13 @@ describe('Cat 6: Cross-Gate Interactions', () => {
     const suffResult = evaluateMemorySufficiency(snapshot);
     const templateResult = validateMemoryTemplateContract(content);
 
-    // Sufficiency may pass (has evidence), template should fail (no frontmatter)
-    if (suffResult.pass) {
-      expect(templateResult.valid).toBe(false);
-      expect(templateResult.violations.some(v => v.code === 'missing_frontmatter')).toBe(true);
-    }
+    // This snapshot carries enough evidence to clear sufficiency, so the pass is
+    // asserted (not guarded) before the template-contract claim. Asserting all
+    // three unconditionally proves the two gates are independent: sufficiency can
+    // pass while the template contract still fails on missing frontmatter.
+    expect(suffResult.pass).toBe(true);
+    expect(templateResult.valid).toBe(false);
+    expect(templateResult.violations.some(v => v.code === 'missing_frontmatter')).toBe(true);
   });
 
   it('content that passes template contract can still fail save quality gate', () => {
@@ -1041,10 +1050,12 @@ describe('Cat 6: Cross-Gate Interactions', () => {
       anchors: [],
     });
 
-    if (!qgResult.warnOnly) {
-      // Signal density should be low with null title and empty triggers
-      expect(qgResult.layers.contentQuality.dimensions.titleQuality).toBe(0);
-    }
+    // The save quality gate defaults to advisory (warnOnly) on the planner path,
+    // so it never hard-blocks here — but its scored signal must still flag the
+    // null-title/empty-trigger content. Both claims are asserted unconditionally
+    // so a future regression that flips warnOnly or the title score is caught.
+    expect(qgResult.warnOnly).toBe(true);
+    expect(qgResult.layers.contentQuality.dimensions.titleQuality).toBe(0);
   });
 
   it('planner-default quality advisories do not preempt downstream sufficiency evaluation', async () => {
@@ -1070,10 +1081,11 @@ describe('Cat 6: Cross-Gate Interactions', () => {
 
     const result = await handler.indexMemoryFile(filePath, { force: true, asyncEmbedding: true });
 
-    if (process.env.SPECKIT_QUALITY_LOOP === 'true') {
-      // The pipeline still rejects, but not because the quality loop hard-blocked first.
-      expect(result.status).toBe('rejected');
-    }
+    // SPECKIT_QUALITY_LOOP is forced 'true' at the top of this test, so the guard
+    // was always true — assert unconditionally. The pipeline still rejects, but a
+    // downstream legality gate (not the advisory quality loop) makes that call.
+    expect(process.env.SPECKIT_QUALITY_LOOP).toBe('true');
+    expect(result.status).toBe('rejected');
   });
 
   it('sufficiency rejection blocks template contract (gate ordering proof)', async () => {
@@ -1092,11 +1104,11 @@ describe('Cat 6: Cross-Gate Interactions', () => {
 
     const result = await handler.indexMemoryFile(filePath, { force: true, asyncEmbedding: true });
 
-    // Should be rejected at sufficiency gate — not at template contract
+    // Should be rejected at sufficiency gate — not at template contract. The
+    // rejection code is asserted unconditionally so the test cannot silently pass
+    // if a future change stops populating rejectionCode on a sufficiency abort.
     expect(result.status).toBe('rejected');
-    if (result.rejectionCode) {
-      expect(result.rejectionCode).toBe('INSUFFICIENT_CONTEXT_ABORT');
-    }
+    expect(result.rejectionCode).toBe('INSUFFICIENT_CONTEXT_ABORT');
   });
 
   it('template contract rejection blocks save quality gate (gate ordering proof)', async () => {
@@ -1109,11 +1121,11 @@ describe('Cat 6: Cross-Gate Interactions', () => {
 
     const result = await handler.indexMemoryFile(filePath, { force: true, asyncEmbedding: true });
 
-    // Should be rejected at template contract gate
+    // Should be rejected at template contract gate. The reason is asserted
+    // unconditionally so the test cannot silently pass if rejectionReason is
+    // dropped or no longer attributes the failure to the template contract.
     expect(result.status).toBe('rejected');
-    if (result.rejectionReason) {
-      expect(result.rejectionReason).toContain('Template contract');
-    }
+    expect(result.rejectionReason).toContain('Template contract');
   });
 
   it('content at exact threshold boundaries passes all gates', async () => {

@@ -1,6 +1,6 @@
 ---
 title: "015 Documentation Drift Review"
-description: "Read-only drift review of user-facing docs against packets 013 through 016 plus the v3.5.0.0 release. The report records a CONDITIONAL PASS with 2 P0, 8 P1 and 12 P2 findings."
+description: "Read-only drift review of user-facing docs against packets 013 through 016 plus the v3.5.0.0 release. The report records a CONDITIONAL PASS with 1 P0, 8 P1 and 12 P2 findings."
 trigger_phrases:
   - "015 docs drift review"
   - "documentation drift findings"
@@ -21,7 +21,7 @@ contextType: "implementation"
 
 ### Summary
 
-This read-only packet reviewed user-facing docs against the shipped changes from packets 013 through 016 and the v3.5.0.0 release on `origin/main` HEAD `75cfec1700`. The verdict is CONDITIONAL PASS. The report records 22 consolidated findings: 2 P0, 8 P1 and 12 P2. No reviewed documentation was edited. The strongest findings are doc-internal tool-count contradictions and single-manifest embedder registry drift, while roughly 45 raw candidates were rejected as false positives after code verification.
+This read-only packet reviewed user-facing docs against the shipped changes from packets 013 through 016 and the v3.5.0.0 release on `origin/main` HEAD `75cfec1700`. The verdict is CONDITIONAL PASS. The report records 21 consolidated findings: 1 P0, 8 P1 and 12 P2. No reviewed documentation was edited. The strongest findings are doc-internal tool-count contradictions and single-manifest embedder registry drift, while roughly 45 raw candidates were rejected as false positives after code verification.
 
 ### Added
 
@@ -61,6 +61,6 @@ This read-only packet reviewed user-facing docs against the shipped changes from
 
 ### Follow-Ups
 
-- Triage the 2 P0, 8 P1 and 12 P2 findings into a focused docs-remediation packet.
+- Triage the 1 P0, 8 P1 and 12 P2 findings into a focused docs-remediation packet.
 - Confirm the low-confidence P2 items before changing them.
 - Keep skill `references/**` and `assets/**` review scope separate because this packet only covered README and SKILL surfaces for skills.
