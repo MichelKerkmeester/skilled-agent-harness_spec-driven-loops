@@ -15,6 +15,7 @@ import { validateAdvisorHookDiagnosticRecord } from '../../lib/metrics.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
+const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -69,7 +70,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(output).toEqual({
       hookSpecificOutput: {
         hookEventName: 'UserPromptSubmit',
-        additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
+        additionalContext: EXPECTED_ADVISOR_CONTEXT,
       },
     });
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {
@@ -189,7 +190,7 @@ describe('Codex UserPromptSubmit advisor hook', () => {
     expect(normalizeRuntimeOutput('codex', output)).toEqual({
       runtime: 'codex',
       transport: 'json_additional_context',
-      additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
+      additionalContext: EXPECTED_ADVISOR_CONTEXT,
       stderrVisible: false,
     });
   });

@@ -93,6 +93,12 @@ const EXPECTED_HANDLER_FRAGMENTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], 
   SessionStart: 'dist/hooks/claude/session-prime.js',
   Stop: 'dist/hooks/claude/session-stop.js',
 };
+const EXPECTED_HOOK_COUNTS: Record<(typeof EXPECTED_HOOK_EVENTS)[number], number> = {
+  UserPromptSubmit: 1,
+  PreCompact: 1,
+  SessionStart: 2,
+  Stop: 1,
+};
 
 interface HookCommand {
   readonly type?: string;
@@ -147,10 +153,10 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
           expect(typeof group?.matcher).toBe('string');
         });
 
-        it('matcher-group has a single-element nested `hooks[]` array', () => {
+        it('matcher-group has the expected nested `hooks[]` array length', () => {
           const group = getMatcherGroup();
           expect(Array.isArray(group?.hooks)).toBe(true);
-          expect(group?.hooks).toHaveLength(1);
+          expect(group?.hooks).toHaveLength(EXPECTED_HOOK_COUNTS[event]);
         });
 
         it('matcher-group has no top-level `bash` field (the F23.1 trigger)', () => {
@@ -205,6 +211,15 @@ describe('settings-driven invocation parity (F23.1 / F25 / F46 / F56)', () => {
         // because session-stop must have time to write continuity state.
         expect(stop?.timeout).toBeTypeOf('number');
         expect(stop?.timeout ?? 0).toBeGreaterThanOrEqual(10);
+      });
+    });
+
+    describe('event=SessionStart (worktree guard special case)', () => {
+      it('SessionStart appends the worktree guard after the session-prime handler', () => {
+        const hooks = SETTINGS.hooks?.SessionStart?.[0]?.hooks ?? [];
+        expect(hooks[0]?.command).toContain(EXPECTED_HANDLER_FRAGMENTS.SessionStart);
+        expect(hooks[1]?.type).toBe('command');
+        expect(hooks[1]?.command).toContain('bash .opencode/bin/worktree-guard.sh');
       });
     });
 

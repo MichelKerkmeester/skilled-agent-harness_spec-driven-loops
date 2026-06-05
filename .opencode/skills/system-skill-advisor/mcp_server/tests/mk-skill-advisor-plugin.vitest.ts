@@ -13,6 +13,7 @@ import MkSkillAdvisorPlugin from '../../../../plugins/mk-skill-advisor.js';
 
 const DEFAULT_MAX_PROMPT_BYTES = 64 * 1024;
 const DEFAULT_MAX_BRIEF_CHARS = 2 * 1024;
+const HYGIENE_CONTEXT = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 const CANONICAL_OPENCODE_PLUGIN_SURFACE = [
   'event',
   'experimental.chat.system.transform',
@@ -154,13 +155,14 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(result.output.system[0]).toContain('sk-code');
   });
 
-  it('does not push context when advisor returns an empty brief', async () => {
+  it('pushes the standalone hygiene context when advisor returns an empty brief', async () => {
     mockBridgeSuccess(bridgeResponse(''));
     const hooks = await makePlugin();
 
     const result = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(result.output.system).toHaveLength(0);
+    expect(result.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(result.output.system).toEqual([HYGIENE_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
   });
 
@@ -308,7 +310,7 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(status).toContain('disabled_reason=config_enabled_false');
   });
 
-  it('bridge timeout returns null context and never throws', async () => {
+  it('bridge timeout returns the standalone hygiene context and never throws', async () => {
     vi.useFakeTimers();
     mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 5000));
     const hooks = await makePlugin({ bridgeTimeoutMs: 10 });
@@ -317,8 +319,8 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     await vi.advanceTimersByTimeAsync(1011);
     const output = await outputPromise;
 
-    expect(output.additionalContext).toBeNull();
-    expect(output.output.system).toHaveLength(0);
+    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const child = mockedBridge.spawn.mock.results[0]?.value;
     expect(child.kill).toHaveBeenCalledWith('SIGTERM');
@@ -346,7 +348,7 @@ describe('mk-skill-advisor OpenCode plugin', () => {
     expect(status).toContain('last_bridge_status=ok');
   });
 
-  it('bridge error returns null context and never throws', async () => {
+  it('bridge error returns the standalone hygiene context and never throws', async () => {
     mockedBridge.spawn.mockImplementation(() => {
       const child = makeChild('', 1000);
       queueMicrotask(() => child.emit('error', new Error('spawn failed')));
@@ -356,38 +358,38 @@ describe('mk-skill-advisor OpenCode plugin', () => {
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBeNull();
-    expect(output.output.system).toHaveLength(0);
+    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(1);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_bridge_status=fail_open');
     expect(status).toContain('last_error_code=SPAWN_ERROR');
   });
 
-  it('invalid bridge stdout fail-opens without caching', async () => {
+  it('invalid bridge stdout fail-opens to standalone hygiene context without caching', async () => {
     mockBridgeSuccess('{not-json');
     const hooks = await makePlugin();
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
     const repeat = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBeNull();
-    expect(output.output.system).toHaveLength(0);
-    expect(repeat.additionalContext).toBeNull();
-    expect(repeat.output.system).toHaveLength(0);
+    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
+    expect(repeat.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(repeat.output.system).toEqual([HYGIENE_CONTEXT]);
     expect(mockedBridge.spawn).toHaveBeenCalledTimes(2);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=PARSE_FAIL');
   });
 
-  it('nonzero bridge close fail-opens even when stdout looks ok', async () => {
+  it('nonzero bridge close fail-opens to standalone hygiene context even when stdout looks ok', async () => {
     mockedBridge.spawn.mockImplementation(() => makeChild(bridgeResponse(), 0, 2));
     const hooks = await makePlugin();
 
     const output = await runPrompt(hooks, { prompt: 'implement feature X' });
 
-    expect(output.additionalContext).toBeNull();
-    expect(output.output.system).toHaveLength(0);
+    expect(output.additionalContext).toBe(HYGIENE_CONTEXT);
+    expect(output.output.system).toEqual([HYGIENE_CONTEXT]);
     const status = await hooks.tool?.spec_kit_skill_advisor_status.execute({});
     expect(status).toContain('last_error_code=NONZERO_EXIT');
   });

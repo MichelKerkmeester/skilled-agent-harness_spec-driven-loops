@@ -25,6 +25,18 @@ const options = {
   workspaceRoot,
   runtime: 'codex' as const,
 };
+const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+
+function expectedBrief(summary: string): string {
+  return `${summary}\n${HYGIENE_DIRECTIVE}`;
+}
+
+function expectedSharedSummary(summary: string): string {
+  const normalized = summary.replace(/\s+/g, ' ').trim();
+  return normalized.length <= 220
+    ? normalized
+    : `${normalized.slice(0, 217).trimEnd()}...`;
+}
 
 function freshness(overrides: Partial<AdvisorFreshnessResult> = {}): AdvisorFreshnessResult {
   return {
@@ -95,11 +107,11 @@ describe('buildSkillAdvisorBrief', () => {
     const rendered = renderAdvisorBrief(result);
 
     expect(result.status).toBe('ok');
-    expect(result.brief).toBe('Advisor: live; use sk-code 0.91/0.10 pass.');
+    expect(result.brief).toBe(expectedBrief('Advisor: live; use sk-code 0.91/0.10 pass.'));
     expect(result.brief).toBe(rendered);
     expect(result.sharedPayload?.provenance.producer).toBe('advisor');
     expect(result.sharedPayload?.metadata?.status).toBe('ok');
-    expect(result.sharedPayload?.summary).toBe(rendered);
+    expect(result.sharedPayload?.summary).toBe(expectedSharedSummary(rendered ?? ''));
     expect(result.sharedPayload?.sections).toEqual([
       expect.objectContaining({
         key: 'advisor-brief',
@@ -143,10 +155,10 @@ describe('buildSkillAdvisorBrief', () => {
     expect(result.status).toBe('ok');
     expect(result.metrics.tokenCap).toBe(120);
     expect(result.brief).toBe(
-      'Advisor: live; ambiguous: sk-code 0.91/0.10 vs sk-doc 0.89/0.11 pass.',
+      expectedBrief('Advisor: live; ambiguous: sk-code 0.91/0.10 vs sk-doc 0.89/0.11 pass.'),
     );
     expect(result.brief).toBe(rendered);
-    expect(result.sharedPayload?.summary).toBe(rendered);
+    expect(result.sharedPayload?.summary).toBe(expectedSharedSummary(rendered ?? ''));
     expect(result.sharedPayload?.sections).toEqual([
       expect.objectContaining({
         key: 'advisor-brief',

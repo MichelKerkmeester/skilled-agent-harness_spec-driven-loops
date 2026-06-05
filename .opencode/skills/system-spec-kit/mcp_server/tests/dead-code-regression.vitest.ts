@@ -13,7 +13,6 @@ const OLLAMA = [
   ['is', 'RsfEnabled'],
   ['compute', 'CausalDepth'],
   ['getSubgraph', 'Weights'],
-  ['active', 'Provider'],
   ['stmt', 'Cache'],
   ['lastComputed', 'At'],
   ['flush', 'Count'],

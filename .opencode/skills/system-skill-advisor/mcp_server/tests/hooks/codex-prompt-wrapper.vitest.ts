@@ -14,6 +14,7 @@ import { renderAdvisorBrief } from '../../lib/render.js';
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, '..', 'legacy', 'advisor-fixtures');
+const EXPECTED_ADVISOR_CONTEXT = 'Advisor: live; use sk-code 0.91/0.23 pass.\nComment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
 
 function fixture(name: string): AdvisorHookResult {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult;
@@ -54,13 +55,13 @@ describe('Codex prompt-wrapper fallback', () => {
     });
 
     expect(output).toEqual({
-      promptWrapper: 'Advisor: live; use sk-code 0.91/0.23 pass.',
-      wrappedPrompt: '<!-- advisor brief: Advisor: live; use sk-code 0.91/0.23 pass. -->\nimplement a TypeScript hook',
+      promptWrapper: EXPECTED_ADVISOR_CONTEXT,
+      wrappedPrompt: `<!-- advisor brief: ${EXPECTED_ADVISOR_CONTEXT} -->\nimplement a TypeScript hook`,
     });
     expect(normalizeRuntimeOutput('codex', output)).toEqual({
       runtime: 'codex',
       transport: 'prompt_wrapper',
-      additionalContext: 'Advisor: live; use sk-code 0.91/0.23 pass.',
+      additionalContext: EXPECTED_ADVISOR_CONTEXT,
       stderrVisible: false,
     });
     expect(buildBrief).toHaveBeenCalledWith('implement a TypeScript hook', {

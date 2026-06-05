@@ -36,7 +36,7 @@ describe('Code Graph B3 security hardening', () => {
         },
         log: () => undefined,
       }),
-    ).rejects.toMatchObject({ code: 'EADDRINUSE' });
+    ).rejects.toMatchObject({ code: expect.stringMatching(/^(EADDRINUSE|EINVAL)$/) }); // listen() on a non-socket rejects EADDRINUSE on Linux, EINVAL on macOS — either proves the bind was refused, not unlinked
 
     expect(existsSync(socketPath)).toBe(true);
   });

@@ -20,50 +20,50 @@ function resolveSourcePath(relativePath: string): string {
 
 const mappingChecks = [
   {
-    doc: '01-1-search-pipeline-features-speckit.md',
+    doc: '273-1-search-pipeline-features-speckit.md',
     env: 'SPECKIT_ABLATION',
     source: 'lib/eval/ablation-framework.ts',
   },
   {
-    doc: '01-1-search-pipeline-features-speckit.md',
+    doc: '273-1-search-pipeline-features-speckit.md',
     env: 'SPECKIT_RRF',
     source: 'shared/algorithms/rrf-fusion.ts',
   },
   {
-    doc: '01-1-search-pipeline-features-speckit.md',
+    doc: '273-1-search-pipeline-features-speckit.md',
     env: 'SPECKIT_LAZY_LOADING',
     source: 'shared/embeddings.ts',
   },
   {
-    doc: '01-1-search-pipeline-features-speckit.md',
+    doc: '273-1-search-pipeline-features-speckit.md',
     env: 'SPECKIT_EAGER_WARMUP',
     source: 'shared/embeddings.ts',
   },
   {
-    doc: '04-4-memory-and-storage.md',
+    doc: '276-4-memory-and-storage.md',
     env: 'MEMORY_DB_DIR',
     source: 'lib/eval/eval-db.ts',
   },
   {
-    doc: '04-4-memory-and-storage.md',
+    doc: '276-4-memory-and-storage.md',
     env: 'MEMORY_DB_PATH',
     source: 'lib/search/vector-index-store.ts',
   },
   {
-    doc: '05-5-embedding-and-api.md',
+    doc: '277-5-embedding-and-api.md',
     env: 'EMBEDDINGS_PROVIDER',
     source: 'shared/embeddings/factory.ts',
   },
   {
-    doc: '05-5-embedding-and-api.md',
+    doc: '277-5-embedding-and-api.md',
     env: 'EMBEDDING_DIM',
     source: 'lib/search/vector-index-store.ts',
   },
 ];
 
 const roadmapDefaultDocs = [
-  '01-1-search-pipeline-features-speckit.md',
-  '11-memory-roadmap-capability-flags.md',
+  '273-1-search-pipeline-features-speckit.md',
+  '283-memory-roadmap-capability-flags.md',
 ] as const;
 
 const roadmapFlagDefaults = [
@@ -73,9 +73,9 @@ const roadmapFlagDefaults = [
 ] as const;
 
 const roadmapDocsWithoutRemovedFlags = [
-  '01-1-search-pipeline-features-speckit.md',
-  '06-6-debug-and-telemetry.md',
-  '11-memory-roadmap-capability-flags.md',
+  '273-1-search-pipeline-features-speckit.md',
+  '278-6-debug-and-telemetry.md',
+  '283-memory-roadmap-capability-flags.md',
 ] as const;
 
 function expectRoadmapFlagRow(
@@ -143,7 +143,7 @@ describe('Memory roadmap flag documentation', () => {
       SKILL_ROOT,
       'manual_testing_playbook',
       '19--feature-flag-reference',
-      '125-memory-roadmap-capability-flags.md',
+      '311-memory-roadmap-capability-flags.md',
     );
     const playbookContent = fs.readFileSync(playbookPath, 'utf8');
     const featureFileContent = fs.readFileSync(featureFilePath, 'utf8');

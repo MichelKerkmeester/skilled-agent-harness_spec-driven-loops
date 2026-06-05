@@ -1,0 +1,34 @@
+{
+  "specFolder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/014-pre-existing-failure-remediation",
+  "description": "Reconcile pre-existing test/doc failures (advisor, feature-flag docs, deferred suites, dead-code, macOS EINVAL) surfaced by the 013-takeover central v",
+  "keywords": [
+    "reconcile",
+    "pre-existing",
+    "test",
+    "doc",
+    "failures",
+    "advisor",
+    "feature-flag",
+    "docs",
+    "deferred",
+    "suites",
+    "dead-code",
+    "macos",
+    "einval",
+    "surfaced",
+    "013-takeover",
+    "central",
+    "verification"
+  ],
+  "lastUpdated": "2026-06-05T06:23:49.260Z",
+  "specId": "014",
+  "folderSlug": "pre-existing-failure-remediation",
+  "parentChain": [
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "000-release-and-program-cleanup"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "1"
+}

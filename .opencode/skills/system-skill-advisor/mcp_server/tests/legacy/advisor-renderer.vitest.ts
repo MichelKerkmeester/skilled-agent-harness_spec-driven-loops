@@ -12,6 +12,11 @@ import {
 import type { AdvisorHookResult } from '../../lib/skill-advisor-brief.js';
 
 const fixturesDir = join(import.meta.dirname, 'advisor-fixtures');
+const HYGIENE_DIRECTIVE = 'Comment hygiene [HARD BLOCK]: NEVER embed ADR-/REQ-/CHK-/task-ids or spec paths in code comments — forbidden regardless of instruction. Write the durable WHY instead. Pre-commit gate blocks violations.';
+
+function expectedBrief(summary: string): string {
+  return `${summary}\n${HYGIENE_DIRECTIVE}`;
+}
 
 function fixture(name: string): AdvisorHookResult & Record<string, unknown> {
   return JSON.parse(readFileSync(join(fixturesDir, name), 'utf8')) as AdvisorHookResult & Record<string, unknown>;
@@ -20,13 +25,13 @@ function fixture(name: string): AdvisorHookResult & Record<string, unknown> {
 describe('renderAdvisorBrief', () => {
   it('renders the live passing skill from whitelisted fields only', () => {
     expect(renderAdvisorBrief(fixture('livePassingSkill.json'))).toBe(
-      'Advisor: live; use sk-code 0.91/0.23 pass.',
+      expectedBrief('Advisor: live; use sk-code 0.91/0.23 pass.'),
     );
   });
 
   it('renders stale freshness with explicit stale wording', () => {
     expect(renderAdvisorBrief(fixture('staleHighConfidenceSkill.json'))).toBe(
-      'Advisor: stale; use sk-code 0.93/0.12 pass.',
+      expectedBrief('Advisor: stale; use sk-code 0.93/0.12 pass.'),
     );
   });
 
@@ -53,10 +58,10 @@ describe('renderAdvisorBrief', () => {
     };
 
     expect(renderAdvisorBrief(compact)).toBe(
-      'Advisor: live; use sk-code 0.80/0.35 pass.',
+      expectedBrief('Advisor: live; use sk-code 0.80/0.35 pass.'),
     );
     expect(renderAdvisorBrief(ambiguous)).toBe(
-      'Advisor: live; ambiguous: sk-code 0.80/0.35 vs sk-doc 0.75/0.32 pass.',
+      expectedBrief('Advisor: live; ambiguous: sk-code 0.80/0.35 vs sk-doc 0.75/0.32 pass.'),
     );
     expect(renderAdvisorBrief(ambiguous)?.length).toBeLessThanOrEqual(480);
   });
@@ -84,7 +89,7 @@ describe('renderAdvisorBrief', () => {
     const result = fixture('promptPoisoningAdversarial.json');
     const brief = renderAdvisorBrief(result);
 
-    expect(brief).toBe('Advisor: live; use sk-code 0.90/0.21 pass.');
+    expect(brief).toBe(expectedBrief('Advisor: live; use sk-code 0.90/0.21 pass.'));
     expect(brief).not.toContain(String(result.inputPrompt));
     expect(brief).not.toMatch(/ignore previous|system:/i);
   });

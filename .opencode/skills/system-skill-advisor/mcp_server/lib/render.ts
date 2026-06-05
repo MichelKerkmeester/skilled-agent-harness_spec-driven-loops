@@ -152,15 +152,15 @@ export function renderAdvisorBrief(
       return null;
     }
     return capText(
-      `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.`,
+      `Advisor: ${result.freshness}; ambiguous: ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} vs ${secondLabel} ${formatScore(second.confidence)}/${formatScore(second.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
       Math.min(tokenCap, AMBIGUOUS_TOKEN_CAP),
-    ) + HYGIENE_DIRECTIVE;
+    );
   }
 
   return capText(
-    `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.`,
+    `Advisor: ${result.freshness}; use ${topLabel} ${formatScore(top.confidence)}/${formatScore(top.uncertainty)} pass.${HYGIENE_DIRECTIVE}`,
     Math.min(tokenCap, DEFAULT_TOKEN_CAP),
-  ) + HYGIENE_DIRECTIVE;
+  );
 }
 
 // Shared timeout-fallback renderer. Previously the Codex hook

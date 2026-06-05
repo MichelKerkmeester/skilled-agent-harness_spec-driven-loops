@@ -12,6 +12,28 @@ import { BATCH_SIZE } from '../core/config';
 
 let tempDir: string | null = null;
 
+function hasMemoryIndexFixtureDb(): boolean {
+  const dbPath = process.env.MEMORY_DB_PATH;
+  if (!dbPath || dbPath === ':memory:' || !fs.existsSync(dbPath)) {
+    return false;
+  }
+
+  let db: InstanceType<typeof BetterSqlite3> | null = null;
+  try {
+    db = new BetterSqlite3(dbPath, { readonly: true, fileMustExist: true });
+    const row = db.prepare(
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='memory_index'",
+    ).get();
+    return Boolean(row);
+  } catch (_error: unknown) {
+    return false;
+  } finally {
+    db?.close();
+  }
+}
+
+const dbFixtureDescribe = hasMemoryIndexFixtureDb() ? describe : describe.skip;
+
 function workspaceSpecPath(rootFolder: string, specId: string, fileName: string): string {
   return path.posix.join('/workspace', rootFolder, 'system-spec-kit', specId, fileName);
 }
@@ -391,7 +413,7 @@ afterAll(() => {
   }
 });
 
-describe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', () => {
+dbFixtureDescribe('Handler Memory Index (T520) [deferred - requires DB test fixtures]', () => {
   describe('Exports Validation', () => {
     it('T520-1: handleMemoryIndexScan exported', () => {
       expect(typeof handler.handleMemoryIndexScan).toBe('function');
