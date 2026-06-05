@@ -40,6 +40,15 @@ This phase parent groups 15 child phases spanning 2026-05-28 to 2026-06-01. Each
 | [changelog-007-016-substrate-harness-hardening.md](./changelog-007-016-substrate-harness-hardening.md) | 2026-05-31 | Substrate stress-harness hardening: start-time identity, run-id TSV, env suppression |
 | [changelog-007-mcp-daemon-reliability.md](./changelog-007-mcp-daemon-reliability.md) | n/a | changelog-007-mcp-daemon-reliability.md |
 
+### Renested infra rollups
+
+These infra-followup phase parents were renested into this track during the program reorg. They use a separate numbering scheme and keep their own child changelogs.
+
+| Rollup | Date | Title |
+|--------|------|-------|
+| [changelog-014-infra-memory-db-and-graph-churn-root.md](./changelog-014-infra-memory-db-and-graph-churn-root.md) | 2026-06-01 | Phase Parent Rollup: infra memory db and graph churn |
+| [changelog-015-infra-followup-hardening-root.md](./changelog-015-infra-followup-hardening-root.md) | 2026-06-01 | Phase Parent Rollup: infra followup hardening |
+
 ### Added
 
 - None. Detail lives in the child phase changelogs.
