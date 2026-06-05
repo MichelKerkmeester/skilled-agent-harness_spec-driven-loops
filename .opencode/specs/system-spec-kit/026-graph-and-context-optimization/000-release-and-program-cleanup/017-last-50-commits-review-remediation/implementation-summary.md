@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: Remediation of the 016 Last-50-Commits Deep Review"
-description: "Summary of the 016 remediation: four parallel streams (lifecycle, IPC/socket/launcher, validator/memory-write, contract/config/docs) plus a test round closed every actionable finding; six items accepted with no code change as deliberate decisions. Verified: tsc clean, 1055+154+3 tests pass, byte-identical fork parity, alignment-drift PASS. Deploy of the dist deferred to the operator."
+description: "Summary of the 016 remediation: four parallel streams (lifecycle, IPC/socket/launcher, validator/memory-write, contract/config/docs) plus a test round closed every actionable finding; six items accepted with no code change as deliberate decisions. Verified: tsc clean, 1055+154+3 tests pass, byte-identical fork parity, alignment-drift PASS. Deployed 2026-06-05: daemon recycled to the fresh dist, code-graph dist rebuilt, launcher .cjs activates on the next fresh session."
 trigger_phrases:
   - "016 remediation summary"
   - "last 50 commits remediation shipped"
@@ -28,7 +28,7 @@ _memory:
     open_questions: []
     answered_questions:
       - "Every actionable 016 finding is fixed and verified; six items are deliberate accept-no-action."
-      - "Source fixes take effect after build + deploy; the running daemon uses the current dist (deferred to operator)."
+      - "Deployed 2026-06-05: mk-spec-memory daemon recycled to the fresh dist and verified live; code-graph dist rebuilt; launcher .cjs (F-004) activates on the next fresh session."
 ---
 # Implementation Summary: Remediation of the 016 Last-50-Commits Deep Review
 
@@ -107,7 +107,7 @@ Six items were accepted with no code change and recorded in `decision-record.md`
 | Accept F-002 with no code change (ADR-002) | EPERM-on-live is the documented-correct cross-sandbox semantic; a "fix" would weaken safety |
 | Accept F-A3-01/02 with no code change (ADR-003) | No consumer assumes mutual exclusivity; the trust-tree is dormant in production |
 | Record F-CC-01 as honest disclosure (ADR-004) | The IDOR/scope handlers were read and are sound; a closed coverage gap, not a defect |
-| Defer the dist build + deploy to the operator | The running daemon uses the current dist; source fixes take effect after build + deploy |
+| Deploy via a reusable helper (scripts/deploy-mcp.sh) | Rebuilds every MCP dist and transparently recycles mk-spec-memory, so a future deploy cannot miss a server's dist or forget a launcher .cjs change |
 <!-- /ANCHOR:decisions -->
 
 ---
@@ -130,7 +130,7 @@ Six items were accepted with no code change and recorded in `decision-record.md`
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Deploy deferred.** The source fixes are complete and verified, but the running daemon uses the current dist. The fixes take effect after a build + deploy, which is deferred to the operator.
+1. **Deployed (2026-06-05).** mk-spec-memory was rebuilt and its daemon child transparently recycled to the fresh dist, verified live (9400 memories, 14ms). code-graph dist was rebuilt and loads on its next start. The one launcher .cjs change (F-004 lease fsync) activates on the next fresh session because SIGHUP is a shutdown signal not a reload, and scripts/deploy-mcp.sh flags such changes on every run.
 2. **Accept-no-action items remain by design.** Six findings (F-002, F-A3-01/02, F-CC-01, F-CC-P2-01/02) are accepted with no code change and recorded as deliberate ADRs; they are not defects to remediate.
 3. **Fork parity depends on the drift test.** The two `socket-server.ts` copies are byte-identical now; staying that way relies on the IPC drift test continuing to run.
 <!-- /ANCHOR:limitations -->
