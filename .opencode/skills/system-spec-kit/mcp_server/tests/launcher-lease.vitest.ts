@@ -31,6 +31,7 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../.
 const launcherRelativePath = '.opencode/bin/mk-spec-memory-launcher.cjs';
 const libRelativeDir = '.opencode/bin/lib';
 const pidFileRelativePath = '.opencode/skills/system-spec-kit/mcp_server/database/.mk-spec-memory-launcher.json';
+const ownerLeaseRelativePath = '.opencode/skills/system-spec-kit/mcp_server/database/.spec-memory-owner.json';
 const SOCKET_FILE_NAME = 'daemon-ipc.sock';
 const tempDirs: string[] = [];
 const launcherRuns: LauncherRun[] = [];
@@ -198,6 +199,25 @@ function readLease(pidFilePath: string): Record<string, unknown> | null {
   }
 }
 
+function readOwnerLeasePid(root: string): number | null {
+  try {
+    const parsed = JSON.parse(readFileSync(join(root, ownerLeaseRelativePath), 'utf8')) as { ownerPid?: unknown };
+    return typeof parsed.ownerPid === 'number' ? parsed.ownerPid : null;
+  } catch {
+    return null;
+  }
+}
+
+function expectRetryableLeaseHeld(stdout: string, ownerPid: number, reason: string): void {
+  const frame = JSON.parse(stdout.trim()) as {
+    error?: { message?: string; data?: { retryable?: boolean } };
+  };
+  expect(frame.error?.message).toBe(
+    `mk-spec-memory: lease held by pid ${ownerPid} but session bridge unavailable (${reason}); reconnect`,
+  );
+  expect(frame.error?.data?.retryable).toBe(true);
+}
+
 async function waitForLeasePid(pidFilePath: string, pid: number | undefined): Promise<void> {
   if (typeof pid !== 'number') throw new Error('launcher pid was not assigned');
   await waitFor(() => readLeasePid(pidFilePath) === pid, 8000, `lease pid ${pid}`);
@@ -248,25 +268,70 @@ describe('mk-spec-memory launcher lease', () => {
     }
   });
 
-  // duplicate launcher exits before opening SQLite.
-  it('exits with LEASE_HELD_BY when a live owner exists', async () => {
+  // Duplicate launcher exits before opening SQLite.
+  it('exits with a retryable JSON-RPC error when a live owner exists but cannot be bridged', async () => {
     const workspace = createWorkspace();
     const first = spawnLauncher(workspace);
     await waitForLeasePid(workspace.pidFilePath, first.child.pid);
 
-    // Second launcher in the SAME socket dir: the owner's stub child binds nothing, so the bridge
-    // probe finds no socket, falls through to the plaintext LEASE_HELD_BY diagnostic, and exits.
+    // The launcher writes to stdout that is also the MCP client stream; keep unbridgeable boot-gap
+    // reports as JSON-RPC frames rather than plaintext diagnostics.
     const second = spawnLauncher(workspace, { SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1' });
     await waitForStdoutClose(second);
     const exit = await waitForExit(second.child, 10000);
 
     expect(exit.code).toBe(0);
-    expect(second.stdout).toContain(`LEASE_HELD_BY:${first.child.pid}`);
-    expect(second.stdout).toMatch(new RegExp(`^LEASE_HELD_BY:${first.child.pid} startedAt=\\d{4}-\\d{2}-\\d{2}T`, 'm'));
+    expectRetryableLeaseHeld(second.stdout, first.child.pid as number, 'bridge-disabled');
   });
 
-  // live-owner diagnostics include the recorded startedAt value.
-  it('reports the lease startedAt value for a live owner', async () => {
+  it('lets exactly one concurrent launcher own the owner lease', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    const second = spawnLauncher(workspace);
+
+    await waitFor(() => readOwnerLeasePid(workspace.root) !== null, 8000, 'owner lease');
+    await waitFor(
+      () =>
+        first.child.exitCode !== null ||
+        second.child.exitCode !== null ||
+        first.stdout.includes('lease held by pid') ||
+        second.stdout.includes('lease held by pid'),
+      10000,
+      'one launcher to report lease held',
+    );
+
+    const ownerPid = readOwnerLeasePid(workspace.root);
+    const runs = [first, second];
+    const running = runs.filter((run) => run.child.exitCode === null && !run.stdout.includes('lease held by pid'));
+    const blocked = runs.filter((run) => run.stdout.includes('lease held by pid'));
+
+    expect(ownerPid).not.toBeNull();
+    expect(running).toHaveLength(1);
+    expect(blocked).toHaveLength(1);
+  });
+
+  it('reaps the recorded owner before taking over a dead socket', async () => {
+    const workspace = createWorkspace();
+    const first = spawnLauncher(workspace);
+    await waitForLeasePid(workspace.pidFilePath, first.child.pid);
+    await waitFor(() => typeof readLease(workspace.pidFilePath)?.childPid === 'number', 8000, 'child pid in lease');
+
+    const lease = readLease(workspace.pidFilePath);
+    const socketPath = lease?.socketPath;
+    if (typeof socketPath !== 'string') throw new Error('expected lease socketPath');
+    writeFileSync(socketPath, 'stale socket placeholder', 'utf8');
+
+    const second = spawnLauncher(workspace);
+
+    await waitForExit(first.child, 10000);
+    await waitFor(() => readOwnerLeasePid(workspace.root) === second.child.pid, 10000, 'replacement owner lease');
+    await waitForLeasePid(workspace.pidFilePath, second.child.pid);
+
+    expect(second.stderr).toContain(`confirmed-dead socket; reaping recorded spec-memory owner pid ${first.child.pid} before respawn`);
+  });
+
+  // Live-owner JSON-RPC diagnostics include the recorded owner pid.
+  it('reports a retryable JSON-RPC error for a live owner', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
     const startedAt = '2026-05-18T00:00:00.000Z';
@@ -275,13 +340,13 @@ describe('mk-spec-memory launcher lease', () => {
       mkdirSync(dirname(workspace.pidFilePath), { recursive: true });
       writeFileSync(workspace.pidFilePath, JSON.stringify({ pid: holder.pid, startedAt }));
 
-      // No socketPath in the planted lease + bridge disabled -> deterministic plaintext diagnostic.
+      // No socketPath in the planted lease + bridge disabled -> deterministic JSON-RPC diagnostic.
       const run = spawnLauncher(workspace, { SPECKIT_LAUNCHER_BRIDGE_DISABLED: '1' });
       await waitForStdoutClose(run);
       const exit = await waitForExit(run.child, 10000);
 
       expect(exit.code).toBe(0);
-      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt}`);
+      expectRetryableLeaseHeld(run.stdout, holder.pid as number, 'bridge-disabled');
     } finally {
       holder.kill('SIGTERM');
       try {
@@ -330,8 +395,8 @@ describe('mk-spec-memory launcher lease', () => {
     expect(existsSync(workspace.pidFilePath)).toBe(false);
   });
 
-  // live legacy launcher lease blocks rolling-start duplicates.
-  it('reports LEASE_HELD_BY from the legacy launcher lease path', async () => {
+  // Live legacy launcher lease blocks rolling-start duplicates.
+  it('reports a retryable JSON-RPC error from the legacy launcher lease path', async () => {
     const workspace = createWorkspace();
     const holder = await createLivePid();
     const startedAt = '2026-05-18T00:00:00.000Z';
@@ -354,7 +419,7 @@ describe('mk-spec-memory launcher lease', () => {
       const exit = await waitForExit(run.child, 10000);
 
       expect(exit.code).toBe(0);
-      expect(run.stdout).toContain(`LEASE_HELD_BY:${holder.pid} startedAt=${startedAt} (legacy path)`);
+      expectRetryableLeaseHeld(run.stdout, holder.pid as number, 'bridge-disabled');
     } finally {
       holder.kill('SIGTERM');
       try {

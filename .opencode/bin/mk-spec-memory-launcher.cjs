@@ -82,6 +82,7 @@ let kitDir = path.join(skillsDir, 'system-spec-kit');
 let dbDir = path.join(kitDir, 'mcp_server', 'database');
 let lockDir = path.join(dbDir, '.mk-spec-memory-launcher.lockdir');
 const PID_FILE_NAME = '.mk-spec-memory-launcher.json';
+const OWNER_LEASE_FILE_NAME = '.spec-memory-owner.json';
 let stateFile = path.join(dbDir, PID_FILE_NAME);
 let canonicalCodeGraphDbDir = path.join(skillsDir, 'system-code-graph', 'mcp_server', 'database');
 
@@ -92,12 +93,15 @@ const now = () => new Date().toISOString();
 // only fires for a genuinely abandoned lockdir, never a slow-but-live build holder.
 const BOOTSTRAP_LOCK_STALE_MS = 300000;
 let childProcess = null;
+let ownerLeasePid = null;
 let leaseStartedAt = null;
 let launcherShutdownInProgress = false;
 let rssBreachSelfExitInProgress = false;
 let rssWatchdogTimer = null;
 let crashLoopGuard = null;
 let supervisorRelaunchTimer = null;
+let ownerLeaseHeartbeatTimer = null;
+let ownerLeaseRequired = true;
 // Last-known descendant pids of the daemon child (excluding the child itself), refreshed by the
 // process-tree monitor while the child is alive; the give-up reap path uses this to find an
 // orphaned sidecar after the child has already exited.
@@ -233,6 +237,10 @@ function leasePath() {
   return path.join(resolvedDbDir(), PID_FILE_NAME);
 }
 
+function ownerLeasePath() {
+  return path.join(resolvedDbDir(), OWNER_LEASE_FILE_NAME);
+}
+
 function legacyLeasePaths() {
   return [
     path.join(opencodeDir, 'skill', 'system-spec-kit', 'mcp_server', 'database', PID_FILE_NAME),
@@ -248,6 +256,213 @@ function readLeaseFile(filePath = leasePath()) {
     // Missing or corrupt lease files are treated as no active lease.
   }
   return null;
+}
+
+function readOwnerLeaseFile(filePath = ownerLeasePath()) {
+  try {
+    const parsed = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    if (
+      Number.isInteger(parsed.ownerPid) &&
+      Number.isInteger(parsed.ppid) &&
+      typeof parsed.executablePath === 'string' &&
+      typeof parsed.startedAtIso === 'string' &&
+      typeof parsed.lastHeartbeatIso === 'string' &&
+      Number.isInteger(parsed.ttlMs) &&
+      typeof parsed.canonicalDbDir === 'string'
+    ) {
+      return parsed;
+    }
+  } catch {
+    // Missing or corrupt owner leases are treated as no active owner.
+  }
+  return null;
+}
+
+function writeOwnerLeaseFile(lease) {
+  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
+  const tmp = `${currentLeasePath}.tmp.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2)}`;
+  fs.writeFileSync(tmp, `${JSON.stringify(lease, null, 2)}\n`, { mode: 0o600, flag: 'wx' });
+  fs.renameSync(tmp, currentLeasePath);
+}
+
+function writeOwnerLeaseFileExclusive(lease) {
+  const currentLeasePath = path.join(ensureCanonicalDir(path.dirname(ownerLeasePath())), OWNER_LEASE_FILE_NAME);
+  let fd;
+  try {
+    fd = fs.openSync(currentLeasePath, 'wx', 0o600);
+    fs.writeFileSync(fd, `${JSON.stringify(lease, null, 2)}\n`, 'utf8');
+    fs.fsyncSync(fd);
+    return true;
+  } catch (error) {
+    if (error.code === 'EEXIST') return false;
+    throw error;
+  } finally {
+    if (typeof fd === 'number') fs.closeSync(fd);
+  }
+}
+
+function buildOwnerLease(ownerPid = process.pid) {
+  return {
+    ownerPid,
+    ppid: process.ppid,
+    executablePath: process.execPath,
+    startedAtIso: new Date().toISOString(),
+    lastHeartbeatIso: new Date().toISOString(),
+    ttlMs: 60000,
+    canonicalDbDir: resolvedDbDir(),
+  };
+}
+
+function readParentPid(pid) {
+  if (!Number.isInteger(pid) || pid <= 0) return null;
+  if (process.platform === 'linux') {
+    try {
+      const status = fs.readFileSync(`/proc/${pid}/status`, 'utf8');
+      const match = status.match(/^PPid:\s+(\d+)$/m);
+      return match ? Number.parseInt(match[1], 10) : null;
+    } catch {
+      return null;
+    }
+  }
+  const result = spawnSync('ps', ['-o', 'ppid=', '-p', String(pid)], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'ignore'],
+  });
+  if (result.status !== 0 || !result.stdout) return null;
+  const parsed = Number.parseInt(result.stdout.trim(), 10);
+  return Number.isInteger(parsed) ? parsed : null;
+}
+
+function classifyOwnerLease(lease) {
+  const liveness = processLiveness(lease.ownerPid);
+  if (liveness === 'dead') return 'stale-pid';
+  if (liveness === 'unknown-eperm') return 'unknown-eperm';
+
+  const actualPpid = readParentPid(lease.ownerPid);
+  if (actualPpid !== null && actualPpid !== lease.ppid && actualPpid === 1) {
+    return 'ppid-1-orphan';
+  }
+
+  const heartbeatMs = Date.parse(lease.lastHeartbeatIso);
+  const ttlMs = Number.isFinite(lease.ttlMs) ? lease.ttlMs : 0;
+  if (!Number.isFinite(heartbeatMs) || Date.now() - heartbeatMs > ttlMs * 2) {
+    return 'stale-heartbeat-reclaim';
+  }
+
+  return 'live-owner';
+}
+
+function acquireOwnerLeaseFile() {
+  const currentOwnerLeasePath = ownerLeasePath();
+  const existing = readOwnerLeaseFile(currentOwnerLeasePath);
+
+  if (existing) {
+    const classification = classifyOwnerLease(existing);
+    if (classification === 'live-owner' || classification === 'unknown-eperm') {
+      return { acquired: false, holder: existing, classification };
+    }
+    log(`ownerLeaseReclaimed: ${classification} ownerPid=${existing.ownerPid}`);
+  }
+
+  const lease = buildOwnerLease(process.pid);
+  if (!existing) {
+    if (!writeOwnerLeaseFileExclusive(lease)) {
+      const holder = readOwnerLeaseFile(currentOwnerLeasePath);
+      return {
+        acquired: false,
+        holder: holder || lease,
+        classification: holder ? classifyOwnerLease(holder) : 'live-owner',
+      };
+    }
+    ownerLeasePid = process.pid;
+    return { acquired: true, lease, reclaimed: existing };
+  }
+
+  // Re-read after reclaim so two launchers racing a stale lease cannot both act as owner.
+  writeOwnerLeaseFile(lease);
+  const reread = readOwnerLeaseFile(currentOwnerLeasePath);
+  if (!reread || reread.ownerPid !== process.pid) {
+    return {
+      acquired: false,
+      holder: reread || lease,
+      classification: reread ? classifyOwnerLease(reread) : 'live-owner',
+    };
+  }
+  ownerLeasePid = process.pid;
+  return { acquired: true, lease, reclaimed: existing };
+}
+
+function refreshOwnerLeaseFile(ownerPid, patch = {}) {
+  const lease = readOwnerLeaseFile();
+  if (!lease || lease.ownerPid !== ownerPid) return false;
+  const nextOwnerPid = patch.ownerPid ?? ownerPid;
+  writeOwnerLeaseFile({
+    ...lease,
+    ...patch,
+    lastHeartbeatIso: new Date().toISOString(),
+  });
+  const reread = readOwnerLeaseFile();
+  if (!reread || reread.ownerPid !== nextOwnerPid) return false;
+  ownerLeasePid = nextOwnerPid;
+  return true;
+}
+
+function clearOwnerLeaseHeartbeat() {
+  if (ownerLeaseHeartbeatTimer) {
+    clearInterval(ownerLeaseHeartbeatTimer);
+    ownerLeaseHeartbeatTimer = null;
+  }
+}
+
+function startOwnerLeaseHeartbeat(ownerPid = process.pid) {
+  clearOwnerLeaseHeartbeat();
+  const lease = readOwnerLeaseFile();
+  const ttlMs = Number.isFinite(lease?.ttlMs) && lease.ttlMs > 0 ? lease.ttlMs : 60000;
+  const intervalMs = Math.max(1000, Math.floor(ttlMs / 2));
+  ownerLeaseHeartbeatTimer = setInterval(() => {
+    if (refreshOwnerLeaseFile(ownerPid)) return;
+    log('owner lease heartbeat refresh failed; shutting down launcher to preserve single ownership');
+    clearOwnerLeaseHeartbeat();
+    void shutdownLauncherForSignal('SIGTERM').catch((error) => {
+      log(error.stack || error.message);
+      clearAllLeaseFiles();
+      process.exit(128);
+    });
+  }, intervalMs);
+  ownerLeaseHeartbeatTimer.unref?.();
+}
+
+function ownsOwnerLeaseFile(ownerPid = process.pid) {
+  const lease = readOwnerLeaseFile();
+  return lease?.ownerPid === ownerPid;
+}
+
+function clearOwnerLeaseFile() {
+  if (!Number.isInteger(ownerLeasePid)) return;
+  try {
+    const lease = readOwnerLeaseFile();
+    if (lease && lease.ownerPid === ownerLeasePid
+        && readOwnerLeaseFile()?.ownerPid === ownerLeasePid) {
+      fs.unlinkSync(ownerLeasePath());
+    }
+  } catch {
+    // Idempotent cleanup.
+  } finally {
+    clearOwnerLeaseHeartbeat();
+    ownerLeasePid = null;
+  }
+}
+
+function clearOwnerLeaseFileIfOwner(ownerPid) {
+  try {
+    const lease = readOwnerLeaseFile();
+    if (lease && lease.ownerPid === ownerPid
+        && readOwnerLeaseFile()?.ownerPid === ownerPid) {
+      fs.unlinkSync(ownerLeasePath());
+    }
+  } catch {
+    // Idempotent cleanup.
+  }
 }
 
 function leaseHeldFromFile(filePath, legacyPath = null) {
@@ -285,6 +500,56 @@ function writeLeaseHeldDiagnostic(leaseResult, suffix = '') {
   const startedAt = leaseResult.startedAt ?? new Date(0).toISOString();
   const legacyMarker = leaseResult.legacyPath ? ' (legacy path)' : '';
   process.stdout.write(`LEASE_HELD_BY:${leaseResult.ownerPid} startedAt=${startedAt}${legacyMarker}${suffix}\n`);
+}
+
+function writeLeaseHeldJsonRpcError(leaseResult, reason) {
+  process.stdout.write(`${JSON.stringify({
+    jsonrpc: '2.0',
+    id: null,
+    error: {
+      code: -32001,
+      message: `mk-spec-memory: lease held by pid ${leaseResult.ownerPid} but session bridge unavailable (${reason}); reconnect`,
+      data: { retryable: true },
+    },
+  })}\n`);
+}
+
+function bridgeReadiness(leaseResult) {
+  if (process.env.SPECKIT_LAUNCHER_BRIDGE_DISABLED === '1') {
+    return { ready: false, reason: 'bridge-disabled' };
+  }
+  const storedSocketPath = leaseResult.socketPath;
+  if (
+    typeof storedSocketPath === 'string' &&
+    storedSocketPath.length > 0 &&
+    (storedSocketPath.startsWith('tcp://') || fs.existsSync(storedSocketPath))
+  ) {
+    return { ready: true, socketPath: storedSocketPath };
+  }
+  const { getIpcSocketPath } = loadBridgeModule();
+  if (typeof getIpcSocketPath !== 'function') {
+    return { ready: false, reason: 'bridge-module-missing' };
+  }
+  const socketPath = getIpcSocketPath('mk-spec-memory', { dbDir: resolvedDbDir() });
+  if (!socketPath.startsWith('tcp://') && !fs.existsSync(socketPath)) {
+    return { ready: false, reason: 'no-bridge-socket' };
+  }
+  return { ready: true, socketPath };
+}
+
+function leaseResultForOwnerLease(ownerLease) {
+  const pidLeaseResult = isLeaseHeld();
+  if (pidLeaseResult.held && pidLeaseResult.ownerPid === ownerLease.ownerPid) {
+    return pidLeaseResult;
+  }
+  return {
+    held: true,
+    ownerPid: ownerLease.ownerPid,
+    staleReclaimable: false,
+    startedAt: ownerLease.startedAtIso,
+    legacyPath: null,
+    socketPath: null,
+  };
 }
 
 function respawnLockPath() {
@@ -373,16 +638,43 @@ async function reapLeaseChildBeforeRespawn(childPid) {
   return { allowed: true, reaped: true, cleanClose, reason: 'child-reaped' };
 }
 
+async function reapOwnerBeforeRespawn(ownerPid) {
+  const liveness = processLiveness(ownerPid);
+  if (liveness === 'unknown-eperm') {
+    return { allowed: false, reason: 'owner-liveness-unknown-eperm' };
+  }
+  if (liveness === 'dead') {
+    return { allowed: true, reason: 'owner-already-dead' };
+  }
+
+  log(`confirmed-dead socket; reaping recorded spec-memory owner pid ${ownerPid} before respawn`);
+  signalProcess(ownerPid, 'SIGTERM');
+  const exitedAfterTerm = await waitForPidExit(ownerPid, RESPAWN_REAP_GRACE_MS);
+  if (!exitedAfterTerm) {
+    log(`spec-memory owner pid ${ownerPid} exceeded ${RESPAWN_REAP_GRACE_MS}ms reap grace; sending SIGKILL`);
+    signalProcess(ownerPid, 'SIGKILL');
+    await waitForPidExit(ownerPid, 1000);
+  }
+  return { allowed: true, reason: 'owner-reaped' };
+}
+
 async function respawnAfterDeadSocket(leaseResult, decision) {
   if (process.env.SPECKIT_BRIDGE_RESPAWN_DISABLED === '1') {
     writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-disabled)');
     return { action: 'report', reason: 'respawn-disabled', socketPath: decision.socketPath };
   }
 
+  const ownerPid = leaseResult.ownerPid;
+  if (!Number.isInteger(ownerPid) || ownerPid <= 0) {
+    log('confirmed-dead socket but no recorded spec-memory owner pid is available; respawn inert');
+    writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-owner-pid)');
+    return { action: 'report', reason: 'missing-owner-pid', socketPath: decision.socketPath };
+  }
+
   const lease = readLeaseFile(leaseResult.legacyPath || leasePath());
   const childPid = lease?.childPid;
   if (!Number.isInteger(childPid) || childPid <= 0) {
-    log('confirmed-dead socket but lease has no childPid; phase-006 gate keeps respawn inert');
+    log('confirmed-dead socket but lease has no childPid; child-pid gate keeps respawn inert');
     writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-no-child-pid)');
     return { action: 'report', reason: 'missing-child-pid', socketPath: decision.socketPath };
   }
@@ -398,12 +690,36 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
       return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
     }
 
+    const currentOwner = readOwnerLeaseFile();
+    if (currentOwner?.ownerPid !== ownerPid) {
+      log('dead-socket respawn skipped; spec-memory owner lease changed while waiting for respawn lock');
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-superseded)');
+      return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
+    }
+
     const currentLease = readLeaseFile(leaseResult.legacyPath || leasePath());
     if (currentLease?.pid !== leaseResult.ownerPid || currentLease?.childPid !== childPid) {
       log('dead-socket respawn skipped; lease changed while waiting for respawn lock');
       writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-superseded)');
       return { action: 'report', reason: 'respawn-superseded', socketPath: decision.socketPath };
     }
+
+    const ownerReapResult = await reapOwnerBeforeRespawn(ownerPid);
+    if (!ownerReapResult.allowed) {
+      log(`dead-socket respawn skipped; ${ownerReapResult.reason} for ownerPid=${ownerPid}`);
+      writeLeaseHeldDiagnostic(leaseResult, ` (dead-socket-${ownerReapResult.reason})`);
+      return { action: 'report', reason: ownerReapResult.reason, socketPath: decision.socketPath };
+    }
+
+    clearOwnerLeaseFileIfOwner(ownerPid);
+    const ownerLease = buildOwnerLease(process.pid);
+    if (!writeOwnerLeaseFileExclusive(ownerLease)) {
+      const holder = readOwnerLeaseFile();
+      log(`dead-socket respawn skipped; another launcher owns spec-memory owner lease pid=${holder?.ownerPid ?? 'unknown'}`);
+      writeLeaseHeldDiagnostic(leaseResult, ' (dead-socket-respawn-owned)');
+      return { action: 'report', reason: 'respawn-lock-held', socketPath: decision.socketPath };
+    }
+    ownerLeasePid = process.pid;
 
     const reapResult = await reapLeaseChildBeforeRespawn(childPid);
     if (!reapResult.allowed) {
@@ -426,6 +742,11 @@ async function respawnAfterDeadSocket(leaseResult, decision) {
 }
 
 async function bridgeOrReportLeaseHeld(leaseResult) {
+  const readiness = bridgeReadiness(leaseResult);
+  if (!readiness.ready) {
+    writeLeaseHeldJsonRpcError(leaseResult, readiness.reason);
+    return { action: 'report', reason: readiness.reason };
+  }
   const { maybeBridgeLeaseHolder } = loadBridgeModule();
   const decision = await maybeBridgeLeaseHolder({
     serviceName: 'mk-spec-memory',
@@ -436,6 +757,15 @@ async function bridgeOrReportLeaseHeld(leaseResult) {
   });
   if (decision && decision.action === 'respawn') {
     return await respawnAfterDeadSocket(leaseResult, decision);
+  }
+  return decision;
+}
+
+async function bridgeOrReportLeaseHeldAndExit(leaseResult) {
+  const decision = await bridgeOrReportLeaseHeld(leaseResult);
+  if (!decision || decision.action === 'report') {
+    clearOwnerLeaseFile();
+    process.exit(0);
   }
   return decision;
 }
@@ -538,6 +868,11 @@ function clearLeaseFile() {
   } catch {
     // Idempotent cleanup.
   }
+}
+
+function clearAllLeaseFiles() {
+  clearLeaseFile();
+  clearOwnerLeaseFile();
 }
 
 function isInside(parent, child) {
@@ -849,6 +1184,10 @@ async function acquireBootstrapLock(options = {}) {
 }
 
 function launchServer() {
+  if (ownerLeaseRequired && !ownsOwnerLeaseFile(process.pid)) {
+    log('launchServer skipped: spec-memory owner lease is absent or owned by another launcher');
+    return false;
+  }
   if (shouldSkipLaunch(childProcess)) {
     log('launchServer skipped: a context-server child is already running in this launcher process');
     return false;
@@ -869,6 +1208,11 @@ function launchServer() {
     stdio: ['ignore', 'ignore', 'inherit'],
   });
   const childPid = childProcess.pid;
+  const refreshed = refreshOwnerLeaseFile(process.pid);
+  if (!refreshed) {
+    log('owner lease refresh failed after child spawn; launcher pid remains the recorded owner');
+  }
+  startOwnerLeaseHeartbeat(process.pid);
   writeLeaseFile(childPid);
   startRssWatchdog(childPid);
 
@@ -880,7 +1224,7 @@ function launchServer() {
       { code, signal, childPid, intentional: false },
       {
         crashLoopGuard,
-        clearLease: clearLeaseFile,
+        clearLease: clearAllLeaseFiles,
         reapProcessGroup: reapProcessTreeGroups,
         mirrorSignal: (exitSignal) => process.kill(process.pid, exitSignal),
         exit: (exitCode) => process.exit(exitCode),
@@ -911,6 +1255,7 @@ async function shutdownLauncherForSignal(signal) {
   launcherShutdownInProgress = true;
   if (rssWatchdogTimer) clearInterval(rssWatchdogTimer);
   if (supervisorRelaunchTimer) clearTimeout(supervisorRelaunchTimer);
+  clearOwnerLeaseHeartbeat();
   hfControl.clearTimers();
   await hfControl.stopDemandListener();
 
@@ -924,7 +1269,7 @@ async function shutdownLauncherForSignal(signal) {
   }
 
   if (children.length === 0) {
-    clearLeaseFile();
+    clearAllLeaseFiles();
     process.exit(128);
     return;
   }
@@ -945,7 +1290,7 @@ async function shutdownLauncherForSignal(signal) {
       if (isChildRunning(child)) child.kill('SIGKILL');
     }
   }
-  clearLeaseFile();
+  clearAllLeaseFiles();
   process.exit(128);
 }
 
@@ -954,14 +1299,14 @@ function installSignalHandlers() {
     process.on(signal, () => {
       void shutdownLauncherForSignal(signal).catch((error) => {
         log(error.stack || error.message);
-        clearLeaseFile();
+        clearAllLeaseFiles();
         process.exit(128);
       });
     });
   }
   process.on('uncaughtException', (err) => {
     try {
-      clearLeaseFile();
+      clearAllLeaseFiles();
     } catch {
       // Preserve default uncaughtException crash behavior.
     }
@@ -978,30 +1323,35 @@ async function main() {
   try {
     installSignalHandlers();
     // Lease cleanup runs unconditionally regardless of child termination path.
-    process.on('exit', clearLeaseFile);
+    process.on('exit', clearAllLeaseFiles);
     refreshPaths();
 
     const strictSingleWriter = !isStrictModeDisabled(process.env.MK_SPEC_MEMORY_STRICT_SINGLE_WRITER);
+    ownerLeaseRequired = strictSingleWriter;
     if (strictSingleWriter) {
+      const legacyLeaseResult = isLeaseHeld();
+      if (legacyLeaseResult.held && legacyLeaseResult.legacyPath && !legacyLeaseResult.staleReclaimable) {
+        await bridgeOrReportLeaseHeldAndExit(legacyLeaseResult);
+        return;
+      }
+    }
+
+    ensureLayout(actions);
+    refreshPaths();
+    enforceStandaloneCodeGraphDb(actions);
+
+    if (strictSingleWriter) {
+      const ownerLeaseResult = acquireOwnerLeaseFile();
+      if (!ownerLeaseResult.acquired) {
+        log(`liveOwnerDetected: ownerPid=${ownerLeaseResult.holder.ownerPid} classification=${ownerLeaseResult.classification}`);
+        await bridgeOrReportLeaseHeldAndExit(leaseResultForOwnerLease(ownerLeaseResult.holder));
+        return;
+      }
+
       const leaseResult = isLeaseHeld();
       if (leaseResult.held && !leaseResult.staleReclaimable) {
-        const decision = await bridgeOrReportLeaseHeld(leaseResult);
-        // A 'report' decision means this secondary session could NOT be bridged to the owner
-        // daemon (bridge disabled / socket missing / bridge module missing). The only thing
-        // written so far is the plaintext "LEASE_HELD_BY:" diagnostic, which is not a JSON-RPC
-        // frame — so the MCP client would wait on its initialize forever. Emit a retryable
-        // JSON-RPC error so the client fails fast and reconnects instead of hanging.
-        if (decision && decision.action === 'report') {
-          process.stdout.write(`${JSON.stringify({
-            jsonrpc: '2.0',
-            id: null,
-            error: {
-              code: -32001,
-              message: `mk-spec-memory: lease held by pid ${leaseResult.ownerPid} but session bridge unavailable (${decision.reason}); reconnect`,
-              data: { retryable: true },
-            },
-          })}\n`);
-        }
+        clearOwnerLeaseFile();
+        await bridgeOrReportLeaseHeldAndExit(leaseResult);
         return;
       }
       if (leaseResult.staleReclaimable) {
@@ -1010,10 +1360,6 @@ async function main() {
     } else {
       log('MK_SPEC_MEMORY_STRICT_SINGLE_WRITER is disabled; skipping lease check');
     }
-
-    ensureLayout(actions);
-    refreshPaths();
-    enforceStandaloneCodeGraphDb(actions);
 
     lockHeld = await acquireBootstrapLock();
     if (lockHeld) {
@@ -1026,16 +1372,20 @@ async function main() {
         actions,
         server: rel(path.join(kitDir, 'mcp_server', 'dist', 'context-server.js')),
       });
+      fs.rmSync(lockDir, { recursive: true, force: true });
+      lockHeld = false;
     }
 
     writeLeaseFile();
     const reprobe = readLeaseFile();
     if (!reprobe || reprobe.pid !== process.pid) {
       const startedAt = reprobe?.startedAt ?? new Date(0).toISOString();
-      process.stdout.write(`LEASE_HELD_BY:${reprobe ? reprobe.pid : 'unknown'} startedAt=${startedAt}\n`);
+      clearOwnerLeaseFile();
+      writeLeaseHeldJsonRpcError({ ownerPid: reprobe ? reprobe.pid : 'unknown', startedAt }, 'lease-reprobe-lost');
       process.exit(0);
     }
     const launched = launchServer();
+    if (!launched) return;
     if (launched) {
       const sessionProxy = createSessionProxy({
         socketPath: resolveSessionProxySocketPath(),
