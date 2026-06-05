@@ -12,7 +12,7 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/026-graph-and-context-optimization"
-    last_updated_at: "2026-06-03T08:18:56Z"
+    last_updated_at: "2026-06-05T09:53:07Z"
     recent_action: "Regenerated chronological timeline from git history"
     next_safe_action: "Use this file to find the most recent / oldest spec folder"
     completion_pct: 100
@@ -21,7 +21,7 @@ _memory:
 
 <!-- GENERATED FILE — do not hand-edit. Regenerate: `python3 scratch/gen-timeline.py > timeline.md` (run from the 026 root). -->
 
-> **Generated:** 2026-06-03T08:18:56Z — regenerate before relying on intra-day ordering; same-day commits made
+> **Generated:** 2026-06-05T09:53:07Z — regenerate before relying on intra-day ordering; same-day commits made
 > after this stamp are not reflected until the next run.
 > **Sort key:** git last-commit timestamp touching each folder subtree, **newest → oldest** (the
 > recency view), taken from one atomic `git log` snapshot. The last-active column shows
@@ -38,30 +38,30 @@ _memory:
 > (docs-only, research, or work consolidated into a parent rollup) show `(none)`. Phase parents link
 > their `-root.md` rollup, which indexes the child phase changelogs.
 >
-> **Most recent live spec folder:** `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3`
+> **Most recent live spec folder:** `000-release-and-program-cleanup/015-docs-drift-review`
 > **Oldest live spec folder:** `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/001-research-synthesis-and-remediation-map/research/source-research/020-cli-process-memory-leak-deep-research/packet-docs`
-> **Counts:** 657 live spec folders · 34 archived (`z_archive/`).
+> **Counts:** 695 live spec folders · 34 archived (`z_archive/`).
 
 ---
 
 ## 0. Most recent 15 (quick answer to "what was worked on last")
 
 ```
- 1. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3
- 2. 2026-06-03 10:18  000-release-and-program-cleanup/009-readme-and-references-accuracy
- 3. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2
- 4. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1
- 5. 2026-06-03 10:18  000-release-and-program-cleanup/010-scouted-bugfix-train
- 6. 2026-06-03 10:18  003-memory-and-causal-runtime/016-embedding-provider-local-first
- 7. 2026-06-03 10:18  006-operator-tooling/006-doctor-install-alignment
- 8. 2026-06-03 10:18  006-operator-tooling
- 9. 2026-06-03 10:18  003-memory-and-causal-runtime
-10. 2026-06-03 10:18  000-release-and-program-cleanup
-11. 2026-06-03 08:08  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
-12. 2026-06-03 08:08  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing
-13. 2026-06-02 20:22  003-memory-and-causal-runtime/015-opus-review-runtime-remediation
-14. 2026-06-02 20:22  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh
-15. 2026-06-02 20:22  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update
+ 1. 2026-06-05 09:58  000-release-and-program-cleanup/015-docs-drift-review
+ 2. 2026-06-05 09:58  000-release-and-program-cleanup
+ 3. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening
+ 4. 2026-06-05 08:31  003-memory-and-causal-runtime
+ 5. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
+ 6. 2026-06-05 08:31  003-memory-and-causal-runtime/003-embedder-testing-and-architecture
+ 7. 2026-06-05 08:31  000-release-and-program-cleanup/014-pre-existing-failure-remediation
+ 8. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix
+ 9. 2026-06-05 07:34  000-release-and-program-cleanup/009-readme-and-references-accuracy
+10. 2026-06-05 07:34  003-memory-and-causal-runtime/016-embedding-provider-local-first
+11. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper
+12. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design
+13. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode
+14. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle
+15. 2026-06-05 07:34  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation
 ```
 
 ---
@@ -73,13 +73,13 @@ traces through the reorg `git mv` history to each track's true origin.
 
 | Rank | Last active | Born | Track |
 |------|------------------|------------|-------|
-| 1 | 2026-06-03 10:18 | 2026-05-26 | `006-operator-tooling/` |
-| 2 | 2026-06-03 10:18 | 2026-05-26 | `003-memory-and-causal-runtime/` |
-| 3 | 2026-06-03 10:18 | 2026-04-27 | `000-release-and-program-cleanup/` |
-| 4 | 2026-06-02 07:56 | 2026-05-28 | `007-mcp-daemon-reliability/` |
-| 5 | 2026-06-02 07:56 | 2026-05-26 | `002-spec-kit-internals/` |
-| 6 | 2026-06-02 07:56 | 2026-04-21 | `004-code-graph/` |
-| 7 | 2026-06-01 06:49 | 2026-05-26 | `005-graph-impact-and-affordance/` |
+| 1 | 2026-06-05 09:58 | 2026-04-27 | `000-release-and-program-cleanup/` |
+| 2 | 2026-06-05 08:31 | 2026-05-26 | `003-memory-and-causal-runtime/` |
+| 3 | 2026-06-04 14:37 | 2026-05-28 | `007-mcp-daemon-reliability/` |
+| 4 | 2026-06-04 14:37 | 2026-05-26 | `006-operator-tooling/` |
+| 5 | 2026-06-04 14:37 | 2026-05-26 | `005-graph-impact-and-affordance/` |
+| 6 | 2026-06-04 14:37 | 2026-04-21 | `004-code-graph/` |
+| 7 | 2026-06-02 07:56 | 2026-05-26 | `002-spec-kit-internals/` |
 | 8 | 2026-06-01 06:49 | 2026-04-07 | `001-research-and-baseline/` |
 
 > Note: `000-release-and-program-cleanup/` carries a deliberate `000` prefix (cross-cutting / program
@@ -94,31 +94,94 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 (a shipped hint). Folders with no committed git history (uncommitted) show `??????????` and sort last.
 
 ```
+2026-06-05 09:58  born:2026-06-05  impl  000-release-and-program-cleanup/015-docs-drift-review
+2026-06-05 09:58  born:2026-04-27        000-release-and-program-cleanup
+2026-06-05 08:31  born:2026-06-05  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening
+2026-06-05 08:31  born:2026-05-26        003-memory-and-causal-runtime
+2026-06-05 08:31  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
+2026-06-05 08:31  born:2026-05-17        003-memory-and-causal-runtime/003-embedder-testing-and-architecture
+2026-06-05 08:31  born:2026-06-05  impl  000-release-and-program-cleanup/014-pre-existing-failure-remediation
+2026-06-05 07:34  born:2026-06-04  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix
+2026-06-05 07:34  born:2026-06-03  impl  000-release-and-program-cleanup/009-readme-and-references-accuracy
+2026-06-05 07:34  born:2026-06-02  impl  003-memory-and-causal-runtime/016-embedding-provider-local-first
+2026-06-05 07:34  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper
+2026-06-05 07:34  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design
+2026-06-05 07:34  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode
+2026-06-05 07:34  born:2026-05-23        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle
+2026-06-05 07:34  born:2026-05-22        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening
+2026-06-05 07:33  born:2026-06-04  impl  000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability
+2026-06-05 07:33  born:2026-06-04        000-release-and-program-cleanup/013-comprehensive-audit-remediation
+2026-06-05 07:33  born:2026-06-04  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening
+2026-06-04 23:03  born:2026-06-04        003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal
+2026-06-04 20:59  born:2026-06-04        000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core
+2026-06-04 20:59  born:2026-06-04  impl  000-release-and-program-cleanup/012-comprehensive-deep-review-audit
+2026-06-04 17:09  born:2026-06-04  impl  003-memory-and-causal-runtime/021-relation-inference-backfill
+2026-06-04 17:09  born:2026-06-01        000-release-and-program-cleanup/008-docs-and-catalogs-rollup
+2026-06-04 17:09  born:??????????        000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit
+2026-06-04 16:05  born:2026-06-04  impl  003-memory-and-causal-runtime/026-relation-backfill-review-remediation
+2026-06-04 14:44  born:2026-06-04  impl  003-memory-and-causal-runtime/020-lease-socket-path
+2026-06-04 14:37  born:2026-06-04  impl  003-memory-and-causal-runtime/023-semantic-relation-inference
+2026-06-04 14:37  born:2026-06-03        000-release-and-program-cleanup/010-scouted-bugfix-train
+2026-06-04 14:37  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
+2026-06-04 14:37  born:2026-05-28        007-mcp-daemon-reliability
+2026-06-04 14:37  born:2026-05-26        006-operator-tooling
+2026-06-04 14:37  born:2026-05-26        005-graph-impact-and-affordance
+2026-06-04 14:37  born:2026-05-26        004-code-graph/006-extraction-and-isolation
+2026-06-04 14:37  born:2026-05-26        004-code-graph/005-resilience-and-advisor
+2026-06-04 14:37  born:2026-05-25  impl  004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr
+2026-06-04 14:37  born:2026-05-25        004-code-graph/002-deprecate-coco-index
+2026-06-04 14:37  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack
+2026-06-04 14:37  born:2026-05-18  impl  004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize
+2026-06-04 14:37  born:2026-05-16        004-code-graph/009-system-code-graph-uplift-phase-parent
+2026-06-04 14:37  born:2026-05-14        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups
+2026-06-04 14:37  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map
+2026-06-04 14:37  born:2026-05-12        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation
+2026-06-04 14:37  born:2026-05-11  impl  006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations
+2026-06-04 14:37  born:2026-05-10        006-operator-tooling/002-doctor-update-orchestrator
+2026-06-04 14:37  born:2026-04-25  impl  005-graph-impact-and-affordance/005-deep-review-findings
+2026-06-04 14:37  born:2026-04-24  impl  004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement
+2026-06-04 14:37  born:2026-04-21        004-code-graph
+2026-06-04 13:49  born:2026-06-04  impl  003-memory-and-causal-runtime/025-tool-layer-map-unlink
+2026-06-04 13:49  born:2026-06-04  impl  003-memory-and-causal-runtime/024-launcher-lease-integration-test
+2026-06-04 13:06  born:2026-06-04  impl  003-memory-and-causal-runtime/022-readme-doc-sync
+2026-06-04 11:47  born:2026-06-04  impl  003-memory-and-causal-runtime/018-front-proxy-recycle-hardening
+2026-06-04 11:22  born:2026-06-04  impl  003-memory-and-causal-runtime/019-causal-relation-coverage-honesty
+2026-06-04 08:48  born:2026-06-04  impl  003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on
+2026-06-03 14:22  born:2026-06-03  impl  000-release-and-program-cleanup/011-analytics-and-learning-remediation
+2026-06-03 13:42  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5
+2026-06-03 13:36  born:2026-06-02  impl  003-memory-and-causal-runtime/015-opus-review-runtime-remediation
+2026-06-03 13:36  born:2026-06-02        003-memory-and-causal-runtime/014-docs-and-stress-test-refresh
+2026-06-03 13:36  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update
+2026-06-03 13:36  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update
+2026-06-03 13:36  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update
+2026-06-03 13:36  born:2026-06-02  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair
+2026-06-03 13:36  born:2026-06-01  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot
+2026-06-03 13:36  born:2026-05-31  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index
+2026-06-03 13:36  born:2026-05-31        003-memory-and-causal-runtime/013-memory-index-scan-implementation
+2026-06-03 11:31  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4
 2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3
-2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/009-readme-and-references-accuracy
 2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2
 2026-06-03 10:18  born:2026-06-03  impl  000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1
-2026-06-03 10:18  born:2026-06-03        000-release-and-program-cleanup/010-scouted-bugfix-train
-2026-06-03 10:18  born:2026-06-02  impl  003-memory-and-causal-runtime/016-embedding-provider-local-first
 2026-06-03 10:18  born:2026-06-02  impl  006-operator-tooling/006-doctor-install-alignment
-2026-06-03 10:18  born:2026-05-26        006-operator-tooling
-2026-06-03 10:18  born:2026-05-26        003-memory-and-causal-runtime
-2026-06-03 10:18  born:2026-04-27        000-release-and-program-cleanup
 2026-06-03 08:08  born:2026-05-16        000-release-and-program-cleanup/003-cross-cutting-cleanup-pass
 2026-06-03 08:08  born:2026-04-29  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing
-2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/015-opus-review-runtime-remediation
-2026-06-02 20:22  born:2026-06-02        003-memory-and-causal-runtime/014-docs-and-stress-test-refresh
-2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update
-2026-06-02 20:22  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update
 2026-06-02 17:05  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain
-2026-06-02 17:05  born:2026-06-02  impl  003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update
-2026-06-02 17:05  born:2026-05-31        003-memory-and-causal-runtime/013-memory-index-scan-implementation
 2026-06-02 12:13  born:2026-06-02  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel
-2026-06-02 12:12  born:2026-06-02  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair
-2026-06-02 12:12  born:2026-06-01  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot
 2026-06-02 12:12  born:2026-06-01  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy
-2026-06-02 12:12  born:2026-05-31  impl  003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index
-2026-06-02 07:56  born:2026-06-01        000-release-and-program-cleanup/008-docs-and-catalogs-rollup
 2026-06-02 07:56  born:2026-05-31  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit
 2026-06-02 07:56  born:2026-05-31  impl  003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening
 2026-06-02 07:56  born:2026-05-31  impl  007-mcp-daemon-reliability/016-substrate-harness-hardening
@@ -131,7 +194,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing
 2026-06-02 07:56  born:2026-05-30  impl  006-operator-tooling/005-worktree-per-session-automation
 2026-06-02 07:56  born:2026-05-30  impl  006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts
-2026-06-02 07:56  born:2026-05-30  impl  007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn
 2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges
 2026-06-02 07:56  born:2026-05-29  impl  007-mcp-daemon-reliability/010-at-rest-wal-durability
 2026-06-02 07:56  born:2026-05-29  impl  002-spec-kit-internals/006-orchestrator-placeholder-parity
@@ -145,10 +207,8 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring
 2026-06-02 07:56  born:2026-05-29  impl  003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar
 2026-06-02 07:56  born:2026-05-29        003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server
-2026-06-02 07:56  born:2026-05-28        007-mcp-daemon-reliability
 2026-06-02 07:56  born:2026-05-26        002-spec-kit-internals
 2026-06-02 07:56  born:2026-04-25  impl  000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup
-2026-06-02 07:56  born:2026-04-21        004-code-graph
 2026-06-01 07:45  born:2026-05-16        000-release-and-program-cleanup/005-stress-test
 2026-06-01 07:45  born:2026-04-27        000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings
 2026-06-01 07:45  born:2026-04-26  impl  000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook
@@ -159,8 +219,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-01 07:37  born:2026-04-21        003-memory-and-causal-runtime/001-continuity-memory-runtime
 2026-06-01 07:37  born:2026-04-21        002-spec-kit-internals/002-skill-advisor
 2026-06-01 07:24  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack
-2026-06-01 07:24  born:2026-05-17        003-memory-and-causal-runtime/003-embedder-testing-and-architecture
-2026-06-01 07:06  born:2026-05-26        004-code-graph/005-resilience-and-advisor
 2026-06-01 07:06  born:2026-05-19  impl  003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp
 2026-06-01 07:06  born:2026-05-16        000-release-and-program-cleanup/004-followup-post-program
 2026-06-01 07:06  born:2026-05-11        003-memory-and-causal-runtime/002-causal-graph-channel-routing
@@ -173,31 +231,21 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-01 06:49  born:2026-05-27        002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation
 2026-06-01 06:49  born:2026-05-26        002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation
 2026-06-01 06:49  born:2026-05-26        004-code-graph/010-playbook-validation-and-hardening
-2026-06-01 06:49  born:2026-05-26        005-graph-impact-and-affordance
 2026-06-01 06:49  born:2026-05-26        004-code-graph/007-docs-and-readmes
-2026-06-01 06:49  born:2026-05-26        004-code-graph/006-extraction-and-isolation
 2026-06-01 06:49  born:2026-05-26        004-code-graph/004-runtime-and-scan
 2026-06-01 06:49  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2
-2026-06-01 06:49  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper
-2026-06-01 06:49  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design
-2026-06-01 06:49  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode
 2026-06-01 06:49  born:2026-05-26        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes
 2026-06-01 06:49  born:2026-05-26        006-operator-tooling/003-install-scripts-doctor-realignment
-2026-06-01 06:49  born:2026-05-25        004-code-graph/002-deprecate-coco-index
 2026-06-01 06:49  born:2026-05-23        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc
 2026-06-01 06:49  born:2026-05-23        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc
 2026-06-01 06:49  born:2026-05-23        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc
-2026-06-01 06:49  born:2026-05-23        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle
-2026-06-01 06:49  born:2026-05-22        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation
 2026-06-01 06:49  born:2026-05-20        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots
 2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion
 2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack
 2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment
-2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency
 2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality
 2026-06-01 06:49  born:2026-05-18        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack
 2026-06-01 06:49  born:2026-05-17        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit
-2026-06-01 06:49  born:2026-05-16        004-code-graph/009-system-code-graph-uplift-phase-parent
 2026-06-01 06:49  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening
 2026-06-01 06:49  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine
 2026-06-01 06:49  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine
@@ -205,9 +253,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-06-01 06:49  born:2026-05-16        000-release-and-program-cleanup/002-audit
 2026-06-01 06:49  born:2026-05-16        000-release-and-program-cleanup/001-release-readiness
 2026-06-01 06:49  born:2026-05-16        002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor
-2026-06-01 06:49  born:2026-05-14        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups
-2026-06-01 06:49  born:2026-05-12        003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation
-2026-06-01 06:49  born:2026-05-10        006-operator-tooling/002-doctor-update-orchestrator
 2026-06-01 06:49  born:2026-05-05  impl  004-code-graph/008-real-world-usefulness-test-planning
 2026-06-01 06:49  born:2026-05-01        000-release-and-program-cleanup/006-research/004-fix-deep-research-findings
 2026-06-01 06:49  born:2026-04-29        000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits
@@ -291,7 +336,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-26  impl  006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment
 2026-05-31 10:53  born:2026-05-26  impl  006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment
 2026-05-31 10:53  born:2026-05-26  impl  006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor
-2026-05-31 10:53  born:2026-05-25  impl  004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr
 2026-05-31 10:53  born:2026-05-25  impl  004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail
 2026-05-31 10:53  born:2026-05-25  impl  004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue
 2026-05-31 10:53  born:2026-05-25  impl  004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming
@@ -357,7 +401,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity
 2026-05-31 10:53  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle
 2026-05-31 10:53  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/002-fix-investigation-p1s-for-resource-bounds-and-input-validation
-2026-05-31 10:53  born:2026-05-23  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack
 2026-05-31 10:53  born:2026-05-22  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification
 2026-05-31 10:53  born:2026-05-22  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening
 2026-05-31 10:53  born:2026-05-22  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection
@@ -437,7 +480,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-18  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure
 2026-05-31 10:53  born:2026-05-18  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates
 2026-05-31 10:53  born:2026-05-18  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap
-2026-05-31 10:53  born:2026-05-18  impl  004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize
 2026-05-31 10:53  born:2026-05-18  impl  004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish
 2026-05-31 10:53  born:2026-05-18  impl  000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment
 2026-05-31 10:53  born:2026-05-18  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract
@@ -558,7 +600,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review
-2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit
 2026-05-31 10:53  born:2026-05-13  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review
@@ -582,7 +623,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-05-12  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat
 2026-05-31 10:53  born:2026-05-12  impl  003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture
 2026-05-31 10:53  born:2026-05-11  impl  006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files
-2026-05-31 10:53  born:2026-05-11  impl  006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations
 2026-05-31 10:53  born:2026-05-11  impl  006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator
 2026-05-31 10:53  born:2026-05-11  impl  002-spec-kit-internals/003-template-levels/009-harden-deep-review-iteration-prompts
 2026-05-31 10:53  born:2026-05-10  impl  000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate
@@ -705,7 +745,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-04-25  impl  004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a
 2026-05-31 10:53  born:2026-04-25  impl  004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research
 2026-05-31 10:53  born:2026-04-25  impl  002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command
-2026-05-31 10:53  born:2026-04-25  impl  005-graph-impact-and-affordance/005-deep-review-findings
 2026-05-31 10:53  born:2026-04-25  impl  005-graph-impact-and-affordance/004-memory-causal-trust-display
 2026-05-31 10:53  born:2026-04-25  impl  005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence
 2026-05-31 10:53  born:2026-04-25  impl  005-graph-impact-and-affordance/002-edge-explanation-impact-uplift
@@ -715,7 +754,6 @@ snapshot dirs), flat-sorted by last git activity. `impl` = an `implementation-su
 2026-05-31 10:53  born:2026-04-24  impl  002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders
 2026-05-31 10:53  born:2026-04-24  impl  004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements
 2026-05-31 10:53  born:2026-04-24  impl  002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements
-2026-05-31 10:53  born:2026-04-24  impl  004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement
 2026-05-31 10:53  born:2026-04-24  impl  002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration
 2026-05-31 10:53  born:2026-04-24  impl  002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation
 2026-05-31 10:53  born:2026-04-23  impl  004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope
@@ -809,32 +847,95 @@ changelogs the rollup covers). Links resolve relative to this file.
 
 | Spec folder | impl | Changelog |
 |-------------|------|-----------|
-| `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` | impl | [changelog-010-003-scouted-bugfix-batch-3.md](./changelog/000-release-and-program-cleanup/changelog-010-003-scouted-bugfix-batch-3.md) |
-| `000-release-and-program-cleanup/009-readme-and-references-accuracy` | impl | [changelog-009-readme-and-references-accuracy.md](./changelog/000-release-and-program-cleanup/changelog-009-readme-and-references-accuracy.md) |
-| `000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` | impl | [changelog-010-002-scouted-bugfix-batch-2.md](./changelog/000-release-and-program-cleanup/changelog-010-002-scouted-bugfix-batch-2.md) |
-| `000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` | impl | [changelog-010-001-scouted-bugfix-batch-1.md](./changelog/000-release-and-program-cleanup/changelog-010-001-scouted-bugfix-batch-1.md) |
-| `000-release-and-program-cleanup/010-scouted-bugfix-train` |  | [changelog-010-scouted-bugfix-train-root.md](./changelog/000-release-and-program-cleanup/changelog-010-scouted-bugfix-train-root.md) |
-| `003-memory-and-causal-runtime/016-embedding-provider-local-first` | impl | [changelog-016-embedding-provider-local-first.md](./changelog/003-memory-and-causal-runtime/changelog-016-embedding-provider-local-first.md) |
-| `006-operator-tooling/006-doctor-install-alignment` | impl | [changelog-006-006-doctor-install-alignment.md](./changelog/006-operator-tooling/changelog-006-006-doctor-install-alignment.md) |
-| `006-operator-tooling` |  | [changelog-006-operator-tooling-root.md](./changelog/006-operator-tooling/changelog-006-operator-tooling-root.md) |
-| `003-memory-and-causal-runtime` |  | [changelog-003-memory-and-causal-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) (rollup indexes +1) |
+| `000-release-and-program-cleanup/015-docs-drift-review` | impl | [changelog-000-015-docs-drift-review.md](./changelog/000-release-and-program-cleanup/changelog-000-015-docs-drift-review.md) |
 | `000-release-and-program-cleanup` |  | [changelog-000-release-and-program-cleanup-root.md](./changelog/000-release-and-program-cleanup/changelog-000-release-and-program-cleanup-root.md) |
-| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass` |  | [changelog-003-cross-cutting-cleanup-pass-root.md](./changelog/000-release-and-program-cleanup/changelog-003-cross-cutting-cleanup-pass-root.md) |
-| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` | impl | [changelog-003-016-runtime-hook-plugin-testing.md](./changelog/000-release-and-program-cleanup/changelog-003-016-runtime-hook-plugin-testing.md) |
-| `003-memory-and-causal-runtime/015-opus-review-runtime-remediation` | impl | (none) |
-| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` |  | (none) |
-| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update` | impl | (none) |
-| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update` | impl | (none) |
-| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain` | impl | (none) |
-| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update` | impl | (none) |
-| `003-memory-and-causal-runtime/013-memory-index-scan-implementation` |  | [changelog-003-013-memory-index-scan-implementation.md](./changelog/003-memory-and-causal-runtime/changelog-003-013-memory-index-scan-implementation.md) |
-| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` | impl | [changelog-013-005-checkpoint-needs-rebuild-sentinel.md](./changelog/003-memory-and-causal-runtime/changelog-013-005-checkpoint-needs-rebuild-sentinel.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/016-spec-memory-launcher-ownership-hardening` | impl | [changelog-006-016-spec-memory-launcher-ownership-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-006-016-spec-memory-launcher-ownership-hardening.md) |
+| `003-memory-and-causal-runtime` |  | [changelog-003-memory-and-causal-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-memory-and-causal-runtime-root.md) (rollup indexes +1) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency` |  | [changelog-006-mcp-launcher-concurrency-root.md](./changelog/003-memory-and-causal-runtime/changelog-006-mcp-launcher-concurrency-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture` |  | [changelog-003-embedder-testing-and-architecture-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-embedder-testing-and-architecture-root.md) |
+| `000-release-and-program-cleanup/014-pre-existing-failure-remediation` | impl | [changelog-000-014-pre-existing-failure-remediation.md](./changelog/000-release-and-program-cleanup/changelog-000-014-pre-existing-failure-remediation.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/014-launcher-overlap-spawn-and-bridge-fix` | impl | [changelog-006-014-launcher-overlap-spawn-and-bridge-fix.md](./changelog/003-memory-and-causal-runtime/changelog-006-014-launcher-overlap-spawn-and-bridge-fix.md) |
+| `000-release-and-program-cleanup/009-readme-and-references-accuracy` | impl | [changelog-009-readme-and-references-accuracy.md](./changelog/000-release-and-program-cleanup/changelog-009-readme-and-references-accuracy.md) |
+| `003-memory-and-causal-runtime/016-embedding-provider-local-first` | impl | [changelog-016-embedding-provider-local-first.md](./changelog/003-memory-and-causal-runtime/changelog-016-embedding-provider-local-first.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper` |  | [changelog-019-fix-rerank-sidecar-accumulation-with-three-layer-reaper-root.md](./changelog/003-memory-and-causal-runtime/changelog-019-fix-rerank-sidecar-accumulation-with-three-layer-reaper-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design` |  | [changelog-018-rerank-sidecar-accumulation-investigation-and-reaper-design-root.md](./changelog/003-memory-and-causal-runtime/changelog-018-rerank-sidecar-accumulation-investigation-and-reaper-design-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode` |  | [changelog-017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode-root.md](./changelog/003-memory-and-causal-runtime/changelog-017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle` |  | [changelog-016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle-root.md](./changelog/003-memory-and-causal-runtime/changelog-016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation` |  | [changelog-009-memory-leak-remediation-root.md](./changelog/003-memory-and-causal-runtime/changelog-009-memory-leak-remediation-root.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/007-governance-alignment` | impl | [changelog-013-007-governance-alignment.md](./changelog/000-release-and-program-cleanup/changelog-013-007-governance-alignment.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/006-catalog-playbook-accuracy` | impl | [changelog-013-006-catalog-playbook-accuracy.md](./changelog/000-release-and-program-cleanup/changelog-013-006-catalog-playbook-accuracy.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/005-metadata-status-derivation` | impl | [changelog-013-005-metadata-status-derivation.md](./changelog/000-release-and-program-cleanup/changelog-013-005-metadata-status-derivation.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/004-mcp-contract-parity` | impl | [changelog-013-004-mcp-contract-parity.md](./changelog/000-release-and-program-cleanup/changelog-013-004-mcp-contract-parity.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/003-memory-write-correctness` | impl | [changelog-013-003-memory-write-correctness.md](./changelog/000-release-and-program-cleanup/changelog-013-003-memory-write-correctness.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/002-retrieval-scope-hardening` | impl | [changelog-013-002-retrieval-scope-hardening.md](./changelog/000-release-and-program-cleanup/changelog-013-002-retrieval-scope-hardening.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation/001-deep-loop-fanout-reliability` | impl | [changelog-013-001-deep-loop-fanout-reliability.md](./changelog/000-release-and-program-cleanup/changelog-013-001-deep-loop-fanout-reliability.md) |
+| `000-release-and-program-cleanup/013-comprehensive-audit-remediation` |  | [changelog-013-comprehensive-audit-remediation-root.md](./changelog/000-release-and-program-cleanup/changelog-013-comprehensive-audit-remediation-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/015-socket-server-reconvergence-and-hardening` | impl | [changelog-006-015-socket-server-reconvergence-and-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-006-015-socket-server-reconvergence-and-hardening.md) |
+| `003-memory-and-causal-runtime/027-launcher-concurrency-spawn-and-bridge-investigation` |  | (none) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/009-research-synthesis` |  | [changelog-012-009-research-synthesis.md](./changelog/000-release-and-program-cleanup/changelog-012-009-research-synthesis.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/008-027-launch-state` |  | [changelog-012-008-027-launch-state.md](./changelog/000-release-and-program-cleanup/changelog-012-008-027-launch-state.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/007-interconnected-mcps` |  | [changelog-012-007-interconnected-mcps.md](./changelog/000-release-and-program-cleanup/changelog-012-007-interconnected-mcps.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/006-governance-skdoc-skcode` |  | [changelog-012-006-governance-skdoc-skcode.md](./changelog/000-release-and-program-cleanup/changelog-012-006-governance-skdoc-skcode.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook` |  | [changelog-012-005-feature-catalog-playbook.md](./changelog/000-release-and-program-cleanup/changelog-012-005-feature-catalog-playbook.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/004-026-integrity` |  | [changelog-012-004-026-integrity.md](./changelog/000-release-and-program-cleanup/changelog-012-004-026-integrity.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/003-mcp-session-index-schema` |  | [changelog-012-003-mcp-session-index-schema.md](./changelog/000-release-and-program-cleanup/changelog-012-003-mcp-session-index-schema.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/002-mcp-retrieval-causal` |  | [changelog-012-002-mcp-retrieval-causal.md](./changelog/000-release-and-program-cleanup/changelog-012-002-mcp-retrieval-causal.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit/001-mcp-core` |  | [changelog-012-001-mcp-core.md](./changelog/000-release-and-program-cleanup/changelog-012-001-mcp-core.md) |
+| `000-release-and-program-cleanup/012-comprehensive-deep-review-audit` | impl | [changelog-012-comprehensive-deep-review-audit-root.md](./changelog/000-release-and-program-cleanup/changelog-012-comprehensive-deep-review-audit-root.md) |
+| `003-memory-and-causal-runtime/021-relation-inference-backfill` | impl | [changelog-021-relation-inference-backfill.md](./changelog/003-memory-and-causal-runtime/changelog-021-relation-inference-backfill.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup` |  | [changelog-008-docs-and-catalogs-rollup-root.md](./changelog/000-release-and-program-cleanup/changelog-008-docs-and-catalogs-rollup-root.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit` |  | (none) |
+| `003-memory-and-causal-runtime/026-relation-backfill-review-remediation` | impl | [changelog-026-relation-backfill-review-remediation.md](./changelog/003-memory-and-causal-runtime/changelog-026-relation-backfill-review-remediation.md) |
+| `003-memory-and-causal-runtime/020-lease-socket-path` | impl | [changelog-020-lease-socket-path.md](./changelog/003-memory-and-causal-runtime/changelog-020-lease-socket-path.md) |
+| `003-memory-and-causal-runtime/023-semantic-relation-inference` | impl | [changelog-023-semantic-relation-inference.md](./changelog/003-memory-and-causal-runtime/changelog-023-semantic-relation-inference.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train` |  | [changelog-010-scouted-bugfix-train-root.md](./changelog/000-release-and-program-cleanup/changelog-010-scouted-bugfix-train-root.md) |
+| `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn` | impl | [changelog-014-infra-memory-db-and-graph-churn-root.md](./changelog/007-mcp-daemon-reliability/changelog-014-infra-memory-db-and-graph-churn-root.md) (rollup indexes +1) |
+| `007-mcp-daemon-reliability` |  | [changelog-007-mcp-daemon-reliability-root.md](./changelog/007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md) |
+| `006-operator-tooling` |  | [changelog-006-operator-tooling-root.md](./changelog/006-operator-tooling/changelog-006-operator-tooling-root.md) |
+| `005-graph-impact-and-affordance` |  | [changelog-005-graph-impact-and-affordance-root.md](./changelog/005-graph-impact-and-affordance/changelog-005-graph-impact-and-affordance-root.md) |
+| `004-code-graph/006-extraction-and-isolation` |  | [changelog-006-extraction-and-isolation-root.md](./changelog/004-code-graph/changelog-006-extraction-and-isolation-root.md) |
+| `004-code-graph/005-resilience-and-advisor` |  | [changelog-005-resilience-and-advisor-root.md](./changelog/004-code-graph/changelog-005-resilience-and-advisor-root.md) |
+| `004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr` | impl | [changelog-002-017-remove-llm-reranking-keep-mmr.md](./changelog/004-code-graph/changelog-002-017-remove-llm-reranking-keep-mmr.md) |
+| `004-code-graph/002-deprecate-coco-index` |  | [changelog-002-deprecate-coco-index-root.md](./changelog/004-code-graph/changelog-002-deprecate-coco-index-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack` | impl | [changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md](./changelog/003-memory-and-causal-runtime/changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md) |
+| `004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize` | impl | [changelog-006-004-three-way-isolation-finalize.md](./changelog/004-code-graph/changelog-006-004-three-way-isolation-finalize.md) |
+| `004-code-graph/009-system-code-graph-uplift-phase-parent` |  | [changelog-009-system-code-graph-uplift-phase-parent-root.md](./changelog/004-code-graph/changelog-009-system-code-graph-uplift-phase-parent-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups` |  | [changelog-032-substrate-repair-followups-root.md](./changelog/003-memory-and-causal-runtime/changelog-032-substrate-repair-followups-root.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map` | impl | [changelog-001-019-readme-resource-map.md](./changelog/003-memory-and-causal-runtime/changelog-001-019-readme-resource-map.md) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation` |  | [changelog-001-local-embeddings-foundation-root.md](./changelog/003-memory-and-causal-runtime/changelog-001-local-embeddings-foundation-root.md) |
+| `006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations` | impl | [changelog-002-003-consolidate-doctor-router-implementations.md](./changelog/006-operator-tooling/changelog-002-003-consolidate-doctor-router-implementations.md) |
+| `006-operator-tooling/002-doctor-update-orchestrator` |  | [changelog-002-doctor-update-orchestrator-root.md](./changelog/006-operator-tooling/changelog-002-doctor-update-orchestrator-root.md) |
+| `005-graph-impact-and-affordance/005-deep-review-findings` | impl | [changelog-005-005-deep-review-findings.md](./changelog/005-graph-impact-and-affordance/changelog-005-005-deep-review-findings.md) |
+| `004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement` | impl | [changelog-005-001-code-graph-advisor-refinement.md](./changelog/004-code-graph/changelog-005-001-code-graph-advisor-refinement.md) |
+| `004-code-graph` |  | [changelog-004-code-graph-root.md](./changelog/004-code-graph/changelog-004-code-graph-root.md) (rollup indexes +25) |
+| `003-memory-and-causal-runtime/025-tool-layer-map-unlink` | impl | [changelog-025-tool-layer-map-unlink.md](./changelog/003-memory-and-causal-runtime/changelog-025-tool-layer-map-unlink.md) |
+| `003-memory-and-causal-runtime/024-launcher-lease-integration-test` | impl | [changelog-024-launcher-lease-integration-test.md](./changelog/003-memory-and-causal-runtime/changelog-024-launcher-lease-integration-test.md) |
+| `003-memory-and-causal-runtime/022-readme-doc-sync` | impl | [changelog-022-readme-doc-sync.md](./changelog/003-memory-and-causal-runtime/changelog-022-readme-doc-sync.md) |
+| `003-memory-and-causal-runtime/018-front-proxy-recycle-hardening` | impl | [changelog-018-front-proxy-recycle-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-018-front-proxy-recycle-hardening.md) |
+| `003-memory-and-causal-runtime/019-causal-relation-coverage-honesty` | impl | [changelog-019-causal-relation-coverage-honesty.md](./changelog/003-memory-and-causal-runtime/changelog-019-causal-relation-coverage-honesty.md) |
+| `003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on` | impl | [changelog-017-enrichment-reconsolidation-default-on.md](./changelog/003-memory-and-causal-runtime/changelog-017-enrichment-reconsolidation-default-on.md) |
+| `000-release-and-program-cleanup/011-analytics-and-learning-remediation` | impl | [changelog-011-analytics-and-learning-remediation.md](./changelog/000-release-and-program-cleanup/changelog-011-analytics-and-learning-remediation.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5` | impl | [changelog-010-005-scouted-bugfix-batch-5.md](./changelog/000-release-and-program-cleanup/changelog-010-005-scouted-bugfix-batch-5.md) |
+| `003-memory-and-causal-runtime/015-opus-review-runtime-remediation` | impl | [changelog-015-opus-review-runtime-remediation.md](./changelog/003-memory-and-causal-runtime/changelog-015-opus-review-runtime-remediation.md) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh` |  | [changelog-014-docs-and-stress-test-refresh-root.md](./changelog/003-memory-and-causal-runtime/changelog-014-docs-and-stress-test-refresh-root.md) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/003-readme-cluster-update` | impl | [changelog-014-003-readme-cluster-update.md](./changelog/003-memory-and-causal-runtime/changelog-014-003-readme-cluster-update.md) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update` | impl | [changelog-014-002-feature-catalog-update.md](./changelog/003-memory-and-causal-runtime/changelog-014-002-feature-catalog-update.md) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/001-manual-testing-playbook-update` | impl | [changelog-014-001-manual-testing-playbook-update.md](./changelog/003-memory-and-causal-runtime/changelog-014-001-manual-testing-playbook-update.md) |
 | `003-memory-and-causal-runtime/013-memory-index-scan-implementation/004-memory-save-enrichment-repair` | impl | [changelog-013-004-memory-save-enrichment-repair.md](./changelog/003-memory-and-causal-runtime/changelog-013-004-memory-save-enrichment-repair.md) |
 | `003-memory-and-causal-runtime/013-memory-index-scan-implementation/002-checkpoint-v2-file-snapshot` | impl | [changelog-013-002-checkpoint-v2-file-snapshot.md](./changelog/003-memory-and-causal-runtime/changelog-013-002-checkpoint-v2-file-snapshot.md) |
-| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` | impl | [changelog-013-003-front-proxy-in-place-recycle.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-in-place-recycle.md)<br>[changelog-013-003-front-proxy-reconnect-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-reconnect-hardening.md) |
 | `003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index` | impl | [changelog-013-001-self-maintaining-index.md](./changelog/003-memory-and-causal-runtime/changelog-013-001-self-maintaining-index.md) |
-| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup` |  | (none) |
-| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit` | impl | (none) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation` |  | [changelog-013-memory-index-scan-implementation-root.md](./changelog/003-memory-and-causal-runtime/changelog-013-memory-index-scan-implementation-root.md) (rollup indexes +1) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4` | impl | [changelog-010-004-scouted-bugfix-batch-4.md](./changelog/000-release-and-program-cleanup/changelog-010-004-scouted-bugfix-batch-4.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3` | impl | [changelog-010-003-scouted-bugfix-batch-3.md](./changelog/000-release-and-program-cleanup/changelog-010-003-scouted-bugfix-batch-3.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2` | impl | [changelog-010-002-scouted-bugfix-batch-2.md](./changelog/000-release-and-program-cleanup/changelog-010-002-scouted-bugfix-batch-2.md) |
+| `000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1` | impl | [changelog-010-001-scouted-bugfix-batch-1.md](./changelog/000-release-and-program-cleanup/changelog-010-001-scouted-bugfix-batch-1.md) |
+| `006-operator-tooling/006-doctor-install-alignment` | impl | [changelog-006-006-doctor-install-alignment.md](./changelog/006-operator-tooling/changelog-006-006-doctor-install-alignment.md) |
+| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass` |  | [changelog-003-cross-cutting-cleanup-pass-root.md](./changelog/000-release-and-program-cleanup/changelog-003-cross-cutting-cleanup-pass-root.md) |
+| `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/016-runtime-hook-plugin-testing` | impl | [changelog-003-016-runtime-hook-plugin-testing.md](./changelog/000-release-and-program-cleanup/changelog-003-016-runtime-hook-plugin-testing.md) |
+| `003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/004-stress-test-durability-domain` | impl | [changelog-014-004-stress-test-durability-domain.md](./changelog/003-memory-and-causal-runtime/changelog-014-004-stress-test-durability-domain.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/005-checkpoint-needs-rebuild-sentinel` | impl | [changelog-013-005-checkpoint-needs-rebuild-sentinel.md](./changelog/003-memory-and-causal-runtime/changelog-013-005-checkpoint-needs-rebuild-sentinel.md) |
+| `003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy` | impl | [changelog-013-003-front-proxy-in-place-recycle.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-in-place-recycle.md)<br>[changelog-013-003-front-proxy-reconnect-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-013-003-front-proxy-reconnect-hardening.md) |
+| `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit` | impl | [changelog-008-002-changelog-backfill-and-audit.md](./changelog/000-release-and-program-cleanup/changelog-008-002-changelog-backfill-and-audit.md) |
 | `003-memory-and-causal-runtime/012-memory-index-scan-ux-hardening` | impl | [changelog-003-012-memory-index-scan-ux-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-003-012-memory-index-scan-ux-hardening.md) |
 | `007-mcp-daemon-reliability/016-substrate-harness-hardening` | impl | [changelog-007-016-substrate-harness-hardening.md](./changelog/007-mcp-daemon-reliability/changelog-007-016-substrate-harness-hardening.md) |
 | `007-mcp-daemon-reliability/015-infra-followup-hardening/006-sessionstart-worktree-guard` | impl | [changelog-015-006-sessionstart-worktree-guard.md](./changelog/007-mcp-daemon-reliability/changelog-015-006-sessionstart-worktree-guard.md) |
@@ -846,7 +947,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn/001-daemon-lifecycle-healing` | impl | [changelog-014-001-daemon-lifecycle-healing.md](./changelog/007-mcp-daemon-reliability/changelog-014-001-daemon-lifecycle-healing.md) |
 | `006-operator-tooling/005-worktree-per-session-automation` | impl | [changelog-006-005-worktree-per-session-automation.md](./changelog/006-operator-tooling/changelog-006-005-worktree-per-session-automation.md) |
 | `006-operator-tooling/004-runtime-agnostic-session-lifecycle-scripts` | impl | [changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md](./changelog/006-operator-tooling/changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md) |
-| `007-mcp-daemon-reliability/014-infra-memory-db-and-graph-churn` | impl | [changelog-014-infra-memory-db-and-graph-churn-root.md](./changelog/007-mcp-daemon-reliability/changelog-014-infra-memory-db-and-graph-churn-root.md) (rollup indexes +1) |
 | `003-memory-and-causal-runtime/011-embedding-stack-hardening/008-deep-review-correctness-edges` | impl | [changelog-011-008-deep-review-correctness-edges.md](./changelog/003-memory-and-causal-runtime/changelog-011-008-deep-review-correctness-edges.md) |
 | `007-mcp-daemon-reliability/010-at-rest-wal-durability` | impl | [changelog-007-010-at-rest-wal-durability.md](./changelog/007-mcp-daemon-reliability/changelog-007-010-at-rest-wal-durability.md) |
 | `002-spec-kit-internals/006-orchestrator-placeholder-parity` | impl | [changelog-002-006-orchestrator-placeholder-parity.md](./changelog/002-spec-kit-internals/changelog-002-006-orchestrator-placeholder-parity.md) |
@@ -860,10 +960,8 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/006-skill-advisor-shared-wiring` | impl | [changelog-010-006-skill-advisor-shared-wiring.md](./changelog/003-memory-and-causal-runtime/changelog-010-006-skill-advisor-shared-wiring.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server/005-retire-sidecar` | impl | [changelog-010-005-retire-sidecar.md](./changelog/003-memory-and-causal-runtime/changelog-010-005-retire-sidecar.md) |
 | `003-memory-and-causal-runtime/010-embedding-consolidation-hf-local-server` |  | [changelog-010-embedding-consolidation-hf-local-server-root.md](./changelog/003-memory-and-causal-runtime/changelog-010-embedding-consolidation-hf-local-server-root.md) |
-| `007-mcp-daemon-reliability` |  | [changelog-007-mcp-daemon-reliability-root.md](./changelog/007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md) |
 | `002-spec-kit-internals` |  | [changelog-002-spec-kit-internals-root.md](./changelog/002-spec-kit-internals/changelog-002-spec-kit-internals-root.md) |
 | `000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup` | impl | [changelog-008-001-docs-and-catalogs-rollup.md](./changelog/000-release-and-program-cleanup/changelog-008-001-docs-and-catalogs-rollup.md) |
-| `004-code-graph` |  | [changelog-004-code-graph-root.md](./changelog/004-code-graph/changelog-004-code-graph-root.md) (rollup indexes +25) |
 | `000-release-and-program-cleanup/005-stress-test` |  | [changelog-005-stress-test-root.md](./changelog/000-release-and-program-cleanup/changelog-005-stress-test-root.md) |
 | `000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings` |  | [changelog-003-fix-mcp-runtime-stress-findings-root.md](./changelog/000-release-and-program-cleanup/changelog-003-fix-mcp-runtime-stress-findings-root.md) |
 | `000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/001-search-intelligence-stress-playbook` | impl | [changelog-001-search-intelligence-stress-playbook-root.md](./changelog/000-release-and-program-cleanup/changelog-001-search-intelligence-stress-playbook-root.md) (rollup indexes +2) |
@@ -874,8 +972,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/001-continuity-memory-runtime` |  | [changelog-001-continuity-memory-runtime-root.md](./changelog/003-memory-and-causal-runtime/changelog-001-continuity-memory-runtime-root.md) (rollup indexes +1) |
 | `002-spec-kit-internals/002-skill-advisor` |  | [changelog-002-skill-advisor-root.md](./changelog/002-spec-kit-internals/changelog-002-skill-advisor-root.md) (rollup indexes +13) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack` |  | [changelog-004-code-index-stack-root.md](./changelog/003-memory-and-causal-runtime/changelog-004-code-index-stack-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture` |  | [changelog-003-embedder-testing-and-architecture-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-embedder-testing-and-architecture-root.md) |
-| `004-code-graph/005-resilience-and-advisor` |  | [changelog-005-resilience-and-advisor-root.md](./changelog/004-code-graph/changelog-005-resilience-and-advisor-root.md) |
 | `003-memory-and-causal-runtime/002-causal-graph-channel-routing/001-deliver-causal-graph-channel-routing-mvp` | impl | [changelog-002-001-deliver-causal-graph-channel-routing-mvp.md](./changelog/003-memory-and-causal-runtime/changelog-002-001-deliver-causal-graph-channel-routing-mvp.md) |
 | `000-release-and-program-cleanup/004-followup-post-program` |  | [changelog-004-followup-post-program-root.md](./changelog/000-release-and-program-cleanup/changelog-004-followup-post-program-root.md) |
 | `003-memory-and-causal-runtime/002-causal-graph-channel-routing` |  | [changelog-002-causal-graph-channel-routing-root.md](./changelog/003-memory-and-causal-runtime/changelog-002-causal-graph-channel-routing-root.md) |
@@ -888,31 +984,21 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation/005-finding-remediation` |  | [changelog-005-finding-remediation-root.md](./changelog/002-spec-kit-internals/changelog-005-finding-remediation-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/006-playbook-run-and-remediation` |  | [changelog-006-playbook-run-and-remediation-root.md](./changelog/002-spec-kit-internals/changelog-006-playbook-run-and-remediation-root.md) |
 | `004-code-graph/010-playbook-validation-and-hardening` |  | [changelog-010-playbook-validation-and-hardening-root.md](./changelog/004-code-graph/changelog-010-playbook-validation-and-hardening-root.md) |
-| `005-graph-impact-and-affordance` |  | [changelog-005-graph-impact-and-affordance-root.md](./changelog/005-graph-impact-and-affordance/changelog-005-graph-impact-and-affordance-root.md) |
 | `004-code-graph/007-docs-and-readmes` |  | [changelog-007-docs-and-readmes-root.md](./changelog/004-code-graph/changelog-007-docs-and-readmes-root.md) |
-| `004-code-graph/006-extraction-and-isolation` |  | [changelog-006-extraction-and-isolation-root.md](./changelog/004-code-graph/changelog-006-extraction-and-isolation-root.md) |
 | `004-code-graph/004-runtime-and-scan` |  | [changelog-004-runtime-and-scan-root.md](./changelog/004-code-graph/changelog-004-runtime-and-scan-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2` |  | [changelog-021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2-root.md](./changelog/003-memory-and-causal-runtime/changelog-021-fix-sk-doc-sk-code-alignment-and-3-remaining-deferred-p2-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/019-fix-rerank-sidecar-accumulation-with-three-layer-reaper` |  | [changelog-019-fix-rerank-sidecar-accumulation-with-three-layer-reaper-root.md](./changelog/003-memory-and-causal-runtime/changelog-019-fix-rerank-sidecar-accumulation-with-three-layer-reaper-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/018-rerank-sidecar-accumulation-investigation-and-reaper-design` |  | [changelog-018-rerank-sidecar-accumulation-investigation-and-reaper-design-root.md](./changelog/003-memory-and-causal-runtime/changelog-018-rerank-sidecar-accumulation-investigation-and-reaper-design-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode` |  | [changelog-017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode-root.md](./changelog/003-memory-and-causal-runtime/changelog-017-fix-sidecar-investigation-remaining-p1s-and-p2s-for-resource-bounds-and-deadcode-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/020-fix-investigation-deferred-p2s-for-behavior-and-api-changes` |  | [changelog-020-fix-investigation-deferred-p2s-for-behavior-and-api-changes-root.md](./changelog/003-memory-and-causal-runtime/changelog-020-fix-investigation-deferred-p2s-for-behavior-and-api-changes-root.md) |
 | `006-operator-tooling/003-install-scripts-doctor-realignment` |  | [changelog-003-install-scripts-doctor-realignment-root.md](./changelog/006-operator-tooling/changelog-003-install-scripts-doctor-realignment-root.md) |
-| `004-code-graph/002-deprecate-coco-index` |  | [changelog-002-deprecate-coco-index-root.md](./changelog/004-code-graph/changelog-002-deprecate-coco-index-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/022-hardcoded-default-remediation-arc` |  | [changelog-022-hardcoded-default-remediation-arc-root.md](./changelog/003-memory-and-causal-runtime/changelog-022-hardcoded-default-remediation-arc-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc` |  | [changelog-011-spec-memory-rerank-decision-arc-root.md](./changelog/003-memory-and-causal-runtime/changelog-011-spec-memory-rerank-decision-arc-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc` |  | [changelog-008-rerank-sidecar-arc-root.md](./changelog/003-memory-and-causal-runtime/changelog-008-rerank-sidecar-arc-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle` |  | [changelog-016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle-root.md](./changelog/003-memory-and-causal-runtime/changelog-016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation` |  | [changelog-009-memory-leak-remediation-root.md](./changelog/003-memory-and-causal-runtime/changelog-009-memory-leak-remediation-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/023-deep-research-arc-blind-spots` |  | [changelog-023-deep-research-arc-blind-spots-root.md](./changelog/003-memory-and-causal-runtime/changelog-023-deep-research-arc-blind-spots-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/007-ollama-and-bge-promotion` |  | [changelog-007-ollama-and-bge-promotion-root.md](./changelog/003-memory-and-causal-runtime/changelog-007-ollama-and-bge-promotion-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/003-skill-advisor-stack` |  | [changelog-003-skill-advisor-stack-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-skill-advisor-stack-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/003-skill-docs-alignment` |  | [changelog-003-skill-docs-alignment-root.md](./changelog/003-memory-and-causal-runtime/changelog-003-skill-docs-alignment-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency` |  | [changelog-006-mcp-launcher-concurrency-root.md](./changelog/003-memory-and-causal-runtime/changelog-006-mcp-launcher-concurrency-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality` |  | [changelog-005-cross-cutting-quality-root.md](./changelog/003-memory-and-causal-runtime/changelog-005-cross-cutting-quality-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack` |  | [changelog-002-spec-memory-stack-root.md](./changelog/003-memory-and-causal-runtime/changelog-002-spec-memory-stack-root.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/001-playbook-quality-audit` |  | [changelog-001-playbook-quality-audit-root.md](./changelog/003-memory-and-causal-runtime/changelog-001-playbook-quality-audit-root.md) |
-| `004-code-graph/009-system-code-graph-uplift-phase-parent` |  | [changelog-009-system-code-graph-uplift-phase-parent-root.md](./changelog/004-code-graph/changelog-009-system-code-graph-uplift-phase-parent-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/004-skill-advisor-production-hardening` |  | [changelog-004-skill-advisor-production-hardening-root.md](./changelog/002-spec-kit-internals/changelog-004-skill-advisor-production-hardening-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine` |  | [changelog-003-skill-advisor-routing-engine-root.md](./changelog/002-spec-kit-internals/changelog-003-skill-advisor-routing-engine-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine` |  | [changelog-002-skill-advisor-scoring-engine-root.md](./changelog/002-spec-kit-internals/changelog-002-skill-advisor-scoring-engine-root.md) |
@@ -920,9 +1006,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `000-release-and-program-cleanup/002-audit` |  | [changelog-002-audit-root.md](./changelog/000-release-and-program-cleanup/changelog-002-audit-root.md) |
 | `000-release-and-program-cleanup/001-release-readiness` |  | [changelog-001-release-readiness-root.md](./changelog/000-release-and-program-cleanup/changelog-001-release-readiness-root.md) |
 | `002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor` |  | [changelog-004-documentation-quality-refactor-root.md](./changelog/002-spec-kit-internals/changelog-004-documentation-quality-refactor-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/032-substrate-repair-followups` |  | [changelog-032-substrate-repair-followups-root.md](./changelog/003-memory-and-causal-runtime/changelog-032-substrate-repair-followups-root.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation` |  | [changelog-001-local-embeddings-foundation-root.md](./changelog/003-memory-and-causal-runtime/changelog-001-local-embeddings-foundation-root.md) |
-| `006-operator-tooling/002-doctor-update-orchestrator` |  | [changelog-002-doctor-update-orchestrator-root.md](./changelog/006-operator-tooling/changelog-002-doctor-update-orchestrator-root.md) |
 | `004-code-graph/008-real-world-usefulness-test-planning` | impl | [changelog-008-real-world-usefulness-test-planning-root.md](./changelog/004-code-graph/changelog-008-real-world-usefulness-test-planning-root.md) |
 | `000-release-and-program-cleanup/006-research/004-fix-deep-research-findings` |  | [changelog-004-fix-deep-research-findings-root.md](./changelog/000-release-and-program-cleanup/changelog-004-fix-deep-research-findings-root.md) |
 | `000-release-and-program-cleanup/001-release-readiness/003-release-readiness-deep-review-audits` |  | [changelog-003-release-readiness-deep-review-audits-root.md](./changelog/000-release-and-program-cleanup/changelog-003-release-readiness-deep-review-audits-root.md) |
@@ -1006,7 +1089,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `006-operator-tooling/003-install-scripts-doctor-realignment/003-advisor-adjacent-116-realignment` | impl | [changelog-003-003-advisor-adjacent-116-realignment.md](./changelog/006-operator-tooling/changelog-003-003-advisor-adjacent-116-realignment.md) |
 | `006-operator-tooling/003-install-scripts-doctor-realignment/002-operator-surface-realignment` | impl | [changelog-003-002-operator-surface-realignment.md](./changelog/006-operator-tooling/changelog-003-002-operator-surface-realignment.md) |
 | `006-operator-tooling/003-install-scripts-doctor-realignment/001-deep-research-install-scripts-doctor` | impl | [changelog-003-001-deep-research-install-scripts-doctor.md](./changelog/006-operator-tooling/changelog-003-001-deep-research-install-scripts-doctor.md) |
-| `004-code-graph/002-deprecate-coco-index/017-remove-llm-reranking-keep-mmr` | impl | [changelog-002-017-remove-llm-reranking-keep-mmr.md](./changelog/004-code-graph/changelog-002-017-remove-llm-reranking-keep-mmr.md) |
 | `004-code-graph/002-deprecate-coco-index/016-remediate-residue-tail` | impl | [changelog-002-016-remediate-residue-tail.md](./changelog/004-code-graph/changelog-002-016-remediate-residue-tail.md) |
 | `004-code-graph/002-deprecate-coco-index/015-remediate-cross-surface-residue` | impl | [changelog-002-015-remediate-cross-surface-residue.md](./changelog/004-code-graph/changelog-002-015-remediate-cross-surface-residue.md) |
 | `004-code-graph/002-deprecate-coco-index/014-remediate-codegraph-naming` | impl | [changelog-002-014-remediate-codegraph-naming.md](./changelog/004-code-graph/changelog-002-014-remediate-codegraph-naming.md) |
@@ -1043,7 +1125,7 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/003-domain-tuned-finetune` | impl | [changelog-011-003-domain-tuned-finetune.md](./changelog/003-memory-and-causal-runtime/changelog-011-003-domain-tuned-finetune.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/002-bge-v2-m3-trial` | impl | [changelog-011-002-bge-v2-m3-trial.md](./changelog/003-memory-and-causal-runtime/changelog-011-002-bge-v2-m3-trial.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/011-spec-memory-rerank-decision-arc/001-off-baseline-audit` | impl | [changelog-011-001-off-baseline-audit.md](./changelog/003-memory-and-causal-runtime/changelog-011-001-off-baseline-audit.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune` | impl | (none) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/010-domain-tuned-reranker-finetune` | impl | [changelog-008-010-domain-tuned-reranker-finetune.md](./changelog/003-memory-and-causal-runtime/changelog-008-010-domain-tuned-reranker-finetune.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/009-fp16-rerank` | impl | [changelog-008-009-fp16-rerank.md](./changelog/003-memory-and-causal-runtime/changelog-008-009-fp16-rerank.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/008-cap-rerank-top-k` | impl | [changelog-008-008-cap-rerank-top-k.md](./changelog/003-memory-and-causal-runtime/changelog-008-008-cap-rerank-top-k.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/007-spec-memory-mps-rerank-promotion` | impl | [changelog-008-007-spec-memory-mps-rerank-promotion.md](./changelog/003-memory-and-causal-runtime/changelog-008-007-spec-memory-mps-rerank-promotion.md) |
@@ -1053,10 +1135,10 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/003-ensure-sidecar-from-launchers` | impl | [changelog-008-003-ensure-sidecar-from-launchers.md](./changelog/003-memory-and-causal-runtime/changelog-008-003-ensure-sidecar-from-launchers.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/002-system-rerank-sidecar-skill` | impl | [changelog-008-002-system-rerank-sidecar-skill.md](./changelog/003-memory-and-causal-runtime/changelog-008-002-system-rerank-sidecar-skill.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/008-rerank-sidecar-arc/001-flag-routing-fix-for-cross-encoder` | impl | [changelog-008-001-flag-routing-fix-for-cross-encoder.md](./changelog/003-memory-and-causal-runtime/changelog-008-001-flag-routing-fix-for-cross-encoder.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim` | impl | (none) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/013-launcher-lease-acquisition-reclaim` | impl | [changelog-006-013-launcher-lease-acquisition-reclaim.md](./changelog/003-memory-and-causal-runtime/changelog-006-013-launcher-lease-acquisition-reclaim.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/012-daemon-bridge-socket-for-skill-advisor-and-code-index` | impl | [changelog-006-012-daemon-bridge-socket-for-skill-advisor-and-code-index.md](./changelog/003-memory-and-causal-runtime/changelog-006-012-daemon-bridge-socket-for-skill-advisor-and-code-index.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/006-mcp-launcher-concurrency/011-sun-path-and-stale-lease-followups` | impl | [changelog-006-011-sun-path-and-stale-lease-followups.md](./changelog/003-memory-and-causal-runtime/changelog-006-011-sun-path-and-stale-lease-followups.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair` | impl | (none) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/005-cross-cutting-quality/007-cocoindex-install-hygiene-pipx-repair` | impl | [changelog-005-007-cocoindex-install-hygiene-pipx-repair.md](./changelog/003-memory-and-causal-runtime/changelog-005-007-cocoindex-install-hygiene-pipx-repair.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/021-hardcoded-default-audit-deep-research` |  | (none) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/029-local-llm-feature-test-suite-completion` | impl | [changelog-001-029-local-llm-feature-test-suite-completion.md](./changelog/003-memory-and-causal-runtime/changelog-001-029-local-llm-feature-test-suite-completion.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/002-spec-memory-stack/020-embedder-default-drift-fix` | impl | [changelog-002-020-embedder-default-drift-fix.md](./changelog/003-memory-and-causal-runtime/changelog-002-020-embedder-default-drift-fix.md) |
@@ -1072,7 +1154,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity` | impl | [changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md](./changelog/003-memory-and-causal-runtime/changelog-016-004-fix-investigation-p1s-for-ts-cjs-rerank-twin-parity.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle` | impl | [changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md](./changelog/003-memory-and-causal-runtime/changelog-016-003-fix-investigation-p1s-for-sidecar-process-ownership-lifecycle.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/002-fix-investigation-p1s-for-resource-bounds-and-input-validation` | impl | [changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md](./changelog/003-memory-and-causal-runtime/changelog-016-002-fix-investigation-p1s-for-resource-bounds-and-input-validation.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/016-fix-sidecar-investigation-findings-for-resource-bounds-and-lifecycle/001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack` | impl | [changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md](./changelog/003-memory-and-causal-runtime/changelog-016-001-fix-investigation-p0s-for-resource-exhaustion-and-symlink-attack.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/015-deep-research-drift-and-simplification` | impl | [changelog-009-015-deep-research-drift-and-simplification.md](./changelog/003-memory-and-causal-runtime/changelog-009-015-deep-research-drift-and-simplification.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening` | impl | [changelog-009-014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening.md](./changelog/003-memory-and-causal-runtime/changelog-009-014-fix-deep-review-p1-findings-for-lifecycle-and-sidecar-hardening.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/009-memory-leak-remediation/013-owner-lease-heartbeat-staleness-detection` | impl | [changelog-009-013-owner-lease-heartbeat-staleness-detection.md](./changelog/003-memory-and-causal-runtime/changelog-009-013-owner-lease-heartbeat-staleness-detection.md) |
@@ -1148,11 +1229,10 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/011-mcp-server-package-extraction` | impl | [changelog-006-011-mcp-server-package-extraction.md](./changelog/002-spec-kit-internals/changelog-006-011-mcp-server-package-extraction.md) |
 | `002-spec-kit-internals/002-skill-advisor/001-skill-graph/006-system-skill-advisor-package-extraction/010-skill-id-field-rename` | impl | [changelog-006-010-skill-id-field-rename.md](./changelog/002-spec-kit-internals/changelog-006-010-skill-id-field-rename.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/002-baseline-fixture` | impl | [changelog-004-002-baseline-fixture.md](./changelog/003-memory-and-causal-runtime/changelog-004-002-baseline-fixture.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry` | impl | (none) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/005-declarative-registry` | impl | [changelog-004-005-declarative-registry.md](./changelog/003-memory-and-causal-runtime/changelog-004-005-declarative-registry.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/003-comparison-measure` | impl | [changelog-004-003-comparison-measure.md](./changelog/003-memory-and-causal-runtime/changelog-004-003-comparison-measure.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates` | impl | (none) |
+| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/006-install-guide-updates` | impl | [changelog-004-006-install-guide-updates.md](./changelog/003-memory-and-causal-runtime/changelog-004-006-install-guide-updates.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/004-code-index-stack/001-cocoindex-swap` | impl | [changelog-004-001-cocoindex-swap.md](./changelog/003-memory-and-causal-runtime/changelog-004-001-cocoindex-swap.md) |
-| `004-code-graph/006-extraction-and-isolation/004-three-way-isolation-finalize` | impl | [changelog-006-004-three-way-isolation-finalize.md](./changelog/004-code-graph/changelog-006-004-three-way-isolation-finalize.md) |
 | `004-code-graph/008-real-world-usefulness-test-planning/006-readiness-hooks-advisor-polish` | impl | [changelog-008-006-readiness-hooks-advisor-polish.md](./changelog/004-code-graph/changelog-008-006-readiness-hooks-advisor-polish.md) |
 | `000-release-and-program-cleanup/005-stress-test/005-stress-test-expansion-alignment` | impl | [changelog-005-005-stress-test-expansion-alignment.md](./changelog/000-release-and-program-cleanup/changelog-005-005-stress-test-expansion-alignment.md) |
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/022-cli-skills-baseline-overlay-contract` | impl | [changelog-003-022-cli-skills-baseline-overlay-contract.md](./changelog/000-release-and-program-cleanup/changelog-003-022-cli-skills-baseline-overlay-contract.md) |
@@ -1273,7 +1353,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/028-local-llm-feature-test-suite` | impl | [changelog-001-028-local-llm-feature-test-suite.md](./changelog/003-memory-and-causal-runtime/changelog-001-028-local-llm-feature-test-suite.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/025-llm-model-runtime-inventory` | impl | [changelog-001-025-llm-model-runtime-inventory.md](./changelog/003-memory-and-causal-runtime/changelog-001-025-llm-model-runtime-inventory.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/023-post-remediation-re-review` | impl | [changelog-001-023-post-remediation-re-review.md](./changelog/003-memory-and-causal-runtime/changelog-001-023-post-remediation-re-review.md) |
-| `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/019-readme-resource-map` | impl | [changelog-001-019-readme-resource-map.md](./changelog/003-memory-and-causal-runtime/changelog-001-019-readme-resource-map.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/022-local-llm-legacy-remediation` | impl | [changelog-001-022-local-llm-legacy-remediation.md](./changelog/003-memory-and-causal-runtime/changelog-001-022-local-llm-legacy-remediation.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/020-catalog-playbook-alignment-audit` | impl | [changelog-001-020-catalog-playbook-alignment-audit.md](./changelog/003-memory-and-causal-runtime/changelog-001-020-catalog-playbook-alignment-audit.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/021-local-llm-legacy-review` | impl | [changelog-001-021-local-llm-legacy-review.md](./changelog/003-memory-and-causal-runtime/changelog-001-021-local-llm-legacy-review.md) |
@@ -1297,7 +1376,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/002-model-installation-and-compat` | impl | [changelog-001-002-model-installation-and-compat.md](./changelog/003-memory-and-causal-runtime/changelog-001-002-model-installation-and-compat.md) |
 | `003-memory-and-causal-runtime/003-embedder-testing-and-architecture/001-local-embeddings-foundation/001-prefix-registry-architecture` | impl | [changelog-001-001-prefix-registry-architecture.md](./changelog/003-memory-and-causal-runtime/changelog-001-001-prefix-registry-architecture.md) |
 | `006-operator-tooling/002-doctor-update-orchestrator/004-cutover-doctor-router-from-legacy-files` | impl | [changelog-002-004-cutover-doctor-router-from-legacy-files.md](./changelog/006-operator-tooling/changelog-002-004-cutover-doctor-router-from-legacy-files.md) |
-| `006-operator-tooling/002-doctor-update-orchestrator/003-consolidate-doctor-router-implementations` | impl | [changelog-002-003-consolidate-doctor-router-implementations.md](./changelog/006-operator-tooling/changelog-002-003-consolidate-doctor-router-implementations.md) |
 | `006-operator-tooling/002-doctor-update-orchestrator/002-fix-deep-review-findings-for-doctor-update-orchestrator` | impl | [changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md](./changelog/006-operator-tooling/changelog-002-002-fix-deep-review-findings-for-doctor-update-orchestrator.md) |
 | `002-spec-kit-internals/003-template-levels/009-harden-deep-review-iteration-prompts` | impl | [changelog-003-009-harden-deep-review-iteration-prompts.md](./changelog/002-spec-kit-internals/changelog-003-009-harden-deep-review-iteration-prompts.md) |
 | `000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/031-cocoindex-local-voyage-embeddings-gate` | impl | [changelog-003-031-cocoindex-local-voyage-embeddings-gate.md](./changelog/000-release-and-program-cleanup/changelog-003-031-cocoindex-local-voyage-embeddings-gate.md) |
@@ -1420,7 +1498,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `004-code-graph/007-docs-and-readmes/001-doctor-diagnostic-command-phase-a` | impl | [changelog-007-001-doctor-diagnostic-command-phase-a.md](./changelog/004-code-graph/changelog-007-001-doctor-diagnostic-command-phase-a.md) |
 | `004-code-graph/005-resilience-and-advisor/002-code-graph-resilience-research` | impl | [changelog-005-002-code-graph-resilience-research.md](./changelog/004-code-graph/changelog-005-002-code-graph-resilience-research.md) |
 | `002-spec-kit-internals/002-skill-advisor/003-skill-advisor-routing-engine/005-advisor-setup-command` | impl | [changelog-003-005-advisor-setup-command.md](./changelog/002-spec-kit-internals/changelog-003-005-advisor-setup-command.md) |
-| `005-graph-impact-and-affordance/005-deep-review-findings` | impl | [changelog-005-005-deep-review-findings.md](./changelog/005-graph-impact-and-affordance/changelog-005-005-deep-review-findings.md) |
 | `005-graph-impact-and-affordance/004-memory-causal-trust-display` | impl | [changelog-005-004-memory-causal-trust-display.md](./changelog/005-graph-impact-and-affordance/changelog-005-004-memory-causal-trust-display.md) |
 | `005-graph-impact-and-affordance/003-skill-advisor-affordance-evidence` | impl | [changelog-005-003-skill-advisor-affordance-evidence.md](./changelog/005-graph-impact-and-affordance/changelog-005-003-skill-advisor-affordance-evidence.md) |
 | `005-graph-impact-and-affordance/002-edge-explanation-impact-uplift` | impl | [changelog-005-002-edge-explanation-impact-uplift.md](./changelog/005-graph-impact-and-affordance/changelog-005-002-edge-explanation-impact-uplift.md) |
@@ -1430,7 +1507,6 @@ changelogs the rollup covers). Links resolve relative to this file.
 | `002-spec-kit-internals/001-resource-map-deep-loop-fix/001-reverse-parent-research-review-folders` | impl | [changelog-001-001-reverse-parent-research-review-folders.md](./changelog/002-spec-kit-internals/changelog-001-001-reverse-parent-research-review-folders.md)<br>[changelog-001-reverse-parent-research-review-folders.md](./changelog/002-spec-kit-internals/changelog-001-reverse-parent-research-review-folders.md) |
 | `004-code-graph/004-runtime-and-scan/003-resolver-and-hook-improvements` | impl | [changelog-004-003-resolver-and-hook-improvements.md](./changelog/004-code-graph/changelog-004-003-resolver-and-hook-improvements.md) |
 | `002-spec-kit-internals/002-skill-advisor/002-skill-advisor-scoring-engine/001-advisor-hook-brief-improvements` | impl | [changelog-002-001-advisor-hook-brief-improvements.md](./changelog/002-spec-kit-internals/changelog-002-001-advisor-hook-brief-improvements.md) |
-| `004-code-graph/005-resilience-and-advisor/001-code-graph-advisor-refinement` | impl | [changelog-005-001-code-graph-advisor-refinement.md](./changelog/004-code-graph/changelog-005-001-code-graph-advisor-refinement.md) |
 | `002-spec-kit-internals/001-resource-map-deep-loop-fix/003-resource-map-deep-loop-integration` | impl | [changelog-001-003-resource-map-deep-loop-integration.md](./changelog/002-spec-kit-internals/changelog-001-003-resource-map-deep-loop-integration.md)<br>[changelog-003-resource-map-deep-loop-integration.md](./changelog/002-spec-kit-internals/changelog-003-resource-map-deep-loop-integration.md) |
 | `002-spec-kit-internals/001-resource-map-deep-loop-fix/002-resource-map-template-creation` | impl | [changelog-001-002-resource-map-template-creation.md](./changelog/002-spec-kit-internals/changelog-001-002-resource-map-template-creation.md)<br>[changelog-002-resource-map-template-creation.md](./changelog/002-spec-kit-internals/changelog-002-resource-map-template-creation.md) |
 | `004-code-graph/004-runtime-and-scan/002-fix-stale-highlights-and-scan-scope` | impl | [changelog-004-002-fix-stale-highlights-and-scan-scope.md](./changelog/004-code-graph/changelog-004-002-fix-stale-highlights-and-scan-scope.md) |
