@@ -4,14 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/021-relation-inference-backfill",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/019-causal-relation-coverage-honesty"
-    ],
+    "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/017-enrichment-reconsolidation-default-on"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -19,30 +17,202 @@
       "causal relation auto edges",
       "memory_causal_stats backfill",
       "entity density cache invalidation causal",
-      "spec document chain causal edges"
+      "spec document chain causal edges",
+      "relation backfill checklist",
+      "causal backfill verification",
+      "relation inference verification",
+      "relation backfill decision",
+      "causal backfill wiring choice",
+      "deterministic inference signals",
+      "memory_causal_stats backfill entry point"
     ],
     "key_topics": [
-      "causal",
-      "relation-inference",
+      "relation",
+      "inference",
       "backfill",
-      "memory-causal-stats",
-      "entity-density",
-      "spec-document-chains",
-      "lineage-links"
+      "causal",
+      "auto",
+      "edges",
+      "entity",
+      "density",
+      "cache",
+      "invalidation",
+      "spec",
+      "document"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "shipped",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-unit.vitest.ts"
+      "mcp_server/lib/causal/relation-backfill.ts",
+      "mcp_server/lib/causal/relation-coverage.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/schemas/tool-input-schemas.ts",
+      "mcp_server/tools/types.ts",
+      "mcp_server/lib/causal/README.md",
+      "mcp_server/tests/relation-backfill-unit.vitest.ts",
+      "mcp_server/tests/relation-coverage-unit.vitest.ts",
+      "mcp_server/tests/causal-stats-output.vitest.ts",
+      "decision-record.md",
+      "tests/layer-definitions.vitest.ts",
+      "lib/causal/relation-backfill.ts",
+      "handlers/causal-graph.ts",
+      "tests/relation-backfill-unit.vitest.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "lib/causal/relation-coverage.ts",
+      "schemas/tool-input-schemas.ts",
+      "lib/storage/causal-edges.ts"
     ],
-    "entities": [],
-    "causal_summary": "Built the bounded relation-inference backfill that makes packet 019's honest memory_causal_stats stat true. New lib/causal/relation-backfill.ts exports backfillRelationInference(db, { dryRun=true, limit, actor }), mirroring backfillLineageState: it scans bounded memory_index + memory_lineage rows and infers typed causal edges from strong EXISTING deterministic signals only (spec-document chains via the createSpecDocumentChain pairing rules, plus lineage predecessor->successor caused links), all created_by='auto' so they inherit insertEdge's guards (MAX_AUTO_STRENGTH, MAX_EDGES_PER_NODE, window cap, self-loop/orphan rejection), wrapped in a transaction and idempotent via upsert. Default dryRun=true keeps the recovered production DB safe; writes require explicit dryRun:false. After committing it explicitly calls invalidateEntityDensityCache() because raising outgoing-edge counts changes the >=3-outgoing-edge entity-density routing signal that no causal mutation invalidated before. relation-coverage.ts flips backfillJob.implemented=true and sets command to memory_causal_stats({ backfill: { dryRun: false } }); the entry point is wired onto handleMemoryCausalStats (no new MCP tool) with an optional backfill arg added to the strict memoryCausalStatsSchema. Tests prove dryRun-zero-writes, bounded guard-respecting writes + idempotency, entity-density cache invalidation on non-dry runs, and the implemented:true/non-null-command stat flip. Similarity/contradiction signals are deferred best-effort extensions.",
+    "entities": [
+      {
+        "name": "relation-backfill.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/causal/relation-backfill.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/causal/relation-coverage.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "tool-input-schemas.ts",
+        "kind": "code",
+        "path": "mcp_server/schemas/tool-input-schemas.ts",
+        "source": "derived"
+      },
+      {
+        "name": "types.ts",
+        "kind": "code",
+        "path": "mcp_server/tools/types.ts",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": "mcp_server/lib/causal/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "relation-backfill-unit.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/relation-backfill-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "relation-coverage-unit.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/relation-coverage-unit.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-stats-output.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/causal-stats-output.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "layer-definitions.vitest.ts",
+        "kind": "test",
+        "path": "tests/layer-definitions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "causal-edges.ts",
+        "kind": "code",
+        "path": "lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Inference Backfill",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement After",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Build",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Bounded",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Packet 019 corrected `memory_causal_stats` to honestly report that no command balances relation coverage (`backfillJob.implemented:false`, `command:null`). This packet builds the missing piece: a real, bounded, reversible relation-inference backfill that infers typed causal edges from strong existing signals only, then flips the stat to `implemented:true` with a callable command.",
     "created_at": "2026-06-04T12:30:00Z",
-    "last_save_at": "2026-06-04T12:30:00Z",
+    "last_save_at": "2026-06-05T12:47:34.017Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -52,6 +222,8 @@
       "checklist.md",
       "decision-record.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

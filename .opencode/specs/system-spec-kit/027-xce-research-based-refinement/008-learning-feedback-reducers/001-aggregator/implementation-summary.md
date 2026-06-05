@@ -38,7 +38,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending. Expected primary file: `mcp_server/lib/feedback/feedback-aggregation.ts`.
+Pending. AUDIT 2026-06-05: reuse/extend `mcp_server/lib/feedback/batch-learning.ts:195-241` (`aggregateEvents`) rather than create a duplicate `feedback-aggregation.ts`. `feedback_events` dependency confirmed present (`feedback-ledger.ts`).
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -54,7 +54,7 @@ Delivery evidence will be recorded after the child work lands.
 <!-- ANCHOR:decisions -->
 ## Key Decisions
 
-Use one shared weighted-positive formula for downstream consumers.
+Use one shared weighted-positive formula for downstream consumers, reconciled with (and reusing) the existing `weightedScore`/`computedBoost` in `batch-learning.ts:195-241` rather than introducing a parallel aggregator or formula.
 <!-- /ANCHOR:decisions -->
 
 ---

@@ -15,7 +15,14 @@
       "docs stale versus shipped code",
       "feature catalog playbook drift",
       "mcp readme accuracy",
-      "embedder registry doc drift"
+      "embedder registry doc drift",
+      "documentation drift review plan",
+      "docs drift review",
+      "partitioned review passes",
+      "drift findings synthesis",
+      "documentation drift review tasks",
+      "drift review tasks",
+      "review pass tasks"
     ],
     "key_topics": [
       "documentation",
@@ -34,13 +41,41 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      "spec.md"
+      "review/review-report.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "review-report.md",
+        "kind": "doc",
+        "path": "review/review-report.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -78,15 +113,90 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "code-verification",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "verdict",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recorded Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Spec Folder",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "What Was Built",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Files Changed",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This session shipped packets 013 (comprehensive-audit-remediation), 014/015 (launcher-overlap fix), 016 (mk-spec-memory launcher-ownership hardening), and a pre-existing-failure remediation, all now on `origin/main` (HEAD `75cfec1700`). User-facing documentation (root README, skill READMEs/SKILL.md, MCP server READMEs, the feature_catalog, and the manual_testing_playbook) may now describe behavior that was removed, renamed, or changed by those packets, so a reader following the docs could trust a removed feature or run a command that fails.",
     "created_at": "2026-06-05T06:53:42.412Z",
-    "last_save_at": "2026-06-05T06:53:42.412Z",
+    "last_save_at": "2026-06-05T12:47:33.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

@@ -59,11 +59,11 @@ _memory:
 |---|--------|----|------|-----|--------------|
 | 21 | [ ] | CHK-021 | Migration backward-compatible (forward-only ADD; no DROP) | REQ-004 | Manual schema review |
 | 22 | [ ] | CHK-022 | In-memory trigger embedding cache concurrent-safe | REQ-002 | Concurrency stress test |
-| 23 | [ ] | CHK-023 | Voyage rate-limit fallback degrades to lexical-only with telemetry | edge case | Mock rate-limit test |
+| 23 | [ ] | CHK-023 | Embedding-provider failure/rate-limit fallback degrades to lexical-only with telemetry (remote fallback only; local Ollama unmetered) | edge case | Mock provider-failure test |
 | 24 | [ ] | CHK-024 | Multi-tenant scope filtering preserved through semantic stage | edge case | Scope filter test on semantic hits |
 | 25 | [ ] | CHK-025 | Description.json children entry added to parent 027 | n/a | grep parent description.json |
 | 26 | [ ] | CHK-026 | implementation-summary.md filled post-implementation | n/a (post-impl) | Manual after Sub-Phase 4 |
-| 27 | [ ] | CHK-027 | 028/004-code-graph-adoption-eval eval (when shipped) measures paraphrase-task recall lift | success metric | 028/004-code-graph-adoption-eval paired comparison report |
+| 27 | [ ] | CHK-027 | Shadow-eval evidence (equivalent shadow-eval harness, when available) measures paraphrase-task recall lift | success metric | Shadow-eval / paired comparison report |
 | 28 | [ ] | CHK-028 | Trigger goldens fixture documented (purpose + variant taxonomy) | REQ-012 | Manual review |
 
 ---
@@ -115,7 +115,7 @@ Pre-implementation requirements covered in `spec.md` Section 4 REQUIREMENTS + th
 <!-- ANCHOR:testing -->
 ## TESTING
 
-See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and 028/004-code-graph-adoption-eval paired-comparison eval.
+See P0/P1 test items above for verification commands. Coverage spans unit, integration, diff (backward-compat), and shadow-eval / paired-comparison eval (equivalent shadow-eval harness).
 <!-- /ANCHOR:testing -->
 
 <!-- ANCHOR:fix-completeness -->
@@ -163,7 +163,7 @@ Latency budget + cost bounds verified per success metrics in `plan.md`.
 <!-- ANCHOR:deploy-ready -->
 ## L3+: DEPLOYMENT READINESS
 
-Default-off flag is the ship-readiness gate. Active rollout requires 028/004-code-graph-adoption-eval eval lift evidence (when applicable).
+Default-off flag is the ship-readiness gate. Active rollout requires shadow-eval lift evidence (equivalent shadow-eval harness; when applicable).
 <!-- /ANCHOR:deploy-ready -->
 
 <!-- ANCHOR:compliance-verify -->
@@ -181,5 +181,5 @@ Privacy, audit-ledger, governance gates per `spec.md` REQ-NNN list. No SaaS depe
 <!-- ANCHOR:sign-off -->
 ## L3+: SIGN-OFF
 
-Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and 028/004-code-graph-adoption-eval eval gate documented when active-mode rollout is in scope.
+Sign-off requires: all P0 items above checked, strict validation passing, implementation-summary.md filled with file:line evidence, and a shadow-eval evidence gate documented (equivalent shadow-eval harness) when active-mode rollout is in scope.
 <!-- /ANCHOR:sign-off -->

@@ -1,0 +1,19 @@
+I’ll keep this strictly read-only and audit Phase 008 against current code plus recent commits, focusing on whether the planned artifacts already exist or were superseded.
+The parent spec confirms Phase 008 is scaffold-only and routes to five child packets; `plan.md`/`tasks.md` do not exist at the parent, so I’m checking child specs plus live artifacts now.
+`f05bdac2cf` changed `batch-learning.ts`, not ledger schema or the planned coco/causal/retention reducer files. The important nuance is that current `batch-learning.ts` already implements a shadow-only aggregate-from-`feedback_events` path, so Phase 008 is not simply untouched.
+## 008-learning-feedback-reducers — VERDICT: NEEDS-RESCOPE
+- Evidence: `f05bdac2cf` changed `mcp_server/lib/feedback/batch-learning.ts`; current code already has `aggregateEvents()` over `feedback_events` with `weightedScore`/`computedBoost` in `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts:195-241`, and f05 added `SCORE_NORMALIZATION` at `batch-learning.ts:53-59`.
+- Evidence: `feedback_events` dependency is met in `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts:115-154`.
+- Evidence: planned artifact files are absent: no `feedback-aggregation.ts`, `feedback_reducer.py`, `session-trace-causal-reducer.ts`, or `feedback-retention-reducer.ts` found under `.opencode/skills/system-spec-kit/mcp_server/`; no `feedback_rerank_weights` matches.
+- Evidence: current env docs have existing learning flags only at `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:328-333`; planned Phase 008 flags are not documented.
+
+- Per-item:
+  - `001-aggregator` — NEEDS-RESCOPE. Planned `feedback-aggregation.ts` is absent, but `batch-learning.ts:195-241` already implements overlapping bounded aggregation from `feedback_events`; rescope to extract/reuse this instead of duplicating it, and reconcile planned `weightedHitCount` with current `weightedScore`/`computedBoost`.
+  - `002-coco-rerank-consumer` — STILL-RELEVANT. `feedback_reducer.py`, `feedback_rerank_weights`, and the coco feedback flag are absent; implement after the aggregator rescope.
+  - `003-causal-reducer` — NEEDS-RESCOPE. Recent causal work `d32d90c3f1` and `b834150fe5` added dry-run/default-off relation backfill via `memory_causal_stats` (`handlers/causal-graph.ts:950-962`), but not session-trace feedback reducers. Also `DEFAULT_RELATION_TARGETS` omits `enabled` while the phase plans `ENABLED` edges (`relation-coverage.ts:41-48`, `causal-edges.ts:18-25`), so adjust coverage gating before implementation.
+  - `004-retention-reducer` — NEEDS-RESCOPE. Planned files are absent, but the amendment to import `STATE_LIMITS` is currently impossible because `STATE_LIMITS` is non-exported (`stage4-filter.ts:64-74`); first export/share the limits or choose another shared policy surface.
+  - `005-env-tests-integration` — STILL-RELEVANT. Planned flags/tests are absent and should remain a closeout phase after 001/003/004 rescope.
+
+- Reasoning: `f05bdac2cf` did not change the `feedback_events` schema or implement the three planned consumers; it pre-empted only part of the shared aggregation foundation by fixing the existing shadow batch-learning formula. Recent causal commits add a separate relation-inference backfill mechanism, not the session-trace reducer, but they shift 003’s assumptions. The phase is still worth doing, but not as originally written.
+- Recommended action: rescope 001/003/004 as above, then keep 002 and 005 mostly as-is.
+- Confidence: high

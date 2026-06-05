@@ -52,7 +52,7 @@ _memory:
 shipped yet. This summary will be rewritten in past tense once the work is done.
 
 ### Planned outcome
-An advisory (warning) validation rule will flag stale-history narrative in long-lived docs beyond
+An advisory (info) validation rule will flag stale-history narrative in long-lived docs beyond
 phase parents, reusing the existing fence-aware scanner and exempting legitimately historical files
 (decision-record.md, changelog/). The intent is to slow doc rot without hard-blocking ordinary work.
 
@@ -61,7 +61,7 @@ phase parents, reusing the existing fence-aware scanner and exempting legitimate
 | File | Action | Purpose |
 |------|--------|---------|
 | `scripts/rules/check-phase-parent-content.sh` (or sibling) | Planned | Broaden scan to more doc types |
-| `scripts/lib/validator-registry.json` | Planned | Register advisory rule (warn) |
+| `scripts/lib/validator-registry.json` | Planned | Register advisory rule (info) |
 | `references/validation/validation_rules.md` | Planned | Document rule + exemptions |
 <!-- /ANCHOR:what-built -->
 
@@ -81,7 +81,7 @@ fenced cases stay silent, and existing tracks gain no new errors in normal mode.
 
 | Decision | Why |
 |----------|-----|
-| Advisory (warning) severity, not error | Prevents doc rot without blocking ordinary work; reduces false-positive pain. |
+| Advisory (info) severity, not error | Prevents doc rot without blocking ordinary work; reduces false-positive pain. |
 | Reuse the existing scanner | Reinventing fence/comment-awareness risks regressions the existing rule already solved. |
 | Exempt decision-record.md and changelog/ | Those files are legitimately historical; flagging them would be noise. |
 <!-- /ANCHOR:decisions -->
@@ -104,7 +104,7 @@ fenced cases stay silent, and existing tracks gain no new errors in normal mode.
 ## Known Limitations
 
 1. **Not yet implemented.** This is a planning artifact; see `spec.md`, `plan.md`, and `tasks.md`.
-2. **Strict-mode interaction is unresolved.** Under `--strict`, warnings become errors; the spec's open questions flag whether this rule should be INFO instead.
+2. **Resolved (2026-06-05 audit):** the rule registers at INFO severity, which never blocks under `--strict`, so the warn->error problem does not arise.
 <!-- /ANCHOR:limitations -->
 
 ---

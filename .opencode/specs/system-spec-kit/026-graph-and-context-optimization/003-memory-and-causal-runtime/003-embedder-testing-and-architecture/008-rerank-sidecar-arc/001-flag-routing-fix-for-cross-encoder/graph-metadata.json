@@ -37,7 +37,7 @@
       "fix"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "tasks.md",
       "tests/stage3-rerank-regression.vitest.ts",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Phase 001 of the 008 rerank-sidecar arc. Surgical fix to the Stage 3 reranker dispatch logic so a real HTTP cross-encoder (the sidecar shipped in phase 002) is reachable through the existing pipeline.",
     "created_at": "2026-05-23T11:55:15.601Z",
-    "last_save_at": "2026-05-30T10:12:02.390Z",
+    "last_save_at": "2026-06-05T12:47:33.809Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

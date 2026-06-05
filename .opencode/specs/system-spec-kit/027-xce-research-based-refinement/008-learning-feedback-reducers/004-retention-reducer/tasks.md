@@ -46,7 +46,7 @@ _memory:
 
 - [ ] T004 Create `feedback-retention-reducer.ts`.
 - [ ] T005 Implement protect/extend/delete rules.
-- [ ] T006 Create `edge-tier-basement.ts`.
+- [ ] T006 Create `edge-tier-basement.ts`. PRECONDITION (AUDIT 2026-06-05): `STATE_LIMITS` is currently non-exported (module-local const, only `__testables`); a production export must be added to `stage4-filter.ts` before this import is possible.
 - [ ] T007 Implement dry-run behavior.
 - [ ] T008 Add retention feature flags and active-mode gate.
 - [ ] T009 Add shadow replay mode with audit payloads and no mutation.

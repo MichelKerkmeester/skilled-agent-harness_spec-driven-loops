@@ -1,7 +1,215 @@
-Packet: skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
-Spec Folder: skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards
-Status: complete
-Importance Tier: important
-Summary: Phase 6: thin-and-standardize-cli-cards
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "spec_folder": "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
+  "parent_id": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "thin standardize cli cards",
+      "cli prompt card delegation",
+      "cli-devin fork reconciled",
+      "duplication guard cli",
+      "prompt card mirror",
+      "thin cli cards plan",
+      "cli prompt card implementation plan",
+      "006 plan",
+      "thin cli cards tasks",
+      "cli prompt card tasks",
+      "006 tasks",
+      "cli cards thinned"
+    ],
+    "key_topics": [
+      "thin",
+      "standardize",
+      "cli",
+      "cards",
+      "prompt",
+      "card",
+      "delegation",
+      "cli-devin",
+      "fork",
+      "reconciled",
+      "duplication",
+      "guard"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
+      ".opencode/skills/cli-devin/assets/prompt_quality_card.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "prompt_quality_card.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Documentation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Executor",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 6** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "created_at": "2026-06-05T12:47:32.514Z",
+    "last_save_at": "2026-06-05T12:47:32.514Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

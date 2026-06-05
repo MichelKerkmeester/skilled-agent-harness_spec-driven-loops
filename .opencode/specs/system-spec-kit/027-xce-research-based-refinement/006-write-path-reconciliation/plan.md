@@ -86,6 +86,8 @@ Explicit action planning plus post-apply subscribers. Statediff reconciles desir
 ### Data Flow
 
 Handlers build desired state, load prior state, compute actions, validate safety constraints, apply target sinks transactionally where needed, then notify subscribers with applied action batches and source operation metadata.
+
+**Async enrichment boundary (2026-06-05 audit)**: the durable-row statediff plan (memory index, embedding, lexical rows) is applied same-response, but generated graph-edge / enrichment targets are applied via the async pending-marker path, not in the same save response. `handlers/memory-save.ts` commits durable rows, marks enrichment pending in the commit transaction, then runs post-insert enrichment asynchronously (`setImmediate`) with replay/backfill repair. Statediff for graph/enrichment targets must subscribe to that async path rather than assume same-response graph writes.
 <!-- /ANCHOR:architecture -->
 
 ---

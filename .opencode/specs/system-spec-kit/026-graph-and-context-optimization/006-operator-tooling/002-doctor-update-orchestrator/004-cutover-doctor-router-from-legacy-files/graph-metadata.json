@@ -46,8 +46,6 @@
       ".opencode/commands/doctor/mcp.md",
       ".opencode/commands/doctor/update.md",
       ".opencode/commands/doctor/_routes.yaml",
-      ".gemini/commands/doctor/mcp.toml",
-      ".gemini/commands/doctor/update.toml",
       ".opencode/commands/doctor/assets/doctor_update.yaml",
       "implementation-summary.md",
       "spec.md",
@@ -73,18 +71,6 @@
         "name": "_routes.yaml",
         "kind": "config",
         "path": ".opencode/commands/doctor/_routes.yaml",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.toml",
-        "kind": "file",
-        "path": ".gemini/commands/doctor/mcp.toml",
-        "source": "derived"
-      },
-      {
-        "name": "update.toml",
-        "kind": "file",
-        "path": ".gemini/commands/doctor/update.toml",
         "source": "derived"
       },
       {
@@ -200,11 +186,23 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "final",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 1 shipped the new `/doctor` router additively. That left the repository in an intentional temporary overlap: the final design wants 3 markdown command entrypoints (`doctor.md`, `doctor/mcp.md`, `doctor/update.md`), but Phase 1 kept the 9 old per-target markdown files in place so validation could compare old and new behavior. The old surface also exists in runtime mirrors: `.claude/commands/doctor/` auto-syncs from `.opencode/commands/doctor/`, `.codex/prompts` symlinks to `.opencode/commands`, and `.gemini/commands/doctor/*.toml` is independent.",
     "created_at": "2026-05-11T17:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.706Z",
+    "last_save_at": "2026-06-05T12:47:34.252Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,7 +39,7 @@
       "purge"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/README.md",
       "matrix_runners/run-matrix.ts",
@@ -52,15 +52,15 @@
       "resource-map.md",
       "checklist.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       ".opencode/skills/cli-claude-code/README.md",
       ".opencode/skills/cli-codex/README.md",
-      ".opencode/skills/cli-gemini/README.md",
       ".opencode/skills/cli-opencode/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/README.md",
-      ".opencode/skills/deep-research/SKILL.md"
+      ".opencode/skills/deep-research/SKILL.md",
+      ".opencode/skills/deep-review/SKILL.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/changelog/agent-orchestration/v2.4.0.0.md"
     ],
     "entities": [
       {
@@ -118,18 +118,6 @@
         "source": "derived"
       },
       {
-        "name": "37-cli-matrix-adapter-runners.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-        "source": "derived"
-      },
-      {
-        "name": "280-cli-matrix-adapter-runner-smoke.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/280-cli-matrix-adapter-runner-smoke.md",
-        "source": "derived"
-      },
-      {
         "name": "validate.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
@@ -139,6 +127,18 @@
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/deep-research/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "v2.4.0.0.md",
+        "kind": "doc",
+        "path": ".opencode/changelog/agent-orchestration/v2.4.0.0.md",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "GitHub announced a price increase that pushes `cli-copilot` (the external Copilot CLI executor) above the cost ceiling that justified keeping it as a peer to `cli-codex`, `cli-gemini`, `cli-claude-code`, and `cli-opencode`. The packet `075-cli-copilot-hallucination-caveat` already documented quality concerns; the recent price change tips the cost/benefit balance decisively. Continuing to ship `cli-copilot` as a routable skill creates three problems:",
     "created_at": "2026-05-06T10:28:50.690Z",
-    "last_save_at": "2026-05-30T10:12:01.428Z",
+    "last_save_at": "2026-06-05T12:47:32.847Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

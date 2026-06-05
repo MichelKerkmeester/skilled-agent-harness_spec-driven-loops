@@ -41,7 +41,7 @@
       "honest"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       "mcp_server/lib/causal/relation-backfill.ts",
       "mcp_server/lib/graph/contradiction-detection.ts",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "A deep review of the relation-inference backfill subsystem surfaced a confirmed data-integrity defect: the supersession `contradicts` collector and the lineage `caused` collector emit the SAME directed pair (lineage is reciprocal — predecessor and superseded_by point at each other). In a committed run with `contradicts:true`, the `caused` edge inserts first, then the `contradicts` edge triggers contradiction-detection, which silently sets `invalid_at` on the just-created valid `caused` edge — mislabeling an evolution as a contradiction and corrupting traversal. This packet adds a relation-agnostic conflict guard, fixes three lesser findings (strict inner schema, honest write counting, handler hint), and clears five maintainability P2s.",
     "created_at": "2026-06-04T14:30:00Z",
-    "last_save_at": "2026-06-04T13:09:17.577Z",
+    "last_save_at": "2026-06-05T12:47:34.027Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

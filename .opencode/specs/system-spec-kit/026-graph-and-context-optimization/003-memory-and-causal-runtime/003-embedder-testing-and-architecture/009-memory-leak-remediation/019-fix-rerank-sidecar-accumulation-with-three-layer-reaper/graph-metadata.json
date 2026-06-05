@@ -37,7 +37,7 @@
       "without"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "shipped_then_removed",
     "key_files": [
       "spec.md"
     ],
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "Rerank-sidecar uvicorn workers accumulate without bound: 25 stale processes consuming ~16 GB RAM observed on 2026-05-23. Investigation packet 010/004/001 confirmed the architectural cause (intentional warm-model detach with no reaper) and produced a binding three-layer design + 7 ADRs + Files-to-Change contract for 11 files. This packet implements that design.",
     "created_at": "2026-05-26T16:49:55.586Z",
-    "last_save_at": "2026-05-30T10:12:02.498Z",
+    "last_save_at": "2026-06-05T12:47:33.885Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

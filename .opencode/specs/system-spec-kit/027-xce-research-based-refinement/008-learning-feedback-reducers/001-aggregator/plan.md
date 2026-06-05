@@ -29,11 +29,13 @@ _memory:
 | Aspect | Value |
 |--------|-------|
 | **Language/Stack** | TypeScript |
-| **Target Module** | `mcp_server/lib/feedback/feedback-aggregation.ts` |
+| **Target Module** | `mcp_server/lib/feedback/batch-learning.ts:195-241` (`aggregateEvents`, reuse/extend) |
 | **Testing** | Vitest |
 | **Dependency** | Phase 002 correctness packet |
 
-Create a pure aggregation reducer that reads existing feedback events, normalizes them into a typed per-memory summary, and exposes the weighted-positive formula used by downstream reducers.
+AUDIT 2026-06-05: `batch-learning.ts:195-241` already aggregates `feedback_events`; reuse it. `feedback_events` dependency confirmed present (`feedback-ledger.ts`).
+
+Reuse/extend the existing `aggregateEvents` reducer (avoid a duplicate `feedback-aggregation.ts`) so it reads existing feedback events, normalizes them into a typed per-memory summary, and exposes a weighted-positive formula reconciled with the existing `weightedScore`/`computedBoost` for downstream reducers.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -52,7 +54,7 @@ Create a pure aggregation reducer that reads existing feedback events, normalize
 <!-- ANCHOR:architecture -->
 ## 3. ARCHITECTURE
 
-`feedback-aggregation.ts` should sit beside the existing feedback ledger. The reducer reads through the ledger query API where practical and converts event records into `FeedbackAggregate` objects keyed by memory id.
+The aggregation already lives beside the feedback ledger in `batch-learning.ts:195-241` (`aggregateEvents`); reuse/extend it rather than adding a parallel `feedback-aggregation.ts`. The reducer reads through the ledger query API where practical and converts event records into per-memory summary objects keyed by memory id, adding only the fields downstream consumers still need.
 
 Downstream consumers should depend on the summary type, not raw event rows.
 <!-- /ANCHOR:architecture -->
@@ -67,9 +69,9 @@ Downstream consumers should depend on the summary type, not raw event rows.
 - Keep the API deterministic and serializable.
 
 ### Phase 2: Aggregation Logic
-- Map event types into strong, medium, and weak buckets.
-- Compute session/query sets and first/last timestamps.
-- Compute weighted positive hits with zero floor.
+- Reuse the existing strong/medium/weak bucket mapping in `aggregateEvents`; add only buckets it does not already produce.
+- Compute session/query sets and first/last timestamps, extending the existing aggregate where fields are missing.
+- Compute weighted positive hits with zero floor, reconciled with the existing `weightedScore`/`computedBoost` formula rather than as a parallel formula.
 - Emit quality metrics for skipped rows, duplicate rows, low-support windows, and aggregate coverage.
 
 ### Phase 3: Verification

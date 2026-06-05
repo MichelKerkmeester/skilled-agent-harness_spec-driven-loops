@@ -49,7 +49,6 @@
       ".opencode/skills/sk-code/references/webflow/shared/dev_workflow.md",
       "plan.md",
       ".opencode/skills/sk-code/references/universal/code_style_guide.md",
-      ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/005-snippet-reuse-cross-stack.md",
       ".opencode/skills/sk-code/assets/webflow/checklists/code_quality_checklist.md",
       "tasks.md",
       "checklist.md",
@@ -104,12 +103,6 @@
         "name": "code_style_guide.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-code/references/universal/code_style_guide.md",
-        "source": "derived"
-      },
-      {
-        "name": "005-snippet-reuse-cross-stack.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/005-snippet-reuse-cross-stack.md",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Extensible Routing Key",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-code skill currently bundles JavaScript, CSS, and HTML style rules into five monolithic files under `references/webflow/standards/` (3,831 lines total), while the equivalent opencode-side reference tree is split per-language (`references/opencode/{javascript,typescript,python,shell,config,shared}/`). This asymmetry forces models to load mixed-language rule docs and increases the risk of mis-attributing rules across languages — a hypothesized cause of GPT 5.5's observed failure to apply correct CSS/JS comment style on Webflow tasks. This packet refactors the Webflow reference tree to mirror opencode's per-language layout and updates all cross-references and routing logic to match.",
     "created_at": "2026-05-09T19:30:52.197Z",
-    "last_save_at": "2026-05-30T10:12:01.503Z",
+    "last_save_at": "2026-06-05T12:47:32.922Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

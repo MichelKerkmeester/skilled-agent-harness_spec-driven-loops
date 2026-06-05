@@ -30,7 +30,7 @@
       "system-spec-kit"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -80,7 +80,7 @@
     ],
     "causal_summary": "An 8-slice deep-review audit of system-spec-kit and 026 surfaced ~50 distinct findings (3 P0, ~40 P1). Many cluster into recurring themes. This research charter investigates ROOT CAUSES and BLAST RADIUS so remediation targets causes, not just symptoms.",
     "created_at": "2026-06-04T18:53:35.323Z",
-    "last_save_at": "2026-06-04T18:53:35.323Z",
+    "last_save_at": "2026-06-05T12:47:33.224Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

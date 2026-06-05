@@ -49,7 +49,7 @@
       "catalog"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "resource-map.md"
@@ -142,7 +142,7 @@
     ],
     "causal_summary": "Build and harden the code-graph structural-indexing surface: the standalone package, CocoIndex decoupling, startup fixes, and the code-graph runtime, resilience, extraction, and documentation sub-themes. Code graph is a structural surface distinct from the memory store and cross-links to it.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-30T09:22:55.968Z",
+    "last_save_at": "2026-06-05T12:47:34.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

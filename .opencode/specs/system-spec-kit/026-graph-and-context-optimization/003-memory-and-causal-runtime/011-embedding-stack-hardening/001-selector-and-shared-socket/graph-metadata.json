@@ -34,12 +34,10 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_(probe→/api/health;_socket_pinned_in_all_5_runtimes;_embed_post_retry;_38_tests_green;_review_clean)",
     "key_files": [
       ".claude/mcp.json",
-      ".gemini/settings.json",
       ".codex/config.toml",
-      ".vscode/mcp.json",
       "shared/embeddings/auto-select.ts",
       "shared/embeddings/providers/hf-local.ts",
       "references/memory/embedder_architecture.md",
@@ -55,12 +53,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -194,11 +186,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 1 of 5** of the embedding-stack hardening decomposition: fix the zero-install selector, pin a shared cross-launcher socket, and harden the client against transient resets and unhelpful timeouts. Everything downstream depends on a working selector and a shared socket.",
     "created_at": "2026-05-29T11:22:57.372Z",
-    "last_save_at": "2026-05-30T10:12:02.914Z",
+    "last_save_at": "2026-06-05T12:47:33.937Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

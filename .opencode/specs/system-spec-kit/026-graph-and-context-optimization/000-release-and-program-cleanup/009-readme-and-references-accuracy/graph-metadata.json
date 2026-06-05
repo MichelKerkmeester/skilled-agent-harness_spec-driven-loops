@@ -15,29 +15,190 @@
       "system-spec-kit references drift",
       "opencode skill singular typo",
       "mcp launcher entrypoint readme",
-      "tool api drift remediation"
+      "tool api drift remediation",
+      "readme accuracy plan",
+      "audit verify remediate workflow",
+      "readme accuracy tasks",
+      "readme accuracy checklist",
+      "readme accuracy summary",
+      "references drift remediation shipped",
+      "144 confirmed findings 142 fixes"
     ],
     "key_topics": [
       "readme",
-      "references",
       "accuracy",
       "audit",
-      "verification",
-      "remediation",
-      "documentation-drift"
+      "system-spec-kit",
+      "references",
+      "drift",
+      "opencode",
+      "skill",
+      "singular",
+      "typo",
+      "mcp",
+      "launcher"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/install_guides",
+      "dist/context-server.js",
+      "scripts/spec/validate.sh",
       ".opencode/skills/README.md",
-      ".opencode/skills/system-spec-kit/references",
-      ".opencode/skills/system-spec-kit/assets"
+      "plan.md",
+      "checklist.md",
+      "spec.md",
+      "tasks.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Ran a 3-stage parallel workflow over the user-facing command READMEs + system-spec-kit references/assets: 10 gpt-5.5-fast read-only audits (159 raw findings), 10 adversarial verifiers against the real filesystem (144 confirmed / 13 rejected, mostly the gitignored-dist false-positive class), and 10 partitioned edit agents (142 fixes across 61 files, 0 skipped). Five dominant drift themes fixed; four highest-risk clusters spot-verified clean against live source.",
+    "entities": [
+      {
+        "name": "context-server.js",
+        "kind": "code",
+        "path": "dist/context-server.js",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": "scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/README.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "References Accuracy Audit",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Code Mode",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The user-facing command READMEs and the `system-spec-kit` references/assets had accumulated documentation drift: stale paths, outdated tool API signatures, wrong MCP entrypoints, and validation-reference statements that no longer matched the live validator registry. The most pervasive class was the `.opencode/skill` (singular) typo, which broke copy-paste verification commands, `init_skill.py --path` invocations, and inline doc links. Other classes contradicted the canonical sources of truth (`opencode.json`, `validator-registry.json`, `spec-kit-docs.json`, `recommend-level.sh`, the embeddings `registry.ts`), meaning a reader following the docs would run commands that fail or describe behavior the system no longer has.",
     "created_at": "2026-06-03T07:33:00Z",
-    "last_save_at": "2026-06-03T07:33:00Z",
+    "last_save_at": "2026-06-05T12:47:33.193Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -46,6 +207,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

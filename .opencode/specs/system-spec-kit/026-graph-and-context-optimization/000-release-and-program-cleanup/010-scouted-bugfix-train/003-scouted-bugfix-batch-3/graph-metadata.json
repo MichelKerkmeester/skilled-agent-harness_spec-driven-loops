@@ -4,13 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -18,33 +17,188 @@
       "code-graph stress tmpdir pollution",
       "convergence persist-snapshot round-id",
       "devin compact recovery",
-      "mk-spec-memory launcher toctou"
+      "mk-spec-memory launcher toctou",
+      "scouted bugfix batch 3 plan",
+      "verify-first second-scout fix workflow",
+      "scouted bugfix batch 3 tasks",
+      "scouted bugfix batch 3 checklist",
+      "scouted bugfix batch 3 summary",
+      "verify-first second-scout batch fix shipped",
+      "12 fixes 23 files"
     ],
     "key_topics": [
+      "scouted",
       "bugfix",
-      "scout",
-      "deep-dive",
-      "verify-first",
-      "partial-but-real",
-      "deep-loop",
+      "batch",
+      "code-graph",
+      "stress",
+      "tmpdir",
+      "pollution",
       "convergence",
+      "persist-snapshot",
+      "round-id",
       "devin",
-      "launcher"
+      "compact"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-code-graph/mcp_server/src/handlers/__tests__/scan-stress.vitest.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/skills/cli-devin/src/session-start.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/src/launcher/mk-spec-memory-launcher.cjs",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/search/memory-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-mutations.ts"
+      ".claude/agents/deep-research.md",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Ran a verify-first batch fix over a fresh 20 scouted targets from the second scout (batches 1 and 2 covered the first 25): 20 parallel gpt-5.5-fast confirm deep-dives classified each headline (7 CONFIRMED, 9 partial-but-real, 4 REFUTED — gemini-compact already calls sanitizeRecoveredPayload internally; 3 code-graph regex lastIndex claims where the while-exec loop resets correctly). 1 partial EXCLUDED from auto-fix (council scoreVerdictProgression — its fix would change stop-policy, a product decision; flagged not fixed). 12 implement-and-test agents fixed the rest across 23 files (sources + added regression tests), fixing only the REAL part of each partial. Spans code-graph stress test tmpdir isolation (os.tmpdir() + scoped chdir+restore; 45 tests pass), convergence INPUT_VALIDATION on missing --round-id, devin handleCompact full compact recovery lifecycle, install script corrections, mk-spec-memory-launcher TOCTOU-safe lock reclaim via rename-before-delete, _utils.sh full semver compare, vector-index orphan row cascade, memory-search community gating + quality score, agent doc live filenames, deep-ai-council live asset reference, and checkpoint schema v30 fixture. Every diff reviewed; comment-hygiene clean; system-spec-kit npm run build exit 0; launcher + convergence .cjs node --check OK; each fix's regression test passes. First attempt failed (Opus 0-token blip); Sonnet retry succeeded.",
+    "entities": [
+      {
+        "name": "deep-research.md",
+        "kind": "doc",
+        "path": ".claude/agents/deep-research.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Fresh",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Recovered Context",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A second scout surfaced a fresh 20 high-risk targets across previously-untouched subsystems: code-graph stress tests, the deep-loop convergence script, the devin compact-recovery hook, install scripts, the mk-spec-memory launcher, shell version guards, vector-index retention sweeps, memory-search community gating, agent finding-registry filenames, and AI-council skill asset references. Many of the 20 headlines did not survive contact with the real code: 4 were fully refuted (gemini-compact already calls `sanitizeRecoveredPayload` internally; 3 code-graph regex `lastIndex` claims — the while-exec loop resets correctly). Of the 9 partial-but-real targets, 1 (council `scoreVerdictProgression`) was excluded from auto-fix because its proposed change would alter stop-policy, a product decision that requires deliberate sign-off rather than a scout-driven patch.",
     "created_at": "2026-06-03T08:00:00Z",
-    "last_save_at": "2026-06-03T08:00:00Z",
+    "last_save_at": "2026-06-05T12:47:33.202Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -53,6 +207,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

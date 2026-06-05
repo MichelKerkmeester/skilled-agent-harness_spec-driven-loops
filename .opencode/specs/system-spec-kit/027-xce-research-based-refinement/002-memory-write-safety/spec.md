@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety"
-    last_updated_at: "2026-05-11T00:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded packet per pt-04 audit"
-    next_safe_action: "Implement 3 P0 fixes first"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: fixed stale module paths"
+    next_safe_action: "Implement 3 P0 fixes at corrected live paths"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     session_dedup:
@@ -76,11 +76,11 @@ Source context:
 
 `../009-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes. That coupling is risky: the correctness bugs affect existing causal graph and retention behavior even before the reducer work lands, and the pt-04 audit explicitly concluded that "P0 fixes should not wait on eval."
 
-The first bug is provenance based. `mcp_server/lib/causal/causal-edges.ts:269-288` only recognizes `createdBy === 'auto'` when applying the automatic-edge strength cap. RQ-B3 plans `created_by='auto-session'`, which would bypass the 0.5 cap unless the predicate broadens. `mcp_server/lib/causal/consolidation.ts:352-359` has the same narrow check.
+The first bug is provenance based. `mcp_server/lib/storage/causal-edges.ts:269-288` only recognizes `createdBy === 'auto'` when applying the automatic-edge strength cap. RQ-B3 plans `created_by='auto-session'`, which would bypass the 0.5 cap unless the predicate broadens. `mcp_server/lib/storage/consolidation.ts:352-359` has the same narrow check.
 
-The second bug is ownership based. `mcp_server/lib/causal/causal-edges.ts:313-338` upserts edge rows and overwrites `created_by` on conflict. A reducer attempting to create or update an inferred edge could replace a curated manual edge with automatic provenance.
+The second bug is ownership based. `mcp_server/lib/storage/causal-edges.ts:313-338` upserts edge rows and overwrites `created_by` on conflict. A reducer attempting to create or update an inferred edge could replace a curated manual edge with automatic provenance.
 
-The third bug is retention based. `mcp_server/lib/memory/memory-retention-sweep.ts:52-68` selects expired rows by `delete_after` only. That ignores tier metadata, so a constitutional or critical record with an expired TTL can be deleted even though the wider scoring stack treats high-tier material as never-decay or protected.
+The third bug is retention based. `mcp_server/lib/governance/memory-retention-sweep.ts:52-68` selects expired rows by `delete_after` only. That ignores tier metadata, so a constitutional or critical record with an expired TTL can be deleted even though the wider scoring stack treats high-tier material as never-decay or protected.
 
 ### Purpose
 
@@ -95,8 +95,8 @@ Ship the minimal safety fixes required for causal inference and retention learni
 ### In Scope
 
 1. **P0-1: Auto-provenance cap broadening**
-   - Update `mcp_server/lib/causal/causal-edges.ts:269-288`.
-   - Update `mcp_server/lib/causal/consolidation.ts:352-359`.
+   - Update `mcp_server/lib/storage/causal-edges.ts:269-288`.
+   - Update `mcp_server/lib/storage/consolidation.ts:352-359`.
    - Introduce or reuse an `isAutoEdgeCreator(createdBy)` predicate with this behavior:
 
 ```ts
@@ -104,13 +104,13 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 ```
 
 2. **P0-2: Manual-edge overwrite guard**
-   - Update `mcp_server/lib/causal/causal-edges.ts:313-338`.
+   - Update `mcp_server/lib/storage/causal-edges.ts:313-338`.
    - Before reducer-style upsert can overwrite an existing edge, query the existing edge.
    - If the existing edge is non-auto provenance, skip the write and preserve the manual row.
    - Auto-to-auto updates remain allowed under existing caps.
 
 3. **P0-3: Retention-sweep tier basement gap**
-   - Update `mcp_server/lib/memory/memory-retention-sweep.ts:52-68`.
+   - Update `mcp_server/lib/governance/memory-retention-sweep.ts:52-68`.
    - Extend `RetentionExpiredRow` with:
      - `importance_tier`
      - `decay_half_life_days`
@@ -139,9 +139,9 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `mcp_server/lib/causal/causal-edges.ts` | Modify | Broaden auto provenance predicate and guard manual-edge overwrite |
-| `mcp_server/lib/causal/consolidation.ts` | Modify | Apply the same auto provenance predicate to consolidation cap logic |
-| `mcp_server/lib/memory/memory-retention-sweep.ts` | Modify | Select tier fields and skip destructive delete for protected tiers |
+| `mcp_server/lib/storage/causal-edges.ts` | Modify | Broaden auto provenance predicate and guard manual-edge overwrite |
+| `mcp_server/lib/storage/consolidation.ts` | Modify | Apply the same auto provenance predicate to consolidation cap logic |
+| `mcp_server/lib/governance/memory-retention-sweep.ts` | Modify | Select tier fields and skip destructive delete for protected tiers |
 | Existing causal tests | Modify/Create | Add auto-session cap and manual-edge overwrite fixtures |
 | Existing retention tests | Modify/Create | Add expired constitutional/critical/pinned row fixtures |
 <!-- /ANCHOR:scope -->

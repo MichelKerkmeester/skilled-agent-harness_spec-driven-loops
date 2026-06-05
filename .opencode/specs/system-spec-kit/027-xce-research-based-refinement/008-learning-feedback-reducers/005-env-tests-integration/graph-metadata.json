@@ -37,7 +37,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "spec_scaffolded",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       "spec.md",
@@ -138,7 +138,7 @@
         "source": "derived"
       },
       {
-        "name": "Completion Criteria",
+        "name": "Add Coco",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -170,7 +170,7 @@
     ],
     "causal_summary": "The three feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.",
     "created_at": "2026-05-12T07:20:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.849Z",
+    "last_save_at": "2026-06-05T12:47:34.402Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

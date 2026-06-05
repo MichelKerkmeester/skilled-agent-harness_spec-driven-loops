@@ -5,13 +5,11 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
   "children_ids": [],
   "migrated": true,
-  "migration_source": "manual",
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/003-mcp-front-proxy"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -19,35 +17,52 @@
       "replay enrichment window",
       "post-insert enrichment marker",
       "schema v30 enrichment status",
-      "secondary index idempotency memory_save"
+      "secondary index idempotency memory_save",
+      "memory_save enrichment repair plan",
+      "schema v30 marker migration",
+      "enrichment-state helpers",
+      "repair on replay scan lease",
+      "memory_save enrichment repair tasks",
+      "schema v30 task breakdown",
+      "enrichment marker tasks"
     ],
     "key_topics": [
-      "memory",
-      "save",
       "enrichment",
       "repair",
-      "schema",
-      "marker",
       "replay",
-      "idempotency",
-      "dedup",
-      "backfill"
+      "window",
+      "post-insert",
+      "marker",
+      "schema",
+      "v30",
+      "status",
+      "secondary",
+      "index",
+      "idempotency"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "mcp_server/lib/search/vector-index-schema.ts",
-      "mcp_server/handlers/memory-save.ts",
       "mcp_server/handlers/save/enrichment-state.ts",
-      "mcp_server/handlers/save/post-insert.ts",
-      "mcp_server/handlers/save/dedup.ts",
+      "handlers/save/post-insert.ts",
+      "mcp_server/handlers/memory-save.ts",
       "mcp_server/handlers/memory-index.ts",
-      "spec.md",
+      "mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+      "mcp_server/tests/enrichment-state.vitest.ts",
+      "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+      "mcp_server/tests/memory-save-dedup-order.vitest.ts",
+      "mcp_server/tests/handler-memory-index-cooldown.vitest.ts",
+      ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+      "handlers/save/enrichment-state.ts",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "lib/search/vector-index-schema.ts",
+      "handlers/memory-save.ts",
+      "handlers/memory-index.ts",
+      "handlers/save/dedup.ts"
     ],
     "entities": [
       {
@@ -57,15 +72,21 @@
         "source": "derived"
       },
       {
-        "name": "memory-save.ts",
-        "kind": "code",
-        "path": "mcp_server/handlers/memory-save.ts",
-        "source": "derived"
-      },
-      {
         "name": "enrichment-state.ts",
         "kind": "code",
         "path": "mcp_server/handlers/save/enrichment-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "post-insert.ts",
+        "kind": "code",
+        "path": "handlers/save/post-insert.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-save.ts",
         "source": "derived"
       },
       {
@@ -73,12 +94,126 @@
         "kind": "code",
         "path": "mcp_server/handlers/memory-index.ts",
         "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-enrichment-v30.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-index-schema-enrichment-v30.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "enrichment-state.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/enrichment-state.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema-compatibility.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/vector-index-schema-compatibility.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-save-dedup-order.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/memory-save-dedup-order.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-cooldown.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/handler-memory-index-cooldown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-comment-hygiene.sh",
+        "kind": "script",
+        "path": ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "dedup.ts",
+        "kind": "code",
+        "path": "handlers/save/dedup.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Replay Enrichment Repair",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Make",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "memory_save commits the primary memory row inside writeTransaction.immediate(), then runs secondary enrichment (FTS, vector, entity/summary, causal/graph) in a separate phase. A SIGKILL between the commit and enrichment completing leaves the row durably present but unenriched; the next save of the same content short-circuits via primary-row dedup (unchanged/duplicate) and never repairs the missing enrichment, so the memory stays invisible to FTS/vector/graph search until an unrelated scan re-indexes it. This packet adds a durable per-row enrichment-completion marker (schema v30: status/state/completed_at/version columns, default complete for back-compat) written pending inside the primary transaction and flipped to complete after enrichment, plus idempotent repair on the dedup replay path and a bounded backfill under the scan lease. Production stays on v29; the v30 migration is unit-tested on a branch and deployed only on a separate confirmed daemon restart.",
+    "causal_summary": "Make secondary enrichment durably recoverable by tracking enrichment completion with a per-row marker and repairing incomplete markers on dedup replay and as a bounded backfill under the scan lease, with no duplicate rows, no duplicate edges, and no save-latency regression.",
     "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-02T00:00:00.000Z",
-    "save_lineage": "manual",
+    "last_save_at": "2026-06-05T12:47:33.986Z",
+    "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",

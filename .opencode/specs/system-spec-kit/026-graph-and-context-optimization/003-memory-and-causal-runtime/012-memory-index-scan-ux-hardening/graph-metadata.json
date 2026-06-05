@@ -15,11 +15,14 @@
       "memory_index_scan async scan job design",
       "memory index self-healing orphan reconciliation",
       "012 memory index scan research packet",
+      "memory index scan ux hardening plan",
+      "012 deep research plan",
+      "memory index scan ux hardening tasks",
+      "012 deep research tasks",
       "memory index scan ux hardening outcome",
       "memory_index_scan async scan job recommendation",
       "012 deep research summary",
-      "memory index scan ux hardening research",
-      "memory index E429 timeout design"
+      "memory index scan ux hardening research"
     ],
     "key_topics": [
       "memory",
@@ -35,13 +38,17 @@
       "012",
       "research"
     ],
-    "importance_tier": "important",
-    "status": "complete",
+    "importance_tier": "normal",
+    "status": "complete_(design_research)",
     "key_files": [
       "research/research.md",
       "research/resource-map.md",
       "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md",
       "research/iterations/iteration-001.md",
+      "research/deep-research-state.jsonl",
       "shared/config.ts",
       "research/deltas/iter-001.jsonl",
       "mcp_server/handlers/memory-index.ts",
@@ -53,11 +60,7 @@
       "handlers/save/embedding-pipeline.ts",
       "handlers/save/create-record.ts",
       "lib/search/vector-index-mutations.ts",
-      "lib/providers/retry-manager.ts",
-      "shared/embeddings.ts",
-      "lib/cache/embedding-cache.ts",
-      "research/deep-research-strategy.md",
-      "research/deep-research-dashboard.md"
+      "lib/providers/retry-manager.ts"
     ],
     "entities": [
       {
@@ -73,9 +76,33 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "iteration-001.md",
         "kind": "doc",
         "path": "research/iterations/iteration-001.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-research-state.jsonl",
+        "kind": "file",
+        "path": "research/deep-research-state.jsonl",
         "source": "derived"
       },
       {
@@ -145,30 +172,6 @@
         "source": "derived"
       },
       {
-        "name": "embeddings.ts",
-        "kind": "code",
-        "path": "shared/embeddings.ts",
-        "source": "derived"
-      },
-      {
-        "name": "embedding-cache.ts",
-        "kind": "code",
-        "path": "lib/cache/embedding-cache.ts",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-strategy.md",
-        "kind": "doc",
-        "path": "research/deep-research-strategy.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-dashboard.md",
-        "kind": "doc",
-        "path": "research/deep-research-dashboard.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -205,13 +208,15 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "A DESIGN research packet (no production code changed) that produces evidence-backed, file:line-cited recommendations for a memory indexing subsystem that is always safe to call, always completes regardless of corpus size, degrades gracefully when the embedder is slow/absent, and self-heals moves/orphans. The canonical synthesis lives in `research/research.md`.",
+    "causal_summary": "A DESIGN research packet (no production code changed) producing evidence-backed, file:line-cited recommendations for a memory indexing subsystem that is always safe to call, always completes regardless of corpus size, degrades gracefully when the embedder is slow/absent, and self-heals moves/orphans. The canonical synthesis lives in `research/research.md`.",
     "created_at": "2026-05-31T14:05:03.746Z",
-    "last_save_at": "2026-05-31T14:05:03.746Z",
+    "last_save_at": "2026-06-05T12:47:33.956Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
+      "plan.md",
+      "tasks.md",
       "implementation-summary.md",
       "research/research.md"
     ],

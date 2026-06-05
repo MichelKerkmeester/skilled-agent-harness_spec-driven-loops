@@ -43,7 +43,6 @@
     "key_files": [
       "research/research.md",
       "research/deltas/deltas.jsonl",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -60,12 +59,6 @@
         "name": "deltas.jsonl",
         "kind": "file",
         "path": "research/deltas/deltas.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 001 registered `mimo-v2.5-pro` with placeholder capability metadata (`context_length: null`, `--variant` unverified). We do not yet know MiMo-V2.5-Pro's real context window, reasoning/`--variant` behavior, output-verification quirks, tool-calling style, or quota-pool semantics when driven through cli-opencode — so the registry and skill guidance are incomplete.",
     "created_at": "2026-06-01T20:21:29.319Z",
-    "last_save_at": "2026-06-01T21:25:18.783Z",
+    "last_save_at": "2026-06-05T12:47:32.483Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

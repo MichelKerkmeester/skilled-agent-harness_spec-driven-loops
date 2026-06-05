@@ -39,7 +39,7 @@
       "record"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/agents/review.md",
       ".opencode/agents/context.md",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "Audit agent configuration files across all 3 platforms (OpenCode, Claude Code, Codex) to ensure handover model assignment (spec 016), review model-agnostic configuration (spec 015), Codex-native frontmatter format (spec 016), and AGENTS.md routing rules (spec 014) are correct and consistent.",
     "created_at": "2026-05-26T19:43:14.239Z",
-    "last_save_at": "2026-05-30T10:12:03.144Z",
+    "last_save_at": "2026-06-05T12:47:34.598Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,7 +39,7 @@
       "test"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "completed_(2026_05_30)",
     "key_files": [
       "mcp_server/context-server.ts",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -205,7 +205,7 @@
     ],
     "causal_summary": "The 032 deep-research loop established a single production root cause behind two live symptoms (SQ4): the `mk-spec-memory` launcher's respawn path can `SIGTERM`->`SIGKILL` an incumbent `context-server` child when its IPC deep-probe fails, then relaunch without verifying the DB closed cleanly (WAL checkpoint + `db.close()` + `.unclean-shutdown` removal). The result is a divergent FTS5 shadow (`memory_fts_data`); the next `memory_index` insert fires the `memory_fts_insert` trigger into the bad shadow and aborts with `SQLITE_CONSTRAINT_PRIMARYKEY` (SQ2). The same wedged incumbent surfaces the SQ1 substrate `Connection closed` diagnostic row that makes a stale test assert 5-vs-4. The boot FTS integrity probe currently only detects corruption and never repairs it, so the failure recurs after every unclean exit.",
     "created_at": "2026-05-30T16:25:17.710Z",
-    "last_save_at": "2026-05-30T19:40:11.238Z",
+    "last_save_at": "2026-06-05T12:47:34.297Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

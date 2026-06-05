@@ -38,7 +38,7 @@
       "correct"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(shipped_+_deployed)",
     "key_files": [
       "spec.md"
     ],
@@ -62,12 +62,6 @@
         "source": "derived"
       },
       {
-        "name": "Complete",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Parent Spec",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -84,11 +78,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The memory index must stay correct without operator intervention: new and changed spec docs need indexing, orphaned rows need sweeping, and packet renames/moves need reconciliation, all without flooding writers or stalling the daemon. The same index database also needs a durable rollback net so a corrupt or oversized state can be recovered.",
     "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-06-02T08:33:09.350Z",
+    "last_save_at": "2026-06-05T12:47:33.959Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

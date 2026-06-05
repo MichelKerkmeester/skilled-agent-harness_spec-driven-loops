@@ -40,7 +40,7 @@
       "existing"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "phase_parent",
     "key_files": [
       "spec.md"
     ],
@@ -88,9 +88,9 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 008 coordinates the learning feedback reducers that consume existing feedback signals after Phase 002 has landed the required correctness preconditions. The parent holds no implementation tasks itself; it routes work into five child packets with explicit dependency order.",
+    "causal_summary": "Phase 008 coordinates the learning feedback reducers that consume existing feedback signals after Phase 002 has landed the required correctness preconditions. The parent holds no implementation tasks itself; it routes work into five child packets with explicit dependency order and shadow-to-live safety gates.",
     "created_at": "2026-05-09T11:00:00Z",
-    "last_save_at": "2026-05-30T10:12:02.844Z",
+    "last_save_at": "2026-06-05T12:47:34.395Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

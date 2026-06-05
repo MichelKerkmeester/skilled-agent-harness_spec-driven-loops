@@ -39,13 +39,12 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "decision-record.md",
       ".opencode/skills/system-spec-kit/scripts/.folder-list.txt",
       ".opencode/skills/system-spec-kit/scripts/.scan-lines.txt",
       ".opencode/skills/mcp-code-mode/references/workflows.md",
-      ".opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md",
       ".opencode/skills/mcp-chrome-devtools/examples/README.md",
       ".opencode/skills/cli-opencode/README.md",
       ".opencode/skills/cli-opencode/references/opencode_tools.md",
@@ -79,12 +78,6 @@
         "name": "workflows.md",
         "kind": "doc",
         "path": ".opencode/skills/mcp-code-mode/references/workflows.md",
-        "source": "derived"
-      },
-      {
-        "name": "002-myservice-list-sites.md",
-        "kind": "doc",
-        "path": ".opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/002-myservice-list-sites.md",
         "source": "derived"
       },
       {
@@ -200,11 +193,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The independent verifier for Phase 071 found nine remaining issues after the stack-agnostic cleanup. Five are P0 blockers in non-sk-code authored content, one is a P1 semantic mismatch, and three are P2 documentation or scope-handling items.",
     "created_at": "2026-05-05T19:52:59Z",
-    "last_save_at": "2026-05-30T10:12:01.401Z",
+    "last_save_at": "2026-06-05T12:47:32.819Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

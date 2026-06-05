@@ -30,12 +30,11 @@
       "sub-packets"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/context-index.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/timeline.md",
-      ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md",
       ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/graph-metadata.json",
       "spec.md"
     ],
@@ -103,7 +102,7 @@
     ],
     "causal_summary": "The 026 program (8 tracks, ~634 sub-packets) recently had changelog audit drift and completion-claim reconciliation remediated. This slice independently audits the program-level control docs and changelog rollups for accuracy, internal consistency, and reconciliation with the actual shipped state.",
     "created_at": "2026-06-04T18:53:35.320Z",
-    "last_save_at": "2026-06-04T18:53:35.320Z",
+    "last_save_at": "2026-06-05T13:54:24.948Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

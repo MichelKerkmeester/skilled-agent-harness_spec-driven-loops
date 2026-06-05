@@ -1,0 +1,1812 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY relevance audit for spec 027 phase 005 metadata-edge-promoter versus current relation-backfill causal subsystem; no file modifications or spec folder questions.","specFolder":".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/plan.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/tasks.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=1, limit=420][0m
+[0m
+[0m$ [0mgit log --oneline -120
+06e884ed48 chore(026): delete frozen historical resource-map.md + refresh parent graph-metadata
+484f6786af docs(026): changelogs + resource-maps for 016/017 phases; regenerate timeline
+0fe50e2d7a docs(017): document deploy-mcp.sh across READMEs, catalog, and doctor surface
+57525bb817 chore(017): add deploy-mcp.sh build-all helper; record deploy completion
+7791fdeceb fix(026): remediate last-50-commits deep-review findings — 017
+6cbe4fa021 docs(026): deep review of last 50 commits — 016 review packet
+12de3d3a7e docs(026): backfill 33 missing changelogs + regenerate timeline
+8683890935 chore(opencode): remove checked-in gemini runtime surfaces
+a8e180a222 fix(026): remediate docs/config drift flagged by 015-docs-drift-review
+75cfec1700 docs(changelog): add v3.5.0.0 release changelog
+3419e0a3e9 feat(016): mk-spec-memory launcher-ownership hardening (O6)
+41fb6f11a5 fix(014): remediate pre-existing test + doc failures from 013 central verification
+ff4ede238c chore(specs): flush in-flight canonical-save metadata (014/015 registration + specId fixes)
+a9d64d1e0b fix(013): run deferred central verification + fix the one real gap (job-queue test)
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+3d1667dd68 fix(006): probe-marker spawn guard + race-safe bridge reclaim + socket-server reconvergence (014, 015)
+6c462c5a51 docs(006): launcher-overlap spawn & bridge deep-research (027)
+448ffc25ed docs(026): comprehensive deep-review + research audit — packet 012
+9f1a90fdca docs(026): mark 12 sidecar leaf changelogs with a later-removed note
+79ea92aadb fix(026): refresh stale sidecar parent statuses (016-019) + clarify changelog-020 test count
+d5af5b6dd8 fix(026): remediate changelog audit drift in 020-026 + add changelog accuracy re-audit packet
+02939cd77f docs(026): add changelogs for packets 020-026 + record executed backfill in 026 timeline
+1cb2531da7 fix(specs): canonicalize 125's 9 child graph-metadata to current schema
+87cc6b6d3c chore(026): canonical memory save — refresh 026 + parent graph-metadata
+808ba7a3d0 chore(026): refresh 020/021 description.json metadata timestamps
+19ca25ce0a docs(mcp-server): post-implementation deep-review of relation-backfill subsystem (026/023)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+20c2849f76 fix(specs): canonicalize 125 phase-parent graph-metadata schema
+23ba7ea08e fix(mcp-server): add memory_causal_unlink to TOOL_LAYER_MAP (026/025)
+d1183dc07d test(mcp-server): de-flake + un-skip launcher-lease integration, add socketPath bridge test (026/024)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+5dd5e14bc0 chore(026): mark 020/021/022 shipped (committed + deployed)
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+01d666985c docs(mcp-server): sync save-pipeline README to async-default enrichment (026/022)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+1f1e52ca8e fix(mcp-server): store owner socket path in lease + prefer it in bridge (026/020)
+cb1ed47168 docs(constitutional): prune codex + dual-claude rules, fix README staleness + code-graph path
+3ea14bd356 chore(018): refresh packet metadata after memory save (status complete)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+c68c7bf5e3 fix(mcp-server): harden front-proxy against externally-killed/slow-booting daemon (026/018)
+c377d6dcd8 docs(constitutional): add memory DB file-topology rule (index vs vectors are separate files)
+f8618f2b83 fix(mcp-server): isolate quality-loop advisory tests to no-auto-fix path + record remediation status (026/017)
+a2d1a9bc9e fix(mcp-server): remediate deep-review findings — reconsolidation opt-in + async-enrichment safety + full E081 classification (026/017)
+0060a097b3 feat(mcp-server): default-on enrichment + reconsolidation + quality-auto-fix, async enrichment (026/017)
+15d2e4988d fix(mcp-server): accept includeEmbeddings in checkpoint_create input schema
+56ce7a66c4 fix(mcp-server): make spec validator entry-guard robust to special-char repo paths
+637f83ad36 test(mcp-server): fix pre-existing pipeline-enforcement planner fixture
+deee30b319 feat(mcp-server): expose memory_causal_unlink via the MCP tool registry
+e93acb8e24 docs(playbook): correct causal-stats enum (048) + unlink exposure (049)
+c0bb8aefd6 fix(mcp-server): classify memory_save handler-boundary throws (retire generic E081)
+e887474b4a fix(mcp-server): clear memory_save missing-file error + reconcile memory_health schema
+8c6612cafd chore(config): organize MCP env notes in .claude/mcp.json (descriptive then numbered)
+f390ee2c71 chore(config): organize MCP env notes across all runtime configs
+dfee38f567 fix(config): repair opencode.json JSON + organize MCP env notes
+ccce3e6a12 docs(hooks): add sk-doc README for .opencode/hooks
+a9e9bdb0a5 chore(130): refresh phase-parent description.json auto-derived metadata
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+03ba80f13c fix(130/016): decouple sk-prompt playbook from hub + cli skills (forkability)
+5bebeb880b fix(spec-kit): scouted bugfix batch-5 — 3 verify-first fixes + 005 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+9e5d01f401 fix(130/015): complete cli-devin permission-mode typo correction across remaining docs
+c40219c4bd fix(130/015): land deferred entangled cli docs + repoint sk-prompt playbook card paths + asset divider cleanup
+5b39c34f41 fix(130/014): add sk-doc section dividers across 5 cli skills + scrub sk-prompt card refs
+6d3c9e030d test(mcp_server): refresh stale EXTENDED_LIMITS for context-server + memory-index
+63bbe43d57 docs(130): reformat 010-013 changelogs to sk-doc template + add cli 013 entries
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+883957c9e4 docs(mcp_server): fix embedder-umbrella path drift in vectors/migrations READMEs
+b32bc83808 docs(130/013): relocate cli quality card to the hub; sk-prompt now forkable
+795f46dc5f docs(130/012): align cli-* cards + references to sk-doc templates
+3fafd39b09 docs(130/011): merge benchmark 006 into 005 + repoint stale benchmark citations
+ef3d38b15b docs(130/010): align sk-prompt-small-model hub to sk-doc templates
+2636984d53 docs(mcp_server): add missing database/checkpoints + database/backups READMEs
+177b1c94db docs(026): regenerate timeline.md after Wave 8 relocation
+ac44d1bafc refactor(specs): relocate 6 packets from skilled-agent-orchestration into 026 program
+088ffc7fab fix(deps): stop tracking benchmark fixture-seed lockfiles (clears dependabot #654)
+387ded17d8 fix(130/009): remediate hub↔cli-* prompt-knowledge seam drift (C1–C10)
+fb281b8bb4 fix(136): scouted bug/drift batch 3 (round-2 targets) — verify-first, 12 fixes
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+09c3926d0a docs(133): align README commands + system-spec-kit references/assets to live source
+89485eca53 refactor(skills): relocate model registry + benchmarks to sk-prompt-small-model; make sk-prompt forkable (spec 131)
+3a80d8efff feat(skills): 3-layer prompt-knowledge architecture (spec 130)
+8dd86a0b98 fix(131/132): deep-review remediation — 7 confirmed residuals
+103af634dc docs(131): align /doctor commands + install guides to shipped reality
+79cb4e4d21 feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+1ef3771366 fix(deep-improvement): remediate dual-pass MiMo review findings — fail-closed exec gate + grader robustness + doc accuracy
+1663527f79 fix(013/014): remediate deep-review findings — doc accuracy, playbook executability, test fidelity, packet metadata
+fff0ae268b docs(014/review): 20-iteration deep review of the 013/014 session work (gpt-5.5-fast xhigh)
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+159b08708a fix(mcp): bump serverInfo version 1.7.2 -> 1.8.0 to match package.json
+baa3e46d8b fix(deep-improvement): remediate all 28 MiMo deep-review findings — D4-R grader fidelity + doc reconciliation (v1.11.1.0)
+6c7d51d910 feat(sk-code): mine animation principles + frame-verification from web-motion-skill (v3.3.1.0)
+da0204727c docs(014): system-spec-kit playbook/catalog/readme + stress-test refresh for the 013/128 roadmap
+7b8d6960fb docs(013/005): set continuity completion_pct 90 -> 100 (shipped + deployed)
+0d71b5bff5 docs(013): add 001/002/003 changelogs + reconcile roadmap continuity to deployed
+b697b0a1d1 docs(changelog): per-phase changelogs for the 013 follow-ups + sk-git/128
+2c328492df merge(013): land front-proxy reconnect hardening — protocol-drift (#1) + multi-client (#2)
+f4a0f72e38 docs(013/004): fix last_updated_by (drop provider slash) — clears FRONTMATTER_MEMORY_BLOCK
+2167a8de00 docs(013/004): reconcile implementation-summary to deployed state
+ceff990100 merge(013): land memory_save enrichment (004) + checkpoint sentinel (005) follow-ups
+44f6591cf5 refactor(deep-improvement): align all 49 scripts to the sk-code OpenCode template; complete model-benchmark dispatch-envelope + sweep-isolation
+0a8ccc1c57 docs(deep-improvement): reconcile D4-R/skill-benchmark docs, add 10 code+asset READMEs, fill reference trigger_phrases (v1.11.0.0)
+253db8b438 fix(013): checkpoint downgrade-guard test uses far-future schema after 004 SCHEMA_VERSION 30 bump
+5e7f1a671b merge(013): 005 checkpoint needs-rebuild sentinel
+82f85c925a merge(013): 004 memory_save enrichment repair
+6c76793f25 feat(013/005): checkpoint-v2 .needs-rebuild sentinel — durable post-restore self-heal
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+fb6b3b132f feat(sk-git): wt/{NNNN}-{name} numbered worktree convention + advisor routing
+911bbfc089 refactor(125): restructure to phase-parent with lean trio
+68df443600 docs(013): plan 004 enrichment-repair + 005 checkpoint-sentinel sub-phases
+55398d8a91 chore(011): retain raw gpt-5.5 round-2 dispatch logs (force-add past *.log ignore)
+5c22519445 feat(skill-benchmark): D3/D4 fidelity track — real usefulness instrument + intent recall
+2d25ed42ea feat(013/003): multi-client reconnect transparency via per-client proxy (follow-up #2)
+5f79a9667f feat(013/003): protocol-version drift fail-closed re-handshake (follow-up #1)
+9f525883db docs(013/003): deferred follow-ups design research — 5 iterations
+2cb11cfee2 docs(013/002): handover — roadmap COMPLETE (D+G+E done; E merged 598be61b05)
+598be61b05 feat(mcp-launcher): MCP front-proxy — survive daemon recycle transparently (E)
+29160c0e50 fix(checkpoint-v2): demote restore journal to swap-pending before in-process revert
+94069f63e5 chore(mcp-server): stop tracking the runtime .unclean-shutdown marker
+[0m
+[0m✱ [0mGrep "frontmatter-promoter|frontmatter|parent_id|depends_on|supersedes|related_to|children_ids|confidence|extraction_method|causal_edges"[90m in .opencode/skills/system-spec-kit/mcp_server · 2036 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=421, limit=380][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=1, limit=420][0m
+[0m✱ [0mGrep "packetReferencesToCausalLinks|depends_on|supersedes|related_to|parent_id|children_ids|parentChain|causal-links-processor"[90m in .opencode/skills/system-spec-kit/mcp_server/lib · 164 matches[0m
+[0m
+[0m$ [0mgit show --stat --oneline b834150fe5 d32d90c3f1 bb61e8614e c7eb1f6454
+fatal: ambiguous argument 'bb61e8614e': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=600, limit=80][0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/frontmatter-promoter.ts"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=700, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=1370, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=2628, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=405, limit=120][0m
+[0m✱ [0mGrep "extraction_method|confidence REAL|confidence|created_by|extracted_at|UNIQUE|source_anchor|target_anchor"[90m in .opencode/skills/system-spec-kit/mcp_server/lib · 513 matches[0m
+[0m
+[0m$ [0mgit show --stat --oneline b834150fe5 d32d90c3f1 bb61e8864e c7eb1f6454
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+ .../mcp_server/handlers/causal-graph.ts            |   7 +
+ .../mcp_server/lib/causal/README.md                |   2 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 268 +++++++++++++-
+ .../mcp_server/lib/causal/relation-coverage.ts     |   2 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |   6 +
+ .../tests/relation-backfill-similarity.vitest.ts   | 394 +++++++++++++++++++++
+ .../system-spec-kit/mcp_server/tools/types.ts      |  10 +-
+ .../023-semantic-relation-inference/checklist.md   | 193 ++++++++++
+ .../decision-record.md                             | 317 +++++++++++++++++
+ .../description.json                               |  22 ++
+ .../graph-metadata.json                            |  58 +++
+ .../implementation-summary.md                      |  93 +++++
+ .../023-semantic-relation-inference/plan.md        | 267 ++++++++++++++
+ .../023-semantic-relation-inference/spec.md        | 232 ++++++++++++
+ .../023-semantic-relation-inference/tasks.md       |  78 ++++
+ 15 files changed, 1940 insertions(+), 9 deletions(-)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+ .../mcp_server/handlers/causal-graph.ts            |  41 +-
+ .../mcp_server/lib/causal/README.md                |   5 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 450 +++++++++++++++++++++
+ .../mcp_server/lib/causal/relation-coverage.ts     |  18 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |  12 +-
+ .../mcp_server/tests/causal-stats-output.vitest.ts |   7 +-
+ .../tests/relation-backfill-unit.vitest.ts         | 229 +++++++++++
+ .../tests/relation-coverage-unit.vitest.ts         |  27 +-
+ .../system-spec-kit/mcp_server/tools/types.ts      |   3 +-
+ .../021-relation-inference-backfill/checklist.md   | 193 +++++++++
+ .../decision-record.md                             | 414 +++++++++++++++++++
+ .../description.json                               |  21 +
+ .../graph-metadata.json                            |  57 +++
+ .../implementation-summary.md                      |  96 +++++
+ .../021-relation-inference-backfill/plan.md        | 265 ++++++++++++
+ .../021-relation-inference-backfill/spec.md        | 228 +++++++++++
+ .../021-relation-inference-backfill/tasks.md       |  79 ++++
+ 17 files changed, 2117 insertions(+), 28 deletions(-)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+ .../mcp_server/scripts/init-skill-graph.sh         |    6 +-
+ .../mcp_server/handlers/causal-graph.ts            |   19 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     |  270 +-
+ .../lib/graph/contradiction-detection.ts           |    2 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |    5 +-
+ .../tests/relation-backfill-conflict.vitest.ts     |  225 ++
+ .../anobel.com/003-slider-refactor/handover.md     |   80 +-
+ .opencode/specs/descriptions.json                  |  332 +-
+ .opencode/specs/graph-metadata.json                |    9 +-
+ .../003-eval-loop/graph-metadata.json              |  143 +-
+ .../004-skill-uplift/graph-metadata.json           |   15 +-
+ .../005-extraction-rerun/graph-metadata.json       |   54 +-
+ .../graph-metadata.json                            |   15 +-
+ .../007-cross-model-validation/graph-metadata.json |   28 +-
+ .../graph-metadata.json                            |   16 +-
+ .../graph-metadata.json                            |   15 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   15 +-
+ .../graph-metadata.json                            |   22 +-
+ .../research/research.md                           |  330 --
+ .../graph-metadata.json                            |   15 +-
+ .../graph-metadata.json                            |   54 +-
+ .../graph-metadata.json                            |   28 +-
+ .../graph-metadata.json                            |    9 +-
+ .../graph-metadata.json                            |   19 +-
+ .../research/research.md                           |  137 -
+ .../graph-metadata.json                            |    6 +-
+ .../handover.md                                    |  144 +-
+ .../graph-metadata.json                            |   16 +-
+ .../008-playbook-manual-test-run/handover.md       |   89 +-
+ .../graph-metadata.json                            |  178 +-
+ .../graph-metadata.json                            |  191 +-
+ .../graph-metadata.json                            |    6 +-
+ .../graph-metadata.json                            |   37 +-
+ .../123-deep-loop-parallel-fanout/handover.md      |  157 -
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../graph-metadata.json                            |   41 +-
+ .../description.json                               |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../description.json                               |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../012-cli-doc-alignment/description.json         |   14 +-
+ .../012-cli-doc-alignment/graph-metadata.json      |   33 +-
+ .../013-card-relocation-and-guard/description.json |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../description.json                               |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../description.json                               |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../description.json                               |   14 +-
+ .../graph-metadata.json                            |   33 +-
+ .../130-prompt-knowledge-layering/description.json |   46 +-
+ .../research/research.md                           |  118 -
+ .../graph-metadata.json                            |   33 +-
+ .../research/research.md                           |  461 ---
+ .../z_archive/059-agent-implement-code/handover.md |   45 +-
+ .../z_archive/070-sk-deep-rename/resource-map.md   |   14 +-
+ .../research/research.md                           |  496 +--
+ .../001-rename-opencode-dirs/resource-map.md       |   45 -
+ .../implementation-summary.md                      |   52 +-
+ .../010-scouted-bugfix-train/description.json      |    4 +-
+ .../019-readme-resource-map/resource-map.md        |  524 +--
+ .../032-substrate-repair-followups/handover.md     |   13 -
+ .../decision-record.md                             |    6 +-
+ .../checklist.md                                   |  193 ++
+ .../decision-record.md                             |  415 +++
+ .../description.json                               |   22 +
+ .../graph-metadata.json                            |   58 +
+ .../implementation-summary.md                      |   92 +
+ .../plan.md                                        |  258 ++
+ .../spec.md                                        |  231 ++
+ .../tasks.md                                       |   82 +
+ .../graph-metadata.json                            |    9 +-
+ .../research/research.md                           |   18 +-
+ .../002-deprecate-coco-index/resource-map.md       |   50 +-
+ .../research.md                                    |  491 ---
+ .../resource-map.md                                |   64 +-
+ .../implementation-summary.md                      |    8 -
+ .../research/research.md                           |  504 ---
+ .../implementation-summary.md                      |  332 +-
+ .../decision-record.md                             |   74 +-
+ .../research/research.md                           |   42 +-
+ .../z_archive/064-bug-analysis-and-fix/tasks.md    | 1277 +------
+ streamB_report.txt                                 | 3656 --------------------
+ 89 files changed, 2756 insertions(+), 10321 deletions(-)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+ .../mcp_server/lib/causal/relation-coverage.ts     |  11 +-
+ .../mcp_server/tests/causal-stats-output.vitest.ts |   4 +
+ .../tests/relation-coverage-unit.vitest.ts         |  38 +++++++
+ .../description.json                               |  23 +++++
+ .../graph-metadata.json                            |  49 +++++++++
+ .../implementation-summary.md                      |  86 ++++++++++++++++
+ .../019-causal-relation-coverage-honesty/plan.md   |  96 ++++++++++++++++++
+ .../019-causal-relation-coverage-honesty/spec.md   | 111 +++++++++++++++++++++
+ .../019-causal-relation-coverage-honesty/tasks.md  |  76 ++++++++++++++
+ 9 files changed, 491 insertions(+), 3 deletions(-)
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts[90m [offset=470, limit=115][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts[90m [offset=260, limit=45][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts[90m [offset=1115, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts[90m [offset=1355, limit=25][0m
+[0m✱ [0mGrep "causalLinks|causal_links|blocks|related_to|supersedes|insertEdgesBatch|memory_causal"[90m in .opencode/skills/system-spec-kit/mcp_server · 706 matches[0m
+[0m
+[0m$ [0mgit log --oneline -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+966a75c3be feat(checkpoint-v2): schema v29 + expose includeEmbeddings (Phase 1)
+942ad78d9c feat(memory-index): active-row uniqueness guard + multi-tenant scope isolation
+4653a5c7eb style(spec-kit): enforce sk-code §4 with a comment guard + comprehensive ephemeral-pointer sweep
+5040eac9ef style(spec-kit): strip ephemeral-artifact pointers from code comments (sk-code §4)
+36012a8fa1 refactor(system-spec-kit): drop ephemeral ids from mcp_server comments (full sweep)
+4f0a1d8e1f refactor(system-spec-kit): drop ephemeral ids from lib comments (non-search)
+e8c6e68ad9 refactor(system-spec-kit): drop ephemeral ids from lib/search comments
+1c778ceef3 feat(016/002/012): canonical metadata DB + per-profile vector shard split
+6647661f32 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+[0m
+[0m✱ [0mGrep "processCausal|CausalLinks|blocks|related_to|supersedes|derived_from|caused_by|insertEdgesBatch"[90m in .opencode/skills/system-spec-kit/mcp_server/handlers · 54 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/causal-links-processor.ts"[90m in . · 1 match[0m
+[0m✱ [0mGrep "processCausal|CausalLinks|blocks|related_to|supersedes|derived_from|caused_by|insertEdgesBatch"[90m in .opencode/skills/system-spec-kit/mcp_server/lib · 142 matches[0m
+[0m✱ [0mGrep "backfillRelationInference|memory_causal_stats|backfill"[90m in .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts · 37 matches[0m
+[0m
+[0m$ [0mgit show --oneline --stat d32d90c3f1 -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+ .../mcp_server/handlers/causal-graph.ts            |  41 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 450 +++++++++++++++++++++
+ 2 files changed, 490 insertions(+), 1 deletion(-)
+[0m
+[0m$ [0mgit show --oneline --stat b834150fe5 -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+ .../mcp_server/handlers/causal-graph.ts            |   7 +
+ .../mcp_server/lib/causal/relation-backfill.ts     | 268 ++++++++++++++++++++-
+ 2 files changed, 269 insertions(+), 6 deletions(-)
+[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts[90m [offset=1, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts[90m [offset=330, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts[90m [offset=295, limit=35][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts[90m [offset=927, limit=145][0m
+[0m
+[0m$ [0mgit show --oneline --stat bb61e8864e -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts .opencode/skills/system-spec-kit/mcp_server/tests/relation-backfill-conflict.vitest.ts
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+ .../mcp_server/handlers/causal-graph.ts            |  19 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 270 ++++++++++++---------
+ .../tests/relation-backfill-conflict.vitest.ts     | 225 +++++++++++++++++
+ 3 files changed, 395 insertions(+), 119 deletions(-)
+[0m
+[0m$ [0mgit show --oneline --stat c7eb1f6454 -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts .opencode/skills/system-spec-kit/mcp_server/tests/relation-coverage-unit.vitest.ts
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+ .../mcp_server/lib/causal/relation-coverage.ts     | 11 +++++--
+ .../tests/relation-coverage-unit.vitest.ts         | 38 ++++++++++++++++++++++
+ 2 files changed, 46 insertions(+), 3 deletions(-)
+[0m
+[0m✱ [0mGrep "perFolderDescriptionSchema|parentChain|parent_id|depends_on|children_ids"[90m in .opencode/skills/system-spec-kit/mcp_server · 261 matches[0m
+[0m
+[0m$ [0mgit show --oneline --name-only e39a6a8e63 -- .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/description.json
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/graph-metadata.json
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/implementation-summary.md
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/plan.md
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/scratch/.gitkeep
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md
+.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/tasks.md
+[0m
+[0m$ [0mgit log --oneline --all --grep='frontmatter-promoter\|metadata edge promoter\|relation-inference backfill\|semantic relation inference\|causal relation-coverage'
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+[0m
+[0m✱ [0mGrep "frontmatter-promoter"[90m in . · 68 matches[0m
+[0m
+[0m$ [0mgit blame -L 480,490 -- .opencode/skills/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 480) function extractCausalLinksFromGraphMetadata(
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 481)   metadata: import('../graph/graph-metadata-schema.js').GraphMetadata,
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 482) ): CausalLinks {
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 483)   const packetLinks = packetReferencesToCausalLinks(metadata.manual);
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 484)   return {
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 485)     caused_by: [],
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 486)     supersedes: packetLinks.supersedes ?? [],
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 487)     derived_from: [],
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 488)     blocks: packetLinks.blocks ?? [],
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 489)     related_to: packetLinks.related_to ?? [],
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/parsing/memory-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 490)   };
+[0m
+[0m$ [0mgit blame -L 1361,1366 -- .opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1361) export function packetReferencesToCausalLinks(manual: GraphMetadataManual): Record<string, string[]> {
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1362)   return {
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1363)     blocks: manual.depends_on.map((ref) => ref.packet_id),
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1364)     supersedes: manual.supersedes.map((ref) => ref.packet_id),
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1365)     related_to: manual.related_to.map((ref) => ref.packet_id),
+1bf5b366521 .opencode/skill/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts (michelkerkmeester-barter 2026-04-12 11:17:23 +0200 1366)   };
+[0m
+[0m$ [0mgit log -p -n 3 -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+commit bb61e8864e1bd2007b6024ab0a86493591089e46
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 14:37:02 2026 +0200
+
+    fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+    
+    Deep-review SEC-001 remediation: a relation-agnostic conflict guard (hasConflictingValidEdge, reusing relationsConflict) suppresses a committed backfill auto-edge that would invalidate an existing valid edge (manual or auto) on the same pair — closing the reciprocal lineage caused/contradicts self-invalidation. written/byRelation now derive from a committed valid-auto-edge delta (written=0 on re-run, excludes invalidated). Inner backfill schema is strict (typo'd opt-in keys throw). 5 maintainability P2s cleared. New relation-backfill-conflict.vitest.ts (reciprocal caused-survives + manual-edge-survives + re-run + byRelation + strict-schema); 179 tests green.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+index 714ae3ab67..72355c8733 100644
+--- a/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
++++ b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+@@ -18,11 +18,11 @@ import type Database from 'better-sqlite3';
+ import {
+   init as initCausalEdges,
+   insertEdgesBatch,
+-  createSpecDocumentChain,
+   RELATION_TYPES,
+   type RelationType,
+ } from '../storage/causal-edges.js';
+ import { invalidateEntityDensityCache } from '../search/entity-density.js';
++import { relationsConflict } from '../graph/contradiction-detection.js';
+ 
+ /* ───────────────────────────────────────────────────────────────
+    1. CONSTANTS
+@@ -47,6 +47,13 @@ const SIMILARITY_SUPPORTS_STRENGTH = 0.35;
+ // 'contradicts' edge sits just under the lineage 'caused' strength.
+ const SUPERSESSION_CONTRADICTS_STRENGTH = 0.3;
+ 
++// Spec-document-chain inferred-edge strengths. These mirror the lineage/similarity
++// constants above and deliberately differ from createSpecDocumentChain's manual
++// strengths (0.7-0.9): an inferred auto edge is a low-confidence promotion of
++// recorded structure, not the high-confidence manual chain the creator emits.
++const SPEC_CHAIN_CAUSED_STRENGTH = 0.4;
++const SPEC_CHAIN_SUPPORTS_STRENGTH = 0.4;
++
+ // Defaults for the opt-in similarity collector. The cached related_memories
+ // column stores similarity on a 0-100 scale; we only promote a neighbour to a
+ // 'supports' edge above this threshold, and keep at most this many per source.
+@@ -93,6 +100,12 @@ interface BackfillRelationInferenceResult {
+   inferred: number;
+   skipped: number;
+   written: number;
++  // Auto edges suppressed because the (source,target) pair already carries a
++  // VALID edge with a conflicting relation (e.g. a lineage 'caused' edge blocks
++  // the supersession 'contradicts' for the same directed pair). These are NOT
++  // counted as written and never reach the contradiction-detection invalidation
++  // path, so they cannot silently invalidate a pre-existing valid edge.
++  skippedConflicting: number;
+   byRelation: Record<string, number>;
+ }
+ 
+@@ -360,6 +373,7 @@ export function backfillRelationInference(
+     inferred: 0,
+     skipped: 0,
+     written: 0,
++    skippedConflicting: 0,
+     byRelation: {},
+   };
+ 
+@@ -496,98 +510,68 @@ export function backfillRelationInference(
+       inferred,
+       skipped: inferred,
+       written: 0,
++      skippedConflicting: 0,
+       byRelation,
+     };
+   }
+ 
+   // ── EXECUTE: transactional, guard-respecting writes ─────────────
++  // Order matters for the conflict guard: the NON-conflicting collectors
++  // (spec-chain + lineage 'caused', plus similarity 'supports' which never
++  // conflicts with another auto inference) are inserted FIRST so the
++  // conflict-prone collectors (supersession 'contradicts', and 'supports' if a
++  // pre-existing conflicting edge exists) can see them as valid in-transaction
++  // edges and SKIP rather than invalidate them.
+   let written = 0;
++  let skippedConflicting = 0;
+ 
+-  const execute = db.transaction(() => {
+-    let total = 0;
+-
+-    // Spec-document chains via the established creator (it batches through
+-    // insertEdge, so every edge is bound-checked + window-capped + auto-strength
+-    // clamped). createSpecDocumentChain hard-codes created_by via its batch
+-    // default ('manual'); we instead want created_by='auto' for auditability,
+-    // so we re-emit the same edges through insertEdgesBatch with created_by.
+-    for (const chain of specChains) {
+-      const edges = predictSpecChainEdges(chain).map((edge) => ({
+-        sourceId: edge.sourceId,
+-        targetId: edge.targetId,
+-        relation: edge.relation,
+-        strength: edge.strength,
+-        evidence: edge.evidence,
+-        createdBy: 'auto',
+-      }));
+-      if (edges.length === 0) continue;
+-      const result = insertEdgesBatch(edges);
+-      total += result.inserted;
+-      for (const edge of edges) {
+-        // Best-effort per-relation accounting; batch reports an aggregate
+-        // inserted count, so we attribute proportionally by emitting per edge
+-        // only when the batch inserted at least that many.
+-        bumpRelation(edge.relation, 0); // ensure key exists
+-      }
+-    }
+-
+-    // Lineage 'caused' edges.
+-    if (lineageEdges.length > 0) {
+-      const result = insertEdgesBatch(lineageEdges.map((edge) => ({
+-        sourceId: edge.sourceId,
+-        targetId: edge.targetId,
+-        relation: edge.relation,
+-        strength: edge.strength,
+-        evidence: edge.evidence,
+-        createdBy: 'auto',
+-      })));
+-      total += result.inserted;
+-    }
+-
+-    // OPT-IN similarity 'supports' edges (from cached related_memories).
+-    if (similarityEdges.length > 0) {
+-      const result = insertEdgesBatch(similarityEdges.map((edge) => ({
+-        sourceId: edge.sourceId,
+-        targetId: edge.targetId,
+-        relation: edge.relation,
+-        strength: edge.strength,
+-        evidence: edge.evidence,
+-        createdBy: 'auto',
+-      })));
+-      total += result.inserted;
+-    }
++  // Per-relation snapshot of VALID auto edges before the write. `written` and
++  // `byRelation` are derived from the DELTA against this snapshot so pre-existing
++  // (upserted) edges and edges silently invalidated by contradiction-detection
++  // are never miscounted as freshly written — the count stays honest on re-runs.
++  const beforeCounts = countValidAutoEdgesByRelation(db);
+ 
+-    // OPT-IN supersession 'contradicts' edges (from structural lineage).
+-    if (supersessionEdges.length > 0) {
+-      const result = insertEdgesBatch(supersessionEdges.map((edge) => ({
+-        sourceId: edge.sourceId,
+-        targetId: edge.targetId,
+-        relation: edge.relation,
+-        strength: edge.strength,
+-        evidence: edge.evidence,
+-        createdBy: 'auto',
+-      })));
+-      total += result.inserted;
+-    }
++  const specChainEdges: InferredEdge[] = [];
++  for (const chain of specChains) {
++    specChainEdges.push(...predictSpecChainEdges(chain));
++  }
+ 
+-    return total;
++  const execute = db.transaction(() => {
++    // Insert the non-conflicting structural edges first. Spec-chain + lineage
++    // are 'caused'/'supports'; createSpecDocumentChain defaults created_by to
++    // 'manual', but we want 'auto' for auditability, so we re-emit through
++    // insertEdgesBatch with createdBy:'auto' (every edge is still bound-checked,
++    // window-capped, and auto-strength clamped by insertEdge).
++    insertInferredEdges(specChainEdges);
++    insertInferredEdges(lineageEdges);
++
++    // Now the conflict-prone collectors. hasConflictingValidEdge sees the edges
++    // just inserted above within THIS transaction, so a supersession
++    // 'contradicts' whose pair already has a valid lineage 'caused' is skipped
++    // (it would otherwise mislabel an evolution as a contradiction and trigger
++    // contradiction-detection to invalidate the valid 'caused' edge). The same
++    // guard protects any PRE-EXISTING manual/higher-strength conflicting edge.
++    skippedConflicting += insertNonConflictingEdges(db, similarityEdges);
++    skippedConflicting += insertNonConflictingEdges(db, supersessionEdges);
+   });
+ 
+   try {
+-    written = execute();
++    execute();
+   } catch {
+-    written = 0;
++    // best-effort: a failed transaction leaves the DB unchanged; written stays 0
+   }
+ 
+-  // Recompute byRelation from what is now present for the inferred pairs so the
+-  // summary reflects committed reality, not the candidate population.
+-  if (written > 0) {
+-    countWrittenByRelation(
+-      db,
+-      specChains,
+-      [...lineageEdges, ...similarityEdges, ...supersessionEdges],
+-      byRelation,
+-    );
++  // Derive written + byRelation from the committed delta (newly-valid auto edges
++  // only). This is honest across re-runs (upserts add nothing) and immune to the
++  // contradiction-detection invalidation path (an invalidated edge drops out of
++  // the valid count, so it is never reported as written).
++  const afterCounts = countValidAutoEdgesByRelation(db);
++  for (const relation of Object.keys(afterCounts)) {
++    const delta = afterCounts[relation] - (beforeCounts[relation] ?? 0);
++    if (delta > 0) {
++      bumpRelation(relation, delta);
++      written += delta;
++    }
+   }
+ 
+   // FRESHNESS: edge writers call invalidateDegreeCache() internally, but no
+@@ -602,6 +586,7 @@ export function backfillRelationInference(
+     inferred,
+     written,
+     skipped: Math.max(0, inferred - written),
++    skippedConflicting,
+     byRelation,
+   };
+ }
+@@ -611,9 +596,12 @@ export function backfillRelationInference(
+ ----------------------------------------------------------------*/
+ 
+ /**
+- * Predict the typed edges createSpecDocumentChain would emit for one
+- * document-type map. Kept in lock-step with createSpecDocumentChain's pairing
+- * rules so dryRun reporting and the actual write agree.
++ * Predict the typed edges this backfill emits for one document-type map. The
++ * PAIRING (which document types link to which, and the relation) mirrors
++ * createSpecDocumentChain so dryRun reporting and the actual write agree, but the
++ * STRENGTHS deliberately differ: these are low-confidence auto inferences
++ * (SPEC_CHAIN_*_STRENGTH), not the high-confidence manual strengths (0.7-0.9)
++ * the creator hard-codes.
+  */
+ function predictSpecChainEdges(ids: Record<string, number>): InferredEdge[] {
+   const edges: InferredEdge[] = [];
+@@ -634,12 +622,12 @@ function predictSpecChainEdges(ids: Record<string, number>): InferredEdge[] {
+     });
+   };
+ 
+-  push(ids.spec, ids.plan, RELATION_TYPES.CAUSED, 0.4, 'spec->plan chain');
+-  push(ids.plan, ids.tasks, RELATION_TYPES.CAUSED, 0.4, 'plan->tasks chain');
+-  push(ids.tasks, ids.implementation_summary, RELATION_TYPES.CAUSED, 0.4, 'tasks->impl chain');
+-  push(ids.checklist, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'checklist supports spec');
+-  push(ids.decision_record, ids.plan, RELATION_TYPES.SUPPORTS, 0.4, 'decision-record supports plan');
+-  push(ids.research, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'research supports spec');
++  push(ids.spec, ids.plan, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'spec->plan chain');
++  push(ids.plan, ids.tasks, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'plan->tasks chain');
++  push(ids.tasks, ids.implementation_summary, RELATION_TYPES.CAUSED, SPEC_CHAIN_CAUSED_STRENGTH, 'tasks->impl chain');
++  push(ids.checklist, ids.spec, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'checklist supports spec');
++  push(ids.decision_record, ids.plan, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'decision-record supports plan');
++  push(ids.research, ids.spec, RELATION_TYPES.SUPPORTS, SPEC_CHAIN_SUPPORTS_STRENGTH, 'research supports spec');
+ 
+   return edges;
+ }
+@@ -653,42 +641,96 @@ function specChainCandidateCount(chains: Array<Record<string, number>>): number
+ }
+ 
+ /**
+- * After a committed run, read the actual auto edges back for the inferred
+- * source/target pairs and tally them by relation. This gives an accurate
+- * byRelation distribution that reflects guard-rejected duplicates/bounds.
++ * Re-emit inferred edges through insertEdgesBatch with createdBy:'auto'. Every
++ * edge still flows through insertEdge's guards (bounds, window cap, auto-strength
++ * clamp, self-loop/orphan rejection). Used by all collectors whose edges can
++ * never conflict with another auto inference on the same pair.
+  */
+-function countWrittenByRelation(
+-  db: Database.Database,
+-  specChains: Array<Record<string, number>>,
+-  directEdges: InferredEdge[],
+-  byRelation: Record<string, number>,
+-): void {
+-  const candidates: InferredEdge[] = [];
+-  for (const chain of specChains) {
+-    candidates.push(...predictSpecChainEdges(chain));
++function insertInferredEdges(edges: InferredEdge[]): void {
++  if (edges.length === 0) return;
++  insertEdgesBatch(edges.map((edge) => ({
++    sourceId: edge.sourceId,
++    targetId: edge.targetId,
++    relation: edge.relation,
++    strength: edge.strength,
++    evidence: edge.evidence,
++    createdBy: 'auto',
++  })));
++}
++
++/**
++ * Insert inferred edges, but FIRST drop any whose (source,target) pair already
++ * carries a VALID edge with a conflicting relation (per relationsConflict).
++ * Returns the number skipped. The check runs against the live connection inside
++ * the caller's transaction, so it observes edges inserted earlier in the SAME
++ * transaction — this is what stops a supersession 'contradicts' from
++ * invalidating a lineage 'caused' inserted moments before, and protects any
++ * pre-existing manual/higher-strength conflicting edge.
++ */
++function insertNonConflictingEdges(db: Database.Database, edges: InferredEdge[]): number {
++  if (edges.length === 0) return 0;
++  const safe: InferredEdge[] = [];
++  let skipped = 0;
++  for (const edge of edges) {
++    if (hasConflictingValidEdge(db, edge.sourceId, edge.targetId, edge.relation)) {
++      skipped++;
++      continue;
++    }
++    safe.push(edge);
+   }
+-  candidates.push(...directEdges);
++  insertInferredEdges(safe);
++  return skipped;
++}
+ 
+-  let stmt: Database.Statement;
++/**
++ * True if the (sourceId,targetId) pair already has a VALID (invalid_at IS NULL)
++ * edge whose relation conflicts with `relation` per the shared conflict rules.
++ * Mirrors detectContradictions' valid-edge query so the backfill suppresses an
++ * edge that contradiction-detection would otherwise resolve by invalidating the
++ * pre-existing valid edge. Fails open (returns false) on any query error.
++ */
++function hasConflictingValidEdge(
++  db: Database.Database,
++  sourceId: string,
++  targetId: string,
++  relation: RelationType,
++): boolean {
+   try {
+-    stmt = db.prepare(`
+-      SELECT 1 AS found FROM causal_edges
+-      WHERE source_id = ? AND target_id = ? AND relation = ? AND created_by = 'auto'
+-    `);
++    const hasInvalidAt = columnExists(db, 'causal_edges', 'invalid_at');
++    const validClause = hasInvalidAt ? "AND (invalid_at IS NULL OR invalid_at = '')" : '';
++    const rows = db.prepare(`
++      SELECT relation FROM causal_edges
++      WHERE source_id = ? AND target_id = ? ${validClause}
++    `).all(sourceId, targetId) as Array<{ relation: string }>;
++    return rows.some((row) => relationsConflict(row.relation, relation));
+   } catch {
+-    return;
++    return false;
+   }
++}
+ 
+-  for (const edge of candidates) {
+-    try {
+-      const row = stmt.get(edge.sourceId, edge.targetId, edge.relation) as { found?: number } | undefined;
+-      if (row?.found === 1) {
+-        byRelation[edge.relation] = (byRelation[edge.relation] ?? 0) + 1;
+-      }
+-    } catch {
+-      // skip
++/**
++ * Tally VALID (invalid_at IS NULL) created_by='auto' edges grouped by relation.
++ * Snapshotting this before/after the write lets the caller report only the
++ * committed delta as `written`/`byRelation`, which is honest across re-runs and
++ * immune to contradiction-detection invalidation. Returns {} on any error.
++ */
++function countValidAutoEdgesByRelation(db: Database.Database): Record<string, number> {
++  const out: Record<string, number> = {};
++  try {
++    const hasInvalidAt = columnExists(db, 'causal_edges', 'invalid_at');
++    const validClause = hasInvalidAt ? "AND (invalid_at IS NULL OR invalid_at = '')" : '';
++    const rows = db.prepare(`
++      SELECT relation, COUNT(*) AS count FROM causal_edges
++      WHERE created_by = 'auto' ${validClause}
++      GROUP BY relation
++    `).all() as Array<{ relation: string; count: number }>;
++    for (const row of rows) {
++      out[row.relation] = row.count;
+     }
++  } catch {
++    // best-effort: an empty snapshot yields written=0 rather than a crash
+   }
++  return out;
+ }
+ 
+ /* ───────────────────────────────────────────────────────────────
+
+commit b834150fe57596f1828c6f13bc509ac718c38dae
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 13:49:35 2026 +0200
+
+    feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+    
+    Adds the two collectors packet 021 deferred to backfillRelationInference, both opt-in (default off): similarity 'supports' from the cached memory_index.related_memories column (threshold>=75, top-K<=5, no live vector scan) and 'contradicts' from memory_lineage.superseded_by_memory_id. Both inherit dryRun-default + created_by='auto' guards (strength<=0.5, per-node cap, idempotent); graceful no-op on absent schema. Wired through schema/types/handler with deterministic, sqlite-vec-free tests.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+index ece66d525b..714ae3ab67 100644
+--- a/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
++++ b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+@@ -38,6 +38,23 @@ const MAX_LIMIT = 2000;
+ // never has to clamp them and the auto edges read as low-confidence inferences.
+ const LINEAGE_CAUSED_STRENGTH = 0.4;
+ 
++// Similarity-derived 'supports' edges are the weakest inferences we emit: they
++// rest on a cached cosine neighbour, not a structural document relationship, so
++// they carry the lowest strength of any collector here (still < MAX_AUTO_STRENGTH).
++const SIMILARITY_SUPPORTS_STRENGTH = 0.35;
++
++// Structural supersession is a strong-but-not-document-chain signal, so the
++// 'contradicts' edge sits just under the lineage 'caused' strength.
++const SUPERSESSION_CONTRADICTS_STRENGTH = 0.3;
++
++// Defaults for the opt-in similarity collector. The cached related_memories
++// column stores similarity on a 0-100 scale; we only promote a neighbour to a
++// 'supports' edge above this threshold, and keep at most this many per source.
++const DEFAULT_SIMILARITY_THRESHOLD = 75;
++const MIN_SIMILARITY_THRESHOLD = 1;
++const MAX_SIMILARITY_THRESHOLD = 100;
++const SIMILARITY_TOP_K = 5;
++
+ // document_type values we treat as a spec-document chain. Mirrors the mapping
+ // consumed by createSpecDocumentChain (spec/plan/tasks/implementation_summary
+ // chain + checklist/decision_record/research supports).
+@@ -59,6 +76,15 @@ interface BackfillRelationInferenceOptions {
+   dryRun?: boolean;
+   limit?: number;
+   actor?: string;
++  // OPT-IN: emit 'supports' edges from the cached related_memories column
++  // (pre-computed cosine neighbours). Default false.
++  similarity?: boolean;
++  // OPT-IN: emit 'contradicts' edges from structural supersession
++  // (memory_lineage.superseded_by_memory_id). Default false.
++  contradicts?: boolean;
++  // Minimum cached similarity (0-100 scale) for the similarity collector.
++  // Defaults to DEFAULT_SIMILARITY_THRESHOLD.
++  similarityThreshold?: number;
+ }
+ 
+ interface BackfillRelationInferenceResult {
+@@ -81,6 +107,16 @@ interface LineageLinkRow {
+   predecessor_memory_id: number | null;
+ }
+ 
++interface RelatedMemoriesRow {
++  id: number;
++  related_memories: string | null;
++}
++
++interface SupersessionRow {
++  memory_id: number;
++  superseded_by_memory_id: number | null;
++}
++
+ type InferredEdge = {
+   sourceId: string;
+   targetId: string;
+@@ -104,6 +140,15 @@ function tableExists(db: Database.Database, name: string): boolean {
+   }
+ }
+ 
++function columnExists(db: Database.Database, table: string, column: string): boolean {
++  try {
++    const rows = db.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name?: string }>;
++    return rows.some((row) => row.name === column);
++  } catch {
++    return false;
++  }
++}
++
+ /**
+  * Spec-document chain edges. Groups the scanned rows by spec_folder, maps
+  * document_type -> memory_index.id, and emits the same typed chain that
+@@ -168,6 +213,115 @@ function collectLineageEdges(rows: LineageLinkRow[]): InferredEdge[] {
+   return edges;
+ }
+ 
++/**
++ * Canonical unordered-pair key. The similarity collector deduplicates against
++ * the spec-chain population, which emits directed edges; a 'supports' inference
++ * for the same two nodes adds nothing, so we suppress it regardless of direction.
++ */
++function pairKey(a: string, b: string): string {
++  return a < b ? `${a}|${b}` : `${b}|${a}`;
++}
++
++/**
++ * Parse the cached related_memories JSON column. Mirrors the tolerant parsing in
++ * co-activation.ts (accepts bare numeric ids and {id,similarity} objects). Bare
++ * ids have no similarity score so they can never clear a >=1 threshold and are
++ * dropped — only scored neighbours become 'supports' edges. Returns [] on any
++ * absent/empty/unparseable input (never throws).
++ */
++function parseRelatedNeighbors(raw: string | null): Array<{ id: number; similarity: number }> {
++  if (!raw) return [];
++  let parsed: unknown;
++  try {
++    parsed = JSON.parse(raw);
++  } catch {
++    return [];
++  }
++  if (!Array.isArray(parsed)) return [];
++
++  const out: Array<{ id: number; similarity: number }> = [];
++  for (const entry of parsed) {
++    if (typeof entry !== 'object' || entry === null) continue;
++    const candidate = entry as { id?: unknown; similarity?: unknown };
++    if (
++      typeof candidate.id === 'number'
++      && Number.isFinite(candidate.id)
++      && typeof candidate.similarity === 'number'
++      && Number.isFinite(candidate.similarity)
++    ) {
++      out.push({ id: candidate.id, similarity: candidate.similarity });
++    }
++  }
++  return out;
++}
++
++/**
++ * Similarity 'supports' edges. Reads ONLY the pre-computed memory_index.
++ * related_memories column (no live vector_search / sqlite-vec scan, no O(n^2)
++ * all-pairs work) so the collector is deterministic and testable. For each
++ * scanned row: keep neighbours at or above `threshold` (0-100 scale), take the
++ * top SIMILARITY_TOP_K by similarity, exclude self-loops and any pair already
++ * produced by the spec-chain collector. Graceful no-op on absent/empty/
++ * unparseable input.
++ */
++function collectSimilarityEdges(
++  rows: RelatedMemoriesRow[],
++  threshold: number,
++  excludedPairs: Set<string>,
++): InferredEdge[] {
++  const edges: InferredEdge[] = [];
++  for (const row of rows) {
++    const sourceId = String(row.id);
++    const neighbors = parseRelatedNeighbors(row.related_memories)
++      .filter((n) => n.similarity >= threshold && n.id !== row.id)
++      .sort((a, b) => b.similarity - a.similarity || a.id - b.id)
++      .slice(0, SIMILARITY_TOP_K);
++
++    for (const neighbor of neighbors) {
++      const targetId = String(neighbor.id);
++      if (excludedPairs.has(pairKey(sourceId, targetId))) {
++        continue; // already linked by the structural spec-chain collector
++      }
++      edges.push({
++        sourceId,
++        targetId,
++        relation: RELATION_TYPES.SUPPORTS,
++        strength: SIMILARITY_SUPPORTS_STRENGTH,
++        evidence: `cached similarity neighbour (>=${threshold})`,
++      });
++    }
++  }
++  return edges;
++}
++
++/**
++ * Supersession 'contradicts' edges. Promotes the structural
++ * memory_lineage.superseded_by_memory_id pointer into the causal graph:
++ * predecessor 'contradicts' its successor (the successor records the
++ * supersession direction). NOT derived from embedding similarity — supersession
++ * is a recorded structural fact, so there is no semantic false-positive risk.
++ */
++function collectSupersessionEdges(rows: SupersessionRow[]): InferredEdge[] {
++  const edges: InferredEdge[] = [];
++  for (const row of rows) {
++    const successor = row.superseded_by_memory_id;
++    if (successor === null || successor === undefined) {
++      continue;
++    }
++    if (successor === row.memory_id) {
++      continue; // self-loop guard (insertEdge also rejects, belt-and-braces)
++    }
++    edges.push({
++      sourceId: String(row.memory_id),
++      targetId: String(successor),
++      relation: RELATION_TYPES.CONTRADICTS,
++      strength: SUPERSESSION_CONTRADICTS_STRENGTH,
++      evidence: 'lineage supersession (predecessor contradicts successor)',
++    });
++  }
++  return edges;
++}
++
+ /* ───────────────────────────────────────────────────────────────
+    4. BACKFILL
+ ----------------------------------------------------------------*/
+@@ -177,7 +331,8 @@ function collectLineageEdges(rows: LineageLinkRow[]): InferredEdge[] {
+  * persist them. Default dryRun=true reports counts without writing.
+  *
+  * @param db Database connection.
+- * @param options dryRun (default true), limit (bounded), actor (audit label).
++ * @param options dryRun (default true), limit (bounded), actor (audit label),
++ *   similarity/contradicts (OPT-IN collectors, default false), similarityThreshold.
+  * @returns Summary: scanned, inferred, skipped, written, byRelation.
+  */
+ export function backfillRelationInference(
+@@ -190,6 +345,15 @@ export function backfillRelationInference(
+     ? Math.min(rawLimit as number, MAX_LIMIT)
+     : DEFAULT_LIMIT;
+ 
++  // OPT-IN collectors: both default OFF so existing callers see no behaviour
++  // change. The similarity threshold is clamped to its valid 1-100 range.
++  const similarityEnabled = options.similarity === true;
++  const contradictsEnabled = options.contradicts === true;
++  const rawThreshold = options.similarityThreshold;
++  const similarityThreshold = Number.isInteger(rawThreshold)
++    ? Math.max(MIN_SIMILARITY_THRESHOLD, Math.min(MAX_SIMILARITY_THRESHOLD, rawThreshold as number))
++    : DEFAULT_SIMILARITY_THRESHOLD;
++
+   const empty: BackfillRelationInferenceResult = {
+     dryRun,
+     scanned: 0,
+@@ -237,17 +401,72 @@ export function backfillRelationInference(
+     }
+   }
+ 
+-  const scanned = specRows.length + lineageRows.length;
++  // OPT-IN similarity scan: read the PRE-COMPUTED related_memories column only.
++  // No live vector_search / sqlite-vec call and no all-pairs work.
++  let relatedRows: RelatedMemoriesRow[] = [];
++  if (similarityEnabled && columnExists(db, 'memory_index', 'related_memories')) {
++    try {
++      relatedRows = db.prepare(`
++        SELECT id, related_memories
++        FROM memory_index
++        WHERE related_memories IS NOT NULL AND related_memories != ''
++        ORDER BY COALESCE(updated_at, created_at) DESC, id DESC
++        LIMIT ?
++      `).all(limit) as RelatedMemoriesRow[];
++    } catch {
++      relatedRows = [];
++    }
++  }
++
++  // OPT-IN supersession scan: structural memory_lineage.superseded_by_memory_id.
++  let supersessionRows: SupersessionRow[] = [];
++  if (
++    contradictsEnabled
++    && tableExists(db, 'memory_lineage')
++    && columnExists(db, 'memory_lineage', 'superseded_by_memory_id')
++  ) {
++    try {
++      supersessionRows = db.prepare(`
++        SELECT memory_id, superseded_by_memory_id
++        FROM memory_lineage
++        WHERE superseded_by_memory_id IS NOT NULL
++        ORDER BY memory_id DESC
++        LIMIT ?
++      `).all(limit) as SupersessionRow[];
++    } catch {
++      supersessionRows = [];
++    }
++  }
++
++  const scanned = specRows.length + lineageRows.length
++    + relatedRows.length + supersessionRows.length;
+ 
+   // ── INFER ────────────────────────────────────────────────────────
+   const specChains = collectSpecChainEdges(specRows);
+   const lineageEdges = collectLineageEdges(lineageRows);
+ 
++  // Pairs already produced structurally by the spec-chain collector; the
++  // similarity collector excludes these so it never re-links a known pair.
++  const specChainPairs = new Set<string>();
++  for (const chain of specChains) {
++    for (const edge of predictSpecChainEdges(chain)) {
++      specChainPairs.add(pairKey(edge.sourceId, edge.targetId));
++    }
++  }
++
++  const similarityEdges = similarityEnabled
++    ? collectSimilarityEdges(relatedRows, similarityThreshold, specChainPairs)
++    : [];
++  const supersessionEdges = contradictsEnabled
++    ? collectSupersessionEdges(supersessionRows)
++    : [];
++
+   // Predicted edge count for the spec chains: createSpecDocumentChain emits at
+   // most 6 edges per fully-populated chain. We count what the batch reports as
+   // the real "written" tally, but we still report `inferred` as the candidate
+   // population so dryRun is informative.
+-  const inferred = specChainCandidateCount(specChains) + lineageEdges.length;
++  const inferred = specChainCandidateCount(specChains) + lineageEdges.length
++    + similarityEdges.length + supersessionEdges.length;
+ 
+   const byRelation: Record<string, number> = {};
+   const bumpRelation = (relation: string, delta: number): void => {
+@@ -265,6 +484,12 @@ export function backfillRelationInference(
+     for (const edge of lineageEdges) {
+       bumpRelation(edge.relation, 1);
+     }
++    for (const edge of similarityEdges) {
++      bumpRelation(edge.relation, 1);
++    }
++    for (const edge of supersessionEdges) {
++      bumpRelation(edge.relation, 1);
++    }
+     return {
+       dryRun: true,
+       scanned,
+@@ -319,6 +544,32 @@ export function backfillRelationInference(
+       total += result.inserted;
+     }
+ 
++    // OPT-IN similarity 'supports' edges (from cached related_memories).
++    if (similarityEdges.length > 0) {
++      const result = insertEdgesBatch(similarityEdges.map((edge) => ({
++        sourceId: edge.sourceId,
++        targetId: edge.targetId,
++        relation: edge.relation,
++        strength: edge.strength,
++        evidence: edge.evidence,
++        createdBy: 'auto',
++      })));
++      total += result.inserted;
++    }
++
++    // OPT-IN supersession 'contradicts' edges (from structural lineage).
++    if (supersessionEdges.length > 0) {
++      const result = insertEdgesBatch(supersessionEdges.map((edge) => ({
++        sourceId: edge.sourceId,
++        targetId: edge.targetId,
++        relation: edge.relation,
++        strength: edge.strength,
++        evidence: edge.evidence,
++        createdBy: 'auto',
++      })));
++      total += result.inserted;
++    }
++
+     return total;
+   });
+ 
+@@ -331,7 +582,12 @@ export function backfillRelationInference(
+   // Recompute byRelation from what is now present for the inferred pairs so the
+   // summary reflects committed reality, not the candidate population.
+   if (written > 0) {
+-    countWrittenByRelation(db, specChains, lineageEdges, byRelation);
++    countWrittenByRelation(
++      db,
++      specChains,
++      [...lineageEdges, ...similarityEdges, ...supersessionEdges],
++      byRelation,
++    );
+   }
+ 
+   // FRESHNESS: edge writers call invalidateDegreeCache() internally, but no
+@@ -404,14 +660,14 @@ function specChainCandidateCount(chains: Array<Record<string, number>>): number
+ function countWrittenByRelation(
+   db: Database.Database,
+   specChains: Array<Record<string, number>>,
+-  lineageEdges: InferredEdge[],
++  directEdges: InferredEdge[],
+   byRelation: Record<string, number>,
+ ): void {
+   const candidates: InferredEdge[] = [];
+   for (const chain of specChains) {
+     candidates.push(...predictSpecChainEdges(chain));
+   }
+-  candidates.push(...lineageEdges);
++  candidates.push(...directEdges);
+ 
+   let stmt: Database.Statement;
+   try {
+
+commit d32d90c3f15be018dea60ba615771ffb5a67e193
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 12:59:17 2026 +0200
+
+    feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+    
+    Builds the real relation-inference backfill behind packet 019's honest stat: infers typed created_by='auto' causal edges from existing deterministic signals (spec-document chains + lineage predecessor links), default dryRun, bounded limit (<=2000), transactional, idempotent, and invalidates the entity-density cache after writes.
+    
+    Flips backfillJob.implemented to true with a callable command wired onto memory_causal_stats({ backfill }); no new MCP tool. Refreshes the causal README and tool-layer dispatch type.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+new file mode 100644
+index 0000000000..ece66d525b
+--- /dev/null
++++ b/.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+@@ -0,0 +1,450 @@
++// ───────────────────────────────────────────────────────────────
++// MODULE: Relation Inference Backfill
++// ───────────────────────────────────────────────────────────────
++// Feature catalog: Causal graph statistics (memory_causal_stats)
++//
++// Bounded, safe, reversible relation-inference backfill. Infers typed
++// causal edges from STRONG, EXISTING deterministic signals only — never a
++// speculative semantic/ML heuristic. Every inferred edge is created_by='auto'
++// so it inherits the runtime guards already enforced inside insertEdge
++// (MAX_AUTO_STRENGTH=0.5, MAX_EDGES_PER_NODE=20, per-relation window cap,
++// self-loop/orphan rejection) and stays auditable + idempotent (upsert).
++//
++// dryRun defaults to TRUE: callers must opt in to writes. The scan is bounded
++// by `limit` so a single run can never flood a recovered production DB.
++
++import type Database from 'better-sqlite3';
++
++import {
++  init as initCausalEdges,
++  insertEdgesBatch,
++  createSpecDocumentChain,
++  RELATION_TYPES,
++  type RelationType,
++} from '../storage/causal-edges.js';
++import { invalidateEntityDensityCache } from '../search/entity-density.js';
++
++/* ───────────────────────────────────────────────────────────────
++   1. CONSTANTS
++----------------------------------------------------------------*/
++
++// Conservative default: a single backfill run touches at most this many
++// memory rows. Keeps a manual/maintenance invocation against a large DB
++// bounded and predictable. Callers may lower it; we clamp the upper end.
++const DEFAULT_LIMIT = 200;
++const MAX_LIMIT = 2000;
++
++// Inferred-edge strengths stay well under MAX_AUTO_STRENGTH (0.5) so insertEdge
++// never has to clamp them and the auto edges read as low-confidence inferences.
++const LINEAGE_CAUSED_STRENGTH = 0.4;
++
++// document_type values we treat as a spec-document chain. Mirrors the mapping
++// consumed by createSpecDocumentChain (spec/plan/tasks/implementation_summary
++// chain + checklist/decision_record/research supports).
++const SPEC_CHAIN_DOCUMENT_TYPES: ReadonlySet<string> = new Set([
++  'spec',
++  'plan',
++  'tasks',
++  'implementation_summary',
++  'checklist',
++  'decision_record',
++  'research',
++]);
++
++/* ───────────────────────────────────────────────────────────────
++   2. TYPES
++----------------------------------------------------------------*/
++
++interface BackfillRelationInferenceOptions {
++  dryRun?: boolean;
++  limit?: number;
++  actor?: string;
++}
++
++interface BackfillRelationInferenceResult {
++  dryRun: boolean;
++  scanned: number;
++  inferred: number;
++  skipped: number;
++  written: number;
++  byRelation: Record<string, number>;
++}
++
++interface SpecDocRow {
++  id: number;
++  spec_folder: string | null;
++  document_type: string | null;
++}
++
++interface LineageLinkRow {
++  memory_id: number;
++  predecessor_memory_id: number | null;
++}
++
++type InferredEdge = {
++  sourceId: string;
++  targetId: string;
++  relation: RelationType;
++  strength: number;
++  evidence: string;
++};
++
++/* ───────────────────────────────────────────────────────────────
++   3. SIGNAL COLLECTION
++----------------------------------------------------------------*/
++
++function tableExists(db: Database.Database, name: string): boolean {
++  try {
++    const row = db.prepare(
++      "SELECT 1 AS found FROM sqlite_master WHERE type IN ('table','view') AND name = ?",
++    ).get(name) as { found?: number } | undefined;
++    return row?.found === 1;
++  } catch {
++    return false;
++  }
++}
++
++/**
++ * Spec-document chain edges. Groups the scanned rows by spec_folder, maps
++ * document_type -> memory_index.id, and emits the same typed chain that
++ * createSpecDocumentChain produces (spec->plan->tasks->impl = caused;
++ * checklist/decision-record/research = supports). Only the most recent id
++ * per (folder, document_type) is used so we link the active document.
++ */
++function collectSpecChainEdges(rows: SpecDocRow[]): Array<Record<string, number>> {
++  const byFolder = new Map<string, Record<string, number>>();
++
++  for (const row of rows) {
++    const folder = row.spec_folder;
++    const docType = row.document_type;
++    if (!folder || !docType || !SPEC_CHAIN_DOCUMENT_TYPES.has(docType)) {
++      continue;
++    }
++    let docs = byFolder.get(folder);
++    if (!docs) {
++      docs = {};
++      byFolder.set(folder, docs);
++    }
++    // Rows arrive ordered newest-first; keep the first (latest) id per type.
++    if (docs[docType] === undefined) {
++      docs[docType] = row.id;
++    }
++  }
++
++  const chains: Array<Record<string, number>> = [];
++  for (const docs of byFolder.values()) {
++    // A chain needs at least one linkable pair to produce an edge.
++    if (Object.keys(docs).length >= 2) {
++      chains.push(docs);
++    }
++  }
++  return chains;
++}
++
++/**
++ * Lineage predecessor edges: version N-1 -> version N is a 'caused' link
++ * (the prior version caused the existence of the next). Reuses the existing
++ * memory_lineage predecessor pointer — no inference, just promotion of a
++ * recorded structural relation into the causal graph.
++ */
++function collectLineageEdges(rows: LineageLinkRow[]): InferredEdge[] {
++  const edges: InferredEdge[] = [];
++  for (const row of rows) {
++    const predecessor = row.predecessor_memory_id;
++    if (predecessor === null || predecessor === undefined) {
++      continue;
++    }
++    if (predecessor === row.memory_id) {
++      continue; // self-loop guard (insertEdge also rejects, belt-and-braces)
++    }
++    edges.push({
++      sourceId: String(predecessor),
++      targetId: String(row.memory_id),
++      relation: RELATION_TYPES.CAUSED,
++      strength: LINEAGE_CAUSED_STRENGTH,
++      evidence: 'lineage predecessor->successor (version evolution)',
++    });
++  }
++  return edges;
++}
++
++/* ───────────────────────────────────────────────────────────────
++   4. BACKFILL
++----------------------------------------------------------------*/
++
++/**
++ * Infer typed causal edges from strong existing signals and (optionally)
++ * persist them. Default dryRun=true reports counts without writing.
++ *
++ * @param db Database connection.
++ * @param options dryRun (default true), limit (bounded), actor (audit label).
++ * @returns Summary: scanned, inferred, skipped, written, byRelation.
++ */
++export function backfillRelationInference(
++  db: Database.Database,
++  options: BackfillRelationInferenceOptions = {},
++): BackfillRelationInferenceResult {
++  const dryRun = options.dryRun !== false; // default TRUE; only explicit false writes
++  const rawLimit = options.limit;
++  const limit = Number.isInteger(rawLimit) && (rawLimit as number) > 0
++    ? Math.min(rawLimit as number, MAX_LIMIT)
++    : DEFAULT_LIMIT;
++
++  const empty: BackfillRelationInferenceResult = {
++    dryRun,
++    scanned: 0,
++    inferred: 0,
++    skipped: 0,
++    written: 0,
++    byRelation: {},
++  };
++
++  if (!db || !tableExists(db, 'memory_index') || !tableExists(db, 'causal_edges')) {
++    return empty;
++  }
++
++  // Bind the storage module to this DB so its guards (insertEdge bounds,
++  // window cap, contradiction detection) operate on the same connection.
++  initCausalEdges(db);
++
++  // ── SCAN (bounded) ──────────────────────────────────────────────
++  // Most-recently-updated rows first; newest id wins per (folder, type).
++  let specRows: SpecDocRow[] = [];
++  try {
++    specRows = db.prepare(`
++      SELECT id, spec_folder, document_type
++      FROM memory_index
++      WHERE spec_folder IS NOT NULL AND spec_folder != ''
++      ORDER BY COALESCE(updated_at, created_at) DESC, id DESC
++      LIMIT ?
++    `).all(limit) as SpecDocRow[];
++  } catch {
++    specRows = [];
++  }
++
++  let lineageRows: LineageLinkRow[] = [];
++  if (tableExists(db, 'memory_lineage')) {
++    try {
++      lineageRows = db.prepare(`
++        SELECT memory_id, predecessor_memory_id
++        FROM memory_lineage
++        WHERE predecessor_memory_id IS NOT NULL
++        ORDER BY memory_id DESC
++        LIMIT ?
++      `).all(limit) as LineageLinkRow[];
++    } catch {
++      lineageRows = [];
++    }
++  }
++
++  const scanned = specRows.length + lineageRows.length;
++
++  // ── INFER ────────────────────────────────────────────────────────
++  const specChains = collectSpecChainEdges(specRows);
++  const lineageEdges = collectLineageEdges(lineageRows);
++
++  // Predicted edge count for the spec chains: createSpecDocumentChain emits at
++  // most 6 edges per fully-populated chain. We count what the batch reports as
++  // the real "written" tally, but we still report `inferred` as the candidate
++  // population so dryRun is informative.
++  const inferred = specChainCandidateCount(specChains) + lineageEdges.length;
++
++  const byRelation: Record<string, number> = {};
++  const bumpRelation = (relation: string, delta: number): void => {
++    byRelation[relation] = (byRelation[relation] ?? 0) + delta;
++  };
++
++  // ── DRY RUN: report only, write ZERO edges ──────────────────────
++  if (dryRun) {
++    // Report candidate relation distribution without touching the DB.
++    for (const chain of specChains) {
++      for (const edge of predictSpecChainEdges(chain)) {
++        bumpRelation(edge.relation, 1);
++      }
++    }
++    for (const edge of lineageEdges) {
++      bumpRelation(edge.relation, 1);
++    }
++    return {
++      dryRun: true,
++      scanned,
++      inferred,
++      skipped: inferred,
++      written: 0,
++      byRelation,
++    };
++  }
++
++  // ── EXECUTE: transactional, guard-respecting writes ─────────────
++  let written = 0;
++
++  const execute = db.transaction(() => {
++    let total = 0;
++
++    // Spec-document chains via the established creator (it batches through
++    // insertEdge, so every edge is bound-checked + window-capped + auto-strength
++    // clamped). createSpecDocumentChain hard-codes created_by via its batch
++    // default ('manual'); we instead want created_by='auto' for auditability,
++    // so we re-emit the same edges through insertEdgesBatch with created_by.
++    for (const chain of specChains) {
++      const edges = predictSpecChainEdges(chain).map((edge) => ({
++        sourceId: edge.sourceId,
++        targetId: edge.targetId,
++        relation: edge.relation,
++        strength: edge.strength,
++        evidence: edge.evidence,
++        createdBy: 'auto',
++      }));
++      if (edges.length === 0) continue;
++      const result = insertEdgesBatch(edges);
++      total += result.inserted;
++      for (const edge of edges) {
++        // Best-effort per-relation accounting; batch reports an aggregate
++        // inserted count, so we attribute proportionally by emitting per edge
++        // only when the batch inserted at least that many.
++        bumpRelation(edge.relation, 0); // ensure key exists
++      }
++    }
++
++    // Lineage 'caused' edges.
++    if (lineageEdges.length > 0) {
++      const result = insertEdgesBatch(lineageEdges.map((edge) => ({
++        sourceId: edge.sourceId,
++        targetId: edge.targetId,
++        relation: edge.relation,
++        strength: edge.strength,
++        evidence: edge.evidence,
++        createdBy: 'auto',
++      })));
++      total += result.inserted;
++    }
++
++    return total;
++  });
++
++  try {
++    written = execute();
++  } catch {
++    written = 0;
++  }
++
++  // Recompute byRelation from what is now present for the inferred pairs so the
++  // summary reflects committed reality, not the candidate population.
++  if (written > 0) {
++    countWrittenByRelation(db, specChains, lineageEdges, byRelation);
++  }
++
++  // FRESHNESS: edge writers call invalidateDegreeCache() internally, but no
++  // causal-edge mutation invalidates the entity-density cache. Raising
++  // outgoing-edge counts changes the >=3-outgoing-edge entity-density routing
++  // signal, so we MUST invalidate it explicitly after committing edges.
++  invalidateEntityDensityCache();
++
++  return {
++    dryRun: false,
++    scanned,
++    inferred,
++    written,
++    skipped: Math.max(0, inferred - written),
++    byRelation,
++  };
++}
++
++/* ───────────────────────────────────────────────────────────────
++   5. HELPERS
++----------------------------------------------------------------*/
++
++/**
++ * Predict the typed edges createSpecDocumentChain would emit for one
++ * document-type map. Kept in lock-step with createSpecDocumentChain's pairing
++ * rules so dryRun reporting and the actual write agree.
++ */
++function predictSpecChainEdges(ids: Record<string, number>): InferredEdge[] {
++  const edges: InferredEdge[] = [];
++  const push = (
++    src: number | undefined,
++    tgt: number | undefined,
++    relation: RelationType,
++    strength: number,
++    label: string,
++  ): void => {
++    if (src === undefined || tgt === undefined || src === tgt) return;
++    edges.push({
++      sourceId: String(src),
++      targetId: String(tgt),
++      relation,
++      strength,
++      evidence: label,
++    });
++  };
++
++  push(ids.spec, ids.plan, RELATION_TYPES.CAUSED, 0.4, 'spec->plan chain');
++  push(ids.plan, ids.tasks, RELATION_TYPES.CAUSED, 0.4, 'plan->tasks chain');
++  push(ids.tasks, ids.implementation_summary, RELATION_TYPES.CAUSED, 0.4, 'tasks->impl chain');
++  push(ids.checklist, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'checklist supports spec');
++  push(ids.decision_record, ids.plan, RELATION_TYPES.SUPPORTS, 0.4, 'decision-record supports plan');
++  push(ids.research, ids.spec, RELATION_TYPES.SUPPORTS, 0.4, 'research supports spec');
++
++  return edges;
++}
++
++function specChainCandidateCount(chains: Array<Record<string, number>>): number {
++  let total = 0;
++  for (const chain of chains) {
++    total += predictSpecChainEdges(chain).length;
++  }
++  return total;
++}
++
++/**
++ * After a committed run, read the actual auto edges back for the inferred
++ * source/target pairs and tally them by relation. This gives an accurate
++ * byRelation distribution that reflects guard-rejected duplicates/bounds.
++ */
++function countWrittenByRelation(
++  db: Database.Database,
++  specChains: Array<Record<string, number>>,
++  lineageEdges: InferredEdge[],
++  byRelation: Record<string, number>,
++): void {
++  const candidates: InferredEdge[] = [];
++  for (const chain of specChains) {
++    candidates.push(...predictSpecChainEdges(chain));
++  }
++  candidates.push(...lineageEdges);
++
++  let stmt: Database.Statement;
++  try {
++    stmt = db.prepare(`
++      SELECT 1 AS found FROM causal_edges
++      WHERE source_id = ? AND target_id = ? AND relation = ? AND created_by = 'auto'
++    `);
++  } catch {
++    return;
++  }
++
++  for (const edge of candidates) {
++    try {
++      const row = stmt.get(edge.sourceId, edge.targetId, edge.relation) as { found?: number } | undefined;
++      if (row?.found === 1) {
++        byRelation[edge.relation] = (byRelation[edge.relation] ?? 0) + 1;
++      }
++    } catch {
++      // skip
++    }
++  }
++}
++
++/* ───────────────────────────────────────────────────────────────
++   6. EXPORTS
++----------------------------------------------------------------*/
++
++export {
++  DEFAULT_LIMIT,
++  MAX_LIMIT,
++};
++
++export type {
++  BackfillRelationInferenceOptions,
++  BackfillRelationInferenceResult,
++};
+[0m
+[0m$ [0mgit blame -L 351,483 -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 351) export function backfillRelationInference(
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 352)   db: Database.Database,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 353)   options: BackfillRelationInferenceOptions = {},
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 354) ): BackfillRelationInferenceResult {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 355)   const dryRun = options.dryRun !== false; // default TRUE; only explicit false writes
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 356)   const rawLimit = options.limit;
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 357)   const limit = Number.isInteger(rawLimit) && (rawLimit as number) > 0
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 358)     ? Math.min(rawLimit as number, MAX_LIMIT)
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 359)     : DEFAULT_LIMIT;
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 360) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 361)   // OPT-IN collectors: both default OFF so existing callers see no behaviour
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 362)   // change. The similarity threshold is clamped to its valid 1-100 range.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 363)   const similarityEnabled = options.similarity === true;
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 364)   const contradictsEnabled = options.contradicts === true;
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 365)   const rawThreshold = options.similarityThreshold;
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 366)   const similarityThreshold = Number.isInteger(rawThreshold)
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 367)     ? Math.max(MIN_SIMILARITY_THRESHOLD, Math.min(MAX_SIMILARITY_THRESHOLD, rawThreshold as number))
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 368)     : DEFAULT_SIMILARITY_THRESHOLD;
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 369) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 370)   const empty: BackfillRelationInferenceResult = {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 371)     dryRun,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 372)     scanned: 0,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 373)     inferred: 0,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 374)     skipped: 0,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 375)     written: 0,
+bb61e8864e1 (MichelKerkmeester 2026-06-04 14:37:02 +0200 376)     skippedConflicting: 0,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 377)     byRelation: {},
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 378)   };
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 379) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 380)   if (!db || !tableExists(db, 'memory_index') || !tableExists(db, 'causal_edges')) {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 381)     return empty;
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 382)   }
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 383) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 384)   // Bind the storage module to this DB so its guards (insertEdge bounds,
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 385)   // window cap, contradiction detection) operate on the same connection.
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 386)   initCausalEdges(db);
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 387) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 388)   // ── SCAN (bounded) ──────────────────────────────────────────────
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 389)   // Most-recently-updated rows first; newest id wins per (folder, type).
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 390)   let specRows: SpecDocRow[] = [];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 391)   try {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 392)     specRows = db.prepare(`
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 393)       SELECT id, spec_folder, document_type
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 394)       FROM memory_index
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 395)       WHERE spec_folder IS NOT NULL AND spec_folder != ''
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 396)       ORDER BY COALESCE(updated_at, created_at) DESC, id DESC
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 397)       LIMIT ?
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 398)     `).all(limit) as SpecDocRow[];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 399)   } catch {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 400)     specRows = [];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 401)   }
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 402) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 403)   let lineageRows: LineageLinkRow[] = [];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 404)   if (tableExists(db, 'memory_lineage')) {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 405)     try {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 406)       lineageRows = db.prepare(`
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 407)         SELECT memory_id, predecessor_memory_id
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 408)         FROM memory_lineage
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 409)         WHERE predecessor_memory_id IS NOT NULL
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 410)         ORDER BY memory_id DESC
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 411)         LIMIT ?
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 412)       `).all(limit) as LineageLinkRow[];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 413)     } catch {
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 414)       lineageRows = [];
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 415)     }
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 416)   }
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 417) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 418)   // OPT-IN similarity scan: read the PRE-COMPUTED related_memories column only.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 419)   // No live vector_search / sqlite-vec call and no all-pairs work.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 420)   let relatedRows: RelatedMemoriesRow[] = [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 421)   if (similarityEnabled && columnExists(db, 'memory_index', 'related_memories')) {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 422)     try {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 423)       relatedRows = db.prepare(`
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 424)         SELECT id, related_memories
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 425)         FROM memory_index
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 426)         WHERE related_memories IS NOT NULL AND related_memories != ''
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 427)         ORDER BY COALESCE(updated_at, created_at) DESC, id DESC
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 428)         LIMIT ?
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 429)       `).all(limit) as RelatedMemoriesRow[];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 430)     } catch {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 431)       relatedRows = [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 432)     }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 433)   }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 434) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 435)   // OPT-IN supersession scan: structural memory_lineage.superseded_by_memory_id.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 436)   let supersessionRows: SupersessionRow[] = [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 437)   if (
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 438)     contradictsEnabled
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 439)     && tableExists(db, 'memory_lineage')
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 440)     && columnExists(db, 'memory_lineage', 'superseded_by_memory_id')
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 441)   ) {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 442)     try {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 443)       supersessionRows = db.prepare(`
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 444)         SELECT memory_id, superseded_by_memory_id
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 445)         FROM memory_lineage
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 446)         WHERE superseded_by_memory_id IS NOT NULL
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 447)         ORDER BY memory_id DESC
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 448)         LIMIT ?
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 449)       `).all(limit) as SupersessionRow[];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 450)     } catch {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 451)       supersessionRows = [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 452)     }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 453)   }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 454) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 455)   const scanned = specRows.length + lineageRows.length
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 456)     + relatedRows.length + supersessionRows.length;
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 457) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 458)   // ── INFER ────────────────────────────────────────────────────────
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 459)   const specChains = collectSpecChainEdges(specRows);
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 460)   const lineageEdges = collectLineageEdges(lineageRows);
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 461) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 462)   // Pairs already produced structurally by the spec-chain collector; the
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 463)   // similarity collector excludes these so it never re-links a known pair.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 464)   const specChainPairs = new Set<string>();
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 465)   for (const chain of specChains) {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 466)     for (const edge of predictSpecChainEdges(chain)) {
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 467)       specChainPairs.add(pairKey(edge.sourceId, edge.targetId));
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 468)     }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 469)   }
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 470) 
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 471)   const similarityEdges = similarityEnabled
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 472)     ? collectSimilarityEdges(relatedRows, similarityThreshold, specChainPairs)
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 473)     : [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 474)   const supersessionEdges = contradictsEnabled
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 475)     ? collectSupersessionEdges(supersessionRows)
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 476)     : [];
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 477) 
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 478)   // Predicted edge count for the spec chains: createSpecDocumentChain emits at
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 479)   // most 6 edges per fully-populated chain. We count what the batch reports as
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 480)   // the real "written" tally, but we still report `inferred` as the candidate
+d32d90c3f15 (MichelKerkmeester 2026-06-04 12:59:17 +0200 481)   // population so dryRun is informative.
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 482)   const inferred = specChainCandidateCount(specChains) + lineageEdges.length
+b834150fe57 (MichelKerkmeester 2026-06-04 13:49:35 +0200 483)     + similarityEdges.length + supersessionEdges.length;
+[0m
+[0m$ [0mgit blame -L 67,72 -- .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 67) const CAUSAL_LINK_MAPPINGS: Record<string, CausalLinkMapping> = {
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 68)   caused_by: { relation: causalEdges.RELATION_TYPES.CAUSED, reverse: true },
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 69)   supersedes: { relation: causalEdges.RELATION_TYPES.SUPERSEDES, reverse: false },
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 70)   derived_from: { relation: causalEdges.RELATION_TYPES.DERIVED_FROM, reverse: false },
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 71)   blocks: { relation: causalEdges.RELATION_TYPES.ENABLED, reverse: true },
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 72)   related_to: { relation: causalEdges.RELATION_TYPES.SUPPORTS, reverse: false }
+[0m
+[0m$ [0mgit blame -L 713,728 -- .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 713)           CREATE TABLE IF NOT EXISTS causal_edges (
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 714)             id INTEGER PRIMARY KEY,
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 715)             source_id TEXT NOT NULL,
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 716)             target_id TEXT NOT NULL,
+cde24b7a640 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-04-11 21:06:13 +0200 717)             source_anchor TEXT,
+cde24b7a640 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-04-11 21:06:13 +0200 718)             target_anchor TEXT,
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 719)             relation TEXT NOT NULL CHECK(relation IN (
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 720)               'caused', 'enabled', 'supersedes', 'contradicts', 'derived_from', 'supports'
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 721)             )),
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 722)             strength REAL DEFAULT 1.0 CHECK(strength >= 0.0 AND strength <= 1.0),
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 723)             evidence TEXT,
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 724)             extracted_at TEXT DEFAULT (datetime('now')),
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 725)             created_by TEXT DEFAULT 'manual',
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 726)             last_accessed TEXT,
+470f4d4f8e9 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-04-12 21:09:37 +0200 727)             UNIQUE(source_id, target_id, relation, source_anchor, target_anchor)
+2385fb801d8 .opencode/skill/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts (michelkerkmeester-barter 2026-03-03 15:05:45 +0100 728)           )
+[0m
+[0m✱ [0mGrep "extraction_method"[90m in .opencode/skills/system-spec-kit/mcp_server · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=326, limit=40][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=253, limit=22][0m
+[0m✱ [0mGrep "confidence REAL DEFAULT 1\.0|ALTER TABLE causal_edges ADD COLUMN confidence|causal_edges ADD COLUMN extraction_method"[90m in .opencode/skills/system-spec-kit/mcp_server · 0 matches[0m
+[0m
+[0m$ [0mgit blame -L 412,418 -- .opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 412)         const insertedRowId = causalEdges.insertEdge(
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 413)           edgeSourceId,
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 414)           edgeTargetId,
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 415)           mapping.relation,
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 416)           1.0,
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 417)           `Auto-extracted from ${link_type} in memory file`,
+884689d9136 .opencode/skill/system-spec-kit/mcp_server/handlers/causal-links-processor.ts (michelkerkmeester-barter 2026-05-01 08:29:01 +0200 418)         );
+[0m
+[0m$ [0mgit blame -L 253,272 -- .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 253) function insertEdge(
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 254)   sourceId: string,
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 255)   targetId: string,
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 256)   relation: RelationType,
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 257)   strength: number = 1.0,
+79c55f312e2 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 12:54:52 +0100 258)   evidence: string | null = null,
+79c55f312e2 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 12:54:52 +0100 259)   shouldInvalidateCache: boolean = true,
+d5b1e3b56f1 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 260)   createdBy: string = 'manual',
+cde24b7a640 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-04-11 21:06:13 +0200 261)   anchors: { sourceAnchor?: string | null; targetAnchor?: string | null } = {},
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 262) ): number | null {
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 263)   if (!db) {
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 264)     console.warn('[causal-edges] Database not initialized. Server may still be starting up.');
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 265)     return null;
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 266)   }
+12736425050 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-03-08 10:17:09 +0100 267)   const database = db;
+c43a8021eab .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-11 19:40:41 +0100 268) 
+d5b1e3b56f1 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 269)   // NFR-R01: Auto edges capped at MAX_AUTO_STRENGTH
+d5b1e3b56f1 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 270)   const effectiveStrength = createdBy === 'auto'
+d5b1e3b56f1 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 271)     ? Math.min(strength, MAX_AUTO_STRENGTH)
+d5b1e3b56f1 .opencode/skill/system-spec-kit/mcp_server/lib/storage/causal-edges.ts (michelkerkmeester-barter 2026-02-28 14:54:41 +0100 272)     : strength;
+[0m

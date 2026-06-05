@@ -41,28 +41,28 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-paraphrase-recall.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md",
       ".codex/config.toml",
       ".claude/mcp.json",
-      ".gemini/settings.json",
       "spec.md",
       ".opencode/install_guides/README.md",
       ".opencode/skills/system-spec-kit/shared/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/references/memory/embedding_resilience.md",
       ".opencode/skills/system-spec-kit/README.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
-      ".opencode/skills/system-spec-kit/references/config/environment_variables.md"
+      ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+      "shared/embeddings/profile.ts",
+      ".opencode/skills/system-spec-kit/package.json",
+      ".opencode/skills/system-spec-kit/mcp_server/package.json",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+      ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+      ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js"
     ],
     "entities": [
       {
@@ -84,42 +84,6 @@
         "source": "derived"
       },
       {
-        "name": "401-paraphrase-recall.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/401-paraphrase-recall.md",
-        "source": "derived"
-      },
-      {
-        "name": "411-causal-graph-link-quality.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/411-causal-graph-link-quality.md",
-        "source": "derived"
-      },
-      {
-        "name": "412-causal-coverage-under-bulk-save.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/412-causal-coverage-under-bulk-save.md",
-        "source": "derived"
-      },
-      {
-        "name": "413-drift-detection-quality.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/413-drift-detection-quality.md",
-        "source": "derived"
-      },
-      {
-        "name": "414-cross-ai-memory-handoff.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/414-cross-ai-memory-handoff.md",
-        "source": "derived"
-      },
-      {
-        "name": "415-concurrent-multi-ai-safety.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/415-concurrent-multi-ai-safety.md",
-        "source": "derived"
-      },
-      {
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
@@ -129,12 +93,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -162,15 +120,51 @@
         "source": "derived"
       },
       {
-        "name": "05-5-embedding-and-api.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/05-5-embedding-and-api.md",
-        "source": "derived"
-      },
-      {
         "name": "environment_variables.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
+        "source": "derived"
+      },
+      {
+        "name": "profile.ts",
+        "kind": "code",
+        "path": "shared/embeddings/profile.ts",
+        "source": "derived"
+      },
+      {
+        "name": "package.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/package.json",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-behavioral.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-behavioral.js",
+        "source": "derived"
+      },
+      {
+        "name": "test-embeddings-factory.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-embeddings-factory.js",
+        "source": "derived"
+      },
+      {
+        "name": "memory-pipeline-regressions.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "manual-playbook-fixture.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/manual-playbook-fixture.ts",
+        "source": "derived"
+      },
+      {
+        "name": "test-utils.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/tests/test-utils.js",
         "source": "derived"
       },
       {
@@ -208,11 +202,17 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "gpt-5.5",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Sibling packet 021 produced a 10-iter `/deep:start-review-loop:auto` finding tray with verdict FAIL; hasAdvisories=true (P0=2 P1=83 P2=31). The user clarified after the run that the 2 P0s and ~25 of the P1s actually describe **intended behavior** that 014's narrative misrepresented, not real bugs. The remaining ~90 findings ARE legitimate residue: stale model identifiers, stale dimension references, hardcoded legacy sqlite paths, rejected-ONNX cleanup, and generated assets that haven't been regenerated since the actual ship state landed.",
     "created_at": "2026-05-13T14:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.106Z",
+    "last_save_at": "2026-06-05T12:47:33.556Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T11:00:00Z",
     "source_docs": [

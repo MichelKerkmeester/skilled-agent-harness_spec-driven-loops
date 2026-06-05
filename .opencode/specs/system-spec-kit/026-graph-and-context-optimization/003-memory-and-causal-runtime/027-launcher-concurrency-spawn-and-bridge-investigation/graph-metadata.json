@@ -32,7 +32,7 @@
       "daemon"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "research_(read_only)",
     "key_files": [
       "research/research.md",
       "spec.md",
@@ -128,7 +128,7 @@
     ],
     "causal_summary": "Read-only deep-research packet investigating two root causes in the spec-kit launcher-coordination layer, both surfaced by the owner's heavy concurrent-session workflow. Canonical research output lives in `research/research.md`; this `spec.md` records the investigation ask, scope, and open questions.",
     "created_at": "2026-06-04T18:16:47.573Z",
-    "last_save_at": "2026-06-04T18:16:47.573Z",
+    "last_save_at": "2026-06-05T12:47:34.030Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

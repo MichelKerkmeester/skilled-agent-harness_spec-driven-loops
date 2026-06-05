@@ -39,7 +39,7 @@
       "probe"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Three gaps remained after packet 010 made the at-rest WAL durable. First, a daemon that died mid-write (SIGKILL/OOM/crash) could leave an FTS5 index in a torn state with no detection at the next boot, so a corrupt search index would surface only as cryptic query failures. Second, the retention sweep committed its delete transaction but never reclaimed space or truncated the WAL, so deleted rows lingered at rest in WAL and free pages. Third, the launcher liveness probe's default reap timeout (2500ms) was short enough to false-reap a busy-but-responsive daemon mid-merge, and the bridge decision could be satisfied by a bare socket connect — which would bridge a client into a HUNG daemon that accepts at libuv but never services JSON-RPC, and never respawn it.",
     "created_at": "2026-05-29T13:49:32.618Z",
-    "last_save_at": "2026-05-30T10:12:02.761Z",
+    "last_save_at": "2026-06-05T12:47:34.291Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

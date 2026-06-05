@@ -34,7 +34,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "scripts/validation/ephemeral-pointer-audit.mjs",
       "spec.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Packet 006 cleaned ephemeral-artifact pointers from code comments using hand-rolled grep patterns. Those patterns were incomplete: they matched `DR-`, `WS-`, `NNN/NNN`, and `Spec NNN`, but were blind to `P0-/P1-/P2-` review-finding ids, 2-digit/hyphenated task ids (`T73`, `T-02`), no-hyphen checklist ids (`CHK069`), `#NN` issue refs, `NNN-NNN` spec pairs, and `SPRINT N`. A purpose-built detector revealed the true debt: **274 violations across 116 files** — 006 had covered roughly 10%.",
     "created_at": "2026-05-29T20:35:49.807Z",
-    "last_save_at": "2026-05-30T10:12:02.924Z",
+    "last_save_at": "2026-06-05T12:47:33.951Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

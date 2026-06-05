@@ -37,7 +37,7 @@
       "verification"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_(validation_caveat_documented)",
     "key_files": [
       ".codex/agents/review.toml",
       ".codex/agents/orchestrate.toml",
@@ -51,8 +51,6 @@
       ".opencode/skills/sk-code-review/README.md",
       ".opencode/agents/review.md",
       ".opencode/agents/orchestrate.md",
-      ".gemini/agents/review.md",
-      ".gemini/agents/orchestrate.md",
       ".claude/agents/review.md",
       ".claude/agents/orchestrate.md",
       ".opencode/skills/sk-code-review/references/quick_reference.md"
@@ -205,7 +203,7 @@
     ],
     "causal_summary": "Level 2 specification for converting the draft `legacy-single-hyphen-review` package into `sk-code-review`, aligning router behavior to `sk-doc` standards, and wiring `@review` workflows to a baseline+overlay model. ---",
     "created_at": "2026-04-12T09:02:50.217Z",
-    "last_save_at": "2026-05-30T10:12:01.154Z",
+    "last_save_at": "2026-06-05T12:47:32.565Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,12 @@
+Read-only audit starting with the phase docs, recent history, and targeted symbol searches in the memory/causal subsystem. I’ll keep this evidence-focused and won’t modify files.
+The phase docs are scaffolded and still mark all tasks incomplete. The plan’s affected-surface table uses older `lib/storage` and `lib/governance` paths, while the current target paths appear to be under `lib/causal` and `lib/memory`, so I’m checking the current files directly.
+The exact `lib/causal` and `lib/memory` paths named in the prompt do not exist in the current tree. The live files are `lib/storage/causal-edges.ts`, `lib/storage/consolidation.ts`, and `lib/governance/memory-retention-sweep.ts`.
+`bb61e8864e` did add a backfill conflict guard, but only in `lib/causal/relation-backfill.ts`; it did not touch the phase’s write path targets. I’m checking whether tests or another helper nevertheless landed the planned semantics.
+Tests only cover retention TOCTOU and relation-backfill conflict behavior; I found no `auto-session` or tier-basement retention fixtures in the current test tree.
+Current evidence points to all three planned P0 fixes still missing from the core production files; the only partial overlap is the newer relation-backfill guard, which protects a narrower conflicting-relation path rather than `insertEdge` upsert semantics.
+## 002-memory-write-safety — VERDICT: STILL-RELEVANT
+- Evidence: `bb61e8864e` touched only `lib/causal/relation-backfill.ts`, not the core targets; current narrow checks remain in `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:270`, `:283`, and `lib/storage/consolidation.ts:357`; retention sweep still selects/deletes by `delete_after` only at `lib/governance/memory-retention-sweep.ts:52-68`, `:204-210`.
+- Per-item: P0-1 `STILL-RELEVANT`; P0-2 `STILL-RELEVANT`; P0-3 `STILL-RELEVANT`.
+- Reasoning: No `isAutoEdgeCreator`, `auto-session`, or `auto-*` predicate exists in the live causal write/consolidation paths. `insertEdge` still updates `created_by` on conflict without reading existing provenance, so a non-auto/manual edge can still be clobbered. Recent retention commits `8a30db8820` and `d9e429475b` added post-delete durability and TOCTOU revalidation, but no `importance_tier`, `is_pinned`, or protected-tier deletion basement.
+- Recommended action: keep the phase, but apply it to the live paths: `lib/storage/causal-edges.ts`, `lib/storage/consolidation.ts`, and `lib/governance/memory-retention-sweep.ts`.
+- Confidence: high.

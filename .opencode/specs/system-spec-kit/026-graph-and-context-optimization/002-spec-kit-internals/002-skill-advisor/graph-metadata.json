@@ -48,7 +48,7 @@
       "standards"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "resource-map.md"
@@ -141,7 +141,7 @@
     ],
     "causal_summary": "Skill advisor work was scattered across two phase wrappers (`006-skill-advisor/` for search/routing/graph/smart-router, and parts of `007-hook-parity/` for hook surface, daemon unification, plugin hardening, standards alignment, and hook improvements). The split made it hard to see the advisor system as one coherent surface and forced cross-wrapper navigation when reasoning about advisor changes.",
     "created_at": "2026-04-21T13:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.855Z",
+    "last_save_at": "2026-06-05T12:47:33.274Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

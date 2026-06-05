@@ -41,7 +41,7 @@
       "confirmation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "review/resource-map.md",
       "review/review-report.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "Packet 097 (track-review of 093-096) converged with verdict FAIL on 2026-05-07: 1 active P0 (live",
     "created_at": "2026-05-07T19:05:00Z",
-    "last_save_at": "2026-05-30T10:12:01.488Z",
+    "last_save_at": "2026-06-05T12:47:32.908Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

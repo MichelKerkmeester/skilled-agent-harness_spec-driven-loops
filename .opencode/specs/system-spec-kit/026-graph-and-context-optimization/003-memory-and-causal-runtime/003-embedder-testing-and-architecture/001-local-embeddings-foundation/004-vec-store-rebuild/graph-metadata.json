@@ -41,7 +41,7 @@
       "vec"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress_(memory_✓_complete;_cocoindex_schema_✓;_cocoindex_search_blocked_by_upstream_msgspec_truncation_—_follow_on_packet)",
     "key_files": [
       "dist/context-server.js",
       "shared/embeddings/providers/hf-local.ts",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "After 003's config rollout, every MCP child sees Setup A env vars, but the on-disk vec stores still reflect the previous embedding model identities. The Spec Kit Memory layer uses filename-keyed sqlite (so a clean DB auto-appeared as soon as the launcher loaded `.env.local`), but it had 0 rows — search returned nothing. CocoIndex's `target_sqlite.db` is single-file and was 2.0GB of stale MiniLM 384-dim vectors held open by a daemon that pre-dated the user's runtime restart.",
     "created_at": "2026-05-12T16:27:49Z",
-    "last_save_at": "2026-05-30T10:12:02.077Z",
+    "last_save_at": "2026-06-05T12:47:33.519Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-12T20:00:00Z",
     "source_docs": [

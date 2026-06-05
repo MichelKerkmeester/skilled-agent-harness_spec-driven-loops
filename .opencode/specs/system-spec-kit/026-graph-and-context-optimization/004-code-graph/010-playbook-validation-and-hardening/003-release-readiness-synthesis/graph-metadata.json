@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "feature_catalog/feature_catalog.md",
       "implementation-summary.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Phases 001 and 002 each produce per-scenario evidence, but the playbook's release-readiness verdict (§5 Review Protocol) requires a single consolidated view of all 22 scenarios with FAIL/SKIP triage.",
     "created_at": "2026-05-26T19:43:14.033Z",
-    "last_save_at": "2026-05-30T10:12:02.639Z",
+    "last_save_at": "2026-06-05T12:47:34.179Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

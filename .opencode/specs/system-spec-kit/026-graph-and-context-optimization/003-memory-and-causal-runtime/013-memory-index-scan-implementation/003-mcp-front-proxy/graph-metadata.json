@@ -41,8 +41,9 @@
       "rss"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "mcp_server/context-server.ts",
       "mcp_server/lib/ipc/socket-server.ts",
@@ -50,15 +51,21 @@
       "mcp_server/lib/ipc/launcher-idle-timeout.ts",
       "mcp_server/lib/session/session-manager.ts",
       ".claude/mcp.json",
-      ".vscode/mcp.json",
       "plan.md",
       "tasks.md",
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "entities": [
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
       {
         "name": "mk-spec-memory-launcher.cjs",
         "kind": "file",
@@ -138,6 +145,12 @@
         "source": "derived"
       },
       {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,23 +203,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Overview Stop",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Session",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The Spec Kit Memory MCP daemon RSS-recycles under load: when resident memory crosses the ceiling, `recycleViaGracefulSelfExit` sets `launcherShutdownInProgress = true` and calls `process.exit(0)`, which exits the launcher that OpenCode spawned as the MCP `command`. That severs the client stdio pipe with no transparent reconnect, so the client sees its MCP server vanish (observed live: `mk_code_index` and `mk_skill_advisor` dropping; launcher pid churn). This packet keeps the launcher alive as a frame-aware reconnecting proxy that owns the client MCP session and recycles the daemon child in place, so an RSS recycle mid-request no longer breaks the client. In-flight read and idempotent-write requests are transparently replayed across the recycle; in-flight non-idempotent writes get a single retryable error instead of a double-apply or a dead pipe.",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-06-01T21:32:38.012Z",
+    "last_save_at": "2026-06-05T12:47:33.977Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -215,7 +216,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "research/research.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

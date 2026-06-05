@@ -32,10 +32,8 @@
       "candidates"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft_(blocked_on_012/001)",
     "key_files": [
-      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
       "implementation-summary.md",
       "spec.md",
       "plan.md",
@@ -43,18 +41,6 @@
       "checklist.md"
     ],
     "entities": [
-      {
-        "name": "08-code-graph-edge-explanation-blast-radius-uplift.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
-        "source": "derived"
-      },
-      {
-        "name": "026-code-graph-edge-explanation-blast-radius-uplift.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
-        "source": "derived"
-      },
       {
         "name": "implementation-summary.md",
         "kind": "doc",
@@ -186,11 +172,23 @@
         "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Schema Discipline",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Hand",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Add reason/step fields to edge metadata + display; enrich blast_radius with depth groups, risk levels, min-confidence filter, ambiguity candidates, structured failure-fallback. No SQLite migration.",
     "created_at": "2026-04-25T10:48:07.859Z",
-    "last_save_at": "2026-05-30T10:12:02.661Z",
+    "last_save_at": "2026-06-05T12:47:34.211Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

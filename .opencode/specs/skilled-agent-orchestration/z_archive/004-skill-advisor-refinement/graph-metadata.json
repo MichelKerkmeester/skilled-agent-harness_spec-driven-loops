@@ -39,7 +39,7 @@
       "regression"
     ],
     "importance_tier": "critical",
-    "status": "in_progress",
+    "status": "implementation_complete",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "This spec defines a focused refinement of the skill advisor workflow to improve recommendation correctness, preserve uncertainty safety by default, and reduce runtime overhead in repeated calls. The work is limited to `.opencode/skills/scripts/skill_advisor.py` plus adjacent script-level support files that provide caching, benchmarking, and regression gates.",
     "created_at": "2026-04-12T09:02:50.201Z",
-    "last_save_at": "2026-05-30T10:12:01.134Z",
+    "last_save_at": "2026-06-05T12:47:32.543Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

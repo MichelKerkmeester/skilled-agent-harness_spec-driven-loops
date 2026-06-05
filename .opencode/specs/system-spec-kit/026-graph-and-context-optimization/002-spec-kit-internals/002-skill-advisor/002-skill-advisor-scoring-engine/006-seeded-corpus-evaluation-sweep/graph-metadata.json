@@ -37,7 +37,7 @@
       "real"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "research/sweep-results.md",
       "implementation-summary.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015/003 shipped the lane-weight sweep harness, the type extension, and a 24-prompt corpus, but the sweep run produced byte-identical numbers across all 7 candidate vectors (including V6-cosine-dominant at semantic=0.30). Root cause documented in 015/003 implementation-summary.md Known Limitation #2: the sweep test runs against `createFixtureProjection(...)` which does NOT seed the `embedding` column that the cosine lane reads via `loadSkillEmbeddings()`. So semantic_shadow contributed zero to every vector regardless of weight, and the sweep is currently a regression guard on the four non-semantic lanes only.",
     "created_at": "2026-05-14T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.934Z",
+    "last_save_at": "2026-06-05T12:47:33.362Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T00:00:00Z",
     "source_docs": [

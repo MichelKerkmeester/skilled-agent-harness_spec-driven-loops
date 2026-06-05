@@ -27,7 +27,7 @@ _memory:
 <!-- ANCHOR:summary -->
 ## SUMMARY
 
-Add an OPTIONAL semantic trigger stage to `memory_match_triggers` as a feature-flagged UNION fallback. Lexical remains primary precision path; semantic adds paraphrase recall using existing Voyage-4 cache. Cognitive activation guards prevent semantic-only hits from masquerading as exact triggers. Continuation research tightens the rollout: trigger embedding backfill must be resumable and out-of-band, the hot path must never call an embedding provider, and live union mode requires shadow telemetry promotion evidence. Four sub-phases: schema+backfill → semantic matcher → hybrid handler → tests+goldens+shadow eval. ~280-450 production LOC + ~220-330 tests.
+Add an OPTIONAL semantic trigger stage to `memory_match_triggers` as a feature-flagged UNION fallback. Lexical remains primary precision path; semantic adds paraphrase recall using the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768-dim; profile_key/input_kind-scoped). Cognitive activation guards prevent semantic-only hits from masquerading as exact triggers. Continuation research tightens the rollout: trigger embedding backfill must be resumable and out-of-band, the hot path must never call an embedding provider, and live union mode requires shadow telemetry promotion evidence. NOTE: the `0.84` threshold/margin/goldens were tuned for Voyage 1024d and MUST be re-tuned/re-validated for the active 768d Nomic profile. Four sub-phases: schema+backfill → semantic matcher → hybrid handler → tests+goldens+shadow eval. ~280-450 production LOC + ~220-330 tests.
 
 ---
 
@@ -39,7 +39,7 @@ Add an OPTIONAL semantic trigger stage to `memory_match_triggers` as a feature-f
 - Strict spec validation passes (`bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh <packet> --strict` exits 0).
 - All P0 checklist items green.
 - All ADR commitments upheld with file:line evidence in `implementation-summary.md`.
-- 028/004-code-graph-adoption-eval eval gate documented (when applicable for active-mode promotion).
+- Shadow-eval evidence gate documented (equivalent shadow-eval harness; when applicable for active-mode promotion).
 - Backfill is resumable: scan interruption can restart without duplicate ready rows or partial rows marked ready.
 - Promotion from `shadow` to `union` is blocked until telemetry proves false-positive, recall, latency, and cost targets.
 <!-- /ANCHOR:quality-gates -->
@@ -55,8 +55,8 @@ Add an OPTIONAL semantic trigger stage to `memory_match_triggers` as a feature-f
 - `mcp_server/lib/parsing/trigger-matcher.ts:132-160` — Latency budget: <30ms PASS / <50ms WARN / 100ms WARN_EXCEEDED.
 - `mcp_server/handlers/memory-triggers.ts:155-380` — Handler: scope filtering, eval logging, cognitive activation in working memory + co-activation.
 - `mcp_server/lib/cache/embedding-cache.ts:45-215` — Persistent cache keyed by `(content_hash, model_id, dimensions)`; LRU + age eviction, 10000-row cap.
-- `mcp_server/lib/embeddings/embedding-pipeline.ts:114-169` — Save-time lookup-or-generate-and-store pattern.
-- `mcp_server/lib/embeddings/factory.ts:88-364` — Provider auto-resolution: Voyage with `VOYAGE_API_KEY`, model `voyage-4`, 1024-dim default.
+- `mcp_server/handlers/save/embedding-pipeline.ts:114-169` — Save-time lookup-or-generate-and-store pattern.
+- `shared/embeddings/factory.ts` + `shared/embeddings/auto-select.ts` — Provider auto-resolution: local-first, default Ollama `nomic-embed-text-v1.5` (768-dim); remote providers (e.g. Voyage) are explicit/last-resort fallbacks only.
 - `mcp_server/lib/search/embedding-expansion.ts:13-218` — Existing semantic broadening precedent (feature-flagged, fail-closed to identity).
 - `mcp_server/lib/storage/memory-summaries.ts:25-190` — Local cosine helper + BLOB-to-Float32 conversion pattern.
 - `mcp_server/lib/cognitive/{tier-classifier,working-memory,attention-decay,co-activation}.ts` — Activation pipeline that consumes trigger results.
@@ -144,13 +144,13 @@ Backfill runs OUT OF BAND:
 **Files (modified):**
 - `mcp_server/lib/storage/vector-index-schema.ts` — Add `memory_trigger_embeddings` table.
 - `mcp_server/handlers/memory-index.ts` — Add per-memory trigger embedding backfill.
-- `mcp_server/lib/embeddings/embedding-pipeline.ts` — Hook for save-time trigger embedding generation.
+- `mcp_server/handlers/save/embedding-pipeline.ts` — Hook for save-time trigger embedding generation.
 
 **Approach:**
 - Schema migration: `CREATE TABLE IF NOT EXISTS memory_trigger_embeddings (memory_id INTEGER NOT NULL, phrase TEXT NOT NULL, phrase_hash TEXT NOT NULL, model_id TEXT NOT NULL, dimensions INTEGER NOT NULL, embedding_status TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY (memory_id, phrase_hash))`. Forward-only.
 - Embeddings stored in EXISTING `embedding_cache` BLOB store (no new BLOB table).
 - Backfill loop: for each memory in scan, for each trigger phrase, compute `phrase_hash`, check cache, generate if missing, and mark `embedding_status='ready'` only after the embedding is durably stored. Use pending/failed status for interruption-safe resume.
-- Save-time path: same as backfill but per-memory at save time; non-blocking on Voyage failure (mark `embedding_status='failed'`, retry on next scan).
+- Save-time path: same as backfill but per-memory at save time; non-blocking on embedding-provider failure (mark `embedding_status='failed'`, retry on next scan).
 
 **Acceptance:**
 - Migration test passes (table created cleanly on existing DB).
@@ -222,7 +222,7 @@ Backfill runs OUT OF BAND:
 - Unit tests per sub-phase (vitest TypeScript / pytest Python).
 - Integration tests for cross-component code paths.
 - Diff tests for backward-compat (flag-off output bit-identical to current).
-- 028/004-code-graph-adoption-eval paired comparison harness for active-mode promotion gating.
+- Equivalent shadow-eval / paired-comparison harness for active-mode promotion gating.
 - Per-checklist verification commands for repeatable green-field checks.
 <!-- /ANCHOR:testing -->
 
@@ -238,7 +238,7 @@ Backfill runs OUT OF BAND:
 None.
 
 ### Soft preconditions
-- **028/004-code-graph-adoption-eval** (adoption eval harness) — for threshold tuning runs and recall-lift measurement; not required for spec scaffold or initial implementation.
+- **Shadow-eval evidence** (equivalent shadow-eval / paired-comparison harness) — for threshold tuning runs and recall-lift measurement; the dependency is on the evidence, not on a specific named folder (the previously-cited `028/004-code-graph-adoption-eval` folder does not exist); not required for spec scaffold or initial implementation.
 
 ### Internal sub-phase order
 - Sub-Phase 1 (schema + backfill) → Sub-Phase 2 (semantic matcher) → Sub-Phase 3 (hybrid handler) → Sub-Phase 4 (tests + goldens + shadow eval).
@@ -260,7 +260,7 @@ None.
 | R-007-02 | Embedding cost from per-prompt embed | P1 | High when active | Lexical short-circuit on strong matches + threshold gating + cache reuse | Embed call counter in shadow telemetry |
 | R-007-03 | Schema migration breaks existing memory DB | P1 | Low | Forward-only ADD; backward-compatible reads; migration test on existing DB fixture | Migration test |
 | R-007-04 | Backfill scheduling complexity / inconsistency | P2 | Med | Deferred via index scan; cold-start no-op | Cold-start test |
-| R-007-05 | Voyage rate-limit cascade to trigger latency | P1 | Low (out-of-band embed only) | Cache lookup only in hot path; embed at backfill | Trace assertion: no `embed` calls in trigger handler |
+| R-007-05 | Embedding provider rate-limit / latency cascade to trigger latency (remote fallback only; local Ollama unmetered) | P1 | Low (out-of-band embed only) | Cache lookup only in hot path; embed at backfill | Trace assertion: no `embed` calls in trigger handler |
 | R-007-06 | Threshold tuning drift from production query distribution | P2 | Med | Shadow telemetry collects threshold-band distribution; tune from real data | Threshold-tuning test consumes shadow logs |
 | R-007-07 | Lexical regression from handler refactor | **P0** | Low | Diff test: flag-off output bit-identical; existing test suite unchanged | Diff test in CI |
 <!-- /ANCHOR:risk-matrix -->
@@ -278,7 +278,7 @@ None.
 | Latency p95 with shadow stage active | ≤ 100ms WARN | `latency-budget.vitest.ts` |
 | Embed calls per trigger request | 0 (cache lookup only) | Trace assertion |
 | Diff test (flag-off vs current) | identical | Snapshot diff in CI |
-| 028/004-code-graph-adoption-eval paraphrase task recall lift | ≥ 0.15 over baseline | 028/004-code-graph-adoption-eval paired comparison |
+| Shadow-eval paraphrase task recall lift | ≥ 0.15 over baseline | Equivalent shadow-eval / paired comparison harness |
 | Shadow-to-union promotion | explicit pass | Checklist evidence for FP rate, recall, latency, cost, and rollback |
 <!-- /ANCHOR:success-metrics -->
 
@@ -345,5 +345,5 @@ See sub-phase ordering in `tasks.md` task dependency diagrams. Hard-blocking dep
 
 - **M1**: Sub-Phase 1 complete (foundational schema/precondition/extraction).
 - **M2..MN**: Each subsequent sub-phase complete per `tasks.md` group.
-- **MFinal**: All checklist items green; implementation-summary filled; 028/004-code-graph-adoption-eval eval gate ready (when applicable).
+- **MFinal**: All checklist items green; implementation-summary filled; shadow-eval evidence gate ready (equivalent shadow-eval harness; when applicable).
 <!-- /ANCHOR:milestones -->

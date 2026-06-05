@@ -39,12 +39,11 @@
       "server"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "shipped",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       ".claude/mcp.json",
       ".codex/config.toml",
-      ".gemini/settings.json",
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/dist/context-server.js",
       "mcp_server/handlers/save/spec-folder-mutex.ts",
@@ -53,14 +52,13 @@
       "mcp_server/tests/shared-daemon-runner-helpers.vitest.ts",
       "dist/context-server.js",
       ".opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts",
-      ".vscode/mcp.json",
       "spec.md",
       "plan.md",
       "resource-map.md",
       "implementation-summary.md",
       ".opencode/commands/doctor/_routes.yaml",
       "mcp_server/context-server.ts",
-      ".gemini/scripts/mk-spec-memory.sh"
+      "tasks.md"
     ],
     "entities": [
       {
@@ -79,12 +77,6 @@
         "name": "config.toml",
         "kind": "file",
         "path": ".codex/config.toml",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -160,9 +152,9 @@
         "source": "derived"
       },
       {
-        "name": "mk-spec-memory.sh",
-        "kind": "script",
-        "path": ".gemini/scripts/mk-spec-memory.sh",
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -206,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This phase turns the K2.x naming decision into a bounded implementation packet. The research found that the visible host-qualified MCP prefix is not produced by the server code; it is derived by runtimes from their configured MCP server key. That makes the rename mostly a config and reference migration, not a tool-schema refactor.",
     "created_at": "2026-05-13T09:00:44Z",
-    "last_save_at": "2026-05-30T10:12:02.164Z",
+    "last_save_at": "2026-06-05T12:47:33.608Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

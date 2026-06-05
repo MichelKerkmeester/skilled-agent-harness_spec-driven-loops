@@ -36,7 +36,7 @@ _memory:
 
 - [ ] T001 Confirm `001-aggregator` and Phase 002 guardrails are available.
 - [ ] T002 Define reducer options and result telemetry.
-- [ ] T003 Define shadow replay output for candidate edges, skipped edges, relation-floor decisions, and manual-edge protection.
+- [ ] T003 Define shadow replay output for candidate edges, skipped edges, relation-floor decisions, and manual-edge protection. AUDIT 2026-06-05: candidate `ENABLED` edges are valid per `RELATION_TYPES` but ABSENT from `DEFAULT_RELATION_TARGETS`; the reducer must validate against `RELATION_TYPES`/schema and align coverage targets before applying the relation floor.
 <!-- /ANCHOR:phase-1 -->
 
 ---

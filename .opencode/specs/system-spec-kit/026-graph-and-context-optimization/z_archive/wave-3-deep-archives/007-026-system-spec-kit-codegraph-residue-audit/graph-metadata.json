@@ -41,28 +41,24 @@
       "docs"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress_(phase_2_added_2026_05_15)",
     "key_files": [
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/ARCHITECTURE.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/03-doctor-router-and-manifest-dispatch.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
       ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
-      ".vscode/mcp.json",
       "implementation-summary.md",
       ".opencode/install_guides/README.md",
       ".opencode/commands/doctor/scripts/mcp-doctor.sh",
       ".opencode/commands/doctor/assets/doctor_mcp_install.yaml",
-      ".opencode/commands/doctor/mcp.md"
+      ".opencode/commands/doctor/mcp.md",
+      ".opencode/install_guides/SET-UP - Code Graph.md",
+      ".opencode/skills/system-skill-advisor/INSTALL_GUIDE.md",
+      ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+      "spec.md",
+      "plan.md",
+      "tasks.md"
     ],
     "entities": [
       {
@@ -90,69 +86,9 @@
         "source": "derived"
       },
       {
-        "name": "04-detect-changes-preflight.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/03--discovery/04-detect-changes-preflight.md",
-        "source": "derived"
-      },
-      {
-        "name": "03-doctor-router-and-manifest-dispatch.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/03-doctor-router-and-manifest-dispatch.md",
-        "source": "derived"
-      },
-      {
-        "name": "08-code-graph-edge-explanation-blast-radius-uplift.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/08-code-graph-edge-explanation-blast-radius-uplift.md",
-        "source": "derived"
-      },
-      {
-        "name": "25-code-graph-phase-dag-runner.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/25-code-graph-phase-dag-runner.md",
-        "source": "derived"
-      },
-      {
-        "name": "38-codex-hook-freshness-smoke-check.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
-        "source": "derived"
-      },
-      {
-        "name": "014-detect-changes-preflight.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/014-detect-changes-preflight.md",
-        "source": "derived"
-      },
-      {
-        "name": "026-code-graph-edge-explanation-blast-radius-uplift.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/026-code-graph-edge-explanation-blast-radius-uplift.md",
-        "source": "derived"
-      },
-      {
-        "name": "271-code-graph-phase-dag-runner.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/271-code-graph-phase-dag-runner.md",
-        "source": "derived"
-      },
-      {
-        "name": "279-graph-degraded-stress-cell-isolation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
-        "source": "derived"
-      },
-      {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
         "path": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
-        "source": "derived"
-      },
-      {
-        "name": "mcp.json",
-        "kind": "config",
-        "path": ".vscode/mcp.json",
         "source": "derived"
       },
       {
@@ -177,6 +113,36 @@
         "name": "mcp.md",
         "kind": "doc",
         "path": ".opencode/commands/doctor/mcp.md",
+        "source": "derived"
+      },
+      {
+        "name": "SET-UP - Code Graph.md",
+        "kind": "doc",
+        "path": ".opencode/install_guides/SET-UP - Code Graph.md",
+        "source": "derived"
+      },
+      {
+        "name": "doctor_mcp_debug.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/doctor/assets/doctor_mcp_debug.yaml",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -208,11 +174,41 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Problem Statement Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "System Spec Kit Level",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview The",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 014 moved code-graph ownership out of `system-spec-kit` into the standalone `.opencode/skills/system-code-graph/` skill. User-facing system-spec-kit docs still contained a mixture of correct cross-skill runtime mentions and stale ownership/path claims, including old `mcp_server/code_graph` paths and prose describing Code Graph as a system-spec-kit subsystem.",
     "created_at": "2026-05-14T17:35:44Z",
-    "last_save_at": "2026-05-30T10:12:02.814Z",
+    "last_save_at": "2026-06-05T12:47:34.353Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

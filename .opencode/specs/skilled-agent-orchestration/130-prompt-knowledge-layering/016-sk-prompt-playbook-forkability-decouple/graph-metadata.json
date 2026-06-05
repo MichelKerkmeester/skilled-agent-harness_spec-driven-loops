@@ -1,7 +1,210 @@
-Packet: skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple
-Spec Folder: skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple
-Status: planned
-Importance Tier: important
-Summary: Phase 1: sk-prompt-playbook-forkability-decouple
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "spec_folder": "skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple",
+  "parent_id": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "sk-prompt playbook forkability",
+      "playbook decouple",
+      "card-centric scenario reframe",
+      "playbook decouple plan",
+      "forkability reframe plan",
+      "playbook decouple tasks",
+      "tasks core",
+      "playbook decouple summary",
+      "forkability summary"
+    ],
+    "key_topics": [
+      "sk-prompt",
+      "playbook",
+      "forkability",
+      "decouple",
+      "card-centric",
+      "scenario",
+      "reframe",
+      "plan",
+      "tasks",
+      "core",
+      "summary",
+      "phase"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      "changelog/v2.1.3.0.md",
+      "manual_testing_playbook/manual_testing_playbook.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "v2.1.3.0.md",
+        "kind": "doc",
+        "path": "changelog/v2.1.3.0.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook.md",
+        "kind": "doc",
+        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context Phase",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Two",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Reframe",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Audit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Phase 16 (forkability cleanup) of spec 130. sk-prompt is meant to be a standalone, forkable",
+    "created_at": "2026-06-05T12:47:32.530Z",
+    "last_save_at": "2026-06-05T12:47:32.530Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

@@ -36,11 +36,10 @@
       "audit"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/agents/debug.md",
       ".claude/agents/debug.md",
-      ".gemini/agents/debug.md",
       ".codex/agents/debug.toml",
       "spec.md",
       "plan.md",
@@ -195,7 +194,7 @@
     ],
     "causal_summary": "The `/doctor:skill-budget` audit shipped in packet 086 surfaced 6 agents whose descriptions exceed the 130-char soft target — none were touched by packet 083's skill+command trim because that packet's scope was deliberately limited. Project description total currently sits at **6,086 chars**, **486 chars over the 5,600 soft ceiling** (still well under Claude Code's 8,000 hard default, so no skills are being dropped today, but headroom is gone). The 6 over-soft agents are: `debug` (306), `multi-ai-council` (179), `code` (178), `deep-review` (158), `prompt-improver` (145), `orchestrate` (134). Each is mirrored across 4 runtime surfaces (`.opencode/agents/`, `.claude/agents/`, `.gemini/agents/`, `.codex/agents/`) — 24 files total.",
     "created_at": "2026-05-06T16:56:10.042Z",
-    "last_save_at": "2026-05-30T10:12:01.456Z",
+    "last_save_at": "2026-06-05T12:47:32.874Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

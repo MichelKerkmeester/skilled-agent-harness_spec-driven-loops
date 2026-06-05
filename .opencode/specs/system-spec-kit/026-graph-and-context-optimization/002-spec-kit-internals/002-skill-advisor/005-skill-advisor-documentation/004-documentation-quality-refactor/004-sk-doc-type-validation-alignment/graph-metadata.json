@@ -35,7 +35,7 @@
       "varies"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "pending_(gated_by_001_synthesis)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "Per-file sk-doc template adherence varies across system-skill-advisor doc surfaces. Most surfaces PASS structurally but the manual_testing_playbook is PARTIAL (incomplete legacy ID mapping, count discrepancy), and per-file content alignment needs full 1:1 review against sk-doc templates per the audit's iters 01, 03-13, 15.",
     "created_at": "2026-05-16T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.974Z",
+    "last_save_at": "2026-06-05T12:47:33.406Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

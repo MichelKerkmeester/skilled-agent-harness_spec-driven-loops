@@ -91,8 +91,8 @@ Per-child resource map for Phase 007. Pt-03's aggregate map (`../research/027-xc
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts` | Updated | OK | Sub-Phase 3: Stage 2 gate + UNION + activation guards (REQ-002, REQ-008) |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/triggers/semantic-trigger-matcher.ts` | Created | PLANNED | Sub-Phase 2: cosine + threshold + margin + max gates |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts` | Cited | OK | BLOB storage reuse; no changes (REQ-004) |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/embeddings/embedding-pipeline.ts` | Updated | OK | Sub-Phase 1: save-time backfill hook (REQ-006) |
-| `.opencode/skills/system-spec-kit/mcp_server/lib/embeddings/factory.ts` | Cited | OK | Voyage `voyage-4` 1024-dim provider |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/save/embedding-pipeline.ts` | Updated | OK | Sub-Phase 1: save-time backfill hook (REQ-006) |
+| `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts` | Cited | OK | Embedding factory/auto-select; local-first, default Ollama `nomic-embed-text-v1.5` 768d (remote e.g. Voyage = fallback only) |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/embeddings/embeddings.ts` | Cited | OK | Embed timeout/circuit-breaker context |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index-scan.ts` | Updated | OK | Sub-Phase 1: per-memory backfill loop (REQ-005, REQ-006) |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-schema.ts` | Updated | OK | Sub-Phase 1: ADD `memory_trigger_embeddings` table (REQ-004) |
@@ -139,5 +139,5 @@ Per-child resource map for Phase 007. Pt-03's aggregate map (`../research/027-xc
 - **Categories omitted (zero entries)**: Commands, Agents, Skills (skill itself in §READMEs), Meta.
 - **PLANNED entries** become OK during Sub-Phases 1-4 implementation.
 - **Schema migration** is a forward-only ADD — no rollback path, but reads remain backward-compatible.
-- **No external dependencies** — Phase 007 has no hard preconditions; soft dep on 028/004-code-graph-adoption-eval for threshold tuning.
+- **No external dependencies** — Phase 007 has no hard preconditions; soft dep on shadow-eval evidence (equivalent shadow-eval harness) for threshold tuning; the previously-cited `028/004-code-graph-adoption-eval` folder does not exist.
 <!-- /ANCHOR:author-notes -->

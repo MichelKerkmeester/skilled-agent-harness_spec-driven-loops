@@ -1,0 +1,5 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m✗ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY relevance audit for .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones. Determine whether planned causal_edge_tombstones, lib/causal/sweep.ts tombstone-then-delete helper, routing delete paths through it, memory_health autoRepair orphan tombstoning are still relevant after recent commits.","specFolder":".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false} failed
+[91m[1mError: [0mMCP error -32001: Request timed out

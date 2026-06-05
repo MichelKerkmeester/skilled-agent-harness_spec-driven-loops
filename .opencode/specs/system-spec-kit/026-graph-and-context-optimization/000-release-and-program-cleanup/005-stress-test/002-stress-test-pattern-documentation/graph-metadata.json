@@ -41,7 +41,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "plan.md",
       "tasks.md",
@@ -49,7 +49,6 @@
       "implementation-summary.md",
       "spec.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md",
       ".opencode/skills/sk-doc/SKILL.md",
       "resource-map.md"
     ],
@@ -88,12 +87,6 @@
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md",
-        "source": "derived"
-      },
-      {
-        "name": "01-run-stress-cycle.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md",
         "source": "derived"
       },
       {
@@ -197,11 +190,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The stress test cycle format has been authored ad-hoc three times now (v1.0.1, v1.0.2, v1.0.3). The shape that emerged is reusable: 30-cell scoring matrix (4 dimensions x packets), 0-2 rubric per dimension, findings narrative plus `findings-rubric.json` machine-readable sidecar, PROVEN/NEUTRAL/REGRESSION verdict ladder, weighted aggregate percentage. **None of it is documented in sk-doc**, so the next cycle (v1.0.4 or a different domain) starts from zero.",
     "created_at": "2026-04-29T07:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.651Z",
+    "last_save_at": "2026-06-05T12:47:33.069Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

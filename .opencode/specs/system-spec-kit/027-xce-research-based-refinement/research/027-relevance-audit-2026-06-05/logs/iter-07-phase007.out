@@ -1,0 +1,27 @@
+SKILL ROUTING: system-spec-kit recommended by runtime advisor. I’ll keep this read-only and focus on the 007 spec, recent git history, and current MCP memory/causal code evidence.
+Current MCP code has only a placeholder mention for `SPECKIT_SEMANTIC_TRIGGERS_*`; I’m checking the schema/trigger/embedding files and the relevant recent commits to distinguish “missing” from “superseded.”
+Several planned paths are now stale or absent: there is no `lib/triggers/` directory and no `lib/storage/vector-index-schema.ts` in the current tree. I’m locating the live schema/trigger paths and the 028/004 packet state before forming the verdict.
+The current 028 packet appears to be `028-peck-teachings-adoption`, not `028/004-code-graph-adoption-eval`; I’m verifying whether any renamed/equivalent eval folder exists and whether current embedding code invalidates the Voyage-only assumption.
+The `028/004-code-graph-adoption-eval` target has no current folder hit by path search, while the local-first embedding path is present in both docs and code. I’ll pull a few exact line ranges for final citations.
+The 027 continuation research itself already revalidated Phase 007 as directionally valid but needing scope updates; I’m checking the spec tree outside `.opencode/specs` because current path search did not find any `028-*` folder there.
+The requested `028/004-code-graph-adoption-eval` evidence is not present as a current spec folder; the only current-search hits are older 027 references to it as a planned/equivalent gate. I’m taking final schema and commit-path citations now.
+## 007-semantic-trigger-fallback — VERDICT: NEEDS-RESCOPE
+- Evidence: `e39a6a8e63` folded continuation research into 027 and refreshed 007 without source-code changes; `79cb4e4d21` changed embedding resolution to local-first. Current code still has lexical-only trigger matching in `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts:797-867` and handler-only lexical use in `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts:304-371`.
+- Evidence: No current `memory_trigger_embeddings`, `semantic-trigger-matcher.ts`, trigger goldens, or semantic trigger implementation under `mcp_server`; only an ENV placeholder exists at `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:103-104`.
+- Evidence: Current schema stores `trigger_phrases TEXT` in `memory_index` at `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2585-2600`, and only ensures the generic `embedding_cache` at `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2579-2581` and `:2712-2713`.
+- Evidence: The embedding assumption shifted: auto-selection is local-first `ollama -> hf-local -> openai -> voyage` at `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts:488-496`; docs say auto mode uses Ollama/HF 768d before Voyage 1024d at `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md:408`; tests assert Ollama/HF 768d defaults at `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-auto-selection.vitest.ts:114-165`.
+- Evidence: `028/004-code-graph-adoption-eval` is not available as a current packet. `a101cbacfa` added `028-peck-teachings-adoption` with `004-constitutional-rule-review`, and `e39a6a8e63` later moved peck planning under 027; current path reads for `028-peck-teachings-adoption/004-constitutional-rule-review/spec.md` fail.
+
+- Per-item:
+- `memory_trigger_embeddings` table: STILL-RELEVANT, but rescope keying to active embedding profile/cache shape, not Voyage-only.
+- `semantic-trigger-matcher.ts`, cosine fallback, threshold/margin/max: STILL-RELEVANT, but parameterize by active provider/dimensions.
+- Two-stage lexical-then-semantic handler and reduced activation guards: STILL-RELEVANT.
+- Five `SPECKIT_SEMANTIC_TRIGGER*` flags and goldens: STILL-RELEVANT.
+- “Reusable Voyage-4 1024-dim cache” assumption: INVALIDATED.
+- Soft dependency on `028/004-code-graph-adoption-eval`: NEEDS-RESCOPE to “equivalent shadow/promotion evidence,” because that packet/folder is not current.
+
+- Reasoning: The core planned feature is not already done: current trigger matching remains lexical, no derived trigger embedding table exists, and semantic flags are only an insertion-slot comment. However, the plan’s embedding premise is stale because the active embedding system is local-first and profile/dimension-aware, not Voyage-4/1024 by default. The external 028/004 eval dependency also cannot be used as written because the current 028 lineage was relocated/reframed.
+
+- Recommended action: Rescope, not drop. Keep the lexical-first/default-off/shadow-first design, but rewrite the embedding/cache requirements around the active embedding profile (`profile_key`, `input_kind`, `model_id`, `dimensions`) and replace the `028/004-code-graph-adoption-eval` dependency with explicit equivalent shadow telemetry/promotion evidence.
+
+- Confidence: high.

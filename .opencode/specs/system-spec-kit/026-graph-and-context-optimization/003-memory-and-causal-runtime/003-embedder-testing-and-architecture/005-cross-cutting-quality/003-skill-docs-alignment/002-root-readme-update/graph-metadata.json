@@ -32,7 +32,7 @@
       "doesn"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -187,7 +187,7 @@
     ],
     "causal_summary": "Repo root `README.md` (if it exists) likely doesn't mention the 016-019 changes: pluggable embedder architecture, jina-v3 for mk-spec-memory, jina-code for CocoIndex, rescue layer default-on, MPS auto-detect on Apple Silicon. New visitors landing on the repo should see the current architecture without spelunking.",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-05-30T10:12:02.342Z",
+    "last_save_at": "2026-06-05T12:47:33.760Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

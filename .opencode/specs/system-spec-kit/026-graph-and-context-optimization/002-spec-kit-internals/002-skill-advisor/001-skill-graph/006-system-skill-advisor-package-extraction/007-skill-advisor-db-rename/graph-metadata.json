@@ -41,7 +41,7 @@
       "extraction"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/context-server.ts",
       ".opencode/skills/system-spec-kit/mcp_server/scripts/migrations/create-checkpoint.ts",
@@ -54,7 +54,6 @@
       "dist/context-server.js",
       ".opencode/skills/system-skill-advisor/graph-metadata.json",
       ".opencode/skills/system-skill-advisor/mcp_server/database/skill-graph.sqlite",
-      ".opencode/skills/system-spec-kit/mcp_server/database/graph-metadata-index.sqlite",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -129,12 +128,6 @@
         "source": "derived"
       },
       {
-        "name": "graph-metadata-index.sqlite",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/database/graph-metadata-index.sqlite",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
@@ -205,11 +198,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Targeted Option",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "After the system-skill-advisor extraction, two unrelated databases still used the filename `skill-graph.sqlite`. The advisor scorer DB correctly lives under `.opencode/skills/system-skill-advisor/mcp_server/database/`, but the spec-kit `skill_graph_*` metadata indexer still wrote `skill-graph.sqlite` under `.opencode/skills/system-spec-kit/mcp_server/database/`.",
     "created_at": "2026-05-14T13:02:30Z",
-    "last_save_at": "2026-05-30T10:12:01.885Z",
+    "last_save_at": "2026-06-05T12:47:33.305Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T13:20:00Z",
     "source_docs": [

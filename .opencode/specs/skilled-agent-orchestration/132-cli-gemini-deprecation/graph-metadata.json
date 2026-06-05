@@ -19,7 +19,10 @@
       "gemini deprecation tasks",
       "gemini deprecation checklist",
       "gemini deprecation decision",
-      "gemini deprecation implementation"
+      "gemini deprecation implementation",
+      "resource map",
+      "path catalog",
+      "files touched"
     ],
     "key_topics": [
       "gemini",
@@ -33,10 +36,10 @@
       "checklist",
       "decision",
       "implementation",
-      "repository"
+      "resource"
     ],
     "importance_tier": "important",
-    "status": "verification_passed",
+    "status": "complete",
     "key_files": [
       "scripts/setup-maintainer-filters.sh",
       "plan.md",
@@ -44,7 +47,20 @@
       "checklist.md",
       "decision-record.md",
       "spec.md",
-      "implementation-summary.md"
+      ".claude/mcp.json",
+      ".codex/config.toml",
+      ".devin/config.json",
+      ".opencode/agents/README.txt",
+      ".opencode/agents/deep-improvement.md",
+      ".opencode/agents/deep-review.md",
+      ".opencode/agents/orchestrate.md",
+      ".opencode/agents/prompt-improver.md",
+      ".opencode/commands/create/README.txt",
+      ".opencode/commands/create/agent.md",
+      ".opencode/commands/create/folder_readme.md",
+      ".opencode/commands/create/sk-skill.md",
+      ".opencode/commands/create/skill.md",
+      ".opencode/commands/create/assets/create_agent_auto.yaml"
     ],
     "entities": [
       {
@@ -84,9 +100,81 @@
         "source": "derived"
       },
       {
-        "name": "implementation-summary.md",
+        "name": "mcp.json",
+        "kind": "config",
+        "path": ".claude/mcp.json",
+        "source": "derived"
+      },
+      {
+        "name": "config.toml",
+        "kind": "file",
+        "path": ".codex/config.toml",
+        "source": "derived"
+      },
+      {
+        "name": "config.json",
+        "kind": "config",
+        "path": ".devin/config.json",
+        "source": "derived"
+      },
+      {
+        "name": "README.txt",
+        "kind": "file",
+        "path": ".opencode/agents/README.txt",
+        "source": "derived"
+      },
+      {
+        "name": "deep-improvement.md",
         "kind": "doc",
-        "path": "implementation-summary.md",
+        "path": ".opencode/agents/deep-improvement.md",
+        "source": "derived"
+      },
+      {
+        "name": "deep-review.md",
+        "kind": "doc",
+        "path": ".opencode/agents/deep-review.md",
+        "source": "derived"
+      },
+      {
+        "name": "orchestrate.md",
+        "kind": "doc",
+        "path": ".opencode/agents/orchestrate.md",
+        "source": "derived"
+      },
+      {
+        "name": "prompt-improver.md",
+        "kind": "doc",
+        "path": ".opencode/agents/prompt-improver.md",
+        "source": "derived"
+      },
+      {
+        "name": "agent.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/agent.md",
+        "source": "derived"
+      },
+      {
+        "name": "folder_readme.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/folder_readme.md",
+        "source": "derived"
+      },
+      {
+        "name": "sk-skill.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/sk-skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "skill.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/skill.md",
+        "source": "derived"
+      },
+      {
+        "name": "create_agent_auto.yaml",
+        "kind": "config",
+        "path": ".opencode/commands/create/assets/create_agent_auto.yaml",
         "source": "derived"
       },
       {
@@ -108,12 +196,6 @@
         "source": "derived"
       },
       {
-        "name": "Verification Passed",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement The",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -124,77 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Overview Delete",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Preserve Gemini",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Pattern Repository",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Components",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Decision Record",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "bound",
-        "kind": "key_phrase",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The repository still ships a project-level `.gemini/` runtime mirror even though the current workflow is OpenCode-centered and the user has requested that surface be deleted. This packet removes the checked-in project `.gemini` directory and updates active, non-spec references so the repo no longer directs maintainers or tooling to project `.gemini` files.",
     "created_at": "2026-06-05T06:49:52Z",
-    "last_save_at": "2026-06-05T07:40:49.644Z",
+    "last_save_at": "2026-06-05T12:47:32.533Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -203,7 +219,8 @@
       "tasks.md",
       "checklist.md",
       "decision-record.md",
-      "implementation-summary.md"
+      "implementation-summary.md",
+      "resource-map.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

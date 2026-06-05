@@ -30,7 +30,7 @@
       "sub-phase"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -185,7 +185,7 @@
     ],
     "causal_summary": "Author 6 CP-XXX scenarios for the @deep-review command flow.",
     "created_at": "2026-05-18T07:49:27.113Z",
-    "last_save_at": "2026-05-30T10:12:01.324Z",
+    "last_save_at": "2026-06-05T12:47:32.746Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

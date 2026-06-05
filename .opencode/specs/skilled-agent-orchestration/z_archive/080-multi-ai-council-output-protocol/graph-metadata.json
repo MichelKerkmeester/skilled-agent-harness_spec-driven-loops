@@ -53,16 +53,7 @@
       "implementation-summary.md",
       "research/research.md",
       "ai-council/council-report.md",
-      "ai-council/ai-council-state.jsonl",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-      ".opencode/agents/orchestrate.md",
-      ".codex/agents/README.txt",
-      ".opencode/commands/memory/save.md",
-      ".opencode/skills/deep-research/SKILL.md"
+      "ai-council/ai-council-state.jsonl"
     ],
     "entities": [
       {
@@ -132,60 +123,6 @@
         "source": "derived"
       },
       {
-        "name": "council-output-full.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-full.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-minimal.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-minimal.md",
-        "source": "derived"
-      },
-      {
-        "name": "council-output-missing-required.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/fixtures/multi-ai-council/council-output-missing-required.md",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-persist-artifacts.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-persist-artifacts.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "multi-ai-council-mirror-parity.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/scripts/tests/multi-ai-council-mirror-parity.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "orchestrate.md",
-        "kind": "doc",
-        "path": ".opencode/agents/orchestrate.md",
-        "source": "derived"
-      },
-      {
-        "name": "README.txt",
-        "kind": "file",
-        "path": ".codex/agents/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "save.md",
-        "kind": "doc",
-        "path": ".opencode/commands/memory/save.md",
-        "source": "derived"
-      },
-      {
-        "name": "SKILL.md",
-        "kind": "doc",
-        "path": ".opencode/skills/deep-research/SKILL.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -208,11 +145,65 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Progress",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Lightweight",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Output Protocol",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Invocation Contract",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Mark Phase",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Setup Spec",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The `@multi-ai-council` agent today returns deliberation results inline to chat with no packet-level persistence, breaking parity with `@deep-research` (writes to `research/`) and `@deep-review` (writes to `review/`). This packet introduces the `ai-council/` subfolder convention so council outputs become first-class, audit-friendly packet artifacts that support iteration and resume. The convention stays lightweight: no skill folder, no slash command, no YAML workflow — just an agent body update plus 4 shared reference files.",
     "created_at": "2026-05-06T12:31:00.902Z",
-    "last_save_at": "2026-05-30T10:12:01.424Z",
+    "last_save_at": "2026-06-05T12:47:32.844Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

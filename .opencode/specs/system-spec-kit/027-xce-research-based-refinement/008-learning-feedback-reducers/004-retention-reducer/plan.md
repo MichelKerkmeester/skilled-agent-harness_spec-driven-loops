@@ -95,7 +95,7 @@ The retention reducer computes decisions from expired candidate rows and aggrega
 |------------|------|--------|-------------------|
 | `001-aggregator` | Hard internal | Required | Provides weighted feedback summaries. |
 | `002-memory-write-safety` | Parent hard dependency | Required | Current canonical owner of tier-aware retention safety. |
-| `028/004-code-graph-adoption-eval` | Soft sibling | Optional before active mode | Supplies evaluation gate. |
+| equivalent shadow-eval evidence (folder no longer exists) | Soft sibling | Optional before active mode | Supplies evaluation gate. |
 | Ledger quality gate | Parent gate | Required before active mutation | Blocks low-quality windows from changing retention. |
 <!-- /ANCHOR:dependencies -->
 

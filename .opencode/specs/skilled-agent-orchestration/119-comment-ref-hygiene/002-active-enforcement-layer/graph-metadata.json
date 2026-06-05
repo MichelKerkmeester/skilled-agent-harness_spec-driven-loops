@@ -47,7 +47,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-code/scripts/check-comment-hygiene.sh",
       ".opencode/skills/sk-code/scripts/hooks/claude-posttooluse.sh",
@@ -215,7 +215,7 @@
     ],
     "causal_summary": "Packet 119 added the canonical \"no ephemeral-artifact pointers\" rule to `sk-code §4`. Despite that rule, 27 files in the ~100 commits that followed still required cleanup (commit `5040eac9ef`, 2026-05-29). The pattern is consistent: AIs start sessions knowing the rule, then drift into adding spec-folder/packet/phase/ADR/task ids as traceability anchors during long implementation runs. Text rules alone cannot fix attention drift.",
     "created_at": "2026-05-29T00:00:00.000Z",
-    "last_save_at": "2026-05-30T16:25:16.872Z",
+    "last_save_at": "2026-06-05T12:47:32.382Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

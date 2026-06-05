@@ -38,7 +38,7 @@
       "system-skill-advisor"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete_(f4_cold_env_residual)",
     "key_files": [
       "research/research.md",
       "research/resource-map.md",
@@ -133,7 +133,7 @@
     ],
     "causal_summary": "The 028 playbook run surfaced 5 key findings in the `system-skill-advisor` skill: a corpus accuracy regression, PC-005 bench failures + doc gap, semantic_shadow lane-weight doc drift, the OpenCode plugin bridge native-route fail-open, and a stale vitest path in two playbook scenarios. They were recorded but not remediated.",
     "created_at": "2026-05-27T11:53:18.233Z",
-    "last_save_at": "2026-05-30T10:12:01.993Z",
+    "last_save_at": "2026-06-05T12:47:33.427Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

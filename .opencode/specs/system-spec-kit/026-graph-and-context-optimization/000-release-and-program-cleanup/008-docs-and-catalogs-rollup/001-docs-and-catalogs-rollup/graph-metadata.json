@@ -11,82 +11,83 @@
   },
   "derived": {
     "trigger_phrases": [
-      "012 docs rollup",
+      "docs and catalogs rollup",
+      "umbrella docs rollup 026",
       "feature catalog rollup",
-      "manual testing playbook rollup",
-      "root readme update",
-      "skill skill md update",
-      "012/006 implementation summary",
-      "012 docs rollup shipped",
-      "umbrella docs sync"
+      "readme capability sync",
+      "026 docs sync",
+      "docs rollup plan",
+      "umbrella docs gap analysis",
+      "catalog rollup plan",
+      "docs rollup tasks",
+      "umbrella docs tasks",
+      "tasks core",
+      "docs rollup verification"
     ],
     "key_topics": [
-      "012",
       "docs",
+      "catalogs",
       "rollup",
+      "umbrella",
+      "026",
       "feature",
       "catalog",
-      "manual",
-      "testing",
-      "playbook",
-      "root",
       "readme",
-      "update",
-      "skill"
+      "capability",
+      "sync",
+      "plan",
+      "gap"
     ],
-    "importance_tier": "important",
-    "status": "in_progress",
+    "importance_tier": "normal",
+    "status": "complete",
     "key_files": [
-      "mcp_server/README.md",
-      "mcp_server/INSTALL_GUIDE.md",
-      "feature_catalog/feature_catalog.md",
-      "manual_testing_playbook/manual_testing_playbook.md",
       ".opencode/skills/system-spec-kit/SKILL.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      "plan.md",
       "tasks.md",
       "checklist.md",
-      "tests/memory/trust-badges.test.ts",
-      "manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
       "implementation-summary.md",
-      "handlers/index.ts",
-      "formatters/search-results.ts",
-      "lib/response/profile-formatters.ts",
-      "spec.md",
-      "plan.md"
+      "spec.md"
     ],
     "entities": [
       {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "source": "derived"
+      },
+      {
         "name": "README.md",
         "kind": "doc",
-        "path": "mcp_server/README.md",
+        "path": ".opencode/skills/system-spec-kit/README.md",
         "source": "derived"
       },
       {
         "name": "INSTALL_GUIDE.md",
         "kind": "doc",
-        "path": "mcp_server/INSTALL_GUIDE.md",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md",
         "source": "derived"
       },
       {
         "name": "feature_catalog.md",
         "kind": "doc",
-        "path": "feature_catalog/feature_catalog.md",
+        "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
         "source": "derived"
       },
       {
         "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": "manual_testing_playbook/manual_testing_playbook.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
-        "name": "SKILL.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/SKILL.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -102,51 +103,15 @@
         "source": "derived"
       },
       {
-        "name": "trust-badges.test.ts",
-        "kind": "test",
-        "path": "tests/memory/trust-badges.test.ts",
-        "source": "derived"
-      },
-      {
-        "name": "203-memory-causal-trust-display.md",
-        "kind": "doc",
-        "path": "manual_testing_playbook/13--memory-quality-and-indexing/203-memory-causal-trust-display.md",
-        "source": "derived"
-      },
-      {
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
         "source": "derived"
       },
       {
-        "name": "index.ts",
-        "kind": "code",
-        "path": "handlers/index.ts",
-        "source": "derived"
-      },
-      {
-        "name": "search-results.ts",
-        "kind": "code",
-        "path": "formatters/search-results.ts",
-        "source": "derived"
-      },
-      {
-        "name": "profile-formatters.ts",
-        "kind": "code",
-        "path": "lib/response/profile-formatters.ts",
-        "source": "derived"
-      },
-      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "plan.md",
-        "kind": "doc",
-        "path": "plan.md",
         "source": "derived"
       },
       {
@@ -162,13 +127,19 @@
         "source": "derived"
       },
       {
-        "name": "In Scope",
+        "name": "Problem Statement Spec",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "External Project",
+        "name": "Purpose Bring",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -180,33 +151,57 @@
         "source": "derived"
       },
       {
-        "name": "Change Type",
+        "name": "Implementation Plan",
         "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "grep",
-        "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "before",
-        "kind": "key_phrase",
+        "name": "Technical Context",
+        "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Steps",
-        "kind": "heading",
+        "name": "Overview Run",
+        "kind": "proper_noun",
         "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Gap",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Update umbrella docs (root README, skill SKILL.md/README, mcp_server README/INSTALL_GUIDE) reflecting capabilities shipped by 012/002-005. Per-packet feature_catalog + manual_testing_playbook entries are written inline by 002-005; this sub-phase rolls up indexes.",
+    "causal_summary": "Spec 026 shipped capabilities across 8 tracks over months. The umbrella docs (root README, the system-spec-kit SKILL.md and README, the mcp_server README and INSTALL_GUIDE) and the catalog indexes (feature_catalog, manual_testing_playbook) needed to reflect what actually shipped, without drifting into claims for work that did not land.",
     "created_at": "2026-04-25T10:48:09.975Z",
-    "last_save_at": "2026-05-30T10:12:01.822Z",
+    "last_save_at": "2026-06-05T12:47:33.189Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

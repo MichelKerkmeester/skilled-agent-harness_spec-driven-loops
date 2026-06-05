@@ -30,13 +30,12 @@
       "docs"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/commands/deep/ask-ai-council.md",
       ".opencode/skills/deep-ai-council/SKILL.md",
       ".opencode/agents/ai-council.md",
       ".claude/agents/ai-council.md",
-      ".gemini/agents/ai-council.md",
       ".codex/agents/ai-council.toml",
       ".opencode/commands/deep/assets/deep_ask-ai-council_auto.yaml",
       ".opencode/commands/deep/assets/deep_ask-ai-council_confirm.yaml",
@@ -194,7 +193,7 @@
     ],
     "causal_summary": "Add /deep:ask-ai-council auto/confirm workflow, skill docs, and four-runtime mirror sync.",
     "created_at": "2026-05-23T09:30:00Z",
-    "last_save_at": "2026-05-30T10:12:00.984Z",
+    "last_save_at": "2026-06-05T12:47:32.259Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

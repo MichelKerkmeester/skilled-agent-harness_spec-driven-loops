@@ -16,13 +16,13 @@
       "description depends_on",
       "graph metadata children",
       "deterministic edge promotion",
+      "027 phase 005",
+      "metadata edge promoter",
+      "frontmatter causal edges",
+      "027 phase 005 tasks",
+      "metadata edge promoter tasks",
       "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "summary"
     ],
     "key_topics": [
       "frontmatter",
@@ -38,13 +38,18 @@
       "deterministic",
       "promotion"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "draft",
     "key_files": [
       "handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/graph/graph-metadata-parser.ts",
+      "mcp_server/lib/parsing/memory-parser.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -67,6 +72,18 @@
         "name": "causal-edges.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/graph/graph-metadata-parser.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-parser.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/parsing/memory-parser.ts",
         "source": "derived"
       },
       {
@@ -142,7 +159,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -154,25 +177,13 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
+        "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Task Notation",
+        "name": "Task Format",
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
@@ -184,21 +195,15 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 2: Implementation",
-        "kind": "heading",
+        "name": "Research Evidence",
+        "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
       }
     ],
     "causal_summary": "This phase is the deterministic, low-risk first step for causal-edge automation. The existing spec packet metadata already encodes parent-child, dependency, supersession, and related-work relationships. The memory system should not require users to manually run causal-link commands for relationships that are already structured.",
     "created_at": "2026-05-13T09:00:47Z",
-    "last_save_at": "2026-05-31T14:05:03.988Z",
+    "last_save_at": "2026-06-05T12:47:34.388Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

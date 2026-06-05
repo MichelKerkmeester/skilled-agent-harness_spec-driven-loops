@@ -97,6 +97,9 @@ Delete caller identifies edge ids or memory ids, sweep helper reads matching act
 |---------|--------------|--------|--------------|
 | `mcp_server/lib/search/vector-index-schema.ts` | Owns SQLite migrations | Add tombstone table and lifecycle indexes | Migration fixture |
 | `mcp_server/lib/storage/causal-edges.ts` | Owns active edge CRUD | Add read-before-delete support and stop bypassing sweep helper | Unit tests for single/bulk delete |
+| `mcp_server/lib/search/vector-index-mutations.ts:137-145` | Raw `DELETE FROM causal_edges` during memory-row mutation cleanup | Route through sweep helper (2026-06-05 audit) | Mutation cleanup fixture |
+| `mcp_server/lib/storage/checkpoints.ts:1668-1676` | Scoped restore deletes active edges by source/target id | Route through sweep helper (2026-06-05 audit) | Scoped restore fixture |
+| `mcp_server/lib/learning/corrections.ts:611-649` | Undo path raw-deletes the owned causal edge | Route through sweep helper (2026-06-05 audit) | Undo-correction fixture |
 | `mcp_server/lib/causal/sweep.ts` | Missing | Create central tombstone-then-delete helper | Transaction tests |
 | `mcp_server/handlers/memory-crud-delete.ts` | Single-memory delete | Route affected edges through sweep helper | Delete fixture with incoming/outgoing edges |
 | `mcp_server/handlers/memory-bulk-delete.ts` | Bulk memory delete | Route selected-row edges through sweep helper | Bulk fixture |

@@ -38,7 +38,7 @@
       "gitignore"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "planned_—_awaiting_dispatch_authorization",
     "key_files": [
       "implementation-summary.md",
       ".opencode/skills/system-code-graph/changelog/v1.0.2.0.md",
@@ -49,9 +49,7 @@
       "mcp_server/tests/runtime-detection.vitest.ts",
       "lib/runtime-detection.ts",
       "feature_catalog/feature_catalog.md",
-      ".vscode/mcp.json",
       ".claude/mcp.json",
-      ".gemini/settings.json",
       "plan.md",
       "checklist.md",
       "tests/runtime-detection.vitest.ts",
@@ -115,13 +113,7 @@
       {
         "name": "mcp.json",
         "kind": "config",
-        "path": ".vscode/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
+        "path": ".claude/mcp.json",
         "source": "derived"
       },
       {
@@ -201,11 +193,17 @@
         "kind": "key_phrase",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "a",
+        "kind": "key_phrase",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 038 successfully closed 11 of the 24 verified P0+P1 findings from 037's 20-iter deep-review (P0-1 docs, P0-2 by parallel-agent's Path-1 real probe, P1-B1..B7 runtime cluster, P1-C1 launcher comment). A real-world parallel-agent collision pattern emerged: as 038 was dispatching, another agent shipped Path-1 isolation refactor (commit `6b6f41214` — 13 of 14 production imports removed), full SKILL.md alignment (`2b4abb3a1`, `68bce35cb`, `ec98af539`), and ccc_readiness_probe.ts real implementation. Three categories of work remained NOT-closed by either agent:",
     "created_at": "2026-05-15T18:08:38.450Z",
-    "last_save_at": "2026-05-30T10:12:02.828Z",
+    "last_save_at": "2026-06-05T12:47:34.366Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

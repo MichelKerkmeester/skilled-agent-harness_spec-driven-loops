@@ -38,7 +38,7 @@
       "decision"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "spec.md",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/claude/session-prime.ts",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Route the next continuity packet into the existing 024 train by turning cached summaries into a guarded consumer instead of a new authority surface.",
     "created_at": "2026-04-12T09:02:53.440Z",
-    "last_save_at": "2026-05-30T10:12:03.526Z",
+    "last_save_at": "2026-06-05T12:47:35.031Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

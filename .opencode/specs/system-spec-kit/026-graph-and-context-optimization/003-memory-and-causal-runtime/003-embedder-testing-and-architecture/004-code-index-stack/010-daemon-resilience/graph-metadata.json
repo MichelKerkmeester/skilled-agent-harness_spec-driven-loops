@@ -41,10 +41,9 @@
       "leak"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "research_complete",
     "key_files": [
       "implementation-summary.md",
-      "changelog/changelog-011-cocoindex-daemon-resilience.md",
       "spec.md",
       "research/research.md",
       "plan.md",
@@ -56,12 +55,6 @@
         "name": "implementation-summary.md",
         "kind": "doc",
         "path": "implementation-summary.md",
-        "source": "derived"
-      },
-      {
-        "name": "changelog-011-cocoindex-daemon-resilience.md",
-        "kind": "doc",
-        "path": "changelog/changelog-011-cocoindex-daemon-resilience.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "RuntimeError",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The mcp-coco-index daemon (`ccc run-daemon`) has multiple interacting bugs across five surfaces. Five iterations of deep research traced every link in the cascade and produced concrete file:line citations for each.",
     "created_at": "2026-05-07T07:38:00Z",
-    "last_save_at": "2026-05-30T10:12:02.294Z",
+    "last_save_at": "2026-06-05T12:47:33.710Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

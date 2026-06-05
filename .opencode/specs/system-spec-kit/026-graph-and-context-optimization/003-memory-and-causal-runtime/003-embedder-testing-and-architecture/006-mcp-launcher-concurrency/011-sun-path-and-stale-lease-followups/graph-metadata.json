@@ -41,9 +41,8 @@
       "mk-code-index"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(core_fix_shipped);_1_follow_on_advisory_open",
     "key_files": [
-      ".gemini/settings.json",
       ".codex/config.toml",
       "plan.md",
       "references/memory/embedder_architecture.md",
@@ -56,12 +55,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
-        "source": "derived"
-      },
       {
         "name": "config.toml",
         "kind": "file",
@@ -199,11 +192,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "pinned",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Two post-010 MCP startup failures observed on macOS, plus the workaround applied and the one outstanding robustness gap that should follow.",
     "created_at": "2026-05-23T11:55:15.585Z",
-    "last_save_at": "2026-05-30T10:12:02.374Z",
+    "last_save_at": "2026-06-05T12:47:33.788Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

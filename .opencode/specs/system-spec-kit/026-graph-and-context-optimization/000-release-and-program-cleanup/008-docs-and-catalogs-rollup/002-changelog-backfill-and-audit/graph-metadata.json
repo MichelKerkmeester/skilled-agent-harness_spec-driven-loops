@@ -16,40 +16,60 @@
       "phase changelog coverage",
       "nested changelog backfill",
       "026 work audit",
-      "changelog swarm",
-      "scaffold then enrich changelog",
-      "reorg residue canonicalization"
+      "026 changelog backfill plan",
+      "changelog swarm plan",
+      "nested changelog enrichment",
+      "026 changelog tasks",
+      "changelog backfill tasks",
+      "tasks core",
+      "026 changelog verification"
     ],
     "key_topics": [
+      "026",
       "changelog",
       "backfill",
       "audit",
-      "026",
-      "nested",
       "phase",
       "coverage",
-      "canonicalization",
+      "nested",
+      "work",
+      "plan",
+      "swarm",
       "enrichment",
-      "hvr",
-      "rollup",
-      "swarm"
+      "tasks"
     ],
-    "importance_tier": "important",
+    "importance_tier": "normal",
     "status": "complete",
     "key_files": [
+      "references/recon-coverage-matrix.md",
+      "decision-record.md",
+      "implementation-summary.md",
       "spec.md",
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md",
       "references/stage-b-enrichment-contract.md",
-      "references/verification-gate.md",
-      "references/recon-coverage-matrix.md",
-      ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js",
-      ".opencode/skills/system-spec-kit/templates/changelog/phase.md",
-      ".opencode/skills/system-spec-kit/templates/changelog/root.md"
+      "references/verification-gate.md"
     ],
     "entities": [
+      {
+        "name": "recon-coverage-matrix.md",
+        "kind": "doc",
+        "path": "references/recon-coverage-matrix.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -75,12 +95,6 @@
         "source": "derived"
       },
       {
-        "name": "decision-record.md",
-        "kind": "doc",
-        "path": "decision-record.md",
-        "source": "derived"
-      },
-      {
         "name": "stage-b-enrichment-contract.md",
         "kind": "doc",
         "path": "references/stage-b-enrichment-contract.md",
@@ -93,15 +107,9 @@
         "source": "derived"
       },
       {
-        "name": "recon-coverage-matrix.md",
-        "kind": "doc",
-        "path": "references/recon-coverage-matrix.md",
-        "source": "derived"
-      },
-      {
-        "name": "nested-changelog.js",
-        "kind": "code",
-        "path": ".opencode/skills/system-spec-kit/scripts/dist/spec-folder/nested-changelog.js",
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
         "source": "derived"
       },
       {
@@ -115,11 +123,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Decisions",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Critical Dependencies",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Pipeline",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Decision Records",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Spec 026 has 633 phase packets but only 103 packet-local changelogs, so about 441 shipped phases have no changelog. This packet backfills every missing changelog with the generator-scaffold then agent-enrich pipeline, canonicalizes reorg residue (stale paths, 9 dangling symlinks, 2 non-canonical files, scattered 003 directories), and produces a program-wide work audit. No fabrication: about 47 thin or unshipped packets are logged in the audit instead of authored.",
+    "causal_summary": "Spec 026 (`026-graph-and-context-optimization`) is the largest program in the repo: 8 tracks, 633 phase packets, 553 of them with a shipped implementation summary. Only 103 packet-local changelogs exist, so about 441 shipped phases have no changelog. This packet runs an agent swarm that backfills every missing changelog using the established nested-changelog convention, canonicalizes the reorg residue left by multiple renumberings, and produces a program-wide work audit.",
     "created_at": "2026-05-31T19:00:00.000Z",
-    "last_save_at": "2026-05-31T19:00:00.000Z",
+    "last_save_at": "2026-06-05T12:47:33.190Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
@@ -127,7 +207,8 @@
       "plan.md",
       "tasks.md",
       "checklist.md",
-      "decision-record.md"
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

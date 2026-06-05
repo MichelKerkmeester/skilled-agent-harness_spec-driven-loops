@@ -40,7 +40,7 @@
       "analysis"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       "research/deep-research-state.jsonl",
       "decision-record.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Three \"deep\" skills now exist or are proposed: `/deep:start-review-loop`, `/deep:start-research-loop`, and (after packet 129) `/deep:ask-ai-council`. They share the deep-loop-runtime substrate (iteration loop, JSONL state, saturation-based convergence, findings accumulation) but ostensibly target different intents. This packet runs a structured 10-iteration deep-research audit to determine whether each skill has a defensible single-best-fit use case, whether overlap helps or hurts operators, and whether routing/naming sharpens or muddies the boundary.",
     "created_at": "2026-05-23T06:00:00Z",
-    "last_save_at": "2026-06-04T10:32:49.938Z",
+    "last_save_at": "2026-06-05T12:47:32.339Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

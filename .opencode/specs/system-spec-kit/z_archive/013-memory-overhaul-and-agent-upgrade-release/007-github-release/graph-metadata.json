@@ -39,7 +39,7 @@
       "record"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "in_progress_(release_notes_prepared;_publication_blocked)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Specify the GitHub tagged release for spec 130, following `PUBLIC_RELEASE.md` conventions. This is the final task in the dependency chain — all documentation alignment work must be committed before tagging.",
     "created_at": "2026-05-26T19:43:14.244Z",
-    "last_save_at": "2026-05-30T10:12:03.153Z",
+    "last_save_at": "2026-06-05T12:47:34.603Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

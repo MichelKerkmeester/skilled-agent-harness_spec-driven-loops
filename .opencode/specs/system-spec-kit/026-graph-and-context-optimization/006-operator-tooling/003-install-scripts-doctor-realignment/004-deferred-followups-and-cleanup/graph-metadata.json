@@ -39,7 +39,7 @@
       "deferred"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "[draft/in_progress/review/complete]",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 4** of the Deferred follow-ups (scorer dead-branch removal, graph-metadata path fixes, contract-parity un-skip) plus deep-review doc overviews and install-guide deletions specification.",
     "created_at": "2026-05-26T08:28:22Z",
-    "last_save_at": "2026-05-30T10:12:02.737Z",
+    "last_save_at": "2026-06-05T12:47:34.260Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -39,16 +39,14 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       "scratch/codex-gpt54-deep-research.md",
       ".opencode/agents/deep-research.md",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-research.md",
-      ".gemini/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
       ".claude/agents/deep-review.md",
-      ".gemini/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/deep-review-reducer-schema.vitest.ts",
@@ -209,7 +207,7 @@
     ],
     "causal_summary": "This packet converts the consolidated agentic-systems research into one implementation plan for the two autonomous deep-loop products: `sk-deep-research` and `sk-deep-review`. The work is centered on runtime truth, not feature sprawl: real stop reasons, legal completion gates, resume-from-run semantics, auditability, claim verification, behavior-first tests, and richer dashboards that make loop state easier to trust and resume.",
     "created_at": "2026-04-12T09:02:50.192Z",
-    "last_save_at": "2026-05-30T10:12:01.233Z",
+    "last_save_at": "2026-06-05T12:47:32.653Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/004-causal-edge-tombstones"
-    last_updated_at: "2026-05-13T09:20:00Z"
-    last_updated_by: "codex"
-    recent_action: "authored spec"
-    next_safe_action: "design sweep"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: caller inventory + lifecycle note"
+    next_safe_action: "Inventory all delete paths then build tombstone schema"
     blockers: []
     key_files:
       - "lib/search/vector-index-schema.ts"
@@ -110,6 +110,11 @@ Three active call sites perform hard edge deletes with no tombstone today (confi
 - `handlers/memory-bulk-delete.ts:248-252` — bulk delete loop; cache invalidation was added by d232da4ee but edge tombstoning was not
 - `handlers/memory-crud-health.ts:701-714` → `causal-edges.ts:836` — autoRepair orphan sweep via `cleanupOrphanedEdges()`; previously inactive, now live
 
+The 2026-06-05 relevance audit found this caller inventory incomplete. Three additional active raw-delete sites exist and must also route through the tombstone-then-delete helper:
+- `lib/search/vector-index-mutations.ts:137-145` — raw `DELETE FROM causal_edges` on `source_id`/`target_id` during memory-row mutation cleanup.
+- `lib/storage/checkpoints.ts:1668-1676` — scoped restore deletes active edges by `source_id`/`target_id` per memory id.
+- `lib/learning/corrections.ts:611-649` — undo path issues `DELETE FROM causal_edges` (relation- and evidence-scoped, plus legacy-evidence fallback).
+
 Both delete implementations (`causal-edges.ts:764-775` for bulk, `causal-edges.ts:743-759` for single) issue unconditional `DELETE FROM causal_edges` with no prior snapshot.
 
 ### Purpose
@@ -126,6 +131,8 @@ Route every causal-edge deletion through a single sweep helper that writes a tom
 
 - Add `causal_edge_tombstones(id, source_id, target_id, relation, tombstoned_at, reason, lifecycle_generation, restore_metadata)`.
 - Add lifecycle generation support so delete and recreate races are detectable.
+
+> **Naming note (2026-06-05 audit):** the new persisted `lifecycle_generation` (tombstone lifecycle, stored on `causal_edge_tombstones`) is DISTINCT from the existing in-memory `causalEdgesGeneration` cache-invalidation counter (`lib/storage/causal-edges.ts:159-180`, bumped on every edge mutation for `memory_search` cache-key staleness). They serve different purposes and MUST NOT be conflated or merged.
 - Create `lib/causal/sweep.ts` as the single helper for tombstone-then-delete behavior.
 - Route `memory_delete` through the sweep helper.
 - Route `memory_bulk_delete` through the sweep helper.

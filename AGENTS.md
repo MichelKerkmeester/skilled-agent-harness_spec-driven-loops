@@ -45,7 +45,7 @@ w# AI Assistant Framework (Universal Template)
 - **Comment Hygiene [HARD] BLOCK** — Never embed ephemeral tracking artifact labels in code comments: no spec-folder paths, packet/phase numbers, ADR ids, task/checklist/requirement ids, or finding ids (`// ADR-007:`, `// REQ-003:`, `// specs/042-foo` are all forbidden). Keep the durable WHY; drop the perishable label. Allowed stable references: `// CWE-79`, `// RFC 2616`, `// POSIX`.
 
 **Dispatch Rules**
-- **CLI dispatch rule** — Before composing any `cli-X` prompt (devin / codex / claude-code / gemini / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Skills carry model-specific prompt contracts not in `--help`; required for every `<binary> --model <X>` invocation.
+- **CLI dispatch rule** — Before composing any `cli-X` prompt (devin / codex / claude-code / opencode), MUST `Read` `.opencode/skills/cli-X/SKILL.md` first. Skills carry model-specific prompt contracts not in `--help`; required for every `<binary> --model <X>` invocation.
 - **Small-model dispatch rule** — Before dispatching to small models (SWE-1.6, MiniMax, Kimi, Qwen, etc. via cli-devin/cli-opencode), MUST consult `sk-prompt-small-model` — canonical home for context-budget defaults, output-verification, model-profile registry, permissions schema, and dispatch matrix (executor + provider + quota_pool).
 
 ---

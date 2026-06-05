@@ -36,7 +36,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "completed_(2026_05_30)",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "mcp_server/tests/launcher-clean-close-reap.vitest.ts",
@@ -195,7 +195,7 @@
     ],
     "causal_summary": "The F2 clean-close barrier (`reapLeaseChildBeforeRespawn` in `mk-spec-memory-launcher.cjs`, shipped in 032/001) decides whether a possibly-dirty DB is handed to a replacement daemon. Its pure helpers (`cleanCloseAfterReap`, `uncleanShutdownMarkerPath`) are unit-tested, but the reap orchestration itself — SIGTERM, the SIGKILL escalation, and the marker-based clean-close determination — had zero live coverage. The only real-process launcher suite (`launcher-lease.vitest.ts`) is entirely `describe.skip`'d as a \"known launcher process lifecycle flake,\" so the safety-critical path was untested.",
     "created_at": "2026-05-30T19:47:42.617Z",
-    "last_save_at": "2026-05-30T19:47:42.617Z",
+    "last_save_at": "2026-06-05T12:47:34.300Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

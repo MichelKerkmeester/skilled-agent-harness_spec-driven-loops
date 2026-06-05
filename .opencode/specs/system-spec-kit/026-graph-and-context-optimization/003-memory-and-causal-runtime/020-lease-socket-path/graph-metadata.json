@@ -39,7 +39,7 @@
       "bridge"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "shipped",
     "key_files": [
       ".opencode/bin/lib/model-server-supervision.cjs",
       ".opencode/bin/mk-spec-memory-launcher.cjs",
@@ -125,12 +125,6 @@
         "source": "derived"
       },
       {
-        "name": "In Progress",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
         "name": "Problem Statement This",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -138,6 +132,12 @@
       },
       {
         "name": "Purpose Persist",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "This packet closes defect **(c)**, deferred as a follow-up in packet 018 (front-proxy recycle hardening).",
     "created_at": "2026-06-04T10:33:09.672Z",
-    "last_save_at": "2026-06-04T10:33:09.672Z",
+    "last_save_at": "2026-06-05T12:47:34.015Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -1,0 +1,18 @@
+I’ll keep this read-only and audit the phase docs, recent history, and current MCP server code for the planned incremental-indexing artifacts.
+The planned exact table/module names are absent from the first current-code sweep except the pre-existing `incremental-index.ts` and generic `chunk_id` usage; I’m narrowing on schema/parser/planner code and path history to check for renamed equivalents.
+Recent path history shows the earlier `memory_index_scan Phase 1-3` commits, plus later async/enrichment work, but not obvious memo/DAG subjects. I’m checking their current implementation lines and stats to determine whether they only improved file-level/asynchronous flow.
+The current schema has only `parent_id`, `chunk_index`, and `chunk_label` for chunk rows; I found no `memoization_records`, `dependency_edges`, `canonical-fingerprint.ts`, `memo.ts`, or planned chunk-fingerprint columns in `mcp_server`.
+I also checked renamed-file possibilities: storage has `incremental-index.ts` but not `memo.ts` or `canonical-fingerprint.ts`; `*fingerprint*.ts` only matched a save fallback test, not an incremental indexing component.
+## 003-incremental-index-foundation — VERDICT: STILL-RELEVANT
+- Evidence: planned scope explicitly requires `memoization_records`, `dependency_edges`, chunk fingerprint columns, `canonical-fingerprint.ts`, `memo.ts`, DAG planning, and anchor-first chunks at `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:118-127` and `plan.md:113-129`.
+- Evidence: current schema only has file-level/chunk-base fields: `content_hash`, `file_mtime_ms`, `parent_id`, `chunk_index`, `chunk_label`, no `chunk_id/chunk_fingerprint/chunk_kind/chunk_start_line/chunk_end_line` at `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2587-2650`.
+- Evidence: current incremental planner is still mtime/content-hash file-level logic: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:173-224`, categorized by `categorizeFilesForIndexing()` at `incremental-index.ts:267-312`, consumed by scan at `handlers/memory-index.ts:665-685`.
+- Evidence: recent relevant commits `9998edfd37`, `156a0b469f`, and `9156d60cc3` added coalescing/orphan sweep, async scan, and move reconciliation respectively, not memo/DAG/chunk-fingerprint indexing; their touched files match `memory-index.ts`, `incremental-index.ts`, retry tests, and health code.
+- Per-item: `memoization_records` — STILL-RELEVANT; exact grep found no current hits under `mcp_server`.
+- Per-item: `dependency_edges` — STILL-RELEVANT; exact grep found no current hits under `mcp_server`.
+- Per-item: `canonical-fingerprint.ts` and `memo.ts` — STILL-RELEVANT; storage file list has `incremental-index.ts` but no planned modules.
+- Per-item: chunk fingerprint columns — STILL-RELEVANT; current schema has only `parent_id/chunk_index/chunk_label`.
+- Per-item: anchor-first chunk identity — STILL-RELEVANT; `memory-parser.ts:254-385` returns whole-document metadata/content hash, not chunk ids/fingerprints.
+- Reasoning: The plan’s key assumption still holds: current indexing skips at the file level and lacks persisted memo records, dependency edges, and stable chunk fingerprints. Recent async/indexing commits improved scan mechanics, deferred embeddings, orphan cleanup, and move reconciliation, but did not add the planned memoization or chunk-fingerprint foundation under the requested names or an equivalent renamed mechanism.
+- Recommended action: keep as-is.
+- Confidence: high.

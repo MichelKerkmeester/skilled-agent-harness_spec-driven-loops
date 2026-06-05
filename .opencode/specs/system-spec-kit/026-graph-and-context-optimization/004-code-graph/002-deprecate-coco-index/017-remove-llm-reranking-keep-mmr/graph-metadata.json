@@ -53,14 +53,14 @@
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/config/environment_variables.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-quick-search.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/19-result-confidence.md"
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-opt-in.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts"
     ],
     "entities": [
       {
@@ -118,51 +118,51 @@
         "source": "derived"
       },
       {
-        "name": "02-semantic-and-lexical-search-memorysearch.md",
+        "name": "manual_testing_playbook.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/02-semantic-and-lexical-search-memorysearch.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
         "source": "derived"
       },
       {
-        "name": "04-hybrid-search-pipeline.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/04-hybrid-search-pipeline.md",
+        "name": "result-confidence-scoring.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/result-confidence-scoring.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "05-4-stage-pipeline-architecture.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/05-4-stage-pipeline-architecture.md",
+        "name": "d5-confidence-scoring.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/d5-confidence-scoring.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "10-fast-delegated-search-memory-quick-search.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/10-fast-delegated-search-memory-quick-search.md",
+        "name": "scoring-opt-in.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/scoring-opt-in.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "12-stage-3-effectivescore-fallback-chain.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/12-stage-3-effectivescore-fallback-chain.md",
+        "name": "empty-result-recovery.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/empty-result-recovery.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "01-4-stage-pipeline-refactor.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/01-4-stage-pipeline-refactor.md",
+        "name": "structural-trust-axis.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/structural-trust-axis.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "14-result-explainability.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/14-result-explainability.md",
+        "name": "mcp-response-envelope.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/mcp-response-envelope.vitest.ts",
         "source": "derived"
       },
       {
-        "name": "19-result-confidence.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/19-result-confidence.md",
+        "name": "context-server.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts",
         "source": "derived"
       },
       {
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "Packet 014/003 already removed the core inactive LLM-model reranking path: cross-encoder modules, local GGUF reranker sidecar coupling, the conditional rerank gate, Stage 3 Step 1 cross-encoder reranking, and related tests. Residual confidence, explainability, audit, documentation, and test references still described or exercised dead reranker plumbing even though the live pipeline no longer assigned `rerankerScore`.",
     "created_at": "2026-05-25T17:30:45Z",
-    "last_save_at": "2026-05-30T10:12:02.556Z",
+    "last_save_at": "2026-06-05T12:47:34.051Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

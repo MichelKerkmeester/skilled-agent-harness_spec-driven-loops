@@ -39,7 +39,7 @@
       "local"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "review",
     "key_files": [
       "research/upstream-sweep.md",
       "research/delta-classification.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "The local `cocoindex-code` soft fork reports `0.2.3+spec-kit-fork.0.2.0` while upstream `cocoindex-code` has reached `v0.2.33`. The drift includes upstream embedder parameter APIs, a deliberate dimensions-knob removal, Svelte/Vue language coverage, daemon/client refactors, and dependency movement from prerelease CocoIndex SDK builds to stable `1.0.x`.",
     "created_at": "2026-05-19T20:22:26Z",
-    "last_save_at": "2026-05-30T10:12:02.321Z",
+    "last_save_at": "2026-06-05T12:47:33.739Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

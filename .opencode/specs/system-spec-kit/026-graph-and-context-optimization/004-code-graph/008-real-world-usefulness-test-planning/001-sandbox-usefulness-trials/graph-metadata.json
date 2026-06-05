@@ -32,7 +32,7 @@
       "58-cell"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "partial_execution_complete",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "The parent packet designed a 58-cell usefulness campaign, but many cells require authenticated external CLIs, network access, native Claude Code/OpenCode sessions, or live compaction state. This execution sub-phase needed to capture as much empirical evidence as the sandbox can produce without fabricating runtime behavior.",
     "created_at": "2026-05-06T00:00:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.614Z",
+    "last_save_at": "2026-06-05T12:47:34.115Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -37,7 +37,7 @@
       "research"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "lib/utils/index-scope.ts",
       "mcp_server/lib/utils/README.md",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Two subsystems disagree about z_archive's role in the memory index. `lib/utils/index-scope.ts:EXCLUDED_FOR_MEMORY` blocks `z_archive/` paths from being indexed at all, while `shared/scoring/folder-scoring.ts:ARCHIVE_MULTIPLIERS` defines an explicit decay multiplier of 0.1 (90% penalty) for `z_archive/` to deprioritize but retain it in search rankings. The exclusion overrides the decay design — archived spec content is invisible to memory search even when its decay-adjusted relevance would otherwise place it ahead of newer noise. Un-exclude z_archive so the decay system operates as designed.",
     "created_at": "2026-05-16T13:35:00Z",
-    "last_save_at": "2026-05-30T10:12:02.062Z",
+    "last_save_at": "2026-06-05T12:47:33.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -44,8 +44,6 @@
     "status": "complete",
     "key_files": [
       ".opencode/commands/prompt.md",
-      ".gemini/commands/deep/start-agent-improvement-loop.toml",
-      ".gemini/commands/prompt.toml",
       ".opencode/commands/deep/start-agent-improvement-loop.md",
       ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_auto.yaml",
       ".opencode/commands/deep/assets/deep_start-agent-improvement-loop_confirm.yaml",
@@ -63,18 +61,6 @@
         "name": "prompt.md",
         "kind": "doc",
         "path": ".opencode/commands/prompt.md",
-        "source": "derived"
-      },
-      {
-        "name": "start-agent-improvement-loop.toml",
-        "kind": "file",
-        "path": ".gemini/commands/deep/start-agent-improvement-loop.toml",
-        "source": "derived"
-      },
-      {
-        "name": "prompt.toml",
-        "kind": "file",
-        "path": ".gemini/commands/prompt.toml",
         "source": "derived"
       },
       {
@@ -202,11 +188,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Move Gemini",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The legacy improve command family is removed from the live command surface. Deep-agent-improvement now belongs to `/deep:start-agent-improvement-loop`, prompt improvement belongs to root `/prompt`, and runtime mirrors/docs must not point users at removed command folders.",
     "created_at": "2026-05-24T06:47:43Z",
-    "last_save_at": "2026-05-30T19:40:10.339Z",
+    "last_save_at": "2026-06-05T12:47:32.336Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

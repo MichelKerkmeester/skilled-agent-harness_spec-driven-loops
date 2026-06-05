@@ -34,7 +34,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_(sidecar_deleted;_router_collapsed_to_direct_adapter;_87_tests_pass;_review_clean)",
     "key_files": [
       "mcp_server/lib/embedders/execution-router.ts",
       "mcp_server/lib/embedders/execution-router.testables.ts",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "This is **Phase 5 of 6** of the embedding-consolidation and hf-local-server decomposition: Delete the hf-local sidecar apparatus and collapse the execution router so hf-local flows through the direct factory-backed adapter like other providers, with one-release env deprecation shims.",
     "created_at": "2026-05-29T05:06:24.645Z",
-    "last_save_at": "2026-05-30T10:12:02.911Z",
+    "last_save_at": "2026-06-05T12:47:33.931Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

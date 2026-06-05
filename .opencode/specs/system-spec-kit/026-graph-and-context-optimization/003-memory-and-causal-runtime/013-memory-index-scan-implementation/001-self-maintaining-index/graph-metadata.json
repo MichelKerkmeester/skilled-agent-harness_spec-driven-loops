@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation/001-self-maintaining-index",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/013-memory-index-scan-implementation"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -16,28 +16,213 @@
       "memory index scan implementation",
       "memory_index_scan async scan job implementation",
       "memory index coalescing E429 fix",
-      "memory_health index freshness surface"
+      "memory_health index freshness surface",
+      "memory index orphan sweep move reconciliation",
+      "013 memory index implementation packet",
+      "memory index scan implementation plan",
+      "013 memory index implementation plan",
+      "memory index phased async scan job plan",
+      "memory index scan implementation tasks",
+      "013 memory index tasks",
+      "memory index scan implementation checklist"
     ],
     "key_topics": [
       "memory",
       "index",
       "scan",
       "implementation",
+      "async",
+      "job",
       "coalescing",
-      "self-healing"
+      "e429",
+      "fix",
+      "freshness",
+      "surface",
+      "orphan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "shipped_&_deployed_—_phases_1_3_merged_2026_05_31_(sc1_sc5_met);_phase_4_council_follow_up_shipped_2026_06_01_(active_row_uniqueness_guard_+_multi_tenant_scope_isolation,_commit_`942ad78d9c`,_schema_v28)._follow_up_detail_in_`handover.md`_§6_8_+_`implementation_summary.md`.",
     "key_files": [
+      "handover.md",
+      "ai-council/council-report-followups-mcp-stability.md",
+      "lib/storage/schema-downgrade.ts",
+      "implementation-summary.md",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/core/db-state.ts",
+      "mcp_server/handlers/memory-crud-health.ts",
+      "mcp_server/lib/storage/incremental-index.ts",
+      "mcp_server/lib/search/vector-index-mutations.ts",
+      "mcp_server/handlers/save/embedding-pipeline.ts",
+      "mcp_server/lib/providers/retry-manager.ts",
+      "mcp_server/lib/embedders/reindex.ts",
+      "lib/embedders/reindex.ts",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "lib/storage/incremental-index.ts",
+      "tests/handler-memory-index-cooldown.vitest.ts",
+      "tests/incremental-index.vitest.ts"
+    ],
+    "entities": [
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
+        "name": "council-report-followups-mcp-stability.md",
+        "kind": "doc",
+        "path": "ai-council/council-report-followups-mcp-stability.md",
+        "source": "derived"
+      },
+      {
+        "name": "schema-downgrade.ts",
+        "kind": "code",
+        "path": "lib/storage/schema-downgrade.ts",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "memory-index.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "db-state.ts",
+        "kind": "code",
+        "path": "mcp_server/core/db-state.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-health.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-health.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/storage/incremental-index.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-mutations.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/vector-index-mutations.ts",
+        "source": "derived"
+      },
+      {
+        "name": "embedding-pipeline.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/save/embedding-pipeline.ts",
+        "source": "derived"
+      },
+      {
+        "name": "retry-manager.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/providers/retry-manager.ts",
+        "source": "derived"
+      },
+      {
+        "name": "reindex.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/embedders/reindex.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "handler-memory-index-cooldown.vitest.ts",
+        "kind": "test",
+        "path": "tests/handler-memory-index-cooldown.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "incremental-index.vitest.ts",
+        "kind": "test",
+        "path": "tests/incremental-index.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Maintaining Index Implementation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Research Source",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Implement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Implement the **self-maintaining index** design that the 012 deep-research packet converged on (research.md §6): `memory_index_scan` becomes an **idempotent, coalescing, phased async scan job** that always commits lexical rows first, drains vectors in the background without ever failing the scan on embedder trouble, and self-heals moves/orphans behind a `memory_health.index` freshness surface. The 30s cooldown stays but becomes an internal worker-start guard, never a caller-visible error. Almost every building block already exists (async/deferred embedding path, `embedder_status` job model, atomic claim-by-update, batch chunking, two circuit breakers) — the work is mostly composition and contract change.",
+    "created_at": "2026-05-31T15:00:00.000Z",
+    "last_save_at": "2026-06-05T12:47:33.961Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md"
-    ],
-    "created_at": "2026-05-31T15:00:00.000Z",
-    "last_save_at": "2026-06-01T16:00:00.000Z",
-    "source_docs": [
-      "spec.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md",
+      "handover.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

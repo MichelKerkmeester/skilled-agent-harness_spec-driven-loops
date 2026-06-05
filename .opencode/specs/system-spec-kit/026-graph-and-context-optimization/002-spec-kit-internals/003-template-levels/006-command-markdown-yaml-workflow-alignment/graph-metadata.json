@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "plan.md",
       ".opencode/commands/deep/start-research-loop.md",
@@ -202,7 +202,7 @@
     ],
     "causal_summary": "This packet audits the AI-facing command surfaces for `/spec_kit` after the template-level refactor. The command Markdown files and YAML workflow assets must describe the current manifest-backed Level contract, current validation semantics, and current hardening behavior without preserving deleted script or folder references.",
     "created_at": "2026-05-02T06:53:47Z",
-    "last_save_at": "2026-05-30T10:12:02.025Z",
+    "last_save_at": "2026-06-05T12:47:33.457Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

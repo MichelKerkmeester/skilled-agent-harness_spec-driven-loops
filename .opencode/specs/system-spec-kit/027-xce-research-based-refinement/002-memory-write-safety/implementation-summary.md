@@ -56,9 +56,9 @@ Pending implementation. This packet is scaffolded so the three P0 fixes can land
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `mcp_server/lib/causal/causal-edges.ts` | Pending | Broaden auto provenance cap and preserve manual edges on upsert |
-| `mcp_server/lib/causal/consolidation.ts` | Pending | Apply matching auto provenance cap semantics |
-| `mcp_server/lib/memory/memory-retention-sweep.ts` | Pending | Add tier-aware delete decision |
+| `mcp_server/lib/storage/causal-edges.ts` | Pending | Broaden auto provenance cap and preserve manual edges on upsert |
+| `mcp_server/lib/storage/consolidation.ts` | Pending | Apply matching auto provenance cap semantics |
+| `mcp_server/lib/governance/memory-retention-sweep.ts` | Pending | Add tier-aware delete decision |
 | Focused tests | Pending | Prove all three P0 fixes |
 <!-- /ANCHOR:what-built -->
 

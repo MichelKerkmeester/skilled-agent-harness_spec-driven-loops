@@ -41,11 +41,10 @@
       "decision"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/cli-claude-code/graph-metadata.json",
       ".opencode/skills/cli-codex/graph-metadata.json",
-      ".opencode/skills/cli-gemini/graph-metadata.json",
       ".opencode/changelog/cli-opencode/v1.0.0.0.md",
       ".opencode/skills/README.md",
       ".opencode/skills/cli-opencode/SKILL.md",
@@ -62,7 +61,8 @@
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/README.md",
-      ".opencode/skills/cli-opencode/graph-metadata.json"
+      ".opencode/skills/cli-opencode/graph-metadata.json",
+      "spec.md"
     ],
     "entities": [
       {
@@ -156,6 +156,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -202,17 +208,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Closeout Mark",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Add `cli-opencode` as a fifth sibling under `.opencode/skills/cli-*/` so external AI assistants (and detached OpenCode sessions) can invoke the OpenCode CLI the same way they already invoke Claude Code, Codex, Copilot, and Gemini. The skill ships nine files matching the canonical cli-* blueprint (3 root + 2 assets + 4 references), gets registered with the skill advisor through filesystem walking + sibling-edge updates + an optional TOKEN_BOOSTS entry, opens a new flat changelog bucket via `/create:changelog`, and touches eight specific lines in `.opencode/skills/README.md` plus two specific lines in `.opencode/README.md`. The hardest decisions land in the decision-record: the self-invocation guard signal (avoiding cycles when the orchestrator already IS opencode), the token-boost weight for the noisy \"opencode\" token (the framework name appears throughout the repo), and the three valid use cases that justify the skill's existence in a repo where opencode IS the host runtime.",
     "created_at": "2026-04-26T05:00:00Z",
-    "last_save_at": "2026-05-31T14:05:02.770Z",
+    "last_save_at": "2026-06-05T12:47:32.682Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

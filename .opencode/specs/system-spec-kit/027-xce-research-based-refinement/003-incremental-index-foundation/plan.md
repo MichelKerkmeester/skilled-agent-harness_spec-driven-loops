@@ -103,6 +103,8 @@ Additive storage foundation with conservative handler integration. The memo/DAG 
 | `mcp_server/lib/parsing/memory-parser.ts` | Emits whole-content hash only | Emit stable chunk metadata | Parser fixtures for anchors/headings/fallbacks |
 | `mcp_server/handlers/chunking-orchestrator.ts` | Stores parent/chunk index/label | Persist chunk identity metadata | Chunk row fixture tests |
 | `mcp_server/handlers/memory-index.ts` | Orchestrates scan planning and writes | Consult memo/DAG state before parse/embed | Scan summary includes memo/chunk/dependency counters |
+
+Revalidated 2026-06-05 (relevance audit): STILL-RELEVANT — current indexing is still file-level mtime/content-hash (`lib/storage/incremental-index.ts`); recent async-scan/orphan-sweep commits (`9998edfd37`, `156a0b469f`, `9156d60cc3`) added no memoization, dependency-DAG, or chunk-fingerprint mechanism. Planned `memoization_records`/`dependency_edges`/`canonical-fingerprint.ts`/`memo.ts` and chunk-fingerprint columns remain unbuilt.
 <!-- /ANCHOR:affected-surfaces -->
 
 ---

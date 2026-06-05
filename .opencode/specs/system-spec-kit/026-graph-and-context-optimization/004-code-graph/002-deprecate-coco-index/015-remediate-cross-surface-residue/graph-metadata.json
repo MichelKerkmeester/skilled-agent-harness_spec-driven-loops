@@ -41,11 +41,9 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".gemini/GEMINI.md",
       ".claude/CLAUDE.md",
       ".opencode/commands/memory/manage.md",
       ".opencode/bin/lib/sidecar-env-allowlist.cjs",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md",
       ".opencode/skills/system-spec-kit/scripts/ops/process-memory-harness.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/process-memory-harness.vitest.ts",
       ".opencode/skills/system-spec-kit/scripts/tests/process-sweep.vitest.ts",
@@ -56,12 +54,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "GEMINI.md",
-        "kind": "doc",
-        "path": ".gemini/GEMINI.md",
-        "source": "derived"
-      },
       {
         "name": "CLAUDE.md",
         "kind": "doc",
@@ -78,12 +70,6 @@
         "name": "sidecar-env-allowlist.cjs",
         "kind": "file",
         "path": ".opencode/bin/lib/sidecar-env-allowlist.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "250-session-start-startup.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/250-session-start-startup.md",
         "source": "derived"
       },
       {
@@ -199,11 +185,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Flow Deleted",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The 014 CocoIndex + rerank-sidecar deprecation deleted the code, and `014-remediate-codegraph-naming` cleaned the code-graph docs, but six non-code-graph surfaces still carried residue that the 013 deep-review confirmed: `.gemini/GEMINI.md` still routed Gemini to the deleted `mcp__cocoindex_code__search` (**P0** — the only routing doc that did); `/memory:manage` still declared a `ccc <status|reindex|feedback>` subcommand + a CCC MODE section calling removed `ccc_*` tools; the advisor's runtime `database/skill-graph.json` carried stale `system-rerank-sidecar`/`8765` refs; `.gitignore` kept `.cocoindex_code/`; the embedder sidecar's env allowlist kept a dead `RERANK_` prefix; and the `250-session-start` playbook asserted a Code Graph status based on a `.venv/bin/ccc` binary the hook no longer checks. A seventh surface was found during this work: the RM-8 process-classification harness still carried cocoindex-daemon / cocoindex-mcp / rerank-sidecar kill rules + a `ccc-daemon` classification for daemons that can no longer spawn (skills deleted).",
     "created_at": "2026-05-25T15:51:38Z",
-    "last_save_at": "2026-05-30T10:12:02.552Z",
+    "last_save_at": "2026-06-05T12:47:34.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

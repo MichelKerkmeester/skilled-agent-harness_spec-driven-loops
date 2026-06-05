@@ -1,7 +1,215 @@
-Packet: skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
-Spec Folder: skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles
-Status: complete
-Importance Tier: important
-Summary: Phase 4: model-hub-and-priority-profiles
-Key Files: spec.md, plan.md, tasks.md
-Source Docs: spec.md, plan.md, tasks.md
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+  "spec_folder": "skilled-agent-orchestration/130-prompt-knowledge-layering/004-model-hub-and-priority-profiles",
+  "parent_id": "skilled-agent-orchestration/130-prompt-knowledge-layering",
+  "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "model hub",
+      "priority profiles",
+      "sk-prompt-small-model rewrite",
+      "minimax-m3 prompt profile",
+      "mimo-v2.5 prompt profile",
+      "small model content hub",
+      "implementation plan",
+      "model hub plan",
+      "priority profiles plan",
+      "tasks",
+      "model hub tasks",
+      "priority profile tasks"
+    ],
+    "key_topics": [
+      "model",
+      "hub",
+      "priority",
+      "profiles",
+      "sk-prompt-small-model",
+      "rewrite",
+      "minimax-m3",
+      "prompt",
+      "profile",
+      "mimo-v2",
+      "small",
+      "content"
+    ],
+    "importance_tier": "normal",
+    "status": "complete",
+    "key_files": [
+      ".opencode/skills/sk-prompt-small-model/SKILL.md",
+      ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+      ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+      ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "_index.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/models/_index.md",
+        "source": "derived"
+      },
+      {
+        "name": "minimax-m3.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/models/minimax-m3.md",
+        "source": "derived"
+      },
+      {
+        "name": "mimo-v2.5-pro.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-prompt-small-model/references/models/mimo-v2.5-pro.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Context This",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Boundary",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Hub",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Operator",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Template Snippet",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Dispatch Gotchas",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "This is **Phase 4** of the Prompt-knowledge layering across CLI skills, sk-prompt frameworks, and the sk-prompt-small-model model-craft hub specification.",
+    "created_at": "2026-06-05T12:47:32.510Z",
+    "last_save_at": "2026-06-05T12:47:32.510Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "implementation-summary.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

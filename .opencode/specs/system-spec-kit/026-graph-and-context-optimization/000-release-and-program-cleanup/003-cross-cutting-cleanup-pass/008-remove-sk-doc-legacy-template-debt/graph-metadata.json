@@ -44,16 +44,8 @@
     "status": "complete",
     "key_files": [
       ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/02-causal-graph-statistics-memorycausalstats.md",
       ".opencode/skills/system-spec-kit/references/config/hook_system.md",
       "plan.md",
       "tasks.md",
@@ -69,48 +61,6 @@
         "source": "derived"
       },
       {
-        "name": "002-semantic-and-lexical-search-memory-search.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md",
-        "source": "derived"
-      },
-      {
-        "name": "020-causal-graph-statistics-memory-causal-stats.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md",
-        "source": "derived"
-      },
-      {
-        "name": "003-context-save-index-update.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md",
-        "source": "derived"
-      },
-      {
-        "name": "01-run-stress-cycle.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md",
-        "source": "derived"
-      },
-      {
-        "name": "071-debug-delegation-scaffold-generator.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
-        "source": "derived"
-      },
-      {
-        "name": "278-mcp-daemon-rebuild-restart-live-probe.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/278-mcp-daemon-rebuild-restart-live-probe.md",
-        "source": "derived"
-      },
-      {
-        "name": "279-graph-degraded-stress-cell-isolation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/279-graph-degraded-stress-cell-isolation.md",
-        "source": "derived"
-      },
-      {
         "name": "README.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/README.md",
@@ -120,12 +70,6 @@
         "name": "skill-advisor-hook.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/hooks/skill-advisor-hook.md",
-        "source": "derived"
-      },
-      {
-        "name": "02-causal-graph-statistics-memorycausalstats.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/06--analysis/02-causal-graph-statistics-memorycausalstats.md",
         "source": "derived"
       },
       {
@@ -205,11 +149,59 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Deterministic",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Audit Report",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc template alignment audit on the last 40 commits scanned 384 documentation files and surfaced **93 MISALIGN-HIGH + 177 MISALIGN-MEDIUM**. Most findings are pre-existing legacy debt: spec folders authored under earlier sk-doc template versions that never got upgraded to current frontmatter / anchor / template-source-marker requirements.",
     "created_at": "2026-04-29T11:05:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.571Z",
+    "last_save_at": "2026-06-05T12:47:32.989Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

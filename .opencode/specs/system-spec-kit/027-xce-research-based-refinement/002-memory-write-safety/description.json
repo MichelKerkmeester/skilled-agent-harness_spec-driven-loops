@@ -34,13 +34,15 @@
     "write",
     "safety"
   ],
-  "lastUpdated": "2026-06-04T12:33:53.315Z",
+  "lastUpdated": "2026-06-05T15:00:26.652Z",
   "specId": "002",
   "folderSlug": "memory-write-safety",
   "parentChain": [
     "system-spec-kit",
     "027-xce-research-based-refinement"
   ],
-  "memorySequence": 0,
-  "memoryNameHistory": []
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "05-06-26_16-00__verdict-still-relevant-all-three-p0-fixes.md"
+  ]
 }

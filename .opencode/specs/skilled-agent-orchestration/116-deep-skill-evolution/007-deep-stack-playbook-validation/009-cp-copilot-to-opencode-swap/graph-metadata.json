@@ -36,7 +36,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "complete_—_18_re_run_via_opencode/deepseek_(13_pass_/_5_partial_/_0_fail);_fixture_restored",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 007 validation run recorded **19 SKIP** verdicts. 18 of those are copilot-driven CP/discipline stress scenarios — deep-review `07--command-flow-stress-tests` (CP-052..057), deep-research `07--command-flow-stress-tests` (CP-046..051), deep-agent-improvement `08--agent-discipline-stress-tests` (CP-040..045) — that invoke `copilot -p ... --model gpt-5.5`. The `copilot` CLI is org-policy-blocked in this environment (\"Third-party MCP servers disabled by org policy\"), so they cannot run. CP-040..045 carry a **second** blocker: their setup needs the `060-stress-test` fixture, pruned in checkpoint commit `e917f76347`.",
     "created_at": "2026-05-27T22:30:00.000Z",
-    "last_save_at": "2026-05-30T10:12:01.068Z",
+    "last_save_at": "2026-06-05T12:47:32.364Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

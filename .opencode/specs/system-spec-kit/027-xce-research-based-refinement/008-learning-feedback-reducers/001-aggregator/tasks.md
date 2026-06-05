@@ -44,10 +44,10 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T004 Create `mcp_server/lib/feedback/feedback-aggregation.ts`.
-- [ ] T005 Implement strong/medium/weak bucket mapping.
-- [ ] T006 Implement sessions, queries, firstSeen, and lastSeen tracking.
-- [ ] T007 Implement weighted-hit formula with zero floor.
+- [ ] T004 Reuse/extend `batch-learning.ts:195-241` (`aggregateEvents`) instead of creating a duplicate `mcp_server/lib/feedback/feedback-aggregation.ts`.
+- [ ] T005 Reuse the existing strong/medium/weak bucket mapping; add only buckets it does not already produce.
+- [ ] T006 Implement sessions, queries, firstSeen, and lastSeen tracking, extending the existing aggregate where fields are missing.
+- [ ] T007 Reconcile the weighted-hit formula with the existing `weightedScore`/`computedBoost`, keeping the zero floor and avoiding a parallel formula.
 - [ ] T008 Emit ledger quality metrics and low-support gating metadata.
 <!-- /ANCHOR:phase-2 -->
 

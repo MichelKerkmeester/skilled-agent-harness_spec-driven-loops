@@ -1,6 +1,6 @@
 ---
 title: "007 — Semantic Trigger Fallback"
-description: "ADAPT XCE-style semantic similarity into memory_match_triggers as a hybrid lexical+semantic stage using the existing Voyage-4 1024-dim embedding cache. Lexical remains primary precision path; semantic adds paraphrase recall as feature-flagged UNION. Cognitive activation guards (semantic-only hits at reduced attention) prevent control-surface masquerading. ~280-430 LOC + 180-280 tests."
+description: "ADAPT XCE-style semantic similarity into memory_match_triggers as a hybrid lexical+semantic stage reusing the active embedding profile's cache (default Ollama nomic-embed-text-v1.5, 768-dim; profile_key/input_kind-scoped). Lexical remains primary precision path; semantic adds paraphrase recall as feature-flagged UNION. Cognitive activation guards (semantic-only hits at reduced attention) prevent control-surface masquerading. ~280-430 LOC + 180-280 tests."
 trigger_phrases:
   - "027 phase 007"
   - "memory semantic triggers"
@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback"
-    last_updated_at: "2026-05-09T11:00:00Z"
-    last_updated_by: "claude-opus-4-7"
-    recent_action: "Scaffolded 027/008 from pt-03 RQ-B1"
-    next_safe_action: "Implement Sub-Phase 1 (schema + backfill)"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: Voyage->local-nomic, eval-dep reframe"
+    next_safe_action: "Re-tune threshold/goldens for 768d Nomic; implement Sub-Phase 1"
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "decision-record.md", "resource-map.md"]
     session_dedup:
@@ -38,7 +38,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-> **pt-04 audit note (2026-05-11)**: Path discipline confirmed — spec uses correct `mcp_server/lib/triggers/`, `mcp_server/lib/parsing/trigger-matcher.ts`, `mcp_server/handlers/memory-index-scan.ts`, `mcp_server/lib/embeddings/embedding-pipeline.ts` paths. Audit flagged `mcp_server/lib/memory/` as nonexistent — that path may appear in plan.md / tasks.md / decision-record.md (TODO: sweep these). Live tool dispatch is `tools/memory-tools.ts:63-75` and schemas `tool-input-schemas.ts:820-825`. **Dependency reframing**: the soft dependency on `028/004-code-graph-adoption-eval` is now stated as "requires **shadow eval evidence**" — 028/004-code-graph-adoption-eval's harness produces the evidence, but the dependency is on the evidence, not on a specific harness implementation. See `../research/027-xce-research-pt-04/research.md` §2 Phase 007.
+> **pt-04 audit note (2026-05-11, updated 2026-06-05)**: Path discipline — spec uses correct `mcp_server/lib/triggers/`, `mcp_server/lib/parsing/trigger-matcher.ts`, `mcp_server/handlers/memory-index-scan.ts`. The save-time embedding pipeline now lives at `mcp_server/handlers/save/embedding-pipeline.ts`, and the embedding factory/auto-select at `shared/embeddings/` (`factory.ts`, `auto-select.ts`); legacy `mcp_server/lib/embeddings/factory.ts` no longer exists. Audit flagged `mcp_server/lib/memory/` as nonexistent — that path may appear in plan.md / tasks.md / decision-record.md (TODO: sweep these). Live tool dispatch is `tools/memory-tools.ts:63-75` and schemas `tool-input-schemas.ts:820-825`. **Dependency reframing**: the soft dependency is on **shadow eval evidence** (recall-lift / paired-comparison shadow telemetry) from an equivalent shadow-eval harness — the dependency is on the evidence, not on a specific named folder; the previously-cited `028/004-code-graph-adoption-eval` folder does not exist. **Embedding reframing (2026-06-05)**: the active default embedding profile is local Ollama `nomic-embed-text-v1.5` (768-dim), not Voyage-4/1024-dim; the threshold/margin/goldens below were tuned for Voyage 1024d and MUST be re-tuned/re-validated for 768d Nomic. See `../research/027-xce-research-pt-04/research.md` §2 Phase 007 and `../research/027-relevance-audit-2026-06-05/research.md`.
 
 Pt-03 RQ-B1 (verdict ADAPT, see `../research/027-xce-research-pt-03/research.md` §RQ-B1 and `../research/027-xce-research-pt-03/iterations/iteration-006.md`) addresses the memory backend's lexical-only trigger matching. Today's `memory_match_triggers` (`mcp_server/lib/parsing/trigger-matcher.ts:201-545`) matches by exact phrase + word boundaries (CJK substring + Latin word-boundary regex). It catches `/memory:save` and `save context` precisely but misses paraphrases like "save the current state".
 
@@ -49,12 +49,12 @@ XCE's transferable teaching is semantic retrieval ("find by meaning, not text ma
 **Key Decisions:**
 - **Hybrid not replacement** — exact triggers are a control surface (commands, continuity phrases); preserve precision.
 - **Lexical first; semantic on miss** — embed prompt only when lexical empty/weak.
-- **Reuse existing Voyage-4 1024-dim cache** (`embedding-cache.ts:45-55`) — no new embedding pipeline.
+- **Reuse the active profile's embedding cache** (`lib/cache/embedding-cache.ts:45-55`, keyed by profile_key+input_kind; default Ollama nomic 768d) — no new embedding pipeline.
 - **Derived storage table** `memory_trigger_embeddings` — `trigger_phrases` JSON in `memory_index` stays source-of-truth.
 - **Backfill via `memory_index_scan` + save-time pipeline** (`embedding-pipeline.ts:143-169`) — never synchronous embed in trigger calls (latency budget 30-50ms PASS / 100ms WARN per `trigger-matcher.ts:132-160`).
 - **Reduced activation for semantic-only** — `min(0.85, semanticScore)` keeps tier classifier honest.
 - **Default-off behind `SPECKIT_SEMANTIC_TRIGGERS=false`** + sub-flag `SPECKIT_SEMANTIC_TRIGGERS_MODE=shadow|union` (shadow first).
-- **Conservative starting threshold** `0.84` cosine + `0.04` margin + `_MAX=3`.
+- **Conservative starting threshold** `0.84` cosine + `0.04` margin + `_MAX=3`. NOTE: these values + the goldens were tuned for Voyage 1024d and MUST be re-tuned/re-validated for the active 768d Nomic profile — do not assume `0.84` transfers.
 
 **Critical Constraints:**
 - Trigger matches feed cognitive activation (`memory-triggers.ts:360-380`) — false positives are EXPENSIVE.
@@ -73,7 +73,7 @@ XCE's transferable teaching is semantic retrieval ("find by meaning, not text ma
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-03/research.md` §RQ-B1; `../research/027-xce-research-pt-03/iterations/iteration-006.md` |
-| **Depends on** | none (hard); requires **shadow eval evidence** from `028/004-code-graph-adoption-eval` (or equivalent harness) for threshold tuning before live-mode promotion. **pt-04 reframing** — was "shared infra from 006", now "requires evidence, not infra coupling". |
+| **Depends on** | none (hard); requires **shadow eval evidence** (recall-lift / paired-comparison shadow telemetry) from an equivalent shadow-eval harness for threshold tuning before live/union-mode promotion. **pt-04 reframing** — was "shared infra from 006", now "requires evidence, not infra coupling"; the dependency is on the evidence, not on a specific named folder (the previously-cited `028/004-code-graph-adoption-eval` folder does not exist). |
 | **LOC budget** | ~280-430 production + ~180-280 tests |
 <!-- /ANCHOR:metadata -->
 
@@ -94,7 +94,7 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 - Explicit commands (`/memory:save`) are a control surface, not a fuzzy search query.
 - Latency budget is tight (`trigger-matcher.ts:132-160`).
 
-**Purpose:** add an OPTIONAL semantic stage as a UNION fallback — runs only when lexical empty/weak; uses existing Voyage-4 cache; semantic-only hits source-tagged + reduced-activation so they can't pretend to be exact triggers.
+**Purpose:** add an OPTIONAL semantic stage as a UNION fallback — runs only when lexical empty/weak; uses the active profile's embedding cache (default Ollama nomic 768d; local-first, no network); semantic-only hits source-tagged + reduced-activation so they can't pretend to be exact triggers.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -107,11 +107,11 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 - BLOB embedding storage reuses existing `embedding_cache(content_hash, model_id, dimensions, embedding)` from `embedding-cache.ts:45-55` — keyed by `phrase_hash + model_id + dimensions`.
 - New `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (~140-200 LOC):
   - Loads in-memory cache of trigger embeddings beside existing `triggerCache`.
-  - Cosine similarity over Voyage-4 cache; threshold + margin + max-hit gates.
+  - Cosine similarity over the active profile's embedding cache (default Ollama nomic 768d); threshold + margin + max-hit gates.
   - Deterministic ordering for reproducibility.
 - Backfill integration:
   - `memory_index_scan` (`mcp_server/handlers/memory-index-scan.ts`): on each indexed memory, generate trigger embeddings for any phrase with `embedding_status='pending'`.
-  - Save-time pipeline (`mcp_server/lib/embeddings/embedding-pipeline.ts:143-169`): on `memory_save`, generate trigger embeddings inline (best-effort; non-blocking on failure).
+  - Save-time pipeline (`mcp_server/handlers/save/embedding-pipeline.ts:143-169`): on `memory_save`, generate trigger embeddings inline (best-effort; non-blocking on failure).
   - **NEVER** synchronous embed inside trigger call — use cached embeddings only at runtime.
 - `memory-triggers.ts` 2-stage handler (~70-110 LOC additions):
   - Stage 1: existing lexical match (unchanged path).
@@ -176,7 +176,7 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
 | REQ-013 | Latency budget preserved — 30-50ms PASS / 100ms WARN per `trigger-matcher.ts:132-160` even with semantic stage in shadow mode | Latency benchmark CI gate |
-| REQ-014 | CJK + Latin trigger phrases both supported in semantic stage (Voyage-4 supports both) | Fixture coverage of CJK paraphrases |
+| REQ-014 | CJK + Latin trigger phrases both supported in semantic stage (verify the active profile, default Ollama nomic-embed-text-v1.5 768d, covers both; re-validate at 768d) | Fixture coverage of CJK paraphrases |
 <!-- /ANCHOR:requirements -->
 
 ---
@@ -190,13 +190,13 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 | Prompt matches lexical exactly (`/memory:save`) | Lexical hit returned at `attention=1.0`; semantic stage SKIPPED entirely (no embed) |
 | Prompt is paraphrase of stored trigger ("save the current state" vs "save context") | Lexical empty; semantic stage embeds prompt; cosine ≥ 0.84 → semantic hit at `attention=min(0.85, score)`; `matchSource: "semantic"` |
 | Phrase has no cached embedding (cold start) | Skipped silently in semantic stage; logged `semantic_trigger_skipped_uncached`; backfill on next index scan |
-| Voyage embedding cache miss (network fail) | Stage 2 skipped; lexical-only result returned; logged `semantic_trigger_skipped_cache_miss` |
+| Embedding provider cache miss (provider/network fail; local Ollama needs no network) | Stage 2 skipped; lexical-only result returned; logged `semantic_trigger_skipped_cache_miss` |
 | Multiple triggers fire (lexical + semantic) | UNION; lexical precedence in ordering; both included in cognitive activation with respective attention scores |
 | Threshold band 0.78-0.82 (just below cutoff) | Logged in shadow telemetry; not activated unless threshold lowered |
 | `SPECKIT_SEMANTIC_TRIGGERS_MODE=shadow` with strong semantic match | Logged but NOT activated; lexical-only behavior surfaced |
 | Trigger phrase added but `memory_index_scan` not yet run | Phrase has `embedding_status='pending'`; lexical works; semantic stage skips this phrase until backfill |
 | Concurrent `memory_match_triggers` calls (multi-tenant) | Each call independent; in-memory cache concurrent-safe; no cross-tenant trigger leakage (existing scope filtering preserved) |
-| Voyage rate limit | Embed fails; Stage 2 skipped; lexical-only result; telemetry `semantic_trigger_rate_limited` |
+| Embedding provider rate limit (applies to remote fallback providers; local Ollama is unmetered) | Embed fails; Stage 2 skipped; lexical-only result; telemetry `semantic_trigger_rate_limited` |
 <!-- /ANCHOR:edge-cases -->
 
 ---
@@ -209,7 +209,7 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 - Diff test: flag-off output bit-identical to current behavior (REQ-001).
 - Latency benchmark p95 within 100ms WARN budget even with shadow stage active.
 - All 14 REQ-NNN have green checklist entries.
-- 028/004-code-graph-adoption-eval eval (when shipped) measures recall lift on paraphrase-heavy task set.
+- An equivalent shadow-eval harness (when available) measures recall lift on a paraphrase-heavy task set via paired comparison.
 <!-- /ANCHOR:success -->
 
 ---
@@ -222,10 +222,10 @@ See `decision-record.md` ADR-002..ADR-006 + `plan.md` Risk Matrix.
 | Risk | Severity | Mitigation |
 |------|----------|------------|
 | False semantic triggers mis-prioritize cognitive tiers | P0 | Lexical short-circuit + reduced-activation guard + source-tagged telemetry + shadow-first rollout + trigger goldens eval before active mode |
-| Embedding cost from per-prompt embed under semantic-active mode | P1 | Lexical short-circuit on strong matches + threshold gating + Voyage cache reuse |
+| Embedding cost from per-prompt embed under semantic-active mode | P1 | Lexical short-circuit on strong matches + threshold gating + active-profile cache reuse (default local Ollama nomic is unmetered) |
 | Backfill scheduling complexity | P2 | Deferred backfill via index scan + cold-start no-op behavior |
 | Schema migration risk on production memory DB | P1 | Forward-only ADD COLUMN / CREATE TABLE; backward-compatible reads |
-| Voyage rate-limit cascade to trigger latency | P1 | Cache lookup only at runtime; embed only at backfill (out-of-band) |
+| Embedding provider rate-limit / latency cascade to trigger latency (remote fallback only) | P1 | Cache lookup only at runtime; embed only at backfill (out-of-band) |
 <!-- /ANCHOR:risks -->
 
 ---
@@ -257,7 +257,7 @@ See section 5 above ("Edge Cases") for the comprehensive case-by-case list.
 
 ## COMPLEXITY ASSESSMENT
 
-L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and 028/004-code-graph-adoption-eval eval gate.
+L3 designation rationale is in `decision-record.md` ADR-001. Cross-component change with feature-flag governance, telemetry contract, and a shadow-eval evidence gate (equivalent shadow-eval harness).
 
 ## RISK MATRIX
 
@@ -267,7 +267,7 @@ See section 7 above + `plan.md` Risk Matrix for the full register with severity,
 
 - **US-001**: As an operator, I can enable the feature via the designated env flag (default off).
 - **US-002**: As a developer, I can observe feature decisions via telemetry signals (rankingSignals or eval logger events).
-- **US-003**: As a 028/004-code-graph-adoption-eval evaluator, I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
+- **US-003**: As a shadow-eval evaluator (equivalent shadow-eval harness), I can compare baseline (flag-off) vs treatment (flag-on) on the labeled task set with paired comparison metrics.
 
 ## OPEN QUESTIONS
 

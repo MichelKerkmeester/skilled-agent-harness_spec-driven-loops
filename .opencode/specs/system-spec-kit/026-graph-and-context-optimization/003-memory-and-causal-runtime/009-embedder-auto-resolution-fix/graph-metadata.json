@@ -39,7 +39,7 @@
       "provider"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(live_confirmed:_`auto`→ollama_after_reconnect)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -207,7 +207,7 @@
     ],
     "causal_summary": "Phase 008 proved why `EMBEDDINGS_PROVIDER=auto` silently degrades to the unhealthy `hf-local` fallback even though ollama is up and owns the active vector shard: `factory.ts` reads the active-embedder metadata by **shelling out to a bare `sqlite3` binary** (`querySqliteScalar` → `execFileSync('sqlite3', …)`), and that helper **returns `null` on *any* error, including `ENOENT`**. The mk-spec-memory daemon runs with a restricted GUI/MCP `PATH` that lacks `sqlite3`, so every metadata probe fails silently → `resolveActiveOllamaEmbedder()` returns null → `resolveProvider()` falls past ollama to `hf-local`. The current mitigation is an explicit `EMBEDDINGS_PROVIDER=ollama` config pin, which is non-portable.",
     "created_at": "2026-05-27T13:26:56.638Z",
-    "last_save_at": "2026-05-30T10:12:02.536Z",
+    "last_save_at": "2026-06-05T12:47:33.922Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

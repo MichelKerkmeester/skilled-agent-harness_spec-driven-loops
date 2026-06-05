@@ -36,7 +36,7 @@ _memory:
 | 1 | [ ] | T001 | Add `memory_trigger_embeddings` table to schema | REQ-004 | `mcp_server/lib/storage/vector-index-schema.ts` (modified) | Migration test passes; `(memory_id, phrase_hash)` primary key |
 | 2 | [ ] | T002 | Implement BLOB embedding storage reuse via existing `embedding_cache` | REQ-004 | `mcp_server/lib/cache/embedding-cache.ts` (analyzed) | Lookup by `phrase_hash + model_id + dimensions` returns BLOB |
 | 3 | [ ] | T003 | Add resumable per-memory backfill in `memory_index_scan` handler | REQ-005, REQ-006 | `mcp_server/handlers/memory-index.ts` (modified) | Scan generates trigger embeddings for `embedding_status='pending'` rows and resumes interrupted runs safely |
-| 4 | [ ] | T004 | Add save-time embedding hook in `embedding-pipeline.ts` (best-effort, non-blocking) | REQ-006 | `mcp_server/lib/embeddings/embedding-pipeline.ts` (modified) | Save flow not blocked on Voyage failure; `embedding_status='failed'` recorded for retry |
+| 4 | [ ] | T004 | Add save-time embedding hook in `embedding-pipeline.ts` (best-effort, non-blocking) | REQ-006 | `mcp_server/handlers/save/embedding-pipeline.ts` (modified) | Save flow not blocked on embedding-provider failure; `embedding_status='failed'` recorded for retry |
 
 ## SUB-PHASE 2 — SEMANTIC MATCHER
 
@@ -127,7 +127,7 @@ See final sub-phase tasks above + `checklist.md` verification commands. Includes
 - All T### tasks above marked `[X]` complete.
 - All `checklist.md` P0 items green.
 - Strict spec validation passes.
-- 028/004-code-graph-adoption-eval eval gate documented (if applicable for active-mode rollout).
+- Shadow-eval evidence gate documented (equivalent shadow-eval harness; if applicable for active-mode rollout).
 - Shadow-to-union promotion evidence is recorded before any live `union` rollout.
 - `implementation-summary.md` filled with file:line evidence.
 <!-- /ANCHOR:completion -->

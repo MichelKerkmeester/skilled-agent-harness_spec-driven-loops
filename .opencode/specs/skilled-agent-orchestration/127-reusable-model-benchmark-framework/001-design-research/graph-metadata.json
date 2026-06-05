@@ -50,9 +50,7 @@
       ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/score-model-variant.cjs",
       ".opencode/skills/deep-improvement/scripts/model-benchmark/README.md",
       ".opencode/skills/deep-improvement/assets/model-benchmark/benchmark-profiles/default.json",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
-      ".opencode/skills/sk-prompt/SKILL.md",
-      ".opencode/skills/sk-prompt/references/model-profiles.md"
+      ".opencode/skills/sk-prompt/SKILL.md"
     ],
     "entities": [
       {
@@ -128,31 +126,13 @@
         "source": "derived"
       },
       {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
-        "source": "derived"
-      },
-      {
         "name": "SKILL.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt/SKILL.md",
         "source": "derived"
       },
       {
-        "name": "model-profiles.md",
-        "kind": "doc",
-        "path": ".opencode/skills/sk-prompt/references/model-profiles.md",
-        "source": "derived"
-      },
-      {
         "name": "Feature Specification",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "In Progress",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -182,6 +162,12 @@
         "source": "derived"
       },
       {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Implementation Plan",
         "kind": "proper_noun",
         "path": "plan.md",
@@ -198,11 +184,23 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Research",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The repo's prompt-framework benchmarks are **one-off, model-specific rigs**: `120/003` (MiniMax, 7 fixtures) and `126/004` (MiMo, lean 2-fixture port) each re-implement fixtures + a dispatch wrapper + scoring. Packet `121` generalized *model-benchmark mode* into deep-improvement Lane B (`run-benchmark.cjs` + `dispatch-model.cjs` + a 5-dim scorer), but the **prompt-framework bake-off, the fixture taxonomy, the multi-dimensional scoring, and the statistical rigor are not yet a reusable framework** — each new model or question still needs new rig code. The `126/004` run also exposed a **correctness-saturation** problem: tractable pure-function fixtures don't separate frontier models, so the benchmark only measured format/brevity.",
     "created_at": "2026-06-02T05:45:33.745Z",
-    "last_save_at": "2026-06-02T05:45:33.745Z",
+    "last_save_at": "2026-06-05T12:47:32.487Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

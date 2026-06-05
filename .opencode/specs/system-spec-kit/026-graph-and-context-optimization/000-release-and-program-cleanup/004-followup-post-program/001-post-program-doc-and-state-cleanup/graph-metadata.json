@@ -40,7 +40,7 @@
       "task"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "The 026 deep-review remediation program landed most runtime and documentation fixes, but left post-program status and validator surfaces stale. Completed remediation packets still present as `planned`, parent maps omit the remediation child, and the source packets 005/011 are not strict-validator green.",
     "created_at": "2026-04-28T19:26:58Z",
-    "last_save_at": "2026-05-30T10:12:01.629Z",
+    "last_save_at": "2026-06-05T12:47:33.047Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

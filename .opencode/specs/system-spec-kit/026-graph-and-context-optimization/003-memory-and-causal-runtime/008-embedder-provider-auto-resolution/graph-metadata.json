@@ -39,7 +39,7 @@
       "better-sqlite3"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "in_progress_(research)",
     "key_files": [
       "research/research.md",
       "shared/paths.ts",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "With `EMBEDDINGS_PROVIDER=auto` (the committed MCP-config default, documented as a local-first cascade `ollama → hf-local → openai → voyage`), the mk-spec-memory daemon silently resolves to **`hf-local`** — which is unhealthy on this host (no running backend) — instead of the active, working **`ollama`** embedder. ollama is up, has `nomic-embed-text:v1.5`, and owns the active vector shard `context-vectors__ollama__nomic-embed-text-v1.5__768`. The result: embeds fail, the retry queue flaps, and `auto` does not deliver the ollama-first behavior it advertises. The current interim mitigation is an explicit `EMBEDDINGS_PROVIDER=ollama` pin (phase-separate), which is non-portable.",
     "created_at": "2026-05-27T12:33:58.373Z",
-    "last_save_at": "2026-05-30T10:12:02.534Z",
+    "last_save_at": "2026-06-05T12:47:33.920Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

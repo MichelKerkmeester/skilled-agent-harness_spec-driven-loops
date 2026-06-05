@@ -36,7 +36,7 @@
       "packet"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/sk-doc/references/global/quick_reference.md",
       ".opencode/skills/sk-doc/assets/skill/skill_md_template.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 4** (terminal phase) of the sk-doc reorg packet — added after the 7-iteration deep-review (review-report.md) surfaced 1 P1 + 2 P2 doc-accuracy findings that escaped Phase 2's 4-pattern fixed-string substring sweep.",
     "created_at": "2026-05-05T09:51:15Z",
-    "last_save_at": "2026-05-30T10:12:01.363Z",
+    "last_save_at": "2026-06-05T12:47:32.783Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T12:00:00Z",
     "source_docs": [

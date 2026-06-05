@@ -39,7 +39,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(lineage_truth_reconciled_+_content_aligned_+_reality_verified)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -48,8 +48,7 @@
       "implementation-summary.md",
       "scratch/archive-pass2/review-report.md",
       "scratch/archive-pass2/iteration-001.md",
-      "scratch/archive-pass2/iteration-004.md",
-      ".gemini/workflows/delegate_agent.md"
+      "scratch/archive-pass2/iteration-004.md"
     ],
     "entities": [
       {
@@ -98,12 +97,6 @@
         "name": "iteration-004.md",
         "kind": "doc",
         "path": "scratch/archive-pass2/iteration-004.md",
-        "source": "derived"
-      },
-      {
-        "name": "delegate_agent.md",
-        "kind": "doc",
-        "path": ".gemini/workflows/delegate_agent.md",
         "source": "derived"
       },
       {
@@ -195,11 +188,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The original `013-agents-alignment` packet described a simpler runtime model than the repository now uses. It treated `.opencode/agents/*.md` as a single canonical source copied directly to every runtime, but the live repo has split lineage:",
     "created_at": "2026-04-12T09:02:50.287Z",
-    "last_save_at": "2026-05-30T10:12:03.341Z",
+    "last_save_at": "2026-06-05T12:47:34.836Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

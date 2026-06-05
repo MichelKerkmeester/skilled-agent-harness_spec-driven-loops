@@ -32,7 +32,7 @@
       "directory"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "shared/README.md",
       "mcp_server/handlers/README.md",
@@ -200,7 +200,7 @@
     ],
     "causal_summary": "Only `shared/README.md` has both an ASCII box-art architecture diagram and a directory topology tree. The 18 other code-folders and `ARCHITECTURE.md` are missing one or both. This makes it hard for developers to orient themselves when entering a code directory.",
     "created_at": "2026-05-02T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.613Z",
+    "last_save_at": "2026-06-05T12:47:33.032Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

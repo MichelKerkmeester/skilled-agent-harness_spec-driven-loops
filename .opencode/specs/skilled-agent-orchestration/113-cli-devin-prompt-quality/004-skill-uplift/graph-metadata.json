@@ -38,7 +38,7 @@
       "checklist"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/cli-devin/SKILL.md",
       ".opencode/skills/cli-devin/assets/prompt_templates.md",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "Read `../003-eval-loop/synthesis.md` and apply the top-ranked variant's patterns to `.opencode/skills/cli-devin/`. Targeted sections: SKILL.md §2 SMART ROUTING (knob tuning), SKILL.md §4 RULES (e.g., revised pre-planning contract, sequential_thinking threshold), `assets/prompt_templates.md` (replace template variants with winners), `assets/prompt_quality_card.md` (refine CLEAR cutoffs if council found better). Add `changelog/v1.0.5.0.md` entry documenting the uplift. Strict-validate after each authored doc write. No 4-runtime mirror — cli-devin is `.opencode`-only.",
     "created_at": "2026-05-16T19:10:00Z",
-    "last_save_at": "2026-06-04T03:35:27.082Z",
+    "last_save_at": "2026-06-05T12:47:32.148Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

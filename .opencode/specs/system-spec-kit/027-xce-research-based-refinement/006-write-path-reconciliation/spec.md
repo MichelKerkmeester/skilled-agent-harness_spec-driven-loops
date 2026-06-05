@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/006-write-path-reconciliation"
-    last_updated_at: "2026-05-13T09:20:00Z"
-    last_updated_by: "codex"
-    recent_action: "authored spec"
-    next_safe_action: "draft statediff"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: async post-insert enrichment"
+    next_safe_action: "Model durable statediff as same-response; enrichment via async marker"
     blockers:
       - "003"
     key_files:
@@ -177,6 +177,7 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 | REQ-003 | `memory_index_scan` produces a statediff plan before DB writes. | Scan logs or debug output include planned actions before any target sink mutates rows. |
 | REQ-004 | Stale deletes remain guarded by replacement-index success. | Existing behavior that defers stale cleanup after failed replacement indexing is preserved in statediff planning. |
 | REQ-005 | `memory_save` uses statediff for durable storage targets after semantic policy gates. | Save path reconciles memory row, embedding row, lexical rows, and related projections through target sinks. |
+| REQ-010 | The `memory_save` statediff conversion MUST model post-insert enrichment as ASYNC / pending-marker replay (commit `0060a097b3` deferred enrichment after row commit), not same-response graph writes. | Durable rows commit synchronously; generated graph/enrichment edges are applied via the async pending-marker path and reconciled on replay, never in the same save response. |
 
 ### P1 - Required (complete OR user-approved deferral)
 

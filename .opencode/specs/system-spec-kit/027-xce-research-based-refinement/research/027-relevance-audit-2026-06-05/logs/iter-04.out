@@ -1,0 +1,27 @@
+I’ll keep this read-only and focus on current code plus recent git history for Phase 004’s tombstone/lifecycle requirements.
+I’m loading the Phase 004 docs, current implementation signals, and recent history in parallel, then I’ll cross-check any matching commits against current file lines.
+Initial scan found no `lib/causal/sweep.ts`; the broad “tombstone” matches are not yet evidence of a causal-edge tombstone implementation, so I’m narrowing to schema and delete call sites.
+The narrowed scan shows no `causal_edge_tombstones`, `lifecycle_generation`, or `restore_metadata` in server code, while current delete paths still call hard-delete helpers. I’m checking whether recent temporal/audit changes partially supersede the planned lifecycle semantics.
+Recent causal/enrichment commits added relation inference, unlink exposure, and orphan cleanup wiring, but the current code still lacks persistent tombstones. I’m pulling commit-level evidence now for the exact lines that prove partial overlap versus missing work.
+History confirms the recent relation-backfill work changed causal insertion/conflict behavior, not delete lifecycle. One more narrow check will verify whether any migration creates temporal columns or tombstone-like audit rows outside the main schema file.
+I have enough evidence for the verdict: the phase is not already implemented, but the implementation inventory should be expanded because several current hard-delete paths are outside the original target list.
+## 004-causal-edge-tombstones — VERDICT: NEEDS-RESCOPE
+- Evidence: no current hits for `causal_edge_tombstones`, `lifecycle_generation`, or `restore_metadata` under `.opencode/skills/system-spec-kit/mcp_server/`; no `lib/causal/sweep.ts` exists.
+- Evidence: `2385fb801d8` / `470f4d4f8e9` `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:713-728` defines only active `causal_edges`, with no tombstone table.
+- Evidence: `c43a8021eab` / `0f65156a2b8` `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:743-775` still hard-deletes via `DELETE FROM causal_edges`.
+- Evidence: `0252f3c0e99` `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts:865-877` wires `memory_health` auto-repair to `cleanupOrphanedEdges()`, which deletes via `deleteEdge()` rather than tombstoning.
+- Evidence: `c43a8021eab` `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:1124-1128` manual unlink still calls `causalEdges.deleteEdge(edgeId)`.
+- Evidence: recent commits `d32d90c3f1`, `b834150fe5`, and `bb61e8864e` added relation-inference/backfill/conflict behavior, not delete lifecycle/tombstone schema.
+
+- Per-item:
+  - `causal_edge_tombstones` schema: STILL-RELEVANT.
+  - `lib/causal/sweep.ts` helper: STILL-RELEVANT.
+  - Route `memory_delete`, `memory_bulk_delete`, manual unlink, and health orphan cleanup through tombstone-then-delete: STILL-RELEVANT.
+  - Lifecycle generation: NEEDS-RESCOPE because `causalEdgesGeneration` exists only as an in-memory cache invalidation counter at `lib/storage/causal-edges.ts:159-180`, not persisted tombstone lifecycle metadata.
+  - Delete-path inventory: NEEDS-RESCOPE because additional hard-delete paths exist, including `lib/search/vector-index-mutations.ts:137-145`, `lib/storage/checkpoints.ts:1668-1676`, and `lib/learning/corrections.ts:611-649`.
+
+- Reasoning: The core planned artifact does not exist, and active edge deletion is still hard-delete. Recent causal/enrichment work increased causal edge creation and conflict handling, which strengthens the need for deletion audit rather than replacing it. The plan should not be dropped, but its caller inventory is stale and should cover all current raw `DELETE FROM causal_edges` paths.
+
+- Recommended action: rescope-how: keep the tombstone table/helper design, explicitly treat existing cache generation as separate from persisted `lifecycle_generation`, preserve the existing `memory_health` confirmation gate, and expand caller routing to every current raw causal-edge delete path.
+
+- Confidence: high.

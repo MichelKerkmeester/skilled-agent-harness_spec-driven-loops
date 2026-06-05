@@ -35,7 +35,7 @@
       "req-004"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/intent-classifier.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
@@ -201,7 +201,7 @@
     ],
     "causal_summary": "Implement the normalized `IntentTelemetry` schema per 007 §5 Q8 (`taskIntent` + `backendRouting` as parallel objects with explicit `classificationKind`, optional `paraphraseGroup`). Add a paired paraphrase stability corpus covering 20+ query pairs across CLI styles. Add cross-CLI drift metric. Treat as P2 because Q8 has lower evidence; document residual evidence gap in implementation-summary.",
     "created_at": "2026-04-27T07:56:33.777Z",
-    "last_save_at": "2026-05-30T10:12:01.670Z",
+    "last_save_at": "2026-06-05T12:47:33.087Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

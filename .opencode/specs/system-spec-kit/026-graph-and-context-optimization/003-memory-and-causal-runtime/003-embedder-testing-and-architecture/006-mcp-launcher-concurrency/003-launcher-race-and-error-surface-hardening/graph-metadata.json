@@ -39,7 +39,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "in_progress",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/system-skill-advisor/mcp_server/tests/launcher-lease.vitest.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "This is **Phase 8** of the 006-skill-advisor track, addressing P1 findings from the 3-reviewer parallel audit of packets 006 and 007. The shipped code works on the happy path (typecheck + 9 vitest tests + manual probes all PASS), but reviewers surfaced 9 latent correctness gaps. This packet closes them.",
     "created_at": "2026-05-18T06:19:31Z",
-    "last_save_at": "2026-05-30T10:12:02.359Z",
+    "last_save_at": "2026-06-05T12:47:33.777Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

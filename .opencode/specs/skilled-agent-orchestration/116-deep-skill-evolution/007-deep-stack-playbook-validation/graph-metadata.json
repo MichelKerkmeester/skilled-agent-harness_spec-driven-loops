@@ -41,7 +41,7 @@
       "five"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete_—_177/177_verdicts_(177_pass_/_0_partial_/_0_fail_/_0_skip);_release_verdict_**ready**;_4_remediation_children_(007,_008,_009,_010)_shipped_+_re_verified",
     "key_files": [
       "006-release-readiness-synthesis/dispatch-runbook.md",
       "spec.md"
@@ -98,7 +98,7 @@
     ],
     "causal_summary": "The five deep-loop skills — `deep-loop-runtime` (22), `deep-ai-council` (32), `deep-review` (45), `deep-research` (41), and `deep-agent-improvement` (37) — ship manual testing playbooks totalling **177 scenarios**. Each playbook's Execution Policy requires scenarios to be \"executed for real, not mocked.\" There is no captured, dated operator run on record across these five skills, so release readiness for the deep-loop family cannot be asserted.",
     "created_at": "2026-05-27T07:08:08.383Z",
-    "last_save_at": "2026-05-30T10:12:01.057Z",
+    "last_save_at": "2026-06-05T12:47:32.349Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

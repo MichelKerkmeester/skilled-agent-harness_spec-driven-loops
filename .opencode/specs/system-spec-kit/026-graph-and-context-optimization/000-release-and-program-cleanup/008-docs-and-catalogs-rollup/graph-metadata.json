@@ -5,7 +5,8 @@
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [
     "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/001-docs-and-catalogs-rollup",
-    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit"
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/002-changelog-backfill-and-audit",
+    "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/008-docs-and-catalogs-rollup/003-changelog-accuracy-reaudit"
   ],
   "manual": {
     "depends_on": [],
@@ -17,27 +18,26 @@
       "docs and catalogs rollup",
       "008 phase parent",
       "changelog backfill phase parent",
-      "umbrella docs rollup",
-      "026 docs rollup"
+      "umbrella docs rollup"
     ],
     "key_topics": [
       "docs",
       "catalogs",
       "rollup",
-      "changelog",
-      "backfill",
-      "audit",
+      "008",
       "phase",
       "parent",
+      "changelog",
+      "backfill",
+      "umbrella",
+      "spec",
       "026",
-      "umbrella"
+      "needed"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "spec.md",
-      "001-docs-and-catalogs-rollup/spec.md",
-      "002-changelog-backfill-and-audit/spec.md"
+      "spec.md"
     ],
     "entities": [
       {
@@ -45,11 +45,47 @@
         "kind": "doc",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Catalogs Rollup",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Spec",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Deliver",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "Phase parent grouping two documentation phases for spec 026: the umbrella docs and catalogs rollup (001) and the program-wide changelog backfill plus work audit (002).",
+    "causal_summary": "Spec 026 needed two related documentation deliverables: the umbrella docs and catalogs had to be rolled up to reflect shipped capabilities, and the program had hundreds of shipped phases with almost no packet-local changelogs. This phase parent groups both efforts.",
     "created_at": "2026-06-01T00:00:00.000Z",
-    "last_save_at": "2026-06-01T00:00:00.000Z",
+    "last_save_at": "2026-06-05T12:47:33.187Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

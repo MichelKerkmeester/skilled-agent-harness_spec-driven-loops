@@ -39,7 +39,7 @@
       "failure"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       ".opencode/agents/debug.md",
       ".opencode/agents/orchestrate.md",
@@ -47,20 +47,20 @@
       ".opencode/commands/speckit/assets/speckit_complete_auto.yaml",
       ".claude/agents/debug.md",
       ".codex/agents/debug.toml",
-      ".gemini/agents/debug.md",
       ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
       ".opencode/commands/speckit/assets/speckit_complete_confirm.yaml",
       ".opencode/commands/speckit/assets/speckit_implement_confirm.yaml",
       ".claude/agents/orchestrate.md",
-      ".gemini/agents/orchestrate.md",
       ".codex/agents/orchestrate.toml",
       ".opencode/commands/speckit/implement.md",
       ".opencode/commands/speckit/complete.md",
       ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
       "implementation-summary.md",
       "spec.md",
-      "plan.md"
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "handover.md"
     ],
     "entities": [
       {
@@ -97,12 +97,6 @@
         "name": "scaffold-debug-delegation.sh",
         "kind": "script",
         "path": ".opencode/skills/system-spec-kit/scripts/spec/scaffold-debug-delegation.sh",
-        "source": "derived"
-      },
-      {
-        "name": "071-debug-delegation-scaffold-generator.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/071-debug-delegation-scaffold-generator.md",
         "source": "derived"
       },
       {
@@ -160,6 +154,24 @@
         "source": "derived"
       },
       {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "A repo-wide audit of the `@debug` agent (`.opencode/agents/debug.md` plus three sibling runtime definitions in `.claude/`, `.codex/`, `.gemini/`) confirmed the agent is shelfware. Its description and the orchestrator routing both promise auto-dispatch on `failure_count >= 3`, but no executable code increments that counter or invokes the Task tool. Zero `debug-delegation.md` instances exist across all spec folders despite a fully formed template, and in the one place where a workflow does prompt the user (`speckit_implement_auto.yaml:413` / `speckit_complete_auto.yaml:898-910`), the prompt is a buried A/B/C/D menu that operators consistently skip.",
     "created_at": "2026-04-27T08:35:00Z",
-    "last_save_at": "2026-05-30T10:12:01.270Z",
+    "last_save_at": "2026-06-05T12:47:32.691Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

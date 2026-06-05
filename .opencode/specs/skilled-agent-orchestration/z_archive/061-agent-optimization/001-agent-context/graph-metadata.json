@@ -31,12 +31,11 @@
       "grep"
     ],
     "importance_tier": "high",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "improvement/candidates/iter-1-candidate-001.md",
       ".opencode/agents/context.md",
       ".claude/agents/context.md",
-      ".gemini/agents/context.md",
       ".codex/agents/context.toml",
       "spec.md",
       "plan.md",
@@ -191,7 +190,7 @@
     ],
     "causal_summary": "Improvement focus: **LEAF retrieval discipline; no-dispatch invariant; CocoIndex/grep routing fidelity**. LEAF — must NOT dispatch sub-agents, use Task tool, or write files. Returns results to caller; never holds in nested context.",
     "created_at": "2026-05-18T07:49:27.101Z",
-    "last_save_at": "2026-05-30T10:12:01.311Z",
+    "last_save_at": "2026-06-05T12:47:32.732Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

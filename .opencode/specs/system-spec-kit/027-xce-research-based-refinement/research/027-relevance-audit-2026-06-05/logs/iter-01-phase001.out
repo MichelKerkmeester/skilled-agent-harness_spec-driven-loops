@@ -1,0 +1,2 @@
+SKILL ROUTING: system-spec-kit recommended by advisor context. I’ll keep this read-only and audit the phase docs, recent commits, and current template/validator/server code for duplication or supersession evidence.
+The phase parent confirms 002-004 are planned and parent-level `plan.md`/`tasks.md` are intentionally absent. I’m narrowing the audit to the three child specs plus the separate 028 packet and exact current code/template locations.

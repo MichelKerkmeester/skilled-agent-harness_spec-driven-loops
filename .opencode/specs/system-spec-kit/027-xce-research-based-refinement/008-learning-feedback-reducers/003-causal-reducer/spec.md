@@ -11,10 +11,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer"
-    last_updated_at: "2026-05-12T07:20:00Z"
-    last_updated_by: "cli-codex"
-    recent_action: "Scaffolded Level 2 child packet"
-    next_safe_action: "Implement tasks.md"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: relation-vocab alignment"
+    next_safe_action: "Implement tasks.md with RELATION_TYPES-aligned coverage targets."
     blockers: []
     key_files: ["spec.md", "plan.md", "tasks.md", "checklist.md", "implementation-summary.md"]
     completion_pct: 0
@@ -58,6 +58,7 @@ Session traces already record `search_shown` and `result_cited` events, but thos
 - Read feedback events ordered by `(session_id, timestamp)`.
 - For each citation, select 3-5 prior shown sources where `A !== B`.
 - Emit `ENABLED` edges at strength `0.3` with `created_by='auto-session'`.
+  - AUDIT 2026-06-05: candidate `ENABLED` edges are valid per `RELATION_TYPES` but ABSENT from `DEFAULT_RELATION_TARGETS`; the reducer must validate against `RELATION_TYPES`/schema and align coverage targets before applying the relation floor.
 - Preserve manual-edge guard behavior from Phase 002.
 - Keep invocation deferred only.
 - Add default-off flag `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE=false`.

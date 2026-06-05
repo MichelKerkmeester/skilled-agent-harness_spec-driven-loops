@@ -1,0 +1,2145 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md[90m [offset=1, limit=2000][0m
+[0m
+[0m$ [0mgit log --oneline -120
+06e884ed48 chore(026): delete frozen historical resource-map.md + refresh parent graph-metadata
+484f6786af docs(026): changelogs + resource-maps for 016/017 phases; regenerate timeline
+0fe50e2d7a docs(017): document deploy-mcp.sh across READMEs, catalog, and doctor surface
+57525bb817 chore(017): add deploy-mcp.sh build-all helper; record deploy completion
+7791fdeceb fix(026): remediate last-50-commits deep-review findings — 017
+6cbe4fa021 docs(026): deep review of last 50 commits — 016 review packet
+12de3d3a7e docs(026): backfill 33 missing changelogs + regenerate timeline
+8683890935 chore(opencode): remove checked-in gemini runtime surfaces
+a8e180a222 fix(026): remediate docs/config drift flagged by 015-docs-drift-review
+75cfec1700 docs(changelog): add v3.5.0.0 release changelog
+3419e0a3e9 feat(016): mk-spec-memory launcher-ownership hardening (O6)
+41fb6f11a5 fix(014): remediate pre-existing test + doc failures from 013 central verification
+ff4ede238c chore(specs): flush in-flight canonical-save metadata (014/015 registration + specId fixes)
+a9d64d1e0b fix(013): run deferred central verification + fix the one real gap (job-queue test)
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+3d1667dd68 fix(006): probe-marker spawn guard + race-safe bridge reclaim + socket-server reconvergence (014, 015)
+6c462c5a51 docs(006): launcher-overlap spawn & bridge deep-research (027)
+448ffc25ed docs(026): comprehensive deep-review + research audit — packet 012
+9f1a90fdca docs(026): mark 12 sidecar leaf changelogs with a later-removed note
+79ea92aadb fix(026): refresh stale sidecar parent statuses (016-019) + clarify changelog-020 test count
+d5af5b6dd8 fix(026): remediate changelog audit drift in 020-026 + add changelog accuracy re-audit packet
+02939cd77f docs(026): add changelogs for packets 020-026 + record executed backfill in 026 timeline
+1cb2531da7 fix(specs): canonicalize 125's 9 child graph-metadata to current schema
+87cc6b6d3c chore(026): canonical memory save — refresh 026 + parent graph-metadata
+808ba7a3d0 chore(026): refresh 020/021 description.json metadata timestamps
+19ca25ce0a docs(mcp-server): post-implementation deep-review of relation-backfill subsystem (026/023)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+20c2849f76 fix(specs): canonicalize 125 phase-parent graph-metadata schema
+23ba7ea08e fix(mcp-server): add memory_causal_unlink to TOOL_LAYER_MAP (026/025)
+d1183dc07d test(mcp-server): de-flake + un-skip launcher-lease integration, add socketPath bridge test (026/024)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+5dd5e14bc0 chore(026): mark 020/021/022 shipped (committed + deployed)
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+01d666985c docs(mcp-server): sync save-pipeline README to async-default enrichment (026/022)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+1f1e52ca8e fix(mcp-server): store owner socket path in lease + prefer it in bridge (026/020)
+cb1ed47168 docs(constitutional): prune codex + dual-claude rules, fix README staleness + code-graph path
+3ea14bd356 chore(018): refresh packet metadata after memory save (status complete)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+c68c7bf5e3 fix(mcp-server): harden front-proxy against externally-killed/slow-booting daemon (026/018)
+c377d6dcd8 docs(constitutional): add memory DB file-topology rule (index vs vectors are separate files)
+f8618f2b83 fix(mcp-server): isolate quality-loop advisory tests to no-auto-fix path + record remediation status (026/017)
+a2d1a9bc9e fix(mcp-server): remediate deep-review findings — reconsolidation opt-in + async-enrichment safety + full E081 classification (026/017)
+0060a097b3 feat(mcp-server): default-on enrichment + reconsolidation + quality-auto-fix, async enrichment (026/017)
+15d2e4988d fix(mcp-server): accept includeEmbeddings in checkpoint_create input schema
+56ce7a66c4 fix(mcp-server): make spec validator entry-guard robust to special-char repo paths
+637f83ad36 test(mcp-server): fix pre-existing pipeline-enforcement planner fixture
+deee30b319 feat(mcp-server): expose memory_causal_unlink via the MCP tool registry
+e93acb8e24 docs(playbook): correct causal-stats enum (048) + unlink exposure (049)
+c0bb8aefd6 fix(mcp-server): classify memory_save handler-boundary throws (retire generic E081)
+e887474b4a fix(mcp-server): clear memory_save missing-file error + reconcile memory_health schema
+8c6612cafd chore(config): organize MCP env notes in .claude/mcp.json (descriptive then numbered)
+f390ee2c71 chore(config): organize MCP env notes across all runtime configs
+dfee38f567 fix(config): repair opencode.json JSON + organize MCP env notes
+ccce3e6a12 docs(hooks): add sk-doc README for .opencode/hooks
+a9e9bdb0a5 chore(130): refresh phase-parent description.json auto-derived metadata
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+03ba80f13c fix(130/016): decouple sk-prompt playbook from hub + cli skills (forkability)
+5bebeb880b fix(spec-kit): scouted bugfix batch-5 — 3 verify-first fixes + 005 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+9e5d01f401 fix(130/015): complete cli-devin permission-mode typo correction across remaining docs
+c40219c4bd fix(130/015): land deferred entangled cli docs + repoint sk-prompt playbook card paths + asset divider cleanup
+5b39c34f41 fix(130/014): add sk-doc section dividers across 5 cli skills + scrub sk-prompt card refs
+6d3c9e030d test(mcp_server): refresh stale EXTENDED_LIMITS for context-server + memory-index
+63bbe43d57 docs(130): reformat 010-013 changelogs to sk-doc template + add cli 013 entries
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+883957c9e4 docs(mcp_server): fix embedder-umbrella path drift in vectors/migrations READMEs
+b32bc83808 docs(130/013): relocate cli quality card to the hub; sk-prompt now forkable
+795f46dc5f docs(130/012): align cli-* cards + references to sk-doc templates
+3fafd39b09 docs(130/011): merge benchmark 006 into 005 + repoint stale benchmark citations
+ef3d38b15b docs(130/010): align sk-prompt-small-model hub to sk-doc templates
+2636984d53 docs(mcp_server): add missing database/checkpoints + database/backups READMEs
+177b1c94db docs(026): regenerate timeline.md after Wave 8 relocation
+ac44d1bafc refactor(specs): relocate 6 packets from skilled-agent-orchestration into 026 program
+088ffc7fab fix(deps): stop tracking benchmark fixture-seed lockfiles (clears dependabot #654)
+387ded17d8 fix(130/009): remediate hub↔cli-* prompt-knowledge seam drift (C1–C10)
+fb281b8bb4 fix(136): scouted bug/drift batch 3 (round-2 targets) — verify-first, 12 fixes
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+09c3926d0a docs(133): align README commands + system-spec-kit references/assets to live source
+89485eca53 refactor(skills): relocate model registry + benchmarks to sk-prompt-small-model; make sk-prompt forkable (spec 131)
+3a80d8efff feat(skills): 3-layer prompt-knowledge architecture (spec 130)
+8dd86a0b98 fix(131/132): deep-review remediation — 7 confirmed residuals
+103af634dc docs(131): align /doctor commands + install guides to shipped reality
+79cb4e4d21 feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+1ef3771366 fix(deep-improvement): remediate dual-pass MiMo review findings — fail-closed exec gate + grader robustness + doc accuracy
+1663527f79 fix(013/014): remediate deep-review findings — doc accuracy, playbook executability, test fidelity, packet metadata
+fff0ae268b docs(014/review): 20-iteration deep review of the 013/014 session work (gpt-5.5-fast xhigh)
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+159b08708a fix(mcp): bump serverInfo version 1.7.2 -> 1.8.0 to match package.json
+baa3e46d8b fix(deep-improvement): remediate all 28 MiMo deep-review findings — D4-R grader fidelity + doc reconciliation (v1.11.1.0)
+6c7d51d910 feat(sk-code): mine animation principles + frame-verification from web-motion-skill (v3.3.1.0)
+da0204727c docs(014): system-spec-kit playbook/catalog/readme + stress-test refresh for the 013/128 roadmap
+7b8d6960fb docs(013/005): set continuity completion_pct 90 -> 100 (shipped + deployed)
+0d71b5bff5 docs(013): add 001/002/003 changelogs + reconcile roadmap continuity to deployed
+b697b0a1d1 docs(changelog): per-phase changelogs for the 013 follow-ups + sk-git/128
+2c328492df merge(013): land front-proxy reconnect hardening — protocol-drift (#1) + multi-client (#2)
+f4a0f72e38 docs(013/004): fix last_updated_by (drop provider slash) — clears FRONTMATTER_MEMORY_BLOCK
+2167a8de00 docs(013/004): reconcile implementation-summary to deployed state
+ceff990100 merge(013): land memory_save enrichment (004) + checkpoint sentinel (005) follow-ups
+44f6591cf5 refactor(deep-improvement): align all 49 scripts to the sk-code OpenCode template; complete model-benchmark dispatch-envelope + sweep-isolation
+0a8ccc1c57 docs(deep-improvement): reconcile D4-R/skill-benchmark docs, add 10 code+asset READMEs, fill reference trigger_phrases (v1.11.0.0)
+253db8b438 fix(013): checkpoint downgrade-guard test uses far-future schema after 004 SCHEMA_VERSION 30 bump
+5e7f1a671b merge(013): 005 checkpoint needs-rebuild sentinel
+82f85c925a merge(013): 004 memory_save enrichment repair
+6c76793f25 feat(013/005): checkpoint-v2 .needs-rebuild sentinel — durable post-restore self-heal
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+fb6b3b132f feat(sk-git): wt/{NNNN}-{name} numbered worktree convention + advisor routing
+911bbfc089 refactor(125): restructure to phase-parent with lean trio
+68df443600 docs(013): plan 004 enrichment-repair + 005 checkpoint-sentinel sub-phases
+55398d8a91 chore(011): retain raw gpt-5.5 round-2 dispatch logs (force-add past *.log ignore)
+5c22519445 feat(skill-benchmark): D3/D4 fidelity track — real usefulness instrument + intent recall
+2d25ed42ea feat(013/003): multi-client reconnect transparency via per-client proxy (follow-up #2)
+5f79a9667f feat(013/003): protocol-version drift fail-closed re-handshake (follow-up #1)
+9f525883db docs(013/003): deferred follow-ups design research — 5 iterations
+2cb11cfee2 docs(013/002): handover — roadmap COMPLETE (D+G+E done; E merged 598be61b05)
+598be61b05 feat(mcp-launcher): MCP front-proxy — survive daemon recycle transparently (E)
+29160c0e50 fix(checkpoint-v2): demote restore journal to swap-pending before in-process revert
+94069f63e5 chore(mcp-server): stop tracking the runtime .unclean-shutdown marker
+[0m
+[0m✱ [0mGrep "memory_trigger_embeddings|semantic-trigger|SPECKIT_SEMANTIC_TRIGGER|SemanticTrigger|semantic trigger"[90m in .opencode/skills/system-spec-kit/mcp_server · 1 match[0m
+[0m✱ [0mGrep "Voyage|voyage|1024|embedding_cache|embedding.*cache|embedding_dimensions|dimensions"[90m in .opencode/skills/system-spec-kit/mcp_server · 1232 matches[0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-schema.ts failed[90m [offset=1, limit=260][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/storage/vector-index-schema.ts
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/triggers/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/__tests__/**/trigger*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=390, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=95, limit=20][0m
+[0m
+[0m$ [0mgit show 79cb4e4d21 --stat
+commit 79cb4e4d216c9f6552dc15d2bb384f4d7d57d28b
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Jun 2 21:16:46 2026 +0200
+
+    feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+    
+    resolveProvider() was the only one of three provider-order definitions placing
+    cloud above the local hf-local fallback in auto mode: when Ollama was down and a
+    cloud API key was present, it silently selected OpenAI/Voyage — the opposite of
+    the intended priority and the egress-conscious design (auto-select.ts cascade and
+    getCascadeFallbackOrder() were already local-first).
+    
+    - resolveProvider(): drop the auto-mode VOYAGE/OPENAI branches; precedence is now
+      explicit EMBEDDINGS_PROVIDER -> persisted-ollama -> hf-local. Cloud is opt-in
+      (explicit) or reached only via the hard-failure cascade.
+    - createEmbeddingsProvider(): add hf-local to the error-catch fallback trigger
+      (not the warmup-soft-fail path) so a hard local failure cascades to cloud via
+      getCascadeFallbackOrder('hf-local')=['openai','voyage'].
+    - remove the now-dead isPlaceholderKey helper; correct the precedence docstring.
+    - tests: rewrite the 3 legacy it.skip cloud-preference cases (T513-01b/c/d) to
+      assert local-first and un-skip them.
+    - fix two PRE-EXISTING stale active-ollama fixtures (createActiveNomicDb,
+      createActiveOllamaDb) lacking the vec_memories_rowids table the source requires
+      before honoring an active ollama embedder; surfaced by rebuilding shared/dist,
+      confirmed pre-existing via a stash-and-rebuild isolation check.
+    
+    Gate: 6 embedder test files - 62 passed / 5 skipped / 0 failed (isolated DBs).
+    Deploy: live daemon runs on persisted ollama; a recycle picks up the new
+    shared/dist for the fallback path (deferred, batched with the 015 .cjs decision).
+    
+    Spec: .opencode/specs/skilled-agent-orchestration/132-embedding-provider-local-first
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .../mcp_server/tests/embedder-ollama.vitest.ts     |   4 +
+ .../mcp_server/tests/embeddings.vitest.ts          |  19 +-
+ .../tests/factory-auto-resolution.vitest.ts        |   4 +
+ .../system-spec-kit/shared/embeddings/factory.ts   |  64 ++-----
+ .../checklist.md                                   | 130 +++++++++++++
+ .../description.json                               |  21 +++
+ .../graph-metadata.json                            |  53 ++++++
+ .../implementation-summary.md                      | 120 ++++++++++++
+ .../132-embedding-provider-local-first/plan.md     | 208 +++++++++++++++++++++
+ .../132-embedding-provider-local-first/spec.md     | 176 +++++++++++++++++
+ .../132-embedding-provider-local-first/tasks.md    |  98 ++++++++++
+ 11 files changed, 840 insertions(+), 57 deletions(-)
+[0m
+[0m$ [0mgit show b834150fe5 --stat
+commit b834150fe57596f1828c6f13bc509ac718c38dae
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 13:49:35 2026 +0200
+
+    feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+    
+    Adds the two collectors packet 021 deferred to backfillRelationInference, both opt-in (default off): similarity 'supports' from the cached memory_index.related_memories column (threshold>=75, top-K<=5, no live vector scan) and 'contradicts' from memory_lineage.superseded_by_memory_id. Both inherit dryRun-default + created_by='auto' guards (strength<=0.5, per-node cap, idempotent); graceful no-op on absent schema. Wired through schema/types/handler with deterministic, sqlite-vec-free tests.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .../mcp_server/handlers/causal-graph.ts            |   7 +
+ .../mcp_server/lib/causal/README.md                |   2 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 268 +++++++++++++-
+ .../mcp_server/lib/causal/relation-coverage.ts     |   2 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |   6 +
+ .../tests/relation-backfill-similarity.vitest.ts   | 394 +++++++++++++++++++++
+ .../system-spec-kit/mcp_server/tools/types.ts      |  10 +-
+ .../023-semantic-relation-inference/checklist.md   | 193 ++++++++++
+ .../decision-record.md                             | 317 +++++++++++++++++
+ .../description.json                               |  22 ++
+ .../graph-metadata.json                            |  58 +++
+ .../implementation-summary.md                      |  93 +++++
+ .../023-semantic-relation-inference/plan.md        | 267 ++++++++++++++
+ .../023-semantic-relation-inference/spec.md        | 232 ++++++++++++
+ .../023-semantic-relation-inference/tasks.md       |  78 ++++
+ 15 files changed, 1940 insertions(+), 9 deletions(-)
+[0m
+[0m$ [0mgit show a101cbacfa --stat
+commit a101cbacfad8ea637f979a69302f2877f47b338d
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue Jun 2 15:23:24 2026 +0200
+
+    docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+    
+    Add the 028-peck-teachings-adoption spec packet (analysis + research only; no spec-kit source changed):
+    - 001: peck-teachings analysis (which peck mechanisms map to spec-kit gaps) + 5-iteration deep-research report (cli-opencode gpt-5.5 xhigh) with synthesis, iterations, deltas, state.
+    - 002 (T3 self-check template blocks), 003 (T4 current-state advisory rule), 004 (T2 constitutional-rule review surface): planned phases, refined by the research.
+    - T1 (AC-coverage completion gate) intentionally deferred to a future packet.
+    Strict-validated: parent + 4 children, 0 errors / 0 warnings.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+ .../description.json                               |  19 ++
+ .../graph-metadata.json                            |  26 ++
+ .../implementation-summary.md                      | 154 +++++++++
+ .../peck-teachings-analysis.md                     | 346 +++++++++++++++++++++
+ .../001-peck-teachings-for-spec-kit/plan.md        | 157 ++++++++++
+ .../research/deep-research-config.json             |  16 +
+ .../research/deep-research-findings-registry.json  |   1 +
+ .../research/deep-research-state.jsonl             |   6 +
+ .../research/deep-research-strategy.md             |  86 +++++
+ .../research/deltas/iter-001.jsonl                 |   7 +
+ .../research/deltas/iter-002.jsonl                 |   8 +
+ .../research/deltas/iter-003.jsonl                 |  11 +
+ .../research/deltas/iter-004.jsonl                 |  11 +
+ .../research/deltas/iter-005.jsonl                 |  13 +
+ .../research/iterations/iteration-001.md           |  65 ++++
+ .../research/iterations/iteration-002.md           |  39 +++
+ .../research/iterations/iteration-003.md           |  55 ++++
+ .../research/iterations/iteration-004.md           |  48 +++
+ .../research/iterations/iteration-005.md           |  87 ++++++
+ .../research/prompts/iteration-001.md              |  66 ++++
+ .../research/prompts/iteration-002.md              |  59 ++++
+ .../research/prompts/iteration-003.md              |  49 +++
+ .../research/prompts/iteration-004.md              |  47 +++
+ .../research/prompts/iteration-005.md              |  47 +++
+ .../research/research.md                           | 136 ++++++++
+ .../scratch/.gitkeep                               |   0
+ .../001-peck-teachings-for-spec-kit/spec.md        | 160 ++++++++++
+ .../001-peck-teachings-for-spec-kit/tasks.md       | 106 +++++++
+ .../002-self-check-templates/description.json      |  17 +
+ .../002-self-check-templates/graph-metadata.json   |  26 ++
+ .../implementation-summary.md                      | 114 +++++++
+ .../002-self-check-templates/plan.md               | 155 +++++++++
+ .../002-self-check-templates/scratch/.gitkeep      |   0
+ .../002-self-check-templates/spec.md               | 188 +++++++++++
+ .../002-self-check-templates/tasks.md              | 105 +++++++
+ .../003-current-state-discipline/description.json  |  17 +
+ .../graph-metadata.json                            |  26 ++
+ .../implementation-summary.md                      | 116 +++++++
+ .../003-current-state-discipline/plan.md           | 165 ++++++++++
+ .../003-current-state-discipline/scratch/.gitkeep  |   0
+ .../003-current-state-discipline/spec.md           | 188 +++++++++++
+ .../003-current-state-discipline/tasks.md          | 105 +++++++
+ .../description.json                               |  17 +
+ .../graph-metadata.json                            |  26 ++
+ .../implementation-summary.md                      | 116 +++++++
+ .../004-constitutional-rule-review/plan.md         | 157 ++++++++++
+ .../scratch/.gitkeep                               |   0
+ .../004-constitutional-rule-review/spec.md         | 185 +++++++++++
+ .../004-constitutional-rule-review/tasks.md        | 105 +++++++
+ .../028-peck-teachings-adoption/description.json   |  25 ++
+ .../graph-metadata.json                            |  34 ++
+ .../028-peck-teachings-adoption/spec.md            | 141 +++++++++
+ 52 files changed, 3853 insertions(+)
+[0m
+[0m$ [0mgit log --oneline -40 -- .opencode/skills/system-spec-kit/mcp_server .opencode/skills/system-spec-kit/shared/embeddings
+0fe50e2d7a docs(017): document deploy-mcp.sh across READMEs, catalog, and doctor surface
+7791fdeceb fix(026): remediate last-50-commits deep-review findings — 017
+8683890935 chore(opencode): remove checked-in gemini runtime surfaces
+a8e180a222 fix(026): remediate docs/config drift flagged by 015-docs-drift-review
+3419e0a3e9 feat(016): mk-spec-memory launcher-ownership hardening (O6)
+41fb6f11a5 fix(014): remediate pre-existing test + doc failures from 013 central verification
+a9d64d1e0b fix(013): run deferred central verification + fix the one real gap (job-queue test)
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+3d1667dd68 fix(006): probe-marker spawn guard + race-safe bridge reclaim + socket-server reconvergence (014, 015)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+23ba7ea08e fix(mcp-server): add memory_causal_unlink to TOOL_LAYER_MAP (026/025)
+d1183dc07d test(mcp-server): de-flake + un-skip launcher-lease integration, add socketPath bridge test (026/024)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+01d666985c docs(mcp-server): sync save-pipeline README to async-default enrichment (026/022)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+1f1e52ca8e fix(mcp-server): store owner socket path in lease + prefer it in bridge (026/020)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+c68c7bf5e3 fix(mcp-server): harden front-proxy against externally-killed/slow-booting daemon (026/018)
+f8618f2b83 fix(mcp-server): isolate quality-loop advisory tests to no-auto-fix path + record remediation status (026/017)
+a2d1a9bc9e fix(mcp-server): remediate deep-review findings — reconsolidation opt-in + async-enrichment safety + full E081 classification (026/017)
+0060a097b3 feat(mcp-server): default-on enrichment + reconsolidation + quality-auto-fix, async enrichment (026/017)
+15d2e4988d fix(mcp-server): accept includeEmbeddings in checkpoint_create input schema
+56ce7a66c4 fix(mcp-server): make spec validator entry-guard robust to special-char repo paths
+637f83ad36 test(mcp-server): fix pre-existing pipeline-enforcement planner fixture
+deee30b319 feat(mcp-server): expose memory_causal_unlink via the MCP tool registry
+c0bb8aefd6 fix(mcp-server): classify memory_save handler-boundary throws (retire generic E081)
+e887474b4a fix(mcp-server): clear memory_save missing-file error + reconcile memory_health schema
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+6d3c9e030d test(mcp_server): refresh stale EXTENDED_LIMITS for context-server + memory-index
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+883957c9e4 docs(mcp_server): fix embedder-umbrella path drift in vectors/migrations READMEs
+2636984d53 docs(mcp_server): add missing database/checkpoints + database/backups READMEs
+fb281b8bb4 fix(136): scouted bug/drift batch 3 (round-2 targets) — verify-first, 12 fixes
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+09c3926d0a docs(133): align README commands + system-spec-kit references/assets to live source
+8dd86a0b98 fix(131/132): deep-review remediation — 7 confirmed residuals
+103af634dc docs(131): align /doctor commands + install guides to shipped reality
+79cb4e4d21 feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/trigger-matcher.ts"[90m in . · 1 match[0m
+[0m✱ [0mGlob ".opencode/specs/**/028*/004*/**/*.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/vector*schema*.ts"[90m in . · 4 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/memory-triggers.ts"[90m in . · 1 match[0m
+[0m✱ [0mGrep "CREATE TABLE.*memory_index|memory_index\s*\(|trigger_phrases|embedding_cache|vec_metadata|SCHEMA_VERSION"[90m in .opencode/skills/system-spec-kit/mcp_server · 1096 matches[0m
+[0m✱ [0mGrep "028/004|code-graph-adoption-eval|shadow eval|shadow|adoption eval|eval harness|paired comparison"[90m in .opencode/specs · 4276 matches[0m
+[0m✱ [0mGlob ".opencode/specs/**/*code-graph-adoption*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/028-peck-teachings-adoption/*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/embeddings/factory.ts[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts[90m [offset=180, limit=140][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/cache/embedding-cache.ts[90m [offset=1, limit=180][0m
+[0m✱ [0mGrep "voyage-4|voyage-code-3|nomic-embed-text|hf-local|Ollama|local-first|EMBEDDINGS_PROVIDER"[90m in .opencode/skills/system-spec-kit · 579 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts[90m [offset=261, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts[90m [offset=488, limit=45][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/embeddings/factory.ts[90m [offset=520, limit=170][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts[90m [offset=720, limit=180][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/tests/embedder-auto-selection.vitest.ts[90m [offset=72, limit=95][0m
+[0m✱ [0mGrep "memory_trigger_embeddings|semantic-trigger|semantic trigger|SPECKIT_SEMANTIC_TRIGGER"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research · 133 matches[0m
+[0m✱ [0mGlob ".opencode/specs/**/028-*"[90m in . · 0 matches[0m
+[0m
+[0m$ [0mgit log -p -- .opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+...output truncated...
+
+Full output saved to: /Users/michelkerkmeester/.local/share/opencode/tool-output/tool_e981b9500001G5I27vYSrV0hUZ
+
+    
+    Code changes:
+      - shared/embeddings/factory.ts: voyage shadow warning now fires from
+        getStartupEmbeddingProfile() BEFORE provider resolution closes the late-guard gap
+      - mcp_server/handlers/memory-crud-health.ts: embeddingProvider object now exposes dtype
+      - shared/embeddings/factory.ts: createEmbeddingProvider options expose dtype for
+        programmatic construction
+      - mcp-coco-index/cocoindex_code/protocol.py: SearchResult.rankingSignals uses
+        msgspec.field(default_factory=list) instead of mutable [] default
+    
+    Doc currency:
+      - 012/scratch/codex-config-patch.md + 012/implementation-summary.md: mark Codex
+        config patch RESOLVED (main agent applied outside codex sandbox)
+      - parent/handover.md: "13 packets shipped" + 4 commits + post-013 terminal state
+      - parent/spec.md PHASE MAP: 001-013 enumerated
+      - .codex/config.toml _NOTE_1_DATABASE: q8 dtype + correctly-sanitized model slug
+      - SETUP_A_RECIPE.md: q8 filename example aligned with runtime slug
+      - 007/scratch/tcpdump-verify.sh: comment updated EmbeddingGemma (was Qwen3 stale)
+    
+    PAT secret hygiene:
+      .env:12 github_GITHUB_PERSONAL_ACCESS_TOKEN value cleared on disk + rotation
+      comment inserted in-line. .env is gitignored so the token was never on git
+      record. User must still rotate at https://github.com/settings/tokens to
+      revoke the previous value (only the user has GitHub account access).
+    
+    13 packets + parent all strict-validate exit 0.
+    
+    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+index 5ac6d225d4..d259d8d3b2 100644
+--- a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -333,6 +333,7 @@ export function getStartupEmbeddingDimension(): number {
+ }
+ 
+ export function getStartupEmbeddingProfile(): EmbeddingProfile {
++  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
+   const resolution = resolveProvider();
+   const provider = toSupportedProviderName(resolution.name);
+   const model = resolveConfiguredModel(provider);
+@@ -350,6 +351,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
+ export async function resolveStartupEmbeddingConfig(
+   options: Pick<ValidateApiKeyOptions, 'timeout'> = {},
+ ): Promise<StartupEmbeddingConfig> {
++  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
+   const resolution = resolveProvider();
+   const validation = await validateApiKey({
+     timeout: options.timeout,
+@@ -473,6 +475,7 @@ function createProviderInstance(
+       return new HfLocalProvider({
+         model: options.model,
+         dim: options.dim,
++        dtype: options.dtype,
+         maxTextLength: options.maxTextLength,
+         timeout: options.timeout,
+       });
+@@ -663,6 +666,9 @@ export const VALIDATION_TIMEOUT_MS: number = 5000;
+  */
+ export async function validateApiKey(options: ValidateApiKeyOptions = {}): Promise<ApiKeyValidationResult> {
+   const timeoutMs = options.timeout || VALIDATION_TIMEOUT_MS;
++  if (!options.provider) {
++    warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
++  }
+   const providerName: SupportedProviderName = options.provider || (resolveProvider().name as SupportedProviderName);
+ 
+   // Local providers don't need API key validation
+
+commit 128dd9e14583895232bdf68ea9c85d7efaee2e99
+Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed May 13 08:00:51 2026 +0200
+
+    feat(embeddings,014/012): q8 system default + launcher parity + v3 remediation
+    
+    System default change: hf-local memory now defaults to q8 dtype (was fp32).
+    ~1/4 the RAM (~310MB vs ~620MB) at ~99% quality. Users can opt back to fp32
+    via HF_EMBEDDINGS_DTYPE=fp32 in .env.local. All clones inherit the new
+    default from source (resolveDtype() fallback in hf-local.ts).
+    
+    Launcher parity (P0-V3-LAUNCHER-001):
+      .codex/config.toml + .claude/mcp.json + .gemini/settings.json now route
+      spec_kit_memory through .opencode/bin/spec-kit-memory-launcher.cjs so
+      .env.local Setup A overrides actually load on those runtimes.
+    
+    dtype in EmbeddingProfile + DB filename (P1-V3-005-001):
+      Prevents silent fp32/q4/q8 vector mixing in the same sqlite. New DB path
+      shape: context-index__hf-local__{model}__{dim}__{dtype}.sqlite.
+    
+    Voyage egress guard timing (P1-V3-007-001):
+      New pre-resolution guard fires when VOYAGE_API_KEY is set with
+      EMBEDDINGS_PROVIDER=auto, BEFORE the auto-resolver picks Voyage.
+    
+    tcpdump macOS compatibility (P1-V3-007-002):
+      Script defaults to -i pktap (Apple's pseudo-interface) with
+      TCPDUMP_IFACE env override.
+    
+    CocoIndex search-only hardening (P1-V3-009-001/002):
+      daemon validates project_root is inside HOME before opening DB.
+      project_status reads unloaded sqlite directly for accurate counts.
+    
+    Doc/spec alignment:
+      011 completion=100, blocker.md rewritten (no remaining blockers).
+      Parent phase map covers 001-012. SETUP_A_RECIPE / 002 / 006 / 009
+      no longer reference Qwen3 as baseline.
+    
+    Out of scope:
+      - P0-V3-SEC-001 (GitHub PAT in .env:12) — user manual rotation
+      - 027/001 cocoindex complete fork — separate larger track
+    
+    12 packets + parent strict-validate exit 0.
+    
+    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+index 04d97083ba..5ac6d225d4 100644
+--- a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -2,7 +2,7 @@
+ // MODULE: Factory
+ // ---------------------------------------------------------------
+ 
+-import { HfLocalProvider } from './providers/hf-local.js';
++import { HfLocalProvider, resolveDtype as resolveHfLocalDtype } from './providers/hf-local.js';
+ import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
+ import { EmbeddingProfile } from './profile.js';
+ import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
+@@ -112,6 +112,22 @@ function warnIfVoyageDriftDetected(effectiveProvider: string): void {
+   }
+ }
+ 
++function warnIfVoyageWouldShadowLocal(explicitProvider: string | null): void {
++  if (voyageDriftWarned) {
++    return;
++  }
++  if (explicitProvider === 'voyage') {
++    return;
++  }
++  if (process.env.VOYAGE_API_KEY && (!explicitProvider || explicitProvider === 'auto')) {
++    voyageDriftWarned = true;
++    console.warn(
++      '[factory] VOYAGE_API_KEY is set and EMBEDDINGS_PROVIDER=auto will resolve to Voyage. ' +
++      'Set EMBEDDINGS_PROVIDER=hf-local explicitly to force local, or unset VOYAGE_API_KEY.',
++    );
++  }
++}
++
+ const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
+   voyage: 'voyage-4',
+   openai: 'text-embedding-3-small',
+@@ -202,6 +218,7 @@ function buildProviderConfigFingerprint(provider: string): string {
+     VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || '',
+     OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || '',
+     HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || '',
++    HF_EMBEDDINGS_DTYPE: process.env.HF_EMBEDDINGS_DTYPE || '',
+   });
+ }
+ 
+@@ -262,6 +279,7 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
+ export function validateConfiguredEmbeddingsProvider(value: string | undefined = process.env.EMBEDDINGS_PROVIDER): ConfiguredProviderName | null {
+   const normalized = normalizeProviderName(value);
+   if (!normalized) {
++    warnIfVoyageWouldShadowLocal(null);
+     return null;
+   }
+ 
+@@ -270,6 +288,7 @@ export function validateConfiguredEmbeddingsProvider(value: string | undefined =
+     throw new Error(`Invalid EMBEDDINGS_PROVIDER "${value}". Supported: ${SUPPORTED_PROVIDERS.join(', ')}`);
+   }
+ 
++  warnIfVoyageWouldShadowLocal(normalized);
+   return normalized;
+ }
+ 
+@@ -309,6 +328,7 @@ function resolveStartupEmbeddingDimension(resolution: ProviderResolution): numbe
+ }
+ 
+ export function getStartupEmbeddingDimension(): number {
++  warnIfVoyageWouldShadowLocal(validateConfiguredEmbeddingsProvider());
+   return resolveStartupEmbeddingDimension(resolveProvider());
+ }
+ 
+@@ -322,6 +342,7 @@ export function getStartupEmbeddingProfile(): EmbeddingProfile {
+     provider,
+     model,
+     dim,
++    dtype: provider === 'hf-local' ? resolveHfLocalDtype() : null,
+     baseUrl: provider === 'voyage' ? resolveVoyageBaseUrl() : null,
+   });
+ }
+
+commit e3095ce36a8250caef87e1999d062d466eafe9c2
+Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed May 13 07:40:04 2026 +0200
+
+    feat(embeddings,014/011): unify cocoindex+memory on EmbeddingGemma; purge Qwen3
+    
+    Make EmbeddingGemma the Setup A default for BOTH surfaces:
+      spec-kit-memory: onnx-community/embeddinggemma-300m-ONNX (fp32, 768d) — ONNX/transformers.js
+      cocoindex_code:  google/embeddinggemma-300m (bf16, 768d) — sentence-transformers/Metal
+    
+    The two model ids point at the same underlying weights, but in different file formats
+    (ONNX for Node/transformers.js, safetensors for Python/sentence-transformers). Cocoindex
+    on Metal runs much quieter than the prior Qwen3-Embedding-4B (8GB fp16 -> ~600MB bf16).
+    
+    Source-default changes (so all clones inherit Gemma):
+      - shared/embeddings/providers/hf-local.ts: DEFAULT_MODEL -> onnx-community/embeddinggemma-300m-ONNX
+      - shared/embeddings/factory.ts: DEFAULT_PROVIDER_MODELS['hf-local'] -> same
+      - cocoindex_code/config.py: _DEFAULT_MODEL -> sbert/google/embeddinggemma-300m
+      - cocoindex_code/settings.py: default_user_settings -> google/embeddinggemma-300m
+    
+    Runtime config _NOTE_2 docstrings updated in .codex/config.toml + 4 other configs.
+    
+    Cocoindex prompt registry (cocoindex_code/shared.py) gets EmbeddingGemma entry with
+    "InstructionRetrieval" -> "task: code retrieval | query: " for code-search queries.
+    Document-side prompt asymmetry is known suboptimal (~5-10pp recall loss) — cocoindex's
+    indexing path doesn't apply doc-prompts; addressing this is a follow-on (likely under
+    027/001-cocoindex-complete-fork's scope).
+    
+    Qwen3 purge:
+      - HF cache models--Qwen--Qwen3-Embedding-4B/ deleted (~7.5GB)
+      - Source defaults no longer reference Qwen3 anywhere
+      - PREFIX_REGISTRY / VALID_PROVIDER_DIMENSIONS / _QUERY_PROMPT_MODELS retain Qwen3
+        entries as recognized models for users who opt in, just not the default
+    
+    014 cascade post-011: 11 packets + parent all strict-validate exit 0.
+    
+    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+index d7613d5bed..04d97083ba 100644
+--- a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -115,7 +115,7 @@ function warnIfVoyageDriftDetected(effectiveProvider: string): void {
+ const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
+   voyage: 'voyage-4',
+   openai: 'text-embedding-3-small',
+-  'hf-local': 'nomic-ai/nomic-embed-text-v1.5',
++  'hf-local': 'onnx-community/embeddinggemma-300m-ONNX',
+ };
+ 
+ // Correctness: one canonical dimension map for startup and runtime
+@@ -254,7 +254,7 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
+       VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4',
+       OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
+       OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
+-      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5',
++      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'],
+     },
+   };
+ }
+
+commit 5a9fb96e6153a05e99fb9a4d6bc9628d5afdacdd
+Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Tue May 12 22:38:57 2026 +0200
+
+    feat(embeddings,014): migrate from Voyage to local Setup A (EmbeddingGemma 768 + Qwen3 2560)
+    
+    Migrate the spec-kit-memory layer and CocoIndex code-search to fully local
+    embedding models. Memory side is fully operational under the new model;
+    CocoIndex side has the right schema and a partial index but query path needs
+    the upstream IPC fix tracked in 014/009.
+    
+    Setup A profile:
+      spec-kit-memory:  onnx-community/embeddinggemma-300m-ONNX (768 dim, hf-local)
+      cocoindex_code:   Qwen/Qwen3-Embedding-4B (2560 dim, sentence-transformers/sbert)
+      previous defaults: Voyage voyage-4 (1024 dim) and sentence-transformers/all-MiniLM-L6-v2 (384 dim)
+    
+    Sub-phases (014/001-009):
+      001 prefix-registry-architecture           Add model-keyed prefix registry + env override; closes silent-recall-loss gap when swapping non-Nomic embedding models.
+      002 model-installation-and-compat          Download EmbeddingGemma-300m-ONNX + Qwen3-Embedding-4B; transformers.js compat smoke tests; HF cache symlink for the ONNX layout.
+      003 mcp-config-rollout                     Project-local .env.local mechanism + dotenv autoload in both MCP launchers (Node + Python). Voyage purged from ~/.zshrc, project .env, and macOS launchd.
+      004 vec-store-rebuild                      Memory: rebuilt to filename-keyed sqlite (2112/2112 vec rows under hf-local/EmbeddingGemma/768). CocoIndex: stale 2GB MiniLM target_sqlite.db deleted; fresh DB with Qwen3 2560-dim schema; under the patched daemon (post-009) the language sweep runs at ~565 rows/min and covers markdown + bash + text + typescript + python + go + rust (sweep was still progressing at commit time).
+      005 q4-quantization                        HF_EMBEDDINGS_DTYPE env var plumbed through HfLocalProvider. fp32 default preserved; q4 opt-in via .env.local. Synthetic fp32-vs-q4 cosine benchmark: mean 0.9811 (effectively interchangeable), q4 15% faster warm-path inference.
+      006 bge-m3-hybrid-evaluation               Planning packet. Eval methodology + ship/don't-ship rule documented. Execution gated on 009.
+      007 voyage-cleanup-and-egress-monitoring   Deleted 463MB stale sqlite (Voyage 322MB + legacy generic-name context-index.sqlite 141MB). Added warn-once egress guard in factory.ts that surfaces if VOYAGE_API_KEY appears while resolved provider is hf-local. Documented 24h tcpdump capture script for post-merge user verification.
+      008 finalize-and-commit                    This packet. Validation cascade + commit-message authorship + post-merge user-verification checklist.
+      009 cocoindex-ipc-fix (follow-on)          Search-path patched in cocoindex_code/daemon.py + client.py: added SearchOnlyContext to bypass full CocoIndex Environment setup for read-only searches against an existing target_sqlite.db. msgspec round-trip verified at 1857 bytes; warm p95 search latency 141.82ms. Indexing also confirmed working under the home daemon (the codex-isolated daemon's "Operation not permitted" was a codex --sandbox workspace-write artifact, not a Rust core bug).
+    
+    Notable findings (documented in implementation-summary files):
+      - MCP-child lazy-load wedge: first memory_index_scan deferred all 2459 rows due to HfLocalProvider stuck in isHealthy=false after a race with concurrent indexing. Cleared by killing the launcher + /mcp reconnect (root cause untracked; standalone repro works perfectly).
+      - UNCHANGED_EMBEDDING_STATUSES dedup includes 'pending' + 'retry' -> force=true rescan is a no-op on deferred rows. Workaround: direct SQLite DELETE + rescan. embedding_cache content-hash hits made the workaround near-instant.
+      - Public mcp-coco-index venv was editable-installed from the Barter sibling repo -> 003's dotenv-autoload patch was dead code at runtime. Fix: pip install -e . from Public's mcp_server dir to self-pin. Memory note saved.
+      - ~/.cocoindex_code/global_settings.yml had voyage/voyage-code-3 as user-level default -> updated to Qwen/Qwen3-Embedding-4B / sentence-transformers (out of repo; user reapplies on other machines if needed).
+    
+    Files changed: ~12 source files (TS + Python) + ~60 spec-doc files + 4 sqlite deletes + 1 dist regeneration. ~463MB disk reclaim.
+    
+    Out-of-repo state changes (not committed but documented in 014):
+      - ~/.cocoindex_code/global_settings.yml: Voyage -> Qwen3 (backup at .pre-014-004.bak)
+      - ~/.cache/huggingface/hub/: Qwen3-Embedding-4B + onnx-community/embeddinggemma-300m-ONNX + symlink
+      - macOS launchd: launchctl unsetenv VOYAGE_API_KEY (runtime mutation, no file)
+    
+    Post-merge verification (see 008/scratch/post-merge-checks.md):
+      - 24h tcpdump on api.voyageai.com (expect 0 packets)
+      - memory_health() returns vectorSearchAvailable: true, dim 768, healthy: true
+      - cocoindex_code.search returns success=true (search path: shipped under 009)
+    
+    Deep review (27 iterations, cli-codex gpt-5.5 high, normal speed):
+      - Review report at 014-.../review/review-report.md
+      - Verdict: FAIL with advisories. 1 valid P0 (Codex runtime bypasses .env.local launcher); 2 P0s in the report are stale (009 search + indexing both shipped after the review wrote them).
+      - Valid P1s as follow-on:
+        * P1-005-001: dtype not in EmbeddingProfile/DB filename → silent fp32/q4 mix risk
+        * P1-007-001: Voyage egress guard fires after auto-resolution, not before
+        * P1-007-002: tcpdump-verify.sh uses -i any (may need -i pktap on macOS)
+    
+    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+index 330e174bc8..d7613d5bed 100644
+--- a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -85,6 +85,33 @@ const providerValidationCache = new Map<string, Promise<ApiKeyValidationResult>>
+ export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'auto'] as const;
+ const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
+ 
++// 014-local-embeddings-setup-a / 007-voyage-cleanup-and-egress-monitoring:
++// Runtime guard that fires once per process startup if VOYAGE_API_KEY is present
++// while the resolved provider is hf-local. The original Voyage purge in 003 only
++// cleaned shell-propagating sources (~/.zshrc, project .env, macOS launchd). If a
++// future setup re-exports the key (e.g. via a different shell rc or a system-wide
++// launchd plist), `EMBEDDINGS_PROVIDER=auto` will silently fall back to Voyage and
++// start making network calls to api.voyageai.com again. This guard surfaces that
++// regression at the first provider-resolution call so users notice before egress.
++let voyageDriftWarned = false;
++function warnIfVoyageDriftDetected(effectiveProvider: string): void {
++  if (voyageDriftWarned) {
++    return;
++  }
++  if (effectiveProvider !== 'hf-local') {
++    return;
++  }
++  if (process.env.VOYAGE_API_KEY) {
++    voyageDriftWarned = true;
++    console.warn(
++      '[factory] VOYAGE_API_KEY is set in process.env but the resolved provider is hf-local. ' +
++      'If you intended to use Voyage, set EMBEDDINGS_PROVIDER=voyage explicitly. ' +
++      'If you intended local-only, unset VOYAGE_API_KEY to silence this warning. ' +
++      'See 014-local-embeddings-setup-a/007-voyage-cleanup-and-egress-monitoring/spec.md.',
++    );
++  }
++}
++
+ const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
+   voyage: 'voyage-4',
+   openai: 'text-embedding-3-small',
+@@ -97,6 +124,17 @@ export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
+   openai: Object.freeze({ ...OPENAI_MODEL_DIMENSIONS }),
+   'hf-local': Object.freeze({
+     'nomic-ai/nomic-embed-text-v1.5': 768,
++    // 014-local-embeddings-setup-a / 001-prefix-registry-architecture:
++    // Additional locally-runnable embedding models registered for Setup A and
++    // documented fallbacks. Dimensions are model-native; EmbeddingGemma also
++    // supports Matryoshka truncation via the EMBEDDING_DIM env override.
++    'google/embeddinggemma-300m': 768,
++    // transformers.js-compatible ONNX port (used by HfLocalProvider on Node)
++    'onnx-community/embeddinggemma-300m-ONNX': 768,
++    'intfloat/e5-large-v2': 1024,
++    'mixedbread-ai/mxbai-embed-large-v1': 1024,
++    'Snowflake/snowflake-arctic-embed-l-v2.0': 1024,
++    'BAAI/bge-m3': 1024,
+   }),
+ } satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
+ 
+@@ -200,6 +238,9 @@ function getProviderInfoForResolution(resolution: ProviderResolution): ProviderI
+     ? `Fallback from ${metadata.requestedProvider} to ${metadata.effectiveProvider}: ${metadata.fallbackReason}`
+     : resolution.reason;
+ 
++  // 014/007: surface accidental Voyage drift at the first provider resolution.
++  warnIfVoyageDriftDetected(metadata.effectiveProvider);
++
+   return {
+     provider: metadata.effectiveProvider,
+     requestedProvider: metadata.requestedProvider,
+
+commit 6647661f323ce30250c7a3c212f48170ef4eff9d
+Author: michelkerkmeester-barter <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu May 7 16:03:31 2026 +0200
+
+    refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+    
+    Per opencode official docs (opencode.ai/docs/{skills,agents,commands}), project-level
+    discovery looks for `.opencode/skills/`, `.opencode/agents/`, `.opencode/commands/`
+    (plural). This repo used singular for all three, so opencode's built-in discovery
+    silently failed on every dispatch — surfaced during packet 095 as the warning
+    "Could not find any skills directories. Tried: <project>/.opencode/skills".
+    
+    Four-phase migration in packet 096 (~11k files, ~670k occurrences):
+    
+    Phase 001 — Skills
+    - git mv .opencode/skill .opencode/skills (74,378 files moved)
+    - Bulk sed across all tracked files referencing the path
+    - Patched: opencode.json (3 MCP server commands), .claude/settings.local.json
+      (4 hooks pointing at system-spec-kit hooks/claude/*.js), skill_advisor.py
+      (regex + dict keys + f-strings)
+    
+    Phase 002 — Agents
+    - git mv .opencode/agent .opencode/agents (12 agent files moved)
+    - Bulk sed across 1,532 reference-bearing files
+    - Patched: CLAUDE.md §5 routing table, sk-prompt graph-metadata mirrorPath,
+      deep-research runtime_capabilities mirrorPath, audit_descriptions.py
+      (agent-half validators)
+    
+    Phase 003 — Commands
+    - git mv .opencode/command .opencode/commands (69 files across 6 subdirs)
+    - Bulk sed across 1,811 reference-bearing files
+    - Patched: audit_descriptions.py (command-half validators), target_manifest.jsonc
+      handover.md path, mcp-doctor.sh
+    
+    Phase 004 — Symlinks
+    - Redirected 5 mirror-runtime symlinks to plural targets:
+      .claude/skills, .claude/commands, .codex/skills, .codex/prompts, .gemini/skills
+    
+    Verification gates (all passing):
+    - Plural directories present; singular directories removed
+    - 0 residual `.opencode/agent/` and `.opencode/command/` refs in tracked files
+    - 1 residual `.opencode/skill/` ref in a historical changelog (intentional —
+      documents the rename itself)
+    - All 5 symlinks resolve
+    - opencode CLI smoke test no longer prints "Could not find any skills directories"
+    - skill_advisor.py routes correctly post-rename
+    - validate.sh strict on packet 095: PASS (no script regressions)
+    - All 16 root playbooks validate via validate_document.py
+    
+    Known limitations:
+    - Spec docs in packets 093/094/095/096 contain narrative descriptions of renames
+      that were caught by the bulk sed; "Renamed `.opencode/skills/` to `.opencode/skills/`"
+      reads nonsensically in places. Functional state is correct; doc narrative cleanup
+      is a follow-on packet if desired.
+    - 19 pre-existing broken symlinks in .gemini/workflows/ (point to wrong absolute
+      path "Opencode Env") remain — out of scope; pre-dates this packet.
+    
+    Spec packet 096 phase-parent + 4 children (001-skills, 002-agents, 003-commands,
+    004-symlinks) plus a cross-cutting resource-map.md authored. Track parent
+    graph-metadata.json updated.
+    
+    Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+new file mode 100644
+index 0000000000..330e174bc8
+--- /dev/null
++++ b/.opencode/skills/system-spec-kit/shared/embeddings/factory.ts
+@@ -0,0 +1,755 @@
++// ---------------------------------------------------------------
++// MODULE: Factory
++// ---------------------------------------------------------------
++
++import { HfLocalProvider } from './providers/hf-local.js';
++import { OpenAIProvider, MODEL_DIMENSIONS as OPENAI_MODEL_DIMENSIONS } from './providers/openai.js';
++import { EmbeddingProfile } from './profile.js';
++import { VoyageProvider, MODEL_DIMENSIONS as VOYAGE_MODEL_DIMENSIONS, resolveVoyageBaseUrl } from './providers/voyage.js';
++import type {
++  IEmbeddingProvider,
++  ProviderResolution,
++  ProviderInfo,
++  CreateProviderOptions,
++  ApiKeyValidationResult,
++} from '../types.js';
++
++function getErrorMessage(error: unknown): string {
++  return error instanceof Error ? error.message : String(error);
++}
++
++function isAbortError(error: unknown): boolean {
++  return error instanceof Error && error.name === 'AbortError';
++}
++
++interface ValidationErrorBody {
++  detail?: string;
++  error?: {
++    message?: string;
++  };
++}
++
++function parseValidationErrorBody(payload: unknown): ValidationErrorBody {
++  if (!payload || typeof payload !== 'object') {
++    return {};
++  }
++
++  const payloadRecord = payload as Record<string, unknown>;
++  const detail = typeof payloadRecord.detail === 'string' ? payloadRecord.detail : undefined;
++
++  let message: string | undefined;
++  if (payloadRecord.error && typeof payloadRecord.error === 'object') {
++    const errorRecord = payloadRecord.error as Record<string, unknown>;
++    if (typeof errorRecord.message === 'string') {
++      message = errorRecord.message;
++    }
++  }
++
++  return {
++    detail,
++    error: message ? { message } : undefined,
++  };
++}
++
++type SupportedProviderName = 'voyage' | 'openai' | 'hf-local';
++type ConfiguredProviderName = SupportedProviderName | 'auto';
++type ProviderFactoryMetadata = {
++  requestedProvider: string;
++  effectiveProvider: string;
++  fallbackReason?: string;
++  dimensionChanged: boolean;
++};
++
++type ProviderInfoWithFallback = ProviderInfo & ProviderFactoryMetadata;
++
++type StartupEmbeddingConfig = {
++  resolution: ProviderResolution;
++  info: ProviderInfoWithFallback;
++  dimension: number;
++  validation: ApiKeyValidationResult;
++};
++
++interface ValidateApiKeyOptions {
++  timeout?: number;
++  provider?: SupportedProviderName;
++  apiKey?: string;
++  baseUrl?: string;
++  model?: string;
++}
++
++let lastProviderFactoryMetadata: ProviderFactoryMetadata | null = null;
++let lastProviderFactoryFingerprint: string | null = null;
++
++const providerValidationCache = new Map<string, Promise<ApiKeyValidationResult>>();
++
++export const SUPPORTED_PROVIDERS = ['openai', 'voyage', 'hf-local', 'auto'] as const;
++const SUPPORTED_PROVIDER_SET: ReadonlySet<string> = new Set(SUPPORTED_PROVIDERS);
++
++const DEFAULT_PROVIDER_MODELS: Readonly<Record<SupportedProviderName, string>> = {
++  voyage: 'voyage-4',
++  openai: 'text-embedding-3-small',
++  'hf-local': 'nomic-ai/nomic-embed-text-v1.5',
++};
++
++// Correctness: one canonical dimension map for startup and runtime
++export const VALID_PROVIDER_DIMENSIONS = Object.freeze({
++  voyage: Object.freeze({ ...VOYAGE_MODEL_DIMENSIONS }),
++  openai: Object.freeze({ ...OPENAI_MODEL_DIMENSIONS }),
++  'hf-local': Object.freeze({
++    'nomic-ai/nomic-embed-text-v1.5': 768,
++  }),
++} satisfies Record<SupportedProviderName, Readonly<Record<string, number>>>);
++
++function normalizeProviderName(value: string | undefined | null): string | null {
++  if (typeof value !== 'string') {
++    return null;
++  }
++
++  const normalized = value.trim().toLowerCase();
++  return normalized.length > 0 ? normalized : null;
++}
++
++function getExplicitProviderOverride(): ConfiguredProviderName | null {
++  const explicitProvider = normalizeProviderName(process.env.EMBEDDINGS_PROVIDER);
++  if (!explicitProvider) {
++    return null;
++  }
++
++  return validateConfiguredEmbeddingsProvider(explicitProvider);
++}
++
++function getValidDimensionsForProvider(provider: SupportedProviderName): number[] {
++  return Array.from(new Set(Object.values(VALID_PROVIDER_DIMENSIONS[provider]))).sort((left, right) => left - right);
++}
++
++function resolveConfiguredModel(provider: SupportedProviderName, model?: string): string {
++  if (typeof model === 'string' && model.trim().length > 0) {
++    return model.trim();
++  }
++
++  switch (provider) {
++    case 'voyage':
++      return process.env.VOYAGE_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.voyage;
++    case 'openai':
++      return process.env.OPENAI_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS.openai;
++    case 'hf-local':
++    default:
++      return process.env.HF_EMBEDDINGS_MODEL || DEFAULT_PROVIDER_MODELS['hf-local'];
++  }
++}
++
++function isSupportedProviderName(value: string): value is ConfiguredProviderName {
++  return SUPPORTED_PROVIDER_SET.has(value);
++}
++
++function toSupportedProviderName(provider: string): SupportedProviderName {
++  const normalized = normalizeProviderName(provider);
++  if (!normalized || normalized === 'auto' || !isSupportedProviderName(normalized)) {
++    throw new Error(`Invalid EMBEDDINGS_PROVIDER "${provider}". Supported: ${SUPPORTED_PROVIDERS.join(', ')}`);
++  }
++  return normalized as SupportedProviderName;
++}
++
++function allowsAutomaticFallback(provider: string | undefined): boolean {
++  const normalized = normalizeProviderName(provider);
++  return normalized === null || normalized === 'auto';
++}
++
++function buildProviderConfigFingerprint(provider: string): string {
++  return JSON.stringify({
++    provider,
++    EMBEDDINGS_PROVIDER: process.env.EMBEDDINGS_PROVIDER || '',
++    VOYAGE_API_KEY: process.env.VOYAGE_API_KEY || '',
++    OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
++    VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || '',
++    OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || '',
++    HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || '',
++  });
++}
++
++function setLastProviderFactoryMetadata(metadata: ProviderFactoryMetadata): void {
++  lastProviderFactoryMetadata = metadata;
++  lastProviderFactoryFingerprint = buildProviderConfigFingerprint(metadata.requestedProvider);
++}
++
++function getProviderFactoryMetadataForCurrentConfig(resolution: ProviderResolution): ProviderFactoryMetadata {
++  const fingerprint = buildProviderConfigFingerprint(resolution.name);
++  if (lastProviderFactoryMetadata && lastProviderFactoryFingerprint === fingerprint) {
++    return lastProviderFactoryMetadata;
++  }
++
++  return {
++    requestedProvider: resolution.name,
++    effectiveProvider: resolution.name,
++    dimensionChanged: false,
++  };
++}
++
++function attachFactoryMetadata(provider: IEmbeddingProvider, metadata: ProviderFactoryMetadata): IEmbeddingProvider {
++  Object.assign(provider as IEmbeddingProvider & { factoryMetadata?: ProviderFactoryMetadata }, {
++    factoryMetadata: metadata,
++  });
++  setLastProviderFactoryMetadata(metadata);
++  return provider;
++}
++
++function getProviderInfoForResolution(resolution: ProviderResolution): ProviderInfoWithFallback {
++  const explicitProvider = validateConfiguredEmbeddingsProvider();
++  const metadata = getProviderFactoryMetadataForCurrentConfig(resolution);
++  const reason = metadata.fallbackReason
++    ? `Fallback from ${metadata.requestedProvider} to ${metadata.effectiveProvider}: ${metadata.fallbackReason}`
++    : resolution.reason;
++
++  return {
++    provider: metadata.effectiveProvider,
++    requestedProvider: metadata.requestedProvider,
++    effectiveProvider: metadata.effectiveProvider,
++    fallbackReason: metadata.fallbackReason,
++    dimensionChanged: metadata.dimensionChanged,
++    reason,
++    config: {
++      EMBEDDINGS_PROVIDER: explicitProvider || 'auto',
++      VOYAGE_API_KEY: process.env.VOYAGE_API_KEY ? '***set***' : 'not set',
++      VOYAGE_EMBEDDINGS_MODEL: process.env.VOYAGE_EMBEDDINGS_MODEL || 'voyage-4',
++      OPENAI_API_KEY: process.env.OPENAI_API_KEY ? '***set***' : 'not set',
++      OPENAI_EMBEDDINGS_MODEL: process.env.OPENAI_EMBEDDINGS_MODEL || 'text-embedding-3-small',
++      HF_EMBEDDINGS_MODEL: process.env.HF_EMBEDDINGS_MODEL || 'nomic-ai/nomic-embed-text-v1.5',
++    },
++  };
++}
++
++export function validateConfiguredEmbeddingsProvider(value: string | undefined = process.env.EMBEDDINGS_PROVIDER): ConfiguredProviderName | null {
++  const normalized = normalizeProviderName(value);
++  if (!normalized) {
++    return null;
++  }
++
++  // Startup: fail-fast on unsupported provider names
++  if (!isSupportedProviderName(normalized)) {
++    throw new Error(`Invalid EMBEDDINGS_PROVIDER "${value}". Supported: ${SUPPORTED_PROVIDERS.join(', ')}`);
++  }
++
++  return normalized;
++}
++
++export function resolveProviderDimension(
++  provider: string,
++  options: Pick<CreateProviderOptions, 'model' | 'dim'> = {},
++): number {
++  const supportedProvider = toSupportedProviderName(provider);
++  const dimensionsByModel: Readonly<Record<string, number>> = VALID_PROVIDER_DIMENSIONS[supportedProvider];
++  const configuredDim = typeof options.dim === 'number' && Number.isFinite(options.dim) && options.dim > 0
++    ? Math.trunc(options.dim)
++    : null;
++
++  if (configuredDim !== null) {
++    return configuredDim;
++  }
++
++  const configuredModel = resolveConfiguredModel(supportedProvider, options.model);
++  const modelDimension = dimensionsByModel[configuredModel];
++  if (typeof modelDimension === 'number') {
++    return modelDimension;
++  }
++
++  const [fallbackDimension] = getValidDimensionsForProvider(supportedProvider);
++  return dimensionsByModel[DEFAULT_PROVIDER_MODELS[supportedProvider]] ?? fallbackDimension;
++}
++
++function resolveStartupEmbeddingDimension(resolution: ProviderResolution): number {
++  if (process.env.EMBEDDING_DIM) {
++    const explicitDimension = parseInt(process.env.EMBEDDING_DIM, 10);
++    if (Number.isFinite(explicitDimension) && explicitDimension > 0) {
++      return explicitDimension;
++    }
++  }
++
++  return resolveProviderDimension(resolution.name);
++}
++
++export function getStartupEmbeddingDimension(): number {
++  return resolveStartupEmbeddingDimension(resolveProvider());
++}
++
++export function getStartupEmbeddingProfile(): EmbeddingProfile {
++  const resolution = resolveProvider();
++  const provider = toSupportedProviderName(resolution.name);
++  const model = resolveConfiguredModel(provider);
++  const dim = resolveStartupEmbeddingDimension(resolution);
++
++  return new EmbeddingProfile({
++    provider,
++    model,
++    dim,
++    baseUrl: provider === 'voyage' ? resolveVoyageBaseUrl() : null,
++  });
++}
++
++export async function resolveStartupEmbeddingConfig(
++  options: Pick<ValidateApiKeyOptions, 'timeout'> = {},
++): Promise<StartupEmbeddingConfig> {
++  const resolution = resolveProvider();
++  const validation = await validateApiKey({
++    timeout: options.timeout,
++    provider: resolution.name as SupportedProviderName,
++  });
++
++  return {
++    resolution,
++    info: getProviderInfoForResolution(resolution),
++    dimension: resolveStartupEmbeddingDimension(resolution),
++    validation,
++  };
++}
++
++// ---------------------------------------------------------------
++// 1. PROVIDER RESOLUTION
++// ---------------------------------------------------------------
++
++/**
++ * Check if an API key appears to be a placeholder value.
++ * Returns true if key contains placeholder indicators or is too short.
++ */
++function isPlaceholderKey(key: string): boolean {
++  const upperKey = key.toUpperCase();
++  return (
++    upperKey.includes('YOUR_') ||
++    upperKey.includes('PLACEHOLDER') ||
++    upperKey.includes('HERE') ||
++    key.length < 10
++  );
++}
++
++/**
++ * Resolve provider based on env vars.
++ * Precedence: 1) EMBEDDINGS_PROVIDER, 2) VOYAGE_API_KEY, 3) OPENAI_API_KEY, 4) hf-local
++ */
++export function resolveProvider(): ProviderResolution {
++  const explicitProvider = getExplicitProviderOverride();
++  if (explicitProvider && explicitProvider !== 'auto') {
++    return {
++      name: explicitProvider,
++      reason: 'Explicit EMBEDDINGS_PROVIDER variable',
++    };
++  }
++
++  const voyageKey = process.env.VOYAGE_API_KEY;
++  if (voyageKey) {
++    if (isPlaceholderKey(voyageKey)) {
++      console.warn('[embeddings] VOYAGE_API_KEY appears to be a placeholder — skipping');
++    } else {
++      return {
++        name: 'voyage',
++        reason: 'VOYAGE_API_KEY detected (auto mode)',
++      };
++    }
++  }
++
++  const openaiKey = process.env.OPENAI_API_KEY;
++  if (openaiKey) {
++    if (isPlaceholderKey(openaiKey)) {
++      console.warn('[embeddings] OPENAI_API_KEY appears to be a placeholder — skipping');
++    } else {
++      return {
++        name: 'openai',
++        reason: 'OPENAI_API_KEY detected (auto mode)',
++      };
++    }
++  }
++
++  return {
++    name: 'hf-local',
++    reason: 'Default fallback (no API keys detected)',
++  };
++}
++
++function createProviderInstance(
++  providerName: SupportedProviderName,
++  options: CreateProviderOptions,
++): IEmbeddingProvider {
++  switch (providerName) {
++    case 'voyage':
++      if (!process.env.VOYAGE_API_KEY && !options.apiKey) {
++        throw new Error(
++          'Voyage provider requires VOYAGE_API_KEY. ' +
++          'Set the variable or use EMBEDDINGS_PROVIDER=hf-local to force local.'
++        );
++      }
++      if (options.maxTextLength) {
++        console.warn('[factory] VoyageProvider does not support maxTextLength option - ignored');
++      }
++      return new VoyageProvider({
++        model: options.model,
++        dim: options.dim,
++        apiKey: options.apiKey,
++        baseUrl: options.baseUrl,
++        timeout: options.timeout,
++      });
++
++    case 'openai':
++      if (!process.env.OPENAI_API_KEY && !options.apiKey) {
++        throw new Error(
++          'OpenAI provider requires OPENAI_API_KEY. ' +
++          'Set the variable or use EMBEDDINGS_PROVIDER=hf-local to force local.'
++        );
++      }
++      if (options.maxTextLength) {
++        console.warn('[factory] OpenAIProvider does not support maxTextLength option - ignored');
++      }
++      return new OpenAIProvider({
++        model: options.model,
++        dim: options.dim,
++        apiKey: options.apiKey,
++        baseUrl: options.baseUrl,
++        timeout: options.timeout,
++      });
++
++    case 'hf-local':
++      if (options.baseUrl) {
++        console.warn('[factory] HfLocalProvider does not support baseUrl option - ignored');
++      }
++      return new HfLocalProvider({
++        model: options.model,
++        dim: options.dim,
++        maxTextLength: options.maxTextLength,
++        timeout: options.timeout,
++      });
++
++    default:
++      throw new Error(
++        `Unknown provider: ${providerName}. ` +
++        'Valid values: voyage, openai, hf-local, auto'
++      );
++  }
++}
++
++function buildProviderValidationCacheKey(options: ValidateApiKeyOptions): string {
++  const provider = options.provider || 'hf-local';
++  const apiKey = options.apiKey
++    || (provider === 'voyage' ? process.env.VOYAGE_API_KEY : process.env.OPENAI_API_KEY)
++    || '';
++  const baseUrl = options.baseUrl
++    || (provider === 'voyage' ? resolveVoyageBaseUrl() : (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'));
++  const model = resolveConfiguredModel(provider, options.model);
++
++  return JSON.stringify({ provider, apiKey, baseUrl, model });
++}
++
++async function ensureCloudProviderValidated(options: ValidateApiKeyOptions): Promise<ApiKeyValidationResult> {
++  const providerName = options.provider;
++  if (!providerName || providerName === 'hf-local') {
++    return {
++      valid: true,
++      provider: 'hf-local',
++      reason: 'Local provider - no API key required',
++    };
++  }
++
++  const cacheKey = buildProviderValidationCacheKey(options);
++  let validationPromise = providerValidationCache.get(cacheKey);
++  if (!validationPromise) {
++    validationPromise = validateApiKey(options);
++    providerValidationCache.set(cacheKey, validationPromise);
++  }
++
++  const validation = await validationPromise;
++  if (!validation.valid && !validation.networkError) {
++    throw new Error(validation.error || `${providerName} API key validation failed`);
++  }
++
++  if (validation.networkError && validation.error) {
++    console.warn(`[factory] API key validation warning for ${providerName}: ${validation.error}`);
++  }
++
++  return validation;
++}
++
++async function createFallbackProvider(
++  requestedProvider: SupportedProviderName,
++  options: CreateProviderOptions,
++  fallbackReason: string,
++  requestedDim: number,
++): Promise<IEmbeddingProvider> {
++  console.warn(`[factory] Attempting fallback from ${requestedProvider} to hf-local...`);
++  const provider = createProviderInstance('hf-local', options);
++  const fallbackDim = provider.getMetadata().dim;
++  const dimensionChanged = requestedDim !== fallbackDim;
++
++  if (dimensionChanged) {
++    console.error(
++      `[factory] WARNING: Provider fallback changed embedding dimension from ${requestedDim} to ${fallbackDim}. ` +
++      `Vector index may need rebuilding. Existing ${requestedDim}-dim vectors are incompatible with ${fallbackDim}-dim vectors.`
++    );
++  }
++
++  if (options.warmup) {
++    try {
++      await provider.warmup();
++    } catch (fallbackWarmupError: unknown) {
++      if (fallbackWarmupError instanceof Error) {
++        void fallbackWarmupError.message;
++      }
++      console.warn(`[factory] Fallback warmup failed: ${getErrorMessage(fallbackWarmupError)}`);
++      // Continue anyway - provider will attempt lazy initialization on first use
++    }
++  }
++
++  return attachFactoryMetadata(provider, {
++    requestedProvider,
++    effectiveProvider: 'hf-local',
++    fallbackReason,
++    dimensionChanged,
++  });
++}
++
++// ---------------------------------------------------------------
++// 2. PROVIDER FACTORY
++// ---------------------------------------------------------------
++
++/** Create provider instance based on configuration */
++export async function createEmbeddingsProvider(options: CreateProviderOptions = {}): Promise<IEmbeddingProvider> {
++  const resolution = resolveProvider();
++  const providerName: SupportedProviderName = options.provider === 'auto' || !options.provider
++    ? (resolution.name as SupportedProviderName)
++    : toSupportedProviderName(options.provider);
++  const requestedDim = resolveProviderDimension(providerName, {
++    model: options.model,
++    dim: options.dim,
++  });
++
++  console.error(`[factory] Using provider: ${providerName} (${resolution.reason})`);
++
++  try {
++    await ensureCloudProviderValidated({
++      provider: providerName,
++      apiKey: options.apiKey,
++      baseUrl: options.baseUrl,
++      model: options.model,
++      timeout: options.timeout,
++    });
++
++    const provider = createProviderInstance(providerName, options);
++
++    if (options.warmup) {
++      console.error(`[factory] Warming up ${providerName}...`);
++      const success = await provider.warmup();
++      if (!success) {
++        console.warn(`[factory] Warmup failed for ${providerName}`);
++
++        if ((providerName === 'openai' || providerName === 'voyage') && allowsAutomaticFallback(options.provider)) {
++          return createFallbackProvider(
++            providerName,
++            options,
++            `warmup failed for ${providerName}`,
++            requestedDim,
++          );
++        }
++      }
++    }
++
++    return attachFactoryMetadata(provider, {
++      requestedProvider: providerName,
++      effectiveProvider: providerName,
++      dimensionChanged: false,
++    });
++
++  } catch (error: unknown) {
++    if (error instanceof Error) {
++      void error.message;
++    }
++    console.error(`[factory] Error creating provider ${providerName}:`, getErrorMessage(error));
++
++    // Fallback to hf-local for cloud providers when auto-detected (not explicitly set)
++    if ((providerName === 'openai' || providerName === 'voyage') && allowsAutomaticFallback(options.provider)) {
++      return createFallbackProvider(
++        providerName,
++        options,
++        getErrorMessage(error),
++        requestedDim,
++      );
++    }
++
++    throw error;
++  }
++}
++
++// ---------------------------------------------------------------
++// 3. PROVIDER INFO
++// ---------------------------------------------------------------
++
++/** Get configuration information without creating the provider */
++export function getProviderInfo(): ProviderInfoWithFallback {
++  return getProviderInfoForResolution(resolveProvider());
++}
++
++// ---------------------------------------------------------------
++// 4. PRE-FLIGHT API KEY VALIDATION (REQ-029, T087-T090)
++// ---------------------------------------------------------------
++
++/**
++ * Validation timeout in milliseconds.
++ * REQ-029, CHK-170: Must complete within 5s
++ */
++export const VALIDATION_TIMEOUT_MS: number = 5000;
++
++/**
++ * Validate API key at startup before any tool usage.
++ * REQ-029: Pre-Flight API Key Validation
++ *
++ * This function should be called during MCP server startup to fail fast
++ * if the configured embedding provider has an invalid API key.
++ */
++export async function validateApiKey(options: ValidateApiKeyOptions = {}): Promise<ApiKeyValidationResult> {
++  const timeoutMs = options.timeout || VALIDATION_TIMEOUT_MS;
++  const providerName: SupportedProviderName = options.provider || (resolveProvider().name as SupportedProviderName);
++
++  // Local providers don't need API key validation
++  if (providerName === 'hf-local') {
++    return {
++      valid: true,
++      provider: providerName,
++      reason: 'Local provider - no API key required',
++    };
++  }
++
++  // Check that API key environment variable is set
++  const apiKey = options.apiKey || (providerName === 'voyage'
++    ? process.env.VOYAGE_API_KEY
++    : process.env.OPENAI_API_KEY);
++
++  if (!apiKey) {
++    return {
++      valid: false,
++      provider: providerName,
++      error: `${providerName.toUpperCase()}_API_KEY environment variable not set`,
++      errorCode: 'E050',
++      actions: [
++        `Set ${providerName.toUpperCase()}_API_KEY environment variable`,
++        'Or use EMBEDDINGS_PROVIDER=hf-local to use local model',
++        `Check provider dashboard: ${providerName === 'voyage' ? 'voyage.ai/dashboard' : 'platform.openai.com/api-keys'}`,
++      ],
++    };
++  }
++
++  // Attempt a lightweight API call with timeout
++  const controller = new AbortController();
++  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
++
++  try {
++    const baseUrl = options.baseUrl || (providerName === 'voyage'
++      ? resolveVoyageBaseUrl()
++      : (process.env.OPENAI_BASE_URL || 'https://api.openai.com/v1'));
++
++    const model = resolveConfiguredModel(providerName, options.model);
++
++    const body: Record<string, unknown> = {
++      input: 'api key validation test',
++      model: model,
++    };
++
++    // Voyage uses input_type for optimization
++    if (providerName === 'voyage') {
++      body.input_type = 'query';
++    } else {
++      body.encoding_format = 'float';
++    }
++
++    const response = await fetch(`${baseUrl}/embeddings`, {
++      method: 'POST',
++      headers: {
++        'Content-Type': 'application/json',
++        'Authorization': `Bearer ${apiKey}`,
++      },
++      body: JSON.stringify(body),
++      signal: controller.signal,
++    });
++
++    clearTimeout(timeoutId);
++
++    if (!response.ok) {
++      const errorPayload = await response.json().catch(() => ({}));
++      const errorBody = parseValidationErrorBody(errorPayload);
++      const errorMessage = errorBody.detail
++        || errorBody.error?.message
++        || response.statusText;
++
++      // Detect specific authentication errors
++      const isAuthError = response.status === 401 || response.status === 403;
++      const isRateLimit = response.status === 429;
++
++      if (isAuthError) {
++        return {
++          valid: false,
++          provider: providerName,
++          error: `API key invalid or unauthorized: ${errorMessage}`,
++          errorCode: 'E050',
++          httpStatus: response.status,
++          actions: [
++            `Verify API key is correct in ${providerName.toUpperCase()}_API_KEY`,
++            `Check key validity at ${providerName === 'voyage' ? 'voyage.ai/dashboard' : 'platform.openai.com/api-keys'}`,
++            'Ensure key has embedding permissions enabled',
++          ],
++        };
++      }
++
++      if (isRateLimit) {
++        // Rate limit during validation still means the key is valid
++        return {
++          valid: true,
++          provider: providerName,
++          warning: 'API key valid but rate limited - may affect operations',
++          httpStatus: response.status,
++        };
++      }
++
++      // Other errors (500, etc.) - key might be valid, service issue
++      return {
++        valid: true,
++        provider: providerName,
++        warning: `Service returned error (${response.status}): ${errorMessage}`,
++        httpStatus: response.status,
++      };
++    }
++
++    return {
++      valid: true,
++      provider: providerName,
++      reason: 'API key validated successfully',
++    };
++
++  } catch (error: unknown) {
++    if (error instanceof Error) {
++      void error.message;
++    }
++    clearTimeout(timeoutId);
++
++    if (isAbortError(error)) {
++      return {
++        valid: false,
++        provider: providerName,
++        error: `API key validation timed out after ${timeoutMs}ms`,
++        errorCode: 'E053',
++        networkError: true,
++        actions: [
++          'Check network connectivity',
++          'Retry startup - may be transient',
++          'Consider using local model: EMBEDDINGS_PROVIDER=hf-local',
++        ],
++      };
++    }
++
++    // Network errors - can't determine key validity
++    return {
++      valid: false,
++      provider: providerName,
++      error: `Network error during validation: ${getErrorMessage(error)}`,
++      errorCode: 'E053',
++      networkError: true,
++      actions: [
++        'Check internet connectivity',
++        'Verify firewall allows outbound HTTPS',
++        'Retry startup - may be transient',
++      ],
++    };
++  }
++}
+[0m
+[0m✱ [0mGlob "specs/**/028-*"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "semantic|matchSource|semanticScore|SPECKIT_SEMANTIC|embed\("[90m in .opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts · 0 matches[0m
+[0m✱ [0mGrep "CREATE TABLE IF NOT EXISTS .*memory_trigger_embeddings|memory_trigger_embeddings"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts · 0 matches[0m
+[0m✱ [0mGrep "semantic|SPECKIT_SEMANTIC|memory_trigger_embeddings|embed\("[90m in .opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts · 0 matches[0m
+[0m✱ [0mGrep "CREATE TABLE IF NOT EXISTS memory_index|trigger_phrases TEXT|embedding_cache"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts · 9 matches[0m
+[0m✱ [0mGrep "code-graph-adoption-eval|028/004|004-code-graph|paired comparison|recall lift"[90m in specs · 2647 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=2570, limit=50][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=2700, limit=35][0m
+[0m
+[0m$ [0mgit show --name-only --format=fuller a101cbacfa
+commit a101cbacfad8ea637f979a69302f2877f47b338d
+Author:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+AuthorDate: Tue Jun 2 15:23:24 2026 +0200
+Commit:     MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+CommitDate: Tue Jun 2 15:23:24 2026 +0200
+
+    docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+    
+    Add the 028-peck-teachings-adoption spec packet (analysis + research only; no spec-kit source changed):
+    - 001: peck-teachings analysis (which peck mechanisms map to spec-kit gaps) + 5-iteration deep-research report (cli-opencode gpt-5.5 xhigh) with synthesis, iterations, deltas, state.
+    - 002 (T3 self-check template blocks), 003 (T4 current-state advisory rule), 004 (T2 constitutional-rule review surface): planned phases, refined by the research.
+    - T1 (AC-coverage completion gate) intentionally deferred to a future packet.
+    Strict-validated: parent + 4 children, 0 errors / 0 warnings.
+    
+    Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/graph-metadata.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/implementation-summary.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/peck-teachings-analysis.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/plan.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deep-research-config.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deep-research-findings-registry.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deep-research-state.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deep-research-strategy.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deltas/iter-001.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deltas/iter-002.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deltas/iter-003.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deltas/iter-004.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/deltas/iter-005.jsonl
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/iterations/iteration-001.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/iterations/iteration-002.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/iterations/iteration-003.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/iterations/iteration-004.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/iterations/iteration-005.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/prompts/iteration-001.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/prompts/iteration-002.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/prompts/iteration-003.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/prompts/iteration-004.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/prompts/iteration-005.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/research/research.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/scratch/.gitkeep
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/spec.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/001-peck-teachings-for-spec-kit/tasks.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/graph-metadata.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/implementation-summary.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/plan.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/scratch/.gitkeep
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/spec.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/002-self-check-templates/tasks.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/graph-metadata.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/implementation-summary.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/plan.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/scratch/.gitkeep
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/spec.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/003-current-state-discipline/tasks.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/graph-metadata.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/implementation-summary.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/plan.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/scratch/.gitkeep
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/spec.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/tasks.md
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/description.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/graph-metadata.json
+.opencode/specs/system-spec-kit/028-peck-teachings-adoption/spec.md
+[0m
+[0m$ [0mgit log --oneline --all -- .opencode/specs/system-spec-kit/028-peck-teachings-adoption
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+[0m
+[0m$ [0mgit log --oneline --all -- .opencode/specs/system-spec-kit/028-code-graph-adoption-eval .opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-code-graph-adoption-eval .opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+[0m
+[0m✗ [0mRead .opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/spec.md failed[90m [offset=1, limit=90][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/028-peck-teachings-adoption/004-constitutional-rule-review/spec.md
+[0m
+[0m$ [0mgit show e39a6a8e63 --stat
+commit e39a6a8e6390baca4eab6328429da40f8e026963
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 13:06:17 2026 +0200
+
+    docs(system-spec-kit): fold continuation research into 027 packet
+    
+    Context: consolidate the 027 continuation research, relocate peck-derived planning under 027, and refresh child phase plans without source-code changes.
+    
+    Changes:
+    
+    - add iteration 040-060 continuation research and root synthesis
+    
+    - move peck teachings adoption under the 027 phase map
+    
+    - refresh 027 child phase plans for memory safety, indexing, tombstones, metadata edges, reconciliation, semantic triggers, and feedback reducers
+    
+    Refs: .opencode/specs/system-spec-kit/027-xce-research-based-refinement
+
+ .../description.json                               |   9 +-
+ .../graph-metadata.json                            |  34 +
+ .../implementation-summary.md                      |   2 +-
+ .../peck-teachings-analysis.md                     |   0
+ .../001-peck-teachings-for-spec-kit/plan.md        |   2 +-
+ .../research/deep-research-config.json             |   4 +-
+ .../research/deep-research-findings-registry.json  |   0
+ .../research/deep-research-state.jsonl             |   2 +-
+ .../research/deep-research-strategy.md             |   2 +-
+ .../research/deltas/iter-001.jsonl                 |   4 +-
+ .../research/deltas/iter-002.jsonl                 |   8 +-
+ .../research/deltas/iter-003.jsonl                 |  10 +-
+ .../research/deltas/iter-004.jsonl                 |   4 +-
+ .../research/deltas/iter-005.jsonl                 |  13 +
+ .../research/iterations/iteration-001.md           |  16 +-
+ .../research/iterations/iteration-002.md           |   6 +-
+ .../research/iterations/iteration-003.md           |  12 +-
+ .../research/iterations/iteration-004.md           |  10 +-
+ .../research/iterations/iteration-005.md           |  40 +-
+ .../research/prompts/iteration-001.md              |  18 +-
+ .../research/prompts/iteration-002.md              |  12 +-
+ .../research/prompts/iteration-003.md              |  10 +-
+ .../research/prompts/iteration-004.md              |   8 +-
+ .../research/prompts/iteration-005.md              |  10 +-
+ .../research/research.md                           |   8 +-
+ .../scratch/.gitkeep                               |   0
+ .../001-peck-teachings-for-spec-kit/spec.md        |   4 +-
+ .../001-peck-teachings-for-spec-kit/tasks.md       |   2 +-
+ .../002-self-check-templates/description.json      |   9 +-
+ .../002-self-check-templates/graph-metadata.json   |  34 +
+ .../implementation-summary.md                      |   2 +-
+ .../002-self-check-templates/plan.md               |   2 +-
+ .../002-self-check-templates}/scratch/.gitkeep     |   0
+ .../002-self-check-templates/spec.md               |   8 +-
+ .../002-self-check-templates/tasks.md              |   2 +-
+ .../003-current-state-discipline/description.json  |   9 +-
+ .../graph-metadata.json                            |  34 +
+ .../implementation-summary.md                      |   2 +-
+ .../003-current-state-discipline/plan.md           |   2 +-
+ .../003-current-state-discipline}/scratch/.gitkeep |   0
+ .../003-current-state-discipline/spec.md           |   8 +-
+ .../003-current-state-discipline/tasks.md          |   2 +-
+ .../description.json                               |   9 +-
+ .../graph-metadata.json                            |  34 +
+ .../implementation-summary.md                      |   2 +-
+ .../004-constitutional-rule-review/plan.md         |   2 +-
+ .../scratch/.gitkeep                               |   0
+ .../004-constitutional-rule-review/spec.md         |   8 +-
+ .../004-constitutional-rule-review/tasks.md        |   2 +-
+ .../001-peck-teachings-adoption/description.json   |  41 ++
+ .../graph-metadata.json                            |  72 ++
+ .../001-peck-teachings-adoption}/spec.md           |  11 +-
+ .../002-incremental-index-foundation/plan.md       | 163 -----
+ .../002-incremental-index-foundation/tasks.md      | 106 ---
+ .../checklist.md                                   |   2 +-
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |   6 +-
+ .../plan.md                                        |  16 +-
+ .../spec.md                                        |   2 +-
+ .../tasks.md                                       |  31 +-
+ .../003-causal-edge-tombstones/plan.md             | 163 -----
+ .../003-causal-edge-tombstones/tasks.md            | 106 ---
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |  21 +-
+ .../003-incremental-index-foundation/plan.md       | 173 +++++
+ .../scratch/.gitkeep                               |   0
+ .../spec.md                                        |   6 +-
+ .../003-incremental-index-foundation/tasks.md      | 104 +++
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |  21 +-
+ .../004-causal-edge-tombstones/plan.md             | 173 +++++
+ .../004-causal-edge-tombstones}/scratch/.gitkeep   |   0
+ .../spec.md                                        |  10 +-
+ .../004-causal-edge-tombstones/tasks.md            | 104 +++
+ .../004-metadata-edge-promoter/plan.md             | 163 -----
+ .../004-metadata-edge-promoter/tasks.md            | 106 ---
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |  21 +-
+ .../005-metadata-edge-promoter/plan.md             | 171 +++++
+ .../005-metadata-edge-promoter}/scratch/.gitkeep   |   0
+ .../spec.md                                        |   8 +-
+ .../005-metadata-edge-promoter/tasks.md            | 102 +++
+ .../005-write-path-reconciliation/plan.md          | 163 -----
+ .../005-write-path-reconciliation/tasks.md         | 106 ---
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |  21 +-
+ .../006-write-path-reconciliation/plan.md          | 172 +++++
+ .../scratch/.gitkeep                               |   0
+ .../spec.md                                        |   6 +-
+ .../006-write-path-reconciliation/tasks.md         | 106 +++
+ .../checklist.md                                   |   4 +-
+ .../decision-record.md                             |   2 +-
+ .../description.json                               |   2 +-
+ .../graph-metadata.json                            |   4 +-
+ .../implementation-summary.md                      |   4 +-
+ .../plan.md                                        |  26 +-
+ .../resource-map.md                                |   2 +-
+ .../spec.md                                        |   2 +-
+ .../tasks.md                                       |  13 +-
+ .../001-aggregator/checklist.md                    |   2 +-
+ .../001-aggregator/description.json                |   8 +-
+ .../001-aggregator/graph-metadata.json             |   6 +-
+ .../001-aggregator/implementation-summary.md       |   4 +-
+ .../001-aggregator/legacy-decision-record.md       |   2 +-
+ .../001-aggregator/legacy-resource-map.md          |   2 +-
+ .../001-aggregator/plan.md                         |   8 +-
+ .../001-aggregator/spec.md                         |   6 +-
+ .../001-aggregator/tasks.md                        |  20 +-
+ .../002-coco-rerank-consumer/checklist.md          |   2 +-
+ .../002-coco-rerank-consumer/description.json      |   8 +-
+ .../002-coco-rerank-consumer/graph-metadata.json   |   6 +-
+ .../implementation-summary.md                      |   4 +-
+ .../002-coco-rerank-consumer/plan.md               |   6 +-
+ .../002-coco-rerank-consumer/spec.md               |   6 +-
+ .../002-coco-rerank-consumer/tasks.md              |   2 +-
+ .../003-causal-reducer/checklist.md                |   2 +-
+ .../003-causal-reducer/description.json            |   8 +-
+ .../003-causal-reducer/graph-metadata.json         |   6 +-
+ .../003-causal-reducer/implementation-summary.md   |   4 +-
+ .../003-causal-reducer/plan.md                     |   8 +-
+ .../003-causal-reducer/spec.md                     |   6 +-
+ .../003-causal-reducer/tasks.md                    |  24 +-
+ .../004-retention-reducer/checklist.md             |   2 +-
+ .../004-retention-reducer/description.json         |   8 +-
+ .../004-retention-reducer/graph-metadata.json      |   6 +-
+ .../implementation-summary.md                      |   4 +-
+ .../004-retention-reducer/plan.md                  |   8 +-
+ .../004-retention-reducer/spec.md                  |   6 +-
+ .../004-retention-reducer/tasks.md                 |  24 +-
+ .../005-env-tests-integration/checklist.md         |   2 +-
+ .../005-env-tests-integration/description.json     |  14 +-
+ .../005-env-tests-integration/graph-metadata.json  |   6 +-
+ .../implementation-summary.md                      |   4 +-
+ .../005-env-tests-integration/plan.md              |   5 +-
+ .../005-env-tests-integration/spec.md              |   4 +-
+ .../005-env-tests-integration/tasks.md             |  20 +-
+ .../description.json                               |  14 +-
+ .../graph-metadata.json                            |  14 +-
+ .../spec.md                                        |  25 +-
+ .../context-index.md                               |  21 +
+ .../description.json                               |  33 +-
+ .../graph-metadata.json                            |  62 +-
+ .../deep-research-config.json                      |  15 +
+ .../deep-research-state.jsonl                      |  23 +
+ .../deep-research-strategy.md                      |  45 ++
+ .../deltas/iter-040.jsonl                          |   1 +
+ .../deltas/iter-041.jsonl                          |   1 +
+ .../deltas/iter-042.jsonl                          |   1 +
+ .../deltas/iter-043.jsonl                          |   1 +
+ .../deltas/iter-044.jsonl                          |   1 +
+ .../deltas/iter-045.jsonl                          |   1 +
+ .../deltas/iter-046.jsonl                          |   1 +
+ .../deltas/iter-047.jsonl                          |   1 +
+ .../deltas/iter-048.jsonl                          |   1 +
+ .../deltas/iter-049.jsonl                          |   1 +
+ .../deltas/iter-050.jsonl                          |   1 +
+ .../deltas/iter-051.jsonl                          |   1 +
+ .../deltas/iter-052.jsonl                          |   1 +
+ .../deltas/iter-053.jsonl                          |   1 +
+ .../deltas/iter-054.jsonl                          |   1 +
+ .../deltas/iter-055.jsonl                          |   1 +
+ .../deltas/iter-056.jsonl                          |   1 +
+ .../deltas/iter-057.jsonl                          |   1 +
+ .../deltas/iter-058.jsonl                          |   1 +
+ .../deltas/iter-059.jsonl                          |   1 +
+ .../deltas/iter-060.jsonl                          |   1 +
+ .../findings-registry.json                         | 621 +++++++++++++++++
+ .../iterations/iteration-040.md                    |  34 +
+ .../iterations/iteration-041.md                    |  36 +
+ .../iterations/iteration-042.md                    |  37 +
+ .../iterations/iteration-043.md                    |  29 +
+ .../iterations/iteration-044.md                    |  29 +
+ .../iterations/iteration-045.md                    |  29 +
+ .../iterations/iteration-046.md                    |  46 ++
+ .../iterations/iteration-047.md                    |  47 ++
+ .../iterations/iteration-048.md                    |  46 ++
+ .../iterations/iteration-049.md                    |  46 ++
+ .../iterations/iteration-050.md                    |  49 ++
+ .../iterations/iteration-051.md                    |  45 ++
+ .../iterations/iteration-052.md                    |  53 ++
+ .../iterations/iteration-053.md                    |  54 ++
+ .../iterations/iteration-054.md                    |  55 ++
+ .../iterations/iteration-055.md                    |  45 ++
+ .../iterations/iteration-056.md                    |  41 ++
+ .../iterations/iteration-057.md                    |  41 ++
+ .../iterations/iteration-058.md                    |  50 ++
+ .../iterations/iteration-059.md                    |  56 ++
+ .../iterations/iteration-060.md                    |  76 +++
+ .../027-continuation-21-2026-06-04/research.md     | 104 +++
+ .../research/deep-research-state.jsonl             |  39 +-
+ .../research/deltas/iter-040.jsonl                 |   1 +
+ .../research/deltas/iter-041.jsonl                 |   1 +
+ .../research/deltas/iter-042.jsonl                 |   1 +
+ .../research/deltas/iter-043.jsonl                 |   1 +
+ .../research/deltas/iter-044.jsonl                 |   1 +
+ .../research/deltas/iter-045.jsonl                 |   1 +
+ .../research/deltas/iter-046.jsonl                 |   1 +
+ .../research/deltas/iter-047.jsonl                 |   1 +
+ .../research/deltas/iter-048.jsonl                 |   1 +
+ .../research/deltas/iter-049.jsonl                 |   1 +
+ .../research/deltas/iter-050.jsonl                 |   1 +
+ .../research/deltas/iter-051.jsonl                 |   1 +
+ .../research/deltas/iter-052.jsonl                 |   1 +
+ .../research/deltas/iter-053.jsonl                 |   1 +
+ .../research/deltas/iter-054.jsonl                 |   1 +
+ .../research/deltas/iter-055.jsonl                 |   1 +
+ .../research/deltas/iter-056.jsonl                 |   1 +
+ .../research/deltas/iter-057.jsonl                 |   1 +
+ .../research/deltas/iter-058.jsonl                 |   1 +
+ .../research/deltas/iter-059.jsonl                 |   1 +
+ .../research/deltas/iter-060.jsonl                 |   1 +
+ .../research/findings-registry.json                | 755 ++++++++++++++++++++-
+ .../research/iterations/iteration-029.md           |   4 +-
+ .../research/iterations/iteration-030.md           |   2 +-
+ .../research/iterations/iteration-031.md           |   4 +-
+ .../research/iterations/iteration-032.md           |   2 +-
+ .../research/iterations/iteration-033.md           |   4 +-
+ .../research/iterations/iteration-034.md           |   6 +-
+ .../research/iterations/iteration-035.md           |  10 +-
+ .../research/iterations/iteration-036.md           |  40 +-
+ .../research/iterations/iteration-037.md           |  44 +-
+ .../research/iterations/iteration-038.md           |  70 +-
+ .../research/iterations/iteration-039.md           |  42 +-
+ .../research/iterations/iteration-040.md           |  34 +
+ .../research/iterations/iteration-041.md           |  36 +
+ .../research/iterations/iteration-042.md           |  37 +
+ .../research/iterations/iteration-043.md           |  29 +
+ .../research/iterations/iteration-044.md           |  29 +
+ .../research/iterations/iteration-045.md           |  29 +
+ .../research/iterations/iteration-046.md           |  46 ++
+ .../research/iterations/iteration-047.md           |  47 ++
+ .../research/iterations/iteration-048.md           |  46 ++
+ .../research/iterations/iteration-049.md           |  46 ++
+ .../research/iterations/iteration-050.md           |  49 ++
+ .../research/iterations/iteration-051.md           |  45 ++
+ .../research/iterations/iteration-052.md           |  53 ++
+ .../research/iterations/iteration-053.md           |  54 ++
+ .../research/iterations/iteration-054.md           |  55 ++
+ .../research/iterations/iteration-055.md           |  45 ++
+ .../research/iterations/iteration-056.md           |  41 ++
+ .../research/iterations/iteration-057.md           |  41 ++
+ .../research/iterations/iteration-058.md           |  50 ++
+ .../research/iterations/iteration-059.md           |  56 ++
+ .../research/iterations/iteration-060.md           |  76 +++
+ .../research/research.md                           | 113 ++-
+ .../resource-map.md                                |  88 +++
+ .../027-xce-research-based-refinement/spec.md      | 353 +++-------
+ .../graph-metadata.json                            |  26 -
+ .../research/deltas/iter-005.jsonl                 |  13 -
+ .../002-self-check-templates/graph-metadata.json   |  26 -
+ .../graph-metadata.json                            |  26 -
+ .../graph-metadata.json                            |  26 -
+ .../028-peck-teachings-adoption/description.json   |  29 -
+ .../graph-metadata.json                            |  55 --
+ 259 files changed, 5818 insertions(+), 2115 deletions(-)
+[0m
+[0m$ [0mgit show 734b9526b4 --stat
+commit 734b9526b40d19514d13dc84ab10d1b129471dff
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Jun 3 13:36:28 2026 +0200
+
+    chore: consolidate pre-existing working-tree WIP across multiple streams
+    
+    Single bulk commit of accumulated working-tree changes that were NOT part of the
+    spec-130 prompt-knowledge-layering work (already shipped separately). Committed in
+    bulk at the owner's explicit request ("commit push to main", "one commit").
+    
+    Spans ~15 unrelated streams: deep-improvement (skill + test fixtures), specs
+    026/028/122/125/126/128/129, system-spec-kit, cli-devin/cli-opencode doc WIP,
+    spec-130 sibling metadata + scratch dirs, and .claude/settings.local.json.
+    
+    Relocates spec 127 (reusable-model-benchmark-framework) into spec 131
+    (relocate-model-registry-and-benchmarks): git detected this as ~26 file renames
+    (12 at 100% similarity), so content is moved, not lost.
+    
+    Also drops two ephemeral spec/ADR labels from code comments to satisfy the
+    comment-hygiene gate (sk-doc/scripts/validate-doc-model-refs.js,
+    system-spec-kit resume-ladder.vitest.ts) and removes a runtime daemon lock file.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .claude/settings.local.json                        |    3 +-
+ ...we16-via-sk-prompt-small-model-and-sk-prompt.md |    2 +-
+ ...k-v4-via-sk-prompt-small-model-and-sk-prompt.md |   10 +-
+ .../manual_testing_playbook.md                     |    4 +-
+ .../skills/cli-opencode/changelog/v1.3.4.0.md      |    2 +-
+ .../skills/cli-opencode/changelog/v1.3.6.0.md      |    2 +-
+ ...4-via-opencode-go-with-sk-prompt-small-model.md |    8 +-
+ ...6-via-opencode-go-with-sk-prompt-small-model.md |    8 +-
+ ...mpt_pack_round.md.tmpl => prompt_pack_round.md} |    0
+ .../model-benchmark/benchmark-fixtures/README.md   |   49 +
+ .../benchmark-fixtures/hard-eval-expr.json         |   34 +
+ .../benchmark-fixtures/hard-merge-intervals.json   |   32 +
+ .../benchmark-fixtures/hard-parse-csv-line.json    |   33 +
+ .../benchmark-fixtures/hard-roman-to-int.json      |   33 +
+ .../benchmark-fixtures/harder-int-to-words.json    |  186 ++++
+ .../benchmark-fixtures/harder-normalize-path.json  |  186 ++++
+ .../benchmark-fixtures/harder-semver-compare.json  |  210 ++++
+ .../benchmark-fixtures/t1-smoke-echo.json          |   26 +
+ .../t4-adversarial-tokenizer.json                  |   31 +
+ .../benchmark-fixtures/validate-date.json          |  200 ++++
+ .../benchmark-fixtures/validate-ipv4.json          |  207 ++++
+ .../benchmark-fixtures/validate-semver.json        |  214 ++++
+ .../capability-m3-vs-mimo-v2.json                  |   40 +
+ .../capability-m3-vs-mimo-v3.json                  |   40 +
+ .../benchmark-profiles/capability-m3-vs-mimo.json  |   40 +
+ .../benchmark-profiles/default.json                |    6 +-
+ .../skills/deep-improvement/changelog/v1.12.0.0.md |   40 +
+ .../scripts/model-benchmark/MODES.md               |  203 ++++
+ .../scripts/model-benchmark/SWEEP.md               |    4 +-
+ .../grader/prompts/system-grader-task-outcome.md   |    2 +-
+ .../scripts/model-benchmark/tests/README.md        |   47 +
+ .../tests/sweep-isolation.vitest.ts                |  168 +++
+ .../.claude/agents/cp-improve-target.md            |   11 -
+ .../.codex/agents/cp-improve-target.toml           |   13 -
+ .../.gemini/agents/cp-improve-target.md            |   11 -
+ .../.opencode/agents/cp-improve-target.md          |   70 --
+ .../sk-doc/scripts/validate-doc-model-refs.js      |   25 +-
+ .../assets/cli_prompt_quality_card.md              |   13 +-
+ .../database/.mk-spec-memory-respawn.lock          |    4 -
+ .../mcp_server/lib/resume/resume-ladder.ts         |   12 +-
+ .../matrix_runners/adapter-cli-opencode.ts         |   10 +-
+ .../tests/matrix-adapter-opencode.vitest.ts        |   29 +-
+ .../mcp_server/tests/resume-ladder.vitest.ts       |   75 ++
+ .../scripts/memory/generate-context.ts             |   46 +-
+ .../scripts/tests/phase-parent-pointer.vitest.ts   |  105 +-
+ .opencode/specs/descriptions.json                  |  751 ++++++++++++-
+ .../001-rule-and-cleanup/graph-metadata.json       |   18 +-
+ .../description.json                               |    7 +-
+ .../description.json                               |    2 +-
+ .../description.json                               |    6 +-
+ .../description.json                               |    6 +-
+ .../graph-metadata.json                            |    4 +-
+ .../001-template-improvements/description.json     |   19 +-
+ .../description.json                               |    2 +-
+ .../001-mimo-provider-integration/description.json |    6 +-
+ .../description.json                               |    6 +-
+ .../description.json                               |    6 +-
+ .../001-design-research/description.json           |   22 +
+ .../001-design-research/graph-metadata.json        |  218 ++++
+ .../implementation-summary.md                      |    2 +-
+ .../{ => 001-design-research}/plan.md              |    2 +-
+ .../research/deltas/deltas.jsonl                   |    0
+ .../research/iterations/iteration-001.md           |    0
+ .../research/iterations/iteration-002.md           |    0
+ .../research/iterations/iteration-003.md           |    0
+ .../research/iterations/iteration-004.md           |    0
+ .../research/iterations/iteration-005.md           |    0
+ .../research/iterations/iteration-006.md           |    0
+ .../research/iterations/iteration-007.md           |    0
+ .../research/iterations/iteration-008.md           |    0
+ .../research/iterations/iteration-009.md           |    0
+ .../research/iterations/iteration-010.md           |    0
+ .../{ => 001-design-research}/research/research.md |    2 +-
+ .../001-design-research/spec.md                    |  141 +++
+ .../{ => 001-design-research}/tasks.md             |    2 +-
+ .../checklist.md                                   |    6 +-
+ .../description.json                               |   10 +-
+ .../graph-metadata.json                            |    6 +-
+ .../implementation-summary.md                      |    6 +-
+ .../plan.md                                        |    8 +-
+ .../spec.md                                        |    8 +-
+ .../tasks.md                                       |    4 +-
+ .../003-p1-reliability-and-dispatch/checklist.md   |  167 +++
+ .../description.json                               |   10 +-
+ .../graph-metadata.json                            |    8 +-
+ .../implementation-summary.md                      |  169 +++
+ .../003-p1-reliability-and-dispatch/plan.md        |  225 ++++
+ .../spec.md                                        |   24 +-
+ .../003-p1-reliability-and-dispatch/tasks.md       |  106 ++
+ .../005-sharper-discrimination/checklist.md        |  133 +++
+ .../005-sharper-discrimination/description.json    |   22 +
+ .../005-sharper-discrimination/graph-metadata.json |  214 ++++
+ .../implementation-summary.md                      |  110 ++
+ .../005-sharper-discrimination/plan.md             |  196 ++++
+ .../005-sharper-discrimination/spec.md             |  168 +++
+ .../005-sharper-discrimination/tasks.md            |  107 ++
+ .../description.json                               |   12 +-
+ .../graph-metadata.json                            |  181 +--
+ .../127-reusable-model-benchmark-framework/spec.md |  149 +--
+ .../description.json                               |    6 +-
+ .../129-sk-code-animation-mining/description.json  |    6 +-
+ .../description.json                               |   20 +-
+ .../description.json                               |   12 +-
+ .../description.json                               |   12 +-
+ .../description.json                               |   12 +-
+ .../description.json                               |   12 +-
+ .../description.json                               |   17 +-
+ .../description.json                               |   16 +-
+ .../description.json                               |   12 +-
+ .../scratch/playbook/s1-minimax-gen.err            |    3 +
+ .../scratch/playbook/s1-minimax-gen.txt            |   28 +
+ .../scratch/playbook/s2-mimo-gen.err               |    3 +
+ .../scratch/playbook/s2-mimo-gen.txt               |   13 +
+ .../scratch/playbook/s3-minimax-review.err         |    3 +
+ .../scratch/playbook/s3-minimax-review.txt         |    5 +
+ .../scratch/playbook/s4-mimo-review.err            |    3 +
+ .../scratch/playbook/s4-mimo-review.txt            |    3 +
+ .../scratch/review/.t-rem1                         |    1 +
+ .../scratch/review/.t-rem1b                        |    1 +
+ .../scratch/review/.t0                             |    1 +
+ .../scratch/review/.tc                             |    1 +
+ .../review/11-reverify-profile-accuracy.txt        |    0
+ .../scratch/review/11.err                          |    3 +
+ .../scratch/review/12-reverify-crosslinks.txt      |    3 +
+ .../scratch/review/12.err                          |   91 ++
+ .../scratch/review/13-holistic-final.txt           |    0
+ .../scratch/review/13.err                          |    4 +
+ .../scratch/review/14-confirm-profile-accuracy.txt |    0
+ .../scratch/review/14.err                          |    3 +
+ .../scratch/review/iter-01-architecture.txt        |   20 +
+ .../scratch/review/iter-01.err                     |   25 +
+ .../scratch/review/iter-02-data-contract.txt       |   11 +
+ .../scratch/review/iter-02.err                     |   33 +
+ .../scratch/review/iter-03-profile-accuracy.txt    |   22 +
+ .../scratch/review/iter-03.err                     |   21 +
+ .../scratch/review/iter-04-cli-devin-reconcile.txt |    8 +
+ .../scratch/review/iter-04.err                     |   61 ++
+ .../scratch/review/iter-05-crosslink-integrity.txt |   37 +
+ .../scratch/review/iter-05.err                     | 1157 ++++++++++++++++++++
+ .../scratch/review/iter-06-dup-guard.txt           |    7 +
+ .../scratch/review/iter-06.err                     |   18 +
+ .../review/iter-07-precedence-consistency.txt      |   19 +
+ .../scratch/review/iter-07.err                     |   25 +
+ .../scratch/review/iter-08-hygiene-taxonomy.txt    |    4 +
+ .../scratch/review/iter-08.err                     |   29 +
+ .../scratch/review/iter-09-completeness-gaps.txt   |   20 +
+ .../scratch/review/iter-09.err                     |   95 ++
+ .../scratch/review/iter-10-spec-governance.txt     |   21 +
+ .../scratch/review/iter-10.err                     |  254 +++++
+ .../scratch/review/rem-R1-profiles6.err            |  577 ++++++++++
+ .../scratch/review/rem-R1-profiles6.txt            |   25 +
+ .../scratch/review/rem-R2-model-profiles-md.err    |  838 ++++++++++++++
+ .../scratch/review/rem-R2-model-profiles-md.txt    |   28 +
+ .../scratch/review/rem-R3-canonical-card.err       |  384 +++++++
+ .../scratch/review/rem-R3-canonical-card.txt       |   18 +
+ .../scratch/review/rem-R4-cli-devin.err            |  328 ++++++
+ .../scratch/review/rem-R4-cli-devin.txt            |   30 +
+ .../scratch/review/rem-R5-cards-skills.err         |  885 +++++++++++++++
+ .../scratch/review/rem-R5-cards-skills.txt         |   34 +
+ .../scratch/review/rem-R6-dup-guard.err            |  401 +++++++
+ .../scratch/review/rem-R6-dup-guard.txt            |   27 +
+ .../scratch/review/remediate-priority-profiles.txt |   55 +
+ .../scratch/review/remediate-priority.err          |  469 ++++++++
+ .../130-prompt-knowledge-layering/description.json |   46 +-
+ .../description.json                               |   23 +-
+ .../005-scouted-bugfix-batch-5/spec.md             |  191 ++++
+ .../001-self-maintaining-index/description.json    |    8 +-
+ .../description.json                               |    6 +-
+ .../description.json                               |    6 +-
+ .../description.json                               |   13 +-
+ .../description.json                               |   19 +-
+ .../002-feature-catalog-update/description.json    |   16 +-
+ .../003-readme-cluster-update/description.json     |   10 +-
+ .../description.json                               |    9 +-
+ .../review-opus-claude2/opus-review-report.md      |   47 +
+ .../review-opus-claude2/out/L1-r1.txt              |   11 +
+ .../review-opus-claude2/out/L2-r1.txt              |   23 +
+ .../review-opus-claude2/out/L3-r1.txt              |   10 +
+ .../review-opus-claude2/out/L4-r1.txt              |    0
+ .../review-opus-claude2/out/L4a-r1.txt             |   15 +
+ .../review-opus-claude2/out/L4b-r1.txt             |   15 +
+ .../review-opus-claude2/prompts/L1-r1.md           |   17 +
+ .../review-opus-claude2/prompts/L2-r1.md           |   15 +
+ .../review-opus-claude2/prompts/L3-r1.md           |   18 +
+ .../review-opus-claude2/prompts/L4-r1.md           |   18 +
+ .../review-opus-claude2/prompts/L4a-r1.md          |   16 +
+ .../review-opus-claude2/prompts/L4b-r1.md          |   16 +
+ .../review-opus-claude2/prompts/_shared.md         |   10 +
+ .../description.json                               |    2 +-
+ .../description.json                               |   19 +-
+ .../002-self-check-templates/description.json      |   15 +-
+ .../003-current-state-discipline/description.json  |   15 +-
+ .../description.json                               |   15 +-
+ .../028-peck-teachings-adoption/description.json   |   18 +-
+ .../graph-metadata.json                            |   39 +-
+ 195 files changed, 12072 insertions(+), 674 deletions(-)
+[0m

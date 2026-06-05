@@ -46,7 +46,6 @@
       ".opencode/commands/create/assets/create_testing_playbook_confirm.yaml",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/README.txt",
-      ".gemini/commands/create/testing-playbook.toml",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -77,12 +76,6 @@
         "name": "README.txt",
         "kind": "file",
         "path": ".opencode/commands/create/README.txt",
-        "source": "derived"
-      },
-      {
-        "name": "testing-playbook.toml",
-        "kind": "file",
-        "path": ".gemini/commands/create/testing-playbook.toml",
         "source": "derived"
       },
       {
@@ -198,11 +191,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet defines the implementation contract for `/create:testing-playbook`, a new create command that must scaffold the current integrated `manual_testing_playbook/` package. The command must honor the post-021 contract: root playbook plus numbered category folders, root-owned review/orchestration guidance, per-feature files that mimic feature-catalog entry structure, and no legacy review or sub-agent ledger sidecars or `snippets/` subtree.",
     "created_at": "2026-04-12T09:02:50.174Z",
-    "last_save_at": "2026-05-30T10:12:01.175Z",
+    "last_save_at": "2026-06-05T12:47:32.589Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

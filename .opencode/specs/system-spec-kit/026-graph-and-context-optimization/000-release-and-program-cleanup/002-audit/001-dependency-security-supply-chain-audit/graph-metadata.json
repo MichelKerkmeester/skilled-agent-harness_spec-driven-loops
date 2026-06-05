@@ -39,7 +39,7 @@
       "repo"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "planned_—_awaiting_iteration_001_dispatch",
     "key_files": [
       "research/review-report.md",
       "research/deep-research-state.jsonl",
@@ -48,10 +48,8 @@
       "tasks.md",
       "implementation-summary.md",
       ".devin/config.json",
-      ".gemini/settings.json",
       ".claude/mcp.json",
       ".codex/config.toml",
-      ".vscode/mcp.json",
       "research/prompts/iteration-001.md",
       "research/prompts/iteration-002.md",
       "research/prompts/iteration-003.md",
@@ -60,7 +58,9 @@
       "research/prompts/iteration-006.md",
       "research/prompts/iteration-007.md",
       "research/prompts/iteration-008.md",
-      "research/prompts/iteration-009.md"
+      "research/prompts/iteration-009.md",
+      "research/prompts/iteration-010.md",
+      "research/prompts/iteration-011.md"
     ],
     "entities": [
       {
@@ -103,12 +103,6 @@
         "name": "config.json",
         "kind": "config",
         "path": ".devin/config.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -178,6 +172,18 @@
         "source": "derived"
       },
       {
+        "name": "iteration-010.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-010.md",
+        "source": "derived"
+      },
+      {
+        "name": "iteration-011.md",
+        "kind": "doc",
+        "path": "research/prompts/iteration-011.md",
+        "source": "derived"
+      },
+      {
         "name": "Global Security Sweep",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -200,17 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Problem Statement The",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The 2026-05-15 TanStack Mini Shai-Hulud disclosure is a watershed npm supply-chain event: first documented npm worm shipping with valid SLSA provenance signatures. The compromised packages' release pipeline was hijacked, and the malicious versions look 100% legitimate to standard supply-chain defenders. 2FA didn't help; SLSA didn't help. Affected ~518M computers per the disclosure. The dead-man's-switch design means revoking a stolen token TRIGGERS the payload (`rm -rf ~/`), making remediation actively dangerous.",
     "created_at": "2026-05-15T18:27:58.266Z",
-    "last_save_at": "2026-05-30T10:12:01.540Z",
+    "last_save_at": "2026-06-05T12:47:32.957Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

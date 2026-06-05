@@ -35,7 +35,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "complete_—_shipped_+_verified_(d4_r_measured_54/100,_n=5)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Phase 011's round-2 deep research (5 gpt-5.5 iterations, `011-.../research/research.md` §12-18) reached one load-bearing conclusion: **the post-012 D3/D4 numbers are partly measurement artifacts, not skill behavior.** D4 ≈ 49 is graded by a *hallucination* grader (whose own prompt forbids scoring correctness/paths/planning), is n=2, all pre-012, and post-012 D4 is hard-coded `null` in every aggregate — so routine-task usefulness is genuinely UNKNOWN. The asset-deferral slice of the D3 gain is an artifact (folding `expectedAssets` into gold moves D2 by −9.55 pts but D3 by exactly 0.0). A CS-001 prompt-source mismatch and SD-001 intent-signal gaps depress D2 below their true ceilings. This phase fixes the instrument so D3/D4 mean what they claim, then makes the one real recall fix.",
     "created_at": "2026-06-02T04:30:36.784Z",
-    "last_save_at": "2026-06-02T07:38:39.614Z",
+    "last_save_at": "2026-06-05T12:47:32.449Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

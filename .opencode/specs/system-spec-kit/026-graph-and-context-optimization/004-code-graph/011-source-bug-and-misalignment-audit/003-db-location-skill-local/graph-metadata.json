@@ -31,7 +31,7 @@
       "readiness"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(live_on_main,_commit_69e7bf12)",
     "key_files": [
       "mcp_server/core/config.ts",
       ".opencode/bin/mk-code-index-launcher.cjs",
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "The code-graph SQLite DB + sidecars + lease + readiness marker were created at the workspace-root `.opencode/.spec-kit/code-graph/database/`. The operator wants them inside the skill folder. The prior consolidation (ADR-002/004/005) justified `.spec-kit` by cross-runtime sharing, but that rationale was wrong: every runtime symlinks `.opencode/skills` to one physical dir, so a skill-local DB is equally shared.",
     "created_at": "2026-05-29T09:55:00.000Z",
-    "last_save_at": "2026-05-30T10:12:02.653Z",
+    "last_save_at": "2026-06-05T12:47:34.201Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

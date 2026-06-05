@@ -37,7 +37,7 @@
       "copies"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_+_reviewed_(go);_activates_on_daemon_restart",
     "key_files": [
       "shared/ipc/socket-server.ts",
       "spec.md",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "Implements the deferred follow-ups recorded in `014-launcher-overlap-spawn-and-bridge-fix` §7 and the research packet `027`: bring the weakest IPC `socket-server.ts` copy up to the hardened contract and stop the three copies from drifting again. Implemented by an Opus implementation sub-agent and independently verified by an Opus review sub-agent (GO, zero P0/P1).",
     "created_at": "2026-06-04T20:36:31.198Z",
-    "last_save_at": "2026-06-04T20:36:31.198Z",
+    "last_save_at": "2026-06-05T12:47:33.795Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -36,7 +36,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       ".opencode/skills/system-spec-kit/scripts/seed-council-value-fixture.cjs",
       ".opencode/skills/deep-ai-council/manual_testing_playbook/manual_testing_playbook.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 005 shipped 6 value-comparison scenarios DAC-027..DAC-032 that contrast the no-graph operator workflow with the with-graph MCP workflow on real-world council situations. The scenarios are operator-driven contracts only — they cannot regress automatically, and the \"12 file reads vs 1 MCP call\" claim is representative, not measured. A reviewer cannot today answer \"is the value claim still true after a graph code change?\" without re-running the scenarios by hand.",
     "created_at": "2026-05-11T09:25:00Z",
-    "last_save_at": "2026-05-30T10:12:00.842Z",
+    "last_save_at": "2026-06-05T12:47:32.042Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

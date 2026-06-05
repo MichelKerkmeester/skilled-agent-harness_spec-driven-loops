@@ -15,29 +15,188 @@
       "worktree reaper eval injection",
       "setup cp sandbox rmrf guard",
       "advisor ipc socket hardening",
-      "scan lease heartbeat fix"
+      "scan lease heartbeat fix",
+      "scouted bugfix batch 1 plan",
+      "verify-first deep-dive fix workflow",
+      "scouted bugfix batch 1 tasks",
+      "scouted bugfix batch 1 checklist",
+      "scouted bugfix batch 1 summary",
+      "verify-first batch fix shipped",
+      "5 confirmed defects 10 files"
     ],
     "key_topics": [
+      "scouted",
       "bugfix",
-      "security",
-      "scout",
-      "deep-dive",
-      "verify-first",
-      "command-injection",
-      "lease-heartbeat"
+      "batch",
+      "worktree",
+      "reaper",
+      "eval",
+      "injection",
+      "setup",
+      "sandbox",
+      "rmrf",
+      "guard",
+      "advisor"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
       ".opencode/bin/worktree-reaper.sh",
-      ".opencode/skills/system-skill-advisor/mcp_server/lib/ipc/socket-server.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/ops/file-watcher.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts"
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Ran a verify-first batch fix over the top 5 of 40 scouted candidate defects: an 8-agent scout selected the targets, 5 parallel gpt-5.5-fast deep-dives confirmed/refuted each headline (the two pre-try lease-leak headlines REFUTED — all throws precede lease acquisition; the one post-acquisition call swallows its errors — but each target still had a real lesser defect), and 5 disjoint-file implement agents fixed the confirmed defects across 10 files. Three security hardenings (worktree-reaper eval->argv-array, setup-cp-sandbox rm-rf guard, advisor IPC DR-008 port) and two MCP-server bug fixes (file-watcher close()-blocks-on-backoff hang, scan lease heartbeat). Every fix stack-verified; both MCP builds exit 0.",
+    "entities": [
+      {
+        "name": "worktree-reaper.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-reaper.sh",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Codebase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Fix",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "A broad scout of the codebase surfaced a backlog of latent code and security defects that no single review had triaged. An 8-agent scout enumerated 40 candidate deep-research targets; the top 5 carried the highest risk: two shell scripts with command-injection / unguarded `rm -rf` exposure, an IPC socket server missing the path-confinement hardening its sibling already had, and two MCP-server bugs (a `close()` that could block on a non-cancellable backoff sleep, and a multi-batch index scan with no lease heartbeat). Two of the five had been headlined as \"pre-try lease leaks,\" but that framing was unverified — acting on it directly risked fixing a defect that did not exist while missing the real one.",
     "created_at": "2026-06-03T05:32:00Z",
-    "last_save_at": "2026-06-03T05:32:00Z",
+    "last_save_at": "2026-06-05T12:47:33.196Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -46,6 +205,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

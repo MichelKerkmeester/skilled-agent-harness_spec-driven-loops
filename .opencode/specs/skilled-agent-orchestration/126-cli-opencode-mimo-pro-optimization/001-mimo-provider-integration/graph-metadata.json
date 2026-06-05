@@ -41,7 +41,6 @@
     "importance_tier": "normal",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-opencode/references/cli_reference.md",
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
@@ -60,12 +59,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
-        "source": "derived"
-      },
       {
         "name": "SKILL.md",
         "kind": "doc",
@@ -203,11 +196,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Pattern Additive",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The Xiaomi Token Plan (Europe) is configured on the install as provider `xiaomi-token-plan-ams` and exposes a MiMo model family. This phase wires the text/coding model `mimo-v2.5-pro` in as a first-class cli-opencode model — exactly mirroring how MiniMax's Token Plan (`minimax-coding-plan`) was wired in packet 120. Documentation, metadata, and the shared registry only; no runtime code.",
     "created_at": "2026-06-01T20:21:29.317Z",
-    "last_save_at": "2026-06-01T21:25:18.779Z",
+    "last_save_at": "2026-06-05T12:47:32.478Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

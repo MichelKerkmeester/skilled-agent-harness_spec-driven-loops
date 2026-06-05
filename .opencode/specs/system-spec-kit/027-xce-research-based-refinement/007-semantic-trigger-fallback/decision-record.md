@@ -82,7 +82,7 @@ _memory:
 
 **Rationale:**
 - **`trigger_phrases` JSON is source-of-truth** — human-authored continuity blocks; embeddings are computed/regeneratable. Mixing them couples authorship to derived state.
-- **BLOB inline in JSON is unwieldy** — 1024-dim Voyage embeddings = 4KB per phrase as JSON-encoded floats; bloats `memory_index` rows.
+- **BLOB inline in JSON is unwieldy** — embeddings from the active profile (default Ollama nomic 768-dim ≈ 3KB; remote-fallback 1024-dim ≈ 4KB per phrase as JSON-encoded floats) bloat `memory_index` rows.
 - **Existing `embedding_cache` infrastructure** — already content-addressed by `(content_hash, model_id, dimensions)` (`embedding-cache.ts:45-55`); reuse the BLOB store.
 - **Queryable, migratable, regeneratable** — derived table can be `--force` rebuilt from JSON; new model migration is a re-embed pass.
 
@@ -144,10 +144,10 @@ CREATE TABLE memory_trigger_embeddings (
 **Date:** 2026-05-09
 **Context:** Cosine threshold for semantic match is the dominant tunable. Too low → false positives mis-activate cognitive tiers; too high → no recall lift. Margin (top-hit separation) prevents ambiguous matches.
 
-**Decision:** Starting values `THRESHOLD=0.84` and `MARGIN=0.04`.
+**Decision:** Starting values `THRESHOLD=0.84` and `MARGIN=0.04`. **Re-tune note (2026-06-05):** these values were derived for Voyage-4 1024-dim. The active default embedding profile is now local Ollama `nomic-embed-text-v1.5` (768-dim); cosine clustering differs across embedders, so `0.84`/`0.04` and the goldens MUST be re-tuned/re-validated against 768d Nomic before active-mode promotion — do not assume `0.84` transfers.
 
 **Rationale:**
-- **0.84 is conservative** — Voyage-4 at 1024-dim typically clusters semantically-similar text at 0.85-0.95; 0.84 is just below this cluster, capturing strong paraphrases without leaking weak associations.
+- **0.84 is conservative (for Voyage-4 1024d)** — Voyage-4 at 1024-dim typically clusters semantically-similar text at 0.85-0.95; 0.84 is just below this cluster, capturing strong paraphrases without leaking weak associations. The equivalent cutoff for the active 768d Nomic profile must be re-derived from shadow data.
 - **0.04 margin avoids ambiguity** — if top semantic hit is 0.86 and second is 0.83, gap is 0.03 → ambiguous → suppress. Forces a clear winner.
 - **Tunable from shadow data** — REQ-010 logs threshold-band distribution (0.78 / 0.82 / 0.86 buckets); production data informs whether to relax or tighten.
 - **Conservative initial pick** — easier to lower threshold post-data than to chase down false-activation regressions.
@@ -155,7 +155,7 @@ CREATE TABLE memory_trigger_embeddings (
 **Consequences:**
 - Initial recall will be lower than ceiling — that's intentional for v1 trust.
 - Shadow telemetry will reveal where production queries fall in threshold bands.
-- 028/004-code-graph-adoption-eval eval will measure recall lift at calibrated threshold.
+- An equivalent shadow-eval harness will measure recall lift at the calibrated (768d-re-tuned) threshold.
 
 **Alternatives considered:**
 - Higher threshold (0.90+) — rejected for v1 (too tight; minimal recall lift over lexical).
@@ -174,7 +174,7 @@ CREATE TABLE memory_trigger_embeddings (
 
 **Rationale:**
 - **Latency budget is binding** — `trigger-matcher.ts:132-160` warns at 30-50ms; provider embed calls can take 100-500ms (`embeddings.ts:673-724` timeout/circuit-breaker).
-- **Embed at-time would force `_MODE=union` callers to wait on Voyage** — unacceptable for a hot retrieval path.
+- **Embed at-time would force `_MODE=union` callers to wait on the embedding provider** — unacceptable for a hot retrieval path (even local Ollama embed adds latency vs cache lookup).
 - **Index scan is already a maintenance job** — adding trigger backfill is a small marginal cost there.
 - **Save-time pipeline already does lookup-or-generate** — adding trigger embeddings to the same pattern is symmetric.
 - **Cold start is graceful** — phrases without embeddings skipped silently in semantic stage; backfilled on next index scan.
@@ -200,7 +200,8 @@ CREATE TABLE memory_trigger_embeddings (
 - Trigger matcher: `mcp_server/lib/parsing/trigger-matcher.ts`.
 - Memory triggers handler: `mcp_server/handlers/memory-triggers.ts`.
 - Embedding cache: `mcp_server/lib/cache/embedding-cache.ts`.
-- Embedding pipeline: `mcp_server/lib/embeddings/embedding-pipeline.ts`.
+- Embedding pipeline: `mcp_server/handlers/save/embedding-pipeline.ts`.
+- Embedding factory / auto-select: `shared/embeddings/factory.ts`, `shared/embeddings/auto-select.ts` (local-first; default Ollama `nomic-embed-text-v1.5` 768d).
 - Embedding expansion precedent: `mcp_server/lib/search/embedding-expansion.ts`.
 - Cognitive activation: `mcp_server/lib/cognitive/{tier-classifier,working-memory,attention-decay,co-activation}.ts`.
 
@@ -216,7 +217,7 @@ CREATE TABLE memory_trigger_embeddings (
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pt-03 verdict for this phase recommends Level 3 designation. After the 028/005-cocoindex-complete-fork complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, 028/004-code-graph-adoption-eval eval gates) that L3 enforces.
+Pt-03 verdict for this phase recommends Level 3 designation. After the 028/005-cocoindex-complete-fork complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, shadow-eval evidence gates) that L3 enforces.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->
@@ -240,8 +241,8 @@ Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 - resource-map.md mandatory per user directive.
 - Strict spec validation gate applies before merge.
 - Implementation-summary.md must be filled with concrete file:line citations after Sub-Phases land.
-- 028/004-code-graph-adoption-eval eval gate required for any active-mode rollout.
-- Test discipline includes unit + integration + diff (backward-compat) + 028/004-code-graph-adoption-eval paired comparison.
+- Shadow-eval evidence gate required for any active-mode rollout (equivalent shadow-eval harness).
+- Test discipline includes unit + integration + diff (backward-compat) + shadow-eval / paired comparison.
 <!-- /ANCHOR:adr-001-consequences -->
 
 <!-- ANCHOR:adr-001-five-checks -->
@@ -250,7 +251,7 @@ Designate Phase 007 as **Level 3**. Apply full L3 file contract: spec.md, plan.m
 1. **Cross-component change?** Yes — touches multiple subsystems and/or runtimes.
 2. **New feature flag family?** Yes — default-off rollout per pt-03 universal pattern.
 3. **Telemetry contract introduced?** Yes — per-phase eval logger events documented in REQs.
-4. **Promotion gate required?** Yes — 028/004-code-graph-adoption-eval eval lift before active mode.
+4. **Promotion gate required?** Yes — shadow-eval lift evidence (equivalent shadow-eval harness) before active mode.
 5. **Hot-path or governance impact?** Yes — affects retrieval / cognitive activation / governance decisions per phase scope.
 
 All five checks affirmative → Level 3 designation justified.

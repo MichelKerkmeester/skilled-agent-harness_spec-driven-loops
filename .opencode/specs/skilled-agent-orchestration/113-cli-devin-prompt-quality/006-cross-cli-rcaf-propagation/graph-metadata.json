@@ -43,15 +43,12 @@
     "key_files": [
       ".opencode/skills/cli-claude-code/assets/prompt_quality_card.md",
       ".opencode/skills/cli-codex/assets/prompt_quality_card.md",
-      ".opencode/skills/cli-gemini/assets/prompt_quality_card.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/cli-claude-code/SKILL.md",
       ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/cli-gemini/SKILL.md",
       ".opencode/skills/cli-opencode/SKILL.md",
       ".opencode/skills/cli-claude-code/changelog/v1.1.6.0.md",
       ".opencode/skills/cli-codex/changelog/v1.4.3.0.md",
-      ".opencode/skills/cli-gemini/changelog/v1.2.6.0.md",
       ".opencode/skills/cli-opencode/changelog/v1.3.2.0.md",
       "plan.md",
       "tasks.md",
@@ -83,12 +80,6 @@
         "name": "v1.4.3.0.md",
         "kind": "doc",
         "path": ".opencode/skills/cli-codex/changelog/v1.4.3.0.md",
-        "source": "derived"
-      },
-      {
-        "name": "v1.2.6.0.md",
-        "kind": "doc",
-        "path": ".opencode/skills/cli-gemini/changelog/v1.2.6.0.md",
         "source": "derived"
       },
       {
@@ -204,11 +195,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packet 113/006 records completed cross-CLI propagation of the 113/003 eval-loop finding that medium-density pre-planning beats dense pre-planning on SWE 1.6. The work updates the sk-prompt master CLI prompt quality card, mirrors the same guidance into four sibling CLI prompt quality cards, bumps sibling skill frontmatter versions, and adds sibling changelog entries.",
     "created_at": "2026-05-17T12:18:18Z",
-    "last_save_at": "2026-06-04T03:35:27.085Z",
+    "last_save_at": "2026-06-05T12:47:32.153Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

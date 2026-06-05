@@ -153,13 +153,19 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Verification",
+        "name": "Phase 2: Implementation",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -167,12 +173,6 @@
       {
         "name": "Cross-References",
         "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Tasks: Pre-existing test + doc failure remediation",
-        "kind": "quoted",
         "path": "tasks.md",
         "source": "derived"
       },
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Implements remediation of the pre-existing failures classified (NOT introduced) by the 013-takeover central verification recorded in `../013-comprehensive-audit-remediation/central-verification-record.md`. Built by gpt-5.5 worker lanes + orchestrator review/correction.",
     "created_at": "2026-06-05T06:23:26.207Z",
-    "last_save_at": "2026-06-05T06:23:26.207Z",
+    "last_save_at": "2026-06-05T12:47:33.238Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

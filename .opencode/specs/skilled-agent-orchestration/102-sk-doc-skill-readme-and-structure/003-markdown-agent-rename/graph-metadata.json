@@ -32,14 +32,11 @@
     "key_files": [
       ".opencode/agents/markdown.md",
       ".claude/agents/markdown.md",
-      ".gemini/agents/markdown.md",
       ".codex/agents/markdown.toml",
       ".opencode/agents/orchestrate.md",
       ".claude/agents/orchestrate.md",
-      ".gemini/agents/orchestrate.md",
       ".opencode/agents/code.md",
       ".claude/agents/code.md",
-      ".gemini/agents/code.md",
       ".codex/agents/orchestrate.toml",
       ".codex/agents/code.toml",
       ".codex/config.toml",
@@ -49,7 +46,8 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -137,6 +135,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -189,17 +193,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Pattern Template",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The documentation authoring agent is currently named create, but the desired long-term identity is markdown. That rename has broad reference impact across runtime agent mirrors, orchestration docs, commands, skills, and root documentation.",
     "created_at": "2026-05-10T10:33:24Z",
-    "last_save_at": "2026-05-30T10:12:00.851Z",
+    "last_save_at": "2026-06-05T12:47:32.074Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

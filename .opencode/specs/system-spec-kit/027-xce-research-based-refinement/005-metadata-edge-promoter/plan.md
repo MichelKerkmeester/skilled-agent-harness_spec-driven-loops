@@ -78,8 +78,8 @@ Phase 005 promotes only deterministic, authored packet metadata into causal edge
 Deterministic metadata-to-edge promotion with schema validation and idempotent storage. No LLM extraction, no embeddings, and no pending-edge review UI in this phase.
 
 ### Key Components
-- **Relationship extractor**: reads authored metadata fields and normalizes packet ids.
-- **Direction mapping table**: defines relation direction for depends-on, supersedes, related-to, parent, child, and parent-chain fields.
+- **Relationship extractor**: reads authored parent/child/parent-chain metadata fields and normalizes packet ids. `depends_on`/`supersedes`/`related_to` are already wired via `graph-metadata-parser.ts`->`causal-links-processor.ts` and are NOT re-handled here.
+- **Direction mapping table**: defines relation direction for parent, child, and parent-chain fields. Depends-on, supersedes, and related-to direction is owned by the existing causal-links pipeline, not this promoter.
 - **Promoter**: converts validated relationships into generated edge intents with `confidence=1.0` and `extraction_method='frontmatter'`.
 - **Idempotent edge writer**: inserts generated edges without weakening or overwriting manual edges.
 - **Cleanup adapter**: when metadata changes, routes stale generated-edge cleanup through Phase 004 tombstones.

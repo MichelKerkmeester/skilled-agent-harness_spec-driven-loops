@@ -41,7 +41,7 @@
       "operations"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       ".opencode/install_guides/SET-UP - Code Graph.md",
       "spec.md",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Code graph operations have no doctor surface. When the index goes stale or bloats with `node_modules/`, `dist/`, generated artifacts, etc., users have to manually inspect `code_graph_status`, edit scanner config blind, run `code_graph_scan`, and spot-check queries. There is no command that walks them through diagnosis-first remediation with the same safety guarantees `/doctor:skill-advisor` provides (canonical-path validator, per-run rollback, dry-run preview, build-status branching).",
     "created_at": "2026-04-25T20:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.601Z",
+    "last_save_at": "2026-06-05T12:47:34.102Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

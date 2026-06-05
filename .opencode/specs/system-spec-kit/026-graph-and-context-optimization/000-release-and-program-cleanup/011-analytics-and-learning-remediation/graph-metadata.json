@@ -4,12 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -17,38 +17,187 @@
       "consumption-log pii redaction query_hash",
       "model-pricing single source of truth",
       "batch-learning boost math normalization",
-      "tier-2 backlog remediation"
+      "tier-2 backlog remediation",
+      "analytics and learning remediation plan",
+      "tier-2 remediation workflow",
+      "analytics and learning remediation tasks",
+      "analytics and learning remediation checklist",
+      "analytics and learning remediation summary",
+      "tier-2 backlog remediation shipped",
+      "consumption-log pii redaction shipped"
     ],
     "key_topics": [
       "analytics",
       "learning",
       "remediation",
-      "tier-2",
       "consumption-log",
-      "pii-redaction",
-      "query-hash",
+      "pii",
+      "redaction",
       "model-pricing",
-      "single-source-of-truth",
+      "single",
+      "source",
+      "truth",
       "batch-learning",
-      "boost-math",
-      "score-normalization"
+      "boost"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger-privacy.vitest.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts"
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Remediated three deliberate Tier-2 backlog items across the analytics + learning subsystems, one per defect class. (1) Privacy: consumption_log.query_text stored raw agent-prompt text (241 live rows); the column was changed to query_hash storing a truncate+hash fingerprint (first 8 chars + ':' + 16 hex chars of sha256) computed in-process before any SQL, plus a lazy idempotent migration (PRAGMA table_info detects the old query_text column -> DROP TABLE -> recreate with query_hash; the disposable rows make the drop the PII elimination); the write path and all readers (getConsumptionPatterns group-by + intent-mismatch path key on query_hash; examples emit fingerprint: strings) updated; the 3 handlers (memory-context, memory-search, memory-triggers) rename query_text -> query; session_id left as-is (internal derived id, not PII); 45 tests pass incl. 9 new privacy tests; the live 241 PII rows are eliminated when the daemon recycles and runs the migration. (2) Dead-path: the live cost path already used the hardcoded SEEDED_MODEL_PRICING_ROWS constant; the parallel model_pricing_versioned DB table was read only by listModelPricing() which had zero non-test callers, so the table CREATE, seed INSERT, listModelPricing + row interface, and test references were deleted (75 deletions) and the constant documented as the single source of family-level pricing; 3/3 tests pass. (3) Correctness: the batch-learning boost formula divided by event count (per-event average) so the Math.min cap never fired and signal volume was ignored (3 vs 300 sessions -> identical boost); SCORE_NORMALIZATION = 10.0 was added (named, documented, tunable: ~10 strong-equivalent signals saturate the 0.10 cap) and the formula changed to min((weightedScore/10)*0.10, 0.10) so boost scales with volume; shadow-only (writes batch_learning_log.computed_boost for dashboards, does not mutate live ranking); 55 tests pass. Affected TS typechecks clean.",
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Learning Remediation",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Three",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Remediate",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Three",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verify Fix",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Three deliberate Tier-2 backlog items in the analytics + learning subsystems each carried a distinct defect class. (1) **Privacy:** `consumption_log.query_text` stored raw agent-prompt text — 241 live rows of it — exposing user-derived prompt content in internal telemetry. (2) **Dead path:** a `model_pricing_versioned` DB table (CREATE + seed INSERT) was read only by `listModelPricing()`, which had ZERO non-test callers; the live cost path already used the hardcoded `SEEDED_MODEL_PRICING_ROWS` constant, so the table was a confusing parallel source of pricing truth. (3) **Correctness:** the batch-learning boost formula divided the weighted score by event count (a per-event average), so the `Math.min(.., MAX_BOOST_DELTA)` cap never fired and signal VOLUME was ignored — 3 sessions and 300 sessions produced an identical boost.",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-06-03T11:00:00Z",
+    "last_save_at": "2026-06-05T12:47:33.210Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -57,6 +206,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

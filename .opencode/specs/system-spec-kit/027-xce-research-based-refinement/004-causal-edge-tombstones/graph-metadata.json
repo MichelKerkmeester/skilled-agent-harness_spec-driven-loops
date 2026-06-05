@@ -16,13 +16,13 @@
       "orphan edge sweep",
       "memory delete causal cleanup",
       "memory_health autoRepair tombstone",
+      "027 phase 004",
+      "027 phase 004 tasks",
+      "causal edge tombstone tasks",
       "implementation",
-      "plan",
-      "name",
+      "summary",
       "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "impl summary core"
     ],
     "key_topics": [
       "causal",
@@ -38,14 +38,21 @@
       "autorepair",
       "tombstone"
     ],
-    "importance_tier": "normal",
-    "status": "complete",
+    "importance_tier": "important",
+    "status": "draft",
     "key_files": [
       "handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/lib/search/vector-index-schema.ts",
+      "mcp_server/lib/storage/causal-edges.ts",
+      "mcp_server/handlers/memory-crud-delete.ts",
+      "mcp_server/handlers/memory-bulk-delete.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/handlers/causal-graph.ts",
+      "mcp_server/cli.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -74,6 +81,24 @@
         "name": "causal-edges.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-crud-delete.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-crud-delete.ts",
+        "source": "derived"
+      },
+      {
+        "name": "causal-graph.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/causal-graph.ts",
+        "source": "derived"
+      },
+      {
+        "name": "cli.ts",
+        "kind": "code",
+        "path": "mcp_server/cli.ts",
         "source": "derived"
       },
       {
@@ -149,7 +174,13 @@
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Read",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -161,15 +192,9 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
+        "name": "Task Notation",
         "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
@@ -177,29 +202,11 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
-      },
-      {
-        "name": "Task Notation",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Criteria",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
-        "name": "Phase 1: Setup",
-        "kind": "heading",
-        "path": "tasks.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This phase adapts CocoIndex's lifecycle invariant, not its exact storage shape. CocoIndex stores child existence state and tombstones under stable-path keys, then consumes tombstones through a GC path. Spec Kit Memory has a relational causal graph, so the equivalent is a tombstone audit table plus a single sweep helper that every edge-deleting path uses.",
     "created_at": "2026-05-13T09:00:46Z",
-    "last_save_at": "2026-05-30T10:12:02.836Z",
+    "last_save_at": "2026-06-05T12:47:34.386Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

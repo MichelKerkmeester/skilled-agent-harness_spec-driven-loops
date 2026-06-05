@@ -37,7 +37,7 @@ _memory:
 
 [Filled post-implementation. Will list:
 - New files: `lib/triggers/semantic-trigger-matcher.ts`, fixtures, test files.
-- Modified: `handlers/memory-triggers.ts`, `handlers/memory-index-scan.ts`, `lib/embeddings/embedding-pipeline.ts`, `lib/storage/vector-index-schema.ts`, `ENV_REFERENCE.md`.
+- Modified: `handlers/memory-triggers.ts`, `handlers/memory-index-scan.ts`, `handlers/save/embedding-pipeline.ts`, `lib/storage/vector-index-schema.ts`, `ENV_REFERENCE.md`.
 - Schema migration applied.
 - Production LOC actual vs estimate.]
 
@@ -83,7 +83,7 @@ _memory:
 
 [Filled post-implementation. May include:
 - Threshold-tuning observations from shadow data.
-- 028/004-code-graph-adoption-eval paraphrase-task recall lift.
+- Shadow-eval paraphrase-task recall lift (equivalent shadow-eval harness).
 - Suggested follow-ons (per-trigger adaptive threshold; cross-language CJK semantic coverage).]
 
 ---
@@ -129,7 +129,7 @@ Verification commands (run after implementation):
 bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh   .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback --strict
 ```
 
-Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and 028/004-code-graph-adoption-eval paired-comparison eval.
+Plus per-test commands listed in `checklist.md` "VERIFICATION COMMANDS QUICK-RUN" section. Coverage spans unit (vitest / pytest), integration, diff (backward-compat parity), and shadow-eval / paired-comparison eval (equivalent shadow-eval harness).
 <!-- /ANCHOR:verification -->
 
 <!-- ANCHOR:limitations -->

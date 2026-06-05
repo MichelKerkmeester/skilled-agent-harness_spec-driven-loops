@@ -33,7 +33,7 @@
       "tasks"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "evidence/skill-docs-audit.csv",
       "evidence/audit-summary.md",
@@ -190,7 +190,7 @@
     ],
     "causal_summary": "The 016-019 work changed defaults across two MCPs:",
     "created_at": "2026-05-18T08:07:26.068Z",
-    "last_save_at": "2026-05-30T10:12:02.340Z",
+    "last_save_at": "2026-06-05T12:47:33.758Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

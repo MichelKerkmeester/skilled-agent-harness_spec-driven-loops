@@ -36,7 +36,7 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "pending_(blocked_on_phase_002_close)",
     "key_files": [
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/assets/commit_message_template.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "This is **Phase 3** of the 112 packet. Phase 002 produces `commit-standards.md`, `derivation-heuristics.md`, and 7 Accepted ADRs. This phase is the mechanical step that takes those outputs and applies them to the `sk-git` skill content.",
     "created_at": "2026-05-16T09:42:34Z",
-    "last_save_at": "2026-05-30T10:12:00.888Z",
+    "last_save_at": "2026-06-05T12:47:32.133Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

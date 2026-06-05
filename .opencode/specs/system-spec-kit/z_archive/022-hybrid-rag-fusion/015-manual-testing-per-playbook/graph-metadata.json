@@ -62,7 +62,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "in_progress_—_wrapper_truth_sync_active;_historical_execution_evidence_preserved;_traceability_remediation_still_open",
     "key_files": [
       "tasks.md",
       "checklist.md",
@@ -70,20 +70,9 @@
       "shared/index.ts",
       "spec.md",
       "plan.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md"
+      ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
+      "006-analysis/spec.md",
+      "resource-map.md"
     ],
     "entities": [
       {
@@ -123,87 +112,15 @@
         "source": "derived"
       },
       {
-        "name": "07-ast-level-section-retrieval-tool.md",
+        "name": "MANUAL_TESTING_PLAYBOOK.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/07-ast-level-section-retrieval-tool.md",
+        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
         "source": "derived"
       },
       {
-        "name": "09-tool-result-extraction-to-working-memory.md",
+        "name": "resource-map.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/09-tool-result-extraction-to-working-memory.md",
-        "source": "derived"
-      },
-      {
-        "name": "11-session-recovery-spec-kit-resume.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
-        "source": "derived"
-      },
-      {
-        "name": "09-correction-tracking-with-undo.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/09-correction-tracking-with-undo.md",
-        "source": "derived"
-      },
-      {
-        "name": "10-causal-neighbor-boost-and-injection.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/10-causal-neighbor-boost-and-injection.md",
-        "source": "derived"
-      },
-      {
-        "name": "11-temporal-contiguity-layer.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/11-temporal-contiguity-layer.md",
-        "source": "derived"
-      },
-      {
-        "name": "15-tool-level-ttl-cache.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/15-tool-level-ttl-cache.md",
-        "source": "derived"
-      },
-      {
-        "name": "16-access-driven-popularity-scoring.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/16-access-driven-popularity-scoring.md",
-        "source": "derived"
-      },
-      {
-        "name": "17-temporal-structural-coherence-scoring.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/17-temporal-structural-coherence-scoring.md",
-        "source": "derived"
-      },
-      {
-        "name": "11-content-aware-memory-filename-generation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/11-content-aware-memory-filename-generation.md",
-        "source": "derived"
-      },
-      {
-        "name": "16-backend-storage-adapter-abstraction.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/16-backend-storage-adapter-abstraction.md",
-        "source": "derived"
-      },
-      {
-        "name": "18-atomic-write-then-index-api.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/18-atomic-write-then-index-api.md",
-        "source": "derived"
-      },
-      {
-        "name": "19-embedding-retry-orchestrator.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/19-embedding-retry-orchestrator.md",
-        "source": "derived"
-      },
-      {
-        "name": "20-7-layer-tool-architecture-metadata.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/20-7-layer-tool-architecture-metadata.md",
+        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -229,11 +146,83 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Handoff Criteria",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview This",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Wrapper",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Each",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Bug Fixes",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Feature Specification: manual-testing-per-playbook",
     "created_at": "2026-04-12T09:02:50.288Z",
-    "last_save_at": "2026-05-30T10:12:03.344Z",
+    "last_save_at": "2026-06-05T12:47:34.839Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

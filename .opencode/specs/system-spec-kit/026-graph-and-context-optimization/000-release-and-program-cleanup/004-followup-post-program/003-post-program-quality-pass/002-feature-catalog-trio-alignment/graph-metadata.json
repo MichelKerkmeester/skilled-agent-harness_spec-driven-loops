@@ -44,9 +44,6 @@
       "tasks.md",
       "checklist.md",
       ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
       "implementation-summary.md",
       "resource-map.md"
     ],
@@ -79,24 +76,6 @@
         "name": "feature_catalog.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-        "source": "derived"
-      },
-      {
-        "name": "12-memory-retention-sweep.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/02--mutation/12-memory-retention-sweep.md",
-        "source": "derived"
-      },
-      {
-        "name": "37-cli-matrix-adapter-runners.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/37-cli-matrix-adapter-runners.md",
-        "source": "derived"
-      },
-      {
-        "name": "38-codex-hook-freshness-smoke-check.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/38-codex-hook-freshness-smoke-check.md",
         "source": "derived"
       },
       {
@@ -194,11 +173,29 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Create Level",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Packets 031-036 added MCP tools, hook diagnostics, CLI matrix runners, and changed freshness contracts. The feature catalogs lagged those shipped surfaces, which makes operator-facing docs undercount tools and miss the current repair/freshness behavior.",
     "created_at": "2026-04-29T15:38:44.000Z",
-    "last_save_at": "2026-05-30T10:12:01.635Z",
+    "last_save_at": "2026-06-05T12:47:33.053Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

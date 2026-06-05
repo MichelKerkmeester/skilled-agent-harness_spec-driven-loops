@@ -39,7 +39,7 @@
       "auto-select"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned_(2026_05_18_evening;_just_after_006_ship)",
     "key_files": [
       "shared/embeddings/auto-select.ts",
       "mcp_server/tests/embedder-auto-selection.vitest.ts",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "After `016/002/006` wired OllamaAdapter into the shared/embeddings factory, two issues remain visible in production:",
     "created_at": "2026-05-19T19:25:52.542Z",
-    "last_save_at": "2026-05-30T10:12:02.195Z",
+    "last_save_at": "2026-06-05T12:47:33.626Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

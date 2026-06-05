@@ -72,7 +72,7 @@
       "research"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "HANDOVER-deferred.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "The MCP runtime serves four high-traffic surfaces — `memory_context`, `memory_search`, `code_graph_query`, `memory_causal_stats` — that AI assistants depend on for retrieval and grounding. Under realistic CLI load these surfaces had subtle contract gaps: token-budget envelopes that under-reported truncation, code-graph blocked reads with no machine-readable fallback hint, causal-graph relation balance with no per-window cap or skew detection, intent telemetry that could not be aggregated across runtimes, and a `memory_search` weak-quality path that lacked a server-side refusal contract. The combined effect was ungrounded responses, runtime hallucinations, and silent CLI thrashing that the operator could not trace.",
     "created_at": "2026-04-27T00:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.653Z",
+    "last_save_at": "2026-06-05T12:47:33.071Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

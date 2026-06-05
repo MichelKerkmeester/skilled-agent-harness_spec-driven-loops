@@ -12,10 +12,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "027-xce-research-based-refinement/005-metadata-edge-promoter"
-    last_updated_at: "2026-05-13T09:20:00Z"
-    last_updated_by: "codex"
-    recent_action: "authored spec"
-    next_safe_action: "define direction"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: narrow promoter vs relation-backfill"
+    next_safe_action: "Implement parent/children/parentChain promotion + provenance columns"
     blockers:
       - "004"
     key_files:
@@ -105,6 +105,8 @@ Causal edges are currently created mostly through manual `memory_causal_link` fl
 
 The result is unnecessary manual graph maintenance and lower graph coverage for the most reliable relationships in the system. The metadata is structured, local, and deterministic, so relying on manual edge creation is needless friction.
 
+**Overlap check (2026-06-05 audit)**: `relation-backfill.ts` covers similarity/lineage/supersession backfill, NOT packet-metadata promotion — keep this promoter narrow to avoid duplicating it.
+
 ### Purpose
 
 Read structured spec relationship metadata during indexing and promote it into idempotent causal edges with `created_by='auto'`, `extraction_method='frontmatter'`, and deterministic confidence of 1.0.
@@ -119,10 +121,9 @@ Read structured spec relationship metadata during indexing and promote it into i
 
 - Create `lib/causal/frontmatter-promoter.ts`.
 - Read `description.json.parent_id`.
-- Read `description.json.manual.depends_on`.
-- Read `description.json.manual.supersedes`.
-- Read `description.json.manual.related_to`.
+- `manual.depends_on/supersedes/related_to` are ALREADY promoted via `graph-metadata-parser.ts`->`causal-links-processor.ts`; this promoter SKIPS them (no duplicate).
 - Read `graph-metadata.json.children_ids`.
+- Read `description.json.parentChain`.
 - Normalize packet ids to resolvable memory rows.
 - Emit causal edges with `confidence = 1.0`.
 - Emit causal edges with `created_by = 'auto'`.

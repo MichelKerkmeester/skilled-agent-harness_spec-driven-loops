@@ -4,6 +4,7 @@
   "spec_folder": "system-spec-kit/027-xce-research-based-refinement",
   "parent_id": null,
   "children_ids": [
+    "system-spec-kit/027-xce-research-based-refinement/000-release-cleanup",
     "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
     "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
     "system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation",
@@ -33,9 +34,7 @@
       "incremental memory index",
       "memory feedback reducers",
       "peck teachings adoption",
-      "self-check templates",
-      "current-state discipline",
-      "constitutional rule review"
+      "self-check templates"
     ],
     "key_topics": [
       "027",
@@ -49,53 +48,155 @@
       "reducers",
       "memoization",
       "dependency",
-      "dag",
-      "peck",
-      "teachings",
-      "self-check",
-      "current-state",
-      "constitutional",
-      "review"
+      "dag"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "phase_parent",
     "key_files": [
+      "resource-map.md",
       "001-peck-teachings-adoption/spec.md",
-      "001-peck-teachings-adoption/001-peck-teachings-for-spec-kit/spec.md",
-      "001-peck-teachings-adoption/002-self-check-templates/spec.md",
-      "001-peck-teachings-adoption/003-current-state-discipline/spec.md",
-      "001-peck-teachings-adoption/004-constitutional-rule-review/spec.md",
-      "002-memory-write-safety/spec.md",
-      "003-incremental-index-foundation/spec.md",
-      "004-causal-edge-tombstones/spec.md",
-      "005-metadata-edge-promoter/spec.md",
-      "006-write-path-reconciliation/spec.md",
-      "007-semantic-trigger-fallback/spec.md",
-      "008-learning-feedback-reducers/spec.md",
-      "spec.md",
-      "research/research.md"
+      ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+      ".opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl",
+      ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+      ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
+      ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+      ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+      ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
+      ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+      ".opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts",
+      ".opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
+      ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json"
     ],
     "entities": [
       {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/plan.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/checklist.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md.tmpl",
+        "kind": "file",
+        "path": ".opencode/skills/system-spec-kit/templates/manifest/implementation-summary.md.tmpl",
+        "source": "derived"
+      },
+      {
+        "name": "template-structure.js",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/scripts/utils/template-structure.js",
+        "source": "derived"
+      },
+      {
+        "name": "check-template-headers.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-template-headers.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-section-counts.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-section-counts.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-evidence.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-evidence.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-phase-parent-content.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/rules/check-phase-parent-content.sh",
+        "source": "derived"
+      },
+      {
+        "name": "validator-registry.json",
+        "kind": "config",
+        "path": ".opencode/skills/system-spec-kit/scripts/lib/validator-registry.json",
+        "source": "derived"
+      },
+      {
+        "name": "validation_rules.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
+        "source": "derived"
+      },
+      {
+        "name": "template_compliance_contract.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/validation/template_compliance_contract.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate.sh",
+        "kind": "script",
+        "path": ".opencode/skills/system-spec-kit/scripts/spec/validate.sh",
+        "source": "derived"
+      },
+      {
+        "name": "save-quality-gate.ts",
+        "kind": "code",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/lib/validation/save-quality-gate.ts",
+        "source": "derived"
+      },
+      {
+        "name": "save-quality-gate.vitest.ts",
+        "kind": "test",
+        "path": ".opencode/skills/system-spec-kit/mcp_server/tests/save-quality-gate.vitest.ts",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
-        "path": "spec.md",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md",
         "source": "derived"
       },
       {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
+        "name": "description.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json",
         "source": "derived"
       },
       {
-        "name": "Derived Memory System Refinement",
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "Derived Spec Kit Refinement",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Spec Kit Memory",
+        "name": "Spec Kit",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -113,66 +214,23 @@
         "source": "derived"
       },
       {
-        "name": "Release Cleanup Placeholder",
+        "name": "Problem Statement Spec Kit",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Memory Write Safety",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Based Refinement",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Merged Research Archive",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Merged Archive This",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Research Part",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Adoption Matrix",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Memory Backend",
-        "kind": "proper_noun",
-        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "Coordinates Spec Kit memory refinements plus low-risk peck-derived documentation/process improvements as child phases.",
+    "causal_summary": "Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.",
     "created_at": "2026-05-08T00:00:00Z",
-    "last_save_at": "2026-06-04T00:00:00Z",
+    "last_save_at": "2026-06-05T15:00:26.759Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-10T10:05:44.449Z",
     "source_docs": [
-      "001-peck-teachings-adoption/spec.md",
-      "context-index.md",
+      "spec.md",
       "research/research.md",
-      "spec.md"
+      "resource-map.md"
     ],
-    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
-    "last_active_at": "2026-06-04T00:00:00Z"
+    "last_active_child_id": "system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety",
+    "last_active_at": "2026-06-05T15:00:26.759Z"
   }
 }

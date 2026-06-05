@@ -61,7 +61,7 @@ _memory:
 ## Phase 2: Implementation
 
 - [ ] T004 Extend the scanner to implementation-summary.md / non-parent spec.md
-- [ ] T005 Register the rule in validator-registry.json at severity warn
+- [ ] T005 Register the rule in validator-registry.json at severity info
 - [ ] T006 Document the rule + exemptions in validation_rules.md
 - [ ] T007 Wire the exemptions (decision-record.md, changelog/)
 <!-- /ANCHOR:phase-2 -->

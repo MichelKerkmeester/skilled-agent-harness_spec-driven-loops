@@ -44,12 +44,6 @@
       ".opencode/skills/cli-opencode/assets/prompt_templates.md",
       ".opencode/skills/cli-opencode/assets/prompt_quality_card.md",
       ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-      ".opencode/skills/sk-prompt/assets/model-profiles.json",
-      "eval/synthesis.md",
-      "eval/frameworks.cjs",
-      "eval/fixtures.cjs",
-      "eval/run-mimo-bench.cjs",
-      "eval/results.json",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -73,42 +67,6 @@
         "name": "pattern-index.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-prompt-small-model/references/pattern-index.md",
-        "source": "derived"
-      },
-      {
-        "name": "model-profiles.json",
-        "kind": "config",
-        "path": ".opencode/skills/sk-prompt/assets/model-profiles.json",
-        "source": "derived"
-      },
-      {
-        "name": "synthesis.md",
-        "kind": "doc",
-        "path": "eval/synthesis.md",
-        "source": "derived"
-      },
-      {
-        "name": "frameworks.cjs",
-        "kind": "file",
-        "path": "eval/frameworks.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "fixtures.cjs",
-        "kind": "file",
-        "path": "eval/fixtures.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "run-mimo-bench.cjs",
-        "kind": "file",
-        "path": "eval/run-mimo-bench.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "results.json",
-        "kind": "config",
-        "path": "eval/results.json",
         "source": "derived"
       },
       {
@@ -200,11 +158,47 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase 1: Setup",
+        "kind": "heading",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Mirrors `120/003` (the MiniMax prompt-framework benchmark, which found TIDD-EC + dense pre-planning beat RCAF). The user wants the same treatment for MiMo: \"what prompting techniques work best for MiMo if used by another AI through cli-opencode,\" like the SWE-1.6 and MiniMax-2.7 benchmarks. Phase 002 ensures MiMo dispatches cleanly through the deep-improvement model-benchmark lane (no `--agent general`), and a live probe confirmed `xiaomi-token-plan-ams/mimo-v2.5-pro` responds — so **real dispatches are feasible**, not scaffold-only.",
     "created_at": "2026-06-01T20:21:29.319Z",
-    "last_save_at": "2026-06-01T21:25:18.785Z",
+    "last_save_at": "2026-06-05T12:47:32.484Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

@@ -159,19 +159,19 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Implementation",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Verification",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Cross-References",
+        "name": "Phase 3: Verification",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -191,7 +191,7 @@
     ],
     "causal_summary": "Implements the O6 follow-up recommended in `015-socket-server-reconvergence-and-hardening/o6-spec-memory-ownership-findings.md`: mk-spec-memory had the canonical IPC bridge (015) + probe-marker (014) but lacked the exclusive owner-lease discipline code-index/advisor already have.",
     "created_at": "2026-06-05T06:23:26.342Z",
-    "last_save_at": "2026-06-05T06:23:26.342Z",
+    "last_save_at": "2026-06-05T12:47:33.797Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

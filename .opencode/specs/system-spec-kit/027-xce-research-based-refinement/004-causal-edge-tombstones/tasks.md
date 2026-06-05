@@ -67,6 +67,7 @@ _memory:
 - [ ] T010 Route manual causal unlink through the sweep helper.
 - [ ] T011 Route health auto-repair orphan cleanup through the sweep helper.
 - [ ] T012 Confirm CLI cleanup paths preserve the helper semantics.
+- [ ] T012a Route the three audit-discovered raw-delete sites through the tombstone-then-delete helper: `lib/search/vector-index-mutations.ts:137-145`, `lib/storage/checkpoints.ts:1668-1676`, and `lib/learning/corrections.ts:611-649`.
 <!-- /ANCHOR:phase-2 -->
 
 ---

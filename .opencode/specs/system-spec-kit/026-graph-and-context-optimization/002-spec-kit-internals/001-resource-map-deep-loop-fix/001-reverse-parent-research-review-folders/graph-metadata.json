@@ -56,11 +56,11 @@
       ".opencode/commands/deep/assets/deep_start-review-loop_confirm.yaml",
       ".opencode/agents/deep-research.md",
       ".claude/agents/deep-research.md",
-      ".gemini/agents/deep-research.md",
       ".codex/agents/deep-research.toml",
       ".opencode/agents/deep-review.md",
       ".claude/agents/deep-review.md",
-      ".gemini/agents/deep-review.md"
+      ".codex/agents/deep-review.toml",
+      ".opencode/skills/system-spec-kit/references/structure/folder_structure.md"
     ],
     "entities": [
       {
@@ -160,6 +160,18 @@
         "source": "derived"
       },
       {
+        "name": "deep-review.toml",
+        "kind": "file",
+        "path": ".codex/agents/deep-review.toml",
+        "source": "derived"
+      },
+      {
+        "name": "folder_structure.md",
+        "kind": "doc",
+        "path": ".opencode/skills/system-spec-kit/references/structure/folder_structure.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -194,23 +206,11 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Implementation Plan",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Technical Context",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "This packet reverses the parent-root artifact placement policy introduced during the `007-deep-review-remediation/006-integrity-parity-closure` follow-up work and reinforced by later canonical-placement commits. It restores the earlier ownership model: root specs keep root-local `research/` and `review/`, while child phases and sub-phases keep packet folders inside their own local `research/` and `review/` directories. It also owns the repo-wide migration of child packets that were already centralized under ancestor roots, including the later manual owner-map cleanup that emptied the remaining root `research/` and `review/` packet directories under `026-graph-and-context-optimization`.",
     "created_at": "2026-04-24T12:32:52.475Z",
-    "last_save_at": "2026-05-30T10:12:01.845Z",
+    "last_save_at": "2026-06-05T12:47:33.266Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "packet_id": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
   "spec_folder": "skilled-agent-orchestration/128-sk-git-worktree-convention-and-advisor-routing",
-  "parent_id": "skilled-agent-orchestration",
+  "parent_id": null,
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,39 +11,58 @@
   },
   "derived": {
     "trigger_phrases": [
-      "128-sk-git-worktree-convention-and-advisor-routing",
       "sk-git worktree convention",
-      "wt/ worktree numbered",
-      "skill advisor routing sk-git"
+      "wt/ worktree",
+      "numbered worktree",
+      "skill advisor routing sk-git",
+      "worktree prefix",
+      "sk-git worktree plan",
+      "wt/ convention plan",
+      "advisor reindex sk-git",
+      "worktree restructure",
+      "plan core",
+      "sk-git worktree tasks",
+      "wt/ convention tasks"
     ],
     "key_topics": [
-      "128-sk-git-worktree-convention-and-advisor-routing",
       "sk-git",
       "worktree",
       "convention",
-      "wt-prefix",
-      "numbered-worktree",
-      "global-counter",
-      "skill-advisor",
+      "numbered",
+      "skill",
+      "advisor",
       "routing",
-      "trigger-phrases",
-      "ephemeral-wrapper",
-      "restructure"
+      "prefix",
+      "plan",
+      "reindex",
+      "restructure",
+      "core"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "draft",
     "key_files": [
       ".opencode/skills/sk-git/references/worktree_workflows.md",
       ".opencode/skills/sk-git/README.md",
       ".opencode/skills/sk-git/SKILL.md",
       ".opencode/skills/sk-git/assets/worktree_checklist.md",
-      "spec.md"
+      ".opencode/bin/worktree-session.sh",
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
         "name": "worktree_workflows.md",
         "kind": "doc",
         "path": ".opencode/skills/sk-git/references/worktree_workflows.md",
+        "source": "derived"
+      },
+      {
+        "name": "README.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-git/README.md",
         "source": "derived"
       },
       {
@@ -59,9 +78,39 @@
         "source": "derived"
       },
       {
+        "name": "worktree-session.sh",
+        "kind": "script",
+        "path": ".opencode/bin/worktree-session.sh",
+        "source": "derived"
+      },
+      {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -71,7 +120,19 @@
         "source": "derived"
       },
       {
-        "name": "Draft",
+        "name": "Worktree Convention",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Advisor Routing Optimization",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Authored Level",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
@@ -81,15 +142,73 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
+      },
+      {
+        "name": "Purpose Adopt",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Edit",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Worktree Directory Convention",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Date",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
-    "causal_summary": "sk-git's documented worktree convention is dir `.worktrees/{short-desc}` + branch `type/{short-desc}` (no number, no single grouping namespace), so feature worktrees were created ad-hoc as repo siblings that neither group in the Git UI nor sort in any stable order. Separately, the skill advisor routes git/worktree work to sk-git on **thin margins** (sk-git 0.85/0.16 vs system-spec-kit 0.82/0.22; sk-code-vs-sk-git ties), so git/worktree/branch/commit/PR intent does not reliably land on sk-git. This packet adopts branch `wt/{NNNN}-{name}` + dir `.worktrees/{NNNN}-{name}` for NAMED FEATURE worktrees (NNNN = max(existing)+1) and sharpens sk-git advisor triggers, scoping the ephemeral `worktree-session.sh` lane OUT.",
+    "causal_summary": "Adopt one numbered, grouped worktree convention for named feature worktrees (branch `wt/{NNNN}-{name}`, directory `<repo>/.worktrees/{NNNN}-{name}`) and sharpen sk-git's advisor metadata so git/worktree/branch/commit/PR/merge/finish intent reliably selects sk-git.",
     "created_at": "2026-06-02T06:17:55.790Z",
-    "last_save_at": "2026-06-02T06:17:55.790Z",
+    "last_save_at": "2026-06-05T12:47:32.500Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md"
+      "spec.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

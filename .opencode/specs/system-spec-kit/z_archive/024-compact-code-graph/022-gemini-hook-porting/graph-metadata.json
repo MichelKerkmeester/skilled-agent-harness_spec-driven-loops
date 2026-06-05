@@ -41,7 +41,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".gemini/settings.json",
       "hooks/gemini/shared.ts",
       "hooks/gemini/session-prime.ts",
       "hooks/gemini/compact-cache.ts",
@@ -58,12 +57,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
-        "source": "derived"
-      },
       {
         "name": "shared.ts",
         "kind": "code",
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Template",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
     "created_at": "2026-04-13T04:55:10.133Z",
-    "last_save_at": "2026-05-30T10:12:03.497Z",
+    "last_save_at": "2026-06-05T12:47:34.998Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

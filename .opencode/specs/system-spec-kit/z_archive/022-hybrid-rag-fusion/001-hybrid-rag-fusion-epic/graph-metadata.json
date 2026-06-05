@@ -51,7 +51,7 @@
       "checklist"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -222,7 +222,7 @@
     ],
     "causal_summary": "The `001` parent packet had become a merged historical archive instead of a usable coordination document. It referenced retired folder names, mixed multiple generations of planning and verification into single files, and no longer matched the live direct-child subtree or current template expectations.",
     "created_at": "2026-04-12T09:02:50.224Z",
-    "last_save_at": "2026-05-30T10:12:03.183Z",
+    "last_save_at": "2026-06-05T12:47:34.637Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

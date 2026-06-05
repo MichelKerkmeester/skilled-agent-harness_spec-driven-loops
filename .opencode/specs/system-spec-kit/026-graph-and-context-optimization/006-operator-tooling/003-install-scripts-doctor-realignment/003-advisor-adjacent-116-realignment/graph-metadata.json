@@ -39,9 +39,8 @@
       "116"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "[draft/in_progress/review/complete]",
     "key_files": [
-      ".gemini/commands/deep/start-research-loop.toml",
       "scripts/tests/graph-aware-stop.vitest.ts",
       "spec.md",
       "plan.md",
@@ -49,12 +48,6 @@
       "implementation-summary.md"
     ],
     "entities": [
-      {
-        "name": "start-research-loop.toml",
-        "kind": "file",
-        "path": ".gemini/commands/deep/start-research-loop.toml",
-        "source": "derived"
-      },
       {
         "name": "graph-aware-stop.vitest.ts",
         "kind": "test",
@@ -192,11 +185,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 3** of the Rework operator surfaces and adjacent 116 casualties to post-CocoIndex reality specification.",
     "created_at": "2026-05-26T06:48:34Z",
-    "last_save_at": "2026-05-30T10:12:02.736Z",
+    "last_save_at": "2026-06-05T12:47:34.258Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

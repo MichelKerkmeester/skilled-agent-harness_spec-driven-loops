@@ -35,7 +35,7 @@
       "phase"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       ".opencode/skills/deep-ai-council/SKILL.md",
       ".opencode/skills/deep-ai-council/changelog/v1.3.0.0.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 2 of 6 in 115. Sibling-parallel with 003/004/005 after 001.",
     "created_at": "2026-05-21T06:57:08Z",
-    "last_save_at": "2026-05-30T10:12:00.969Z",
+    "last_save_at": "2026-06-05T12:47:32.239Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

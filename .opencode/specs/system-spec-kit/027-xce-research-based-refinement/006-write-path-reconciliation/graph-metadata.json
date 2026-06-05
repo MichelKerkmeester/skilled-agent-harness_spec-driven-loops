@@ -16,13 +16,13 @@
       "memory_index_scan action plan",
       "post mutation subscribers",
       "target state reconciliation",
+      "027 phase 006",
+      "write path reconciliation",
+      "027 phase 006 tasks",
+      "statediff reconciliation tasks",
       "implementation",
-      "plan",
-      "name",
-      "template",
-      "plan core",
-      "tasks",
-      "tasks core"
+      "summary",
+      "template"
     ],
     "key_topics": [
       "statediff",
@@ -38,7 +38,7 @@
       "subscribers",
       "target"
     ],
-    "importance_tier": "normal",
+    "importance_tier": "important",
     "status": "draft",
     "key_files": [
       "handlers/memory-index.ts",
@@ -49,6 +49,12 @@
       ".opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts",
       ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts",
       ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
+      "mcp_server/handlers/memory-index.ts",
+      "mcp_server/handlers/memory-save.ts",
+      "mcp_server/handlers/memory-bulk-delete.ts",
+      "mcp_server/handlers/mutation-hooks.ts",
+      "mcp_server/lib/search/entity-density.ts",
+      "mcp_server/hooks/mutation-feedback.ts",
       "spec.md",
       "plan.md",
       "tasks.md",
@@ -89,6 +95,12 @@
         "name": "mutation-feedback.ts",
         "kind": "code",
         "path": ".opencode/skills/system-spec-kit/mcp_server/hooks/mutation-feedback.ts",
+        "source": "derived"
+      },
+      {
+        "name": "entity-density.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/search/entity-density.ts",
         "source": "derived"
       },
       {
@@ -158,13 +170,25 @@
         "source": "derived"
       },
       {
+        "name": "Write Path Reconciliation",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Technical Context",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "Clean Architecture",
+        "name": "Overview Phase",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Explicit",
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
@@ -176,24 +200,6 @@
         "source": "derived"
       },
       {
-        "name": "Data Flow",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
-      },
-      {
-        "name": "Task Format",
-        "kind": "proper_noun",
-        "path": "tasks.md",
-        "source": "derived"
-      },
-      {
         "name": "Task Notation",
         "kind": "proper_noun",
         "path": "tasks.md",
@@ -202,7 +208,7 @@
     ],
     "causal_summary": "This phase ports CocoIndex's statediff model into Spec Kit Memory as a storage reconciliation layer. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.",
     "created_at": "2026-05-13T09:00:48Z",
-    "last_save_at": "2026-05-31T14:05:03.989Z",
+    "last_save_at": "2026-06-05T12:47:34.390Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

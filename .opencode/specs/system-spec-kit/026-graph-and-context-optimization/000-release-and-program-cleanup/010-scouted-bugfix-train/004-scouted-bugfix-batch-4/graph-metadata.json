@@ -4,14 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -24,38 +22,197 @@
       "check-graph-metadata last-active",
       "cli-gemini auth preflight",
       "cli-codex auth preflight",
-      "token-budget constitutional count"
+      "token-budget constitutional count",
+      "scouted bugfix batch 4 plan",
+      "verify-first batch-4 fix workflow"
     ],
     "key_topics": [
+      "scouted",
       "bugfix",
-      "scout",
-      "deep-dive",
-      "verify-first",
+      "batch",
       "warm-tier",
+      "savings",
+      "metric",
+      "locked",
       "anchor-miss",
-      "shadow-scoring",
-      "token-budget",
-      "auth-preflight"
+      "returnedtokens",
+      "zero",
+      "formatagestring",
+      "nan"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/token-metrics.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/utils/format-helpers.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-scoring.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/matrix_runners/adapter-common.ts",
-      ".opencode/skills/system-spec-kit/scripts/rules/check-graph-metadata-shape.sh",
-      ".opencode/skills/cli-gemini/SKILL.md",
+      "mcp_server/formatters/token-metrics.ts",
+      "mcp_server/handlers/memory-triggers.ts",
+      "mcp_server/tests/modularization.vitest.ts",
+      "mcp_server/formatters/search-results.ts",
+      "mcp_server/tests/anchor-prefix-matching.vitest.ts",
+      "mcp_server/lib/utils/format-helpers.ts",
+      "mcp_server/tests/search-results-format.vitest.ts",
+      "mcp_server/lib/feedback/shadow-scoring.ts",
+      "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+      "mcp_server/tests/shadow-scoring-holdout.vitest.ts",
+      "mcp_server/matrix_runners/adapter-common.ts",
+      "mcp_server/tests/matrix-adapter-common.vitest.ts",
+      "scripts/rules/check-graph-metadata-shape.sh",
+      "scripts/tests/check-graph-metadata-shape-last-active-child.sh",
       ".opencode/skills/cli-codex/SKILL.md",
-      ".opencode/skills/system-spec-kit/mcp_server/context-server.ts"
+      "mcp_server/context-server.ts",
+      "mcp_server/tests/token-budget-constitutional-sync.vitest.ts",
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md"
     ],
-    "entities": [],
-    "causal_summary": "Ran a verify-first batch fix over batch-4 scouted candidates: 9 confirmed by gpt-5.5-fast deep-dive and implemented with regression tests; 11 excluded as policy/migration/unconfirmed. Fixes: warm-tier savings metric structurally locked at ~67% (fullContentTokens captured before 150-char truncation; 3x kept as fallback); all-anchors-missing branch returning hardcoded returnedTokens:0/savingsPercent:100 (recomputed from estimateTokens, mirroring partial-match branch); formatAgeString returning NaN months ago for invalid ISO (Number.isNaN guard -> never sentinel); shadow promotion gate counting zero-delta uniform-signal cycles as improvements (MIN_NDCG_IMPROVEMENT epsilon + empty Map on zero total); dead adapter-common ternary misclassifying EPIPE/ECONNRESET as BLOCKED (-> FAIL); check-graph-metadata-shape spurious WARNING for full packet_id in last_active_child_id (basename fallback existence test); cli-gemini auth pre-flight calling non-existent gemini config list (filesystem probe of ~/.gemini/oauth_creds.json); cli-codex auth pre-flight calling unrecognized codex auth status exit-2 (-> codex login status); context-server token-budget envelope leaving constitutionalCount and envelope.summary desynced from survivors after pop loop (post-loop recompute). All 9 regression tests pass; system-spec-kit npm run build exit 0.",
+    "entities": [
+      {
+        "name": "token-metrics.ts",
+        "kind": "code",
+        "path": "mcp_server/formatters/token-metrics.ts",
+        "source": "derived"
+      },
+      {
+        "name": "memory-triggers.ts",
+        "kind": "code",
+        "path": "mcp_server/handlers/memory-triggers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "modularization.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/modularization.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results.ts",
+        "kind": "code",
+        "path": "mcp_server/formatters/search-results.ts",
+        "source": "derived"
+      },
+      {
+        "name": "anchor-prefix-matching.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/anchor-prefix-matching.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "format-helpers.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/utils/format-helpers.ts",
+        "source": "derived"
+      },
+      {
+        "name": "search-results-format.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/search-results-format.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/shadow-scoring.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-evaluation-runtime.ts",
+        "kind": "code",
+        "path": "mcp_server/lib/feedback/shadow-evaluation-runtime.ts",
+        "source": "derived"
+      },
+      {
+        "name": "shadow-scoring-holdout.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/shadow-scoring-holdout.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "adapter-common.ts",
+        "kind": "code",
+        "path": "mcp_server/matrix_runners/adapter-common.ts",
+        "source": "derived"
+      },
+      {
+        "name": "matrix-adapter-common.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/matrix-adapter-common.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape.sh",
+        "kind": "script",
+        "path": "scripts/rules/check-graph-metadata-shape.sh",
+        "source": "derived"
+      },
+      {
+        "name": "check-graph-metadata-shape-last-active-child.sh",
+        "kind": "script",
+        "path": "scripts/tests/check-graph-metadata-shape-last-active-child.sh",
+        "source": "derived"
+      },
+      {
+        "name": "SKILL.md",
+        "kind": "doc",
+        "path": ".opencode/skills/cli-codex/SKILL.md",
+        "source": "derived"
+      },
+      {
+        "name": "context-server.ts",
+        "kind": "code",
+        "path": "mcp_server/context-server.ts",
+        "source": "derived"
+      },
+      {
+        "name": "token-budget-constitutional-sync.vitest.ts",
+        "kind": "test",
+        "path": "mcp_server/tests/token-budget-constitutional-sync.vitest.ts",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Run",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The fourth scout surfaced a new candidate pool and applied the pipeline (scout → gpt-5.5-fast confirm → implement-and-test). Eleven candidates were excluded as out-of-scope (policy changes, migration work, or unconfirmed by deep-dive). The 9 confirmed defects span a structurally-locked warm-tier savings metric, incorrect zero values in the all-anchors-missing branch, a NaN-returning age formatter, a false-positive shadow promotion gate for zero-delta signals, a dead error-classification ternary, a spurious last-active-child check-graph-metadata warning, two broken CLI auth pre-flight checks (gemini and codex), and a token-budget envelope that left `constitutionalCount` and `summary` desynced from survivors after truncation.",
     "created_at": "2026-06-03T09:00:00Z",
-    "last_save_at": "2026-06-03T09:00:00Z",
+    "last_save_at": "2026-06-05T12:47:33.205Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -64,6 +221,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

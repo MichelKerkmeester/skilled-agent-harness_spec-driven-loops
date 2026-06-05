@@ -36,13 +36,12 @@
       "implementation"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(hold)",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/benchmark_report.md",
       ".opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md",
       ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
       "references/memory/embedder_architecture.md",
-      ".gemini/settings.json",
       ".codex/config.toml",
       "implementation-summary.md",
       "spec.md",
@@ -66,12 +65,6 @@
         "name": "embedder_architecture.md",
         "kind": "doc",
         "path": ".opencode/skills/system-spec-kit/references/memory/embedder_architecture.md",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -193,11 +186,17 @@
         "kind": "key_phrase",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "evidence",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "Phase 005 of the 008 rerank-sidecar arc. Final decision phase — promote Qwen to default ONLY IF phase 004's benchmark proved it out.",
     "created_at": "2026-05-23T11:55:15.613Z",
-    "last_save_at": "2026-05-30T10:12:02.399Z",
+    "last_save_at": "2026-06-05T12:47:33.817Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

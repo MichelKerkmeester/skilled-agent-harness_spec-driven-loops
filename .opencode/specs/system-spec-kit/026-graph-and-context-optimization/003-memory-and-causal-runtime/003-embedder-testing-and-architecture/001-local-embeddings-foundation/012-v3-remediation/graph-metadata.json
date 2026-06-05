@@ -36,10 +36,9 @@
       "scoped"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "complete_(shipped_2026_05_13_in_42aa114e3)",
     "key_files": [
       ".claude/mcp.json",
-      ".gemini/settings.json",
       ".codex/config.toml",
       "dist/context-server.js",
       "spec.md",
@@ -52,12 +51,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -191,11 +184,17 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Route Codex",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This packet is the scoped remediation layer. It does not rotate leaked PATs, touch live daemons, or fork 027 work.",
     "created_at": "2026-05-13T08:30:00Z",
-    "last_save_at": "2026-05-30T10:12:02.089Z",
+    "last_save_at": "2026-06-05T12:47:33.535Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-13T08:30:00Z",
     "source_docs": [

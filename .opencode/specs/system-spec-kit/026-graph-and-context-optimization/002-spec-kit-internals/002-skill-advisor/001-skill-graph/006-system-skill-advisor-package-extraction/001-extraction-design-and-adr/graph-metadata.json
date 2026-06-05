@@ -40,7 +40,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "decision-record.md",
       "research/extraction-survey.md",
@@ -48,7 +48,6 @@
       "research/standalone-mcp-discussion.md",
       ".codex/config.toml",
       ".claude/mcp.json",
-      ".gemini/settings.json",
       "implementation-summary.md",
       "mcp_server/tool-schemas.ts",
       "mcp_server/context-server.ts",
@@ -92,12 +91,6 @@
         "name": "mcp.json",
         "kind": "config",
         "path": ".claude/mcp.json",
-        "source": "derived"
-      },
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
         "source": "derived"
       },
       {
@@ -201,11 +194,17 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
+      },
+      {
+        "name": "Data Safety No",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The skill advisor today is a substantial subsystem buried 5 levels deep inside `system-spec-kit`. The parent phase 015/009 extracts it into a first-class `.opencode/skills/system-skill-advisor/` skill folder, subject to two HARD operator constraints:",
     "created_at": "2026-05-14T02:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.873Z",
+    "last_save_at": "2026-06-05T12:47:33.290Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:00:00Z",
     "source_docs": [

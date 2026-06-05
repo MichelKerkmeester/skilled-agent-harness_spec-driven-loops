@@ -1,0 +1,3 @@
+I’ll verify Phase 005 against the current causal subsystem and recent commit history, staying read-only and focusing on direct file/line and commit evidence.
+The phase docs already acknowledge partial overlap: manual `depends_on`, `supersedes`, and `related_to` were considered wired, while parent/child/parentChain promotion remained the planned gap. Next I’m checking whether recent `relation-backfill.ts` changes closed those exact gaps or only added a separate inference/backfill path.
+`relation-backfill.ts` is an opt-in, dry-run-default inference/backfill utility, not a post-index frontmatter promoter. I’m reading its write path and storage/schema now to separate “already implemented overlap” from remaining Phase 005 requirements.

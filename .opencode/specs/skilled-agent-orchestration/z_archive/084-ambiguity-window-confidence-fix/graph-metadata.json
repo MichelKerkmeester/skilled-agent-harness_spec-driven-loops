@@ -39,7 +39,7 @@
       "manual"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "SAD-002 (manual playbook) verified the ambiguity contract but exposed a calibration gap: the scorer flagged the cross-domain prompt \"Review the OpenCode docs and improve the prompt package for a release note workflow\" as `ambiguous: false` even though the top-2 confidences (sk-code 0.9287 vs sk-prompt 0.8888) were within 0.04 of each other. The current detector (in `lib/scorer/ambiguity.ts`) only compares `score` (gap 0.078, just over the 0.05 margin), not `confidence` (gap 0.04, well within 0.05). The feature catalog at `feature_catalog/04--scorer-fusion/03-ambiguity.md` already documents this as a \"0.05 confidence window\" — so docs and code disagree.",
     "created_at": "2026-05-06T13:05:18.900Z",
-    "last_save_at": "2026-05-30T10:12:01.444Z",
+    "last_save_at": "2026-06-05T12:47:32.862Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -65,13 +65,13 @@
       "mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
       ".claude/agents/deep-review.md",
       ".codex/agents/deep-review.toml",
-      ".gemini/agents/deep-review.md",
       ".opencode/agents/deep-review.md",
       ".opencode/skills/sk-git/README.md",
       ".opencode/skills/system-spec-kit/mcp_server/stress_test/search-quality/w8-search-decision-envelope.vitest.ts",
       "implementation-summary.md",
       "checklist.md",
-      "spec.md"
+      "spec.md",
+      "plan.md"
     ],
     "entities": [
       {
@@ -153,6 +153,12 @@
         "source": "derived"
       },
       {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -211,17 +217,11 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Three Explore",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The skills `sk-code-full-stack` and `sk-code-web` were soft-deprecated on 2026-04-30 by packet `054-sk-code-merger`, which created the new umbrella skill `sk-code` and gated the deprecated pair to advisor weight 0. The deprecated trees still occupy disk and are referenced from advisor scoring tables, skill graphs, READMEs, install guides, AGENTS siblings, eval / telemetry JSONL, the new sk-code's own placeholder pointers, four runtime agent-definition files, and several SQLite indexes — leaving the registry internally inconsistent.",
     "created_at": "2026-04-30T10:00:00Z",
-    "last_save_at": "2026-05-31T14:05:02.790Z",
+    "last_save_at": "2026-06-05T12:47:32.704Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

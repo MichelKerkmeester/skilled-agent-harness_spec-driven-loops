@@ -37,7 +37,7 @@
       "coordinates"
     ],
     "importance_tier": "normal",
-    "status": "planned",
+    "status": "in_progress",
     "key_files": [
       "spec.md"
     ],
@@ -87,7 +87,7 @@
     ],
     "causal_summary": "Coordinates the three deferred follow-ups surfaced by the 032 (daemon-lifecycle healing) and 035 (worktree-per-session) work and triaged by an Opus scope+verify swarm. This is a CONTROL FILE — each child carries its own spec/plan/tasks and lands as an independent, gated commit.",
     "created_at": "2026-05-30T19:40:11.242Z",
-    "last_save_at": "2026-05-31T05:02:01.760Z",
+    "last_save_at": "2026-06-05T12:47:34.299Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

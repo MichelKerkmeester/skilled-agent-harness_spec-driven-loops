@@ -77,7 +77,7 @@ Validation rule. Additive advisory check layered on the existing scanner.
 
 ### Key Components
 - **Content scanner**: `check-phase-parent-content.sh` (reused) or a sibling script.
-- **Registry**: `validator-registry.json` entry at severity `warn`.
+- **Registry**: `validator-registry.json` entry at severity `info`.
 - **Docs**: `validation_rules.md` rule entry + exemption list.
 
 ### Data Flow
@@ -94,7 +94,7 @@ This phase touches shared validation policy, so the affected surfaces are tracke
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | `check-phase-parent-content.sh` | Scans phase-parent spec.md for history narrative | Extend to more doc types (or add sibling) | Fixture doc warns; exempt docs do not |
-| `validator-registry.json` | Registers rules + severity | Add the advisory rule at `warn` | Rule appears; severity is warn |
+| `validator-registry.json` | Registers rules + severity | Add the advisory rule at `info` | Rule appears; severity is info |
 | `validate.sh` callers + completion gate | Run the rule suite | Observe new warnings only | Existing tracks gain no new errors in normal mode |
 
 Required inventories:
@@ -114,7 +114,7 @@ Required inventories:
 
 ### Phase 2: Core Implementation
 - [ ] Extend the scanner to the new doc types (or add a sibling rule)
-- [ ] Register the rule in validator-registry.json at `warn`
+- [ ] Register the rule in validator-registry.json at `info`
 - [ ] Document the rule + exemptions in validation_rules.md
 
 ### Phase 3: Verification

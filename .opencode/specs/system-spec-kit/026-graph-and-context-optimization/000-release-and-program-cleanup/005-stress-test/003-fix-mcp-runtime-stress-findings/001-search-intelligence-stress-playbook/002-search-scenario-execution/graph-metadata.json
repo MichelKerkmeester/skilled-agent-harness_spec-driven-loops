@@ -41,7 +41,7 @@
       "plan"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "scaffold_(execution_deferred)",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -198,7 +198,7 @@
     ],
     "causal_summary": "Define the run harness contract: pre-flight checks, dispatch loop, output capture, scoring workflow, and findings aggregation. The actual run is a separate execution session against this scaffold (estimated 30-45 min wall-clock for N=1 sweep).",
     "created_at": "2026-04-26T15:00:00Z",
-    "last_save_at": "2026-05-30T10:12:01.659Z",
+    "last_save_at": "2026-06-05T12:47:33.076Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

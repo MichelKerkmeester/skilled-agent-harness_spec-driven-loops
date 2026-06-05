@@ -37,7 +37,7 @@
       "lift"
     ],
     "importance_tier": "important",
-    "status": "in_progress",
+    "status": "planned",
     "key_files": [
       "research/damping-sweep-results.md",
       "implementation-summary.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Phase 015 sub-packets 001-008 proved the cosine lane cannot flip routings on either tested corpus (24-prompt + 22-harder) at any semantic weight from 0.00 to 0.30. The 015 next-steps advisory at `scratch/next-steps-advisory.md` identified the only remaining fusion-magnitude lever: **damping explicit/lexical contributions when their evidence is weak**.",
     "created_at": "2026-05-14T02:15:00Z",
-    "last_save_at": "2026-05-30T10:12:01.937Z",
+    "last_save_at": "2026-06-05T12:47:33.365Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-14T02:15:00Z",
     "source_docs": [

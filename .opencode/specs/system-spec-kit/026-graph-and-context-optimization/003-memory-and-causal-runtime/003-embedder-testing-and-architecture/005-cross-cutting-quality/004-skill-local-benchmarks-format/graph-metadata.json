@@ -35,7 +35,7 @@
       "plan"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "in_progress_—_folder_scaffolding_+_historical_format.md_shipped;_benchmark_report.md_+_readmes_pending_sk_doc_agent_dispatch",
     "key_files": [
       ".opencode/skills/sk-doc/references/benchmark_creation.md",
       "benchmarks/README.md",
@@ -192,7 +192,7 @@
     ],
     "causal_summary": "The 016 bake-offs (text + code) produced authoritative benchmark records in spec packets (`016/002/004-spec-memory-embedder-bake-off/` and `016/004/004-extended-bake-off/`). Both packets have detailed `benchmark-results.md` headline docs plus full `evidence/` directories with CSVs, JSONLs, runlogs, and ADR trails.",
     "created_at": "2026-05-18T17:04:31.398Z",
-    "last_save_at": "2026-05-30T10:12:02.344Z",
+    "last_save_at": "2026-06-05T12:47:33.763Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

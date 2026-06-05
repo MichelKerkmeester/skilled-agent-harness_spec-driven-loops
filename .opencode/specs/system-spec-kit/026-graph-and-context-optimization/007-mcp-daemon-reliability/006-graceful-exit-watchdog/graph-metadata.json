@@ -35,7 +35,7 @@
       "child"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_(rss_self_exit_default_off_pending_req_008;_sc_001/sc_002_live_deferred)",
     "key_files": [
       ".opencode/bin/mk-spec-memory-launcher.cjs",
       "mcp_server/tests/launcher-watchdog.vitest.ts",
@@ -193,7 +193,7 @@
     ],
     "causal_summary": "This is **Phase 6 of 7**: the launcher memory-supervision fix (F1′ in `003-daemon-reliability-research`, addressing RC-1 OOM + RC-2 no-auto-restart).",
     "created_at": "2026-05-28T18:43:49Z",
-    "last_save_at": "2026-05-30T10:12:02.748Z",
+    "last_save_at": "2026-06-05T12:47:34.279Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

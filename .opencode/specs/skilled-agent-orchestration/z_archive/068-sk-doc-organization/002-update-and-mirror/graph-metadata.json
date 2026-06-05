@@ -37,15 +37,11 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "pending",
     "key_files": [
       ".opencode/skills/sk-doc/SKILL.md",
       ".opencode/commands/create/README.txt",
       ".opencode/commands/create/agent.md",
-      ".gemini/commands/create/agent.toml",
-      ".gemini/commands/create/changelog.toml",
-      ".gemini/commands/create/feature-catalog.toml",
-      ".gemini/commands/create/testing-playbook.toml",
       "spec.md",
       "plan.md",
       "implementation-summary.md",
@@ -68,30 +64,6 @@
         "name": "agent.md",
         "kind": "doc",
         "path": ".opencode/commands/create/agent.md",
-        "source": "derived"
-      },
-      {
-        "name": "agent.toml",
-        "kind": "file",
-        "path": ".gemini/commands/create/agent.toml",
-        "source": "derived"
-      },
-      {
-        "name": "changelog.toml",
-        "kind": "file",
-        "path": ".gemini/commands/create/changelog.toml",
-        "source": "derived"
-      },
-      {
-        "name": "feature-catalog.toml",
-        "kind": "file",
-        "path": ".gemini/commands/create/feature-catalog.toml",
-        "source": "derived"
-      },
-      {
-        "name": "testing-playbook.toml",
-        "kind": "file",
-        "path": ".gemini/commands/create/testing-playbook.toml",
         "source": "derived"
       },
       {
@@ -195,11 +167,35 @@
         "kind": "proper_noun",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Opencode Agents",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Summary",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Begin Phase",
+        "kind": "proper_noun",
+        "path": "implementation-summary.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "This is **Phase 2** of the Reorganize sk-doc/assets reorganization. After Phase 1 physically moved 4 asset items to `assets/` root and deleted the empty `agents/` subfolder, all dependent references still point to the OLD paths. Phase 2 closes that gap by applying 4 fixed-string substring substitutions across the canonical `.opencode/` tree and then replicating the changes to the other 3 runtime mirrors (`.claude/`, `.codex/`, `.gemini/`).",
     "created_at": "2026-05-05T07:55:03Z",
-    "last_save_at": "2026-05-30T10:12:01.360Z",
+    "last_save_at": "2026-06-05T12:47:32.779Z",
     "save_lineage": "graph_only",
     "last_accessed_at": "2026-05-05T09:05:00Z",
     "source_docs": [

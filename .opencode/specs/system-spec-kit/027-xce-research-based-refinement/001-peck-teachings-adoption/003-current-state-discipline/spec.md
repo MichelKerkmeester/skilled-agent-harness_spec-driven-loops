@@ -1,6 +1,6 @@
 ---
 title: "Feature Specification: Phase 3: current-state-discipline [template:level_1/spec.md]"
-description: "Phase 3 (T4): broaden the current-state-only content discipline beyond phase parents to more long-lived docs, as an advisory (warning) check that prevents doc rot."
+description: "Phase 3 (T4): broaden the current-state-only content discipline beyond phase parents to more long-lived docs, as an advisory (info-severity) check that prevents doc rot."
 trigger_phrases:
   - "feature"
   - "specification"
@@ -12,10 +12,10 @@ contextType: "general"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline"
-    last_updated_at: "2026-06-02T10:04:53Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase spec (planned, not implemented)"
-    next_safe_action: "Implement: add advisory current-state content rule"
+    last_updated_at: "2026-06-05T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Applied 2026-06-05 audit rescope: severity warn->info"
+    next_safe_action: "Implement the INFO-severity current-state rule"
     blockers: []
     key_files:
       - "scripts/rules/check-phase-parent-content.sh"
@@ -67,7 +67,7 @@ This is **Phase 3** of the Adopt low-risk peck teachings (T3 self-check template
 - `validator-registry.json` (to register the new rule).
 
 **Deliverables**:
-- An advisory (warning) check that flags stale-history narrative in long-lived docs beyond phase parents.
+- An advisory (info-severity) check that flags stale-history narrative in long-lived docs beyond phase parents.
 
 **Changelog**:
 - When this phase closes, refresh the matching file in ../changelog/ using the parent phase folder name plus this phase folder name.
@@ -108,7 +108,7 @@ Broaden the current-state discipline to more documents as an advisory **INFO** c
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `scripts/rules/check-phase-parent-content.sh` (or a new sibling rule) | Modify/Create | Broaden scan to more doc types |
-| `scripts/lib/validator-registry.json` | Modify | Register the advisory rule (severity: warn) |
+| `scripts/lib/validator-registry.json` | Modify | Register the advisory rule (severity: info) |
 | `references/validation/validation_rules.md` | Modify | Document the new rule + exemptions |
 <!-- /ANCHOR:scope -->
 

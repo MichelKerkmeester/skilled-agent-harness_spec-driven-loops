@@ -42,7 +42,7 @@
       "resource"
     ],
     "importance_tier": "important",
-    "status": "planned",
+    "status": "complete",
     "key_files": [
       "research/research.md",
       "research/recommendations-sk-deep-research.md",
@@ -188,7 +188,7 @@
     ],
     "causal_summary": "Make both skills operate under explicit, testable packet contracts — canonical naming, lifecycle branches, reducer semantics, release-readiness states, and runtime parity — all backed by executable Vitest guards.",
     "created_at": "2026-04-12T09:02:50.183Z",
-    "last_save_at": "2026-05-30T10:12:01.201Z",
+    "last_save_at": "2026-06-05T12:47:32.617Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

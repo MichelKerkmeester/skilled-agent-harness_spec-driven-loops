@@ -39,7 +39,7 @@
       "tasks"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "draft",
     "key_files": [
       "scripts/rules/check-files.sh",
       "scripts/rules/check-evidence.sh",
@@ -199,7 +199,7 @@
     ],
     "causal_summary": "After the major Spec Kit + Memory system merger (spec 035), eight refinement attempts (036-042) identified ~300+ issues. However, many were:",
     "created_at": "2026-04-12T09:02:53.527Z",
-    "last_save_at": "2026-05-30T10:12:02.992Z",
+    "last_save_at": "2026-06-05T12:47:34.469Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

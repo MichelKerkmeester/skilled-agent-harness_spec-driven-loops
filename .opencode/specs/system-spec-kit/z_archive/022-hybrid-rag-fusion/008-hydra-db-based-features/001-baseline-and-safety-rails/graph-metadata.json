@@ -39,7 +39,7 @@
       "level2-verify"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "complete_pending_sign_off",
     "key_files": [
       "mcp_server/lib/config/capability-flags.ts",
       "mcp_server/lib/eval/memory-state-baseline.ts",
@@ -210,7 +210,7 @@
     ],
     "causal_summary": "SPECKIT_TEMPLATE_SOURCE: \"spec-core + level2-verify + level3-arch + level3plus-govern | v2.2\"",
     "created_at": "2026-04-12T09:02:50.259Z",
-    "last_save_at": "2026-05-30T10:12:03.270Z",
+    "last_save_at": "2026-06-05T12:47:34.749Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

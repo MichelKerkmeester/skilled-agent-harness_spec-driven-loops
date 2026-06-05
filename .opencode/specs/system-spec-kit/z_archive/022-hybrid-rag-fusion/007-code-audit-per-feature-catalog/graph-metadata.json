@@ -62,7 +62,7 @@
       "methodology"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "complete_—_100%_match_(catalog_remediation_applied_2026_03_26)",
     "key_files": [
       "mcp_server/api/index.ts",
       "mcp_server/api/eval.ts",
@@ -81,9 +81,9 @@
       "spec.md",
       "plan.md",
       "tasks.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md"
+      "checklist.md",
+      "configs/cognitive.ts",
+      "lib/utils/path-security.ts"
     ],
     "entities": [
       {
@@ -189,21 +189,21 @@
         "source": "derived"
       },
       {
-        "name": "11-session-recovery-spec-kit-resume.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/01--retrieval/11-session-recovery-spec-kit-resume.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "18-template-compliance-contract-enforcement.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/18-template-compliance-contract-enforcement.md",
+        "name": "cognitive.ts",
+        "kind": "code",
+        "path": "configs/cognitive.ts",
         "source": "derived"
       },
       {
-        "name": "08-audit-phase-020-mapping-note.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/08-audit-phase-020-mapping-note.md",
+        "name": "path-security.ts",
+        "kind": "code",
+        "path": "lib/utils/path-security.ts",
         "source": "derived"
       },
       {
@@ -233,7 +233,7 @@
     ],
     "causal_summary": "Feature Specification: Code Audit per Feature Catalog",
     "created_at": "2026-04-12T09:02:50.243Z",
-    "last_save_at": "2026-05-30T10:12:03.230Z",
+    "last_save_at": "2026-06-05T12:47:34.702Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

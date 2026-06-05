@@ -4,10 +4,10 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
-    "depends_on": [
-      "system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh"
-    ],
+    "depends_on": [],
     "supersedes": [],
     "related_to": []
   },
@@ -15,29 +15,213 @@
     "trigger_phrases": [
       "feature catalog update checkpoint v2 front proxy",
       "catalog schema version history error codes enrichment",
-      "feature catalog vacuum into front proxy sk-git"
+      "feature catalog vacuum into front proxy sk-git",
+      "feature catalog update plan",
+      "catalog v2 front proxy schema error codes plan",
+      "register feature files feature_catalog phases",
+      "feature catalog update tasks",
+      "catalog v2 front proxy error codes tasks",
+      "register feature files tasks",
+      "feature catalog update checklist",
+      "catalog accuracy verification gates",
+      "feature catalog register validate checklist"
     ],
     "key_topics": [
-      "feature-catalog",
-      "checkpoint-v2",
-      "front-proxy",
-      "schema-version-history",
-      "error-codes",
-      "post-insert-enrichment",
-      "sk-git-worktree"
+      "feature",
+      "catalog",
+      "update",
+      "checkpoint",
+      "front",
+      "proxy",
+      "schema",
+      "version",
+      "history",
+      "error",
+      "codes",
+      "enrichment"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_—_catalog_deltas_authored_and_registered",
     "key_files": [
+      "lib/storage/checkpoints.ts",
+      "lib/search/vector-index-schema.ts",
+      ".opencode/bin/lib/launcher-session-proxy.cjs",
+      ".opencode/bin/mk-spec-memory-launcher.cjs",
+      "lib/errors/core.ts",
+      "mcp_server/ENV_REFERENCE.md",
+      "feature_catalog/feature_catalog.md",
+      "feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md",
+      "feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md",
+      "feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md",
+      "feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md",
+      "feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md",
+      "feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md",
+      "feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md",
+      "plan.md",
+      "tasks.md",
+      "checklist.md",
+      "decision-record.md",
+      "spec.md",
+      "implementation-summary.md"
+    ],
+    "entities": [
+      {
+        "name": "checkpoints.ts",
+        "kind": "code",
+        "path": "lib/storage/checkpoints.ts",
+        "source": "derived"
+      },
+      {
+        "name": "vector-index-schema.ts",
+        "kind": "code",
+        "path": "lib/search/vector-index-schema.ts",
+        "source": "derived"
+      },
+      {
+        "name": "launcher-session-proxy.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/lib/launcher-session-proxy.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "mk-spec-memory-launcher.cjs",
+        "kind": "file",
+        "path": ".opencode/bin/mk-spec-memory-launcher.cjs",
+        "source": "derived"
+      },
+      {
+        "name": "core.ts",
+        "kind": "code",
+        "path": "lib/errors/core.ts",
+        "source": "derived"
+      },
+      {
+        "name": "ENV_REFERENCE.md",
+        "kind": "doc",
+        "path": "mcp_server/ENV_REFERENCE.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog.md",
+        "kind": "doc",
+        "path": "feature_catalog/feature_catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "038-checkpoint-creation-checkpointcreate.md",
+        "kind": "doc",
+        "path": "feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md",
+        "source": "derived"
+      },
+      {
+        "name": "040-checkpoint-restore-checkpointrestore.md",
+        "kind": "doc",
+        "path": "feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md",
+        "source": "derived"
+      },
+      {
+        "name": "189-mcp-launcher-front-proxy.md",
+        "kind": "doc",
+        "path": "feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md",
+        "source": "derived"
+      },
+      {
+        "name": "162-post-insert-enrichment-marker.md",
+        "kind": "doc",
+        "path": "feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md",
+        "source": "derived"
+      },
+      {
+        "name": "069-schema-version-history-v28-v30.md",
+        "kind": "doc",
+        "path": "feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md",
+        "source": "derived"
+      },
+      {
+        "name": "070-error-code-reference.md",
+        "kind": "doc",
+        "path": "feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md",
+        "source": "derived"
+      },
+      {
+        "name": "249-sk-git-worktree-convention.md",
+        "kind": "doc",
+        "path": "feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "decision-record.md",
+        "kind": "doc",
+        "path": "decision-record.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Catalog Update",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Schema History",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Error Codes",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The `system-spec-kit` feature catalog is the canonical, operator-facing inventory of the Spec Kit Memory MCP server's behaviors. It has fallen behind the shipped runtime: the 013 memory-index-scan roadmap delivered checkpoint-v2 file-based snapshots (schema v29), the post-insert enrichment marker (schema v30), and the MCP launcher front-proxy, while the 128 work introduced the sk-git worktree convention. None of these are discoverable from the catalog, and the scattered error-code mentions (E429, -32001, -32002) are not unified anywhere. This packet expands and registers six catalog deltas so operators can find and reason about the shipped behaviors. It edits only `feature_catalog/` content — no runtime code.",
+    "created_at": "2026-06-02T00:00:00.000Z",
+    "last_save_at": "2026-06-05T12:47:33.998Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "decision-record.md"
-    ],
-    "created_at": "2026-06-02T00:00:00.000Z",
-    "last_save_at": "2026-06-02T00:00:00.000Z",
-    "source_docs": [
-      "spec.md"
+      "checklist.md",
+      "decision-record.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

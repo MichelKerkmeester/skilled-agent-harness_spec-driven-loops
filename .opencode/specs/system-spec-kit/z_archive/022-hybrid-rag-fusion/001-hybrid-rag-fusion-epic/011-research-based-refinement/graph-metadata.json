@@ -45,7 +45,7 @@
       "summary"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       "spec.md",
       "plan.md",
@@ -208,7 +208,7 @@
     ],
     "causal_summary": "The deep research (spec `019-deep-research-rag-improvement`) produced 29 prioritized recommendations from 5 GPT 5.4 agents (1.35M tokens, ~52 web searches). The key finding: the system is more mature than expected — the gap is **calibration and wiring**, not missing code. Flat heuristic constants (k=60, convergence +0.10, graph boost 1.5x, FSRS decay, Stage 2 signal weights) need data-driven calibration. Graph value lies in typed traversal, not community detection. Feedback needs an event ledger before any learned ranking.",
     "created_at": "2026-04-12T09:02:50.233Z",
-    "last_save_at": "2026-05-30T10:12:03.206Z",
+    "last_save_at": "2026-06-05T12:47:34.668Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

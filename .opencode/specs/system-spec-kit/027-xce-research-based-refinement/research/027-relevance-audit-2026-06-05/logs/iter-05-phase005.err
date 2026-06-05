@@ -1,0 +1,167 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/plan.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/tasks.md[90m [offset=1, limit=260][0m
+[0m
+[0m$ [0mgit log --oneline -120
+06e884ed48 chore(026): delete frozen historical resource-map.md + refresh parent graph-metadata
+484f6786af docs(026): changelogs + resource-maps for 016/017 phases; regenerate timeline
+0fe50e2d7a docs(017): document deploy-mcp.sh across READMEs, catalog, and doctor surface
+57525bb817 chore(017): add deploy-mcp.sh build-all helper; record deploy completion
+7791fdeceb fix(026): remediate last-50-commits deep-review findings — 017
+6cbe4fa021 docs(026): deep review of last 50 commits — 016 review packet
+12de3d3a7e docs(026): backfill 33 missing changelogs + regenerate timeline
+8683890935 chore(opencode): remove checked-in gemini runtime surfaces
+a8e180a222 fix(026): remediate docs/config drift flagged by 015-docs-drift-review
+75cfec1700 docs(changelog): add v3.5.0.0 release changelog
+3419e0a3e9 feat(016): mk-spec-memory launcher-ownership hardening (O6)
+41fb6f11a5 fix(014): remediate pre-existing test + doc failures from 013 central verification
+ff4ede238c chore(specs): flush in-flight canonical-save metadata (014/015 registration + specId fixes)
+a9d64d1e0b fix(013): run deferred central verification + fix the one real gap (job-queue test)
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+3d1667dd68 fix(006): probe-marker spawn guard + race-safe bridge reclaim + socket-server reconvergence (014, 015)
+6c462c5a51 docs(006): launcher-overlap spawn & bridge deep-research (027)
+448ffc25ed docs(026): comprehensive deep-review + research audit — packet 012
+9f1a90fdca docs(026): mark 12 sidecar leaf changelogs with a later-removed note
+79ea92aadb fix(026): refresh stale sidecar parent statuses (016-019) + clarify changelog-020 test count
+d5af5b6dd8 fix(026): remediate changelog audit drift in 020-026 + add changelog accuracy re-audit packet
+02939cd77f docs(026): add changelogs for packets 020-026 + record executed backfill in 026 timeline
+1cb2531da7 fix(specs): canonicalize 125's 9 child graph-metadata to current schema
+87cc6b6d3c chore(026): canonical memory save — refresh 026 + parent graph-metadata
+808ba7a3d0 chore(026): refresh 020/021 description.json metadata timestamps
+19ca25ce0a docs(mcp-server): post-implementation deep-review of relation-backfill subsystem (026/023)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+20c2849f76 fix(specs): canonicalize 125 phase-parent graph-metadata schema
+23ba7ea08e fix(mcp-server): add memory_causal_unlink to TOOL_LAYER_MAP (026/025)
+d1183dc07d test(mcp-server): de-flake + un-skip launcher-lease integration, add socketPath bridge test (026/024)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+5dd5e14bc0 chore(026): mark 020/021/022 shipped (committed + deployed)
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+01d666985c docs(mcp-server): sync save-pipeline README to async-default enrichment (026/022)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+1f1e52ca8e fix(mcp-server): store owner socket path in lease + prefer it in bridge (026/020)
+cb1ed47168 docs(constitutional): prune codex + dual-claude rules, fix README staleness + code-graph path
+3ea14bd356 chore(018): refresh packet metadata after memory save (status complete)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+c68c7bf5e3 fix(mcp-server): harden front-proxy against externally-killed/slow-booting daemon (026/018)
+c377d6dcd8 docs(constitutional): add memory DB file-topology rule (index vs vectors are separate files)
+f8618f2b83 fix(mcp-server): isolate quality-loop advisory tests to no-auto-fix path + record remediation status (026/017)
+a2d1a9bc9e fix(mcp-server): remediate deep-review findings — reconsolidation opt-in + async-enrichment safety + full E081 classification (026/017)
+0060a097b3 feat(mcp-server): default-on enrichment + reconsolidation + quality-auto-fix, async enrichment (026/017)
+15d2e4988d fix(mcp-server): accept includeEmbeddings in checkpoint_create input schema
+56ce7a66c4 fix(mcp-server): make spec validator entry-guard robust to special-char repo paths
+637f83ad36 test(mcp-server): fix pre-existing pipeline-enforcement planner fixture
+deee30b319 feat(mcp-server): expose memory_causal_unlink via the MCP tool registry
+e93acb8e24 docs(playbook): correct causal-stats enum (048) + unlink exposure (049)
+c0bb8aefd6 fix(mcp-server): classify memory_save handler-boundary throws (retire generic E081)
+e887474b4a fix(mcp-server): clear memory_save missing-file error + reconcile memory_health schema
+8c6612cafd chore(config): organize MCP env notes in .claude/mcp.json (descriptive then numbered)
+f390ee2c71 chore(config): organize MCP env notes across all runtime configs
+dfee38f567 fix(config): repair opencode.json JSON + organize MCP env notes
+ccce3e6a12 docs(hooks): add sk-doc README for .opencode/hooks
+a9e9bdb0a5 chore(130): refresh phase-parent description.json auto-derived metadata
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+03ba80f13c fix(130/016): decouple sk-prompt playbook from hub + cli skills (forkability)
+5bebeb880b fix(spec-kit): scouted bugfix batch-5 — 3 verify-first fixes + 005 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+9e5d01f401 fix(130/015): complete cli-devin permission-mode typo correction across remaining docs
+c40219c4bd fix(130/015): land deferred entangled cli docs + repoint sk-prompt playbook card paths + asset divider cleanup
+5b39c34f41 fix(130/014): add sk-doc section dividers across 5 cli skills + scrub sk-prompt card refs
+6d3c9e030d test(mcp_server): refresh stale EXTENDED_LIMITS for context-server + memory-index
+63bbe43d57 docs(130): reformat 010-013 changelogs to sk-doc template + add cli 013 entries
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+883957c9e4 docs(mcp_server): fix embedder-umbrella path drift in vectors/migrations READMEs
+b32bc83808 docs(130/013): relocate cli quality card to the hub; sk-prompt now forkable
+795f46dc5f docs(130/012): align cli-* cards + references to sk-doc templates
+3fafd39b09 docs(130/011): merge benchmark 006 into 005 + repoint stale benchmark citations
+ef3d38b15b docs(130/010): align sk-prompt-small-model hub to sk-doc templates
+2636984d53 docs(mcp_server): add missing database/checkpoints + database/backups READMEs
+177b1c94db docs(026): regenerate timeline.md after Wave 8 relocation
+ac44d1bafc refactor(specs): relocate 6 packets from skilled-agent-orchestration into 026 program
+088ffc7fab fix(deps): stop tracking benchmark fixture-seed lockfiles (clears dependabot #654)
+387ded17d8 fix(130/009): remediate hub↔cli-* prompt-knowledge seam drift (C1–C10)
+fb281b8bb4 fix(136): scouted bug/drift batch 3 (round-2 targets) — verify-first, 12 fixes
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+09c3926d0a docs(133): align README commands + system-spec-kit references/assets to live source
+89485eca53 refactor(skills): relocate model registry + benchmarks to sk-prompt-small-model; make sk-prompt forkable (spec 131)
+3a80d8efff feat(skills): 3-layer prompt-knowledge architecture (spec 130)
+8dd86a0b98 fix(131/132): deep-review remediation — 7 confirmed residuals
+103af634dc docs(131): align /doctor commands + install guides to shipped reality
+79cb4e4d21 feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+1ef3771366 fix(deep-improvement): remediate dual-pass MiMo review findings — fail-closed exec gate + grader robustness + doc accuracy
+1663527f79 fix(013/014): remediate deep-review findings — doc accuracy, playbook executability, test fidelity, packet metadata
+fff0ae268b docs(014/review): 20-iteration deep review of the 013/014 session work (gpt-5.5-fast xhigh)
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+159b08708a fix(mcp): bump serverInfo version 1.7.2 -> 1.8.0 to match package.json
+baa3e46d8b fix(deep-improvement): remediate all 28 MiMo deep-review findings — D4-R grader fidelity + doc reconciliation (v1.11.1.0)
+6c7d51d910 feat(sk-code): mine animation principles + frame-verification from web-motion-skill (v3.3.1.0)
+da0204727c docs(014): system-spec-kit playbook/catalog/readme + stress-test refresh for the 013/128 roadmap
+7b8d6960fb docs(013/005): set continuity completion_pct 90 -> 100 (shipped + deployed)
+0d71b5bff5 docs(013): add 001/002/003 changelogs + reconcile roadmap continuity to deployed
+b697b0a1d1 docs(changelog): per-phase changelogs for the 013 follow-ups + sk-git/128
+2c328492df merge(013): land front-proxy reconnect hardening — protocol-drift (#1) + multi-client (#2)
+f4a0f72e38 docs(013/004): fix last_updated_by (drop provider slash) — clears FRONTMATTER_MEMORY_BLOCK
+2167a8de00 docs(013/004): reconcile implementation-summary to deployed state
+ceff990100 merge(013): land memory_save enrichment (004) + checkpoint sentinel (005) follow-ups
+44f6591cf5 refactor(deep-improvement): align all 49 scripts to the sk-code OpenCode template; complete model-benchmark dispatch-envelope + sweep-isolation
+0a8ccc1c57 docs(deep-improvement): reconcile D4-R/skill-benchmark docs, add 10 code+asset READMEs, fill reference trigger_phrases (v1.11.0.0)
+253db8b438 fix(013): checkpoint downgrade-guard test uses far-future schema after 004 SCHEMA_VERSION 30 bump
+5e7f1a671b merge(013): 005 checkpoint needs-rebuild sentinel
+82f85c925a merge(013): 004 memory_save enrichment repair
+6c76793f25 feat(013/005): checkpoint-v2 .needs-rebuild sentinel — durable post-restore self-heal
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+fb6b3b132f feat(sk-git): wt/{NNNN}-{name} numbered worktree convention + advisor routing
+911bbfc089 refactor(125): restructure to phase-parent with lean trio
+68df443600 docs(013): plan 004 enrichment-repair + 005 checkpoint-sentinel sub-phases
+55398d8a91 chore(011): retain raw gpt-5.5 round-2 dispatch logs (force-add past *.log ignore)
+5c22519445 feat(skill-benchmark): D3/D4 fidelity track — real usefulness instrument + intent recall
+2d25ed42ea feat(013/003): multi-client reconnect transparency via per-client proxy (follow-up #2)
+5f79a9667f feat(013/003): protocol-version drift fail-closed re-handshake (follow-up #1)
+9f525883db docs(013/003): deferred follow-ups design research — 5 iterations
+2cb11cfee2 docs(013/002): handover — roadmap COMPLETE (D+G+E done; E merged 598be61b05)
+598be61b05 feat(mcp-launcher): MCP front-proxy — survive daemon recycle transparently (E)
+29160c0e50 fix(checkpoint-v2): demote restore journal to swap-pending before in-process revert
+94069f63e5 chore(mcp-server): stop tracking the runtime .unclean-shutdown marker
+[0m
+[0m✱ [0mGrep "parent_id|children_ids|parentChain|depends_on|supersedes|related_to"[90m in .opencode/skills/system-spec-kit/mcp_server · 499 matches[0m
+[0m
+[0m$ [0mgit log --oneline -- .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts .opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+5e7f1a671b merge(013): 005 checkpoint needs-rebuild sentinel
+6c76793f25 feat(013/005): checkpoint-v2 .needs-rebuild sentinel — durable post-restore self-heal
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+966a75c3be feat(checkpoint-v2): schema v29 + expose includeEmbeddings (Phase 1)
+942ad78d9c feat(memory-index): active-row uniqueness guard + multi-tenant scope isolation
+9156d60cc3 feat(spec-kit): memory_index_scan Phase 3 — move reconciliation + scan heartbeat
+156a0b469f feat(spec-kit): memory_index_scan Phase 2 — async scan + drain circuit guard
+9998edfd37 feat(spec-kit): memory_index_scan Phase 1 — coalescing + health.index + orphan sweep
+4653a5c7eb style(spec-kit): enforce sk-code §4 with a comment guard + comprehensive ephemeral-pointer sweep
+5040eac9ef style(spec-kit): strip ephemeral-artifact pointers from code comments (sk-code §4)
+36012a8fa1 refactor(system-spec-kit): drop ephemeral ids from mcp_server comments (full sweep)
+4f0a1d8e1f refactor(system-spec-kit): drop ephemeral ids from lib comments (non-search)
+e8c6e68ad9 refactor(system-spec-kit): drop ephemeral ids from lib/search comments
+af392cb4b6 refactor(system-spec-kit): drop ephemeral ids from handler comments
+17d3e0ae24 feat(009/009): spec-memory runtime retention caps + timers + shutdown hooks + embedder hardening
+8abbb954bd fix(016/002/018): exempt constitutional markdown from strict sufficiency gate
+1c778ceef3 feat(016/002/012): canonical metadata DB + per-profile vector shard split
+8ccf330f64 feat(016/002/011): lazy startup gating for memory runtime
+719678d014 fix(code-graph,014/020): close four scan/memory-index follow-ons + ship 026 model-runtime inventory
+6647661f32 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+[0m
+[0m✱ [0mGrep "frontmatter-promoter|frontmatter|extraction_method|confidence"[90m in .opencode/skills/system-spec-kit/mcp_server · 1122 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=1, limit=420][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=421, limit=380][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=680, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts[90m [offset=1360, limit=80][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=1, limit=430][0m
+[0m✱ [0mGrep "backfillRelationInference|relation-backfill|frontmatter-promoter|packetReferencesToCausalLinks|causal-links-processor|insertEdgesBatch|extraction_method|confidence REAL|created_by|strength"[90m in .opencode/skills/system-spec-kit/mcp_server · 803 matches[0m

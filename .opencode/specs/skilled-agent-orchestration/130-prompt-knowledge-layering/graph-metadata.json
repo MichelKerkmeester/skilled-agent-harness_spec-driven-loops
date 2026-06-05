@@ -12,7 +12,14 @@
     "skilled-agent-orchestration/130-prompt-knowledge-layering/006-thin-and-standardize-cli-cards",
     "skilled-agent-orchestration/130-prompt-knowledge-layering/007-wire-precedence-and-crosslinks",
     "skilled-agent-orchestration/130-prompt-knowledge-layering/008-validate-sweep-changelog-reindex",
-    "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections"
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/009-refine-hub-cli-connections",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/010-hub-doc-alignment-and-router",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/011-model-profiles-and-benchmark-merge",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/012-cli-doc-alignment",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/013-card-relocation-and-guard",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/014-doc-divider-sweep-and-sk-prompt-cleanup",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/015-deferred-cleanup-entangled-playbook-assets",
+    "skilled-agent-orchestration/130-prompt-knowledge-layering/016-sk-prompt-playbook-forkability-decouple"
   ],
   "manual": {
     "depends_on": [],
@@ -41,24 +48,10 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "research/iterations/iteration-001.md",
-      "research/deep-research-state.jsonl",
       "spec.md",
       "research/research.md"
     ],
     "entities": [
-      {
-        "name": "iteration-001.md",
-        "kind": "doc",
-        "path": "research/iterations/iteration-001.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -132,21 +125,21 @@
         "source": "derived"
       },
       {
-        "name": "qwen3.6",
-        "kind": "key_phrase",
+        "name": "1. Research question",
+        "kind": "heading",
         "path": "research/research.md",
         "source": "derived"
       },
       {
-        "name": "rule",
-        "kind": "key_phrase",
+        "name": "2. Method",
+        "kind": "heading",
         "path": "research/research.md",
         "source": "derived"
       }
     ],
     "causal_summary": "Prompt-engineering knowledge across the skills system is duplicated, structurally inconsistent, and poorly connected. The 7-framework table + CLEAR check are copy-pasted across the CLI quality cards even though a canonical card already exists; the card sync-checker is wired to a non-existent path and covers only 3 of 5 CLIs; per-model prompt-craft (MiniMax M3, MiMo V2.5 Pro, SWE-1.6, …) is stranded inside individual CLI skills with no single source of truth for \"model → best framework + scaffold + gotchas\"; and `sk-prompt-small-model` is referenced by zero CLI SKILL.md files while delegation rules contradict each other (cli-devin mandates sk-prompt; four others escalate to @prompt-improver).",
     "created_at": "2026-06-02T18:04:09Z",
-    "last_save_at": "2026-06-03T07:05:23.009Z",
+    "last_save_at": "2026-06-05T12:47:32.503Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

@@ -40,7 +40,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".gemini/settings.json",
       "lib/session/session-snapshot.ts",
       "lib/session/context-metrics.ts",
       "handlers/session-resume.ts",
@@ -59,15 +58,10 @@
       "tests/session-resume.vitest.ts",
       "tests/cross-runtime-fallback.vitest.ts",
       "tests/fixtures/runtime-fixtures.ts",
-      "tests/modularization.vitest.ts"
+      "tests/modularization.vitest.ts",
+      "spec.md"
     ],
     "entities": [
-      {
-        "name": "settings.json",
-        "kind": "config",
-        "path": ".gemini/settings.json",
-        "source": "derived"
-      },
       {
         "name": "session-snapshot.ts",
         "kind": "code",
@@ -177,6 +171,12 @@
         "source": "derived"
       },
       {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
         "name": "Hookless Priming Optimization",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -209,7 +209,7 @@
     ],
     "causal_summary": "Template compliance shim section. Legacy phase content continues below.",
     "created_at": "2026-04-13T04:55:10.700Z",
-    "last_save_at": "2026-05-30T10:12:03.500Z",
+    "last_save_at": "2026-06-05T12:47:35.003Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

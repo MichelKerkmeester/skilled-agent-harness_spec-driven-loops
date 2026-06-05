@@ -33,7 +33,7 @@
       "summary"
     ],
     "importance_tier": "normal",
-    "status": "complete",
+    "status": "implemented",
     "key_files": [
       "lib/embedders/adapters/ollama.ts",
       "lib/embedders/schema.ts",
@@ -197,7 +197,7 @@
     ],
     "causal_summary": "Implement the two pieces that make swapping actually work:",
     "created_at": "2026-05-17T06:35:17.505Z",
-    "last_save_at": "2026-05-30T10:12:02.181Z",
+    "last_save_at": "2026-06-05T12:47:33.618Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

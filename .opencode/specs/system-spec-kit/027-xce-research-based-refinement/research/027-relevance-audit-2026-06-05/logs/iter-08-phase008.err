@@ -1,0 +1,399 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"READ-ONLY relevance audit for .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers against current mcp_server memory/causal subsystem. Verify feedback_events dependency, feedback-aggregation/reducers/rerank artifacts, commit f05bdac2cf schema/remediation impact. No writes.","specFolder":".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers","tenantId":"default","userId":"default","agentId":"opencode","limit":5,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "system-spec-kit"
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md[90m [offset=1, limit=240][0m
+[0m✗ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/plan.md failed[90m [offset=1, limit=260][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/plan.md
+[0m✗ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/tasks.md failed[90m [offset=1, limit=260][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/tasks.md
+[0m✱ [0mGrep "feedback-aggregation|feedback_reducer|feedback-retention-reducer|session-trace-causal-reducer|feedback_rerank_weights|weightedHitCount|feedback_events|feedback-ledger"[90m in .opencode/skills/system-spec-kit/mcp_server · 60 matches[0m
+[0m
+[0m$ [0mgit log --oneline -120
+06e884ed48 chore(026): delete frozen historical resource-map.md + refresh parent graph-metadata
+484f6786af docs(026): changelogs + resource-maps for 016/017 phases; regenerate timeline
+0fe50e2d7a docs(017): document deploy-mcp.sh across READMEs, catalog, and doctor surface
+57525bb817 chore(017): add deploy-mcp.sh build-all helper; record deploy completion
+7791fdeceb fix(026): remediate last-50-commits deep-review findings — 017
+6cbe4fa021 docs(026): deep review of last 50 commits — 016 review packet
+12de3d3a7e docs(026): backfill 33 missing changelogs + regenerate timeline
+8683890935 chore(opencode): remove checked-in gemini runtime surfaces
+a8e180a222 fix(026): remediate docs/config drift flagged by 015-docs-drift-review
+75cfec1700 docs(changelog): add v3.5.0.0 release changelog
+3419e0a3e9 feat(016): mk-spec-memory launcher-ownership hardening (O6)
+41fb6f11a5 fix(014): remediate pre-existing test + doc failures from 013 central verification
+ff4ede238c chore(specs): flush in-flight canonical-save metadata (014/015 registration + specId fixes)
+a9d64d1e0b fix(013): run deferred central verification + fix the one real gap (job-queue test)
+c0da106b44 fix(spec-kit): remediate packet-012 audit findings (P0/P1/P2) — packet 013
+3d1667dd68 fix(006): probe-marker spawn guard + race-safe bridge reclaim + socket-server reconvergence (014, 015)
+6c462c5a51 docs(006): launcher-overlap spawn & bridge deep-research (027)
+448ffc25ed docs(026): comprehensive deep-review + research audit — packet 012
+9f1a90fdca docs(026): mark 12 sidecar leaf changelogs with a later-removed note
+79ea92aadb fix(026): refresh stale sidecar parent statuses (016-019) + clarify changelog-020 test count
+d5af5b6dd8 fix(026): remediate changelog audit drift in 020-026 + add changelog accuracy re-audit packet
+02939cd77f docs(026): add changelogs for packets 020-026 + record executed backfill in 026 timeline
+1cb2531da7 fix(specs): canonicalize 125's 9 child graph-metadata to current schema
+87cc6b6d3c chore(026): canonical memory save — refresh 026 + parent graph-metadata
+808ba7a3d0 chore(026): refresh 020/021 description.json metadata timestamps
+19ca25ce0a docs(mcp-server): post-implementation deep-review of relation-backfill subsystem (026/023)
+bb61e8864e fix(mcp-server): guard relation-backfill from invalidating valid edges; honest counts (026/026)
+20c2849f76 fix(specs): canonicalize 125 phase-parent graph-metadata schema
+23ba7ea08e fix(mcp-server): add memory_causal_unlink to TOOL_LAYER_MAP (026/025)
+d1183dc07d test(mcp-server): de-flake + un-skip launcher-lease integration, add socketPath bridge test (026/024)
+b834150fe5 feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+5dd5e14bc0 chore(026): mark 020/021/022 shipped (committed + deployed)
+e39a6a8e63 docs(system-spec-kit): fold continuation research into 027 packet
+01d666985c docs(mcp-server): sync save-pipeline README to async-default enrichment (026/022)
+d32d90c3f1 feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+1f1e52ca8e fix(mcp-server): store owner socket path in lease + prefer it in bridge (026/020)
+cb1ed47168 docs(constitutional): prune codex + dual-claude rules, fix README staleness + code-graph path
+3ea14bd356 chore(018): refresh packet metadata after memory save (status complete)
+c7eb1f6454 fix(mcp-server): correct misleading causal relation-coverage backfill hint (026/019)
+c68c7bf5e3 fix(mcp-server): harden front-proxy against externally-killed/slow-booting daemon (026/018)
+c377d6dcd8 docs(constitutional): add memory DB file-topology rule (index vs vectors are separate files)
+f8618f2b83 fix(mcp-server): isolate quality-loop advisory tests to no-auto-fix path + record remediation status (026/017)
+a2d1a9bc9e fix(mcp-server): remediate deep-review findings — reconsolidation opt-in + async-enrichment safety + full E081 classification (026/017)
+0060a097b3 feat(mcp-server): default-on enrichment + reconsolidation + quality-auto-fix, async enrichment (026/017)
+15d2e4988d fix(mcp-server): accept includeEmbeddings in checkpoint_create input schema
+56ce7a66c4 fix(mcp-server): make spec validator entry-guard robust to special-char repo paths
+637f83ad36 test(mcp-server): fix pre-existing pipeline-enforcement planner fixture
+deee30b319 feat(mcp-server): expose memory_causal_unlink via the MCP tool registry
+e93acb8e24 docs(playbook): correct causal-stats enum (048) + unlink exposure (049)
+c0bb8aefd6 fix(mcp-server): classify memory_save handler-boundary throws (retire generic E081)
+e887474b4a fix(mcp-server): clear memory_save missing-file error + reconcile memory_health schema
+8c6612cafd chore(config): organize MCP env notes in .claude/mcp.json (descriptive then numbered)
+f390ee2c71 chore(config): organize MCP env notes across all runtime configs
+dfee38f567 fix(config): repair opencode.json JSON + organize MCP env notes
+ccce3e6a12 docs(hooks): add sk-doc README for .opencode/hooks
+a9e9bdb0a5 chore(130): refresh phase-parent description.json auto-derived metadata
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+03ba80f13c fix(130/016): decouple sk-prompt playbook from hub + cli skills (forkability)
+5bebeb880b fix(spec-kit): scouted bugfix batch-5 — 3 verify-first fixes + 005 packet
+734b9526b4 chore: consolidate pre-existing working-tree WIP across multiple streams
+9e5d01f401 fix(130/015): complete cli-devin permission-mode typo correction across remaining docs
+c40219c4bd fix(130/015): land deferred entangled cli docs + repoint sk-prompt playbook card paths + asset divider cleanup
+5b39c34f41 fix(130/014): add sk-doc section dividers across 5 cli skills + scrub sk-prompt card refs
+6d3c9e030d test(mcp_server): refresh stale EXTENDED_LIMITS for context-server + memory-index
+63bbe43d57 docs(130): reformat 010-013 changelogs to sk-doc template + add cli 013 entries
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+883957c9e4 docs(mcp_server): fix embedder-umbrella path drift in vectors/migrations READMEs
+b32bc83808 docs(130/013): relocate cli quality card to the hub; sk-prompt now forkable
+795f46dc5f docs(130/012): align cli-* cards + references to sk-doc templates
+3fafd39b09 docs(130/011): merge benchmark 006 into 005 + repoint stale benchmark citations
+ef3d38b15b docs(130/010): align sk-prompt-small-model hub to sk-doc templates
+2636984d53 docs(mcp_server): add missing database/checkpoints + database/backups READMEs
+177b1c94db docs(026): regenerate timeline.md after Wave 8 relocation
+ac44d1bafc refactor(specs): relocate 6 packets from skilled-agent-orchestration into 026 program
+088ffc7fab fix(deps): stop tracking benchmark fixture-seed lockfiles (clears dependabot #654)
+387ded17d8 fix(130/009): remediate hub↔cli-* prompt-knowledge seam drift (C1–C10)
+fb281b8bb4 fix(136): scouted bug/drift batch 3 (round-2 targets) — verify-first, 12 fixes
+db2532ad4d fix(135): scouted bug/drift batch 2 — verify-first, 13 fixes
+b0d56db4fa fix(134): scouted bug/security batch 1 — verify-first, 5 confirmed fixes
+09c3926d0a docs(133): align README commands + system-spec-kit references/assets to live source
+89485eca53 refactor(skills): relocate model registry + benchmarks to sk-prompt-small-model; make sk-prompt forkable (spec 131)
+3a80d8efff feat(skills): 3-layer prompt-knowledge architecture (spec 130)
+8dd86a0b98 fix(131/132): deep-review remediation — 7 confirmed residuals
+103af634dc docs(131): align /doctor commands + install guides to shipped reality
+79cb4e4d21 feat(132): make embedding resolveProvider local-first (Ollama > HF > OpenAI/Voyage)
+5aec7864b1 fix(013/015): remediate Opus cross-review runtime findings + harden test DB isolation
+1ef3771366 fix(deep-improvement): remediate dual-pass MiMo review findings — fail-closed exec gate + grader robustness + doc accuracy
+1663527f79 fix(013/014): remediate deep-review findings — doc accuracy, playbook executability, test fidelity, packet metadata
+fff0ae268b docs(014/review): 20-iteration deep review of the 013/014 session work (gpt-5.5-fast xhigh)
+a101cbacfa docs(028): peck-teachings-adoption packet — analysis, phased plan, deep research
+159b08708a fix(mcp): bump serverInfo version 1.7.2 -> 1.8.0 to match package.json
+baa3e46d8b fix(deep-improvement): remediate all 28 MiMo deep-review findings — D4-R grader fidelity + doc reconciliation (v1.11.1.0)
+6c7d51d910 feat(sk-code): mine animation principles + frame-verification from web-motion-skill (v3.3.1.0)
+da0204727c docs(014): system-spec-kit playbook/catalog/readme + stress-test refresh for the 013/128 roadmap
+7b8d6960fb docs(013/005): set continuity completion_pct 90 -> 100 (shipped + deployed)
+0d71b5bff5 docs(013): add 001/002/003 changelogs + reconcile roadmap continuity to deployed
+b697b0a1d1 docs(changelog): per-phase changelogs for the 013 follow-ups + sk-git/128
+2c328492df merge(013): land front-proxy reconnect hardening — protocol-drift (#1) + multi-client (#2)
+f4a0f72e38 docs(013/004): fix last_updated_by (drop provider slash) — clears FRONTMATTER_MEMORY_BLOCK
+2167a8de00 docs(013/004): reconcile implementation-summary to deployed state
+ceff990100 merge(013): land memory_save enrichment (004) + checkpoint sentinel (005) follow-ups
+44f6591cf5 refactor(deep-improvement): align all 49 scripts to the sk-code OpenCode template; complete model-benchmark dispatch-envelope + sweep-isolation
+0a8ccc1c57 docs(deep-improvement): reconcile D4-R/skill-benchmark docs, add 10 code+asset READMEs, fill reference trigger_phrases (v1.11.0.0)
+253db8b438 fix(013): checkpoint downgrade-guard test uses far-future schema after 004 SCHEMA_VERSION 30 bump
+5e7f1a671b merge(013): 005 checkpoint needs-rebuild sentinel
+82f85c925a merge(013): 004 memory_save enrichment repair
+6c76793f25 feat(013/005): checkpoint-v2 .needs-rebuild sentinel — durable post-restore self-heal
+203fb19cbc feat(013/004): memory_save replay enrichment repair — schema v30 marker + repair-on-replay
+fb6b3b132f feat(sk-git): wt/{NNNN}-{name} numbered worktree convention + advisor routing
+911bbfc089 refactor(125): restructure to phase-parent with lean trio
+68df443600 docs(013): plan 004 enrichment-repair + 005 checkpoint-sentinel sub-phases
+55398d8a91 chore(011): retain raw gpt-5.5 round-2 dispatch logs (force-add past *.log ignore)
+5c22519445 feat(skill-benchmark): D3/D4 fidelity track — real usefulness instrument + intent recall
+2d25ed42ea feat(013/003): multi-client reconnect transparency via per-client proxy (follow-up #2)
+5f79a9667f feat(013/003): protocol-version drift fail-closed re-handshake (follow-up #1)
+9f525883db docs(013/003): deferred follow-ups design research — 5 iterations
+2cb11cfee2 docs(013/002): handover — roadmap COMPLETE (D+G+E done; E merged 598be61b05)
+598be61b05 feat(mcp-launcher): MCP front-proxy — survive daemon recycle transparently (E)
+29160c0e50 fix(checkpoint-v2): demote restore journal to swap-pending before in-process revert
+94069f63e5 chore(mcp-server): stop tracking the runtime .unclean-shutdown marker
+[0m
+[0m$ [0mgit show f05bdac2cf --stat
+commit f05bdac2cf28a42c3858b0f2ebedcbbe7b6639ba
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Jun 3 14:22:01 2026 +0200
+
+    fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+    
+    Three approved Tier-2 backlog remediations (gpt-5.5-fast confirmed; implemented + tested).
+    
+    1. PRIVACY — consumption_log.query_text held raw agent-prompt text (241 live rows).
+       Column becomes query_hash storing a truncate+hash fingerprint (8 chars + sha256
+       prefix), computed before any SQL. Lazy self-migration drops the old-schema table
+       on init (rows are disposable telemetry; the drop IS the PII elimination) and the
+       3 handler callers + all readers (frequency group-by, intent-mismatch) key on the
+       hash. Live 241 rows are erased when the daemon next recycles + migrates.
+    
+    2. PRICING — removed the dead model_pricing_versioned DB table + seed + listModelPricing
+       (zero non-test callers); the hardcoded SEEDED_MODEL_PRICING_ROWS is now the documented
+       single source of family-level pricing for internal analytics.
+    
+    3. BATCH-LEARNING — boost divided by event count (per-event average), so the cap was a
+       no-op and 3 vs 300 sessions gave identical boost. Add SCORE_NORMALIZATION=10.0 so boost
+       scales with volume: min((weightedScore/10)*0.10, 0.10). Shadow-only (dashboards, not
+       live ranking).
+    
+    Packet 011-analytics-and-learning-remediation validates --strict 0/0. typecheck clean;
+    103 tests pass across the 4 suites (incl. 9 new privacy tests + a volume-scaling test).
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .../mcp_server/handlers/memory-context.ts          |   2 +-
+ .../mcp_server/handlers/memory-search.ts           |   2 +-
+ .../mcp_server/handlers/memory-triggers.ts         |   2 +-
+ .../lib/analytics/session-analytics-db.ts          |  75 +------
+ .../mcp_server/lib/feedback/batch-learning.ts      |  21 +-
+ .../mcp_server/lib/telemetry/consumption-logger.ts | 110 +++++++---
+ .../mcp_server/tests/batch-learning.vitest.ts      |  35 +++-
+ .../tests/consumption-logger-privacy.vitest.ts     | 233 +++++++++++++++++++++
+ .../mcp_server/tests/consumption-logger.vitest.ts  |  94 +++++----
+ .../tests/session-analytics-db.vitest.ts           |   7 -
+ .../checklist.md                                   | 133 ++++++++++++
+ .../description.json                               |  21 ++
+ .../graph-metadata.json                            |  62 ++++++
+ .../implementation-summary.md                      | 132 ++++++++++++
+ .../011-analytics-and-learning-remediation/plan.md | 210 +++++++++++++++++++
+ .../011-analytics-and-learning-remediation/spec.md | 206 ++++++++++++++++++
+ .../tasks.md                                       | 107 ++++++++++
+ .../graph-metadata.json                            |   3 +-
+ ...gelog-011-analytics-and-learning-remediation.md |  72 +++++++
+ .../changelog/README.md                            |   2 +-
+ 20 files changed, 1373 insertions(+), 156 deletions(-)
+[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/*/spec.md"[90m in . · 5 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/feedback/*"[90m in . · 7 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/**/{feedback-aggregation.ts,feedback-retention-reducer.ts,session-trace-causal-reducer.ts,feedback_reducer.py}"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts[90m [offset=1, limit=360][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts[90m [offset=1, limit=260][0m
+[0m✱ [0mGrep "feedback_rerank_weights|feedback_reducer|feedback-retention-reducer|session-trace-causal-reducer|feedback-aggregation|weightedHitCount|SPECKIT_.*FEEDBACK|REDUCER|rerank weight|retention reducer|causal reducer"[90m in .opencode/skills/system-spec-kit · 127 matches[0m
+[0m
+[0m$ [0mgit show f05bdac2cf -- .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
+commit f05bdac2cf28a42c3858b0f2ebedcbbe7b6639ba
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Wed Jun 3 14:22:01 2026 +0200
+
+    fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+    
+    Three approved Tier-2 backlog remediations (gpt-5.5-fast confirmed; implemented + tested).
+    
+    1. PRIVACY — consumption_log.query_text held raw agent-prompt text (241 live rows).
+       Column becomes query_hash storing a truncate+hash fingerprint (8 chars + sha256
+       prefix), computed before any SQL. Lazy self-migration drops the old-schema table
+       on init (rows are disposable telemetry; the drop IS the PII elimination) and the
+       3 handler callers + all readers (frequency group-by, intent-mismatch) key on the
+       hash. Live 241 rows are erased when the daemon next recycles + migrates.
+    
+    2. PRICING — removed the dead model_pricing_versioned DB table + seed + listModelPricing
+       (zero non-test callers); the hardcoded SEEDED_MODEL_PRICING_ROWS is now the documented
+       single source of family-level pricing for internal analytics.
+    
+    3. BATCH-LEARNING — boost divided by event count (per-event average), so the cap was a
+       no-op and 3 vs 300 sessions gave identical boost. Add SCORE_NORMALIZATION=10.0 so boost
+       scales with volume: min((weightedScore/10)*0.10, 0.10). Shadow-only (dashboards, not
+       live ranking).
+    
+    Packet 011-analytics-and-learning-remediation validates --strict 0/0. typecheck clean;
+    103 tests pass across the 4 suites (incl. 9 new privacy tests + a volume-scaling test).
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+diff --git a/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts b/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
+index d947ff40ab..78576c6311 100644
+--- a/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
++++ b/.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
+@@ -50,6 +50,14 @@ export const CONFIDENCE_WEIGHTS: Record<FeedbackConfidence, number> = {
+   weak:   0.1,
+ };
+ 
++/**
++ * Normalization denominator for the volume-scaled boost formula.
++ * Roughly 10 strong-equivalent signals in the 7-day window saturate
++ * the cap — tune this to the expected peak weekly signal volume for
++ * your deployment so the cap is reachable under normal conditions.
++ */
++export const SCORE_NORMALIZATION = 10.0;
++
+ /* ───────────────────────────────────────────────────────────────
+    2. TYPES
+ ----------------------------------------------------------------*/
+@@ -223,11 +231,14 @@ export function aggregateEvents(
+         data.medium * CONFIDENCE_WEIGHTS.medium +
+         data.weak   * CONFIDENCE_WEIGHTS.weak;
+ 
+-      // Normalize: divide by total event count to get per-event average,
+-      // then scale by MAX_BOOST_DELTA to keep boost in range [0, MAX_BOOST_DELTA].
+-      const totalEvents = data.strong + data.medium + data.weak;
+-      const normalizedScore = totalEvents > 0 ? weightedScore / totalEvents : 0;
+-      const computedBoost = Math.min(normalizedScore * MAX_BOOST_DELTA, MAX_BOOST_DELTA);
++      // Volume-scaled boost: divide the raw weighted score by SCORE_NORMALIZATION
++      // so boost grows with the number of signals, not just their average quality.
++      // Shadow-only: the result is written to batch_learning_log.computed_boost for
++      // observability dashboards; it does NOT mutate live search ranking columns.
++      const computedBoost = Math.min(
++        (weightedScore / SCORE_NORMALIZATION) * MAX_BOOST_DELTA,
++        MAX_BOOST_DELTA
++      );
+ 
+       signals.push({
+         memoryId,
+[0m
+[0m$ [0mgit log --oneline -30 -- .opencode/skills/system-spec-kit/mcp_server/lib/feedback .opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+5040eac9ef style(spec-kit): strip ephemeral-artifact pointers from code comments (sk-code §4)
+36012a8fa1 refactor(system-spec-kit): drop ephemeral ids from mcp_server comments (full sweep)
+4f0a1d8e1f refactor(system-spec-kit): drop ephemeral ids from lib comments (non-search)
+1e58d845af docs(117): remove TOC blocks + HTML anchor comments from skill docs
+17d3e0ae24 feat(009/009): spec-memory runtime retention caps + timers + shutdown hooks + embedder hardening
+ead803a92a fix(spec-kit/scripts): 136-feature-catalog-annotation-name-validity
+6647661f32 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer/spec.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer/spec.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=95, limit=30][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md[90m [offset=320, limit=20][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/context-server.ts[90m [offset=2018, limit=40][0m
+[0m✱ [0mGrep "def _ranked_result|_ranked_result|SPECKIT_COCOINDEX_FEEDBACK_RERANK|feedback_rerank_weights|search-feedback\.jsonl|path_class"[90m in .opencode/skills · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/**/cocoindex_code/**"[90m in . · 0 matches[0m
+[0m
+[0m$ [0mgit show --name-only --format='%H %s' f05bdac2cf
+f05bdac2cf28a42c3858b0f2ebedcbbe7b6639ba fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-context.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-search.ts
+.opencode/skills/system-spec-kit/mcp_server/handlers/memory-triggers.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/analytics/session-analytics-db.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts
+.opencode/skills/system-spec-kit/mcp_server/lib/telemetry/consumption-logger.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger-privacy.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/consumption-logger.vitest.ts
+.opencode/skills/system-spec-kit/mcp_server/tests/session-analytics-db.vitest.ts
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/checklist.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/description.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/implementation-summary.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/plan.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/spec.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/011-analytics-and-learning-remediation/tasks.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/graph-metadata.json
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/000-release-and-program-cleanup/changelog-011-analytics-and-learning-remediation.md
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/changelog/README.md
+[0m
+[0m✱ [0mGrep "SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE|SPECKIT_FEEDBACK_RETENTION_LEARNING|SPECKIT_FEEDBACK_RETENTION_MODE|SPECKIT_COCOINDEX_FEEDBACK_RERANK|session-trace-causal|feedback-retention|edge-tier-basement"[90m in .opencode/skills/system-spec-kit · 0 matches[0m
+[0m
+[0m$ [0mgit log --oneline -30 -- .opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts .opencode/skills/system-spec-kit/mcp_server/lib/feedback
+f05bdac2cf fix(mcp-server): analytics + learning remediation — PII redaction, pricing single-source, boost math
+bf0f363a76 fix(mcp-server): scouted bugfix batch-4 — 9 verify-first fixes + 004 packet
+5040eac9ef style(spec-kit): strip ephemeral-artifact pointers from code comments (sk-code §4)
+36012a8fa1 refactor(system-spec-kit): drop ephemeral ids from mcp_server comments (full sweep)
+4f0a1d8e1f refactor(system-spec-kit): drop ephemeral ids from lib comments (non-search)
+1e58d845af docs(117): remove TOC blocks + HTML anchor comments from skill docs
+17d3e0ae24 feat(009/009): spec-memory runtime retention caps + timers + shutdown hooks + embedder hardening
+ead803a92a fix(spec-kit/scripts): 136-feature-catalog-annotation-name-validity
+6647661f32 refactor(opencode): rename .opencode/{skill,agent,command}/ to plural per official docs
+[0m
+[0m✱ [0mGrep "DEFAULT_RELATION_TARGETS|auto-session|session_id|feedback_events|relation-inference|similarity|supersedes|created_by"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/causal · 49 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/causal/*"[90m in . · 3 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-coverage.ts[90m [offset=1, limit=130][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage4-filter.ts[90m [offset=55, limit=40][0m
+[0m
+[0m$ [0mgit show --stat b834150fe5
+commit b834150fe57596f1828c6f13bc509ac718c38dae
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 13:49:35 2026 +0200
+
+    feat(mcp-server): opt-in similarity + supersession relation inference (026/023)
+    
+    Adds the two collectors packet 021 deferred to backfillRelationInference, both opt-in (default off): similarity 'supports' from the cached memory_index.related_memories column (threshold>=75, top-K<=5, no live vector scan) and 'contradicts' from memory_lineage.superseded_by_memory_id. Both inherit dryRun-default + created_by='auto' guards (strength<=0.5, per-node cap, idempotent); graceful no-op on absent schema. Wired through schema/types/handler with deterministic, sqlite-vec-free tests.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .../mcp_server/handlers/causal-graph.ts            |   7 +
+ .../mcp_server/lib/causal/README.md                |   2 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 268 +++++++++++++-
+ .../mcp_server/lib/causal/relation-coverage.ts     |   2 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |   6 +
+ .../tests/relation-backfill-similarity.vitest.ts   | 394 +++++++++++++++++++++
+ .../system-spec-kit/mcp_server/tools/types.ts      |  10 +-
+ .../023-semantic-relation-inference/checklist.md   | 193 ++++++++++
+ .../decision-record.md                             | 317 +++++++++++++++++
+ .../description.json                               |  22 ++
+ .../graph-metadata.json                            |  58 +++
+ .../implementation-summary.md                      |  93 +++++
+ .../023-semantic-relation-inference/plan.md        | 267 ++++++++++++++
+ .../023-semantic-relation-inference/spec.md        | 232 ++++++++++++
+ .../023-semantic-relation-inference/tasks.md       |  78 ++++
+ 15 files changed, 1940 insertions(+), 9 deletions(-)
+[0m
+[0m$ [0mgit show --stat d32d90c3f1
+commit d32d90c3f15be018dea60ba615771ffb5a67e193
+Author: MichelKerkmeester <82775228+MichelKerkmeester@users.noreply.github.com>
+Date:   Thu Jun 4 12:59:17 2026 +0200
+
+    feat(mcp-server): bounded dryRun-default relation-inference backfill (026/021)
+    
+    Builds the real relation-inference backfill behind packet 019's honest stat: infers typed created_by='auto' causal edges from existing deterministic signals (spec-document chains + lineage predecessor links), default dryRun, bounded limit (<=2000), transactional, idempotent, and invalidates the entity-density cache after writes.
+    
+    Flips backfillJob.implemented to true with a callable command wired onto memory_causal_stats({ backfill }); no new MCP tool. Refreshes the causal README and tool-layer dispatch type.
+    
+    Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>
+
+ .../mcp_server/handlers/causal-graph.ts            |  41 +-
+ .../mcp_server/lib/causal/README.md                |   5 +-
+ .../mcp_server/lib/causal/relation-backfill.ts     | 450 +++++++++++++++++++++
+ .../mcp_server/lib/causal/relation-coverage.ts     |  18 +-
+ .../mcp_server/schemas/tool-input-schemas.ts       |  12 +-
+ .../mcp_server/tests/causal-stats-output.vitest.ts |   7 +-
+ .../tests/relation-backfill-unit.vitest.ts         | 229 +++++++++++
+ .../tests/relation-coverage-unit.vitest.ts         |  27 +-
+ .../system-spec-kit/mcp_server/tools/types.ts      |   3 +-
+ .../021-relation-inference-backfill/checklist.md   | 193 +++++++++
+ .../decision-record.md                             | 414 +++++++++++++++++++
+ .../description.json                               |  21 +
+ .../graph-metadata.json                            |  57 +++
+ .../implementation-summary.md                      |  96 +++++
+ .../021-relation-inference-backfill/plan.md        | 265 ++++++++++++
+ .../021-relation-inference-backfill/spec.md        | 228 +++++++++++
+ .../021-relation-inference-backfill/tasks.md       |  79 ++++
+ 17 files changed, 2117 insertions(+), 28 deletions(-)
+[0m
+[0m✱ [0mGrep "export .*STATE_LIMITS|const STATE_LIMITS"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts[90m [offset=1, limit=240][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts[90m [offset=261, limit=300][0m
+[0m✱ [0mGrep "batch_learning_log|runBatchLearning|aggregateEvents|AggregatedSignal|SCORE_NORMALIZATION|weightedScore|computedBoost"[90m in .opencode/skills/system-spec-kit/mcp_server · 185 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts[90m [offset=241, limit=90][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/tests/batch-learning.vitest.ts[90m [offset=521, limit=230][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts[90m [offset=1, limit=160][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts[90m [offset=520, limit=160][0m
+[0m✱ [0mGrep "handleMemoryCausalStats|backfillRelationInference|backfillPreview|dryRun|memory_causal_stats"[90m in .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts · 25 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts[90m [offset=927, limit=130][0m
+[0m✱ [0mGrep "RELATION_TYPES|enabled|caused|supports|produced|cited_by"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts · 16 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=1, limit=50][0m

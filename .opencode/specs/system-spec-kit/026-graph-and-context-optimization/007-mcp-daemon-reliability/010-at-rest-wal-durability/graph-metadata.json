@@ -39,7 +39,7 @@
       "checklist"
     ],
     "importance_tier": "important",
-    "status": "complete",
+    "status": "implemented_(autocheckpoint+periodic+dual_schema_truncate;_normal_shipped,_full_benchmark_deferred;_tests_green;_review_clean)",
     "key_files": [
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts",
       ".opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index.ts",
@@ -203,7 +203,7 @@
     ],
     "causal_summary": "Packet 008 added a close-time `wal_checkpoint(TRUNCATE)` for the main context index, but the active vector shard remained attached without a shard TRUNCATE checkpoint in the close path. The live `context-index.sqlite-wal` was still about 9.2 MiB, approximately 2349 WAL pages, next to a roughly 1.0 GiB index that is not write-hot.",
     "created_at": "2026-05-29T13:15:08.290Z",
-    "last_save_at": "2026-05-30T10:12:02.757Z",
+    "last_save_at": "2026-06-05T12:47:34.288Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

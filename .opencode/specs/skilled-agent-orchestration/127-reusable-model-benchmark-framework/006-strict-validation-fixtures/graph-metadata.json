@@ -43,7 +43,6 @@
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      "eval/synthesis.md",
       "spec.md",
       "plan.md",
       "checklist.md",
@@ -51,12 +50,6 @@
       "tasks.md"
     ],
     "entities": [
-      {
-        "name": "synthesis.md",
-        "kind": "doc",
-        "path": "eval/synthesis.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -194,11 +187,17 @@
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
       }
     ],
     "causal_summary": "The existing hard/harder packs lean on transform and comparison tasks where partial credit spreads across structurally-varied outputs. They under-test one specific axis that separates near-equal frontier models: **strictness on input validation**. A lax-but-plausible solution that skips a single rule (a leading-zero check, a leap-year check, an empty-identifier check) still looks correct on happy-path inputs and only fails on subtle malformed inputs.",
     "created_at": "2026-06-02T12:00:00.000Z",
-    "last_save_at": "2026-06-02T12:04:13.476Z",
+    "last_save_at": "2026-06-05T12:47:32.498Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [

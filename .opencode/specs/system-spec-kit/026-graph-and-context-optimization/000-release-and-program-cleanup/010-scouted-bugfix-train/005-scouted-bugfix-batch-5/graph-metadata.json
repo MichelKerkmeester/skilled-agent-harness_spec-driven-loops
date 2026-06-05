@@ -4,15 +4,12 @@
   "spec_folder": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/005-scouted-bugfix-batch-5",
   "parent_id": "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train",
   "children_ids": [],
+  "migrated": true,
+  "migration_source": "legacy",
   "manual": {
     "depends_on": [],
     "supersedes": [],
-    "related_to": [
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/004-scouted-bugfix-batch-4",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/003-scouted-bugfix-batch-3",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/002-scouted-bugfix-batch-2",
-      "system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/010-scouted-bugfix-train/001-scouted-bugfix-batch-1"
-    ]
+    "related_to": []
   },
   "derived": {
     "trigger_phrases": [
@@ -20,32 +17,187 @@
       "d4-r grader dim_id mismatch",
       "handover freshness timestamp field",
       "updatePhaseParentPointer bypasses zod",
-      "verify-first round-3 tail"
+      "verify-first round-3 tail",
+      "scouted bugfix batch 5 plan",
+      "verify-first round-3 tail workflow",
+      "scouted bugfix batch 5 tasks",
+      "scouted bugfix batch 5 checklist",
+      "scouted bugfix batch 5 summary",
+      "verify-first round-3 tail shipped",
+      "3 fixes batch 5"
     ],
     "key_topics": [
+      "scouted",
       "bugfix",
-      "scout",
-      "deep-dive",
-      "verify-first",
-      "round-3-tail",
-      "d4-r-grader",
-      "handover-freshness",
-      "phase-parent-pointer",
-      "zod-validation"
+      "batch",
+      "d4-r",
+      "grader",
+      "mismatch",
+      "handover",
+      "freshness",
+      "timestamp",
+      "field",
+      "updatephaseparentpointer",
+      "bypasses"
     ],
     "importance_tier": "important",
     "status": "complete",
     "key_files": [
-      ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/grader/prompts/system-grader-task-outcome.md",
-      ".opencode/skills/system-spec-kit/mcp_server/lib/resume/resume-ladder.ts",
-      ".opencode/skills/system-spec-kit/mcp_server/tests/resume-ladder.vitest.ts",
-      ".opencode/skills/system-spec-kit/scripts/memory/generate-context.ts",
-      ".opencode/skills/system-spec-kit/scripts/tests/phase-parent-pointer.vitest.ts"
+      "plan.md",
+      "checklist.md",
+      "implementation-summary.md",
+      "spec.md",
+      "tasks.md"
     ],
-    "entities": [],
-    "causal_summary": "Ran a verify-first batch fix closing the round-3 tail of the scouted bugfix train: 4 originally-unconfirmed targets re-confirmed by a gpt-5.5-fast confirm pass; 1 (cli-devin phantom dangerous permission rows) already shipped via parallel 130/014, so this packet lands the remaining 3 with regression tests. Fixes: D4-R grader system prompt emitting dim_id D4R (no hyphen) while the harness strict-equals D4-R, silently capping confidence at 0.3 and injecting a mismatch annotation on every real grade (mock path injects caller dimId so invisible in tests) -> prompt changed to D4-R; handover freshness in resume-ladder parseHandoverSignal only trying last_updated/last_updated_at top-level so updated: top-level and last_updated_at under _memory.continuity fell through to mtime (single frontmatter extraction + updated alias + continuity-block fallback; 11/11 tests); updatePhaseParentPointer in generate-context (highest-frequency graph-metadata mutation) reading via JSON.parse and writing via atomicWriteJson with no validation, accepting malformed timestamps/empty last_active_child_id (parse with graphMetadataSchema Zod before mutating; typed GraphMetadata value; tests pass via tsx as vitest segfaults on Node v25). All 3 regression tests pass; affected TS typechecks clean.",
+    "entities": [
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "checklist.md",
+        "kind": "doc",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "tasks.md",
+        "kind": "doc",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scouted Bugfix Batch",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Close",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Pattern Fan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Key Components",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Data Flow Round",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Breakdown",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Notation",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Task Format",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Criteria",
+        "kind": "proper_noun",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "regression",
+        "kind": "key_phrase",
+        "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Checklist",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Verification Protocol",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      },
+      {
+        "name": "Completion Impact",
+        "kind": "proper_noun",
+        "path": "checklist.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The verify-first round-3 tail left 4 targets originally classified as unconfirmed. A follow-up gpt-5.5-fast confirm pass re-examined all 4 against the real code and confirmed every one. One of the four — the cli-devin phantom \"dangerous\" permission rows — had already shipped via parallel `130/014` cli-doc work, so this batch lands the remaining 3 confirmed defects: a D4-R grader `dim_id` mismatch that silently capped confidence at 0.3 on every real grade, a handover freshness timestamp field mismatch that dropped live handovers to an unreliable mtime fallback, and the highest-frequency graph-metadata mutation path (`updatePhaseParentPointer`) reading/writing with NO Zod schema validation, silently accepting malformed timestamps and empty `last_active_child_id`.",
     "created_at": "2026-06-03T11:00:00Z",
-    "last_save_at": "2026-06-03T11:00:00Z",
+    "last_save_at": "2026-06-05T12:47:33.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
@@ -54,6 +206,8 @@
       "tasks.md",
       "checklist.md",
       "implementation-summary.md"
-    ]
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
   }
 }

@@ -37,7 +37,7 @@
       "attack"
     ],
     "importance_tier": "critical",
-    "status": "complete",
+    "status": "planned",
     "key_files": [
       "decision-record.md",
       "implementation-summary.md",
@@ -194,7 +194,7 @@
     ],
     "causal_summary": "Arc 010/001 found three P0 security issues where sidecar IPC and ledger writes can consume unbounded resources or use predictable filesystem names. The affected findings are F12, F13, and F47.",
     "created_at": "2026-05-23T03:50:22.749Z",
-    "last_save_at": "2026-05-30T10:12:02.476Z",
+    "last_save_at": "2026-06-05T12:47:33.867Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

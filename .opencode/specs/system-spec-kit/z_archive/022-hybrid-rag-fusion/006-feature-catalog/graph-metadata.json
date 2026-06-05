@@ -41,34 +41,27 @@
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md",
       ".opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md",
       ".opencode/skills/system-spec-kit/mcp_server/README.md",
       ".opencode/skills/system-spec-kit/README.md",
       ".opencode/skills/system-spec-kit/manual_testing_playbook/MANUAL_TESTING_PLAYBOOK.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md",
-      ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/01-category-stub.md",
-      ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md"
+      "research/deep-research-gap-report-2026-03-26.md",
+      "research/deep-research-round2-2026-03-26.md",
+      "spec.md",
+      "tasks.md",
+      "plan.md",
+      "checklist.md",
+      "decision-record.md",
+      "scratch/remediation-manifest.md",
+      "scratch/analysis-summary.md",
+      "api/storage.ts",
+      "scratch/constitutional-cache-investigation.md",
+      "scratch/launch-audit-agents.sh",
+      "mcp_server/dist/lib/providers/retry-manager.js",
+      "implementation-summary.md",
+      "handover.md"
     ],
     "entities": [
-      {
-        "name": "11-feature-catalog-code-references.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/11-feature-catalog-code-references.md",
-        "source": "derived"
-      },
       {
         "name": "FEATURE_CATALOG.md",
         "kind": "doc",
@@ -88,87 +81,93 @@
         "source": "derived"
       },
       {
-        "name": "16-json-mode-hybrid-enrichment.md",
+        "name": "deep-research-gap-report-2026-03-26.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/16-json-mode-hybrid-enrichment.md",
+        "path": "research/deep-research-gap-report-2026-03-26.md",
         "source": "derived"
       },
       {
-        "name": "17-json-primary-deprecation-posture.md",
+        "name": "deep-research-round2-2026-03-26.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/17-json-primary-deprecation-posture.md",
+        "path": "research/deep-research-round2-2026-03-26.md",
         "source": "derived"
       },
       {
-        "name": "153-json-mode-hybrid-enrichment.md",
+        "name": "spec.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/153-json-mode-hybrid-enrichment.md",
+        "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "154-json-primary-deprecation-posture.md",
+        "name": "tasks.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/154-json-primary-deprecation-posture.md",
+        "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "15-evaluation-api-surface.md",
+        "name": "plan.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/15-evaluation-api-surface.md",
+        "path": "plan.md",
         "source": "derived"
       },
       {
-        "name": "22-mcp-server-public-api-barrel.md",
+        "name": "checklist.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/22-mcp-server-public-api-barrel.md",
+        "path": "checklist.md",
         "source": "derived"
       },
       {
-        "name": "23-embeddings-and-retry-api.md",
+        "name": "decision-record.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/23-embeddings-and-retry-api.md",
+        "path": "decision-record.md",
         "source": "derived"
       },
       {
-        "name": "05-constitutional-gate-enforcement-rule-pack.md",
+        "name": "remediation-manifest.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/17--governance/05-constitutional-gate-enforcement-rule-pack.md",
+        "path": "scratch/remediation-manifest.md",
         "source": "derived"
       },
       {
-        "name": "09-runtime-config-contract.md",
+        "name": "analysis-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/09-runtime-config-contract.md",
+        "path": "scratch/analysis-summary.md",
         "source": "derived"
       },
       {
-        "name": "10-filter-config-contract.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/10-filter-config-contract.md",
+        "name": "storage.ts",
+        "kind": "code",
+        "path": "api/storage.ts",
         "source": "derived"
       },
       {
-        "name": "01-category-stub.md",
+        "name": "constitutional-cache-investigation.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/01-category-stub.md",
+        "path": "scratch/constitutional-cache-investigation.md",
         "source": "derived"
       },
       {
-        "name": "02-memory-health-auto-repair.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/02-memory-health-auto-repair.md",
+        "name": "launch-audit-agents.sh",
+        "kind": "script",
+        "path": "scratch/launch-audit-agents.sh",
         "source": "derived"
       },
       {
-        "name": "03-feedback-driven-revalidation.md",
-        "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/03-feedback-driven-revalidation.md",
+        "name": "retry-manager.js",
+        "kind": "code",
+        "path": "mcp_server/dist/lib/providers/retry-manager.js",
         "source": "derived"
       },
       {
-        "name": "02-lazy-loading-migration-and-warmup-compatibility.md",
+        "name": "implementation-summary.md",
         "kind": "doc",
-        "path": ".opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/02-lazy-loading-migration-and-warmup-compatibility.md",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "handover.md",
+        "kind": "doc",
+        "path": "handover.md",
         "source": "derived"
       },
       {
@@ -210,7 +209,7 @@
     ],
     "causal_summary": "This wrapper packet preserves the historical 2026-03-08 through 2026-03-26 audit trail, but it must no longer be read as the live denominator source on its own.",
     "created_at": "2026-04-12T09:02:50.241Z",
-    "last_save_at": "2026-05-30T10:12:03.226Z",
+    "last_save_at": "2026-06-05T12:47:34.697Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
