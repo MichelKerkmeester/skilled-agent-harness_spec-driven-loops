@@ -16,8 +16,8 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 
 
 - Objective: Provider selection audit.
-- Real user request: `Please validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 }) and tell me whether the expected signals are present: provider rules, key precedence, ollama local default, and hf-local fallback shown.`
-- Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 }).`
+- Real user request: `Please validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }) and tell me whether the expected signals are present: provider rules, key precedence, ollama local default, and hf-local fallback shown.`
+- Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Provider rules show explicit `EMBEDDINGS_PROVIDER` first, then `VOYAGE_API_KEY`, then `OPENAI_API_KEY`, then local `ollama`, then `hf-local`; local defaults name `nomic-embed-text-v1.5` (Ollama) and `nomic-ai/nomic-embed-text-v1.5` (hf-local).
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
@@ -30,12 +30,12 @@ This scenario validates 5. Embedding and API for `EX-032`. It focuses on Provide
 ### Prompt
 
 ```
-Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 }).
+Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).
 ```
 
 ### Commands
 
-1. memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 })
+1. memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 })
 
 ### Expected
 

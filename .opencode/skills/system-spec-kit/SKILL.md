@@ -420,7 +420,7 @@ Cross-encoder reranking was removed in the 014 deprecation: the spec-memory loca
 
 ## Security
 
-- `VOYAGE_API_KEY` and `COHERE_API_KEY` are read from the process environment only. They must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set them in shell init files owned by the operator with mode `600`.
+- `VOYAGE_API_KEY` is read from the process environment only. It must never be logged, written into spec docs, or persisted to disk by Spec Kit. Operators should set it in shell init files owned by the operator with mode `600`.
 - Tests may mutate env vars, but must restore them in `afterEach`. Production code paths should not treat mutable process env as request-time configuration.
 
 ### Validation and Recovery
@@ -429,7 +429,7 @@ Run `.opencode/skills/system-spec-kit/scripts/spec/validate.sh <spec-folder> --s
 
 ### Code Graph and Search Routing
 
-Use Code Graph for semantic discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
+Use Grep/Glob for semantic/token discovery, Code Graph for structural relationships, and Spec Kit Memory for prior decisions and continuity. `code_graph_scan`, `code_graph_query`, `code_graph_context`, `code_graph_status`, and `detect_changes` (under MCP namespace `mcp__mk_code_index__*`, owned by the standalone `system-code-graph` skill) share the readiness contract and return blocked/degraded payloads rather than silent empty answers when graph state is stale.
 
 ---
 

@@ -23,9 +23,9 @@ Across this skill tree, `/speckit:resume` is the canonical recovery surface for 
 
 ## 1. OVERVIEW
 
-`.opencode/skills/` holds 22 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
+`.opencode/skills/` holds 21 skill folders. Skills are not passive references. Each skill contains executable guidance that an AI agent loads on demand through Gate 2 routing or explicit invocation. Skills carry their own references, assets, scripts, and graph metadata so domain knowledge stays close to the code that uses it.
 
-Skills divide into six categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, deep-loop runtime/workflow skills, and the system packages that govern routing, code graph, and file-modifying workflows. The primary routing engine is now the native TypeScript Skill Advisor package at `system-skill-advisor/mcp_server/`, exposed through four `advisor_*` tools and four `skill_graph_*` tools. The Python `system-skill-advisor/mcp_server/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
+Skills divide into six categories: CLI orchestrators that delegate work to external AI binaries, MCP integrations that wrap third-party tools, code workflow and review skills, documentation and improvement-loop utilities, deep-loop runtime/workflow skills, and the system packages that govern routing, code graph, and file-modifying workflows. The primary routing engine is now the native TypeScript Skill Advisor package at `system-skill-advisor/mcp_server/`, exposed through four `advisor_*` tools and four public `skill_graph_*` tools. The Python `system-skill-advisor/mcp_server/scripts/skill_advisor.py` entrypoint remains as a compatibility shim with native-first delegation and local fallback.
 
 Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffolding workflow, gets a SKILL.md with proper frontmatter, and is discovered by the native advisor through graph metadata indexing. The Python shim can still discover it directly when fallback mode is active.
 
@@ -33,17 +33,17 @@ Adding a skill is intentional. Every new skill goes through `sk-doc`'s scaffoldi
 
 | Metric | Value | Notes |
 | --- | --- | --- |
-| Total skill folders | 22 | Top-level non-hidden skills under `.opencode/skills/` |
-| Folders with graph metadata | 22 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
+| Total skill folders | 21 | Top-level non-hidden skills under `.opencode/skills/` |
+| Folders with graph metadata | 21 | Every top-level non-hidden skill folder under `.opencode/skills/` currently ships with `graph-metadata.json` |
 | Graph families | 6 | `cli`, `mcp`, `sk-code`, `sk-util`, `system`, `deep-loop` |
-| CLI orchestrator skills | 5 | cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode |
+| CLI orchestrator skills | 4 | cli-claude-code, cli-codex, cli-devin, cli-opencode |
 | MCP integration skills | 3 | mcp-chrome-devtools, system-code-graph, mcp-code-mode |
 | Code workflow and review skills | 2 | sk-code, sk-code-review |
 | sk-util utility skills | 6 | deep-improvement, deep-ai-council, sk-prompt-small-model, sk-doc, sk-git, sk-prompt |
 | Deep-loop skills | 3 | deep-loop-runtime, deep-research, deep-review |
 | System skills | 4 | system-code-graph, positional-scoring fallback, system-skill-advisor, system-spec-kit |
 | Skills with local scripts/ | 10 | See Section 4 for the current script-bearing folders |
-| Native advisor tools | 8 | `advisor_*` plus `skill_graph_*` tools exposed by `mk_skill_advisor` |
+| Native advisor tools | 8 public | `advisor_*` plus public `skill_graph_*` tools exposed by `mk_skill_advisor` |
 | Shared compatibility scripts | 5 | `skill_advisor.py`, runtime, bench, regression, and graph compiler |
 
 ### Key Features
@@ -108,7 +108,7 @@ Request -> advisor_recommend -> top match + confidence -> load SKILL.md -> follo
 
 The skill system covers four distinct workflow domains.
 
-**CLI Delegation.** The five CLI skills (cli-claude-code, cli-codex, cli-devin, cli-gemini, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals. cli-devin uniquely adds local-to-cloud handoff for async multi-hour work.
+**CLI Delegation.** The four CLI skills (cli-claude-code, cli-codex, cli-devin, cli-opencode) let any AI assistant hand off work to an external AI binary. Each skill specifies the right binary flags, model selection, prompt formatting, and output parsing. This enables parallel execution and cross-AI validation without the calling AI needing to know binary internals. cli-devin uniquely adds local-to-cloud handoff for async multi-hour work.
 
 **MCP Tool Wrapping.** The three MCP integration skills route tool calls through Code Mode or package-local MCP surfaces for token-efficient execution. mcp-code-mode is the hub for external services, mcp-chrome-devtools handles browser debugging, and system-code-graph adds semantic code search via vector embeddings for finding relevant implementations by concept rather than exact keyword.
 
@@ -125,7 +125,6 @@ The skill system covers four distinct workflow domains.
 | `cli-claude-code` | 1.1.1 | Invokes Claude Code CLI for deep reasoning, code editing, structured output, and agent delegation |
 | `cli-codex` | 1.3.1 | Invokes OpenAI Codex CLI for code generation, review, web research, and parallel task processing |
 | `cli-devin` | 1.0.0 | Invokes Cognition's Devin CLI for autonomous coding (SWE-1.6 default + DeepSeek v4 / GLM 5.1 / Kimi k2.6 for complex work) plus local-to-cloud handoff |
-| `cli-gemini` | 1.2.1 | Invokes Google Gemini CLI for code generation, Google Search grounding, and architecture analysis |
 | `cli-opencode` | 1.0.0 | Invokes OpenCode CLI for full plugin/skill/MCP runtime dispatch, parallel detached sessions, and cross-AI orchestration |
 
 **MCP Integration Skills**
@@ -174,7 +173,6 @@ The skill system covers four distinct workflow domains.
 ├── cli-claude-code/        # Claude Code CLI orchestrator
 ├── cli-codex/              # OpenAI Codex CLI orchestrator
 ├── cli-devin/              # Cognition Devin CLI orchestrator (+ local-to-cloud handoff)
-├── cli-gemini/             # Google Gemini CLI orchestrator
 ├── cli-opencode/           # OpenCode CLI orchestrator
 ├── mcp-chrome-devtools/    # Browser debugging via MCP
 ├── system-code-graph/         # Semantic code search via vector embeddings
@@ -225,7 +223,6 @@ For the full system-spec-kit script inventory, see `system-spec-kit/scripts/scri
 | --- | --- | --- | --- |
 | `cli-claude-code` | Yes | Yes | No |
 | `cli-codex` | Yes | Yes | No |
-| `cli-gemini` | Yes | Yes | No |
 | `cli-opencode` | Yes | Yes | No |
 | `mcp-chrome-devtools` | Yes | No | Yes |
 | `system-code-graph` | Yes | No | No |

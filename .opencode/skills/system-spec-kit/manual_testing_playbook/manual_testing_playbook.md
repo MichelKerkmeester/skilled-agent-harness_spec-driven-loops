@@ -702,9 +702,9 @@ Precedence chain identified
 Provider selection audit.
 
 #### Scenario Contract
-Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local BGE local fallback", limit:20 }).`
+Prompt: `Validate 5. Embedding and API against memory_search({ query:"EMBEDDINGS_PROVIDER auto provider selection rules ollama hf-local nomic-embed-text-v1.5 local defaults", limit:20 }).`
 
-Provider rules show explicit provider override, cloud key precedence, local `ollama` default, and `hf-local` fallback with current BGE local fallback model IDs.
+Provider rules show explicit provider override, cloud key precedence, local `ollama` default, and `hf-local` fallback with current `nomic-embed-text-v1.5` local default/fallback model IDs.
 
 #### Test Execution
 > **Feature File:** [EX-032](19--feature-flag-reference/308-5-embedding-and-api.md)
@@ -2670,12 +2670,12 @@ Committed pending file recovers to original path; stale pending file remains wit
 ### 135 | Grep traceability for feature catalog code references
 
 #### Description
-Verify `grep -r "// Feature catalog: <feature>" mcp_server/` returns handler + lib hits.
+Verify feature-source traceability through feature catalog docs and the catalog code-reference index, without requiring in-code catalog comments.
 
 #### Scenario Contract
-Prompt: `Validate Grep traceability for feature catalog code references against grep -r "// Feature catalog: <feature>" .opencode/skills/system-spec-kit/mcp_server/ and report cited pass/fail evidence.`
+Prompt: `Validate feature-source traceability for feature catalog code references through the feature catalog docs and catalog code-reference index, then report cited pass/fail evidence without requiring // Feature catalog: comments in code.`
 
-Each feature grep returns at least 2 hits spanning handlers and lib layers; all referenced files exist
+Feature catalog docs and the catalog code-reference index identify the expected handler and lib source anchors; all referenced files exist
 
 #### Test Execution
 > **Feature File:** [135](16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md)

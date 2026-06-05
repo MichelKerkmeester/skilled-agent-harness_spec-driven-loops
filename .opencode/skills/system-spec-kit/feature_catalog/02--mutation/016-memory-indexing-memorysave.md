@@ -77,7 +77,7 @@ Document type sets importance weighting automatically: constitutional files 1.0,
 
 The `asyncEmbedding` parameter (default `false`) enables non-blocking saves: the record is written immediately with a `pending` embedding status and becomes searchable via BM25/FTS5 while the embedding generates in the background. When `false`, the save blocks until embedding generation completes.
 
-Safety mechanisms include path and file-type allowlists, pre-flight anchor/duplicate/token-budget validation, a per-spec-folder mutex lock (prevents TOCTOU races), SHA-256 content hashing (skips healthy duplicate rows, re-indexes unhealthy ones), and a full mutation ledger for audit. All caches (trigger matcher, tool, constitutional) are invalidated on write.
+Safety mechanisms include path and file-type allowlists, pre-flight anchor/duplicate/token-budget validation, a per-spec-folder mutex lock (prevents TOCTOU races), SHA-256 content hashing (skips healthy duplicate rows, re-indexes unhealthy ones), and a full mutation ledger for audit. All caches (trigger matcher, tool, constitutional, entity-density) are invalidated on write.
 
 ---
 

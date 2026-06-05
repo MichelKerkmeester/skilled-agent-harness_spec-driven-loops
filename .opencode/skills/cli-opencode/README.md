@@ -35,7 +35,7 @@ The skill documents three orthogonal use cases: external runtime to OpenCode, in
 
 - Full plugin runtime: Dispatched session loads every project plugin from `opencode.json`
 - Full skill runtime: All skills under `.opencode/skills/` become accessible inside the dispatched session
-- Full MCP runtime: Spec Kit Memory's 40+ tools, Code Graph structural query + Grep, Code Mode, and sequential thinking are all callable
+- Full MCP runtime: Spec Kit Memory's 37 tools, Code Graph structural query + Grep, Code Mode, and sequential thinking are all callable
 - Parallel detached sessions: `--share --port N` spawns a separate session id with independent state
 - Structured event stream: `--format json` emits typed JSON events the calling AI parses incrementally
 - Agent dispatch: `--agent <slug>` loads project agents (deep-research, deep-review, review, ai-council, etc.)

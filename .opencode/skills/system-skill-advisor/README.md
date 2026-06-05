@@ -197,7 +197,7 @@ Per-call options on `advisor_recommend` (`topK`, `includeAttribution`) override 
 
 ### Pluggable embedder layer
 
-The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer shared with `mk-spec-memory`. The contract lives in `@spec-kit/shared/embeddings/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry of seven text-tuned candidates (`nomic-embed-text-v1.5`, `mxbai-embed-large-v1`, `bge-small-en-v1.5`, `bge-large-en-v1.5`, `jina-embeddings-v3`, `bge-m3`, `snowflake-arctic-embed-l-v2.0`) and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`. Skill-advisor's local `mcp_server/lib/embedders/` files are thin re-export shims. (Note: skill-advisor's `setActiveEmbedder` is 3-arg; mk-spec-memory ships a 4-arg variant that also persists the cascade-tier provider in `vec_metadata`. The two helpers diverge by design — skill-advisor recovers provider from the manifest backend at need. See [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md) for the cross-skill comparison.)
+The `semantic_shadow` lane (lowest live weight at `0.05`) runs against a pluggable embedder layer shared with `mk-spec-memory`. The contract lives in `@spec-kit/shared/embeddings/`: an `EmbedderAdapter` interface, a frozen `MANIFESTS` registry containing the single shipped manifest `nomic-embed-text-v1.5`, and a `setActiveEmbedder(db, name, dim)` helper that writes the active pointer into the package-local `skill-graph.sqlite`. Skill-advisor's local embedder registry is a re-export shim of `@spec-kit/shared/embeddings/registry.js`, and its local `mcp_server/lib/embedders/` files are thin re-export shims. (Note: skill-advisor's `setActiveEmbedder` is 3-arg; mk-spec-memory ships a 4-arg variant that also persists the cascade-tier provider in `vec_metadata`. The two helpers diverge by design — skill-advisor recovers provider from the manifest backend at need. See [embedder_pluggability.md](../system-spec-kit/references/memory/embedder_pluggability.md) for the cross-skill comparison.)
 
 The persisted default is the `'auto'` sentinel. On daemon startup, `ensureActiveEmbedder()` invokes the shared cascade (Ollama → hf-local → OpenAI → Voyage) and persists the winner. In local-only environments the cascade picks `nomic-embed-text-v1.5` at 768 dim. Manual `setActiveEmbedder()` calls pin the pointer and skip the cascade on subsequent restarts. There is no environment variable for embedder selection and no `embedder_set` MCP tool — the surface is one database helper plus the cascade sentinel.
 
@@ -277,7 +277,7 @@ A: Responses redact raw prompt content. Attribution is per-lane only. The recipe
 
 **Q: What is the relationship to `system-spec-kit`?**
 
-A: Memory, spec folders, continuity stay in `system-spec-kit`. The advisor depends on `system-spec-kit` only for the heavyweight embeddings stack used by the optional `semantic_shadow` lane. Non-embeddings code is fully isolated as of v0.2.0.
+A: Memory, spec folders, continuity stay in `system-spec-kit`. The advisor depends on `system-spec-kit` for the heavyweight embeddings stack used by the optional `semantic_shadow` lane and the canonical IPC bridge re-exported from `@spec-kit/shared/ipc/socket-server.js`. Other non-embeddings code is fully isolated as of v0.2.0.
 
 **Q: Where do I learn about the runtime hooks?**
 

@@ -46,7 +46,7 @@ Source file references are included in the flag table above.
 ## 4. SOURCE METADATA
 - Group: Feature Flag Reference
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `19--feature-flag-reference/11-memory-roadmap-flags.md`
+- Feature file path: `19--feature-flag-reference/283-memory-roadmap-capability-flags.md`
 Related references:
 - [282-filter-config-contract.md](282-filter-config-contract.md) — Filter Config Contract
 - [284-launcher-idle-timeout.md](284-launcher-idle-timeout.md) — Launcher Idle Timeout

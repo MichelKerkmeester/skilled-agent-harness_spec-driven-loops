@@ -41,7 +41,7 @@ You rarely touch this server directly. Six surfaces drive it for you:
 
 The runtime resolves an embedding provider on every cold start. The default `auto` cascade is **local-first** (ADR-014, 2026-05-19):
 
-1. **Ollama** — probes `/api/tags`; selects the first pulled model in ADR-013 priority order (`nomic-embed-text-v1.5`, `jina-embeddings-v3`, `bge-m3`, `mxbai-embed-large-v1`).
+1. **Ollama** — probes `/api/tags`; selects `nomic-embed-text-v1.5`, the only Ollama MANIFESTS entry.
 2. **hf-local** — pure-Node `@huggingface/transformers` HTTP model server reachable; defaults to `nomic-ai/nomic-embed-text-v1.5` (same family as the Ollama default, ADR-014).
 3. **OpenAI** — `OPENAI_API_KEY` set and `text-embedding-3-small` reachable.
 4. **Voyage** — `VOYAGE_API_KEY` set and `voyage-code-3` reachable.

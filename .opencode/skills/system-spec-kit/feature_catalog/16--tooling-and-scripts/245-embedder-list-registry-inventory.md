@@ -25,7 +25,7 @@ The handler is the read-only entry point of the embedder swap surface. It return
 
 ## 2. HOW IT WORKS
 
-The handler lives at `mcp_server/handlers/embedder-list.ts` and the registry it reads lives at `mcp_server/lib/embedders/registry.ts`. The registry defines every shipped embedder (local Ollama models, hosted models such as Voyage and nomic, and any provider sidecars) with stable fields for `name`, `dimensions`, `provider`, and a `status` or `active` marker.
+The handler lives at `mcp_server/handlers/embedder-list.ts` and the registry it reads lives at `mcp_server/lib/embedders/registry.ts`. The registry defines the single shipped manifest `nomic-embed-text-v1.5` with stable fields for `name`, `dimensions`, `provider`, and a `status` or `active` marker.
 
 A successful call returns a list where every entry carries the four required fields and exactly one entry has the active marker set. The active pointer is sourced from the database (vector-table metadata) rather than recomputed per call, so concurrent readers see the same active embedder.
 
