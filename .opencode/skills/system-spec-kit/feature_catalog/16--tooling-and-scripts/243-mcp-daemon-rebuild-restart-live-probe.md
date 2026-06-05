@@ -43,6 +43,8 @@ The protocol is documented in four reference files under packet `008-mcp-daemon-
 
 The protocol pairs with the standalone install path documented in `16--tooling-and-scripts/232-setup-native-module-health-and-mcp-installation.md`. Install covers the upfront workspace bootstrap. This protocol covers the post-fix verification loop after the daemon is already running.
 
+The rebuild-and-restart half of the contract is automated by `.opencode/skills/system-spec-kit/scripts/deploy-mcp.sh`. It rebuilds every MCP server `dist/` (mk-spec-memory, code-graph from its SKILL root, advisor) so no server is left serving stale code, and with `--recycle` transparently recycles the mk-spec-memory daemon child while the front-proxy keeps MCP up. The script does not replace the live-probe step: the operator still confirms the post-fix contract field against the running daemon.
+
 ---
 
 ## 3. SOURCE FILES

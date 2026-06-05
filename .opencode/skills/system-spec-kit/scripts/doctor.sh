@@ -39,7 +39,7 @@ echo ""
 
 # Verify mcp_server dist exists.
 if [[ ! -d "$MCP_DIR/dist" ]]; then
-    log_warn "MCP server dist missing at $MCP_DIR/dist — run \`npm run build\` in $MCP_DIR."
+    log_warn "MCP server dist missing at $MCP_DIR/dist — run \`npm run build\` in $MCP_DIR, or \`bash $SCRIPT_DIR/deploy-mcp.sh\` to rebuild every MCP dist (add --recycle to also recycle the daemon)."
     exit 20
 fi
 log_pass "MCP server dist present"

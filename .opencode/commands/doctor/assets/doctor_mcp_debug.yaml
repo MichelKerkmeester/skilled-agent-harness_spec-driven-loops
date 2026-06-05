@@ -111,6 +111,11 @@ config_files:
 # REFERENCE: REPAIR ACTIONS
 # ─────────────────────────────────────────────────────────────────
 repair_actions:
+  # Rebuild EVERY MCP server's dist at once (instead of the per-server commands
+  # below) and transparently recycle mk-spec-memory in one step:
+  #   bash .opencode/skills/system-spec-kit/scripts/deploy-mcp.sh --recycle
+  # A launcher .cjs change is NOT picked up by a recycle; it needs a fresh
+  # session (SIGHUP is a shutdown signal, not a reload).
   mk-spec-memory:
     dist_missing:
       command: "cd .opencode/skills/system-spec-kit && npm install && npm run build"

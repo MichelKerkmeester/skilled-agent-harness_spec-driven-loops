@@ -75,6 +75,7 @@ scripts/
 +-- test-fixtures/         # Validation fixtures
 +-- templates/             # Inline renderer sources
 +-- types/                 # Shared TypeScript type definitions
++-- deploy-mcp.sh          # Rebuild all MCP server dists (+ optional recycle)
 +-- package.json           # ESM package manifest
 +-- scripts-registry.json  # Script inventory
 `-- README.md
@@ -103,6 +104,7 @@ Disallowed direction:
 | `memory/generate-context.ts` | Builds structured memory save output and metadata updates. |
 | `graph/backfill-graph-metadata.ts` | Refreshes graph metadata across spec folders. |
 | `lib/` | Shares TypeScript helpers and sourced shell utilities. |
+| `deploy-mcp.sh` | Rebuilds every MCP server `dist/` (mk-spec-memory + `@spec-kit/shared`, code-graph, advisor) after a source change; `--recycle` also transparently recycles the mk-spec-memory daemon. `dist/` is gitignored, so this is the canonical rebuild step after pulling source changes. |
 | `scripts-registry.json` | Lists package scripts and known entrypoints. |
 | `package.json` | Defines ESM runtime settings and build scripts. |
 
