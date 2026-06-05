@@ -27,8 +27,8 @@ This top-level phase parent groups 5 child phase groups spanning 2026-04-23 to 2
 | [001-hook-parity](./changelog-001-hook-parity-root.md) | 2026-04-23 | child phase group |
 | [002-doctor-update-orchestrator](./changelog-002-doctor-update-orchestrator-root.md) | 2026-05-11 | child phase group |
 | [003-install-scripts-doctor-realignment](./changelog-003-install-scripts-doctor-realignment-root.md) | 2026-05-26 | child phase group |
-| [004-runtime-agnostic-session-lifecycle-scripts](./../004-runtime-agnostic-session-lifecycle-scripts/changelog/) | n/a | child phase group |
-| [005-worktree-per-session-automation](./../005-worktree-per-session-automation/changelog/) | n/a | child phase group |
+| [004-runtime-agnostic-session-lifecycle-scripts](./changelog-006-004-runtime-agnostic-session-lifecycle-scripts.md) | 2026-06-01 | child phase |
+| [005-worktree-per-session-automation](./changelog-006-005-worktree-per-session-automation.md) | 2026-06-01 | child phase |
 
 ### Added
 
