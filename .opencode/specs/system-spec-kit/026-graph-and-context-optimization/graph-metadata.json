@@ -25,10 +25,7 @@
       "026 graph and context optimization",
       "026 root packet",
       "graph context optimization program",
-      "026 phase map",
-      "resource map",
-      "026-graph-and-context-optimization resource map",
-      "path catalog 026-graph-and-context-optimization"
+      "026 phase map"
     ],
     "key_topics": [
       "026",
@@ -40,41 +37,20 @@
       "program",
       "phase",
       "map",
-      "resource",
-      "026-graph-and-context-optimization",
-      "path"
+      "spec-kit",
+      "memory",
+      "operator-tooling"
     ],
     "importance_tier": "important",
     "status": "in_progress",
     "key_files": [
-      "spec.md",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-      ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
-      "resource-map.md"
+      "spec.md"
     ],
     "entities": [
       {
         "name": "spec.md",
         "kind": "doc",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "run-substrate-stress-harness.mjs",
-        "kind": "file",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/run-substrate-stress-harness.mjs",
-        "source": "derived"
-      },
-      {
-        "name": "substrate-harness-hardening.vitest.ts",
-        "kind": "test",
-        "path": ".opencode/skills/system-spec-kit/mcp_server/stress_test/substrate/substrate-harness-hardening.vitest.ts",
-        "source": "derived"
-      },
-      {
-        "name": "resource-map.md",
-        "kind": "doc",
-        "path": "resource-map.md",
         "source": "derived"
       },
       {
@@ -112,46 +88,15 @@
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
-      },
-      {
-        "name": "Resource Map",
-        "kind": "proper_noun",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Author Instructions",
-        "kind": "proper_noun",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "Restructure Note",
-        "kind": "proper_noun",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "real",
-        "kind": "key_phrase",
-        "path": "resource-map.md",
-        "source": "derived"
-      },
-      {
-        "name": "PHASE-TO-ARTIFACT MAP",
-        "kind": "key_phrase",
-        "path": "resource-map.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The spec-kit's graph, context, memory, and operator-tooling subsystems each needed a coordinated improvement program rather than scattered one-off fixes. This packet is the root coordination surface that decomposes that program into eight independently executable themed phase tracks.",
     "created_at": "2026-04-12T09:02:53.443Z",
-    "last_save_at": "2026-05-31T14:05:02.985Z",
+    "last_save_at": "2026-06-05T13:54:24.748Z",
     "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "resource-map.md"
+      "spec.md"
     ],
     "last_active_child_id": "system-spec-kit/026-graph-and-context-optimization/006-operator-tooling",
     "last_active_at": "2026-06-03T10:18:00+02:00"
