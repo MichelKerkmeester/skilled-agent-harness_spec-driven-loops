@@ -1,0 +1,20 @@
+{
+  "user_prompts": [
+    "Create phased spec 133 to remove numeric prefixes from per-feature snippet filenames in feature catalogs and manual testing playbooks; update sk-doc standards first, then retroactively migrate all existing catalogs/playbooks + references repo-wide; keep numbered category folders; use cli-opencode with MiMo-v2.5-Pro alongside DeepSeek-v4-Pro; multi-phased scaffold with resource map.",
+    "Double-check path references with fresh Opus agents; then memory save, push to main, and close the spec folder."
+  ],
+  "observations": [
+    "COMPLETE: 6-phase program de-numbered 1,562 per-feature snippet files across 20 skills (NN--category/NNN-feature-name.md -> NN--category/feature-name.md); numbered category folders kept by design.",
+    "Phase 001: sk-doc standards/templates/create-commands de-numbered (MiMo authored, DeepSeek PASS, validate_document.py 11/11). validator keys off the NN-- category dir so de-numbering is structurally safe.",
+    "Phase 002: built denumber-snippets.cjs (deterministic per-tree rename + 4-class reference rewrite, dry-run default, fail-closed collision-abort). DeepSeek authored; 23/23 test harness caught its one bug (root-doc lookup); MiMo review PASS.",
+    "Phases 003-005: migrated in a dedicated git worktree (.worktrees/0006), merged to main fast-forward at 100% rename similarity (R-status); 2 slug collisions in system-spec-kit/16--tooling-and-scripts resolved to distinct slugs.",
+    "Phase 006: global reference sweep (global-sweep.cjs, basename-keyed) rewrote 765 files / 6,430 edits / 0 conflicts; 4 fresh Opus agents adversarially audited path references; fixed 17 broken links whose de-numbered target exists; pre-existing broken links (wrong slug/deleted feature) left per scope-lock; 9 active 027 deep-research files handed back to their session.",
+    "Decisions: D1 script-assisted, D2 include spec-folder referrers, D3 dedicated worktree, D4 auto-resolve collisions."
+  ],
+  "recent_context": [
+    "Migration tool committed at 133/002-migration-tooling-and-dry-run/tooling/denumber-snippets.cjs; sweep tool + rename manifests + dispatch briefs under 133/scratch/.",
+    "Packet validates bash validate.sh --strict --recursive: 7/7 PASSED.",
+    "On main: HEAD includes commits 9ade16bb83 (P1), 72cfbb6ae8 (P2), 5149f3abe5 (P3), adc6522b44 (P4), fe2054f3e0 (P5), 3455e72d4b (P6 sweep), a383d02678 (completion), 0092e9eee4 (audit fixes).",
+    "MiMo = xiaomi-token-plan-ams/mimo-v2.5-pro (COSTAR+lean, $0); DeepSeek = deepseek/deepseek-v4-pro --pure (RCAF). Both dispatched read-only (authoring) with orchestrator applying edits, per the Gate-3-safe pattern."
+  ]
+}
