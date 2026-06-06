@@ -46,10 +46,10 @@ Lineage handling is narrower than some older drafts. The runtime supports `new`,
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
-| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/005-resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
-| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/006-invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
-| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/027-research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
+| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/fresh-initialization-creates-canonical-state-files.md` | Manual playbook | Verifies fresh initialization creates the canonical packet files. |
+| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/resume-classification-from-valid-prior-state.md` | Manual playbook | Verifies resume classification and restart-safe continuation from valid state. |
+| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/invalid-or-contradictory-state-halts-for-repair.md` | Manual playbook | Verifies contradictory packet state halts instead of guessing. |
+| `.opencode/skills/deep-research/manual_testing_playbook/02--initialization-and-state-setup/research-charter-validation.md` | Manual playbook | Verifies the research charter sections exist before the loop proceeds. |
 
 ---
 

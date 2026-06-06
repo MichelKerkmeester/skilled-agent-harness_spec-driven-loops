@@ -44,7 +44,7 @@ The reducer and synthesis phases keep that information alive. `reduce-state.cjs`
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/026-ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies ruled-out directions survive into final synthesis. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output retains ruled-out directions in the synchronized packet surfaces. |
 
 ---

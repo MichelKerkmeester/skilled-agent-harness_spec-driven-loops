@@ -36,7 +36,7 @@ Expose the native scoring pipeline as an MCP tool that any runtime can call, wit
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenarios [NC-001](../../manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md), [NC-004](../../manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md), [NC-005](../../manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
+| `Playbook scenarios [NC-001](../../manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md), [NC-004](../../manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md), [NC-005](../../manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

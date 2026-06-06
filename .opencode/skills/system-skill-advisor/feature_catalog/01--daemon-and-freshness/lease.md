@@ -34,7 +34,7 @@ Prevent duplicate daemon writers from corrupting the advisor graph by ensuring e
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | lease acquire, heartbeat and reclaim paths |
-| `Playbook scenario [AU-002](../../manual_testing_playbook/05--auto-update-daemon/023-lease-single-writer.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-002](../../manual_testing_playbook/05--auto-update-daemon/lease-single-writer.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

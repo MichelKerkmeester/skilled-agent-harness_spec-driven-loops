@@ -42,9 +42,9 @@ This dimension often becomes the least-covered pivot target during stuck recover
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies maintainability appears in the default dimension ordering. |
-| `manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md` | Manual scenario | Confirms recovery pivots toward less-covered dimensions such as maintainability. |
-| `manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md` | Manual scenario | Verifies maintainability is still required for the full stop signal. |
+| `manual_testing_playbook/02--initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies maintainability appears in the default dimension ordering. |
+| `manual_testing_playbook/04--convergence-and-recovery/stuck-recovery-widens-dimension-focus.md` | Manual scenario | Confirms recovery pivots toward less-covered dimensions such as maintainability. |
+| `manual_testing_playbook/04--convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies maintainability is still required for the full stop signal. |
 
 ---
 

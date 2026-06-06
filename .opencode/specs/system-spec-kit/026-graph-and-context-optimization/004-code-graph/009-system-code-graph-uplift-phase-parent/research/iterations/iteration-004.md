@@ -127,7 +127,7 @@ This iteration classifies each authored document under `.opencode/skills/system-
 
 #### 4. Per-Scenario Files (manual_testing_playbook/)
 
-**Sample: manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md" />
+**Sample: manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md** <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md" />
 - **sk-doc --type:** `manual_testing_playbook_scenario` (per-scenario file)
 - **Frontmatter:** Custom - `title`, `description`, `trigger_phrases`, `importance_tier` (lines 1-9) ✅
 - **H1 format:** "# 001 ensure-ready selective reindex" (line 10) ✅

@@ -101,8 +101,8 @@ sandbox-writing stress category (§7).
 <context>
 Repo root (cwd): /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public
 Category 04--state-safety scenario files (read in full):
-  .opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/006-atomic-state.md
-  .../007-jsonl-repair.md  .../008-loop-lock.md  .../009-permissions-gate.md
+  .opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/atomic-state.md
+  .../jsonl-repair.md  .../loop-lock.md  .../permissions-gate.md
 Each file has a "## 3. TEST EXECUTION" block with exact bash: commands, Expected, Evidence, Pass/Fail.
 Context budget: treat any `[... truncated N tokens]` marker as an intentional boundary; do not invent omitted content.
 </context>

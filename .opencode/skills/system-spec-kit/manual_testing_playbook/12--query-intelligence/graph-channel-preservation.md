@@ -71,7 +71,7 @@ Inspect `mcp_server/lib/search/query-router.ts:shouldPreserveGraph` for the inte
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/133-graph-channel-preservation.md](../../feature_catalog/12--query-intelligence/133-graph-channel-preservation.md)
+- Feature catalog: [12--query-intelligence/graph-channel-preservation.md](../../feature_catalog/12--query-intelligence/graph-channel-preservation.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/query-router.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-density.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/routing-telemetry.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/query-router.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/entity-density.vitest.ts`, `.opencode/skills/system-spec-kit/mcp_server/tests/routing-telemetry-stress.vitest.ts`
 

@@ -55,7 +55,7 @@ Retry with `format:"json"` or `format:"text"`; inspect `handlers/eval-reporting.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [07--evaluation/055-reporting-dashboard-evalreportingdashboard.md](../../feature_catalog/07--evaluation/055-reporting-dashboard-evalreportingdashboard.md)
+- Feature catalog: [07--evaluation/reporting-dashboard-evalreportingdashboard.md](../../feature_catalog/07--evaluation/reporting-dashboard-evalreportingdashboard.md)
 
 ---
 

@@ -60,7 +60,7 @@ Inspect `layer-definitions.ts` completeness; verify `context-server.ts` dispatch
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/180-7-layer-tool-architecture-metadata.md](../../feature_catalog/14--pipeline-architecture/180-7-layer-tool-architecture-metadata.md)
+- Feature catalog: [14--pipeline-architecture/7-layer-tool-architecture-metadata.md](../../feature_catalog/14--pipeline-architecture/7-layer-tool-architecture-metadata.md)
 
 ---
 

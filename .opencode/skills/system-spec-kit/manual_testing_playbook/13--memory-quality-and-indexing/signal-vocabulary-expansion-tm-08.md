@@ -58,7 +58,7 @@ Verify signal vocabulary dictionary → Check category detection regex/rules →
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/135-signal-vocabulary-expansion.md](../../feature_catalog/13--memory-quality-and-indexing/135-signal-vocabulary-expansion.md)
+- Feature catalog: [13--memory-quality-and-indexing/signal-vocabulary-expansion.md](../../feature_catalog/13--memory-quality-and-indexing/signal-vocabulary-expansion.md)
 
 ---
 

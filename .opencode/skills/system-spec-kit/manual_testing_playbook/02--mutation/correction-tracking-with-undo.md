@@ -62,7 +62,7 @@ Confirm `SPECKIT_RELATIONS` is enabled; verify the correction row captured the e
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/023-correction-tracking-with-undo.md](../../feature_catalog/02--mutation/023-correction-tracking-with-undo.md)
+- Feature catalog: [02--mutation/correction-tracking-with-undo.md](../../feature_catalog/02--mutation/correction-tracking-with-undo.md)
 
 ---
 

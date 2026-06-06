@@ -34,7 +34,7 @@ Quantify each lane's contribution to accuracy so lane weights can be reasoned ab
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-validate.vitest.ts` | Automated test | ablation slices |
-| `Playbook scenario [SC-005](../../manual_testing_playbook/08--scorer-fusion/041-ablation.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-005](../../manual_testing_playbook/08--scorer-fusion/ablation.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

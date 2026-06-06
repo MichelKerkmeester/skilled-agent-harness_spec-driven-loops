@@ -57,7 +57,7 @@ Verify observer pattern is non-blocking → Check try/catch wrapping on eval log
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/071-observer-effect-mitigation.md](../../feature_catalog/09--evaluation-and-measurement/071-observer-effect-mitigation.md)
+- Feature catalog: [09--evaluation-and-measurement/observer-effect-mitigation.md](../../feature_catalog/09--evaluation-and-measurement/observer-effect-mitigation.md)
 
 ---
 

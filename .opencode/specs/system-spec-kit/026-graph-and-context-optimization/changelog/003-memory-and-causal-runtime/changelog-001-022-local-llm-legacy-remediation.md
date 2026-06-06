@@ -61,12 +61,12 @@ The 022 plan called for five batched cli-codex dispatches to purge Nomic/MiniLM/
 | `.opencode/skills/system-spec-kit/mcp_server/lib/providers/retry-manager.ts` | Modified | Env-overridable retry-throughput config via `SPECKIT_RETRY_*` env vars |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/errors/recovery-hints.ts` | Modified | Added E085 through E089 classified error codes |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/save/response-builder.ts` | Modified | `classifySaveErrorCode` and `extractSaveErrorDetails` helpers replace the E081 catch-all |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/361-paraphrase-recall.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/371-causal-graph-link-quality.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/372-causal-coverage-under-bulk-save.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/373-drift-detection-quality.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/374-cross-ai-memory-handoff.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/375-concurrent-multi-ai-safety.md` | Modified | Removed ephemeral retentionPolicy x2 (Phase 1 and Phase 3). Added warning notes. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/paraphrase-recall.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-graph-link-quality.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-coverage-under-bulk-save.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/drift-detection-quality.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/cross-ai-memory-handoff.md` | Modified | Removed ephemeral retentionPolicy. Added warning note. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/concurrent-multi-ai-safety.md` | Modified | Removed ephemeral retentionPolicy x2 (Phase 1 and Phase 3). Added warning notes. |
 | `.opencode/specs/.../022.../ai-council/embedding-worker-diagnostic/seat-statements.md` (NEW) | Created | Multi-seat AI council diagnosis covering Systems, Empirical, Contrarian perspectives |
 | `.opencode/specs/.../022.../ai-council/embedding-worker-diagnostic/cross-critique.md` (NEW) | Created | Six pairwise critiques across council seats |
 | `.opencode/specs/.../022.../ai-council/embedding-worker-diagnostic/convergence.md` (NEW) | Created | Six-step repair plan with kill-switch |

@@ -76,7 +76,7 @@ advisor_status({"workspaceRoot":"/absolute/path/to/repo"})
 
 - Scenario [AU-001](./watcher-narrow-scope.md), watcher scope.
 - Scenario [AU-005](./rebuild-from-source.md), recovery when snapshot unreadable.
-- Feature [`01--daemon-and-freshness/004-generation.md`](../../feature_catalog/01--daemon-and-freshness/004-generation.md).
+- Feature [`01--daemon-and-freshness/generation.md`](../../feature_catalog/01--daemon-and-freshness/generation.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/generation.ts`.
 
 ---

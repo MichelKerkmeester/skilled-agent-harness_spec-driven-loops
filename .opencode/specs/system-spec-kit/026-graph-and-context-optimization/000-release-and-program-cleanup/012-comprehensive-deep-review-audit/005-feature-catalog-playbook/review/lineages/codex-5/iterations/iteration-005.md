@@ -5,10 +5,10 @@ Focus: replay corrected commands and convergence gates.
 ## Files Reviewed
 
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
 - `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py`
 
 ## Replay Results

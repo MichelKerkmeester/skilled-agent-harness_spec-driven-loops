@@ -90,7 +90,7 @@ Patch whichever documentation or config surface drifted, then rerun the grep to 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/311-resource-map-template.md](../../feature_catalog/22--context-preservation/311-resource-map-template.md)
+- Feature catalog: [22--context-preservation/resource-map-template.md](../../feature_catalog/22--context-preservation/resource-map-template.md)
 
 ---
 
@@ -99,4 +99,4 @@ Patch whichever documentation or config surface drifted, then rerun the grep to 
 - Group: Context Preservation and Code Graph
 - Playbook ID: 270
 - Canonical root source: manual_testing_playbook.md
-- Feature file path: 22--context-preservation/311-resource-map-template.md
+- Feature file path: 22--context-preservation/resource-map-template.md

@@ -41,8 +41,8 @@ The adversarial re-check is separate from the typed claim-adjudication packet. S
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Verifies the blocker re-check path is executed. |
-| `manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md` | Manual scenario | Confirms confirmed P0 findings still block stop after the self-check path. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Verifies the blocker re-check path is executed. |
+| `manual_testing_playbook/04--convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms confirmed P0 findings still block stop after the self-check path. |
 
 ---
 

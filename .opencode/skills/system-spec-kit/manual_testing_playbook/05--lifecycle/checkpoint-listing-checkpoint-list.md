@@ -55,7 +55,7 @@ Remove spec filter if empty
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/039-checkpoint-listing-checkpointlist.md](../../feature_catalog/05--lifecycle/039-checkpoint-listing-checkpointlist.md)
+- Feature catalog: [05--lifecycle/checkpoint-listing-checkpointlist.md](../../feature_catalog/05--lifecycle/checkpoint-listing-checkpointlist.md)
 
 ---
 

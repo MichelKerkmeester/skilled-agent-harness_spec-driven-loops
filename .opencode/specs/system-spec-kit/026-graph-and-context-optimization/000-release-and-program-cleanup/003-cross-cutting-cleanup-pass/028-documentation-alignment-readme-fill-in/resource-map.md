@@ -96,7 +96,7 @@ Disjointness check: WB-1..WB-4 touch four distinct subtrees (`references/`, `tem
 | `.opencode/skills/system-spec-kit/shared/parsing/README.md` | Cited | OK | Minimal 6-section code README; closest peer-style for WB-3 + WB-4. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/lib/README.md` | Cited | OK | Full code README (parent of WB-4); already documents `utils/` in §5. |
 | `.opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md` | Cited | OK | Full sk-doc-aligned playbook; pattern anchor for WB-5 entry-point file. |
-| `.opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` | Cited | OK | Per-test scaffold pattern for WB-5 (9-column contract). |
+| `.opencode/skills/cli-claude-code/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md` | Cited | OK | Per-test scaffold pattern for WB-5 (9-column contract). |
 
 ### WB-1 — multi-ai-council reference files (modify in place)
 

@@ -84,7 +84,7 @@ The 4-stage pipeline is the sole runtime path. The `SPECKIT_PIPELINE_V2` environ
 ## 4. SOURCE METADATA
 - Group: Retrieval
 - Canonical catalog source: `feature_catalog.md`
-- Feature file path: `01--retrieval/007-4-stage-pipeline-architecture.md`
+- Feature file path: `01--retrieval/4-stage-pipeline-architecture.md`
 - Source list updated 2026-03-26 per audit remediation
 Related references:
 - [hybrid-search-pipeline.md](hybrid-search-pipeline.md) — Hybrid search pipeline

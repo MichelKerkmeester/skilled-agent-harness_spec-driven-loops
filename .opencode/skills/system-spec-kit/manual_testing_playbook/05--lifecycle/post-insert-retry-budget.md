@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/enrichment/retry-budget.ts`, `mcp_server/handlers/save/p
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/045-post-insert-retry-budget.md](../../feature_catalog/05--lifecycle/045-post-insert-retry-budget.md)
+- Feature catalog: [05--lifecycle/post-insert-retry-budget.md](../../feature_catalog/05--lifecycle/post-insert-retry-budget.md)
 
 ---
 

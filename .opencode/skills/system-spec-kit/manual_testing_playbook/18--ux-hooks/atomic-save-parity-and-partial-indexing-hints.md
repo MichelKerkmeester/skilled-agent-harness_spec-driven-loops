@@ -58,7 +58,7 @@ Inspect `handlers/memory-save.ts`, `handlers/save/response-builder.ts`, `handler
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/262-atomic-save-parity-and-partial-indexing-hints.md](../../feature_catalog/18--ux-hooks/262-atomic-save-parity-and-partial-indexing-hints.md)
+- Feature catalog: [18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md](../../feature_catalog/18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md)
 
 ---
 
@@ -69,4 +69,4 @@ Inspect `handlers/memory-save.ts`, `handlers/save/response-builder.ts`, `handler
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md`
 - audited_post_018: true
-- Feature catalog back-ref: `18--ux-hooks/262-atomic-save-parity-and-partial-indexing-hints.md`
+- Feature catalog back-ref: `18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md`

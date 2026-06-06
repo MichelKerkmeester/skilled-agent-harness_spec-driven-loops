@@ -45,7 +45,7 @@ _memory:
 
 ### Overview
 
-Each finding is a targeted text replacement in one or two markdown files. Sequencing: F1 and F7 both touch feature_catalog.md lines 3946-3950 — do them as one edit. F6 and F9 both touch 313-category-overview.md — do F6 first. F2 patches README.md (5 occurrences) and one test assertion. F3 patches two lines in the playbook root. F4 patches five scenario files. F5 patches scenario 232 and the playbook root. F8, F10 are single-file patches.
+Each finding is a targeted text replacement in one or two markdown files. Sequencing: F1 and F7 both touch feature_catalog.md lines 3946-3950 — do them as one edit. F6 and F9 both touch category-overview.md — do F6 first. F2 patches README.md (5 occurrences) and one test assertion. F3 patches two lines in the playbook root. F4 patches five scenario files. F5 patches scenario 232 and the playbook root. F8, F10 are single-file patches.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -75,13 +75,13 @@ Direct text replacement — surgical edits to markdown and one TypeScript test f
 
 ### Key Components
 - **feature_catalog.md**: master catalog — coverage claims (F1/F7)
-- **214-feature-catalog-code-references.md**: leaf — cleanup-complete claim (F7)
+- **feature-catalog-code-references.md**: leaf — cleanup-complete claim (F7)
 - **README.md**: skill README — tool count (F2)
 - **review-fixes.vitest.ts**: test file — tool count assertion (F2)
 - **manual_testing_playbook.md**: root playbook — release gate + garbled text (F3/F5)
 - **Scenario files (5)**: broken catalog links (F4)
 - **Scenario 232**: garbled contract fields (F5)
-- **313-category-overview.md**: stale paths + scenario numbers (F6/F9)
+- **category-overview.md**: stale paths + scenario numbers (F6/F9)
 - **Playbook 24 README**: scenario numbers (F9)
 - **Scenario 234**: wrong verifier path (F8)
 - **Scenario 032 + Catalog 253**: stale MCP call shapes (F10)
@@ -99,13 +99,13 @@ No runtime data flow. All changes are static documentation accuracy fixes.
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
 | feature_catalog.md:3946,3950 | Universal coverage claims | Replace with ~69% partial-coverage language | grep 'every source file' returns 0 |
-| 214-feature-catalog-code-references.md:30 | Cleanup-complete claim | Qualify with known-residual note | Read line |
+| feature-catalog-code-references.md:30 | Cleanup-complete claim | Qualify with known-residual note | Read line |
 | README.md (5 lines) | 36-tool count | Replace with 37-tool | grep '36-tool' returns 0 |
 | review-fixes.vitest.ts:117 | toBe(36) test assertion | Change to toBe(37) | Test passes |
 | manual_testing_playbook.md:166,173 | 380 scenario threshold | Change to 384 | bash check runs clean |
 | 5 scenario files | Broken catalog links | Replace with correct paths | ls each target file |
 | 232 scenario:18,21 + playbook:2692 | Garbled contract text | Clean natural-language replacement | grep 'sort -u\`' returns 0 |
-| 313-category-overview.md:40-47 | Stale implementation paths + scenario range | Fix paths; update range | ls paths; grep stale numbers |
+| category-overview.md:40-47 | Stale implementation paths + scenario range | Fix paths; update range | ls paths; grep stale numbers |
 | Playbook 24 README | Scenario numbers 401-415 | Update to 361-375 | grep stale numbers returns 0 |
 | Scenario 234:38 | Wrong verifier path | Fix to assets/scripts/ | path resolves |
 | Scenario 032:37 | Stale session_bootstrap call | Replace with session_bootstrap({}) | grep 'includeGraphStatus' returns 0 |
@@ -120,7 +120,7 @@ No runtime data flow. All changes are static documentation accuracy fixes.
 ### Phase 1: Feature Catalog Fixes (F1, F7, F6, F2-README)
 - [x] F1+F7: Fix coverage and cleanup-complete claims in feature_catalog.md
 - [x] F7: Fix cleanup-complete claim in 214 leaf
-- [x] F6: Fix stale paths in 313-category-overview.md
+- [x] F6: Fix stale paths in category-overview.md
 - [x] F2: Update README.md 36-tool -> 37-tool (5 occurrences)
 
 ### Phase 2: Test and Playbook Root (F2-test, F3, F5-root)

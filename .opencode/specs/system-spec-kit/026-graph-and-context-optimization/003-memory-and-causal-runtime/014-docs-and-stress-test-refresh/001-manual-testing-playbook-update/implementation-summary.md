@@ -17,9 +17,9 @@ _memory:
     blockers: []
     key_files:
       - "manual_testing_playbook/manual_testing_playbook.md"
-      - "manual_testing_playbook/05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md"
-      - "manual_testing_playbook/04--maintenance/039-post-insert-enrichment-lifecycle-v30.md"
-      - "manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md"
+      - "manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md"
+      - "manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md"
+      - "manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "manual-testing-playbook-update-packet-setup"
@@ -57,12 +57,12 @@ Six new human-run `EX-###` scenarios were added to the Spec Kit Memory manual te
 
 | ID | Title | Feature file | Folder rationale |
 |----|-------|--------------|------------------|
-| EX-037 | Checkpoint v2 file-snapshot round-trip | `05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md` | Sits with the existing checkpoint block (`EX-015`..`EX-018`) |
-| EX-038 | Post-insert enrichment lifecycle (schema v30) | `04--maintenance/039-post-insert-enrichment-lifecycle-v30.md` | Maintenance/index-time behavior |
-| EX-039 | index_scan phased-async refinements | `04--maintenance/040-index-scan-phased-async-refinements.md` | Extends `EX-014` (memory_index_scan) |
-| EX-040 | MCP front-proxy reconnect / SPECKIT_BACKEND_ONLY / -32002 vs -32001 | `14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md` | Runtime/pipeline infrastructure |
-| EX-041 | sk-git worktree convention | `16--tooling-and-scripts/300-sk-git-worktree-convention.md` | Tooling/scripts |
-| EX-042 | Checkpoint v2 .needs-rebuild self-heal | `05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md` | Checkpoint lifecycle |
+| EX-037 | Checkpoint v2 file-snapshot round-trip | `05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Sits with the existing checkpoint block (`EX-015`..`EX-018`) |
+| EX-038 | Post-insert enrichment lifecycle (schema v30) | `04--maintenance/post-insert-enrichment-lifecycle-v30.md` | Maintenance/index-time behavior |
+| EX-039 | index_scan phased-async refinements | `04--maintenance/index-scan-phased-async-refinements.md` | Extends `EX-014` (memory_index_scan) |
+| EX-040 | MCP front-proxy reconnect / SPECKIT_BACKEND_ONLY / -32002 vs -32001 | `14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Runtime/pipeline infrastructure |
+| EX-041 | sk-git worktree convention | `16--tooling-and-scripts/sk-git-worktree-convention.md` | Tooling/scripts |
+| EX-042 | Checkpoint v2 .needs-rebuild self-heal | `05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Checkpoint lifecycle |
 
 ### Coverage delivered
 

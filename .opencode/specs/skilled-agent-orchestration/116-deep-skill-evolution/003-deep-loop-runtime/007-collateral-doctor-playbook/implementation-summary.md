@@ -20,7 +20,7 @@ _memory:
       - ".opencode/commands/doctor.md"
       - ".opencode/commands/doctor/_routes.yaml"
       - ".opencode/commands/doctor/update.md"
-      - ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md"
     session_dedup:
       fingerprint: "sha256:1180061180061180061180061180061180061180061180061180061180060004"
       session_id: "118-006-impl-summary-scaffold"
@@ -68,7 +68,7 @@ node .opencode/skills/deep-loop-runtime/scripts/<status|query|upsert|convergence
 | `.opencode/commands/doctor.md` | 340 | +4 / -4 | cross-consumer | Removed deleted deep-loop MCP tool IDs from command frontmatter, added route-manifest script invocation awareness, and moved the deep-loop DB location to the runtime skill storage path. |
 | `.opencode/commands/doctor/_routes.yaml` | 202 | +7 / -6 | cross-consumer | Replaced the deep-loop route's deleted MCP tool IDs with `mcp_tools: []` plus schema-compatible `script_invocations` entries for status, query, upsert, and convergence. |
 | `.opencode/commands/doctor/update.md` | 380 | +4 / -4 | cross-consumer | Removed deleted deep-loop MCP tool IDs from allowed tools and updated `/doctor:update` deep-loop status, mutation, gold-battery, and DB-boundary references to runtime scripts/storage. |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` | 65 | +6 / -6 | cross-consumer | Updated the playbook scenario to assert direct `convergence.cjs` calls before stop voting, with current YAML line anchors. |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` | 65 | +6 / -6 | cross-consumer | Updated the playbook scenario to assert direct `convergence.cjs` calls before stop voting, with current YAML line anchors. |
 
 <!-- /ANCHOR:what-built -->
 ---
@@ -177,6 +177,6 @@ Files (explicit paths for `git add`):
 .opencode/commands/doctor.md
 .opencode/commands/doctor/_routes.yaml
 .opencode/commands/doctor/update.md
-.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md
+.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md
 .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook/implementation-summary.md
 ```

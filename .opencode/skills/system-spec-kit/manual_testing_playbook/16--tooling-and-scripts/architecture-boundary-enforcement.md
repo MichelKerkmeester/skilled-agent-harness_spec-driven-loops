@@ -59,7 +59,7 @@ Inspect `scripts/evals/check-architecture-boundaries.ts` import parsing, wrapper
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/205-architecture-boundary-enforcement.md](../../feature_catalog/16--tooling-and-scripts/205-architecture-boundary-enforcement.md)
+- Feature catalog: [16--tooling-and-scripts/architecture-boundary-enforcement.md](../../feature_catalog/16--tooling-and-scripts/architecture-boundary-enforcement.md)
 
 ---
 

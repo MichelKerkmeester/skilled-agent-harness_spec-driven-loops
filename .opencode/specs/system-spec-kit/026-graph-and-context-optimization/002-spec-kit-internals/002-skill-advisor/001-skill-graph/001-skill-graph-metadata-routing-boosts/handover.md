@@ -133,7 +133,7 @@ _memory:
 | `.opencode/skills/skill-advisor/` | Skill folder (renamed from scripts/) |
 | `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_snippet_template.md` | Playbook template |
 | `.opencode/skills/sk-doc/assets/documentation/feature_catalog/feature_catalog_snippet_template.md` | Catalog template |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | Reference playbook example |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md` | Reference playbook example |
 | `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/01-unified-context-retrieval-memorycontext.md` | Reference catalog example |
 | `.opencode/skills/skill-advisor/manual_testing_playbook/01--routing-accuracy/001-git-routing.md` | Already-aligned playbook example |
 

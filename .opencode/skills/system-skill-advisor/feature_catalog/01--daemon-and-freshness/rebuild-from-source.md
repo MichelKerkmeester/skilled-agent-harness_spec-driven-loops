@@ -34,7 +34,7 @@ Ensure the advisor never gets stuck in an unrecoverable state when SQLite storag
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/daemon-freshness-foundation.vitest.ts` | Automated test | rebuild trigger paths |
-| `Playbook scenario [AU-005](../../manual_testing_playbook/05--auto-update-daemon/026-rebuild-from-source.md) and [OP-003](../../manual_testing_playbook/04--operator-h5/021-unavailable-daemon.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AU-005](../../manual_testing_playbook/05--auto-update-daemon/rebuild-from-source.md) and [OP-003](../../manual_testing_playbook/04--operator-h5/unavailable-daemon.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

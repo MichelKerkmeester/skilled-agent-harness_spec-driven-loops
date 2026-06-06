@@ -55,7 +55,7 @@ The fix introduces an `effectiveDepth` gate inside the blast_radius branch that 
 |------|--------|--------------|
 | `.opencode/skills/system-code-graph/mcp_server/handlers/query.ts` | Modified | Added `effectiveDepth` gate in the blast_radius branch. All six in-branch depth references routed through it. |
 | `.opencode/skills/system-code-graph/mcp_server/tests/code-graph-query-handler.vitest.ts` | Modified | Four multi-hop tests updated to pass `includeTransitive:true`. New gating test added for default depth-1 vs flag depth-2 behavior. |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md` | Modified | Pass criteria updated to reflect corrected blast_radius contract. |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md` | Modified | Pass criteria updated to reflect corrected blast_radius contract. |
 
 ### Follow-Ups
 

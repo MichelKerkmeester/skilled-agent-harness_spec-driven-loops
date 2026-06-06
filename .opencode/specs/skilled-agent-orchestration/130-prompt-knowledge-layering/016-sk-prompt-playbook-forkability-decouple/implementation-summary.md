@@ -126,6 +126,6 @@ docs as anchors. Verification: a token grep returns 0 for `sk-prompt-small-model
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. **Filename slug retained.** `023-cli-card-five-question-fast-path.md` keeps its card-era slug; only the title and content were reframed. Renaming was skipped to avoid catalog-link churn.
+1. **Filename slug retained.** `cli-card-five-question-fast-path.md` keeps its card-era slug; only the title and content were reframed. Renaming was skipped to avoid catalog-link churn.
 2. **Hub has no playbook.** The CLI card's own fast-path behavior is no longer tested anywhere; if that coverage is wanted, the hub (`sk-prompt-small-model`) needs its own playbook -- a separate follow-up, out of this phase's scope.
 <!-- /ANCHOR:limitations -->

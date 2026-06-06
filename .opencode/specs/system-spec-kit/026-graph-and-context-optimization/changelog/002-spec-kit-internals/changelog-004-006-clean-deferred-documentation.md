@@ -54,9 +54,9 @@ The documentation quality refactor phases 002 through 005 deferred a set of find
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modified | Converted 3 plain-text refs to markdown links with status notes |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/007-skill-graph-status.md` | Modified | Added SOURCE FILES section listing source and test files |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/008-skill-graph-query.md` | Modified | Added SOURCE FILES section listing source and test files |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md` | Modified | Added SOURCE FILES section listing source and test files |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md` | Modified | Added SOURCE FILES section listing source and test files |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md` | Modified | Added SOURCE FILES section listing source and test files |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md` | Modified | Added SOURCE FILES section listing source and test files |
 | ~33 .md files across `feature_catalog/`, `manual_testing_playbook/`, `hooks/`, `mcp_server/`, `references/`, `INSTALL_GUIDE.md` and `SKILL.md` | Modified | Bulk Oxford comma sweep, 943 instances to zero |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json` | Modified | Appended 006 to `children_ids[]` and advanced `last_active_child_id` |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/spec.md` | Modified | Added 006 row to the phase documentation map |

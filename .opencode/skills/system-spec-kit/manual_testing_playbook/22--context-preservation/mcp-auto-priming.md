@@ -143,7 +143,7 @@ Check `hooks/memory-surface.ts` session-scoped priming set and session identity 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/303-mcp-auto-priming.md](../../feature_catalog/22--context-preservation/303-mcp-auto-priming.md)
+- Feature catalog: [22--context-preservation/mcp-auto-priming.md](../../feature_catalog/22--context-preservation/mcp-auto-priming.md)
 
 ---
 

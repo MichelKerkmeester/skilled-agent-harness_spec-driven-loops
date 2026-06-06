@@ -42,8 +42,8 @@ The dashboard is explicitly auto-generated and read-only. If generation fails, t
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md` | Manual scenario | Verifies dashboard generation after each iteration. |
-| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms blocked-stop and reducer output make it into status summaries. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md` | Manual scenario | Verifies dashboard generation after each iteration. |
+| `manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Confirms blocked-stop and reducer output make it into status summaries. |
 
 ---
 

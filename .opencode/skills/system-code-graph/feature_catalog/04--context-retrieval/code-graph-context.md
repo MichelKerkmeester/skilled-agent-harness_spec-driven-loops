@@ -56,4 +56,4 @@ Related references:
 
 - [02-context-handler.md](./context-handler.md)
 - [../01--read-path-freshness/ensure-code-graph-ready.md](../01--read-path-freshness/ensure-code-graph-ready.md)
-- [../../manual_testing_playbook/04--context-retrieval/008-code-graph-context-readiness-block.md](../../manual_testing_playbook/04--context-retrieval/008-code-graph-context-readiness-block.md)
+- [../../manual_testing_playbook/04--context-retrieval/code-graph-context-readiness-block.md](../../manual_testing_playbook/04--context-retrieval/code-graph-context-readiness-block.md)

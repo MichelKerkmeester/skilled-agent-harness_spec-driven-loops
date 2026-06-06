@@ -42,9 +42,9 @@ Traceability is not marked `requiredForSeverityCoverage` in the contract, but it
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises protocol execution and misalignment reporting. |
-| `manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md` | Manual scenario | Verifies required protocol coverage participates in the stop vote. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms traceability status is preserved in the final report. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises protocol execution and misalignment reporting. |
+| `manual_testing_playbook/04--convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies required protocol coverage participates in the stop vote. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms traceability status is preserved in the final report. |
 
 ---
 

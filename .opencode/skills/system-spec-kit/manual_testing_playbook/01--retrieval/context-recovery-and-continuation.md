@@ -55,7 +55,7 @@ verify `memory_context` resume mode routes correctly; broaden anchors on fallbac
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/001-unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md)
+- Feature catalog: [01--retrieval/unified-context-retrieval-memorycontext.md](../../feature_catalog/01--retrieval/unified-context-retrieval-memorycontext.md)
 
 ---
 

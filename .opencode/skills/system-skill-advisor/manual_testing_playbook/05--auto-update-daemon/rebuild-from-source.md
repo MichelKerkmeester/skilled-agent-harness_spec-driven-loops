@@ -74,7 +74,7 @@ skill_graph_scan({})
 
 - Scenario [OP-003](../04--operator-h5/unavailable-daemon.md), operator recovery flow.
 - Scenario [AU-004](./generation-publication.md), generation publication after rebuild.
-- Feature [`01--daemon-and-freshness/006-rebuild-from-source.md`](../../feature_catalog/01--daemon-and-freshness/006-rebuild-from-source.md).
+- Feature [`01--daemon-and-freshness/rebuild-from-source.md`](../../feature_catalog/01--daemon-and-freshness/rebuild-from-source.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/freshness/rebuild-from-source.ts`.
 
 ---

@@ -246,7 +246,7 @@ The MCP front-proxy uses two JSON-RPC error codes with very different semantics.
 
 ### Implementation
 
-**What changes**: `14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md` states both codes with their semantics, citing `launcher-session-proxy.cjs` lines 18-26 and 617-620.
+**What changes**: `14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` states both codes with their semantics, citing `launcher-session-proxy.cjs` lines 18-26 and 617-620.
 
 **How to roll back**: Revert the feature file; no shared state.
 

@@ -44,7 +44,7 @@ The unsafe-command grep returned 47 matches, but all are legitimate:
 
 - **Security guidance**: The deep-review prompt pack template explicitly BANS dangerous operations (<ref_file file=".opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl" line="67" />): "BANNED OPERATIONS (NEVER execute against any path): `rm`, `rm -rf`, `git rm`, `mv`, `sed -i`...". This is security guidance, not an unsafe example.
 
-- **Test scenarios**: Manual testing playbook scenarios use `rm -rf /tmp/cp-XXX-sandbox` to reset test sandboxes between runs (<ref_file file=".opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/047-spec-fence-writeback.md" line="46" />, <ref_file file=".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md" line="46" />). These are clearly test infrastructure, not instructions.
+- **Test scenarios**: Manual testing playbook scenarios use `rm -rf /tmp/cp-XXX-sandbox` to reset test sandboxes between runs (<ref_file file=".opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/spec-fence-writeback.md" line="46" />, <ref_file file=".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/three-artifact-iteration-contract.md" line="46" />). These are clearly test infrastructure, not instructions.
 
 - **No `curl | sh` patterns**: No matches for pipe-to-shell execution patterns.
 
@@ -72,7 +72,7 @@ The host/path grep returned 119 matches, but all are legitimate:
 
 The permission grep returned 500+ matches, but all are legitimate:
 
-- **Test scenario flags**: `--allow-all-tools` appears in manual testing playbook examples (<ref_file file=".opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/047-spec-fence-writeback.md" line="74" />, <ref_file file=".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/053-three-artifact-iteration-contract.md" line="53" />) for copilot test commands. These are clearly test infrastructure, not recommended defaults for production use.
+- **Test scenario flags**: `--allow-all-tools` appears in manual testing playbook examples (<ref_file file=".opencode/skills/deep-research/manual_testing_playbook/07--command-flow-stress-tests/spec-fence-writeback.md" line="74" />, <ref_file file=".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/three-artifact-iteration-contract.md" line="53" />) for copilot test commands. These are clearly test infrastructure, not recommended defaults for production use.
 
 - **Wildcards in documentation**: Asterisks appear in glob patterns (`*.md`, `**/*.md`), file descriptions, and structural diagrams - not as permission wildcards.
 

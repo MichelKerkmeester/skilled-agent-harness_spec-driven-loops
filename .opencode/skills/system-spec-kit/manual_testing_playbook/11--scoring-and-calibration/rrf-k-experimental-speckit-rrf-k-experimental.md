@@ -60,8 +60,8 @@ Verify isKExperimentalEnabled() → Confirm flag is not forced off → Check JUD
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/121-rrf-k-experimental.md](../../feature_catalog/11--scoring-and-calibration/121-rrf-k-experimental.md)
-- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
+- Feature catalog: [11--scoring-and-calibration/rrf-k-experimental.md](../../feature_catalog/11--scoring-and-calibration/rrf-k-experimental.md)
+- Feature flag reference: [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/eval/k-value-analysis.ts`
 
 ---

@@ -65,7 +65,7 @@ Inspect `mcp_server/lib/search/entity-linker.ts` for noun-phrase extraction and 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/132-graph-concept-routing.md](../../feature_catalog/12--query-intelligence/132-graph-concept-routing.md)
+- Feature catalog: [12--query-intelligence/graph-concept-routing.md](../../feature_catalog/12--query-intelligence/graph-concept-routing.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/entity-linker.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage1-candidate-gen.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/concept-routing.vitest.ts`
 

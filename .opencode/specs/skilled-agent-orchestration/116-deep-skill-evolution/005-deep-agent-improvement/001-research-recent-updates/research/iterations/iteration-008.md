@@ -47,7 +47,7 @@ focus: "Untouched assets, reference accuracy, multi-runtime sync, and convergenc
 - `references/integration_scanning.md:39`: ".agents mirror | `.agents/agents/{name}.md`"
 - `references/integration_scanning.md:78`: example shows `.agents/agents/{agent-name}.md`
 - `feature_catalog/02--integration-scanning/02-runtime-mirrors.md:20`: "currently checks `.claude/agents/{name}.md`, `.codex/agents/{name}.toml`, and `.agents/agents/{name}.md`"
-- `manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:45`: failure triage references `.agents/agents/`
+- `manual_testing_playbook/01--integration-scanner/scan-known-agent.md:45`: failure triage references `.agents/agents/`
 
 **Root Cause**: Documentation drift after mirror template changes. The code was updated to use `.gemini/agents/` (correct path), but reference docs and test playbooks were not synchronized.
 
@@ -60,7 +60,7 @@ focus: "Untouched assets, reference accuracy, multi-runtime sync, and convergenc
 1. Update `references/integration_scanning.md` table to show `.gemini/agents/{name}.md` instead of `.agents/agents/{name}.md`
 2. Update example output in same file
 3. Update `feature_catalog/02--integration-scanning/02-runtime-mirrors.md` to match actual code
-4. Update `manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md` failure triage to reference `.gemini/agents/`
+4. Update `manual_testing_playbook/01--integration-scanner/scan-known-agent.md` failure triage to reference `.gemini/agents/`
 
 **Severity**: P0 — Documentation actively misleads operators and test scenarios reference non-existent paths.
 
@@ -140,7 +140,7 @@ focus: "Untouched assets, reference accuracy, multi-runtime sync, and convergenc
 - ✅ `02-dynamic-profiling.md` — profiling validated
 
 ### Manual Testing Playbook (33 scenarios)
-- ✅ `001-scan-known-agent.md` — found reference to non-existent path (DAI-021)
+- ✅ `scan-known-agent.md` — found reference to non-existent path (DAI-021)
 - ✅ Directory structure validated — confirmed `.agents/agents/` does not exist at root
 
 ---

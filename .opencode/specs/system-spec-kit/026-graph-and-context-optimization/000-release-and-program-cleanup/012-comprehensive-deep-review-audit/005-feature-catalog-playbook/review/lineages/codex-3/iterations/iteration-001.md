@@ -23,7 +23,7 @@ Category: catalog-code-traceability
 Finding class: stale-measured-coverage  
 Content hash: `728a57fbb9e3ec4b`
 
-The catalog entry claims measured audit coverage at HEAD is approximately 69%, with `192` of `280` non-test TypeScript files under `mcp_server/` and `shared/` annotated. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26]
+The catalog entry claims measured audit coverage at HEAD is approximately 69%, with `192` of `280` non-test TypeScript files under `mcp_server/` and `shared/` annotated. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26]
 
 The current sweep found `990` non-test `.ts` files under those same roots and only `195` files with `// Feature catalog:` comments, or `19.70%`. A representative unannotated public API file is `mcp_server/api/search.ts`, which has a module header and public API comments but no feature-catalog annotation in its header block. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/api/search.ts:1]
 
@@ -38,9 +38,9 @@ Category: playbook-capability
 Finding class: scope-under-sampling  
 Content hash: `2973966acd9bee44`
 
-The catalog claim explicitly covers `mcp_server/` and `shared/`. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26]
+The catalog claim explicitly covers `mcp_server/` and `shared/`. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26]
 
-Scenario 135 tells the operator to run each feature grep only under `.opencode/skills/system-spec-kit/mcp_server/`. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md:38]
+Scenario 135 tells the operator to run each feature grep only under `.opencode/skills/system-spec-kit/mcp_server/`. [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md:38]
 
 This misses real annotated shared files such as `shared/embeddings.ts`. [SOURCE: .opencode/skills/system-spec-kit/shared/embeddings.ts:4]
 

@@ -165,15 +165,15 @@ This category validates native mcp tools scenarios `NC-001..NC-009`.
 
 | ID | Scenario | File |
 |---|---|---|
-| NC-001 | Native advisor_recommend Happy Path | [001-native-recommend-happy-path.md](01--native-mcp-tools/native-recommend-happy-path.md) |
-| NC-002 | Native advisor_status Transitions | [002-native-status-transitions.md](01--native-mcp-tools/native-status-transitions.md) |
-| NC-003 | Native advisor_validate Slice Bundle | [003-native-validate-slices.md](01--native-mcp-tools/native-validate-slices.md) |
-| NC-004 | Ambiguous Brief Rendering | [004-ambiguous-brief-rendering.md](01--native-mcp-tools/ambiguous-brief-rendering.md) |
-| NC-005 | Lifecycle Redirect Metadata | [005-lifecycle-redirect-metadata.md](01--native-mcp-tools/lifecycle-redirect-metadata.md) |
-| NC-006 | Advisor Status and Rebuild Separation | [006-advisor-status-rebuild-separation.md](01--native-mcp-tools/advisor-status-rebuild-separation.md) |
-| NC-007 | Skill Graph Status | [007-skill-graph-status.md](01--native-mcp-tools/skill-graph-status.md) |
-| NC-008 | Skill Graph Query | [008-skill-graph-query.md](01--native-mcp-tools/skill-graph-query.md) |
-| NC-009 | Skill Graph Validate | [009-skill-graph-validate.md](01--native-mcp-tools/skill-graph-validate.md) |
+| NC-001 | Native advisor_recommend Happy Path | [native-recommend-happy-path.md](01--native-mcp-tools/native-recommend-happy-path.md) |
+| NC-002 | Native advisor_status Transitions | [native-status-transitions.md](01--native-mcp-tools/native-status-transitions.md) |
+| NC-003 | Native advisor_validate Slice Bundle | [native-validate-slices.md](01--native-mcp-tools/native-validate-slices.md) |
+| NC-004 | Ambiguous Brief Rendering | [ambiguous-brief-rendering.md](01--native-mcp-tools/ambiguous-brief-rendering.md) |
+| NC-005 | Lifecycle Redirect Metadata | [lifecycle-redirect-metadata.md](01--native-mcp-tools/lifecycle-redirect-metadata.md) |
+| NC-006 | Advisor Status and Rebuild Separation | [advisor-status-rebuild-separation.md](01--native-mcp-tools/advisor-status-rebuild-separation.md) |
+| NC-007 | Skill Graph Status | [skill-graph-status.md](01--native-mcp-tools/skill-graph-status.md) |
+| NC-008 | Skill Graph Query | [skill-graph-query.md](01--native-mcp-tools/skill-graph-query.md) |
+| NC-009 | Skill Graph Validate | [skill-graph-validate.md](01--native-mcp-tools/skill-graph-validate.md) |
 
 ---
 

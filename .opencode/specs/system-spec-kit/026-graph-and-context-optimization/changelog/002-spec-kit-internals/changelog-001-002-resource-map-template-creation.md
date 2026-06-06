@@ -29,8 +29,8 @@ This phase promoted that shape to a first-class optional cross-cutting template.
 ### Added
 
 - New template file `templates/resource-map.md` with frontmatter, Summary block with count placeholders, Action/Status vocabulary note, plus ten category sections: READMEs, Documents, Commands, Agents, Skills, Specs, Scripts, Tests, Config, Meta.
-- Feature catalog entry `feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` (now at `22--context-preservation/311-resource-map-template.md` after later renaming).
-- Manual testing playbook entry `manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` (now at `22--context-preservation/336-resource-map-template.md` after later renaming).
+- Feature catalog entry `feature_catalog/22--context-preservation-and-code-graph/25-resource-map-template.md` (now at `22--context-preservation/resource-map-template.md` after later renaming).
+- Manual testing playbook entry `manual_testing_playbook/22--context-preservation-and-code-graph/270-resource-map-template.md` (now at `22--context-preservation/resource-map-template.md` after later renaming).
 
 ### Changed
 

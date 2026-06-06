@@ -6,7 +6,7 @@ Focus: catalog traceability claims versus observed source coverage.
 
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md`
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md`
 - `.opencode/skills/system-spec-kit/mcp_server/api/eval.ts`
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/index.ts`
 
@@ -16,7 +16,7 @@ Focus: catalog traceability claims versus observed source coverage.
 
 The root catalog says feature catalog code references embed traceability comments in every source file, and that each file declares the catalog features it implements. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946]
 
-The detailed feature page narrows that to a measured partial convention: 192 of 280 non-test TypeScript files at the time of that audit, with pure utility, type, and barrel files treated as exemptions. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26]
+The detailed feature page narrows that to a measured partial convention: 192 of 280 non-test TypeScript files at the time of that audit, with pure utility, type, and barrel files treated as exemptions. [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26]
 
 A sampled current source file starts with MODULE metadata and exports implementation API without a feature annotation in the opened header block. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/api/eval.ts:1]
 
@@ -31,7 +31,7 @@ findingId: F001
 claim: The root feature catalog overstates annotation coverage as universal while observed and detailed evidence show partial coverage.
 evidenceRefs:
   - .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946
-  - .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26
+  - .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26
   - .opencode/skills/system-spec-kit/mcp_server/api/eval.ts:1
 counterevidenceSought: Checked the detailed feature page and representative annotated files.
 alternativeExplanation: Some unannotated files may be intentional exemptions, but the universal root sentence omits that qualification.

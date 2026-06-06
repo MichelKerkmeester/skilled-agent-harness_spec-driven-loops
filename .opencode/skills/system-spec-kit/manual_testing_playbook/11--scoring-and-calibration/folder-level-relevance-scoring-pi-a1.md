@@ -58,7 +58,7 @@ Verify folder scoring algorithm → Check pre-ranking stage insertion point → 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/105-folder-level-relevance-scoring.md](../../feature_catalog/11--scoring-and-calibration/105-folder-level-relevance-scoring.md)
+- Feature catalog: [11--scoring-and-calibration/folder-level-relevance-scoring.md](../../feature_catalog/11--scoring-and-calibration/folder-level-relevance-scoring.md)
 
 ---
 

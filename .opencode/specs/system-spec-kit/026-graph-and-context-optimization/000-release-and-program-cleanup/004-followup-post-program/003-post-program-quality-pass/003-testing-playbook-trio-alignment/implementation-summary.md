@@ -58,7 +58,7 @@ Skill Advisor now links NC-006:
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` | Created | Native MCP status/rebuild separation test |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` | Created | Native MCP status/rebuild separation test |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root links for IDs 278-282 |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Modified | Root link and count for NC-006 |
 | `discovery-notes.md` | Created | Records actual playbook locations and code_graph gap |

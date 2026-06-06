@@ -6,8 +6,8 @@ I re-audited the remaining Domain 4 seams that were still unclaimed after iterat
 ## Findings
 
 ### Finding R45-001
-- **File:** `AGENTS.md`; `.claude/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/002-confirm-mode-checkpointed-review.md`; `.opencode/commands/spec_kit/plan.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-planner-first.vitest.ts`
-- **Lines:** `AGENTS.md:182-186`; `002-confirm-mode-checkpointed-review.md:26-32`; `plan.md:86-89`; `memory-save-planner-first.vitest.ts:12-214`
+- **File:** `AGENTS.md`; `.claude/skills/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-review.md`; `.opencode/commands/spec_kit/plan.md`; `.opencode/skills/system-spec-kit/mcp_server/tests/memory-save-planner-first.vitest.ts`
+- **Lines:** `AGENTS.md:182-186`; `confirm-mode-checkpointed-review.md:26-32`; `plan.md:86-89`; `memory-save-planner-first.vitest.ts:12-214`
 - **Severity:** P2
 - **Description:** Gate 3's trigger list is overbroad enough to classify read-only review/research prompts as file-modifying work. The list treats `analyze`, `decompose`, and `phase` as hard-block triggers for the spec-folder question, so prompts that merely discuss lifecycle phases or validation can trip setup even when they request no file mutation.
 - **Evidence:** `AGENTS.md` says Gate 3 fires on the literal trigger list `... configure, analyze, decompose, phase ...` before any analysis or tool calls. A shipped manual-testing scenario for `/deep:start-review-loop:confirm` is purely read-only, yet its prompt asks the agent to confirm that approval gates exist at each `phase transition` and return a pass/fail verdict. `/spec_kit:plan` explicitly delegates trigger matching to `AGENTS.md`, while the nearby Vitest file exercises planner-response payload serialization only and never tests Gate 3 prompt classification.

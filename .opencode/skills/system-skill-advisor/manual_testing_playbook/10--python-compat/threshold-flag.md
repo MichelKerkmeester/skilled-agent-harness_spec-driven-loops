@@ -71,7 +71,7 @@ python3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.p
 
 - Scenario [PC-002](./force-native-force-local.md), force toggles.
 - Scenario [PC-004](./regression-suite.md), regression suite coverage of threshold behavior.
-- Feature [`08--python-compat/038-cli-shim.md`](../../feature_catalog/08--python-compat/038-cli-shim.md).
+- Feature [`08--python-compat/cli-shim.md`](../../feature_catalog/08--python-compat/cli-shim.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py`.
 
 ---

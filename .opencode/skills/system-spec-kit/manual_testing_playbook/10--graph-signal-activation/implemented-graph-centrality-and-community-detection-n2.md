@@ -58,7 +58,7 @@ Verify N2 migration completed; check feature flag state; inspect graph scoring p
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/090-community-detection.md](../../feature_catalog/10--graph-signal-activation/090-community-detection.md)
+- Feature catalog: [10--graph-signal-activation/community-detection.md](../../feature_catalog/10--graph-signal-activation/community-detection.md)
 
 ---
 

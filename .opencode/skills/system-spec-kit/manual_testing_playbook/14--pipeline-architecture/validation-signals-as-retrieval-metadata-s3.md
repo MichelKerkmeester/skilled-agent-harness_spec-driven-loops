@@ -58,7 +58,7 @@ Verify multiplier formula → Check bounds clamping → Inspect validation count
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/167-validation-signals-as-retrieval-metadata.md](../../feature_catalog/14--pipeline-architecture/167-validation-signals-as-retrieval-metadata.md)
+- Feature catalog: [14--pipeline-architecture/validation-signals-as-retrieval-metadata.md](../../feature_catalog/14--pipeline-architecture/validation-signals-as-retrieval-metadata.md)
 
 ---
 

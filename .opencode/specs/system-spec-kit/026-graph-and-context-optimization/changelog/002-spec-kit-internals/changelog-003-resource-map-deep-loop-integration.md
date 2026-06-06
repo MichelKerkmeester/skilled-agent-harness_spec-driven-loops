@@ -79,7 +79,7 @@ This phase built a shared evidence extractor under `scripts/resource-map/extract
 | `.opencode/skills/sk-deep-research/references/convergence.md` | Modified: notes synthesis-time emission step. |
 | `.opencode/skills/sk-deep-review/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Review-side catalog entry. |
 | `.opencode/skills/sk-deep-research/feature_catalog/01--loop-lifecycle/06-resource-map-emission.md` (NEW) | Research-side catalog entry. |
-| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` (NEW) | Review-side playbook scenario. |
+| `.opencode/skills/sk-deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` (NEW) | Review-side playbook scenario. |
 | `.opencode/skills/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/027-resource-map-emission.md` (NEW) | Research-side playbook scenario. |
 
 Commits: `083f74c814` (test playbooks), `79ea13374c` (bulk WIP commit).

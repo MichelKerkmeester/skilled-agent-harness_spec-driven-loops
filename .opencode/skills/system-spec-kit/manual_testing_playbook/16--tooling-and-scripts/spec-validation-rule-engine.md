@@ -61,7 +61,7 @@ Inspect `scripts/spec/validate.sh`, `.speckit.yaml` rule ordering, `scripts/vali
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/227-spec-validation-rule-engine.md](../../feature_catalog/16--tooling-and-scripts/227-spec-validation-rule-engine.md)
+- Feature catalog: [16--tooling-and-scripts/spec-validation-rule-engine.md](../../feature_catalog/16--tooling-and-scripts/spec-validation-rule-engine.md)
 
 ---
 

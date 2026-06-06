@@ -49,7 +49,7 @@ Verify cupt provides a clear error when a list has no closed status defined is r
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/03--cupt-task-details/027-status-schema.md` | Feature catalog source |
+| `../feature_catalog/03--cupt-task-details/status-schema.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

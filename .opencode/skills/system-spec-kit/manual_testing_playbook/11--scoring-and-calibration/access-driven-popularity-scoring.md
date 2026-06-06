@@ -60,7 +60,7 @@ Verify repeated retrievals hit the same target spec-doc record -> Inspect accumu
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/115-access-driven-popularity-scoring.md](../../feature_catalog/11--scoring-and-calibration/115-access-driven-popularity-scoring.md)
+- Feature catalog: [11--scoring-and-calibration/access-driven-popularity-scoring.md](../../feature_catalog/11--scoring-and-calibration/access-driven-popularity-scoring.md)
 
 ---
 

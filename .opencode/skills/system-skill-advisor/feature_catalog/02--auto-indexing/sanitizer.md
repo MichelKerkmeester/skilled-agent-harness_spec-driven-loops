@@ -43,7 +43,7 @@ Unsanitized labels never leak to readers.
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-privacy.vitest.ts` | Automated test | boundary sanitization |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-recommend.vitest.ts` | Automated test | envelope sanitization |
-| `Playbook scenario [AI-002](../../manual_testing_playbook/06--auto-indexing/028-sanitizer-boundaries.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-002](../../manual_testing_playbook/06--auto-indexing/sanitizer-boundaries.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

@@ -58,7 +58,7 @@ Check fan-effect divisor formula → Verify degree count accuracy → Inspect co
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/058-co-activation-fan-effect-divisor.md](../../feature_catalog/08--bug-fixes-and-data-integrity/058-co-activation-fan-effect-divisor.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md](../../feature_catalog/08--bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md)
 
 ---
 

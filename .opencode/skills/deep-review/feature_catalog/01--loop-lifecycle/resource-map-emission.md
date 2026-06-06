@@ -46,7 +46,7 @@ The emitter is enabled by default through `config.resource_map.emit = true`. Ope
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts` | Vitest | Covers review-shape normalization, category classification, and deterministic output. |
-| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
+| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | Manual playbook | Verifies synthesis emits the review resource map and that opt-out skips cleanly. |
 
 ---
 

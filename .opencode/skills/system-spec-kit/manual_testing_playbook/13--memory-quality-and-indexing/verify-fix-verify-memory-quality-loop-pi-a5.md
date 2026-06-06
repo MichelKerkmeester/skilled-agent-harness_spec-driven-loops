@@ -58,7 +58,7 @@ Verify quality check criteria → Check max retry configuration → Inspect reje
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/134-verify-fix-verify-memory-quality-loop.md](../../feature_catalog/13--memory-quality-and-indexing/134-verify-fix-verify-memory-quality-loop.md)
+- Feature catalog: [13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md](../../feature_catalog/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md)
 
 ---
 

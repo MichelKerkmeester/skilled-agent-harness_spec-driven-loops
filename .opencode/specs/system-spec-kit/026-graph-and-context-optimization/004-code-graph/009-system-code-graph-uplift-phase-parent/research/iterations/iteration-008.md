@@ -73,9 +73,9 @@ The playbook type in template_rules.json specifies:
 
 **Finding 6: Per-scenario files DO validate as playbook_feature type**
 
-Sampled per-scenario file (`01--read-path-freshness/001-ensure-ready-selective-reindex.md`):
-- Has frontmatter with title, description, trigger_phrases, importance_tier (001-ensure-ready-selective-reindex.md:1-9)
-- Has required sections: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES, SOURCE METADATA (001-ensure-ready-selective-reindex.md:12, 18, 30, 53, 62)
+Sampled per-scenario file (`01--read-path-freshness/ensure-ready-selective-reindex.md`):
+- Has frontmatter with title, description, trigger_phrases, importance_tier (ensure-ready-selective-reindex.md:1-9)
+- Has required sections: OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, SOURCE FILES, SOURCE METADATA (ensure-ready-selective-reindex.md:12, 18, 30, 53, 62)
 - Has numbered H2 sections matching the playbook_feature contract
 
 The playbook_feature type in template_rules.json specifies:

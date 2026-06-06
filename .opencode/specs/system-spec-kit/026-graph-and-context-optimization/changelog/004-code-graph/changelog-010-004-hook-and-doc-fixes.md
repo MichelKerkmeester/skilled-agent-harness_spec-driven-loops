@@ -32,10 +32,10 @@ The hook registration was corrected to point at `.opencode/skills/system-spec-ki
 ### Changed
 
 - `.devin/hooks.v1.json` SessionStart `command` path now points at the real compiled system-spec-kit artifact instead of a non-existent system-code-graph path.
-- `020-typescript-build-and-entry-point.md` tool count corrected from 11 to 8 (three occurrences).
-- `011-tool-call-shape-validation.md` stale `code_graph_verify` sub-check replaced with `code_graph_apply({})` missing-`operation` check (the `rating` field does not exist on `verify`).
+- `typescript-build-and-entry-point.md` tool count corrected from 11 to 8 (three occurrences).
+- `tool-call-shape-validation.md` stale `code_graph_verify` sub-check replaced with `code_graph_apply({})` missing-`operation` check (the `rating` field does not exist on `verify`).
 - `manual_testing_playbook.md` scenario 021 index row relabeled to "root dist cleanup verification" to match actual content.
-- `010-deep-loop-graph-upsert-conditional.md` cited YAML line ranges updated from 817-836/841-863 to 854-865/1032-1051.
+- `deep-loop-graph-upsert-conditional.md` cited YAML line ranges updated from 817-836/841-863 to 854-865/1032-1051.
 
 ### Fixed
 
@@ -59,9 +59,9 @@ The hook registration was corrected to point at `.opencode/skills/system-spec-ki
 | File | What changed |
 |------|--------------|
 | `.devin/hooks.v1.json` | SessionStart `command` path corrected to system-spec-kit compiled artifact |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/020-typescript-build-and-entry-point.md` | Tool count 11 changed to 8 in three places |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/011-tool-call-shape-validation.md` | Stale `verify` sub-check replaced with `apply-operation` missing-field check |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md` | Cited YAML line ranges updated to current positions |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure/typescript-build-and-entry-point.md` | Tool count 11 changed to 8 in three places |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/tool-call-shape-validation.md` | Stale `verify` sub-check replaced with `apply-operation` missing-field check |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-upsert-conditional.md` | Cited YAML line ranges updated to current positions |
 | `.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md` | Scenario 021 index row relabeled to match actual content |
 
 ### Follow-Ups

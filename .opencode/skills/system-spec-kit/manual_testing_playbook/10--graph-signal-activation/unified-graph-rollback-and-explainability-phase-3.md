@@ -61,7 +61,7 @@ Verify `SPECKIT_GRAPH_UNIFIED` propagation into Stage 2 → Inspect `graphContri
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/094-unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../../feature_catalog/10--graph-signal-activation/094-unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md)
+- Feature catalog: [10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../../feature_catalog/10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md)
 
 ---
 

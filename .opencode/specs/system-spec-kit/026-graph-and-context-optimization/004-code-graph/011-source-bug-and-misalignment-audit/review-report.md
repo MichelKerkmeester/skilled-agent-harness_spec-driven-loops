@@ -275,7 +275,7 @@ It fires only for hard-stale. For an explicit destructive op on a fresh/soft-sta
 recoverSqliteCorruption() then runs `moveTriplet(dbDir, quarantineDir)` (recovery-procedures.ts:174) which MOVES the live code-graph.sqlite out of the DB dir. The orchestrator test at apply-orchestrator.vitest.ts:138-156 proves an explicit destructive op (`prune-excludes`) on a `fresh` graph reaches dispatch and commits with no confirm.
 ```
 
-**Why it's wrong:** ARCHITECTURE.md:138 documents all five operations as 'Gated recovery operations' and playbook 023 (023-code-graph-apply-sub-operations.md:50-56, pass row 4) asserts recover-sqlite-corruption 'Refuses without confirm'. In reality a caller passing `operation:'recover-sqlite-corruption'` (or 'rollback-bad-apply') against a healthy/soft-stale graph performs an unconfirmed destructive move of the live DB triplet — data-loss without acknowledgement, contradicting the documented gate.
+**Why it's wrong:** ARCHITECTURE.md:138 documents all five operations as 'Gated recovery operations' and playbook 023 (code-graph-apply-sub-operations.md:50-56, pass row 4) asserts recover-sqlite-corruption 'Refuses without confirm'. In reality a caller passing `operation:'recover-sqlite-corruption'` (or 'rollback-bad-apply') against a healthy/soft-stale graph performs an unconfirmed destructive move of the live DB triplet — data-loss without acknowledgement, contradicting the documented gate.
 
 **Suggested fix:** In dispatchOperation, gate the inherently-destructive ops on `args.confirm === true` regardless of classification state (e.g. add `if ((operation==='recover-sqlite-corruption'||operation==='rollback-bad-apply') && args.confirm!==true) throw new Error('... requires confirm=true')`), or move the confirm check ahead of dispatch for all destructive operations rather than only hard-stale.
 
@@ -796,7 +796,7 @@ SEVERITY: P2 is correct. Pure documentation drift, no runtime/correctness/securi
 
 #### CG-028 · P2 · MISALIGNMENT — Scenario 016 says "Exactly 8 tools" then lists 11 names (3 duplicates), making its pass criteria self-contradictory
 
-- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md:24, 41`
+- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md:24, 41`
 - **Source:** workflow:doc-code-misalignment
 
 **Evidence**
@@ -809,7 +809,7 @@ Line 24: "Expected signals: Exactly 8 tools: code_graph_scan, code_graph_query, 
 
 **Suggested fix:** Delete the trailing duplicate tokens so the list is the 8 distinct tool IDs (code_graph_scan, code_graph_query, code_graph_classify_query_intent, code_graph_status, code_graph_context, code_graph_verify, code_graph_apply, detect_changes) at both lines 24 and 41.
 
-**Verification:** Quotes match verbatim. File /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md line 24 and line 41 both read "Exactly 8 tools:" then enumerate 11 tokens where code_graph_scan, code_graph_status, and code_graph_verify each appear twice (verified via tokenize+uniq: 11 total, 8 distinct). Line 26 pass/fail says "PASS if 8 tools with matching names." The contradiction is genuine: an operator matching tools/list against the 11 listed names cannot also confirm exactly 8. The authoritative manifest mcp_server/tool-schemas.ts defines exactly 8 distinct tools (code_graph_scan, code_graph_query, code_graph_status, code_graph_context, code_graph_classify_query_intent, code_graph_verify, code_graph_apply, detect_changes) — matching the intended 8, so the proposed fix (delete the 3 trailing duplicate tokens at both lines) is correct. Reasoning holds; no guard or context elsewhere resolves it. Severity downgraded P1->P2: this is a manual-test-playbook documentation defect with no runtime/code impact and the correct 8-tool intent is recoverable from the title/objective/description; low blast radius. Still a real, fixable contradiction.
+**Verification:** Quotes match verbatim. File /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md line 24 and line 41 both read "Exactly 8 tools:" then enumerate 11 tokens where code_graph_scan, code_graph_status, and code_graph_verify each appear twice (verified via tokenize+uniq: 11 total, 8 distinct). Line 26 pass/fail says "PASS if 8 tools with matching names." The contradiction is genuine: an operator matching tools/list against the 11 listed names cannot also confirm exactly 8. The authoritative manifest mcp_server/tool-schemas.ts defines exactly 8 distinct tools (code_graph_scan, code_graph_query, code_graph_status, code_graph_context, code_graph_classify_query_intent, code_graph_verify, code_graph_apply, detect_changes) — matching the intended 8, so the proposed fix (delete the 3 trailing duplicate tokens at both lines) is correct. Reasoning holds; no guard or context elsewhere resolves it. Severity downgraded P1->P2: this is a manual-test-playbook documentation defect with no runtime/code impact and the correct 8-tool intent is recoverable from the title/objective/description; low blast radius. Still a real, fixable contradiction.
 
 ---
 
@@ -965,7 +965,7 @@ Severity P2 is correct: observability/metrics-fidelity gap only. The recovered s
 
 #### CG-036 · P2 · MISALIGNMENT — Playbook 023 points at non-existent implementation files lib/apply-mode/{rescan,prune,repair,recovery,rollback}.ts
 
-- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/023-code-graph-apply-sub-operations.md:81`
+- **Location:** `.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:81`
 - **Source:** workflow:recovery-apply-path
 
 **Evidence**
@@ -994,7 +994,7 @@ There is no `mcp_server/lib/apply-mode/` directory (confirmed by listing). The r
 
 Minor refinement to the proposed fix: prune-excludes classification actually lives in `mcp_server/lib/exclude-rule-classifier.ts` (classifyExcludeRules), so a complete source-map would add that file. The fix's two named targets (apply-orchestrator.ts, recovery-procedures.ts) are the correct core mappings.
 
-File: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/023-code-graph-apply-sub-operations.md:81
+File: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-code-graph/manual_testing_playbook/08--doctor-code-graph/code-graph-apply-sub-operations.md:81
 
 ---
 
@@ -1011,14 +1011,14 @@ if (args.dryRun === true) {
     ...
     return { status: 'dry-run', operation, classification, auditLogPath: logPath, preflight, postflight, message: 'Dry run completed; operation dispatch was skipped.' };
 }
-Dispatch is skipped entirely; the result has no `recovery` field and no baseline/rollback target. Playbook 023 step 5 (023-code-graph-apply-sub-operations.md:66-67) states: 'Expected: dry-run returns the rollback target (the prior baseline) without applying.'
+Dispatch is skipped entirely; the result has no `recovery` field and no baseline/rollback target. Playbook 023 step 5 (code-graph-apply-sub-operations.md:66-67) states: 'Expected: dry-run returns the rollback target (the prior baseline) without applying.'
 ```
 
 **Why it's wrong:** The documented dry-run contract for rollback-bad-apply promises the prior baseline be reported; the code returns only battery results with dispatch skipped, so the rollback target is never computed or surfaced. Contract drift between playbook and implementation.
 
 **Suggested fix:** Either compute and include the would-be rollback target (e.g. findLatestKnownGood) in the dry-run response for rollback-bad-apply, or correct playbook 023 step 5 to state dispatch is fully skipped and no target is returned.
 
-**Verification:** Quote verified verbatim. Code at apply-orchestrator.ts:431-444 matches exactly; playbook quote matches 023-code-graph-apply-sub-operations.md:66-67 ("Expected: dry-run returns the rollback target (the prior baseline) without applying") and pass-criteria row 77. Reasoning holds under full context: the `if (args.dryRun === true)` branch (line 431) runs BEFORE dispatchOperation (line 455) and is fully operation-agnostic — for operation:"rollback-bad-apply" with dryRun:true it returns only {status:'dry-run', operation, classification, auditLogPath, preflight, postflight, message}, with no `recovery`, no `knownGoodDir`, no baseline target. The rollback target (knownGoodDir) is computed exclusively inside rollbackBadApply() at recovery-procedures.ts:264, reached only via the live non-dry-run dispatch path (line 279). So the documented dry-run contract (surface the prior baseline) is never honored. No guard/typed-union elsewhere mitigates this — genuine doc-vs-implementation drift. The proposed fix is feasible: findLatestKnownGood() at recovery-procedures.ts:135-149 is a pure read-only directory scan and could be surfaced in dry-run without any mutation. Severity P2 is correct: this is drift in a MANUAL TESTING PLAYBOOK (not production runtime, not security/correctness) — it would only mislead a manual tester on step 5; no runtime failure or data risk, so not P1. Note: the playbook is already loosely written (step 1 shows status:"dry_run_complete" vs the actual 'dry-run' literal), reinforcing that it was authored against an idealized per-operation dry-run contract the generic short-circuit never implemented.
+**Verification:** Quote verified verbatim. Code at apply-orchestrator.ts:431-444 matches exactly; playbook quote matches code-graph-apply-sub-operations.md:66-67 ("Expected: dry-run returns the rollback target (the prior baseline) without applying") and pass-criteria row 77. Reasoning holds under full context: the `if (args.dryRun === true)` branch (line 431) runs BEFORE dispatchOperation (line 455) and is fully operation-agnostic — for operation:"rollback-bad-apply" with dryRun:true it returns only {status:'dry-run', operation, classification, auditLogPath, preflight, postflight, message}, with no `recovery`, no `knownGoodDir`, no baseline target. The rollback target (knownGoodDir) is computed exclusively inside rollbackBadApply() at recovery-procedures.ts:264, reached only via the live non-dry-run dispatch path (line 279). So the documented dry-run contract (surface the prior baseline) is never honored. No guard/typed-union elsewhere mitigates this — genuine doc-vs-implementation drift. The proposed fix is feasible: findLatestKnownGood() at recovery-procedures.ts:135-149 is a pure read-only directory scan and could be surfaced in dry-run without any mutation. Severity P2 is correct: this is drift in a MANUAL TESTING PLAYBOOK (not production runtime, not security/correctness) — it would only mislead a manual tester on step 5; no runtime failure or data risk, so not P1. Note: the playbook is already loosely written (step 1 shows status:"dry_run_complete" vs the actual 'dry-run' literal), reinforcing that it was authored against an idealized per-operation dry-run contract the generic short-circuit never implemented.
 
 ---
 

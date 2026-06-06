@@ -57,4 +57,4 @@ Auto means "inside the command YAML workflow," not globally scheduled. Empty gra
 Related references:
 
 - [03-deep-loop-graph-upsert.md](./deep-loop-graph-upsert.md)
-- [../../manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md](../../manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md)
+- [../../manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md](../../manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md)

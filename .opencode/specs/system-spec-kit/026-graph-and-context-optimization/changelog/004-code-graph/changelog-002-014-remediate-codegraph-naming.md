@@ -74,7 +74,7 @@ Thirteen system-code-graph docs were edited in a single commit (`bc047a4264`). B
 | `.opencode/skills/system-code-graph/mcp_server/tests/lib/README.md` | Modified | `shared/retired-search-path.ts` reference removed. |
 | `.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/README.md` | Modified | "CCC bridge" prose removed. Ghost `ccc-integration-stress.vitest.ts` removed. |
 | `.opencode/skills/system-code-graph/ARCHITECTURE.md` | Modified | "structural search bridge" subsystem reframed to "Index lifecycle". Diagram and topology comment fixed. False sqlite-vec and semantic-runtime claims removed. |
-| `.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/01-tool-registrations.md` | Modified | Phantom `code_graph_* and detect_changes` tool name removed. (File later renamed to `013-tool-registrations.md` in a subsequent catalog-standards commit.) |
+| `.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/01-tool-registrations.md` | Modified | Phantom `code_graph_* and detect_changes` tool name removed. (File later renamed to `tool-registrations.md` in a subsequent catalog-standards commit.) |
 
 ### Follow-Ups
 

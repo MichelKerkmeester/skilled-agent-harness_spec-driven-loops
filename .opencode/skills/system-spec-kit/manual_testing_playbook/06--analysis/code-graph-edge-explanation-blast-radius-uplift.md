@@ -101,7 +101,7 @@ JSON payloads from steps 2, 3, 4, 6, 7, 9, 10, 12, 13, (14 if reproduced), and 1
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory page and scenario summary |
-| `../../feature_catalog/06--analysis/053-code-graph-edge-explanation-blast-radius-uplift.md` | Feature-catalog source describing the implementation contract |
+| `../../feature_catalog/06--analysis/code-graph-edge-explanation-blast-radius-uplift.md` | Feature-catalog source describing the implementation contract |
 
 ### Implementation And Test Anchors
 

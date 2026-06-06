@@ -55,21 +55,21 @@ Ten verified accuracy defects in the feature catalog and manual testing playbook
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Partial-coverage language and qualified cleanup claim |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md` | Modified | Qualified cleanup-complete claim |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | Modified | Qualified cleanup-complete claim |
 | `.opencode/skills/system-spec-kit/README.md` | Modified | 36-tool to 37-tool references |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts` | Modified | Expected tool count changed to 37 |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | 384 count, root index links and garbled text fix |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-*.md` | Modified | Broken catalog link |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md` | Modified | Broken catalog link |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md` | Modified | Broken catalog link |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md` | Modified | Broken catalog link |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md` | Modified | Broken catalog link |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md` | Modified | Garbled contract fields |
-| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md` | Modified | Stale paths and scenario range |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md` | Modified | Broken catalog link |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md` | Modified | Broken catalog link |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Modified | Broken catalog link |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md` | Modified | Broken catalog link |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Modified | Garbled contract fields |
+| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md` | Modified | Stale paths and scenario range |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Modified | Scenario number range and stale causal-handler paths |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md` | Modified | Verifier path |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md` | Modified | `session_bootstrap` call shape |
-| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md` | Modified | `memory_ingest_start` call shape |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | Modified | Verifier path |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | Modified | `session_bootstrap` call shape |
+| `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md` | Modified | `memory_ingest_start` call shape |
 
 ### Follow-Ups
 

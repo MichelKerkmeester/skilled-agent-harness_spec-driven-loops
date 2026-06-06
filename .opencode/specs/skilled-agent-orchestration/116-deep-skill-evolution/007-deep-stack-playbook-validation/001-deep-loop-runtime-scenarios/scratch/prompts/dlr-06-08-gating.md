@@ -13,18 +13,18 @@ CRITICAL — source-anchor base path: every scenario's SOURCE ANCHORS path (e.g.
 SANDBOX REALITY: vitest/exec may be blocked (permission-mode auto) and deep-loop-runtime has no wired vitest config. Reach each verdict by INSPECTING the implementation source AND the matching test assertions; scenarios permit "Run OR inspect". For the `.cjs` scripts, confirm the documented signals exist in source (e.g. query.cjs: JSON-only stdout, exit 0 valid / exit 3 invalid, DB close in a `finally`).
 
 Scenario files (read each in full; each names its own impl + test anchors):
-  06--coverage-graph/011-coverage-graph-db.md       (DLR-011, lib/coverage-graph/coverage-graph-db.ts)
-  06--coverage-graph/012-coverage-graph-query.md    (DLR-012)
-  06--coverage-graph/013-coverage-graph-signals.md  (DLR-013)
-  07--script-entry-points/014-convergence-script.md (DLR-014, scripts/convergence.cjs)
-  07--script-entry-points/015-upsert-script.md      (DLR-015, scripts/upsert.cjs)
-  07--script-entry-points/016-query-script.md       (DLR-016, scripts/query.cjs) [FOUNDATIONAL]
-  07--script-entry-points/017-status-script.md      (DLR-017, scripts/status.cjs)
-  08--council/018-multi-seat-dispatch.md            (DLR-018, lib/council/multi-seat-dispatch.cjs)
-  08--council/019-round-state-jsonl.md              (DLR-019)
-  08--council/020-adjudicator-verdict-scoring.md    (DLR-020)
-  08--council/021-cost-guards.md                    (DLR-021)
-  08--council/022-session-state-hierarchy.md        (DLR-022)
+  06--coverage-graph/coverage-graph-db.md       (DLR-011, lib/coverage-graph/coverage-graph-db.ts)
+  06--coverage-graph/coverage-graph-query.md    (DLR-012)
+  06--coverage-graph/coverage-graph-signals.md  (DLR-013)
+  07--script-entry-points/convergence-script.md (DLR-014, scripts/convergence.cjs)
+  07--script-entry-points/upsert-script.md      (DLR-015, scripts/upsert.cjs)
+  07--script-entry-points/query-script.md       (DLR-016, scripts/query.cjs) [FOUNDATIONAL]
+  07--script-entry-points/status-script.md      (DLR-017, scripts/status.cjs)
+  08--council/multi-seat-dispatch.md            (DLR-018, lib/council/multi-seat-dispatch.cjs)
+  08--council/round-state-jsonl.md              (DLR-019)
+  08--council/adjudicator-verdict-scoring.md    (DLR-020)
+  08--council/cost-guards.md                    (DLR-021)
+  08--council/session-state-hierarchy.md        (DLR-022)
 (all under .opencode/skills/deep-loop-runtime/manual_testing_playbook/)
 Context budget: treat any `[... truncated N tokens]` marker as an intentional boundary; do not invent omitted content.
 </context>

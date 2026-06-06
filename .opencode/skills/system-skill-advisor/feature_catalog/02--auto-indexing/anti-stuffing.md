@@ -39,7 +39,7 @@ Demoted or rejected entries never reach the scorer, so stuffed fixtures cannot o
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | derived-lane boundary behavior |
-| `Playbook scenario [AI-005](../../manual_testing_playbook/06--auto-indexing/031-anti-stuffing.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-005](../../manual_testing_playbook/06--auto-indexing/anti-stuffing.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

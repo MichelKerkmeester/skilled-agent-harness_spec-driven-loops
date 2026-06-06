@@ -16,7 +16,7 @@ I chose **assets-scoring seam** because it is the highest-value unresolved measu
 - Read current router report: `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.json:18-35`, `.opencode/skills/sk-code/benchmark/router-final/skill-benchmark-report.md:12-23`.
 - Read live reports: `.opencode/skills/sk-code/benchmark/live-final/skill-benchmark-report.json:18-39`, `.opencode/skills/sk-code/benchmark/live-final/skill-benchmark-report.json:317-389`, `.opencode/skills/sk-code/benchmark/live-remediated/skill-benchmark-report.json:18-39`, `.opencode/skills/sk-code/benchmark/live-remediated/skill-benchmark-report.json:306-370`.
 - Read D4 artifact: `.opencode/skills/sk-code/benchmark/live-final/d4-ablation.json:1-28`.
-- Read asset-bearing gold examples: `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/001-webflow-detection.md:29-51`, `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/018-webflow-plus-motion-dev.md:34-58`, `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/004-opencode-typescript.md:27-38`.
+- Read asset-bearing gold examples: `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md:29-51`, `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/webflow-plus-motion-dev.md:34-58`, `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md:27-38`.
 
 ## Findings
 
@@ -26,7 +26,7 @@ I chose **assets-scoring seam** because it is the highest-value unresolved measu
 
 3. Folding `expectedAssets` into current deterministic gold changes D2 honesty, not D3. Computed over 12 non-negative, non-browser current rows: resource-only D2 average = `0.5423`; refs+assets D2 average = `0.4468`; resource-only D3 average = `0.3869`; refs+assets D3 average = `0.3869`. The D3 equality follows directly from the current router’s `assets/` filter (`router-replay.cjs:241-243`) and D3’s formula, which only checks actual routed paths against expected paths (`score-skill-benchmark.cjs:102-118`).
 
-4. The asset omission is still a real usefulness blind spot. SD-001 expects `assets/webflow/patterns/interaction_gate_patterns.js` and says the desired user-visible outcome should cite that gate pattern (`001-webflow-detection.md:43-51`). CS-001 expects `assets/motion_dev/snippets/in_view_reveal.js` and `assets/motion_dev/snippets/cdn_bootstrap.js`, and its pass rule explicitly requires `assets/motion_dev/snippets/in_view_reveal.js` (`018-webflow-plus-motion-dev.md:47-58`). Those are not decorative checklists; they are task-output affordances.
+4. The asset omission is still a real usefulness blind spot. SD-001 expects `assets/webflow/patterns/interaction_gate_patterns.js` and says the desired user-visible outcome should cite that gate pattern (`webflow-detection.md:43-51`). CS-001 expects `assets/motion_dev/snippets/in_view_reveal.js` and `assets/motion_dev/snippets/cdn_bootstrap.js`, and its pass rule explicitly requires `assets/motion_dev/snippets/in_view_reveal.js` (`webflow-plus-motion-dev.md:47-58`). Those are not decorative checklists; they are task-output affordances.
 
 5. Live scoring can penalize useful stated assets as D3 waste. `live-executor.cjs` unions `stated.resources` and `stated.assets` into `observedResources` (`live-executor.cjs:149-162`), while the scorer still compares against expected references only (`score-skill-benchmark.cjs:52-60`, `score-skill-benchmark.cjs:102-118`). Therefore, if the model states an actually useful asset path, current D3 treats it as waste unless the same path is also in `expectedResources`. That is a measurement artifact.
 
@@ -38,7 +38,7 @@ I chose **assets-scoring seam** because it is the highest-value unresolved measu
 
 9. Concrete build lever: split asset gold into a deferred-assets lane instead of merging it into D3. Keep D3 as first-slice reference efficiency because the router contract explicitly defers assets (`smart_routing.md:452-459`). Add `expectedAssets` to report rows as `deferredAssetGold`, score it separately as `assetRecall` or `D4_asset_support`, and feed it into D4 rubrics for scenarios whose pass criteria require snippets/checklists. This distinguishes real D3 gains from “we stopped counting useful assets as waste.”
 
-10. Concrete D4 lever: add an asset-sensitive routine scenario before generalizing. Existing LS-001/LS-002/LS-003 gold already expects language checklist assets alongside exact language refs (`004-opencode-typescript.md:27-38`, `005-opencode-python.md:27-38`, `006-opencode-shell.md:25-36`). A useful third routine D4 scenario should grade what the model does with the checklist constraints, not whether it merely recalls the checklist path.
+10. Concrete D4 lever: add an asset-sensitive routine scenario before generalizing. Existing LS-001/LS-002/LS-003 gold already expects language checklist assets alongside exact language refs (`opencode-typescript.md:27-38`, `opencode-python.md:27-38`, `opencode-shell.md:25-36`). A useful third routine D4 scenario should grade what the model does with the checklist constraints, not whether it merely recalls the checklist path.
 
 ## Implications for D3/D4
 

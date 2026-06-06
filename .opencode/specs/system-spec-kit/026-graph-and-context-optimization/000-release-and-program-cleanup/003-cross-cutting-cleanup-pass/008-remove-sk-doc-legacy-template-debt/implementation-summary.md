@@ -170,7 +170,7 @@ The remediation used the audit report as the playbook, then applied a protected-
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/spec.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/002-phase-parent-generator-pointer-polish/tasks.md` | HVR prose rewrite, em dash cleanup. |
 | G1 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-cleanup/005-review-remediation/009-phase-parent-lean-trio-documentation/003-phase-parent-reference-readme-sync/checklist.md` | HVR prose rewrite, em dash cleanup. |
-| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | Non-spec manual playbook source-file section backfill. |
+| G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-semantic-and-lexical-search-memory-search.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | Non-spec manual playbook source-file section backfill. |
 | G6 | `.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/003-context-save-index-update.md` | Non-spec manual playbook source-file section backfill. |

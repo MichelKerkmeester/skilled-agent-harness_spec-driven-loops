@@ -57,7 +57,7 @@ Retry with valid memoryId/queryId
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/020-validation-feedback-memoryvalidate.md](../../feature_catalog/02--mutation/020-validation-feedback-memoryvalidate.md)
+- Feature catalog: [02--mutation/validation-feedback-memoryvalidate.md](../../feature_catalog/02--mutation/validation-feedback-memoryvalidate.md)
 
 ---
 

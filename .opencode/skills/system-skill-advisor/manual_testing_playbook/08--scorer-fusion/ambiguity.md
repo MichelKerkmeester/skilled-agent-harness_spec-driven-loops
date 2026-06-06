@@ -63,7 +63,7 @@ advisor_recommend({"prompt":"<ambiguous prompt from corpus>","options":{"topK":2
 
 - Scenario [NC-004](../01--native-mcp-tools/ambiguous-brief-rendering.md), ambiguous brief rendering.
 - Scenario [SC-004](./lane-attribution.md), lane attribution.
-- Feature [`04--scorer-fusion/021-ambiguity.md`](../../feature_catalog/04--scorer-fusion/021-ambiguity.md).
+- Feature [`04--scorer-fusion/ambiguity.md`](../../feature_catalog/04--scorer-fusion/ambiguity.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/ambiguity.ts`.
 
 ---

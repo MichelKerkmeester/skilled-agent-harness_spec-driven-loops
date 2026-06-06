@@ -61,7 +61,7 @@ Inspect cleanupOldSessions datetime comparison SQL; verify SQLite datetime funct
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/067-working-memory-timestamp-fix.md](../../feature_catalog/08--bug-fixes-and-data-integrity/067-working-memory-timestamp-fix.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/working-memory-timestamp-fix.md](../../feature_catalog/08--bug-fixes-and-data-integrity/working-memory-timestamp-fix.md)
 
 ---
 

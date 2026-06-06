@@ -26,14 +26,14 @@ Primary trigger evidence:
 
 | ID | Severity | Category | Summary | Evidence |
 |---|---|---|---|---|
-| DR-CAT-P1-001 | P1 | catalog-code-traceability | Code-reference coverage claim is stale: docs claim `192/280` and about 69%, current non-test `.ts` sweep found `195/990` and 19.70%. | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26` |
+| DR-CAT-P1-001 | P1 | catalog-code-traceability | Code-reference coverage claim is stale: docs claim `192/280` and about 69%, current non-test `.ts` sweep found `195/990` and 19.70%. | `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26` |
 | DR-CAT-P1-002 | P1 | playbook-coverage | Release-readiness count hard-codes 380 scenario files, but the current tree counts 384 by the documented rule. | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166` |
 | DR-CAT-P1-003 | P1 | playbook-root-index | Root index does not link all scenario files despite the zero-orphan rule. | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:142` |
 | DR-CAT-P1-004 | P1 | feature-to-playbook-coverage | At least 48 catalog feature files lack direct scenario source references or explicit classification. | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:172` |
 | DR-CAT-P1-005 | P1 | link-integrity | Root playbook and scenario files contain broken relative links. | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:3682` |
-| DR-CAT-P2-001 | P2 | portability | Validation docs use `FEATURE_CATALOG.md`, which is risky on case-sensitive filesystems. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:38` |
-| DR-CAT-P2-002 | P2 | playbook-capability | Scenario 135 greps only `mcp_server/` while the catalog scope also names `shared/`. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md:38` |
-| DR-CAT-P2-003 | P2 | playbook-quality | Scenario 136 has malformed real-user-request and expected-signal text. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18` |
+| DR-CAT-P2-001 | P2 | portability | Validation docs use `FEATURE_CATALOG.md`, which is risky on case-sensitive filesystems. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:38` |
+| DR-CAT-P2-002 | P2 | playbook-capability | Scenario 135 greps only `mcp_server/` while the catalog scope also names `shared/`. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md:38` |
+| DR-CAT-P2-003 | P2 | playbook-quality | Scenario 136 has malformed real-user-request and expected-signal text. | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18` |
 
 ## Remediation Workstreams
 

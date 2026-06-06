@@ -60,7 +60,7 @@ Inspect retry-manager batch selection and backoff logic; verify embedding cache 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/179-embedding-retry-orchestrator.md](../../feature_catalog/14--pipeline-architecture/179-embedding-retry-orchestrator.md)
+- Feature catalog: [14--pipeline-architecture/embedding-retry-orchestrator.md](../../feature_catalog/14--pipeline-architecture/embedding-retry-orchestrator.md)
 
 ---
 

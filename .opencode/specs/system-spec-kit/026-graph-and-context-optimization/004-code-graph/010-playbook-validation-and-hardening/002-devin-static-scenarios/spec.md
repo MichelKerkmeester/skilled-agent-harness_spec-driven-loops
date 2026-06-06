@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-code-graph/manual_testing_playbook/09--post-rename-infrastructure"
-      - ".opencode/skills/system-code-graph/manual_testing_playbook/10--devin-hooks/025-devin-session-start.md"
+      - ".opencode/skills/system-code-graph/manual_testing_playbook/10--devin-hooks/devin-session-start.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "session-2026-05-26-code-graph-playbook"

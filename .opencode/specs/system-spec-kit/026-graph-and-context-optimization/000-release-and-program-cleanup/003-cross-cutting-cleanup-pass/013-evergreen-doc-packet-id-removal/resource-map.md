@@ -101,7 +101,7 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/05-advisor-rebuild.md` | Updated | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` | Updated | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/INSTALL_GUIDE.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/README.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
 | `.opencode/skills/system-spec-kit/references/config/hook_system.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |

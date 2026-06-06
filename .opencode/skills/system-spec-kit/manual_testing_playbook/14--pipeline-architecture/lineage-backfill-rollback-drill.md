@@ -58,7 +58,7 @@ Re-run `npm test -- --run tests/memory-lineage-backfill.vitest.ts -t rollback`; 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/182-lineage-state-active-projection-and-asof-resolution.md](../../feature_catalog/14--pipeline-architecture/182-lineage-state-active-projection-and-asof-resolution.md)
+- Feature catalog: [14--pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md](../../feature_catalog/14--pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md)
 
 ---
 

@@ -58,7 +58,7 @@ Inspect resolveEffectiveScore implementation; verify fallback priority constants
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/112-stage-3-effectivescore-fallback-chain.md](../../feature_catalog/11--scoring-and-calibration/112-stage-3-effectivescore-fallback-chain.md)
+- Feature catalog: [11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../../feature_catalog/11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md)
 
 ---
 

@@ -45,9 +45,9 @@ After the agent finishes, the loop does not treat the strategy, dashboard, or fi
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/007-iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-reads-state-before-research.md` | Manual playbook | Verifies every iteration reads state before researching. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/iteration-writes-iteration-jsonl-and-strategy-update.md` | Manual playbook | Verifies the iteration file and JSONL append contract. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach discipline. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer sync writes stable registry, strategy, and dashboard outputs from iteration state. |
 
 ---

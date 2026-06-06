@@ -95,7 +95,7 @@ The remediation packet covering DR-034 must touch 19 specific surfaces (devin en
 1. `feature_catalog/08--council/` (new folder)
 2-6. `feature_catalog/08--council/01-multi-seat-dispatch.md` through `05-session-state-hierarchy.md` (5 new catalog entries)
 7. `manual_testing_playbook/08--council/` (new folder)
-8-12. `manual_testing_playbook/08--council/018-multi-seat-dispatch.md` through `022-session-state-hierarchy.md` (5 new playbook scenarios, continuing 001-017 numbering)
+8-12. `manual_testing_playbook/08--council/multi-seat-dispatch.md` through `session-state-hierarchy.md` (5 new playbook scenarios, continuing 001-017 numbering)
 
 **Updates to existing files (7):**
 13. `feature_catalog/feature_catalog.md:18-25` — TOC: add "9. COUNCIL" entry

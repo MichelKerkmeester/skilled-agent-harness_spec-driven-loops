@@ -19,7 +19,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -70,21 +70,21 @@ manual_testing_playbook.md lines 166 and 173: the bash threshold (`-ne 380`) and
 ### F4: Five broken catalog links repaired
 
 Five scenario files pointed to catalog files that do not exist. Each was corrected to the actual file on disk:
-- scenario 019: `02--mutation/10-per-record-history-log.md` -> `02--mutation/024-per-memory-history-log.md`
-- scenario 006: `01--retrieval/006-hybrid-search-pipeline.md` -> `01--retrieval/004-hybrid-search-pipeline.md`
-- scenario 007: `01--retrieval/007-4-stage-pipeline-architecture.md` -> `01--retrieval/005-4-stage-pipeline-architecture.md`
-- scenario 170: `14--stress-testing/01-stress-test-cycle.md` -> `14--stress-testing/162-category-overview.md`
-- scenario 036: `04--maintenance/036-startup-runtime-compatibility-guards.md` -> `04--maintenance/035-startup-runtime-compatibility-guards.md`
+- scenario 019: `02--mutation/10-per-record-history-log.md` -> `02--mutation/per-memory-history-log.md`
+- scenario 006: `01--retrieval/hybrid-search-pipeline.md` -> `01--retrieval/hybrid-search-pipeline.md`
+- scenario 007: `01--retrieval/4-stage-pipeline-architecture.md` -> `01--retrieval/4-stage-pipeline-architecture.md`
+- scenario 170: `14--stress-testing/01-stress-test-cycle.md` -> `14--stress-testing/category-overview.md`
+- scenario 036: `04--maintenance/startup-runtime-compatibility-guards.md` -> `04--maintenance/startup-runtime-compatibility-guards.md`
 
 The same stale paths also appeared in the root playbook's index/cross-reference table and were corrected there as well.
 
 ### F5: Garbled scenario 232 contract fields
 
-Lines 18 and 21 of 232-feature-catalog-annotation-name-validity.md contained a truncated mid-sentence code pipeline fragment with a dangling backtick. Both lines replaced with clean natural-language text. The same fragment at root playbook line 2692 was also replaced. The Commands section (lines 37-40) was not touched.
+Lines 18 and 21 of feature-catalog-annotation-name-validity.md contained a truncated mid-sentence code pipeline fragment with a dangling backtick. Both lines replaced with clean natural-language text. The same fragment at root playbook line 2692 was also replaced. The Commands section (lines 37-40) was not touched.
 
 ### F6: Stale implementation paths in local-LLM catalog
 
-313-category-overview.md SOURCE FILES table had four stale paths:
+category-overview.md SOURCE FILES table had four stale paths:
 - `mcp_server/shared/embeddings/factory.ts` -> `shared/embeddings/factory.ts`
 - `mcp_server/handlers/memory-causal-*.ts` -> `mcp_server/handlers/causal-graph.ts`
 - `mcp_server/handlers/memory-drift-why.ts` -> `mcp_server/handlers/causal-graph.ts`
@@ -94,7 +94,7 @@ The "How It Works" section's band descriptions (401-410/411-415) were also updat
 
 ### F7: Cleanup-complete claim qualified
 
-feature_catalog.md line 3950 and 214-feature-catalog-code-references.md line 30 claimed stale phase-label references "have been removed" from all non-test comments. Two known residual instances remain in tool-schemas.ts and context-server.ts (cluster A owns their removal). Both files now say "removed in most files" and note the two residual instances.
+feature_catalog.md line 3950 and feature-catalog-code-references.md line 30 claimed stale phase-label references "have been removed" from all non-test comments. Two known residual instances remain in tool-schemas.ts and context-server.ts (cluster A owns their removal). Both files now say "removed in most files" and note the two residual instances.
 
 ### F8: Verifier path corrected
 
@@ -102,7 +102,7 @@ scenario 234 line 38: `python3 ../sk-code/scripts/verify_alignment_drift.py` -> 
 
 ### F9: Scenario numbers 401-415 -> 361-375
 
-manual_testing_playbook/24--local-llm-query-intelligence/README.md: all scenario rows (401-415) updated to (361-375); Band A header updated to "(361-370)", Band B to "(371-375)"; cross-AI reference "(414, 415)" updated to "(374, 375)". Related references in the same README also updated (stale causal handler paths). 313-category-overview.md "How It Works" and SOURCE FILES table both updated.
+manual_testing_playbook/24--local-llm-query-intelligence/README.md: all scenario rows (401-415) updated to (361-375); Band A header updated to "(361-370)", Band B to "(371-375)"; cross-AI reference "(414, 415)" updated to "(374, 375)". Related references in the same README also updated (stale causal handler paths). category-overview.md "How It Works" and SOURCE FILES table both updated.
 
 ### F10: Stale MCP call shapes
 
@@ -114,21 +114,21 @@ manual_testing_playbook/24--local-llm-query-intelligence/README.md: all scenario
 | File | Action | Purpose |
 |------|--------|---------|
 | `feature_catalog/feature_catalog.md` | Modified | F1: partial-coverage language; F7: qualified cleanup-complete claim |
-| `feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md` | Modified | F7: qualified cleanup-complete claim |
+| `feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | Modified | F7: qualified cleanup-complete claim |
 | `README.md` | Modified | F2: 36-tool -> 37-tool (5 occurrences) |
 | `mcp_server/tests/review-fixes.vitest.ts` | Modified | F2: toBe(36) -> toBe(37) |
 | `manual_testing_playbook/manual_testing_playbook.md` | Modified | F3: 380->384; F4: root index links; F5: garbled line 2692 |
 | `manual_testing_playbook/02--mutation/019-*.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md` | Modified | F4: broken catalog link |
-| `manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md` | Modified | F5: garbled contract fields |
-| `feature_catalog/24--local-llm-query-intelligence/313-category-overview.md` | Modified | F6: stale paths; F9: scenario range |
+| `manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md` | Modified | F4: broken catalog link |
+| `manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | Modified | F5: garbled contract fields |
+| `feature_catalog/24--local-llm-query-intelligence/category-overview.md` | Modified | F6: stale paths; F9: scenario range |
 | `manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Modified | F9: scenario numbers 401-415 -> 361-375 |
-| `manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md` | Modified | F8: wrong verifier path |
-| `manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md` | Modified | F10: stale session_bootstrap call shape |
-| `feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md` | Modified | F10: stale memory_ingest_start call shape |
+| `manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | Modified | F8: wrong verifier path |
+| `manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | Modified | F10: stale session_bootstrap call shape |
+| `feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md` | Modified | F10: stale memory_ingest_start call shape |
 <!-- /ANCHOR:what-built -->
 
 ---
@@ -165,11 +165,11 @@ Each fix was a surgical text replacement after reading the target file. grep and
 | F4: ls for all 5 corrected catalog target files | PASS — all 5 files exist |
 | F4: grep stale catalog links in root playbook | PASS — 0 hits |
 | F5: grep 'sort -u\`' in scenario 232 and root playbook | PASS — 0 hits in contract fields (Commands section intact) |
-| F6: grep stale paths in 313-category-overview.md | PASS — 0 stale paths; shared/embeddings/factory.ts and causal-graph.ts exist |
+| F6: grep stale paths in category-overview.md | PASS — 0 stale paths; shared/embeddings/factory.ts and causal-graph.ts exist |
 | F7: qualified language in feature_catalog.md and 214 | PASS — both files mention partial coverage and residual instances |
 | F8: grep 'sk-code/scripts/verify_alignment_drift' in scenario 234 | PASS — 0 hits; assets/scripts/ path used |
 | F9: grep '40[1-9]\|41[0-5]' in playbook 24 README | PASS — 0 hits |
-| F9: grep stale band ranges in 313-category-overview.md | PASS — 361-370 / 371-375 used |
+| F9: grep stale band ranges in category-overview.md | PASS — 361-370 / 371-375 used |
 | F10: grep 'includeGraphStatus' in scenario 032 | PASS — 0 hits |
 | F10: grep 'dryRun' in catalog 253 | PASS — 0 hits in call shape |
 | validate.sh --strict on spec folder | PASS — Errors: 0, Warnings: 0 |

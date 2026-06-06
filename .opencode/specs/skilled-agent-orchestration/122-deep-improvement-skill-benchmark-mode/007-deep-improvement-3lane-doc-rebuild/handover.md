@@ -94,7 +94,7 @@ Exact Command Sequence | Expected Signals | Evidence | Pass/Fail | Failure
 Triage), `## 4. SOURCE FILES` (Playbook Sources + Implementation/Test Anchors),
 `## 5. SOURCE METADATA`. Dirs `NN--category`, files `NNN-name.md`.
 Exemplars to mirror: `feature_catalog/04--model-benchmark-mode/01-mode-switch.md`
-and `manual_testing_playbook/09--model-benchmark-mode/038-mode-switch-routing.md`.
+and `manual_testing_playbook/09--model-benchmark-mode/mode-switch-routing.md`.
 
 **Best whole-tree exemplar of a clean multi-mode layout:** `deep-loop-runtime`
 (`.opencode/skills/deep-loop-runtime/feature_catalog/` — 9 categories, coverage

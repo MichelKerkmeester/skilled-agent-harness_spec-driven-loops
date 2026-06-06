@@ -60,7 +60,7 @@ Inspect `shared/embeddings.ts`, `mcp_server/context-server.ts`, `mcp_server/lib/
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [21--implement-and-remove-deprecated-features/288-category-stub.md](../../feature_catalog/21--implement-and-remove-deprecated-features/288-category-stub.md)
+- Feature catalog: [21--implement-and-remove-deprecated-features/category-stub.md](../../feature_catalog/21--implement-and-remove-deprecated-features/category-stub.md)
 
 ---
 

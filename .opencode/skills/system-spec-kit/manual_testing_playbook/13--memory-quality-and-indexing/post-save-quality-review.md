@@ -257,7 +257,7 @@ Check computeReviewScorePenalty in post-save-review.ts and advisory logging in w
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/151-post-save-quality-review.md](../../feature_catalog/13--memory-quality-and-indexing/151-post-save-quality-review.md)
+- Feature catalog: [13--memory-quality-and-indexing/post-save-quality-review.md](../../feature_catalog/13--memory-quality-and-indexing/post-save-quality-review.md)
 - Related entry: [16--tooling-and-scripts/json-mode-hybrid-enrichment.md](../16--tooling-and-scripts/json-mode-hybrid-enrichment.md)
 - Workflow hook: `scripts/core/post-save-review.ts`
 - Save pipeline: `scripts/core/workflow.ts`

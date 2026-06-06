@@ -57,4 +57,4 @@ Related references:
 
 - [01-ensure-code-graph-ready.md](./ensure-code-graph-ready.md)
 - [../06--mcp-tool-surface/tool-registrations.md](../06--mcp-tool-surface/tool-registrations.md)
-- [../../manual_testing_playbook/01--read-path-freshness/002-query-self-heal-stale-file.md](../../manual_testing_playbook/01--read-path-freshness/002-query-self-heal-stale-file.md)
+- [../../manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md](../../manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md)

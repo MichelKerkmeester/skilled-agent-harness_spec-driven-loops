@@ -56,4 +56,4 @@ Related references:
 
 - [02-code-graph-verify.md](./code-graph-verify.md)
 - [03-code-graph-status.md](./code-graph-status.md)
-- [../../manual_testing_playbook/02--manual-scan-verify-status/003-code-graph-scan-incremental.md](../../manual_testing_playbook/02--manual-scan-verify-status/003-code-graph-scan-incremental.md)
+- [../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-incremental.md](../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-incremental.md)

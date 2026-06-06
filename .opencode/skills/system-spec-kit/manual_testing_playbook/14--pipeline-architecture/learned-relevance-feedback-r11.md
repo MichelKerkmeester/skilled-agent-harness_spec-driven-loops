@@ -58,7 +58,7 @@ Verify trigger learning pipeline → Check safeguard limits → Inspect queryId 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/168-learned-relevance-feedback.md](../../feature_catalog/14--pipeline-architecture/168-learned-relevance-feedback.md)
+- Feature catalog: [14--pipeline-architecture/learned-relevance-feedback.md](../../feature_catalog/14--pipeline-architecture/learned-relevance-feedback.md)
 
 ---
 

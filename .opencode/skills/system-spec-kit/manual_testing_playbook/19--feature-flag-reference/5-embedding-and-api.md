@@ -56,7 +56,7 @@ Verify env in runtime
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/277-5-embedding-and-api.md](../../feature_catalog/19--feature-flag-reference/277-5-embedding-and-api.md)
+- Feature catalog: [19--feature-flag-reference/5-embedding-and-api.md](../../feature_catalog/19--feature-flag-reference/5-embedding-and-api.md)
 
 ---
 

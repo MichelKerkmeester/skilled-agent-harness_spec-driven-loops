@@ -73,4 +73,4 @@ Six scenario files were added across three playbook surfaces: system-spec-kit, s
 - Run sk-doc validation against each new playbook scenario file once the sk-doc validator is available in the toolchain.
 - Confirm packet 035 F5-F8 evidence log and JSONL paths resolve to existing files.
 - Verify all root playbook links added for IDs 278-282 point to existing files on disk.
-- Add `279-advisor-status-rebuild-separation.md` and `006-advisor-status-rebuild-separation.md` when the skill_advisor nested playbook surface is confirmed stable and the paths are verified to exist.
+- Add `279-advisor-status-rebuild-separation.md` and `advisor-status-rebuild-separation.md` when the skill_advisor nested playbook surface is confirmed stable and the paths are verified to exist.

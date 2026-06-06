@@ -76,7 +76,7 @@ inspect `input-normalizer.ts` relevance filtering, compare captured file paths t
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/150-session-enrichment-and-alignment-guards.md](../../feature_catalog/13--memory-quality-and-indexing/150-session-enrichment-and-alignment-guards.md)
+- Feature catalog: [13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../../feature_catalog/13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md)
 
 ---
 

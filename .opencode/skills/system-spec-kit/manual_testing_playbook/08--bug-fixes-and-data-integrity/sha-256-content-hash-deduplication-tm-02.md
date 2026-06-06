@@ -59,7 +59,7 @@ Verify SHA-256 hash computation â†’ Check content normalization before hashing â
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/059-sha-256-content-hash-deduplication.md](../../feature_catalog/08--bug-fixes-and-data-integrity/059-sha-256-content-hash-deduplication.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md](../../feature_catalog/08--bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md)
 
 ---
 

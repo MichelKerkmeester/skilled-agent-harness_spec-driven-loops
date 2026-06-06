@@ -42,8 +42,8 @@ The semantic meaning of each level is stable across the skill. P0 covers correct
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md` | Manual scenario | Verifies severities and counts are recorded correctly in iteration state. |
-| `manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md` | Manual scenario | Confirms the blocker override path in convergence logic. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual scenario | Verifies severities and counts are recorded correctly in iteration state. |
+| `manual_testing_playbook/04--convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms the blocker override path in convergence logic. |
 
 ---
 

@@ -68,7 +68,7 @@ Trivial doc fix: swap the pre-extraction `--prefix system-spec-kit/mcp_server ..
 Doc-only string replacement.
 
 ### Key Components
-- **004-ambiguous-brief-rendering.md:38** and **005-lifecycle-redirect-metadata.md:36**: the stale command lines
+- **ambiguous-brief-rendering.md:38** and **lifecycle-redirect-metadata.md:36**: the stale command lines
 
 ### Data Flow
 n/a — documentation edit.
@@ -81,8 +81,8 @@ n/a — documentation edit.
 
 | Surface | Current Role | Action | Verification |
 |---------|--------------|--------|--------------|
-| `004-ambiguous-brief-rendering.md:38` | stale vitest command | replace with canonical | command runs 49 tests |
-| `005-lifecycle-redirect-metadata.md:36` | stale vitest command | replace with canonical | command runs |
+| `ambiguous-brief-rendering.md:38` | stale vitest command | replace with canonical | command runs 49 tests |
+| `lifecycle-redirect-metadata.md:36` | stale vitest command | replace with canonical | command runs |
 | whole playbook + feature_catalog | possible residual stale paths | re-grep | no matches |
 
 Inventory: `grep -rn "skill-advisor/tests" .opencode/skills/system-skill-advisor/{manual_testing_playbook,feature_catalog}/`.

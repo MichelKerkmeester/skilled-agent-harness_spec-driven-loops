@@ -72,7 +72,7 @@ Catalogued 32 patterns across 6 arcs (117-122) from 18 commits. Survey covered A
 - Arc: 118
 - Type: COLLATERAL
 - Description: /doctor (3 files) + system-code-graph playbook updated to replace MCP tool references with script invocations
-- Evidence: commit e590c12e19, .opencode/commands/doctor.md:8, doctor/_routes.yaml:13, system-code-graph/manual_testing_playbook/009-deep-loop-graph-convergence-yaml-fire.md:12
+- Evidence: commit e590c12e19, .opencode/commands/doctor.md:8, doctor/_routes.yaml:13, system-code-graph/manual_testing_playbook/deep-loop-graph-convergence-yaml-fire.md:12
 - Sibling applicability hint: bilateral
 
 ### P-011 — Test migration

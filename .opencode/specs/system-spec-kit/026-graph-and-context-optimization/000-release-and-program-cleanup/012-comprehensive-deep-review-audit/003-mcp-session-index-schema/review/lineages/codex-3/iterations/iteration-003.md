@@ -38,7 +38,7 @@ The session bootstrap playbook still documents removed `input` and `includeGraph
 ### Evidence
 - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:608` allows only `specFolder` for `session_bootstrap`.
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:653-660` advertises only `specFolder` in the MCP schema.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md:37` documents `session_bootstrap({ input: "resume mk-spec-memory playbook audit", includeGraphStatus: true })`.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md:37` documents `session_bootstrap({ input: "resume mk-spec-memory playbook audit", includeGraphStatus: true })`.
 
 ### Impact
 The documented manual test call is rejected by the strict schema boundary. Operators following the playbook cannot validate the live bootstrap tool with the command shown there.
@@ -52,8 +52,8 @@ The session resume playbook expects `codeGraph.available` and `binaryPath`, but 
 ### Evidence
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:104-110` defines `CodeGraphStatus` as `status`, `lastScan`, `nodeCount`, `edgeCount`, and `fileCount`.
 - `.opencode/skills/system-spec-kit/mcp_server/handlers/session-resume.ts:710-723` returns that `codeGraph` object in `SessionResumeResult`.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md:18-22` requires `codeGraph.available` and `binaryPath`.
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md:91-100` repeats the same expected fields.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md:18-22` requires `codeGraph.available` and `binaryPath`.
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md:91-100` repeats the same expected fields.
 
 ### Impact
 The playbook is asserting fields that are not part of the handler contract, so a correct live `session_resume({})` response can fail the documented manual validation.

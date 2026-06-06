@@ -58,7 +58,7 @@ Re-check the dead-code audit list against the codebase; inspect string-based ref
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/207-dead-code-removal.md](../../feature_catalog/16--tooling-and-scripts/207-dead-code-removal.md)
+- Feature catalog: [16--tooling-and-scripts/dead-code-removal.md](../../feature_catalog/16--tooling-and-scripts/dead-code-removal.md)
 
 ---
 

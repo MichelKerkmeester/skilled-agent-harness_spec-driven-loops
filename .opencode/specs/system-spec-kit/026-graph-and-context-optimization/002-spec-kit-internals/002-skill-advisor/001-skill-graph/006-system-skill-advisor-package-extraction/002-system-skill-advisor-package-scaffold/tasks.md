@@ -53,7 +53,7 @@ _memory:
 - [x] T011 graph-metadata.json authored (181 LOC, `derived.intent_signals` as plain strings per discovery-code constraint, `manual.depends_on` + `manual.related_to` populated).
 - [x] T012 ARCHITECTURE.md (104 LOC) and README.md (111 LOC) reauthored to align with ADR-001 standalone-MCP-with-legacy-bridge shape.
 - [x] T013 feature_catalog/feature_catalog.md (56 LOC) + 06--mcp-surface/01-advisor-recommend.md (65 LOC).
-- [x] T014 manual_testing_playbook/manual_testing_playbook.md (84 LOC) + 01--native-mcp-tools/001-native-recommend-happy-path.md (78 LOC).
+- [x] T014 manual_testing_playbook/manual_testing_playbook.md (84 LOC) + 01--native-mcp-tools/native-recommend-happy-path.md (78 LOC).
 - [x] T015 references/ authored fresh (3 entries: db-path-policy + legacy-tool-bridge + standalone-mcp-shape).
 - [x] T016 references/db-path-policy.md authored (64 LOC, documents DB location under skill folder constraint A).
 - [x] T017 INSTALL_GUIDE.md stub authored (60 LOC, cites child 004's future launcher work).

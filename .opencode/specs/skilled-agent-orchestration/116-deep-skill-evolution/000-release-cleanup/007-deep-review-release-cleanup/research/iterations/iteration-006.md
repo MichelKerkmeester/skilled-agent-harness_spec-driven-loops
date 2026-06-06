@@ -81,13 +81,13 @@ Lists `system-spec-kit` and `sk-code-review` as manual dependencies.
 - Found in `references/state_format.md` (lines 815-816) - cites coverage-graph-db.ts lines 154 and 292-302
 - Found in `references/loop_protocol.md` (line 268) - cites executor-config.ts
 - Found in `SKILL.md` (line 381) - cites executor-config.ts
-- Found in `manual_testing_playbook/04--convergence-and-recovery/032-graph-convergence-review.md` (lines 51, 76) - cites coverage-graph-signals.ts
-- Found in `manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md` (line 58) - cites review-depth-convergence.vitest.ts
-- Found in `manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md` (lines 56-57, 60) - cites coverage-graph-db.ts and review-depth-graph.vitest.ts
-- Found in `manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md` (lines 54-55) - cites post-dispatch-validate.ts and review-depth-validator.vitest.ts
-- Found in `manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md` (line 58) - cites review-depth-convergence.vitest.ts
-- Found in `manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md` (lines 56-57) - cites post-dispatch-validate.ts and review-depth-validator.vitest.ts
-- Found in `manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` (lines 51, 76) - cites coverage-graph-db.ts
+- Found in `manual_testing_playbook/04--convergence-and-recovery/graph-convergence-review.md` (lines 51, 76) - cites coverage-graph-signals.ts
+- Found in `manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md` (line 58) - cites review-depth-convergence.vitest.ts
+- Found in `manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md` (lines 56-57, 60) - cites coverage-graph-db.ts and review-depth-graph.vitest.ts
+- Found in `manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md` (lines 54-55) - cites post-dispatch-validate.ts and review-depth-validator.vitest.ts
+- Found in `manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md` (line 58) - cites review-depth-convergence.vitest.ts
+- Found in `manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md` (lines 56-57) - cites post-dispatch-validate.ts and review-depth-validator.vitest.ts
+- Found in `manual_testing_playbook/03--iteration-execution-and-state-discipline/graph-events-review.md` (lines 51, 76) - cites coverage-graph-db.ts
 - Found in `README.md` (lines 431, 442, 481) - cites coverage-graph-db.ts and deep-loop-runtime skill
 - Found in `changelog/v1.9.0.0.md` (lines 47, 49, 97) - migration notes
 - Found in `changelog/v1.4.0.0.md` (lines 1, 11, 27, 33) - migration completion notes
@@ -113,33 +113,33 @@ Lists `system-spec-kit` and `sk-code-review` as manual dependencies.
 
 **FINDING 1: Stale test path references in playbook files (P0)**
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts` which EXISTS at that location. However, this is inconsistent with other playbook files that reference deep-loop-runtime/tests/integration/ for similar test files.
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` which DOES NOT EXIST. The actual file exists at `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts" lines="1-1" />
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-graph.vitest.ts` which DOES NOT EXIST. The actual file exists at `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts" lines="1-1" />
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-validator.vitest.ts` which DOES NOT EXIST. The actual file exists at `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts" lines="1-1" />
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-convergence.vitest.ts` which DOES NOT EXIST. The actual file exists at `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts" lines="1-1" />
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md` line 30
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md" lines="30-30" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md` line 30
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md" lines="30-30" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-validator.vitest.ts` which DOES NOT EXIST. The actual file exists at `.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts` <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts" lines="1-1" />
 
@@ -147,8 +147,8 @@ Lists `system-spec-kit` and `sk-code-review` as manual dependencies.
 
 **FINDING 2: Inconsistent test location pattern (P1)**
 
-**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md` line 58
-<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md" lines="58-58" />
+**Documenting surface:** `manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md` line 58
+<ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md" lines="58-58" />
 
 **Target reality:** References `.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts` which DOES exist at that location <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts" lines="1-1" />
 
@@ -197,5 +197,5 @@ Lists `system-spec-kit` and `sk-code-review` as manual dependencies.
 ## JSONL delta row
 
 ```json
-{"iter_id":"006","timestamp_utc":"2026-05-23T17:35:00Z","executor":"cli-devin","model":"swe-1.6","status":"complete","findings_count":3,"gaps_count":4,"primary_evidence_files":[".opencode/skills/deep-review/README.md",".opencode/skills/deep-review/graph-metadata.json",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",".opencode/skills/deep-review/changelog/v1.9.0.0.md"]}
+{"iter_id":"006","timestamp_utc":"2026-05-23T17:35:00Z","executor":"cli-devin","model":"swe-1.6","status":"complete","findings_count":3,"gaps_count":4,"primary_evidence_files":[".opencode/skills/deep-review/README.md",".opencode/skills/deep-review/graph-metadata.json",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",".opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts",".opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts",".opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts",".opencode/skills/deep-review/changelog/v1.9.0.0.md"]}
 ```

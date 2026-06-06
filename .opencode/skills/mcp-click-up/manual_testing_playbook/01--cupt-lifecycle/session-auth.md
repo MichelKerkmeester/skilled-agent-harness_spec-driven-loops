@@ -52,7 +52,7 @@ Operators run the exact prompt and command sequence for `CU-002` and confirm the
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/01--cupt-authentication/001-interactive-auth.md` | Feature catalog source |
+| `../feature_catalog/01--cupt-authentication/interactive-auth.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

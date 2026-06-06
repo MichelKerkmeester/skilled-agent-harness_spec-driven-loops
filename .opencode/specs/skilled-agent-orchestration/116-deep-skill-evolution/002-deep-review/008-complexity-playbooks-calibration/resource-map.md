@@ -46,12 +46,12 @@ _memory:
 |------|--------|--------|------|
 | `.opencode/skills/deep-review/references/state_format.md` | Updated | OK | 116 contract vocabulary and state-shape reference. |
 | `.opencode/skills/deep-review/assets/prompt_pack_iteration.md.tmpl` | Updated | OK | Review-depth prompt contract surface. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md` | Created | OK | Manual scenario for warn rollout. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md` | Created | OK | Manual scenario for strict v2 validation. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md` | Created | OK | Manual scenario for reducer search debt. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md` | Created | OK | Manual scenario for candidate coverage STOP gate. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md` | Created | OK | Manual scenario for graphless fallback STOP gate. |
-| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md` | Created | OK | Manual scenario for graph vocabulary persistence. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md` | Created | OK | Manual scenario for warn rollout. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md` | Created | OK | Manual scenario for strict v2 validation. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md` | Created | OK | Manual scenario for reducer search debt. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md` | Created | OK | Manual scenario for candidate coverage STOP gate. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md` | Created | OK | Manual scenario for graphless fallback STOP gate. |
+| `.opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md` | Created | OK | Manual scenario for graph vocabulary persistence. |
 <!-- /ANCHOR:documents -->
 
 ---

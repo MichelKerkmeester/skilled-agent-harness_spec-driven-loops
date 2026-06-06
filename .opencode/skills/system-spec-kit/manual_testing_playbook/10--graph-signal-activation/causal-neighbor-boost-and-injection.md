@@ -59,7 +59,7 @@ Verify seed selection cap and top-result sampling → Inspect relation-type mult
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/092-causal-neighbor-boost-and-injection.md](../../feature_catalog/10--graph-signal-activation/092-causal-neighbor-boost-and-injection.md)
+- Feature catalog: [10--graph-signal-activation/causal-neighbor-boost-and-injection.md](../../feature_catalog/10--graph-signal-activation/causal-neighbor-boost-and-injection.md)
 
 ---
 

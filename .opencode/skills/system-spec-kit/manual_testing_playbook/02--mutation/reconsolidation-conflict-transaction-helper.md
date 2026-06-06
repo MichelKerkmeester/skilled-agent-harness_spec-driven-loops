@@ -58,7 +58,7 @@ Inspect `mcp_server/lib/storage/reconsolidation.ts` and the reconsolidation test
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/025-reconsolidation-conflict-transaction-helper.md](../../feature_catalog/02--mutation/025-reconsolidation-conflict-transaction-helper.md)
+- Feature catalog: [02--mutation/reconsolidation-conflict-transaction-helper.md](../../feature_catalog/02--mutation/reconsolidation-conflict-transaction-helper.md)
 
 ---
 

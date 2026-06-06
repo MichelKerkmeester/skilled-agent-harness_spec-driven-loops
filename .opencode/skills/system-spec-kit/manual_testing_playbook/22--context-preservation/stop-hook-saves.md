@@ -114,7 +114,7 @@ Check byte offset calculation with `Buffer.byteLength` for UTF-8
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/296-stop-token-tracking.md](../../feature_catalog/22--context-preservation/296-stop-token-tracking.md)
+- Feature catalog: [22--context-preservation/stop-token-tracking.md](../../feature_catalog/22--context-preservation/stop-token-tracking.md)
 
 ---
 

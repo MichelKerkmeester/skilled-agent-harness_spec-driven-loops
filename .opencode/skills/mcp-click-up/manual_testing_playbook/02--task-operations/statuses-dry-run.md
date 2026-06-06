@@ -49,7 +49,7 @@ Verify `cupt statuses TASK_ID` lists statuses and `cupt done TASK_ID --dry-run` 
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/04--cupt-task-completion/030-dry-run.md` | Feature catalog source |
+| `../feature_catalog/04--cupt-task-completion/dry-run.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

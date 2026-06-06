@@ -61,7 +61,7 @@ Inspect path validation logic in ingest handler; verify allowed base directory c
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/042-async-ingestion-job-lifecycle.md](../../feature_catalog/05--lifecycle/042-async-ingestion-job-lifecycle.md)
+- Feature catalog: [05--lifecycle/async-ingestion-job-lifecycle.md](../../feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md)
 
 ---
 

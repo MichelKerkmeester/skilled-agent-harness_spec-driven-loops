@@ -71,7 +71,7 @@ Telemetry is published as prompt-safe rollups rather than raw prompt content:
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-validate.vitest.ts` | Automated test | Validation reference |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/parity/` | Automated test | Python/TS parity harness |
-| `Playbook scenario [NC-003](../../manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md).` | Manual playbook | Source reference |
+| `Playbook scenario [NC-003](../../manual_testing_playbook/01--native-mcp-tools/native-validate-slices.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

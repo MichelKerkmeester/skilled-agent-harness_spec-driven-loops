@@ -56,7 +56,7 @@ Surfaces changed:
 - `.opencode/skills/deep-review/references/loop_protocol.md`, §Step-2 gate list corrected from seven to nine.
 - `.opencode/skills/deep-review/references/state_format.md`, `blocked_stop` event example completed from five to the full nine gates.
 - `.opencode/skills/deep-review/feature_catalog/04--severity-system/05-quality-gates.md`, §2 now enumerates all 9 gate names in a table and explains the 3-binary-gate to 9-gate relationship.
-- `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md`, clarified the 3-binary-gate scenario against the 9-gate bundle, fixed a stale `convergence.md` Section 10.4 anchor to §6.
+- `.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md`, clarified the 3-binary-gate scenario against the 9-gate bundle, fixed a stale `convergence.md` Section 10.4 anchor to §6.
 - `.opencode/skills/deep-review/changelog/v1.10.0.0.md` (new) + `SKILL.md` version bump 1.9.0.0 → 1.10.0.0.
 
 This closes the gate-model drift cluster LG-0013, LG-0016, LG-0031, LG-0032 surfaced by the `003-deep-review` phase-5 deep-research loop.

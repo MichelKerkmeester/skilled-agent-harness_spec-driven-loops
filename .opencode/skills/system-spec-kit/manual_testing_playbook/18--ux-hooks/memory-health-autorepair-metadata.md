@@ -57,7 +57,7 @@ Inspect `handlers/memory-crud-health.ts`, `handlers/memory-crud-types.ts`, and r
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/254-memory-health-autorepair-metadata.md](../../feature_catalog/18--ux-hooks/254-memory-health-autorepair-metadata.md)
+- Feature catalog: [18--ux-hooks/memory-health-autorepair-metadata.md](../../feature_catalog/18--ux-hooks/memory-health-autorepair-metadata.md)
 
 ---
 
@@ -68,4 +68,4 @@ Inspect `handlers/memory-crud-health.ts`, `handlers/memory-crud-types.ts`, and r
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `18--ux-hooks/memory-health-autorepair-metadata.md`
 - audited_post_018: true
-- Feature catalog back-ref: `18--ux-hooks/254-memory-health-autorepair-metadata.md`
+- Feature catalog back-ref: `18--ux-hooks/memory-health-autorepair-metadata.md`

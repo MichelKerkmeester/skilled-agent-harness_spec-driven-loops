@@ -84,7 +84,7 @@ Saved row-count output, KNN top-5 output, daemon startup log excerpt for the fac
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/159-vec-memories-knn-and-factory-shard-fallback.md](../../feature_catalog/13--memory-quality-and-indexing/159-vec-memories-knn-and-factory-shard-fallback.md)
+- Feature catalog: [13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../../feature_catalog/13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md)
 - Source files: `mcp_server/lib/embedders/reindex.ts`, `shared/embeddings/factory.ts`, `mcp_server/lib/search/vector-index-store.ts`
 - Shipping packets: `016/002/016-reindex-populates-vec-memories-knn-table`, `016/002/017-factory-shard-fallback-for-hf-voyage-openai`
 

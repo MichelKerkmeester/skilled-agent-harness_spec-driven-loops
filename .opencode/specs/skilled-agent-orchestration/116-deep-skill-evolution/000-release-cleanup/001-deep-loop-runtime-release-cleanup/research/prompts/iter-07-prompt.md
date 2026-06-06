@@ -139,7 +139,7 @@ For the finding, enumerate the missing surface:
 1. Missing catalog domain folder: `feature_catalog/08--council/`
 2. Missing 5 catalog entries: `08--council/01-multi-seat-dispatch.md` through `05-session-state-hierarchy.md`
 3. Missing playbook domain folder: `manual_testing_playbook/08--council/`
-4. Missing 5 playbook scenarios: `08--council/018-multi-seat-dispatch.md` through `022-session-state-hierarchy.md` (continuing the 001-017 numbering)
+4. Missing 5 playbook scenarios: `08--council/multi-seat-dispatch.md` through `session-state-hierarchy.md` (continuing the 001-017 numbering)
 5. feature_catalog.md updates: TOC entry (currently 8 entries 1-8 — need 9; currently L25 ends at "8. SCRIPT ENTRY POINTS"); coverage table L33-41 needs new row; scope statement L31 needs "council" appended; count "17 entries" → "22 entries"
 6. manual_testing_playbook.md updates: TOC L27-41 needs §13 COUNCIL inserted before §13 AUTOMATED TEST CROSS-REFERENCE (would shift section numbers); L47 "17 deterministic scenarios across 7 categories" → "22 deterministic scenarios across 8 categories"; cross-reference index in §14 needs 5 new rows
 
@@ -204,11 +204,11 @@ Emit a markdown report with the following exact structure:
 | 5 | Catalog entry 4 | `feature_catalog/08--council/04-cost-guards.md` | New file |
 | 6 | Catalog entry 5 | `feature_catalog/08--council/05-session-state-hierarchy.md` | New file |
 | 7 | Playbook domain folder | `manual_testing_playbook/08--council/` | New folder |
-| 8 | Playbook scenario 1 | `manual_testing_playbook/08--council/018-multi-seat-dispatch.md` | New file |
-| 9 | Playbook scenario 2 | `manual_testing_playbook/08--council/019-round-state-jsonl.md` | New file |
-| 10 | Playbook scenario 3 | `manual_testing_playbook/08--council/020-adjudicator-verdict-scoring.md` | New file |
-| 11 | Playbook scenario 4 | `manual_testing_playbook/08--council/021-cost-guards.md` | New file |
-| 12 | Playbook scenario 5 | `manual_testing_playbook/08--council/022-session-state-hierarchy.md` | New file |
+| 8 | Playbook scenario 1 | `manual_testing_playbook/08--council/multi-seat-dispatch.md` | New file |
+| 9 | Playbook scenario 2 | `manual_testing_playbook/08--council/round-state-jsonl.md` | New file |
+| 10 | Playbook scenario 3 | `manual_testing_playbook/08--council/adjudicator-verdict-scoring.md` | New file |
+| 11 | Playbook scenario 4 | `manual_testing_playbook/08--council/cost-guards.md` | New file |
+| 12 | Playbook scenario 5 | `manual_testing_playbook/08--council/session-state-hierarchy.md` | New file |
 | 13 | catalog.md TOC | `feature_catalog.md:18-25` | Add "9. COUNCIL" entry |
 | 14 | catalog.md coverage table | `feature_catalog.md:33-41` | Add `08--council` row |
 | 15 | catalog.md scope statement | `feature_catalog.md:31` | Append "council" to consumer list |

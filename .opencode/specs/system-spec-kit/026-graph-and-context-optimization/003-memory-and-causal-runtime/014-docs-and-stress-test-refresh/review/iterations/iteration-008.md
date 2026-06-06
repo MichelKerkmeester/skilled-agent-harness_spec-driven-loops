@@ -8,13 +8,13 @@ correctness -- feature_catalog claims vs real source (checkpoint-create 038, che
 
 - `.opencode/skills/sk-code-review/references/review_core.md:18` -- severity doctrine loaded before final severity calls.
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/review/deep-review-config.json:104` -- assigned review-scope feature catalog files.
-- `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md:28` -- checkpoint-create catalog claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md:42` -- checkpoint-restore barrier and v2 restore claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md:18` -- schema-history claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md:30` -- error-code table claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md:26` -- enrichment marker claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md:40` -- front-proxy replay/error-code claims.
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md:26` -- sk-git worktree convention claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md:28` -- checkpoint-create catalog claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md:42` -- checkpoint-restore barrier and v2 restore claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md:18` -- schema-history claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md:30` -- error-code table claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md:26` -- enrichment marker claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md:40` -- front-proxy replay/error-code claims.
+- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md:26` -- sk-git worktree convention claims.
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3445` -- root feature catalog front-proxy summary.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:971` -- dir-aware v2 checkpoint pruning.
 - `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:1023` -- vec_memories-only v2 selection gate.
@@ -47,7 +47,7 @@ correctness -- feature_catalog claims vs real source (checkpoint-create 038, che
 - File: `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3445`
 - Claim: The root catalog says the proxy "replays safe in-flight read-mostly requests (`REPLAYABLE_TOOL_NAMES`)".
 - Evidence: The source `REPLAYABLE_TOOL_NAMES` set includes `memory_save` at `.opencode/bin/lib/launcher-session-proxy.cjs:33`, and `classifyFrame` returns true for any tool in that set at `.opencode/bin/lib/launcher-session-proxy.cjs:120` and `.opencode/bin/lib/launcher-session-proxy.cjs:126`. Destructive unsafe tools are separately excluded at `.opencode/bin/lib/launcher-session-proxy.cjs:43`, so the safety boundary is intact, but the catalog label is too narrow for the actual set.
-- Counterevidence sought: The per-feature front-proxy entry uses example wording (`such as`) at `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md:40`, and the unsafe tool set correctly excludes destructive mutations. That downgrades this from a blocking mismatch to a documentation precision advisory.
+- Counterevidence sought: The per-feature front-proxy entry uses example wording (`such as`) at `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md:40`, and the unsafe tool set correctly excludes destructive mutations. That downgrades this from a blocking mismatch to a documentation precision advisory.
 - Alternative explanation: `memory_save` may be intentionally replay-safe through dedup/idempotency, but then the root catalog should describe the set as replayable/idempotent rather than read-mostly.
 - Final severity: P2.
 - Confidence: 0.82.

@@ -98,8 +98,8 @@ Build a 17-row pairing table:
 
 | F-id | Catalog file (relative to feature_catalog/) | DLR-id | Playbook file (relative to manual_testing_playbook/) | Domain match | Slug match |
 |------|---|---|---|---|---|
-| F001 | 01--executor/01-executor-config.md | DLR-001 | 01--executor/001-executor-config.md | ✓ | ✓ |
-| F002 | 01--executor/02-executor-audit.md | DLR-002 | 01--executor/002-executor-audit.md | ✓ | ✓ |
+| F001 | 01--executor/01-executor-config.md | DLR-001 | 01--executor/executor-config.md | ✓ | ✓ |
+| F002 | 01--executor/02-executor-audit.md | DLR-002 | 01--executor/executor-audit.md | ✓ | ✓ |
 | ... | ... | ... | ... | ... | ... |
 
 If any row has `Domain match = ✗` or `Slug match = ✗`, emit DR-NNN finding (P1 if structural, P2 if cosmetic).
@@ -116,7 +116,7 @@ a. Per-feature file structural shape — spot-check 3 catalog entries + 3 playbo
 
 b. Internal path-refs from per-feature files INTO `lib/`, `scripts/`, `tests/` — these MUST resolve. If any per-feature file cites a `lib/deep-loop/*.ts` or `tests/unit/*.vitest.ts` that doesn't exist, emit P1 finding (this is the documentation-vs-reality gap).
 
-c. Cross-doc anchor: catalog says "F011 is Coverage graph DB" (`feature_catalog/06--coverage-graph/01-coverage-graph-db.md`). Playbook says "DLR-011 is Coverage graph DB" (`manual_testing_playbook/06--coverage-graph/011-coverage-graph-db.md`). The DESCRIPTIONS in both per-feature files must agree word-for-word in the OVERVIEW section. If they drift, emit P2 finding.
+c. Cross-doc anchor: catalog says "F011 is Coverage graph DB" (`feature_catalog/06--coverage-graph/01-coverage-graph-db.md`). Playbook says "DLR-011 is Coverage graph DB" (`manual_testing_playbook/06--coverage-graph/coverage-graph-db.md`). The DESCRIPTIONS in both per-feature files must agree word-for-word in the OVERVIEW section. If they drift, emit P2 finding.
 
 **Acceptance criterion**: each sub-check yields a clear PASS/FAIL with file:line citation.
 

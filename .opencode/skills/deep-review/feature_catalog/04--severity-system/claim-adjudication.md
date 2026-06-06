@@ -42,9 +42,9 @@ Missing packets or missing required fields fail the adjudication step and trip `
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Covers the severe-finding validation path that precedes adjudication. |
-| `manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies failed stop attempts surface through blocked-stop state. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md` | Manual scenario | Verifies adjudicated severities survive into synthesis and registry output. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Covers the severe-finding validation path that precedes adjudication. |
+| `manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual scenario | Verifies failed stop attempts surface through blocked-stop state. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Verifies adjudicated severities survive into synthesis and registry output. |
 
 ---
 

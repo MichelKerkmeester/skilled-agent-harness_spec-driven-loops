@@ -34,7 +34,7 @@ Persist derived extraction so the scorer and rebuild-from-source pipeline can bo
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | sync correctness and non-derived preservation |
-| `Playbook scenario [AI-001](../../manual_testing_playbook/06--auto-indexing/027-derived-extraction.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-001](../../manual_testing_playbook/06--auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

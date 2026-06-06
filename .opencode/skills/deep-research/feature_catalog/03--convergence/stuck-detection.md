@@ -43,9 +43,9 @@ When the counter reaches the configured threshold, the recovery protocol classif
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/014-stuck-recovery-widens-focus-and-continues.md` | Manual playbook | Verifies stuck recovery changes the approach and continues on renewed progress. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/stuck-recovery-widens-focus-and-continues.md` | Manual playbook | Verifies stuck recovery changes the approach and continues on renewed progress. |
 | `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/029-insight-status-prevents-false-stuck.md` | Manual playbook | Verifies `insight` resets the stuck counter. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/030-thought-status-convergence-handling.md` | Manual playbook | Verifies `thought` does not increase the stuck counter. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/thought-status-convergence-handling.md` | Manual playbook | Verifies `thought` does not increase the stuck counter. |
 
 ---
 

@@ -59,7 +59,7 @@ Inspect `scripts/core/config.ts` merge and validation flow, confirm the test run
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/281-runtime-config-contract.md](../../feature_catalog/19--feature-flag-reference/281-runtime-config-contract.md)
+- Feature catalog: [19--feature-flag-reference/runtime-config-contract.md](../../feature_catalog/19--feature-flag-reference/runtime-config-contract.md)
 
 ---
 

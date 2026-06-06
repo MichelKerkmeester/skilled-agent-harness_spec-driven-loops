@@ -14,7 +14,7 @@ Of 27 ALREADY-DONE verdicts from iter-2: 27 CONFIRMED, 0 PARTIAL, 0 MISCLASSIFIE
 | C-006 | ALREADY-DONE | CONFIRMED | deep-research v1.12.0.0 changelog line 1 confirms MCP tool removal and script cutover |
 | C-007 | ALREADY-DONE | CONFIRMED | deep-research v1.12.0.0 changelog line 1 confirms deep_loop_graph_* MCP tools removed |
 | C-009 | ALREADY-DONE | CONFIRMED | `doctor/_routes.yaml` lines 88-99 include deep-loop target with 4 script invocations; `doctor/update.md` lines 28, 220, 272, 336, 359, 374 reference deep-loop |
-| C-010 | ALREADY-DONE | CONFIRMED | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` exists (line 24 confirms script invocation pattern) |
+| C-010 | ALREADY-DONE | CONFIRMED | `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` exists (line 24 confirms script invocation pattern) |
 | C-011 | ALREADY-DONE | CONFIRMED | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` line 38 notes deep_loop_graph_* tools removed in arc 118 and replaced by scripts |
 | C-012 | ALREADY-DONE | CONFIRMED | `.opencode/skills/deep-loop-runtime/tests/unit/` contains 13 .vitest.ts files |
 | C-013 | ALREADY-DONE | CONFIRMED | `.opencode/skills/deep-loop-runtime/tests/integration/` contains 7 .vitest.ts files |

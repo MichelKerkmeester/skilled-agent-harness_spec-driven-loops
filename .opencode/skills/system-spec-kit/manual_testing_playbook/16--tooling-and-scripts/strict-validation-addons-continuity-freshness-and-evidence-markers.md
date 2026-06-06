@@ -58,7 +58,7 @@ Inspect `scripts/spec/validate.sh`, `scripts/validation/continuity-freshness.ts`
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/237-strict-validation-addons-continuity-freshness-and-evidence-markers.md](../../feature_catalog/16--tooling-and-scripts/237-strict-validation-addons-continuity-freshness-and-evidence-markers.md)
+- Feature catalog: [16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../../feature_catalog/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md)
 
 ---
 

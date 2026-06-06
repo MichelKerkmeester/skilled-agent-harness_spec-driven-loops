@@ -42,7 +42,7 @@ description: "Auto-generated research resource map from convergence evidence."
 | feature_catalog/01--read-path-freshness/01-ensure-code-graph-ready.md | Cited | MISSING | Citations=1; Iterations=1 |
 | feature_catalog/feature_catalog.md | Cited | MISSING | Citations=2; Iterations=2 |
 | INSTALL_GUIDE.md | Cited | MISSING | Citations=4; Iterations=4 |
-| manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md | Cited | MISSING | Citations=1; Iterations=1 |
+| manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md | Cited | MISSING | Citations=1; Iterations=1 |
 | manual_testing_playbook/manual_testing_playbook.md | Cited | MISSING | Citations=2; Iterations=2 |
 | ownership-boundary.md | Cited | MISSING | Citations=1; Iterations=1 |
 | references/code-graph-readiness-check.md | Cited | MISSING | Citations=3; Iterations=3 |

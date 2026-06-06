@@ -45,8 +45,8 @@ This same reducer pass also refreshes `findings-registry.json` and `deep-researc
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach handling. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop history and recovery guidance appear in reducer-owned outputs. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/strategy-next-focus-and-exhausted-approach-discipline.md` | Manual playbook | Verifies next-focus selection and exhausted-approach handling. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop history and recovery guidance appear in reducer-owned outputs. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-reducer.vitest.ts` | Vitest | Verifies reducer output is idempotent and keeps strategy, registry, and dashboard aligned. |
 
 ---

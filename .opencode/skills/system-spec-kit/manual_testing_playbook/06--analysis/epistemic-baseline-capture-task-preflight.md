@@ -56,7 +56,7 @@ Retry with complete fields
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/050-epistemic-baseline-capture-taskpreflight.md](../../feature_catalog/06--analysis/050-epistemic-baseline-capture-taskpreflight.md)
+- Feature catalog: [06--analysis/epistemic-baseline-capture-taskpreflight.md](../../feature_catalog/06--analysis/epistemic-baseline-capture-taskpreflight.md)
 
 ---
 

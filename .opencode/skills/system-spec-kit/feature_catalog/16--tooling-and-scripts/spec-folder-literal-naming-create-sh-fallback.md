@@ -44,7 +44,7 @@ Exit code remains 0 to keep scaffolding non-blocking. Downstream consumers (work
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/218-spec-folder-literal-naming-create-sh-fallback.md` | Manual playbook | Playbook scenario PHASE-006 covering placeholder emission, stderr warning count, and exit-code expectation |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md` | Manual playbook | Playbook scenario PHASE-006 covering placeholder emission, stderr warning count, and exit-code expectation |
 
 ---
 

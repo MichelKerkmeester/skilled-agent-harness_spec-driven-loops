@@ -57,7 +57,7 @@ Cross-check shared config loader and vector-index store override path
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/276-4-memory-and-storage.md](../../feature_catalog/19--feature-flag-reference/276-4-memory-and-storage.md)
+- Feature catalog: [19--feature-flag-reference/4-memory-and-storage.md](../../feature_catalog/19--feature-flag-reference/4-memory-and-storage.md)
 
 ---
 

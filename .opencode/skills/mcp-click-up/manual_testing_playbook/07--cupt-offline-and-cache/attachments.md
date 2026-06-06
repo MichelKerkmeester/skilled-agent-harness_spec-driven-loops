@@ -48,7 +48,7 @@ Verify `cupt attach list TASK_ID` returns attachment metadata or 'no attachments
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/08--cupt-attachments/041-list-attachments.md` | Feature catalog source |
+| `../feature_catalog/08--cupt-attachments/list-attachments.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

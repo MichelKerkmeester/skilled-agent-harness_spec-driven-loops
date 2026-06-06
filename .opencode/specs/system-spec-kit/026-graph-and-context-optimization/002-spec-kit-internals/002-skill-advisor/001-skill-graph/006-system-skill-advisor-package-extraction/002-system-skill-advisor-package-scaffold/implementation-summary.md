@@ -64,7 +64,7 @@ Edit ledger (cli-codex gpt-5.5 high fast, run window 10:21-10:32):
 | `.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md` | A | 56 |
 | `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md` | A | 65 |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | A | 84 |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md` | A | 78 |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md` | A | 78 |
 | `.opencode/skills/system-skill-advisor/mcp_server/README.md` | A | 16 |
 | `.opencode/skills/system-skill-advisor/mcp_server/database/.gitkeep` | A | 1 |
 

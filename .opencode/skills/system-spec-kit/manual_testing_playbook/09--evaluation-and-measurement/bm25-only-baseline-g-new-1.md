@@ -58,7 +58,7 @@ Verify all non-BM25 channels are disabled, confirm BM25 path activation, check B
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/074-bm25-only-baseline.md](../../feature_catalog/09--evaluation-and-measurement/074-bm25-only-baseline.md)
+- Feature catalog: [09--evaluation-and-measurement/bm25-only-baseline.md](../../feature_catalog/09--evaluation-and-measurement/bm25-only-baseline.md)
 
 ---
 

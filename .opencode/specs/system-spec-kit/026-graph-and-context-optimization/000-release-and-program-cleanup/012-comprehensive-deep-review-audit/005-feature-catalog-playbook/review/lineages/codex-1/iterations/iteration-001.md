@@ -14,7 +14,7 @@ Focus: catalog/code-reference claims.
 
 The master catalog says feature catalog code references "embed inline traceability comments in every source file" and that "each file declares" catalog features [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946]. It then says every non-test `.ts` file under `mcp_server/`, `shared/`, and `scripts/` carries a module header, while implementation files carry catalog annotations [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950].
 
-The dedicated feature leaf uses a materially weaker contract: measured majority, `192` of `280`, and explicitly "partial rather than universal" [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26].
+The dedicated feature leaf uses a materially weaker contract: measured majority, `192` of `280`, and explicitly "partial rather than universal" [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26].
 
 Impact: operators reading the master catalog get a stronger traceability guarantee than the feature-specific source is willing to make.
 
@@ -28,7 +28,7 @@ Claim adjudication packet:
   "evidenceRefs": [
     ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946",
     ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3950",
-    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26"
+    ".opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26"
   ],
   "counterevidenceSought": "Checked the dedicated code-reference feature, sampled source files, and annotation-name validation output.",
   "alternativeExplanation": "The root catalog may be using informal prose while the leaf carries the precise audit measurement, but release-readiness readers treat both as current catalog truth.",

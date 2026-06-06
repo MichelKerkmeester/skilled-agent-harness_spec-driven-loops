@@ -64,7 +64,7 @@ advisor_recommend({"prompt":"<prompt matching recent skill>","options":{"include
 
 - Scenario [LC-002](./supersession.md), supersession redirects.
 - Scenario [SC-001](../08--scorer-fusion/five-lane-fusion.md), 5-lane fusion basics.
-- Feature [`03--lifecycle-routing/014-age-haircut.md`](../../feature_catalog/03--lifecycle-routing/014-age-haircut.md).
+- Feature [`03--lifecycle-routing/age-haircut.md`](../../feature_catalog/03--lifecycle-routing/age-haircut.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/lifecycle/age-haircut.ts`.
 
 ---

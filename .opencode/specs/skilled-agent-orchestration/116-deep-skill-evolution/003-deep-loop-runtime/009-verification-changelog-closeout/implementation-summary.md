@@ -196,12 +196,12 @@ All resource-map paths resolve in the current tree:
 - .opencode/skills/deep-loop-runtime/tests/integration/review-depth-convergence.vitest.ts
 - .opencode/skills/deep-loop-runtime/tests/integration/review-depth-graph.vitest.ts
 - .opencode/skills/system-spec-kit/mcp_server/tests/deep-loop/review-depth-reducer.vitest.ts
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/058-validator-warn-rollout.md
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/059-validator-strict-v2.md
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/060-reducer-search-debt.md
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md
-- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/063-graph-vocabulary.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-warn-rollout.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/validator-strict-v2.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/reducer-search-debt.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-candidate-coverage.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/stop-gate-graphless-fallback.md
+- .opencode/skills/deep-review/manual_testing_playbook/08--review-depth-v2-rollout/graph-vocabulary.md
 ```
 <!-- /ANCHOR:verification -->
 

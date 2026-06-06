@@ -56,4 +56,4 @@ Related references:
 
 - [02-query-self-heal.md](./query-self-heal.md)
 - [../02--manual-scan-verify-status/code-graph-scan.md](../02--manual-scan-verify-status/code-graph-scan.md)
-- [../../manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md](../../manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md)
+- [../../manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md](../../manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md)

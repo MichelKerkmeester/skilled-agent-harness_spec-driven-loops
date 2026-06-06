@@ -36,7 +36,7 @@ A cli-codex dispatch authored the full package envelope in a single 11-minute wi
 - `feature_catalog/feature_catalog.md` (56 LOC) with one illustrative entry for the MCP surface
 - `feature_catalog/06--mcp-surface/01-advisor-recommend.md` (65 LOC)
 - `manual_testing_playbook/manual_testing_playbook.md` (84 LOC)
-- `manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md` (78 LOC)
+- `manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md` (78 LOC)
 - `mcp_server/README.md` (16 LOC) stating "Child 003's drop target" explicitly
 - `mcp_server/database/.gitkeep` for the future DB directory
 
@@ -78,7 +78,7 @@ A cli-codex dispatch authored the full package envelope in a single 11-minute wi
 | `.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md` | Added (NEW) | 56 LOC catalog index with one MCP surface entry |
 | `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/01-advisor-recommend.md` | Added (NEW) | 65 LOC illustrative catalog entry |
 | `.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md` | Added (NEW) | 84 LOC playbook index |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md` | Added (NEW) | 78 LOC happy-path scenario |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md` | Added (NEW) | 78 LOC happy-path scenario |
 | `.opencode/skills/system-skill-advisor/mcp_server/README.md` | Added (NEW) | 16 LOC drop-target stub for child 003 |
 | `.opencode/skills/system-skill-advisor/mcp_server/database/.gitkeep` | Added (NEW) | Placeholder for future DB directory |
 

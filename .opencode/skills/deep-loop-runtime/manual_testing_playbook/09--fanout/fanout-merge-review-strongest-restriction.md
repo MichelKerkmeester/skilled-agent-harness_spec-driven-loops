@@ -76,7 +76,7 @@ Without this, a clean lineage could dilute a blocking lineage's P0 finding.
 
 - Group: Fan-Out
 - Playbook ID: DLR-028
-- Feature catalog entry: `feature_catalog/09--fanout/027-fanout-merge.md`
+- Feature catalog entry: `feature_catalog/09--fanout/fanout-merge.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md`
 - Expected verdict mode: GREEN when all 5 review tests pass and source anchors agree
 - Wall-time estimate: 5-10 min

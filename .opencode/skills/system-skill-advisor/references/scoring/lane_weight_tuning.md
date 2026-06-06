@@ -117,7 +117,7 @@ Lane weight changes are governed work. The checklist:
 4. Update synchronized docs in one commit:
    - `mcp_server/lib/scorer/lane-registry.ts`
    - [`advisor_scorer.md`](./advisor_scorer.md) lane table
-   - [`feature_catalog/04--scorer-fusion/024-weights-config.md`](../../feature_catalog/04--scorer-fusion/024-weights-config.md)
+   - [`feature_catalog/04--scorer-fusion/weights-config.md`](../../feature_catalog/04--scorer-fusion/weights-config.md)
    - [README.md](../../README.md) §3.3 lane weights table
    - [ARCHITECTURE.md](../../ARCHITECTURE.md) lane weights section
 5. Run `advisor_validate` post-change to confirm the comparison numbers reproduce in the deployed config.
@@ -149,8 +149,8 @@ Confirm the baseline numbers return. Document the rollback rationale in the orig
 ## 7. RELATED
 
 - [`advisor_scorer.md`](./advisor_scorer.md), lane attribution model + fusion + 16 confidence calibration constants.
-- [`feature_catalog/04--scorer-fusion/024-weights-config.md`](../../feature_catalog/04--scorer-fusion/024-weights-config.md), canonical current weights.
-- [`manual_testing_playbook/08--scorer-fusion/041-ablation.md`](../../manual_testing_playbook/08--scorer-fusion/041-ablation.md), ablation scenario for measuring lane contributions.
+- [`feature_catalog/04--scorer-fusion/weights-config.md`](../../feature_catalog/04--scorer-fusion/weights-config.md), canonical current weights.
+- [`manual_testing_playbook/08--scorer-fusion/ablation.md`](../../manual_testing_playbook/08--scorer-fusion/ablation.md), ablation scenario for measuring lane contributions.
 - `mcp_server/tests/scorer/lane-weight-sweep.vitest.ts`, sweep harness.
 - `mcp_server/lib/scorer/lane-registry.ts:7-19,32-38`, live + shadow weight source-of-truth.
 - `mcp_server/lib/scorer/scoring-constants.ts:141-170`, confidence calibration constants.

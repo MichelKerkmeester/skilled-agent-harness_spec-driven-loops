@@ -143,7 +143,7 @@ Success criteria: a future investigator can read `findings.md`, `findings-rubric
 ## 5. REFERENCES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--stress-testing/162-category-overview.md](../../feature_catalog/14--stress-testing/162-category-overview.md)
+- Feature catalog: [14--stress-testing/category-overview.md](../../feature_catalog/14--stress-testing/category-overview.md)
 - Rubric template: [findings-rubric.template.json](../../templates/stress_test/findings-rubric.template.json)
 - Rubric schema: [findings-rubric.schema.md](../../templates/stress_test/findings-rubric.schema.md)
 - Findings template: [findings.template.md](../../templates/stress_test/findings.template.md)

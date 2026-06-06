@@ -57,4 +57,4 @@ No `graphEvents` means no upsert. The workflow skip is intentional and should no
 Related references:
 
 - [04-deep-loop-graph-convergence.md](./deep-loop-graph-convergence.md)
-- [../../manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md](../../manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md)
+- [../../manual_testing_playbook/05--coverage-graph/deep-loop-graph-upsert-conditional.md](../../manual_testing_playbook/05--coverage-graph/deep-loop-graph-upsert-conditional.md)

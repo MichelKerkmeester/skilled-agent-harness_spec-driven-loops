@@ -57,4 +57,4 @@ The route manifest is marked `mutates` because it grants apply flags and future 
 Related references:
 
 - [../02--manual-scan-verify-status/code-graph-verify.md](../02--manual-scan-verify-status/code-graph-verify.md)
-- [../../manual_testing_playbook/08--doctor-code-graph/015-doctor-apply-mode-policy.md](../../manual_testing_playbook/08--doctor-code-graph/015-doctor-apply-mode-policy.md)
+- [../../manual_testing_playbook/08--doctor-code-graph/doctor-apply-mode-policy.md](../../manual_testing_playbook/08--doctor-code-graph/doctor-apply-mode-policy.md)

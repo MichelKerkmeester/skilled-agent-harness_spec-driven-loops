@@ -58,7 +58,7 @@ Check consolidation trigger mechanism; inspect individual sub-process logs; veri
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/192-lightweight-consolidation.md](../../feature_catalog/15--retrieval-enhancements/192-lightweight-consolidation.md)
+- Feature catalog: [15--retrieval-enhancements/lightweight-consolidation.md](../../feature_catalog/15--retrieval-enhancements/lightweight-consolidation.md)
 
 ---
 

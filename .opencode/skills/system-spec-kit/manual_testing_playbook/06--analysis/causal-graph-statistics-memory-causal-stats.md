@@ -87,7 +87,7 @@ Inspect `mcp_server/handlers/causal-graph.ts` balanceStatus computation (`RELATI
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/047-causal-graph-statistics-memorycausalstats.md](../../feature_catalog/06--analysis/047-causal-graph-statistics-memorycausalstats.md)
+- Feature catalog: [06--analysis/causal-graph-statistics-memorycausalstats.md](../../feature_catalog/06--analysis/causal-graph-statistics-memorycausalstats.md)
 
 ---
 

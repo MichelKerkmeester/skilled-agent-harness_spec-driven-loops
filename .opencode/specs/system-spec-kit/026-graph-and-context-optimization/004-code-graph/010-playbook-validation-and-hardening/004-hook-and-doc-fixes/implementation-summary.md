@@ -65,9 +65,9 @@ The Devin SessionStart hook now fires, and four stale playbook scenario docs mat
 | File | Action | Purpose |
 |------|--------|---------|
 | `.devin/hooks.v1.json` | Modified | Correct SessionStart hook path |
-| `.../020-typescript-build-and-entry-point.md` | Modified | 11→8 tools |
-| `.../011-tool-call-shape-validation.md` | Modified | verify-rating → apply-operation |
-| `.../010-deep-loop-graph-upsert-conditional.md` | Modified | line ranges |
+| `.../typescript-build-and-entry-point.md` | Modified | 11→8 tools |
+| `.../tool-call-shape-validation.md` | Modified | verify-rating → apply-operation |
+| `.../deep-loop-graph-upsert-conditional.md` | Modified | line ranges |
 | `.../manual_testing_playbook.md` | Modified | 021 index label |
 <!-- /ANCHOR:what-built -->
 

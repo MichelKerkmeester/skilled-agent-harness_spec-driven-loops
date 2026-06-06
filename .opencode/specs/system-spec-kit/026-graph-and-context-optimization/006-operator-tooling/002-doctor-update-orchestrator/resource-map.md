@@ -83,7 +83,7 @@ _memory:
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Phase 002 registered category `23--doctor-commands` and scenario index entries. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/*.md` | Created | OK | 23 scenario docs: DOC-323..336, DOC-338..342, DOC-344..347. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/014-workspace-scanning-and-indexing-memory-index-scan.md` | Cited | OK | Scenario structure reference. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-startup-runtime-compatibility-guards.md` | Cited | OK | Startup/runtime scenario structure reference. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md` | Cited | OK | Startup/runtime scenario structure reference. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/252-cross-runtime-fallback.md` | Cited | OK | Cross-runtime fallback scenario reference. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/README.md` | Cited | OK | Database artifact and auto-init contract reference. |
 | `.opencode/skills/system-spec-kit/mcp_server/database/migration-manifest.json` | Updated | OK | 3.3.0.0 -> 3.4.1.0 migration chain and launcher/bootstrap guidance. |

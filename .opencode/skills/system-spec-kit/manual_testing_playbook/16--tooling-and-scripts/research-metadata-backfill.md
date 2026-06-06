@@ -58,7 +58,7 @@ Inspect `scripts/memory/backfill-research-metadata.ts`, the workflow follow-up i
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/236-research-metadata-backfill.md](../../feature_catalog/16--tooling-and-scripts/236-research-metadata-backfill.md)
+- Feature catalog: [16--tooling-and-scripts/research-metadata-backfill.md](../../feature_catalog/16--tooling-and-scripts/research-metadata-backfill.md)
 
 ---
 

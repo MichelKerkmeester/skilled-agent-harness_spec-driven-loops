@@ -538,7 +538,7 @@ Check resolveProjectPhase() in session-extractor.ts and projectPhase propagation
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/219-json-mode-hybrid-enrichment.md](../../feature_catalog/16--tooling-and-scripts/219-json-mode-hybrid-enrichment.md)
+- Feature catalog: [16--tooling-and-scripts/json-mode-hybrid-enrichment.md](../../feature_catalog/16--tooling-and-scripts/json-mode-hybrid-enrichment.md)
 - Source spec: [016-json-mode-hybrid-enrichment/spec.md](../../../../<spec-folder>)
 
 ---

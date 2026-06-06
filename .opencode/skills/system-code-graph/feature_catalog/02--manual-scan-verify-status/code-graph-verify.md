@@ -56,4 +56,4 @@ Related references:
 
 - [01-code-graph-scan.md](./code-graph-scan.md)
 - [../08--doctor-code-graph/doctor-apply-mode.md](../08--doctor-code-graph/doctor-apply-mode.md)
-- [../../manual_testing_playbook/02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md](../../manual_testing_playbook/02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md)
+- [../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md](../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md)

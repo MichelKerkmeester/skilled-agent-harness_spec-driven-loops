@@ -56,7 +56,7 @@ Inspect `scripts/extractors/file-extractor.ts`, `diagram-extractor.ts`, `session
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/230-session-extraction-and-enrichment.md](../../feature_catalog/16--tooling-and-scripts/230-session-extraction-and-enrichment.md)
+- Feature catalog: [16--tooling-and-scripts/session-extraction-and-enrichment.md](../../feature_catalog/16--tooling-and-scripts/session-extraction-and-enrichment.md)
 
 ---
 

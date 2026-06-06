@@ -3917,16 +3917,16 @@ exec
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs
 .opencode/skills/system-spec-kit/scripts/tests/evidence-marker-audit.vitest.ts
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/001-documentation-code-alignment/scratch/audit-findings.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/decision-record.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/007-clean-room-license-audit/prompts/agent-brief.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/027-fanout-merge-research.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-research.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-pool-concurrency-cap.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/spec.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/plan.md
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/tasks.md
@@ -5272,10 +5272,10 @@ exec
 .opencode/skills/deep-loop-runtime/scripts/fanout-merge.cjs:314:  // Write merged registry to base artifact dir (replacing single-executor path)
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:16:- `01--executor/`
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:109:Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:117:> **Feature File:** [DLR-001](01--executor/001-executor-config.md)
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:117:> **Feature File:** [DLR-001](01--executor/executor-config.md)
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:122:Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:130:> **Feature File:** [DLR-002](01--executor/002-executor-audit.md)
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:143:> **Feature File:** [DLR-003](01--executor/003-fallback-router.md)
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:130:> **Feature File:** [DLR-002](01--executor/executor-audit.md)
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:143:> **Feature File:** [DLR-003](01--executor/fallback-router.md)
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:250:Scores executor reliability and decides when enough evidence supports demotion.
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:373:Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:418:This category covers 7 scenarios validating the opt-in multi-executor fan-out layer added in packet 124: config schema, pool primitive, CLI lineage driver, write-failure salvage, research merge, review strongest-restriction, and artifact-dir-override parity.
@@ -5288,9 +5288,9 @@ exec
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:504:Prompt: `Validate fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, then run 197/197 vitest.`
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:517:| Executor | `tests/unit/executor-config.vitest.ts`, `tests/unit/executor-audit*.vitest.ts`, `tests/unit/fallback-router.vitest.ts`, `tests/unit/cli-matrix.vitest.ts` | Executor parsing, audit, fallback, and CLI dispatch behavior. |
 .opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:523:| Fan-Out | `tests/unit/executor-config.vitest.ts` (+9 fan-out tests), `tests/unit/fanout-pool.vitest.ts`, `tests/unit/fanout-run.vitest.ts`, `tests/unit/fanout-salvage.vitest.ts`, `tests/unit/fanout-merge.vitest.ts` | Fan-out config schema, pool concurrency, CLI lineage dispatch, write-failure salvage, research/review merge. |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:531:| DLR-001 | [F001 Executor config](../feature_catalog/01--executor/01-executor-config.md) | [01--executor/001-executor-config.md](01--executor/001-executor-config.md) |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:532:| DLR-002 | [F002 Executor audit](../feature_catalog/01--executor/02-executor-audit.md) | [01--executor/002-executor-audit.md](01--executor/002-executor-audit.md) |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:533:| DLR-003 | [F003 Fallback router](../feature_catalog/01--executor/03-fallback-router.md) | [01--executor/003-fallback-router.md](01--executor/003-fallback-router.md) |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:531:| DLR-001 | [F001 Executor config](../feature_catalog/01--executor/01-executor-config.md) | [01--executor/executor-config.md](01--executor/executor-config.md) |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:532:| DLR-002 | [F002 Executor audit](../feature_catalog/01--executor/02-executor-audit.md) | [01--executor/executor-audit.md](01--executor/executor-audit.md) |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md:533:| DLR-003 | [F003 Fallback router](../feature_catalog/01--executor/03-fallback-router.md) | [01--executor/fallback-router.md](01--executor/fallback-router.md) |
 .opencode/skills/deep-loop-runtime/SKILL.md:4:description: "Shared deep-loop runtime: executor + prompt-pack + validation + atomic state + coverage-graph + Bayesian scoring + fallback routing."
 .opencode/skills/deep-loop-runtime/SKILL.md:20:- executor configuration and audit metadata
 .opencode/skills/deep-loop-runtime/SKILL.md:35:- A workflow needs Bayesian convergence scoring or fallback executor routing
@@ -5350,28 +5350,28 @@ exec
 .opencode/skills/deep-loop-runtime/feature_catalog/01--executor/02-executor-audit.md:50:- Primary sources: `lib/deep-loop/executor-audit.ts`, `tests/unit/executor-audit.vitest.ts`
 .opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts:35:      { id: 'disagreement-1', kind: 'DISAGREEMENT', name: 'Critical unresolved dissent', metadata: { severity: 'P1' } },
 .opencode/skills/deep-loop-runtime/tests/integration/council-graph-script.vitest.ts:260:        expect.objectContaining({ type: 'unresolved_critical_disagreements', severity: 'blocking' }),
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:14:Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:24:- Objective: Confirm executor config behaves as documented and remains aligned with its implementation and tests.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:25:- Layer partition: executor runtime.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/01-executor-config.md`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:42:1. Inspect `lib/deep-loop/executor-config.ts` for the implementation contract.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:43:2. Inspect `tests/unit/executor-config.vitest.ts` for the primary regression coverage.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:67:| `lib/deep-loop/executor-config.ts` | Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization. |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:73:| `tests/unit/executor-config.vitest.ts` | Primary regression coverage for Executor config. |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:81:- Feature catalog entry: `feature_catalog/01--executor/01-executor-config.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md:82:- Scenario file path: `manual_testing_playbook/01--executor/001-executor-config.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:14:Validates the fan-out config schema layer added to `executor-config.ts`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:26:- Layer partition: executor config schema.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:27:- Real user request: `Validate fan-out config schema and confirm the 9 fan-out tests pass and align with the executor-config.ts implementation.`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:28:- Expected signals: `lineageExecutorSchema` extends `executorConfigSchema` without modifying it; `parseFanoutConfig` rejects duplicate labels and expanded-label collisions; `expandLineages` yields `label-1…label-N` for count>1; optional `lineageId` on `buildExecutorAuditRecord` is conditionally spread.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:43:1. Inspect `lib/deep-loop/executor-config.ts` — confirm `lineageExecutorSchema` at ~L294, `fanoutConfigSchema` at ~L304, `parseFanoutConfig` at ~L323, `expandLineages` at ~L381.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:44:2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/executor-config.vitest.ts`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:46:4. Inspect `lib/deep-loop/executor-audit.ts` ~L491 — verify `lineageId` is spread conditionally (`...(lineageId !== undefined ? { lineageId } : {})`).
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:54:- Any fan-out test failure indicates schema drift in `executor-config.ts`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:55:- If `lineageId` is unconditionally included, single-executor audit records differ from pre-fan-out baseline.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:66:| `lib/deep-loop/executor-config.ts` | `lineageExecutorSchema`, `fanoutConfigSchema`, `parseFanoutConfig`, `expandLineages` |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:67:| `lib/deep-loop/executor-audit.ts` | Optional `lineageId` on `RunAuditedExecutorCommandInput` and `buildExecutorAuditRecord` |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md:73:| `tests/unit/executor-config.vitest.ts` | 36 tests total (27 original + 9 fan-out) |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:14:Parses and normalizes per-iteration executor configuration for native and CLI-backed deep-loop dispatch.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:24:- Objective: Confirm executor config behaves as documented and remains aligned with its implementation and tests.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:25:- Layer partition: executor runtime.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/01-executor-config.md`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:42:1. Inspect `lib/deep-loop/executor-config.ts` for the implementation contract.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:43:2. Inspect `tests/unit/executor-config.vitest.ts` for the primary regression coverage.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:67:| `lib/deep-loop/executor-config.ts` | Schema, parsing, defaults, supported flags, sandbox and permission-mode normalization. |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:73:| `tests/unit/executor-config.vitest.ts` | Primary regression coverage for Executor config. |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:81:- Feature catalog entry: `feature_catalog/01--executor/01-executor-config.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md:82:- Scenario file path: `manual_testing_playbook/01--executor/executor-config.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:14:Validates the fan-out config schema layer added to `executor-config.ts`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:26:- Layer partition: executor config schema.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:27:- Real user request: `Validate fan-out config schema and confirm the 9 fan-out tests pass and align with the executor-config.ts implementation.`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:28:- Expected signals: `lineageExecutorSchema` extends `executorConfigSchema` without modifying it; `parseFanoutConfig` rejects duplicate labels and expanded-label collisions; `expandLineages` yields `label-1…label-N` for count>1; optional `lineageId` on `buildExecutorAuditRecord` is conditionally spread.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:43:1. Inspect `lib/deep-loop/executor-config.ts` — confirm `lineageExecutorSchema` at ~L294, `fanoutConfigSchema` at ~L304, `parseFanoutConfig` at ~L323, `expandLineages` at ~L381.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:44:2. `bash: cd .opencode/skills/system-spec-kit/mcp_server && npx vitest run ../../deep-loop-runtime/tests/unit/executor-config.vitest.ts`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:46:4. Inspect `lib/deep-loop/executor-audit.ts` ~L491 — verify `lineageId` is spread conditionally (`...(lineageId !== undefined ? { lineageId } : {})`).
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:54:- Any fan-out test failure indicates schema drift in `executor-config.ts`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:55:- If `lineageId` is unconditionally included, single-executor audit records differ from pre-fan-out baseline.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:66:| `lib/deep-loop/executor-config.ts` | `lineageExecutorSchema`, `fanoutConfigSchema`, `parseFanoutConfig`, `expandLineages` |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:67:| `lib/deep-loop/executor-audit.ts` | Optional `lineageId` on `RunAuditedExecutorCommandInput` and `buildExecutorAuditRecord` |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-config-schema.md:73:| `tests/unit/executor-config.vitest.ts` | 36 tests total (27 original + 9 fan-out) |
 .opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts:53:        if (seat.id === 'seat-002') throw new Error('seat executor failed');
 .opencode/skills/deep-loop-runtime/tests/council/multi-seat-dispatch.vitest.ts:59:    expect(result.results[1].error?.message).toBe('seat executor failed');
 .opencode/skills/deep-loop-runtime/tests/unit/cli-matrix.vitest.ts:13:} from '../../lib/deep-loop/executor-config';
@@ -5393,30 +5393,30 @@ exec
 .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:274:  } = await import('../lib/deep-loop/executor-config.ts');
 .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:310:      const stateDir = path.join(lineageDir, '.executor-state');
 .opencode/skills/deep-loop-runtime/scripts/fanout-run.cjs:350:      // Save subprocess stdout for salvage sweep (write failures in weak CLI executors).
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/018-multi-seat-dispatch.md:14:Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md:25:- Layer partition: executor runtime.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/03-fallback-router.md`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md:81:- Feature catalog entry: `feature_catalog/01--executor/03-fallback-router.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md:82:- Scenario file path: `manual_testing_playbook/01--executor/003-fallback-router.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:14:Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:24:- Objective: Confirm executor audit behaves as documented and remains aligned with its implementation and tests.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:25:- Layer partition: executor runtime.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/02-executor-audit.md`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:42:1. Inspect `lib/deep-loop/executor-audit.ts` for the implementation contract.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:43:2. Inspect `tests/unit/executor-audit.vitest.ts` for the primary regression coverage.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:67:| `lib/deep-loop/executor-audit.ts` | Recursion guard, executor audit record writing, dispatch-failure emission, and audited command spawning. |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:73:| `tests/unit/executor-audit.vitest.ts` | Primary regression coverage for Executor audit. |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:81:- Feature catalog entry: `feature_catalog/01--executor/02-executor-audit.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md:82:- Scenario file path: `manual_testing_playbook/01--executor/002-executor-audit.md`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md:3:description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md:19:This is the script that dispatches all CLI executor fan-out lineages. If the per-kind
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md:30:- Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md:47:4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md:51:5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md:3:description: "Validate mergeReviewRegistries strongest-restriction: clean A + P0 B → FAIL; duplicate findingId escalates to highest severity; non-active findings excluded; P1-only → CONDITIONAL; all clean → PASS."
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md:26:- Objective: Confirm `mergeReviewRegistries` applies strongest-restriction: any active P0 across any lineage → `mergedVerdict=FAIL`; duplicate findingId escalates to highest severity; non-active findings excluded; all clean → PASS; P1-only → CONDITIONAL.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md:49:5/5 review tests pass. All verdict combinations correct. Duplicate findingId gets highest severity. Non-active (resolved, `resolved_false_positive`) findings excluded from active counts.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md:53:- SEVERITY_RANK missing: duplicate findingId keeps the first-seen severity instead of escalating.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/multi-seat-dispatch.md:14:Runs seat executors in parallel for one council round; preserves seat result order; returns fulfilled or rejected per-seat outcomes plus round summary counts.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/fallback-router.md:25:- Layer partition: executor runtime.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/fallback-router.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/03-fallback-router.md`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/fallback-router.md:81:- Feature catalog entry: `feature_catalog/01--executor/03-fallback-router.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/fallback-router.md:82:- Scenario file path: `manual_testing_playbook/01--executor/fallback-router.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:14:Records executor provenance and guards recursive external-CLI dispatch inside iteration state logs.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:24:- Objective: Confirm executor audit behaves as documented and remains aligned with its implementation and tests.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:25:- Layer partition: executor runtime.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:38:- Feature catalog entry exists at `feature_catalog/01--executor/02-executor-audit.md`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:42:1. Inspect `lib/deep-loop/executor-audit.ts` for the implementation contract.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:43:2. Inspect `tests/unit/executor-audit.vitest.ts` for the primary regression coverage.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:67:| `lib/deep-loop/executor-audit.ts` | Recursion guard, executor audit record writing, dispatch-failure emission, and audited command spawning. |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:73:| `tests/unit/executor-audit.vitest.ts` | Primary regression coverage for Executor audit. |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:81:- Feature catalog entry: `feature_catalog/01--executor/02-executor-audit.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md:82:- Scenario file path: `manual_testing_playbook/01--executor/executor-audit.md`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md:3:description: "Validate fanout-run.cjs creates per-lineage dirs with isolated .executor-state paths, saves stdout to logs/, writes orchestration summary and ledger, and returns early for native-only configs."
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md:19:This is the script that dispatches all CLI executor fan-out lineages. If the per-kind
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md:30:- Expected signals: `lineages/lineage-a/` and `lineages/lineage-b/` dirs created; `.executor-state/` paths distinct for same-kind replicas; `orchestration-summary.json` present with `total_cli_lineages=2`; `orchestration-status.log` has JSONL events; native-only config returns `{status:"ok", results:[]}`.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md:47:4. Confirm 5 tests pass. Note: the 2-lineage stub test verifies dirs, ledger, and summary; the lockfile-isolation test verifies `.executor-state` paths are distinct for same-kind replicas.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md:51:5/5 pass. Lineage dirs created, `.executor-state` dirs distinct, `orchestration-summary.json` with `total_cli_lineages=2`, JSONL ledger written, native-only config returns early without spawning.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md:3:description: "Validate mergeReviewRegistries strongest-restriction: clean A + P0 B → FAIL; duplicate findingId escalates to highest severity; non-active findings excluded; P1-only → CONDITIONAL; all clean → PASS."
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md:26:- Objective: Confirm `mergeReviewRegistries` applies strongest-restriction: any active P0 across any lineage → `mergedVerdict=FAIL`; duplicate findingId escalates to highest severity; non-active findings excluded; all clean → PASS; P1-only → CONDITIONAL.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md:49:5/5 review tests pass. All verdict combinations correct. Duplicate findingId gets highest severity. Non-active (resolved, `resolved_false_positive`) findings excluded from active counts.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-merge-review-strongest-restriction.md:53:- SEVERITY_RANK missing: duplicate findingId keeps the first-seen severity instead of escalating.
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:4:// ║ Concurrency-capped fan-out primitive for the opt-in multi-executor        ║
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:5:// ║ ("fan-out") layer above the single-executor deep-loop. Generalizes the    ║
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:7:// ║ adding a concurrency cap so N executor lineages run with at most K in      ║
@@ -5425,22 +5425,22 @@ exec
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:202: * Build the ordered-results + summary envelope for a completed pool run.
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:204: * @param {Array<Object>} results - Per-item settlement results (ordered).
 .opencode/skills/deep-loop-runtime/scripts/fanout-pool.cjs:245: *   salvage counts and per-lineage rollups).
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md:3:description: "Validate runCappedPool respects the concurrency cap, isolates per-item failures from the pool, returns ordered results, emits ledger events, and reports all_failed when every item fails."
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md:20:weak executor cancels all other lineages.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md:50:10/10 pass. Pool cap respected, one rejection does not sink pool, ordered results preserved, `all_failed` correct, `onEvent` callback receives started/completed/failed events.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-pool-concurrency-cap.md:3:description: "Validate runCappedPool respects the concurrency cap, isolates per-item failures from the pool, returns ordered results, emits ledger events, and reports all_failed when every item fails."
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-pool-concurrency-cap.md:20:weak executor cancels all other lineages.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-pool-concurrency-cap.md:50:10/10 pass. Pool cap respected, one rejection does not sink pool, ordered results preserved, `all_failed` correct, `onEvent` callback receives started/completed/failed events.
 .opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs:5:// ║ a CLI executor fails to write outputs (sandbox write restrictions, etc). ║
 .opencode/skills/deep-loop-runtime/scripts/fanout-salvage.cjs:21: * Concatenates all text parts; falls back to raw stdout for other executors.
 .opencode/skills/deep-loop-runtime/tests/integration/review-depth-validator.vitest.ts:188:      findingDetails: [{ id: 'F-001', severity: 'P1', disposition: 'active' }],
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:2:title: "DLR-029 -- Artifact-dir override and single-executor parity"
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:3:description: "Validate the YAML artifact-dir override branch is byte-identical to the original resolver in single-executor mode, and that step_fanout_spawn + step_fanout_merge are fully skipped when config.fanout is absent."
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:6:# DLR-029 -- Artifact-dir override and single-executor parity
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:14:Validates that the fan-out YAML changes preserve byte-identical single-executor behavior and
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:20:Any regression in single-executor mode would break all existing deep-research and deep-review
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:29:- Real user request: `Validate the fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, and run the full vitest suite to confirm 197/197.`
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:54:Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps skipped in single-executor mode. Full vitest suite green.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:58:- `if_absent` branch modified: `resolveArtifactRoot` receives wrong arguments, breaking artifact dir resolution for all single-executor runs.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:59:- `skip_when` guard removed from `step_fanout_spawn`: the spawn step runs even in single-executor mode, attempting to call `fanout-run.cjs` with an absent fanout config.
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md:79:| Full vitest suite | 197/197 confirms no single-executor regression across all deep-loop-runtime tests |
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:2:title: "DLR-029 -- Artifact-dir override and single-executor parity"
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:3:description: "Validate the YAML artifact-dir override branch is byte-identical to the original resolver in single-executor mode, and that step_fanout_spawn + step_fanout_merge are fully skipped when config.fanout is absent."
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:6:# DLR-029 -- Artifact-dir override and single-executor parity
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:14:Validates that the fan-out YAML changes preserve byte-identical single-executor behavior and
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:20:Any regression in single-executor mode would break all existing deep-research and deep-review
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:29:- Real user request: `Validate the fan-out YAML parity: confirm single-executor behavior is unchanged by inspecting the if_absent branch and skip_when guards, and run the full vitest suite to confirm 197/197.`
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:54:Source inspection confirms `if_absent` branch is unchanged. Both fan-out steps skipped in single-executor mode. Full vitest suite green.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:58:- `if_absent` branch modified: `resolveArtifactRoot` receives wrong arguments, breaking artifact dir resolution for all single-executor runs.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:59:- `skip_when` guard removed from `step_fanout_spawn`: the spawn step runs even in single-executor mode, attempting to call `fanout-run.cjs` with an absent fanout config.
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/artifact-dir-override-parity.md:79:| Full vitest suite | 197/197 confirms no single-executor regression across all deep-loop-runtime tests |
 .opencode/skills/deep-loop-runtime/scripts/convergence.cjs:111:    .filter((blocker) => blocker && blocker.severity === 'blocking')
 .opencode/skills/deep-loop-runtime/scripts/convergence.cjs:161:  const p0Findings = findingNodes.filter((node) => parseMetadata(node.metadata).severity === 'P0');
 .opencode/skills/deep-loop-runtime/scripts/convergence.cjs:206:    blockers.push({ type: 'source_diversity_guard', description: `Source diversity (${signals.sourceDiversity.toFixed(2)}) is below the blocking threshold (${thresholds.sourceDiversity}). STOP is blocked until diverse sources cover key questions.`, count: 1, severity: 'blocking' });
@@ -5456,7 +5456,7 @@ exec
 .opencode/skills/deep-loop-runtime/tests/unit/README.md:19:| `executor-audit.vitest.ts` | `lib/deep-loop/executor-audit.ts` |
 .opencode/skills/deep-loop-runtime/tests/unit/README.md:20:| `executor-audit-process-group.vitest.ts` | `lib/deep-loop/executor-audit.ts` (process-group teardown) |
 .opencode/skills/deep-loop-runtime/tests/unit/README.md:29:| `cli-matrix.vitest.ts` | executor-config CLI flag matrix |
-.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/026-fanout-salvage-recovery.md:19:Proven necessary from the packet-122 prototype: weak CLI executors intermittently fail to
+.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/fanout-salvage-recovery.md:19:Proven necessary from the packet-122 prototype: weak CLI executors intermittently fail to
 .opencode/skills/deep-loop-runtime/tests/unit/executor-audit-process-group.vitest.ts:7:import { runAuditedExecutorCommandAsync } from '../../lib/deep-loop/executor-audit.js';
 .opencode/skills/deep-loop-runtime/tests/unit/executor-audit-process-group.vitest.ts:8:import type { ExecutorConfig } from '../../lib/deep-loop/executor-config.js';
 .opencode/skills/deep-loop-runtime/tests/unit/executor-audit-process-group.vitest.ts:50:describe('executor-audit process-group supervisor', () => {

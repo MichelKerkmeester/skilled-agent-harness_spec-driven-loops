@@ -43,11 +43,11 @@ Claim adjudication packet:
 
 The link resolver found five broken playbook-to-catalog links:
 
-- `02--mutation/10-per-record-history-log.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md:55]
-- `01--retrieval/006-hybrid-search-pipeline.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md:60]
-- `01--retrieval/007-4-stage-pipeline-architecture.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md:57]
-- `14--stress-testing/01-stress-test-cycle.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md:146]
-- `04--maintenance/036-startup-runtime-compatibility-guards.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md:59]
+- `02--mutation/10-per-record-history-log.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md:55]
+- `01--retrieval/hybrid-search-pipeline.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md:60]
+- `01--retrieval/4-stage-pipeline-architecture.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md:57]
+- `14--stress-testing/01-stress-test-cycle.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md:146]
+- `04--maintenance/startup-runtime-compatibility-guards.md` [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md:59]
 
 Impact: operators using the playbook cannot reliably jump from scenarios to the matching catalog entries.
 
@@ -59,11 +59,11 @@ Claim adjudication packet:
   "findingId": "P1-004",
   "claim": "Five playbook scenario files point to missing feature-catalog targets.",
   "evidenceRefs": [
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md:55",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md:60",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md:57",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md:146",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md:59"
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md:55",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md:60",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md:57",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md:146",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md:59"
   ],
   "counterevidenceSought": "Checked for likely current catalog targets in adjacent category folders.",
   "alternativeExplanation": "The links may reflect old numbering before catalog renames, but they are still broken for current operators.",
@@ -75,7 +75,7 @@ Claim adjudication packet:
 
 ### P1-005 - Scenario 136's feature file has a malformed validation contract for annotation-name validity
 
-The dedicated scenario file's real user request is malformed and includes a dangling command fragment [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18]. Its expected signals repeat the same broken sequence [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:21].
+The dedicated scenario file's real user request is malformed and includes a dangling command fragment [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18]. Its expected signals repeat the same broken sequence [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:21].
 
 The root scenario entry has a cleaner lowercase catalog-root command sequence [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:2692].
 
@@ -89,8 +89,8 @@ Claim adjudication packet:
   "findingId": "P1-005",
   "claim": "The dedicated annotation-name validity scenario contains a malformed executable contract.",
   "evidenceRefs": [
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:18",
-    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:21",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:18",
+    ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:21",
     ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:2692"
   ],
   "counterevidenceSought": "Ran annotation-name validation against lowercase feature_catalog.md; the underlying annotation names matched, so the finding is about the scenario contract, not the code annotations.",

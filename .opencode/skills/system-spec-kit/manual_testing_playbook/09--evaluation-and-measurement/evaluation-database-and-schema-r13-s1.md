@@ -57,7 +57,7 @@ Check eval DB path configuration → Verify schema migration ran → Inspect tab
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/069-evaluation-database-and-schema.md](../../feature_catalog/09--evaluation-and-measurement/069-evaluation-database-and-schema.md)
+- Feature catalog: [09--evaluation-and-measurement/evaluation-database-and-schema.md](../../feature_catalog/09--evaluation-and-measurement/evaluation-database-and-schema.md)
 
 ---
 

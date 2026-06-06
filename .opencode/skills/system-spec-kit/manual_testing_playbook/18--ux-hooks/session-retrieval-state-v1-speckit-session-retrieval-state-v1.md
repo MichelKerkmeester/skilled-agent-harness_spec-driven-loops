@@ -59,8 +59,8 @@ Verify isSessionRetrievalStateEnabled() → Check SessionStateManager.getOrCreat
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/269-retrieval-session-state.md](../../feature_catalog/18--ux-hooks/269-retrieval-session-state.md)
-- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
+- Feature catalog: [18--ux-hooks/retrieval-session-state.md](../../feature_catalog/18--ux-hooks/retrieval-session-state.md)
+- Feature flag reference: [01-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/session-state.ts`
 
 ---

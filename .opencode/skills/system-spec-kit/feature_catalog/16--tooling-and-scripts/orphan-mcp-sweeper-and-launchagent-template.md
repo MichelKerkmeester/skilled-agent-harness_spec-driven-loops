@@ -52,7 +52,7 @@ The sweeper preserves `devin --print`, Ollama, live Claude Code descendants, the
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Dry-run, preservation, plist lint, cleanup script syntax, and no-mutation checks. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Dry-run, preservation, plist lint, cleanup script syntax, and no-mutation checks. |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md` | Manual playbook | Packet-level implementation and verification evidence. |
 
 ## 4. SOURCE METADATA

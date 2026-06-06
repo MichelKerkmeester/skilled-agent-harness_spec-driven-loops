@@ -60,7 +60,7 @@ Verify adaptive signals were recorded from access/validation → Inspect bounded
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/117-adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../../feature_catalog/11--scoring-and-calibration/117-adaptive-shadow-ranking-bounded-proposals-and-rollback.md)
+- Feature catalog: [11--scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../../feature_catalog/11--scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md)
 
 ---
 

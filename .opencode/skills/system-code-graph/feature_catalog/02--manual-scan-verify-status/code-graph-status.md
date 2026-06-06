@@ -56,4 +56,4 @@ Related references:
 
 - [01-code-graph-scan.md](./code-graph-scan.md)
 - [../01--read-path-freshness/ensure-code-graph-ready.md](../01--read-path-freshness/ensure-code-graph-ready.md)
-- [../../manual_testing_playbook/02--manual-scan-verify-status/006-code-graph-status-readonly.md](../../manual_testing_playbook/02--manual-scan-verify-status/006-code-graph-status-readonly.md)
+- [../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-status-readonly.md](../../manual_testing_playbook/02--manual-scan-verify-status/code-graph-status-readonly.md)

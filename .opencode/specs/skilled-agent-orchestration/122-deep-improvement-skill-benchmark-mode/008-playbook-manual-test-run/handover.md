@@ -104,7 +104,7 @@ home. Use **this packet** (it was created for the run):
 
 For each scenario file, in category order:
 
-1. **Open the file** (e.g. `01--integration-scanner/001-scan-known-agent.md`).
+1. **Open the file** (e.g. `01--integration-scanner/scan-known-agent.md`).
 2. Read its `## 2. SCENARIO CONTRACT` (Objective, Prompt, Expected signals,
    Pass/fail) and `## 3. TEST EXECUTION`.
 3. **Resolve placeholders** (e.g. `{spec}`) to disposable `/tmp` paths.

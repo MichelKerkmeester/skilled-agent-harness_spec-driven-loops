@@ -74,7 +74,7 @@ The deep-review legal-stop gate model has drifted across documentation surfaces.
 | `references/loop_protocol.md` §Step-2 | 7 (post 003 iter-9 fix) | Gate-suffix | missing candidate + graphless gates |
 | `references/state_format.md` blocked_stop schema | 7 | Gate-suffix | `candidateCoverageGate` + `graphlessFallbackGate` undocumented |
 | `feature_catalog/04--severity-system/05-quality-gates.md` | named in passing | n/a | gate names not enumerated |
-| `manual_testing_playbook/.../018-review-quality-guards-block-premature-stop.md` | 3 | family-level | claims 3 gates vs 9 |
+| `manual_testing_playbook/.../review-quality-guards-block-premature-stop.md` | 3 | family-level | claims 3 gates vs 9 |
 | `scripts/reduce-state.cjs` | N/A | opaque passthrough | reads gate names generically, enforces nothing |
 
 ### Purpose
@@ -94,7 +94,7 @@ Reconcile all 6 documentation surfaces to the authoritative 9-gate model emitted
 - Update `references/loop_protocol.md` §Step-2 gate list from 7 to 9.
 - Document `candidateCoverageGate` + `graphlessFallbackGate` in `references/state_format.md` blocked_stop event schema.
 - Enumerate all 9 gate names in `feature_catalog/04--severity-system/05-quality-gates.md`.
-- Update `manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md` to reference the 9-gate model (or the gate-family framing reconciled with the 9 names).
+- Update `manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md` to reference the 9-gate model (or the gate-family framing reconciled with the 9 names).
 
 ### Out of Scope
 

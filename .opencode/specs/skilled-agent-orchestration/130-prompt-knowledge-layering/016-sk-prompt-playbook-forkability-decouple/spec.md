@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/023-cli-card-five-question-fast-path.md"
+      - ".opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/cli-card-five-question-fast-path.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "e02c3e95-f865-4fec-8ff8-0a7907486924"
@@ -97,7 +97,7 @@ reference to sk-prompt's own docs.
 - sk-prompt version bump 2.1.2.0 -> 2.1.3.0 + changelog.
 
 ### Out of Scope
-- The `023-cli-card-five-question-fast-path.md` filename slug - retained to avoid catalog-link churn; title/content reframed.
+- The `cli-card-five-question-fast-path.md` filename slug - retained to avoid catalog-link churn; title/content reframed.
 - A playbook for the hub to host card-fast-path coverage - separate concern (the hub has no playbook).
 - Any change to sk-prompt's engine, the hub, or cli skills.
 

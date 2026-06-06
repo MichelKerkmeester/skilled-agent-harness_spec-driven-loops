@@ -61,7 +61,7 @@ Inspect `.opencode/skills/system-spec-kit/scripts/spec/check-completion.sh`, esp
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/222-completion-verification-workflow.md](../../feature_catalog/16--tooling-and-scripts/222-completion-verification-workflow.md)
+- Feature catalog: [16--tooling-and-scripts/completion-verification-workflow.md](../../feature_catalog/16--tooling-and-scripts/completion-verification-workflow.md)
 
 ---
 

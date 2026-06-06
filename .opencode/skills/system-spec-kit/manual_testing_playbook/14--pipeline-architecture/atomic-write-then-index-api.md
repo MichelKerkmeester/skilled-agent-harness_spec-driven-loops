@@ -60,7 +60,7 @@ Inspect `memory-save.ts` ordering and retry path; verify pending-path generation
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/178-atomic-write-then-index-api.md](../../feature_catalog/14--pipeline-architecture/178-atomic-write-then-index-api.md)
+- Feature catalog: [14--pipeline-architecture/atomic-write-then-index-api.md](../../feature_catalog/14--pipeline-architecture/atomic-write-then-index-api.md)
 
 ---
 

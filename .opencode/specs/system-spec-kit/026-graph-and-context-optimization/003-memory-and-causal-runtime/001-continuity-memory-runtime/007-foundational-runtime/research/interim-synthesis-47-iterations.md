@@ -64,8 +64,8 @@ After deduplication the full set compresses to approximately **59 distinct issue
 | `skill/skill-advisor/tests/test_skill_advisor.py`             | 4        | 3               | D4               |
 | `skill/sk-deep-research/SKILL.md` / `skill/system-spec-kit/SKILL.md` | 3  | 2               | D4               |
 | `skill/skill-advisor/feature_catalog/04--testing/02-health-check.md` | 1 | 1               | D4               |
-| `skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/002-confirm-mode-checkpointed-review.md` [NEW since 44] | 2 | 1 | D4 |
-| `skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/026-ruled-out-directions-in-synthesis.md` [NEW since 44] | 1 | 1 | D4 |
+| `skill/sk-deep-review/manual_testing_playbook/01--entry-points-and-modes/confirm-mode-checkpointed-review.md` [NEW since 44] | 2 | 1 | D4 |
+| `skill/sk-deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` [NEW since 44] | 1 | 1 | D4 |
 | `skill/system-spec-kit/references/intake-contract.md` [NEW since 44] | 2 | 2 | D4 |
 | `skill/system-spec-kit/SKILL.md` (routing + SKILL.md body) [NEW since 44] | 2 | 1 | D4 |
 | `skill/system-spec-kit/README.md` [NEW since 44] | 1 | 1 | D4 |
@@ -166,7 +166,7 @@ Existing dedup clusters from the 44-iteration snapshot are unchanged. New cluste
 
 13. **Playbook runner `Function(...)` eval now includes live runtime values** (R46-003 / P1) [NEW since 44]. The playbook runner substitutes `runtimeState.lastJobId` (captured from prior tool-return payloads) into markdown argument strings before `Function(...)()` execution. Tool output from live handlers is now part of the evaluated code string, widening the trust boundary beyond repository-owned markdown.
 
-14. **Gate 3 concrete false positives confirmed** (R45-001, R47-001 / P2) [NEW since 44]. Two shipped manual-testing scenarios (`002-confirm-mode-checkpointed-review.md`, `026-ruled-out-directions-in-synthesis.md`) contain `phase transition` and `synthesis phase` in their prompts. Both are purely read-only validation tasks, yet they reuse the `phase` token that appears verbatim in `AGENTS.md`'s hard-trigger list. Combined with the `analyze` trigger (R45-001), read-only deep-review and deep-research prompts can be interrupted by unnecessary spec-folder setup depending on runtime implementation fidelity.
+14. **Gate 3 concrete false positives confirmed** (R45-001, R47-001 / P2) [NEW since 44]. Two shipped manual-testing scenarios (`confirm-mode-checkpointed-review.md`, `ruled-out-directions-in-synthesis.md`) contain `phase transition` and `synthesis phase` in their prompts. Both are purely read-only validation tasks, yet they reuse the `phase` token that appears verbatim in `AGENTS.md`'s hard-trigger list. Combined with the `analyze` trigger (R45-001), read-only deep-review and deep-research prompts can be interrupted by unnecessary spec-folder setup depending on runtime implementation fidelity.
 
 15. **Two-vocabulary state machine in `/spec_kit:plan` collapsed in top-level docs** (R47-002 / P2) [NEW since 44]. Plan YAML assets maintain a local `folder_state` classifier and map it to a canonical `start_state`; `intake_triggered` / `intake_completed` events emit both. But `SKILL.md` and `README.md` reference only the generic `folder_state` label, hiding the distinction. Downstream consumers that read top-level docs may treat `folder_state` as the canonical enum when `start_state` is the intended contract boundary.
 
@@ -389,9 +389,9 @@ New from iterations 45-47:
 | R46-001 | P1 | `skill_advisor.py` | all `/spec_kit:*` subcommands collapse to `command-spec-kit` via prefix bridge; explicit `/deep:start-research-loop` routes to planner not researcher | A2-bridge |
 | R46-002 | P1 | `skill_graph_compiler.py`, `skill_advisor.py` | unilateral `conflicts_with` silently promoted to bilateral runtime penalty; no validator checks reciprocity | A4 extension |
 | R46-003 | P1 | `manual-playbook-runner.ts` | `Function(...)()` eval now runs with live `lastJobId` from tool-return payloads; trust boundary wider than repository-owned markdown | C3 urgent |
-| R45-001 | P2 | `AGENTS.md`, `002-confirm-mode-checkpointed-review.md`, `memory-save-planner-first.vitest.ts` | Gate 3 overbroad trigger list misclassifies read-only deep-review prompts as file-modifying; `analyze`/`phase` overlap with research vocabulary | B4 |
+| R45-001 | P2 | `AGENTS.md`, `confirm-mode-checkpointed-review.md`, `memory-save-planner-first.vitest.ts` | Gate 3 overbroad trigger list misclassifies read-only deep-review prompts as file-modifying; `analyze`/`phase` overlap with research vocabulary | B4 |
 | R45-002 | P2 | `skill_advisor.py`, `test_skill_advisor.py` | deep-research prompts containing audit/review vocabulary rank within 0.02 of review skills; no disambiguation layer; no ranking-stability test | A3 extension |
-| R47-001 | P2 | `AGENTS.md`, `002-confirm-mode-checkpointed-review.md`, `026-ruled-out-directions-in-synthesis.md` | concrete shipped prompts with `phase transition` / `synthesis phase` reuse Gate 3 trigger token `phase`; confirms R45-001 false-positive with repo evidence | B4 (consolidates R45-001) |
+| R47-001 | P2 | `AGENTS.md`, `confirm-mode-checkpointed-review.md`, `ruled-out-directions-in-synthesis.md` | concrete shipped prompts with `phase transition` / `synthesis phase` reuse Gate 3 trigger token `phase`; confirms R45-001 false-positive with repo evidence | B4 (consolidates R45-001) |
 | R47-002 | P2 | `spec_kit_plan_auto.yaml`, `spec_kit_plan_confirm.yaml`, `intake-contract.md`, `SKILL.md`, `README.md` | `/spec_kit:plan` maintains `folder_state` / `start_state` two-vocabulary state machine; top-level docs collapse to one string; downstream consumers may treat wrong enum as canonical | B1 extension |
 
 ---
@@ -553,7 +553,7 @@ Proposed angles updated from the 44-iteration snapshot (all prior items carry fo
 *For R1-001 through R44-003, see Appendix A in `interim-synthesis-44-iterations.md`.*
 
 ```
-R45-001 | AGENTS.md:182-186; 002-confirm-mode-checkpointed-review.md:26-32; plan.md:86-89;
+R45-001 | AGENTS.md:182-186; confirm-mode-checkpointed-review.md:26-32; plan.md:86-89;
           memory-save-planner-first.vitest.ts:12-214 | P2
           Gate 3 trigger list includes 'analyze', 'decompose', 'phase'; read-only deep-review and
           deep-research prompts reuse these tokens, triggering unnecessary spec-folder setup
@@ -594,8 +594,8 @@ R46-003 | manual-playbook-runner.ts:181-194,427-445,930-943,1112-1117 | P1
           injects runtimeState.lastJobId extracted from prior handler payloads; Function(`return (${replaced});`)()
           executes with no parser or escaping layer; trust boundary wider than repository-owned markdown
 
-R47-001 | AGENTS.md:182-185; 002-confirm-mode-checkpointed-review.md:26-32,44-45;
-          026-ruled-out-directions-in-synthesis.md:26-32,44-45 | P2
+R47-001 | AGENTS.md:182-185; confirm-mode-checkpointed-review.md:26-32,44-45;
+          ruled-out-directions-in-synthesis.md:26-32,44-45 | P2
           concrete shipped deep-review confirm-mode scenario uses 'phase transition' and deep-research
           synthesis scenario uses 'synthesis phase' — both read-only validation prompts reuse Gate 3
           trigger token 'phase' verbatim; confirms R45-001 false-positive with repo evidence

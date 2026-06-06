@@ -122,7 +122,7 @@ If the barrier remains latched, inspect the `restoreCheckpoint()` `finally` path
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [05--lifecycle/040-checkpoint-restore-checkpointrestore.md](../../feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md)
+- Feature catalog: [05--lifecycle/checkpoint-restore-checkpointrestore.md](../../feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md)
 
 ---
 

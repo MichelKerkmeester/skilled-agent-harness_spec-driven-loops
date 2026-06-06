@@ -60,8 +60,8 @@ Verify isShadowFeedbackEnabled() → Check initShadowScoringLog() created tables
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/119-shadow-feedback-holdout-evaluation.md](../../feature_catalog/11--scoring-and-calibration/119-shadow-feedback-holdout-evaluation.md)
-- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature catalog: [11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md](../../feature_catalog/11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md)
+- Feature flag reference: [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/feedback/shadow-scoring.ts`
 
 ---

@@ -50,7 +50,7 @@ PRE: Obtain a SPACE_ID from `clickup.clickup_get_workspace`.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/12--mcp-medium-priority/065-manage-lists.md` | Feature catalog source |
+| `../feature_catalog/12--mcp-medium-priority/manage-lists.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

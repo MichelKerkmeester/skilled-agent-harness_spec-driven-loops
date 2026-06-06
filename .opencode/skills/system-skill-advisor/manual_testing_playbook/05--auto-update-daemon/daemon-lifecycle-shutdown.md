@@ -74,7 +74,7 @@ kill -TERM <daemon_pid>
 
 - Scenario [AU-002](./lease-single-writer.md), single-writer lease reclaim.
 - Scenario [OP-001](../04--operator-h5/degraded-daemon.md), degraded state detection.
-- Feature [`01--daemon-and-freshness/003-lifecycle.md`](../../feature_catalog/01--daemon-and-freshness/003-lifecycle.md).
+- Feature [`01--daemon-and-freshness/lifecycle.md`](../../feature_catalog/01--daemon-and-freshness/lifecycle.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lifecycle.ts`.
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/ipc/launcher-idle-timeout.ts`.
 

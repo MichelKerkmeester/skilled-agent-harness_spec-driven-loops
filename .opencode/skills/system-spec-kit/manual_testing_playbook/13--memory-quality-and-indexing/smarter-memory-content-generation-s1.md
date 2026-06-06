@@ -59,7 +59,7 @@ Verify content generation template → Check structure preservation rules → In
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/140-smarter-memory-content-generation.md](../../feature_catalog/13--memory-quality-and-indexing/140-smarter-memory-content-generation.md)
+- Feature catalog: [13--memory-quality-and-indexing/smarter-memory-content-generation.md](../../feature_catalog/13--memory-quality-and-indexing/smarter-memory-content-generation.md)
 
 ---
 

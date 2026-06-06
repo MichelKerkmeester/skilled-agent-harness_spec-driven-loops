@@ -16,7 +16,7 @@ This scenario validates the deferred AST-level section retrieval tool entry for 
 
 
 - Objective: Verify `read_spec_section(filePath, heading)` remains a planned AST-based retrieval tool, no implementation/source files exist yet, and R7 anchor-aware thinning remains the active approach until spec docs routinely exceed about 1000 lines.
-- Real user request: `` Please validate AST-level section retrieval tool against feature_catalog/01--retrieval/007-ast-level-section-retrieval-tool.md and tell me whether the expected signals are present: Feature is marked planned/deferred; `read_spec_section(filePath, heading)` is described as future work; no implementation/source files are present; R7 anchor-aware thinning is still documented as the current approach. ``
+- Real user request: `` Please validate AST-level section retrieval tool against feature_catalog/01--retrieval/ast-level-section-retrieval-tool.md and tell me whether the expected signals are present: Feature is marked planned/deferred; `read_spec_section(filePath, heading)` is described as future work; no implementation/source files are present; R7 anchor-aware thinning is still documented as the current approach. ``
 - Prompt: `Validate the planned AST section retrieval tool and confirm no implementation exists while R7 anchor-aware thinning remains active.`
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: Feature is marked planned/deferred; `read_spec_section(filePath, heading)` is described as future work; no implementation/source files are present; R7 anchor-aware thinning is still documented as the current approach
@@ -33,7 +33,7 @@ This scenario validates the deferred AST-level section retrieval tool entry for 
 
 ### Commands
 
-1. Read `feature_catalog/01--retrieval/007-ast-level-section-retrieval-tool.md` and confirm it states `PLANNED (Sprint 019): DEFERRED`
+1. Read `feature_catalog/01--retrieval/ast-level-section-retrieval-tool.md` and confirm it states `PLANNED (Sprint 019): DEFERRED`
 2. Verify the entry names `read_spec_section(filePath, heading)` as the planned interface and says Markdown AST parsing via `remark` is deferred until docs routinely exceed about 1000 lines
 3. Search the repository for `read_spec_section(` and confirm there is no production implementation or source file for the tool yet
 4. Confirm current retrieval references still point to R7 anchor-aware thinning as the active approach rather than heading-level AST extraction
@@ -57,7 +57,7 @@ Reconcile documentation drift if implementation exists; update the feature catal
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/007-ast-level-section-retrieval-tool.md](../../feature_catalog/01--retrieval/007-ast-level-section-retrieval-tool.md)
+- Feature catalog: [01--retrieval/ast-level-section-retrieval-tool.md](../../feature_catalog/01--retrieval/ast-level-section-retrieval-tool.md)
 
 ---
 

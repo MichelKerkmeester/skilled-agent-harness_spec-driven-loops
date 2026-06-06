@@ -75,7 +75,7 @@ Replace MCP tool invocations in the 4 collateral files with direct `node .openco
 - Update `.opencode/commands/doctor.md` to invoke `deep-loop-runtime/scripts/*.cjs` for deep-loop diagnostics
 - Update `.opencode/commands/doctor/_routes.yaml` route manifest so deep-loop diagnostic routes point at script paths instead of MCP tool IDs
 - Update `.opencode/commands/doctor/update.md` so update/refresh operations targeting deep-loop state call the script shims
-- Update `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` to dispatch the convergence scenario via the new script path
+- Update `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` to dispatch the convergence scenario via the new script path
 - Preserve assertion semantics: JSON shape of `--health-check` stdout matches the prior MCP tool response shape
 
 ### Out of Scope
@@ -93,7 +93,7 @@ Replace MCP tool invocations in the 4 collateral files with direct `node .openco
 | `.opencode/commands/doctor.md` | Modify | Swap deep_loop_graph_status MCP tool refs for script invocations |
 | `.opencode/commands/doctor/_routes.yaml` | Modify | Update diagnostic target manifest for deep-loop routes |
 | `.opencode/commands/doctor/update.md` | Modify | Replace MCP tool surface refs in refresh ops with script paths |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` | Modify | Update dispatch path in test scenario |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` | Modify | Update dispatch path in test scenario |
 
 <!-- /ANCHOR:scope -->
 ---
@@ -125,7 +125,7 @@ Replace MCP tool invocations in the 4 collateral files with direct `node .openco
 ## 5. SUCCESS CRITERIA
 
 - **SC-001**: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/skilled-agent-orchestration/116-deep-skill-evolution/003-deep-loop-runtime/007-collateral-doctor-playbook --strict` exits 0
-- **SC-002**: `grep -RIl 'mcp__mk_spec_memory__deep_loop_graph_' .opencode/commands/doctor.md .opencode/commands/doctor/ .opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` returns zero matches
+- **SC-002**: `grep -RIl 'mcp__mk_spec_memory__deep_loop_graph_' .opencode/commands/doctor.md .opencode/commands/doctor/ .opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` returns zero matches
 - **SC-003**: Manual `/doctor deep-loop` invocation succeeds against the runtime skill script paths
 
 <!-- /ANCHOR:success-criteria -->

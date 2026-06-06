@@ -56,7 +56,7 @@ The stress test cycle format had been authored ad-hoc three times (v1.0.1 baseli
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/README.md` (NEW) | Created | Feature catalog section index listing entries in the stress-testing category. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/162-category-overview.md` (NEW) | Created | Canonical stress test cycle reference with overview, rubric, verdict ladder, aggregate formula and cross-references to v1.0.1, v1.0.2, v1.0.3. |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md` (NEW) | Created | Canonical stress test cycle reference with overview, rubric, verdict ladder, aggregate formula and cross-references to v1.0.1, v1.0.2, v1.0.3. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/README.md` (NEW) | Created | Manual playbook section index for the stress-testing category. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/01-run-stress-cycle.md` (NEW) | Created | Operational guide covering ten steps from corpus freeze to parent PHASE MAP update. |
 | `.opencode/skills/system-spec-kit/templates/stress_test/findings-rubric.template.json` (NEW) | Created | Parseable JSON sidecar template. v1.0.2 cited as the canonical example with 30 cells and 83.8 percent aggregate. |

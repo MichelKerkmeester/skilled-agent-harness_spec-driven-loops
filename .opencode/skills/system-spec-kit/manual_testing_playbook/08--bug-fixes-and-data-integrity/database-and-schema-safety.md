@@ -58,7 +58,7 @@ Inspect transaction wrappers; verify schema migration state; check for incomplet
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/060-database-and-schema-safety.md](../../feature_catalog/08--bug-fixes-and-data-integrity/060-database-and-schema-safety.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/database-and-schema-safety.md](../../feature_catalog/08--bug-fixes-and-data-integrity/database-and-schema-safety.md)
 
 ---
 

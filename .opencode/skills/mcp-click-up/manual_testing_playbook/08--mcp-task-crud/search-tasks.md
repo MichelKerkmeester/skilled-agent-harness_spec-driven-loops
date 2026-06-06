@@ -48,7 +48,7 @@ Verify `clickup_search_tasks` returns tasks matching a keyword is required for c
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/055-search-tasks.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/search-tasks.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -128,27 +128,27 @@ INTENT_SIGNALS = {
 RESOURCE_MAP = {
     "TOOL_SURFACE": [
         "references/runtime/tool_surface.md",
-        "feature_catalog/06--mcp-tool-surface/013-tool-registrations.md",
+        "feature_catalog/06--mcp-tool-surface/tool-registrations.md",
     ],
     "READINESS": [
         "references/readiness/code_graph_readiness_check.md",
         "references/readiness/readiness_and_scope_fingerprint.md",
-        "feature_catalog/01--read-path-freshness/001-ensure-code-graph-ready.md",
-        "feature_catalog/02--manual-scan-verify-status/005-code-graph-status.md",
+        "feature_catalog/01--read-path-freshness/ensure-code-graph-ready.md",
+        "feature_catalog/02--manual-scan-verify-status/code-graph-status.md",
     ],
     "QUERY": [
         "references/runtime/tool_surface.md",
-        "feature_catalog/01--read-path-freshness/002-query-self-heal.md",
-        "feature_catalog/04--context-retrieval/007-code-graph-context.md",
+        "feature_catalog/01--read-path-freshness/query-self-heal.md",
+        "feature_catalog/04--context-retrieval/code-graph-context.md",
     ],
     "SCAN_VERIFY": [
         "references/readiness/readiness_and_scope_fingerprint.md",
-        "feature_catalog/02--manual-scan-verify-status/003-code-graph-scan.md",
-        "feature_catalog/02--manual-scan-verify-status/004-code-graph-verify.md",
+        "feature_catalog/02--manual-scan-verify-status/code-graph-scan.md",
+        "feature_catalog/02--manual-scan-verify-status/code-graph-verify.md",
     ],
     "CHANGE_DETECTION": [
         "references/runtime/tool_surface.md",
-        "feature_catalog/03--detect-changes/006-detect-changes-preflight.md",
+        "feature_catalog/03--detect-changes/detect-changes-preflight.md",
     ],
     "CONFIG": [
         "references/config/database_path_policy.md",
@@ -161,7 +161,7 @@ RESOURCE_MAP = {
     ],
     "LAUNCHER": [
         "references/runtime/launcher_lease.md",
-        "manual_testing_playbook/09--post-rename-infrastructure/017-launcher-startup-prefix.md",
+        "manual_testing_playbook/09--post-rename-infrastructure/launcher-startup-prefix.md",
     ],
     "FEATURES": [
         "feature_catalog/feature_catalog.md",
@@ -271,15 +271,15 @@ The router selects from these tool intents. `mcp_server/tool-schemas.ts` `CODE_G
 
 | Intent | Primary Surface | Reference |
 |--------|-----------------|-----------|
-| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature_catalog/02--manual-scan-verify-status/003-code-graph-scan.md` |
-| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature_catalog/01--read-path-freshness/002-query-self-heal.md` |
+| Index or refresh structural graph state | `mcp__mk_code_index__code_graph_scan` | `feature_catalog/02--manual-scan-verify-status/code-graph-scan.md` |
+| Query callers, imports, dependencies, symbols or blast radius | `mcp__mk_code_index__code_graph_query` | `feature_catalog/01--read-path-freshness/query-self-heal.md` |
 | Classify natural-language queries into structural/semantic/hybrid intent | `mcp__mk_code_index__code_graph_classify_query_intent` | `mcp_server/lib/query-intent-classifier.ts` |
-| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature_catalog/04--context-retrieval/007-code-graph-context.md` |
-| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature_catalog/02--manual-scan-verify-status/005-code-graph-status.md` |
-| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/02--manual-scan-verify-status/004-code-graph-verify.md` |
-| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/03--detect-changes/006-detect-changes-preflight.md` |
-| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/08--doctor-code-graph/014-doctor-apply-mode.md` |
-| Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/08--doctor-code-graph/014-doctor-apply-mode.md` |
+| Build compact neighborhood context around seeds | `mcp__mk_code_index__code_graph_context` | `feature_catalog/04--context-retrieval/code-graph-context.md` |
+| Check readiness, freshness, graph quality or blocked-read state | `mcp__mk_code_index__code_graph_status` | `feature_catalog/02--manual-scan-verify-status/code-graph-status.md` |
+| Validate graph quality with gold queries | `mcp__mk_code_index__code_graph_verify` | `feature_catalog/02--manual-scan-verify-status/code-graph-verify.md` |
+| Inspect changed symbols from a diff | `mcp__mk_code_index__detect_changes` | `feature_catalog/03--detect-changes/detect-changes-preflight.md` |
+| Execute verification-gated apply-mode recovery operations | `mcp__mk_code_index__code_graph_apply` | `feature_catalog/08--doctor-code-graph/doctor-apply-mode.md` |
+| Review doctor code-graph apply policy | `/doctor code-graph` | `feature_catalog/08--doctor-code-graph/doctor-apply-mode.md` |
 
 The standalone MCP server name is `mk-code-index`. Tool IDs stay stable as `code_graph_*` and `detect_changes`.
 

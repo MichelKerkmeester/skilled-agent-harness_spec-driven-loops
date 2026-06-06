@@ -21,7 +21,7 @@ Route this to a small remediation packet before release. The fixes are documenta
 Evidence:
 
 - [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946] says inline traceability comments exist in every source file.
-- [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:26] says coverage is partial and measured as 192 of 280.
+- [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:26] says coverage is partial and measured as 192 of 280.
 - [SOURCE: .opencode/skills/system-spec-kit/mcp_server/api/eval.ts:1] shows a sampled source header with MODULE metadata but no feature annotation in the opened header block.
 
 Observed count: 195 annotated non-test TypeScript files out of 437 under `mcp_server/` and `shared/` with the broad review filter used in this pass.
@@ -32,7 +32,7 @@ Fix: update root catalog wording to partial/measured coverage, refresh the metri
 
 Evidence:
 
-- [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md:38] tells operators to extract headings from `feature_catalog/FEATURE_CATALOG.md`.
+- [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md:38] tells operators to extract headings from `feature_catalog/FEATURE_CATALOG.md`.
 - [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:13] is the actual root catalog file used by the package.
 
 Observed check: exact-case discovery finds no `FEATURE_CATALOG.md` entry, while `feature_catalog.md` exists. The uppercase path can pass on case-insensitive macOS but is not portable to case-sensitive environments.
@@ -43,7 +43,7 @@ Fix: replace the uppercase filename in scenario 136 and related text with the ac
 
 Evidence:
 
-- [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38] runs `python3 ../sk-code/scripts/verify_alignment_drift.py --root .`.
+- [SOURCE: .opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md:38] runs `python3 ../sk-code/scripts/verify_alignment_drift.py --root .`.
 - [SOURCE: .opencode/skills/sk-code/SKILL.md:192] documents the canonical verifier under `assets/scripts`.
 - [SOURCE: .opencode/skills/sk-code/references/opencode/shared/alignment_verification_automation.md:22] repeats the canonical path.
 
@@ -65,7 +65,7 @@ Fix: refresh the root count while updating the broken scenarios.
 
 Evidence:
 
-- [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md:40] says `mcp_server/handlers/index.ts` shows both MODULE and Feature catalog conventions.
+- [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md:40] says `mcp_server/handlers/index.ts` shows both MODULE and Feature catalog conventions.
 - [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/index.ts:1] begins the file header; the opened header block has MODULE metadata but no feature annotation.
 
 Fix: choose a representative annotated handler or narrow the row to say it demonstrates only the MODULE convention.
@@ -88,7 +88,7 @@ Add a remediation spec for catalog/playbook verification drift:
 
 ## Plan Seed
 
-1. Update `feature_catalog.md` and `214-feature-catalog-code-references.md`.
+1. Update `feature_catalog.md` and `feature-catalog-code-references.md`.
 2. Update playbook scenarios 136 and 138 plus root playbook snippets.
 3. Run corrected annotation-name validation and verifier commands.
 4. Recount feature and scenario files and update root counts.

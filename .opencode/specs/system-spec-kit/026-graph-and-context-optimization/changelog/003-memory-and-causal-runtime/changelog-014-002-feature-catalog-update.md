@@ -59,13 +59,13 @@ This was documentation-only. The packet records that every behavioral claim was 
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Registered new feature files and synced index descriptions |
-| `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md` | Modified | Added checkpoint v2 create path, manifest, snapshot columns and sentinel behavior |
-| `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md` | Modified | Added checkpoint v2 file-swap restore, restore journal and sentinel behavior |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md` | Added | Documented front-proxy reconnect and error semantics |
-| `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md` | Added | Documented schema migration history for v28 through v30 |
-| `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md` | Added | Documented `E429`, `-32001` and `-32002` |
-| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md` | Added | Documented enrichment marker columns and repair behavior |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md` | Added | Cross-referenced sk-git worktree convention |
+| `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md` | Modified | Added checkpoint v2 create path, manifest, snapshot columns and sentinel behavior |
+| `.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md` | Modified | Added checkpoint v2 file-swap restore, restore journal and sentinel behavior |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md` | Added | Documented front-proxy reconnect and error semantics |
+| `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Added | Documented schema migration history for v28 through v30 |
+| `.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md` | Added | Documented `E429`, `-32001` and `-32002` |
+| `.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | Added | Documented enrichment marker columns and repair behavior |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md` | Added | Cross-referenced sk-git worktree convention |
 
 ### Follow-Ups
 

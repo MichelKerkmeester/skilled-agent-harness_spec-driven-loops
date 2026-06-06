@@ -58,7 +58,7 @@ Verify min-max formula → Check edge case guards (single result, all-equal) →
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/102-score-normalization.md](../../feature_catalog/11--scoring-and-calibration/102-score-normalization.md)
+- Feature catalog: [11--scoring-and-calibration/score-normalization.md](../../feature_catalog/11--scoring-and-calibration/score-normalization.md)
 
 ---
 

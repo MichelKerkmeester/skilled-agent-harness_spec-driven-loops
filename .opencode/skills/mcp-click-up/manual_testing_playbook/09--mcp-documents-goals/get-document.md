@@ -48,7 +48,7 @@ Verify `clickup_get_document` returns the document created in MCP-M015 is requir
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/12--mcp-medium-priority/074-get-document.md` | Feature catalog source |
+| `../feature_catalog/12--mcp-medium-priority/get-document.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

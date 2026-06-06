@@ -95,8 +95,8 @@ Verify predecessor snapshot comparison (`content_hash`, `updated_at`) → Check 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/152-assistive-reconsolidation.md](../../feature_catalog/13--memory-quality-and-indexing/152-assistive-reconsolidation.md)
-- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../19--feature-flag-reference/1-search-pipeline-features-speckit.md)
+- Feature catalog: [13--memory-quality-and-indexing/assistive-reconsolidation.md](../../feature_catalog/13--memory-quality-and-indexing/assistive-reconsolidation.md)
+- Feature flag reference: [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/handlers/save/reconsolidation-bridge.ts`
 
 ---

@@ -40,7 +40,7 @@ Generated packet `resource-map.md` output plus the discovery and classification 
 | `references/templates/level_specifications.md` | Reference | Level-by-level and cross-cutting template reference for operators |
 | `mcp_server/lib/config/spec-doc-paths.ts` | Config | Spec-doc classification set that recognizes `resource-map.md` |
 | `feature_catalog/22--context-preservation/resource-map-template.md` | Feature catalog | This feature entry for ongoing discovery |
-| `manual_testing_playbook/22--context-preservation/336-resource-map-template.md` | Playbook | Manual verification scenario for the rollout |
+| `manual_testing_playbook/22--context-preservation/resource-map-template.md` | Playbook | Manual verification scenario for the rollout |
 
 ---
 

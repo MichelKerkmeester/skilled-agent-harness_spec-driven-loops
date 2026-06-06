@@ -59,7 +59,7 @@ Inspect `references/validation/template_compliance_contract.md`, `.codex/agents/
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/221-template-compliance-contract-enforcement.md](../../feature_catalog/16--tooling-and-scripts/221-template-compliance-contract-enforcement.md)
+- Feature catalog: [16--tooling-and-scripts/template-compliance-contract-enforcement.md](../../feature_catalog/16--tooling-and-scripts/template-compliance-contract-enforcement.md)
 
 ---
 

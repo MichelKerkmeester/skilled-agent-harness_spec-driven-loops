@@ -56,7 +56,7 @@ Verify taskId matches preflight
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/051-post-task-learning-measurement-taskpostflight.md](../../feature_catalog/06--analysis/051-post-task-learning-measurement-taskpostflight.md)
+- Feature catalog: [06--analysis/post-task-learning-measurement-taskpostflight.md](../../feature_catalog/06--analysis/post-task-learning-measurement-taskpostflight.md)
 
 ---
 

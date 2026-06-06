@@ -49,7 +49,7 @@ Verify `cupt list --today --json` returns valid JSON array of today's tasks is r
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/02--cupt-task-listing/010-filter-today.md` | Feature catalog source |
+| `../feature_catalog/02--cupt-task-listing/filter-today.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

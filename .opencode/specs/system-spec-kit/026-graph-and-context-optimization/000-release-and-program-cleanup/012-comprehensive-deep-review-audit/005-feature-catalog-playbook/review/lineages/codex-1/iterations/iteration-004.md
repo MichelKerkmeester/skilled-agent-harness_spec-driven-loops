@@ -12,7 +12,7 @@ Focus: stale source references in sampled catalog leaves and maintainability of 
 
 ### P1-006 - The local-LLM catalog category points at stale implementation paths for shared embeddings and drift handlers
 
-The local-LLM category lists `mcp_server/shared/embeddings/factory.ts`, `profile.ts`, `README.md`, and `causal-graph-db.ts` as implementation/doc paths [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:40]. It also points to `mcp_server/handlers/memory-drift-why.ts` [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:45].
+The local-LLM category lists `mcp_server/shared/embeddings/factory.ts`, `profile.ts`, `README.md`, and `causal-graph-db.ts` as implementation/doc paths [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:40]. It also points to `mcp_server/handlers/memory-drift-why.ts` [SOURCE: .opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:45].
 
 The live embedding factory is under the sibling shared package [SOURCE: .opencode/skills/system-spec-kit/shared/embeddings/factory.ts:1]. The `memory_drift_why` feature is implemented by the consolidated causal graph handler, which carries feature catalog comments for `memory_causal_stats` and `memory_drift_why` [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:28], and the handler function begins at line 468 [SOURCE: .opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468].
 
@@ -26,8 +26,8 @@ Claim adjudication packet:
   "findingId": "P1-006",
   "claim": "The local-LLM category has stale source paths for shared embeddings and drift handling.",
   "evidenceRefs": [
-    ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:40",
-    ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:45",
+    ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:40",
+    ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:45",
     ".opencode/skills/system-spec-kit/shared/embeddings/factory.ts:1",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:28",
     ".opencode/skills/system-spec-kit/mcp_server/handlers/causal-graph.ts:468"

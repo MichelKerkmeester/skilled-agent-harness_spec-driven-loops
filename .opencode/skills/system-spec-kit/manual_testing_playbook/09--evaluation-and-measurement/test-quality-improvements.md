@@ -57,7 +57,7 @@ Inspect specific test changes; verify teardown completeness; check for residual 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/078-test-quality-improvements.md](../../feature_catalog/09--evaluation-and-measurement/078-test-quality-improvements.md)
+- Feature catalog: [09--evaluation-and-measurement/test-quality-improvements.md](../../feature_catalog/09--evaluation-and-measurement/test-quality-improvements.md)
 
 ---
 

@@ -57,7 +57,7 @@ Inspect run-ID generation logic; verify upsert idempotency; check boundary guard
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/079-evaluation-and-housekeeping-fixes.md](../../feature_catalog/09--evaluation-and-measurement/079-evaluation-and-housekeeping-fixes.md)
+- Feature catalog: [09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md](../../feature_catalog/09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md)
 
 ---
 

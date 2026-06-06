@@ -58,7 +58,7 @@ Inspect tier-2 trigger conditions; verify forceAllChannels flag propagation; che
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/195-tier-2-fallback-channel-forcing.md](../../feature_catalog/15--retrieval-enhancements/195-tier-2-fallback-channel-forcing.md)
+- Feature catalog: [15--retrieval-enhancements/tier-2-fallback-channel-forcing.md](../../feature_catalog/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md)
 
 ---
 

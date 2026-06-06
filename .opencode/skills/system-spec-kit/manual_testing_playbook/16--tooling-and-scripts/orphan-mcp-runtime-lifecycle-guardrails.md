@@ -60,8 +60,8 @@ If syntax or plist lint fails, inspect the exact script/template before rerunnin
 ## 4. SOURCE FILES
 
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md](../../feature_catalog/16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md)
-- Feature catalog: [19--feature-flag-reference/284-launcher-idle-timeout.md](../../feature_catalog/19--feature-flag-reference/284-launcher-idle-timeout.md)
+- Feature catalog: [16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../../feature_catalog/16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md)
+- Feature catalog: [19--feature-flag-reference/launcher-idle-timeout.md](../../feature_catalog/19--feature-flag-reference/launcher-idle-timeout.md)
 - Runbook: [../../../../scripts/README.md](../../../../scripts/README.md)
 - Spec packet: [../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md](../../../../specs/system-spec-kit/026-graph-and-context-optimization/013-embedder-testing-and-architecture/009-memory-leak-remediation/022-orphan-mcp-leak-prevention/implementation-summary.md)
 

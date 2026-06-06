@@ -22,7 +22,7 @@ _memory:
       - ".opencode/skills/system-spec-kit/README.md"
       - ".opencode/skills/system-spec-kit/mcp_server/tests/review-fixes.vitest.ts"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md"
-      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md"
+      - ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md"
       - ".opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -67,7 +67,7 @@ This is **Phase 6** of the comprehensive audit remediation specification.
 
 **Dependencies**:
 - Cluster D (F7 dependency: cluster D removes the phase-label strings from tool-schemas.ts and context-server.ts; this cluster qualifies the catalog claim in the interim)
-- F9 depends on F6 (both touch 313-category-overview.md; do F6 first)
+- F9 depends on F6 (both touch category-overview.md; do F6 first)
 
 **Deliverables**:
 - All 10 doc/test findings resolved per verified-backlog.json specs
@@ -99,7 +99,7 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 ### In Scope
 
 - feature_catalog/feature_catalog.md lines 3946, 3950 — coverage universality claims (F1, F7)
-- feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md line 30 — cleanup-complete claim (F7)
+- feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md line 30 — cleanup-complete claim (F7)
 - README.md lines 45, 256, 581, 1003, 1038 — 36-tool -> 37-tool (F2)
 - mcp_server/tests/review-fixes.vitest.ts line 117 — toBe(36) -> toBe(37) (F2)
 - manual_testing_playbook/manual_testing_playbook.md lines 166, 173 — 380 -> 384 (F3); line 2692 garbled text (F5)
@@ -109,7 +109,7 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 - manual_testing_playbook/14--stress-testing/170-*.md — broken catalog link (F4)
 - manual_testing_playbook/04--maintenance/036-*.md — broken catalog link (F4)
 - manual_testing_playbook/16--tooling-and-scripts/232-*.md lines 18, 21 — garbled contract fields (F5)
-- feature_catalog/24--local-llm-query-intelligence/313-category-overview.md lines 40-47 — stale paths (F6, F9)
+- feature_catalog/24--local-llm-query-intelligence/category-overview.md lines 40-47 — stale paths (F6, F9)
 - manual_testing_playbook/24--local-llm-query-intelligence/README.md — scenario numbers 401-415 -> 361-375 (F9)
 - manual_testing_playbook/16--tooling-and-scripts/234-*.md line 38 — wrong verifier path (F8)
 - manual_testing_playbook/03--discovery/032-*.md line 37 — stale session_bootstrap call (F10)
@@ -125,7 +125,7 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | feature_catalog/feature_catalog.md | Modify | F1: partial-coverage language; F7: qualify cleanup-complete claim |
-| feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md | Modify | F7: qualify cleanup-complete claim in leaf |
+| feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md | Modify | F7: qualify cleanup-complete claim in leaf |
 | README.md | Modify | F2: 36-tool -> 37-tool (5 occurrences) |
 | mcp_server/tests/review-fixes.vitest.ts | Modify | F2: toBe(36) -> toBe(37) |
 | manual_testing_playbook/manual_testing_playbook.md | Modify | F3: 380->384; F5: fix garbled line 2692 |
@@ -135,7 +135,7 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 | manual_testing_playbook/14--stress-testing/170-*.md | Modify | F4: fix broken catalog link |
 | manual_testing_playbook/04--maintenance/036-*.md | Modify | F4: fix broken catalog link |
 | manual_testing_playbook/16--tooling-and-scripts/232-*.md | Modify | F5: fix garbled contract fields |
-| feature_catalog/24--local-llm-query-intelligence/313-category-overview.md | Modify | F6: stale paths; F9: scenario range |
+| feature_catalog/24--local-llm-query-intelligence/category-overview.md | Modify | F6: stale paths; F9: scenario range |
 | manual_testing_playbook/24--local-llm-query-intelligence/README.md | Modify | F9: scenario numbers 401-415 -> 361-375 |
 | manual_testing_playbook/16--tooling-and-scripts/234-*.md | Modify | F8: wrong verifier path |
 | manual_testing_playbook/03--discovery/032-*.md | Modify | F10: stale session_bootstrap call shape |
@@ -156,10 +156,10 @@ Replace all 10 defects with accurate, verified text so the catalog and playbook 
 | REQ-F3 | Update playbook release gate from 380 to 384 scenario files | bash check block passes; date updated |
 | REQ-F4 | Fix 5 broken catalog links in scenario files | ls each target path returns the file |
 | REQ-F5 | Replace garbled contract text in scenario 232 and playbook root | grep 'sort -u\`' at lines 18/21/2692 returns 0 hits |
-| REQ-F6 | Fix stale paths in 313-category-overview.md SOURCE FILES table | ls shared/embeddings/factory.ts and causal-graph.ts confirm existence |
+| REQ-F6 | Fix stale paths in category-overview.md SOURCE FILES table | ls shared/embeddings/factory.ts and causal-graph.ts confirm existence |
 | REQ-F7 | Qualify cleanup-complete claim in 214 leaf and master catalog | Claim accurately notes two known residual instances; dependency on cluster A noted |
 | REQ-F8 | Fix verifier path in scenario 234 from scripts/ to assets/scripts/ | python3 ../sk-code/assets/scripts/verify_alignment_drift.py path resolves |
-| REQ-F9 | Update scenario numbers 401-415 to 361-375 in README and 313-category-overview.md | grep '40[1-9]\|41[0-5]' in these files returns 0 hits |
+| REQ-F9 | Update scenario numbers 401-415 to 361-375 in README and category-overview.md | grep '40[1-9]\|41[0-5]' in these files returns 0 hits |
 | REQ-F10 | Replace stale MCP call shapes in scenario 032 and catalog 253 | grep 'includeGraphStatus\|dryRun' in these files returns 0 hits |
 <!-- /ANCHOR:requirements -->
 

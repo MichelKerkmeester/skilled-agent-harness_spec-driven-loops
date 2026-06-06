@@ -65,7 +65,7 @@ stress_test/
 | Boundary | Rule |
 |---|---|
 | Ownership | Store stress-test report templates here. |
-| Execution | Keep operator steps in `manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md`. |
+| Execution | Keep operator steps in `manual_testing_playbook/14--stress-testing/run-stress-cycle.md`. |
 | Scope | Do not use this pack for unrelated review or findings reports. |
 | Packet output | Copy templates into the active packet before adding run-specific results. |
 
@@ -90,4 +90,4 @@ Expected result: validation exits `0`, reports no HVR violations and DQI is `goo
 ## 8. RELATED
 
 - [Stress testing manual playbook](../../manual_testing_playbook/14--stress-testing/README.md)
-- [Run stress cycle](../../manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md)
+- [Run stress cycle](../../manual_testing_playbook/14--stress-testing/run-stress-cycle.md)

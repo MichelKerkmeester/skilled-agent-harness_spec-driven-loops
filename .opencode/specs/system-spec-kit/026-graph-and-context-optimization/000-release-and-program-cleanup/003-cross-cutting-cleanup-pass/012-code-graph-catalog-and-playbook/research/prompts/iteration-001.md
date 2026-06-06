@@ -18,7 +18,7 @@ Mirror the pattern already used for `skill_advisor/`:
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/feature_catalog.md` (parent index — pattern reference)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/feature_catalog/06--mcp-surface/02-advisor-status.md` (per-feature file pattern)
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` (parent index — pattern)
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` (per-test entry pattern)
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` (per-test entry pattern)
 - `.opencode/skills/sk-doc/SKILL.md` (template owner)
 - `.opencode/skills/sk-doc/assets/` (feature-catalog + manual-testing-playbook templates)
 - `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` (current state of the runtime package)
@@ -107,28 +107,28 @@ Create:
 mcp_server/code_graph/manual_testing_playbook/
 ├── manual_testing_playbook.md  (parent index)
 ├── 01--read-path-freshness/
-│   ├── 001-ensure-ready-selective-reindex.md
-│   └── 002-query-self-heal-stale-file.md
+│   ├── ensure-ready-selective-reindex.md
+│   └── query-self-heal-stale-file.md
 ├── 02--manual-scan-verify-status/
-│   ├── 003-code-graph-scan-incremental.md
-│   ├── 004-code-graph-scan-full.md
-│   ├── 005-code-graph-verify-blocked-on-stale.md
-│   └── 006-code-graph-status-readonly.md
+│   ├── code-graph-scan-incremental.md
+│   ├── code-graph-scan-full.md
+│   ├── code-graph-verify-blocked-on-stale.md
+│   └── code-graph-status-readonly.md
 ├── 03--detect-changes/
-│   └── 007-detect-changes-no-inline-index.md
+│   └── detect-changes-no-inline-index.md
 ├── 04--context-retrieval/
-│   └── 008-code-graph-context-readiness-block.md
+│   └── code-graph-context-readiness-block.md
 ├── 05--coverage-graph/
-│   ├── 009-deep-loop-graph-convergence-yaml-fire.md
-│   └── 010-deep-loop-graph-upsert-conditional.md
+│   ├── deep-loop-graph-convergence-yaml-fire.md
+│   └── deep-loop-graph-upsert-conditional.md
 ├── 06--mcp-tool-surface/
-│   └── 011-tool-call-shape-validation.md
+│   └── tool-call-shape-validation.md
 ├── 07--ccc-integration/
 │   ├── 012-ccc-reindex-binary-shell-out.md
 │   ├── 013-ccc-feedback-jsonl-append.md
 │   └── 014-ccc-status-availability-probe.md
 └── 08--doctor-code-graph/
-    └── 015-doctor-apply-mode-policy.md
+    └── doctor-apply-mode-policy.md
 ```
 
 Each playbook entry follows skill_advisor playbook format:

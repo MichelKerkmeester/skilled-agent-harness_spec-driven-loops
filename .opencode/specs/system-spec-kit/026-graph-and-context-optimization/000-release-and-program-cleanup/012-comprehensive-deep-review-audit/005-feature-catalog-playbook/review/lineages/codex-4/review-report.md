@@ -39,13 +39,13 @@ Planning Packet:
       "id": "F003",
       "severity": "P1",
       "title": "MODULE header scenario points to the old verifier path",
-      "evidence": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38"
+      "evidence": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md:38"
     },
     {
       "id": "F004",
       "severity": "P2",
       "title": "Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375",
-      "evidence": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:47"
+      "evidence": ".opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:47"
     }
   ],
   "remediationWorkstreams": [
@@ -59,7 +59,7 @@ Planning Packet:
     "Require rerunning scenario-count, annotation-name validation, and MODULE-header validation after edits."
   ],
   "planSeed": [
-    "Patch feature_catalog.md and 214-feature-catalog-code-references.md wording/path references.",
+    "Patch feature_catalog.md and feature-catalog-code-references.md wording/path references.",
     "Patch manual_testing_playbook.md deterministic count gate.",
     "Patch scenario 234 command to use ../sk-code/assets/scripts/verify_alignment_drift.py.",
     "Patch local-LLM category overview source-file row or scenario filenames."
@@ -85,8 +85,8 @@ Planning Packet:
 |---|---|---|---|---|---|
 | F001 | P1 | Master catalog overstates feature annotation coverage as every source file | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md:3946` | Operators may assume universal code-to-catalog traceability when coverage is documented elsewhere as partial. | Reword master catalog to measured/current coverage and align with feature 214. |
 | F002 | P1 | Manual playbook deterministic count expects 380 files but current tree has 384 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md:166` | Release-readiness check fails/stales before scenario verdicts can be trusted. | Recompute intended scenario count and update both prose and deterministic check. |
-| F003 | P1 | MODULE header scenario points to the old verifier path | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md:38` | Scenario 138 cannot execute as written even though the underlying verifier passes at its real path. | Replace stale `../sk-code/scripts/...` references with `../sk-code/assets/scripts/...` or restore a wrapper. |
-| F004 | P2 | Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375 | `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md:47` | Catalog source-file row sends operators to a non-matching scenario pattern. | Align the source table with actual file names or rename scenario files to match scenario IDs. |
+| F003 | P1 | MODULE header scenario points to the old verifier path | `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md:38` | Scenario 138 cannot execute as written even though the underlying verifier passes at its real path. | Replace stale `../sk-code/scripts/...` references with `../sk-code/assets/scripts/...` or restore a wrapper. |
+| F004 | P2 | Local-LLM category catalog points operators at 40*.md specs while the files are numbered 361-375 | `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md:47` | Catalog source-file row sends operators to a non-matching scenario pattern. | Align the source table with actual file names or rename scenario files to match scenario IDs. |
 
 ## Remediation Workstreams
 
@@ -162,11 +162,11 @@ Planning Packet:
 
 - `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md`
 - `.opencode/skills/system-spec-kit/feature_catalog/FEATURE_CATALOG.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/233-multi-feature-annotation-coverage.md`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md`
-- `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md`
+- `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md`
 - `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md`

@@ -61,7 +61,7 @@ Verify `/spec_kit:resume` command routing against `.opencode/commands/spec_kit/r
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/011-session-recovery-spec-kit-resume.md](../../feature_catalog/01--retrieval/011-session-recovery-spec-kit-resume.md)
+- Feature catalog: [01--retrieval/session-recovery-spec-kit-resume.md](../../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md)
 
 ---
 

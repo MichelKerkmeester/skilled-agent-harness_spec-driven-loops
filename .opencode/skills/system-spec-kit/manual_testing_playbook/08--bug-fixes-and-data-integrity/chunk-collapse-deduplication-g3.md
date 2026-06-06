@@ -58,7 +58,7 @@ Check chunk parentId linkage → Verify dedup runs after collapse stage → Insp
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/057-chunk-collapse-deduplication.md](../../feature_catalog/08--bug-fixes-and-data-integrity/057-chunk-collapse-deduplication.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/chunk-collapse-deduplication.md](../../feature_catalog/08--bug-fixes-and-data-integrity/chunk-collapse-deduplication.md)
 
 ---
 

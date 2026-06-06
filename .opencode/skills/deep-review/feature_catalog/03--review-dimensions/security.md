@@ -42,9 +42,9 @@ Because security findings can escalate to P0, this dimension sits near the front
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies security stays in the default second position. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Exercises blocker validation on high-severity findings, including security blockers. |
-| `manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md` | Manual scenario | Confirms critical findings, often security-driven, block early stop. |
+| `manual_testing_playbook/02--initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual scenario | Verifies security stays in the default second position. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md` | Manual scenario | Exercises blocker validation on high-severity findings, including security blockers. |
+| `manual_testing_playbook/04--convergence-and-recovery/p0-override-blocks-convergence.md` | Manual scenario | Confirms critical findings, often security-driven, block early stop. |
 
 ---
 

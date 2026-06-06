@@ -58,7 +58,7 @@ Verify complexity classification logic → Check channel mapping per class → I
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [12--query-intelligence/123-query-complexity-router.md](../../feature_catalog/12--query-intelligence/123-query-complexity-router.md)
+- Feature catalog: [12--query-intelligence/query-complexity-router.md](../../feature_catalog/12--query-intelligence/query-complexity-router.md)
 
 ---
 

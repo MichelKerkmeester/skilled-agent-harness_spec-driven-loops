@@ -53,7 +53,7 @@ any family missing files or has extras; collect counts and identify discrepancy.
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/217-source-dist-alignment-enforcement.md](../../feature_catalog/16--tooling-and-scripts/217-source-dist-alignment-enforcement.md)
+- Feature catalog: [16--tooling-and-scripts/source-dist-alignment-enforcement.md](../../feature_catalog/16--tooling-and-scripts/source-dist-alignment-enforcement.md)
 
 ---
 

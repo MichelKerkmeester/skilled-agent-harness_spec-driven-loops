@@ -48,7 +48,7 @@ Current state:
 | `../../templates/stress_test/findings.template.md` | Report scaffold copied to the active packet as `findings.md`. |
 | `../../templates/stress_test/findings-rubric.template.json` | Machine-readable sidecar scaffold copied as `findings-rubric.json`. |
 | `../../templates/stress_test/findings-rubric.schema.md` | Field contract for rubric metadata, cells, aggregate math and comparison data. |
-| `../../feature_catalog/14--pipeline-architecture/187-stress-test-cycle.md` | Current catalog entry for the stress-test cycle operator flow. |
+| `../../feature_catalog/14--pipeline-architecture/stress-test-cycle.md` | Current catalog entry for the stress-test cycle operator flow. |
 
 ---
 
@@ -85,7 +85,7 @@ Execution order:
 |---|---|
 | Ownership | Keep execution steps in `01-run-stress-cycle.md`. |
 | Templates | Keep reusable findings files in `templates/stress_test/`. |
-| Catalog links | Keep current feature ownership in `feature_catalog/14--pipeline-architecture/187-stress-test-cycle.md`. |
+| Catalog links | Keep current feature ownership in `feature_catalog/14--pipeline-architecture/stress-test-cycle.md`. |
 | Validator scope | Treat `validate_document.py` as README-focused. It does not prove that every playbook link or packet artifact exists. |
 
 ---
@@ -95,7 +95,7 @@ Execution order:
 | Source | Path |
 |---|---|
 | Playbook root | `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/` |
-| Feature catalog | `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/187-stress-test-cycle.md` |
+| Feature catalog | `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/stress-test-cycle.md` |
 | Template bundle | `.opencode/skills/system-spec-kit/templates/stress_test/` |
 
 ---
@@ -122,4 +122,4 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 - [Run stress cycle](01-run-stress-cycle.md)
 - [Stress test templates](../../templates/stress_test/README.md)
-- [Stress test feature catalog entry](../../feature_catalog/14--pipeline-architecture/187-stress-test-cycle.md)
+- [Stress test feature catalog entry](../../feature_catalog/14--pipeline-architecture/stress-test-cycle.md)

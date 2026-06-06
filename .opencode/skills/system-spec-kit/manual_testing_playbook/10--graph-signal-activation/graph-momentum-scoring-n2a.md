@@ -58,7 +58,7 @@ Verify snapshot comparison window → Check cap configuration → Inspect delta 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/088-graph-momentum-scoring.md](../../feature_catalog/10--graph-signal-activation/088-graph-momentum-scoring.md)
+- Feature catalog: [10--graph-signal-activation/graph-momentum-scoring.md](../../feature_catalog/10--graph-signal-activation/graph-momentum-scoring.md)
 
 ---
 

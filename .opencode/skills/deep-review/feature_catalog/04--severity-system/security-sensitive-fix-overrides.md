@@ -40,7 +40,7 @@ The target contract applies to reruns after fixes involving security, path discl
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md` | Manual scenario | Covers the quality-guard layer the override contract would tighten. |
+| `manual_testing_playbook/04--convergence-and-recovery/review-quality-guards-block-premature-stop.md` | Manual scenario | Covers the quality-guard layer the override contract would tighten. |
 
 ---
 

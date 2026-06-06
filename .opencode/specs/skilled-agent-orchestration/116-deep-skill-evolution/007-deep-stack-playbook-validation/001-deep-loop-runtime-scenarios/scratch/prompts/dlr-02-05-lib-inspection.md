@@ -13,13 +13,13 @@ CRITICAL — source-anchor base path: every scenario's SOURCE ANCHORS path (e.g.
 SANDBOX REALITY: vitest cannot be executed here (permission-mode auto blocks exec, and deep-loop-runtime has no wired vitest config). Reach each verdict by INSPECTING the implementation source AND the matching `tests/unit/*.vitest.ts` assertions — the scenarios explicitly permit "Run OR inspect". Do not attempt to run vitest.
 
 Scenario files (read each in full; the file names its own impl + test anchors):
-  02--prompt-rendering/004-prompt-pack.md            (DLR-004, impl lib/deep-loop/prompt-pack.ts)
-  03--validation/005-post-dispatch-validate.md       (DLR-005, impl lib/deep-loop/post-dispatch-validate.ts)
-  04--state-safety/006-atomic-state.md               (DLR-006, impl lib/deep-loop/atomic-state.ts) [FOUNDATIONAL primitive]
-  04--state-safety/007-jsonl-repair.md               (DLR-007, impl lib/deep-loop/jsonl-repair.ts)
-  04--state-safety/008-loop-lock.md                  (DLR-008, impl lib/deep-loop/loop-lock.ts)
-  04--state-safety/009-permissions-gate.md           (DLR-009, impl lib/deep-loop/permissions-gate.ts)
-  05--scoring/010-bayesian-scorer.md                 (DLR-010, impl lib/deep-loop/bayesian-scorer.ts)
+  02--prompt-rendering/prompt-pack.md            (DLR-004, impl lib/deep-loop/prompt-pack.ts)
+  03--validation/post-dispatch-validate.md       (DLR-005, impl lib/deep-loop/post-dispatch-validate.ts)
+  04--state-safety/atomic-state.md               (DLR-006, impl lib/deep-loop/atomic-state.ts) [FOUNDATIONAL primitive]
+  04--state-safety/jsonl-repair.md               (DLR-007, impl lib/deep-loop/jsonl-repair.ts)
+  04--state-safety/loop-lock.md                  (DLR-008, impl lib/deep-loop/loop-lock.ts)
+  04--state-safety/permissions-gate.md           (DLR-009, impl lib/deep-loop/permissions-gate.ts)
+  05--scoring/bayesian-scorer.md                 (DLR-010, impl lib/deep-loop/bayesian-scorer.ts)
 (all under .opencode/skills/deep-loop-runtime/manual_testing_playbook/)
 Context budget: treat any `[... truncated N tokens]` marker as an intentional boundary; do not invent omitted content.
 </context>

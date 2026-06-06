@@ -59,8 +59,8 @@ Verify recovery-payload.ts module loaded → Confirm flag is not forced off → 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/270-empty-result-recovery.md](../../feature_catalog/18--ux-hooks/270-empty-result-recovery.md)
-- Feature flag reference: [19--feature-flag-reference/273-1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md)
+- Feature catalog: [18--ux-hooks/empty-result-recovery.md](../../feature_catalog/18--ux-hooks/empty-result-recovery.md)
+- Feature flag reference: [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../../feature_catalog/19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/search/recovery-payload.ts`
 
 ---

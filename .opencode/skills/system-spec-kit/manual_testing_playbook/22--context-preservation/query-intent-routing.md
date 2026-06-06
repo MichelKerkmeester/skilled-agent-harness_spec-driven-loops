@@ -146,7 +146,7 @@ Inspect `mcp_server/handlers/memory/context.ts` IntentTelemetry serializer and t
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/306-query-intent-routing.md](../../feature_catalog/22--context-preservation/306-query-intent-routing.md)
+- Feature catalog: [22--context-preservation/query-intent-routing.md](../../feature_catalog/22--context-preservation/query-intent-routing.md)
 
 ---
 

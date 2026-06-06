@@ -58,7 +58,7 @@ Verify gate ordering, warning surfacing, and save-path branching in the actual r
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/138-pre-storage-quality-gate.md](../../feature_catalog/13--memory-quality-and-indexing/138-pre-storage-quality-gate.md)
+- Feature catalog: [13--memory-quality-and-indexing/pre-storage-quality-gate.md](../../feature_catalog/13--memory-quality-and-indexing/pre-storage-quality-gate.md)
 
 ---
 

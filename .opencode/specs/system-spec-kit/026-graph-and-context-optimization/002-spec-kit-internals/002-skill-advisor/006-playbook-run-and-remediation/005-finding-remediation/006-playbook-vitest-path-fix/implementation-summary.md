@@ -14,7 +14,7 @@ _memory:
     next_safe_action: "None; phase complete and verified"
     blockers: []
     key_files:
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "028-005-006"
@@ -51,8 +51,8 @@ NC-004 and NC-005 now use the canonical vitest invocation `cd .opencode/skills/s
 
 | File | Action | Purpose |
 |------|--------|---------|
-| `.../01--native-mcp-tools/004-ambiguous-brief-rendering.md` | Modify | Corrected vitest command |
-| `.../01--native-mcp-tools/005-lifecycle-redirect-metadata.md` | Modify | Corrected vitest command |
+| `.../01--native-mcp-tools/ambiguous-brief-rendering.md` | Modify | Corrected vitest command |
+| `.../01--native-mcp-tools/lifecycle-redirect-metadata.md` | Modify | Corrected vitest command |
 <!-- /ANCHOR:what-built -->
 
 ---

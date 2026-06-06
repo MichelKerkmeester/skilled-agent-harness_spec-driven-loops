@@ -49,7 +49,7 @@ PRE: Use a throwaway test list.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/058-create-bulk-tasks.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/create-bulk-tasks.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

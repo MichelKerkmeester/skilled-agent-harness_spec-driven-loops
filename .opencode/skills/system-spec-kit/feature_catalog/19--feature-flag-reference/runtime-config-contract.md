@@ -80,7 +80,7 @@ Outside Section 1, `config/config.jsonc` currently declares the following boolea
 | File | Type | Role |
 |---|---|---|
 | `scripts/tests/runtime-memory-inputs.vitest.ts` | Automated test | Legacy `qualityAbortThreshold` normalization and explicit config-input failure handling in the script runtime |
-| `manual_testing_playbook/19--feature-flag-reference/312-runtime-config-contract.md` | Manual playbook | End-to-end sandbox verification of Section 1 overrides, invalid values, and documentation-only sections |
+| `manual_testing_playbook/19--feature-flag-reference/runtime-config-contract.md` | Manual playbook | End-to-end sandbox verification of Section 1 overrides, invalid values, and documentation-only sections |
 
 ## 4. SOURCE METADATA
 - Group: Feature Flag Reference

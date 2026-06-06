@@ -112,14 +112,14 @@ Each cycle compares against the prior version's rubric where possible. The compa
 | `.opencode/skills/system-spec-kit/templates/stress_test/findings-rubric.template.json` | Reusable rubric sidecar template |
 | `.opencode/skills/system-spec-kit/templates/stress_test/findings-rubric.schema.md` | Field-by-field schema documentation |
 | `.opencode/skills/system-spec-kit/templates/stress_test/findings.template.md` | Findings narrative skeleton |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md` | Operational guide |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md` | Operational guide |
 
 ## 4. SOURCE METADATA
 - Group: Pipeline Architecture
 - Canonical catalog source: `feature_catalog.md`
 - Feature file path: `14--pipeline-architecture/stress-test-cycle.md`
 
-- Companion playbook: `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md`
+- Companion playbook: `.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md`
 Related references:
 - [code-graph-phase-dag-runner.md](code-graph-phase-dag-runner.md) — Code Graph phase-DAG runner
 - [routing-telemetry-and-channel-invocation-rates.md](routing-telemetry-and-channel-invocation-rates.md) — Routing telemetry and channel invocation rates

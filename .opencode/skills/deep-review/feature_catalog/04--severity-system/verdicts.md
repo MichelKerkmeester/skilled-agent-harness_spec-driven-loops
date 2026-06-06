@@ -42,8 +42,8 @@ Verdicts also carry workflow routing. FAIL and CONDITIONAL both point to `/speck
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md` | Manual scenario | Verifies verdict routing after synthesis. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms verdict data appears in the report contract. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual scenario | Verifies verdict routing after synthesis. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Confirms verdict data appears in the report contract. |
 
 ---
 

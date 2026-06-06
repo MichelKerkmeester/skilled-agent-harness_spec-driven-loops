@@ -44,9 +44,9 @@ That legal-stop bundle is workflow-visible, not only prose guidance. The YAML wo
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/013-composite-convergence-stop-behavior.md` | Manual playbook | Verifies the composite convergence stop behavior. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/023-convergence-passes-guard-fails-override.md` | Manual playbook | Verifies that a nominated stop is overridden when the legal-stop guards fail. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/032-blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop events surface through reducer-owned packet outputs. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/composite-convergence-stop-behavior.md` | Manual playbook | Verifies the composite convergence stop behavior. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/convergence-passes-guard-fails-override.md` | Manual playbook | Verifies that a nominated stop is overridden when the legal-stop guards fail. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/blocked-stop-reducer-surfacing.md` | Manual playbook | Verifies blocked-stop events surface through reducer-owned packet outputs. |
 
 ---
 

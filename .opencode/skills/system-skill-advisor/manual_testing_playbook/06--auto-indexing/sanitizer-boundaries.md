@@ -65,7 +65,7 @@ advisor_recommend({"prompt":"save this conversation context to memory","options"
 
 - Scenario [AI-001](./derived-extraction.md), derived extraction correctness.
 - Scenario [AI-005](./anti-stuffing.md), repetition-density and adversarial rejection.
-- Feature [`02--auto-indexing/009-sanitizer.md`](../../feature_catalog/02--auto-indexing/009-sanitizer.md).
+- Feature [`02--auto-indexing/sanitizer.md`](../../feature_catalog/02--auto-indexing/sanitizer.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/sanitizer.ts`.
 
 ---

@@ -58,7 +58,7 @@ Inspect error handling in pipeline stages; verify filter boundary conditions; ch
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/169-search-pipeline-safety.md](../../feature_catalog/14--pipeline-architecture/169-search-pipeline-safety.md)
+- Feature catalog: [14--pipeline-architecture/search-pipeline-safety.md](../../feature_catalog/14--pipeline-architecture/search-pipeline-safety.md)
 
 ---
 

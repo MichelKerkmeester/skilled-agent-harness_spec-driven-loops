@@ -59,7 +59,7 @@ Verify `gate-enforcement.md` frontmatter still includes constitutional tier and 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [17--governance/251-constitutional-gate-enforcement-rule-pack.md](../../feature_catalog/17--governance/251-constitutional-gate-enforcement-rule-pack.md)
+- Feature catalog: [17--governance/constitutional-gate-enforcement-rule-pack.md](../../feature_catalog/17--governance/constitutional-gate-enforcement-rule-pack.md)
 
 ---
 

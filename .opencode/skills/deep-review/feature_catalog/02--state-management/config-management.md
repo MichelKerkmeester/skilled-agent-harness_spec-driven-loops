@@ -42,9 +42,9 @@ The same document also declares reducer IO names and metric names, which makes i
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md` | Manual scenario | Verifies config creation on a fresh run. |
-| `manual_testing_playbook/02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md` | Manual scenario | Checks lineage and resume behavior against an existing config. |
-| `manual_testing_playbook/02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md` | Manual scenario | Confirms config disagreement blocks resume. |
+| `manual_testing_playbook/02--initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md` | Manual scenario | Verifies config creation on a fresh run. |
+| `manual_testing_playbook/02--initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md` | Manual scenario | Checks lineage and resume behavior against an existing config. |
+| `manual_testing_playbook/02--initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md` | Manual scenario | Confirms config disagreement blocks resume. |
 
 ---
 

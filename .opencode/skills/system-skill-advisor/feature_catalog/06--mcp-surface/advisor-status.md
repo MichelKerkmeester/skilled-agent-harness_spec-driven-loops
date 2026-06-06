@@ -38,7 +38,7 @@ Give operators and runtimes a single diagnostic read that summarizes whether adv
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/handlers/advisor-status.vitest.ts` | Automated test | Validation reference |
-| `Playbook scenario [NC-002](../../manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md).` | Manual playbook | Source reference |
+| `Playbook scenario [NC-002](../../manual_testing_playbook/01--native-mcp-tools/native-status-transitions.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

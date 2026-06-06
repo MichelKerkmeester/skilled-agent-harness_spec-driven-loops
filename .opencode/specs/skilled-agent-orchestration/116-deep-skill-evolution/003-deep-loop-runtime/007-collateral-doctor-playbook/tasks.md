@@ -69,7 +69,7 @@ _memory:
 - [ ] T006 Edit `.opencode/commands/doctor.md` — replace `mcp__mk_spec_memory__deep_loop_graph_status` and related refs with `node .opencode/skills/deep-loop-runtime/scripts/<X>.cjs --health-check` [8m]
 - [ ] T007 Edit `.opencode/commands/doctor/_routes.yaml` — update deep-loop diagnostic route target paths; preserve mutation-class annotations (`read-only`/`add-only`/`mutates`) [8m]
 - [ ] T008 Edit `.opencode/commands/doctor/update.md` — swap refresh-op tool refs for script invocations [6m]
-- [ ] T009 Edit `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` — update dispatch line + reconcile expected stdout snippet if JSON shape requires it [8m]
+- [ ] T009 Edit `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` — update dispatch line + reconcile expected stdout snippet if JSON shape requires it [8m]
 
 <!-- /ANCHOR:phase-2 -->
 ---

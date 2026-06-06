@@ -58,7 +58,7 @@ Verify intent classification rules → Check metadata persistence → Inspect re
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/142-encoding-intent-capture-at-index-time.md](../../feature_catalog/13--memory-quality-and-indexing/142-encoding-intent-capture-at-index-time.md)
+- Feature catalog: [13--memory-quality-and-indexing/encoding-intent-capture-at-index-time.md](../../feature_catalog/13--memory-quality-and-indexing/encoding-intent-capture-at-index-time.md)
 
 ---
 

@@ -25,7 +25,7 @@ description: Evidence map emitted from codex-1 review deltas.
 - `.opencode/skills/sk-doc/assets/frontmatter_templates.md`: F003, spec-frontmatter policy drift.
 - `.opencode/skills/sk-doc/references/global/core_standards.md`: F004, filename convention drift.
 - `.opencode/skills/sk-doc/SKILL.md`: F004, filename autofix claim.
-- `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/019-markdown-agent-cli-codex.md`: F004, shipped hyphenated playbook file.
+- `.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/markdown-agent-cli-codex.md`: F004, shipped hyphenated playbook file.
 
 ## 4. Spec Kit Templates
 - `.opencode/skills/system-spec-kit/templates/manifest/spec.md.tmpl`: F003, current spec YAML frontmatter.

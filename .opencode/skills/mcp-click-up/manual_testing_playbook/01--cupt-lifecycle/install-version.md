@@ -51,7 +51,7 @@ Operators run the exact prompt and command sequence for `CU-001` and confirm the
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/10--cupt-global-flags/050-version-flag.md` | Feature catalog source |
+| `../feature_catalog/10--cupt-global-flags/version-flag.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

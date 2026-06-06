@@ -44,10 +44,10 @@ Before each dispatch, the loop reads `deep-review-state.jsonl`, `deep-review-fin
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/008-review-iteration-reads-state-before-review.md` | Manual scenario | Verifies that each iteration reads state before auditing. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Confirms iteration output, JSONL append, and strategy mutation happen together. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises the traceability-protocol execution path during review. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Manual scenario | Verifies graph event emission from review iterations. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md` | Manual scenario | Verifies that each iteration reads state before auditing. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Confirms iteration output, JSONL append, and strategy mutation happen together. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md` | Manual scenario | Exercises the traceability-protocol execution path during review. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/graph-events-review.md` | Manual scenario | Verifies graph event emission from review iterations. |
 
 ---
 

@@ -38,7 +38,7 @@ Preserve historical and staged skills for inspection (audits, history, pre-activ
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | archived-skill exclusion |
-| `Playbook scenario [LC-003](../../manual_testing_playbook/07--lifecycle-routing/034-archive-handling.md).` | Manual playbook | Source reference |
+| `Playbook scenario [LC-003](../../manual_testing_playbook/07--lifecycle-routing/archive-handling.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

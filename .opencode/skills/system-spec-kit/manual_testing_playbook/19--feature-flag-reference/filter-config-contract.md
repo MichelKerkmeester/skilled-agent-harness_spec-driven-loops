@@ -59,7 +59,7 @@ Inspect `scripts/lib/content-filter.ts` loader and merge logic, verify the fixtu
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [19--feature-flag-reference/282-filter-config-contract.md](../../feature_catalog/19--feature-flag-reference/282-filter-config-contract.md)
+- Feature catalog: [19--feature-flag-reference/filter-config-contract.md](../../feature_catalog/19--feature-flag-reference/filter-config-contract.md)
 
 ---
 

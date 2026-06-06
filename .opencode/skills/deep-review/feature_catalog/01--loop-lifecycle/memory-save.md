@@ -41,7 +41,7 @@ If the save step fails, the current `review/` packet remains the ground truth. T
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/027-final-synthesis-memory-save-and-guardrail-behavior.md` | Manual scenario | Verifies post-synthesis continuity save behavior and guardrails. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual scenario | Verifies post-synthesis continuity save behavior and guardrails. |
 | `manual_testing_playbook/manual_testing_playbook.md` | Manual playbook | Acts as the top-level validation package for the save-and-guardrails category. |
 
 ---

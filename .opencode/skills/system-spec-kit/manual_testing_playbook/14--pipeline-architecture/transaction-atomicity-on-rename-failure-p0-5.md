@@ -60,7 +60,7 @@ Inspect executeAtomicSave error handling for rename failures; verify pending fil
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/181-atomic-pending-file-recovery.md](../../feature_catalog/14--pipeline-architecture/181-atomic-pending-file-recovery.md)
+- Feature catalog: [14--pipeline-architecture/atomic-pending-file-recovery.md](../../feature_catalog/14--pipeline-architecture/atomic-pending-file-recovery.md)
 
 ---
 

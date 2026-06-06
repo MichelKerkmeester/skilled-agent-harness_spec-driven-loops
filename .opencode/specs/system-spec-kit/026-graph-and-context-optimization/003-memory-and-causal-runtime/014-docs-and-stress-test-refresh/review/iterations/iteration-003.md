@@ -29,10 +29,10 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update/checklist.md:16`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update/checklist.md:26`
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/003-memory-and-causal-runtime/014-docs-and-stress-test-refresh/002-feature-catalog-update/implementation-summary.md:26`
-- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md:32`
-- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md:46`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md:14`
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/300-sk-git-worktree-convention.md:10`
+- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md:32`
+- `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md:46`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md:14`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md:10`
 - `.opencode/skills/sk-git/SKILL.md:291`
 
 ## Findings By Severity

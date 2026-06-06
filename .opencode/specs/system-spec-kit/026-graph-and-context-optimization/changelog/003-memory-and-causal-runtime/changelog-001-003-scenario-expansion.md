@@ -76,7 +76,7 @@ The mk-spec-memory manual testing playbook had no coverage for session bootstrap
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/275-council-graph-convergence-edge-cases.md` (NEW) | Council graph convergence edge-cases scenario |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/276-deep-loop-graph-upsert-status-query.md` (NEW) | Deep-loop graph upsert and status query scenario |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/277-deep-loop-graph-convergence-edge-cases.md` (NEW) | Deep-loop graph convergence edge-cases scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/278-governed-ingest-cancel-lifecycle.md` (NEW) | Governed ingest cancel lifecycle scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-cancel-lifecycle.md` (NEW) | Governed ingest cancel lifecycle scenario |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/402-synonymy-across-vocabularies.md` | Example display corrected |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/408-compound-concept-synthesis.md` | Example display corrected |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/409-llm-made-memory-recall.md` | Threshold calibrated to 8/10 |

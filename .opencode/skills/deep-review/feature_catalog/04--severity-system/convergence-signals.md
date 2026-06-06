@@ -42,8 +42,8 @@ Two signals supplement the 3-signal composite vote and participate in legal-stop
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md` | Manual scenario | Verifies composite convergence stop behavior the semantic signals supplement. |
-| `manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md` | Manual scenario | Verifies dimension-coverage signal interaction with stop evaluation. |
+| `manual_testing_playbook/04--convergence-and-recovery/composite-review-convergence-stop-behavior.md` | Manual scenario | Verifies composite convergence stop behavior the semantic signals supplement. |
+| `manual_testing_playbook/04--convergence-and-recovery/dimension-coverage-convergence-signal.md` | Manual scenario | Verifies dimension-coverage signal interaction with stop evaluation. |
 
 ---
 

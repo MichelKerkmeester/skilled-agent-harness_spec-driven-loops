@@ -126,7 +126,7 @@ n/a
 |------------|------|--------|-------------------|
 | 001 research.md catalog | Internal | Green | n/a (already shipped) |
 | Children 002-005 Known Limitations | Internal | Green | Source-of-truth for what was deferred |
-| Sibling 001-native-recommend-happy-path.md SOURCE FILES block | Internal | Green | F33 template |
+| Sibling native-recommend-happy-path.md SOURCE FILES block | Internal | Green | F33 template |
 <!-- /ANCHOR:dependencies -->
 
 ---

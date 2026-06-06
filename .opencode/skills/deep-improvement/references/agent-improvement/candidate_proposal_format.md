@@ -386,4 +386,4 @@ node .opencode/skills/deep-improvement/scripts/agent-improvement/score-candidate
 | `scripts/agent-improvement/score-candidate.cjs` | Candidate scoring |
 | `assets/agent-improvement/improvement_charter.md` | Charter template (read during generation) |
 | `assets/agent-improvement/target_manifest.jsonc` | Target boundary definition |
-| `feature_catalog/01--evaluation-loop/002-candidate-generation.md` | Feature catalog entry |
+| `feature_catalog/01--evaluation-loop/candidate-generation.md` | Feature catalog entry |

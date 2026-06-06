@@ -51,7 +51,7 @@ PRE: Use a throwaway test task only.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/04--cupt-task-completion/031-complete-with-note.md` | Feature catalog source |
+| `../feature_catalog/04--cupt-task-completion/complete-with-note.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

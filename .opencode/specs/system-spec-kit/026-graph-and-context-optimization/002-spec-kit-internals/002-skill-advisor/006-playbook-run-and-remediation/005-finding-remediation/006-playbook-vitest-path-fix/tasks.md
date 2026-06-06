@@ -55,8 +55,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 [P] Replace stale vitest command in 004-ambiguous-brief-rendering.md (~line 38)
-- [x] T003 [P] Replace stale vitest command in 005-lifecycle-redirect-metadata.md (~line 36)
+- [x] T002 [P] Replace stale vitest command in ambiguous-brief-rendering.md (~line 38)
+- [x] T003 [P] Replace stale vitest command in lifecycle-redirect-metadata.md (~line 36)
 <!-- /ANCHOR:phase-2 -->
 
 ---

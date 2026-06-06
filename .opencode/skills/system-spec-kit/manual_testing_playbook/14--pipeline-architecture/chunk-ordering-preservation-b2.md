@@ -58,7 +58,7 @@ Verify chunk ordering index → Check collapse algorithm → Inspect ordering pr
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/165-chunk-ordering-preservation.md](../../feature_catalog/14--pipeline-architecture/165-chunk-ordering-preservation.md)
+- Feature catalog: [14--pipeline-architecture/chunk-ordering-preservation.md](../../feature_catalog/14--pipeline-architecture/chunk-ordering-preservation.md)
 
 ---
 

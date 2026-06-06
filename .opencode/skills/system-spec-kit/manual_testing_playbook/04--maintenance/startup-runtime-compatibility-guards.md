@@ -56,7 +56,7 @@ Re-run `npm test -- --run tests/startup-checks.vitest.ts -t detectRuntimeMismatc
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [04--maintenance/035-startup-runtime-compatibility-guards.md](../../feature_catalog/04--maintenance/035-startup-runtime-compatibility-guards.md)
+- Feature catalog: [04--maintenance/startup-runtime-compatibility-guards.md](../../feature_catalog/04--maintenance/startup-runtime-compatibility-guards.md)
 
 ---
 

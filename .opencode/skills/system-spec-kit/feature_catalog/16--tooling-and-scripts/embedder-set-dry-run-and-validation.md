@@ -49,7 +49,7 @@ The handler shares its name lookup with `embedder_list` and its job lookup with 
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-set.vitest.ts` | Automated test | Handler-level coverage for dry-run planning, invalid-name errors, and the active-pointer invariant |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-reindex.vitest.ts` | Automated test | Coverage for the full reindex path triggered by a non-dry-run swap |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/271-embedder-set-dry-run-and-validation.md` | Manual playbook | Playbook scenario 282 covering dry-run plan output, invalid-name handling, and active-pointer no-op |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-set-dry-run-and-validation.md` | Manual playbook | Playbook scenario 282 covering dry-run plan output, invalid-name handling, and active-pointer no-op |
 
 ---
 

@@ -45,9 +45,9 @@ The log is append-only by contract. The agent may add one iteration line, the wo
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/025-novelty-justification-in-jsonl.md` | Manual playbook | Verifies `noveltyJustification` is present and aligned with the iteration record. |
-| `.opencode/skills/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/017-malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual playbook | Verifies tolerant parsing of malformed JSONL lines. |
-| `.opencode/skills/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/018-jsonl-reconstruction-from-iteration-files.md` | Manual playbook | Verifies state reconstruction when JSONL is damaged. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/novelty-justification-in-jsonl.md` | Manual playbook | Verifies `noveltyJustification` is present and aligned with the iteration record. |
+| `.opencode/skills/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual playbook | Verifies tolerant parsing of malformed JSONL lines. |
+| `.opencode/skills/deep-research/manual_testing_playbook/05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-iteration-files.md` | Manual playbook | Verifies state reconstruction when JSONL is damaged. |
 
 ---
 

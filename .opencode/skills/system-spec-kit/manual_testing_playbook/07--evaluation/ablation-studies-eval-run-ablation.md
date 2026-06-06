@@ -57,7 +57,7 @@ Validate ground-truth mapping against the active parent-memory DB; inspect missi
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [07--evaluation/054-ablation-studies-evalrunablation.md](../../feature_catalog/07--evaluation/054-ablation-studies-evalrunablation.md)
+- Feature catalog: [07--evaluation/ablation-studies-evalrunablation.md](../../feature_catalog/07--evaluation/ablation-studies-evalrunablation.md)
 
 ---
 

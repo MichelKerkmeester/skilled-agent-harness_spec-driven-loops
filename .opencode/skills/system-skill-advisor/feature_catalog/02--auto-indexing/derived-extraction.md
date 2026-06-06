@@ -34,7 +34,7 @@ Automatically generate routing-ready derived entries for every skill without han
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/lifecycle-derived-metadata.vitest.ts` | Automated test | derived-sync correctness |
-| `Playbook scenario [AI-001](../../manual_testing_playbook/06--auto-indexing/027-derived-extraction.md).` | Manual playbook | Source reference |
+| `Playbook scenario [AI-001](../../manual_testing_playbook/06--auto-indexing/derived-extraction.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

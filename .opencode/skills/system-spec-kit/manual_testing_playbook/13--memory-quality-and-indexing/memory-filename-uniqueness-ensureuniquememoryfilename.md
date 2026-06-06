@@ -63,7 +63,7 @@ Inspect the `ensureUniqueMemoryFilename` path, the random-fallback suffix genera
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/137-spec-folder-description-discovery.md](../../feature_catalog/13--memory-quality-and-indexing/137-spec-folder-description-discovery.md)
+- Feature catalog: [13--memory-quality-and-indexing/spec-folder-description-discovery.md](../../feature_catalog/13--memory-quality-and-indexing/spec-folder-description-discovery.md)
 
 ---
 

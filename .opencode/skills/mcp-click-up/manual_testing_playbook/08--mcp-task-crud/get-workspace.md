@@ -50,7 +50,7 @@ PRE: MCP configured with valid CLICKUP_TEAM_ID.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/056-get-workspace.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/get-workspace.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

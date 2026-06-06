@@ -55,7 +55,7 @@ Reduce filters; verify specFolder path
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [03--discovery/027-memory-browser-memorylist.md](../../feature_catalog/03--discovery/027-memory-browser-memorylist.md)
+- Feature catalog: [03--discovery/memory-browser-memorylist.md](../../feature_catalog/03--discovery/memory-browser-memorylist.md)
 
 ---
 

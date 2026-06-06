@@ -45,8 +45,8 @@ Negative knowledge is part of the live contract here. Synthesis must consolidate
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis and the handoff into save behavior. |
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/026-ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies negative knowledge is consolidated into the final research output. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis and the handoff into save behavior. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/ruled-out-directions-in-synthesis.md` | Manual playbook | Verifies negative knowledge is consolidated into the final research output. |
 
 ---
 

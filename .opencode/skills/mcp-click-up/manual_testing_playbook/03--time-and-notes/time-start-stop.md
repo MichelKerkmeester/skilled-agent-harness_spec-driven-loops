@@ -51,7 +51,7 @@ PRE: `cupt time status`  # → must show 'no timer running'
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/06--cupt-time-tracking/035-start-timer.md` | Feature catalog source |
+| `../feature_catalog/06--cupt-time-tracking/start-timer.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -77,7 +77,7 @@ cp .opencode/skills/sk-doc/graph-metadata.json /tmp/post-derived.json
 
 - Scenario [AI-002](./sanitizer-boundaries.md), A7 sanitizer boundary enforcement.
 - Scenario [AI-003](./provenance-and-trust-lanes.md), provenance and trust lane tagging.
-- Feature [`02--auto-indexing/008-derived-extraction.md`](../../feature_catalog/02--auto-indexing/008-derived-extraction.md).
+- Feature [`02--auto-indexing/derived-extraction.md`](../../feature_catalog/02--auto-indexing/derived-extraction.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/extract.ts` and `lib/derived/sync.ts`.
 
 ---

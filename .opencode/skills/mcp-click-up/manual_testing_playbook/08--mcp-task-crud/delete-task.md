@@ -49,7 +49,7 @@ PRE: TASK_ID must be the throwaway test task created in MCP-H001.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/11--mcp-high-priority/054-delete-task.md` | Feature catalog source |
+| `../feature_catalog/11--mcp-high-priority/delete-task.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

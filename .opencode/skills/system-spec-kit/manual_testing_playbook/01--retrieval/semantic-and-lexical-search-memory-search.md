@@ -86,7 +86,7 @@ Inspect `mcp_server/handlers/memory/search.ts` response-policy logic and confide
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/002-semantic-and-lexical-search-memorysearch.md](../../feature_catalog/01--retrieval/002-semantic-and-lexical-search-memorysearch.md)
+- Feature catalog: [01--retrieval/semantic-and-lexical-search-memorysearch.md](../../feature_catalog/01--retrieval/semantic-and-lexical-search-memorysearch.md)
 
 ---
 

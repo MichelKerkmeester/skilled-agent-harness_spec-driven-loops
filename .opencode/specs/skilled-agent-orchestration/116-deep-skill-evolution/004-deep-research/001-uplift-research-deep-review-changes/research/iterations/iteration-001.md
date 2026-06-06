@@ -61,7 +61,7 @@ This iteration catalogued 47 distinct changes across 12 commits from arc 118 (de
 
 ### C-010 — system-code-graph playbook update
 - Type: COLLATERAL
-- Scope: 009-deep-loop-graph-convergence-yaml-fire.md
+- Scope: deep-loop-graph-convergence-yaml-fire.md
 - Evidence: commit e590c12e19
 - Deep-review-specific: no (bilateral collateral)
 

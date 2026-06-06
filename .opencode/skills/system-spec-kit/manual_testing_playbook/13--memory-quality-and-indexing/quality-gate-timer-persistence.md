@@ -58,7 +58,7 @@ Check persistence storage mechanism; verify timer read-on-startup logic; inspect
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [13--memory-quality-and-indexing/146-quality-gate-timer-persistence.md](../../feature_catalog/13--memory-quality-and-indexing/146-quality-gate-timer-persistence.md)
+- Feature catalog: [13--memory-quality-and-indexing/quality-gate-timer-persistence.md](../../feature_catalog/13--memory-quality-and-indexing/quality-gate-timer-persistence.md)
 
 ---
 

@@ -86,7 +86,7 @@ Phase 006 is a small documentation cutover. Four collateral files still cite the
 - **`.opencode/commands/doctor.md`** — top-level `/doctor` command body; ~1-2 deep-loop health-check references
 - **`.opencode/commands/doctor/_routes.yaml`** — argv-positional route manifest; deep-loop diagnostic target rows
 - **`.opencode/commands/doctor/update.md`** — `/doctor:update` sub-action narrative referencing deep-loop refresh ops
-- **`.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md`** — test scenario with one dispatch line citing the old tool ID
+- **`.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md`** — test scenario with one dispatch line citing the old tool ID
 
 ### Data Flow
 
@@ -113,7 +113,7 @@ Phase 006 is a small documentation cutover. Four collateral files still cite the
 - [ ] Edit `.opencode/commands/doctor.md` — swap deep-loop health-check tool refs for script invocations
 - [ ] Edit `.opencode/commands/doctor/_routes.yaml` — update deep-loop route manifest target paths
 - [ ] Edit `.opencode/commands/doctor/update.md` — swap refresh-op tool refs for script invocations
-- [ ] Edit `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` — update dispatch line + expected stdout snippet if needed
+- [ ] Edit `.opencode/skills/system-code-graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` — update dispatch line + expected stdout snippet if needed
 - [ ] Re-validate YAML parses (`_routes.yaml`)
 - [ ] Re-validate markdown frontmatter integrity on the 3 .md files
 

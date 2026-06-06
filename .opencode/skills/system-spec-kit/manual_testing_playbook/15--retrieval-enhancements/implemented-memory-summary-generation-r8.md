@@ -58,7 +58,7 @@ Verify summary generation triggers on save; check summary persistence field in s
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/193-memory-summary-search-channel.md](../../feature_catalog/15--retrieval-enhancements/193-memory-summary-search-channel.md)
+- Feature catalog: [15--retrieval-enhancements/memory-summary-search-channel.md](../../feature_catalog/15--retrieval-enhancements/memory-summary-search-channel.md)
 
 ---
 

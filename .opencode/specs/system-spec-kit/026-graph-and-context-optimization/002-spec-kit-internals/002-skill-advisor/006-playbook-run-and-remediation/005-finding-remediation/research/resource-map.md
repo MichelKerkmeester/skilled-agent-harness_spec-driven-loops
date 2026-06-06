@@ -37,6 +37,6 @@ Authoritative target files per finding (from the deep-research iterations). Path
 - `.opencode/bin/mk-skill-advisor-launcher.cjs`, `.opencode/bin/lib/launcher-ipc-bridge.cjs` (lease/socket handling)
 
 ## F5 — playbook vitest path
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md:38`
-- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md:36`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md:38`
+- `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md:36`
 - Canonical: `cd .opencode/skills/system-skill-advisor/mcp_server && npm exec -- vitest run tests/...`

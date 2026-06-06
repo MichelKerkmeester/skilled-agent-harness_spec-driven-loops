@@ -58,7 +58,7 @@ Check for new .ts files without MODULE: header → Add 3-line header block → R
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/214-feature-catalog-code-references.md](../../feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md)
+- Feature catalog: [16--tooling-and-scripts/feature-catalog-code-references.md](../../feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md)
 
 ---
 

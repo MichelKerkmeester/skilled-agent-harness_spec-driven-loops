@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
       - "feature_catalog/14--pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -73,7 +73,7 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 ## 3. SCOPE
 
 ### In Scope
-- Expanding `05--lifecycle/038-checkpoint-creation-checkpointcreate.md` and its restore sibling `040-checkpoint-restore-checkpointrestore.md` with the v2 path: `VACUUM INTO`, schema v29 columns (`snapshot_format`/`snapshot_path`), restore-journal crash-safety, shard-attach (`active_vec`), and the `.needs-rebuild` sentinel.
+- Expanding `05--lifecycle/checkpoint-creation-checkpointcreate.md` and its restore sibling `checkpoint-restore-checkpointrestore.md` with the v2 path: `VACUUM INTO`, schema v29 columns (`snapshot_format`/`snapshot_path`), restore-journal crash-safety, shard-attach (`active_vec`), and the `.needs-rebuild` sentinel.
 - A new file under `14--pipeline-architecture/` for the MCP launcher front-proxy: reconnecting session proxy, in-place daemon recycle, `SPECKIT_BACKEND_ONLY`, and `-32002` protocol fail-closed.
 - A new schema-version-history file (`v28 → v29 → v30` timeline and what each migration added).
 - A new unified error-code reference file (`E429`, `-32001` retryable recycle — still live, `-32002` protocol fail-closed).
@@ -91,13 +91,13 @@ Expand the relevant existing catalog files and add the missing ones, then regist
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| `feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md` | Modify | Add the v2 `VACUUM INTO` create path, v29 columns, manifest, shard-attach, sentinel. |
-| `feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md` | Modify | Add the v2 file-swap restore, restore-journal crash-safety, `reopenActiveDatabase`, sentinel. |
-| `feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md` | Create | MCP front-proxy: reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, `-32002`. |
-| `feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md` | Create | `post_insert_enrichment_status` discoverability entry. |
-| `feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md` | Create | Schema v28→v29→v30 migration timeline. |
-| `feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md` | Create | Unified `E429` / `-32001` / `-32002` reference. |
-| `feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md` | Create | sk-git `wt/{NNNN}-{name}` worktree convention cross-reference. |
+| `feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md` | Modify | Add the v2 `VACUUM INTO` create path, v29 columns, manifest, shard-attach, sentinel. |
+| `feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md` | Modify | Add the v2 file-swap restore, restore-journal crash-safety, `reopenActiveDatabase`, sentinel. |
+| `feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md` | Create | MCP front-proxy: reconnecting session proxy, in-place recycle, `SPECKIT_BACKEND_ONLY`, `-32002`. |
+| `feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create | `post_insert_enrichment_status` discoverability entry. |
+| `feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create | Schema v28→v29→v30 migration timeline. |
+| `feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md` | Create | Unified `E429` / `-32001` / `-32002` reference. |
+| `feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md` | Create | sk-git `wt/{NNNN}-{name}` worktree convention cross-reference. |
 | `feature_catalog/feature_catalog.md` | Modify | Register every new file. |
 <!-- /ANCHOR:scope -->
 

@@ -98,7 +98,7 @@ Run the deterministic `router-replay.cjs` + `score-skill-benchmark.cjs` harness 
 
 Findings across `iteration-001.md`, `iteration-002.md`, and `iteration-003.md` cite these:
 
-`sk-code/references/smart_routing.md` (§2 scoring, §3 tiers, §11 router + drift-guard note), `sk-code/SKILL.md` §2 (surface/phase detection), `sk-code/references/stack_detection.md`, `sk-code/references/phase_detection.md`, `sk-code/benchmark/live-final/skill-benchmark-report.json`, `sk-code/benchmark/live-final/d4-ablation.json`, `sk-code/manual_testing_playbook/01--surface-detection/001-webflow-detection.md`, `sk-code/manual_testing_playbook/07--cross-stack-routing/018-webflow-plus-motion-dev.md`, `deep-improvement/scripts/skill-benchmark/router-replay.cjs`, `deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs`.
+`sk-code/references/smart_routing.md` (§2 scoring, §3 tiers, §11 router + drift-guard note), `sk-code/SKILL.md` §2 (surface/phase detection), `sk-code/references/stack_detection.md`, `sk-code/references/phase_detection.md`, `sk-code/benchmark/live-final/skill-benchmark-report.json`, `sk-code/benchmark/live-final/d4-ablation.json`, `sk-code/manual_testing_playbook/01--surface-detection/webflow-detection.md`, `sk-code/manual_testing_playbook/07--cross-stack-routing/webflow-plus-motion-dev.md`, `deep-improvement/scripts/skill-benchmark/router-replay.cjs`, `deep-improvement/scripts/skill-benchmark/score-skill-benchmark.cjs`.
 <!-- /ANCHOR:findings -->
 
 ---

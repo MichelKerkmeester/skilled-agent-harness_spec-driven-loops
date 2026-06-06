@@ -57,7 +57,7 @@ Inspect `handlers/memory-crud-types.ts`, `handlers/mutation-hooks.ts`, and `hook
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/258-mutation-hook-result-contract-expansion.md](../../feature_catalog/18--ux-hooks/258-mutation-hook-result-contract-expansion.md)
+- Feature catalog: [18--ux-hooks/mutation-hook-result-contract-expansion.md](../../feature_catalog/18--ux-hooks/mutation-hook-result-contract-expansion.md)
 
 ---
 
@@ -68,4 +68,4 @@ Inspect `handlers/memory-crud-types.ts`, `handlers/mutation-hooks.ts`, and `hook
 - Canonical root source: `manual_testing_playbook.md`
 - Feature file path: `18--ux-hooks/mutation-hook-result-contract-expansion.md`
 - audited_post_018: true
-- Feature catalog back-ref: `18--ux-hooks/258-mutation-hook-result-contract-expansion.md`
+- Feature catalog back-ref: `18--ux-hooks/mutation-hook-result-contract-expansion.md`

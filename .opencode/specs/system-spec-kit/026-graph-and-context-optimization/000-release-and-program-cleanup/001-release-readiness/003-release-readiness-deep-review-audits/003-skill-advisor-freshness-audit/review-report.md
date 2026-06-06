@@ -40,7 +40,7 @@ Rubric applied:
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/schemas/advisor-tool-schemas.ts:115-117` defines `AdvisorRebuildInputSchema` with only optional `force`.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/tools/advisor-rebuild.ts:11-17` exposes only `force` and sets `additionalProperties: false`.
 - `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/handlers/advisor-rebuild.ts:57-60` resolves the workspace from injected dependencies or `process.cwd()`, not from tool input.
-- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
+- `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md:54` and `:66-67` instruct manual testers to call `advisor_rebuild({ "workspaceRoot": "...", ... })`.
 
 **Fix.** Add `workspaceRoot?: string` to the rebuild input schema and tool descriptor, pass it into `rebuildAdvisorIndex`, and add a test that `advisor_status({ workspaceRoot })` followed by forced `advisor_rebuild({ workspaceRoot, force: true })` repairs that same workspace. If the intended contract is cwd-only rebuild, fix the playbook and status/rebuild docs instead.
 

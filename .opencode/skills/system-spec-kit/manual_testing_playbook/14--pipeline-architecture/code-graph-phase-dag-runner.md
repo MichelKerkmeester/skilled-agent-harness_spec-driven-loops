@@ -59,7 +59,7 @@ Inspect `.opencode/skills/system-code-graph/mcp_server/lib/phase-runner.ts` (Kah
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/186-code-graph-phase-dag-runner.md](../../feature_catalog/14--pipeline-architecture/186-code-graph-phase-dag-runner.md)
+- Feature catalog: [14--pipeline-architecture/code-graph-phase-dag-runner.md](../../feature_catalog/14--pipeline-architecture/code-graph-phase-dag-runner.md)
 
 ---
 

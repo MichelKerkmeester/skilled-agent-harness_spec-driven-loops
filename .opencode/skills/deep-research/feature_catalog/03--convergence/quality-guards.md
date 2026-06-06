@@ -45,10 +45,10 @@ Guard failures are visible packet events, not quiet side effects. The workflow e
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/020-quality-guard-source-diversity.md` | Manual playbook | Verifies the source-diversity guard blocks weakly sourced stops. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/021-quality-guard-focus-alignment.md` | Manual playbook | Verifies the focus-alignment guard catches drift from the original charter. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/022-quality-guard-no-single-weak-source.md` | Manual playbook | Verifies tentative single-source answers cannot close the loop. |
-| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/023-convergence-passes-guard-fails-override.md` | Manual playbook | Verifies guard failure overrides a stop nomination back to CONTINUE. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/quality-guard-source-diversity.md` | Manual playbook | Verifies the source-diversity guard blocks weakly sourced stops. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/quality-guard-focus-alignment.md` | Manual playbook | Verifies the focus-alignment guard catches drift from the original charter. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/quality-guard-no-single-weak-source.md` | Manual playbook | Verifies tentative single-source answers cannot close the loop. |
+| `.opencode/skills/deep-research/manual_testing_playbook/04--convergence-and-recovery/convergence-passes-guard-fails-override.md` | Manual playbook | Verifies guard failure overrides a stop nomination back to CONTINUE. |
 
 ---
 

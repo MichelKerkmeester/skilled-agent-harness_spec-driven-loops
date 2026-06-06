@@ -11,8 +11,8 @@ The user requested a fan-out deep-review lineage for `.opencode/specs/system-spe
 |----|----------|-------|------------------|
 | F001 | P1 | `retentionPolicy: "ephemeral"` does not trigger governed-ingest enforcement | `scope-governance.ts:225-230`, `scope-governance.ts:235-242`, `scope-governance.ts:261-280`, `memory-save.ts:3051-3061`, `memory-save.ts:3196-3200`, `scope-governance.ts:325-348` |
 | F002 | P1 | Bulk scan and async ingest accept governance fields but drop them before indexing | `tool-input-schemas.ts:455-462`, `tool-input-schemas.ts:596-598`, `memory-index.ts:278-292`, `memory-index.ts:721-725`, `memory-ingest.ts:263-267`, `job-queue.ts:45-55`, `job-queue.ts:253-295`, `job-queue.ts:624-628`, `context-server.ts:2074-2077`, `memory-save.ts:3393-3400` |
-| F003 | P2 | Session bootstrap playbook documents removed `input` and `includeGraphStatus` parameters | `tool-input-schemas.ts:608`, `tool-schemas.ts:653-660`, `032-session-bootstrap-reader-ready-context.md:37` |
-| F004 | P2 | Session resume playbook expects `codeGraph.available` and `binaryPath` fields not returned by the handler | `session-resume.ts:104-110`, `session-resume.ts:710-723`, `333-session-resume.md:18-22`, `333-session-resume.md:91-100` |
+| F003 | P2 | Session bootstrap playbook documents removed `input` and `includeGraphStatus` parameters | `tool-input-schemas.ts:608`, `tool-schemas.ts:653-660`, `session-bootstrap-reader-ready-context.md:37` |
+| F004 | P2 | Session resume playbook expects `codeGraph.available` and `binaryPath` fields not returned by the handler | `session-resume.ts:104-110`, `session-resume.ts:710-723`, `session-resume.md:18-22`, `session-resume.md:91-100` |
 
 ## Remediation Workstreams
 1. Fix governed-retention enforcement. Make any provided `retentionPolicy` trigger governed-ingest validation, and require explicit future `deleteAfter` plus tenant/session/provenance for ephemeral rows unless the contract is intentionally changed.

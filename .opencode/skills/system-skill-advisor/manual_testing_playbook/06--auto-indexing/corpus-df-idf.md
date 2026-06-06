@@ -65,7 +65,7 @@ touch .opencode/skills/system-spec-kit/SKILL.md
 
 - Scenario [LC-003](../07--lifecycle-routing/archive-handling.md), archive indexing but not routing.
 - Scenario [SC-002](../08--scorer-fusion/projection.md), projection input for scorer.
-- Feature [`02--auto-indexing/013-df-idf-corpus.md`](../../feature_catalog/02--auto-indexing/013-df-idf-corpus.md).
+- Feature [`02--auto-indexing/df-idf-corpus.md`](../../feature_catalog/02--auto-indexing/df-idf-corpus.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/corpus/df-idf.ts`.
 
 ---

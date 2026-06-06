@@ -58,7 +58,7 @@ Verify demotion formula → Check floor configuration → Inspect half-life reco
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/109-negative-feedback-confidence-signal.md](../../feature_catalog/11--scoring-and-calibration/109-negative-feedback-confidence-signal.md)
+- Feature catalog: [11--scoring-and-calibration/negative-feedback-confidence-signal.md](../../feature_catalog/11--scoring-and-calibration/negative-feedback-confidence-signal.md)
 
 ---
 

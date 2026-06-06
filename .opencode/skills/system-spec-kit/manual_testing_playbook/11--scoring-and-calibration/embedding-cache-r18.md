@@ -58,7 +58,7 @@ Verify cache key computation (content+model) → Check cache storage backend →
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/106-embedding-cache.md](../../feature_catalog/11--scoring-and-calibration/106-embedding-cache.md)
+- Feature catalog: [11--scoring-and-calibration/embedding-cache.md](../../feature_catalog/11--scoring-and-calibration/embedding-cache.md)
 
 ---
 

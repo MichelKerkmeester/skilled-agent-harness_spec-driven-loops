@@ -60,7 +60,7 @@ Check `mcp_server/api/providers.ts` for missing or renamed re-exports -> inspect
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/184-embeddings-and-retry-api.md](../../feature_catalog/14--pipeline-architecture/184-embeddings-and-retry-api.md)
+- Feature catalog: [14--pipeline-architecture/embeddings-and-retry-api.md](../../feature_catalog/14--pipeline-architecture/embeddings-and-retry-api.md)
 
 ---
 

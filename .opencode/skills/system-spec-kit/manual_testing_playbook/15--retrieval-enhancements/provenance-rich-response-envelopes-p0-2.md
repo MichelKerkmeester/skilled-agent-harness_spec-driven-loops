@@ -60,7 +60,7 @@ Check `handlers/memory-search.ts` for includeTrace and env branching
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [15--retrieval-enhancements/196-provenance-rich-response-envelopes.md](../../feature_catalog/15--retrieval-enhancements/196-provenance-rich-response-envelopes.md)
+- Feature catalog: [15--retrieval-enhancements/provenance-rich-response-envelopes.md](../../feature_catalog/15--retrieval-enhancements/provenance-rich-response-envelopes.md)
 
 ---
 

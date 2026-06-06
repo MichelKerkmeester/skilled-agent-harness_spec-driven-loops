@@ -60,7 +60,7 @@ Verify TTL config and max-entry settings -> Confirm identical tool/input payload
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [11--scoring-and-calibration/114-tool-level-ttl-cache.md](../../feature_catalog/11--scoring-and-calibration/114-tool-level-ttl-cache.md)
+- Feature catalog: [11--scoring-and-calibration/tool-level-ttl-cache.md](../../feature_catalog/11--scoring-and-calibration/tool-level-ttl-cache.md)
 
 ---
 

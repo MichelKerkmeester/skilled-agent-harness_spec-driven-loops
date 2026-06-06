@@ -55,7 +55,7 @@ Inspect the M-007 snippet, the session-capturing catalog entry, and the related 
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/215-session-capturing-pipeline-quality.md](../../feature_catalog/16--tooling-and-scripts/215-session-capturing-pipeline-quality.md)
+- Feature catalog: [16--tooling-and-scripts/session-capturing-pipeline-quality.md](../../feature_catalog/16--tooling-and-scripts/session-capturing-pipeline-quality.md)
 - Canonical memory/spec scenario: [M-007](../16--tooling-and-scripts/session-capturing-pipeline-quality.md)
 
 ---

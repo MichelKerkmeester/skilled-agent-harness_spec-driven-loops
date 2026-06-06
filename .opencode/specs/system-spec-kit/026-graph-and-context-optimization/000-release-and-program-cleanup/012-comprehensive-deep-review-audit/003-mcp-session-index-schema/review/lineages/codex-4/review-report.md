@@ -75,8 +75,8 @@ The session bootstrap playbook calls removed arguments, and the governed ingest 
 
 Evidence:
 
-- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md:37`
-- `.opencode/skills/system-spec-kit/feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md:28`
+- `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md:37`
+- `.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md:28`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:531`
 - `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts:649`
 - `.opencode/skills/system-spec-kit/mcp_server/schemas/tool-input-schemas.ts:472`

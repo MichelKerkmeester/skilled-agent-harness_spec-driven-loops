@@ -80,7 +80,7 @@ If stdout is not saved, the salvage sweep has nothing to recover from.
 
 - Group: Fan-Out
 - Playbook ID: DLR-025
-- Feature catalog entry: `feature_catalog/09--fanout/025-fanout-run.md`
+- Feature catalog entry: `feature_catalog/09--fanout/fanout-run.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/fanout-run-cli-lineage-spawn.md`
 - Expected verdict mode: GREEN when 5/5 pass and source anchors agree
 - Wall-time estimate: 5-10 min

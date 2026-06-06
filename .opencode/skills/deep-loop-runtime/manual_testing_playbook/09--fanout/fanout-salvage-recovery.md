@@ -79,7 +79,7 @@ shared SQLite DB without any schema change.
 
 - Group: Fan-Out
 - Playbook ID: DLR-026
-- Feature catalog entry: `feature_catalog/09--fanout/026-fanout-salvage.md`
+- Feature catalog entry: `feature_catalog/09--fanout/fanout-salvage.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/fanout-salvage-recovery.md`
 - Expected verdict mode: GREEN when 11/11 pass and source anchors agree
 - Wall-time estimate: 5-10 min

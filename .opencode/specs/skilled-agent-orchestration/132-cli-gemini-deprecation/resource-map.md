@@ -151,17 +151,17 @@ _memory:
 | `.opencode/skills/deep-ai-council/assets/runtime_capabilities.json` | Updated | OK | Gemini runtime removed from capability matrix. |
 | `.opencode/skills/deep-ai-council/changelog/v1.0.0.0.md` | Updated | OK | Former-Gemini historical wording. |
 | `.opencode/skills/deep-ai-council/changelog/v1.2.0.0.md` | Updated | OK | Former-Gemini historical wording. |
-| `.opencode/skills/deep-ai-council/feature_catalog/01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md` | Updated | OK | Runtime mirrors now exclude project Gemini. |
-| `.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md` | Updated | OK | Manual test now checks remaining mirrors. |
+| `.opencode/skills/deep-ai-council/feature_catalog/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | Updated | OK | Runtime mirrors now exclude project Gemini. |
+| `.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md` | Updated | OK | Manual test now checks remaining mirrors. |
 | `.opencode/skills/deep-improvement/README.md` | Updated | OK | Runtime mirror policy aligned. |
 | `.opencode/skills/deep-improvement/SKILL.md` | Updated | OK | Mirror policy aligned. |
 | `.opencode/skills/deep-improvement/assets/agent-improvement/target_manifest.jsonc` | Updated | OK | Target manifest excludes Gemini mirror. |
 | `.opencode/skills/deep-improvement/changelog/v1.0.1.0.md` | Updated | OK | Former-Gemini wording. |
 | `.opencode/skills/deep-improvement/changelog/v1.5.0.0.md` | Updated | OK | Former-Gemini wording. |
-| `.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/008-runtime-mirrors.md` | Updated | OK | Runtime mirror feature no longer includes project Gemini. |
+| `.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/runtime-mirrors.md` | Updated | OK | Runtime mirror feature no longer includes project Gemini. |
 | `.opencode/skills/deep-improvement/feature_catalog/feature_catalog.md` | Updated | OK | Feature catalog aligned. |
-| `.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md` | Updated | OK | Scanner scenario aligned. |
-| `.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/033-proposal-only-boundary.md` | Updated | OK | Removed Gemini fixture diff. |
+| `.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-known-agent.md` | Updated | OK | Scanner scenario aligned. |
+| `.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/proposal-only-boundary.md` | Updated | OK | Removed Gemini fixture diff. |
 | `.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/setup-cp-sandbox.sh` | Updated | OK | Sandbox no longer seeds Gemini mirror. |
 | `.opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Scenario summary aligned. |
 | `.opencode/skills/deep-improvement/references/agent-improvement/integration_scanning.md` | Updated | OK | Integration scanner docs aligned. |
@@ -204,27 +204,27 @@ _memory:
 | `.opencode/skills/system-skill-advisor/references/decisions/deferred_decisions.md` | Updated | OK | Deferred runtime references aligned. |
 | `.opencode/skills/system-spec-kit/SKILL.md` | Updated | OK | Runtime docs aligned. |
 | `.opencode/skills/system-spec-kit/changelog/v3.4.0.0.md` | Updated | OK | Removed Gemini config peer. |
-| `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/016-memory-indexing-memorysave.md` | Updated | OK | Feature docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/036-doctor-router-and-manifest-dispatch.md` | Updated | OK | Doctor feature docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/184-embeddings-and-retry-api.md` | Updated | OK | Config docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/221-template-compliance-contract-enforcement.md` | Updated | OK | Runtime docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/245-embedder-list-registry-inventory.md` | Updated | OK | Runtime docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/277-5-embedding-and-api.md` | Updated | OK | Config docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/283-memory-roadmap-capability-flags.md` | Updated | OK | Config docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/297-cross-runtime-fallback.md` | Updated | OK | Runtime fallback docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/298-runtime-detection.md` | Updated | OK | Runtime detection docs aligned. |
-| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md` | Updated | OK | Mirror dedupe docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-indexing-memorysave.md` | Updated | OK | Feature docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/doctor-router-and-manifest-dispatch.md` | Updated | OK | Doctor feature docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/embeddings-and-retry-api.md` | Updated | OK | Config docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/template-compliance-contract-enforcement.md` | Updated | OK | Runtime docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-list-registry-inventory.md` | Updated | OK | Runtime docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/5-embedding-and-api.md` | Updated | OK | Config docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/memory-roadmap-capability-flags.md` | Updated | OK | Config docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/cross-runtime-fallback.md` | Updated | OK | Runtime fallback docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/runtime-detection.md` | Updated | OK | Runtime detection docs aligned. |
+| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md` | Updated | OK | Mirror dedupe docs aligned. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Updated | OK | Feature catalog aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/244-runtime-family-count-census.md` | Updated | OK | Runtime count scenario aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/245-runtime-lineage-naming-parity.md` | Updated | OK | Runtime parity scenario aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/246-gemini-runtime-path-resolution.md` | Updated | OK | Now validates project `.gemini` absence. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/287-F--comment-hygiene-gemini-hook.md` | Updated | OK | Gemini hook expectations aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/308-5-embedding-and-api.md` | Updated | OK | Config docs aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/311-memory-roadmap-capability-flags.md` | Updated | OK | Config docs aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/326-cross-runtime-fallback.md` | Updated | OK | Runtime fallback scenario aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/327-runtime-detection.md` | Updated | OK | Runtime detection scenario aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/335-tool-routing-enforcement.md` | Updated | OK | Tool-routing runtime refs aligned. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/368-compound-concept-synthesis.md` | Updated | OK | Mirror dedupe list excludes Gemini. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-family-count-census.md` | Updated | OK | Runtime count scenario aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-lineage-naming-parity.md` | Updated | OK | Runtime parity scenario aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/gemini-runtime-path-resolution.md` | Updated | OK | Now validates project `.gemini` absence. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/F--comment-hygiene-gemini-hook.md` | Updated | OK | Gemini hook expectations aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/5-embedding-and-api.md` | Updated | OK | Config docs aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-roadmap-capability-flags.md` | Updated | OK | Config docs aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/cross-runtime-fallback.md` | Updated | OK | Runtime fallback scenario aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/runtime-detection.md` | Updated | OK | Runtime detection scenario aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/tool-routing-enforcement.md` | Updated | OK | Tool-routing runtime refs aligned. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/compound-concept-synthesis.md` | Updated | OK | Mirror dedupe list excludes Gemini. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md` | Updated | OK | Mirror dedupe docs aligned. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Root playbook runtime refs aligned. |
 | `.opencode/skills/system-spec-kit/mcp_server/ENV_REFERENCE.md` | Updated | OK | Runtime config docs aligned. |

@@ -2139,12 +2139,12 @@ exec
 .opencode/skills/deep-improvement/references/agent-improvement/integration_scanning.md:43:| Global docs | `CLAUDE.md`, `.claude/CLAUDE.md` | Agent name references |
 .opencode/skills/deep-improvement/references/agent-improvement/integration_scanning.md:80:    "commands": [{ "path": ".opencode/commands/speckit/{agent-name}.md", "references": ["@{agent-name}"] }],
 .opencode/skills/deep-improvement/references/agent-improvement/integration_scanning.md:81:    "skills": [{ "path": ".opencode/skills/deep-improvement/SKILL.md", "referenceCount": 2 }]
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:7:  - references/agent_creation.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:17:## 1. OVERVIEW
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:46:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:59:  - `references/agent_creation.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:62:- **Outcome**: CLI loads agent-creation reference + both templates and produces two file scaffolds (`@analyze` agent definition and `/create:analyze` command) with the dispatch wiring described in `agent_creation.md`.
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md:73:- response is non-empty and references at least one of the expected_resources
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:7:  - references/agent_creation.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:17:## 1. OVERVIEW
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:46:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:59:  - `references/agent_creation.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:62:- **Outcome**: CLI loads agent-creation reference + both templates and produces two file scaffolds (`@analyze` agent definition and `/create:analyze` command) with the dispatch wiring described in `agent_creation.md`.
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/agent-command.md:73:- response is non-empty and references at least one of the expected_resources
 .opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/003-max-load.md:7:  - references/global/validation.md
 .opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/003-max-load.md:8:  - references/global/workflows.md
 .opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/003-max-load.md:9:  - references/global/core_standards.md
@@ -2229,23 +2229,23 @@ exec
 .opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md:53:sk-doc: create a new sk-skill named sk-graph-traversal for graph queries against the spec-kit memory database; include GRAPH_QUERY, GRAPH_TRAVERSAL, GRAPH_INDEX, and GRAPH_HEALTH intents with about three resources each, SKILL.md smart-router pseudocode, RESOURCE_MAP wiring, references/global/query_patterns.md outline, assets/skill/query_template.md outline, scripts for index automation, manual_testing_playbook coverage for all four intents, and cite the current graph API, canonical graph types, and graph validator snippets.
 .opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md:61:- **Resources loaded**: skill-creation reference + SKILL.md, skill README and reference templates
 .opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/002-large-prompt-stress.md:74:- response is non-empty and references at least one of the expected_resources
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md:8:  - references/install_guide_creation.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md:16:## 1. OVERVIEW
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md:45:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md:59:  - `references/install_guide_creation.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md:71:- response is non-empty and references at least one of the expected_resources
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:7:  - references/global/validation.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:8:  - references/global/workflows.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:9:  - references/global/core_standards.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:10:  - references/global/evergreen_packet_id_rule.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:18:## 1. OVERVIEW
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:47:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:60:  - `references/global/validation.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:61:  - `references/global/workflows.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:62:  - `references/global/core_standards.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:63:  - `references/global/evergreen_packet_id_rule.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:64:- **Outcome**: CLI loads only the four global references above and produces a non-empty validation-style response (DQI checklist or per-section findings) referencing at least one of those resources.
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md:75:- response is non-empty and references at least one of the expected_resources
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/install-guide.md:8:  - references/install_guide_creation.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/install-guide.md:16:## 1. OVERVIEW
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/install-guide.md:45:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/install-guide.md:59:  - `references/install_guide_creation.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/install-guide.md:71:- response is non-empty and references at least one of the expected_resources
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:7:  - references/global/validation.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:8:  - references/global/workflows.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:9:  - references/global/core_standards.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:10:  - references/global/evergreen_packet_id_rule.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:18:## 1. OVERVIEW
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:47:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:60:  - `references/global/validation.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:61:  - `references/global/workflows.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:62:  - `references/global/core_standards.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:63:  - `references/global/evergreen_packet_id_rule.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:64:- **Outcome**: CLI loads only the four global references above and produces a non-empty validation-style response (DQI checklist or per-section findings) referencing at least one of those resources.
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/doc-quality.md:75:- response is non-empty and references at least one of the expected_resources
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/001-references-global-only.md:4:title: 'HVR intent loads only references/global/hvr_rules.md'
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/001-references-global-only.md:7:  - references/global/hvr_rules.md
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/001-references-global-only.md:15:## 1. OVERVIEW
@@ -2261,23 +2261,23 @@ exec
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/002-assets-only.md:45:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/002-assets-only.md:60:  - ONLY (no `references/*` loaded)
 .opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/002-assets-only.md:71:- false_positive_resource_load_count <= 1 (no references/* loaded)
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:7:  - references/skill_creation.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:10:  - assets/skill/skill_reference_template.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:18:## 1. OVERVIEW
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:30:- Real user request: `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:31:- Prompt: `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:39:| SD-002 | SKILL_CREATION intent: author a new sk-skill | Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources. | `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:47:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:53:Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:60:  - `references/skill_creation.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:63:  - `assets/skill/skill_reference_template.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:64:- **Outcome**: CLI loads the skill-creation reference plus the SKILL.md, skill README and reference templates, then produces a populated `SKILL.md` skeleton, optional README skeleton and reference-doc skeleton citing the loaded templates.
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md:75:- response is non-empty and references at least one of the expected_resources
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md:7:  - references/global/optimization.md
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md:16:## 1. OVERVIEW
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md:45:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md:58:  - `references/global/optimization.md`
-.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md:71:- response is non-empty and references at least one of the expected_resources
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:7:  - references/skill_creation.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:10:  - assets/skill/skill_reference_template.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:18:## 1. OVERVIEW
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:30:- Real user request: `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:31:- Prompt: `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:39:| SD-002 | SKILL_CREATION intent: author a new sk-skill | Verify sk-doc routes the scenario to `SKILL_CREATION` with the expected resources. | `Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.` | Run the setup block below against sk-doc and capture the routing trace. | Intent resolves to `SKILL_CREATION`; loaded resources match `expected_resources`. | CLI transcript with intent, resources, response shape, token counts where applicable. | PASS when intent/resources/output match the scenario criteria; PARTIAL for tolerated extra resources; FAIL for wrong intent or empty output. | Re-read `SKILL.md` smart-router RESOURCE_MAP and intent keywords, then compare against the routed prompt. |
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:47:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:53:Help me create a graph-rag sk-skill with SKILL.md and starter reference scaffolds.
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:60:  - `references/skill_creation.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:63:  - `assets/skill/skill_reference_template.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:64:- **Outcome**: CLI loads the skill-creation reference plus the SKILL.md, skill README and reference templates, then produces a populated `SKILL.md` skeleton, optional README skeleton and reference-doc skeleton citing the loaded templates.
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/skill-creation.md:75:- response is non-empty and references at least one of the expected_resources
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/optimization.md:7:  - references/global/optimization.md
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/optimization.md:16:## 1. OVERVIEW
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/optimization.md:45:2. Which references/ and assets/ files would be CONDITIONAL-loaded for that intent
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/optimization.md:58:  - `references/global/optimization.md`
+.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/optimization.md:71:- response is non-empty and references at least one of the expected_resources
 .opencode/skills/sk-doc/scripts/tests/valid_spec.md:7:contextType: "general"
 .opencode/skills/sk-doc/scripts/tests/missing_emojis.md:14:## 1. OVERVIEW
 .opencode/skills/sk-doc/scripts/tests/single_dash_anchors.md:14:## 1. OVERVIEW
@@ -3017,8 +3017,8 @@ exec
 .opencode/skills/deep-improvement/references/shared/promotion_rules.md:3:description: Keep, reject, and guarded promotion rules for deep-improvement candidates.
 .opencode/skills/deep-improvement/scripts/shared/README.md:2:title: "shared: Cross-Lane Scripts"
 .opencode/skills/deep-improvement/scripts/shared/README.md:3:description: "Mode router, promotion, fixtures, state reducer, journal, and coverage scripts serving both deep-improvement lanes."
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md:2:title: "PG-007 -- Inline NEVER Rules Fallback (No Dedicated Section)"
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md:3:description: "Manual validation scenario for PG-007: Inline NEVER Rules Fallback (No Dedicated Section)."
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/inline-rules-fallback.md:2:title: "PG-007 -- Inline NEVER Rules Fallback (No Dedicated Section)"
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/inline-rules-fallback.md:3:description: "Manual validation scenario for PG-007: Inline NEVER Rules Fallback (No Dedicated Section)."
 .opencode/skills/deep-improvement/scripts/tests/README.md:2:title: "Scripts Tests: Vitest Suites"
 .opencode/skills/deep-improvement/scripts/tests/README.md:3:description: "Vitest suites covering the deep-improvement lane scripts, shared reducers, and library helpers."
 .opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/022-mutation-coverage-graph-tracking.md:2:title: "E2E-022 -- Mutation Coverage Graph Tracking"
@@ -3027,16 +3027,16 @@ exec
 .opencode/skills/deep-improvement/scripts/model-benchmark/README.md:3:description: "Lane B scripts that dispatch a model under test and score its fixture outputs by pattern or 5-dimension scoring."
 .opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/015-with-integration.md:2:title: "BI-015 -- Benchmark With Integration Report"
 .opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/015-with-integration.md:3:description: "Manual validation scenario for BI-015: Benchmark With Integration Report."
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/006-output-checks.md:2:title: "PG-006 -- OUTPUT VERIFICATION Checklist Extraction (Debug)"
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/006-output-checks.md:3:description: "Manual validation scenario for PG-006: OUTPUT VERIFICATION Checklist Extraction (Debug)."
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/output-checks.md:2:title: "PG-006 -- OUTPUT VERIFICATION Checklist Extraction (Debug)"
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/output-checks.md:3:description: "Manual validation scenario for PG-006: OUTPUT VERIFICATION Checklist Extraction (Debug)."
 .opencode/skills/deep-improvement/scripts/agent-improvement/README.md:2:title: "agent-improvement: Lane A Scripts"
 .opencode/skills/deep-improvement/scripts/agent-improvement/README.md:3:description: "Lane A (agent-improvement) scoring, profiling, lineage, and integration scripts for the deep-improvement skill."
 .opencode/skills/deep-improvement/scripts/tests/fixtures/low-sample-benchmark/README.md:2:title: "Low Sample Benchmark Fixture: Insufficient-State Inputs"
 .opencode/skills/deep-improvement/scripts/tests/fixtures/low-sample-benchmark/README.md:3:description: "Short improvement session that pins the insufficient-data and insufficient-sample paths for the vitest suites."
 .opencode/skills/deep-improvement/scripts/tests/fixtures/README.md:2:title: "Test Fixtures: Deterministic State Inputs"
 .opencode/skills/deep-improvement/scripts/tests/fixtures/README.md:3:description: "Static state files that drive the deep-improvement vitest suites without running a live loop."
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/008-file-output.md:2:title: "PG-008 -- Profile JSON File Output via --output Flag"
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/008-file-output.md:3:description: "Manual validation scenario for PG-008: Profile JSON File Output via --output Flag."
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/file-output.md:2:title: "PG-008 -- Profile JSON File Output via --output Flag"
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/file-output.md:3:description: "Manual validation scenario for PG-008: Profile JSON File Output via --output Flag."
 .opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:2:title: "E2E-023 -- Trade-Off Detection Across Dimensions"
 .opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/023-trade-off-detection.md:3:description: "Manual validation scenario for E2E-023: Trade-Off Detection Across Dimensions."
 .opencode/skills/deep-improvement/references/shared/loop_protocol.md:2:title: Loop Protocol
@@ -3051,10 +3051,10 @@ exec
 .opencode/skills/deep-improvement/references/skill-benchmark/scoring_contract.md:10:contextType: reference
 .opencode/skills/deep-improvement/references/agent-improvement/profiling_audit_log.md:2:title: "Profile-Selection Audit Log for DAI"
 .opencode/skills/deep-improvement/references/agent-improvement/profiling_audit_log.md:3:description: "Documentation for profile-selection rationale logging in DAI, addressing DAI-004 (dynamic profiling auditability)."
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/005-rules-extraction.md:2:title: "PG-005 -- ALWAYS/NEVER Rules Extraction"
-.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/005-rules-extraction.md:3:description: "Manual validation scenario for PG-005: ALWAYS/NEVER Rules Extraction."
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md:2:title: "IS-002 -- Scan Missing Agent (Nonexistent)"
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md:3:description: "Manual validation scenario for IS-002: Scan Missing Agent (Nonexistent)."
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/rules-extraction.md:2:title: "PG-005 -- ALWAYS/NEVER Rules Extraction"
+.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/rules-extraction.md:3:description: "Manual validation scenario for PG-005: ALWAYS/NEVER Rules Extraction."
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-missing-agent.md:2:title: "IS-002 -- Scan Missing Agent (Nonexistent)"
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-missing-agent.md:3:description: "Manual validation scenario for IS-002: Scan Missing Agent (Nonexistent)."
 .opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/021-any-agent.md:2:title: "E2E-021 -- Full Pipeline Loop with Non-Standard Agent (Debug)"
 .opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/021-any-agent.md:3:description: "Manual validation scenario for E2E-021: Full Pipeline Loop with Non-Standard Agent (Debug)."
 .opencode/skills/deep-improvement/references/shared/promotion_gate_contract.md:2:title: Deep Agent Improvement Promotion Gate Contract
@@ -3069,8 +3069,8 @@ exec
 .opencode/skills/deep-improvement/scripts/model-benchmark/scorer/lib/README.md:3:description: "Atomic append-only cache for deterministic and grader results used inside the scorer."
 .opencode/skills/deep-improvement/references/model-benchmark/benchmark_operator_guide.md:2:title: Benchmark Operator Guide
 .opencode/skills/deep-improvement/references/model-benchmark/benchmark_operator_guide.md:3:description: Step-by-step guide for running repeatable fixture benchmarks for deep-improvement target profiles.
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md:2:title: "IS-003 -- Scan Diverse Agent (Debug)"
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md:3:description: "Manual validation scenario for IS-003: Scan Diverse Agent (Debug)."
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-diverse-agent.md:2:title: "IS-003 -- Scan Diverse Agent (Debug)"
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-diverse-agent.md:3:description: "Manual validation scenario for IS-003: Scan Diverse Agent (Debug)."
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:2:title: "Candidate generation"
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/02-candidate-generation.md:3:description: "Generates one bounded packet-local candidate through the proposal-only deep-improvement subagent."
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/05-rollback.md:2:title: "Rollback"
@@ -3088,8 +3088,8 @@ exec
 .opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/017-no-dimensions.md:3:description: "Manual validation scenario for RD-017: JSONL Without Dimensions Produces Normal Dashboard."
 .opencode/skills/deep-improvement/references/model-benchmark/evaluator_contract.md:2:title: Evaluator Contract
 .opencode/skills/deep-improvement/references/model-benchmark/evaluator_contract.md:3:description: Deterministic scoring and benchmark contract for target-profiled deep-improvement experiments.
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/004-json-output-file.md:2:title: "IS-004 -- JSON Output File via --output Flag"
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/004-json-output-file.md:3:description: "Manual validation scenario for IS-004: JSON Output File via --output Flag."
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/json-output-file.md:2:title: "IS-004 -- JSON Output File via --output Flag"
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/json-output-file.md:3:description: "Manual validation scenario for IS-004: JSON Output File via --output Flag."
 .opencode/skills/deep-improvement/scripts/model-benchmark/scorer/README.md:2:title: "scorer: 5-dimension model-variant scorer"
 .opencode/skills/deep-improvement/scripts/model-benchmark/scorer/README.md:3:description: "Decoupled 5-dimension scorer that combines deterministic checks and a pluggable grader into a single weighted score."
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/06-plateau-detection.md:2:title: "Plateau detection"
@@ -3108,8 +3108,8 @@ exec
 .opencode/skills/deep-improvement/references/model-benchmark/mixed_executor_methodology.md:3:description: "Guidance on using mixed-executor dispatch (cli-devin SWE-1.6 breadth + cli-codex gpt-5.5 synthesis) and adjudication-iter false-positive filter for DAI multi-iter evaluation sweeps."
 .opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/03-opt-in-5dim-scorer.md:2:title: "Opt-in 5-dimension scorer"
 .opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/03-opt-in-5dim-scorer.md:3:description: "Selects the pattern matcher by default or the opt-in five-dimension scorer for model-benchmark outputs."
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:2:title: "IS-001 -- Scan Known Agent (Debug)"
-.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md:3:description: "Manual validation scenario for IS-001: Scan Known Agent (Debug)."
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-known-agent.md:2:title: "IS-001 -- Scan Known Agent (Debug)"
+.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-known-agent.md:3:description: "Manual validation scenario for IS-001: Scan Known Agent (Debug)."
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/04-promotion-gates.md:2:title: "Promotion gates"
 .opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/04-promotion-gates.md:3:description: "Applies the narrow policy and helper checks that decide whether canonical promotion is even allowed."
 .opencode/skills/deep-improvement/references/agent-improvement/score_dimensions.md:2:title: Deep Agent Improvement 5-Dimension Scoring Rubric
@@ -4510,7 +4510,7 @@ exec
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/corpus-plan.md:82:| F1 spec-folder workflow | Template/level-route dry run against disposable folder | Create Level 1/2/3 sandbox packet and strict validate | Malformed frontmatter or wrong-level packet must fail validation |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/005-stress-test/003-fix-mcp-runtime-stress-findings/030-clean-infrastructure-full-matrix-stress-design/corpus-plan.md:93:| F12 validators | Strict validator pass on good sandbox | Anchor/frontmatter lint and checklist validation | Cross-anchor contamination or malformed `_memory` block |
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-012.md:29:- Sample file 006-devin-user-prompt-submit.md has complete 5-section structure with frontmatter and ANCHOR comments <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/006-devin-user-prompt-submit.md" lines="1-141" />
-.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-012.md:89:- All files include frontmatter with title, description, and trigger_phrases fields <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md" lines="1-9" />
+.opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-012.md:89:- All files include frontmatter with title, description, and trigger_phrases fields <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md" lines="1-9" />
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/001-documentation-quality-audit-research/research/iterations/iteration-012.md:92:- sk-doc snippet template requires these elements: frontmatter, 5 sections, ANCHOR comments, template identifier <ref_file file="/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md" lines="39-48" />
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/research/iterations/iteration-010.md:34:6. `mcp-code-mode` has a source/runtime mismatch: its `prerequisite_for` edges exist in metadata but are dropped from compiled runtime adjacency, and its frontmatter names downstream integrations that are not all represented as graph nodes. Evidence: `.opencode/skills/mcp-code-mode/graph-metadata.json:6-18`, `.opencode/skills/mcp-code-mode/SKILL.md:2-3`, `.opencode/skills/mcp-code-mode/SKILL.md:19-20`, `.opencode/skills/skill-advisor/scripts/skill_graph_compiler.py:253-264`. Provenance: iterations 001 and 004.
 .opencode/specs/system-spec-kit/026-graph-and-context-optimization/002-spec-kit-internals/002-skill-advisor/001-skill-graph/001-skill-graph-metadata-routing-boosts/research/iterations/iteration-001.md:2:Reviewed the five requested `graph-metadata.json` files against their `SKILL.md` frontmatter and the advisor's ambiguous-keyword boosters. The strongest gap is `system-spec-kit`: it has an empty edge inventory even though both its frontmatter and advisor routing make it a recurring companion to review/spec-validation work. A second important gap is operational rather than declarative: `mcp-code-mode` declares `prerequisite_for` edges, but the compiled graph excludes that edge type, so those relations do not participate in transitive graph boosts.

@@ -59,7 +59,7 @@ Inspect `mcp_server/api/index.ts` for stale or missing re-exports -> verify rena
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/183-mcp-server-public-api-barrel.md](../../feature_catalog/14--pipeline-architecture/183-mcp-server-public-api-barrel.md)
+- Feature catalog: [14--pipeline-architecture/mcp-server-public-api-barrel.md](../../feature_catalog/14--pipeline-architecture/mcp-server-public-api-barrel.md)
 
 ---
 

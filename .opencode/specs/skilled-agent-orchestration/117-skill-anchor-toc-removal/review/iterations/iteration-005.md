@@ -2471,12 +2471,12 @@ git: error: couldn't create cache file '/tmp/xcrun_db-lLo4Leic' (errno=Operation
  .../system-skill-advisor/hooks/codex/README.md     |  24 ---
  .../system-skill-advisor/hooks/codex/lib/README.md |  24 ---
  .../system-skill-advisor/hooks/gemini/README.md    |  24 ---
- .../001-native-recommend-happy-path.md             |  15 --
- .../002-native-status-transitions.md               |  15 --
- .../003-native-validate-slices.md                  |  15 --
- .../004-ambiguous-brief-rendering.md               |  15 --
- .../005-lifecycle-redirect-metadata.md             |  15 --
- .../006-advisor-status-rebuild-separation.md       |  15 --
+ .../native-recommend-happy-path.md             |  15 --
+ .../native-status-transitions.md               |  15 --
+ .../native-validate-slices.md                  |  15 --
+ .../ambiguous-brief-rendering.md               |  15 --
+ .../lifecycle-redirect-metadata.md             |  15 --
+ .../advisor-status-rebuild-separation.md       |  15 --
  .../001-claude-user-prompt-submit.md               |  15 --
  .../003-gemini-user-prompt-submit.md               |  15 --
  .../004-codex-hook-and-wrapper.md                  |  15 --
@@ -3395,12 +3395,12 @@ CommitDate: Tue May 26 11:55:15 2026 +0200
 .opencode/skills/system-skill-advisor/hooks/codex/README.md
 .opencode/skills/system-skill-advisor/hooks/codex/lib/README.md
 .opencode/skills/system-skill-advisor/hooks/gemini/README.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md
-.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-recommend-happy-path.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-status-transitions.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/native-validate-slices.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md
+.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md
 .opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/001-claude-user-prompt-submit.md
 .opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/003-gemini-user-prompt-submit.md
 .opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/004-codex-hook-and-wrapper.md

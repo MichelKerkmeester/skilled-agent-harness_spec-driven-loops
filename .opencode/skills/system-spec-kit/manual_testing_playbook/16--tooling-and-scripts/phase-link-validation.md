@@ -61,7 +61,7 @@ Verify check-phase-links.sh exists and has execute permission; check spec.md con
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/206-progressive-validation-for-spec-documents.md](../../feature_catalog/16--tooling-and-scripts/206-progressive-validation-for-spec-documents.md)
+- Feature catalog: [16--tooling-and-scripts/progressive-validation-for-spec-documents.md](../../feature_catalog/16--tooling-and-scripts/progressive-validation-for-spec-documents.md)
 
 ---
 

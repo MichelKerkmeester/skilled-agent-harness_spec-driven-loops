@@ -59,7 +59,7 @@ Verify SPECKIT_RESPONSE_PROFILE_V1 env → Inspect profile-formatters.ts profile
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/267-mode-aware-response-profiles.md](../../feature_catalog/18--ux-hooks/267-mode-aware-response-profiles.md)
+- Feature catalog: [18--ux-hooks/mode-aware-response-profiles.md](../../feature_catalog/18--ux-hooks/mode-aware-response-profiles.md)
 - Feature flag reference: [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../19--feature-flag-reference/1-search-pipeline-features-speckit.md)
 - Source file: `mcp_server/lib/response/profile-formatters.ts`
 

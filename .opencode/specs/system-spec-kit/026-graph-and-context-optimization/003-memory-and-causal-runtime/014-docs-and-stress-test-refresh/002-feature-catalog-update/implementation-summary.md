@@ -17,8 +17,8 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md"
-      - "feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md"
+      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "feature-catalog-update-packet-setup"
@@ -56,13 +56,13 @@ Six feature-catalog deltas that bring the `system-spec-kit` feature catalog up t
 
 | Delta | File | Action | Status |
 |-------|------|--------|--------|
-| Checkpoint-v2 create | `05--lifecycle/038-checkpoint-creation-checkpointcreate.md` | Expand | Done |
-| Checkpoint-v2 restore | `05--lifecycle/040-checkpoint-restore-checkpointrestore.md` | Expand | Done |
-| MCP front-proxy | `14--pipeline-architecture/189-mcp-launcher-front-proxy.md` | Create + register | Done |
-| Schema version history | `08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md` | Create + register | Done |
-| Error-code reference | `08--bug-fixes-and-data-integrity/070-error-code-reference.md` | Create + register | Done |
-| Post-insert enrichment marker | `13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md` | Create + register | Done |
-| sk-git worktree convention | `16--tooling-and-scripts/249-sk-git-worktree-convention.md` | Create + register | Done |
+| Checkpoint-v2 create | `05--lifecycle/checkpoint-creation-checkpointcreate.md` | Expand | Done |
+| Checkpoint-v2 restore | `05--lifecycle/checkpoint-restore-checkpointrestore.md` | Expand | Done |
+| MCP front-proxy | `14--pipeline-architecture/mcp-launcher-front-proxy.md` | Create + register | Done |
+| Schema version history | `08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md` | Create + register | Done |
+| Error-code reference | `08--bug-fixes-and-data-integrity/error-code-reference.md` | Create + register | Done |
+| Post-insert enrichment marker | `13--memory-quality-and-indexing/post-insert-enrichment-marker.md` | Create + register | Done |
+| sk-git worktree convention | `16--tooling-and-scripts/sk-git-worktree-convention.md` | Create + register | Done |
 
 ### Shipped content
 
@@ -109,7 +109,7 @@ The deltas were authored directly against `feature_catalog/` in the existing fea
 | serverInfo / backend-only traced | PASS | `context-server.ts`: serverInfo `version: '1.7.2'` (L1014), `SPECKIT_BACKEND_ONLY === '1'` read (L2126) |
 | Error-code claims traced | PASS | `lib/errors/core.ts`: `RATE_LIMITED: 'E429'` (L101); launcher `-32001`/`-32002` as above |
 | `post_insert_enrichment_status` traced | PASS | `vector-index-schema.ts` migration 30 marker columns |
-| `-32001` documented as still-live (not removed) | PASS | `070-error-code-reference.md` |
+| `-32001` documented as still-live (not removed) | PASS | `error-code-reference.md` |
 | 36-tool count preserved (no 36→43 bump) | PASS | No tool-count number changed in the catalog |
 | Every new file registered in `feature_catalog.md` | PASS | Index entries for `189`, `069`, `070`, `162`, `241` |
 | `validate.sh --strict` on this packet | PASS | Errors: 0 |

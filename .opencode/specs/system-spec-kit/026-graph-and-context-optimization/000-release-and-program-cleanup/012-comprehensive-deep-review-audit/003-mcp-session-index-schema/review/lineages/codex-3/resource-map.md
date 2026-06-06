@@ -37,14 +37,14 @@
 | File | Review Use |
 |------|------------|
 | `.opencode/skills/system-spec-kit/mcp_server/INSTALL_GUIDE.md` | Checked for stale session/bootstrap call shapes; none accepted. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md` | F003 stale bootstrap call shape. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md` | F004 stale session resume expected fields. |
-| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/310-tool-routing-enforcement.md` | Search hit checked; no accepted finding. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md` | F003 stale bootstrap call shape. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md` | F004 stale session resume expected fields. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md` | Search hit checked; no accepted finding. |
 
 ## Finding to Resource Links
 | Finding | Primary Resources |
 |---------|-------------------|
 | F001 | `scope-governance.ts`, `memory-save.ts` |
 | F002 | `tool-input-schemas.ts`, `memory-index.ts`, `memory-ingest.ts`, `job-queue.ts`, `context-server.ts`, `memory-save.ts` |
-| F003 | `tool-input-schemas.ts`, `tool-schemas.ts`, `032-session-bootstrap-reader-ready-context.md` |
-| F004 | `session-resume.ts`, `333-session-resume.md` |
+| F003 | `tool-input-schemas.ts`, `tool-schemas.ts`, `session-bootstrap-reader-ready-context.md` |
+| F004 | `session-resume.ts`, `session-resume.md` |

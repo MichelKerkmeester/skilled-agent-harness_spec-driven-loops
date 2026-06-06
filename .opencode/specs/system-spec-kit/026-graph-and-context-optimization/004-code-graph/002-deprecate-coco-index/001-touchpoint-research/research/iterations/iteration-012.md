@@ -134,7 +134,7 @@ The original 8-phase DAG from iteration-007 is structurally correct but requires
 - **NEW: Feature catalog `07--ccc-integration/` DELETE (3 files)**
 - **NEW: `mk-code-index-launcher.cjs:20` remove `COCOINDEX_BIN_PATH$` from DOTENV_ALLOW_RE**
 - **NEW: `INSTALL_GUIDE.md`, `tool_surface.md`, `ownership_boundary.md` ccc_* tool references**
-- **NEW: `manual_testing_playbook/06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md` tool count update**
+- **NEW: `manual_testing_playbook/06--mcp-tool-surface/mcp-tool-manifest-post-rename.md` tool count update**
 
 ### Phase 003 — remove-memory-rerank-path (file count: ~5 → ~6)
 

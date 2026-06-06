@@ -44,7 +44,7 @@ The save rules also reject manual writes under `memory/`. The command entrypoint
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies the save phase uses the supported continuity path after synthesis. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies the save phase uses the supported continuity path after synthesis. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies the command assets stay aligned on reducer execution and canonical deep-research packet references. |
 
 ---

@@ -48,7 +48,7 @@ Verify `cupt time add TASK_ID 1h30m` creates a time entry visible in ClickUp is 
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/06--cupt-time-tracking/037-log-manual.md` | Feature catalog source |
+| `../feature_catalog/06--cupt-time-tracking/log-manual.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -126,7 +126,7 @@ If the retry still reports restore-in-progress, inspect the `restoreCheckpoint()
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/172-pipeline-and-mutation-hardening.md](../../feature_catalog/14--pipeline-architecture/172-pipeline-and-mutation-hardening.md)
+- Feature catalog: [14--pipeline-architecture/pipeline-and-mutation-hardening.md](../../feature_catalog/14--pipeline-architecture/pipeline-and-mutation-hardening.md)
 
 ---
 

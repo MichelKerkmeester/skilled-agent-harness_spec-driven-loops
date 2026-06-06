@@ -48,7 +48,7 @@ The handler is one of three MCP tools that make up the embedder swap surface. `e
 |---|---|---|
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-list.vitest.ts` | Automated test | Happy-path coverage for the list handler shape, required fields, and active-marker invariant |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/embedder-registry.vitest.ts` | Automated test | Registry-level coverage for every shipped embedder definition |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/270-embedder-list-registry-inventory.md` | Manual playbook | Playbook scenario 281 covering the operator-facing list output and active-embedder identification |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-list-registry-inventory.md` | Manual playbook | Playbook scenario 281 covering the operator-facing list output and active-embedder identification |
 
 ---
 

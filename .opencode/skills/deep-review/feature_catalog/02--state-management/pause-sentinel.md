@@ -40,8 +40,8 @@ A normalization rule governs the event name: if the runtime first observes a raw
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md` | Manual scenario | Verifies the sentinel halts the loop between iterations. |
-| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md` | Manual scenario | Verifies removing the sentinel resumes from persisted state, not iteration 1. |
+| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md` | Manual scenario | Verifies the sentinel halts the loop between iterations. |
+| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md` | Manual scenario | Verifies removing the sentinel resumes from persisted state, not iteration 1. |
 
 ---
 

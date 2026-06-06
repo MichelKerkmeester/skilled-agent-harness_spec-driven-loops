@@ -313,7 +313,7 @@ A: Use `deep-review` and `/deep:start-review-loop`.
 | `references/convergence/convergence_recovery.md` | Stuck recovery, recovery strategy selection, tiered errors, and escalation |
 | `references/convergence/convergence_graph.md` | Graph-aware STOP gates, graph convergence events, and graceful degradation |
 | `references/convergence/convergence_reference_only.md` | Non-executable segment, semantic, dead-end, and optimizer notes |
-| `manual_testing_playbook/04--convergence-and-recovery/031-graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
+| `manual_testing_playbook/04--convergence-and-recovery/graph-convergence-signals.md` | Operator test case for graph stop guards and blocked-stop behavior |
 | `references/guides/capability_matrix.md` | Runtime parity source of truth |
 | `feature_catalog/feature_catalog.md` | Canonical feature inventory across loop lifecycle, state management, convergence, and research output |
 | `deep-review` | Dedicated iterative code review skill |

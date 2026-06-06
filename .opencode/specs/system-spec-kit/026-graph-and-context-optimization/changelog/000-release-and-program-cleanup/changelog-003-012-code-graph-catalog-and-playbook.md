@@ -61,7 +61,7 @@ None.
 | `.opencode/skills/system-code-graph/feature_catalog/` (NEW) | Created | Runtime feature catalog. 17 per-feature files across 8 groups. Originally created at `mcp_server/code_graph/feature_catalog/` then relocated to system-code-graph in a later isolation phase. |
 | `.opencode/skills/system-code-graph/manual_testing_playbook/` (NEW) | Created | Runtime manual testing playbook. 15 scenario files across 8 groups. Originally created at `mcp_server/code_graph/manual_testing_playbook/` then relocated to system-code-graph in a later isolation phase. |
 | `.opencode/skills/system-spec-kit/mcp_server/README.md` | Modified | Link to code_graph runtime documentation package. |
-| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/293-category-overview.md` | Modified | Cross-link to runtime catalog. Path was `22--context-preservation-and-code-graph/` at ship time. |
+| `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/category-overview.md` | Modified | Cross-link to runtime catalog. Path was `22--context-preservation-and-code-graph/` at ship time. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/` | Modified | Cross-link to runtime playbook. Path was `22--context-preservation-and-code-graph/` at ship time. |
 
 ### Follow-Ups

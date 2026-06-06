@@ -51,9 +51,9 @@ Closed the deferred backlog that ships without architectural decisions or contex
 | File | Action | Purpose |
 |------|--------|---------|
 | `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modified | F30 — converted 3 plain-text refs to markdown links + added status notes citing 002 shipped the underlying fix |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/007-skill-graph-status.md` | Modified | F33 — added §4 SOURCE FILES section (status.ts + tools/skill-graph-tools.ts + skill-graph-handlers.vitest.ts); §4 renamed §5 SOURCE METADATA |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/008-skill-graph-query.md` | Modified | F33 — same shape (query.ts + 2 tests) |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md` | Modified | F33 — same shape (validate.ts + 2 tests) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md` | Modified | F33 — added §4 SOURCE FILES section (status.ts + tools/skill-graph-tools.ts + skill-graph-handlers.vitest.ts); §4 renamed §5 SOURCE METADATA |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md` | Modified | F33 — same shape (query.ts + 2 tests) |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md` | Modified | F33 — same shape (validate.ts + 2 tests) |
 | ~33 .md files under `feature_catalog/`, `manual_testing_playbook/`, `hooks/`, `mcp_server/lib/`, `mcp_server/scripts/`, `mcp_server/stress_test/`, `references/`, `INSTALL_GUIDE.md`, `SKILL.md` | Modified | Bulk Oxford comma sweep (943 → 0 in authored files) |
 | `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/{08-skill-graph-status,09-skill-graph-validate}.md` | Modified | End-of-line Oxford comma edge cases (2 instances) |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/graph-metadata.json` | Modified | Appended 006 to children_ids[], advanced last_active_child_id |

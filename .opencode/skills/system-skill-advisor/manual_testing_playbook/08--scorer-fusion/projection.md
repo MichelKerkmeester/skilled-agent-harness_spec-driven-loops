@@ -63,7 +63,7 @@ advisor_recommend({"prompt":"help me commit my changes","options":{"includeAttri
 
 - Scenario [SC-001](./five-lane-fusion.md), fusion weights.
 - Scenario [NC-003](../01--native-mcp-tools/native-validate-slices.md), validate slices.
-- Feature [`04--scorer-fusion/020-projection.md`](../../feature_catalog/04--scorer-fusion/020-projection.md).
+- Feature [`04--scorer-fusion/projection.md`](../../feature_catalog/04--scorer-fusion/projection.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/scorer/projection.ts`.
 
 ---

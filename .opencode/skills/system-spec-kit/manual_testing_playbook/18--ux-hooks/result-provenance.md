@@ -68,7 +68,7 @@ Inspect `mcp_server/lib/search/pipeline/stage2-fusion.ts` for the `graphEvidence
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [18--ux-hooks/272-result-provenance.md](../../feature_catalog/18--ux-hooks/272-result-provenance.md)
+- Feature catalog: [18--ux-hooks/result-provenance.md](../../feature_catalog/18--ux-hooks/result-provenance.md)
 - Source: `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/stage2-fusion.ts`, `.opencode/skills/system-spec-kit/mcp_server/formatters/search-results.ts`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/pipeline/types.ts`
 - Regression tests: `.opencode/skills/system-spec-kit/mcp_server/tests/provenance-envelope.vitest.ts`
 

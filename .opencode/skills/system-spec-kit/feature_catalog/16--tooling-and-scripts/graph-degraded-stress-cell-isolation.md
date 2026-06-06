@@ -53,7 +53,7 @@ Total suite runtime is under 1 second when deterministic. A regression that allo
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-code-graph/mcp_server/stress_test/code-graph/code-graph-degraded-sweep.vitest.ts` | Automated test | Four-bucket fallbackDecision sweep plus the live-DB sha256 byte-equality guard test |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/268-graph-degraded-stress-cell-isolation.md` | Manual playbook | Playbook scenario 279 covering bucket routing, live-DB byte-equality, and suite runtime budget |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md` | Manual playbook | Playbook scenario 279 covering bucket routing, live-DB byte-equality, and suite runtime budget |
 
 ---
 

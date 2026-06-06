@@ -49,7 +49,7 @@ PRE: Create or find tasks in ClickUp with both tags.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/02--cupt-task-listing/022-stacked-filters.md` | Feature catalog source |
+| `../feature_catalog/02--cupt-task-listing/stacked-filters.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -50,7 +50,7 @@ PRE: workspace must have more than 3 tasks.
 | File | Role |
 |------|------|
 | `manual_testing_playbook.md` | Root directory and scenario summary |
-| `../feature_catalog/02--cupt-task-listing/018-cap-results.md` | Feature catalog source |
+| `../feature_catalog/02--cupt-task-listing/cap-results.md` | Feature catalog source |
 
 ### Implementation And Test Anchors
 

@@ -58,7 +58,7 @@ Verify anchor metadata injection point → Check score isolation → Inspect met
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [14--pipeline-architecture/166-template-anchor-optimization.md](../../feature_catalog/14--pipeline-architecture/166-template-anchor-optimization.md)
+- Feature catalog: [14--pipeline-architecture/template-anchor-optimization.md](../../feature_catalog/14--pipeline-architecture/template-anchor-optimization.md)
 
 ---
 

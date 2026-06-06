@@ -58,7 +58,7 @@ Inspect `references/structure/phase_system.md`, `scripts/tests/test-phase-system
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [16--tooling-and-scripts/225-phase-system-knowledge-node.md](../../feature_catalog/16--tooling-and-scripts/225-phase-system-knowledge-node.md)
+- Feature catalog: [16--tooling-and-scripts/phase-system-knowledge-node.md](../../feature_catalog/16--tooling-and-scripts/phase-system-knowledge-node.md)
 
 ---
 

@@ -41,8 +41,8 @@ The combined-stop rule is strict: final STOP is legal only when the inline revie
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/04--convergence-and-recovery/032-graph-convergence-review.md` | Manual scenario | Verifies the graph convergence event gates the STOP decision. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md` | Manual scenario | Verifies graph events are emitted and consumed for review-aware coverage. |
+| `manual_testing_playbook/04--convergence-and-recovery/graph-convergence-review.md` | Manual scenario | Verifies the graph convergence event gates the STOP decision. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/graph-events-review.md` | Manual scenario | Verifies graph events are emitted and consumed for review-aware coverage. |
 
 ---
 

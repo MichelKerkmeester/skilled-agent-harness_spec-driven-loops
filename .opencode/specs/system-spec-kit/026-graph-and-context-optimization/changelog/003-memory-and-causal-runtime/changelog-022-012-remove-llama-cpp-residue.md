@@ -39,8 +39,8 @@ None.
 - `.opencode/commands/doctor/assets/doctor_memory.yaml`: `"llama-cpp"` dropped from the invariant profile list
 - `.opencode/commands/doctor/update.md`: example `snapshot_path` renamed from `context-index__llama-cpp__...` to `context-index__hf-local__...`
 - `.opencode/skills/system-spec-kit/references/memory/embedder_architecture.md`: routing-table column header trimmed from `"Future sentence-transformers / llama-cpp"` to `"Future sentence-transformers"`
-- `.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md`: 4 path references `shared/embeddings/providers/llama-cpp.ts` replaced with `shared/embeddings/providers/hf-local.ts`. Class name `LlamaCppProvider` replaced with `HfLocalProvider`
-- `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md`: 1 path substitution `llama-cpp.ts` replaced with `hf-local.ts`
+- `.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md`: 4 path references `shared/embeddings/providers/llama-cpp.ts` replaced with `shared/embeddings/providers/hf-local.ts`. Class name `LlamaCppProvider` replaced with `HfLocalProvider`
+- `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md`: 1 path substitution `llama-cpp.ts` replaced with `hf-local.ts`
 
 ### Fixed
 
@@ -70,8 +70,8 @@ None.
 | `.opencode/commands/doctor/assets/doctor_memory.yaml` | Modified | `"llama-cpp"` dropped from invariant profile list |
 | `.opencode/commands/doctor/update.md` | Modified | Example `snapshot_path` renamed to `hf-local` variant |
 | `.opencode/skills/system-spec-kit/references/memory/embedder_architecture.md` | Modified | Routing-table column header trimmed to remove `/ llama-cpp` suffix |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/024-detect-changes-multi-file-diff.md` | Modified | 4 path refs + 1 class name replaced from llama-cpp to hf-local equivalents |
-| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/022-code-graph-query-blast-radius.md` | Modified | 1 path substitution: `llama-cpp.ts` to `hf-local.ts` |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/03--detect-changes/detect-changes-multi-file-diff.md` | Modified | 4 path refs + 1 class name replaced from llama-cpp to hf-local equivalents |
+| `.opencode/skills/system-code-graph/manual_testing_playbook/06--mcp-tool-surface/code-graph-query-blast-radius.md` | Modified | 1 path substitution: `llama-cpp.ts` to `hf-local.ts` |
 
 ### Follow-Ups
 

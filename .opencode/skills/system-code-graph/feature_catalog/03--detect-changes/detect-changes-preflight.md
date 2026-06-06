@@ -56,4 +56,4 @@ Run `code_graph_scan` first when blocked. Use plain diff review if the graph can
 Related references:
 
 - [../02--manual-scan-verify-status/code-graph-scan.md](../02--manual-scan-verify-status/code-graph-scan.md)
-- [../../manual_testing_playbook/03--detect-changes/007-detect-changes-no-inline-index.md](../../manual_testing_playbook/03--detect-changes/007-detect-changes-no-inline-index.md)
+- [../../manual_testing_playbook/03--detect-changes/detect-changes-no-inline-index.md](../../manual_testing_playbook/03--detect-changes/detect-changes-no-inline-index.md)

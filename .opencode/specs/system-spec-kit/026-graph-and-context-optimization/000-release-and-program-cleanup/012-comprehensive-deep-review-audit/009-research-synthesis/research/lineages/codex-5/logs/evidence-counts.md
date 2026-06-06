@@ -32,21 +32,21 @@ Output: `0`
 Command: `find .opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence -maxdepth 1 -type f -name '*.md'`
 
 Observed files:
-- `361-paraphrase-recall.md`
-- `362-synonymy-across-vocabularies.md`
-- `363-code-intent-matching.md`
-- `364-disambiguation-under-context.md`
-- `365-multi-aspect-query-synthesis.md`
-- `366-specificity-ladder.md`
-- `367-adversarial-near-miss.md`
-- `368-compound-concept-synthesis.md`
-- `369-llm-made-memory-recall.md`
-- `370-query-latency-and-throughput.md`
-- `371-causal-graph-link-quality.md`
-- `372-causal-coverage-under-bulk-save.md`
-- `373-drift-detection-quality.md`
-- `374-cross-ai-memory-handoff.md`
-- `375-concurrent-multi-ai-safety.md`
+- `paraphrase-recall.md`
+- `synonymy-across-vocabularies.md`
+- `code-intent-matching.md`
+- `disambiguation-under-context.md`
+- `multi-aspect-query-synthesis.md`
+- `specificity-ladder.md`
+- `adversarial-near-miss.md`
+- `compound-concept-synthesis.md`
+- `llm-made-memory-recall.md`
+- `query-latency-and-throughput.md`
+- `causal-graph-link-quality.md`
+- `causal-coverage-under-bulk-save.md`
+- `drift-detection-quality.md`
+- `cross-ai-memory-handoff.md`
+- `concurrent-multi-ai-safety.md`
 - `README.md`
 
 ## Review Summary Shape

@@ -12,9 +12,9 @@ Skill root: .opencode/skills/deep-loop-runtime/
 CRITICAL — source-anchor base path: every scenario's SOURCE ANCHORS path (e.g. `lib/deep-loop/executor-config.ts`, `tests/unit/<name>.vitest.ts`) is RELATIVE TO THE SKILL ROOT above, NOT the repo root. Resolve all anchors under `.opencode/skills/deep-loop-runtime/`. (Verified: `lib/deep-loop/` and `tests/unit/` exist only under the skill root, not at repo root — do NOT FAIL a scenario merely because the bare path is absent at repo root.)
 
 Category 01--executor scenario files (read each in full):
-  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md   (DLR-001)
-  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md     (DLR-002)
-  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md     (DLR-003)
+  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-config.md   (DLR-001)
+  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/executor-audit.md     (DLR-002)
+  .opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/fallback-router.md     (DLR-003)
 
 Each file's "## 3. TEST EXECUTION" lists Steps (inspect the implementation `.ts`, inspect its `tests/unit/*.vitest.ts`, run or inspect the assertions), an Expected Outcome, and Failure Modes; "## 4. SOURCE ANCHORS" names the implementation + validation files.
 Context budget: treat any `[... truncated N tokens]` marker as an intentional boundary; do not invent omitted content.

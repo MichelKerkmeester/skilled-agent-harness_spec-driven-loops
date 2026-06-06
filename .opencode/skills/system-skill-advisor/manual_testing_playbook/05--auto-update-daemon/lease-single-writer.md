@@ -66,7 +66,7 @@ advisor_status({"workspaceRoot":"/tmp/path-to-copy"})
 
 - Scenario [AU-003](./daemon-lifecycle-shutdown.md), graceful shutdown and SIGTERM.
 - Scenario [OP-003](../04--operator-h5/unavailable-daemon.md), recovery from unreadable DB.
-- Feature [`01--daemon-and-freshness/002-lease.md`](../../feature_catalog/01--daemon-and-freshness/002-lease.md).
+- Feature [`01--daemon-and-freshness/lease.md`](../../feature_catalog/01--daemon-and-freshness/lease.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/daemon/lease.ts`.
 
 ---

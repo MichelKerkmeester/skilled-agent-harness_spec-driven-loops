@@ -74,8 +74,8 @@ None.
 | `.opencode/skills/system-spec-kit/README.md` | Aligned to MMR-only and corrected embedder/tool counts. |
 | `.opencode/skills/system-spec-kit/references/config/environment_variables.md` | Removed retired reranker flags and stale cloud key row. |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Aligned catalog index and confidence factor count. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/002-semantic-and-lexical-search-memorysearch.md` | Aligned retrieval docs to MMR-only Stage 3. |
-| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/004-hybrid-search-pipeline.md` | Aligned hybrid pipeline docs to MMR-only behavior. |
+| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-and-lexical-search-memorysearch.md` | Aligned retrieval docs to MMR-only Stage 3. |
+| `.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/hybrid-search-pipeline.md` | Aligned hybrid pipeline docs to MMR-only behavior. |
 | `.opencode/skills/system-spec-kit/references/memory/embedder_pluggability.md` | Rewritten to mk-spec-memory-only. Collapsed obsolete code-graph embedder content. |
 | `.opencode/skills/system-spec-kit/scripts/tests/memory-pipeline-regressions.vitest.ts` | Corrected stale default embedder assertion to `nomic-ai/nomic-embed-text-v1.5`. |
 | `README.md` | Removed stale shipped/embedder claims. Fixed MMR-only bullet, doc links plus tool counts. |

@@ -43,7 +43,7 @@ All consumers fail open: a `stale`, `absent` or `unavailable` state never crashe
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/legacy/advisor-freshness.vitest.ts` | Automated test | state transitions |
-| `Playbook scenarios [NC-002](../../manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md) and [OP-001..OP-003](../../manual_testing_playbook/04--operator-h5/).` | Manual playbook | Source reference |
+| `Playbook scenarios [NC-002](../../manual_testing_playbook/01--native-mcp-tools/native-status-transitions.md) and [OP-001..OP-003](../../manual_testing_playbook/04--operator-h5/).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

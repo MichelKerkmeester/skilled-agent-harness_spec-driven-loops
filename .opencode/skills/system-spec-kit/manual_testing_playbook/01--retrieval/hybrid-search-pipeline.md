@@ -57,7 +57,7 @@ Inspect `hybrid-search.ts` candidate routing and trace fields if graph or degree
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [01--retrieval/004-hybrid-search-pipeline.md](../../feature_catalog/01--retrieval/004-hybrid-search-pipeline.md)
+- Feature catalog: [01--retrieval/hybrid-search-pipeline.md](../../feature_catalog/01--retrieval/hybrid-search-pipeline.md)
 
 ---
 

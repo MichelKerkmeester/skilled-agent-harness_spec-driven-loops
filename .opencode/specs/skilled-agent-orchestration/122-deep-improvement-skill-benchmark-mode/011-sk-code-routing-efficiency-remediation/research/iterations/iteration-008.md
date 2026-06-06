@@ -19,12 +19,12 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 - Read `.opencode/skills/sk-code/benchmark/live-remediated/skill-benchmark-report.json:18-39`, `:87-90`, `:155-158`, `:320-323`, `:362-368`.
 - Read `.opencode/skills/sk-code/benchmark/live-final/d4-ablation.json:1-28`.
 - Read `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:43-49`, `:75-84`, `:109-125`, `:189-198`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/004-opencode-typescript.md:16-38`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/005-opencode-python.md:16-38`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/006-opencode-shell.md:14-36`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/007-opencode-config.md:14-36`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/002-opencode-detection.md:46-49`, `:80-107`.
-- Read `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/018-webflow-plus-motion-dev.md:47-58`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md:16-38`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md:16-38`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md:14-36`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md:14-36`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/01--surface-detection/opencode-detection.md:46-49`, `:80-107`.
+- Read `.opencode/skills/sk-code/manual_testing_playbook/07--cross-stack-routing/webflow-plus-motion-dev.md:47-58`.
 - Read `.opencode/specs/skilled-agent-orchestration/122-deep-improvement-skill-benchmark-mode/011-sk-code-routing-efficiency-remediation/research/research.md:81-86`.
 
 ## Findings
@@ -49,7 +49,7 @@ I chose **D4 measurement as the primary lever**, narrowed to a build-ready routi
 
 10. **f-i8-10: The playbook already has the fields needed for D4-R task usefulness: user-visible outcome, exact loaded refs/assets, and binary acceptance rules.** The root playbook says a scenario passes only when routing is correct, resource-loading is exact, and the user-visible outcome is sound; it also requires the AI’s response/action and scenario verdict as evidence. Sources: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:43-49`, `:75-84`, `:109-125`.
 
-11. **f-i8-11: A D4-R instrument can reuse existing routine OPENCODE scenarios without inventing a synthetic corpus.** The playbook defines LS-001 through LS-004 for TypeScript, Python, Shell, and Config, and each per-feature file supplies a concrete routine prompt plus expected language-specific references and “expected NOT loaded” contamination constraints. Sources: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:189-198`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/004-opencode-typescript.md:16-38`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/005-opencode-python.md:16-38`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/006-opencode-shell.md:14-36`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/007-opencode-config.md:14-36`.
+11. **f-i8-11: A D4-R instrument can reuse existing routine OPENCODE scenarios without inventing a synthetic corpus.** The playbook defines LS-001 through LS-004 for TypeScript, Python, Shell, and Config, and each per-feature file supplies a concrete routine prompt plus expected language-specific references and “expected NOT loaded” contamination constraints. Sources: `.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md:189-198`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-typescript.md:16-38`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-python.md:16-38`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-shell.md:14-36`; `.opencode/skills/sk-code/manual_testing_playbook/02--language-sub-detection/opencode-config.md:14-36`.
 
 12. **f-i8-12: The repository already has a model for non-recall outcome scoring: the browser executor scores observed behavior signals, not route recall.** `browser-executor.cjs` states browser scenarios must map pass criteria to capturable signals and never fabricate PASS; MR-001 checks `exportsOk`, `animateDone`, `consoleErrors`, and `error`. Sources: `.opencode/skills/deep-improvement/scripts/skill-benchmark/browser-executor.cjs:4-16`, `:62-82`, `:88-112`.
 

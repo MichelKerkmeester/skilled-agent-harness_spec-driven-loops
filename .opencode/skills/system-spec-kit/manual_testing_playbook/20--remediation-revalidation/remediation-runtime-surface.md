@@ -61,7 +61,7 @@ Inspect `mcp_server/handlers/memory-save.ts`, `mcp_server/lib/validation/preflig
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [20--remediation-revalidation/285-category-stub.md](../../feature_catalog/20--remediation-revalidation/285-category-stub.md)
+- Feature catalog: [20--remediation-revalidation/category-stub.md](../../feature_catalog/20--remediation-revalidation/category-stub.md)
 
 ---
 

@@ -126,7 +126,7 @@ RESOURCE_MAP = {
         "references/scoring/advisor_scorer.md",
         "references/scoring/lane_weight_tuning.md",
         "references/scoring/validation_baselines.md",
-        "feature_catalog/04--scorer-fusion/024-weights-config.md",
+        "feature_catalog/04--scorer-fusion/weights-config.md",
     ],
     "GRAPH": [
         "references/graph/skill_graph_query_cookbook.md",
@@ -146,8 +146,8 @@ RESOURCE_MAP = {
     ],
     "HOOKS": [
         "references/hooks/skill_advisor_hook.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md",
-        "manual_testing_playbook/02--cli-hooks-and-plugin/014-devin-user-prompt-submit.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/opencode-plugin-bridge.md",
+        "manual_testing_playbook/02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
     ],
     "DECISIONS": [
         "references/decisions/deferred_decisions.md",

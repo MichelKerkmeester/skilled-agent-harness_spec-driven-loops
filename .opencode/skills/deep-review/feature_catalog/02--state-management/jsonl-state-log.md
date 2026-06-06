@@ -42,10 +42,10 @@ The same file also persists first-class lifecycle events such as `blocked_stop`,
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Verifies per-iteration JSONL append behavior. |
-| `manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md` | Manual scenario | Checks severity-weighted JSONL findings fields. |
-| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual scenario | Exercises malformed-line handling and state recovery expectations. |
-| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md` | Manual scenario | Verifies reconstruction from write-once iteration files. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md` | Manual scenario | Verifies per-iteration JSONL append behavior. |
+| `manual_testing_playbook/03--iteration-execution-and-state-discipline/severity-classification-in-jsonl.md` | Manual scenario | Checks severity-weighted JSONL findings fields. |
+| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md` | Manual scenario | Exercises malformed-line handling and state recovery expectations. |
+| `manual_testing_playbook/05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md` | Manual scenario | Verifies reconstruction from write-once iteration files. |
 
 ---
 

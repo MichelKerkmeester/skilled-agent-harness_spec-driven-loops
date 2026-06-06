@@ -34,7 +34,7 @@ Expose only the graph data the `graph_causal` lane actually needs, in a stable s
 | File | Type | Role |
 |---|---|---|
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/scorer/native-scorer.vitest.ts` | Automated test | graph-causal lane behavior |
-| `Playbook scenario [SC-002](../../manual_testing_playbook/08--scorer-fusion/038-projection.md).` | Manual playbook | Source reference |
+| `Playbook scenario [SC-002](../../manual_testing_playbook/08--scorer-fusion/projection.md).` | Manual playbook | Source reference |
 
 ## 4. SOURCE METADATA
 

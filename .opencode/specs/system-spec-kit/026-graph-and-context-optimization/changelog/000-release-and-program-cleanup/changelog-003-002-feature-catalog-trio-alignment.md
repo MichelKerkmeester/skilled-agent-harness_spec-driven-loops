@@ -28,10 +28,10 @@ This doc-only packet refreshed all three catalogs without touching runtime code.
 
 ### Added
 
-- Retention sweep feature entry at `feature_catalog/04--maintenance/037-memory-retention-sweep.md` (system-spec-kit)
-- CLI matrix adapter runners entry at `feature_catalog/16--tooling-and-scripts/238-cli-matrix-adapter-runners.md` documenting packet 036 adapter files
-- Codex freshness smoke-check entry at `feature_catalog/16--tooling-and-scripts/239-codex-hook-freshness-smoke-check.md`
-- Advisor rebuild entry at `system-skill-advisor/feature_catalog/06--mcp-surface/029-advisor-rebuild.md`
+- Retention sweep feature entry at `feature_catalog/04--maintenance/memory-retention-sweep.md` (system-spec-kit)
+- CLI matrix adapter runners entry at `feature_catalog/16--tooling-and-scripts/cli-matrix-adapter-runners.md` documenting packet 036 adapter files
+- Codex freshness smoke-check entry at `feature_catalog/16--tooling-and-scripts/codex-hook-freshness-smoke-check.md`
+- Advisor rebuild entry at `system-skill-advisor/feature_catalog/06--mcp-surface/advisor-rebuild.md`
 - `discovery-notes.md` recording catalog locations, template paths, packet 036 presence. The missing standalone code_graph catalog gap is noted there.
 
 ### Changed
@@ -61,12 +61,12 @@ This doc-only packet refreshed all three catalogs without touching runtime code.
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | Modified | Tool count raised to 54. Root catalog summaries updated. |
-| `.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/037-memory-retention-sweep.md` (NEW) | Created | Retention sweep feature catalog entry |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/238-cli-matrix-adapter-runners.md` (NEW) | Created | CLI matrix adapter runners entry citing packet 036 adapter files |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/239-codex-hook-freshness-smoke-check.md` (NEW) | Created | Codex hook freshness smoke-check entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/memory-retention-sweep.md` (NEW) | Created | Retention sweep feature catalog entry |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/cli-matrix-adapter-runners.md` (NEW) | Created | CLI matrix adapter runners entry citing packet 036 adapter files |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/codex-hook-freshness-smoke-check.md` (NEW) | Created | Codex hook freshness smoke-check entry |
 | `.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/` | Modified | Code-graph readiness entry updated with read-path and manual freshness note |
 | `.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md` | Modified | Advisor MCP surface count updated. `advisor_rebuild` added to entry list. |
-| `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/029-advisor-rebuild.md` (NEW) | Created | Advisor rebuild MCP tool catalog entry |
+| `.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/advisor-rebuild.md` (NEW) | Created | Advisor rebuild MCP tool catalog entry |
 | `discovery-notes.md` (NEW) | Created | Catalog discovery results and code_graph gap documentation |
 
 ### Follow-Ups

@@ -43,7 +43,7 @@ This knob is documented in `mcp_server/ENV_REFERENCE.md` and surfaced in the aff
 | `.opencode/skills/system-spec-kit/mcp_server/tests/ipc-socket-activity.vitest.ts` | Automated test | IPC activity keeps the server alive. |
 | `.opencode/skills/system-skill-advisor/mcp_server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Skill Advisor idle behavior. |
 | `.opencode/skills/system-code-graph/mcp_server/tests/launcher-idle-timeout.vitest.ts` | Automated test | Code Graph idle behavior. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Manual dry-run and lifecycle guardrail scenario. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md` | Manual playbook | Manual dry-run and lifecycle guardrail scenario. |
 
 ## 4. SOURCE METADATA
 

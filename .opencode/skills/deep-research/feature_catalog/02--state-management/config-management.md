@@ -45,7 +45,7 @@ The config also points at the runtime capability matrix and resolver script. `ru
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md` | Manual playbook | Verifies runtime flags reach the live config surface. |
+| `.opencode/skills/deep-research/manual_testing_playbook/01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual playbook | Verifies runtime flags reach the live config surface. |
 | `.opencode/skills/system-spec-kit/scripts/tests/deep-research-contract-parity.vitest.ts` | Vitest | Verifies canonical artifacts, command assets, and runtime capability matrix references stay aligned. |
 
 ---

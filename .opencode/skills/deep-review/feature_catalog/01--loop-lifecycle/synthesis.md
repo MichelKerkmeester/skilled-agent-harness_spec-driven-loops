@@ -42,9 +42,9 @@ The final report follows a fixed nine-section contract covering the executive su
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md` | Manual scenario | Verifies the report structure and synthesis output. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md` | Manual scenario | Confirms verdict routing after synthesis. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md` | Manual scenario | Exercises synthesis-time deduplication and registry alignment. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md` | Manual scenario | Verifies the report structure and synthesis output. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md` | Manual scenario | Confirms verdict routing after synthesis. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/finding-deduplication-and-registry.md` | Manual scenario | Exercises synthesis-time deduplication and registry alignment. |
 
 ---
 

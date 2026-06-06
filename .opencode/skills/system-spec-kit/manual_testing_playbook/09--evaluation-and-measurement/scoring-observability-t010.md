@@ -57,7 +57,7 @@ Check sample rate configuration → Verify write error try/catch → Inspect obs
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/076-scoring-observability.md](../../feature_catalog/09--evaluation-and-measurement/076-scoring-observability.md)
+- Feature catalog: [09--evaluation-and-measurement/scoring-observability.md](../../feature_catalog/09--evaluation-and-measurement/scoring-observability.md)
 
 ---
 

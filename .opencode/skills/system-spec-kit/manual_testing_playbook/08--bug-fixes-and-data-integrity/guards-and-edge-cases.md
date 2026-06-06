@@ -58,7 +58,7 @@ Identify specific edge cases from Sprint 8 changelog; verify guard condition log
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [08--bug-fixes-and-data-integrity/061-guards-and-edge-cases.md](../../feature_catalog/08--bug-fixes-and-data-integrity/061-guards-and-edge-cases.md)
+- Feature catalog: [08--bug-fixes-and-data-integrity/guards-and-edge-cases.md](../../feature_catalog/08--bug-fixes-and-data-integrity/guards-and-edge-cases.md)
 
 ---
 

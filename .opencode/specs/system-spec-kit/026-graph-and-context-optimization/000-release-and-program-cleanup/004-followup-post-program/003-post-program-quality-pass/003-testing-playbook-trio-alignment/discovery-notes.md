@@ -45,7 +45,7 @@ Other playbook directories found included `cli-codex`, `cli-gemini`, `cli-claude
 |------|---------|
 | `.opencode/skills/sk-doc/references/specific/manual_testing_playbook_creation.md` | Canonical package shape and validation workflow. |
 | `.opencode/skills/sk-doc/assets/documentation/testing_playbook/manual_testing_playbook_template.md` | Required root and per-feature contract fields. |
-| `.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md` | Per-feature scenario format with 9-column contract. |
+| `.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md` | Per-feature scenario format with 9-column contract. |
 | `.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/003-self-invocation-refusal.md` | Safety-focused scenario with variants and triage. |
 
 ---

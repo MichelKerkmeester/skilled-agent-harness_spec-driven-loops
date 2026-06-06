@@ -44,8 +44,8 @@ The manual_testing_playbook contains 22 scenario files under numbered category f
 
 | File | Path | Required Sections Present | H2 Case Compliance |
 |------|------|---------------------------|-------------------|
-| `001-ensure-ready-selective-reindex.md` | `manual_testing_playbook/01--read-path-freshness/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
-| `011-tool-call-shape-validation.md` | `manual_testing_playbook/06--mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
+| `ensure-ready-selective-reindex.md` | `manual_testing_playbook/01--read-path-freshness/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
+| `tool-call-shape-validation.md` | `manual_testing_playbook/06--mcp-tool-surface/` | Not validated in this iteration (sample check deferred to Q8) | Not validated |
 
 ### Per-Feature Catalog Files (sample validation)
 

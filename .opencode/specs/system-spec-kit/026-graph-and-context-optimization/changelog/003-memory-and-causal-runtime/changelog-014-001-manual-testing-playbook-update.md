@@ -56,12 +56,12 @@ The scenarios cover checkpoint v2 round trips, the `.needs-rebuild` self-heal pa
 | File | Action | What changed |
 |------|--------|--------------|
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Modified | Added master index entries for `EX-037` through `EX-042` |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md` | Added | Checkpoint v2 snapshot and restore round-trip scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/039-post-insert-enrichment-lifecycle-v30.md` | Added | Schema v30 enrichment marker lifecycle scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/040-index-scan-phased-async-refinements.md` | Added | `index_scan` phased async and repair-count scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md` | Added | Front-proxy reconnect, backend-only mode and error-code scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/300-sk-git-worktree-convention.md` | Added | sk-git worktree convention scenario |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md` | Added | `.needs-rebuild` self-heal scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md` | Added | Checkpoint v2 snapshot and restore round-trip scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md` | Added | Schema v30 enrichment marker lifecycle scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md` | Added | `index_scan` phased async and repair-count scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md` | Added | Front-proxy reconnect, backend-only mode and error-code scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md` | Added | sk-git worktree convention scenario |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md` | Added | `.needs-rebuild` self-heal scenario |
 
 ### Follow-Ups
 

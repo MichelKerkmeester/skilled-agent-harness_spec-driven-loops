@@ -58,7 +58,7 @@ Check audit table schema → Verify trigger/hook on edge mutation → Inspect ro
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [10--graph-signal-activation/087-weight-history-audit-tracking.md](../../feature_catalog/10--graph-signal-activation/087-weight-history-audit-tracking.md)
+- Feature catalog: [10--graph-signal-activation/weight-history-audit-tracking.md](../../feature_catalog/10--graph-signal-activation/weight-history-audit-tracking.md)
 
 ---
 

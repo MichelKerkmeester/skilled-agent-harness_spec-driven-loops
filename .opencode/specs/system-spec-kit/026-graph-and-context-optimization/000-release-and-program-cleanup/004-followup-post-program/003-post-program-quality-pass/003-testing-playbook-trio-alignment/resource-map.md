@@ -55,7 +55,7 @@ _memory:
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/281-code-graph-read-path-selective-self-heal.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/282-code-graph-cell-coverage-evidence.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/01--native-mcp-tools/advisor-status-rebuild-separation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/skill_advisor/manual_testing_playbook/manual_testing_playbook.md` | Updated | OK | Manual testing playbook surface touched by the packet. |
 <!-- /ANCHOR:skills -->
 

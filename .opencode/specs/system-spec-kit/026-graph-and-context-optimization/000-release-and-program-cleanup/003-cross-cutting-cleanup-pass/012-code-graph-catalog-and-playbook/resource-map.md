@@ -69,21 +69,21 @@ _memory:
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/07--ccc-integration/03-ccc-status.md` | Created | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/08--doctor-code-graph/01-doctor-apply-mode.md` | Created | OK | Feature catalog surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/feature_catalog/feature_catalog.md` | Created | OK | Feature catalog surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/01--read-path-freshness/001-ensure-ready-selective-reindex.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/01--read-path-freshness/002-query-self-heal-stale-file.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/003-code-graph-scan-incremental.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/004-code-graph-scan-full.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/006-code-graph-status-readonly.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/03--detect-changes/007-detect-changes-no-inline-index.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/04--context-retrieval/008-code-graph-context-readiness-block.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/05--coverage-graph/010-deep-loop-graph-upsert-conditional.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/06--mcp-tool-surface/011-tool-call-shape-validation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/01--read-path-freshness/ensure-ready-selective-reindex.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/01--read-path-freshness/query-self-heal-stale-file.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-incremental.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-scan-full.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/02--manual-scan-verify-status/code-graph-status-readonly.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/03--detect-changes/detect-changes-no-inline-index.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/04--context-retrieval/code-graph-context-readiness-block.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/05--coverage-graph/deep-loop-graph-upsert-conditional.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/06--mcp-tool-surface/tool-call-shape-validation.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/07--ccc-integration/012-ccc-reindex-binary-shell-out.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/07--ccc-integration/013-ccc-feedback-jsonl-append.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/07--ccc-integration/014-ccc-status-availability-probe.md` | Created | OK | Manual testing playbook surface touched by the packet. |
-| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/08--doctor-code-graph/015-doctor-apply-mode-policy.md` | Created | OK | Manual testing playbook surface touched by the packet. |
+| `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/08--doctor-code-graph/doctor-apply-mode-policy.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/manual_testing_playbook/manual_testing_playbook.md` | Created | OK | Manual testing playbook surface touched by the packet. |
 | `.opencode/skills/system-spec-kit/mcp_server/code_graph/README.md` | Updated | OK | Skill or runtime documentation/code touched by the packet. |
 <!-- /ANCHOR:skills -->

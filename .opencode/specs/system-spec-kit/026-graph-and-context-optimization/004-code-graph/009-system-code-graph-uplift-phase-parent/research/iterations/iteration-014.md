@@ -90,7 +90,7 @@ Q2: What sk-doc `--type` does each authored doc under `.opencode/skills/system-c
 
 **manual_testing_playbook per-feature files** - Type: `playbook_scenario` (moderate enforcement)
 - **Mandatory requirements per sk-doc manual_testing_playbook_creation.md:111-129**: Frontmatter with title/description, numbered sections (OVERVIEW, SCENARIO CONTRACT, TEST EXECUTION, REFERENCES/SOURCE FILES, SOURCE METADATA), realistic user request, operator prompt, exact command sequence, expected signals, evidence requirements, pass/fail criteria
-- **Compliance check** (001-ensure-ready-selective-reindex.md:1-30):
+- **Compliance check** (ensure-ready-selective-reindex.md:1-30):
   - ✅ Has frontmatter with title, description, trigger_phrases, importance_tier (lines 1-9)
   - ✅ Has "## 1. OVERVIEW" section (line 12)
   - ✅ Has "## 2. SCENARIO CONTRACT" section (line 18)

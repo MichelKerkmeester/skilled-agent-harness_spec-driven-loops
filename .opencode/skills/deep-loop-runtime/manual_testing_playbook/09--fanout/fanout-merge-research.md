@@ -76,7 +76,7 @@ Research tests pass. Single merged entry per `findingId` with `_lineages` contai
 
 - Group: Fan-Out
 - Playbook ID: DLR-027
-- Feature catalog entry: `feature_catalog/09--fanout/027-fanout-merge.md`
+- Feature catalog entry: `feature_catalog/09--fanout/fanout-merge.md`
 - Scenario file path: `manual_testing_playbook/09--fanout/fanout-merge-research.md`
 - Expected verdict mode: GREEN when research tests pass and source anchors agree
 - Wall-time estimate: 5-10 min

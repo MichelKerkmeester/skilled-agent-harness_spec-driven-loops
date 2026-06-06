@@ -18,9 +18,9 @@ _memory:
     blockers: []
     key_files:
       - ".opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/007-skill-graph-status.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/008-skill-graph-query.md"
-      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md"
+      - ".opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "006-scaffold"
@@ -92,9 +92,9 @@ Tier C subset (bulk-safe HVR):
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
 | `.opencode/skills/system-skill-advisor/references/skill-graph-extraction-plan.md` | Modify | F30 — 3 link conversions |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/007-skill-graph-status.md` | Modify | F33 — add SOURCE FILES |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/008-skill-graph-query.md` | Modify | F33 — add SOURCE FILES |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/009-skill-graph-validate.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-status.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-query.md` | Modify | F33 — add SOURCE FILES |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/skill-graph-validate.md` | Modify | F33 — add SOURCE FILES |
 | `.opencode/skills/system-skill-advisor/INSTALL_GUIDE.md` | Conditional | Tier B — only if path mismatch |
 | ~30 .md files under `.opencode/skills/system-skill-advisor/` (excluding `changelog/`) | Modify | Oxford comma sweep |
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/006-skill-advisor/005-skill-advisor-documentation/004-documentation-quality-refactor/spec.md` | Modify | Add 006 row to PHASE DOCUMENTATION MAP |
@@ -142,7 +142,7 @@ Tier C subset (bulk-safe HVR):
 |------|------|--------|------------|
 | Risk | Oxford sweep introduces grammar errors (like the prior 003 incident) | Medium | Use correct regex that preserves conjunctions (`s/, and / and /g` not `s/, and /, /g`); spot-check 5 random files post-sweep |
 | Risk | Sed touches code blocks containing literal `, and ` strings | Low | Code blocks rarely contain English conjunctions; risk acceptable |
-| Dependency | Sibling pattern (e.g. `001-native-recommend-happy-path.md` SOURCE FILES block) | Green | Verified to exist; will be used as F33 template |
+| Dependency | Sibling pattern (e.g. `native-recommend-happy-path.md` SOURCE FILES block) | Green | Verified to exist; will be used as F33 template |
 <!-- /ANCHOR:risks -->
 
 ---

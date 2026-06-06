@@ -59,7 +59,7 @@ Re-run with explicit scope; restore `pre-ex009-bulk-delete` if needed
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [02--mutation/019-tier-based-bulk-deletion-memorybulkdelete.md](../../feature_catalog/02--mutation/019-tier-based-bulk-deletion-memorybulkdelete.md)
+- Feature catalog: [02--mutation/tier-based-bulk-deletion-memorybulkdelete.md](../../feature_catalog/02--mutation/tier-based-bulk-deletion-memorybulkdelete.md)
 
 ---
 

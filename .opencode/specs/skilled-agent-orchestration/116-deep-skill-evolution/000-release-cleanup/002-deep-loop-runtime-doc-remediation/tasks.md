@@ -145,11 +145,11 @@ _memory:
   - [ ] NEW `feature_catalog/08--council/03-adjudicator-verdict-scoring.md`
   - [ ] NEW `feature_catalog/08--council/04-cost-guards.md`
   - [ ] NEW `feature_catalog/08--council/05-session-state-hierarchy.md`
-  - [ ] NEW `manual_testing_playbook/08--council/018-multi-seat-dispatch.md`
-  - [ ] NEW `manual_testing_playbook/08--council/019-round-state-jsonl.md`
-  - [ ] NEW `manual_testing_playbook/08--council/020-adjudicator-verdict-scoring.md`
-  - [ ] NEW `manual_testing_playbook/08--council/021-cost-guards.md`
-  - [ ] NEW `manual_testing_playbook/08--council/022-session-state-hierarchy.md`
+  - [ ] NEW `manual_testing_playbook/08--council/multi-seat-dispatch.md`
+  - [ ] NEW `manual_testing_playbook/08--council/round-state-jsonl.md`
+  - [ ] NEW `manual_testing_playbook/08--council/adjudicator-verdict-scoring.md`
+  - [ ] NEW `manual_testing_playbook/08--council/cost-guards.md`
+  - [ ] NEW `manual_testing_playbook/08--council/session-state-hierarchy.md`
   - [ ] UPDATED `feature_catalog/feature_catalog.md` (add §8 + coverage row)
   - [ ] UPDATED `manual_testing_playbook/manual_testing_playbook.md` (add §13 + coverage row + TOC)
   - [ ] UPDATED `README.md` §4 STRUCTURE tree (add `feature_catalog/08--council/` + `manual_testing_playbook/08--council/`)

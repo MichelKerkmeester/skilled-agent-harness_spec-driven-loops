@@ -115,7 +115,7 @@ Verify test fixture simulates missing cache state
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [22--context-preservation/295-session-start-priming.md](../../feature_catalog/22--context-preservation/295-session-start-priming.md)
+- Feature catalog: [22--context-preservation/session-start-priming.md](../../feature_catalog/22--context-preservation/session-start-priming.md)
 
 ---
 

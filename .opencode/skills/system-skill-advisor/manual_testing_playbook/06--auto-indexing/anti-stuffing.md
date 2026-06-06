@@ -63,7 +63,7 @@ touch /tmp/path-to-copy/.opencode/skills/adversarial-fixture/SKILL.md
 ## 4. SOURCE FILES
 
 - Scenario [AI-002](./sanitizer-boundaries.md), sanitizer at write boundaries.
-- Feature [`02--auto-indexing/012-anti-stuffing.md`](../../feature_catalog/02--auto-indexing/012-anti-stuffing.md).
+- Feature [`02--auto-indexing/anti-stuffing.md`](../../feature_catalog/02--auto-indexing/anti-stuffing.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/lib/derived/anti-stuffing.ts`.
 
 ---

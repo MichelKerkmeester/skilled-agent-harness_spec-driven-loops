@@ -74,11 +74,11 @@ Synthesis complete. Remediation should update catalog/playbook docs and stale te
 |---|---|---|
 | `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/012-comprehensive-deep-review-audit/005-feature-catalog-playbook/spec.md` | read | Scope source |
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | sampled | Master catalog claims and counts |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md` | read | Dedicated code-reference feature |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | read | Dedicated code-reference feature |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | sampled | Root playbook count, scenario 135/136, release gate |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md` | read | Representative traceability pass |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md` | read | Malformed scenario contract |
-| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md` | read | Stale source path sample |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | read | Representative traceability pass |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | read | Malformed scenario contract |
+| `.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md` | read | Stale source path sample |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/README.md` | read | Scenario inventory sample |
 | `.opencode/skills/system-spec-kit/mcp_server/tool-schemas.ts` | read | Live tool registry |
 | `.opencode/skills/system-spec-kit/mcp_server/tests/context-server.vitest.ts` | sampled | 37-tool expectation |

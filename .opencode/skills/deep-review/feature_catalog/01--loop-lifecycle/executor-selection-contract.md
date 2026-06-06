@@ -56,8 +56,8 @@ Per-kind flag compatibility is enforced at config parse time by `EXECUTOR_KIND_F
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md` | Manual scenario | Exercises parameterized invocation paths that feed executor config. |
-| `manual_testing_playbook/07--command-flow-stress-tests/057-write-boundary-reducer-owned-files.md` | Manual scenario | Confirms executor write boundaries against reducer-owned files. |
+| `manual_testing_playbook/01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md` | Manual scenario | Exercises parameterized invocation paths that feed executor config. |
+| `manual_testing_playbook/07--command-flow-stress-tests/write-boundary-reducer-owned-files.md` | Manual scenario | Confirms executor write boundaries against reducer-owned files. |
 
 ---
 

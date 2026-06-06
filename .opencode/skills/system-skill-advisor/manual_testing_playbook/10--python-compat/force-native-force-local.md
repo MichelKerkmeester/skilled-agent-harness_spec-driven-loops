@@ -69,7 +69,7 @@ SPECKIT_SKILL_ADVISOR_HOOK_DISABLED=1 python3 .opencode/skills/system-skill-advi
 
 - Scenario [CP-002](../03--compat-and-disable/force-local-force-native.md), original toggles scenario.
 - Scenario [PC-003](./threshold-flag.md), threshold flag.
-- Feature [`08--python-compat/038-cli-shim.md`](../../feature_catalog/08--python-compat/038-cli-shim.md).
+- Feature [`08--python-compat/cli-shim.md`](../../feature_catalog/08--python-compat/cli-shim.md).
 - Source: `.opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py` and `scripts/skill_advisor_runtime.py`.
 
 ---

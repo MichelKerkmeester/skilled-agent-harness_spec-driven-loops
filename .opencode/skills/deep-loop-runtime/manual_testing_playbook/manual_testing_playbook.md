@@ -551,9 +551,9 @@ Expected signals: `if_absent` command unchanged; `step_fanout_spawn` and `step_f
 | DLR-021 | [F021 Cost guards](../feature_catalog/08--council/cost-guards.md) | [08--council/cost-guards.md](08--council/cost-guards.md) |
 | DLR-022 | [F022 Session state hierarchy](../feature_catalog/08--council/session-state-hierarchy.md) | [08--council/session-state-hierarchy.md](08--council/session-state-hierarchy.md) |
 | DLR-023 | [F023 Fan-out config schema](../feature_catalog/09--fanout/fanout-config-schema.md) | [09--fanout/fanout-config-schema.md](09--fanout/fanout-config-schema.md) |
-| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/024-fanout-pool.md) | [09--fanout/fanout-pool-concurrency-cap.md](09--fanout/fanout-pool-concurrency-cap.md) |
-| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/025-fanout-run.md) | [09--fanout/fanout-run-cli-lineage-spawn.md](09--fanout/fanout-run-cli-lineage-spawn.md) |
-| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/026-fanout-salvage.md) | [09--fanout/fanout-salvage-recovery.md](09--fanout/fanout-salvage-recovery.md) |
-| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/027-fanout-merge.md) | [09--fanout/fanout-merge-research.md](09--fanout/fanout-merge-research.md) |
-| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/027-fanout-merge.md) | [09--fanout/fanout-merge-review-strongest-restriction.md](09--fanout/fanout-merge-review-strongest-restriction.md) |
+| DLR-024 | [F024 Fan-out worker pool](../feature_catalog/09--fanout/fanout-pool.md) | [09--fanout/fanout-pool-concurrency-cap.md](09--fanout/fanout-pool-concurrency-cap.md) |
+| DLR-025 | [F025 Fan-out CLI lineage driver](../feature_catalog/09--fanout/fanout-run.md) | [09--fanout/fanout-run-cli-lineage-spawn.md](09--fanout/fanout-run-cli-lineage-spawn.md) |
+| DLR-026 | [F026 Fan-out write-failure salvage](../feature_catalog/09--fanout/fanout-salvage.md) | [09--fanout/fanout-salvage-recovery.md](09--fanout/fanout-salvage-recovery.md) |
+| DLR-027 | [F027 Fan-out cross-lineage merge (research)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-research.md](09--fanout/fanout-merge-research.md) |
+| DLR-028 | [F027 Fan-out cross-lineage merge (review)](../feature_catalog/09--fanout/fanout-merge.md) | [09--fanout/fanout-merge-review-strongest-restriction.md](09--fanout/fanout-merge-review-strongest-restriction.md) |
 | DLR-029 | [F023 Artifact-dir override / parity](../feature_catalog/09--fanout/fanout-config-schema.md) | [09--fanout/artifact-dir-override-parity.md](09--fanout/artifact-dir-override-parity.md) |

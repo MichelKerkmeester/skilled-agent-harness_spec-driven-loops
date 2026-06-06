@@ -73,12 +73,12 @@ Converged. Remediation should update docs and playbook commands, then rerun scen
 | File | Coverage | Notes |
 |---|---|---|
 | `.opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md` | sampled | Root catalog claim and count lines inspected. |
-| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md` | focused | Detailed traceability feature page inspected. |
+| `.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md` | focused | Detailed traceability feature page inspected. |
 | `.opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md` | sampled | Root count and scenario index inspected. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md` | focused | Sample grep scenario validated as passing for suggested features. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md` | focused | Broken catalog filename found. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/233-multi-feature-annotation-coverage.md` | focused | Suggested files carry multiple annotations. |
-| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md` | focused | Broken verifier path found. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md` | focused | Sample grep scenario validated as passing for suggested features. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md` | focused | Broken catalog filename found. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md` | focused | Suggested files carry multiple annotations. |
+| `.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md` | focused | Broken verifier path found. |
 | `.opencode/skills/sk-code/assets/scripts/verify_alignment_drift.py` | dependency evidence | Canonical verifier path confirmed. |
 
 ## Review Boundaries

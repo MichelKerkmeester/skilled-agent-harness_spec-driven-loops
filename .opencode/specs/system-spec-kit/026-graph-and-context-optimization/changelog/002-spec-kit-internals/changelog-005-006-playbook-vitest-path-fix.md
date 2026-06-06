@@ -44,8 +44,8 @@ NC-004 and NC-005 playbook scenarios documented a vitest command that resolved t
 
 | File | Action | What changed |
 |------|--------|--------------|
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md` | Modified | Corrected vitest command |
-| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md` | Modified | Corrected vitest command |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/ambiguous-brief-rendering.md` | Modified | Corrected vitest command |
+| `.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/lifecycle-redirect-metadata.md` | Modified | Corrected vitest command |
 
 ### Follow-Ups
 

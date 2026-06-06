@@ -193,7 +193,7 @@ For each of 25 categories:
 - Prompt reads each `.md` scenario file under the category dir
 - Executes the scenario per its embedded contract (real, not mocked)
 - Records per-scenario JSONL: `{category, scenario_id, classification, evidence}` to `evidence/playbook-results.jsonl`
-- **Multi-prompt scenario files**: many scenario `.md` files contain >1 `### Prompt` block (e.g. `01--retrieval/001-unified-context-retrieval-memory-context.md` has 2 — basic `memory_context` + token-budget envelope contract). Row contract: **one row per scenario file**; `classification` = WORST outcome across blocks (any FAIL → FAIL; any PARTIAL with all-else PASS → PARTIAL; etc.); the `evidence` field captures sub-block per-prompt results so detail is preserved. Floor of ≥345 rows (per `spec.md` REQ-002) is the FILE count, not the prompt-block count.
+- **Multi-prompt scenario files**: many scenario `.md` files contain >1 `### Prompt` block (e.g. `01--retrieval/unified-context-retrieval-memory-context.md` has 2 — basic `memory_context` + token-budget envelope contract). Row contract: **one row per scenario file**; `classification` = WORST outcome across blocks (any FAIL → FAIL; any PARTIAL with all-else PASS → PARTIAL; etc.); the `evidence` field captures sub-block per-prompt results so detail is preserved. Floor of ≥345 rows (per `spec.md` REQ-002) is the FILE count, not the prompt-block count.
 - Categories with > 30 scenarios may need to be split into 2–3 batches (concretely: cat 16 has 55, cats 13/14-pipeline have 29/26)
 
 Dispatch paired (2 categories concurrent) × ~13 batches.

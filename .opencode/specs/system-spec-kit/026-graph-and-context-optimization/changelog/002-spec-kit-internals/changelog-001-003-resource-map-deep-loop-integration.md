@@ -33,8 +33,8 @@ The reducers for both deep-loop skills gained an explicit `--emit-resource-map` 
 - Shared extractor `extract-from-evidence.cjs` under `.opencode/skills/system-spec-kit/scripts/resource-map/` handling both review and research evidence shapes
 - Extractor README documenting the input/output contract and fallback behavior
 - Focused Vitest coverage in `mcp_server/scripts/tests/resource-map-extractor.vitest.ts` for both evidence shapes with snapshot assertions
-- Feature catalog entries in `deep-review/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md` and `deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md` (NEW)
-- Manual testing playbook scenarios in `deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` and `deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/035-resource-map-emission.md` (NEW)
+- Feature catalog entries in `deep-review/feature_catalog/01--loop-lifecycle/resource-map-emission.md` and `deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md` (NEW)
+- Manual testing playbook scenarios in `deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` and `deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` (NEW)
 
 ### Changed
 
@@ -84,10 +84,10 @@ The reducers for both deep-loop skills gained an explicit `--emit-resource-map` 
 | `.opencode/commands/deep/start-research-loop.md` | Mentions emitted artifact and `--no-resource-map`. |
 | `.opencode/skills/deep-review/references/convergence/convergence.md` | Notes synthesis-time emission in the convergence sequence. |
 | `.opencode/skills/deep-research/references/convergence/convergence.md` | Notes synthesis-time emission in the convergence sequence. |
-| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md` (NEW) | Review-side feature catalog entry for resource-map emission. |
-| `.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md` (NEW) | Research-side feature catalog entry for resource-map emission. |
-| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` (NEW) | Review-side manual validation scenario. |
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/035-resource-map-emission.md` (NEW) | Research-side manual validation scenario. |
+| `.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/resource-map-emission.md` (NEW) | Review-side feature catalog entry for resource-map emission. |
+| `.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md` (NEW) | Research-side feature catalog entry for resource-map emission. |
+| `.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` (NEW) | Review-side manual validation scenario. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` (NEW) | Research-side manual validation scenario. |
 
 ### Follow-Ups
 

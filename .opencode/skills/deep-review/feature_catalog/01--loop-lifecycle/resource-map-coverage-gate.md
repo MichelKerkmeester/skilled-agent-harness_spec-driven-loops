@@ -42,8 +42,8 @@ When no resource map was present at init, the section is omitted entirely and th
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/07--command-flow-stress-tests/054-resource-map-coverage-gate.md` | Manual scenario | Verifies the coverage gate section appears only when a resource map is present. |
-| `manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md` | Manual scenario | Verifies resource-map coverage data is emitted during synthesis. |
+| `manual_testing_playbook/07--command-flow-stress-tests/resource-map-coverage-gate.md` | Manual scenario | Verifies the coverage gate section appears only when a resource map is present. |
+| `manual_testing_playbook/06--synthesis-save-and-guardrails/resource-map-emission.md` | Manual scenario | Verifies resource-map coverage data is emitted during synthesis. |
 
 ---
 

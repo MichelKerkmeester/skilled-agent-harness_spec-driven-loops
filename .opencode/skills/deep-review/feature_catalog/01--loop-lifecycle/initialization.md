@@ -43,10 +43,10 @@ The initializer also applies the live four-dimension priority order: correctness
 
 | File | Type | Role |
 |---|---|---|
-| `manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md` | Manual scenario | Exercises the happy-path initialization flow and packet creation. |
-| `manual_testing_playbook/02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md` | Manual scenario | Verifies resume classification from a valid prior packet. |
-| `manual_testing_playbook/02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md` | Manual scenario | Confirms contradictory state halts instead of being guessed into shape. |
-| `manual_testing_playbook/02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md` | Manual scenario | Checks target resolution, dimension ordering, and initial strategy content. |
+| `manual_testing_playbook/02--initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md` | Manual scenario | Exercises the happy-path initialization flow and packet creation. |
+| `manual_testing_playbook/02--initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md` | Manual scenario | Verifies resume classification from a valid prior packet. |
+| `manual_testing_playbook/02--initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md` | Manual scenario | Confirms contradictory state halts instead of being guessed into shape. |
+| `manual_testing_playbook/02--initialization-and-state-setup/scope-discovery-and-dimension-ordering.md` | Manual scenario | Checks target resolution, dimension ordering, and initial strategy content. |
 
 ---
 

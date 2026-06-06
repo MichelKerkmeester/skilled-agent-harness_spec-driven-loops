@@ -17,7 +17,7 @@ _memory:
     blockers: []
     key_files:
       - "feature_catalog/feature_catalog.md"
-      - "feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md"
+      - "feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
       - "feature_catalog/14--pipeline-architecture/"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
@@ -122,7 +122,7 @@ Checkpoint v2 is the same capability as v1 (`checkpoint_create` / `checkpoint_re
 ### Implementation
 
 **What changes**:
-- `05--lifecycle/038-checkpoint-creation-checkpointcreate.md` and `040-checkpoint-restore-checkpointrestore.md` gain the v2 path.
+- `05--lifecycle/checkpoint-creation-checkpointcreate.md` and `checkpoint-restore-checkpointrestore.md` gain the v2 path.
 - `feature_catalog.md` section 6 Lifecycle blocks are synced.
 
 **How to roll back**: Revert the two file edits; the prior v1-only content returns with no runtime effect.
@@ -263,7 +263,7 @@ The front-proxy, schema-version-history, and post-insert enrichment marker are c
 ### Implementation
 
 **What changes**:
-- New `08--bug-fixes-and-data-integrity/070-error-code-reference.md`; registered in the index.
+- New `08--bug-fixes-and-data-integrity/error-code-reference.md`; registered in the index.
 
 **How to roll back**: Delete the file and its index entry.
 
@@ -332,7 +332,7 @@ Two accuracy traps could turn this catalog update into a failure: claiming `-320
 ### Implementation
 
 **What changes**:
-- `070-error-code-reference.md` phrases `-32001` precisely; no tool-count change anywhere.
+- `error-code-reference.md` phrases `-32001` precisely; no tool-count change anywhere.
 
 **How to roll back**: N/A — this is an accuracy constraint, not a reversible behavior.
 

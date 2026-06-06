@@ -57,7 +57,7 @@ Check corpus generation script → Verify intent taxonomy completeness → Inspe
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [09--evaluation-and-measurement/073-synthetic-ground-truth-corpus.md](../../feature_catalog/09--evaluation-and-measurement/073-synthetic-ground-truth-corpus.md)
+- Feature catalog: [09--evaluation-and-measurement/synthetic-ground-truth-corpus.md](../../feature_catalog/09--evaluation-and-measurement/synthetic-ground-truth-corpus.md)
 
 ---
 

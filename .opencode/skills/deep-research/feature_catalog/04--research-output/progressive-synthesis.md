@@ -45,8 +45,8 @@ The final workflow still owns synthesis. After convergence, the synth phase read
 
 | File | Type | Role |
 |---|---|---|
-| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-progressive-synthesis-behavior-for-research-md.md` | Manual playbook | Verifies iteration-time updates respect the progressive-synthesis contract. |
-| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/019-final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis still owns the terminal research document. |
+| `.opencode/skills/deep-research/manual_testing_playbook/03--iteration-execution-and-state-discipline/progressive-synthesis-behavior-for-research-md.md` | Manual playbook | Verifies iteration-time updates respect the progressive-synthesis contract. |
+| `.opencode/skills/deep-research/manual_testing_playbook/06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md` | Manual playbook | Verifies final synthesis still owns the terminal research document. |
 
 ---
 

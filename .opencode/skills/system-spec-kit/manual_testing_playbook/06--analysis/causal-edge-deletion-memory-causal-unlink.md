@@ -61,7 +61,7 @@ Verify the edge id exists (via the memory_causal_link result or memory_drift_why
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [06--analysis/048-causal-edge-deletion-memorycausalunlink.md](../../feature_catalog/06--analysis/048-causal-edge-deletion-memorycausalunlink.md)
+- Feature catalog: [06--analysis/causal-edge-deletion-memorycausalunlink.md](../../feature_catalog/06--analysis/causal-edge-deletion-memorycausalunlink.md)
 
 ---
 

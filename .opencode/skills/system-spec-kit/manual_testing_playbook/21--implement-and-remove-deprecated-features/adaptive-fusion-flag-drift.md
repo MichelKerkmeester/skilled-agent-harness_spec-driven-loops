@@ -61,7 +61,7 @@ Inspect `lib/search/hybrid-search.ts`, `shared/algorithms/adaptive-fusion.ts`, a
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Feature catalog: [21--implement-and-remove-deprecated-features/292-adaptive-fusion-flag-drift.md](../../feature_catalog/21--implement-and-remove-deprecated-features/292-adaptive-fusion-flag-drift.md)
+- Feature catalog: [21--implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md](../../feature_catalog/21--implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md)
 
 ---
 

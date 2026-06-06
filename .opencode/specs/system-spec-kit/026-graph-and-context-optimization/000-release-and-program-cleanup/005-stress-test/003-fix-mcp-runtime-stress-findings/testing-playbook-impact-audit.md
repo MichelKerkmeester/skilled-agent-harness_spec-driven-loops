@@ -28,7 +28,7 @@ The live system-spec-kit roots are `.opencode/skills/system-spec-kit/feature_cat
 
 | Area | Live-state result | Evidence |
 |------|-------------------|----------|
-| Retrieval playbooks | Confirmed current | 01--retrieval/001-unified-context-retrieval-memory-context.md covers `preEnforcementTokens`, `returnedTokens`, and `droppedAllResultsReason`; 002-semantic-and-lexical-search-memory-search.md covers `responsePolicy`, `safeResponse`, and `citationPolicy`. |
+| Retrieval playbooks | Confirmed current | 01--retrieval/unified-context-retrieval-memory-context.md covers `preEnforcementTokens`, `returnedTokens`, and `droppedAllResultsReason`; 002-semantic-and-lexical-search-memory-search.md covers `responsePolicy`, `safeResponse`, and `citationPolicy`. |
 | Code-graph playbooks | Confirmed current | 22--context-preservation-and-code-graph/254-code-graph-scan-query.md, 255-cocoindex-code-graph-routing.md, 264-query-intent-routing.md, 275-code-graph-readiness-contract.md, and 277-code-graph-fast-fail.md cover `readiness.action`, CocoIndex telemetry passthrough, IntentTelemetry, status side-effect freedom, and `fallbackDecision`. |
 | cli-copilot authority playbooks | Confirmed current | `cli-copilot/manual_testing_playbook/01--cli-invocation/005-*`, `006-*`, and `05--session-continuity/003-*` cover missing authority, large prompt preamble preservation, and I1 zero-mutation replay. |
 | Deep-loop dispatch playbooks | Confirmed current | sk-deep-research/.../030-cli-copilot-target-authority-dispatch.md and the matching sk-deep-review entry cover `buildCopilotPromptArg` dispatch routing. |
@@ -42,7 +42,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 | Phase | Behavior change | Playbook file(s) affected | Status | Recommended action |
 |-------|-----------------|---------------------------|--------|---------------------|
-| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
+| **003** | `memory_context` token-budget envelope: `preEnforcementTokens`, `returnedTokens`, `droppedAllResultsReason` | `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md` | NEEDS-UPDATE | Add a third "TEST EXECUTION" block asserting envelope fields under under-budget, exact-budget, and over-budget conditions, plus the `droppedAllResultsReason` semantic when ALL results are dropped |
 | **004** | cocoindex fork telemetry: `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` | `.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation-and-code-graph/255-cocoindex-code-graph-routing.md` | NEEDS-UPDATE | Add a fourth TEST EXECUTION block asserting cocoindex_code search responses contain `dedupedAliases`, `uniqueResultCount`, `path_class`, `rankingSignals`, `source_realpath`, `content_hash`, `raw_score` per result |
 | **005** | code-graph fast-fail: `fallbackDecision.nextTool` routing on blocked code-graph reads | (no existing entry) | NEW-ENTRY-NEEDED | Create 22--context-preservation-and-code-graph/277-code-graph-fast-fail.md covering the four routing branches: empty graph → `code_graph_scan`; broad-stale → `code_graph_scan`; readiness exception → `rg`; fresh → no `fallbackDecision` |
 | **006** | causal-graph window metrics: `deltaByRelation`, `balanceStatus`, per-relation per-window cap | `.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/020-causal-graph-statistics-memory-causal-stats.md` | NEEDS-UPDATE | Replace single-line "coverage and edge metrics present" with multi-block scenarios asserting `deltaByRelation` exists for each relation type, `balanceStatus ∈ {balanced, skewed_<dir>, capped}`, and per-window cap surfaces when triggered |
@@ -63,7 +63,7 @@ Historical sections below are retained for provenance; use this reconciliation b
 
 ### 3.1 Packet 003 — memory_context token-budget envelope (NEEDS-UPDATE)
 
-**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md`
+**File:** `.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md`
 
 **Current state (lines 37-39, 41-43):**
 ```
@@ -351,7 +351,7 @@ Telemetry survives expansion as additive metadata; score/confidence/resolution/o
 
 1. **cli-copilot CP-022/023/024/025 — packet 012 Gate-3 enforcement** [P0]. Without these, the v1.0.2 catastrophic-mutation pathology has zero playbook regression coverage. CP-024 (I1-style replay zero-mutation) is the single highest-priority new entry — it's a direct re-test of the actual incident.
 2. **system-spec-kit 277-code-graph-fast-fail.md — packet 005 fallbackDecision** [P0]. Currently NEUTRAL in v1.0.2 because no integration test exercises every branch end-to-end. Packet 013 ships the vitest; this playbook entry is the operator-facing contract page that calls it.
-3. **system-spec-kit 001-unified-context-retrieval-memory-context.md — packet 003 token-budget envelope** [P0]. The truncation contract is the most-touched MCP surface; current playbook says "no empty response" without asserting envelope shape.
+3. **system-spec-kit unified-context-retrieval-memory-context.md — packet 003 token-budget envelope** [P0]. The truncation contract is the most-touched MCP surface; current playbook says "no empty response" without asserting envelope shape.
 4. **system-spec-kit 255-cocoindex-code-graph-routing.md — packets 004 + 015 cocoindex telemetry passthrough** [P1]. Two adjacent gaps in the same file. Should be addressed in a single update touching the cocoindex bridge contract.
 5. **system-spec-kit 278-mcp-daemon-rebuild-restart-live-probe.md — packet 008 4-part contract** [P1]. The "phantom-fix" prevention loop has no operator-facing exercise. References exist (mcp-rebuild-restart-protocol.md, live-probe-template.md) but no playbook entry exercises them.
 
