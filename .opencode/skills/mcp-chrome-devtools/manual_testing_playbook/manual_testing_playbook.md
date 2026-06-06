@@ -102,7 +102,7 @@ Prompt summary: As a manual-testing orchestrator, confirm bdg is installed and r
 Expected signals: Step 1: `command -v bdg` returns a non-empty path; Step 2: `bdg --version 2>&1` returns a version string (semver-like).
 
 #### Test Execution
-> **Feature File:** [BDG-001](01--cli-bdg-lifecycle/001-install-version.md)
+> **Feature File:** [BDG-001](01--cli-bdg-lifecycle/install-version.md)
 
 ### BDG-002 | Session start
 
@@ -115,7 +115,7 @@ Prompt summary: As a manual-testing orchestrator, start a bdg session against ht
 Expected signals: Step 1: `bdg https://example.com` exits 0; Step 2: `bdg status` reports active session.
 
 #### Test Execution
-> **Feature File:** [BDG-002](01--cli-bdg-lifecycle/002-session-start.md)
+> **Feature File:** [BDG-002](01--cli-bdg-lifecycle/session-start.md)
 
 ### BDG-003 | Status JSON
 
@@ -128,7 +128,7 @@ Prompt summary: As a manual-testing orchestrator, query bdg session status as JS
 Expected signals: Step 1: `bdg status 2>&1 | jq '.'` succeeds; Step 2: parsed object contains `state` and `url` fields.
 
 #### Test Execution
-> **Feature File:** [BDG-003](01--cli-bdg-lifecycle/003-status-json.md)
+> **Feature File:** [BDG-003](01--cli-bdg-lifecycle/status-json.md)
 
 ### BDG-004 | Session stop
 
@@ -141,7 +141,7 @@ Prompt summary: As a manual-testing orchestrator, stop the active bdg session th
 Expected signals: Step 1: `bdg stop` exits 0; Step 2: `bdg status` shows no active session; Step 3: no leaked Chrome processes (`pgrep -fl chrome` returns empty or only unrelated processes).
 
 #### Test Execution
-> **Feature File:** [BDG-004](01--cli-bdg-lifecycle/004-session-stop.md)
+> **Feature File:** [BDG-004](01--cli-bdg-lifecycle/session-stop.md)
 
 ---
 
@@ -160,7 +160,7 @@ Prompt summary: As a manual-testing orchestrator, enumerate available Chrome Dev
 Expected signals: Step 1: `bdg cdp --list` returns non-empty output; Step 2: output contains `Page`, `Network`, `Runtime`.
 
 #### Test Execution
-> **Feature File:** [BDG-005](02--protocol-discovery/005-list-cdp-domains.md)
+> **Feature File:** [BDG-005](02--protocol-discovery/list-cdp-domains.md)
 
 ### BDG-006 | Describe Page domain
 
@@ -173,7 +173,7 @@ Prompt summary: As a manual-testing orchestrator, describe the Page CDP domain t
 Expected signals: Step 1: `bdg cdp --describe Page` returns non-empty output; Step 2: output mentions `navigate` and `reload` (or similar core methods).
 
 #### Test Execution
-> **Feature File:** [BDG-006](02--protocol-discovery/006-describe-page-domain.md)
+> **Feature File:** [BDG-006](02--protocol-discovery/describe-page-domain.md)
 
 ### BDG-007 | Search CDP method
 
@@ -186,7 +186,7 @@ Prompt summary: As a manual-testing orchestrator, search CDP methods for screens
 Expected signals: Step 1: `bdg cdp --search screenshot` returns matches; Step 2: output mentions `captureScreenshot` (likely under `Page`).
 
 #### Test Execution
-> **Feature File:** [BDG-007](02--protocol-discovery/007-search-cdp-method.md)
+> **Feature File:** [BDG-007](02--protocol-discovery/search-cdp-method.md)
 
 ---
 
@@ -205,7 +205,7 @@ Prompt summary: As a manual-testing orchestrator, query the page for h1 elements
 Expected signals: Step 1: `bdg dom query "h1"` returns non-empty output; Step 2: output contains "Example Domain" (the h1 text on example.com).
 
 #### Test Execution
-> **Feature File:** [BDG-008](03--dom-and-screenshot/008-query-selector.md)
+> **Feature File:** [BDG-008](03--dom-and-screenshot/query-selector.md)
 
 ### BDG-009 | Eval JavaScript
 
@@ -218,7 +218,7 @@ Prompt summary: As a manual-testing orchestrator, evaluate JavaScript on the act
 Expected signals: Step 1: `bdg dom eval "document.title"` returns a string; Step 2: string contains "Example".
 
 #### Test Execution
-> **Feature File:** [BDG-009](03--dom-and-screenshot/009-eval-javascript.md)
+> **Feature File:** [BDG-009](03--dom-and-screenshot/eval-javascript.md)
 
 ### BDG-010 | Screenshot capture
 
@@ -231,7 +231,7 @@ Prompt summary: As a manual-testing orchestrator, capture a screenshot of the ac
 Expected signals: Step 1: `bdg dom screenshot /tmp/bdg-test.png` exits 0; Step 2: file `/tmp/bdg-test.png` exists; Step 3: `xxd /tmp/bdg-test.png | head -1` shows PNG magic `89 50 4e 47`.
 
 #### Test Execution
-> **Feature File:** [BDG-010](03--dom-and-screenshot/010-screenshot-capture.md)
+> **Feature File:** [BDG-010](03--dom-and-screenshot/screenshot-capture.md)
 
 ---
 
@@ -250,7 +250,7 @@ Prompt summary: As a manual-testing orchestrator, retrieve console messages from
 Expected signals: Step 1: `bdg dom eval "console.log('BDG-011 test')"` exits 0; Step 2: `bdg console --list 2>&1 | jq '.'` includes a message containing `BDG-011 test`.
 
 #### Test Execution
-> **Feature File:** [BDG-011](04--console-and-network/011-console-list.md)
+> **Feature File:** [BDG-011](04--console-and-network/console-list.md)
 
 ### BDG-012 | Cookie retrieval
 
@@ -263,7 +263,7 @@ Prompt summary: As a manual-testing orchestrator, retrieve cookies from the acti
 Expected signals: Step 1: `bdg network getCookies 2>&1 | jq '.'` succeeds; Step 2: result is an array (length >= 0; empty is valid for example.com).
 
 #### Test Execution
-> **Feature File:** [BDG-012](04--console-and-network/012-cookies-retrieval.md)
+> **Feature File:** [BDG-012](04--console-and-network/cookies-retrieval.md)
 
 ### BDG-013 | HAR export
 
@@ -276,7 +276,7 @@ Prompt summary: As a manual-testing orchestrator, export the page network activi
 Expected signals: Step 1: `bdg network har /tmp/bdg.har` exits 0; Step 2: file `/tmp/bdg.har` exists; Step 3: `cat /tmp/bdg.har | jq '.log.version'` returns a version string.
 
 #### Test Execution
-> **Feature File:** [BDG-013](04--console-and-network/013-har-export.md)
+> **Feature File:** [BDG-013](04--console-and-network/har-export.md)
 
 ---
 
@@ -295,7 +295,7 @@ Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to 
 Expected signals: Step 1: navigate call succeeds; Step 2: subsequent screenshot returns base64 of length > 1000.
 
 #### Test Execution
-> **Feature File:** [BDG-014](05--mcp-parallel-instances/014-chrome-devtools-1-navigate.md)
+> **Feature File:** [BDG-014](05--mcp-parallel-instances/chrome-devtools-1-navigate.md)
 
 ### BDG-015 | Dual-instance parallel
 
@@ -308,7 +308,7 @@ Prompt summary: As a manual-testing orchestrator, navigate chrome_devtools_1 to 
 Expected signals: Step 1: chain returns array of length 2; Step 2: both screenshots are valid PNG; Step 3: parallel timing visible (< 2x sequential).
 
 #### Test Execution
-> **Feature File:** [BDG-015](05--mcp-parallel-instances/015-dual-instance-parallel.md)
+> **Feature File:** [BDG-015](05--mcp-parallel-instances/dual-instance-parallel.md)
 
 ### BDG-016 | Close + select page
 
@@ -321,7 +321,7 @@ Prompt summary: As a manual-testing orchestrator, open 2 pages in chrome_devtool
 Expected signals: Step 1: 2 pages opened; Step 2: close_page returns success for first; Step 3: select_page returns success for second; Step 4: subsequent take_screenshot returns valid bytes for the second page.
 
 #### Test Execution
-> **Feature File:** [BDG-016](05--mcp-parallel-instances/016-close-and-select-page.md)
+> **Feature File:** [BDG-016](05--mcp-parallel-instances/close-and-select-page.md)
 
 ### BDG-017 | Multi-tab same instance
 
@@ -334,7 +334,7 @@ Prompt summary: As a manual-testing orchestrator, open a new page in chrome_devt
 Expected signals: Step 1: new_page returns success with new page id; Step 2: list_pages or equivalent shows >= 2 pages; Step 3: select_page works for both.
 
 #### Test Execution
-> **Feature File:** [BDG-017](05--mcp-parallel-instances/017-multi-tab-same-instance.md)
+> **Feature File:** [BDG-017](05--mcp-parallel-instances/multi-tab-same-instance.md)
 
 ### BDG-018 | Page-context isolation cross-instance
 
@@ -347,7 +347,7 @@ Prompt summary: As a manual-testing orchestrator, set a cookie in chrome_devtool
 Expected signals: Step 1: cookie set in instance 1 succeeds; Step 2: getCookies on instance 1 returns the cookie; Step 3: getCookies on instance 2 returns empty (or doesn't include the cookie).
 
 #### Test Execution
-> **Feature File:** [BDG-018](05--mcp-parallel-instances/018-page-context-isolation.md)
+> **Feature File:** [BDG-018](05--mcp-parallel-instances/page-context-isolation.md)
 
 ---
 
@@ -366,7 +366,7 @@ Prompt summary: As a manual-testing orchestrator, simulate a missing-browser sce
 Expected signals: Step 1: `CHROME_PATH=/nonexistent/chrome bdg https://example.com 2>&1` exits non-zero; Step 2: stderr names the missing binary or "browser not found".
 
 #### Test Execution
-> **Feature File:** [BDG-019](06--recovery-and-failure/019-missing-browser.md)
+> **Feature File:** [BDG-019](06--recovery-and-failure/missing-browser.md)
 
 ### BDG-020 | Invalid URL
 
@@ -379,7 +379,7 @@ Prompt summary: As a manual-testing orchestrator, attempt to start bdg with an i
 Expected signals: Step 1: `bdg not-a-url 2>&1` exits non-zero; Step 2: stderr indicates URL parse / invalid input.
 
 #### Test Execution
-> **Feature File:** [BDG-020](06--recovery-and-failure/020-invalid-url.md)
+> **Feature File:** [BDG-020](06--recovery-and-failure/invalid-url.md)
 
 ### BDG-021 | Dead session **(DESTRUCTIVE)**
 
@@ -392,7 +392,7 @@ Prompt summary: As a manual-testing orchestrator, deliberately kill the active C
 Expected signals: Step 2: post-kill `bdg dom screenshot /tmp/x.png 2>&1` exits non-zero with session-error message; Step 4: new `bdg https://example.com` succeeds; Step 5: subsequent screenshot succeeds.
 
 #### Test Execution
-> **Feature File:** [BDG-021](06--recovery-and-failure/021-dead-session.md)
+> **Feature File:** [BDG-021](06--recovery-and-failure/dead-session.md)
 
 ### BDG-022 | Cleanup leak detection **(DESTRUCTIVE)**
 
@@ -405,7 +405,7 @@ Prompt summary: As a manual-testing orchestrator, start a session, omit bdg stop
 Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-session Chrome count > baseline; Step 4: post-stop count <= baseline.
 
 #### Test Execution
-> **Feature File:** [BDG-022](06--recovery-and-failure/022-cleanup-leak.md)
+> **Feature File:** [BDG-022](06--recovery-and-failure/cleanup-leak.md)
 
 ---
 
@@ -424,40 +424,40 @@ Expected signals: Step 1: pre-session Chrome count baseline; Step 2: post-sessio
 
 ### CLI BDG LIFECYCLE
 
-- BDG-001: [Install + version](01--cli-bdg-lifecycle/001-install-version.md)
-- BDG-002: [Session start](01--cli-bdg-lifecycle/002-session-start.md)
-- BDG-003: [Status JSON](01--cli-bdg-lifecycle/003-status-json.md)
-- BDG-004: [Session stop](01--cli-bdg-lifecycle/004-session-stop.md)
+- BDG-001: [Install + version](01--cli-bdg-lifecycle/install-version.md)
+- BDG-002: [Session start](01--cli-bdg-lifecycle/session-start.md)
+- BDG-003: [Status JSON](01--cli-bdg-lifecycle/status-json.md)
+- BDG-004: [Session stop](01--cli-bdg-lifecycle/session-stop.md)
 
 ### PROTOCOL DISCOVERY
 
-- BDG-005: [List CDP domains](02--protocol-discovery/005-list-cdp-domains.md)
-- BDG-006: [Describe Page domain](02--protocol-discovery/006-describe-page-domain.md)
-- BDG-007: [Search CDP method](02--protocol-discovery/007-search-cdp-method.md)
+- BDG-005: [List CDP domains](02--protocol-discovery/list-cdp-domains.md)
+- BDG-006: [Describe Page domain](02--protocol-discovery/describe-page-domain.md)
+- BDG-007: [Search CDP method](02--protocol-discovery/search-cdp-method.md)
 
 ### DOM AND SCREENSHOT
 
-- BDG-008: [Query selector](03--dom-and-screenshot/008-query-selector.md)
-- BDG-009: [Eval JavaScript](03--dom-and-screenshot/009-eval-javascript.md)
-- BDG-010: [Screenshot capture](03--dom-and-screenshot/010-screenshot-capture.md)
+- BDG-008: [Query selector](03--dom-and-screenshot/query-selector.md)
+- BDG-009: [Eval JavaScript](03--dom-and-screenshot/eval-javascript.md)
+- BDG-010: [Screenshot capture](03--dom-and-screenshot/screenshot-capture.md)
 
 ### CONSOLE AND NETWORK
 
-- BDG-011: [Console list](04--console-and-network/011-console-list.md)
-- BDG-012: [Cookies retrieval](04--console-and-network/012-cookies-retrieval.md)
-- BDG-013: [HAR export](04--console-and-network/013-har-export.md)
+- BDG-011: [Console list](04--console-and-network/console-list.md)
+- BDG-012: [Cookies retrieval](04--console-and-network/cookies-retrieval.md)
+- BDG-013: [HAR export](04--console-and-network/har-export.md)
 
 ### MCP PARALLEL INSTANCES
 
-- BDG-014: [chrome_devtools_1 navigate via Code Mode](05--mcp-parallel-instances/014-chrome-devtools-1-navigate.md)
-- BDG-015: [Dual-instance parallel](05--mcp-parallel-instances/015-dual-instance-parallel.md)
-- BDG-016: [Close + select page](05--mcp-parallel-instances/016-close-and-select-page.md)
-- BDG-017: [Multi-tab same instance](05--mcp-parallel-instances/017-multi-tab-same-instance.md)
-- BDG-018: [Page-context isolation cross-instance](05--mcp-parallel-instances/018-page-context-isolation.md)
+- BDG-014: [chrome_devtools_1 navigate via Code Mode](05--mcp-parallel-instances/chrome-devtools-1-navigate.md)
+- BDG-015: [Dual-instance parallel](05--mcp-parallel-instances/dual-instance-parallel.md)
+- BDG-016: [Close + select page](05--mcp-parallel-instances/close-and-select-page.md)
+- BDG-017: [Multi-tab same instance](05--mcp-parallel-instances/multi-tab-same-instance.md)
+- BDG-018: [Page-context isolation cross-instance](05--mcp-parallel-instances/page-context-isolation.md)
 
 ### RECOVERY AND FAILURE
 
-- BDG-019: [Missing browser](06--recovery-and-failure/019-missing-browser.md)
-- BDG-020: [Invalid URL](06--recovery-and-failure/020-invalid-url.md)
-- BDG-021: [Dead session **(DESTRUCTIVE)**](06--recovery-and-failure/021-dead-session.md)
-- BDG-022: [Cleanup leak detection **(DESTRUCTIVE)**](06--recovery-and-failure/022-cleanup-leak.md)
+- BDG-019: [Missing browser](06--recovery-and-failure/missing-browser.md)
+- BDG-020: [Invalid URL](06--recovery-and-failure/invalid-url.md)
+- BDG-021: [Dead session **(DESTRUCTIVE)**](06--recovery-and-failure/dead-session.md)
+- BDG-022: [Cleanup leak detection **(DESTRUCTIVE)**](06--recovery-and-failure/cleanup-leak.md)

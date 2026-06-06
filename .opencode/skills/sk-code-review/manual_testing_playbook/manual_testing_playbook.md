@@ -237,7 +237,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-001](01--baseline-review-flow/001-small-pr-single-file.md)
+> **Feature File:** [CR-001](01--baseline-review-flow/small-pr-single-file.md)
 
 ### CR-002 | Large refactor PR
 
@@ -253,7 +253,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-002](01--baseline-review-flow/002-large-refactor-pr.md)
+> **Feature File:** [CR-002](01--baseline-review-flow/large-refactor-pr.md)
 
 ### CR-003 | Multi-commit feature branch
 
@@ -269,7 +269,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-003](01--baseline-review-flow/003-multi-commit-feature-branch.md)
+> **Feature File:** [CR-003](01--baseline-review-flow/multi-commit-feature-branch.md)
 
 ---
 
@@ -291,7 +291,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-004](02--security-and-correctness-minimums/004-security-sensitive-auth.md)
+> **Feature File:** [CR-004](02--security-and-correctness-minimums/security-sensitive-auth.md)
 
 ### CR-005 | Input validation injection
 
@@ -307,7 +307,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-005](02--security-and-correctness-minimums/005-input-validation-injection.md)
+> **Feature File:** [CR-005](02--security-and-correctness-minimums/input-validation-injection.md)
 
 ### CR-006 | Secrets and hardcoded credentials
 
@@ -323,7 +323,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-006](02--security-and-correctness-minimums/006-secrets-and-hardcoded-creds.md)
+> **Feature File:** [CR-006](02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md)
 
 ---
 
@@ -345,7 +345,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-007](03--severity-and-evidence-discipline/007-p0-blocker-with-file-line.md)
+> **Feature File:** [CR-007](03--severity-and-evidence-discipline/p0-blocker-with-file-line.md)
 
 ### CR-008 | Class of bug vs instance-only
 
@@ -361,7 +361,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-008](03--severity-and-evidence-discipline/008-class-of-bug-vs-instance-only.md)
+> **Feature File:** [CR-008](03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md)
 
 ### CR-009 | Cross-consumer affected surface
 
@@ -377,7 +377,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-009](03--severity-and-evidence-discipline/009-cross-consumer-affected-surface.md)
+> **Feature File:** [CR-009](03--severity-and-evidence-discipline/cross-consumer-affected-surface.md)
 
 ---
 
@@ -399,7 +399,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-010](04--scope-and-precedence/010-explicit-scope-security-only.md)
+> **Feature File:** [CR-010](04--scope-and-precedence/explicit-scope-security-only.md)
 
 ### CR-011 | Baseline vs surface precedence
 
@@ -415,7 +415,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-011](04--scope-and-precedence/011-baseline-vs-surface-precedence.md)
+> **Feature File:** [CR-011](04--scope-and-precedence/baseline-vs-surface-precedence.md)
 
 ### CR-012 | Test code review
 
@@ -431,7 +431,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-012](04--scope-and-precedence/012-test-code-review.md)
+> **Feature File:** [CR-012](04--scope-and-precedence/test-code-review.md)
 
 ---
 
@@ -453,7 +453,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-013](05--re-review-and-stale-context/013-re-review-after-fixes.md)
+> **Feature File:** [CR-013](05--re-review-and-stale-context/re-review-after-fixes.md)
 
 ### CR-014 | Stale architecture fresh pass
 
@@ -469,7 +469,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-014](05--re-review-and-stale-context/014-stale-architecture-fresh-pass.md)
+> **Feature File:** [CR-014](05--re-review-and-stale-context/stale-architecture-fresh-pass.md)
 
 ### CR-015 | AI-generated suspect quality
 
@@ -485,7 +485,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-015](05--re-review-and-stale-context/015-ai-generated-code-suspect-quality.md)
+> **Feature File:** [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md)
 
 ---
 
@@ -507,7 +507,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-016](06--cross-cli-orchestration/016-native-claude-code-invocation.md)
+> **Feature File:** [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md)
 
 ### CR-017 | cli-codex delegation
 
@@ -523,7 +523,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-017](06--cross-cli-orchestration/017-cli-codex-delegation.md)
+> **Feature File:** [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md)
 
 ### CR-018 | cli-opencode and cli-gemini handback
 
@@ -539,7 +539,7 @@ Desired user-visible outcome: A findings-first review artifact that preserves sc
 
 #### Test Execution
 
-> **Feature File:** [CR-018](06--cross-cli-orchestration/018-cli-opencode-and-cli-gemini-handback.md)
+> **Feature File:** [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md)
 
 ---
 
@@ -561,21 +561,21 @@ Validator limitation: per-feature file completeness requires the structural swee
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
-| CR-001 | Small PR single-file | BASELINE REVIEW FLOW | [CR-001](01--baseline-review-flow/001-small-pr-single-file.md) |
-| CR-002 | Large refactor PR | BASELINE REVIEW FLOW | [CR-002](01--baseline-review-flow/002-large-refactor-pr.md) |
-| CR-003 | Multi-commit feature branch | BASELINE REVIEW FLOW | [CR-003](01--baseline-review-flow/003-multi-commit-feature-branch.md) |
-| CR-004 | Security-sensitive auth | SECURITY AND CORRECTNESS MINIMUMS | [CR-004](02--security-and-correctness-minimums/004-security-sensitive-auth.md) |
-| CR-005 | Input validation injection | SECURITY AND CORRECTNESS MINIMUMS | [CR-005](02--security-and-correctness-minimums/005-input-validation-injection.md) |
-| CR-006 | Secrets and hardcoded credentials | SECURITY AND CORRECTNESS MINIMUMS | [CR-006](02--security-and-correctness-minimums/006-secrets-and-hardcoded-creds.md) |
-| CR-007 | P0 blocker with file:line | SEVERITY AND EVIDENCE DISCIPLINE | [CR-007](03--severity-and-evidence-discipline/007-p0-blocker-with-file-line.md) |
-| CR-008 | Class of bug vs instance-only | SEVERITY AND EVIDENCE DISCIPLINE | [CR-008](03--severity-and-evidence-discipline/008-class-of-bug-vs-instance-only.md) |
-| CR-009 | Cross-consumer affected surface | SEVERITY AND EVIDENCE DISCIPLINE | [CR-009](03--severity-and-evidence-discipline/009-cross-consumer-affected-surface.md) |
-| CR-010 | Explicit scope security only | SCOPE AND PRECEDENCE | [CR-010](04--scope-and-precedence/010-explicit-scope-security-only.md) |
-| CR-011 | Baseline vs surface precedence | SCOPE AND PRECEDENCE | [CR-011](04--scope-and-precedence/011-baseline-vs-surface-precedence.md) |
-| CR-012 | Test code review | SCOPE AND PRECEDENCE | [CR-012](04--scope-and-precedence/012-test-code-review.md) |
-| CR-013 | Re-review after fixes | RE-REVIEW AND STALE CONTEXT | [CR-013](05--re-review-and-stale-context/013-re-review-after-fixes.md) |
-| CR-014 | Stale architecture fresh pass | RE-REVIEW AND STALE CONTEXT | [CR-014](05--re-review-and-stale-context/014-stale-architecture-fresh-pass.md) |
-| CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](05--re-review-and-stale-context/015-ai-generated-code-suspect-quality.md) |
-| CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/016-native-claude-code-invocation.md) |
-| CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/017-cli-codex-delegation.md) |
-| CR-018 | cli-opencode and cli-gemini handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/018-cli-opencode-and-cli-gemini-handback.md) |
+| CR-001 | Small PR single-file | BASELINE REVIEW FLOW | [CR-001](01--baseline-review-flow/small-pr-single-file.md) |
+| CR-002 | Large refactor PR | BASELINE REVIEW FLOW | [CR-002](01--baseline-review-flow/large-refactor-pr.md) |
+| CR-003 | Multi-commit feature branch | BASELINE REVIEW FLOW | [CR-003](01--baseline-review-flow/multi-commit-feature-branch.md) |
+| CR-004 | Security-sensitive auth | SECURITY AND CORRECTNESS MINIMUMS | [CR-004](02--security-and-correctness-minimums/security-sensitive-auth.md) |
+| CR-005 | Input validation injection | SECURITY AND CORRECTNESS MINIMUMS | [CR-005](02--security-and-correctness-minimums/input-validation-injection.md) |
+| CR-006 | Secrets and hardcoded credentials | SECURITY AND CORRECTNESS MINIMUMS | [CR-006](02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md) |
+| CR-007 | P0 blocker with file:line | SEVERITY AND EVIDENCE DISCIPLINE | [CR-007](03--severity-and-evidence-discipline/p0-blocker-with-file-line.md) |
+| CR-008 | Class of bug vs instance-only | SEVERITY AND EVIDENCE DISCIPLINE | [CR-008](03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md) |
+| CR-009 | Cross-consumer affected surface | SEVERITY AND EVIDENCE DISCIPLINE | [CR-009](03--severity-and-evidence-discipline/cross-consumer-affected-surface.md) |
+| CR-010 | Explicit scope security only | SCOPE AND PRECEDENCE | [CR-010](04--scope-and-precedence/explicit-scope-security-only.md) |
+| CR-011 | Baseline vs surface precedence | SCOPE AND PRECEDENCE | [CR-011](04--scope-and-precedence/baseline-vs-surface-precedence.md) |
+| CR-012 | Test code review | SCOPE AND PRECEDENCE | [CR-012](04--scope-and-precedence/test-code-review.md) |
+| CR-013 | Re-review after fixes | RE-REVIEW AND STALE CONTEXT | [CR-013](05--re-review-and-stale-context/re-review-after-fixes.md) |
+| CR-014 | Stale architecture fresh pass | RE-REVIEW AND STALE CONTEXT | [CR-014](05--re-review-and-stale-context/stale-architecture-fresh-pass.md) |
+| CR-015 | AI-generated suspect quality | RE-REVIEW AND STALE CONTEXT | [CR-015](05--re-review-and-stale-context/ai-generated-code-suspect-quality.md) |
+| CR-016 | Native Claude Code invocation | CROSS-CLI ORCHESTRATION | [CR-016](06--cross-cli-orchestration/native-claude-code-invocation.md) |
+| CR-017 | cli-codex delegation | CROSS-CLI ORCHESTRATION | [CR-017](06--cross-cli-orchestration/cli-codex-delegation.md) |
+| CR-018 | cli-opencode and cli-gemini handback | CROSS-CLI ORCHESTRATION | [CR-018](06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md) |

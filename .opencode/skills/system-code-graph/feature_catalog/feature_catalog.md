@@ -51,7 +51,7 @@ Half-auto (class: half). Code graph freshness checks happen after a read invocat
 
 #### Source Files
 
-See [`01--read-path-freshness/001-ensure-code-graph-ready.md`](01--read-path-freshness/001-ensure-code-graph-ready.md) for full implementation and source paths.
+See [`01--read-path-freshness/ensure-code-graph-ready.md`](01--read-path-freshness/ensure-code-graph-ready.md) for full implementation and source paths.
 
 ---
 
@@ -67,7 +67,7 @@ Half-auto (class: half). Self-heal runs only inside a requested `code_graph_quer
 
 #### Source Files
 
-See [`01--read-path-freshness/002-query-self-heal.md`](01--read-path-freshness/002-query-self-heal.md) for full implementation and source paths.
+See [`01--read-path-freshness/query-self-heal.md`](01--read-path-freshness/query-self-heal.md) for full implementation and source paths.
 
 ---
 
@@ -85,7 +85,7 @@ Manual (class: manual). Read paths may recommend it but do not run a broad full 
 
 #### Source Files
 
-See [`02--manual-scan-verify-status/003-code-graph-scan.md`](02--manual-scan-verify-status/003-code-graph-scan.md) for full implementation and source paths.
+See [`02--manual-scan-verify-status/code-graph-scan.md`](02--manual-scan-verify-status/code-graph-scan.md) for full implementation and source paths.
 
 ---
 
@@ -101,7 +101,7 @@ Manual (class: manual). Runs as an explicit MCP maintenance call or optional ver
 
 #### Source Files
 
-See [`02--manual-scan-verify-status/004-code-graph-verify.md`](02--manual-scan-verify-status/004-code-graph-verify.md) for full implementation and source paths.
+See [`02--manual-scan-verify-status/code-graph-verify.md`](02--manual-scan-verify-status/code-graph-verify.md) for full implementation and source paths.
 
 ---
 
@@ -117,7 +117,7 @@ Manual diagnostic (class: manual). Uses a read-only readiness snapshot so status
 
 #### Source Files
 
-See [`02--manual-scan-verify-status/005-code-graph-status.md`](02--manual-scan-verify-status/005-code-graph-status.md) for full implementation and source paths.
+See [`02--manual-scan-verify-status/code-graph-status.md`](02--manual-scan-verify-status/code-graph-status.md) for full implementation and source paths.
 
 ---
 
@@ -135,7 +135,7 @@ Manual (class: manual). Passes `allowInlineIndex:false` so it never silently ind
 
 #### Source Files
 
-See [`03--detect-changes/006-detect-changes-preflight.md`](03--detect-changes/006-detect-changes-preflight.md) for full implementation and source paths.
+See [`03--detect-changes/detect-changes-preflight.md`](03--detect-changes/detect-changes-preflight.md) for full implementation and source paths.
 
 ---
 
@@ -153,7 +153,7 @@ Half-auto (class: half). The tool self-checks readiness on invocation but no amb
 
 #### Source Files
 
-See [`04--context-retrieval/007-code-graph-context.md`](04--context-retrieval/007-code-graph-context.md) for full implementation and source paths.
+See [`04--context-retrieval/code-graph-context.md`](04--context-retrieval/code-graph-context.md) for full implementation and source paths.
 
 ---
 
@@ -169,7 +169,7 @@ Half-auto (class: half). Only triggered through `code_graph_context` dispatch. C
 
 #### Source Files
 
-See [`04--context-retrieval/008-context-handler.md`](04--context-retrieval/008-context-handler.md) for full implementation and source paths.
+See [`04--context-retrieval/context-handler.md`](04--context-retrieval/context-handler.md) for full implementation and source paths.
 
 ---
 
@@ -189,7 +189,7 @@ Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/deep-lo
 
 #### Source Files
 
-See [`05--coverage-graph/009-deep-loop-graph-query.md`](05--coverage-graph/009-deep-loop-graph-query.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-query.md`](05--coverage-graph/deep-loop-graph-query.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/query.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -205,7 +205,7 @@ Manual (class: manual). Direct `.cjs` invocation: `node .opencode/skills/deep-lo
 
 #### Source Files
 
-See [`05--coverage-graph/010-deep-loop-graph-status.md`](05--coverage-graph/010-deep-loop-graph-status.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-status.md`](05--coverage-graph/deep-loop-graph-status.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/status.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -221,7 +221,7 @@ Half-auto (class: half). Command-owned deep-research/deep-review YAML calls `nod
 
 #### Source Files
 
-See [`05--coverage-graph/011-deep-loop-graph-upsert.md`](05--coverage-graph/011-deep-loop-graph-upsert.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-upsert.md`](05--coverage-graph/deep-loop-graph-upsert.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/upsert.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -237,7 +237,7 @@ Auto inside command workflows (class: auto). deep-research and deep-review YAML 
 
 #### Source Files
 
-See [`05--coverage-graph/012-deep-loop-graph-convergence.md`](05--coverage-graph/012-deep-loop-graph-convergence.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
+See [`05--coverage-graph/deep-loop-graph-convergence.md`](05--coverage-graph/deep-loop-graph-convergence.md) for historical implementation. Current surface: `.opencode/skills/deep-loop-runtime/scripts/convergence.cjs` (replaced MCP tool in arc 118).
 
 ---
 
@@ -255,7 +255,7 @@ Manual (class: manual). Tool registration is availability, not automation. Schem
 
 #### Source Files
 
-See [`06--mcp-tool-surface/013-tool-registrations.md`](06--mcp-tool-surface/013-tool-registrations.md) for full implementation and source paths.
+See [`06--mcp-tool-surface/tool-registrations.md`](06--mcp-tool-surface/tool-registrations.md) for full implementation and source paths.
 
 ---
 
@@ -273,4 +273,4 @@ Manual (class: manual). Triggered by slash command `/doctor code-graph` with fla
 
 #### Source Files
 
-See [`08--doctor-code-graph/014-doctor-apply-mode.md`](08--doctor-code-graph/014-doctor-apply-mode.md) for full implementation and source paths.
+See [`08--doctor-code-graph/doctor-apply-mode.md`](08--doctor-code-graph/doctor-apply-mode.md) for full implementation and source paths.
