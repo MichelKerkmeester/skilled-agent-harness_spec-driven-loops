@@ -489,7 +489,7 @@ Discuss with project lead before attempting more fixes.
 - Proceed with 4th fix without questioning approach
 - Skip Network tab inspection
 
-**See also:** [debugging_checklist.md](../../assets/checklists/debugging_checklist.md) for systematic debugging checklist
+**See also:** [debugging_checklist.md](../../../assets/webflow/checklists/debugging_checklist.md) for systematic debugging checklist
 
 ---
 
@@ -729,7 +729,7 @@ observer.observe(document.body, {
 - Leave production console.log statements
 - Stop at first function in stack (keep tracing up)
 
-**See also:** [debugging_checklist.md](../../assets/checklists/debugging_checklist.md) for tracing checklist
+**See also:** [debugging_checklist.md](../../../assets/webflow/checklists/debugging_checklist.md) for tracing checklist
 
 ---
 
@@ -1906,8 +1906,8 @@ bdg stop 2>&1
 - [dev_workflow.md](../shared/dev_workflow.md) - Use common DevTools and logging patterns
 
 ### Asset Files
-- [lenis_patterns.js](../../assets/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns
-- [debugging_checklist.md](../../assets/checklists/debugging_checklist.md) - Systematic debugging checklist
+- [lenis_patterns.js](../../../assets/webflow/integrations/lenis_patterns.js) - Complete Lenis smooth scroll integration patterns
+- [debugging_checklist.md](../../../assets/webflow/checklists/debugging_checklist.md) - Systematic debugging checklist
 
 ### Related Skills
 - `mcp-chrome-devtools` - CLI-based browser automation via browser-debugger-cli (bdg)
@@ -1928,5 +1928,5 @@ bdg stop 2>&1
 ---
 
 **For complete checklists:**
-- [debugging_checklist.md](../../assets/checklists/debugging_checklist.md) - Systematic debugging checklist
+- [debugging_checklist.md](../../../assets/webflow/checklists/debugging_checklist.md) - Systematic debugging checklist
 - See `mcp-chrome-devtools` skill for comprehensive DevTools reference

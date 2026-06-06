@@ -57,7 +57,6 @@ If sha256 diff non-empty: inspect `mcp_server/tests/code-graph-degraded-sweep.vi
 
 ## 4. SOURCE FILES
 - Root playbook: [manual_testing_playbook.md](../manual_testing_playbook.md)
-- Sibling (operator-facing fast-fail contract): [22--context-preservation/277-code-graph-fast-fail.md](../22--context-preservation/277-code-graph-fast-fail.md)
 - Sibling (rebuild + restart + live probe): [mcp-daemon-rebuild-restart-live-probe.md](./mcp-daemon-rebuild-restart-live-probe.md)
 - Implementation context: local graph-degraded stress-cell notes
 

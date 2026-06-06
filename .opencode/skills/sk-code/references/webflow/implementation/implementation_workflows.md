@@ -267,7 +267,7 @@ const particle_loop = create_raf_loop((timestamp) => {
 }, 64);  // 64ms = ~15fps
 ```
 
-See [performance_patterns.js](../../assets/patterns/performance_patterns.js) for production-ready RAF utilities.
+See [performance_patterns.js](../../../assets/webflow/patterns/performance_patterns.js) for production-ready RAF utilities.
 
 ### Rules
 
@@ -288,7 +288,7 @@ See [performance_patterns.js](../../assets/patterns/performance_patterns.js) for
 - Assume elements exist without checking
 - Chain multiple arbitrary timeouts
 
-**See also:** [wait_patterns.js](../../assets/patterns/wait_patterns.js) for production-ready code templates
+**See also:** [wait_patterns.js](../../../assets/webflow/patterns/wait_patterns.js) for production-ready code templates
 
 ---
 
@@ -456,7 +456,7 @@ const name = user.name ?? 'Anonymous';
 
 ### Complete Example: Contact Form with Multi-Layer Validation
 
-See [validation_patterns.js](../../assets/patterns/validation_patterns.js) for full implementation including:
+See [validation_patterns.js](../../../assets/webflow/patterns/validation_patterns.js) for full implementation including:
 - Field-level validation (email, phone, required fields)
 - Real-time validation on blur
 - Form submission with sanitization
@@ -485,7 +485,7 @@ See [validation_patterns.js](../../assets/patterns/validation_patterns.js) for f
 - Chain property access without null checks (`user.profile.avatar.url`)
 - Skip type checking function parameters
 
-**See also:** [validation_patterns.js](../../assets/patterns/validation_patterns.js) for production-ready validation templates
+**See also:** [validation_patterns.js](../../../assets/webflow/patterns/validation_patterns.js) for production-ready validation templates
 
 ---
 
@@ -578,8 +578,8 @@ function sanitizeText(text) {
 - [code_quality_standards.md](../javascript/quality_standards.md) - CDN-safe initialization pattern and naming conventions
 
 ### Templates
-- [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Production-ready condition-based waiting templates with error handling
-- [validation_patterns.js](../../assets/patterns/validation_patterns.js) - Defense-in-depth validation templates for forms and APIs
+- [wait_patterns.js](../../../assets/webflow/patterns/wait_patterns.js) - Production-ready condition-based waiting templates with error handling
+- [validation_patterns.js](../../../assets/webflow/patterns/validation_patterns.js) - Defense-in-depth validation templates for forms and APIs
 
 ### Standards
 - **Browser APIs used**: `document.readyState`, `element.addEventListener('transitionend')`, `video.addEventListener('canplay')`, `document.fonts.ready`, `Promise.race()`, `Promise.all()`, optional chaining (`?.`), nullish coalescing (`??`)
@@ -588,5 +588,5 @@ function sanitizeText(text) {
 ---
 
 **For complete code examples and templates:**
-- [wait_patterns.js](../../assets/patterns/wait_patterns.js) - Condition-based waiting examples
-- [validation_patterns.js](../../assets/patterns/validation_patterns.js) - Defense-in-depth templates
+- [wait_patterns.js](../../../assets/webflow/patterns/wait_patterns.js) - Condition-based waiting examples
+- [validation_patterns.js](../../../assets/webflow/patterns/validation_patterns.js) - Defense-in-depth templates

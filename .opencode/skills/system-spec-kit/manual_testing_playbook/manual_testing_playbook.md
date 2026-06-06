@@ -752,19 +752,6 @@ Targeted suite passes; runtime mismatch, marker creation, and SQLite diagnostics
 > **Feature File:** [EX-035](04--maintenance/startup-runtime-compatibility-guards.md)
 > **Catalog:** [04--maintenance/startup-runtime-compatibility-guards.md](../feature_catalog/04--maintenance/startup-runtime-compatibility-guards.md)
 
-### EX-036 | Embedding reconciliation (memory_embedding_reconcile)
-
-#### Description
-Dry-run-default maintenance tool that converges embedding status for stale or missing-vector rows.
-
-#### Scenario Contract
-Prompt: `Validate memory_embedding_reconcile dry-run mode, apply mode, and idempotency. In dry-run (default), confirm the response lists affected row IDs and projected actions without mutating any rows. In apply mode, confirm the handler runs one guarded BEGIN IMMEDIATE transaction that sets vector-present stale rows to the correct converged status and resets genuinely missing-vector rows to allow retry. Re-run apply mode and confirm idempotency: a second pass with no new stale rows completes with zero mutations. Return a concise pass/fail verdict with cited field names and mutation counts.`
-
-Dry-run returns affected row IDs and projected actions without any DB mutation; apply mode completes in one BEGIN IMMEDIATE transaction; vector-present stale rows converge to the correct embedding_status; genuinely missing-vector rows reset to retry status; second apply pass with no new stale rows reports zero mutations (idempotent)
-
-#### Test Execution
-> **Feature File:** [EX-036](04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
-> **Catalog:** [04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md](../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md)
 
 ### EX-037 | Checkpoint v2 file-snapshot round-trip (checkpoint_create / checkpoint_restore)
 
@@ -1144,19 +1131,6 @@ Normalized scores in [0,1] range; min-max normalization correct; equal-score and
 > **Feature File:** [023](11--scoring-and-calibration/score-normalization.md)
 > **Catalog:** [11--scoring-and-calibration/score-normalization.md](../feature_catalog/11--scoring-and-calibration/score-normalization.md)
 
-### 024 | Cold-start novelty boost (N4)
-
-#### Description
-Confirm novelty removed from hot path.
-
-#### Scenario Contract
-Prompt: `Confirm N4 novelty hot-path removal. Capture the evidence needed to prove Novelty boost contribution is zero in telemetry; code path shows novelty removed from hot scoring path. Return a concise user-facing pass/fail verdict with the main reason.`
-
-Novelty boost contribution is zero in telemetry; code path shows novelty removed from hot scoring path
-
-#### Test Execution
-> **Feature File:** [024](11--scoring-and-calibration/_deprecated/024-cold-start-novelty-boost-n4.md)
-> **Catalog:** [11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md](../feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md)
 
 ### 025 | Interference scoring (TM-01)
 
@@ -1284,19 +1258,6 @@ Simple queries route to fewer channels; complex queries activate all channels; d
 > **Feature File:** [033](12--query-intelligence/query-complexity-router-r15.md)
 > **Catalog:** [12--query-intelligence/query-complexity-router.md](../feature_catalog/12--query-intelligence/query-complexity-router.md)
 
-### 034 | Relative score fusion in shadow mode (R14/N1) [retired]
-
-#### Description
-Retired from active manual testing.
-
-#### Scenario Contract
-Prompt: `N/A — active manual validation for RSF live ranking was removed from the playbook because production ranking stays on RRF and RSF is no longer a shipped runtime path.`
-
-This page is retained only as a retirement note and should not be treated as an active operator scenario
-
-#### Test Execution
-> **Feature File:** [034](12--query-intelligence/_deprecated/034-relative-score-fusion-in-shadow-mode-r14-n1.md)
-> **Catalog:** [12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md](../feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md)
 
 ### 035 | Channel min-representation (R2)
 
@@ -1880,19 +1841,6 @@ Mixed-format IDs (numeric, string, prefixed) resolve to single canonical form; d
 > **Feature File:** [075](08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
 > **Catalog:** [08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature_catalog/08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md)
 
-### 076 | Activation window persistence
-
-#### Description
-Confirm the archived activation-timestamp persistence record remains source-accurate.
-
-#### Scenario Contract
-Prompt: `Verify the archived activation-timestamp persistence record. Capture the evidence needed to prove the historical save-quality-gate path persisted its timer across restart, that the archived record clearly marks the behavior as retired, and that no live phase-018 flow depends on this timer path. Return a concise user-facing pass/fail verdict with the main reason.`
-
-Activation window timestamp persists across restart; warn-only mode respects persisted window; no timestamp reset on service restart
-
-#### Test Execution
-> **Feature File:** [076](14--pipeline-architecture/_deprecated/076-activation-window-persistence.md)
-> **Catalog:** [14--pipeline-architecture/_deprecated/09-activation-window-persistence.md](../feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md)
 
 ### 077 | Tier-2 fallback channel forcing
 
@@ -2202,19 +2150,6 @@ File add seeds hash cache; modifications trigger reindex after 2s debounce; iden
 > **Feature File:** [099](16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md)
 > **Catalog:** [16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md)
 
-### 100 | Async shutdown with deadline (server lifecycle)
-
-#### Description
-Confirm graceful shutdown completes async cleanup.
-
-#### Scenario Contract
-Prompt: `Validate server shutdown deadline behavior. Capture the evidence needed to prove File watcher closes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline. Return a concise user-facing pass/fail verdict with the main reason.`
-
-File watcher closes; vector index closes; shutdown completes within 5s; force exit fires if cleanup exceeds deadline
-
-#### Test Execution
-> **Feature File:** [100](05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md)
-> **Catalog:** *(server lifecycle — no dedicated catalog entry)*
 
 ### 101 | memory_delete confirm schema tightening
 
@@ -2385,19 +2320,6 @@ Server detects DB_UPDATED_FILE marker; DB reinitializes without restart; stats r
 > **Feature File:** [112](14--pipeline-architecture/cross-process-db-hot-rebinding.md)
 > **Catalog:** [14--pipeline-architecture/cross-process-db-hot-rebinding.md](../feature_catalog/14--pipeline-architecture/cross-process-db-hot-rebinding.md)
 
-### 113 | Standalone admin CLI
-
-#### Description
-Confirm 4 CLI commands execute correctly.
-
-#### Scenario Contract
-Prompt: `Validate standalone admin CLI commands. Capture the evidence needed to prove stats shows tier distribution and schema version; dry-run shows plan without executing deletions; reindex completes with summary; schema-downgrade without --confirm shows safety prompt; destructive bulk-delete attempts a pre-delete checkpoint and warns rather than aborting if checkpoint persistence fails. Return a concise user-facing pass/fail verdict with the main reason.`
-
-stats shows tier distribution and schema version; dry-run shows plan without executing deletions; reindex completes with summary; schema-downgrade without `--confirm` shows safety prompt; destructive bulk-delete attempts a pre-delete checkpoint and warns rather than aborting if checkpoint persistence fails
-
-#### Test Execution
-> **Feature File:** [113](16--tooling-and-scripts/113-standalone-admin-cli.md)
-> **Catalog:** [16--tooling-and-scripts/standalone-admin-cli.md](../feature_catalog/16--tooling-and-scripts/standalone-admin-cli.md)
 
 ### 114 | Path traversal validation (P0-4)
 
@@ -2653,19 +2575,6 @@ Dry-run returns preflight plus quality-loop and sufficiency payloads; thin memor
 > **Feature File:** [133](13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
 > **Catalog:** [13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature_catalog/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md)
 
-### 134 | Startup pending-file recovery lifecycle coverage
-
-#### Description
-Verify startup recovery scans allowed roots and preserves stale pending files for manual review.
-
-#### Scenario Contract
-Prompt: `Validate startup pending-file recovery behavior across committed and stale files. Capture the evidence needed to prove Committed pending file recovers to original path; stale pending file remains with explicit stale classification; startup scan covers configured/allowed roots without scanning unrelated workspace trees. Return a concise user-facing pass/fail verdict with the main reason.`
-
-Committed pending file recovers to original path; stale pending file remains with explicit stale classification; startup scan covers configured/allowed roots without scanning unrelated workspace trees
-
-#### Test Execution
-> **Feature File:** [134](05--lifecycle/134-startup-pending-file-recovery-lifecycle-coverage.md)
-> **Catalog:** [05--lifecycle/startup-pending-file-recovery.md](../feature_catalog/05--lifecycle/startup-pending-file-recovery.md)
 
 ### 135 | Grep traceability for feature catalog code references
 
@@ -3035,19 +2944,6 @@ SurrogateMetadata contains aliases (from parenthetical abbreviations), headings,
 > **Feature File:** [163](12--query-intelligence/query-surrogates-speckit-query-surrogates.md)
 > **Catalog:** [12--query-intelligence/index-time-query-surrogates.md](../feature_catalog/12--query-intelligence/index-time-query-surrogates.md)
 
-### 164 | Batch learned feedback (SPECKIT_BATCH_LEARNED_FEEDBACK)
-
-#### Description
-Verify batch learning aggregation with min-support and boost-cap guards across multiple sessions.
-
-#### Scenario Contract
-Prompt: `Test SPECKIT_BATCH_LEARNED_FEEDBACK=true. Populate feedback events across multiple sessions, run batch learning, and verify aggregated signals respect MIN_SUPPORT_SESSIONS (3) and MAX_BOOST_DELTA (0.10). Capture the evidence needed to prove AggregatedSignal contains session counts, confidence-weighted scores, and capped boost values, and that batch_learning_log entries are recorded. Return a concise user-facing pass/fail verdict with the main reason.`
-
-AggregatedSignal with sessionCount >= MIN_SUPPORT_SESSIONS (3) for promoted signals; weightedScore computed using CONFIDENCE_WEIGHTS (strong=1.0, medium=0.5, weak=0.1); computedBoost capped at MAX_BOOST_DELTA (0.10); batch_learning_log rows recorded; shadow-only (no live ranking mutation)
-
-#### Test Execution
-> **Feature File:** [164](13--memory-quality-and-indexing/_deprecated/164-batch-learned-feedback-speckit-batch-learned-feedback.md)
-> **Catalog:** [13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md](../feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md)
 
 ### 165 | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION)
 
@@ -3189,19 +3085,6 @@ SPARSE_DENSITY_THRESHOLD=0.5 gates sparse-first policy; SPARSE_MAX_HOPS=1 constr
 > **Feature File:** [175](10--graph-signal-activation/typed-traversal-speckit-typed-traversal.md)
 > **Catalog:** [10--graph-signal-activation/typed-traversal.md](../feature_catalog/10--graph-signal-activation/typed-traversal.md)
 
-### 176 | Implicit feedback log (SPECKIT_IMPLICIT_FEEDBACK_LOG)
-
-#### Description
-Verify shadow-only implicit feedback event ledger records 5 event types with correct confidence tiers.
-
-#### Scenario Contract
-Prompt: `Test the default-on SPECKIT_IMPLICIT_FEEDBACK_LOG behavior. Run a search, cite a result, reformulate the query, and verify the feedback ledger records events for all 5 types: search_shown, result_cited, query_reformulated, same_topic_requery, follow_on_tool_use. Confirm confidence tiers (strong/medium/weak) are correctly assigned and events are shadow-only. Return a concise user-facing pass/fail verdict with the main reason.`
-
-5 event types recorded; confidence tiers: strong (result_cited, follow_on_tool_use), medium (query_reformulated), weak (search_shown, same_topic_requery); shadow-only (no ranking influence)
-
-#### Test Execution
-> **Feature File:** [176](13--memory-quality-and-indexing/_deprecated/176-implicit-feedback-log-speckit-implicit-feedback-log.md)
-> **Catalog:** [13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md](../feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md)
 
 ### 177 | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY)
 
@@ -3359,33 +3242,7 @@ Strict mismatch rejected; permissive mismatch allowed with warning; Unicode conf
 > **Feature File:** [273](17--governance/session-resume-caller-binding-and-unicode-sanitization.md)
 > **Catalog:** [17--governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/17--governance/session-resume-caller-binding-and-unicode-sanitization.md)
 
-### 274 | Shared provenance and Copilot compact-cache parity
 
-#### Description
-Verify Copilot now follows the same shared provenance and compact-cache contract as Claude and Gemini.
-
-#### Scenario Contract
-Prompt: `As a UX-hook validation operator, validate shared provenance and Copilot compact-cache parity. Verify Claude and Gemini re-export the shared provenance helpers, Copilot writes a cached provenance-wrapped payload, session-prime consumes the cached trustState, and the cached output matches the documented provenance format. Return a concise user-facing pass/fail verdict with the main reason.`
-
-Shared helper imports visible; Copilot compact-cache emits cached provenance-wrapped output; session-prime consumes the cached trustState
-
-#### Test Execution
-> **Feature File:** [274](18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md)
-> **Catalog:** [18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md](../feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md)
-
-### 275 | Code-graph readiness contract
-
-#### Description
-Verify the code-graph sibling handlers emit one shared readiness vocabulary.
-
-#### Scenario Contract
-Prompt: `Validate the shared code-graph readiness contract across sibling handlers and the code_graph status/scan/verify handlers.`
-
-Shared readiness fields present across the sibling handlers; trustState values align with the canonical vocabulary; the code_graph status/scan/verify handlers expose the documented stub behavior
-
-#### Test Execution
-> **Feature File:** [275](22--context-preservation/275-code-graph-readiness-contract.md)
-> **Catalog:** [22--context-preservation/24-code-graph-readiness-contract.md](../feature_catalog/22--context-preservation/24-code-graph-readiness-contract.md)
 
 ### 276 | Reconsolidation conflict transaction helper
 
@@ -3659,7 +3516,7 @@ Prompt: `As a mutation validation operator, validate Feature 09 Direct Manual Sc
 Expected signals: repeated save/update activity is observable via retrieval output and packet metadata remains coherent for the same saved document lineage.
 
 #### Test Execution
-> **Feature File:** [M-008](02--mutation/008-feature-09-direct-manual-scenario-per-record-history-log.md)
+> **Feature File:** [M-008](02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md)
 
 ---
 
@@ -3732,7 +3589,6 @@ This split playbook keeps automated coverage references in three places:
 | 021 | Features | Causal depth signal (N2b) | [021](10--graph-signal-activation/causal-depth-signal-n2b.md) | [10--graph-signal-activation/causal-depth-signal.md](../feature_catalog/10--graph-signal-activation/causal-depth-signal.md) |
 | 022 | Features | Community detection (N2c) | [022](10--graph-signal-activation/community-detection-n2c.md) | [10--graph-signal-activation/community-detection.md](../feature_catalog/10--graph-signal-activation/community-detection.md) |
 | 023 | Features | Score normalization | [023](11--scoring-and-calibration/score-normalization.md) | [11--scoring-and-calibration/score-normalization.md](../feature_catalog/11--scoring-and-calibration/score-normalization.md) |
-| 024 | Features | Cold-start novelty boost (N4) | [024](11--scoring-and-calibration/_deprecated/024-cold-start-novelty-boost-n4.md) | [11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md](../feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md) |
 | 025 | Features | Interference scoring (TM-01) | [025](11--scoring-and-calibration/interference-scoring-tm-01.md) | [11--scoring-and-calibration/interference-scoring.md](../feature_catalog/11--scoring-and-calibration/interference-scoring.md) |
 | 026 | Features | Classification-based decay (TM-03) | [026](11--scoring-and-calibration/classification-based-decay-tm-03.md) | [11--scoring-and-calibration/classification-based-decay.md](../feature_catalog/11--scoring-and-calibration/classification-based-decay.md) |
 | 027 | Features | Folder-level relevance scoring (PI-A1) | [027](11--scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md) | [11--scoring-and-calibration/folder-level-relevance-scoring.md](../feature_catalog/11--scoring-and-calibration/folder-level-relevance-scoring.md) |
@@ -3742,7 +3598,6 @@ This split playbook keeps automated coverage references in three places:
 | 031 | Features | Negative feedback confidence signal (A4) | [031](11--scoring-and-calibration/negative-feedback-confidence-signal-a4.md) | [11--scoring-and-calibration/negative-feedback-confidence-signal.md](../feature_catalog/11--scoring-and-calibration/negative-feedback-confidence-signal.md) |
 | 032 | Features | Auto-promotion on validation (T002a) | [032](11--scoring-and-calibration/auto-promotion-on-validation-t002a.md) | [11--scoring-and-calibration/auto-promotion-on-validation.md](../feature_catalog/11--scoring-and-calibration/auto-promotion-on-validation.md) |
 | 033 | Features | Query complexity router (R15) | [033](12--query-intelligence/query-complexity-router-r15.md) | [12--query-intelligence/query-complexity-router.md](../feature_catalog/12--query-intelligence/query-complexity-router.md) |
-| 034 | Features | Relative score fusion in shadow mode (R14/N1) [retired] | [034](12--query-intelligence/_deprecated/034-relative-score-fusion-in-shadow-mode-r14-n1.md) | [12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md](../feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md) |
 | 035 | Features | Channel min-representation (R2) | [035](12--query-intelligence/channel-min-representation-r2.md) | [12--query-intelligence/channel-min-representation.md](../feature_catalog/12--query-intelligence/channel-min-representation.md) |
 | 036 | Features | Confidence-based result truncation (R15-ext) | [036](12--query-intelligence/confidence-based-result-truncation-r15-ext.md) | [12--query-intelligence/confidence-based-result-truncation.md](../feature_catalog/12--query-intelligence/confidence-based-result-truncation.md) |
 | 037 | Features | Dynamic token budget allocation (FUT-7) | [037](12--query-intelligence/dynamic-token-budget-allocation-fut-7.md) | [12--query-intelligence/dynamic-token-budget-allocation.md](../feature_catalog/12--query-intelligence/dynamic-token-budget-allocation.md) |
@@ -3784,7 +3639,6 @@ This split playbook keeps automated coverage references in three places:
 | 073 | Features | Quality gate timer persistence | [073](13--memory-quality-and-indexing/quality-gate-timer-persistence.md) | [13--memory-quality-and-indexing/quality-gate-timer-persistence.md](../feature_catalog/13--memory-quality-and-indexing/quality-gate-timer-persistence.md) |
 | 074 | Features | Stage 3 effectiveScore fallback chain | [074](11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) | [11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md](../feature_catalog/11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md) |
 | 075 | Features | Canonical ID dedup hardening | [075](08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) | [08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md](../feature_catalog/08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md) |
-| 076 | Features | Activation window persistence | [076](14--pipeline-architecture/_deprecated/076-activation-window-persistence.md) | [14--pipeline-architecture/_deprecated/09-activation-window-persistence.md](../feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md) |
 | 077 | Features | Tier-2 fallback channel forcing | [077](15--retrieval-enhancements/tier-2-fallback-channel-forcing.md) | [15--retrieval-enhancements/tier-2-fallback-channel-forcing.md](../feature_catalog/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md) |
 | 078 | Features | Legacy V1 pipeline removal | [078](14--pipeline-architecture/legacy-v1-pipeline-removal.md) | [14--pipeline-architecture/legacy-v1-pipeline-removal.md](../feature_catalog/14--pipeline-architecture/legacy-v1-pipeline-removal.md) |
 | 079 | Features | Scoring and fusion corrections | [079](11--scoring-and-calibration/scoring-and-fusion-corrections.md) | [11--scoring-and-calibration/scoring-and-fusion-corrections.md](../feature_catalog/11--scoring-and-calibration/scoring-and-fusion-corrections.md) |
@@ -3807,7 +3661,6 @@ This split playbook keeps automated coverage references in three places:
 | 096 | Features | Provenance-rich response envelopes (P0-2) | [096](15--retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md) | [15--retrieval-enhancements/provenance-rich-response-envelopes.md](../feature_catalog/15--retrieval-enhancements/provenance-rich-response-envelopes.md) |
 | 097 | Features | Async ingestion job lifecycle (P0-3) | [097](05--lifecycle/async-ingestion-job-lifecycle-p0-3.md) | [05--lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md) |
 | 099 | Features | Real-time filesystem watching  | [099](16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md) | [16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md](../feature_catalog/16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md) |
-| 100 | Features | Async shutdown with deadline (server lifecycle) | [100](05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md) | *(server lifecycle — no dedicated catalog entry)* |
 | 101 | Features | memory_delete confirm schema tightening | [101](02--mutation/memory-delete-confirm-schema-tightening.md) | *(memory_delete confirm schema — covered by `02--mutation/03`)* |
 | 102 | Features | Ollama runtime optionalDependencies | [102](11--scoring-and-calibration/102-Ollama runtime-optionaldependencies.md) | *(Ollama runtime optionalDependencies — covered by `11--scoring-and-calibration/14`)* |
 | 103 | Features | UX hook module coverage (`mutation-feedback`, `response-hints`) | [103](18--ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md) | [18--ux-hooks/dedicated-ux-hook-modules.md](../feature_catalog/18--ux-hooks/dedicated-ux-hook-modules.md) |
@@ -3820,7 +3673,6 @@ This split playbook keeps automated coverage references in three places:
 | 110 | Features | Prediction-error save arbitration | [110](02--mutation/prediction-error-save-arbitration.md) | [02--mutation/prediction-error-save-arbitration.md](../feature_catalog/02--mutation/prediction-error-save-arbitration.md) |
 | 111 | Features | Deferred lexical-only indexing | [111](13--memory-quality-and-indexing/deferred-lexical-only-indexing.md) | [13--memory-quality-and-indexing/deferred-lexical-only-indexing.md](../feature_catalog/13--memory-quality-and-indexing/deferred-lexical-only-indexing.md) |
 | 112 | Features | Cross-process DB hot rebinding | [112](14--pipeline-architecture/cross-process-db-hot-rebinding.md) | [14--pipeline-architecture/cross-process-db-hot-rebinding.md](../feature_catalog/14--pipeline-architecture/cross-process-db-hot-rebinding.md) |
-| 113 | Features | Standalone admin CLI | [113](16--tooling-and-scripts/113-standalone-admin-cli.md) | [16--tooling-and-scripts/standalone-admin-cli.md](../feature_catalog/16--tooling-and-scripts/standalone-admin-cli.md) |
 | 114 | Features | Path traversal validation (P0-4) | [114](05--lifecycle/path-traversal-validation-p0-4.md) | [05--lifecycle/async-ingestion-job-lifecycle.md](../feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md) |
 | 115 | Features | Transaction atomicity on rename failure (P0-5) | [115](14--pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md) | [14--pipeline-architecture/atomic-pending-file-recovery.md](../feature_catalog/14--pipeline-architecture/atomic-pending-file-recovery.md) |
 | 116 | Features | Chunking safe swap atomicity (P0-6) | [116](08--bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md) | [08--bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md](../feature_catalog/08--bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md) |
@@ -3830,7 +3682,6 @@ This split playbook keeps automated coverage references in three places:
 | 120 | Features | Unified graph rollback and explainability (Phase 3) | [120](10--graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md) | [10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md](../feature_catalog/10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md) |
 | 121 | Features | Adaptive shadow proposal and rollback (Phase 4) | [121](11--scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md) | [11--scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md](../feature_catalog/11--scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md) |
 | 122 | Features | Governed ingest and scope isolation (Phase 5) | [122](17--governance/governed-ingest-and-scope-isolation-phase-5.md) | [17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md](../feature_catalog/17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md) |
-| 124 | Features | Automatic archival lifecycle coverage | [124](05--lifecycle/124-automatic-archival-lifecycle-coverage.md) | [05--lifecycle/07-automatic-archival-subsystem.md](../feature_catalog/05--lifecycle/07-automatic-archival-subsystem.md) |
 | 125 | Features | Memory roadmap flags | 125 memory roadmap flags | [19--feature-flag-reference/1-search-pipeline-features-speckit.md](../feature_catalog/19--feature-flag-reference/1-search-pipeline-features-speckit.md) <br> Cross-cutting roadmap test - maps to umbrella flag reference. |
 | 126 | Features | Memory roadmap baseline snapshot | [126](09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) | [09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md](../feature_catalog/09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md) |
 | 127 | Features | Migration checkpoint scripts | [127](16--tooling-and-scripts/migration-checkpoint-scripts.md) | [16--tooling-and-scripts/migration-checkpoint-scripts.md](../feature_catalog/16--tooling-and-scripts/migration-checkpoint-scripts.md) |
@@ -3840,7 +3691,6 @@ This split playbook keeps automated coverage references in three places:
 | 131 | Features | Description.json batch backfill validation (PI-B3) | [131](13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md) | [13--memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/13--memory-quality-and-indexing/spec-folder-description-discovery.md) |
 | 132 | Features | description.json schema field validation | [132](13--memory-quality-and-indexing/description-json-schema-field-validation.md) | [13--memory-quality-and-indexing/spec-folder-description-discovery.md](../feature_catalog/13--memory-quality-and-indexing/spec-folder-description-discovery.md) |
 | 133 | Features | Dry-run preflight for memory_save | [133](13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) | [13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md](../feature_catalog/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md) |
-| 134 | Features | Startup pending-file recovery lifecycle coverage | [134](05--lifecycle/134-startup-pending-file-recovery-lifecycle-coverage.md) | [05--lifecycle/startup-pending-file-recovery.md](../feature_catalog/05--lifecycle/startup-pending-file-recovery.md) |
 | 135 | Features | Grep traceability for feature catalog code references | [135](16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md) | [16--tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md) |
 | 136 | Features | Feature catalog annotation name validity | [136](16--tooling-and-scripts/feature-catalog-annotation-name-validity.md) | [16--tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md) |
 | 137 | Features | Multi-feature annotation coverage | [137](16--tooling-and-scripts/multi-feature-annotation-coverage.md) | [16--tooling-and-scripts/feature-catalog-code-references.md](../feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md) |
@@ -3874,7 +3724,6 @@ This split playbook keeps automated coverage references in three places:
 | 161 | Features | LLM reformulation (SPECKIT_LLM_REFORMULATION) | [161](12--query-intelligence/llm-reformulation-speckit-llm-reformulation.md) | [12--query-intelligence/llm-query-reformulation.md](../feature_catalog/12--query-intelligence/llm-query-reformulation.md) |
 | 162 | Features | HyDE (SPECKIT_HYDE) | [162](12--query-intelligence/hyde-speckit-hyde.md) | [12--query-intelligence/hyde-hypothetical-document-embeddings.md](../feature_catalog/12--query-intelligence/hyde-hypothetical-document-embeddings.md) |
 | 163 | Features | Query surrogates (SPECKIT_QUERY_SURROGATES) | [163](12--query-intelligence/query-surrogates-speckit-query-surrogates.md) | [12--query-intelligence/index-time-query-surrogates.md](../feature_catalog/12--query-intelligence/index-time-query-surrogates.md) |
-| 164 | Features | Batch learned feedback (SPECKIT_BATCH_LEARNED_FEEDBACK) | [164](13--memory-quality-and-indexing/_deprecated/164-batch-learned-feedback-speckit-batch-learned-feedback.md) | [13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md](../feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md) |
 | 165 | Features | Assistive reconsolidation (SPECKIT_ASSISTIVE_RECONSOLIDATION) | [165](13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md) | [13--memory-quality-and-indexing/assistive-reconsolidation.md](../feature_catalog/13--memory-quality-and-indexing/assistive-reconsolidation.md) |
 | 166 | Features | Result explain v1 (SPECKIT_RESULT_EXPLAIN_V1) | [166](18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md) | [18--ux-hooks/result-explainability.md](../feature_catalog/18--ux-hooks/result-explainability.md) |
 | 167 | Features | Response profile v1 (SPECKIT_RESPONSE_PROFILE_V1) | [167](18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md) | [18--ux-hooks/mode-aware-response-profiles.md](../feature_catalog/18--ux-hooks/mode-aware-response-profiles.md) |
@@ -3885,7 +3734,6 @@ This split playbook keeps automated coverage references in three places:
 | 173 | Features | Query decomposition (SPECKIT_QUERY_DECOMPOSITION) | [173](12--query-intelligence/query-decomposition-speckit-query-decomposition.md) | [12--query-intelligence/query-decomposition.md](../feature_catalog/12--query-intelligence/query-decomposition.md) |
 | 174 | Features | Graph concept routing (SPECKIT_GRAPH_CONCEPT_ROUTING) | [174](10--graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md) | [12--query-intelligence/graph-concept-routing.md](../feature_catalog/12--query-intelligence/graph-concept-routing.md) |
 | 175 | Features | Typed traversal (SPECKIT_TYPED_TRAVERSAL) | [175](10--graph-signal-activation/typed-traversal-speckit-typed-traversal.md) | [10--graph-signal-activation/typed-traversal.md](../feature_catalog/10--graph-signal-activation/typed-traversal.md) |
-| 176 | Features | Implicit feedback log (SPECKIT_IMPLICIT_FEEDBACK_LOG) | [176](13--memory-quality-and-indexing/_deprecated/176-implicit-feedback-log-speckit-implicit-feedback-log.md) | [13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md](../feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md) |
 | 177 | Features | Hybrid decay policy (SPECKIT_HYBRID_DECAY_POLICY) | [177](13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md) | [13--memory-quality-and-indexing/hybrid-decay-policy.md](../feature_catalog/13--memory-quality-and-indexing/hybrid-decay-policy.md) |
 | 178 | Features | Save quality gate exceptions (SPECKIT_SAVE_QUALITY_GATE_EXCEPTIONS) | [178](13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md) | [13--memory-quality-and-indexing/save-quality-gate-exceptions.md](../feature_catalog/13--memory-quality-and-indexing/save-quality-gate-exceptions.md) |
 | 179 | Features | Empty result recovery (SPECKIT_EMPTY_RESULT_RECOVERY_V1) | [179](18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md) | [18--ux-hooks/empty-result-recovery.md](../feature_catalog/18--ux-hooks/empty-result-recovery.md) |
@@ -3905,23 +3753,20 @@ This split playbook keeps automated coverage references in three places:
 | M-005 | Dedicated Memory/Spec-Kit Scenarios | Outsourced Agent Memory Capture Round-Trip | [M-005](13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md) | [13--memory-quality-and-indexing/outsourced-agent-memory-capture.md](../feature_catalog/13--memory-quality-and-indexing/outsourced-agent-memory-capture.md) |
 | M-006 | Dedicated Memory/Spec-Kit Scenarios | Session Enrichment and Alignment Guardrails | [M-006](13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md) | [13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md](../feature_catalog/13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md) |
 | M-007 | Dedicated Memory/Spec-Kit Scenarios | Session Capturing Pipeline Quality | [M-007](16--tooling-and-scripts/session-capturing-pipeline-quality.md) | [16--tooling-and-scripts/session-capturing-pipeline-quality.md](../feature_catalog/16--tooling-and-scripts/session-capturing-pipeline-quality.md) |
-| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/008-feature-09-direct-manual-scenario-per-record-history-log.md) | [02--mutation/per-memory-history-log.md](../feature_catalog/02--mutation/per-memory-history-log.md) |
+| M-008 | Dedicated Memory/Spec-Kit Scenarios | Feature 09 Direct Manual Scenario (Per-memory History Log) | [M-008](02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md) | [02--mutation/per-memory-history-log.md](../feature_catalog/02--mutation/per-memory-history-log.md) |
 | 190 | Features | Session recovery via /spec_kit:resume | [190](01--retrieval/session-recovery-spec-kit-resume.md) | [01--retrieval/session-recovery-spec-kit-resume.md](../feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md) |
 | 125-map | Features | Audit phase mapping note (020) | — | [19--feature-flag-reference/audit-phase-020-mapping-note.md](../feature_catalog/19--feature-flag-reference/audit-phase-020-mapping-note.md) |
 | 020-stub | Features | Remediation and revalidation (stub) | — | [20--remediation-revalidation/category-stub.md](../feature_catalog/20--remediation-revalidation/category-stub.md) |
 | 021-stub | Features | Implement and remove deprecated (stub) | — | [21--implement-and-remove-deprecated-features/category-stub.md](../feature_catalog/21--implement-and-remove-deprecated-features/category-stub.md) |
 | 188 | Features | AST-level section retrieval tool | [188](01--retrieval/ast-level-section-retrieval-tool.md) | [01--retrieval/ast-level-section-retrieval-tool.md](../feature_catalog/01--retrieval/ast-level-section-retrieval-tool.md) |
 | 189 | Features | Tool-result extraction to working memory | [189](01--retrieval/tool-result-extraction-to-working-memory.md) | [01--retrieval/tool-result-extraction-to-working-memory.md](../feature_catalog/01--retrieval/tool-result-extraction-to-working-memory.md) |
-| 191 | Features | Namespace management CRUD tools | [191](02--mutation/191-namespace-management-crud-tools.md) | [02--mutation/07-namespace-management-crud-tools.md](../feature_catalog/02--mutation/07-namespace-management-crud-tools.md) |
 | 192 | Features | Correction tracking with undo | [192](02--mutation/correction-tracking-with-undo.md) | [02--mutation/correction-tracking-with-undo.md](../feature_catalog/02--mutation/correction-tracking-with-undo.md) |
-| 193 | Features | ANCHOR tags as graph nodes | [193](10--graph-signal-activation/_deprecated/193-anchor-tags-as-graph-nodes.md) | [10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md](../feature_catalog/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md) |
 | 194 | Features | Causal neighbor boost and injection | [194](10--graph-signal-activation/causal-neighbor-boost-and-injection.md) | [10--graph-signal-activation/causal-neighbor-boost-and-injection.md](../feature_catalog/10--graph-signal-activation/causal-neighbor-boost-and-injection.md) |
 | 195 | Features | Temporal contiguity layer | [195](10--graph-signal-activation/temporal-contiguity-layer.md) | [10--graph-signal-activation/temporal-contiguity-layer.md](../feature_catalog/10--graph-signal-activation/temporal-contiguity-layer.md) |
 | 196 | Features | Tool-level TTL cache | [196](11--scoring-and-calibration/tool-level-ttl-cache.md) | [11--scoring-and-calibration/tool-level-ttl-cache.md](../feature_catalog/11--scoring-and-calibration/tool-level-ttl-cache.md) |
 | 197 | Features | Access-driven popularity scoring | [197](11--scoring-and-calibration/access-driven-popularity-scoring.md) | [11--scoring-and-calibration/access-driven-popularity-scoring.md](../feature_catalog/11--scoring-and-calibration/access-driven-popularity-scoring.md) |
 | 198 | Features | Temporal-structural coherence scoring | [198](11--scoring-and-calibration/temporal-structural-coherence-scoring.md) | [11--scoring-and-calibration/temporal-structural-coherence-scoring.md](../feature_catalog/11--scoring-and-calibration/temporal-structural-coherence-scoring.md) |
 | 199 | Features | Content-aware memory filename generation | [199](13--memory-quality-and-indexing/content-aware-memory-filename-generation.md) | [13--memory-quality-and-indexing/content-aware-memory-filename-generation.md](../feature_catalog/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md) |
-| 201 | Features | Warm server / daemon mode | [201](14--pipeline-architecture/_deprecated/201-warm-server-daemon-mode.md) | [14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md](../feature_catalog/14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md) |
 | 202 | Features | Backend storage adapter abstraction | [202](14--pipeline-architecture/backend-storage-adapter-abstraction.md) | [14--pipeline-architecture/backend-storage-adapter-abstraction.md](../feature_catalog/14--pipeline-architecture/backend-storage-adapter-abstraction.md) |
 | 203 | Features | Atomic write-then-index API | [203](14--pipeline-architecture/atomic-write-then-index-api.md) | [14--pipeline-architecture/atomic-write-then-index-api.md](../feature_catalog/14--pipeline-architecture/atomic-write-then-index-api.md) |
 | 204 | Features | Embedding retry orchestrator | [204](14--pipeline-architecture/embedding-retry-orchestrator.md) | [14--pipeline-architecture/embedding-retry-orchestrator.md](../feature_catalog/14--pipeline-architecture/embedding-retry-orchestrator.md) |
@@ -3943,19 +3788,15 @@ This split playbook keeps automated coverage references in three places:
 | 251 | Context Preservation | Stop hook saves | [251](22--context-preservation/stop-hook-saves.md) | [22--context-preservation/stop-token-tracking.md](../feature_catalog/22--context-preservation/stop-token-tracking.md) |
 | 252 | Context Preservation | Cross-runtime fallback | [252](22--context-preservation/cross-runtime-fallback.md) | [22--context-preservation/cross-runtime-fallback.md](../feature_catalog/22--context-preservation/cross-runtime-fallback.md) |
 | 253 | Context Preservation | Runtime detection | [253](22--context-preservation/runtime-detection.md) | [22--context-preservation/runtime-detection.md](../feature_catalog/22--context-preservation/runtime-detection.md) |
-| 254 | Context Preservation | Code graph scan and structural query | [254](22--context-preservation/254-code-graph-scan-query.md) | [22--context-preservation/08-code-graph-storage-query.md](../feature_catalog/22--context-preservation/08-code-graph-storage-query.md) |
-| 255 | Context Preservation | Code Graph code graph routing | [255](22--context-preservation/255-code-graph-graph-routing.md) | [22--context-preservation/09-code_graph-bridge-context.md](../feature_catalog/22--context-preservation/09-code_graph-bridge-context.md) |
 | 256 | Context Preservation | Budget allocator | [256](22--context-preservation/budget-allocator.md) | [22--context-preservation/budget-allocator.md](../feature_catalog/22--context-preservation/budget-allocator.md) |
 | 257 | Context Preservation | Working-set compaction | [257](22--context-preservation/working-set-compaction.md) | [22--context-preservation/working-set-tracker.md](../feature_catalog/22--context-preservation/working-set-tracker.md) |
 | 258 | Context Preservation | 3-source compact merger within budget | [258](22--context-preservation/compact-merger-assembly.md) | [22--context-preservation/compact-merger.md](../feature_catalog/22--context-preservation/compact-merger.md) |
-| 259 | Context Preservation | Tree-sitter WASM parser symbol extraction | [259](22--context-preservation/259-tree-sitter-parser.md) | [22--context-preservation/13-tree-sitter-wasm-parser.md](../feature_catalog/22--context-preservation/13-tree-sitter-wasm-parser.md) |
-| 260 | Context Preservation | Code graph auto-trigger on fresh install | [260](22--context-preservation/260-code-graph-auto-trigger.md) | [22--context-preservation/15-code-graph-auto-trigger.md](../feature_catalog/22--context-preservation/15-code-graph-auto-trigger.md) |
 | 261 | Context Preservation | MCP auto-priming Prime Package delivery | [261](22--context-preservation/mcp-auto-priming.md) | [22--context-preservation/mcp-auto-priming.md](../feature_catalog/22--context-preservation/mcp-auto-priming.md) |
 | 262 | Context Preservation | Session health ok/warning/stale status | [262](22--context-preservation/session-health.md) | [22--context-preservation/session-health-tool.md](../feature_catalog/22--context-preservation/session-health-tool.md) |
 | 263 | Context Preservation | Session resume merged result | [263](22--context-preservation/session-resume.md) | [22--context-preservation/session-resume-tool.md](../feature_catalog/22--context-preservation/session-resume-tool.md) |
 | 264 | Context Preservation | Query-intent routing in memory_context | [264](22--context-preservation/query-intent-routing.md) | [22--context-preservation/query-intent-routing.md](../feature_catalog/22--context-preservation/query-intent-routing.md) |
-| 265 | Context Preservation | Gemini CLI hooks session-prime | [265](22--context-preservation/265-gemini-hooks.md) | [22--context-preservation/gemini-cli-hooks.md](../feature_catalog/22--context-preservation/gemini-cli-hooks.md) |
-| 266 | Context Preservation | Context preservation metrics quality score | [266](22--context-preservation/266-context-metrics.md) | [22--context-preservation/context-preservation-metrics.md](../feature_catalog/22--context-preservation/context-preservation-metrics.md) |
+| 265 | Context Preservation | Gemini CLI hooks session-prime | [265](22--context-preservation/gemini-cli-hooks.md) | [22--context-preservation/gemini-cli-hooks.md](../feature_catalog/22--context-preservation/gemini-cli-hooks.md) |
+| 266 | Context Preservation | Context preservation metrics quality score | [266](22--context-preservation/context-preservation-metrics.md) | [22--context-preservation/context-preservation-metrics.md](../feature_catalog/22--context-preservation/context-preservation-metrics.md) |
 | 267 | Context Preservation | Tool routing enforcement | [267](22--context-preservation/tool-routing-enforcement.md) | [22--context-preservation/tool-routing-enforcement.md](../feature_catalog/22--context-preservation/tool-routing-enforcement.md) |
 | 268 | Features | Post-insert retry budget | [268](05--lifecycle/post-insert-retry-budget.md) | [05--lifecycle/post-insert-retry-budget.md](../feature_catalog/05--lifecycle/post-insert-retry-budget.md) |
 | 269 | Features | Scope normalizer canonicalization and lint | [269](08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) | [08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md](../feature_catalog/08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md) |
@@ -3963,16 +3804,9 @@ This split playbook keeps automated coverage references in three places:
 | 271 | Features | Research metadata backfill | [271](16--tooling-and-scripts/research-metadata-backfill.md) | [16--tooling-and-scripts/research-metadata-backfill.md](../feature_catalog/16--tooling-and-scripts/research-metadata-backfill.md) |
 | 272 | Features | Strict validation add-ons: continuity freshness and evidence markers | [272](16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) | [16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md](../feature_catalog/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md) |
 | 273 | Features | Session-resume caller binding and Unicode sanitization | [273](17--governance/session-resume-caller-binding-and-unicode-sanitization.md) | [17--governance/session-resume-caller-binding-and-unicode-sanitization.md](../feature_catalog/17--governance/session-resume-caller-binding-and-unicode-sanitization.md) |
-| 274 | Features | Shared provenance and Copilot compact-cache parity | [274](18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md) | [18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md](../feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md) |
-| 275 | Context Preservation | Code-graph readiness contract | [275](22--context-preservation/275-code-graph-readiness-contract.md) | [22--context-preservation/24-code-graph-readiness-contract.md](../feature_catalog/22--context-preservation/24-code-graph-readiness-contract.md) |
 | 276 | Features | Reconsolidation conflict transaction helper | [276](02--mutation/reconsolidation-conflict-transaction-helper.md) | [02--mutation/reconsolidation-conflict-transaction-helper.md](../feature_catalog/02--mutation/reconsolidation-conflict-transaction-helper.md) |
 | 278 | Features | Memory retention sweep basic flow | [278](04--maintenance/memory-retention-sweep-basic-flow.md) | [04--maintenance/memory-retention-sweep-basic-flow.md](04--maintenance/memory-retention-sweep-basic-flow.md) |
 | 280 | Features | CLI matrix adapter runner smoke | [280](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) | [16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md](16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md) |
-| 281 | Context Preservation | Code graph read-path selective self-heal | [281](22--context-preservation/281-code-graph-read-path-selective-self-heal.md) | [22--context-preservation/08-code-graph-storage-query.md](../feature_catalog/22--context-preservation/08-code-graph-storage-query.md) |
-| 282 | Context Preservation | Code graph matrix cell coverage evidence | [282](22--context-preservation/282-code-graph-cell-coverage-evidence.md) | [22--context-preservation/282-code-graph-cell-coverage-evidence.md](22--context-preservation/282-code-graph-cell-coverage-evidence.md) |
-| 283 | Context Preservation | Skill graph status | [283](22--context-preservation/283-skill-graph-status.md) | [22--context-preservation/28-skill-graph-status.md](../feature_catalog/22--context-preservation/28-skill-graph-status.md) |
-| 284 | Context Preservation | Skill graph query | [284](22--context-preservation/284-skill-graph-query.md) | [22--context-preservation/27-skill-graph-query.md](../feature_catalog/22--context-preservation/27-skill-graph-query.md) |
-| 285 | Context Preservation | Skill graph validate | [285](22--context-preservation/285-skill-graph-validate.md) | [22--context-preservation/29-skill-graph-validate.md](../feature_catalog/22--context-preservation/29-skill-graph-validate.md) |
 
 ---
 | 323 | Doctor Commands | /doctor memory fresh-install bootstrap | [323](23--doctor-commands/doctor-memory-fresh-install.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
@@ -3986,20 +3820,16 @@ This split playbook keeps automated coverage references in three places:
 | 331 | Doctor Commands | /doctor deep-loop lazy-init from iteration folders | [331](23--doctor-commands/doctor-deep-loop-lazy-init.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
 | 332 | Doctor Commands | /doctor deep-loop empty graph + no iteration source | [332](23--doctor-commands/doctor-deep-loop-empty-no-source.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
 | 333 | Doctor Commands | /doctor deep-loop convergence gold-battery ≥3 iterations | [333](23--doctor-commands/doctor-deep-loop-convergence.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 334 | Doctor Commands | /doctor code-graph daemon healthy reindex | [334](23--doctor-commands/334-doctor-code_graph-daemon-healthy.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 335 | Doctor Commands | /doctor code-graph daemon zombie idempotent restart | [335](23--doctor-commands/335-doctor-code_graph-daemon-zombie.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
-| 336 | Doctor Commands | /doctor code-graph daemon unreachable refusal | [336](23--doctor-commands/336-doctor-code_graph-daemon-unreachable.md) | [.opencode/commands/doctor/speckit.md](../../../commands/doctor/speckit.md) |
 | 338 | Doctor Commands | /doctor:update G5 failure injection mid-rebuild | [338](23--doctor-commands/doctor-update-G5-confirm-failure-injection.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 339 | Doctor Commands | /doctor:update G6 concurrent dispatch refusal via flock | [339](23--doctor-commands/doctor-update-G6-concurrent.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 340 | Doctor Commands | /doctor:update G7 SIGINT mid-rebuild + snapshot restore | [340](23--doctor-commands/doctor-update-G7-sigint.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 341 | Doctor Commands | /doctor:update G8 migration manifest gap detection | [341](23--doctor-commands/doctor-update-G8-migration-gap.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 342 | Doctor Commands | /doctor:update G9 cross-subsystem dashboard render | [342](23--doctor-commands/doctor-update-G9-dashboard.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
 | 344 | Doctor Commands | /doctor:update tier-aware single interactive flow | [344](23--doctor-commands/doctor-update-tier-aware-default.md) | [.opencode/commands/doctor/update.md](../../../commands/doctor/update.md) |
-| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](23--doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
-| 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](23--doctor-commands/version-migration-cleanup-legacy.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
-| 347 | Doctor Commands | Version migration no-op (already-current) | [347](23--doctor-commands/version-migration-no-op.md) | [migration-manifest.json](../mcp_server/database/migration-manifest.json) |
+| 345 | Doctor Commands | Version migration 3.3.0.0 → 3.4.1.0 end-to-end | [345](23--doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md) | [migration-manifest.json](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 346 | Doctor Commands | Version migration cleanup-legacy with per-file prompts | [346](23--doctor-commands/version-migration-cleanup-legacy.md) | [migration-manifest.json](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
+| 347 | Doctor Commands | Version migration no-op (already-current) | [347](23--doctor-commands/version-migration-no-op.md) | [migration-manifest.json](../../../specs/system-spec-kit/026-graph-and-context-optimization/000-release-and-program-cleanup/003-cross-cutting-cleanup-pass/009-phase-parent-lean-trio-documentation/004-legacy-phase-parent-migration/scratch/migration-manifest.json) |
 | 416 | Memory Quality And Indexing | vec_memories KNN dual-write and factory shard fallback | [416](13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) | [13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md](../feature_catalog/13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md) |
 | 417 | Memory Quality And Indexing | Constitutional sufficiency-gate exemption | [417](13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) | [13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md](../feature_catalog/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md) |
 | 418 | Memory Quality And Indexing | Graph-metadata and lineage repair runner | [418](13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) | [13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md](../feature_catalog/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md) |
 | 419 | Features | Orphan MCP runtime lifecycle guardrails | [419](16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md) | [16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md](../feature_catalog/16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md), [19--feature-flag-reference/launcher-idle-timeout.md](../feature_catalog/19--feature-flag-reference/launcher-idle-timeout.md) |
-| EX-036 | Existing Features | Embedding reconciliation (memory_embedding_reconcile) | [EX-036](04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md) | [04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md](../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md) |

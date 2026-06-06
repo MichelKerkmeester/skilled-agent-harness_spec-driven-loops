@@ -8,8 +8,11 @@ const S = '.opencode/skills/';
 
 // {file, old, new} — old/new are the link targets (the part inside ](...)).
 const FIXES = [
-  // sk-code webflow surface-marker (reference doc) — verification only (debugging/implementation are dirty → deferred)
+  // sk-code webflow surface-marker (reference docs)
   { f: S + 'sk-code/references/webflow/verification/verification_workflows.md', old: '../../assets/checklists/verification_checklist.md', new: '../../../assets/webflow/checklists/verification_checklist.md' },
+  { f: S + 'sk-code/references/webflow/debugging/debugging_workflows.md', old: '../../assets/checklists/debugging_checklist.md', new: '../../../assets/webflow/checklists/debugging_checklist.md' },
+  { f: S + 'sk-code/references/webflow/implementation/implementation_workflows.md', old: '../../assets/patterns/wait_patterns.js', new: '../../../assets/webflow/patterns/wait_patterns.js' },
+  { f: S + 'sk-code/references/webflow/implementation/implementation_workflows.md', old: '../../assets/patterns/validation_patterns.js', new: '../../../assets/webflow/patterns/validation_patterns.js' },
   // motion_dev off-by-one depth
   { f: S + 'sk-code/assets/webflow/checklists/code_quality_checklist.md', old: '../../references/motion_dev/', new: '../../../references/motion_dev/' },
   // skill-advisor freshness_contract category dirs (off-by-one depth)

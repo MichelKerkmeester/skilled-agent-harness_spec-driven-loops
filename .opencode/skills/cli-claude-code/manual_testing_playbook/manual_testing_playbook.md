@@ -475,21 +475,6 @@ Expected signals: Response names a documentation level explicitly. Lists at leas
 
 > **Feature File:** [CC-024](04--agent-routing/speckit-agent-spec-folder.md)
 
-### CC-025 | Write agent doc generation
-
-#### Description
-
-Verify `--agent write` writes a sk-doc template-driven README to a temp path with at least 3 emoji-prefixed H2 headers and no table of contents.
-
-#### Scenario Contract
-
-Prompt: As an external-AI conductor wanting a template-driven README for a small skill, dispatch `claude -p --agent write` to generate `/tmp/cc-025-readme/README.md` for a fictional skill. Verify the file is written, has at least 3 emoji-prefixed H2 headers, and contains no table of contents. Return a verdict naming the file path and the H2 emoji count.
-
-Expected signals: Dispatch exits 0. README file exists at the requested path. README contains no table of contents section. H2 headers include emojis (per sk-doc template enforcement).
-
-#### Test Execution
-
-> **Feature File:** [CC-025](04--agent-routing/009-write-agent-doc-generation.md)
 
 ---
 
@@ -689,7 +674,6 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CC-022: [Orchestrate agent multi-step coordination](04--agent-routing/orchestrate-agent-multi-step.md)
 - CC-023: [Research agent deep investigation](04--agent-routing/research-agent-investigation.md)
 - CC-024: [Speckit agent spec folder workflow](04--agent-routing/speckit-agent-spec-folder.md)
-- CC-025: [Write agent doc generation](04--agent-routing/009-write-agent-doc-generation.md)
 
 ### SESSION CONTINUITY
 

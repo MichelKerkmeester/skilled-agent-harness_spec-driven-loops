@@ -408,21 +408,6 @@ Expected signals: Exit 0. Severity tag present. Line reference present. Target f
 
 > **Feature File:** [CO-015](04--agent-routing/review-agent-security-audit.md)
 
-### CO-016 | Write agent documentation generation
-
-#### Description
-
-Verify `--agent write` loads the sk-doc skill, applies the appropriate template (e.g., readme_template.md), runs the DQI score and produces a documentation file at the requested path within its workspace-write permission.
-
-#### Scenario Contract
-
-Prompt summary: As an external-AI conductor wanting a template-driven README for a small documentation skill, dispatch --agent write to generate /tmp/co-016-readme/README.md for a fictional skill called Demo Skill. Verify the dispatch loads sk-doc, applies readme_template.md, writes the README file with emoji-prefixed H2 sections and no table of contents.
-
-Expected signals: Exit 0. Write tool.call for the README path. README file exists with >= 3 emoji-prefixed H2 headers and no TOC.
-
-#### Test Execution
-
-> **Feature File:** [CO-016](04--agent-routing/004-write-agent-doc-generation.md)
 
 ### CO-017 | Ultra-think multi-strategy planning
 
@@ -820,7 +805,6 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-013: [General agent default route](04--agent-routing/general-agent-default.md)
 - CO-014: [Context LEAF agent (read-only)](04--agent-routing/context-leaf-agent.md)
 - CO-015: [Review agent security audit](04--agent-routing/review-agent-security-audit.md)
-- CO-016: [Write agent documentation generation](04--agent-routing/004-write-agent-doc-generation.md)
 - CO-017: [Ultra-think multi-strategy planning](04--agent-routing/multi-ai-council-multi-strategy.md)
 - CO-032: [Deep-research agent iteration loop](04--agent-routing/deep-research-agent-iterations.md)
 - CO-033: [Deep-review agent audit loop](04--agent-routing/deep-review-agent-audit.md)
