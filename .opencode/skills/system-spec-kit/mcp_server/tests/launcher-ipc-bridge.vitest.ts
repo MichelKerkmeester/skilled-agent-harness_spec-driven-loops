@@ -4,6 +4,7 @@ import net from 'node:net';
 import { PassThrough } from 'node:stream';
 import {
   copyFileSync,
+  cpSync,
   mkdirSync,
   mkdtempSync,
   rmSync,
@@ -116,10 +117,13 @@ function copyLauncherFixture(root: string, launcherRelativePath: string): string
   const launcherPath = join(root, launcherRelativePath);
   mkdirSync(dirname(launcherPath), { recursive: true });
   copyFileSync(join(repoRoot, launcherRelativePath), launcherPath);
-  const bridgeSource = join(repoRoot, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
-  const bridgeDest = join(root, '.opencode/bin/lib/launcher-ipc-bridge.cjs');
-  mkdirSync(dirname(bridgeDest), { recursive: true });
-  copyFileSync(bridgeSource, bridgeDest);
+  // The launcher require()s its whole ./lib tree (model-server-supervision.cjs,
+  // launcher-session-proxy.cjs, launcher-ipc-bridge.cjs) at module-load time. Copying only the
+  // bridge file makes every spawned launcher die with MODULE_NOT_FOUND before it reaches bridge
+  // mode, so copy the entire sibling lib tree.
+  const libSource = join(repoRoot, '.opencode/bin/lib');
+  const libDest = join(root, '.opencode/bin/lib');
+  cpSync(libSource, libDest, { recursive: true });
   return launcherPath;
 }
 

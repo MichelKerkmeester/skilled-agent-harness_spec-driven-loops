@@ -1081,6 +1081,15 @@ function computeBlastRadius(
   const affectedByFile = new Map<string, number>();
   const normalizedSources = [...new Set(sourceFiles)];
 
+  // Tracks whether the BFS frontier still held unexpanded, never-visited
+  // neighbors when it hit `maxDepth`. Without this, a caller asking "what
+  // depends on X" cannot distinguish a fully-traversed graph from one cut off
+  // at the depth bound: `overflowed` only reports the count-based slice, not
+  // the depth horizon. We flip this only when a neighbor was dropped *solely*
+  // because it lay beyond `maxDepth` (not because it was already visited at a
+  // shallower depth, where no reachability information is lost).
+  let depthTruncated = false;
+
   for (const sourceFile of normalizedSources) {
     const visited = new Set<string>([sourceFile]);
     const queue: Array<{ filePath: string; depth: number }> = [{ filePath: sourceFile, depth: 0 }];
@@ -1094,7 +1103,13 @@ function computeBlastRadius(
 
       for (const importerFilePath of importers) {
         const nextDepth = current.depth + 1;
-        if (nextDepth > maxDepth || visited.has(importerFilePath)) {
+        if (visited.has(importerFilePath)) {
+          continue;
+        }
+        if (nextDepth > maxDepth) {
+          // A reachable, never-visited dependent exists beyond the depth bound,
+          // so the reported set is depth-incomplete.
+          depthTruncated = true;
           continue;
         }
         visited.add(importerFilePath);
@@ -1158,6 +1173,10 @@ function computeBlastRadius(
       filePath,
       hotFileBreadcrumb,
     })),
+    // Omitted when the traversal reached the full depth horizon, mirroring the
+    // `overflowed`-driven conditional spread below so the field is absent
+    // (rather than `false`) in the common, complete case.
+    ...(depthTruncated ? { depthTruncated: true } : {}),
     ...(overflowed
       ? {
         failureFallback: {
@@ -1485,6 +1504,12 @@ export async function handleCodeGraphQuery(args: QueryArgs): Promise<{ content: 
             minConfidence: blastRadius.minConfidence,
             ambiguityCandidates: blastRadius.ambiguityCandidates,
             ...(blastRadius.failureFallback ? { failureFallback: blastRadius.failureFallback } : {}),
+            // Propagate the depth-completeness signal so callers can tell the
+            // BFS stopped at `maxDepth` with dependents still unexplored,
+            // distinct from the count-based `failureFallback` overflow.
+            ...('depthTruncated' in blastRadius && blastRadius.depthTruncated
+              ? { depthTruncated: true }
+              : {}),
             hotFileBreadcrumbs: blastRadius.hotFileBreadcrumbs,
           }, readiness, 'code_graph_query blast_radius payload'),
         }, null, 2),

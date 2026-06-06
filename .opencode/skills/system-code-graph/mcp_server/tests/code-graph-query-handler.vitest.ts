@@ -1099,6 +1099,9 @@ describe('code-graph-query handler', () => {
     expect(defaultParsed.data.affectedFiles).not.toContainEqual(
       expect.objectContaining({ filePath: 'src/c.ts' }),
     );
+    // Default mode caps at depth 1, but src/c.ts is a reachable dependent at
+    // depth 2: the traversal is depth-incomplete and must say so.
+    expect(defaultParsed.data.depthTruncated).toBe(true);
 
     // includeTransitive:true: multi-hop closure up to maxDepth includes depth-2.
     const transitiveResult = await handleCodeGraphQuery({
@@ -1114,6 +1117,34 @@ describe('code-graph-query handler', () => {
     expect(transitiveParsed.data.affectedFiles).toContainEqual(
       expect.objectContaining({ filePath: 'src/c.ts', depth: 2 }),
     );
+    // maxDepth:3 fully exhausts the a -> b -> c chain (deepest dependent is
+    // depth 2), so the depth-completeness flag must be omitted, not `false`.
+    expect(transitiveParsed.data).not.toHaveProperty('depthTruncated');
+  });
+
+  // depthTruncated must report the depth horizon independently of the
+  // count-based `failureFallback` overflow: a fully-traversed graph that fits
+  // under `limit` must NOT claim depth truncation.
+  it('blast_radius omits depthTruncated when the graph is fully traversed within maxDepth', async () => {
+    mocks.queryFileImportDependents.mockReturnValue([
+      { importedFilePath: 'src/a.ts', importerFilePath: 'src/b.ts' },
+    ]);
+    mocks.queryFileDegrees.mockReturnValue([
+      { filePath: 'src/a.ts', degree: 1 },
+      { filePath: 'src/b.ts', degree: 1 },
+    ]);
+
+    const result = await handleCodeGraphQuery({
+      operation: 'blast_radius',
+      subject: 'src/a.ts',
+      includeTransitive: true,
+      maxDepth: 3,
+    });
+    const parsed = JSON.parse(result.content[0].text);
+
+    expect(parsed.data.affectedFiles).toHaveLength(1);
+    expect(parsed.data).not.toHaveProperty('depthTruncated');
+    expect(parsed.data).not.toHaveProperty('failureFallback');
   });
 
   it('returns structured failureFallback when blast-radius cannot resolve a subject', async () => {

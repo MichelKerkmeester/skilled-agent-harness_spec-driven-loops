@@ -78,9 +78,10 @@ function dispatchArgs(model, dir, variant) {
   // No explicit --agent: on this opencode build `general` is classified as a
   // subagent (warns + falls back), and MiniMax rejects --agent outright. The
   // default primary agent loads skills fine for a routing-analysis dispatch.
-  // Reasoning effort (provider-specific, e.g. high/max). MiniMax highspeed
-  // ignores variants; skip it there to avoid a rejected flag.
-  if (variant && !/minimax/i.test(model)) args.push('--variant', variant);
+  // Reasoning effort (provider-specific, e.g. high/max). Forwarded for all
+  // models, including MiniMax-M3 which accepts --variant and would otherwise
+  // silently lose its reasoning-effort setting.
+  if (variant) args.push('--variant', variant);
   args.push('--format', 'json', '--dir', dir);
   return args;
 }

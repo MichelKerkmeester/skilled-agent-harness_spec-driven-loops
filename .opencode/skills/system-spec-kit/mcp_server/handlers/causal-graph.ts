@@ -28,6 +28,11 @@ import { createScopeFilterPredicate } from '../lib/governance/scope-governance.j
 // Shared handler types
 import type { MCPResponse } from './types.js';
 
+// Shared post-mutation cache invalidation. A causal edge change alters graph
+// signals, node degree, and co-activation, so the graph-structure caches must be
+// cleared on link/unlink — otherwise they stay stale until their ~60s TTL.
+import { runPostMutationHooks } from './mutation-hooks.js';
+
 // Feature catalog: Causal graph statistics (memory_causal_stats)
 // Feature catalog: Causal chain tracing (memory_drift_why)
 
@@ -141,13 +146,15 @@ const RELATION_SKEW_SHARE_THRESHOLD = 0.80;
 const RELATION_SKEW_MIN_TOTAL = 50;
 const RELATION_INSUFFICIENT_TOTAL = 5;
 const VALID_CAUSAL_RELATIONS = Object.values(causalEdges.RELATION_TYPES) as string[];
+// Canonical relation vocabulary for zero-filled stats output. Matches RELATION_TYPES;
+// `produced`/`cited_by` are not valid edge relations under the schema CHECK and were dropped.
 const MEMORY_CAUSAL_OUTPUT_RELATIONS = [
   'supersedes',
   'caused',
   'supports',
   'contradicts',
-  'produced',
-  'cited_by',
+  'enabled',
+  'derived_from',
 ] as const;
 
 function createZeroFilledRelationCounts(seed: Record<string, number> = {}): Record<string, number> {
@@ -895,6 +902,15 @@ async function handleMemoryCausalLink(args: CausalLinkArgs): Promise<MCPResponse
       });
     }
 
+    // A new edge changes graph signals/degree/co-activation; invalidate the
+    // graph-structure caches now so retrieval sees the link without waiting for
+    // the cache TTL. Best-effort: a hook failure must not fail a committed edge.
+    try {
+      runPostMutationHooks('causal-link', { sourceId, targetId, relation });
+    } catch (hookError: unknown) {
+      logCausalHandlerError('memory_causal_link:post-mutation-hooks', hookError);
+    }
+
     return createMCPSuccessResponse({
       tool: 'memory_causal_link',
       summary: `Created causal link: ${sourceId} --[${relation}]--> ${targetId}`,
@@ -1122,6 +1138,18 @@ async function handleMemoryCausalUnlink(args: CausalUnlinkArgs): Promise<MCPResp
     causalEdges.init(db);
 
     const result: { deleted: boolean } = { deleted: causalEdges.deleteEdge(edgeId) };
+
+    // Removing an edge changes graph signals/degree/co-activation; invalidate the
+    // graph-structure caches now so retrieval reflects the unlink without waiting
+    // for the cache TTL. Only when a real edge was removed (a no-op delete leaves
+    // the graph unchanged). Best-effort: a hook failure must not fail the unlink.
+    if (result.deleted) {
+      try {
+        runPostMutationHooks('causal-unlink', { edgeId });
+      } catch (hookError: unknown) {
+        logCausalHandlerError('memory_causal_unlink:post-mutation-hooks', hookError);
+      }
+    }
 
     const summary = result.deleted
       ? `Deleted causal edge ${edgeId}`
