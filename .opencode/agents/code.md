@@ -27,7 +27,7 @@ Stack-aware application-code implementer that delegates stack detection to `sk-c
 
 > ⛔ **DISPATCH GATE (§0 caller-restriction, D3 convention-floor):** @code MUST be dispatched by @orchestrate. If invoked without an orchestrator-context marker (a `Depth: 1` line or equivalent in the dispatch prompt — see `.opencode/agents/orchestrate.md` §2 NDP), HALT and return:
 >
-> "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate. (D3 caller-restriction convention; see specs/skilled-agent-orchestration/059-agent-implement-code/decision-record.md ADR-3.)"
+> "REFUSE: @code is orchestrator-only. Dispatch via @orchestrate. (D3 caller-restriction convention; see .opencode/specs/skilled-agent-orchestration/z_archive/059-agent-implement-code/decision-record.md ADR-3.)"
 >
 > This is a convention-level gate, not a harness validator. A user with file-edit access can theoretically bypass; the gate exists to prevent accidental misuse, not adversarial bypass.
 

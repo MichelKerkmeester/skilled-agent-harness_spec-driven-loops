@@ -1,0 +1,642 @@
+[
+  {
+    "file": ".opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--agent-routing/009-write-agent-doc-generation.md",
+    "bestGuess": "context-agent-codebase-exploration.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/cli-claude-code/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--agent-routing/009-write-agent-doc-generation.md",
+    "bestGuess": "context-agent-codebase-exploration.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--agent-routing/004-write-agent-doc-generation.md",
+    "bestGuess": "context-leaf-agent.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--agent-routing/004-write-agent-doc-generation.md",
+    "bestGuess": "context-leaf-agent.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
+    "bestGuess": "atomic-save-parity-and-partial-indexing-hints.md",
+    "bestScore": 0.29
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "04--maintenance/035-embedding-status-reconciliation.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
+    "basename": "09-anchor-tags-as-graph-nodes.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
+    "basename": "02-cold-start-novelty-boost.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
+    "basename": "02-relative-score-fusion-in-shadow-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
+    "basename": "22-implicit-feedback-log.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
+    "basename": "20-weekly-batch-feedback-learning.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
+    "basename": "09-activation-window-persistence.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
+    "ref": "14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
+    "basename": "15-warm-server-daemon-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md",
+    "ref": "../22--context-preservation/277-code-graph-fast-fail.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-mode-hybrid-enrichment.md",
+    "ref": "../../../../<spec-folder>",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-primary-deprecation-posture.md",
+    "ref": "../../../../<spec-folder>",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md",
+    "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
+    "bestGuess": "spec.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
+    "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
+    "bestGuess": "spec.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md",
+    "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
+    "bestGuess": "spec.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
+    "bestGuess": "memory-retention-sweep-basic-flow.md",
+    "bestScore": 0.2
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
+    "bestGuess": "memory-retention-sweep.md",
+    "bestScore": 0.25
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "11--scoring-and-calibration/_deprecated/024-cold-start-novelty-boost-n4.md",
+    "basename": "024-cold-start-novelty-boost-n4.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
+    "basename": "02-cold-start-novelty-boost.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "12--query-intelligence/_deprecated/034-relative-score-fusion-in-shadow-mode-r14-n1.md",
+    "basename": "034-relative-score-fusion-in-shadow-mode-r14-n1.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
+    "basename": "02-relative-score-fusion-in-shadow-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "14--pipeline-architecture/_deprecated/076-activation-window-persistence.md",
+    "basename": "076-activation-window-persistence.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
+    "basename": "09-activation-window-persistence.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md",
+    "bestGuess": "async-ingestion-job-lifecycle-p0-3.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "16--tooling-and-scripts/113-standalone-admin-cli.md",
+    "bestGuess": "eval-runner-cli.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "05--lifecycle/134-startup-pending-file-recovery-lifecycle-coverage.md",
+    "bestGuess": "advisory-ingest-lifecycle-forecast.md",
+    "bestScore": 0.17
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/164-batch-learned-feedback-speckit-batch-learned-feedback.md",
+    "basename": "164-batch-learned-feedback-speckit-batch-learned-feedback.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
+    "basename": "20-weekly-batch-feedback-learning.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/176-implicit-feedback-log-speckit-implicit-feedback-log.md",
+    "basename": "176-implicit-feedback-log-speckit-implicit-feedback-log.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
+    "basename": "22-implicit-feedback-log.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md",
+    "bestGuess": "atomic-save-parity-and-partial-indexing-hints.md",
+    "bestScore": 0.29
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
+    "bestGuess": "atomic-save-parity-and-partial-indexing-hints.md",
+    "bestScore": 0.29
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/275-code-graph-readiness-contract.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/24-code-graph-readiness-contract.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "11--scoring-and-calibration/_deprecated/024-cold-start-novelty-boost-n4.md",
+    "basename": "024-cold-start-novelty-boost-n4.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
+    "basename": "02-cold-start-novelty-boost.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "12--query-intelligence/_deprecated/034-relative-score-fusion-in-shadow-mode-r14-n1.md",
+    "basename": "034-relative-score-fusion-in-shadow-mode-r14-n1.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
+    "basename": "02-relative-score-fusion-in-shadow-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "14--pipeline-architecture/_deprecated/076-activation-window-persistence.md",
+    "basename": "076-activation-window-persistence.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
+    "basename": "09-activation-window-persistence.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "05--lifecycle/100-async-shutdown-with-deadline-server-lifecycle.md",
+    "bestGuess": "async-ingestion-job-lifecycle-p0-3.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "16--tooling-and-scripts/113-standalone-admin-cli.md",
+    "bestGuess": "eval-runner-cli.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "05--lifecycle/124-automatic-archival-lifecycle-coverage.md",
+    "bestGuess": "advisory-ingest-lifecycle-forecast.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/05--lifecycle/07-automatic-archival-subsystem.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "05--lifecycle/134-startup-pending-file-recovery-lifecycle-coverage.md",
+    "bestGuess": "advisory-ingest-lifecycle-forecast.md",
+    "bestScore": 0.17
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/164-batch-learned-feedback-speckit-batch-learned-feedback.md",
+    "basename": "164-batch-learned-feedback-speckit-batch-learned-feedback.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
+    "basename": "20-weekly-batch-feedback-learning.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "13--memory-quality-and-indexing/_deprecated/176-implicit-feedback-log-speckit-implicit-feedback-log.md",
+    "basename": "176-implicit-feedback-log-speckit-implicit-feedback-log.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
+    "basename": "22-implicit-feedback-log.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "02--mutation/191-namespace-management-crud-tools.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/02--mutation/07-namespace-management-crud-tools.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "10--graph-signal-activation/_deprecated/193-anchor-tags-as-graph-nodes.md",
+    "basename": "193-anchor-tags-as-graph-nodes.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
+    "basename": "09-anchor-tags-as-graph-nodes.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "14--pipeline-architecture/_deprecated/201-warm-server-daemon-mode.md",
+    "basename": "201-warm-server-daemon-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "area": "catalog-playbook",
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
+    "basename": "15-warm-server-daemon-mode.md",
+    "candidate_count": 0,
+    "proposed_correct_target": null,
+    "confidence": "no_match",
+    "reason": "category dir missing: .opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated"
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/254-code-graph-scan-query.md",
+    "bestGuess": "query-intent-classifier.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/08-code-graph-storage-query.md",
+    "bestGuess": "query-intent-classifier.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/255-code-graph-graph-routing.md",
+    "bestGuess": "query-intent-routing.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/09-code_graph-bridge-context.md",
+    "bestGuess": "context-preservation-metrics.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/259-tree-sitter-parser.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/13-tree-sitter-wasm-parser.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/260-code-graph-auto-trigger.md",
+    "bestGuess": "mcp-auto-priming.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/15-code-graph-auto-trigger.md",
+    "bestGuess": "mcp-auto-priming.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "18--ux-hooks/274-shared-provenance-and-copilot-compact-cache-parity.md",
+    "bestGuess": "atomic-save-parity-and-partial-indexing-hints.md",
+    "bestScore": 0.29
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
+    "bestGuess": "atomic-save-parity-and-partial-indexing-hints.md",
+    "bestScore": 0.29
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/275-code-graph-readiness-contract.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/24-code-graph-readiness-contract.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/281-code-graph-read-path-selective-self-heal.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/08-code-graph-storage-query.md",
+    "bestGuess": "query-intent-classifier.md",
+    "bestScore": 0.25
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/282-code-graph-cell-coverage-evidence.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/282-code-graph-cell-coverage-evidence.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/283-skill-graph-status.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/28-skill-graph-status.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/284-skill-graph-query.md",
+    "bestGuess": "query-intent-classifier.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/27-skill-graph-query.md",
+    "bestGuess": "query-intent-classifier.md",
+    "bestScore": 0.33
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "22--context-preservation/285-skill-graph-validate.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/22--context-preservation/29-skill-graph-validate.md",
+    "bestGuess": null,
+    "bestScore": 0
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "23--doctor-commands/334-doctor-code_graph-daemon-healthy.md",
+    "bestGuess": "doctor-causal-graph-add-only.md",
+    "bestScore": 0.4
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "23--doctor-commands/335-doctor-code_graph-daemon-zombie.md",
+    "bestGuess": "doctor-causal-graph-add-only.md",
+    "bestScore": 0.4
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "23--doctor-commands/336-doctor-code_graph-daemon-unreachable.md",
+    "bestGuess": "doctor-causal-graph-add-only.md",
+    "bestScore": 0.4
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
+    "bestGuess": "memory-retention-sweep-basic-flow.md",
+    "bestScore": 0.2
+  },
+  {
+    "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/manual_testing_playbook.md",
+    "ref": "../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
+    "bestGuess": "memory-retention-sweep.md",
+    "bestScore": 0.25
+  }
+]

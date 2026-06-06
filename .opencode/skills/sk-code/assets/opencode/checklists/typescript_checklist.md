@@ -389,5 +389,5 @@ grep -rn 'catch (error)' src/ --include='*.ts'
 - [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks
 
 ### Style Guide
-- [TypeScript Style Guide](../../references/typescript/style_guide.md)
-- [TypeScript Quality Standards](../../references/typescript/quality_standards.md)
+- [TypeScript Style Guide](../../../references/opencode/typescript/style_guide.md)
+- [TypeScript Quality Standards](../../../references/opencode/typescript/quality_standards.md)

@@ -332,5 +332,5 @@ grep -n "^export " file.js              # Review: allowed only for ESM/plugin pa
 - [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks
 
 ### Style Guide
-- [JavaScript Style Guide](../../references/javascript/style_guide.md)
-- [JavaScript Quality Standards](../../references/javascript/quality_standards.md)
+- [JavaScript Style Guide](../../../references/opencode/javascript/style_guide.md)
+- [JavaScript Quality Standards](../../../references/opencode/javascript/quality_standards.md)

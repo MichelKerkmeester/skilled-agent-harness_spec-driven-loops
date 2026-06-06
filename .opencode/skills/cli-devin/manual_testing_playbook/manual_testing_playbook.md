@@ -353,7 +353,7 @@ Desired user-visible outcome: Two side-by-side review outputs that visibly diffe
 
 #### Test Execution
 
-> **Feature File:** [DV-009](03--model-presets/002-deepseek-v4-complex.md)
+> **Feature File:** [DV-009](03--model-presets/deepseek-v4-pro-complex.md)
 
 ### DV-010 | GLM 5.1 (complex-task fallback — agentic / tool-use)
 
@@ -751,7 +751,7 @@ There is no automated coverage for default-dispatch, permission-mode, model-pres
 ### MODEL PRESETS
 
 - DV-008: [SWE-1.6 (default — context gathering / tool use / simple-medium tasks)](03--model-presets/swe-1-6-default.md)
-- DV-009: [DeepSeek v4 (primary for complex tasks)](03--model-presets/002-deepseek-v4-complex.md)
+- DV-009: [DeepSeek v4 (primary for complex tasks)](03--model-presets/deepseek-v4-pro-complex.md)
 - DV-010: [GLM 5.1 (complex-task fallback — agentic / tool-use)](03--model-presets/glm-5-1-complex-fallback.md)
 - DV-026: [Kimi k2.6 (complex-task fallback — large context)](03--model-presets/kimi-k2-6-complex-fallback.md)
 

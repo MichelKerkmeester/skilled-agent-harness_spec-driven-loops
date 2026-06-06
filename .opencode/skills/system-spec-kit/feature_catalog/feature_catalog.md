@@ -515,7 +515,7 @@ The history log is written by mutation handlers (`memory_save`, `memory_update`,
 
 #### Source Files
 
-See [`02--mutation/10-per-record-history-log.md`](02--mutation/10-per-record-history-log.md) for full implementation and test file listings.
+See [`02--mutation/10-per-record-history-log.md`](02--mutation/per-memory-history-log.md) for full implementation and test file listings.
 
 > **Playbook:** [110](../manual_testing_playbook/manual_testing_playbook.md)
 

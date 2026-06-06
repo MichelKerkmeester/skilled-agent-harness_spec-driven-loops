@@ -87,6 +87,6 @@ If any box cannot be checked, stop and remove the deferral.
 
 ## 8. RELATED RESOURCES
 
-- [interaction_gated_loading.md](../../references/performance/interaction_gated_loading.md) - Gate selection and exclusions
-- [cwv_remediation.md](../../references/performance/cwv_remediation.md) - TBT and Lighthouse remediation patterns
+- [interaction_gated_loading.md](../../../references/webflow/performance/interaction_gated_loading.md) - Gate selection and exclusions
+- [cwv_remediation.md](../../../references/webflow/performance/cwv_remediation.md) - TBT and Lighthouse remediation patterns
 - [interaction_gate_patterns.js](../patterns/interaction_gate_patterns.js) - Reusable trigger helpers

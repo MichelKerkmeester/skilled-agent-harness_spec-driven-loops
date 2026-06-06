@@ -320,8 +320,8 @@ For formal findings-first review output, use `sk-code-review` as the baseline an
 - [config_checklist.md](./config_checklist.md)
 
 ### Style Guides
-- [JavaScript Style Guide](../../references/javascript/style_guide.md)
-- [TypeScript Style Guide](../../references/typescript/style_guide.md)
-- [Python Style Guide](../../references/python/style_guide.md)
-- [Shell Style Guide](../../references/shell/style_guide.md)
-- [Config Style Guide](../../references/config/style_guide.md)
+- [JavaScript Style Guide](../../../references/opencode/javascript/style_guide.md)
+- [TypeScript Style Guide](../../../references/opencode/typescript/style_guide.md)
+- [Python Style Guide](../../../references/opencode/python/style_guide.md)
+- [Shell Style Guide](../../../references/opencode/shell/style_guide.md)
+- [Config Style Guide](../../../references/opencode/config/style_guide.md)

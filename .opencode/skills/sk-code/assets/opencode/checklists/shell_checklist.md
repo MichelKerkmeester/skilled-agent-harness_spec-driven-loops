@@ -324,8 +324,8 @@ grep -n '^[^#]*\[ ' script.sh        # Old-style test
 - [universal_checklist.md](./universal_checklist.md) - Language-agnostic checks
 
 ### Style Guide
-- [Shell Style Guide](../../references/shell/style_guide.md)
-- [Shell Quality Standards](../../references/shell/quality_standards.md)
+- [Shell Style Guide](../../../references/opencode/shell/style_guide.md)
+- [Shell Quality Standards](../../../references/opencode/shell/quality_standards.md)
 
 ### External Tools
 - [ShellCheck](https://www.shellcheck.net/) - Static analysis

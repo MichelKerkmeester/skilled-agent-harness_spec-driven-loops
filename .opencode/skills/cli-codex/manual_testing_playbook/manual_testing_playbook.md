@@ -464,7 +464,7 @@ Desired user-visible outcome: A planning brief the operator can hand to an archi
 
 #### Test Execution
 
-> **Feature File:** [CX-015](04--agent-routing/004-ai-council-profile.md)
+> **Feature File:** [CX-015](04--agent-routing/multi-ai-council-profile.md)
 
 ### CX-026 | @research profile (web-grounded investigation)
 
@@ -754,7 +754,7 @@ There is no automated coverage for default-invocation, sandbox-mode, reasoning-e
 - CX-012: [@review profile (read-only)](04--agent-routing/review-profile.md)
 - CX-013: [@context profile (architecture mapping)](04--agent-routing/context-profile.md)
 - CX-014: [@debug profile (workspace-write fix)](04--agent-routing/debug-profile.md)
-- CX-015: [@ai-council profile (multi-strategy planning)](04--agent-routing/004-ai-council-profile.md)
+- CX-015: [@ai-council profile (multi-strategy planning)](04--agent-routing/multi-ai-council-profile.md)
 - CX-026: [@research profile (web-grounded investigation)](04--agent-routing/research-profile.md)
 
 ### SESSION CONTINUITY

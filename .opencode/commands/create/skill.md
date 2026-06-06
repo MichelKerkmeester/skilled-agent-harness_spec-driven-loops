@@ -84,7 +84,7 @@ Setup contract: see `.opencode/skills/system-spec-kit/references/workflows/auto_
 
 Under `execution_mode = AUTONOMOUS` (from the `:auto` suffix), follow the three-tier flow:
 
-1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-skill-config.json` when a spec is linked, otherwise `/tmp/create-skill-config.json` (shape: `skillName`, `operation`, `type`, `skillPath`, `executionMode: "auto"`, `specChoice`, `specPath`, `memoryChoice`, `chainedHandoffValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_skill_auto.yaml`. End §0.
+1. **Tier 1 — Resolve confidently** (contract §1): parse `$ARGUMENTS` flags + `PRE-BOUND SETUP ANSWERS:` block (§2) + the Default Resolution Table below (§3). When every required field is resolved, persist to `{spec_path}/create-skill-config.json` when a spec is linked, otherwise `/tmp/create-skill-config.json` (shape: `skillName`, `operation`, `type`, `skillPath`, `executionMode: "auto"`, `specChoice`, `specPath`, `memoryChoice`, `chainedHandoffValid`), bind runtime YAML placeholders, set `STATUS: PASSED`, load `.opencode/commands/create/assets/create_sk_skill_auto.yaml`. End §0.
 
 2. **Tier 2 — Targeted ask** (contract §1): when 1-2 required fields are genuinely ambiguous AND no default exists, emit ONE narrow question per ambiguous field. Command-specific Tier-2-eligible fields (per the Default Resolution Table below): `type`, `spec_choice`. **Ordering rule**: if `type` is required for `reference-only` or `asset-only`, ask only for `type` first — the answer may make the operation branch fully resolvable on the next Tier 1 pass.
 
@@ -309,8 +309,8 @@ Accepted type values:
 - Re-prompt missing values only.
 
 ### Step 4: Route by Mode
-- `:auto` -> load `create_skill_auto.yaml`.
-- `:confirm` -> load `create_skill_confirm.yaml`.
+- `:auto` -> load `create_sk_skill_auto.yaml`.
+- `:confirm` -> load `create_sk_skill_confirm.yaml`.
 
 ### Step 5: Route by Operation
 - Route to one branch: full-create/full-update/reference-only/asset-only.
@@ -324,8 +324,8 @@ Accepted type values:
 ## 6. MODE ROUTING
 
 Mode route targets:
-- `:auto` -> `.opencode/commands/create/assets/create_skill_auto.yaml`
-- `:confirm` -> `.opencode/commands/create/assets/create_skill_confirm.yaml`
+- `:auto` -> `.opencode/commands/create/assets/create_sk_skill_auto.yaml`
+- `:confirm` -> `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`
 
 Default mode if omitted: `:confirm`.
 
@@ -500,8 +500,8 @@ Deprecated invocation mapping:
   -> `/create:skill <skill-name> asset-only <asset-type> [--chained] [:auto|:confirm]`
 
 Canonical workflow files:
-- `.opencode/commands/create/assets/create_skill_auto.yaml`
-- `.opencode/commands/create/assets/create_skill_confirm.yaml`
+- `.opencode/commands/create/assets/create_sk_skill_auto.yaml`
+- `.opencode/commands/create/assets/create_sk_skill_confirm.yaml`
 
 ---
 

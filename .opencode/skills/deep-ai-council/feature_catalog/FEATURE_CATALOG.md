@@ -103,7 +103,7 @@ Scenario IDs: DAC-013, DAC-015..DAC-017. The writer-library API, the scoring rub
 
 | Feature | What it does | File |
 | --- | --- | --- |
-| Library writer call sequence | `lib/persist-artifacts.js` exports the 7 named writers, each emitting `artifact_written` events. | [07--writer-library-contract/library-writer-call-sequence.md](07--writer-library-contract/library-writer-call-sequence.md) |
+| Library writer call sequence | `lib/persist-artifacts.cjs` exports the 7 named writers, each emitting `artifact_written` events. | [07--writer-library-contract/library-writer-call-sequence.md](07--writer-library-contract/library-writer-call-sequence.md) |
 | Five-dimension scoring rubric application | The 5-dimension rubric is documented with weights and applies to a seat output. | [07--writer-library-contract/five-dimension-scoring-rubric-application.md](07--writer-library-contract/five-dimension-scoring-rubric-application.md) |
 | Hunter Skeptic Referee cross-critique | Hunter, Skeptic and Referee roles are documented with the score-adjustment rule. | [07--writer-library-contract/hunter-skeptic-referee-cross-critique.md](07--writer-library-contract/hunter-skeptic-referee-cross-critique.md) |
 | OUT_OF_SCOPE_WRITE rejection | Writes outside `ai-council/**` are rejected with `OUT_OF_SCOPE_WRITE` before any filesystem touch. | [07--writer-library-contract/out-of-scope-write-rejection.md](07--writer-library-contract/out-of-scope-write-rejection.md) |

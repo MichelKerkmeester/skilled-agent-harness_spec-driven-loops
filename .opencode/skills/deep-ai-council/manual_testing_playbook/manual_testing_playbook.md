@@ -271,7 +271,7 @@ Feature file: [DAC-018](06--depth-and-failure-handling/resume-after-interrupted-
 
 ### DAC-013 | Library writer call sequence
 
-Verify `persist-artifacts.js` exposes the canonical seven writer functions and emits `artifact_written` audit events.
+Verify `persist-artifacts.cjs` exposes the canonical seven writer functions and emits `artifact_written` audit events.
 
 Feature file: [DAC-013](07--writer-library-contract/library-writer-call-sequence.md)
 

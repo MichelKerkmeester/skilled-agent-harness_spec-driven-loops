@@ -26,7 +26,7 @@ Operators run the exact prompt and command sequence for `DAC-017` and confirm th
 - Objective: Verify writes outside `ai-council/**` are rejected with `OUT_OF_SCOPE_WRITE` before filesystem touch.
 - Real user request: Confirm council writes cannot escape the ai-council folder.
 - Prompt: `As a scoped-write boundary validator, attempt to write outside ai-council/**. Verify the write is rejected with OUT_OF_SCOPE_WRITE before filesystem touch. Return rejection evidence.`
-- Expected execution process: Inspect the agent body §16 rule and `lib/persist-artifacts.js` path guards, then grep for `OUT_OF_SCOPE_WRITE` and `ai-council`.
+- Expected execution process: Inspect the agent body §16 rule and `lib/persist-artifacts.cjs` path guards, then grep for `OUT_OF_SCOPE_WRITE` and `ai-council`.
 - Expected signals: Path guard present in library and agent body declares the rule.
 - Desired user-visible outcome: The user sees rejection evidence for out-of-scope write attempts.
 - Pass/fail: PASS if path guard is present in the library and agent body declares the rule; FAIL if either source is missing.
@@ -38,7 +38,7 @@ Operators run the exact prompt and command sequence for `DAC-017` and confirm th
 ### Recommended Orchestration Process
 
 1. Read `.opencode/agents/ai-council.md` §16.
-2. Inspect `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` path guard logic.
+2. Inspect `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs` path guard logic.
 3. Run the grep commands and record evidence.
 
 ### Prompt
@@ -47,7 +47,7 @@ Operators run the exact prompt and command sequence for `DAC-017` and confirm th
 
 ### Commands
 
-1. `bash: rg -n "OUT_OF_SCOPE_WRITE|ai-council" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js | head -20`
+1. `bash: rg -n "OUT_OF_SCOPE_WRITE|ai-council" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs | head -20`
 2. `bash: rg -n "OUT_OF_SCOPE_WRITE" .opencode/agents/ai-council.md`
 
 ### Expected
@@ -69,7 +69,7 @@ Restore scoped-write guard logic before running any destructive boundary test. D
 
 | Feature ID | Feature Name | Scenario Name / Objective | Exact Prompt | Exact Command Sequence | Expected Signals | Evidence | Pass/Fail Criteria | Failure Triage |
 |---|---|---|---|---|---|---|---|---|
-| DAC-017 | OUT_OF_SCOPE_WRITE rejection | Verify scoped-write path guard | `As a scoped-write boundary validator, attempt to write outside ai-council/**. Verify the write is rejected with OUT_OF_SCOPE_WRITE before filesystem touch. Return rejection evidence.` | `bash: rg -n "OUT_OF_SCOPE_WRITE\|ai-council" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js | head -20` -> `bash: rg -n "OUT_OF_SCOPE_WRITE" .opencode/agents/ai-council.md` | Guard and declaration present | Grep output | PASS if lib and agent both include guard evidence | Restore path guard before dynamic testing |
+| DAC-017 | OUT_OF_SCOPE_WRITE rejection | Verify scoped-write path guard | `As a scoped-write boundary validator, attempt to write outside ai-council/**. Verify the write is rejected with OUT_OF_SCOPE_WRITE before filesystem touch. Return rejection evidence.` | `bash: rg -n "OUT_OF_SCOPE_WRITE\|ai-council" .opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs | head -20` -> `bash: rg -n "OUT_OF_SCOPE_WRITE" .opencode/agents/ai-council.md` | Guard and declaration present | Grep output | PASS if lib and agent both include guard evidence | Restore path guard before dynamic testing |
 
 ---
 
@@ -86,7 +86,7 @@ Restore scoped-write guard logic before running any destructive boundary test. D
 
 | File | Role |
 |---|---|
-| `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js` | Path guard implementation |
+| `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs` | Path guard implementation |
 | `.opencode/agents/ai-council.md` | Scoped-write authority declaration |
 
 ---

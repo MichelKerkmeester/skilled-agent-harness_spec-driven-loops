@@ -192,7 +192,7 @@ Spec-kit's quality gates run at three layers.
 
 - [README.md](./README.md): Human-facing package overview
 - [SKILL.md](./SKILL.md): Runtime routing and invariants
-- [INSTALL_GUIDE.md](./INSTALL_GUIDE.md): Native bootstrap and per-runtime configuration
+- [INSTALL_GUIDE.md](mcp_server/INSTALL_GUIDE.md): Native bootstrap and per-runtime configuration
 - [feature_catalog/feature_catalog.md](./feature_catalog/feature_catalog.md): Current feature inventory
 - [manual_testing_playbook/manual_testing_playbook.md](./manual_testing_playbook/manual_testing_playbook.md): Operator validation scenarios
 - [mcp_server/README.md](./mcp_server/README.md): MCP server package details

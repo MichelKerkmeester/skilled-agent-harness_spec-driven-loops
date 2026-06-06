@@ -409,7 +409,7 @@ Expected signals: Response presents at least 3 distinct strategies. Each strateg
 
 #### Test Execution
 
-> **Feature File:** [CC-014](04--agent-routing/004-ai-council-multi-strategy-planning.md)
+> **Feature File:** [CC-014](04--agent-routing/multi-ai-council-multi-strategy-planning.md)
 
 ### CC-021 | Handover agent context transfer
 
@@ -684,7 +684,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CC-011: [Context agent codebase exploration](04--agent-routing/context-agent-codebase-exploration.md)
 - CC-012: [Debug agent fresh-perspective root cause](04--agent-routing/debug-agent-fresh-perspective-root-cause.md)
 - CC-013: [Review agent security audit](04--agent-routing/review-agent-security-audit.md)
-- CC-014: [Ultra-think multi-strategy planning](04--agent-routing/004-ai-council-multi-strategy-planning.md)
+- CC-014: [Ultra-think multi-strategy planning](04--agent-routing/multi-ai-council-multi-strategy-planning.md)
 - CC-021: [Handover agent context transfer](04--agent-routing/handover-agent-context-transfer.md)
 - CC-022: [Orchestrate agent multi-step coordination](04--agent-routing/orchestrate-agent-multi-step.md)
 - CC-023: [Research agent deep investigation](04--agent-routing/research-agent-investigation.md)

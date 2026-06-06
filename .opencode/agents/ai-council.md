@@ -392,7 +392,7 @@ Do not recommend after the first plausible answer. Run the following deliberatio
 - Label simulated external vantage points honestly when no external execution occurred.
 - **Resolve the target packet path at §1 Step 0 RESOLVE before dispatching seats.** No deliberation runs without a known persistence target.
 - Graph updates belong to caller-owned `deep-loop-runtime` CLI reducers, not council-seat deliberation.
-- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.js` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-state.jsonl` (with at least `round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete` events), `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
+- **Persist `ai-council/**` artifacts directly via the `lib/persist-artifacts.cjs` named exports BEFORE claiming completion.** The minimum required artifact set is: `ai-council-config.json`, `ai-council-state.jsonl` (with at least `round_start` + `seat_returned` x N + `deliberation_synthesized` + `round_end` + `council_complete` events), `ai-council-strategy.md`, `seats/round-NNN/seat-MMM-*.md` for each dispatched seat, `deliberations/round-NNN.md`, and `council-report.md`.
 
 ### NEVER
 
@@ -713,7 +713,7 @@ Sophisticated convergence math is non-goal N1. Keep v1 simple and auditable.
 
 ## 16. COUNCIL PERSISTENCE PROTOCOL
 
-The council writes packet artifacts directly through `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.js`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
+The council writes packet artifacts directly through `.opencode/skills/deep-ai-council/scripts/lib/persist-artifacts.cjs`. Use the named exports in order as each round closes: `writeStateJsonl`, `writeConfig`, `writeStrategyMd`, `writeSeat`, `writeDeliberation`, `writeCritique`, and `writeReport`. Each writer resolves the target under `<packet>/ai-council/`, writes the artifact, then appends an `artifact_written` event with byte count and sha256 checksum to `ai-council-state.jsonl`.
 
 Scoped-write rules:
 

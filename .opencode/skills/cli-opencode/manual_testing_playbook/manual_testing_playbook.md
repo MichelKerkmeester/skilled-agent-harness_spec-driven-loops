@@ -438,7 +438,7 @@ Expected signals: Exit 0. Sentinel mtimes unchanged. Zero Edit/Write tool.calls.
 
 #### Test Execution
 
-> **Feature File:** [CO-017](04--agent-routing/005-ai-council-multi-strategy.md)
+> **Feature File:** [CO-017](04--agent-routing/multi-ai-council-multi-strategy.md)
 
 ### CO-032 | Deep-research agent iteration loop
 
@@ -821,7 +821,7 @@ Validator support: the shared `validate_document.py` validates this root playboo
 - CO-014: [Context LEAF agent (read-only)](04--agent-routing/context-leaf-agent.md)
 - CO-015: [Review agent security audit](04--agent-routing/review-agent-security-audit.md)
 - CO-016: [Write agent documentation generation](04--agent-routing/004-write-agent-doc-generation.md)
-- CO-017: [Ultra-think multi-strategy planning](04--agent-routing/005-ai-council-multi-strategy.md)
+- CO-017: [Ultra-think multi-strategy planning](04--agent-routing/multi-ai-council-multi-strategy.md)
 - CO-032: [Deep-research agent iteration loop](04--agent-routing/deep-research-agent-iterations.md)
 - CO-033: [Deep-review agent audit loop](04--agent-routing/deep-review-agent-audit.md)
 - CO-034: [Orchestrate agent multi-agent coordination](04--agent-routing/orchestrate-agent-multi-agent.md)
