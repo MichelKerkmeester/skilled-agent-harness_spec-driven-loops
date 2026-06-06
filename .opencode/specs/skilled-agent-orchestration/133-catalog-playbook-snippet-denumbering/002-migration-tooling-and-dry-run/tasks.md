@@ -47,8 +47,8 @@ _memory:
 <!-- ANCHOR:phase-1 -->
 ## Phase 1: Setup
 
-- [ ] T001 Confirm phase 001 convention shipped + decisions D1 (script) and D4 (collision policy)
-- [ ] T002 Slice per-tree rename inventories from the discovery grep as tool input fixtures
+- [x] T001 Confirm phase 001 convention shipped + decisions D1 (script) and D4 (collision policy)
+- [x] T002 Slice per-tree rename inventories from the discovery grep as tool input fixtures
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -56,12 +56,12 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [ ] T003 Implement rename map + `^[0-9]+-` basename strip (`scratch/denumber-snippets.cjs`)
-- [ ] T004 Implement collision gate (hard-abort, no writes on collision)
-- [ ] T005 Implement 4-class reference rewrite (self / neighbor / root / external), `.md`-anchored
-- [ ] T006 Implement `--dry-run` (default) emitting rename/reference/collision manifests
-- [ ] T007 Implement `--apply` using `git mv` + scoped staging (never `git add -A`)
-- [ ] T008 [P] Build edge-case fixtures (`./`/`../`, `#anchor`, code-fence link, substring slug, Feature ID)
+- [x] T003 Implement rename map + `^[0-9]+-` basename strip (`scratch/denumber-snippets.cjs`)
+- [x] T004 Implement collision gate (hard-abort, no writes on collision)
+- [x] T005 Implement 4-class reference rewrite (self / neighbor / root / external), `.md`-anchored
+- [x] T006 Implement `--dry-run` (default) emitting rename/reference/collision manifests
+- [x] T007 Implement `--apply` using `git mv` + scoped staging (never `git add -A`)
+- [x] T008 [P] Build edge-case fixtures (`./`/`../`, `#anchor`, code-fence link, substring slug, Feature ID)
 <!-- /ANCHOR:phase-2 -->
 
 ---
@@ -69,12 +69,12 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [ ] T009 Self-test tool against fixtures
-- [ ] T010 DeepSeek adversarial review of algorithm vs fixtures; patch gaps
-- [ ] T011 Dry-run on `system-code-graph` (small real tree); review manifest
-- [ ] T012 Dry-run on `system-spec-kit/.../16--tooling-and-scripts`; confirm collision hard-abort
-- [ ] T013 Inspect the 4 collision files; decide per D4 (merge vs distinct slugs); record decision note
-- [ ] T014 Verify idempotency (re-running `--apply` on a migrated fixture is a no-op)
+- [x] T009 Self-test tool against fixtures
+- [x] T010 DeepSeek adversarial review of algorithm vs fixtures; patch gaps
+- [x] T011 Dry-run on `system-code-graph` (small real tree); review manifest
+- [x] T012 Dry-run on `system-spec-kit/.../16--tooling-and-scripts`; confirm collision hard-abort
+- [x] T013 Inspect the 4 collision files; decide per D4 (merge vs distinct slugs); record decision note
+- [x] T014 Verify idempotency (re-running `--apply` on a migrated fixture is a no-op)
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -82,9 +82,9 @@ _memory:
 <!-- ANCHOR:completion -->
 ## Completion Criteria
 
-- [ ] All tasks marked `[x]`
-- [ ] No `[B]` blocked tasks remaining
-- [ ] Reviewed clean dry-run manifest + collision resolution recorded
+- [x] All tasks marked `[x]`
+- [x] No `[B]` blocked tasks remaining
+- [x] Reviewed clean dry-run manifest + collision resolution recorded
 <!-- /ANCHOR:completion -->
 
 ---

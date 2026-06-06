@@ -44,9 +44,9 @@ _memory:
 <!-- ANCHOR:pre-impl -->
 ## Pre-Implementation
 
-- [ ] CHK-001 [P0] Requirements + tool contract documented (spec §3-4, plan §3)
-- [ ] CHK-002 [P0] D1=script and D4 collision policy confirmed
-- [ ] CHK-003 [P1] Phase 001 convention shipped (target shape known)
+- [x] CHK-001 [P0] Requirements + tool contract documented (spec §3-4, plan §3)
+- [x] CHK-002 [P0] D1=script and D4 collision policy confirmed
+- [x] CHK-003 [P1] Phase 001 convention shipped (target shape known)
 <!-- /ANCHOR:pre-impl -->
 
 ---
@@ -54,12 +54,12 @@ _memory:
 <!-- ANCHOR:code-quality -->
 ## Code Quality
 
-- [ ] CHK-010 [P0] Strips only leading `^[0-9]+-` from basename; category dir untouched (REQ-001)
-- [ ] CHK-011 [P0] Hard-aborts on collision with non-zero exit + report, zero writes (REQ-002)
-- [ ] CHK-012 [P0] `--dry-run` is default; writes nothing to target trees (REQ-004)
-- [ ] CHK-013 [P0] Reference rewrite never matches Feature IDs (`M-219`) — `.md`-anchored (REQ-003)
-- [ ] CHK-014 [P1] Uses `git mv`; scoped staging; never `git add -A` (REQ-007)
-- [ ] CHK-015 [P1] Idempotent on re-apply (NFR-R01)
+- [x] CHK-010 [P0] Strips only leading `^[0-9]+-` from basename; category dir untouched (REQ-001)
+- [x] CHK-011 [P0] Hard-aborts on collision with non-zero exit + report, zero writes (REQ-002)
+- [x] CHK-012 [P0] `--dry-run` is default; writes nothing to target trees (REQ-004)
+- [x] CHK-013 [P0] Reference rewrite never matches Feature IDs (`M-219`) — `.md`-anchored (REQ-003)
+- [x] CHK-014 [P1] Uses `git mv`; scoped staging; never `git add -A` (REQ-007)
+- [x] CHK-015 [P1] Idempotent on re-apply (NFR-R01)
 <!-- /ANCHOR:code-quality -->
 
 ---
@@ -67,9 +67,9 @@ _memory:
 <!-- ANCHOR:testing -->
 ## Testing
 
-- [ ] CHK-020 [P0] Dry-run on a real tree produces a complete, correct manifest (SC-001)
-- [ ] CHK-021 [P0] Collision abort demonstrated on `16--tooling-and-scripts` (SC-002)
-- [ ] CHK-022 [P1] Edge-case fixtures pass: `./`/`../`, `#anchor`, code-fence, substring slug (REQ-006)
+- [x] CHK-020 [P0] Dry-run on a real tree produces a complete, correct manifest (SC-001)
+- [x] CHK-021 [P0] Collision abort demonstrated on `16--tooling-and-scripts` (SC-002)
+- [x] CHK-022 [P1] Edge-case fixtures pass: `./`/`../`, `#anchor`, code-fence, substring slug (REQ-006)
 <!-- /ANCHOR:testing -->
 
 ---
@@ -77,9 +77,9 @@ _memory:
 <!-- ANCHOR:fix-completeness -->
 ## Fix Completeness
 
-- [ ] CHK-FIX-001 [P0] Finding class: `algorithmic` (path/string rewrite) + `matrix/evidence`
-- [ ] CHK-FIX-004 [P0] Adversarial table for the rewrite: delimiter (`#anchor`), joined-input (`../`), no-op (already de-numbered), fallback (missing referrer), Feature-ID-not-matched
-- [ ] CHK-FIX-005 [P1] Reference-class matrix (self/neighbor/root/external) enumerated before apply
+- [x] CHK-FIX-001 [P0] Finding class: `algorithmic` (path/string rewrite) + `matrix/evidence`
+- [x] CHK-FIX-004 [P0] Adversarial table for the rewrite: delimiter (`#anchor`), joined-input (`../`), no-op (already de-numbered), fallback (missing referrer), Feature-ID-not-matched
+- [x] CHK-FIX-005 [P1] Reference-class matrix (self/neighbor/root/external) enumerated before apply
 <!-- /ANCHOR:fix-completeness -->
 
 ---
@@ -87,8 +87,8 @@ _memory:
 <!-- ANCHOR:security -->
 ## Security
 
-- [ ] CHK-030 [P0] Tool writes only inside `--tree` + supplied referrers; never outside repo (NFR-S01)
-- [ ] CHK-031 [P1] DeepSeek brief carries ALLOWED WRITE PATHS = `scratch/**` only (RM-8)
+- [x] CHK-030 [P0] Tool writes only inside `--tree` + supplied referrers; never outside repo (NFR-S01)
+- [x] CHK-031 [P1] DeepSeek brief carries ALLOWED WRITE PATHS = `scratch/**` only (RM-8)
 <!-- /ANCHOR:security -->
 
 ---
@@ -96,8 +96,8 @@ _memory:
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P1] spec/plan/tasks/checklist synchronized
-- [ ] CHK-041 [P1] Collision resolution decision recorded (slug names or merge)
+- [x] CHK-040 [P1] spec/plan/tasks/checklist synchronized
+- [x] CHK-041 [P1] Collision resolution decision recorded (slug names or merge)
 <!-- /ANCHOR:docs -->
 
 ---
@@ -105,8 +105,8 @@ _memory:
 <!-- ANCHOR:file-org -->
 ## File Organization
 
-- [ ] CHK-050 [P0] All tooling + manifests live under `133-.../scratch/` only
-- [ ] CHK-051 [P1] No target-tree files modified in this phase
+- [x] CHK-050 [P0] All tooling + manifests live under `133-.../scratch/` only
+- [x] CHK-051 [P1] No target-tree files modified in this phase
 <!-- /ANCHOR:file-org -->
 
 ---
