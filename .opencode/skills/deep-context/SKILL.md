@@ -2,7 +2,7 @@
 name: deep-context
 description: "Iterative codebase-context-gathering deep loop. Runs a heterogeneous pool of models in parallel over a shared scope and synthesizes a reuse-first Context Report for planning/implementation. Use before /speckit:plan or /speckit:implement to map existing code, integration points, and conventions."
 allowed-tools: [Read, Write, Edit, Bash, Glob, Grep]
-version: 1.0.0
+version: 1.1.0
 ---
 
 <!-- Keywords: deep-context, context-gathering, codebase-context, reuse-catalog, by-model-parallel-sweep, agreement-merge, convergence-detection, coverage-graph, context-report, heterogeneous-executor-pool, pre-planning-context, relevance-gated-coverage -->
@@ -291,6 +291,7 @@ node .opencode/skills/deep-context/scripts/reduce-state.cjs <spec-folder>
 4. **Verify every cited `file:symbol` against the code graph** before it enters the report; label anything unverified. A stale reference is worse than omission.
 5. **Honor the cli-* skill contracts for dispatch** (model id form, `</dev/null` for opencode, omit top-level `--agent`). Read the relevant `cli-X/SKILL.md` before composing any CLI prompt.
 6. **Ship pointers + signatures, not source bodies.** Context rot begins when full source is pasted into reports.
+7. **The host applies the deep-loop-runtime robustness layer** (shared with `deep-research` and `deep-review`): state writes are atomic (temp+fsync+rename via `writeStateAtomic`), the JSONL state log is repaired before each reduce (`repairJsonlTail`), each seat's output is validated before merge (`post-dispatch-validate`, surfacing `seatValidationWarnings`), a single-writer advisory loop-lock is held via `scripts/loop-lock.cjs` for the duration of the session, and CLI seats are dispatched with the runtime recursion-guard env so no seat can launch a nested deep-context loop.
 
 ### NEVER
 
@@ -380,9 +381,14 @@ When no spec folder exists yet, the host uses a standalone run dir and hands the
 | Node kinds | `SLICE, FILE, SYMBOL, PATTERN, REUSE_CANDIDATE, DEPENDENCY, CONSTRAINT, GAP` |
 | Convergence signals | `sliceCoverage`, `reuseCatalogCoverage`, `agreementRate` (guard), `relevanceFloor` (guard), `dependencyCompleteness` |
 | Packet | `{spec_folder}/context/` (config, state, iterations, `context-report.md`) |
-| Relevance gate | 0.55 |
-| Agreement min | 2 executors |
+| Default pool | 2 native + MiMo (`cli-opencode`) + gpt (`cli-codex`) + deepseek (`cli-opencode`), all over the shared scope |
+| `relevanceGate` | 0.55 (findings below route to `lowConfidence`) |
+| `agreementMin` | 2 distinct executors for agreement-eligibility |
+| `maxIterations` | 8 |
+| `convergenceThreshold` | 0.10 (new agreement-eligible findings per iteration at saturation) |
+| `fanout.mode` | `by-model-shared-scope` |
 | Stop score weights | reuse-first (0.30 reuseCatalog, 0.25 agreement, 0.20 slice, 0.15 relevance, 0.10 dependency) |
+| Runtime robustness | Inherits deep-loop-runtime durability layer: atomic-state, jsonl-repair, post-dispatch-validate, loop-lock (`scripts/loop-lock.cjs`), executor-audit recursion guard |
 
 ---
 

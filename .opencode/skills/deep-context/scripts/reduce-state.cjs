@@ -52,6 +52,94 @@ function writeUtf8(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
+// Atomic text write: temp + fsync + rename, so a reader always sees either the
+// previous complete file or the new one (a crash mid-write never leaves a
+// half-written registry or dashboard). Mirrors the runtime writeStateAtomic
+// contract for the markdown dashboard, which the JSON-only runtime helper cannot
+// serialize.
+function writeTextAtomic(filePath, content) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  const tempPath = `${filePath}.tmp.${process.pid}.${crypto.randomBytes(6).toString('hex')}`;
+  let fd;
+  try {
+    fs.writeFileSync(tempPath, content, 'utf8');
+    fd = fs.openSync(tempPath, 'r');
+    fs.fsyncSync(fd);
+    fs.closeSync(fd);
+    fd = undefined;
+    fs.renameSync(tempPath, filePath);
+  } catch (error) {
+    if (typeof fd === 'number') { try { fs.closeSync(fd); } catch { /* already closed */ } }
+    if (fs.existsSync(tempPath)) { fs.rmSync(tempPath, { force: true }); }
+    throw error;
+  }
+}
+
+function writeStateAtomicInline(filePath, data) {
+  writeTextAtomic(filePath, `${JSON.stringify(data, null, 2)}\n`);
+}
+
+// Truncate a corrupt JSONL tail in place: keep every complete valid line, drop
+// trailing garbage from a crash mid-append. Contract-equivalent to the runtime
+// repairJsonlTail, used as the fallback when the TS toolchain is unavailable.
+function repairJsonlTailInline(filePath) {
+  if (!fs.existsSync(filePath)) return { repaired: false, droppedBytes: 0 };
+  const content = fs.readFileSync(filePath, 'utf8');
+  if (content.length === 0) return { repaired: false, droppedBytes: 0 };
+  const originalBytes = Buffer.byteLength(content, 'utf8');
+  let cursor = 0;
+  let validEnd = 0;
+  const newlineRe = /\r?\n/g;
+  while (cursor < content.length) {
+    newlineRe.lastIndex = cursor;
+    const match = newlineRe.exec(content);
+    if (!match) break;
+    const lineEnd = match.index;
+    const rawLine = content.slice(cursor, lineEnd);
+    const nextCursor = lineEnd + match[0].length;
+    if (rawLine.trim() !== '') {
+      try { JSON.parse(rawLine); } catch { break; }
+    }
+    validEnd = nextCursor;
+    cursor = nextCursor;
+  }
+  const trailing = content.slice(cursor);
+  let keepBytes;
+  if (trailing.trim() === '') {
+    keepBytes = originalBytes;
+  } else {
+    try { JSON.parse(trailing); keepBytes = originalBytes; }
+    catch { keepBytes = Buffer.byteLength(content.slice(0, validEnd), 'utf8'); }
+  }
+  const droppedBytes = originalBytes - keepBytes;
+  if (droppedBytes <= 0) return { repaired: false, droppedBytes: 0 };
+  fs.truncateSync(filePath, keepBytes);
+  return { repaired: true, droppedBytes };
+}
+
+// Prefer the deep-loop-runtime state-safety helpers (single source of truth for
+// the atomic-write + jsonl-repair contracts) loaded in-process via the tsx CJS
+// register; fall back to the contract-equivalent inline implementations above so
+// the reducer stays runnable (and importable) when the TS toolchain is absent.
+const TSX_CJS_REGISTER = path.join(__dirname, '..', '..', 'system-spec-kit', 'scripts', 'node_modules', 'tsx', 'dist', 'cjs', 'index.cjs');
+const RUNTIME_DEEP_LOOP = path.join(__dirname, '..', '..', 'deep-loop-runtime', 'lib', 'deep-loop');
+
+let _stateSafety = null;
+function loadStateSafety() {
+  if (_stateSafety) return _stateSafety;
+  try {
+    require(TSX_CJS_REGISTER);
+    const atomic = require(path.join(RUNTIME_DEEP_LOOP, 'atomic-state.ts'));
+    const repair = require(path.join(RUNTIME_DEEP_LOOP, 'jsonl-repair.ts'));
+    if (typeof atomic.writeStateAtomic === 'function' && typeof repair.repairJsonlTail === 'function') {
+      _stateSafety = { writeStateAtomic: atomic.writeStateAtomic, repairJsonlTail: repair.repairJsonlTail, source: 'runtime' };
+      return _stateSafety;
+    }
+  } catch { /* fall through to inline contract-equivalents */ }
+  _stateSafety = { writeStateAtomic: writeStateAtomicInline, repairJsonlTail: repairJsonlTailInline, source: 'inline' };
+  return _stateSafety;
+}
+
 function readJson(filePath) {
   return JSON.parse(readUtf8(filePath));
 }
@@ -124,20 +212,37 @@ function parseJsonl(jsonlContent) {
   return parseJsonlDetailed(jsonlContent).records;
 }
 
+// Post-dispatch validation (context-shaped): a seat finding must carry a known
+// kind, at least a path or symbol, and a numeric relevance when present. Invalid
+// findings are surfaced (not silently merged), mirroring the runtime
+// post-dispatch-validate discipline the mature loops apply to iteration outputs.
+const VALID_FINDING_KINDS = new Set(Object.keys(KIND_TO_BUCKET));
+
+function validateSeatFinding(raw) {
+  if (!raw || typeof raw !== 'object') return 'finding is not an object';
+  const kind = normalizeText(raw.kind) || 'reuse_candidate';
+  if (!VALID_FINDING_KINDS.has(kind)) return `unknown kind "${kind}"`;
+  if (!normalizeText(raw.path) && !normalizeText(raw.symbol)) return 'missing both path and symbol';
+  if (raw.relevance != null && !Number.isFinite(Number(raw.relevance))) return 'non-numeric relevance';
+  return null;
+}
+
 /**
  * Read every seat's raw findings for an iteration directory and tag each finding
  * with the producing seat label. A seat file is either an array of findings or
- * an object with a `findings` array (seat_output_schema).
+ * an object with a `findings` array (seat_output_schema). Each finding is
+ * validated before merge; invalid findings are surfaced, never silently merged.
  *
  * @param {string} iterDir - {seat_dir}/iter-NNN absolute path
- * @returns {{findings: Array<Object>, seatLabels: string[], failedSeats: string[]}}
+ * @returns {{findings: Array<Object>, seatLabels: string[], failedSeats: string[], validationWarnings: Array<Object>}}
  */
 function loadSeatFindings(iterDir) {
   const findings = [];
   const seatLabels = [];
   const failedSeats = [];
+  const validationWarnings = [];
   if (!fs.existsSync(iterDir)) {
-    return { findings, seatLabels, failedSeats };
+    return { findings, seatLabels, failedSeats, validationWarnings };
   }
 
   const seatFiles = fs.readdirSync(iterDir)
@@ -157,13 +262,21 @@ function loadSeatFindings(iterDir) {
     }
     seatLabels.push(label);
     for (const raw of seatFindings) {
-      if (raw && typeof raw === 'object') {
-        findings.push({ ...raw, producedBy: label });
+      const reason = validateSeatFinding(raw);
+      if (reason) {
+        validationWarnings.push({
+          seat: label,
+          reason,
+          symbol: raw && typeof raw === 'object' ? normalizeText(raw.symbol) : '',
+          path: raw && typeof raw === 'object' ? normalizeText(raw.path) : '',
+        });
+        continue;
       }
+      findings.push({ ...raw, producedBy: label });
     }
   }
 
-  return { findings, seatLabels, failedSeats };
+  return { findings, seatLabels, failedSeats, validationWarnings };
 }
 
 /**
@@ -177,8 +290,9 @@ function collectAllSeatFindings(seatDir) {
   const findings = [];
   const seatsByIteration = {};
   const allSeatLabels = new Set();
+  const validationWarnings = [];
   if (!fs.existsSync(seatDir)) {
-    return { findings, seatsByIteration, allSeatLabels };
+    return { findings, seatsByIteration, allSeatLabels, validationWarnings };
   }
 
   const iterDirs = fs.readdirSync(seatDir)
@@ -187,17 +301,20 @@ function collectAllSeatFindings(seatDir) {
 
   for (const dirName of iterDirs) {
     const iteration = Number(dirName.match(/iter-(\d+)/)[1]);
-    const { findings: iterFindings, seatLabels, failedSeats } = loadSeatFindings(path.join(seatDir, dirName));
+    const { findings: iterFindings, seatLabels, failedSeats, validationWarnings: iterWarnings } = loadSeatFindings(path.join(seatDir, dirName));
     seatsByIteration[iteration] = { succeeded: seatLabels, failed: failedSeats };
     for (const label of seatLabels) {
       allSeatLabels.add(label);
+    }
+    for (const warning of iterWarnings) {
+      validationWarnings.push({ ...warning, iteration });
     }
     for (const finding of iterFindings) {
       findings.push({ ...finding, iteration });
     }
   }
 
-  return { findings, seatsByIteration, allSeatLabels };
+  return { findings, seatsByIteration, allSeatLabels, validationWarnings };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -550,6 +667,10 @@ function reduceContextState(specFolder, options = {}) {
   const seatDir = path.join(contextDir, 'seats');
 
   const config = readJsonSafe(configPath, {});
+  const stateSafety = loadStateSafety();
+  // Recover a crash-corrupted JSONL tail before reading, so a half-written final
+  // append from an interrupted run never aborts the reduce.
+  const stateLogRepair = stateSafety.repairJsonlTail(stateLogPath);
   const stateLogContent = fs.existsSync(stateLogPath) ? readUtf8(stateLogPath) : '';
   const { records: parsedRecords, corruptionWarnings } = parseJsonlDetailed(stateLogContent);
   const iterationRecords = parsedRecords
@@ -560,7 +681,7 @@ function reduceContextState(specFolder, options = {}) {
   const relevanceGate = isFiniteNumber(config.relevanceGate) ? config.relevanceGate : DEFAULT_RELEVANCE_GATE;
   const agreementMin = isFiniteNumber(config.agreementMin) ? config.agreementMin : DEFAULT_AGREEMENT_MIN;
 
-  const { findings: rawSeatFindings, seatsByIteration, allSeatLabels } = collectAllSeatFindings(seatDir);
+  const { findings: rawSeatFindings, seatsByIteration, allSeatLabels, validationWarnings: seatValidationWarnings } = collectAllSeatFindings(seatDir);
   const units = dedupByUnit(rawSeatFindings);
   const registry = buildRegistry(units, { relevanceGate, agreementMin });
 
@@ -580,12 +701,16 @@ function reduceContextState(specFolder, options = {}) {
   registry.seatsByIteration = seatsByIteration;
   registry.graphDecision = graph.graphDecision;
   registry.corruptionWarnings = corruptionWarnings;
+  registry.seatValidationWarnings = seatValidationWarnings;
+  registry.stateLogRepair = stateLogRepair;
 
   const dashboard = renderDashboard(config, registry, iterationRecords, lineage, graph, status);
 
   if (write) {
-    writeUtf8(registryPath, `${JSON.stringify(registry, null, 2)}\n`);
-    writeUtf8(dashboardPath, dashboard.endsWith('\n') ? dashboard : `${dashboard}\n`);
+    // Atomic writes: a crash mid-write leaves the prior complete file intact,
+    // never a half-written registry or dashboard for a downstream reader.
+    stateSafety.writeStateAtomic(registryPath, registry);
+    writeTextAtomic(dashboardPath, dashboard.endsWith('\n') ? dashboard : `${dashboard}\n`);
   }
 
   return {
@@ -597,6 +722,9 @@ function reduceContextState(specFolder, options = {}) {
     dashboard,
     corruptionWarnings,
     hasCorruption: corruptionWarnings.length > 0,
+    stateLogRepair,
+    seatValidationWarnings,
+    stateSafetySource: stateSafety.source,
   };
 }
 
@@ -628,6 +756,10 @@ if (require.main === module) {
           agreementEligible: result.registry.metrics.agreementEligible,
           contradictions: result.registry.metrics.contradictions,
           corruptionCount: result.corruptionWarnings.length,
+          seatValidationWarnings: result.seatValidationWarnings.length,
+          stateLogRepaired: result.stateLogRepair.repaired,
+          stateLogDroppedBytes: result.stateLogRepair.droppedBytes,
+          stateSafety: result.stateSafetySource,
         },
         null,
         2,
@@ -652,4 +784,8 @@ module.exports = {
   buildRegistry,
   collectAllSeatFindings,
   reduceContextState,
+  validateSeatFinding,
+  writeTextAtomic,
+  repairJsonlTailInline,
+  loadStateSafety,
 };

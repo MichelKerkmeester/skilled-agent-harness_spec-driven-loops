@@ -33,6 +33,8 @@ Executes ONE read-only analysis sweep of an assigned code slice within a heterog
 
 **IMPORTANT**: This agent is one member of a by-model agreement pool. Multiple seats (native + CLI executors) sweep the SAME scope in parallel; the host dedups by `file:symbol` and boosts confidence by cross-executor agreement. This seat owns only its own analysis of its assigned slice — it does not merge, persist, or reconcile against other seats.
 
+**RUNTIME ROBUSTNESS (host-applied)**: The host applies the deep-loop-runtime durability layer around this seat's dispatch and the subsequent merge. Specifically: all registry and dashboard state is written atomically (temp+fsync+rename via `writeStateAtomic`); the JSONL state log's corrupt trailing line is repaired before the reducer reads it (`repairJsonlTail`); this seat's returned finding set is validated (known kind / path-or-symbol / numeric relevance) before it is merged — invalid findings surface as `seatValidationWarnings` and are never silently included; a single-writer advisory loop-lock (`scripts/loop-lock.cjs`) is held by the host for the session duration; and CLI seats (sibling to this native seat) are dispatched with the runtime recursion-guard env so no seat can launch a nested deep-context loop. This seat's own behavior is unchanged: it remains a read-only LEAF analyzer.
+
 ---
 
 ## 0. ILLEGAL NESTING AND WRITE BOUNDARY (HARD BLOCK)

@@ -57,6 +57,7 @@ Use this README for human orientation: command examples, packet layout, configur
 | Relevance-gated convergence | Below-gate findings go to a low-confidence bucket, not the report |
 | Pointer-only report | Ships `file:symbol` references with signatures, not pasted source bodies |
 | Contradiction surfacing | Incompatible seat findings are surfaced, never auto-resolved |
+| Runtime durability | Crash-safe state writes (atomic temp+fsync+rename), corrupt JSONL tail auto-repaired before each reduce, seat outputs validated before merge (invalid findings surface as `seatValidationWarnings`), single-writer loop-lock (`scripts/loop-lock.cjs`) prevents concurrent session races, CLI seats dispatched with recursion-guard env so no seat can launch a nested loop — durability and validation parity with `deep-research` and `deep-review` |
 
 ---
 
@@ -220,7 +221,7 @@ Expected output: Updated findings-registry.json and deep-context-dashboard.md
 | `agreementRate` stuck below 0.50 | Only one or two seats are returning findings | Check pool authentication; add a native seat to guarantee at least one agreement pair |
 | `STOP_BLOCKED: sliceCoverage < 0.70` | The frontier has SLICE nodes that no seat has covered | Extend `maxIterations` or narrow the scope to match the iteration budget |
 | `STOP_BLOCKED: relevanceFloor < 0.50` | Seats are collecting tangential files | Tighten the scope query; increase `relevanceGate` temporarily |
-| Reducer exits with an error | `deep-context-state.jsonl` has corrupt lines | Inspect the JSONL file; remove the corrupt line and re-run the reducer |
+| Reducer exits with an error | `deep-context-state.jsonl` has corrupt lines | The reducer auto-repairs a corrupt trailing line via `repairJsonlTail` before reading; if the error persists, inspect the JSONL for mid-file corruption and remove the bad line, then re-run |
 | Context report missing entries | Below-gate findings ended up in `lowConfidence` | Lower `relevanceGate` slightly, or accept the partial report and note the gaps |
 | CLI seat times out | Provider is slow or the prompt is too broad | Increase the per-seat timeout; narrow the scope slice; reduce `maxToolCallsPerIteration` |
 

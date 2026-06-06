@@ -19,12 +19,13 @@ Canonical package artifacts:
 - `04--convergence-detection/`
 - `05--context-report-synthesis/`
 - `06--coverage-graph-schema/`
+- `07--runtime-robustness/`
 
 ---
 
 ## 1. OVERVIEW
 
-This playbook provides 20 deterministic scenarios across 6 categories validating the current `deep-context` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
+This playbook provides 25 deterministic scenarios across 7 categories validating the current `deep-context` skill surface. Each scenario maps to a dedicated feature file with the canonical objective, prompt summary, expected signals, and live source anchors.
 
 ### REALISTIC TEST MODEL
 
@@ -140,6 +141,7 @@ This section records wave planning and capacity guidance for the manual testing 
 - Wave 1 covers frontier seeding (FS-001 through FS-003) and parallel sweep (SWEEP-001 through SWEEP-004).
 - Wave 2 covers agreement merge (MERGE-001 through MERGE-003) and convergence detection (CONV-001 through CONV-004).
 - Wave 3 covers context report synthesis (SYN-001 through SYN-003) and coverage-graph schema (CG-001 through CG-003).
+- Wave 4 covers runtime robustness (RUNTIME-001 through RUNTIME-005).
 
 ### What Belongs In Per-Feature Files
 
@@ -515,7 +517,96 @@ Desired user-visible outcome: the convergence engine can be unit-tested with in-
 
 ---
 
-## 13. AUTOMATED TEST CROSS-REFERENCE
+## 13. RUNTIME ROBUSTNESS (`RUNTIME-001..RUNTIME-005`)
+
+This category covers 5 scenario summaries validating the safety and reliability mechanisms wired into the `deep-context` loop. The linked feature files remain the canonical execution contract.
+
+### RUNTIME-001 | Atomic State
+
+#### Description
+Verify that `reduce-state.cjs` implements the atomic temp+fsync+rename write pattern for both `findings-registry.json` (via runtime `writeStateAtomic`) and `deep-context-dashboard.md` (via inline `writeTextAtomic`), and that `atomic-state.ts` exports `writeStateAtomic` with the expected pattern.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the atomic-state write contract for deep-context against reduce-state.cjs and the runtime atomic-state.ts module. Verify `writeStateAtomic` and `writeTextAtomic` are present in reduce-state.cjs; `loadStateSafety` is exported; `atomic-state.ts` exports `writeStateAtomic` with temp+fsync+rename. Return a concise verdict.
+
+Expected signals: `node --check` exits 0; `writeStateAtomic` and `writeTextAtomic` in reduce-state.cjs; `loadStateSafety` exported; `export function writeStateAtomic` in atomic-state.ts; `fsyncSync` and `renameSync` in atomic-state.ts.
+
+Desired user-visible outcome: the registry and dashboard are always written atomically so a crash between iterations never leaves a corrupt file visible to downstream readers.
+
+#### Test Execution
+> **Feature File:** [RUNTIME-001](07--runtime-robustness/atomic-state.md)
+
+---
+
+### RUNTIME-002 | JSONL Repair
+
+#### Description
+Verify that `reduce-state.cjs` invokes `repairJsonlTail` on the state log before reading and surfaces the outcome in `registry.stateLogRepair { repaired, droppedBytes }`, with `repairJsonlTailInline` as the inline fallback.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the JSONL repair contract for deep-context against reduce-state.cjs and the runtime jsonl-repair.ts module. Verify `repairJsonlTail` and `stateLogRepair` appear in reduce-state.cjs; `repairJsonlTailInline` is present; `jsonl-repair.ts` exports `repairJsonlTail` with `truncateSync`. Return a concise verdict.
+
+Expected signals: `repairJsonlTail` and `stateLogRepair` in reduce-state.cjs; `repairJsonlTailInline` in reduce-state.cjs; `export function repairJsonlTail` in jsonl-repair.ts; `truncateSync` in jsonl-repair.ts.
+
+Desired user-visible outcome: a crash-corrupted state log is automatically repaired before the reducer reads it, and the amount of data trimmed is visible in `registry.stateLogRepair.droppedBytes`.
+
+#### Test Execution
+> **Feature File:** [RUNTIME-002](07--runtime-robustness/jsonl-repair.md)
+
+---
+
+### RUNTIME-003 | Post-Dispatch Validate (Seat Validation)
+
+#### Description
+Verify that `reduce-state.cjs` calls `validateSeatFinding` before merging each seat finding and surfaces invalid findings in `registry.seatValidationWarnings` rather than silently merging or dropping them.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the post-dispatch seat finding validation contract for deep-context against reduce-state.cjs. Verify `validateSeatFinding` and `seatValidationWarnings` appear in the script; confirm `validateSeatFinding` checks kind, path/symbol, and relevance. Return a concise verdict.
+
+Expected signals: `validateSeatFinding` in reduce-state.cjs; `seatValidationWarnings` in the registry assignment; validation reason strings for unknown kind, missing path/symbol, and non-numeric relevance present in reduce-state.cjs.
+
+Desired user-visible outcome: invalid seat findings are surfaced in `registry.seatValidationWarnings` rather than silently merged, so operators know when a seat returned malformed output.
+
+#### Test Execution
+> **Feature File:** [RUNTIME-003](07--runtime-robustness/post-dispatch-validate.md)
+
+---
+
+### RUNTIME-004 | Loop Lock
+
+#### Description
+Verify that `loop-lock.cjs` passes syntax check and that `step_acquire_lock`/`step_release_lock` are wired into both `deep_start-context-loop_auto.yaml` and `deep_start-context-loop_confirm.yaml`.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the loop lock contract for deep-context by running `node --check` on loop-lock.cjs and confirming `step_acquire_lock` and `step_release_lock` appear in both auto and confirm YAML files. Return a concise verdict.
+
+Expected signals: `node --check loop-lock.cjs` exits 0; `loop-lock.cjs` referenced in both YAMLs; both `step_acquire_lock` and `step_release_lock` found in each YAML.
+
+Desired user-visible outcome: concurrent deep-context sessions targeting the same spec folder are blocked at `step_acquire_lock` without corrupting shared state artifacts.
+
+#### Test Execution
+> **Feature File:** [RUNTIME-004](07--runtime-robustness/loop-lock.md)
+
+---
+
+### RUNTIME-005 | Executor Audit
+
+#### Description
+Verify that `SPECKIT_CLI_DISPATCH_STACK` and the `executor-audit` recursion-guard contract are referenced in `deep_start-context-loop_auto.yaml`, and that `buildExecutorDispatchEnv` is exported from `executor-audit.ts`.
+
+#### Scenario Contract
+Prompt: As a manual-testing orchestrator, validate the executor-audit recursion-guard contract for deep-context against the auto YAML cli_contract block. Verify `SPECKIT_CLI_DISPATCH_STACK` and `executor-audit` appear in `deep_start-context-loop_auto.yaml`; `CLI_DISPATCH_STACK_ENV` and `buildExecutorDispatchEnv` are exported from `executor-audit.ts`. Return a concise verdict.
+
+Expected signals: `SPECKIT_CLI_DISPATCH_STACK` and `executor-audit` in auto YAML; `CLI_DISPATCH_STACK_ENV` and `export function buildExecutorDispatchEnv` in executor-audit.ts.
+
+Desired user-visible outcome: every CLI seat launched by the context loop carries `SPECKIT_CLI_DISPATCH_STACK` in its environment so recursive deep-context launches are blocked before dispatch.
+
+#### Test Execution
+> **Feature File:** [RUNTIME-005](07--runtime-robustness/executor-audit.md)
+
+---
+
+## 14. AUTOMATED TEST CROSS-REFERENCE
 
 | Test Module | Coverage | Playbook Overlap |
 |---|---|---|
@@ -525,7 +616,7 @@ Desired user-visible outcome: the convergence engine can be unit-tested with in-
 
 ---
 
-## 14. FEATURE CATALOG CROSS-REFERENCE INDEX
+## 15. FEATURE CATALOG CROSS-REFERENCE INDEX
 
 | Feature ID | Feature Name | Category | Feature File |
 |---|---|---|---|
@@ -549,3 +640,8 @@ Desired user-visible outcome: the convergence engine can be unit-tested with in-
 | CG-001 | Loop Type: Context Schema | Coverage-Graph Schema | [CG-001](06--coverage-graph-schema/loop-type-context-schema.md) |
 | CG-002 | Context Node Kinds and Relations | Coverage-Graph Schema | [CG-002](06--coverage-graph-schema/context-node-kinds-relations.md) |
 | CG-003 | Context Convergence Signals | Coverage-Graph Schema | [CG-003](06--coverage-graph-schema/context-convergence-signals.md) |
+| RUNTIME-001 | Atomic State | Runtime Robustness | [RUNTIME-001](07--runtime-robustness/atomic-state.md) |
+| RUNTIME-002 | JSONL Repair | Runtime Robustness | [RUNTIME-002](07--runtime-robustness/jsonl-repair.md) |
+| RUNTIME-003 | Post-Dispatch Validate (Seat Validation) | Runtime Robustness | [RUNTIME-003](07--runtime-robustness/post-dispatch-validate.md) |
+| RUNTIME-004 | Loop Lock | Runtime Robustness | [RUNTIME-004](07--runtime-robustness/loop-lock.md) |
+| RUNTIME-005 | Executor Audit | Runtime Robustness | [RUNTIME-005](07--runtime-robustness/executor-audit.md) |

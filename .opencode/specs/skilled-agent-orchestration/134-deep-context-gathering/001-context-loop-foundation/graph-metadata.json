@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/134-deep-context-gathering/001-context-loop-foundation",
+  "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering/001-context-loop-foundation",
+  "parent_id": "skilled-agent-orchestration/134-deep-context-gathering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "deep-context",
+      "context gathering",
+      "context report",
+      "reuse catalog",
+      "deep loop"
+    ],
+    "key_topics": [
+      "deep-context",
+      "context",
+      "gathering",
+      "report",
+      "reuse",
+      "catalog",
+      "deep",
+      "loop",
+      "convergence-gated",
+      "coverage-graph",
+      "by-model-parallel"
+    ],
+    "importance_tier": "high",
+    "status": "complete",
+    "key_files": [
+      "spec.md",
+      "implementation-summary.md",
+      "research/research.md",
+      ".opencode/skills/deep-context/SKILL.md",
+      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
+        "name": "research.md",
+        "kind": "doc",
+        "path": "research/research.md",
+        "source": "derived"
+      },
+      {
+        "name": "coverage-graph-db.ts",
+        "kind": "code",
+        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
+        "source": "derived"
+      },
+      {
+        "name": "convergence.cjs",
+        "kind": "file",
+        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Foundational build of the deep-context loop: the skill, the /deep:start-context-loop command with auto and confirm workflows, the @deep-context LEAF agent, the deep-loop-runtime loop_type='context' coverage-graph and convergence extension, the reuse-first Context Report, the sk-doc documentation package, skill-advisor registration, and the closed manual-testing-playbook gaps. Shipped and verified.",
+    "created_at": "2026-06-06T14:09:09.974Z",
+    "last_save_at": "2026-06-06T21:40:00.000Z",
+    "save_lineage": "same_pass",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "implementation-summary.md",
+      "research/research.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

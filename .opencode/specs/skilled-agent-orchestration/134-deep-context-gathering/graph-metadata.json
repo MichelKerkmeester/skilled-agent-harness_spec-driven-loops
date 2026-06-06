@@ -3,7 +3,10 @@
   "packet_id": "skilled-agent-orchestration/134-deep-context-gathering",
   "spec_folder": "skilled-agent-orchestration/134-deep-context-gathering",
   "parent_id": null,
-  "children_ids": [],
+  "children_ids": [
+    "skilled-agent-orchestration/134-deep-context-gathering/001-context-loop-foundation",
+    "skilled-agent-orchestration/134-deep-context-gathering/002-runtime-robustness-parity"
+  ],
   "manual": {
     "depends_on": [],
     "supersedes": [],
@@ -13,7 +16,7 @@
     "trigger_phrases": [
       "deep-context",
       "context gathering",
-      "context report",
+      "context loop",
       "reuse catalog",
       "deep loop"
     ],
@@ -21,34 +24,23 @@
       "deep-context",
       "context",
       "gathering",
-      "report",
       "reuse",
       "catalog",
-      "deep",
       "loop",
-      "convergence-gated",
-      "assembles",
-      "implementation-ready",
-      "existing"
+      "runtime",
+      "robustness",
+      "parity",
+      "convergence",
+      "coverage-graph"
     ],
     "importance_tier": "high",
-    "status": "draft_—_research_complete,_build_pending_approval",
+    "status": "phase_parent",
     "key_files": [
-      "research/research.md",
       "spec.md",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
-      ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-      ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-      ".opencode/agents/context.md",
-      "research/deep-research-state.jsonl"
+      "001-context-loop-foundation/spec.md",
+      "002-runtime-robustness-parity/spec.md"
     ],
     "entities": [
-      {
-        "name": "research.md",
-        "kind": "doc",
-        "path": "research/research.md",
-        "source": "derived"
-      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -56,112 +48,27 @@
         "source": "derived"
       },
       {
-        "name": "coverage-graph-db.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-db.ts",
-        "source": "derived"
-      },
-      {
-        "name": "coverage-graph-signals.ts",
-        "kind": "code",
-        "path": ".opencode/skills/deep-loop-runtime/lib/coverage-graph/coverage-graph-signals.ts",
-        "source": "derived"
-      },
-      {
-        "name": "convergence.cjs",
-        "kind": "file",
-        "path": ".opencode/skills/deep-loop-runtime/scripts/convergence.cjs",
-        "source": "derived"
-      },
-      {
-        "name": "context.md",
-        "kind": "doc",
-        "path": ".opencode/agents/context.md",
-        "source": "derived"
-      },
-      {
-        "name": "deep-research-state.jsonl",
-        "kind": "file",
-        "path": "research/deep-research-state.jsonl",
-        "source": "derived"
-      },
-      {
-        "name": "Feature Specification",
+        "name": "deep-context loop",
         "kind": "proper_noun",
         "path": "spec.md",
         "source": "derived"
       },
       {
-        "name": "Context Report",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Key Decisions",
+        "name": "Phase Parent",
         "kind": "proper_noun",
         "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Critical Dependencies",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "System Code Graph",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Problem Statement There",
-        "kind": "proper_noun",
-        "path": "spec.md",
-        "source": "derived"
-      },
-      {
-        "name": "Deep Research",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Claude Code",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Chroma Context Rot",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Context Package",
-        "kind": "proper_noun",
-        "path": "research/research.md",
-        "source": "derived"
-      },
-      {
-        "name": "Integration Points",
-        "kind": "proper_noun",
-        "path": "research/research.md",
         "source": "derived"
       }
     ],
-    "causal_summary": "There is no convergence-gated loop that assembles implementation-ready context from the existing codebase. `/speckit:plan` discovers context ad-hoc (4 one-shot exploration agents in Step 5) and `/speckit:implement` relies on whatever the plan captured, so reusable code is missed (violating the \"reuse, avoid new code\" principle), context-rot and stale references creep in, and there is no saturation signal for \"enough context gathered.\"",
+    "causal_summary": "The deep-context loop assembles implementation-ready, reuse-first context from the existing codebase before planning. Phase 001 shipped the loop (skill, command, agent, loop_type='context' coverage-graph and convergence, Context Report, advisor registration); phase 002 brings it to durability and validation parity with deep-research and deep-review on the shared deep-loop-runtime.",
     "created_at": "2026-06-06T14:09:09.974Z",
-    "last_save_at": "2026-06-06T14:09:09.974Z",
-    "save_lineage": "graph_only",
+    "last_save_at": "2026-06-06T20:12:18.970Z",
+    "save_lineage": "same_pass",
     "last_accessed_at": null,
     "source_docs": [
-      "spec.md",
-      "research/research.md"
+      "spec.md"
     ],
-    "last_active_child_id": null,
-    "last_active_at": null
+    "last_active_child_id": "skilled-agent-orchestration/134-deep-context-gathering/002-runtime-robustness-parity",
+    "last_active_at": "2026-06-06T20:12:18.970Z"
   }
 }

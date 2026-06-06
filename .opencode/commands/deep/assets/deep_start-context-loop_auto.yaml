@@ -167,19 +167,20 @@ workflow:
         command: "mkdir -p {state_paths.prompt_dir} {state_paths.iteration_dir} {state_paths.delta_dir} {state_paths.seat_dir}"
 
       step_acquire_lock:
-        action: "Acquire the advisory lock before session classification"
-        command: "Open {state_paths.lock_file} with exclusive non-blocking advisory locking semantics; fail closed on contention."
-        note: "macOS/BSD locking here is advisory. Stale-lock override is confirm-only or explicit recovery-only."
+        action: "Acquire the single-writer advisory lock before session classification"
+        command: "node .opencode/skills/deep-context/scripts/loop-lock.cjs acquire --lock {state_paths.lock_file} --packet {spec_path}"
+        on_acquire: "Capture ownerPid from the JSON output and reuse it for every release below. If acquired=false, fail closed — another deep-context run already holds this packet."
+        note: "Uses the deep-loop-runtime loop-lock helper (single source of truth: stale-lock reclaim, heartbeat, clean owner-scoped release). macOS/BSD locking is advisory; stale-lock override is confirm-only or explicit recovery-only."
         on_halt:
-          action: "Release {state_paths.lock_file} before any terminal halt branch returns control"
+          action: "Release the lock before any terminal halt branch returns control"
           applies_to: ["step_classify_session.on_invalid_state", "step_classify_session.on_completed_session"]
-          command: "Remove or close-with-release {state_paths.lock_file}; failures here are logged but do not block the halt"
+          command: "node .opencode/skills/deep-context/scripts/loop-lock.cjs release --lock {state_paths.lock_file} --owner {captured_owner_pid}; failures here are logged but do not block the halt"
         on_cancel:
-          action: "Release {state_paths.lock_file} on user cancel or pause-sentinel detection before sentinel processing"
-          command: "Remove or close-with-release {state_paths.lock_file}; cancel completes regardless of cleanup result"
+          action: "Release the lock on user cancel or pause-sentinel detection before sentinel processing"
+          command: "node .opencode/skills/deep-context/scripts/loop-lock.cjs release --lock {state_paths.lock_file} --owner {captured_owner_pid}; cancel completes regardless of cleanup result"
         on_workflow_exit:
-          action: "Release {state_paths.lock_file} as the final step of any workflow exit path (success or failure)"
-          command: "Remove or close-with-release {state_paths.lock_file}; idempotent — safe to invoke when already released"
+          action: "Release the lock as the final step of any workflow exit path (success or failure)"
+          command: "node .opencode/skills/deep-context/scripts/loop-lock.cjs release --lock {state_paths.lock_file} --owner {captured_owner_pid}; idempotent — safe to invoke when already released"
 
       step_classify_session:
         action: "Classify the session before writing files"
@@ -449,6 +450,7 @@ workflow:
               - "cli-claude-code seats: claude -p ... --model X --permission-mode plan (read-only)."
               - "cli-devin seats: devin --print --prompt-file ... --model X --permission-mode auto (read-only analyzer; --agent-config pins a read-only allowlist)."
               - "Self-invocation guards: cli-opencode/cli-devin branches must only run from a non-self dispatch surface; the executor skill SKILL.md §SELF-INVOCATION PROHIBITED contract is authoritative."
+              - "Executor-audit recursion guard: spawn each CLI seat with the deep-loop-runtime executor-audit dispatch env (SPECKIT_CLI_DISPATCH_STACK appended with this loop's kind via buildExecutorDispatchEnv) so a seat cannot recursively launch another deep-context loop; record seat provenance per the runtime executor-audit contract."
             wait_for_completion: true
 
       step_collect_seat_findings:
@@ -703,8 +705,8 @@ workflow:
         on_fail: "Log warning but do not block completion"
 
       step_release_lock:
-        action: "Release the advisory lock after save, skip-save, or cancellation cleanup has resolved"
-        command: "Close or unlock {state_paths.lock_file} using advisory semantics only."
+        action: "Release the single-writer lock after save, skip-save, or cancellation cleanup has resolved"
+        command: "node .opencode/skills/deep-context/scripts/loop-lock.cjs release --lock {state_paths.lock_file} --owner {captured_owner_pid}"
         append_to_jsonl: '{"type":"event","event":"lock_released","path":"{state_paths.lock_file}","releasePhase":"save","timestamp":"{ISO_8601_NOW}"}'
 
   # ═══════════════════════════════════════════════════════════════

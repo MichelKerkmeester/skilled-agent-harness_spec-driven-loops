@@ -28,6 +28,7 @@ Use this catalog as the canonical inventory for the live `deep-context` feature 
 | Convergence detection | 4 features | `convergence.cjs`, `coverage-graph-signals.ts`, `convergence.md`, `phase_loop` step_check_convergence |
 | Context report synthesis | 3 features | `phase_synthesis` YAML, `context_report_template.md`, `generate-context.js` |
 | Coverage-graph schema | 3 features | `coverage-graph-db.ts`, `coverage-graph-signals.ts`, `coverage-graph-query.ts` |
+| Runtime robustness | 5 features | `reduce-state.cjs`, `loop-lock.cjs`, `atomic-state.ts`, `jsonl-repair.ts`, `loop-lock.ts`, `executor-audit.ts`, YAML `cli_contract` |
 
 ---
 
@@ -372,3 +373,87 @@ Documents the `ContextConvergenceSignals` interface exported by `coverage-graph-
 #### Source Files
 
 See [`06--coverage-graph-schema/context-convergence-signals.md`](06--coverage-graph-schema/context-convergence-signals.md) for full implementation and test file listings.
+
+---
+
+## 8. RUNTIME ROBUSTNESS
+
+These entries cover the five safety and reliability mechanisms wired into the `deep-context` loop (gated to `loop_type='context'`): atomic file writes, JSONL tail repair, seat finding validation, session-scoped advisory locking, and CLI executor recursion guards.
+
+### Atomic State
+
+#### Description
+
+`reduce-state.cjs` writes `findings-registry.json` via the runtime `writeStateAtomic` (or inline fallback) and `deep-context-dashboard.md` via `writeTextAtomic`, using a temp+fsync+rename sequence to prevent half-written outputs.
+
+#### Current Reality
+
+`loadStateSafety()` attempts to load `writeStateAtomic` from `atomic-state.ts` via the tsx CJS register. On success, `_stateSafety.source` is `'runtime'`. On failure, `writeStateAtomicInline` is used instead. Both paths implement the same temp-file → fsync → rename pattern. The dashboard always goes through `writeTextAtomic` (inline). Both writes occur at the end of `reduceContextState()` before the function returns, ensuring consistent paired outputs.
+
+#### Source Files
+
+See [`07--runtime-robustness/atomic-state.md`](07--runtime-robustness/atomic-state.md) for full implementation and test file listings.
+
+---
+
+### JSONL Repair
+
+#### Description
+
+Before reading the append-only state log, `reduce-state.cjs` calls `repairJsonlTail` to truncate any trailing malformed content left by a mid-write crash, recording `{ repaired, droppedBytes }` in `registry.stateLogRepair`.
+
+#### Current Reality
+
+`loadStateSafety()` loads `repairJsonlTail` from `jsonl-repair.ts` (runtime) or falls back to `repairJsonlTailInline`. The call to `stateSafety.repairJsonlTail(stateLogPath)` runs before the state log is parsed by `parseJsonlDetailed`. The repair result is stored in `registry.stateLogRepair` and also surfaced in the per-run summary as `stateLogRepaired` and `stateLogDroppedBytes`.
+
+#### Source Files
+
+See [`07--runtime-robustness/jsonl-repair.md`](07--runtime-robustness/jsonl-repair.md) for full implementation and test file listings.
+
+---
+
+### Post-Dispatch Validate (Seat Validation)
+
+#### Description
+
+`reduce-state.cjs` validates each raw seat finding via `validateSeatFinding` before merge: known kind, at least one of path or symbol, and numeric relevance when present. Invalid findings are captured in `registry.seatValidationWarnings` rather than silently merged.
+
+#### Current Reality
+
+`validateSeatFinding(raw)` returns a reason string on failure or `null` on success. It is called inside `loadSeatFindings` for every finding read from `seats/iter-{NNN}/*.json`. Invalid findings are pushed to `validationWarnings` (surfaced as `registry.seatValidationWarnings`) and skipped from the merge. The count is also emitted in the per-run summary. `VALID_FINDING_KINDS` is derived from `KIND_TO_BUCKET` keys so the kind gate stays in sync with the bucket routing table.
+
+#### Source Files
+
+See [`07--runtime-robustness/post-dispatch-validate.md`](07--runtime-robustness/post-dispatch-validate.md) for full implementation and test file listings.
+
+---
+
+### Loop Lock
+
+#### Description
+
+`loop-lock.cjs` wraps the runtime `acquireLoopLock`/`refreshLoopLock`/`releaseLoopLock` to provide single-writer advisory locking. Both auto and confirm YAMLs invoke it at `step_acquire_lock` (phase_init) and `step_release_lock` (phase_synthesis + all exit paths).
+
+#### Current Reality
+
+`loop-lock.cjs` loads `loop-lock.ts` in-process via the tsx CJS register and exposes an `acquire|refresh|release` CLI. `acquireLoopLock` reclaims stale locks (dead owner PID or heartbeat TTL × 2 exceeded) atomically. `step_acquire_lock` in both YAML files exits 1 on a live conflicting lock, halting the workflow. Lock release is wired into halt, cancel, and completed-session paths so the lock file is never orphaned on a clean exit.
+
+#### Source Files
+
+See [`07--runtime-robustness/loop-lock.md`](07--runtime-robustness/loop-lock.md) for full implementation and test file listings.
+
+---
+
+### Executor Audit
+
+#### Description
+
+The YAML `cli_contract` requires each CLI seat to be spawned with `SPECKIT_CLI_DISPATCH_STACK` appended for its executor kind via `buildExecutorDispatchEnv`, preventing a seat from recursively launching another deep-context loop.
+
+#### Current Reality
+
+`executor-audit.ts` exports `CLI_DISPATCH_STACK_ENV = 'SPECKIT_CLI_DISPATCH_STACK'` and `buildExecutorDispatchEnv(config, parentEnv)` which appends the executor kind to the colon-delimited stack and filters the parent env to allowed keys per kind. `validateExecutorDispatchAllowed` checks four recursion-guard layers (stack, ancestry, runtime-env, lockfile) and blocks the dispatch by emitting a `dispatch_failure` JSONL event when any layer triggers. The `cli_contract` block in both YAML `step_sweep_cli_pool` steps mandates this behavior for every CLI seat.
+
+#### Source Files
+
+See [`07--runtime-robustness/executor-audit.md`](07--runtime-robustness/executor-audit.md) for full implementation and test file listings.

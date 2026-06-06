@@ -266,6 +266,31 @@ Run an iterative loop that maps the existing codebase for a feature: seed a fron
 | Synth | Synthesize | Compile the reuse-first Context Report from merged findings | context/context-report.md, context/context-report.json |
 | Save | Preserve | Refresh continuity update in canonical spec docs | canonical spec doc updated via `generate-context.js` |
 
+### Session Classification
+
+Before writing any files, `step_classify_session` inspects the three state artifacts (`deep-context-config.json`, `deep-context-state.jsonl`, `deep-context-strategy.md`) and classifies the run into one of four outcomes:
+
+| Session state | Condition | Action |
+|---------------|-----------|--------|
+| `fresh` | None of the three state artifacts exist | Proceed with a new session: create config, strategy, and state from templates |
+| `resume` | Config, JSONL, and strategy all exist and agree on scope/spec folder | Continue the same lineage (sessionId/generation unchanged) and skip straight to the loop |
+| `completed-session` | Resume artifacts exist and `config.status == "complete"` | Halt: archive or replace the existing `context/` tree before starting a new session |
+| `invalid-state` | Any partial, missing, or contradictory combination | Halt: repair or archive the invalid context packet before continuing |
+
+A `:restart` request archives the current packet and starts a new lineage segment (fresh sessionId, generation + 1).
+
+### Runtime Robustness
+
+The host applies the deep-loop-runtime durability layer for every session:
+
+| Mechanism | What Happens |
+|-----------|-------------|
+| **Loop-lock** | A single-writer advisory lock is acquired via `scripts/loop-lock.cjs` (`step_acquire_lock`) at session start and released (`step_release_lock`) at exit, preventing concurrent sessions from racing the shared state files. |
+| **Atomic state writes** | The registry and dashboard are written crash-safe (temp file → fsync → rename) via the runtime `writeStateAtomic` helper in `reduce-state.cjs`. A partial write never corrupts the existing state. |
+| **JSONL repair** | Before each reduce pass, the runtime `repairJsonlTail` helper inspects `deep-context-state.jsonl` and truncates a corrupt trailing line, so a mid-write crash does not block subsequent iterations. |
+| **Post-dispatch seat-output validation** | Each seat's returned finding set is validated (known kind / path-or-symbol / numeric relevance) before it enters the merge. Invalid findings surface as `seatValidationWarnings` and are never silently merged. |
+| **Executor-audit recursion guard** | CLI seats are dispatched with the runtime recursion-guard env variable set, so a seat cannot launch a nested deep-context loop regardless of its prompt content. |
+
 ### Execution Modes
 
 | Mode | Invocation | Behavior |
