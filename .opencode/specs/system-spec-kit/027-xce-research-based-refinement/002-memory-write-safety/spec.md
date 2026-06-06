@@ -36,7 +36,7 @@ _memory:
 
 ## EXECUTIVE SUMMARY
 
-Phase 002 is a small correctness-first packet carved out of `../009-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 009's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.
+Phase 002 is a small correctness-first packet carved out of `../005-learning-feedback-reducers/spec.md` Sub-Phase 1. The pt-04 audit found that 005's learning reducers are still directionally valid, but three safety bugs should not wait for reducer design, eval infrastructure, or code_graph implementation ordering. This packet ships those three P0 fixes first.
 
 The three fixes protect existing system behavior before any learned causal or retention mutation is introduced:
 - Auto-derived causal edges from `created_by='auto-session'` must remain capped like existing `created_by='auto'` edges.
@@ -44,8 +44,8 @@ The three fixes protect existing system behavior before any learned causal or re
 - Retention sweep must not delete constitutional or critical records solely because `delete_after` expired.
 
 Source context:
-- pt-04 audit: `../research/027-xce-research-pt-04/research.md` §2 Phase 008 and §5 reprioritization.
-- Original scope: `../009-feedback-reducers/spec.md` Sub-Phase 1.
+- pt-04 audit: `../research/027-xce-research-pt-04/research.md` §2 Phase 005 and §5 reprioritization.
+- Original scope: `../005-learning-feedback-reducers/spec.md` Sub-Phase 1.
 - Ordering decision: "009 P0 fixes before reducers" and before all code_graph phases in the refreshed 027 sequence.
 
 ---
@@ -59,7 +59,7 @@ Source context:
 | **Priority** | P0 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `027-xce-research-based-refinement` |
-| **Source** | `../research/027-xce-research-pt-04/research.md`; original scope in `../009-feedback-reducers/spec.md` Sub-Phase 1 |
+| **Source** | `../research/027-xce-research-pt-04/research.md`; original scope in `../005-learning-feedback-reducers/spec.md` Sub-Phase 1 |
 | **Depends on** | None |
 | **Ships before** | the learning reducers in `027/005-learning-feedback-reducers` (hard dependency). Independent of the code-graph adoption work formerly numbered `028/*` (now under `z_future/code-graph-and-cocoindex`). |
 | **LOC budget** | ~50-80 production + ~60-100 tests |
@@ -74,7 +74,7 @@ Source context:
 
 ### Problem Statement
 
-`../009-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes. That coupling is risky: the correctness bugs affect existing causal graph and retention behavior even before the reducer work lands, and the pt-04 audit explicitly concluded that "P0 fixes should not wait on eval."
+`../005-learning-feedback-reducers/spec.md` originally bundled learning reducers with three P0 safety fixes. That coupling is risky: the correctness bugs affect existing causal graph and retention behavior even before the reducer work lands, and the pt-04 audit explicitly concluded that "P0 fixes should not wait on eval."
 
 The first bug is provenance based. `mcp_server/lib/storage/causal-edges.ts:269-288` only recognizes `createdBy === 'auto'` when applying the automatic-edge strength cap. RQ-B3 plans `created_by='auto-session'`, which would bypass the 0.5 cap unless the predicate broadens. `mcp_server/lib/storage/consolidation.ts:352-359` has the same narrow check.
 

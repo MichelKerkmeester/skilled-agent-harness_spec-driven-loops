@@ -1,6 +1,6 @@
 ---
 title: "Verification Checklist: 027/002 Memory Write Safety"
-description: "Verification checklist for the three P0 correctness fixes split from 027/009."
+description: "Verification checklist for the three P0 correctness fixes split from 027/005."
 trigger_phrases:
   - "027 phase 002"
   - "feedback P0 correctness"
@@ -108,7 +108,7 @@ _memory:
 
 - [ ] CHK-040 [P1] `spec.md`, `plan.md`, and `tasks.md` remain synchronized.
 - [ ] CHK-041 [P1] `implementation-summary.md` updated after implementation.
-- [ ] CHK-042 [P1] 027/009 dependency note can cite 012 as complete after this ships.
+- [ ] CHK-042 [P1] 027/005 dependency note can cite 012 as complete after this ships.
 <!-- /ANCHOR:docs -->
 
 ---

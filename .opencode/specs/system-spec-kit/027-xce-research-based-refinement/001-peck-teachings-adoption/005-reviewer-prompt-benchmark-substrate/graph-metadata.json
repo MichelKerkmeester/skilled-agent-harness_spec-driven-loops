@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027 phase 005",
+      "027 phase 010",
       "reviewer prompt benchmark substrate",
       "reviewer fixture",
       "reviewer scorer lane b",
@@ -196,7 +196,7 @@
     ],
     "causal_summary": "Packet 010 adopts **T10**, the highest-novelty mechanism (newInfoRatio 0.85) from the peck-source deep-mining pass (`research/006-peck-source-deep-mining/research.md` §2): peck's untouched `revim-*` harness runs a reviewer prompt over a real repo fixture that carries an **expected verdict** (`CHECKOUT/INPUT/EXPECTED` -> `Pass|Fail|Block`) and asserts the reviewer still catches that known bug class. spec-kit's deep-improvement Lane B (code-task oracles) and Lane C (routing gold) cannot currently answer \"does this reviewer prompt still catch this known bug class\" — cross-model verification (MiniMax M3, iteration-016) confirmed the gap is real and supplied a low-cost implementation sketch.",
     "created_at": "2026-06-06T10:22:05.630Z",
-    "last_save_at": "2026-06-06T10:22:05.630Z",
+    "last_save_at": "2026-06-06T14:09:11.208Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [

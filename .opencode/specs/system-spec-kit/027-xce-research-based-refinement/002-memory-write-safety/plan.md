@@ -47,7 +47,7 @@ _memory:
 
 ### Overview
 
-Phase 002 implements the three P0 precondition fixes split from 027/009. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone.
+Phase 002 implements the three P0 precondition fixes split from 027/005. The work is intentionally narrow: update causal provenance handling, add manual-edge overwrite protection, and prevent retention sweep from deleting protected high-tier records on TTL expiry alone.
 <!-- /ANCHOR:summary -->
 
 ---
@@ -58,7 +58,7 @@ Phase 002 implements the three P0 precondition fixes split from 027/009. The wor
 ### Definition of Ready
 
 - [x] pt-04 source decision identified in `../research/027-xce-research-pt-04/research.md`.
-- [x] Original P0 scope identified in `../009-feedback-reducers/spec.md` Sub-Phase 1.
+- [x] Original P0 scope identified in `../005-learning-feedback-reducers/spec.md` Sub-Phase 1.
 - [x] Target production files named.
 - [x] No dependency preconditions.
 
@@ -204,7 +204,7 @@ Required matrix:
 |------------|------|--------|-------------------|
 | Existing causal graph write path | Internal | Available | Required for P0-1 and P0-2 |
 | Existing retention sweep | Internal | Available | Required for P0-3 |
-| 027/009 learning reducers | Downstream | Waits on this packet | 009 should not start reducer work until this lands |
+| 027/005 learning reducers | Downstream | Waits on this packet | 005 should not start reducer work until this lands |
 
 No external dependencies. No network access required.
 <!-- /ANCHOR:dependencies -->

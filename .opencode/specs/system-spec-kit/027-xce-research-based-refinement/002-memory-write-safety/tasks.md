@@ -1,6 +1,6 @@
 ---
 title: "Tasks: 027/002 Memory Write Safety"
-description: "Task list for the three P0 fixes split from 027/009: auto provenance cap broadening, manual-edge overwrite guard, and retention-sweep tier basement."
+description: "Task list for the three P0 fixes split from 027/005: auto provenance cap broadening, manual-edge overwrite guard, and retention-sweep tier basement."
 trigger_phrases:
   - "027 phase 002"
   - "feedback P0 correctness"

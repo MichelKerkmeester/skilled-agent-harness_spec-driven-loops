@@ -1,6 +1,6 @@
 ---
 title: "Implementation Summary: 027/002 Memory Write Safety"
-description: "Placeholder implementation summary for the three P0 correctness fixes split from 027/009. Populate after code and tests land."
+description: "Placeholder implementation summary for the three P0 correctness fixes split from 027/005. Populate after code and tests land."
 trigger_phrases:
   - "027 phase 002"
   - "feedback P0 correctness"
@@ -50,7 +50,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Pending implementation. This packet is scaffolded so the three P0 fixes can land before all 027 code_graph phases and before 027/009 learning reducers.
+Pending implementation. This packet is scaffolded so the three P0 fixes can land before all 027 code_graph phases and before 027/005 learning reducers.
 
 ### Files Changed
 
@@ -77,7 +77,7 @@ Pending. Delivery evidence should include focused causal tests, focused retentio
 
 | Decision | Why |
 |----------|-----|
-| Split from 027/009 | pt-04 concluded P0 correctness fixes should not wait on learning reducers or eval. |
+| Split from 027/005 | pt-04 concluded P0 correctness fixes should not wait on learning reducers or eval. |
 | Ship before code_graph phases | The fixes protect shared causal and retention state before later graph and reducer work adds more mutation paths. |
 | Keep scope narrow | The packet is for correctness preconditions only, not feedback learning. |
 <!-- /ANCHOR:decisions -->
