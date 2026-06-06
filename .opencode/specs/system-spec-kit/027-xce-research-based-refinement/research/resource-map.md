@@ -164,10 +164,10 @@ description: "Auto-generated research resource map from convergence evidence."
 
 | Path | Action | Status | Note |
 |------|--------|--------|------|
-| .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/deep-research/feature_catalog/02--state-management/jsonl-state-log.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/deep-research/feature_catalog/04--research-output/progressive-synthesis.md | Cited | OK | Citations=1; Iterations=1 |
-| .opencode/skills/deep-research/feature_catalog/04--research-output/negative-knowledge.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/deep-research/feature_catalog/02--state-management/008-jsonl-state-log.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/deep-research/feature_catalog/04--research-output/015-progressive-synthesis.md | Cited | OK | Citations=1; Iterations=1 |
+| .opencode/skills/deep-research/feature_catalog/04--research-output/016-negative-knowledge.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/deep-research/references/state/state_format.md | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/deep-research/scripts/reduce-state.cjs | Cited | OK | Citations=1; Iterations=1 |
 | .opencode/skills/system-code-graph/feature_catalog/feature_catalog.md | Cited | OK | Citations=1; Iterations=1 |

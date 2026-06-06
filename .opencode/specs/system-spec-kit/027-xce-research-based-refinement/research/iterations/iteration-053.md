@@ -8,7 +8,7 @@ Inspected the current resource-map template, extractor, tests, and deep-research
 2. The template requires repo-relative paths, one path per row, action/status columns, category precedence, deletion of empty categories without renumbering, and a size budget; these are enough to define lint gates without changing the document shape. [SOURCE: .opencode/skills/system-spec-kit/templates/manifest/resource-map.md.tmpl:171-197]
 3. The extractor already normalizes research/review evidence into the same ten categories, computes missing-on-disk counts, emits `Degraded` metadata when rows are skipped, and writes deterministic tables from normalized entries. [SOURCE: .opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:81-139] [SOURCE: .opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:148-177]
 4. Existing tests prove research-shaped maps count citations per iteration and strip `:line` / `:line-range` suffixes before status checks, so stale-reference detection should reuse that line-anchor normalization instead of treating cited file:line anchors as missing paths. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:93-158] [SOURCE: .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:160-198]
-5. Deep-research synthesis already has a workflow-owned `--emit-resource-map` pass reading delta JSONL files and writing `resource-map.md`, with an opt-out via `config.resource_map.emit=false`; 027 should extend gates around this path instead of adding agent-owned resource-map edits. [SOURCE: .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md:18-40] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:996-1004]
+5. Deep-research synthesis already has a workflow-owned `--emit-resource-map` pass reading delta JSONL files and writing `resource-map.md`, with an opt-out via `config.resource_map.emit=false`; 027 should extend gates around this path instead of adding agent-owned resource-map edits. [SOURCE: .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md:18-40] [SOURCE: .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:996-1004]
 6. The current 027 parent map exists as a template-shaped parent aggregate and several child maps exist, but the continuation packet's isolated artifact root has no emitted resource-map yet; the gate should distinguish "not yet synthesized" from stale or missing. [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:19-24] [SOURCE: specs/system-spec-kit/027-xce-research-based-refinement/research/027-continuation-21-2026-06-04/research.md:28-30]
 
 ## Proposed 027 Gates
@@ -19,7 +19,7 @@ Inspected the current resource-map template, extractor, tests, and deep-research
 
 ## Ruled Out
 - Manual-only stale detection was ruled out because the extractor already has file-existence and line-anchor normalization behavior under test. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:160-198]
-- Agent-owned resource-map authoring was ruled out because the live contract says synthesis triggers reducer emission while iterations keep using reducer/registry/dashboard/strategy refreshes. [SOURCE: .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md:24-28]
+- Agent-owned resource-map authoring was ruled out because the live contract says synthesis triggers reducer emission while iterations keep using reducer/registry/dashboard/strategy refreshes. [SOURCE: .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md:24-28]
 
 ## Dead Ends
 - Do not require all ten category headings to be present in research output: tests show research-shaped maps omit empty categories while preserving original category numbers. [SOURCE: .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:137-148]
@@ -36,7 +36,7 @@ Inspected the current resource-map template, extractor, tests, and deep-research
 - .opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:81-139
 - .opencode/skills/system-spec-kit/scripts/resource-map/extract-from-evidence.cjs:148-177
 - .opencode/skills/system-spec-kit/mcp_server/scripts/tests/resource-map-extractor.vitest.ts:93-198
-- .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/resource-map-emission.md:18-40
+- .opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md:18-40
 - .opencode/commands/deep/assets/deep_start-research-loop_auto.yaml:996-1004
 - specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:19-24
 
