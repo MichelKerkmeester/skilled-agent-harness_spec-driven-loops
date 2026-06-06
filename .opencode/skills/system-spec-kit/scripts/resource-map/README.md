@@ -61,4 +61,4 @@ Expected result: `true`.
 ## 6. RELATED
 
 - [`../`](../) - System Spec Kit scripts.
-- [`../../templates/level_contract_optional_resource-map.md`](../../templates/level_contract_optional_resource-map.md) - Optional resource map contract.
+- [`../../templates/level_contract_optional_resource-map.md`](../../templates/manifest/resource-map.md.tmpl) - Optional resource map contract.

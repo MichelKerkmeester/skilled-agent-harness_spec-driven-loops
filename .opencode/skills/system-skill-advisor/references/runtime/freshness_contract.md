@@ -152,7 +152,7 @@ The daemon is NOT responsible for:
 - [`tool_ids_reference.md`](./tool_ids_reference.md), `advisor_status` returns trustState, `advisor_rebuild` transitions stale → live.
 - [`advisor_scorer.md`](../scoring/advisor_scorer.md), confidence calibration depends on trust state for some routes.
 - [`db_path_policy.md`](../config/db_path_policy.md), where the SQLite file lives.
-- [`feature_catalog/01--daemon-and-freshness/`](../feature_catalog/01--daemon-and-freshness/), feature inventory for daemon + freshness components.
-- [`manual_testing_playbook/05--auto-update-daemon/`](../manual_testing_playbook/05--auto-update-daemon/), operator scenarios for daemon validation.
+- [`feature_catalog/01--daemon-and-freshness/`](../../feature_catalog/01--daemon-and-freshness/), feature inventory for daemon + freshness components.
+- [`manual_testing_playbook/05--auto-update-daemon/`](../../manual_testing_playbook/05--auto-update-daemon/), operator scenarios for daemon validation.
 - `mcp_server/lib/freshness/`, trust-state source-of-truth.
 - `mcp_server/lib/daemon/`, daemon implementation.

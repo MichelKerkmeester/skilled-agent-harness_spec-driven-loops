@@ -80,6 +80,5 @@ COUNCIL_VALUE_REPORT_PATH=.opencode/skills/deep-loop-runtime/tests/council-graph
 ## 5. RELATED
 
 - [Data Subdirectory: data/](./data/README.md)
-- [Parent: Fixtures](../README.md)
 - [Tests: tests/](../../README.md)
 - [Council Runtime Lib: lib/council/](../../../lib/council/README.md)

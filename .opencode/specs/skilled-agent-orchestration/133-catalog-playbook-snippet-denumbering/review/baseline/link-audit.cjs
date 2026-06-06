@@ -61,6 +61,7 @@ function classify(file) {
 // Pull candidate references out of one markdown file.
 function extractRefs(content) {
   const refs = [];
+  content = content.replace(/```[\s\S]*?```/g, '\n'); // drop fenced code blocks (JS like ](target) is not a link)
   // 1. Inline markdown links: ](target)  and reference defs: [id]: target
   const linkRe = /\]\(\s*([^)\s]+?)\s*(?:\s+"[^"]*")?\)/g;
   let mm;
@@ -94,6 +95,7 @@ function checkable(raw) {
 function resolveCandidates(file, raw) {
   let t = raw.split('#')[0].split('?')[0].trim();
   if (!t) return null;                                  // was a pure anchor on this file
+  try { t = decodeURIComponent(t); } catch { /* leave as-is on malformed % */ }
   t = t.replace(/\/+$/, '');                            // trailing slash → dir
   if (!t) return null;
   const fromDir = path.dirname(file);

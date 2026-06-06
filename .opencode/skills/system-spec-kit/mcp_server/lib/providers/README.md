@@ -170,7 +170,7 @@ python3 .opencode/skills/sk-doc/scripts/validate_document.py .opencode/skills/sy
 
 | Resource | Relationship |
 |---|---|
-| [../contracts/README.md](../contracts/README.md) | Shared data shapes used by provider-facing paths. |
+| [../contracts/README.md](../interfaces/README.md) | Shared data shapes used by provider-facing paths. |
 | [../search/README.md](../search/README.md) | Vector search path that consumes embeddings. |
 | [../storage/README.md](../storage/README.md) | Database rows used by retry state. |
 | [../README.md](../README.md) | Parent library map. |

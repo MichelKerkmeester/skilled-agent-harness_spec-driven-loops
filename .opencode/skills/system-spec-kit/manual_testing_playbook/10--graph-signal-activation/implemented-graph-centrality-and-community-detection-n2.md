@@ -21,7 +21,7 @@ This scenario validates Implemented: graph centrality and community detection (N
 - Expected execution process: Run the documented TEST EXECUTION command sequence, capture the transcript and evidence, compare the observed output against the expected signals, and return the pass/fail verdict.
 - Expected signals: N2 tables exist with data; feature flags show active status; graph queries include centrality/community contributions in scores
 - Desired user-visible outcome: A concise pass/fail verdict with the main reason and cited evidence.
-- Pass/fail: PASS if N2 tables are populated, flags are active, and graph queries include centrality/community scoring. NOTE: ANCHOR-as-node is PLANNED/DEFERRED (feature catalog `_deprecated/09-anchor-tags-as-graph-nodes.md`) and is excluded from pass criteria. This scenario passes based on the implemented N2 features (momentum, depth, community) alone.
+- Pass/fail: PASS if N2 tables are populated, flags are active, and graph queries include centrality/community scoring. NOTE: ANCHOR-as-node is PLANNED/DEFERRED (archival deprecation record removed) and is excluded from pass criteria. This scenario passes based on the implemented N2 features (momentum, depth, community) alone.
 
 ---
 
@@ -49,7 +49,7 @@ Table inspection + flag status + graph query output showing N2 score contributio
 
 ### Pass / Fail
 
-- **Pass**: N2 tables are populated, flags are active, and graph queries include centrality/community scoring. ANCHOR-as-node is DEFERRED/SKIPPED — see feature catalog `_deprecated/09-anchor-tags-as-graph-nodes.md`. Test actively guards against edge creation; this aspect must NOT be tested as a current requirement.
+- **Pass**: N2 tables are populated, flags are active, and graph queries include centrality/community scoring. ANCHOR-as-node is DEFERRED/SKIPPED (archival deprecation record removed). Test actively guards against edge creation; this aspect must NOT be tested as a current requirement.
 - **Fail**: Any contradicting evidence appears or the pass condition is not met.
 
 ### Failure Triage

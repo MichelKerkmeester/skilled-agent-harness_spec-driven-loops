@@ -131,5 +131,4 @@ Expected result: the run writes refreshed `results.csv`, `per-probe.jsonl`, and 
 
 ## 7. RELATED
 
-- [`../README.md`](../README.md)
 - [`../../README.md`](../../README.md)

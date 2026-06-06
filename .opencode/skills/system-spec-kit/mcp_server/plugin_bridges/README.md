@@ -69,5 +69,5 @@ Expected result: Plugin bridge smoke tests and related advisor or message-schema
 ## 6. RELATED
 
 - [`../README.md`](../README.md)
-- [`../skill_advisor/README.md`](../skill_advisor/README.md)
+- [`../skill_advisor/README.md`](../../../system-skill-advisor/mcp_server/README.md)
 - Code-graph bridge: `.opencode/skills/system-code-graph/mcp_server/plugin_bridges/`

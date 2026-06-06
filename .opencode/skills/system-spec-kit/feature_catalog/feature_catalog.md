@@ -37,7 +37,7 @@ Code-graph hook docs now point at the extracted `system-code-graph` skill for gr
 | Code graph | Blocked/degraded `full_scan` contract on `code_graph_query` **and** `code_graph_context` | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md`, `.opencode/skills/system-code-graph/README.md` |
 | Code graph | CALLS disambiguation + `deadlineMs` + null-summary clearing | `.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md` |
 | Code graph | `graphQualitySummary` on status/startup surfaces | `.opencode/skills/system-code-graph/README.md`, `references/config/hook_system.md` |
-| Code graph | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md`](18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md), [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
+| Code graph | Shared startup payload parity across Claude/Gemini/Copilot/Codex | [`22--context-preservation/session-start-priming.md`](22--context-preservation/session-start-priming.md) (Claude slice), `references/config/hook_system.md` (Shared Startup Payload Parity section) |
 | Skill advisor | `advisor_recommend`/`advisor_validate` `workspaceRoot` + `effectiveThresholds` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook.md` |
 | Skill advisor | `advisor_validate` `thresholdSemantics` + `telemetry.outcomes.totals` | `system-skill-advisor/mcp_server/README.md`, `references/hooks/skill_advisor_hook_validation.md` |
 | Skill advisor | Durable JSONL diagnostics sinks + cross-process readback | `references/hooks/skill_advisor_hook.md`, `references/hooks/skill_advisor_hook_validation.md` (Step 3) |
@@ -657,9 +657,6 @@ Two correction paths run inside one `BEGIN IMMEDIATE` transaction. The convergen
 
 The `BEGIN IMMEDIATE` lock prevents concurrent embedding writes from racing with the reconciliation pass. On completion the handler returns counts for rows examined, rows converged and rows reset to pending, plus a `mode` field confirming which mode ran.
 
-#### Source Files
-
-See [`04--maintenance/035-embedding-status-reconciliation.md`](04--maintenance/035-embedding-status-reconciliation.md) for implementation and test file listings.
 
 ---
 
@@ -1711,9 +1708,6 @@ Anchor markers are labels placed inside memories to highlight important sections
 
 **PLANNED (Sprint 019): DEFERRED.** Promoting parsed ANCHOR markers into typed graph nodes (most creative insight from cross-AI research, Gemini-2) is deferred behind a dedicated 2-day feasibility spike. Estimated effort: S-M (3-5 days).
 
-#### Source Files
-
-See [`10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md`](10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md) for the archival deprecation record.
 
 ---
 
@@ -1879,9 +1873,6 @@ The boost applies before FSRS decay and caps the composite score at 0.95 to prev
 
 **Sprint 8 update:** The `calculateNoveltyBoost()` call was removed from the hot scoring path in `composite-scoring.ts` because evaluation showed it always returned 0. The function definition remains but is no longer invoked during search. Telemetry fields are hardcoded to `noveltyBoostApplied: false, noveltyBoostValue: 0` for log schema compatibility.
 
-#### Source Files
-
-See [`11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md`](11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md) for the archival deprecation record.
 
 ---
 
@@ -2285,9 +2276,6 @@ RRF remains the sole live fusion method. RSF has been removed from the codebase 
 
 Sprint 8 removed the dead `isRsfEnabled()` helper, the dead hybrid-search branch guarded behind it, the RSF implementation/tests, and the old `rsfShadow` metadata slot. `SPECKIT_RSF_FUSION` may still appear as an inert config/documentation surface, but production ranking behavior stays on RRF (updated 2026-03-25 per deep review).
 
-#### Source Files
-
-See [`12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md`](12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md) for the archival deprecation record.
 
 ---
 
@@ -2873,9 +2861,6 @@ Implicit feedback log records implicit feedback signals from search and save int
 
 Enabled by default (graduated). Set `SPECKIT_IMPLICIT_FEEDBACK_LOG=false` to disable. The feedback ledger module records five event types with a three-tier confidence hierarchy: strong (result_cited, follow_on_tool_use), medium (query_reformulated), and weak (search_shown, same_topic_requery). Each event is stored with type, memory_id, query_id, confidence, timestamp, and optional session_id. Shadow-only: no ranking influence.
 
-#### Source Files
-
-See [`13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md`](13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md) for the archival deprecation record.
 
 ---
 
@@ -2921,9 +2906,6 @@ Weekly batch feedback learning aggregates implicit feedback events from the ledg
 
 The batch learning pipeline runs on a 7-day window. It reads implicit feedback events and aggregates per-record signals with confidence-weighted scoring: strong = 1.0, medium = 0.5, weak = 0.1. Guards: minimum 3 distinct sessions required before a signal is eligible, max boost delta of 0.10 per cycle. Results are logged for auditability. Shadow-only: no live ranking columns are mutated. Default OFF, set `SPECKIT_BATCH_LEARNED_FEEDBACK=true` to enable.
 
-#### Source Files
-
-See [`13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md`](13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md) for the archival deprecation record.
 
 ---
 
@@ -3185,9 +3167,6 @@ The quality gate needs a two-week trial period before it starts blocking bad sav
 
 The `ensureActivationTimestampInitialized` path was added to `save-quality-gate.ts` to preserve the legacy activation timestamp across process restarts. Without this, the 14-day timer restarted on every server reload. Regression test `WO7` captures the historical behavior.
 
-#### Source Files
-
-See [`14--pipeline-architecture/_deprecated/09-activation-window-persistence.md`](14--pipeline-architecture/_deprecated/09-activation-window-persistence.md) for the archival deprecation record.
 
 ---
 
@@ -3300,9 +3279,6 @@ Right now, the spec-doc record server starts fresh every time it is called and s
 
 **PLANNED (Sprint 019): DEFERRED.** HTTP daemon transport for warm, persistent server execution is deferred while MCP SDK HTTP transport conventions continue evolving. Current transport remains stdio. Estimated effort: L (2-3 weeks).
 
-#### Source Files
-
-See [`14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md`](14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md) for the archival deprecation record.
 
 ---
 

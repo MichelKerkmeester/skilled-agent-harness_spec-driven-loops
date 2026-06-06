@@ -10,26 +10,22 @@
     ".codex/commands"
   ],
   "files_scanned": 3386,
-  "refs_seen": 25011,
-  "refs_checked": 24509,
-  "broken_total": 210,
+  "refs_seen": 24753,
+  "refs_checked": 24350,
+  "broken_total": 126,
   "broken_denumber_fixable": 0,
-  "low_confidence_tickpath_total": 10433,
+  "low_confidence_tickpath_total": 10364,
   "by_area": {
     "catalog-playbook": {
-      "total": 84,
-      "denumber_fixable": 0
-    },
-    "skill:deep": {
-      "total": 1,
+      "total": 72,
       "denumber_fixable": 0
     },
     "skill:sk": {
-      "total": 108,
+      "total": 53,
       "denumber_fixable": 0
     },
     "skill:system": {
-      "total": 17,
+      "total": 1,
       "denumber_fixable": 0
     }
   },
@@ -64,22 +60,6 @@
       "kind": "mdlink",
       "ref": "04--agent-routing/004-write-agent-doc-generation.md",
       "resolved": ".opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/004-write-agent-doc-generation.md | 04--agent-routing/004-write-agent-doc-generation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:deep",
-      "file": ".opencode/skills/deep-loop-runtime/tests/fixtures/council-value/README.md",
-      "kind": "mdlink",
-      "ref": "../README.md",
-      "resolved": ".opencode/skills/deep-loop-runtime/tests/fixtures/README.md | ../README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/webflow/checklists/code_quality_checklist.md",
-      "kind": "mdlink",
-      "ref": "../../references/motion_dev/",
-      "resolved": ".opencode/skills/sk-code/assets/references/motion_dev | ../../references/motion_dev",
       "denumber_fixable": false
     },
     {
@@ -180,34 +160,10 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/references/webflow/javascript/quality_standards.md",
-      "kind": "mdlink",
-      "ref": "target",
-      "resolved": ".opencode/skills/sk-code/references/webflow/javascript/target | target",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-code/references/webflow/performance/webflow_constraints.md",
       "kind": "mdlink",
       "ref": "/specs/005-example.com/024-performance-optimization/decision-record.md",
       "resolved": "specs/005-example.com/024-performance-optimization/decision-record.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/references/webflow/verification/verification_workflows.md",
-      "kind": "mdlink",
-      "ref": "../../assets/checklists/verification_checklist.md",
-      "resolved": ".opencode/skills/sk-code/references/assets/checklists/verification_checklist.md | ../../assets/checklists/verification_checklist.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/references/webflow/verification/verification_workflows.md",
-      "kind": "mdlink",
-      "ref": "../../assets/checklists/verification_checklist.md",
-      "resolved": ".opencode/skills/sk-code/references/assets/checklists/verification_checklist.md | ../../assets/checklists/verification_checklist.md",
       "denumber_fixable": false
     },
     {
@@ -390,222 +346,6 @@
       "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
       "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "../docs/guide.md",
-      "resolved": ".opencode/skills/sk-doc/docs/guide.md | ../docs/guide.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "/docs/guide.md",
-      "resolved": "docs/guide.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
-      "ref": "url",
-      "resolved": ".opencode/skills/sk-doc/assets/url | url",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
-      "kind": "mdlink",
       "ref": "../skill/skill_md_template.md",
       "resolved": ".opencode/skills/sk-doc/skill/skill_md_template.md | ../skill/skill_md_template.md",
       "denumber_fixable": false
@@ -622,72 +362,8 @@
       "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
       "kind": "mdlink",
-      "ref": "./MCP%20-%20New%20Tool.md",
-      "resolved": ".opencode/skills/sk-doc/assets/readme/MCP%20-%20New%20Tool.md | MCP%20-%20New%20Tool.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      "kind": "mdlink",
       "ref": "./frontmatter_templates.md",
       "resolved": ".opencode/skills/sk-doc/assets/readme/frontmatter_templates.md | frontmatter_templates.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      "kind": "mdlink",
-      "ref": "../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md",
-      "resolved": ".opencode/install_guides/MCP%20-%20Spec%20Kit%20Memory.md | ../../../../install_guides/MCP%20-%20Spec%20Kit%20Memory.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      "kind": "mdlink",
-      "ref": "../../../../install_guides/MCP%20-%20Code%20Mode.md",
-      "resolved": ".opencode/install_guides/MCP%20-%20Code%20Mode.md | ../../../../install_guides/MCP%20-%20Code%20Mode.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
-      "kind": "mdlink",
-      "ref": "../README.md",
-      "resolved": ".opencode/skills/sk-doc/assets/README.md | ../README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
-      "kind": "mdlink",
-      "ref": "../../ARCHITECTURE.md",
-      "resolved": ".opencode/skills/sk-doc/ARCHITECTURE.md | ../../ARCHITECTURE.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/readme_code_template.md",
-      "kind": "mdlink",
-      "ref": "../sibling/README.md",
-      "resolved": ".opencode/skills/sk-doc/assets/sibling/README.md | ../sibling/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-      "kind": "mdlink",
-      "ref": "../skill-name/SKILL.md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill-name/SKILL.md | ../skill-name/SKILL.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/readme_template.md",
-      "kind": "mdlink",
-      "ref": "./path/to/doc.md",
-      "resolved": ".opencode/skills/sk-doc/assets/readme/path/to/doc.md | path/to/doc.md",
       "denumber_fixable": false
     },
     {
@@ -764,86 +440,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "mdlink",
-      "ref": "./SKILL.md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/SKILL.md | SKILL.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "mdlink",
-      "ref": "./references/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/references/[name].md | references/[name].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "mdlink",
-      "ref": "./assets/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/assets/[name].md | assets/[name].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "./standard_file.md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/standard_file.md | standard_file.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../scripts/script_name.js",
-      "resolved": ".opencode/skills/sk-doc/assets/scripts/script_name.js | ../scripts/script_name.js",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../assets/template_name.md",
-      "resolved": ".opencode/skills/sk-doc/assets/assets/template_name.md | ../assets/template_name.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../scripts/workflow_name.py",
-      "resolved": ".opencode/skills/sk-doc/assets/scripts/workflow_name.py | ../scripts/workflow_name.py",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../assets/workflow_config.yaml",
-      "resolved": ".opencode/skills/sk-doc/assets/assets/workflow_config.yaml | ../assets/workflow_config.yaml",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../scripts/script_name.py",
-      "resolved": ".opencode/skills/sk-doc/assets/scripts/script_name.py | ../scripts/script_name.py",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
-      "kind": "mdlink",
-      "ref": "../assets/config.yaml",
-      "resolved": ".opencode/skills/sk-doc/assets/assets/config.yaml | ../assets/config.yaml",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/assets/skill/skill_reference_template.md",
       "kind": "mdlink",
       "ref": "./scripts/workflow_router.py",
@@ -891,195 +487,11 @@
       "denumber_fixable": false
     },
     {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./screenshots/login.png",
-      "resolved": ".opencode/skills/sk-git/assets/screenshots/login.png | screenshots/login.png",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./screenshots/dashboard.png",
-      "resolved": ".opencode/skills/sk-git/assets/screenshots/dashboard.png | screenshots/dashboard.png",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./screenshots/before.png",
-      "resolved": ".opencode/skills/sk-git/assets/screenshots/before.png | screenshots/before.png",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./screenshots/after.png",
-      "resolved": ".opencode/skills/sk-git/assets/screenshots/after.png | screenshots/after.png",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./screenshots/mobile.png",
-      "resolved": ".opencode/skills/sk-git/assets/screenshots/mobile.png | screenshots/mobile.png",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/assets/pr_template.md",
-      "kind": "mdlink",
-      "ref": "./docs/migration.md",
-      "resolved": ".opencode/skills/sk-git/assets/docs/migration.md | docs/migration.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-code-graph/INSTALL_GUIDE.md",
-      "kind": "mdlink",
-      "ref": "../../install_guides/SET-UP%20-%20Code%20Graph.md",
-      "resolved": ".opencode/install_guides/SET-UP%20-%20Code%20Graph.md | ../../install_guides/SET-UP%20-%20Code%20Graph.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/README.md",
-      "kind": "mdlink",
-      "ref": "../../skill_advisor/tests/README.md",
-      "resolved": ".opencode/skills/system-skill-advisor/mcp_server/skill_advisor/tests/README.md | ../../skill_advisor/tests/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-skill-advisor/mcp_server/stress_test/skill-advisor/README.md",
-      "kind": "mdlink",
-      "ref": "../../skill_advisor/lib/README.md",
-      "resolved": ".opencode/skills/system-skill-advisor/mcp_server/skill_advisor/lib/README.md | ../../skill_advisor/lib/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md",
-      "kind": "mdlink",
-      "ref": "../feature_catalog/01--daemon-and-freshness/",
-      "resolved": ".opencode/skills/system-skill-advisor/references/feature_catalog/01--daemon-and-freshness | ../feature_catalog/01--daemon-and-freshness",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-skill-advisor/references/runtime/freshness_contract.md",
-      "kind": "mdlink",
-      "ref": "../manual_testing_playbook/05--auto-update-daemon/",
-      "resolved": ".opencode/skills/system-skill-advisor/references/manual_testing_playbook/05--auto-update-daemon | ../manual_testing_playbook/05--auto-update-daemon",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md | 18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "04--maintenance/035-embedding-status-reconciliation.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/035-embedding-status-reconciliation.md | 04--maintenance/035-embedding-status-reconciliation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md | 10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md | 11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md | 12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md | 13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md | 13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md | 14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "mdlink",
-      "ref": "14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md | 14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
-      "denumber_fixable": false
-    },
-    {
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md",
       "kind": "mdlink",
       "ref": "../22--context-preservation/277-code-graph-fast-fail.md",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/277-code-graph-fast-fail.md | ../22--context-preservation/277-code-graph-fast-fail.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md",
-      "kind": "mdlink",
-      "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
-      "resolved": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names | ../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md",
-      "kind": "mdlink",
-      "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
-      "resolved": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names | ../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md",
-      "kind": "mdlink",
-      "ref": "../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names/",
-      "resolved": ".opencode/specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names | ../../../../specs/system-spec-kit/026-graph-and-context-optimization/012-literal-spec-folder-names",
       "denumber_fixable": false
     },
     {
@@ -1616,94 +1028,6 @@
       "kind": "mdlink",
       "ref": "../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md | ../feature_catalog/04--maintenance/038-embedding-reconciliation-memory-embedding-reconcile.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-17/benchmark_report.md",
-      "kind": "mdlink",
-      "ref": "../FORMAT.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/FORMAT.md | ../FORMAT.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md",
-      "kind": "mdlink",
-      "ref": "../README.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/README.md | ../README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/enrichment/README.md",
-      "kind": "mdlink",
-      "ref": "../../code_graph/README.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/code_graph/README.md | ../../code_graph/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/lib/providers/README.md",
-      "kind": "mdlink",
-      "ref": "../contracts/README.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/lib/contracts/README.md | ../contracts/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/plugin_bridges/README.md",
-      "kind": "mdlink",
-      "ref": "../skill_advisor/README.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/skill_advisor/README.md | ../skill_advisor/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      "kind": "mdlink",
-      "ref": "plan.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/templates/plan.md | plan.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      "kind": "mdlink",
-      "ref": "spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/templates/spec.md | spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      "kind": "mdlink",
-      "ref": "../spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/spec.md | ../spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      "kind": "mdlink",
-      "ref": "../template-marker-system/",
-      "resolved": ".opencode/skills/system-spec-kit/references/template-marker-system | ../template-marker-system",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/templates/template_guide.md",
-      "kind": "mdlink",
-      "ref": "../hybrid-validation/",
-      "resolved": ".opencode/skills/system-spec-kit/references/hybrid-validation | ../hybrid-validation",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/scripts/resource-map/README.md",
-      "kind": "mdlink",
-      "ref": "../../templates/level_contract_optional_resource-map.md",
-      "resolved": ".opencode/skills/system-spec-kit/templates/level_contract_optional_resource-map.md | ../../templates/level_contract_optional_resource-map.md",
       "denumber_fixable": false
     },
     {
@@ -5234,22 +4558,6 @@
       "kind": "tickpath",
       "ref": "assets/agent-config-synthesis.json",
       "resolved": ".opencode/skills/cli-devin/references/assets/agent-config-synthesis.json | assets/agent-config-synthesis.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:cli",
-      "file": ".opencode/skills/cli-devin/references/agent_delegation.md",
-      "kind": "tickpath",
-      "ref": "src/payments/charge.ts",
-      "resolved": ".opencode/skills/cli-devin/references/src/payments/charge.ts | src/payments/charge.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:cli",
-      "file": ".opencode/skills/cli-devin/references/agent_delegation.md",
-      "kind": "tickpath",
-      "ref": "src/lib/retry.ts",
-      "resolved": ".opencode/skills/cli-devin/references/src/lib/retry.ts | src/lib/retry.ts",
       "denumber_fixable": false
     },
     {
@@ -13230,14 +12538,6 @@
     },
     {
       "area": "skill:deep",
-      "file": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/cache/grader/d6f8f7418398ab9e49093b87e7570d84.out.md",
-      "kind": "tickpath",
-      "ref": ".opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-      "resolved": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/cache/grader/.opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts | .opencode/skills/system-spec-kit/mcp_server/lib/deep-loop/executor-config.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:deep",
       "file": ".opencode/skills/deep-improvement/scripts/model-benchmark/scorer/grader/README.md",
       "kind": "tickpath",
       "ref": "lib/cache.cjs",
@@ -17514,14 +16814,6 @@
       "kind": "tickpath",
       "ref": "lib/deep-loop/post-dispatch-validate.ts",
       "resolved": ".opencode/skills/deep-loop-runtime/references/lib/deep-loop/post-dispatch-validate.ts | lib/deep-loop/post-dispatch-validate.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:deep",
-      "file": ".opencode/skills/deep-loop-runtime/references/state_format.md",
-      "kind": "tickpath",
-      "ref": "deltas/iter-003.jsonl",
-      "resolved": ".opencode/skills/deep-loop-runtime/references/deltas/iter-003.jsonl | deltas/iter-003.jsonl",
       "denumber_fixable": false
     },
     {
@@ -23350,14 +22642,6 @@
     },
     {
       "area": "catalog-playbook",
-      "file": ".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/resource-map-coverage-gate.md",
-      "kind": "tickpath",
-      "ref": "/tmp/cp-054-sandbox/targets/review-target.js",
-      "resolved": "tmp/cp-054-sandbox/targets/review-target.js",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
       "file": ".opencode/skills/deep-review/manual_testing_playbook/07--command-flow-stress-tests/three-artifact-iteration-contract.md",
       "kind": "tickpath",
       "ref": "iterations/iteration-001.md",
@@ -27838,14 +27122,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/config_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-code/assets/opencode/checklists/javascript_checklist.md",
       "kind": "tickpath",
       "ref": ".js/.cjs",
@@ -27858,30 +27134,6 @@
       "kind": "tickpath",
       "ref": ".js/.cjs",
       "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/.js/.cjs | .js/.cjs",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/javascript_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/python_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/shell_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
       "denumber_fixable": false
     },
     {
@@ -27890,22 +27142,6 @@
       "kind": "tickpath",
       "ref": ".opencode/skills/sk-doc/references/specific/skill_creation.md",
       "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/.opencode/skills/sk-doc/references/specific/skill_creation.md | .opencode/skills/sk-doc/references/specific/skill_creation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/typescript_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-code/assets/opencode/checklists/universal_checklist.md",
-      "kind": "tickpath",
-      "ref": "sk-code-review/references/quick_reference.md",
-      "resolved": ".opencode/skills/sk-code/assets/opencode/checklists/sk-code-review/references/quick_reference.md | sk-code-review/references/quick_reference.md",
       "denumber_fixable": false
     },
     {
@@ -33046,14 +32282,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/command_template.md",
-      "kind": "tickpath",
-      "ref": ".opencode/skills/system-spec-kit/templates/[template].md",
-      "resolved": ".opencode/skills/sk-doc/assets/.opencode/skills/system-spec-kit/templates/[template].md | .opencode/skills/system-spec-kit/templates/[template].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/assets/llmstxt_templates.md",
       "kind": "tickpath",
       "ref": "../docs/guide.md",
@@ -33074,14 +32302,6 @@
       "kind": "tickpath",
       "ref": "github.com/org/repo/docs/guide.md",
       "resolved": ".opencode/skills/sk-doc/assets/github.com/org/repo/docs/guide.md | github.com/org/repo/docs/guide.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/readme/install_guide_template.md",
-      "kind": "tickpath",
-      "ref": "~/Library/Application Support/Claude/claude_desktop_config.json",
-      "resolved": ".opencode/skills/sk-doc/assets/readme/~/Library/Application Support/Claude/claude_desktop_config.json | ~/Library/Application Support/Claude/claude_desktop_config.json",
       "denumber_fixable": false
     },
     {
@@ -33178,38 +32398,6 @@
       "kind": "tickpath",
       "ref": ".opencode/skills/[skill-name]/README.md",
       "resolved": ".opencode/skills/sk-doc/assets/skill/.opencode/skills/[skill-name]/README.md | .opencode/skills/[skill-name]/README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "tickpath",
-      "ref": "references/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/references/[name].md | references/[name].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "tickpath",
-      "ref": "assets/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/assets/[name].md | assets/[name].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "tickpath",
-      "ref": "references/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/references/[name].md | references/[name].md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/assets/skill/skill_readme_template.md",
-      "kind": "tickpath",
-      "ref": "assets/[name].md",
-      "resolved": ".opencode/skills/sk-doc/assets/skill/assets/[name].md | assets/[name].md",
       "denumber_fixable": false
     },
     {
@@ -34022,22 +33210,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/references/global/core_standards.md",
-      "kind": "tickpath",
-      "ref": "scripts/quick_validate.py --validate-only file.md",
-      "resolved": ".opencode/skills/sk-doc/references/global/scripts/quick_validate.py --validate-only file.md | scripts/quick_validate.py --validate-only file.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/references/global/core_standards.md",
-      "kind": "tickpath",
-      "ref": "scripts/extract_structure.py file.md",
-      "resolved": ".opencode/skills/sk-doc/references/global/scripts/extract_structure.py file.md | scripts/extract_structure.py file.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-doc/references/global/evergreen_packet_id_rule.md",
       "kind": "tickpath",
       "ref": "mcp_server/README.md",
@@ -34298,22 +33470,6 @@
       "kind": "tickpath",
       "ref": "references/global/optimization.md",
       "resolved": ".opencode/skills/sk-doc/references/references/global/optimization.md | references/global/optimization.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/references/skill_creation.md",
-      "kind": "tickpath",
-      "ref": "references/guide.md",
-      "resolved": ".opencode/skills/sk-doc/references/references/guide.md | references/guide.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-doc/references/skill_creation.md",
-      "kind": "tickpath",
-      "ref": "references/global/core_standards.md",
-      "resolved": ".opencode/skills/sk-doc/references/references/global/core_standards.md | references/global/core_standards.md",
       "denumber_fixable": false
     },
     {
@@ -34682,30 +33838,6 @@
       "kind": "tickpath",
       "ref": "references/shared_patterns.md",
       "resolved": ".opencode/skills/sk-git/manual_testing_playbook/references/shared_patterns.md | references/shared_patterns.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/references/finish_workflows.md",
-      "kind": "tickpath",
-      "ref": "src/auth/oauth.ts",
-      "resolved": ".opencode/skills/sk-git/references/src/auth/oauth.ts | src/auth/oauth.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/references/finish_workflows.md",
-      "kind": "tickpath",
-      "ref": "src/middleware/rate-limit.ts",
-      "resolved": ".opencode/skills/sk-git/references/src/middleware/rate-limit.ts | src/middleware/rate-limit.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-git/references/finish_workflows.md",
-      "kind": "tickpath",
-      "ref": "src/config/redis.ts",
-      "resolved": ".opencode/skills/sk-git/references/src/config/redis.ts | src/config/redis.ts",
       "denumber_fixable": false
     },
     {
@@ -36782,14 +35914,6 @@
     },
     {
       "area": "skill:sk",
-      "file": ".opencode/skills/sk-prompt-small-model/benchmarks/001-swe-1.6-eval-loop/variants/v-004-rcaf-medium.md",
-      "kind": "tickpath",
-      "ref": "path/to/file.ts",
-      "resolved": ".opencode/skills/sk-prompt-small-model/benchmarks/001-swe-1.6-eval-loop/variants/path/to/file.ts | path/to/file.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
       "file": ".opencode/skills/sk-prompt-small-model/benchmarks/001-swe-1.6-eval-loop/variants/v-005-build-strict-bundle-gate.md",
       "kind": "tickpath",
       "ref": "node scripts/check.cjs",
@@ -37434,30 +36558,6 @@
       "kind": "tickpath",
       "ref": "git diff fixtures/fix-004-multi-file-scope-boundary/seed/d.ts fixtures/fix-004-multi-file-scope-boundary/seed/e.ts",
       "resolved": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/git diff fixtures/fix-004-multi-file-scope-boundary/seed/d.ts fixtures/fix-004-multi-file-scope-boundary/seed/e.ts | git diff fixtures/fix-004-multi-file-scope-boundary/seed/d.ts fixtures/fix-004-multi-file-scope-boundary/seed/e.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/output-v-004-tidd-ec-fix-005-acceptance-strict.md",
-      "kind": "tickpath",
-      "ref": "fixtures/fix-005-acceptance-strict/seed/src/deep-equal.ts",
-      "resolved": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/fixtures/fix-005-acceptance-strict/seed/src/deep-equal.ts | fixtures/fix-005-acceptance-strict/seed/src/deep-equal.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/output-v-004-tidd-ec-fix-005-acceptance-strict.md",
-      "kind": "tickpath",
-      "ref": "npx tsx src/deep-equal.test.ts",
-      "resolved": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/npx tsx src/deep-equal.test.ts | npx tsx src/deep-equal.test.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:sk",
-      "file": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/output-v-004-tidd-ec-fix-005-acceptance-strict.md",
-      "kind": "tickpath",
-      "ref": "npx tsx src/deep-equal.test.ts && grep -c \"export function deepEqual\" src/deep-equal.ts",
-      "resolved": ".opencode/skills/sk-prompt-small-model/benchmarks/003-minimax-prompt-framework/eval-loop/state/in-flight/npx tsx src/deep-equal.test.ts && grep -c \"export function deepEqual\" src/deep-equal.ts | npx tsx src/deep-equal.test.ts && grep -c \"export function deepEqual\" src/deep-equal.ts",
       "denumber_fixable": false
     },
     {
@@ -68952,14 +68052,6 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       "kind": "tickpath",
-      "ref": "18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md | 18--ux-hooks/21-shared-provenance-and-copilot-compact-cache-parity.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
       "ref": "references/config/hook_system.md",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/references/config/hook_system.md | references/config/hook_system.md",
       "denumber_fixable": false
@@ -69112,14 +68204,6 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       "kind": "tickpath",
-      "ref": "04--maintenance/035-embedding-status-reconciliation.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/04--maintenance/035-embedding-status-reconciliation.md | 04--maintenance/035-embedding-status-reconciliation.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
       "ref": "lib/ops/job-queue.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/lib/ops/job-queue.ts | lib/ops/job-queue.ts",
       "denumber_fixable": false
@@ -69138,14 +68222,6 @@
       "kind": "tickpath",
       "ref": "scripts/evals/map-ground-truth-ids.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/scripts/evals/map-ground-truth-ids.ts | scripts/evals/map-ground-truth-ids.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
-      "ref": "10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md | 10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md",
       "denumber_fixable": false
     },
     {
@@ -69184,14 +68260,6 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       "kind": "tickpath",
-      "ref": "11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md | 11--scoring-and-calibration/_deprecated/02-cold-start-novelty-boost.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
       "ref": "pipeline/types.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/pipeline/types.ts | pipeline/types.ts",
       "denumber_fixable": false
@@ -69224,32 +68292,8 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       "kind": "tickpath",
-      "ref": "12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md | 12--query-intelligence/_deprecated/02-relative-score-fusion-in-shadow-mode.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
       "ref": "scripts/core/workflow.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/scripts/core/workflow.ts | scripts/core/workflow.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
-      "ref": "13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md | 13--memory-quality-and-indexing/_deprecated/22-implicit-feedback-log.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
-      "ref": "13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md | 13--memory-quality-and-indexing/_deprecated/20-weekly-batch-feedback-learning.md",
       "denumber_fixable": false
     },
     {
@@ -69304,14 +68348,6 @@
       "area": "catalog-playbook",
       "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
       "kind": "tickpath",
-      "ref": "14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated/09-activation-window-persistence.md | 14--pipeline-architecture/_deprecated/09-activation-window-persistence.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
       "ref": "shared/config.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/shared/config.ts | shared/config.ts",
       "denumber_fixable": false
@@ -69330,14 +68366,6 @@
       "kind": "tickpath",
       "ref": "mcp_server/schemas/tool-input-schemas.ts",
       "resolved": ".opencode/skills/system-spec-kit/feature_catalog/mcp_server/schemas/tool-input-schemas.ts | mcp_server/schemas/tool-input-schemas.ts",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/feature_catalog/feature_catalog.md",
-      "kind": "tickpath",
-      "ref": "14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
-      "resolved": ".opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md | 14--pipeline-architecture/_deprecated/15-warm-server-daemon-mode.md",
       "denumber_fixable": false
     },
     {
@@ -72154,22 +71182,6 @@
       "kind": "tickpath",
       "ref": "10--graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md",
       "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/10--graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md | 10--graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md",
-      "kind": "tickpath",
-      "ref": "_deprecated/09-anchor-tags-as-graph-nodes.md",
-      "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md | _deprecated/09-anchor-tags-as-graph-nodes.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "catalog-playbook",
-      "file": ".opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md",
-      "kind": "tickpath",
-      "ref": "_deprecated/09-anchor-tags-as-graph-nodes.md",
-      "resolved": ".opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/_deprecated/09-anchor-tags-as-graph-nodes.md | _deprecated/09-anchor-tags-as-graph-nodes.md",
       "denumber_fixable": false
     },
     {
@@ -78966,14 +77978,6 @@
     },
     {
       "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/scripts/README.md",
-      "kind": "tickpath",
-      "ref": "../README.md",
-      "resolved": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab/README.md | ../README.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
       "file": ".opencode/skills/system-spec-kit/mcp_server/benchmarks/benchmark-2026-05-20-rerank-ab-rerun/benchmark_report.md",
       "kind": "tickpath",
       "ref": "bash scripts/start.sh",
@@ -80614,30 +79618,6 @@
     },
     {
       "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
-      "kind": "tickpath",
-      "ref": "../spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/spec.md | ../spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
-      "kind": "tickpath",
-      "ref": "../NNN-previous-phase/spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/NNN-previous-phase/spec.md | ../NNN-previous-phase/spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/structure/phase_definitions.md",
-      "kind": "tickpath",
-      "ref": "../NNN-next-phase/spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/NNN-next-phase/spec.md | ../NNN-next-phase/spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
       "file": ".opencode/skills/system-spec-kit/references/structure/sub_folder_versioning.md",
       "kind": "tickpath",
       "ref": "specs/003-parent/121-child/implementation-summary.md",
@@ -81378,30 +80358,6 @@
       "kind": "tickpath",
       "ref": "scripts/lib/validator-registry.json",
       "resolved": ".opencode/skills/system-spec-kit/references/validation/scripts/lib/validator-registry.json | scripts/lib/validator-registry.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      "kind": "tickpath",
-      "ref": "../spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/spec.md | ../spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      "kind": "tickpath",
-      "ref": "../009-session-capturing/spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/009-session-capturing/spec.md | ../009-session-capturing/spec.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "skill:system",
-      "file": ".opencode/skills/system-spec-kit/references/validation/validation_rules.md",
-      "kind": "tickpath",
-      "ref": "../011-skill-alignment/spec.md",
-      "resolved": ".opencode/skills/system-spec-kit/references/011-skill-alignment/spec.md | ../011-skill-alignment/spec.md",
       "denumber_fixable": false
     },
     {
@@ -83496,14 +82452,6 @@
       "area": "agents",
       "file": ".opencode/agents/ai-council.md",
       "kind": "tickpath",
-      "ref": "deliberations/round-NNN.md",
-      "resolved": ".opencode/agents/deliberations/round-NNN.md | deliberations/round-NNN.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/ai-council.md",
-      "kind": "tickpath",
       "ref": "critiques/round-NNN-critique.md",
       "resolved": ".opencode/agents/critiques/round-NNN-critique.md | critiques/round-NNN-critique.md",
       "denumber_fixable": false
@@ -83522,14 +82470,6 @@
       "kind": "tickpath",
       "ref": "sk-code/SKILL.md",
       "resolved": ".opencode/agents/sk-code/SKILL.md | sk-code/SKILL.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/debug.md",
-      "kind": "tickpath",
-      "ref": "path/to/file.ts",
-      "resolved": ".opencode/agents/path/to/file.ts | path/to/file.ts",
       "denumber_fixable": false
     },
     {
@@ -83790,70 +82730,6 @@
     },
     {
       "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/iterations/iteration-NNN.md",
-      "resolved": ".opencode/agents/research/iterations/iteration-NNN.md | research/iterations/iteration-NNN.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/deep-research-config.json",
-      "resolved": ".opencode/agents/research/deep-research-config.json | research/deep-research-config.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/deep-research-state.jsonl",
-      "resolved": ".opencode/agents/research/deep-research-state.jsonl | research/deep-research-state.jsonl",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/deep-research-strategy.md",
-      "resolved": ".opencode/agents/research/deep-research-strategy.md | research/deep-research-strategy.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/deep-research-findings-registry.json",
-      "resolved": ".opencode/agents/research/deep-research-findings-registry.json | research/deep-research-findings-registry.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/deep-research-dashboard.md",
-      "resolved": ".opencode/agents/research/deep-research-dashboard.md | research/deep-research-dashboard.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/research.md",
-      "resolved": ".opencode/agents/research/research.md | research/research.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-research.md",
-      "kind": "tickpath",
-      "ref": "research/research-ideas.md",
-      "resolved": ".opencode/agents/research/research-ideas.md | research/research-ideas.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
       "file": ".opencode/agents/deep-review.md",
       "kind": "tickpath",
       "ref": "review/deep-review-state.jsonl",
@@ -83910,90 +82786,10 @@
     },
     {
       "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/iterations/iteration-NNN.md",
-      "resolved": ".opencode/agents/review/iterations/iteration-NNN.md | review/iterations/iteration-NNN.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-findings-registry.json",
-      "resolved": ".opencode/agents/review/deep-review-findings-registry.json | review/deep-review-findings-registry.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-config.json",
-      "resolved": ".opencode/agents/review/deep-review-config.json | review/deep-review-config.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-state.jsonl",
-      "resolved": ".opencode/agents/review/deep-review-state.jsonl | review/deep-review-state.jsonl",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-findings-registry.json",
-      "resolved": ".opencode/agents/review/deep-review-findings-registry.json | review/deep-review-findings-registry.json",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-strategy.md",
-      "resolved": ".opencode/agents/review/deep-review-strategy.md | review/deep-review-strategy.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/iterations/iteration-NNN.md",
-      "resolved": ".opencode/agents/review/iterations/iteration-NNN.md | review/iterations/iteration-NNN.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-strategy.md",
-      "resolved": ".opencode/agents/review/deep-review-strategy.md | review/deep-review-strategy.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/deep-review.md",
-      "kind": "tickpath",
-      "ref": "review/deep-review-state.jsonl",
-      "resolved": ".opencode/agents/review/deep-review-state.jsonl | review/deep-review-state.jsonl",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
       "file": ".opencode/agents/orchestrate.md",
       "kind": "tickpath",
       "ref": "research/research.md",
       "resolved": ".opencode/agents/research/research.md | research/research.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".opencode/agents/orchestrate.md",
-      "kind": "tickpath",
-      "ref": "src/auth/login.js",
-      "resolved": ".opencode/agents/src/auth/login.js | src/auth/login.js",
       "denumber_fixable": false
     },
     {
@@ -84010,14 +82806,6 @@
       "kind": "tickpath",
       "ref": "lib/persist-artifacts.cjs",
       "resolved": ".claude/agents/lib/persist-artifacts.cjs | lib/persist-artifacts.cjs",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".claude/agents/ai-council.md",
-      "kind": "tickpath",
-      "ref": "deliberations/round-NNN.md",
-      "resolved": ".claude/agents/deliberations/round-NNN.md | deliberations/round-NNN.md",
       "denumber_fixable": false
     },
     {
@@ -84058,14 +82846,6 @@
       "kind": "tickpath",
       "ref": "sk-code/SKILL.md",
       "resolved": ".claude/agents/sk-code/SKILL.md | sk-code/SKILL.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".claude/agents/debug.md",
-      "kind": "tickpath",
-      "ref": "path/to/file.ts",
-      "resolved": ".claude/agents/path/to/file.ts | path/to/file.ts",
       "denumber_fixable": false
     },
     {
@@ -84506,14 +83286,6 @@
       "kind": "tickpath",
       "ref": "research/research.md",
       "resolved": ".claude/agents/research/research.md | research/research.md",
-      "denumber_fixable": false
-    },
-    {
-      "area": "agents",
-      "file": ".claude/agents/orchestrate.md",
-      "kind": "tickpath",
-      "ref": "src/auth/login.js",
-      "resolved": ".claude/agents/src/auth/login.js | src/auth/login.js",
       "denumber_fixable": false
     },
     {

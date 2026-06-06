@@ -151,5 +151,5 @@ Expected result: exit code `0`.
 ## 9. RELATED
 
 - [`../search-quality/README.md`](../search-quality/README.md)
-- [`../../skill_advisor/tests/README.md`](../../skill_advisor/tests/README.md)
-- [`../../skill_advisor/lib/README.md`](../../skill_advisor/lib/README.md)
+- [`../../skill_advisor/tests/README.md`](../../tests/README.md)
+- [`../../skill_advisor/lib/README.md`](../../lib/README.md)
