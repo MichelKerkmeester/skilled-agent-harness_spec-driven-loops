@@ -25,6 +25,7 @@ Spec 026 (graph-and-context-optimization) shipped across 8 tracks and about 634 
 | 005 graph impact and affordance | 6 | 1 | [changelog-005-graph-impact-and-affordance-root.md](./005-graph-impact-and-affordance/changelog-005-graph-impact-and-affordance-root.md) |
 | 006 operator tooling | 28 | 4 | [changelog-006-operator-tooling-root.md](./006-operator-tooling/changelog-006-operator-tooling-root.md) |
 | 007 mcp daemon reliability | 24 | 3 | [changelog-007-mcp-daemon-reliability-root.md](./007-mcp-daemon-reliability/changelog-007-mcp-daemon-reliability-root.md) |
+| 008 runtime defect fixes | 1 | 0 | [changelog-008-runtime-defect-fixes.md](./008-runtime-defect-fixes/changelog-008-runtime-defect-fixes.md) |
 
 ## How to read these
 

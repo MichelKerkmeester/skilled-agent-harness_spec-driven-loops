@@ -61,8 +61,8 @@ Fix all four in place — restoring the OpenCode code-graph plugin and correct C
 ## 3. SCOPE
 
 ### In Scope
-- Bridge repair: re-point the three dead imports in `mk-code-graph-bridge.mjs` to their real homes in system-spec-kit's compiled server
-- Codex hook rewiring: `SessionStart` and `UserPromptSubmit` entries in `.codex/hooks.json` → the Codex adapters; `PreCompact` deliberately stays on the shared Claude script (by-design sharing)
+- Bridge repair — ATTEMPTED AND REVERTED ON REVIEW: re-pointing the three dead imports made the bridge runnable but armed a dual-writer hazard (its startup path calls `initializeDb()` + `sessionManager.init()` directly against the memory DB the daemon owns — the incident-class the 028 research forbids). The bridge stays inert; the root fix is the IPC-backed transport owned by the 028 code-index runtime-integration phase
+- Codex hook rewiring: `SessionStart` and `UserPromptSubmit` entries in `.codex/hooks.json` → the Codex adapters; `PreCompact` REMOVED — the hook contract (`hook_system.md`) lists Codex compaction as unsupported, so the registration was dead weight pointing at a Claude-envelope script
 - `.codex/config.toml` DB-path note corrected (skill-local IS the default; the shared path is the legacy one)
 - Gemini hook catalog source-path fix (active implementation vs shim)
 - Orphan-launcher sweep (lease/owner-aware) — executed as a verified NO-OP: all 9 running launchers belonged to live sessions
@@ -75,7 +75,7 @@ Fix all four in place — restoring the OpenCode code-graph plugin and correct C
 
 | File Path | Change Type | Description |
 |-----------|-------------|-------------|
-| .opencode/skills/system-code-graph/mcp_server/plugin_bridges/mk-code-graph-bridge.mjs | Modify | Three imports re-pointed to system-spec-kit dist |
+| mk-code-graph-bridge.mjs | Unchanged (fix reverted) | Dual-writer hazard; proper fix is IPC-backed (028 code-index phase 3) |
 | .codex/hooks.json | Modify | SessionStart + UserPromptSubmit → codex adapters |
 | .codex/config.toml | Modify | DB-path note corrected |
 | .opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/gemini-hook.md | Modify | Implementation/shim rows corrected |
@@ -90,7 +90,7 @@ Fix all four in place — restoring the OpenCode code-graph plugin and correct C
 
 | ID | Requirement | Acceptance Criteria |
 |----|-------------|---------------------|
-| REQ-001 | Bridge runs again | `node mk-code-graph-bridge.mjs --minimal` exits 0 and emits the transport payload |
+| REQ-001 | Bridge hazard neutralized | Import fix reverted after fresh-model review flagged the direct-DB dual-writer path; bridge inert pending the IPC-backed transport (028 code-index phase 3) |
 | REQ-002 | Codex hooks emit Codex envelopes | Rewired hooks produce valid JSON envelopes from sample stdin |
 
 ### P1 - Required (complete OR user-approved deferral)
@@ -106,7 +106,7 @@ Fix all four in place — restoring the OpenCode code-graph plugin and correct C
 <!-- ANCHOR:success-criteria -->
 ## 5. SUCCESS CRITERIA
 
-- **SC-001**: OpenCode code-graph plugin path functional again (bridge emits `opencodeTransport.transportOnly: true`)
+- **SC-001**: No second direct writer on the memory DB introduced; bridge restoration correctly deferred to the IPC-backed transport
 - **SC-002**: Codex sessions get Codex-shaped startup context and advisor briefs
 - **SC-003**: Zero live sessions disrupted by the sweep
 <!-- /ANCHOR:success-criteria -->

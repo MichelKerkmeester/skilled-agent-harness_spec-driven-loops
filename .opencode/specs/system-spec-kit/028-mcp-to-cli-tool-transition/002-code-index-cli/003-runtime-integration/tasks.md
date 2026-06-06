@@ -56,7 +56,7 @@ _memory:
 
 - [ ] T001 Allowlist entries per runtime for the code-index shim
 - [ ] T002 Hook pairing (Claude Code, Codex, Devin): the code-graph-serving session adapters (`system-spec-kit/mcp_server/hooks/claude/session-prime`, `hooks/codex/session-start`, `hooks/devin/session-start`) gain a CLI-backed warm-only path with `--timeout-ms`, fail-open, engaged on MCP-transport-down
-- [ ] T003 OpenCode plugin: add CLI fallback to the bridge — import-drift REPAIR portion COMPLETED EARLY in 026/008-runtime-defect-fixes (bridge functional again); this phase replaces the cross-skill borrow with the CLI-backed transport
+- [ ] T003 OpenCode plugin: REPAIR the bridge via the CLI/IPC-backed transport (an import-only repair was tried in 026/008 and REVERTED — it arms a direct-DB dual-writer; the bridge must never initialize the memory DB in-process), then add CLI fallback
 - [ ] T004 Docs: transport-down fallback guidance + maintenance-command policy (scan/apply/verify never from prompt-time hooks)
 - [ ] T005 Dual-stack verification window with rollback notes (CLI is additive)
 - [ ] T006 Dual-failure drill: MCP transport stopped + code-index daemon socket absent/dead → hook warm-only path performs NO cold spawn, fails open within the runtime hook timeout, surfaces exit-75 retryable status

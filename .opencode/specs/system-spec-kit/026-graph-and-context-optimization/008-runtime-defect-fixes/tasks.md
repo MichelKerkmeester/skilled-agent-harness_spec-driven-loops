@@ -53,8 +53,8 @@ _memory:
 <!-- ANCHOR:phase-2 -->
 ## Phase 2: Implementation
 
-- [x] T002 Re-point the three bridge imports to system-spec-kit dist + document the borrow (mk-code-graph-bridge.mjs)
-- [x] T003 Rewire SessionStart → codex/session-start.js and UserPromptSubmit → codex/user-prompt-submit.js; keep PreCompact on the shared claude script (.codex/hooks.json)
+- [x] T002 Bridge import fix attempted, smoke-verified, then REVERTED on fresh-model review: the runnable bridge calls initializeDb()/sessionManager.init() directly — a second writer on the daemon-owned memory DB; root fix deferred to the IPC-backed transport (028 code-index phase 3)
+- [x] T003 Rewire SessionStart → codex/session-start.js and UserPromptSubmit → codex/user-prompt-submit.js; REMOVE PreCompact (Codex compaction unsupported per hook_system.md) (.codex/hooks.json)
 - [x] T004 Correct the DB-path note: skill-local is the default, shared path is legacy (.codex/config.toml)
 - [x] T005 Correct the Gemini catalog: active implementation in system-skill-advisor, spec-kit file is the shim (gemini-hook.md)
 - [x] T006 Lease/owner-aware orphan sweep — NO-OP verified: all 9 launchers' parents are live sessions (6 Claude, 1 OpenCode TUI, incl. a 1d7h session); zero kills
@@ -65,7 +65,7 @@ _memory:
 <!-- ANCHOR:phase-3 -->
 ## Phase 3: Verification
 
-- [x] T007 Smoke: bridge --minimal exit 0 with transportOnly true; codex session-start emits envelope (466-byte context); codex UPS emits valid fail-open envelope; hooks.json parses
+- [x] T007 Smoke + review: codex session-start emits envelope (466-byte context); codex UPS emits valid fail-open envelope; hooks.json parses post-PreCompact-removal; fresh gpt-5.5 xhigh review BLOCKed the bridge fix (dual-writer P0) → reverted; remaining fixes cleared
 <!-- /ANCHOR:phase-3 -->
 
 ---

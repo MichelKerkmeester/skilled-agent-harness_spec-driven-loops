@@ -26,7 +26,8 @@ Integrate the advisor into Gemini CLI sessions without introducing a Gemini-spec
 
 | File | Layer | Role |
 |---|---|---|
-| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts` | Implementation | Source reference |
+| `.opencode/skills/system-skill-advisor/hooks/gemini/user-prompt-submit.ts` | Implementation | Active source (advisor brief) |
+| `.opencode/skills/system-spec-kit/mcp_server/hooks/gemini/user-prompt-submit.ts` | Shim | Delegates to the skill-advisor implementation |
 | `.opencode/skills/system-skill-advisor/mcp_server/lib/normalize-adapter-output.ts` | Library | Source reference |
 
 ### Validation And Tests

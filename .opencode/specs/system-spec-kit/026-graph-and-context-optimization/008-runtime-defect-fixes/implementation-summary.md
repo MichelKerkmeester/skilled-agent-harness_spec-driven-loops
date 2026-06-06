@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:what-built -->
 ## What Was Built
 
-Four live defects surfaced by the 028 CLI-transition research are fixed in place. The OpenCode code-graph plugin bridge (`mk-code-graph-bridge.mjs`) imports its session-resume/vector-index/session-manager modules from system-spec-kit's compiled dist again — it had crashed on import since skill extraction moved those files, which is why sessions reported "Code Graph: unavailable". Codex sessions now run the purpose-built Codex hook adapters (SessionStart + UserPromptSubmit) instead of Claude's scripts; PreCompact intentionally keeps the shared Claude script. The backwards DB-path note in `.codex/config.toml` and the Gemini catalog's shim-vs-implementation confusion are corrected.
+Three of four defect fixes shipped; the fourth was attempted, smoke-verified, and deliberately REVERTED after a fresh-model review. Codex sessions now run the purpose-built Codex hook adapters (SessionStart + UserPromptSubmit) instead of Claude's scripts, and the unsupported PreCompact registration was removed entirely (the hook contract lists Codex compaction as unsupported). The backwards DB-path note in `.codex/config.toml` and the Gemini catalog's shim-vs-implementation confusion are corrected. The bridge import fix worked mechanically (exit 0, correct transport payload) but the review caught that a runnable bridge calls `initializeDb()`/`sessionManager.init()` directly against the daemon-owned memory DB — the dual-writer incident class — so it was reverted; the bridge stays inert until the 028 code-index phase delivers the IPC-backed transport.
 
 The planned orphan-launcher sweep ended as a verified NO-OP: parent-process classification showed all 9 running launchers belong to live sessions (six Claude sessions, one OpenCode TUI — including a 1-day-7-hour session still open). The launcher-lifecycle fix for true owner-exit orphans stays with the 028 skill-advisor workstream.
 
@@ -53,8 +53,8 @@ The planned orphan-launcher sweep ended as a verified NO-OP: parent-process clas
 
 | File | Action | Purpose |
 |------|--------|---------|
-| mk-code-graph-bridge.mjs | Modified | Three imports re-pointed + borrow documented |
-| .codex/hooks.json | Modified | SessionStart/UserPromptSubmit → codex adapters |
+| mk-code-graph-bridge.mjs | Unchanged (fix reverted on review) | Dual-writer hazard; IPC-backed fix owned by 028 |
+| .codex/hooks.json | Modified | SessionStart/UserPromptSubmit → codex adapters; PreCompact removed |
 | .codex/config.toml | Modified | DB-path note corrected |
 | gemini-hook.md (skill-advisor catalog) | Modified | Implementation/shim rows corrected |
 <!-- /ANCHOR:what-built -->
@@ -74,7 +74,8 @@ Verify-first: each defect was reproduced live (missing import targets listed, ho
 
 | Decision | Why |
 |----------|-----|
-| Keep PreCompact on the shared Claude script | The hook architecture shares it by design; only SessionStart/UserPromptSubmit have Codex-native adapters |
+| Revert the bridge fix despite a passing smoke | A runnable bridge initializes the memory DB directly in a second process — the exact corruption class the daemon's single-writer lease exists to prevent; broken-and-inert is safer than working-and-racy |
+| Remove Codex PreCompact instead of keeping the shared script | hook_system.md lists Codex compaction as unsupported; the registration was dead weight with a wrong-envelope script behind it |
 | Document the cross-skill borrow in the bridge instead of restructuring | The 028 code-index phase 3 replaces this bridge path with the CLI-backed one; minimal fix now, proper transport later |
 | Sweep as no-op rather than killing old launchers | Every launcher's parent is a live session; launchers ARE those sessions' MCP transports — killing them breaks working sessions |
 <!-- /ANCHOR:decisions -->
@@ -86,7 +87,7 @@ Verify-first: each defect was reproduced live (missing import targets listed, ho
 
 | Check | Result |
 |-------|--------|
-| Bridge smoke (`--minimal`) | PASS — exit 0, 6,097-byte JSON, `data.opencodeTransport.transportOnly: true` |
+| Bridge smoke then review | Smoke PASSED mechanically, but fresh gpt-5.5 xhigh review flagged P0 dual-writer (direct DB init outside the launcher lease) → fix REVERTED; bridge inert by choice |
 | Codex session-start smoke | PASS — valid envelope, 466-byte additionalContext |
 | Codex user-prompt-submit smoke | PASS — valid JSON fail-open envelope |
 | hooks.json parses | PASS |
@@ -99,6 +100,6 @@ Verify-first: each defect was reproduced live (missing import targets listed, ho
 <!-- ANCHOR:limitations -->
 ## Known Limitations
 
-1. The bridge still borrows spec-kit internals cross-skill — acceptable stopgap; the 028 code-index runtime-integration phase delivers the proper CLI-backed transport.
+1. The OpenCode code-graph plugin remains non-functional (bridge inert by deliberate choice) until the 028 code-index runtime-integration phase delivers the IPC-backed transport — its README accurately documents the non-functional state.
 2. Codex UPS smoke returned a fail-open empty envelope (advisor brief content depends on daemon availability at call time) — correct contract behavior, but a live Codex session should confirm brief content post-rewiring.
 <!-- /ANCHOR:limitations -->

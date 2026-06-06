@@ -1,24 +1,12 @@
 {
   "hooks": {
-    "PreCompact": [
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/compact-inject.js'",
-            "timeout": 3
-          }
-        ]
-      }
-    ],
     "SessionStart": [
       {
         "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/session-prime.js'",
+            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/session-start.js'",
             "timeout": 3
           }
         ]
@@ -29,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/claude/user-prompt-submit.js'",
+            "command": "bash -c 'cd \"/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public\" && /opt/homebrew/bin/node .opencode/skills/system-spec-kit/mcp_server/dist/hooks/codex/user-prompt-submit.js'",
             "timeout": 3
           }
         ]
