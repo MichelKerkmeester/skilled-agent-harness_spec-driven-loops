@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 010 planning docs (not implemented)"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate` |
+| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate` |
 | **Completed** | Pending |
 | **Level** | 2 |
 | **Status** | Spec-Scaffolded |
@@ -103,7 +103,7 @@ Pending. Delivery evidence should include the reviewer fixture schema, the `revi
 | Seed fixtures present for stale-verdict, softened-Fail, over-read (009) and AC-coverage (011) with a visible/hidden split | Pending |
 | Existing Lane B/C scorer defaults unchanged; reviewer rules / completion gate / validators unchanged | Pending |
 | Exact `REVIEWER_BENCHMARK: ... — rule not safe to promote` message surfaced in the existing Lane B report | Pending |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate --strict` | Pending |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate --strict` | Pending |
 <!-- /ANCHOR:verification -->
 
 ---

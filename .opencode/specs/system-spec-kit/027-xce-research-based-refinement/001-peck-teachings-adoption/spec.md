@@ -1,23 +1,31 @@
 ---
-title: "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system-spec-kit"
-description: "Phase parent: sequence the three lowest-risk peck-derived improvements (T3, T4, T2) as independently executable child phases. T1 (coverage gate) is deliberately excluded."
+title: "Feature Specification: Adopt peck teachings into system-spec-kit (README-pass T1-T4 + source-pass T5-T10)"
+description: "Phase parent for adopting peck-derived improvements into system-spec-kit across two research passes: the 2026-06-02 README analysis (T1-T4) and the research/006 source-mining pass (T5-T10 plus the now-adopted T1 coverage gate). Sequenced as seven independently executable child phases; UX and automation are top priorities for the source-pass phases; warn-then-error rollout."
 trigger_phrases:
   - "001-peck-teachings-adoption"
+  - "peck adoption"
   - "phase parent"
+  - "peck verification discipline"
+  - "acceptance coverage gate"
 importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption"
-    last_updated_at: "2026-06-02T00:00:00Z"
-    last_updated_by: "planning-author"
-    recent_action: "Authored phase map and per-phase child specs"
-    next_safe_action: "Implement phase 001 (self-check templates)"
+    last_updated_at: "2026-06-06T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Added source-pass phases 005/006/007 to peck adoption"
+    next_safe_action: "Plan phase 005 (reviewer-benchmark) before 006/007 rules"
     blockers: []
-    key_files: []
+    key_files:
+      - "spec.md"
+      - "002-self-check-templates/spec.md"
+      - "005-reviewer-prompt-benchmark-substrate/spec.md"
+      - "006-peck-verification-discipline/spec.md"
+      - "007-acceptance-coverage-gate/spec.md"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
-      session_id: "template-session"
+      session_id: "2026-06-06-001-peck-adoption-source-phases"
       parent_session_id: null
     completion_pct: 0
     open_questions: []
@@ -37,7 +45,7 @@ _memory:
     - What needs done: the high-level outcome the phases work toward
 -->
 
-# Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system-spec-kit
+# Feature Specification: Adopt peck teachings into system-spec-kit (README-pass T1-T4 + source-pass T5-T10)
 
 <!-- ANCHOR:metadata -->
 ## 1. METADATA
@@ -51,9 +59,7 @@ _memory:
 | **Branch** | `main` |
 | **Parent Spec** | `../spec.md` |
 | **Parent Packet** | 027-xce-research-based-refinement |
-| **Predecessor** | None |
-| **Successor** | None |
-| **Handoff Criteria** | Each phase ships and passes validation independently; no change to the completion gate (T1, deferred) |
+| **Handoff Criteria** | Each phase ships and passes validation independently; the source-pass rules (006/007) ship warn-first and are regression-tested against phase 005 fixtures before enforcing |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -62,12 +68,12 @@ _memory:
 ## 2. PROBLEM & PURPOSE
 
 ### Problem Statement
-Phase 001 of this phase group analyzed the external `peck` framework and found four philosophy-neutral mechanisms worth adopting into system-spec-kit. Phases 002-004 implement the three lowest-risk of them as independently executable phases. The fourth — a per-criterion test-coverage completion gate (T1) — is deliberately excluded because it carries the largest blast radius and warrants its own packet.
+Two peck research passes inform this packet. The 2026-06-02 README analysis (child phase 001) found four philosophy-neutral mechanisms (T1-T4); the research/006 source-mining pass (cross-model verified) found a further set in peck's agent prompts and benchmark harness (T5-T10) and produced a concrete, now-adoptable design for the T1 coverage gate that the README pass had deferred. All of these adopt peck mechanisms into the same spec-kit verification/quality surfaces, so they belong in one phase-parent that sequences them without duplicating implementation detail.
 
 ### Purpose
-Carry the source analysis (child phase 001) into action: ship the three lowest-risk peck-derived improvements in ascending-risk order, each independently verifiable, without touching the completion gate.
+Ship the peck-derived improvements as seven independently executable phases: the three lowest-risk README teachings (T3/T4/T2) and the source-pass program (a reviewer-prompt benchmark substrate, a five-rule verification-discipline bundle, and the acceptance-criteria coverage gate). The source-pass phases reuse existing surfaces with warn-first messages, treat UX and automation as the top two priorities, and add zero new infrastructure.
 
-> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, and decisions live in the child phase folders listed in the Phase Documentation Map below. This keeps the parent from drifting stale as phases execute and pivot.
+> **Phase-parent note:** This spec.md is the ONLY authored document at the parent level. All detailed planning, task breakdowns, decisions, and continuity live in the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -76,21 +82,26 @@ Carry the source analysis (child phase 001) into action: ship the three lowest-r
 ## 3. SCOPE
 
 ### In Scope
-- The source analysis (phase 001) plus the child phase manifest for adopting peck teachings T3, T4, and T2.
-- Per-phase implementation details in child folders.
+- README-pass teachings T3 (self-check templates), T4 (current-state discipline), T2 (constitutional rule review).
+- Source-pass program: reviewer-prompt benchmark substrate (T10), verification-discipline bundle (T5-T9: completion-freshness, escalation, anti-softening, reviewer read-budget, numeric-severity note), and the acceptance-criteria coverage gate (T1).
+- Per-phase implementation details in child folders; phase routing, dependency visibility, and warn-then-error rollout sequencing.
 
 ### Out of Scope
-- T1 (per-criterion AC-coverage completion gate) — highest blast radius, separate future packet.
 - Detailed per-phase implementation plans at the parent level.
+- The re-confirmed anti-teachings: literal `score>=4 blocks`, empty-commit verdict ledger, branch-per-story checkout, blanket cheap-model gating, automatic constitutional deletion.
+- The 027 memory phases (002-008 at the parent track) — orthogonal to this peck program.
 
 ### Files to Change
 Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | File Path | Change Type | Phase | Description |
 |-----------|-------------|-------|-------------|
-| `templates/manifest/{spec,plan,checklist}.md.tmpl` | Modify | 002 | Self-check + failure-mode guidance blocks |
-| `scripts/rules/` + `validator-registry.json` | Modify | 003 | Advisory current-state content rule |
-| `constitutional/*.md` + a review diagnostic | Modify/Create | 004 | Last-confirmed metadata + review surface |
+| `templates/manifest/{spec,plan,checklist}.md.tmpl` | Modify | 002, 007 | Self-check blocks (002); AC-format + AC traceability table (007) |
+| `scripts/rules/` + `validator-registry.json` | Modify | 003, 007 | Advisory current-state rule (003); `AC_COVERAGE` rule (007) |
+| `constitutional/*.md` + review diagnostic | Modify/Create | 004 | Last-confirmed metadata + review surface |
+| `.opencode/skills/deep-improvement/**` | Modify/Create | 005 | Reviewer-prompt fixture type + scorer (Lane B substrate) |
+| `CLAUDE.md`/`AGENTS.md`, `validate.sh`, `continuity-freshness.ts`, `spec-doc-structure.ts`, `sk-code`/`deep-review`/`@review` (+ `.claude` mirrors) | Modify | 006 | Completion-freshness + escalation + anti-softening + read-budget + numeric note |
+| `deep-review/SKILL.md` + YAMLs, `mcp_server/ENV_REFERENCE.md` | Modify | 006, 007 | Verdict binding + feature flags (warn-then-error) |
 <!-- /ANCHOR:scope -->
 
 ---
@@ -102,25 +113,28 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
-| 1 | 001-peck-teachings-for-spec-kit/ | Source analysis: peck teachings vs spec-kit gaps; defines T1-T4 (T1 deferred). | Complete |
-| 2 | 002-self-check-templates/ | Add self-check + failure-mode guidance to the spec/plan/checklist manifest templates (T3). | Planned |
+| 1 | 001-peck-teachings-for-spec-kit/ | Source analysis (README pass): peck teachings vs spec-kit gaps; defines teachings T1-T4. | Complete |
+| 2 | 002-self-check-templates/ | Self-check + failure-mode guidance in the spec/plan/checklist manifest templates (T3). | Planned |
 | 3 | 003-current-state-discipline/ | Broaden the current-state-only content rule beyond phase parents, advisory severity (T4). | Planned |
-| 4 | 004-constitutional-rule-review/ | Add a read-only review surface listing constitutional rules with last-confirmed metadata (T2). | Planned |
+| 4 | 004-constitutional-rule-review/ | Read-only review surface listing constitutional rules with last-confirmed metadata (T2). | Planned |
+| 5 | 005-reviewer-prompt-benchmark-substrate/ | Reviewer-prompt fixture type + scorer in deep-improvement Lane B (T10) — the source-pass test substrate; lands first among 5-7. | Spec-scaffolded |
+| 6 | 006-peck-verification-discipline/ | Completion-freshness + escalation + anti-softening + reviewer read-budget + numeric-severity note (T5-T9). | Spec-scaffolded |
+| 7 | 007-acceptance-coverage-gate/ | Acceptance-criteria coverage gate (T1, now adopted): AC-format normalization + AC traceability table + `AC_COVERAGE` rule, warn-then-error. | Spec-scaffolded |
 
 ### Phase Transition Rules
 
-- Each phase MUST pass `validate.sh` independently before the next phase begins
-- Parent spec tracks aggregate progress via this map
-- Use `/spec_kit:resume [parent-folder]/[NNN-phase]/` to resume a specific phase
-- Run `validate.sh --recursive` on parent to validate all phases as integrated unit
+- Each phase MUST pass `validate.sh` independently before the next phase begins.
+- Source-pass order: phase 005 (benchmark substrate) lands first; 006 and 007 rules are regression-tested against its fixtures before any ERROR promotion.
+- Phase 007's template work shares `spec.md.tmpl`/`checklist.md.tmpl` with phase 002 — land 002 first or coordinate the edit window.
+- Run `validate.sh --recursive` on the parent to validate all phases as an integrated unit.
 
 ### Phase Handoff Criteria
 
 | From | To | Criteria | Verification |
 |------|-----|----------|--------------|
-| 001-peck-teachings-for-spec-kit | 002-self-check-templates | Analysis complete; teachings T3/T4/T2 identified with per-teaching verdicts. | Report present + strict-validated |
-| 002-self-check-templates | 003-current-state-discipline | Self-check blocks present in all three templates; a freshly scaffolded folder still passes strict validation. | `validate.sh --strict` on a throwaway scaffold |
-| 003-current-state-discipline | 004-constitutional-rule-review | Advisory content rule registered; running it on existing folders adds no new errors. | `validate.sh` on a sample track |
+| 001-peck-teachings-for-spec-kit | 002-self-check-templates | Analysis complete; teachings T1-T4 identified with per-teaching verdicts. | Report present + strict-validated |
+| 002-self-check-templates | 003 / 007 | Self-check blocks present in the templates; a freshly scaffolded folder still passes strict validation. | `validate.sh --strict` on a throwaway scaffold |
+| 005-reviewer-prompt-benchmark-substrate | 006 / 007 | Reviewer fixture type + scorer + seed fixtures (stale-verdict, softened-Fail, over-read, AC-coverage) exist; 006/007 rules are regression-tested before ERROR promotion. | Lane B reviewer fixtures green |
 <!-- /ANCHOR:phase-map -->
 
 ---
@@ -128,15 +142,16 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 <!-- ANCHOR:questions -->
 ## 4. OPEN QUESTIONS
 
-- RESOLVED (phase 001 research — see `001-peck-teachings-for-spec-kit/research/research.md`): the T3 → T4 → T2 order is risk-based and the phases are technically independent (none hard-blocks another). Per-phase decisions are folded into the child specs: T3 = HTML-comment guidance (no line-start `## `), T4 = INFO severity scoped to implementation-summary.md first, T2 = standalone read-only diagnostic with `last_confirmed` + provenance.
-- RESOLVED (continuation iteration 043): keep T3 → T4 → T2. T4 implementation must reconcile the child spec's `INFO` wording with the current validator registry severity vocabulary before coding; using the existing warning severity with strict-mode handling is acceptable if documented in the child implementation summary.
-- Deferred T1 remains out of scope here; its future packet should use a two-verdict design (per-AC traceability table + a separate fresh-context reviewer), warn-only rollout, and per-level opt-in.
+- RESOLVED (phase 001 research): the README-pass order T3 → T4 → T2 is risk-based and the phases are technically independent. Per-phase decisions are folded into the child specs.
+- RESOLVED (research/006 + integration research 019-023): the T1 coverage gate is now adoptable as phase 007 with the prescribed two-verdict design (per-AC traceability table + a separate fresh-context deep-review reviewer), warn-only rollout, and per-level + lifecycle opt-in. Its AC-format normalization is a hard prerequisite and shares manifest templates with phase 002.
+- Should the seven phases ship as one PR sequence or independent PRs (phase 005 first among the source-pass phases regardless)?
 <!-- /ANCHOR:questions -->
 
 ---
 
 ## RELATED DOCUMENTS
 
-- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md
-- **Source analysis**: See `001-peck-teachings-for-spec-kit/peck-teachings-analysis.md`
-- **Graph Metadata**: See `graph-metadata.json` for `derived.last_active_child_id` pointer
+- **Phase children**: See sub-folders `[0-9][0-9][0-9]-*/` for per-phase spec.md, plan.md, tasks.md.
+- **README-pass analysis**: `001-peck-teachings-for-spec-kit/peck-teachings-analysis.md`.
+- **Source-pass research**: `../research/006-peck-source-deep-mining/` — `research.md` (verdict matrix + cross-model), `sub-packet-proposal.md`, `integration-plan.md` (impact + UX + automation + rollout).
+- **Graph Metadata**: See `graph-metadata.json` for the child phase pointers.

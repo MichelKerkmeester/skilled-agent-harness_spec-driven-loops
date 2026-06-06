@@ -1,6 +1,6 @@
 {
   "level": "2",
-  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate",
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
   "description": "Feature Specification: 010 — Reviewer-Prompt Benchmark Substrate",
   "keywords": [
     "feature",
@@ -10,14 +10,14 @@
     "benchmark",
     "substrate"
   ],
-  "lastUpdated": "2026-06-06T10:44:44.937Z",
-  "specId": "001",
+  "lastUpdated": "2026-06-06T11:00:06.296Z",
+  "specId": "005",
   "folderSlug": "reviewer-prompt-benchmark-substrate",
   "parentChain": [
     "specs",
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "009-peck-source-adoption"
+    "001-peck-teachings-adoption"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []

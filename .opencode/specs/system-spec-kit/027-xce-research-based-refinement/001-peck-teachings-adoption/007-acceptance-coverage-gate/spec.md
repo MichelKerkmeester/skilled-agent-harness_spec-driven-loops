@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 011 from research 006 sub-packet-proposal P011 + integration plan"
@@ -58,7 +58,7 @@ The integration plan (research 006, integration-plan.md) places this packet behi
 | **Level** | 3 |
 | **Priority** | P1 |
 | **Status** | Spec-Scaffolded |
-| **Parent Packet** | `009-peck-source-adoption` |
+| **Parent Packet** | `001-peck-teachings-adoption` |
 | **Source** | `research/006-peck-source-deep-mining/sub-packet-proposal.md` §3 (Packet 011) + §7; `research/006-peck-source-deep-mining/integration-plan.md`; `research/006-peck-source-deep-mining/research.md` §2 (T1) + §5 (cross-model) |
 | **Depends on** | Packet `010-reviewer-prompt-benchmark-substrate` (regression fixtures); pending `001/002-self-check-templates` (shared manifest templates) |
 | **Feeds into** | Phase 5 ERROR promotion (deferred); future AC-stub auto-generation tooling |

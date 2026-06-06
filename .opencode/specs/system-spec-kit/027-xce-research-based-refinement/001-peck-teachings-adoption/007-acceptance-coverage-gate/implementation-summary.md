@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 011 planning docs (not implemented)"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate` |
+| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate` |
 | **Completed** | Pending |
 | **Level** | 3 |
 | **Status** | Spec-Scaffolded |
@@ -112,7 +112,7 @@ Pending. Delivery evidence should include the normalized `spec.md.tmpl`, the `ch
 | `checklist.md.tmpl` traceability table renders; bare checkbox removed | Pending |
 | `AC_COVERAGE` warns below floor, never errors while `..._ENFORCE=false`; escape hatch counts as covered | Pending |
 | Fresh L2 scaffold passes strict validation with no `AC_COVERAGE` ERROR (lifecycle opt-in) | Pending |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate --strict` | Pending |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate --strict` | Pending |
 <!-- /ANCHOR:verification -->
 
 ---

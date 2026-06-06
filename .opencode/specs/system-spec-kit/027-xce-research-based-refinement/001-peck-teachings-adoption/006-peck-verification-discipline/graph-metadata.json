@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027 phase 002",
+      "027 phase 006",
       "peck verification discipline",
       "completion-verdict freshness",
       "anti-verdict-softening",

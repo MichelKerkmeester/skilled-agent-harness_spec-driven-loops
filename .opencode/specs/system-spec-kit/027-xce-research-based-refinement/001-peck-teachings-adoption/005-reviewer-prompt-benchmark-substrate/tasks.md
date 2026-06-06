@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 010 from research 006 T10 + integration-plan 019-023"
@@ -88,7 +88,7 @@ _memory:
 - [ ] T021 Verify a verdict mismatch reports a failure with the exact UX message, and that multiple failures aggregate by fixture.
 - [ ] T022 Verify `code-task-scorer.cjs` and the Lane C skill scorer remain the defaults for their fixture types (no default change), and that the reviewer rules / completion gate / validators are unchanged.
 - [ ] T023 Verify the deterministic scorer runs in CI/pre-commit on reviewer-prompt PRs and live-LLM runs are not in the blocking path.
-- [ ] T024 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate --strict`.
+- [ ] T024 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate --strict`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -114,5 +114,5 @@ _memory:
 - **Source Verdict**: `../../research/006-peck-source-deep-mining/research.md` (§2 T10, 0.85)
 - **Implementation Sketch**: `../../research/006-peck-source-deep-mining/iterations/iteration-016.md`
 - **Integration Design**: `../../research/006-peck-source-deep-mining/integration-plan.md` (§§2-7)
-- **Downstream Packets**: `../002-peck-verification-discipline`, `../003-acceptance-coverage-gate`
+- **Downstream Packets**: `../006-peck-verification-discipline`, `../007-acceptance-coverage-gate`
 <!-- /ANCHOR:cross-refs -->

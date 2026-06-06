@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 011 tasks from research 006 sub-packet-proposal P011 + integration-plan"
@@ -101,7 +101,7 @@ _memory:
 - [ ] T020 Grep-confirm no "[How to verify it's done]" placeholder remains in `spec.md.tmpl`; confirm the `checklist.md.tmpl` traceability table renders and the bare checkbox is gone.
 - [ ] T021 Confirm `AC_COVERAGE` resolves in `validator-registry.json` with severity warn (strict-only), is documented in `validation_rules.md`, and warns (never errors while `..._ENFORCE=false`) below floor with the escape hatch counted as covered.
 - [ ] T022 Verify a freshly scaffolded L2 spec with zero tests passes strict validation without an `AC_COVERAGE` ERROR (lifecycle opt-in); confirm a Level 1 folder is exempt.
-- [ ] T023 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate --strict`.
+- [ ] T023 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate --strict`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -129,7 +129,7 @@ _memory:
 - **Source Proposal**: `../../research/006-peck-source-deep-mining/sub-packet-proposal.md` (§3 Packet 011, §7)
 - **Integration Synthesis**: `../../research/006-peck-source-deep-mining/integration-plan.md`
 - **Verdict Evidence**: `../../research/006-peck-source-deep-mining/research.md` (§2 T1, §5 cross-model)
-- **Upstream Dependency**: `../001-reviewer-prompt-benchmark-substrate` (regression fixtures)
+- **Upstream Dependency**: `../005-reviewer-prompt-benchmark-substrate` (regression fixtures)
 - **Coordination**: pending `001/002-self-check-templates` (shared manifest templates)
 <!-- /ANCHOR:cross-refs -->
 </content>

@@ -9,10 +9,13 @@
     "001-peck-teachings-for-spec-kit",
     "002-self-check-templates",
     "003-current-state-discipline",
-    "004-constitutional-rule-review"
+    "004-constitutional-rule-review",
+    "005-reviewer-prompt-benchmark-substrate",
+    "006-peck-verification-discipline",
+    "007-acceptance-coverage-gate"
   ],
   "specFolder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
-  "description": "Feature Specification: Adopt low-risk peck teachings (T3 self-check templates, T4 current-state discipline, T2 constitutional rule review) into system",
+  "description": "Feature Specification: Adopt peck teachings into system-spec-kit (README-pass T1-T4 + source-pass T5-T10)",
   "keywords": [
     "feature",
     "specification",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/001-reviewer-prompt-benchmark-substrate",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
   "children_ids": [],
   "manual": {
     "depends_on": [],
@@ -11,7 +11,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027 phase 001",
+      "027 phase 005",
       "reviewer prompt benchmark substrate",
       "reviewer fixture",
       "reviewer scorer lane b",

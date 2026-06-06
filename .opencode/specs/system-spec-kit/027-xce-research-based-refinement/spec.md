@@ -128,7 +128,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | Phase | Folder | Focus | Status |
 |-------|--------|-------|--------|
 | 000 | `000-release-cleanup/` | Placeholder release cleanup shell | Placeholder |
-| 001 | `001-peck-teachings-adoption/` | Low-risk peck-derived docs/process improvements | Phase-parent |
+| 001 | `001-peck-teachings-adoption/` | Peck adoption phase-parent — README teachings T1-T4 (self-check/current-state/constitutional) + source-pass T5-T10 (reviewer-benchmark, verification-discipline, acceptance-coverage gate), as 7 nested phases (`001-007`) | Phase-parent |
 | 002 | `002-memory-write-safety/` | P0 feedback correctness fixes | Spec-scaffolded |
 | 003 | `003-incremental-index-foundation/` | Memoization, dependency DAG, chunk fingerprints | Draft |
 | 004 | `004-causal-edge-tombstones/` | Causal edge tombstone lifecycle | Draft |
@@ -136,13 +136,10 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 | 006 | `006-write-path-reconciliation/` | Desired/prior statediff reconciliation | Draft |
 | 007 | `007-semantic-trigger-fallback/` | Hybrid lexical plus semantic trigger matching | Spec-scaffolded |
 | 008 | `008-learning-feedback-reducers/` | Learning feedback reducers phase parent | Phase-parent |
-| 009 | `009-peck-verification-discipline/` | Peck verification discipline: completion-freshness, escalation, anti-softening, reviewer read-budget, numeric-severity note (T5-T9) | Spec-scaffolded |
-| 010 | `010-reviewer-prompt-benchmark-substrate/` | Reviewer-prompt benchmark substrate in deep-improvement Lane B (T10); lands first as the regression substrate | Spec-scaffolded |
-| 011 | `011-acceptance-coverage-gate/` | Acceptance-criteria coverage gate (T1): AC-format normalization + AC traceability table + AC_COVERAGE rule (warn-then-error) | Spec-scaffolded |
-| 012 | `012-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
-| 016 | `016-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-008 | Phase-parent |
+| 009 | `009-gem-team-adoption/` | Gem-team adoption phase-parent — typed agent I/O contract + scoped gates + advisory fields, as 3 nested phases (`001-003`) | Phase-parent |
+| 010 | `010-memclaw-derived-memory-hardening/` | MemClaw-derived memory write/surface hardening (idempotency receipts, tool-ownership map, stale-recall audit) + amendments to 002-008 | Phase-parent |
 
-> Children `009-011` (planning-only) hold the `research/006-peck-source-deep-mining` proposals; `012` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `016` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All four are scaffolded and planned, not implemented.
+> `001-peck-teachings-adoption` holds all peck adoptions as 7 nested phases — README teachings (phases 002-004) plus the `research/006-peck-source-deep-mining` source-pass (phases 005-007; the once-deferred T1 is now adopted at phase 007). `009` holds the gem-team `research/007` proposals as nested phases `001-003` (integration analysed in `research/009`); `010` holds the `research/008-caura-memclaw-...` memory-hardening proposals. All three programs are scaffolded and planned, not implemented.
 
 ### Continuation Research Planning Amendments
 

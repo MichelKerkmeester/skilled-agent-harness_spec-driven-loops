@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "packet_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate",
-  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/003-acceptance-coverage-gate",
-  "parent_id": "system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption",
+  "packet_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate",
+  "spec_folder": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate",
+  "parent_id": "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption",
   "children_ids": [],
   "migrated": true,
   "migration_source": "legacy",
@@ -13,7 +13,7 @@
   },
   "derived": {
     "trigger_phrases": [
-      "027 phase 003",
+      "027 phase 007",
       "acceptance coverage gate",
       "AC_COVERAGE rule",
       "AC traceability table",

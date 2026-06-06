@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 009 planning docs (not implemented)"
@@ -39,7 +39,7 @@ _memory:
 
 | Field | Value |
 |-------|-------|
-| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline` |
+| **Spec Folder** | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline` |
 | **Completed** | Pending |
 | **Level** | 3 |
 | **Status** | Spec-Scaffolded |
@@ -103,7 +103,7 @@ Pending. Delivery evidence should include the freshness recompute wired into `va
 | Anti-softening keeps exact parseable PASS/CONDITIONAL/FAIL verdicts | Pending |
 | Escalation surfaces one consolidated decision (not per-uncertainty thrash) | Pending |
 | `.claude/agents/*` mirrors updated or mirror-lag recorded | Pending |
-| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline --strict` | Pending |
+| Strict spec validation: `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh .opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict` | Pending |
 <!-- /ANCHOR:verification -->
 
 ---

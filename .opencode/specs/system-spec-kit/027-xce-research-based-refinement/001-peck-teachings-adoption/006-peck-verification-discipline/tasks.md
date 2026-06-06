@@ -11,7 +11,7 @@ importance_tier: "important"
 contextType: "implementation"
 _memory:
   continuity:
-    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline"
+    packet_pointer: ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline"
     last_updated_at: "2026-06-06T00:00:00Z"
     last_updated_by: "claude-opus-4-8"
     recent_action: "Scaffolded 009 from research 006 proposal + integration-plan"
@@ -110,7 +110,7 @@ _memory:
 - [ ] T072 Grep-confirm no memory-subsystem file, no 010 fixture/scorer, and no 011 AC-gate file changed.
 - [ ] T073 Confirm each `.opencode/agents/*` edit has a matching `.claude/agents/*` mirror (or a recorded mirror-lag decision).
 - [ ] T074 Add manual test cases for verdict-lock + read-budget to the deep-review manual_testing_playbook.
-- [ ] T075 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline --strict`.
+- [ ] T075 Run `bash .opencode/skills/system-spec-kit/scripts/spec/validate.sh specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline --strict`.
 <!-- /ANCHOR:phase-3 -->
 
 ---
@@ -138,5 +138,5 @@ _memory:
 - **Source Proposal**: `../../research/006-peck-source-deep-mining/sub-packet-proposal.md` §1, §6, §7
 - **Integration Plan**: `../../research/006-peck-source-deep-mining/integration-plan.md`
 - **Verdict Evidence**: `../../research/006-peck-source-deep-mining/research.md` §2 (T5-T9)
-- **Upstream Dependency**: `../001-reviewer-prompt-benchmark-substrate` (regression fixtures)
+- **Upstream Dependency**: `../005-reviewer-prompt-benchmark-substrate` (regression fixtures)
 <!-- /ANCHOR:cross-refs -->

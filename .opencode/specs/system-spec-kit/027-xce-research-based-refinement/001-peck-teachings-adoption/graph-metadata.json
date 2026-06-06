@@ -7,7 +7,10 @@
     "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/001-peck-teachings-for-spec-kit",
     "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/002-self-check-templates",
     "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/003-current-state-discipline",
-    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review"
+    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/004-constitutional-rule-review",
+    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/005-reviewer-prompt-benchmark-substrate",
+    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline",
+    "system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/007-acceptance-coverage-gate"
   ],
   "manual": {
     "depends_on": [],
@@ -90,7 +93,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "Phase 001 of this phase group analyzed the external `peck` framework and found four philosophy-neutral mechanisms worth adopting into system-spec-kit. Phases 002-004 implement the three lowest-risk of them as independently executable phases. The fourth — a per-criterion test-coverage completion gate (T1) — is deliberately excluded because it carries the largest blast radius and warrants its own packet.",
+    "causal_summary": "Phase-parent for adopting peck teachings into system-spec-kit across two research passes: the 2026-06-02 README analysis (T1-T4, phases 002-004) and the research/006 source-mining pass (T5-T10 plus the now-adopted T1 coverage gate, phases 005-007). Seven independently executable child phases; source-pass rules ship warn-first on existing surfaces (zero new infrastructure), with UX and automation as top priorities.",
     "created_at": "2026-06-02T10:04:51Z",
     "last_save_at": "2026-06-05T12:47:34.374Z",
     "save_lineage": "graph_only",

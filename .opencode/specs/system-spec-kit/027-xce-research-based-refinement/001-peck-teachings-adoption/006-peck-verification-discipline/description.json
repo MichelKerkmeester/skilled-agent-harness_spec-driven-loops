@@ -1,6 +1,6 @@
 {
   "level": "3",
-  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement/009-peck-source-adoption/002-peck-verification-discipline",
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/006-peck-verification-discipline",
   "description": "Feature Specification: 009 — Peck Verification Discipline",
   "keywords": [
     "feature",
@@ -10,14 +10,14 @@
     "verification",
     "discipline"
   ],
-  "lastUpdated": "2026-06-06T10:44:45.102Z",
-  "specId": "002",
+  "lastUpdated": "2026-06-06T11:00:06.451Z",
+  "specId": "006",
   "folderSlug": "peck-verification-discipline",
   "parentChain": [
     "specs",
     "system-spec-kit",
     "027-xce-research-based-refinement",
-    "009-peck-source-adoption"
+    "001-peck-teachings-adoption"
   ],
   "memorySequence": 0,
   "memoryNameHistory": []
