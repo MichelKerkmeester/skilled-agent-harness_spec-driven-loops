@@ -1,0 +1,37 @@
+name: Markdown Link Integrity
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.opencode/skills/**'
+      - '.opencode/commands/**'
+      - '.opencode/agents/**'
+      - '.claude/agents/**'
+      - '.claude/commands/**'
+      - '.codex/agents/**'
+      - '.codex/commands/**'
+
+jobs:
+  markdown-link-integrity:
+    name: No broken markdown links in skills/commands/agents
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check markdown link integrity (whole-repo)
+        run: |
+          set -euo pipefail
+          GUARD=".opencode/skills/system-spec-kit/scripts/check-markdown-links.cjs"
+          if [ ! -f "$GUARD" ]; then
+            echo "::warning::markdown-link guard not found at $GUARD — skipping"
+            exit 0
+          fi
+          # The guard walks the active skills/commands/agents docs itself (whole-repo, not
+          # changed-files) because a deleted target breaks unchanged referrers. It prints any
+          # broken links and exits non-zero, which fails this step.
+          node "$GUARD"
