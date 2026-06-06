@@ -63,7 +63,7 @@ If dist marker missing: re-run `npm run build`, check `tsc -b` errors. If marker
 - Reference (probe queries): `<spec-folder>`
 - Reference (grep patterns): `<spec-folder>`
 - Reference (verification checklist): `<spec-folder>`
-- Sibling: [243-setup-native-module-health-and-mcp-installation.md](./243-setup-native-module-health-and-mcp-installation.md) (covers prerequisites and installer; this entry covers the post-fix verification loop)
+- Sibling: [setup-native-module-health-and-mcp-installation.md](./setup-native-module-health-and-mcp-installation.md) (covers prerequisites and installer; this entry covers the post-fix verification loop)
 
 ---
 

@@ -159,7 +159,7 @@ Prompt: `"Confirm cupt is installed and report its version."`
 Expected: version string printed; exit 0.
 
 > **Feature File:** [01--cupt-lifecycle/install-version.md](01--cupt-lifecycle/install-version.md)
-> **Catalog:** [01--cupt-authentication/04-version-flag.md](../feature_catalog/10--cupt-global-flags/version-flag.md)
+> **Catalog:** [10--cupt-global-flags/version-flag.md](../feature_catalog/10--cupt-global-flags/version-flag.md)
 
 ---
 

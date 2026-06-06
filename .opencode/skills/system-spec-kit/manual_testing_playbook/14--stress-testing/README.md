@@ -18,7 +18,7 @@ Current state:
 
 - One execution playbook covers stress-cycle setup, scoring, findings and telemetry capture.
 - The folder links to the current feature catalog entry and stress-test template pack.
-- This README is the package map. The execution procedure stays in `01-run-stress-cycle.md`.
+- This README is the package map. The execution procedure stays in `run-stress-cycle.md`.
 
 ---
 
@@ -26,7 +26,7 @@ Current state:
 
 ```text
 14--stress-testing/
-+-- 01-run-stress-cycle.md  # Execution procedure and verification rules
++-- run-stress-cycle.md  # Execution procedure and verification rules
 `-- README.md               # Package map and ownership guide
 ```
 
@@ -36,7 +36,7 @@ Current state:
 
 | Entry | Responsibility |
 |---|---|
-| [01 - Run stress cycle](01-run-stress-cycle.md) | Guides corpus freeze, packet x dimension scoring, findings authoring, rubric output, prior-cycle comparison, telemetry sampling, packet validation and parent phase-map updates. |
+| [01 - Run stress cycle](run-stress-cycle.md) | Guides corpus freeze, packet x dimension scoring, findings authoring, rubric output, prior-cycle comparison, telemetry sampling, packet validation and parent phase-map updates. |
 
 ---
 
@@ -44,7 +44,7 @@ Current state:
 
 | File | Role |
 |---|---|
-| `01-run-stress-cycle.md` | Canonical operator flow for one full stress-test cycle. |
+| `run-stress-cycle.md` | Canonical operator flow for one full stress-test cycle. |
 | `../../templates/stress_test/findings.template.md` | Report scaffold copied to the active packet as `findings.md`. |
 | `../../templates/stress_test/findings-rubric.template.json` | Machine-readable sidecar scaffold copied as `findings-rubric.json`. |
 | `../../templates/stress_test/findings-rubric.schema.md` | Field contract for rubric metadata, cells, aggregate math and comparison data. |
@@ -67,7 +67,7 @@ Stress-test scenarios must identify the active corpus, target packet, scoring di
 
 ## 6. TEST EXECUTION
 
-Use [01 - Run stress cycle](01-run-stress-cycle.md) as the execution source. This README only lists the available scenario entry and ownership rules.
+Use [01 - Run stress cycle](run-stress-cycle.md) as the execution source. This README only lists the available scenario entry and ownership rules.
 
 Execution order:
 
@@ -83,7 +83,7 @@ Execution order:
 
 | Boundary | Rule |
 |---|---|
-| Ownership | Keep execution steps in `01-run-stress-cycle.md`. |
+| Ownership | Keep execution steps in `run-stress-cycle.md`. |
 | Templates | Keep reusable findings files in `templates/stress_test/`. |
 | Catalog links | Keep current feature ownership in `feature_catalog/14--pipeline-architecture/stress-test-cycle.md`. |
 | Validator scope | Treat `validate_document.py` as README-focused. It does not prove that every playbook link or packet artifact exists. |
@@ -120,6 +120,6 @@ python3 .opencode/skills/sk-doc/scripts/extract_structure.py .opencode/skills/sy
 
 ## 10. RELATED
 
-- [Run stress cycle](01-run-stress-cycle.md)
+- [Run stress cycle](run-stress-cycle.md)
 - [Stress test templates](../../templates/stress_test/README.md)
 - [Stress test feature catalog entry](../../feature_catalog/14--pipeline-architecture/stress-test-cycle.md)

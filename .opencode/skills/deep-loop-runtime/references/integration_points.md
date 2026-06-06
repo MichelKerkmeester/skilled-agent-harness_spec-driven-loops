@@ -83,10 +83,10 @@ Doctor integration patterns:
 Relevant references:
 
 - `system-code-graph/feature_catalog/feature_catalog.md` says deleted `deep_loop_graph_*` MCP tools now live as direct `.cjs` scripts.
-- `system-code-graph/feature_catalog/05--coverage-graph/01-deep-loop-graph-query.md` points to `scripts/query.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/02-deep-loop-graph-status.md` points to `scripts/status.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/03-deep-loop-graph-upsert.md` points to `scripts/upsert.cjs`.
-- `system-code-graph/feature_catalog/05--coverage-graph/04-deep-loop-graph-convergence.md` points to `scripts/convergence.cjs`.
+- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-query.md` points to `scripts/query.cjs`.
+- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-status.md` points to `scripts/status.cjs`.
+- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-upsert.md` points to `scripts/upsert.cjs`.
+- `system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-convergence.md` points to `scripts/convergence.cjs`.
 
 ---
 
