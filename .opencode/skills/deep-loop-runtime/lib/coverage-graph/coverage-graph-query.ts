@@ -133,15 +133,19 @@ export function findCoverageGaps(ns: Namespace): CoverageGap[] {
 
   const coverageRelations = loopType === 'research'
     ? ['ANSWERS', 'COVERS']
-    : ['COVERS', 'EVIDENCE_FOR'];
+    : loopType === 'context'
+      ? ['COVERED_BY']
+      : ['COVERS', 'EVIDENCE_FOR'];
 
   const targetKinds = loopType === 'research'
     ? ['QUESTION']
-    : ['DIMENSION', 'FILE'];
+    : loopType === 'context'
+      ? ['SLICE']
+      : ['DIMENSION', 'FILE'];
 
   const gaps: CoverageGap[] = [];
 
-  if (loopType === 'review') {
+  if (loopType === 'review' || loopType === 'context') {
     for (const kind of targetKinds) {
       const nodeNamespace = buildNamespacePredicate('n', ns);
       const edgeNamespace = buildNamespacePredicate('e', ns);

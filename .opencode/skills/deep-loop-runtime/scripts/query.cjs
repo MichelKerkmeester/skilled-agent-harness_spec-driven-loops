@@ -93,7 +93,7 @@ async function main() {
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
   const queryType = args.queryType || args.query;
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') throw inputError('loopType must be "research", "review", or "council"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') throw inputError('loopType must be "research", "review", "council", or "context"');
   if (!queryType || typeof queryType !== 'string') throw inputError('queryType is required');
 
   const ns = { specFolder, loopType, sessionId };

@@ -1,6 +1,6 @@
 ---
-description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-phases.
-argument-hint: "<feature-description> [:auto|:confirm] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+description: Planning workflow (8 steps): spec through plan only. Modes :auto, :confirm, :with-context, :with-phases.
+argument-hint: "<feature-description> [:auto|:confirm] [:with-context] [:with-phases] [--intake-only] [--phases N] [--phase-names list] [--phase-folder=<path>] [--spec-folder=PATH] [--level=1|2|3|3+] [--start-state=STATE] [--repair-mode=MODE] [--record-relationships=yes|no] [--depends-on=IDs] [--related-to=IDs] [--supersedes=IDs] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, memory_search, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
@@ -67,6 +67,7 @@ PRE-BOUND SETUP ANSWERS:
   dispatch_mode: single_agent  # single_agent | multi_small | multi_large
   memory_choice: skip  # latest | recent3 | skip | n/a
   research_intent: add_feature  # add_feature | fix_bug | refactor | understand
+  context_integration: false  # boolean, true when :with-context present
   phase_decomposition: false  # boolean, true when :with-phases present
   phase_count: 3  # positive integer
   phase_names: ""  # optional comma-separated names
@@ -93,6 +94,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `dispatch_mode` | Y | marker `dispatch_mode` or default recommended option | `single_agent` | N |
 | `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
 | `research_intent` | Y | marker `research_intent` or targeted classification question | none | Y |
+| `context_integration` | N | suffix `:with-context`, marker `context_integration`, or default | `false` | N |
 | `phase_decomposition` | Y | suffix `:with-phases`, marker `phase_decomposition`, or default | `false` | N |
 | `phase_count` | N | flag `--phases`, marker `phase_count`, or default | `3` | N |
 | `phase_names` | N | flag `--phase-names`, marker `phase_names`, or auto-generate | none | N |
@@ -116,11 +118,12 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
    ├─ ":confirm" → execution_mode = "INTERACTIVE" (omit Q2)
    └─ No suffix  → execution_mode = "ASK" (include Q2)
 
-1a. CHECK :with-phases flag:
+1a. CHECK feature flags:
+   ├─ ":with-context" present → context_integration = TRUE
    ├─ ":with-phases" present → phase_decomposition = TRUE (omit Q6)
    │   Parse additional flags: --phases N (default 3), --phase-names "a,b,c" (optional)
    │   Include Q7 (Phase Count) and Q8 (Phase Names) if not provided via flags
-   └─ Not present → phase_decomposition = "ASK" (include Q6)
+   └─ Neither present → context_integration = FALSE, phase_decomposition = "ASK" (include Q6)
 
 1a-b. CHECK --intake-only flag:
    ├─ present → intake_only = TRUE; workflow halts after Emit phase, does not proceed to planning Steps 2–8
@@ -240,6 +243,7 @@ STOP HERE - Wait for user answers before continuing.
 - `feature_description` | `spec_choice` | `spec_path`
 - `execution_mode` | `dispatch_mode` | `memory_loaded` | `research_intent`
 - `phase_decomposition` | `phase_count` | `phase_names` (if `:with-phases`)
+- `context_integration` (if `:with-context`)
 - `intake_only` (if `--intake-only`)
 - `selected_level` | `start_state` | `repair_mode` | `manual_relationships` (when intake contract runs)
 
@@ -306,6 +310,26 @@ $ARGUMENTS
 - Packet creation now scaffolds a root `graph-metadata.json` file alongside the canonical spec docs.
 - The file starts with empty `manual.depends_on`, `manual.supersedes`, and `manual.related_to` arrays.
 - Derived fields are intentionally minimal at creation time and are finalized by later canonical save or completion flows.
+
+---
+
+### Optional Deep-Context Pre-Planning Phase
+
+When `:with-context` flag is present or `context_integration == TRUE`:
+- Run `/deep:start-context-loop` BEFORE the Specification step (Step 4), using the same `spec_path` and `execution_mode`. In `:auto` mode, default to AUTONOMOUS; in `:confirm` mode, keep INTERACTIVE.
+- Scope for the context loop: the `feature_description` resolved during setup.
+- After the context loop completes, display a checkpoint:
+
+  ```
+  WORKFLOW CHECKPOINT — Deep-Context Complete
+  Context Report: {spec_folder}/context/context-report.md
+  Reuse candidates: [N] | Integration points: [N] | Conventions: [N]
+  Continue to specification (Step 4)? [Y/continue, n/skip]
+  ```
+
+  - Y / enter / continue → proceed (feed Context Report into Step 4 Specification and Step 6 Planning as primary reuse evidence)
+  - n / skip → skip the context results and proceed directly to Step 4 without feeding them
+- If `context_integration == FALSE`, skip this section entirely and continue to Step 2 (Request Analysis).
 
 ---
 
@@ -529,7 +553,7 @@ Continue planning first child (001-[name]/)? [Y/n/review]
 ## 13. COMMAND CHAIN
 
 ```
-[/deep:start-research-loop] → /speckit:plan [:with-phases] → [/speckit:implement]
+[/deep:start-context-loop] → [/deep:start-research-loop] → /speckit:plan [:with-context] [:with-phases] → [/speckit:implement]
 ```
 
 Next step: `/speckit:implement [spec-folder-path]`

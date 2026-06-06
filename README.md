@@ -191,7 +191,7 @@ This creates a spec folder, runs research, builds a plan and begins implementati
 
 ### Adapting to Your Stack
 
-This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the deep-research/deep-review loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
+This repo ships as a public template. Of the shipped skills, `sk-code` carries the stack-specific patterns (frontend framework, animation library, CMS, backend language). Start there when forking. The other shipped skills (`system-spec-kit`, `sk-doc`, `sk-git`, `sk-code-review`, the deep-context/deep-research/deep-review loops, `deep-loop-runtime`, the `cli-*` orchestrators) are codebase-agnostic out of the box and work for any project without modification. Most teams will also add their own skills on top. Drop them into `.opencode/skills/<your-skill>/` and they'll be picked up automatically.
 
 See [§4 Customizing for Your Stack](#customizing-for-your-stack) for the full customization map and step-by-step adaptation guide.
 
@@ -767,7 +767,7 @@ For details, see the [Skill Advisor README](.opencode/skills/system-skill-adviso
 
 ### 🔄 Deep Loop
 
-The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Four loops (research, review, AI council, agent improvement) run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model.
+The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispatches a fresh-context worker against externalized state, then keeps going until a convergence check, not the agent's own claim, decides a stop is safe. Five loops (context, research, review, AI council, agent improvement) run on one shared runtime, `deep-loop-runtime`, so they share a state format, a stop contract and a coverage model.
 
 #### How It Works
 
@@ -801,10 +801,19 @@ The Deep Loop system runs autonomous, iterative agent workflows. Each loop dispa
 #### deep-loop-runtime (the shared foundation)
 
 One engine under every loop, so they all work the same way and you learn the workflow once.
-- **Consistent across loops:** research, review, council and improvement all dispatch, track and stop the same way
+- **Consistent across loops:** context, research, review, council and improvement all dispatch, track and stop the same way
 - **Pause and resume anytime:** progress is saved outside the chat, so a loop survives crashes, new sessions and long runs
 - **Trustworthy stops:** a loop ends only when the work has actually converged and passed its quality checks, never because an agent says it is done
 - **Hands-off or step-by-step:** run fully autonomous with `:auto` or pause at each step with `:confirm`, and start fresh, resume or restart at will
+
+&nbsp;
+#### Deep Context
+
+Maps the existing codebase before you plan, so you extend what's already there instead of rewriting it. `/deep:start-context-loop` runs `@deep-context`, and `:with-context` adds it to `/speckit:plan` and `/speckit:complete`.
+- **Reuse first:** the top of every Context Report is a catalog of existing `file:symbol` pointers to extend, compose or wrap
+- **Many models, one scope:** a heterogeneous pool (native agents plus cli models) sweeps the same code in parallel, and agreement across models drives confidence
+- **Pointers, not dumps:** it ships verified references instead of pasted source, so planning context stays sharp rather than bloated
+- **Knows when it's done:** stops on relevance-gated coverage saturation, with cross-model agreement and relevance as blocking guards
 
 &nbsp;
 #### Deep Research
@@ -891,7 +900,7 @@ For details, see the [Deep Loop Runtime README](.opencode/skills/deep-loop-runti
 &nbsp;
 #### DEEP LOOP
 
-The shared runtime plus the four loop skills behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
+The shared runtime plus the five loop skills behind the autonomous loops. See the [Deep Loop](#deep-loop) section above for how they run.
 
 **deep-loop-runtime**
 - Shared runtime under all four deep loops: executor config, state safety, scoring, fallback routing, coverage-graph scripts, `storage/deep-loop-graph.sqlite`. See [Deep Loop](#deep-loop).
@@ -901,6 +910,9 @@ The shared runtime plus the four loop skills behind the autonomous loops. See th
 
 **deep-review**
 - Autonomous code-review loop: P0/P1/P2 findings across 4 dimensions, a PASS/CONDITIONAL/FAIL verdict, adversarial P0 self-check. Dispatched by `/deep:start-review-loop`. See [Deep Loop](#deep-loop).
+
+**deep-context**
+- Autonomous codebase-context loop: heterogeneous-parallel by-model sweep over a shared scope, cross-executor-agreement convergence, reuse-first Context Report of verified `file:symbol` pointers. Dispatched by `/deep:start-context-loop`; optional `:with-context` pre-step on `/speckit:plan` and `/speckit:complete`. See [Deep Loop](#deep-loop).
 
 **deep-ai-council**
 - Multi-seat planning council: diverse AI seats, cross-seat critique, convergence to evidence-backed recommendations, packet-local `ai-council/**` artifacts. Planning-only. See [Deep Loop](#deep-loop).

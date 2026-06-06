@@ -15,6 +15,11 @@
     ],
     "enhances": [
       {
+        "target": "deep-context",
+        "weight": 0.7,
+        "context": "provides shared runtime for context loops"
+      },
+      {
         "target": "deep-review",
         "weight": 0.7,
         "context": "provides shared runtime for review loops"
@@ -26,6 +31,11 @@
       }
     ],
     "siblings": [
+      {
+        "target": "deep-context",
+        "weight": 0.6,
+        "context": "consumer skill in the deep-loop family"
+      },
       {
         "target": "deep-review",
         "weight": 0.6,

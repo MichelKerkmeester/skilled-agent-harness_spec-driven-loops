@@ -294,8 +294,8 @@ function buildAttributionMd(lineageData, loopType) {
 function main() {
   const args = parseArgs();
   const loopType = ensureString(args, 'loopType');
-  if (loopType !== 'research' && loopType !== 'review') {
-    throw inputError('loopType must be "research" or "review"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
+    throw inputError('loopType must be "research", "review", or "context"');
   }
   const artifactDir = ensureString(args, 'artifactDir');
   const lineagesDir = path.join(artifactDir, 'lineages');

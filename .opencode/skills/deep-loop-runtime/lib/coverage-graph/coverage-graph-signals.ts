@@ -44,7 +44,18 @@ export interface ReviewConvergenceSignals {
   hotspotSaturation: number;
 }
 
-export type ConvergenceSignals = ResearchConvergenceSignals | ReviewConvergenceSignals;
+export interface ContextConvergenceSignals {
+  sliceCoverage: number;
+  reuseCatalogCoverage: number;
+  agreementRate: number;
+  relevanceFloor: number;
+  dependencyCompleteness: number;
+}
+
+export type ConvergenceSignals =
+  | ResearchConvergenceSignals
+  | ReviewConvergenceSignals
+  | ContextConvergenceSignals;
 
 export interface SignalSnapshot {
   iteration: number;
@@ -552,6 +563,97 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
   };
 }
 
+// ───── CONTEXT SIGNALS ─────
+
+// Findings below this relevance are noise and excluded from "kept" coverage, so
+// small-model over-collection cannot masquerade as new context and block saturation.
+const CONTEXT_RELEVANCE_GATE = 0.55;
+// By-model fan-out: a finding independently confirmed by this many executors is high-confidence.
+const CONTEXT_AGREEMENT_MIN = 2;
+
+function contextMeta(node: CoverageNode): Record<string, unknown> {
+  return node.metadata && typeof node.metadata === 'object' ? node.metadata : {};
+}
+
+function contextAgreement(node: CoverageNode, confirmCountById: Map<string, number>): number {
+  const metaConfirmations = Number((contextMeta(node) as { confirmations?: unknown }).confirmations);
+  const edgeConfirmations = confirmCountById.get(node.id) ?? 0;
+  return Math.max(Number.isFinite(metaConfirmations) ? metaConfirmations : 0, edgeConfirmations);
+}
+
+function contextRelevance(node: CoverageNode): number {
+  const relevance = Number((contextMeta(node) as { relevance?: unknown }).relevance);
+  return Number.isFinite(relevance) ? relevance : 0;
+}
+
+/**
+ * Compute context convergence signals from raw node and edge data.
+ *
+ * Pure (no DB) so both computeContextSignals and the convergence script share
+ * one implementation. Agreement is read from a node's CONFIRMS in-edges OR its
+ * metadata.confirmations (whichever is higher); relevance from metadata.relevance.
+ * Each signal vacuous-passes (1.0) when its kind is absent so a feature with no
+ * dependencies (etc.) is not penalized — matching the review p0ResolutionRate rule.
+ *
+ * @param nodes - Coverage nodes for the namespace.
+ * @param edges - Coverage edges for the namespace.
+ * @returns Context convergence signals with all five metrics.
+ */
+export function computeContextSignalsFromData(
+  nodes: CoverageNode[],
+  edges: CoverageEdge[],
+): ContextConvergenceSignals {
+  const sliceNodes = nodes.filter((node) => node.kind === 'SLICE');
+  const reuseNodes = nodes.filter((node) => node.kind === 'REUSE_CANDIDATE');
+  const dependencyNodes = nodes.filter((node) => node.kind === 'DEPENDENCY');
+  const findingKinds = new Set(['REUSE_CANDIDATE', 'PATTERN', 'CONSTRAINT']);
+  const findingNodes = nodes.filter((node) => findingKinds.has(node.kind));
+
+  const coveredSliceIds = new Set(
+    edges.filter((edge) => edge.relation === 'COVERED_BY').map((edge) => edge.sourceId),
+  );
+  const confirmCountById = new Map<string, number>();
+  for (const edge of edges) {
+    if (edge.relation === 'CONFIRMS') {
+      confirmCountById.set(edge.targetId, (confirmCountById.get(edge.targetId) ?? 0) + 1);
+    }
+  }
+  const resolvedDependencyIds = new Set(
+    edges
+      .filter((edge) => edge.relation === 'DEPENDS_ON' || edge.relation === 'IMPORTS')
+      .map((edge) => edge.sourceId),
+  );
+
+  const sliceCoverage = sliceNodes.length > 0
+    ? sliceNodes.filter((node) => coveredSliceIds.has(node.id)).length / sliceNodes.length
+    : 1;
+  const reuseCatalogCoverage = reuseNodes.length > 0
+    ? reuseNodes.filter((node) => contextAgreement(node, confirmCountById) >= 1
+        || (contextMeta(node) as { verified?: unknown }).verified === true).length / reuseNodes.length
+    : 1;
+  const agreementRate = findingNodes.length > 0
+    ? findingNodes.filter((node) => contextAgreement(node, confirmCountById) >= CONTEXT_AGREEMENT_MIN).length / findingNodes.length
+    : 1;
+  const relevanceFloor = findingNodes.length > 0
+    ? findingNodes.filter((node) => contextRelevance(node) >= CONTEXT_RELEVANCE_GATE).length / findingNodes.length
+    : 1;
+  const dependencyCompleteness = dependencyNodes.length > 0
+    ? dependencyNodes.filter((node) => resolvedDependencyIds.has(node.id)).length / dependencyNodes.length
+    : 1;
+
+  return { sliceCoverage, reuseCatalogCoverage, agreementRate, relevanceFloor, dependencyCompleteness };
+}
+
+/**
+ * Compute context convergence signals for a namespace.
+ *
+ * @param ns - Namespace identifying the coverage graph.
+ * @returns Context convergence signals with all five metrics.
+ */
+export function computeContextSignals(ns: Namespace): ContextConvergenceSignals {
+  return computeContextSignalsFromData(getNodes(ns), getEdges(ns));
+}
+
 // ───── EXPORTS ─────
 
 /**
@@ -565,6 +667,9 @@ export function computeReviewSignals(ns: Namespace): ReviewConvergenceSignals {
 export function computeSignals(ns: Namespace): ConvergenceSignals {
   if (ns.loopType === 'research') {
     return computeResearchSignals(ns);
+  }
+  if (ns.loopType === 'context') {
+    return computeContextSignals(ns);
   }
   return computeReviewSignals(ns);
 }

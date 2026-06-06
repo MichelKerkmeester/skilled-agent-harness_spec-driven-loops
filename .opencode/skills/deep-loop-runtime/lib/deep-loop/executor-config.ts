@@ -290,6 +290,10 @@ const LINEAGE_LABEL_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
  * - `label`: directory-safe id for the lineage's isolated sub-packet.
  * - `count`: number of replicas of THIS config to run (e.g. 5x the same model).
  * - `iterations`: per-lineage max-iterations override; null = packet default.
+ * - `promptFramework`: optional per-model prompt framing key (e.g. "costar",
+ *   "tidd-ec") resolved against sk-prompt-small-model when a consumer renders the
+ *   lineage prompt. null = consumer default. Loop-type-agnostic and optional, so
+ *   research/review lineages that omit it are unaffected.
  */
 export const lineageExecutorSchema = executorConfigSchema.extend({
   label: z.string().min(1).regex(LINEAGE_LABEL_PATTERN, {
@@ -297,6 +301,7 @@ export const lineageExecutorSchema = executorConfigSchema.extend({
   }),
   count: z.number().int().positive().default(1),
   iterations: z.number().int().positive().nullable().default(null),
+  promptFramework: z.string().min(1).nullable().default(null),
 });
 
 export type LineageExecutor = z.infer<typeof lineageExecutorSchema>;
@@ -330,7 +335,7 @@ export function parseFanoutConfig(raw: unknown): FanoutConfig {
 
   // Reuse the canonical single-executor validator per entry (kind/model/flags).
   config.executors.forEach((entry, index) => {
-    const { label: _label, count: _count, iterations: _iterations, ...executorSubset } = entry;
+    const { label: _label, count: _count, iterations: _iterations, promptFramework: _promptFramework, ...executorSubset } = entry;
     try {
       parseExecutorConfig(executorSubset);
     } catch (err) {

@@ -28,7 +28,7 @@ describe('status.cjs direct invocation', () => {
     expect(result.exitCode).toBe(0);
     expect(result.json.status).toBe('ok');
     expect(result.json).toMatchObject({
-      schemaVersion: 2,
+      schemaVersion: 3,
       rowCount: 0,
     });
     expect(result.json.data).toMatchObject({

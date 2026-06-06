@@ -14,6 +14,11 @@
     "enhances": [],
     "siblings": [
       {
+        "target": "deep-context",
+        "weight": 0.5,
+        "context": "autonomous loop peer; gathers reuse-first codebase context before planning"
+      },
+      {
         "target": "deep-research",
         "weight": 0.5,
         "context": "autonomous loop peer with shared externalized-state workflow"

@@ -167,6 +167,7 @@ Hook-capable runtimes (Claude, Codex, Gemini, OpenCode) may inject startup conte
 | **Markdown writing** | `@markdown` → general markdown/spec writing OR `/create:*` commands → `sk-doc` template → write artifact |
 | **Documentation quality** | `sk-doc` skill → classify → template → validate → DQI score → verify |
 | **Phase workflow**                   | `/speckit:plan :with-phases` or `/speckit:complete :with-phases` → Decompose → Populate → Plan first child                                                                                                                                                                                                                                               |
+| **Deep context**                     | `/deep:start-context-loop` → Init → Parallel by-model sweep → Agreement merge → Convergence → Context Report; or `:with-context` on `/speckit:plan` / `:complete`                                                                                                                                                                                          |
 | **Deep research**                    | `/deep:start-research-loop` → Init → Loop iterations → Convergence → Synthesize → Memory save                                                                                                                                                                                                                                                                |
 | **Deep review**                      | `/deep:start-review-loop` → Scope → Loop iterations → Convergence → review-report.md → Memory save                                                                                                                                                                                                                                                           |
 | **Deep AI Council**                  | `@ai-council` → Seats deliberate → Critique → Converge → `ai-council/**` artifacts → Council test gate                                                                                                                                                                                                                                                |
@@ -347,6 +348,7 @@ Use the agent directory that matches the active runtime/provider profile:
 - **`@ai-council`** - Deep AI Council planning architect for multi-seat deliberation, strategy comparison, critique, convergence, and packet-local `ai-council/**` artifacts.
 - **`@deep-research`** - Autonomous deep research iterations (LEAF). Dispatched by `/deep:start-research-loop`
 - **`@deep-review`** - Autonomous deep review iterations (LEAF, P0/P1/P2). Dispatched by `/deep:start-review-loop`
+- **`@deep-context`** - Autonomous codebase-context iterations (LEAF, read-only). Heterogeneous by-model parallel sweep over a shared scope; dispatched by `/deep:start-context-loop`
 - **`@deep-improvement`** - Bounded agent improvement via `deep-improvement`. Dispatched by `/deep:start-agent-improvement-loop`
 
 #### Distributed Governance Rule

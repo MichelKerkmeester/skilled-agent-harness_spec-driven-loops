@@ -157,7 +157,9 @@ Sort: relevance ↓, confidence ↓. Confidence: 1.0 Read-verified + call-sites 
 
 **AVOID (negative knowledge — both lenses):** naive whole-repo embedding RAG (similarity ≠ reuse-relevance; degrades with length); pre-baking raw source into the report (context rot); stale hierarchical/community summaries (re-validate by content-hash); "% slices visited" as convergence (coverage ≠ utility); coherent file-order narrative (hurts long-context attention — group by reuse cluster); one mega-prompt "understand the whole repo" (that's `@context`'s ceiling, ~50K tokens); free-form finding text (uncitable/unmergeable — require schema-bound categories); by-model fan-out in v1 (council's job; doubles cost, no proven value for a non-adversarial task); confidence scores without source pointers (un-re-validatable).
 
+<!-- ANCHOR:sources -->
 **Sources** (external prior art surfaced by the minimax lineage): [SOURCE: Aider repo-map + CONVENTIONS.md], [SOURCE: arXiv:2401.18059 (RAPTOR)], [SOURCE: arXiv:2404.16130 (Microsoft GraphRAG)], [SOURCE: Chroma "Context Rot" 2025], [SOURCE: Anthropic agentic-retrieval / sub-agents / context-engineering / tool-design 2025], [SOURCE: NoLiMa + LongMemEval]. Internal evidence: per-iteration files under `research/lineages/{mimo,minimax}/`.
+<!-- /ANCHOR:sources -->
 
 ---
 

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 // ───── TYPE DEFINITIONS ─────
 
-export type LoopType = 'research' | 'review';
+export type LoopType = 'research' | 'review' | 'context';
 
 export type ResearchNodeKind = 'QUESTION' | 'FINDING' | 'CLAIM' | 'SOURCE';
 
@@ -23,7 +23,17 @@ export type ReviewNodeKind =
   | 'CONSUMER'
   | 'TEST';
 
-export type NodeKind = ResearchNodeKind | ReviewNodeKind;
+export type ContextNodeKind =
+  | 'SLICE'
+  | 'FILE'
+  | 'SYMBOL'
+  | 'PATTERN'
+  | 'REUSE_CANDIDATE'
+  | 'DEPENDENCY'
+  | 'CONSTRAINT'
+  | 'GAP';
+
+export type NodeKind = ResearchNodeKind | ReviewNodeKind | ContextNodeKind;
 
 export type ResearchRelation =
   | 'ANSWERS'
@@ -44,7 +54,20 @@ export type ReviewRelation =
   | 'IN_DIMENSION'
   | 'IN_FILE';
 
-export type Relation = ResearchRelation | ReviewRelation;
+export type ContextRelation =
+  | 'CONTAINS'
+  | 'REFERENCES'
+  | 'IMPORTS'
+  | 'DEPENDS_ON'
+  | 'IMPLEMENTS'
+  | 'EXPOSES'
+  | 'REUSES'
+  | 'CONSTRAINS'
+  | 'COVERED_BY'
+  | 'CONFIRMS'
+  | 'CONTRADICTS';
+
+export type Relation = ResearchRelation | ReviewRelation | ContextRelation;
 
 export interface CoverageNode {
   id: string;
@@ -93,7 +116,7 @@ export interface Namespace {
 
 // ───── CONSTANTS ─────
 
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 const DB_FILENAME = 'deep-loop-graph.sqlite';
 export const COVERAGE_GRAPH_DATABASE_DIR = join(
@@ -127,6 +150,22 @@ export const REVIEW_WEIGHTS: Record<ReviewRelation, number> = {
   IN_FILE: 1.0,
 };
 
+// Context relation weights: REUSES is highest — surfacing existing code to extend
+// is the primary value of context gathering (the repo "reuse, avoid new code" principle).
+export const CONTEXT_WEIGHTS: Record<ContextRelation, number> = {
+  CONTAINS: 1.0,
+  REFERENCES: 1.0,
+  IMPORTS: 1.2,
+  DEPENDS_ON: 1.2,
+  IMPLEMENTS: 1.4,
+  EXPOSES: 1.3,
+  REUSES: 1.5,
+  CONSTRAINS: 1.1,
+  COVERED_BY: 1.1,
+  CONFIRMS: 1.0,
+  CONTRADICTS: 0.8,
+};
+
 export const VALID_KINDS: Record<LoopType, readonly string[]> = {
   research: ['QUESTION', 'FINDING', 'CLAIM', 'SOURCE'] as const,
   review: [
@@ -141,11 +180,22 @@ export const VALID_KINDS: Record<LoopType, readonly string[]> = {
     'CONSUMER',
     'TEST',
   ] as const,
+  context: [
+    'SLICE',
+    'FILE',
+    'SYMBOL',
+    'PATTERN',
+    'REUSE_CANDIDATE',
+    'DEPENDENCY',
+    'CONSTRAINT',
+    'GAP',
+  ] as const,
 };
 
 export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
   research: ['ANSWERS', 'SUPPORTS', 'CONTRADICTS', 'SUPERSEDES', 'DERIVED_FROM', 'COVERS', 'CITES'] as const,
   review: ['COVERS', 'EVIDENCE_FOR', 'CONTRADICTS', 'RESOLVES', 'CONFIRMS', 'ESCALATES', 'IN_DIMENSION', 'IN_FILE'] as const,
+  context: ['CONTAINS', 'REFERENCES', 'IMPORTS', 'DEPENDS_ON', 'IMPLEMENTS', 'EXPOSES', 'REUSES', 'CONSTRAINS', 'COVERED_BY', 'CONFIRMS', 'CONTRADICTS'] as const,
 };
 
 // ───── SCHEMA ─────
@@ -153,7 +203,7 @@ export const VALID_RELATIONS: Record<LoopType, readonly string[]> = {
 const SCHEMA_SQL = `
   CREATE TABLE IF NOT EXISTS coverage_nodes (
     spec_folder TEXT NOT NULL,
-    loop_type TEXT NOT NULL CHECK(loop_type IN ('research', 'review')),
+    loop_type TEXT NOT NULL CHECK(loop_type IN ('research', 'review', 'context')),
     session_id TEXT NOT NULL,
     id TEXT NOT NULL,
     kind TEXT NOT NULL,

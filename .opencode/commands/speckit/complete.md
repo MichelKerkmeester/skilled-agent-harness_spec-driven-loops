@@ -1,6 +1,6 @@
 ---
-description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-phases.
-argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
+description: End-to-end SpecKit workflow (14+ steps). Modes: :auto, :confirm, :with-research, :with-context, :with-phases.
+argument-hint: "<feature-description> [:auto|:confirm] [:with-research] [:with-context] [:with-phases] [--phases N] [--phase-names list] [--phase-folder=<path>] (:auto supports PRE-BOUND SETUP ANSWERS: prompt-body block for non-interactive setup)"
 allowed-tools: Read, Write, Edit, Bash, Grep, Glob, Task, memory_context, mcp__mk_spec_memory__memory_save, mcp__mk_spec_memory__memory_index_scan
 ---
 
@@ -69,6 +69,7 @@ PRE-BOUND SETUP ANSWERS:
   memory_choice: skip  # latest | recent3 | skip | n/a
   research_intent: add_feature  # add_feature | fix_bug | refactor | understand
   research_integration: false  # boolean, true when :with-research present
+  context_integration: false  # boolean, true when :with-context present
   phase_decomposition: false  # boolean, true when :with-phases present
   phase_count: 3  # positive integer
   phase_names: ""  # optional comma-separated names
@@ -95,6 +96,7 @@ Rules: see `auto_mode_contract.md` §2 (unspecified fields fall back to default;
 | `memory_choice` | N | marker `memory_choice`, prior-work detection, or default | `skip` when no prior continuity records exist | N |
 | `research_intent` | Y | marker `research_intent` or targeted classification question | none | Y |
 | `research_integration` | N | suffix `:with-research`, marker `research_integration`, or default | `false` | N |
+| `context_integration` | N | suffix `:with-context`, marker `context_integration`, or default | `false` | N |
 | `phase_decomposition` | Y | suffix `:with-phases`, marker `phase_decomposition`, or default | `false` | N |
 | `phase_count` | N | flag `--phases`, marker `phase_count`, or default | `3` | N |
 | `phase_names` | N | flag `--phase-names`, marker `phase_names`, or auto-generate | none | N |
@@ -119,6 +121,7 @@ EXECUTE THIS SINGLE CONSOLIDATED PROMPT:
 
 1a. CHECK feature flags:
    ├─ ":with-research" present → research_integration = TRUE
+   ├─ ":with-context" present → context_integration = TRUE
    ├─ ":with-phases" present → phase_decomposition = TRUE (omit Q6)
    │   Parse additional flags: --phases N (default 3), --phase-names "a,b,c" (optional)
    │   Include Q7 (Phase Count) and Q8 (Phase Names) if not provided via flags
@@ -231,7 +234,7 @@ STOP HERE - Wait for user answers before continuing.
 - `feature_description` | `spec_choice` | `spec_path`
 - `execution_mode` | `dispatch_mode` | `memory_loaded` | `research_intent`
 - `phase_decomposition` | `phase_count` | `phase_names` (if `:with-phases`)
-- `research_integration` | `auto_debug`
+- `research_integration` | `context_integration` | `auto_debug`
 - `selected_level` | `start_state` | `repair_mode` | `manual_relationships` (when intake contract runs)
 
 > **Cross-reference**: Implements AGENTS.md Section 2 "Gate 3: Spec Folder Question" and "First Message Protocol".
@@ -314,6 +317,7 @@ When `--phase-folder=<path>` is provided or spec folder selection includes a pha
 | `:auto` | `/speckit:complete :auto "feature"` | Execute all steps without approval gates |
 | `:confirm` | `/speckit:complete :confirm "feature"` | Pause at each step for approval |
 | `:with-research` | `/speckit:complete :with-research "feature"` | Insert research phase after Step 2 (before specification) |
+| `:with-context` | `/speckit:complete :with-context "feature"` | Gather codebase context via deep-context BEFORE research and specification; runs `/deep:start-context-loop` and feeds the Context Report into planning |
 | `:with-phases` | `/speckit:complete :with-phases "feature"` | Insert phase decomposition before Step 1, then complete first child. The parent scaffolds from `phase-parent Level template contract` (lean trio only — `spec.md` + `description.json` + `graph-metadata.json` at parent); plan/tasks/checklist/decisions live in each child. |
 | (default) | `/speckit:complete "feature"` | Ask user to choose mode during setup |
 
@@ -341,6 +345,25 @@ All planning artifacts must exist before implementation begins. Score >= 70 to p
 - the review agent's approval (10 pts)
 
 IF any artifact missing -> STOP -> Return to appropriate step -> Complete -> Re-attempt gate
+
+### Optional Deep-Context Pre-Planning Phase
+
+When `:with-context` flag is present or `context_integration == TRUE`:
+- Run `/deep:start-context-loop` BEFORE research and specification, using the same `spec_path` and `execution_mode`. In `:auto` mode, default to AUTONOMOUS; in `:confirm` mode, keep INTERACTIVE.
+- Scope for the context loop: the `feature_description` resolved during setup.
+- When BOTH `:with-context` AND `:with-research` are enabled, **deep-context runs first** (establish what already exists in the codebase), then research runs (investigate unknowns), then specification begins. Order: deep-context → research → Step 3.
+- After the context loop completes, display a checkpoint:
+
+  ```
+  WORKFLOW CHECKPOINT — Deep-Context Complete
+  Context Report: {spec_folder}/context/context-report.md
+  Reuse candidates: [N] | Integration points: [N] | Conventions: [N]
+  Continue to [research / specification]? [Y/continue, n/skip]
+  ```
+
+  - Y / enter / continue → proceed (feed Context Report into Step 3 Specification and Step 6 Planning as primary reuse evidence)
+  - n / skip → skip the context results and proceed directly without feeding them
+- If `context_integration == FALSE`, skip this section entirely and continue to the research check or Step 3.
 
 ### Optional Research Phase
 
@@ -561,10 +584,11 @@ Required at Planning Gate for Level 3/3+ (optional Level 2). Record in decision-
 ## 13. COMMAND CHAIN
 
 - **Standard**: `/speckit:complete "feature"` -- 14 steps
+- **With Context**: `/speckit:complete "feature" :with-context` -- Codebase context + 14 steps
 - **With Research**: `/speckit:complete "feature" :with-research` -- Research + 14 steps
 - **With Phases**: `/speckit:complete "feature" :with-phases --phases 3` -- Phase decomposition + 14 steps on first child
-- **Full Options**: `/speckit:complete "feature" :auto :with-research :with-phases`
-- **Split workflows**: `/deep:start-research-loop` -> `/speckit:plan [:with-phases]` -> `/speckit:implement`
+- **Full Options**: `/speckit:complete "feature" :auto :with-context :with-research :with-phases`
+- **Split workflows**: `/deep:start-context-loop` -> `/deep:start-research-loop` -> `/speckit:plan [:with-phases]` -> `/speckit:implement`
 
 ---
 

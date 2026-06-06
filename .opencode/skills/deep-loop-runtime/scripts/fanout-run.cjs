@@ -123,8 +123,10 @@ function buildLoopPrompt(loopType, specFolder, lineageDir, sessionId, lineage) {
   const skillFile =
     loopType === 'review'
       ? '.opencode/skills/deep-review/SKILL.md'
-      : '.opencode/skills/deep-research/SKILL.md';
-  const agentName = loopType === 'review' ? 'deep-review' : 'deep-research';
+      : loopType === 'context'
+        ? '.opencode/skills/deep-context/SKILL.md'
+        : '.opencode/skills/deep-research/SKILL.md';
+  const agentName = loopType === 'review' ? 'deep-review' : loopType === 'context' ? 'deep-context' : 'deep-research';
   const hasIterationCap = typeof lineage.iterations === 'number' && lineage.iterations > 0;
   const stopClause = hasIterationCap
     ? 'to convergence OR config.maxIterations, whichever comes first'
@@ -355,8 +357,8 @@ async function main() {
   const args = parseArgs();
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
-  if (loopType !== 'research' && loopType !== 'review') {
-    throw inputError('loopType must be "research" or "review"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'context') {
+    throw inputError('loopType must be "research", "review", or "context"');
   }
   const fanoutConfigJson = ensureString(args, 'fanoutConfigJson');
   const baseArtifactDir = ensureString(args, 'baseArtifactDir');

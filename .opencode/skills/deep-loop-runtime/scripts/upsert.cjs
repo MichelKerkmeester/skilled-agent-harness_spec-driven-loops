@@ -106,7 +106,7 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') throw inputError('loopType must be "research", "review", or "council"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') throw inputError('loopType must be "research", "review", "council", or "context"');
 
   let db = null;
   let releaseWriterLock = null;

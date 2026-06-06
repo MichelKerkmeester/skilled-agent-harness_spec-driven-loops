@@ -129,6 +129,17 @@ function computeCompositeScore(signals, loopType) {
       normalizedDepth * 0.15;
     return Math.round(clamp(score) * 1000) / 1000;
   }
+  if (loopType === 'context') {
+    // REUSE catalog weighted highest (reuse-first principle); agreement second
+    // (by-model confidence); then scope coverage, relevance gate, dependency map.
+    const score =
+      clamp(safe(signals.reuseCatalogCoverage)) * 0.30 +
+      clamp(safe(signals.agreementRate)) * 0.25 +
+      clamp(safe(signals.sliceCoverage)) * 0.20 +
+      clamp(safe(signals.relevanceFloor)) * 0.15 +
+      clamp(safe(signals.dependencyCompleteness)) * 0.10;
+    return Math.round(clamp(score) * 1000) / 1000;
+  }
   const score =
     clamp(safe(signals.dimensionCoverage)) * 0.25 +
     clamp(safe(signals.findingStability)) * 0.20 +
@@ -248,6 +259,37 @@ function evaluateReview(signals, gaps, contradictions) {
   return { blockers, trace };
 }
 
+function evaluateContext(signals, gaps, contradictions) {
+  const thresholds = {
+    sliceCoverage: 0.7,
+    reuseCatalogCoverage: 0.6,
+    agreementRate: 0.5,
+    relevanceFloor: 0.5,
+    dependencyCompleteness: 0.7,
+  };
+  const blockers = [];
+  const trace = [
+    { signal: 'sliceCoverage', value: signals.sliceCoverage, threshold: thresholds.sliceCoverage, passed: signals.sliceCoverage >= thresholds.sliceCoverage, role: 'blocking_guard' },
+    { signal: 'reuseCatalogCoverage', value: signals.reuseCatalogCoverage, threshold: thresholds.reuseCatalogCoverage, passed: signals.reuseCatalogCoverage >= thresholds.reuseCatalogCoverage, role: 'weighted' },
+    { signal: 'agreementRate', value: signals.agreementRate, threshold: thresholds.agreementRate, passed: signals.agreementRate >= thresholds.agreementRate, role: 'blocking_guard' },
+    { signal: 'relevanceFloor', value: signals.relevanceFloor, threshold: thresholds.relevanceFloor, passed: signals.relevanceFloor >= thresholds.relevanceFloor, role: 'blocking_guard' },
+    { signal: 'dependencyCompleteness', value: signals.dependencyCompleteness, threshold: thresholds.dependencyCompleteness, passed: signals.dependencyCompleteness >= thresholds.dependencyCompleteness, role: 'weighted' },
+  ];
+  if (signals.sliceCoverage < thresholds.sliceCoverage) {
+    blockers.push({ type: 'uncovered_slices', description: `Slice coverage (${(signals.sliceCoverage * 100).toFixed(0)}%) is below threshold (${(thresholds.sliceCoverage * 100).toFixed(0)}%). ${gaps.length} gap(s) found. STOP is blocked until the in-scope surface is swept.`, count: gaps.length, severity: 'blocking' });
+  }
+  if (signals.relevanceFloor < thresholds.relevanceFloor) {
+    blockers.push({ type: 'low_relevance_focus', description: `Relevance floor (${(signals.relevanceFloor * 100).toFixed(0)}%) is below threshold. The loop is collecting mostly low-relevance context; STOP is blocked until findings clear the relevance gate.`, count: 1, severity: 'blocking' });
+  }
+  if (signals.agreementRate < thresholds.agreementRate) {
+    blockers.push({ type: 'low_cross_executor_agreement', description: `Cross-executor agreement (${(signals.agreementRate * 100).toFixed(0)}%) is below threshold. Findings are not yet confirmed by multiple model lenses; STOP is blocked.`, count: 1, severity: 'blocking' });
+  }
+  if (contradictions.length > 0) {
+    blockers.push({ type: 'context_contradictions', description: `${contradictions.length} contradiction(s) detected across executors; reconcile before STOP.`, count: contradictions.length, severity: 'warning' });
+  }
+  return { blockers, trace };
+}
+
 function decisionReason(decision, blockingBlockers, trace) {
   if (decision === 'STOP_ALLOWED') return 'All convergence signals pass thresholds; STOP is allowed pending newInfoRatio agreement.';
   if (decision === 'STOP_BLOCKED') {
@@ -265,8 +307,8 @@ async function main() {
   const specFolder = validateNamespaceValue(ensureString(args, 'specFolder'), 'specFolder', inputError);
   const loopType = ensureString(args, 'loopType');
   const sessionId = validateNamespaceValue(ensureString(args, 'sessionId'), 'sessionId', inputError);
-  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council') {
-    throw inputError('loopType must be "research", "review", or "council"');
+  if (loopType !== 'research' && loopType !== 'review' && loopType !== 'council' && loopType !== 'context') {
+    throw inputError('loopType must be "research", "review", "council", or "context"');
   }
 
   const ns = { specFolder, loopType, sessionId };
@@ -329,7 +371,9 @@ async function main() {
           sourceDiversity: signalsLib.computeResearchSourceDiversityFromData(nodes, edges),
           evidenceDepth: signalsLib.computeResearchEvidenceDepthFromData(nodes, edges),
         }
-      : buildReviewSignals(nodes, edges);
+      : loopType === 'context'
+        ? signalsLib.computeContextSignalsFromData(nodes, edges)
+        : buildReviewSignals(nodes, edges);
     const score = computeCompositeScore(signals, loopType);
     const signalsWithScore = { ...signals, score };
     const gaps = queryLib.findCoverageGaps(ns);
@@ -337,7 +381,9 @@ async function main() {
     const unverified = loopType === 'research' ? queryLib.findUnverifiedClaims(ns) : [];
     const evaluated = loopType === 'research'
       ? evaluateResearch(signals, gaps, contradictions, unverified)
-      : evaluateReview(signals, gaps, contradictions);
+      : loopType === 'context'
+        ? evaluateContext(signals, gaps, contradictions)
+        : evaluateReview(signals, gaps, contradictions);
     const blockingBlockers = evaluated.blockers.filter((blocker) => blocker.severity === 'blocking');
     const decision = blockingBlockers.length > 0
       ? 'STOP_BLOCKED'
