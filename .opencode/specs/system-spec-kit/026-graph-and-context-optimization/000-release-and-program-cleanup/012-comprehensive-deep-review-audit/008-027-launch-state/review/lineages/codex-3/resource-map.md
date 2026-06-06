@@ -19,11 +19,11 @@
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | Reviewed | OK | Parent aggregate path ledger. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json` | Cited | OK | Stale `specId` evidence. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json` | Cited | OK | Stale title and `specId` evidence. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json` | Cited | OK | Stale title and `specId` evidence. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json` | Cited | OK | Stale `009` title, triggers, and `specId` evidence. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json` | Cited | OK | Counterevidence for current 008 identity. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/description.json` | Cited | OK | Nested stale `009` trigger evidence. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration/description.json` | Cited | OK | Nested stale `009` trigger evidence. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json` | Cited | OK | Stale title and `specId` evidence. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json` | Cited | OK | Stale `009` title, triggers, and `specId` evidence. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json` | Cited | OK | Counterevidence for current 008 identity. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/description.json` | Cited | OK | Nested stale `009` trigger evidence. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/description.json` | Cited | OK | Nested stale `009` trigger evidence. |
 
 ## Findings to Artifact Map
 

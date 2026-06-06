@@ -30,7 +30,7 @@ Root cause: resource maps are inventory snapshots. The current drift is not proo
 
 ### F4: Description metadata can retain stale renumbering labels
 
-The 027 `008-learning-feedback-reducers/description.json` still titles itself `Phase Parent - 009 Learning Feedback Reducers` and its trigger phrases include `027 phase 009`, even though the `specFolder` is `008-learning-feedback-reducers`. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:4] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:40] It also carries `specId` as `007`, another sign of stale renumbering state. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53]
+The 027 `005-learning-feedback-reducers/description.json` still titles itself `Phase Parent - 009 Learning Feedback Reducers` and its trigger phrases include `027 phase 009`, even though the `specFolder` is `005-learning-feedback-reducers`. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:4] [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:40] It also carries `specId` as `007`, another sign of stale renumbering state. [SOURCE: file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53]
 
 The description generator can derive `specId` and `folderSlug` from the current folder name, so this particular stale file is more consistent with "not regenerated after rename" than with an impossible-to-generate schema. [SOURCE: file:.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:72] [SOURCE: file:.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts:88]
 
@@ -59,7 +59,7 @@ This is not fatal by itself. It matters because this packet is specifically abou
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/{spec.md,implementation-summary.md,graph-metadata.json}`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/{spec.md,implementation-summary.md,graph-metadata.json}`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/{spec.md,implementation-summary.md,graph-metadata.json}`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json`
 - `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts`
 - `.opencode/skills/system-spec-kit/scripts/memory/generate-context.ts`
 - `.opencode/skills/system-spec-kit/scripts/spec-folder/generate-description.ts`

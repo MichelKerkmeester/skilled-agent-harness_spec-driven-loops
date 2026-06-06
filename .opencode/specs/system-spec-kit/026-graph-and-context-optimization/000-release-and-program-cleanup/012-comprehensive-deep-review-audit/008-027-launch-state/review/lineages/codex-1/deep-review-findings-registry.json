@@ -35,7 +35,7 @@
       "dimensions": [
         "traceability"
       ],
-      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json",
+      "file": ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json",
       "line": 53,
       "description": "Active metadata and dependency text still use pre-renumbering phase numbers.",
       "recommendation": "Refresh active metadata to current ids and keep old numbers only in context-index history.",

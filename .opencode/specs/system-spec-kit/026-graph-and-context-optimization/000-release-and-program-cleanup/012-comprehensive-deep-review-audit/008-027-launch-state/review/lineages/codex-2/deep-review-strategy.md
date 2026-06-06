@@ -81,7 +81,7 @@ Remediation should refresh top-level child `description.json` identities, reconc
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/*` | correctness | 1 | F001 corroboration | sampled |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/*` | correctness | 1 | F001 corroboration | sampled |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/*` | correctness | 1 | F001 corroboration | sampled |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md` | security | 2 | F002 | complete |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md` | security | 2 | F002 | complete |
 
 ## 15. REVIEW BOUNDARIES
 - Max iterations: 7

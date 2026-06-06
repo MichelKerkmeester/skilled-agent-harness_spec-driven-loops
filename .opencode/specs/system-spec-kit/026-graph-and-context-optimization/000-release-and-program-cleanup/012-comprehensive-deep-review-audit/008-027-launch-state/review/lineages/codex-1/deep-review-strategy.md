@@ -135,8 +135,8 @@ Synthesis complete. Follow-up remediation should address F001-F003 first.
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/000-release-cleanup/` | D1 | 1 | F001 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md` | D2,D3,D5 | 5 | F002 context | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/*` | D3 | 3 | F003 | complete |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/*` | D3 | 3 | F002 context | complete |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/*` | D2,D3,D5 | 5 | F002 | complete |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/*` | D3 | 3 | F002 context | complete |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/*` | D2,D3,D5 | 5 | F002 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md` | D4 | 4 | none | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | D4 | 4 | none | complete |
 <!-- MACHINE-OWNED: END -->

@@ -25,7 +25,7 @@
       "evidence": [
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:164",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:37"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:37"
       ],
       "content_hash": "sha256:e09980c6dcf73e3c4a880002"
     },
@@ -40,8 +40,8 @@
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:27",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:40",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:40",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53"
       ],
       "content_hash": "sha256:2c2fb41312021cd73f030003"
     },

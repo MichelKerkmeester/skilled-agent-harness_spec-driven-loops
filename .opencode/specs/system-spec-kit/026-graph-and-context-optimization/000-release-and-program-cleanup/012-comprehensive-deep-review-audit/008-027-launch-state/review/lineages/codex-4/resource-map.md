@@ -20,7 +20,7 @@
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md` | 2 | Child phase-parent sample. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json` | 3, 5 | P1-002 evidence. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json` | 3 | P1-002 evidence. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json` | 3 | P1-002 evidence. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json` | 3 | P1-002 evidence. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md` | 1 | P1-001 context. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json` | 1, 5 | P1-001 evidence. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md` | 1, 5 | P1-001 evidence. |

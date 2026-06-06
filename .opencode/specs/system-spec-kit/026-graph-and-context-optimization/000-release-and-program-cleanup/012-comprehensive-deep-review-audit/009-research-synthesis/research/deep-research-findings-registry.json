@@ -259,7 +259,7 @@
         "file:.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1096",
         "file:.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1030",
         "file:.opencode/specs/system-spec-kit/026-graph-and-context-optimization/resource-map.md:24",
-        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2"
+        "file:.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2"
       ],
       "iteration": 3,
       "_lineages": [

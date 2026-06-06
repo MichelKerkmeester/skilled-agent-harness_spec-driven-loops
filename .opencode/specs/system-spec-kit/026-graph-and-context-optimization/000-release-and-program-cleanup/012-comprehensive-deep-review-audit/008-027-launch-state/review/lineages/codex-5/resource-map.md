@@ -20,8 +20,8 @@
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | Target resource-map readiness claims | F004 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json` | Child spec id metadata | F002, F004 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json` | Child title, trigger, and spec id metadata | F002 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json` | Child title and spec id metadata | F002 |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json` | Child title and spec id metadata | F002 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json` | Child title and spec id metadata | F002 |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json` | Child title and spec id metadata | F002 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md` | Child human-authored status | F003 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json` | Child derived status | F003 |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md` | Child human-authored status | F003 |

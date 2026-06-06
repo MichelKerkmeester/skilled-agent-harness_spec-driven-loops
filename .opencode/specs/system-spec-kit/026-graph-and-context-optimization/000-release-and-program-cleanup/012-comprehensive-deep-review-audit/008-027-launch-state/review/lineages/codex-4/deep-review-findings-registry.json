@@ -35,7 +35,7 @@
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:131",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53"
       ],
       "finding_class": "spec-folder-naming",
       "content_hash": "3316b8cb8d068f2b0e4736ccfb988ee5a623b82f88f0ef2cea53cd71e37aee72",

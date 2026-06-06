@@ -65,7 +65,7 @@ Planning Packet:
 | ID | Sev | Title | Dimension | Evidence | Disposition |
 |---|---|---|---|---|---|
 | F001 | P1 | Listed child phase `000-release-cleanup` is not an executable spec folder | correctness | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130` | active |
-| F002 | P1 | Renumbered child metadata and docs still advertise old phase numbers | traceability | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53` | active |
+| F002 | P1 | Renumbered child metadata and docs still advertise old phase numbers | traceability | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53` | active |
 | F003 | P1 | Graph metadata marks draft placeholder phases complete | traceability | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42` | active |
 | F004 | P2 | Parent note overstates the lean-parent document rule | maintainability | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:88` | active |
 

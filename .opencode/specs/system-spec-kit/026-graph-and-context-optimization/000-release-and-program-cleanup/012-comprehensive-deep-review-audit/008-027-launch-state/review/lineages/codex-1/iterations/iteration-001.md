@@ -59,7 +59,7 @@
 ## Confirmed-Clean Surfaces
 
 - Parent `description.json` and `graph-metadata.json` both agree on the same nine child ids.
-- `001-peck-teachings-adoption` and `008-learning-feedback-reducers` have phase-parent specs and metadata files present.
+- `001-peck-teachings-adoption` and `005-learning-feedback-reducers` have phase-parent specs and metadata files present.
 
 ## Assessment
 

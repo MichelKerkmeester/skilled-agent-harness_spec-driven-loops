@@ -30,8 +30,8 @@
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:29",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33",
         ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:2",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:2",
-        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2"
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json:2",
+        ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2"
       ],
       "content_hash": "sha256:99e40008a113f8140d31f3f4cdfe2adfad5cda8b79f4095e011805fcb31ef3aa",
       "iterations": [

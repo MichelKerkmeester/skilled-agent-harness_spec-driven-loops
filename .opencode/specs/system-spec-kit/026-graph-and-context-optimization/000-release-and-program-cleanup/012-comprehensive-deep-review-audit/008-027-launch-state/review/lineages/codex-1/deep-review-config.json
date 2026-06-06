@@ -25,11 +25,11 @@
     ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md",
     ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json",
     ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json"
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json"
   ],
   "sessionId": "fanout-codex-1-1780596675702-e5bokn",
   "parentSessionId": null,

@@ -10,7 +10,7 @@ Focus: trust-boundary and exposure risks in the launch-state metadata.
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json` | Parent search metadata |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Parent graph metadata |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json` | Child search metadata |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json` | Child search metadata |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json` | Child search metadata |
 
 ## Findings
 

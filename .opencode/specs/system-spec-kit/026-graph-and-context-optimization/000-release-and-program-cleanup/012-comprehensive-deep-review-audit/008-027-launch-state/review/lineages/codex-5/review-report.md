@@ -43,8 +43,8 @@ Evidence:
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md:29`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:2`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:2`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json:2`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2`
 
 The context index records the current 001-008 sequence, but child metadata still exposes stale ids such as `001` carrying `specId: 008`, `002` titled Phase 012, `007` titled Phase 008, and `008` titled Phase 009.
 

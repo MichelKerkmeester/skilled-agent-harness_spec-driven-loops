@@ -54,7 +54,7 @@ Review the 027 control surface and child-phase scaffolding:
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md`
-- The child phase folders `001-peck-teachings-adoption/` ... `008-learning-feedback-reducers/` (spec.md/description.json sampling)
+- The child phase folders `001-peck-teachings-adoption/` ... `005-learning-feedback-reducers/` (spec.md/description.json sampling)
 
 ### Review Focus
 - Phase-parent conformance: lean trio at parent (spec.md/description.json/graph-metadata.json), no consolidation-history narration in parent spec.md.

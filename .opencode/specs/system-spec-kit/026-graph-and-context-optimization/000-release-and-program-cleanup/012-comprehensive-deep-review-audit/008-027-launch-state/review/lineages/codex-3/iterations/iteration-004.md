@@ -10,7 +10,7 @@ Focus: parent control document clarity, migration history placement, and child-s
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md` | Migration history bridge |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | Parent aggregate path ledger |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md` | Nested phase-parent sample |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md` | Nested phase-parent sample |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md` | Nested phase-parent sample |
 
 ## Findings
 

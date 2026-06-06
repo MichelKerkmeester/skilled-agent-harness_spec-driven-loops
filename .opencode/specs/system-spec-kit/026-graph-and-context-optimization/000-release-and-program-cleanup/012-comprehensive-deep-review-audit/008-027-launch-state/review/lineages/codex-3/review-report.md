@@ -23,9 +23,9 @@ Scope covered:
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json`
 
 ## 2. Planning Trigger
 
@@ -61,17 +61,17 @@ Evidence:
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:2`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:2`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:41`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:4`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:5`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json:21`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json:22`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/graph-metadata.json:23`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/description.json:4`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration/description.json:4`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json:2`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json:41`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:4`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:5`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json:21`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json:22`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/graph-metadata.json:23`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator/description.json:4`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration/description.json:4`
 
 The parent phase map and 008 graph metadata use the current 001-008 numbering. Several description metadata files still publish previous IDs: `001` says `specId: "008"`, `002` says `Phase 012` and `specId: "001"`, `007` says `Phase 008` and `specId: "006"`, and `008` says `Phase Parent - 009`, `027 phase 009`, `009 feedback reducers`, and `specId: "007"`. Nested 008 child descriptions also retain `009` trigger phrases.
 
@@ -79,7 +79,7 @@ The parent phase map and 008 graph metadata use the current 001-008 numbering. S
 
 1. Parent child list cleanup: decide whether `000-release-cleanup` is a real child phase. If it is not, remove it from parent `description.json.children`, `graph-metadata.json.children_ids`, and the executable phase map; keep any historical note in `context-index.md`.
 2. Description metadata regeneration: regenerate or hand-correct child `description.json` files so `specId`, `title`, and `trigger_phrases` match current folder numbers and graph metadata.
-3. Nested 008 metadata cleanup: replace stale `009 ...` trigger phrases in feedback reducer children with current `008-learning-feedback-reducers` phrasing or explicit historical aliases stored outside active trigger metadata.
+3. Nested 008 metadata cleanup: replace stale `009 ...` trigger phrases in feedback reducer children with current `005-learning-feedback-reducers` phrasing or explicit historical aliases stored outside active trigger metadata.
 
 ## 5. Spec Seed
 

@@ -101,7 +101,7 @@ Synthesis complete. Remediation should reconcile generated 027 child metadata be
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | D3 | 3 | 0 P0, 0 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json` | D3 | 5 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json` | D3 | 3 | 0 P0, 1 P1, 0 P2 | complete |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json` | D3 | 3 | 0 P0, 1 P1, 0 P2 | complete |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json` | D3 | 3 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json` | D1, D3 | 5 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md` | D1 | 5 | 0 P0, 1 P1, 0 P2 | complete |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | D2, D4 | 4 | 0 P0, 0 P1, 0 P2 | complete |

@@ -12,9 +12,9 @@
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:3`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/description.json:41`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback/description.json:41`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:48`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md:3`
@@ -27,7 +27,7 @@
 
 ### P1
 
-- **F002**: Renumbered child metadata and docs still advertise old phase numbers - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53` - The current parent map identifies learning feedback reducers as `008-learning-feedback-reducers`, but the child description still titles it as "009", uses `027 phase 009` triggers, and reports `specId: "007"`. The same stale-number pattern appears in `002-memory-write-safety` (`specId: "001"` for folder `002`) and `007-semantic-trigger-fallback` (`specId: "006"` for folder `007`). [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53]
+- **F002**: Renumbered child metadata and docs still advertise old phase numbers - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53` - The current parent map identifies learning feedback reducers as `005-learning-feedback-reducers`, but the child description still titles it as "009", uses `027 phase 009` triggers, and reports `specId: "007"`. The same stale-number pattern appears in `002-memory-write-safety` (`specId: "001"` for folder `002`) and `004-semantic-trigger-fallback` (`specId: "006"` for folder `007`). [SOURCE: .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53]
 
 #### Claim Adjudication - F002
 
@@ -36,8 +36,8 @@
   "claim": "The launch metadata still contains pre-renumbering phase ids and path references.",
   "evidenceRefs": [
     ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:138",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:2",
-    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:2",
+    ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53",
     ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64"
   ],
   "counterevidenceSought": "Compared the current parent phase map, child spec.md files, child description.json files, and representative stale old-path references.",

@@ -28,7 +28,7 @@
 | Atomic save | `handlers/save/atomic-index-memory.ts` | Q3 crash-window ordering |
 | Metadata generation | `graph-metadata-parser.ts`, `generate-context.ts`, `generate-description.ts`, `backfill-graph-metadata.ts` | Q2 drift mechanisms |
 | 026 docs | `026/spec.md`, `resource-map.md`, `changelog/README.md`, `changelog/000-release-and-program-cleanup/*` | Q2 catalog and progress drift |
-| 027 docs | `027/spec.md`, 003-006 child metadata, `008-learning-feedback-reducers/description.json` | Q2 false-complete and renumbering drift |
+| 027 docs | `027/spec.md`, 003-006 child metadata, `005-learning-feedback-reducers/description.json` | Q2 false-complete and renumbering drift |
 | Governed scope | `memory-search.ts`, `community-search.ts`, `stage1-candidate-gen.ts` | Q4 scoped retrieval severity |
 | Causal graph | `causal-graph.ts`, `causal-edges.ts`, causal tool schemas | Q4 ID-only scope gap |
 | Fan-out runtime | `fanout-run.cjs`, `fanout-pool.cjs`, `executor-config.ts` | Q5 exit, concurrency, and iteration override |

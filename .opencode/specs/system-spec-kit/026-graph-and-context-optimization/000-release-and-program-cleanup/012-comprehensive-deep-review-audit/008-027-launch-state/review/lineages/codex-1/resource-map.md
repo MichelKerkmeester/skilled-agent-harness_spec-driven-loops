@@ -12,7 +12,7 @@
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130` | 1 | F001 | touched |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json:28` | 1 | F001 | touched |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7` | 1 | F001 | touched |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53` | 3 | F002 | touched |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53` | 3 | F002 | touched |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64` | 3 | F002 | touched |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/graph-metadata.json:42` | 3 | F003 | touched |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/implementation-summary.md:3` | 3 | F003 | touched |

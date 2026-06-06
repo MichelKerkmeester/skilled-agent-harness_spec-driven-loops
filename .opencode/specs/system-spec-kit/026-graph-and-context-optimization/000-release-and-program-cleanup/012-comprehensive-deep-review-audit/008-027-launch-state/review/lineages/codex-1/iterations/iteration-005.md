@@ -12,7 +12,7 @@
 - `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:97`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:164`
 - `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/implementation-summary.md:53`
-- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:47`
+- `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/spec.md:47`
 
 ## Findings - New
 

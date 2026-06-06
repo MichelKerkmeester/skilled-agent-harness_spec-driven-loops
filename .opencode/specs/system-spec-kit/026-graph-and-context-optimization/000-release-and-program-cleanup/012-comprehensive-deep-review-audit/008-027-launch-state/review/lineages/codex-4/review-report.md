@@ -47,7 +47,7 @@ Evidence:
 - [SOURCE: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:131`] Parent phase map lists `001-peck-teachings-adoption/`.
 - [SOURCE: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/description.json:33`] The 001 child still has `"specId": "008"`.
 - [SOURCE: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/description.json:38`] The 002 child still has `"specId": "001"`.
-- [SOURCE: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:53`] The 008 child still has `"specId": "007"`.
+- [SOURCE: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/description.json:53`] The 008 child still has `"specId": "007"`.
 
 Impact: search, graph display, and resume routing can expose stale phase ids after renumbering.
 

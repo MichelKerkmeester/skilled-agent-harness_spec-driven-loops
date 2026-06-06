@@ -15880,7 +15880,7 @@
       "lastUpdated": "2026-06-04T12:33:53.335Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/004-semantic-trigger-fallback",
       "description": "Feature Specification: 007 — Semantic Trigger Fallback",
       "keywords": [
         "feature",
@@ -15893,7 +15893,7 @@
       "lastUpdated": "2026-06-04T12:33:53.340Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers",
       "description": "Feature Specification: 008 — Learning Feedback Reducers (Phase Parent)",
       "keywords": [
         "feature",
@@ -15908,7 +15908,7 @@
       "lastUpdated": "2026-06-04T12:33:53.346Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/001-aggregator",
       "description": "Feature Specification: Shared Feedback Aggregation",
       "keywords": [
         "feature",
@@ -15920,7 +15920,7 @@
       "lastUpdated": "2026-06-04T12:33:53.350Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/002-coco-rerank-consumer",
       "description": "Feature Specification: Coco Rerank Feedback Consumer",
       "keywords": [
         "feature",
@@ -15933,7 +15933,7 @@
       "lastUpdated": "2026-06-04T12:33:53.356Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/003-causal-reducer",
       "description": "Feature Specification: Session-Trace Causal Reducer",
       "keywords": [
         "feature",
@@ -15945,7 +15945,7 @@
       "lastUpdated": "2026-06-04T12:33:53.361Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/004-retention-reducer",
       "description": "Feature Specification: Feedback Retention Reducer",
       "keywords": [
         "feature",
@@ -15957,7 +15957,7 @@
       "lastUpdated": "2026-06-04T12:33:53.365Z"
     },
     {
-      "specFolder": "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration",
+      "specFolder": "system-spec-kit/027-xce-research-based-refinement/005-learning-feedback-reducers/005-env-tests-integration",
       "description": "Feature Specification: Feedback Reducer Env and Integration Closeout",
       "keywords": [
         "feature",
