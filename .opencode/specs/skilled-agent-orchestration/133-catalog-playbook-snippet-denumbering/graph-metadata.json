@@ -1,0 +1,205 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "spec_folder": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "parent_id": null,
+  "children_ids": [
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/003-migrate-system-spec-kit",
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/004-migrate-high-volume-skills",
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+    "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/006-reference-sweep-validation-guard"
+  ],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "133 catalog playbook snippet denumbering",
+      "remove numbered prefix snippet files",
+      "feature catalog playbook de-numbering",
+      "sk-doc snippet naming convention",
+      "resource map",
+      "files touched",
+      "snippet denumbering blast radius",
+      "catalog playbook migration paths"
+    ],
+    "key_topics": [
+      "133",
+      "catalog",
+      "playbook",
+      "snippet",
+      "denumbering",
+      "remove",
+      "numbered",
+      "prefix",
+      "files",
+      "feature",
+      "de-numbering",
+      "sk-doc"
+    ],
+    "importance_tier": "important",
+    "status": "draft",
+    "key_files": [
+      "resource-map.md",
+      ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
+      ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
+      ".opencode/skills/sk-doc/scripts/validate_document.py",
+      ".opencode/commands/create/feature-catalog.md",
+      ".opencode/commands/create/testing-playbook.md",
+      ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/spec.md",
+      ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+      ".opencode/skills/sk-doc/assets/template_rules.json",
+      ".opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md",
+      "spec.md"
+    ],
+    "entities": [
+      {
+        "name": "resource-map.md",
+        "kind": "doc",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "feature_catalog_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "manual_testing_playbook_creation.md",
+        "kind": "doc",
+        "path": ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
+        "source": "derived"
+      },
+      {
+        "name": "validate_document.py",
+        "kind": "file",
+        "path": ".opencode/skills/sk-doc/scripts/validate_document.py",
+        "source": "derived"
+      },
+      {
+        "name": "feature-catalog.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/feature-catalog.md",
+        "source": "derived"
+      },
+      {
+        "name": "testing-playbook.md",
+        "kind": "doc",
+        "path": ".opencode/commands/create/testing-playbook.md",
+        "source": "derived"
+      },
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "graph-metadata.json",
+        "kind": "config",
+        "path": ".opencode/specs/skilled-agent-orchestration/graph-metadata.json",
+        "source": "derived"
+      },
+      {
+        "name": "template_rules.json",
+        "kind": "config",
+        "path": ".opencode/skills/sk-doc/assets/template_rules.json",
+        "source": "derived"
+      },
+      {
+        "name": "FEATURE_CATALOG.md",
+        "kind": "doc",
+        "path": ".opencode/skills/deep-ai-council/feature_catalog/FEATURE_CATALOG.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Playbook Snippet De",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Parent Packet",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement Per",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Drop",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Phase Documentation Map",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Resource Map",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Frozen Out",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Scope Set",
+        "kind": "proper_noun",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "catalogs",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "playbooks",
+        "kind": "key_phrase",
+        "path": "resource-map.md",
+        "source": "derived"
+      },
+      {
+        "name": "Summary",
+        "kind": "heading",
+        "path": "resource-map.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "Per-feature snippet files in feature catalogs and manual testing playbooks carry a **globally sequential numeric prefix** (`001-feature-name.md`, `NNN-feature-name.md`) that \"continues across categories and does not reset.\" That prefix makes the packages hard to maintain: inserting, reordering, or moving a feature forces a renumber, the global sequence drifts (real folders already mix `007` next to `024`), and two features can only be told apart by their number — producing duplicate slugs once the number is stripped. The numbers add maintenance cost without adding navigational value the root document does not already provide.",
+    "created_at": "2026-06-06T06:46:12.378Z",
+    "last_save_at": "2026-06-06T06:46:12.378Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "resource-map.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

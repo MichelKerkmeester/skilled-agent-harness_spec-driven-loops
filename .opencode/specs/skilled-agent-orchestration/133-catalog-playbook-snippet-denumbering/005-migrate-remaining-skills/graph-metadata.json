@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "packet_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "spec_folder": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "parent_id": "skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "children_ids": [],
+  "manual": {
+    "depends_on": [],
+    "supersedes": [],
+    "related_to": []
+  },
+  "derived": {
+    "trigger_phrases": [
+      "migrate remaining skills denumber",
+      "wave C cli sk mcp skills",
+      "133 phase 005",
+      "133 phase 005 plan",
+      "wave C remaining skills migration"
+    ],
+    "key_topics": [
+      "migrate",
+      "remaining",
+      "skills",
+      "denumber",
+      "wave",
+      "cli",
+      "mcp",
+      "133",
+      "phase",
+      "005",
+      "plan",
+      "migration"
+    ],
+    "importance_tier": "normal",
+    "status": "planned_(tasks/checklist_populated_on_entry)",
+    "key_files": [
+      "spec.md",
+      "plan.md"
+    ],
+    "entities": [
+      {
+        "name": "spec.md",
+        "kind": "doc",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "plan.md",
+        "kind": "doc",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Feature Specification",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Migrate Remaining Skills",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Problem Statement The",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Purpose Finish",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "In Scope",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "File Path",
+        "kind": "proper_noun",
+        "path": "spec.md",
+        "source": "derived"
+      },
+      {
+        "name": "Implementation Plan",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Technical Context",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Overview Same",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Current Role",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      },
+      {
+        "name": "Test Type",
+        "kind": "proper_noun",
+        "path": "plan.md",
+        "source": "derived"
+      }
+    ],
+    "causal_summary": "The remaining ~310 numbered snippet files live in twelve smaller skills (system-code-graph + 4 cli-* + 5 sk-* + 3 mcp-*), most of which are playbook-only. They are low-risk independent units that complete the migration surface.",
+    "created_at": "2026-06-06T06:46:12.388Z",
+    "last_save_at": "2026-06-06T06:46:12.388Z",
+    "save_lineage": "graph_only",
+    "last_accessed_at": null,
+    "source_docs": [
+      "spec.md",
+      "plan.md"
+    ],
+    "last_active_child_id": null,
+    "last_active_at": null
+  }
+}

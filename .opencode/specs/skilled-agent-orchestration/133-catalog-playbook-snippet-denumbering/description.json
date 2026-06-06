@@ -1,0 +1,23 @@
+{
+  "level": "2",
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering",
+  "description": "Feature Specification: Catalog & Playbook Snippet De-Numbering",
+  "keywords": [
+    "feature",
+    "specification",
+    "catalog",
+    "playbook",
+    "snippet",
+    "de-numbering"
+  ],
+  "lastUpdated": "2026-06-06T07:01:46.084Z",
+  "specId": "133",
+  "folderSlug": "catalog-playbook-snippet-denumbering",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": []
+}

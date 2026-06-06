@@ -1,0 +1,24 @@
+{
+  "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/005-migrate-remaining-skills",
+  "description": "Feature Specification: Migrate Remaining Skills (Wave C)",
+  "keywords": [
+    "feature",
+    "specification",
+    "migrate",
+    "remaining",
+    "skills",
+    "wave"
+  ],
+  "lastUpdated": "2026-06-06T06:46:03.011Z",
+  "specId": "005",
+  "folderSlug": "migrate-remaining-skills",
+  "parentChain": [
+    ".opencode",
+    "specs",
+    "skilled-agent-orchestration",
+    "133-catalog-playbook-snippet-denumbering"
+  ],
+  "memorySequence": 0,
+  "memoryNameHistory": [],
+  "level": "2"
+}
