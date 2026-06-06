@@ -1,138 +1,154 @@
 ---
-title: "027 XCE Research-Based Refinement — Root Research Archive"
-parts: [pt-01, pt-02, pt-03, pt-04, continuation-040-060]
-total_iterations: 60
-total_findings: "legacy parts plus 21 continuation findings"
-merged_at: "2026-06-04"
-status: "root-research-canonical; continuation 040-060 consolidated"
+title: "027 XCE Research-Based Refinement — Continuation 22 Synthesis (vs closed-026 + CocoIndex deprecation + live reality)"
+parts: [continuation-22-061-080]
+iterations: "061-080 (20)"
+executor: "cli-opencode openai/gpt-5.5-fast --variant xhigh (read-only); orchestrator-written artifacts"
+session: "2026-06-05-027-continuation-22-coco-026-drift"
+status: "continuation-22-canonical; supersedes prior XCE-adoption framing for 027 planning purposes"
+prior_archive: "research-pre-c22-archive.md (pt-01..04 + iterations 030-060)"
+merged_at: "2026-06-05"
 ---
 
-# 027 XCE Research — Merged Archive
+# 027 XCE Refinement — Continuation 22 Synthesis
 
-This file is the canonical merged synthesis of the prior research runs plus the consolidated continuation revalidation. Iterations 030-060 now live directly under root `research/`.
+**Goal.** Revalidate/refine 027's 8 planned phases against (a) the now-CLOSED 026 program, (b) current live system-spec-kit reality, (c) the **CocoIndex deprecation** (purge all coco scope), and (d) the near-exhausted XCE corpus. Per-phase verdict in {UPDATE, REFINE, DRIFT-FIX, REMOVE, ADD}.
 
-## Research Part 01 — XCE Adoption Matrix (9 iterations, deepseek-v4-pro)
-See: [027-xce-research-pt-01/research.md](./027-xce-research-pt-01/research.md)
-**Key outcomes**: 47 findings (F-001..047), verdicts ADOPT:4 ADAPT:9 DEFER:2 SKIP:6.
-Proposed 5 phases for code-graph + skill-advisor (now moved to 028).
-Steering pattern transfer (RQ6): ADAPT — strengthen to "MUST invoke FIRST" with per-skill action hints.
-Non-adoption boundary (RQ9): 9 SKIP items including PRAT internals, SaaS hosting, unconditional steering.
+> This continuation **complements** the 2026-06-05 relevance-audit (`research/027-relevance-audit-2026-06-05/`), which was single-model + ad-hoc-driver and predated both the coco deprecation and 026's closure. The prior XCE-adoption archive lives at `research-pre-c22-archive.md`.
 
-## Research Part 02 — Cross-Validation (10 iterations, gpt-5.5/high/fast)
-See: [027-xce-research-pt-02/research.md](./027-xce-research-pt-02/research.md)
-**Key outcomes**: Cross-validated pt-01 findings; surfaced render.ts uncertainty guard gap (passes_threshold bypass).
-Sub-packet amendments: Phase 004 needs REQ-007 (high-uncertainty guard), REQ-008 (fixture migration), REQ-009 (boundary fixtures). Revised LOC estimate: 80-120 (was 30).
-6 open code-graph policy decisions (scoped to 028).
-
-## Research Part 03 — Coco-Index + Memory Backend (10 iterations, gpt-5.5/high/fast)
-See: [027-xce-research-pt-03/research.md](./027-xce-research-pt-03/research.md)
-**Key outcomes**: 56 findings; unanimous bounded-ADAPT stance; proposed 5 new phases:
-- 006-coco-intent-steering (L2, ~250-350 LOC) — pre-embedding query expansion
-- 007-semantic-trigger-fallback (L2/L3, ~350-520 LOC) — hybrid lexical+semantic trigger matcher
-- 008-learning-feedback-reducers (L3, ~400-650 LOC) — shared bounded reducer
-- 009-retrieval-rerank-clients (L2, ~250-420 LOC) — extract RerankClient
-- 010-coco-memory-context-extras (L3, ~500-800 LOC) — few-shot bank + LLM curator
-
-## Research Part 04 — Per-Phase Audit (no iterations, final audit)
-See: [027-xce-research-pt-04/research.md](./027-xce-research-pt-04/research.md)
-**Key outcomes**: Per-phase verdicts: 001 REVISE_SCOPE, 002 KEEP_AS_IS, 003 REVISE_SCOPE, 004 REVISE_SCOPE, 005 MERGE, 006 REVISE_SCOPE, 007 DEFER, 008 REVISE_SCOPE, 009 REVISE_SCOPE, 010 DEFER, 011 DEFER.
-5 open questions remain (see research.md §6).
-
-## New Iterations 030–039 (GPT-5.5-pro, targeting 027 memory phases 002-008)
-
-The 10 new iterations focus exclusively on the memory-system phases that remain in 027 after the 028 split.
-Iteration files: iterations/iteration-030.md through iterations/iteration-039.md
-
-## Continuation Revalidation 040-060
-
-The isolated continuation folder `027-continuation-21-2026-06-04/` has been consolidated into root research. The root `iterations/`, `deltas/`, `deep-research-state.jsonl`, `findings-registry.json`, and this `research.md` are now the canonical surfaces for iterations 040-060. The source folder is retained as an archive only.
-
-## Iteration Index
-
-| Iteration | Focus | Status |
-|---|---|---|
-| 040 | state hygiene | complete |
-| 041 | path/root drift | complete |
-| 042 | XCE signal/noise | complete |
-| 043 | peck T3/T4/T2 | complete |
-| 044 | memory write safety | complete |
-| 045 | incremental index | complete |
-| 046 | tombstones | complete |
-| 047 | metadata edge promoter | complete |
-| 048 | statediff | complete |
-| 049 | semantic triggers | complete |
-| 050 | feedback reducers | complete |
-| 051 | local context-first decision tree | complete |
-| 052 | context bundle workflow | complete |
-| 053 | resource-map automation | complete |
-| 054 | reducer/state hygiene | complete |
-| 055 | command naming/root normalization | complete |
-| 056 | impact-analysis preflight | complete |
-| 057 | memory_context curator | complete |
-| 058 | semantic trigger backfill/promote | complete |
-| 059 | reducer telemetry gates | complete |
-| 060 | final synthesis | insight |
+> **Follow-up applied (2026-06-06):** Phase-0 shipped — (a) CocoIndex purge across the 027 specs (008/002 deleted; refs rewritten); (b) drift reconcile (026-status, continuity pointer, 002 `028/*`+`009→008` refs, `000` child-list); (c) production code fixes (`STATE_LIMITS` export + `DEFAULT_RELATION_TARGETS`/`MEMORY_CAUSAL_OUTPUT_RELATIONS` aligned to canonical `RELATION_TYPES`) — 73 tests green, tsc clean, daemon recycled, **live-verified**; (d) targeted spec rescopes (004 delete-site inventory + handler paths, 007 `storage→search` path sweep + `profile_key`/`input_kind` cache identity). The audit had already propagated 005/006/001 rescopes. Remaining = the actual phase feature implementation (`/speckit:implement`).
 
 ---
 
-## Final Synthesis
+## 1. Executive Summary
 
-Iteration 060 was written before some parallel artifacts for 040-057 were visible, so its provisional matrix has now been reconciled against all 21 iteration markdown files and 21 delta JSONL files in root research. The authoritative result is this merged synthesis plus the rebuilt root `deep-research-state.jsonl`; the isolated continuation folder is retained as archive-only lineage.
+**027's intent is intact. This is a rescope + a CocoIndex amputation + a drift reconcile — not a rewrite. Zero phases are already implemented; nothing structurally blocks the program.**
 
-### Evidence Coverage
+Three headline results that **correct the prior audit**:
 
-- Required iteration markdown files present: 21/21 (`iteration-040.md` through `iteration-060.md`).
-- Required delta JSONL files present and parsed: 21/21 (`iter-040.jsonl` through `iter-060.jsonl`).
-- Normalized state records appended: 21 sorted `type:"iteration"` records, preserving config/event lines.
+1. **Path drift was overstated.** Only **007** has stale affected-file paths. Phases 002/003/004/005/006/008 already cite live paths. The audit's "packet-wide path-refresh prerequisite" is wrong. *(iter 066)*
+2. **The CocoIndex purge is one DELETE + targeted REWRITEs** — `008/002-coco-rerank-consumer` is the only true deletion; everywhere else coco is incidental/provenance text and **no in-scope requirement disappears**. *(iter 061, 062, 067)*
+3. **The `028` number has been reused** (`028-026-program-research`). Every `028/*` reference in 027 is stale — coco-028 children are dead, code-graph-028 moved to `z_future/code-graph-and-cocoindex/`. This is a **misrouting hazard** the purge must fix. *(iter 078)*
 
-### Merged Recommendations
+Also: 002's P0-2 (`created_by` clobber) is **NOT** closed by the shipped conflict guard (distinct code path) — my own Part-1 hypothesis was refuted by live code. *(iter 064)*
 
-- **040:** Repair state hygiene through isolated continuation state; old flat state/registry/research are lineage-only until reducer regeneration.
-- **041:** Normalize root and command naming before rollout; keep `specs/` versus `.opencode/specs/` citations explicit by surface.
-- **042:** Keep XCE-derived ideas as signal sources, not direct requirements; promote only evidence-backed adaptations.
-- **043:** Treat peck T3/T4/T2 as scoped inspiration and reject broad unverified imports.
-- **044:** Keep memory-write safety as a hard gate: default-off mutations, spec-folder discipline, and explicit validation before persistence.
-- **045:** Use incremental index work only with freshness/hash checks and safe full-scan fallback.
-- **046:** Require tombstone lifecycle semantics before edge deletion/promotion changes become active.
-- **047:** Constrain metadata edge promotion to validated schema and confidence gates.
-- **048:** Use statediff as an explicit reconciliation aid, not as an implicit source of truth.
-- **049+058:** Merge semantic trigger work with backfill/promote gates: lexical-first remains safe, semantic expansion stays measured and default-off until metrics pass.
-- **050+059:** Merge feedback reducer work with telemetry gates: reducers stay shadow/default-off until ledger quality, replay, and consumer-specific live gates pass.
-- **051:** Prefer a local-context-first decision tree before MCP-heavy retrieval when local packet evidence is sufficient.
-- **052:** Bundle context explicitly and reproducibly; avoid hidden reducer dependencies.
-- **053:** Automate resource-map maintenance only after validation can prove path accuracy and stale-entry behavior.
-- **054:** Reducer/state hygiene must be idempotent, duplicate-resistant, and safe on rerun.
-- **055:** Standardize command naming/root normalization before docs or commands claim canonical behavior.
-- **056:** Keep impact-analysis preflight as a refusal gate on stale or missing structural graph state.
-- **057:** Curate `memory_context` output for relevance and evidence density instead of returning undifferentiated matches.
-- **060:** Replace the provisional synthesis with this reconciled merge; no source/spec edits are implied by this artifact-only update.
+---
 
-### Iteration Evidence Matrix
+## 2. Per-Phase Verdict Matrix (the core question)
 
-| Iteration | Status | Key finding | Recommendation summary |
+| Phase | Verdict | Headline | Evidence |
 |---|---|---|---|
-| 040 | complete | The continuation config explicitly restarts from isolated state: `artifactDir` points to this continuation packet, `progressiveSynthesis` is true, and `lineage.lineageMode` is `restart` because the existing flat research state... | No extra recommendation captured; use iteration findings. |
-| 041 | complete | The current 027 parent spec is stored under `.opencode/specs/...` and its phase map names the current active children 000-008, including `001-peck-teachings-adoption` and memory phases `002`-`008`. | No extra recommendation captured; use iteration findings. |
-| 042 | complete | Portable local idea: architecture-context packaging is useful as a pattern, not a dependency. XCE publicly exposes HLD, LLD, component descriptions, relationships, and call-graph-style context; local Spec Kit can adapt that as... | No extra recommendation captured; use iteration findings. |
-| 043 | complete | Iteration evidence is present and parsed, but no concise finding sentence was detected. | No extra recommendation captured; use iteration findings. |
-| 044 | complete | Iteration evidence is present and parsed, but no concise finding sentence was detected. | No extra recommendation captured; use iteration findings. |
-| 045 | complete | Iteration evidence is present and parsed, but no concise finding sentence was detected. | No extra recommendation captured; use iteration findings. |
-| 046 | complete | The core deletion primitives still hard-delete active causal edges without a tombstone read-before-delete path: `deleteEdge()` executes `DELETE FROM causal_edges WHERE id = ?`, and `deleteEdgesForMemory()` executes `DELETE FROM... | No extra recommendation captured; use iteration findings. |
-| 047 | complete | Manual `graph-metadata.json` relationships are already deterministically parsed into causal-link buckets: `manual.depends_on` becomes `blocks`, `manual.supersedes` becomes `supersedes`, and `manual.related_to` becomes `related_... | No extra recommendation captured; use iteration findings. |
-| 048 | complete | Entity-density invalidation is still manually wired in save and bulk-delete: `memory-save.ts` defines `invalidateEntityDensityCacheAfterSave()` and calls it after post-insert enrichment, while `memory-bulk-delete.ts` defines `i... | No extra recommendation captured; use iteration findings. |
-| 049 | complete | Phase 007 is still directionally valid: the current matcher loads canonical spec docs plus `_memory.continuity` rows from `memory_index`, and still relies on lexical trigger phrases rather than semantic trigger embeddings. | No extra recommendation captured; use iteration findings. |
-| 050 | complete | Phase 008's reducer-parent shape remains valid: it is explicitly a phase parent for an aggregator plus three consumers and env/tests integration, with the shared aggregator reading SQLite `feedback_events` from `feedback-ledger... | No extra recommendation captured; use iteration findings. |
-| 051 | complete | Local rules already define a safer context-first sequence: parse request, read actual files/docs first, plan, validate, then execute; this maps to XCE-style context steering without letting context retrieval bypass local govern... | No extra recommendation captured; use iteration findings. |
-| 052 | complete | A context bundle should start with Spec Kit memory/resume, not code search: `memory_context` is documented as the L1 entry point for context retrieval, supports resume mode, and explicitly routes code search to Code Graph plus... | No extra recommendation captured; use iteration findings. |
-| 053 | complete | The template already defines the stale-reference vocabulary needed for automation: summary rows include total references and missing-on-disk count, and status values include `OK`, `MISSING`, and `PLANNED`. | No extra recommendation captured; use iteration findings. |
-| 054 | complete | Deep-research state has split ownership: the agent writes iteration markdown and one structured record, while the workflow reducer owns strategy machine sections, findings registry, and dashboard; manual repair should respect t... | No extra recommendation captured; use iteration findings. |
-| 055 | complete | The live OpenCode command directory is `speckit`, not `spec_kit`: file discovery found `.opencode/commands/speckit/...` and no `.opencode/commands/spec_kit/...` command directory. The command file itself advertises `/speckit:re... | No extra recommendation captured; use iteration findings. |
-| 056 | complete | Local impact analysis should use `detect_changes` as a read-only diff preflight, not as an implementation step: the feature maps unified diff hunks to structural symbols through line-range overlap and explicitly refuses stale,... | No extra recommendation captured; use iteration findings. |
-| 057 | complete | Prior 027 research already split the bundled Coco extras from the memory curator: Coco few-shot exemplars belong in 028, while LLM-curated `memory_context` is a 027 memory-backend concern that attaches `data.curatedContext` and... | No extra recommendation captured; use iteration findings. |
-| 058 | complete | Phase 007 already makes the key safety decision: lexical matching remains primary, semantic recall is a feature-flagged fallback, semantic-only hits are source-tagged and reduced-activation, and the master flag defaults off wit... | keep lexical-first default-off hybrid design; add resumable backfill contract; require shadow telemetry promotion checklist |
-| 059 | complete | Phase 008 is intentionally a phase parent, not a direct implementation packet; its root purpose is to coordinate reducer children only after correctness preconditions land, with all reducer behavior default-off and shadow-first... | gate on ledger quality; require shadow replay before live mutation; use consumer-specific live criteria |
-| 060 | insight | The continuation packet explicitly defines iterations 040-060 as targeted revalidation questions, with 058 semantic trigger backfill/promote, 059 reducer telemetry gates, and 060 final synthesis at the end of the run. | keep 027 as focused phase-parent family; revise 007 and 008 with gates from 058 and 059; merge 049 with 058 and 050 with 059 |
+| **001** peck-teachings | **REFINE (003 only)** | 003-current-state-discipline already mostly INFO; residual "warn" wording to clean. 002/004 as-is. 028-peck fold confirmed. | iter 071 |
+| **002** memory-write-safety | **STILL-RELEVANT (minimal repath)** | All 3 P0s real; **P0-2 distinct from shipped conflict guard**; spec already carries correct storage/governance paths. | iter 064, 066 |
+| **003** incremental-index | **STILL-RELEVANT (as-is)** | 026 self-maintaining scan + async enrichment are hygiene only; memo/DAG/chunk-fingerprint foundation unbuilt. | iter 068 |
+| **004** causal-tombstones | **NEEDS-RESCOPE** | **14 live delete-sites** (audit had 4); `lifecycle_generation`→`edge_lifecycle_generation` (collides with in-memory `causalEdgesGeneration`); stale handler paths (`memory-crud-*`). | iter 069 |
+| **005** metadata-promoter | **KEEP-NARROWED** | relation-backfill owns DB backfill; 005 keeps only `parent_id/children_ids/parentChain` + `confidence`/`extraction_method` columns; DROP manual.* + doc-chain; fix internal REQ conflict. | iter 063, 072 |
+| **006** write-path/statediff | **NEEDS-RESCOPE** | Sync `DiffAction` for durable rows (hook `memory-save.ts:2534-2640`) + **async pending-marker replay** for enrichment; NOT same-response graph writes. | iter 070 |
+| **007** semantic-triggers | **NEEDS-RESCOPE (largest; ship last)** | Rescope cache/schema **identity** to `(content_hash, profile_key, input_kind, model_id, dimensions)` + Nomic-768; `0.84`/`0.04` thresholds dead (Voyage); `028/004` dep → shadow evidence; **stale paths** (storage→search, embeddings→shared). | iter 066, 067 |
+| **008** learning-reducers | **REMOVE `002-coco` + REWRITE family** | `008/002-coco-rerank-consumer` = DELETE (keep numbering gap); 001 = REUSE-EXTRACT `batch-learning.ts`; 004 needs `STATE_LIMITS` prod export; 003 needs `DEFAULT_RELATION_TARGETS` align. | iter 061, 065, 074, 075 |
 
-### Decision Boundary
+Cross-cutting: **vocab NEEDS-FIX** (iter 075) · **XCE EXHAUSTED** (iter 076) · **parent drift moderate** (iter 073) · **028 all-stale** (iter 078) · **ordering NEEDS minor update** (iter 077).
 
-This continuation merge updates only the readable synthesis, normalized local state, and findings registry inside root research. It does not modify source code, root/child specs, or old flat research outputs. Implementation decisions should consume this as evidence and then update the relevant phase packet through the normal spec-kit gates.
+---
+
+## 3. CocoIndex Purge Manifest
+
+**One DELETE + targeted REWRITEs.** No in-scope requirement/AC disappears (iter 062). Coco substrate (`cocoindex_code/`, `mcp-coco-index/`, `SPECKIT_COCOINDEX_FEEDBACK_RERANK`, coco-028 children) is gone.
+
+### 3a. DELETE (whole sub-phase)
+- `008-learning-feedback-reducers/002-coco-rerank-consumer/` — structurally coco-dependent (Python reducer, coco feedback JSONL, coco-index rerank, soft-dep on coco-028). **Keep the numbering gap** (do NOT renumber 003/004/005; renames would cascade). *(iter 061, 074)*
+
+### 3b. REWRITE (strip coco, keep the local requirement)
+| Area | Action |
+|---|---|
+| **008 family** (`spec.md`, `001-aggregator`, `003-causal`, `004-retention`, `005-env-tests`) | Drop coco refs + the `028/006-coco-intent-steering` soft-dep; rewrite "three consumers/five children" → two-consumer `001 → {003,004} → 005`; remove 002 from `005-env-tests/description.json` `manual.depends_on`; fix `008/description.json` + `graph-metadata.json` `children_ids`. *(iter 061, 074)* |
+| **002/003/004/006 specs** | Coco is incidental (002 out-of-scope line → REMOVE) or research-basis/vocabulary (003 memoization, 004 lifecycle/tombstone, 006 statediff → REWRITE to local equivalents). Sync the `graph-metadata.json` `causal_summary` strings. *(iter 062)* |
+| **007 docs** | `plan.md:248` (028/008-coco), `decision-record.md:220` (028/005-cocoindex-fork), `implementation-summary.md:108` (mcp-coco-index touchpoint) → REMOVE/REWRITE. *(iter 067)* |
+
+---
+
+## 4. 026-Overlap Dedup (reuse, don't duplicate)
+
+| 027 scope | Shipped 026 mechanism | Resolution |
+|---|---|---|
+| 005 metadata promotion | `relation-backfill.ts` (`lib/causal/`) — DB-chain/lineage/similarity/contradicts as `created_by='auto'` | **Narrow 005**: keep only `parent_id/children_ids/parentChain` index-time promotion + provenance columns; DROP doc-chain/lineage/manual.*. *(iter 063)* |
+| 002 P0-2 created_by clobber | causal conflict guard (`hasConflictingValidEdge`/`detectContradictions`) | **Distinct path** — guard protects conflicting-relation invalidation; clobber is `insertEdge` same-key `created_by=?` update. **P0-2 still needed.** *(iter 064)* |
+| 008/001 aggregator | `batch-learning.ts` `aggregateEvents`/`weightedScore`/`computedBoost`/min-support | **REUSE-EXTRACT**; add only query-id + first/last timestamps + reconciled `weightedHitCount`. *(iter 065)* |
+| 003 incremental index | self-maintaining `memory_index_scan` + async enrichment | **No overlap** — 026 is hygiene; 003 foundation unbuilt; 003 must *preserve* scan lease/orphan/move-reconcile behavior. *(iter 068, 072)* |
+| 004 tombstones | checkpoints v2 (`checkpoints.ts:1668` is a delete-site) | Add checkpoint snapshot/restore coverage for the tombstone table. *(iter 069, 072)* |
+
+---
+
+## 5. Path-Drift (corrected: audit overstated — only 007)
+
+Live `lib/` truth: `lib/causal/` **exists** (`relation-backfill.ts`), `lib/storage/` (`causal-edges.ts`, `consolidation.ts`, `incremental-index.ts`), `lib/governance/` (`memory-retention-sweep.ts`), `lib/search/` (`vector-index-schema.ts`, `memory-summaries.ts`, `vector-index-store.ts`, `pipeline/stage4-filter.ts`), `lib/parsing/trigger-matcher.ts`, `lib/feedback/` (`batch-learning.ts`, `feedback-ledger.ts`), `shared/embeddings/` (resolver). `lib/triggers/` **absent**. *(iter 066)*
+
+**Only 007 needs repath:** `storage/vector-index-schema.ts`→`search/…`; `storage/memory-summaries.ts`→`search/…`; `storage/vector-index-store.ts`→`search/…`; `lib/embeddings/*`→`shared/embeddings/{factory,auto-select}.ts`; planned `lib/triggers/semantic-trigger-matcher.ts` has no live dir (live lexical matcher is `lib/parsing/trigger-matcher.ts`). 004 has stale **handler** paths (`memory-health.ts`→`memory-crud-health.ts`, `memory-delete.ts`→`memory-crud-delete.ts`). *(iter 066, 069)*
+
+---
+
+## 6. Parent Drift + 028-Reuse Reconcile
+
+| Drift | Fix |
+|---|---|
+| 027 `spec.md:86` says 026 "In Progress" | 026 is **Complete** (005 deferred). *(iter 073)* |
+| `resource-map.md`/`graph-metadata.json` self-cite `.opencode/specs/...` but packet is `specs/...` | Align root. *(iter 073)* |
+| `002/spec.md:64` references nonexistent `027/009-feedback-reducers` | → `008-learning-feedback-reducers`. *(iter 073)* |
+| 3-way continuity conflict (frontmatter next-action vs resource-map vs `last_active_child_id=002`) | Reconcile to one pointer. *(iter 073)* |
+| `000-release-cleanup` in spec+graph-metadata but not description.json children | Make consistent. *(iter 073)* |
+| **All `028/*` refs stale** — number reused by `028-026-program-research` | coco-028 (`005-cocoindex-fork`, `006-coco-intent-steering`, `008-coco-memory-context-extras`) → **REMOVE**; code-graph-028 (`001-004`) → REPOINT to `z_future/code-graph-and-cocoindex/` or evidence-gate; `028/004-adoption-eval` → "equivalent shadow/promotion evidence". **Nothing blocks.** *(iter 078)* |
+
+---
+
+## 7. Vocab/Constants + ADDITIONS
+
+**Vocab NEEDS-FIX** *(iter 075)*: canonical `RELATION_TYPES = {caused, enabled, supersedes, contradicts, derived_from, supports}` (schema CHECK matches). `DEFAULT_RELATION_TARGETS` diverges (omits `enabled`/`derived_from`, adds non-canonical `produced`/`cited_by`) — a **production stats bug** in `memory_causal_stats`, owned by **008/003** before its ENABLED floors. `STATE_LIMITS` (module-local at `lib/search/pipeline/stage4-filter.ts`, only via `__testables`) needs a production export, owned by **008/004**.
+
+**ADDITIONS unlocked by 026 closure** *(iter 072)*: 002 reuse the auto-edge/manual-preservation guard seam; 003 preserve scan lease/orphan/replay + profile-scoped chunk cache keys; 004 add checkpoint/tombstone interaction; 005 add no-duplicate-vs-manual.* requirement; 006 hard sync/async split; 007 carry `profile_key`+`input_kind` in trigger embedding metadata + cache-only hot path; 008 reuse shared conflict/relation vocabulary, depend on 002 tier-basement.
+
+**XCE EXHAUSTED** *(iter 076)*: no net-new memory-system signal; remains evidence-only (semantic→007, steering→local decision tree, impact/architecture→028 code-graph).
+
+---
+
+## 8. Recommended Re-Plan Sequence *(iter 079)*
+
+**Phase 0 (mechanical prereqs — do first, gates everything):**
+- **0A CocoIndex purge** (§3): delete `008/002-coco`; rewrite coco refs across 002/003/004/006/007/008; keep numbering gap.
+- **0B Parent drift reconcile** (§6): 026-status, root-path, `028/*` cleanup, `009→008`, continuity, `000` child-list.
+- **0C Constants/vocab** (§7): align `DEFAULT_RELATION_TARGETS`; export `STATE_LIMITS`.
+- **0D Path-refresh 007 only** (§5).
+
+**Implementation order:** `002 ‖ 003` (clean-ship core) → reshaped **008** after 002 (`001 → {003,004} → 005`) → **004** → **005** → **006** → **007 last**. 001 refine folds into Phase 0 docs cleanup.
+
+### Ship-class table
+| Phase | Class | Blocking prereq |
+|---|---|---|
+| 002 | **CLEAN-SHIP** | Phase 0 |
+| 003 | **CLEAN-SHIP** | Phase 0 (build on existing scan) |
+| 008 (family) | RESCOPE-THEN-SHIP | Phase 0C + 002; delete 002-coco |
+| 004 | RESCOPE-THEN-SHIP | 003; 14-site inventory; lifecycle rename |
+| 005 | RESCOPE-THEN-SHIP | 004; narrow scope; fix REQ conflict |
+| 006 | RESCOPE-THEN-SHIP | 003+005; sync/async split |
+| 007 | RESCOPE-THEN-SHIP | ship last; cache/schema identity |
+| 001 | RESCOPE-THEN-SHIP | residual warn→INFO wording |
+| 008/002-coco | **BLOCKED → DELETE** | dead coco scope |
+
+### Top risks
+- 007 cache/schema identity drift → rescope to live Nomic-768/`profile_key`/`input_kind`; ship last.
+- 004 delete-site undercount → require the 14-site inventory + tests.
+- 006 sync/async conflation → sync DiffAction for rows, async replay for enrichment.
+- Cross-cutting coco/028/path drift → mandatory Phase 0 before any code.
+- 005 scope creep back into manual.*/doc-chain → keep narrowed.
+
+---
+
+## 9. Convergence Report
+- Stop reason: max_iterations (20/20 complete, 061-080).
+- Iterations: 061-079 = 19 read-only gpt-5.5-fast xhigh analyses; 080 = synthesis (this doc).
+- newInfoRatio trend: 0.74, 0.64, 0.35, 0.72, 0.72, 0.74, 0.86, 0.42, 0.72, 0.72, 0.55, 0.62, 0.72, 0.46, 0.72, 0.05, 0.34, 0.78, 0.18 — high-signal throughout; 076 (XCE) and 079 (synthesis) intentionally low (confirmation/consolidation).
+- Method note: single-model (gpt-5.5-fast) per operator choice; complements the prior single-model audit. Load-bearing claims (embedding 768d, coco-rerank dead, 14 delete-sites, 028-reuse) carry direct `file:line`/existence citations in the per-iteration `prompts/iteration-NNN.out` files.
+
+## 10. References
+- Per-iteration evidence: `iterations/iteration-061.md` … `iteration-080.md` (+ raw `prompts/iteration-NNN.out`).
+- Prior archive: `research-pre-c22-archive.md`.
+- Resource map: `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md`.
+- Baseline complemented: `research/027-relevance-audit-2026-06-05/research.md`.

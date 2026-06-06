@@ -38,13 +38,16 @@ interface RelationCoverageState {
   remediationHint: string | null;
 }
 
+// Aligned to the canonical RELATION_TYPES vocabulary. `enabled` and `derived_from` are tracked
+// for visibility at a zero floor (no gating); `produced`/`cited_by` were never valid edge
+// relations under the causal_edges schema CHECK, so reporting them was dead coverage.
 const DEFAULT_RELATION_TARGETS: RelationCoverageTarget[] = [
   { relation: 'caused', minimumShare: 0.05, minimumCount: 1 },
   { relation: 'supports', minimumShare: 0.05, minimumCount: 1 },
   { relation: 'contradicts', minimumShare: 0, minimumCount: 0 },
   { relation: 'supersedes', minimumShare: 0, maximumShare: 0.75, minimumCount: 0 },
-  { relation: 'produced', minimumShare: 0, minimumCount: 0 },
-  { relation: 'cited_by', minimumShare: 0, minimumCount: 0 },
+  { relation: 'enabled', minimumShare: 0, minimumCount: 0 },
+  { relation: 'derived_from', minimumShare: 0, minimumCount: 0 },
 ];
 
 // Real, callable entry point for the bounded relation-inference backfill.
@@ -109,7 +112,7 @@ function buildRelationCoverageState(
   return {
     backfillJob: {
       name: 'autonomous-causal-relation-backfill',
-      scope: 'memory causal graph relation balancing across caused/supports/contradicts/supersedes/produced/cited_by',
+      scope: 'memory causal graph relation balancing across caused/supports/contradicts/supersedes/enabled/derived_from',
       implemented: true,
       command: BACKFILL_COMMAND,
       lastBackfillAt: readLastBackfillAt(db),

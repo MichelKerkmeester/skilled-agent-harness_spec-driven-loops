@@ -1,0 +1,48 @@
+# Iteration 073 — drift: 026-status stale, path-root self-cites, lingering 028-coco deps, 009->008 numbering, 3-way continuity conflict, 000 child-list
+
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** phase. **newInfoRatio:** 0.72. **Findings:** 6.
+**Raw analysis:** `research/prompts/iteration-073.out`
+
+### FINDINGS
+[F-073-01] `026` status drift: 027 still says the `026` program parent is `In Progress`, but 026 is now `Complete` with 100% continuity. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:86`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:16`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:43`
+
+[F-073-02] 027 parent metadata self-cites the wrong root: resource map and graph metadata cite `.opencode/specs/system-spec-kit/027...` while this sweep target is `specs/system-spec-kit/027...`. `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:33`, `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:72`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:73`
+
+[F-073-03] Active 028 dependencies remain in 027 docs: 008 still lists `028/006-coco-intent-steering`; 007 still lists `028/008-coco-memory-context-extras`; 002 still ships before 028 code-graph folders. These should be removed or rewritten as evidence-only gates. `specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:38`, `specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:31`, `specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:248`, `specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64`
+
+[F-073-04] Numbering drift remains: `002-memory-write-safety` references nonexistent `027/009-feedback-reducers`; current parent map has feedback reducers at `008-learning-feedback-reducers`. `specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:138`
+
+[F-073-05] Parent continuity metadata conflicts: spec frontmatter points next action at `001-peck-teachings-adoption/002-self-check-templates`, resource-map says graph metadata points at `001`, but graph metadata actually says last active child is `002-memory-write-safety`. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:27`, `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:74`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:233`
+
+[F-073-06] Parent/metadata child list drift: spec and graph metadata include `000-release-cleanup`, but `description.json` children start at `001`. Reconcile by either keeping `000` everywhere or removing it everywhere. `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7`, `specs/system-spec-kit/027-xce-research-based-refinement/description.json:27`
+
+### DRIFT_TABLE
+| file | line | stale claim | corrected claim |
+|---|---:|---|---|
+| `specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | 86 | `026` parent remains `In Progress` | `026` is `Complete`; only `005` is deferred |
+| `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | 33 | Scope is `.opencode/specs/system-spec-kit/027...` | Scope is `specs/system-spec-kit/027...` for this packet family |
+| `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | 73 | Key file `.opencode/specs/.../027.../spec.md` | Key file `specs/system-spec-kit/027.../spec.md` |
+| `specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md` | 38 | Soft dep includes `028/006-coco-intent-steering` | Remove named 028/coco folder dependency; keep only evidence-based shadow/promotion gate if needed |
+| `specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md` | 248 | Downstream consumer `028/008-coco-memory-context-extras` | Remove or rewrite as generic future downstream curator consumer |
+| `specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md` | 64 | Ships before 028 code-graph folders and `027/009-feedback-reducers` | Remove 028 ordering claim; if needed, reference current `027/008-learning-feedback-reducers` |
+| `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | 233 | `last_active_child_id` is `002-memory-write-safety` | Align with current parent continuity, likely `001-peck-teachings-adoption` |
+| `specs/system-spec-kit/027-xce-research-based-refinement/description.json` | 27 | Children omit `000-release-cleanup` | Add `000-release-cleanup` or remove 000 from spec/graph metadata consistently |
+
+### VERDICT
+Parent-level drift severity: **moderate**. The phase map is still usable, but parent status, path-root self-citations, 028 dependency references, and continuity metadata can misroute resume/reconcile work.
+
+Specific reconcile edits: update `spec.md:86` to say 026 is complete with 005 deferred; add/adjust `context-index.md` guidance so 028 references are historical/migration-only unless rewritten as evidence gates; regenerate or patch parent metadata/resource-map roots; align `last_active_child_id`; reconcile the `000-release-cleanup` child list.
+
+### RULED_OUT
+- No active non-research `026 In Progress` drift found beyond parent `spec.md:86`; other matches are iteration-control prompts/dashboard entries.
+- Parent `Status: Phase Parent` is not stale by itself.
+- `context-index.md:1-19` remains useful migration history; the stale issue is active dependency wording elsewhere.
+
+### METRICS
+newInfoRatio: 0.72
+
+novelty: Added parent metadata drift not explicit in prompt: `last_active_child_id` mismatch and `000-release-cleanup` child-list mismatch.
+
+status: complete
+
+sources: `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:27`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:86`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:130`, `specs/system-spec-kit/027-xce-research-based-refinement/spec.md:138`, `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:33`, `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:72`, `specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md:74`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:7`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:73`, `specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json:233`, `specs/system-spec-kit/027-xce-research-based-refinement/description.json:27`, `specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64`, `specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:248`, `specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:38`, `specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json:31`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:16`, `.opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md:43`

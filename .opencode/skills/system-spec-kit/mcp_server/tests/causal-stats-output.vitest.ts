@@ -63,7 +63,7 @@ describe('memory_causal_stats output schema', () => {
     expect(parsed.data.meetsTarget).toBe(false);
     expect(parsed.data.reason).toContain('below the 60% target');
 
-    for (const relation of ['supersedes', 'caused', 'supports', 'contradicts', 'produced', 'cited_by']) {
+    for (const relation of ['supersedes', 'caused', 'supports', 'contradicts', 'enabled', 'derived_from']) {
       expect(parsed.data.by_relation).toHaveProperty(relation);
       expect(typeof parsed.data.by_relation[relation]).toBe('number');
     }
@@ -79,8 +79,8 @@ describe('memory_causal_stats output schema', () => {
       'supports',
       'contradicts',
       'supersedes',
-      'produced',
-      'cited_by',
+      'enabled',
+      'derived_from',
     ]);
     expect(parsed.hints.join('\n')).toContain('Top 1 unlinked records');
   });

@@ -1,0 +1,22 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH Iteration 073 — READ-ONLY sweep 027 for stale cross-references and status drift in specs/system-spec-kit/027-xce-research-based-refinement; focus 026 complete drift, .opencode/specs vs specs self-path inconsistency, 028 refs; no edits","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m✱ [0mGrep "026|track-000|In Progress|Complete"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 572 matches[0m
+[0m✱ [0mGrep "028"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 180 matches[0m
+[0m✱ [0mGrep "\.opencode/specs/system-spec-kit/027"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 701 matches[0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/spec.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/description.json[90m [offset=1, limit=120][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json[90m [offset=1, limit=160][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/context-index.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/026-graph-and-context-optimization/spec.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json[90m [offset=161, limit=100][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md[90m [offset=54, limit=20][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md[90m [offset=236, limit=18][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/decision-record.md[90m [offset=214, limit=12][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md[90m [offset=32, limit=12][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/description.json[90m [offset=24, limit=12][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md[90m [offset=62, limit=10][0m
+[0m✱ [0mGrep "026 program parent|026 track-000|026.*In Progress|In Progress.*026"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 8 matches[0m

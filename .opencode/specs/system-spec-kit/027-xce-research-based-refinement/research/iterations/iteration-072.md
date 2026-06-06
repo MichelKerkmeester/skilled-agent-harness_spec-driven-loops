@@ -1,0 +1,46 @@
+# Iteration 072 — ADDITIONS: per-phase build-on-026 table; risks (005 internal conflict, 007 cache identity, 006 async preserve, 004 checkpoint)
+
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.62. **Findings:** 7.
+**Raw analysis:** `research/prompts/iteration-072.out`
+
+### FINDINGS
+[F-072-01] Phase 002 should BUILD ON `relation-backfill.ts`/causal storage guards, not add a parallel conflict system: 026 backfill re-emits inferred edges through guarded `insertEdgesBatch(createdBy:'auto')` and already skips conflicting relation pairs; 002 should add the missing same-key manual-overwrite/provenance predicate seam that those writers also use. `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts:548`, `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts:651`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:97`
+
+[F-072-02] Phase 003 should BUILD ON self-maintaining `memory_index_scan`, not replace it: 026 scan has lease coalescing, orphan sweep, move reconciliation, async scan indexing, and pending-marker replay; memo/DAG/chunk planning must wrap/preserve those behaviors. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:507`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:688`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:724`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:538`
+
+[F-072-03] Phase 004 should BUILD ON checkpoints v2 and scan orphan cleanup: 004 already found checkpoint restore and scan stale cleanup delete edges, but should explicitly add checkpoint snapshot/restore coverage for the new tombstone table and route scan orphan/stale cleanup through the sweep helper. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:113`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:132`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:120`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:160`
+
+[F-072-04] Phase 005 should BUILD ON 026 manual metadata wiring and relation backfill, not re-promote `manual.depends_on/supersedes/related_to`: parser-to-processor already maps manual refs; 005 should narrow to remaining parent/children/parentChain gaps and add a no-duplicate interaction requirement. `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1361`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:67`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md:122`
+
+[F-072-05] Phase 006 should BUILD ON async post-insert enrichment, not model generated graph enrichment as same-response statediff: 026 marks pending in-transaction, returns deferred async-background results, and repairs pending/partial/failed markers on replay. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2684`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:600`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:159`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:197`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:180`
+
+[F-072-06] Phase 007 should BUILD ON profile-scoped embedding cache/shared embedder identity exactly: current cache primary key includes `profile_key` and `input_kind`; 007’s derived trigger table/lookup must carry those fields, not just `phrase_hash + model_id + dimensions`. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:482`, `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:128`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:106`
+
+[F-072-07] Phase 008 should BUILD ON shared causal relation/guard seams from 026 instead of a reducer-local contradiction detector: causal reducer candidates should reuse/export shared relation vocabulary and conflict/manual-edge protection before any shadow-to-live promotion. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:61`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:86`, `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts:548`
+
+### ADDITIONS_TABLE
+phase | 026 mechanism to build on | what to ADD to the phase spec
+002 | relation-backfill causal auto-edges + storage conflict guard | reuse/extend one `isAutoEdgeCreator` + manual-preservation guard used by `insertEdge`/`insertEdgesBatch`; add tests proving relation-backfill/reducer auto writers cannot overwrite manual same-key rows.
+003 | self-maintaining `memory_index_scan` + profile-scoped embedding cache | add requirement that memo/DAG planner preserves scan lease coalescing, orphan sweep, move-reconcile, asyncEmbedding scan calls, and enrichment-marker replay; chunk embedding keys must include active profile/cache identity.
+004 | checkpoints v2 + scan orphan sweep | add checkpoint interaction: new `causal_edge_tombstones` table is included/restored or intentionally excluded with rationale; route checkpoint restore deletes and scan stale/orphan cleanup through tombstone sweep helper.
+005 | relation-backfill + `graph-metadata-parser`/`causal-links-processor` manual.* wiring | add no-duplicate requirement: skip already-wired `manual.depends_on/supersedes/related_to`; promoter only handles parent_id, children_ids, parentChain gaps and reuses existing resolver/relation mapping where possible.
+006 | async post-insert enrichment + pending-marker replay + self-maintaining scan | add hard split: statediff owns durable row targets synchronously; causal/entity/summary enrichment remains async pending-marker replay. Subscribers must consume applied durable actions without expecting same-response graph freshness.
+007 | profile-scoped embedding cache + shared embeddings resolver, Nomic 768d | add `profile_key` and `input_kind` to trigger embedding metadata/cache lookup; hot path must be cache-only and must fail lexical-only on uncached query/phrase embeddings.
+008 | relation-backfill conflict guard + causal relation vocabulary + 002 safety fixes | add reducer interaction requirement: causal reducer must call/export shared auto-edge conflict/manual-preservation helper; retention reducer must depend on 002 tier-basement behavior; no consumer-local relation vocabulary fork.
+
+### NET_NEW_RISKS
+- Phase 005 currently conflicts internally: scope says manual refs are already wired, but REQ-001/REQ-002 still require implementing `depends_on`/`supersedes` promotion.
+- Phase 007 cache spec is stale: `memory_trigger_embeddings`/lookup omits `profile_key` and `input_kind`, conflicting with shipped profile-scoped cache identity.
+- Phase 006 could regress 026 if statediff treats async enrichment as same-response graph writes; it must preserve deferred/pending-marker semantics.
+- Phase 004 could miss checkpoint restore deletes unless `checkpoints.ts` is either routed through sweep or explicitly documented as restore semantics.
+
+### RULED_OUT
+- Checkpoints v2 should not replace causal-edge tombstones; checkpoints are snapshot/restore infrastructure, not per-delete audit.
+- Relation-backfill should not replace Phase 005 parent/children/parentChain promoter; it only narrows 005’s remaining scope.
+- Profile-scoped embedding cache should not justify synchronous embedding in `memory_match_triggers`; 007 remains cache-only on the hot path.
+
+### METRICS
+newInfoRatio: 0.62
+novelty: Main delta is cross-phase reuse requirements now unlocked by 026 closure, especially cache identity, async enrichment split, checkpoint/tombstone interaction, and no-duplicate metadata promotion.
+status: complete
+sources: `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts:548`, `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts:651`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:507`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:688`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2684`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:600`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:159`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts:482`, `.opencode/skills/system-spec-kit/shared/embeddings/profile.ts:128`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts:120`, `.opencode/skills/system-spec-kit/mcp_server/lib/graph/graph-metadata-parser.ts:1361`, `.opencode/skills/system-spec-kit/mcp_server/handlers/causal-links-processor.ts:67`

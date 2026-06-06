@@ -65,7 +65,7 @@ const STATE_PRIORITY: Record<string, number> = {
  * Per-tier hard limits applied when `applyStateLimits` is true.
  * Prevents any single tier from monopolising the result window.
  */
-const STATE_LIMITS: Record<string, number> = {
+export const STATE_LIMITS: Record<string, number> = {
   HOT: 50,
   WARM: 30,
   COLD: 20,

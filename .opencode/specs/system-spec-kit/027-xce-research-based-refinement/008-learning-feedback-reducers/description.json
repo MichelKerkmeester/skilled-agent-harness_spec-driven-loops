@@ -22,16 +22,12 @@
     ],
     "children": [
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator",
-      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer",
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer",
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer",
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration"
     ]
   },
-  "soft_depends_on": [
-    "system-spec-kit/028-code-graph-and-cocoindex/004-code-graph-adoption-eval",
-    "system-spec-kit/028-code-graph-and-cocoindex/006-coco-intent-steering"
-  ],
+  "soft_depends_on": [],
   "derived": {
     "status": "phase-parent",
     "completion_pct": 0,

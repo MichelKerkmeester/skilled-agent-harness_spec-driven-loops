@@ -1,0 +1,65 @@
+{
+  "topic": "Revalidate/refine 027's 8 phases vs closed-026 + live system-spec-kit reality + CocoIndex deprecation (purge all coco scope) + near-exhausted XCE signal; per-phase update/refine/drift-fix/remove/additions verdicts, coco-reference enumeration, 026-overlap dedup, packet-wide path-drift refresh, 007 embedding-profile rescope.",
+  "maxIterations": 81,
+  "convergenceThreshold": 0.01,
+  "stuckThreshold": 3,
+  "maxDurationMinutes": 600,
+  "maxToolCallsPerIteration": 12,
+  "maxMinutesPerIteration": 20,
+  "progressiveSynthesis": true,
+  "specFolder": "specs/system-spec-kit/027-xce-research-based-refinement",
+  "createdAt": "2026-06-05T20:30:00Z",
+  "status": "initialized",
+  "executionMode": "auto",
+  "executor": {
+    "kind": "cli-opencode",
+    "model": "openai/gpt-5.5-fast",
+    "reasoningEffort": "xhigh",
+    "serviceTier": null,
+    "sandboxMode": "read-only",
+    "timeoutSeconds": 1200
+  },
+  "lineage": {
+    "sessionId": "2026-06-05-027-continuation-22-coco-026-drift",
+    "parentSessionId": "2026-06-04-027-peck-phase-adoption",
+    "lineageMode": "resume",
+    "allowedModes": ["new", "resume", "restart"],
+    "deferredModes": ["fork", "completed-continue"],
+    "generation": 2,
+    "continuedFromRun": 60
+  },
+  "reducer": {
+    "enabled": true,
+    "version": "1.0",
+    "registryFile": "research/findings-registry.json",
+    "dashboardFile": "research/deep-research-dashboard.md",
+    "strategyFile": "research/deep-research-strategy.md",
+    "machineOwnedSections": [
+      "key-questions",
+      "answered-questions",
+      "what-worked",
+      "what-failed",
+      "exhausted-approaches",
+      "ruled-out-directions",
+      "next-focus"
+    ]
+  },
+  "capabilityMatrixPath": ".opencode/skills/deep-research/assets/runtime_capabilities.json",
+  "capabilityMatrixDocPath": ".opencode/skills/deep-research/references/guides/capability_matrix.md",
+  "runtimeCapabilityResolver": ".opencode/skills/deep-research/scripts/runtime-capabilities.cjs",
+  "reducerScriptPath": ".opencode/skills/deep-research/scripts/reduce-state.cjs",
+  "pauseSentinelPath": "research/.deep-research-pause",
+  "archiveRoot": "research_archive",
+  "migrationWindowDays": 28,
+  "resource_map": { "emit": true },
+  "resource_map_present": true,
+  "fileProtection": {
+    "deep-research-config.json": "immutable",
+    "deep-research-state.jsonl": "append-only",
+    "deep-research-strategy.md": "mutable",
+    "deep-research-dashboard.md": "auto-generated",
+    "findings-registry.json": "auto-generated",
+    "iteration-*.md": "write-once",
+    "research/research.md": "mutable"
+  }
+}

@@ -105,7 +105,7 @@ Status: scaffolded; not yet implemented. Filled post-implementation per existing
 <!-- ANCHOR:what-built -->
 ## WHAT WAS BUILT
 
-See files referenced in resource-map.md  section: production code paths spanning 008-memory-semantic-triggers touch points across mcp_server/ and/or mcp-coco-index/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
+See files referenced in resource-map.md  section: production code paths spanning semantic-trigger touch points across mcp_server/. Pre-implementation: file list is PLANNED; post-implementation: actual file:line evidence will be filled here.
 <!-- /ANCHOR:what-built -->
 
 <!-- ANCHOR:how-delivered -->

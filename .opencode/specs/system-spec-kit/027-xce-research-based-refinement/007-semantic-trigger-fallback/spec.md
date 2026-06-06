@@ -103,8 +103,8 @@ XCE's public claim is semantic retrieval (`external/README.md:188-199`). Adoptin
 ## 3. SCOPE
 
 ### In Scope
-- New table `memory_trigger_embeddings(memory_id INTEGER, phrase TEXT, phrase_hash TEXT, model_id TEXT, dimensions INTEGER, embedding_status TEXT, updated_at TEXT, PRIMARY KEY (memory_id, phrase_hash))` in `mcp_server/lib/storage/vector-index-schema.ts`.
-- BLOB embedding storage reuses existing `embedding_cache(content_hash, model_id, dimensions, embedding)` from `embedding-cache.ts:45-55` — keyed by `phrase_hash + model_id + dimensions`.
+- New table `memory_trigger_embeddings(memory_id INTEGER, phrase TEXT, phrase_hash TEXT, profile_key TEXT NOT NULL DEFAULT '', input_kind TEXT NOT NULL DEFAULT 'query', model_id TEXT, dimensions INTEGER, embedding_status TEXT, updated_at TEXT, PRIMARY KEY (memory_id, phrase_hash, profile_key, input_kind))` in `mcp_server/lib/search/vector-index-schema.ts`. The `profile_key`/`input_kind` columns carry the active embedding-profile identity (matching the live `embedding_cache` PK) so a profile change (model/dim) does not silently reuse stale trigger embeddings.
+- BLOB embedding storage reuses existing `embedding_cache(content_hash, profile_key, input_kind, model_id, dimensions, embedding)` from `embedding-cache.ts` — keyed by `(content_hash, profile_key, input_kind, model_id, dimensions)`; the trigger lookup MUST filter by the active `profile_key`/`input_kind`.
 - New `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (~140-200 LOC):
   - Loads in-memory cache of trigger embeddings beside existing `triggerCache`.
   - Cosine similarity over the active profile's embedding cache (default Ollama nomic 768d); threshold + margin + max-hit gates.

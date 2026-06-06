@@ -33,7 +33,7 @@ _memory:
 
 | # | Status | ID | Task | REQ | Files | Acceptance |
 |---|--------|----|------|-----|-------|------------|
-| 1 | [ ] | T001 | Add `memory_trigger_embeddings` table to schema | REQ-004 | `mcp_server/lib/storage/vector-index-schema.ts` (modified) | Migration test passes; `(memory_id, phrase_hash)` primary key |
+| 1 | [ ] | T001 | Add `memory_trigger_embeddings` table to schema | REQ-004 | `mcp_server/lib/search/vector-index-schema.ts` (modified) | Migration test passes; `(memory_id, phrase_hash)` primary key |
 | 2 | [ ] | T002 | Implement BLOB embedding storage reuse via existing `embedding_cache` | REQ-004 | `mcp_server/lib/cache/embedding-cache.ts` (analyzed) | Lookup by `phrase_hash + model_id + dimensions` returns BLOB |
 | 3 | [ ] | T003 | Add resumable per-memory backfill in `memory_index_scan` handler | REQ-005, REQ-006 | `mcp_server/handlers/memory-index.ts` (modified) | Scan generates trigger embeddings for `embedding_status='pending'` rows and resumes interrupted runs safely |
 | 4 | [ ] | T004 | Add save-time embedding hook in `embedding-pipeline.ts` (best-effort, non-blocking) | REQ-006 | `mcp_server/handlers/save/embedding-pipeline.ts` (modified) | Save flow not blocked on embedding-provider failure; `embedding_status='failed'` recorded for retry |
@@ -43,7 +43,7 @@ _memory:
 | # | Status | ID | Task | REQ | Files | Acceptance |
 |---|--------|----|------|-----|-------|------------|
 | 5 | [ ] | T005 | Create `semantic-trigger-matcher.ts` with cosine + threshold + margin + max gates | REQ-002 | `mcp_server/lib/triggers/semantic-trigger-matcher.ts` (NEW) | Pure function; deterministic ordering; gates enforced |
-| 6 | [ ] | T006 | Reuse `memory-summaries.ts` cosine + BLOB-to-Float32 conversion pattern | REQ-002 | `mcp_server/lib/storage/memory-summaries.ts` (cited) | Cosine math identical to existing precedent |
+| 6 | [ ] | T006 | Reuse `memory-summaries.ts` cosine + BLOB-to-Float32 conversion pattern | REQ-002 | `mcp_server/lib/search/memory-summaries.ts` (cited) | Cosine math identical to existing precedent |
 | 7 | [ ] | T007 | Add in-memory trigger embedding cache (loaded on first call; TTL refresh) | REQ-002 | `semantic-trigger-matcher.ts` (NEW) | Cache concurrent-safe; invalidation on `memory_index_scan --force` |
 | 8 | [ ] | T008 | Author semantic-matcher unit tests | REQ-002 | `mcp_server/__tests__/triggers/semantic-matcher.vitest.ts` (NEW) | Cosine math verified; gates verified |
 

@@ -1,0 +1,19 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH Iteration 064 026-dedup 002 created_by-clobber P0 vs shipped causal conflict guard. Read-only verify three P0s against live code in system-spec-kit mcp_server lib and 002-memory-write-safety spec.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m✱ [0mGrep "created_by|createdBy|ON CONFLICT|isAutoEdgeCreator|auto-session"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/storage · 13 matches[0m
+[0m✱ [0mGrep "refus|invalidate|valid edge|conflict guard|existing valid|contradicts|ON CONFLICT|created_by|createdBy|isAutoEdgeCreator|auto-session"[90m in .opencode/skills/system-spec-kit/mcp_server/lib · 217 matches[0m
+[0m✱ [0mGrep "delete_after|retention|pin|tier|importance|ephemeral|keep|DELETE"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/governance · 29 matches[0m
+[0m✱ [0mGlob "**/002-memory-write-safety/spec.md"[90m in . · 1 match[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/graph/contradiction-detection.ts[90m [offset=60, limit=60][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts[90m [offset=240, limit=220][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=500, limit=220][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts[90m [offset=1, limit=270][0m
+[0m✱ [0mGrep "created_by|createdBy|ON CONFLICT|isAutoEdgeCreator|auto-session|auto_session|edge|causal"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/storage · 33 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts[90m [offset=331, limit=70][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts[90m [offset=1, limit=120][0m
+[0m✱ [0mGrep "importance_tier|decay_half_life_days|is_pinned|access_count|last_accessed"[90m in .opencode/skills/system-spec-kit/mcp_server/lib/governance · 0 matches[0m
+[0m✱ [0mGrep "isAutoEdgeCreator|auto-session|auto-"[90m in .opencode/skills/system-spec-kit/mcp_server/lib · 34 matches[0m

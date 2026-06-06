@@ -59,12 +59,7 @@ _memory:
 
 | Source | Evidence |
 |--------|----------|
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:52` | `DiffAction = _Literal["insert", "upsert", "replace", "delete"]` defines the portable action vocabulary. |
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:85` | `class TrackingRecordTransition` wraps desired state, previous rows, and prior completeness. |
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:149` | `def diff(` starts the desired-prior decision tree. |
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:172` | `if _coco.is_non_existence(t.desired):` maps desired non-existence to delete behavior. |
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:177` | `if any(p != t.desired for p in t.prev):` maps divergent observed prior rows to replace. |
-| `external/cocoindex-main/python/cocoindex/connectorkits/statediff.py:189` | `def diff_composite(` provides the main record plus keyed substates model needed for memory documents. |
+| Design rationale | A local typed `DiffAction = insert \| upsert \| replace \| delete` model over desired/prior rows: desired-absent maps to delete, divergent-prior maps to replace, and a composite main-record-plus-substates shape covers memory parent/child documents. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351` | `const runScanInvalidationHooks =` shows current scan-side cache invalidation is a post-write hook. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:436` | `categorizeFilesForIndexing(files);` shows current implicit planning categories. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:567` | `if (filesToDelete.length > 0) {` starts the stale cleanup branch that should become a planned delete action. |
@@ -78,7 +73,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase ports CocoIndex's statediff model into Spec Kit Memory as a storage reconciliation layer. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.
+This phase introduces a typed target-state (desired/prior) reconciliation layer for Spec Kit Memory's write path. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.
 
 **Scope Boundary**: implement target-state reconciliation for durable rows and generated projections. Cache invalidation, alias feedback, retention sweep, and graph cache clearing become subscribers to the applied action batch; they are not themselves statediff targets.
 
@@ -145,7 +140,7 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 
 - Full schema redesign of `memory_index` and child tables.
 - LLM-driven reconciliation or semantic arbitration.
-- Cross-system replication or CocoIndex's heed-encoded KV store.
+- Cross-system replication or any external key-value replication store.
 - Replacing manual `memory_causal_link` and manual unlink commands in the first pass.
 - Removing the semantic policy layer from `memory_save`; prediction-error and reconsolidation remain policy decisions before storage diffing.
 
@@ -224,7 +219,7 @@ Introduce a typed `(desiredRows, priorRows) -> DiffAction[]` model so memory wri
 - Should embedding rows or FTS and BM25 rows be the first statediff target sink?
 - Should target sinks run inside one transaction per memory document or one transaction per action batch?
 - Should subscriber failures fail the write, or report degraded post-mutation hygiene while preserving durable writes?
-- Should alias conflicts use a fifth conflict action outside CocoIndex's four literals, or a policy layer over `replace`?
+- Should alias conflicts use a fifth conflict action outside the four `DiffAction` literals, or a policy layer over `replace`?
 <!-- /ANCHOR:questions -->
 
 ---

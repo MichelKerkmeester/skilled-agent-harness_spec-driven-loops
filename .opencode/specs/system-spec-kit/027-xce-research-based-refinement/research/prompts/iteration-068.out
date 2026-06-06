@@ -1,0 +1,35 @@
+SKILL ROUTING: User directed plus advisor confidence 0.833 → `deep-research`. I’ll keep this read-only and verify only the requested live files/patterns.
+### FINDINGS
+[F-068-01] Indexing is still coarse file-level. `incremental-index.ts` stores only `file_mtime_ms`, `content_hash`, and `embedding_status`; `shouldReindex()` fast-paths on mtime, optionally compares whole-file SHA-256, then marks changed mtimes as `modified`. No chunk-stage planning appears there. `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:36-42`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:173-224`
+
+[F-068-02] Planned primitives are absent live. Grep over `mcp_server/lib/` and broader `mcp_server/**/*.ts` found no `memoization_records`, `dependency_edges`, `canonical-fingerprint`, `chunk_fingerprint`, or storage `memo.ts` matches. The live schema has `content_hash`, `file_mtime_ms`, existing parent/chunk index fields, and post-insert enrichment markers, but no `chunk_id`, `chunk_fingerprint`, `chunk_kind`, or chunk line-span columns. `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2616-2650`
+
+[F-068-03] `memory_index_scan` self-maintenance overlaps operational reliability only: it coalesces concurrent scans via an index-scan lease, dedups canonical aliases, runs stale delete/orphan sweep, reconciles sibling folder renames in-place, and reports these counters. It does not add memo tables, DAG invalidation, canonical input fingerprints, or chunk-level skip telemetry. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351-381`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:440-457`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:507-528`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:688-699`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:947-999`
+
+[F-068-04] Async enrichment is post-insert graph/search enrichment, not incremental-index foundation. It schedules causal links, entity extraction, summaries, entity linking, and graph lifecycle in background/backfill markers; scan only repairs incomplete enrichment markers. `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2684-2702`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:522-568`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:159-203`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:538-552`
+
+[F-068-05] 003’s planned scope remains exactly the missing foundation: additive `memoization_records`, `dependency_edges`, chunk fingerprint metadata, `canonical-fingerprint.ts`, `memo.ts`, DAG-aware `incremental-index.ts`, parser chunk identity, and scan planning from memo/DAG state. `specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:76-89`, `specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:118-127`
+
+### RESIDUAL_SCOPE_003
+- Build `memoization_records(component_path, input_fingerprint, code_hash, output_blob, computed_at)`.
+- Build `dependency_edges(parent_path, child_path, kind)` plus DAG invalidation/walking.
+- Extend `memory_index` with `chunk_id`, `chunk_fingerprint`, `chunk_kind`, `chunk_start_line`, `chunk_end_line`.
+- Add deterministic `lib/storage/canonical-fingerprint.ts`.
+- Add `lib/storage/memo.ts` CRUD/invalidation helpers.
+- Extend parser for anchor-first chunk identity: `anchor:<id>`, heading slug, fixed-window fallback.
+- Update `memory_index_scan` planning to consult memo/DAG/chunk state before parsing and embedding.
+- Keep 026 work as non-redundant infrastructure: lease coalescing, orphan/stale cleanup, move reconciliation, async enrichment repair.
+
+### VERDICT
+003 = STILL-RELEVANT. 026 shipped self-maintaining scan hygiene and async enrichment reliability, but none of 003’s memoization/DAG/chunk-fingerprint primitives.
+
+### RULED_OUT
+- Self-maintaining `memory_index_scan` did not add memoization records or dependency-edge invalidation.
+- Async enrichment did not add chunk fingerprints or unchanged-chunk embedding skips.
+- Existing `parent_id`, `chunk_index`, and `chunk_label` are not enough for 003’s stable chunk identity/fingerprint contract.
+
+### METRICS
+newInfoRatio: 0.42  
+novelty: Confirmed recent 026 overlap is operational maintenance only; 003 foundation remains materially unbuilt.  
+status: complete  
+sources: `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:36-42`, `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts:173-224`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2616-2650`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:351-381`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:507-528`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:688-699`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:947-999`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2684-2702`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:522-568`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:159-203`, `specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:76-89`, `specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:118-127`

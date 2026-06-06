@@ -1,0 +1,58 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH\n\n# Deep-Research Iteration 061 — CocoIndex purge: the 008 reducer family\n\nREAD-ONLY iteration. Do NOT dispatch sub-agents. Do NOT modify any source or spec files. Focus: enumerate every CocoIndex reference across specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers phase family and decide REMOVE or REWRITE.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m
+[0m$ [0mpython3 .opencode/skills/system-skill-advisor/mcp_server/scripts/skill_advisor.py "DEEP-RESEARCH Iteration 061 read-only CocoIndex purge across 008-learning-feedback-reducers phase family" --threshold 0.8
+[
+  {
+    "skill": "deep-research",
+    "kind": "skill",
+    "confidence": 0.83,
+    "uncertainty": 0.12,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend [Candidate-3 deep routing: deep-research MED]",
+    "source": "native",
+    "score": 0.575725,
+    "dominant_lane": "explicit_author",
+    "status": "active",
+    "_shadow": {
+      "skillId": "deep-research",
+      "liveScore": 0.575725,
+      "shadowScore": 0.536612,
+      "delta": -0.039113,
+      "dominantShadowLane": "explicit_author"
+    },
+    "clarifying_question": "Should this route to deep-research or deep-review, and what output do you expect: review-report.md, research.md, or council-report.md?"
+  },
+  {
+    "skill": "system-spec-kit",
+    "kind": "skill",
+    "confidence": 0.82,
+    "uncertainty": 0.3,
+    "passes_threshold": true,
+    "reason": "Matched by native advisor_recommend",
+    "source": "native",
+    "score": 0.02666,
+    "dominant_lane": "semantic_shadow",
+    "status": "active",
+    "_shadow": {
+      "skillId": "system-spec-kit",
+      "liveScore": 0.02666,
+      "shadowScore": 0.02666,
+      "delta": 0,
+      "dominantShadowLane": "semantic_shadow"
+    }
+  }
+]
+[0m
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/spec.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/plan.md[90m [offset=1, limit=600][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/tasks.md[90m [offset=1, limit=600][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/checklist.md[90m [offset=1, limit=600][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/spec.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer/spec.md[90m [offset=1, limit=700][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer/spec.md[90m [offset=1, limit=700][0m
+[0m→ [0mRead specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/005-env-tests-integration/spec.md[90m [offset=1, limit=700][0m

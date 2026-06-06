@@ -20,7 +20,7 @@ _memory:
     key_files:
       - "lib/search/vector-index-schema.ts"
       - "lib/causal/sweep.ts"
-      - "handlers/memory-health.ts"
+      - "handlers/memory-crud-health.ts"
     session_dedup:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "027-004-spec-authoring"
@@ -58,16 +58,9 @@ _memory:
 
 | Source | Evidence |
 |--------|----------|
-| `external/cocoindex-main/rust/core/src/state/db_schema.rs:35` | `ChildExistencePrefix,` shows CocoIndex records child existence state separately from live component data. |
-| `external/cocoindex-main/rust/core/src/state/db_schema.rs:39` | `ChildComponentTombstonePrefix,` shows tombstones are a first-class lifecycle key. |
-| `external/cocoindex-main/rust/core/src/state/db_schema.rs:315` | `TODO: Add a generation, to avoid race conditions during deletion,` directly supports a lifecycle generation counter. |
-| `external/cocoindex-main/rust/core/src/engine/execution.rs:612` | `let db_key_prefix = db_schema::DbEntryKey::StablePath(` starts the prefix diff over stored child existence rows. |
-| `external/cocoindex-main/rust/core/src/engine/execution.rs:746` | `fn del_child(` routes missing children into deletion handling. |
-| `external/cocoindex-main/rust/core/src/engine/execution.rs:771` | `fn flush_component_tombstones` persists buffered tombstones after child reconciliation. |
-| `external/cocoindex-main/rust/core/src/engine/execution.rs:1472` | `pub(crate) async fn cleanup_tombstone` removes tombstones after cleanup succeeds. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:607` | `CREATE TABLE IF NOT EXISTS causal_edges (` shows the current active-edge table is flat. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts:768` | `DELETE FROM causal_edges` shows current cleanup hard-deletes without audit. |
-| `research/research.md:94` | The adapted port should hard-delete active edges, snapshot deleted edges to `causal_edge_tombstones`, and route every delete path through one helper. |
+| Design rationale | Active-edge deletes should snapshot the edge to a `causal_edge_tombstones` audit table before hard-delete, route every delete path through one sweep helper, and carry a persisted lifecycle generation to avoid delete/recreate races. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -75,7 +68,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase adapts CocoIndex's lifecycle invariant, not its exact storage shape. CocoIndex stores child existence state and tombstones under stable-path keys, then consumes tombstones through a GC path. Spec Kit Memory has a relational causal graph, so the equivalent is a tombstone audit table plus a single sweep helper that every edge-deleting path uses.
+This phase adds a tombstone lifecycle to the causal graph. Spec Kit Memory has a relational causal graph, so a delete should write a tombstone audit row before hard-deleting an active edge, with a single sweep helper that every edge-deleting path routes through.
 
 **Scope Boundary**: add active-edge cleanup with tombstone audit rows and lifecycle generation. Do not add automatic edge derivation; packet 005 depends on this cleanup foundation before increasing generated edge volume.
 
@@ -155,10 +148,13 @@ Route every causal-edge deletion through a single sweep helper that writes a tom
 |-----------|-------------|-------------|
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | Modify | Add tombstone DDL, lifecycle generation storage, indexes, and migration. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/causal/sweep.ts` | Create | Centralize tombstone audit, active edge deletion, generation bump, and restore metadata construction. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-delete.ts` | Modify | Route single-memory delete edge cleanup through sweep helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-delete.ts` | Modify | Route single-memory delete edge cleanup through sweep helper. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-bulk-delete.ts` | Modify | Route selected-row edge cleanup through sweep helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-mutations.ts` | Modify | Route the raw `DELETE FROM causal_edges` during memory-row mutation cleanup through the sweep helper. |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/storage/checkpoints.ts` | Modify | Route scoped-restore active-edge deletes through the sweep helper (or explicitly document the restore-path exemption). |
+| `.opencode/skills/system-spec-kit/mcp_server/lib/learning/corrections.ts` | Modify | Route the undo-path edge deletes (relation/evidence-scoped + legacy fallback) through the sweep helper. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts` | Modify | Route stale indexed-record cleanup through sweep helper. |
-| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-health.ts` | Modify | Add orphan-edge warning and auto-repair tombstone behavior. |
+| `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-crud-health.ts` | Modify | Add orphan-edge warning and auto-repair tombstone behavior. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | Modify | Expose read-before-delete helpers and stop bypassing tombstone paths for active cleanup. |
 <!-- /ANCHOR:scope -->
 

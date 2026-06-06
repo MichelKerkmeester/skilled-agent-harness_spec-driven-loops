@@ -1,0 +1,41 @@
+Reading the XCE corpus and 027 phase docs read-only, then I’ll return only the requested synthesis.
+The user-specified `specs/...` path is not present in this workspace; I’m checking the packet under `.opencode/specs/...`, which matches the repo’s current spec-folder layout.
+The XCE `external/` corpus itself appears absent in the current checkout; I found only prior citations and the phase docs. I’ll use the local archive and phase evidence, and explicitly mark the missing corpus as a constraint rather than inventing direct reads.
+The current evidence shows XCE memory-relevant content was already converted into local phase scope, with the direct XCE corpus missing from this checkout. I’m checking the prior residual/noise iterations before finalizing exhaustion.
+### FINDINGS
+
+[F-076-01] Direct `external/xce-mcp` files are absent in this checkout; prior direct-read archive remains the usable evidence. The strategy already records the same absence for later rereads and says local evidence was used instead. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:163-166`
+
+[F-076-02] Public XCE portable signals were already classified: architecture/context packaging, semantic search, and impact preflight are portable; SaaS, PRAT, benchmark, and unconditional vendor-first steering are noise/non-portable. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-042.md:7-12`
+
+[F-076-03] Memory-relevant semantic retrieval is already captured by 007: XCE “find by meaning” becomes lexical-first, default-off semantic trigger fallback with reduced activation, not a replacement for lexical trigger control surfaces. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:45-57`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:92-98`
+
+[F-076-04] Context-first steering is already captured as a local governance-preserving decision tree, not a new memory phase: classify mutation/read-only, satisfy Gate 3, read state/specs, check code-graph freshness, Grep/Glob exact/path search, verify with Read. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-051.md:7-13`
+
+[F-076-05] The remaining 027 memory phases already cover the memory-system surface: 002 write safety, 003 incremental indexing, 004 tombstones, 005 metadata causal edges, 006 statediff reconciliation, 007 semantic triggers, 008 feedback reducers. No XCE-public surface adds another memory-system phase. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:132-138`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:142-150`
+
+### RESIDUAL_SIGNAL
+
+EXHAUSTED — no net-new memory signal; XCE remains evidence-only.
+
+Justification: LOW-CONFIDENCE only because the direct `external/xce-mcp` corpus is absent now; based on archived direct-read evidence, every portable XCE signal maps to already-scoped work: semantic retrieval → 007, context-first steering → local governance decision tree, impact analysis → 028/system-code-graph boundary, architecture/trace packaging → 028/code-graph pattern. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:390-391`
+
+### VERDICT
+
+XCE-for-027-memory = EXHAUSTED. Standing rule reaffirmed: XCE ideas remain evidence signals, not requirements. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:142`
+
+### RULED_OUT
+
+- SaaS/API-key/remote SSE/pricing adoption is out of 027 memory scope. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-042.md:10`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:46-49`
+- PRAT internals remain non-adoptable: public corpus only names PRAT/high-level flow. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:138-141`
+- Code-graph impact/architecture/trace work belongs to 028/system-code-graph, not 027 memory. `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-056.md:17-23`
+
+### METRICS
+
+newInfoRatio: 0.05
+
+novelty: Negative confirmation only; no uncaptured XCE memory-system idea found.
+
+status: complete
+
+sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:46-49`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:138-166`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md:390-391`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-042.md:7-12`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-051.md:7-13`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-056.md:17-23`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md:132-150`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:45-57`

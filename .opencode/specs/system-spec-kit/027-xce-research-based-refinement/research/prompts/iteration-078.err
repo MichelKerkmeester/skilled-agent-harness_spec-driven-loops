@@ -1,0 +1,39 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH\n\n# Deep-Research Iteration 078 — 028 status after CocoIndex deprecation; 027 soft-dep breakage\n\nYou are a LEAF deep-research analyst. READ-ONLY. No sub-agents, no file edits. Max ~12 tool calls. Cite `file:line` / existence.\n\nSpec folder: `specs/system-spec-kit/027-xce-research-based-refinement` (pre-approved; skip Gate 3 — read-only, write NOTHING).\n\nFOCUS: Determine ACTUAL state of 028 today and reconcile every 027 soft-dependency on a 028/* path.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead .opencode/skills/deep-research/references/guides/quick_reference.md[90m [offset=1, limit=120][0m
+[0m
+[0m$ [0mgrep -rn "028/" "specs/system-spec-kit/027-xce-research-based-refinement" --include=*.md --include=*.json | grep -v /research/
+zsh:1: no matches found: --include=*.md
+[0m
+[0m$ [0mbash -lc 'ls -d .opencode/specs/system-spec-kit/028* specs/system-spec-kit/028* 2>/dev/null'
+.opencode/specs/system-spec-kit/028-026-program-research
+specs/system-spec-kit/028-026-program-research
+[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/028-026-program-research/spec.md[90m [offset=1, limit=40][0m
+[0m→ [0mRead specs/system-spec-kit/028-026-program-research/spec.md[90m [offset=1, limit=40][0m
+[0m
+[0m$ [0mbash -lc 'grep -rn "028/" "specs/system-spec-kit/027-xce-research-based-refinement" --include="*.md" --include="*.json" | grep -v /research/'
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-decision-record.md:143:- If 028/004-code-graph-adoption-eval eval shows ±0.10 is too small, raising magnitude is a flag-controlled change (no schema migration).
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-decision-record.md:238:Pt-03 verdict for this phase recommends Level 3 designation. After the 028/005-cocoindex-complete-fork complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, 028/004-code-graph-adoption-eval eval gates) that L3 enforces.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-decision-record.md:262:- 028/004-code-graph-adoption-eval eval gate required for any active-mode rollout.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-decision-record.md:263:- Test discipline includes unit + integration + diff (backward-compat) + 028/004-code-graph-adoption-eval paired comparison.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-decision-record.md:272:4. **Promotion gate required?** Yes — 028/004-code-graph-adoption-eval eval lift before active mode.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/implementation-summary.md:87:Intent-tag learning may start with the `general` fallback if 028/006-coco-intent-steering is not available.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/plan.md:98:| `028/006-coco-intent-steering` | Soft sibling | Optional | Improves intent dimension; fallback is `general`. |
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:103:| Soft dependency | `028/006-coco-intent-steering` | Intent tag quality. | Use `intent_tag='general'` fallback if absent. |
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer/spec.md:134:- Whether `intent_tag` is sourced from 028/006-coco-intent-steering immediately or starts with `general` fallback is implementation-time dependent.
+specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:38:| **Soft Dependencies** | equivalent shadow-eval evidence (the `028/004-code-graph-adoption-eval` folder no longer exists), `028/006-coco-intent-steering` |
+specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:241:- **Shadow-eval evidence** (equivalent shadow-eval / paired-comparison harness) — for threshold tuning runs and recall-lift measurement; the dependency is on the evidence, not on a specific named folder (the previously-cited `028/004-code-graph-adoption-eval` folder does not exist); not required for spec scaffold or initial implementation.
+specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:248:- **028/008-coco-memory-context-extras** (coco-memory context extras) — better trigger candidate set improves curator input quality (RQ-B2 soft dep).
+specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:76:| **Depends on** | none (hard); requires **shadow eval evidence** (recall-lift / paired-comparison shadow telemetry) from an equivalent shadow-eval harness for threshold tuning before live/union-mode promotion. **pt-04 reframing** — was "shared infra from 006", now "requires evidence, not infra coupling"; the dependency is on the evidence, not on a specific named folder (the previously-cited `028/004-code-graph-adoption-eval` folder does not exist). |
+specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/decision-record.md:220:Pt-03 verdict for this phase recommends Level 3 designation. After the 028/005-cocoindex-complete-fork complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, shadow-eval evidence gates) that L3 enforces.
+specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/resource-map.md:142:- **No external dependencies** — Phase 007 has no hard preconditions; soft dep on shadow-eval evidence (equivalent shadow-eval harness) for threshold tuning; the previously-cited `028/004-code-graph-adoption-eval` folder does not exist.
+specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:64:| **Ships before** | `028/001-code-graph-hld-lld`, `028/002-code-graph-trace`, `028/003-code-graph-impact-analysis`, and `027/009-feedback-reducers` |
+[0m
+[0m✱ [0mGrep "004-code-graph-adoption-eval|006-coco-intent-steering|008-coco-memory-context-extras|001-code-graph-hld-lld|002-code-graph-trace|003-code-graph-impact-analysis|005-cocoindex-complete-fork"[90m in . · 1832 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md[90m [offset=1, limit=24][0m
+[0m✱ [0mGlob ".opencode/specs/z_future/code-graph-and-cocoindex/00[1-4]*/spec.md"[90m in . · 4 matches[0m
+[0m✱ [0mGlob ".opencode/specs/z_future/code-graph-and-cocoindex/00[5-8]*/spec.md"[90m in . · 4 matches[0m

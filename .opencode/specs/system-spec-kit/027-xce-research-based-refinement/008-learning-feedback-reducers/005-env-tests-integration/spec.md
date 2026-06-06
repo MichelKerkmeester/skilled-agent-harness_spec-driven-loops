@@ -35,7 +35,7 @@ _memory:
 | **Priority** | P0 |
 | **Status** | Spec-Scaffolded |
 | **Parent Packet** | `system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers` |
-| **Depends On** | `001-aggregator`, `002-coco-rerank-consumer`, `003-causal-reducer`, `004-retention-reducer` |
+| **Depends On** | `001-aggregator`, `003-causal-reducer`, `004-retention-reducer` |
 | **Estimated LOC** | ~100 LOC/docs |
 | **Language** | TypeScript + docs |
 <!-- /ANCHOR:metadata -->
@@ -45,7 +45,7 @@ _memory:
 <!-- ANCHOR:problem -->
 ## 2. PROBLEM & PURPOSE
 
-The three feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.
+The two feedback reducer consumers introduce separate default-off flags and cross-consumer safety expectations. This closeout child verifies that flags are documented and integration behavior remains coherent across the reducers.
 <!-- /ANCHOR:problem -->
 
 ---
@@ -54,10 +54,9 @@ The three feedback reducer consumers introduce separate default-off flags and cr
 ## 3. SCOPE
 
 ### In Scope
-- Document `SPECKIT_COCOINDEX_FEEDBACK_RERANK`.
 - Document `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE`.
 - Document `SPECKIT_FEEDBACK_RETENTION_LEARNING` and `SPECKIT_FEEDBACK_RETENTION_MODE`.
-- Add integration tests spanning aggregator plus the three consumers.
+- Add integration tests spanning aggregator plus the two consumers.
 - Verify default-off behavior across all consumers.
 
 ### Out of Scope
@@ -145,7 +144,6 @@ Level 2 is appropriate: this child is implementation-sized, verification-focused
 ## RELATED DOCUMENTS
 
 - `../001-aggregator/spec.md`
-- `../002-coco-rerank-consumer/spec.md`
 - `../003-causal-reducer/spec.md`
 - `../004-retention-reducer/spec.md`
 <!-- /ANCHOR:related-docs -->

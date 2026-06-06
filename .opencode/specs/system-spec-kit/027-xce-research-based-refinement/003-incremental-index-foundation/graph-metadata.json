@@ -204,7 +204,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase is the foundation for incremental indexing. The current system can skip at the file level, but it does not model derived state as a graph of inputs and outputs. CocoIndex shows two transferable ideas: memo records keyed by stable fingerprints and dependency-aware invalidation rather than repeating the entire processing path.",
+    "causal_summary": "This phase is the foundation for incremental indexing. The current system can skip at the file level, but it does not model derived state as a graph of inputs and outputs. Two ideas drive this phase: memo records keyed by stable fingerprints, and dependency-aware invalidation rather than repeating the entire processing path.",
     "created_at": "2026-05-13T09:00:45Z",
     "last_save_at": "2026-06-05T12:47:34.384Z",
     "save_lineage": "graph_only",

@@ -58,14 +58,9 @@ _memory:
 
 | Source | Evidence |
 |--------|----------|
-| `external/cocoindex-main/rust/core/src/state/db_schema.rs:48` | `StablePathEntryKey::ComponentMemoization => e.write_u8(0x20),` shows component-level memo state as a first-class persisted key. |
-| `external/cocoindex-main/rust/core/src/state/db_schema.rs:49` | `StablePathEntryKey::FunctionMemoizationPrefix => e.write_u8(0x30),` separates function memo records from component memo records. |
-| `external/cocoindex-main/rust/core/src/engine/function.rs:33` | `Returned by [reserve_memoization]. Use [cached()]` describes a cache-hit guard around function-call memo entries. |
-| `external/cocoindex-main/rust/core/src/engine/function.rs:108` | `If a cached result exists` establishes the skip-before-execute memoization behavior to port. |
-| `external/cocoindex-main/rust/core/src/engine/component.rs:48` | `Fingerprint of the memoization key. When matching, re-processing can be skipped.` is the direct component-level invariant. |
 | `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-index.ts:436` | `const categorized: CategorizedFiles = incrementalIndex.categorizeFilesForIndexing(files);` shows the current coarse file-level incremental gate. |
 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts:2412` | `parent_id INTEGER REFERENCES memory_index(id) ON DELETE CASCADE,` shows chunk rows already have a parent-child shape to extend. |
-| `research/research.md:234` | Packet 028 scope combines K1.1 and K1.4: canonicalization, memo tables, DAG-aware scan planning, anchor-first chunk rows, and chunk fingerprints. |
+| Design rationale | Incremental indexing needs memo records keyed by stable input fingerprints plus dependency-aware invalidation, so unchanged stages are skipped instead of reprocessing the whole file. |
 <!-- /ANCHOR:metadata -->
 
 ---
@@ -73,7 +68,7 @@ _memory:
 <!-- ANCHOR:phase-context -->
 ## Phase Context
 
-This phase is the foundation for incremental indexing. The current system can skip at the file level, but it does not model derived state as a graph of inputs and outputs. CocoIndex shows two transferable ideas: memo records keyed by stable fingerprints and dependency-aware invalidation rather than repeating the entire processing path.
+This phase is the foundation for incremental indexing. The current system can skip at the file level, but it does not model derived state as a graph of inputs and outputs. Two ideas drive this phase: memo records keyed by stable fingerprints, and dependency-aware invalidation rather than repeating the entire processing path.
 
 **Scope Boundary**: replace the single-pass, whole-file scan behavior with canonical-fingerprint memoization, dependency edges, and chunk-level fingerprints. This packet does not add tree-sitter chunking, async runtime semantics, or multi-LLM extraction.
 

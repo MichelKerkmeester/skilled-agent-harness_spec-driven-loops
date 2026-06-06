@@ -21,10 +21,10 @@ contextType: "implementation"
 _memory:
   continuity:
     packet_pointer: "system-spec-kit/027-xce-research-based-refinement"
-    last_updated_at: "2026-06-04T00:00:00Z"
-    last_updated_by: "markdown-agent"
-    recent_action: "Updated phase-parent control doc so peck-derived planned work is represented as child phase 001."
-    next_safe_action: "001-peck-teachings-adoption/002-self-check-templates"
+    last_updated_at: "2026-06-06T00:00:00Z"
+    last_updated_by: "claude-opus-4-8"
+    recent_action: "Continuation-22 research + CocoIndex purge + Phase-0 drift/vocab reconcile"
+    next_safe_action: "002-memory-write-safety"
     blockers: []
     key_files:
       - "spec.md"
@@ -83,7 +83,7 @@ _memory:
 Spec Kit has coordinated refinement work across memory correctness, indexing, causal graph hygiene, trigger matching, learning feedback, and documentation/process quality. These topics share operational surfaces but have independent delivery risks, so they need a parent control document that points to child phase folders without duplicating implementation detail.
 
 ### Purpose
-Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible. This refinement builds on the completed 026 track-000 release-and-program-cleanup surface. The 026 program parent itself remains In Progress for its other in-flight tracks.
+Coordinate the remaining child phases so each one can be resumed, implemented, and validated independently while the parent keeps the current phase map, high-level scope, and handoff order visible. This refinement builds on the now-completed 026 graph-and-context-optimization program (Status: Complete as of 2026-06-05; track 005 deferred in place).
 
 > **Phase-parent note:** This spec.md is the only REQUIRED authored document at the parent level; optional cross-cutting docs (the `context-index.md` migration bridge and `resource-map.md`) may also live here. All detailed planning, task breakdowns, checklists, decisions, and continuity live inside the child phase folders listed in the Phase Documentation Map below.
 <!-- /ANCHOR:problem -->
@@ -148,7 +148,7 @@ Summary of aggregate file scope. Per-phase detail lives in child plans.
 - Iteration 048 is owned by `006-write-path-reconciliation/`: statediff is an explicit action/subscriber aid, not an implicit source of truth.
 - Iterations 049 and 058 are planned together under `007-semantic-trigger-fallback/`: lexical-first remains primary; semantic expansion stays default-off with resumable backfill and shadow-to-union promotion evidence.
 - Iterations 050 and 059 are planned together under `008-learning-feedback-reducers/`: reducers stay default-off and shadow-first until ledger quality, replay, and consumer-specific gates pass.
-- Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation separate from 028 Coco extras.
+- Iterations 051-057 are cross-cutting planning rules for the child phases: prefer local packet context first, keep context bundles explicit, automate resource maps only with validation, keep reducer repairs idempotent, standardize `/speckit`, refuse stale impact analysis, and keep `memory_context` curation scoped to local memory-backend concerns.
 
 ### Phase Transition Rules
 

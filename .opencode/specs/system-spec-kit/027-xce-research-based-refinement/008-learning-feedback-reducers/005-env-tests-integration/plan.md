@@ -65,7 +65,7 @@ This child does not introduce core reducer logic. It connects the outputs of chi
 ### Phase 2: Integration Tests
 - Cover aggregator plus consumer flag-off behavior.
 - Cover retention active-mode gate.
-- Cover causal reducer active-mutation gate and Coco rerank live-ranking gate.
+- Cover causal reducer active-mutation gate.
 
 ### Phase 3: Closeout
 - Validate all child packets.
@@ -81,8 +81,7 @@ This child does not introduce core reducer logic. It connects the outputs of chi
 |-----------|-------|------|
 | Docs check | Flag names in ENV_REFERENCE | Grep |
 | Integration | TS consumers and aggregator | Vitest |
-| Integration | Coco consumer if applicable | Pytest |
-| Gate matrix | Default-off, shadow, active-without-evidence, active-with-evidence | Vitest/Pytest |
+| Gate matrix | Default-off, shadow, active-without-evidence, active-with-evidence | Vitest |
 <!-- /ANCHOR:testing -->
 
 ---
@@ -93,7 +92,6 @@ This child does not introduce core reducer logic. It connects the outputs of chi
 | Dependency | Type | Status | Impact if Blocked |
 |------------|------|--------|-------------------|
 | `001-aggregator` | Hard internal | Required | Shared foundation absent. |
-| `002-coco-rerank-consumer` | Hard internal | Required | Coco flags/tests absent. |
 | `003-causal-reducer` | Hard internal | Required | Causal flags/tests absent. |
 | `004-retention-reducer` | Hard internal | Required | Retention flags/tests absent. |
 <!-- /ANCHOR:dependencies -->

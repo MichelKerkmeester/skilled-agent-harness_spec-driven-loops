@@ -65,7 +65,7 @@ Retention currently follows rule-based TTL behavior. This child adds a feedback-
 ### Out of Scope
 - Broadening tier floors to auto-derived edges.
 - Active mutation before shadow evaluation.
-- Coco rerank or causal-edge inference.
+- Causal-edge inference.
 <!-- /ANCHOR:scope -->
 
 ---

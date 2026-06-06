@@ -34,8 +34,6 @@ const EXPECTED_RELATIONS = [
 
 const EXPECTED_STATS_RELATIONS = [
   ...EXPECTED_RELATIONS,
-  'produced',
-  'cited_by',
 ] as const;
 
 function parseEnvelope(response: unknown): { envelope: MCPEnvelope; isError: boolean } {

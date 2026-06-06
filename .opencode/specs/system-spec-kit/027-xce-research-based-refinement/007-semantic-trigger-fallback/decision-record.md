@@ -217,7 +217,7 @@ CREATE TABLE memory_trigger_embeddings (
 <!-- ANCHOR:adr-001-context -->
 ### Context
 
-Pt-03 verdict for this phase recommends Level 3 designation. After the 028/005-cocoindex-complete-fork complete-fork insertion, the 5 pt-03 phase children are numbered 007-011. The user's scaffolding directive elevates all 5 to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, shadow-eval evidence gates) that L3 enforces.
+Pt-03 verdict for this phase recommends Level 3 designation. The scaffolding directive elevates this phase to Level 3 regardless of pt-03's per-phase L2/L3 suggestion, citing the cross-component nature of every recommendation and the governance discipline (feature flags, telemetry contracts, shadow-eval evidence gates) that L3 enforces.
 <!-- /ANCHOR:adr-001-context -->
 
 <!-- ANCHOR:adr-001-decision -->

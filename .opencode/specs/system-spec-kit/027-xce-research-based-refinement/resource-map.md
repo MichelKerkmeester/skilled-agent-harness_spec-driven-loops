@@ -71,7 +71,7 @@ _memory:
 |------|--------|--------|------|
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md` | Updated | OK | Parent control doc now lists peck as phase 001 and memory phases as 002-008. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/description.json` | Updated | OK | Parent child list now reflects the desired phase order. |
-| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Updated | OK | Parent children, key files, source docs, and last active child point at `001-peck-teachings-adoption`. |
+| `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/graph-metadata.json` | Updated | OK | Parent children, key files, source docs; last active child is `002-memory-write-safety`. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/context-index.md` | Updated | OK | Historical renumbering record lives here instead of the lean parent spec. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/resource-map.md` | Created | OK | This template-shaped parent-aggregate resource map. |
 | `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/001-peck-teachings-adoption/spec.md` | Updated | OK | Phase-parent metadata now points at the 001 peck folder. |

@@ -17,7 +17,6 @@
   "manual": {
     "depends_on": [
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator",
-      "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/002-coco-rerank-consumer",
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/003-causal-reducer",
       "system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer"
     ]

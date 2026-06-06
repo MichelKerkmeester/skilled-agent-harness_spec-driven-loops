@@ -36,7 +36,7 @@ _memory:
 
 - [ ] T001 Confirm children 001-004 have landed.
 - [ ] T002 Inventory all reducer flags and defaults.
-- [ ] T003 Inventory required promotion evidence for each consumer: Coco ranking, causal edge safety, and retention audit safety.
+- [ ] T003 Inventory required promotion evidence for each consumer: causal edge safety, and retention audit safety.
 <!-- /ANCHOR:phase-1 -->
 
 ---
@@ -48,8 +48,7 @@ _memory:
 - [ ] T005 Add default-off integration tests across consumers.
 - [ ] T006 Add retention active-mode gate test.
 - [ ] T007 Add causal reducer active-mutation gate test.
-- [ ] T008 Add Coco rerank live-ranking gate test.
-- [ ] T009 Add docs grep verification.
+- [ ] T008 Add docs grep verification.
 <!-- /ANCHOR:phase-2 -->
 
 ---

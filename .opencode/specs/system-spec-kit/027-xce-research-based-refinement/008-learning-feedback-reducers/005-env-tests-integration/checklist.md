@@ -76,7 +76,6 @@ P0 items block completion.
 <!-- ANCHOR:docs -->
 ## Documentation
 
-- [ ] CHK-040 [P0] `SPECKIT_COCOINDEX_FEEDBACK_RERANK` documented.
 - [ ] CHK-041 [P0] `SPECKIT_SESSION_TRACE_CAUSAL_INFERENCE` documented.
 - [ ] CHK-042 [P0] `SPECKIT_FEEDBACK_RETENTION_LEARNING` documented.
 - [ ] CHK-043 [P0] `SPECKIT_FEEDBACK_RETENTION_MODE` documented.

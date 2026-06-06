@@ -1,0 +1,65 @@
+# Iteration 066 — path-drift: audit OVERSTATED; only 007 needs repath (002-006/008 already live)
+
+**Executor:** cli-opencode `openai/gpt-5.5-fast` --variant xhigh (read-only). **Status:** complete. **newInfoRatio:** 0.74. **Findings:** 5.
+**Raw analysis:** `research/prompts/iteration-066.out`
+
+### FINDINGS
+
+[F-066-01] Audit drift `lib/causal/ -> lib/storage/` is a bad blanket rule. `lib/causal/` exists and `relation-backfill.ts` lives there; only `causal-edges.ts` and `consolidation.ts` live in `lib/storage/`. Sources: exists `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:142-143`.
+
+[F-066-02] Audit drift `lib/memory/ -> lib/governance/` is only file-specific: `memory-retention-sweep.ts` is live in `lib/governance/`, but `lib/memory/` itself still exists. Sources: exists `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/memory/{audit-rotation.ts,bounded-cache.ts,README.md}`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:144`.
+
+[F-066-03] Audit drift `lib/embeddings/ -> shared/embeddings/` is confirmed for the embedding resolver/factory family: `mcp_server/lib/embeddings/` is absent; `shared/embeddings/{factory.ts,auto-select.ts}` exists. Sources: absent `.opencode/skills/system-spec-kit/mcp_server/lib/embeddings`, exists `.opencode/skills/system-spec-kit/shared/embeddings/factory.ts`, exists `.opencode/skills/system-spec-kit/shared/embeddings/auto-select.ts`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:41`.
+
+[F-066-04] Audit claim `lib/triggers/` absent is confirmed. Existing lexical trigger matcher is `lib/parsing/trigger-matcher.ts`; 007’s planned `lib/triggers/semantic-trigger-matcher.ts` has no live directory/file today. Sources: exists `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`, absent `.opencode/skills/system-spec-kit/mcp_server/lib/triggers/`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md:45`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:108`.
+
+[F-066-05] Audit drift `lib/storage/vector-index-schema.ts -> lib/search/vector-index-schema.ts` is confirmed, and the same 007 storage-to-search correction also applies to `memory-summaries.ts` and `vector-index-store.ts`. Sources: absent `.opencode/skills/system-spec-kit/mcp_server/lib/storage/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/search/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md:36`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md:46`.
+
+### PATH_MAP
+
+canonical file | spec-claimed path | LIVE path | status
+relation-backfill.ts | no current phase affected-file row; audit implied storage | `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts` | OK
+causal-edges.ts | `mcp_server/lib/storage/causal-edges.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/causal-edges.ts` | OK
+consolidation.ts | `mcp_server/lib/storage/consolidation.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/consolidation.ts` | OK
+memory-retention-sweep.ts | `mcp_server/lib/governance/memory-retention-sweep.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts` | OK
+vector-index-schema.ts | mixed: `mcp_server/lib/search/vector-index-schema.ts` in 003/004/005; stale `mcp_server/lib/storage/vector-index-schema.ts` in 007 | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-schema.ts` | STALE where storage-claimed
+incremental-index.ts | `mcp_server/lib/storage/incremental-index.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/storage/incremental-index.ts` | OK
+trigger-matcher.ts | `mcp_server/lib/parsing/trigger-matcher.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts` | OK
+semantic-trigger-matcher.ts | `mcp_server/lib/triggers/semantic-trigger-matcher.ts` | absent; nearest live trigger domain is `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/` | STALE
+batch-learning.ts | `mcp_server/lib/feedback/batch-learning.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/batch-learning.ts` | OK
+feedback-ledger.ts | `mcp_server/lib/feedback/feedback-ledger.ts` / `feedback-ledger.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/feedback-ledger.ts` | OK
+embedding resolver/factory | stale `mcp_server/lib/embeddings/*`; 007 note already says `shared/embeddings/` | `.opencode/skills/system-spec-kit/shared/embeddings/{factory.ts,auto-select.ts}` | STALE where lib/embeddings-claimed
+memory-summaries.ts | `mcp_server/lib/storage/memory-summaries.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/search/memory-summaries.ts` | STALE
+vector-index-store.ts | `mcp_server/lib/storage/vector-index-store.ts` | `.opencode/skills/system-spec-kit/mcp_server/lib/search/vector-index-store.ts` | STALE
+
+### PER_PHASE_REPATH
+
+002-memory-write-safety: none. Current affected paths already live: `mcp_server/lib/storage/causal-edges.ts`, `mcp_server/lib/storage/consolidation.ts`, `mcp_server/lib/governance/memory-retention-sweep.ts`. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:142-144`.
+
+003-incremental-index-foundation: none for existing file families. Current affected paths use live `lib/search/vector-index-schema.ts`, `lib/storage/incremental-index.ts`, `lib/parsing/memory-parser.ts`; planned `memo.ts` and `canonical-fingerprint.ts` are new storage files, not drift. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:139-143`.
+
+004-causal-edge-tombstones: none for existing file families. Current affected paths use live `lib/search/vector-index-schema.ts` and `lib/storage/causal-edges.ts`; `lib/causal/sweep.ts` is planned new under an existing `lib/causal/` directory. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:156-162`.
+
+005-metadata-edge-promoter: none for existing file families. Current affected paths use live `lib/graph/graph-metadata-parser.ts`, `lib/parsing/memory-parser.ts`, `lib/storage/causal-edges.ts`, `lib/search/vector-index-schema.ts`; `lib/causal/frontmatter-promoter.ts` is planned new under existing `lib/causal/`. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/plan.md:99-104`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md:167-171`.
+
+006-write-path-reconciliation: none for existing file families. Current affected paths use live `lib/search/entity-density.ts` and `lib/storage/causal-edges.ts`; `storage/statediff.ts` and `storage/*target*.ts` are planned new. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:156-161`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/plan.md:100-105`.
+
+007-semantic-trigger-fallback: correct `mcp_server/lib/storage/vector-index-schema.ts` -> `mcp_server/lib/search/vector-index-schema.ts`; correct `mcp_server/lib/storage/memory-summaries.ts` -> `mcp_server/lib/search/memory-summaries.ts`; correct `mcp_server/lib/storage/vector-index-store.ts` -> `mcp_server/lib/search/vector-index-store.ts`; correct `mcp_server/lib/embeddings/*` -> `shared/embeddings/{factory.ts,auto-select.ts}`; reconsider `mcp_server/lib/triggers/semantic-trigger-matcher.ts` because `lib/triggers/` is absent and existing trigger code is under `lib/parsing/`. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:41`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md:36-46`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:54-61`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/plan.md:145-164`.
+
+008-learning-feedback-reducers: none for current specs/subphase specs. Current affected paths use live `lib/feedback/` and `lib/search/pipeline/stage4-filter.ts`; legacy resource map still contains stale `lib/storage/vector-index-schema.ts` if retained. Sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:61-62`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/plan.md:32`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/004-retention-reducer/spec.md:57-58`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/001-aggregator/legacy-resource-map.md:166`.
+
+### RULED_OUT
+
+- Ruled out blanket `lib/causal/ -> lib/storage/`: `lib/causal/` exists and contains `relation-backfill.ts` plus `relation-coverage.ts`.
+- Ruled out `lib/memory/` being absent: the directory exists, but it is not the home of `memory-retention-sweep.ts`.
+- Ruled out `trigger-matcher.ts` under `lib/triggers/`: live lexical matcher is `lib/parsing/trigger-matcher.ts`.
+
+### METRICS
+
+newInfoRatio: 0.74
+
+novelty: Consolidates packet-wide drift into file-family-specific truth and corrects the audit’s overbroad `lib/causal` and `lib/memory` claims.
+
+status: complete
+
+sources: `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md:142-144`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md:139-143`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md:156-162`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/plan.md:99-104`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:156-161`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md:41`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/tasks.md:36-46`, `.opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md:61-62`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/causal/relation-backfill.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/storage/{causal-edges.ts,consolidation.ts,incremental-index.ts}`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/governance/memory-retention-sweep.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/search/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/parsing/trigger-matcher.ts`, exists `.opencode/skills/system-spec-kit/mcp_server/lib/feedback/{batch-learning.ts,feedback-ledger.ts}`, exists `.opencode/skills/system-spec-kit/shared/embeddings/{factory.ts,auto-select.ts}`, absent `.opencode/skills/system-spec-kit/mcp_server/lib/{embeddings,triggers,indexing}/`, absent `.opencode/skills/system-spec-kit/mcp_server/lib/storage/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}`.

@@ -54,11 +54,11 @@ Add an OPTIONAL semantic trigger stage to `memory_match_triggers` as a feature-f
 - `mcp_server/lib/parsing/trigger-matcher.ts:201-545, 772-880` — Lexical matching: token/ngram candidate index + boundary regex.
 - `mcp_server/lib/parsing/trigger-matcher.ts:132-160` — Latency budget: <30ms PASS / <50ms WARN / 100ms WARN_EXCEEDED.
 - `mcp_server/handlers/memory-triggers.ts:155-380` — Handler: scope filtering, eval logging, cognitive activation in working memory + co-activation.
-- `mcp_server/lib/cache/embedding-cache.ts:45-215` — Persistent cache keyed by `(content_hash, model_id, dimensions)`; LRU + age eviction, 10000-row cap.
+- `mcp_server/lib/cache/embedding-cache.ts:45-215` — Persistent cache keyed by `(content_hash, profile_key, input_kind, model_id, dimensions)`; LRU + age eviction, 10000-row cap.
 - `mcp_server/handlers/save/embedding-pipeline.ts:114-169` — Save-time lookup-or-generate-and-store pattern.
 - `shared/embeddings/factory.ts` + `shared/embeddings/auto-select.ts` — Provider auto-resolution: local-first, default Ollama `nomic-embed-text-v1.5` (768-dim); remote providers (e.g. Voyage) are explicit/last-resort fallbacks only.
 - `mcp_server/lib/search/embedding-expansion.ts:13-218` — Existing semantic broadening precedent (feature-flagged, fail-closed to identity).
-- `mcp_server/lib/storage/memory-summaries.ts:25-190` — Local cosine helper + BLOB-to-Float32 conversion pattern.
+- `mcp_server/lib/search/memory-summaries.ts:25-190` — Local cosine helper + BLOB-to-Float32 conversion pattern.
 - `mcp_server/lib/cognitive/{tier-classifier,working-memory,attention-decay,co-activation}.ts` — Activation pipeline that consumes trigger results.
 
 ### Adjacent precedents
@@ -142,7 +142,7 @@ Backfill runs OUT OF BAND:
 ### Sub-Phase 1 — Schema + Backfill (~120-160 LOC + tests)
 
 **Files (modified):**
-- `mcp_server/lib/storage/vector-index-schema.ts` — Add `memory_trigger_embeddings` table.
+- `mcp_server/lib/search/vector-index-schema.ts` — Add `memory_trigger_embeddings` table.
 - `mcp_server/handlers/memory-index.ts` — Add per-memory trigger embedding backfill.
 - `mcp_server/handlers/save/embedding-pipeline.ts` — Hook for save-time trigger embedding generation.
 
@@ -206,7 +206,7 @@ Backfill runs OUT OF BAND:
 
 **Files (modified):**
 - `mcp_server/ENV_REFERENCE.md` — Document 5 new flags.
-- `mcp_server/lib/storage/vector-index-schema.ts` — Document new table in schema header comment.
+- `mcp_server/lib/search/vector-index-schema.ts` — Document new table in schema header comment.
 
 **Acceptance:**
 - Trigger goldens: exact match precision = 1.0; paraphrase recall ≥ 0.7 at threshold 0.84; distractor FP rate ≤ 0.05.
@@ -245,7 +245,6 @@ None.
 - Some Sub-Phase 4 work (goldens fixture, threshold-tuning test scaffolding) can run in parallel with Sub-Phase 1.
 
 ### Downstream consumers
-- **028/008-coco-memory-context-extras** (coco-memory context extras) — better trigger candidate set improves curator input quality (RQ-B2 soft dep).
 - **Phase 008** (feedback reducers) — could consume `matchSource` signals to differentiate lexical vs semantic feedback in the future (not v1).
 <!-- /ANCHOR:dependencies -->
 

@@ -206,7 +206,7 @@
         "source": "derived"
       }
     ],
-    "causal_summary": "This phase ports CocoIndex's statediff model into Spec Kit Memory as a storage reconciliation layer. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.",
+    "causal_summary": "This phase introduces a typed target-state (desired/prior) reconciliation layer for Spec Kit Memory's write path. The current system has several reconciliation fragments: scan categorization, stale cleanup, alias divergence handling, embedding cache writes, FTS and BM25 updates, causal graph mutation, and post-mutation cache hooks. They should not all remain inline branches inside handlers.",
     "created_at": "2026-05-13T09:00:48Z",
     "last_save_at": "2026-06-05T12:47:34.390Z",
     "save_lineage": "graph_only",

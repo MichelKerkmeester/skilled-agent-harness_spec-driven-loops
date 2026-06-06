@@ -65,7 +65,6 @@ This child provides the shared foundation aggregation by reusing/extending the e
 - Add focused tests for formula behavior and run-twice idempotency.
 
 ### Out of Scope
-- Python coco rerank persistence.
 - Causal-edge creation.
 - Retention mutation or sweep integration.
 - ENV_REFERENCE flag documentation.
@@ -152,5 +151,5 @@ Level 2 is appropriate: this child is implementation-sized, verification-focused
 
 - Parent phase map: `../spec.md`
 - Preserved legacy context: `legacy-decision-record.md`, `legacy-resource-map.md`
-- Consumer children: `../002-coco-rerank-consumer/`, `../003-causal-reducer/`, `../004-retention-reducer/`
+- Consumer children: `../003-causal-reducer/`, `../004-retention-reducer/`
 <!-- /ANCHOR:related-docs -->

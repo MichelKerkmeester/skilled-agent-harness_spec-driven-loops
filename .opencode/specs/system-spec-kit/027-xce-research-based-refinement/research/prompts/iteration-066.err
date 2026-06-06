@@ -1,0 +1,40 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"DEEP-RESEARCH Iteration 066 packet-wide path-drift map live corrected for specs/system-spec-kit/027-xce-research-based-refinement. Read-only. Need authoritative old to live path map for system-spec-kit mcp_server/lib file families and per phase stale affected-file paths.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m→ [0mSkill "deep-research"
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/storage[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/causal[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/governance[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/search[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/parsing[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/graph[90m [offset=0, limit=200][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/indexing failed[90m [offset=0, limit=200][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/indexing
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/feedback[90m [offset=0, limit=200][0m
+[0m✗ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/embeddings failed[90m [offset=0, limit=200][0m
+[91m[1mError: [0mFile not found: /Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.opencode/skills/system-spec-kit/mcp_server/lib/embeddings
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared[90m [offset=0, limit=200][0m
+[0m✱ [0mGrep "mcp_server/lib/(causal|storage|memory|governance|embeddings|search|triggers|parsing|indexing|feedback|graph)/[^\s`\])]+"[90m in specs/system-spec-kit/027-xce-research-based-refinement · 351 matches[0m
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/**/{spec.md,plan.md,tasks.md,implementation-summary.md,research.md}"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/**/{relation-backfill.ts,causal-edges.ts,consolidation.ts,memory-retention-sweep.ts,vector-index-schema.ts,incremental-index.ts,trigger-matcher.ts,batch-learning.ts,feedback-ledger.ts,*embedding*resolver*.ts,*resolver*.ts}"[90m in . · 13 matches[0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/mcp_server/lib/memory[90m [offset=0, limit=200][0m
+[0m→ [0mRead .opencode/skills/system-spec-kit/shared/embeddings[90m [offset=0, limit=200][0m
+[0m✱ [0mGrep "(resolve|resolver|auto-select|factory|embedding provider|embedding profile|embedder)"[90m in .opencode/skills/system-spec-kit/shared/embeddings · 209 matches[0m
+[0m✱ [0mGrep "(embeddingResolver|embedding resolver|resolveEmbedding|create.*Embedding|auto-select|factory)"[90m in .opencode/skills/system-spec-kit/mcp_server · 102 matches[0m
+[0m✱ [0mGrep "(relation-backfill|causal-edges|consolidation|memory-retention-sweep|vector-index-schema|incremental-index|trigger-matcher|batch-learning|feedback-ledger|embedding|embeddings|mcp_server/lib/triggers|mcp_server/lib/memory|mcp_server/lib/embeddings|mcp_server/lib/storage/vector-index|mcp_server/lib/storage/memory-summaries|mcp_server/lib/storage/vector-index-store)"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement · 723 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/{002-memory-write-safety,003-*,004-*,005-*,006-*,007-*,008-*}/**/{spec.md,plan.md,tasks.md,decision-record.md,resource-map.md,implementation-summary.md}"[90m in . · 47 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety · 17 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation · 13 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones · 11 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation · 6 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter · 16 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback · 34 matches[0m
+[0m✱ [0mGrep "mcp_server/lib/[^\s`\])]+"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers · 40 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/storage/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/{triggers,embeddings,indexing}/**/*"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "(mcp_server/lib/storage/vector-index-schema|mcp_server/lib/storage/memory-summaries|mcp_server/lib/storage/vector-index-store|mcp_server/lib/embeddings|mcp_server/lib/memory|mcp_server/lib/triggers)"[90m in .opencode/specs/system-spec-kit/027-xce-research-based-refinement/{002-memory-write-safety,003-incremental-index-foundation,004-causal-edge-tombstones,005-metadata-edge-promoter,006-write-path-reconciliation,007-semantic-trigger-fallback,008-learning-feedback-reducers} · 0 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/memory/**/*"[90m in . · 3 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/shared/embeddings/{factory.ts,auto-select.ts}"[90m in . · 2 matches[0m
+[0m✱ [0mGlob ".opencode/skills/system-spec-kit/mcp_server/lib/search/{vector-index-schema.ts,memory-summaries.ts,vector-index-store.ts}"[90m in . · 3 matches[0m

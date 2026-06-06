@@ -1,0 +1,42 @@
+I’ll keep this read-only and bounded: first surface any stored spec context, then inspect the named code/spec files and exact absence patterns.
+SKILL ROUTING: deep-research recommended by advisor (confidence 0.826); applying its LEAF/read-only constraints and not using sub-agents or edits.
+The broad absence grep only returned unrelated `reconcile` usages, so I’m narrowing the search to statediff-specific tokens and the async-enrichment call sites.
+### FINDINGS
+
+[F-070-01] No statediff/DiffAction implementation exists yet. Narrow grep for `DiffAction|statediff|target.*sink|TrackingRecordTransition` under `mcp_server/lib/` and `mcp_server/handlers/` returned no files; glob for `**/statediff*.ts` and `**/*target*.ts` also returned no files. The spec still only declares future files/sinks: `lib/storage/statediff.ts`, `memory-save.ts`, and target files. `spec.md:21-24`, `spec.md:90-95`, `spec.md:152-163`
+
+[F-070-02] The live save path commits durable memory state first, then marks enrichment pending inside the same write transaction. `memory_save` creates/appends the row, records lineage, then calls `markEnrichmentPending(...)` before transaction return. `memory-save.ts:2591-2635`
+
+[F-070-03] Async enrichment is default-on/deferred. The feature flag is default true, async is default true, and `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true` is only an escape hatch. Default save schedules background work and returns `buildDeferredEnrichmentResult('async-background')`. `search-flags.ts:147-163`, `memory-save.ts:2684-2702`, `post-insert.ts:600-625`
+
+[F-070-04] Pending-marker replay is the recovery/enrichment contract. Pending/partial/failed markers are repairable; replay re-parses committed content, runs post-insert enrichment, then records complete/partial/failed state. `enrichment-state.ts:159-171`, `enrichment-state.ts:197-228`, `enrichment-state.ts:235-264`
+
+[F-070-05] Graph/entity enrichment belongs in the deferred lane, not the synchronous row-write reconciliation. The enrichment bundle performs causal links, entity extraction, summaries, entity linking, and graph lifecycle later; background scheduling is bounded, skips inactive rows, records enrichment result, and leaves pending markers for backfill if dropped. `post-insert.ts:539-568`, `memory-save.ts:2843-2882`
+
+[F-070-06] The 006 spec already encodes the right local desired/prior model, but still carries CocoIndex/statediff provenance vocabulary that should be stripped per rescope. Keep local `DiffAction` requirements and REQ-010 async wording; remove external CocoIndex research-basis framing. `spec.md:58-67`, `spec.md:112-115`, `spec.md:124-143`, `spec.md:175-180`
+
+### RESCOPE_006
+
+- Build 006 as a local typed `DiffAction[]` reconciliation layer for durable parent/child memory rows and synchronous projections, not as a port of external statediff vocabulary.
+- Hook point for `memory_save`: after semantic policy gates/dedup/reconsolidation decisions, before/inside the synchronous DB write transaction that currently creates rows, retires predecessors, records lineage, and marks enrichment pending. `memory-save.ts:2534-2640`
+- The sync action batch should include durable row actions plus the pending-marker write as a first-class durable state transition.
+- Subscribers should consume applied sync action batches for cache/hygiene feedback after durable commit.
+- Generated graph/entity edges should be reconciled from the deferred enrichment path: background scheduler or replay/backfill computes/applies its own action batch after the row exists.
+- Do not make “same-response graph writes” a 006 acceptance target. They are only technically possible through `SPECKIT_POST_INSERT_ENRICHMENT_SYNC=true`, not the default shipped model. `search-flags.ts:156-163`, `memory-save.ts:2684-2690`
+
+### VERDICT
+
+006 = NEEDS-RESCOPE + keep local DiffAction row reconciliation, move graph/enrichment reconciliation to async pending-marker replay.
+
+### RULED_OUT
+
+- Same-response graph writes as the default `memory_save` conversion target.
+- Treating subscribers as durable desired/prior state.
+- Porting CocoIndex/statediff vocabulary or research-basis text into the implementation contract.
+
+### METRICS
+
+newInfoRatio: 0.72  
+novelty: Confirmed the implementation is absent and pinned the 006 hook split to sync durable-row actions vs async enrichment replay.  
+status: complete  
+sources: `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2534`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2633`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2684`, `.opencode/skills/system-spec-kit/mcp_server/handlers/memory-save.ts:2860`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:539`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/post-insert.ts:600`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:159`, `.opencode/skills/system-spec-kit/mcp_server/handlers/save/enrichment-state.ts:197`, `.opencode/skills/system-spec-kit/mcp_server/lib/search/search-flags.ts:147`, `specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:58`, `specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:112`, `specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md:175`

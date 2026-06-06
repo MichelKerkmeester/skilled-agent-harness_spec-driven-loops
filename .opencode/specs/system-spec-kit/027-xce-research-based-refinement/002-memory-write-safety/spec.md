@@ -1,6 +1,6 @@
 ---
 title: "002 — Memory Write Safety"
-description: "Carve out the three P0 correctness fixes from 027/009 Sub-Phase 1 so causal-edge provenance, manual-edge protection, and retention sweep tier floors ship before code_graph phases and before learning reducers."
+description: "Carve out the three P0 correctness fixes (causal-edge provenance, manual-edge protection, retention sweep tier floors) so they ship before the 027/008 learning reducers."
 trigger_phrases:
   - "027 phase 002"
   - "feedback P0 correctness"
@@ -61,7 +61,7 @@ Source context:
 | **Parent Packet** | `027-xce-research-based-refinement` |
 | **Source** | `../research/027-xce-research-pt-04/research.md`; original scope in `../009-feedback-reducers/spec.md` Sub-Phase 1 |
 | **Depends on** | None |
-| **Ships before** | `028/001-code-graph-hld-lld`, `028/002-code-graph-trace`, `028/003-code-graph-impact-analysis`, and `027/009-feedback-reducers` |
+| **Ships before** | the learning reducers in `027/008-learning-feedback-reducers` (hard dependency). Independent of the code-graph adoption work formerly numbered `028/*` (now under `z_future/code-graph-and-cocoindex`). |
 | **LOC budget** | ~50-80 production + ~60-100 tests |
 | **Branch** | `main` |
 | **Created** | 2026-05-11 |
@@ -129,7 +129,6 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 ### Out of Scope
 
 - New learning reducers from 009 Sub-Phases 2-5.
-- Coco rerank feedback weights.
 - Session-trace causal inference creation logic beyond making future `auto-session` provenance safe.
 - Learned retention extension/protection policy beyond preventing unsafe deletion in the existing sweep.
 - Any code_graph phase implementation.
@@ -181,7 +180,7 @@ createdBy === "auto" || createdBy.startsWith("auto-")
 - **SC-003**: Expired constitutional and critical memory rows are skipped or protected by retention sweep rather than deleted.
 - **SC-004**: Existing retention deletion behavior still deletes unprotected expired rows.
 - **SC-005**: Focused causal and retention tests pass, plus the repo's OpenCode verification command selected during implementation.
-- **SC-006**: `027/009-feedback-reducers` can safely depend on this packet for Sub-Phase 1 completion.
+- **SC-006**: `027/008-learning-feedback-reducers` can safely depend on this packet for its P0 safety preconditions.
 <!-- /ANCHOR:success-criteria -->
 
 ---

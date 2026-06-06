@@ -66,7 +66,6 @@ Session traces already record `search_shown` and `result_cited` events, but thos
 ### Out of Scope
 - Live per-event reducer firing.
 - Retention learning.
-- Coco rerank learning.
 <!-- /ANCHOR:scope -->
 
 ---

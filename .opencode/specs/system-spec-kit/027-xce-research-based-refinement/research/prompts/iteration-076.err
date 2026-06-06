@@ -1,0 +1,41 @@
+[0m
+> build · gpt-5.5-fast
+[0m
+[0m→ [0mSkill "deep-research"
+[0m⚙ [0mmk-spec-memory_memory_match_triggers {"prompt":"Deep-Research Iteration 076: determine whether external/xce-mcp is exhausted for specs/system-spec-kit/027-xce-research-based-refinement memory-system scope phases 002-008; read-only no edits.","specFolder":"specs/system-spec-kit/027-xce-research-based-refinement","tenantId":"","userId":"","agentId":"","limit":3,"session_id":"","turnNumber":1,"include_cognitive":false}
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/external/xce-mcp/steering/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/[0-9][0-9][0-9]-*/spec.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/external/xce-mcp/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "specs/system-spec-kit/027-xce-research-based-refinement/[0-9][0-9][0-9]-*/description.json"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/xce-mcp/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/xce-mcp/steering/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/[0-9][0-9][0-9]-*/spec.md"[90m in . · 8 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/[0-9][0-9][0-9]-*/description.json"[90m in . · 8 matches[0m
+[0m✱ [0mGlob "**/external/xce-mcp/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/external/xce-mcp/steering/*"[90m in . · 0 matches[0m
+[0m✱ [0mGrep "xce_get_context|xce_architecture_context|xce_search|xce_trace|xce_impact_analysis"[90m in . · 73 matches[0m
+[0m✱ [0mGrep "mcp\.xanther\.ai|XCE|PRAT|xanther"[90m in . · 627 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob ".opencode/specs/system-spec-kit/027-xce-research-based-refinement/external/steering/*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/027-xce-research-based-refinement/**/external/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/027-xce-research-based-refinement/**/README.md"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "**/027-xce-research-based-refinement/**/external/steering/*"[90m in . · 0 matches[0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/003-incremental-index-foundation/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/002-memory-write-safety/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/004-causal-edge-tombstones/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/006-write-path-reconciliation/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/005-metadata-edge-promoter/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/007-semantic-trigger-fallback/spec.md[90m [offset=1, limit=120][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/008-learning-feedback-reducers/spec.md[90m [offset=1, limit=140][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/findings.md[90m [offset=1, limit=90][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-004.md[90m [offset=20, limit=30][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-006.md[90m [offset=42, limit=30][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md[90m [offset=36, limit=25][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md[90m [offset=138, limit=35][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/deep-research-strategy.md[90m [offset=390, limit=8][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-042.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md[90m [offset=136, limit=15][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-051.md[90m [offset=1, limit=45][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-056.md[90m [offset=1, limit=35][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/research/iterations/iteration-039.md[90m [offset=150, limit=20][0m
+[0m→ [0mRead .opencode/specs/system-spec-kit/027-xce-research-based-refinement/spec.md[90m [offset=126, limit=14][0m
