@@ -33,7 +33,7 @@ The sweeper preserves `devin --print`, Ollama, live Claude Code descendants, the
 
 ### Edge Cases & Caveats
 
-`.opencode/scripts/claude-session-cleanup.sh` is the session-scoped counterpart. It walks descendants of `CLAUDE_SESSION_PID` or the hook process `PPID`, logs to `~/.local/share/claude-stop-hook.log`, and only sends SIGTERM to matching MCP helpers.
+`.opencode/scripts/claude-session-cleanup.sh` is the session-scoped counterpart. It requires `CLAUDE_SESSION_PID` (no PPID fallback — under a shared terminal that ancestor is common to many sessions, and guessing it turned scoped cleanup into a cross-session kill), re-proves each candidate's ancestry against the session pid immediately before the kill, logs to `~/.local/share/claude-stop-hook.log` with `matched_by=`/`ancestor_ok=` fields, and only sends SIGTERM to matching MCP helpers. Without session identity it deliberately does nothing.
 
 `.opencode/scripts/launchagents/com.michelkerkmeester.orphan-sweep.plist` is a versioned LaunchAgent template. It is not copied to `~/Library/LaunchAgents` and is not loaded by default. LaunchAgent activation remains a separate operator-approved rollout step.
 

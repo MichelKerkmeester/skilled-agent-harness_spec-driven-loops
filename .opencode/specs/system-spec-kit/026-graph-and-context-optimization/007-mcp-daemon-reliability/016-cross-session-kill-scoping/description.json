@@ -1,0 +1,27 @@
+{
+  "level": "1",
+  "specFolder": "specs/system-spec-kit/026-graph-and-context-optimization/007-mcp-daemon-reliability/016-cross-session-kill-scoping",
+  "description": "Cross-session kill scoping for session-cleanup + post-crash integrity gate + live index salvage",
+  "keywords": [
+    "session",
+    "cleanup",
+    "kill",
+    "scoping",
+    "integrity",
+    "quick_check",
+    "salvage"
+  ],
+  "lastUpdated": "2026-06-06T16:59:22.786Z",
+  "specId": "016",
+  "folderSlug": "cross-session-kill-scoping",
+  "parentChain": [
+    "specs",
+    "system-spec-kit",
+    "026-graph-and-context-optimization",
+    "007-mcp-daemon-reliability"
+  ],
+  "memorySequence": 1,
+  "memoryNameHistory": [
+    "06-06-26_17-59__no-ppid-fallback-missing-session-identity-means.md"
+  ]
+}

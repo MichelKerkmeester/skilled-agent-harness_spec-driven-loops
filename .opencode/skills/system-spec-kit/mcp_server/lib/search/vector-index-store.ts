@@ -872,6 +872,31 @@ function write_needs_rebuild_sentinel_for_recovered_restore(target_path: string,
   }
 }
 
+function write_needs_rebuild_sentinel_for_corruption(target_path: string, detail: string): void {
+  // Same atomic temp+rename discipline as the restore-recovery writer: a crash
+  // mid-write must never leave a torn sentinel that half-triggers a rebuild.
+  const sentinel_path = get_needs_rebuild_sentinel_path(target_path);
+  if (!sentinel_path) {
+    return;
+  }
+  try {
+    const sentinel_dir = path.dirname(sentinel_path);
+    fs.mkdirSync(sentinel_dir, { recursive: true });
+    const temp_sentinel_path = `${sentinel_path}.tmp.${process.pid}`;
+    fs.writeFileSync(temp_sentinel_path, `${JSON.stringify({
+      formatVersion: 1,
+      createdAt: new Date().toISOString(),
+      source: 'post_crash_integrity_probe',
+      reason: detail,
+    }, null, 2)}\n`, { mode: 0o600 });
+    fsync_file_if_possible(temp_sentinel_path);
+    fs.renameSync(temp_sentinel_path, sentinel_path);
+    fsync_directory_if_possible(sentinel_dir);
+  } catch (error: unknown) {
+    console.warn(`[vector-index] Failed to write needs-rebuild sentinel after integrity probe: ${get_error_message(error)}`);
+  }
+}
+
 function read_restore_journal(journal_path: string): RestoreJournalFile | null {
   try {
     const parsed = JSON.parse(fs.readFileSync(journal_path, 'utf-8')) as Partial<RestoreJournalFile>;
@@ -1559,6 +1584,34 @@ export function initialize_db(custom_path: string | null = null, options: Initia
   new_db.pragma('synchronous = NORMAL');
   new_db.pragma('wal_autocheckpoint = 256');
   new_db.pragma('temp_store = MEMORY');
+
+  // A marker still present at open means the previous holder died without a
+  // clean close — the one window where on-disk corruption (torn WAL, partial
+  // page) is plausible. Probe integrity ONLY in that window so clean boots pay
+  // nothing, and fail fast onto the checkpoint rebuild path rather than serve
+  // a malformed database to every connected session.
+  if (target_path !== ':memory:') {
+    const prior_marker_path = get_unclean_shutdown_marker_path(target_path);
+    if (prior_marker_path && fs.existsSync(prior_marker_path)) {
+      let probe_verdict = 'ok';
+      try {
+        const rows = new_db.pragma('quick_check(1)') as Array<Record<string, unknown>>;
+        const first = rows?.[0] ? Object.values(rows[0])[0] : undefined;
+        probe_verdict = typeof first === 'string' ? first : 'quick_check returned no verdict';
+      } catch (probe_error: unknown) {
+        probe_verdict = get_error_message(probe_error);
+      }
+      if (probe_verdict !== 'ok') {
+        const msg = `post-crash integrity probe failed: ${probe_verdict}`;
+        console.error(`[vector-index] FATAL: ${msg}`);
+        console.error('[vector-index] Wrote checkpoint needs-rebuild sentinel; the next boot rebuilds cleanly instead of serving corrupted data.');
+        write_needs_rebuild_sentinel_for_corruption(target_path, probe_verdict);
+        try { new_db.close(); } catch (_: unknown) { /* best-effort */ }
+        throw new VectorIndexError(msg, VectorIndexErrorCode.INTEGRITY_ERROR);
+      }
+    }
+  }
+
   write_unclean_shutdown_marker(target_path);
 
   if (target_path !== ':memory:') {

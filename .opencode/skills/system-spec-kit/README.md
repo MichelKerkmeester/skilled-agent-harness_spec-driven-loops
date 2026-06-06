@@ -901,7 +901,7 @@ bash .opencode/skills/system-spec-kit/scripts/spec/upgrade-level.sh \
 
 **What you see**: `memory_health` returns a status of `corrupt` or the server logs show `FTS5 SHADOW INDEX CORRUPTION DETECTED` at boot.
 
-**What happens**: At boot the server checks `memory_fts` integrity only when the `.unclean-shutdown` crash marker is present. If the check fails and the previous shutdown was unclean the server logs the corruption and continues in a degraded state (BM25/FTS5 searches return empty or partial results). Auto-rebuild is detect-only: no automatic repair is attempted.
+**What happens**: At boot, when the `.unclean-shutdown` crash marker is present, the server runs two probes. A whole-database `PRAGMA quick_check` guards the main index: on failure it writes the checkpoint `.needs-rebuild` sentinel and refuses to start rather than serve corrupted data. The `memory_fts` shadow check remains detect-only: a failure there is logged and the server continues in a degraded state (BM25/FTS5 searches return empty or partial results). Clean shutdowns skip both probes.
 
 **Fix**:
 
