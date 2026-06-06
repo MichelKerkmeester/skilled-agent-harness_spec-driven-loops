@@ -1,0 +1,386 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/001-interactive-auth.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/interactive-auth.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/002-direct-token.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/direct-token.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/003-workspace-default.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/workspace-default.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/004-list-default.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/list-default.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/005-show-config.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/show-config.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/006-clear-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/clear-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/007-auth-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/auth-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/008-logout.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/logout.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/009-list-assigned.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/list-assigned.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/010-filter-today.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-today.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/011-filter-week.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-week.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/012-filter-overdue.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-overdue.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/013-filter-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/014-exclude-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/exclude-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/015-filter-team.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/filter-team.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/016-all-tasks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/all-tasks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/017-mine-only.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/mine-only.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/018-cap-results.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/cap-results.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/019-verbose.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/verbose.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/020-json-output.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/json-output.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/021-offline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/offline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/022-stacked-filters.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/stacked-filters.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/023-show-task.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/show-task.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/024-show-notes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/show-notes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/025-show-offline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/show-offline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/026-task-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/task-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/027-status-schema.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/status-schema.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/028-status-by-list.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/status-by-list.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/029-mark-complete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/mark-complete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/030-dry-run.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/dry-run.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/031-complete-with-note.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/complete-with-note.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/032-auto-note.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/auto-note.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/033-add-comment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/add-comment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/034-list-comments.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/list-comments.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/035-start-timer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/start-timer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/036-stop-timer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/stop-timer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/037-log-manual.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/log-manual.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/038-timer-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/timer-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/039-add-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/add-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/040-remove-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/remove-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/041-list-attachments.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/list-attachments.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/042-upload-file.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/upload-file.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/043-download-file.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/download-file.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/044-list-teams.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/list-teams.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/045-task-summary.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/task-summary.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/046-prefetch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/prefetch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/047-json-flag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/json-flag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/048-offline-flag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/offline-flag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/049-debug-flag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/debug-flag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/050-version-flag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/version-flag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/051-create-task.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/create-task.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/052-get-task.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/get-task.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/053-update-task.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/update-task.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/054-delete-task.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/delete-task.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/055-search-tasks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/search-tasks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/056-get-workspace.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/get-workspace.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/057-manage-comments.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/manage-comments.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/058-create-bulk-tasks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/create-bulk-tasks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/059-update-bulk-tasks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/update-bulk-tasks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/060-create-subtask.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-subtask.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/061-task-dependencies.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/task-dependencies.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/062-create-task-link.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-task-link.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/063-multi-list.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/multi-list.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/064-task-attachments.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/task-attachments.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/065-manage-lists.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-lists.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/066-manage-spaces.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-spaces.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/067-manage-folders.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-folders.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/068-custom-fields.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/custom-fields.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/069-add-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/add-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/070-remove-tag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/remove-tag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/071-space-tags.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/space-tags.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/072-get-views.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/get-views.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/073-create-document.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/create-document.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/074-get-document.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/get-document.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/075-update-document.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/update-document.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/076-time-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/time-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/077-manage-goals.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/manage-goals.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/078-get-dependencies.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/get-dependencies.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/079-use-template.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/use-template.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/080-manage-chat.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-chat.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/081-manage-webhooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-webhooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/082-user-groups.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/user-groups.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/083-manage-guests.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/manage-guests.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/084-audit-logs.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/audit-logs.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/085-feedback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/feedback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/086-create-checklist.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/create-checklist.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/087-update-checklist.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/update-checklist.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/088-delete-checklist.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/delete-checklist.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/089-create-checklist-item.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/create-checklist-item.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/090-update-checklist-item.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/update-checklist-item.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/091-delete-checklist-item.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/delete-checklist-item.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/092-get-doc-pages.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/get-doc-pages.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/093-create-doc-page.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/create-doc-page.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/094-update-doc-page.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/update-doc-page.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/095-get-custom-fields.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/get-custom-fields.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/096-set-custom-field.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/set-custom-field.md"
+  }
+]

@@ -1,0 +1,130 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/002-advisor-routes-council-prompts-to-skill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/01--runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/02--council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/02--council-deliberation-and-seat-diversity/004-cross-seat-critique-blocks-premature-convergence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/02--council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/006-state-jsonl-records-council-complete-event.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/03--artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/008-two-of-three-agree-triggers-convergence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/011-graph-support-derived-and-scoped.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/graph-support-derived-and-scoped.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/05--scope-boundaries/planning-only-boundary-rejects-implementation-writes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/depth-detection-parallel-vs-sequential.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/014-resume-after-interrupted-state.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/06--depth-and-failure-handling/resume-after-interrupted-state.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/015-library-writer-call-sequence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/library-writer-call-sequence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/016-five-dimension-scoring-rubric-application.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/five-dimension-scoring-rubric-application.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/hunter-skeptic-referee-cross-critique.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/018-out-of-scope-write-rejection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/07--writer-library-contract/out-of-scope-write-rejection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/019-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-upsert-empty-input-no-op-success.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-query-hostile-metadata-redaction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/022-council-graph-query-five-modes-prompt-safe-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-convergence-three-state-decision-matrix.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-status-recovery-payload-and-readiness.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/08--council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/031-hot-topic-discovery-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/manual_testing_playbook/09--council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md"
+  }
+]

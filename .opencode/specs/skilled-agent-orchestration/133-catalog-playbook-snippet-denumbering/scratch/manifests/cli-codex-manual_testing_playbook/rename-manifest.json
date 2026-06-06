@@ -1,0 +1,110 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/001-default-invocation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/default-invocation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/002-gpt-5-5-model-lock.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/gpt-5-5-model-lock.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/003-codex-exec-review.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/codex-exec-review.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/004-explicit-fast-service-tier.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/explicit-fast-service-tier.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/005-read-only-sandbox.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/read-only-sandbox.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/006-workspace-write-sandbox.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/workspace-write-sandbox.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/007-danger-full-access-sandbox.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/danger-full-access-sandbox.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/008-approval-policies.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/approval-policies.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/009-low-minimal-none-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/low-minimal-none-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/010-medium-skill-default.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/medium-skill-default.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/011-high-xhigh-override.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/high-xhigh-override.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/012-review-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/review-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/013-context-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/context-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/014-debug-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/debug-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/015-multi-ai-council-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/multi-ai-council-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/016-research-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/research-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/017-full-auto-hooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/full-auto-hooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/018-session-resume-fork.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/session-resume-fork.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/019-generate-review-fix-cycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/generate-review-fix-cycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/020-web-search.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/web-search.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/021-image-input.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/image-input.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/022-prompt-templates-inventory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/prompt-templates-inventory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/023-clear-scoring-quality-card.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/clear-scoring-quality-card.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/024-review-tui-command.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/review-tui-command.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/025-search-exec-mode.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/search-exec-mode.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/026-mcp-server-registration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/mcp-server-registration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/09--codex-cloud/027-codex-cloud-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/09--codex-cloud/codex-cloud-dispatch.md"
+  }
+]

@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/002-migration-tooling-and-dry-run",
   "description": "Feature Specification: Migration Tooling & Dry-Run",
   "keywords": [
@@ -8,7 +9,7 @@
     "tooling",
     "dry-run"
   ],
-  "lastUpdated": "2026-06-06T06:46:02.552Z",
+  "lastUpdated": "2026-06-06T10:04:29.220Z",
   "specId": "002",
   "folderSlug": "migration-tooling-and-dry-run",
   "parentChain": [
@@ -18,6 +19,5 @@
     "133-catalog-playbook-snippet-denumbering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

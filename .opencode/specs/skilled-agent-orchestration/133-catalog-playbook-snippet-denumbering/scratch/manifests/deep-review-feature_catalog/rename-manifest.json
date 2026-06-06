@@ -1,0 +1,110 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/001-initialization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/initialization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/002-iteration-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/iteration-dispatch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/003-convergence-check.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/convergence-check.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/004-synthesis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/synthesis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/005-memory-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/memory-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/resource-map-emission.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/007-resource-map-coverage-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/resource-map-coverage-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/008-executor-selection-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/executor-selection-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/009-fanout-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/fanout-dispatch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/010-jsonl-state-log.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/jsonl-state-log.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/011-strategy-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/strategy-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/012-config-management.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/config-management.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/013-findings-registry.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/findings-registry.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/014-dashboard.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/dashboard.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/015-graph-convergence-event.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/graph-convergence-event.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/016-pause-sentinel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/pause-sentinel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/017-correctness.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/correctness.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/018-security.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/security.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/019-traceability.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/traceability.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/020-maintainability.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/maintainability.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/021-severity-classification.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/severity-classification.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/022-adversarial-self-check.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/adversarial-self-check.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/023-claim-adjudication.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/claim-adjudication.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/024-verdicts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/verdicts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/025-quality-gates.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/quality-gates.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/026-convergence-signals.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/convergence-signals.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/027-security-sensitive-fix-overrides.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/security-sensitive-fix-overrides.md"
+  }
+]

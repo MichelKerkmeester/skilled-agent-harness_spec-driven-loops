@@ -1,0 +1,106 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/001-list-tools-enumeration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/list-tools-enumeration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/002-search-tools-relevance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/search-tools-relevance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/tool-info-schema.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/004-call-tool-chain-execution.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/call-tool-chain-execution.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/005-correct-manual-tool-form.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/correct-manual-tool-form.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/006-wrong-form-error.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/wrong-form-error.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/list-tools-dot-vs-underscore.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/008-prefixed-env-load.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/prefixed-env-load.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/009-unprefixed-env-not-found.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/unprefixed-env-not-found.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/010-validate-config-script.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/validate-config-script.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/011-sequential-chain.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/sequential-chain.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/012-promise-all-parallel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/promise-all-parallel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/013-try-catch-error-path.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/try-catch-error-path.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/clickup-create-read-delete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/chrome-navigate-screenshot.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/sibling-pair-handover.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/017-figma-file-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/figma-file-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/018-myservice-list-sites.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/myservice-list-sites.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/019-github-list-user-repos.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/github-list-user-repos.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/020-notion-search-workspace.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/notion-search-workspace.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/021-invalid-config-error.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/invalid-config-error.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/022-disabled-server-omitted.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/disabled-server-omitted.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/023-timeout-escalation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/timeout-escalation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/024-deregister-reregister-cycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/deregister-reregister-cycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/025-partial-chain-rollback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/partial-chain-rollback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/026-missing-manual-entry.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/missing-manual-entry.md"
+  }
+]

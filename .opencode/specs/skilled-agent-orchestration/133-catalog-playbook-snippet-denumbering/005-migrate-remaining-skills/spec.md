@@ -22,7 +22,7 @@ _memory:
       fingerprint: "sha256:0000000000000000000000000000000000000000000000000000000000000000"
       session_id: "scaffold-session"
       parent_session_id: null
-    completion_pct: 0
+    completion_pct: 100
     open_questions: []
     answered_questions: []
 ---
@@ -40,7 +40,7 @@ _memory:
 |-------|-------|
 | **Level** | 2 |
 | **Priority** | P1 |
-| **Status** | Planned (tasks/checklist populated on entry) |
+| **Status** | Complete |
 | **Created** | 2026-06-06 |
 | **Branch** | `main` |
 <!-- /ANCHOR:metadata -->
@@ -119,6 +119,31 @@ Finish the snippet migration by de-numbering the remaining skills in parallel, t
 | Risk | sk-doc migrating its OWN playbook while it defines the standard | Low | Phase 001 already shipped the standard; sk-doc playbook is just another tree |
 | Dependency | Phase 002 tool | Blocking | Must be green |
 <!-- /ANCHOR:risks -->
+
+---
+
+<!-- ANCHOR:nfr -->
+## L2: NON-FUNCTIONAL REQUIREMENTS
+
+### Reliability
+- **NFR-R01**: Rename history preserved (git R-status); no data loss.
+
+### Security
+- **NFR-S01**: Renames performed in an isolated worktree; no secrets touched.
+<!-- /ANCHOR:nfr -->
+
+---
+
+<!-- ANCHOR:edge-cases -->
+## L2: EDGE CASES
+
+### Data Boundaries
+- Digit-initial slugs (e.g. `4-stage-pipeline-architecture.md`) preserved — only the leading NNN- sequence prefix is stripped.
+- Category folders `NN--category-name` kept; never stripped.
+
+### Error Scenarios
+- A slug collision makes the tool abort (exit 2) with zero writes; resolved manually before the run.
+<!-- /ANCHOR:edge-cases -->
 
 ---
 

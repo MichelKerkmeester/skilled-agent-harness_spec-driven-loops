@@ -1,0 +1,622 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md",
+        "new": "03--iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md",
+        "new": "03--iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md",
+        "count": 2
+      },
+      {
+        "old": "02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md",
+        "new": "02--initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md",
+        "count": 2
+      },
+      {
+        "old": "02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md",
+        "new": "02--initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md",
+        "new": "03--iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/008-review-iteration-reads-state-before-review.md",
+        "new": "03--iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md",
+        "new": "03--iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md",
+        "new": "03--iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md",
+        "count": 2
+      },
+      {
+        "old": "02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md",
+        "new": "02--initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md",
+        "count": 2
+      },
+      {
+        "old": "05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md",
+        "new": "05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md",
+        "count": 2
+      },
+      {
+        "old": "05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md",
+        "new": "05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md",
+        "count": 2
+      },
+      {
+        "old": "06--synthesis-save-and-guardrails/027-final-synthesis-memory-save-and-guardrail-behavior.md",
+        "new": "06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md",
+        "count": 2
+      },
+      {
+        "old": "05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md",
+        "new": "05--pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md",
+        "count": 2
+      },
+      {
+        "old": "06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md",
+        "new": "06--synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md",
+        "count": 2
+      },
+      {
+        "old": "01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md",
+        "new": "01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md",
+        "new": "03--iteration-execution-and-state-discipline/severity-classification-in-jsonl.md",
+        "count": 2
+      },
+      {
+        "old": "06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md",
+        "new": "06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md",
+        "count": 2
+      },
+      {
+        "old": "02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md",
+        "new": "02--initialization-and-state-setup/scope-discovery-and-dimension-ordering.md",
+        "count": 2
+      },
+      {
+        "old": "05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md",
+        "new": "05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md",
+        "new": "04--convergence-and-recovery/composite-review-convergence-stop-behavior.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md",
+        "new": "04--convergence-and-recovery/review-quality-guards-block-premature-stop.md",
+        "count": 2
+      },
+      {
+        "old": "06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md",
+        "new": "06--synthesis-save-and-guardrails/finding-deduplication-and-registry.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md",
+        "new": "04--convergence-and-recovery/stuck-recovery-widens-dimension-focus.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md",
+        "new": "04--convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        "count": 2
+      },
+      {
+        "old": "03--iteration-execution-and-state-discipline/015-graph-events-review.md",
+        "new": "03--iteration-execution-and-state-discipline/graph-events-review.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/057-write-boundary-reducer-owned-files.md",
+        "new": "07--command-flow-stress-tests/write-boundary-reducer-owned-files.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/053-three-artifact-iteration-contract.md",
+        "new": "07--command-flow-stress-tests/three-artifact-iteration-contract.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/056-leaf-only-nested-dispatch-refusal.md",
+        "new": "07--command-flow-stress-tests/leaf-only-nested-dispatch-refusal.md",
+        "count": 2
+      },
+      {
+        "old": "01--entry-points-and-modes/002-confirm-mode-checkpointed-review.md",
+        "new": "01--entry-points-and-modes/confirm-mode-checkpointed-review.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/017-p0-override-blocks-convergence.md",
+        "new": "04--convergence-and-recovery/p0-override-blocks-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md",
+        "new": "04--convergence-and-recovery/blocked-stop-reducer-surfacing.md",
+        "count": 2
+      },
+      {
+        "old": "01--entry-points-and-modes/001-auto-mode-deep-review-kickoff.md",
+        "new": "01--entry-points-and-modes/auto-mode-deep-review-kickoff.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/054-resource-map-coverage-gate.md",
+        "new": "07--command-flow-stress-tests/resource-map-coverage-gate.md",
+        "count": 2
+      },
+      {
+        "old": "08--review-depth-v2-rollout/061-stop-gate-candidate-coverage.md",
+        "new": "08--review-depth-v2-rollout/stop-gate-candidate-coverage.md",
+        "count": 2
+      },
+      {
+        "old": "08--review-depth-v2-rollout/062-stop-gate-graphless-fallback.md",
+        "new": "08--review-depth-v2-rollout/stop-gate-graphless-fallback.md",
+        "count": 2
+      },
+      {
+        "old": "06--synthesis-save-and-guardrails/029-resource-map-emission.md",
+        "new": "06--synthesis-save-and-guardrails/resource-map-emission.md",
+        "count": 1
+      },
+      {
+        "old": "04--convergence-and-recovery/032-graph-convergence-review.md",
+        "new": "04--convergence-and-recovery/graph-convergence-review.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/055-synthesis-save-boundary.md",
+        "new": "07--command-flow-stress-tests/synthesis-save-boundary.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/030-stop-on-max-iterations.md",
+        "new": "04--convergence-and-recovery/stop-on-max-iterations.md",
+        "count": 2
+      },
+      {
+        "old": "08--review-depth-v2-rollout/058-validator-warn-rollout.md",
+        "new": "08--review-depth-v2-rollout/validator-warn-rollout.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-recovery/034-fail-closed-reducer.md",
+        "new": "04--convergence-and-recovery/fail-closed-reducer.md",
+        "count": 2
+      },
+      {
+        "old": "07--command-flow-stress-tests/052-setup-yaml-handoff.md",
+        "new": "07--command-flow-stress-tests/setup-yaml-handoff.md",
+        "count": 2
+      },
+      {
+        "old": "08--review-depth-v2-rollout/059-validator-strict-v2.md",
+        "new": "08--review-depth-v2-rollout/validator-strict-v2.md",
+        "count": 2
+      },
+      {
+        "old": "08--review-depth-v2-rollout/060-reducer-search-debt.md",
+        "new": "08--review-depth-v2-rollout/reducer-search-debt.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/067-fanout-single-executor-parity-review.md",
+        "new": "09--fanout/fanout-single-executor-parity-review.md",
+        "count": 1
+      },
+      {
+        "old": "08--review-depth-v2-rollout/063-graph-vocabulary.md",
+        "new": "08--review-depth-v2-rollout/graph-vocabulary.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/066-fanout-native-sequential-review.md",
+        "new": "09--fanout/fanout-native-sequential-review.md",
+        "count": 1
+      },
+      {
+        "old": "09--fanout/065-fanout-strongest-restriction.md",
+        "new": "09--fanout/fanout-strongest-restriction.md",
+        "count": 1
+      },
+      {
+        "old": "09--fanout/064-fanout-cli-lineages-review.md",
+        "new": "09--fanout/fanout-cli-lineages-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/01--entry-points-and-modes/001-auto-mode-deep-review-kickoff.md",
+    "edits": [
+      {
+        "old": "01--entry-points-and-modes/001-auto-mode-deep-review-kickoff.md",
+        "new": "01--entry-points-and-modes/auto-mode-deep-review-kickoff.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/01--entry-points-and-modes/002-confirm-mode-checkpointed-review.md",
+    "edits": [
+      {
+        "old": "01--entry-points-and-modes/002-confirm-mode-checkpointed-review.md",
+        "new": "01--entry-points-and-modes/confirm-mode-checkpointed-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md",
+    "edits": [
+      {
+        "old": "01--entry-points-and-modes/003-parameterized-invocation-max-iterations-convergence.md",
+        "new": "01--entry-points-and-modes/parameterized-invocation-max-iterations-convergence.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md",
+    "edits": [
+      {
+        "old": "02--initialization-and-state-setup/004-fresh-review-initialization-creates-canonical-state-files.md",
+        "new": "02--initialization-and-state-setup/fresh-review-initialization-creates-canonical-state-files.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md",
+    "edits": [
+      {
+        "old": "02--initialization-and-state-setup/005-resume-classification-from-valid-prior-review-state.md",
+        "new": "02--initialization-and-state-setup/resume-classification-from-valid-prior-review-state.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md",
+    "edits": [
+      {
+        "old": "02--initialization-and-state-setup/006-invalid-or-contradictory-review-state-halts-for-repair.md",
+        "new": "02--initialization-and-state-setup/invalid-or-contradictory-review-state-halts-for-repair.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md",
+    "edits": [
+      {
+        "old": "02--initialization-and-state-setup/007-scope-discovery-and-dimension-ordering.md",
+        "new": "02--initialization-and-state-setup/scope-discovery-and-dimension-ordering.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/008-review-iteration-reads-state-before-review.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/008-review-iteration-reads-state-before-review.md",
+        "new": "03--iteration-execution-and-state-discipline/review-iteration-reads-state-before-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/009-review-iteration-writes-findings-jsonl-and-strategy-update.md",
+        "new": "03--iteration-execution-and-state-discipline/review-iteration-writes-findings-jsonl-and-strategy-update.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/010-strategy-next-focus-and-dimension-rotation.md",
+        "new": "03--iteration-execution-and-state-discipline/strategy-next-focus-and-dimension-rotation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/011-cross-reference-verification-detects-misalignment.md",
+        "new": "03--iteration-execution-and-state-discipline/cross-reference-verification-detects-misalignment.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/012-adversarial-self-check-runs-on-p0-findings.md",
+        "new": "03--iteration-execution-and-state-discipline/adversarial-self-check-runs-on-p0-findings.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/013-review-dashboard-generation-after-iteration.md",
+        "new": "03--iteration-execution-and-state-discipline/review-dashboard-generation-after-iteration.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/014-severity-classification-in-jsonl.md",
+        "new": "03--iteration-execution-and-state-discipline/severity-classification-in-jsonl.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/03--iteration-execution-and-state-discipline/015-graph-events-review.md",
+    "edits": [
+      {
+        "old": "03--iteration-execution-and-state-discipline/015-graph-events-review.md",
+        "new": "03--iteration-execution-and-state-discipline/graph-events-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/016-composite-review-convergence-stop-behavior.md",
+        "new": "04--convergence-and-recovery/composite-review-convergence-stop-behavior.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/017-p0-override-blocks-convergence.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/017-p0-override-blocks-convergence.md",
+        "new": "04--convergence-and-recovery/p0-override-blocks-convergence.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/018-review-quality-guards-block-premature-stop.md",
+        "new": "04--convergence-and-recovery/review-quality-guards-block-premature-stop.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/019-stuck-recovery-widens-dimension-focus.md",
+        "new": "04--convergence-and-recovery/stuck-recovery-widens-dimension-focus.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/020-dimension-coverage-convergence-signal.md",
+        "new": "04--convergence-and-recovery/dimension-coverage-convergence-signal.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/030-stop-on-max-iterations.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/030-stop-on-max-iterations.md",
+        "new": "04--convergence-and-recovery/stop-on-max-iterations.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/032-graph-convergence-review.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/032-graph-convergence-review.md",
+        "new": "04--convergence-and-recovery/graph-convergence-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/033-blocked-stop-reducer-surfacing.md",
+        "new": "04--convergence-and-recovery/blocked-stop-reducer-surfacing.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/04--convergence-and-recovery/034-fail-closed-reducer.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-recovery/034-fail-closed-reducer.md",
+        "new": "04--convergence-and-recovery/fail-closed-reducer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md",
+    "edits": [
+      {
+        "old": "05--pause-resume-and-fault-tolerance/021-pause-sentinel-halts-between-review-iterations.md",
+        "new": "05--pause-resume-and-fault-tolerance/pause-sentinel-halts-between-review-iterations.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md",
+    "edits": [
+      {
+        "old": "05--pause-resume-and-fault-tolerance/022-resume-after-pause-sentinel-removal.md",
+        "new": "05--pause-resume-and-fault-tolerance/resume-after-pause-sentinel-removal.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md",
+    "edits": [
+      {
+        "old": "05--pause-resume-and-fault-tolerance/023-malformed-jsonl-lines-are-skipped-with-defaults.md",
+        "new": "05--pause-resume-and-fault-tolerance/malformed-jsonl-lines-are-skipped-with-defaults.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md",
+    "edits": [
+      {
+        "old": "05--pause-resume-and-fault-tolerance/024-jsonl-reconstruction-from-review-iteration-files.md",
+        "new": "05--pause-resume-and-fault-tolerance/jsonl-reconstruction-from-review-iteration-files.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md",
+    "edits": [
+      {
+        "old": "06--synthesis-save-and-guardrails/025-review-report-synthesis-has-all-9-sections.md",
+        "new": "06--synthesis-save-and-guardrails/review-report-synthesis-has-all-9-sections.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md",
+    "edits": [
+      {
+        "old": "06--synthesis-save-and-guardrails/026-review-verdict-determines-post-review-workflow.md",
+        "new": "06--synthesis-save-and-guardrails/review-verdict-determines-post-review-workflow.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/027-final-synthesis-memory-save-and-guardrail-behavior.md",
+    "edits": [
+      {
+        "old": "06--synthesis-save-and-guardrails/027-final-synthesis-memory-save-and-guardrail-behavior.md",
+        "new": "06--synthesis-save-and-guardrails/final-synthesis-memory-save-and-guardrail-behavior.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md",
+    "edits": [
+      {
+        "old": "06--synthesis-save-and-guardrails/028-finding-deduplication-and-registry.md",
+        "new": "06--synthesis-save-and-guardrails/finding-deduplication-and-registry.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/06--synthesis-save-and-guardrails/029-resource-map-emission.md",
+    "edits": [
+      {
+        "old": "06--synthesis-save-and-guardrails/029-resource-map-emission.md",
+        "new": "06--synthesis-save-and-guardrails/resource-map-emission.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/09--fanout/064-fanout-cli-lineages-review.md",
+    "edits": [
+      {
+        "old": "09--fanout/064-fanout-cli-lineages-review.md",
+        "new": "09--fanout/fanout-cli-lineages-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/09--fanout/065-fanout-strongest-restriction.md",
+    "edits": [
+      {
+        "old": "09--fanout/065-fanout-strongest-restriction.md",
+        "new": "09--fanout/fanout-strongest-restriction.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/09--fanout/066-fanout-native-sequential-review.md",
+    "edits": [
+      {
+        "old": "09--fanout/066-fanout-native-sequential-review.md",
+        "new": "09--fanout/fanout-native-sequential-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/manual_testing_playbook/09--fanout/067-fanout-single-executor-parity-review.md",
+    "edits": [
+      {
+        "old": "09--fanout/067-fanout-single-executor-parity-review.md",
+        "new": "09--fanout/fanout-single-executor-parity-review.md",
+        "count": 1
+      }
+    ]
+  }
+]

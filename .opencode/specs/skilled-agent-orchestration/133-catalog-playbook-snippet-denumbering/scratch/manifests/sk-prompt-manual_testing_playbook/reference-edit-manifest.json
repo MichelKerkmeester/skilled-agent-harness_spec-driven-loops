@@ -1,0 +1,427 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "05--framework-selection/020-user-named-framework-override.md",
+        "new": "05--framework-selection/user-named-framework-override.md",
+        "count": 2
+      },
+      {
+        "old": "06--escalation-tiers/023-cli-card-five-question-fast-path.md",
+        "new": "06--escalation-tiers/cli-card-five-question-fast-path.md",
+        "count": 2
+      },
+      {
+        "old": "05--framework-selection/021-framework-rationale-required.md",
+        "new": "05--framework-selection/framework-rationale-required.md",
+        "count": 2
+      },
+      {
+        "old": "05--framework-selection/022-framework-switch-mid-flight.md",
+        "new": "05--framework-selection/framework-switch-mid-flight.md",
+        "count": 2
+      },
+      {
+        "old": "06--escalation-tiers/024-escalation-trigger-thresholds.md",
+        "new": "06--escalation-tiers/escalation-trigger-thresholds.md",
+        "count": 2
+      },
+      {
+        "old": "06--escalation-tiers/025-prompt-improver-input-payload.md",
+        "new": "06--escalation-tiers/prompt-improver-input-payload.md",
+        "count": 2
+      },
+      {
+        "old": "06--escalation-tiers/026-prompt-improver-output-block.md",
+        "new": "06--escalation-tiers/prompt-improver-output-block.md",
+        "count": 2
+      },
+      {
+        "old": "01--mode-detection/004-mode-prefix-keyword-collision.md",
+        "new": "01--mode-detection/mode-prefix-keyword-collision.md",
+        "count": 2
+      },
+      {
+        "old": "04--clear-scoring/018-dimension-drilldown-rationale.md",
+        "new": "04--clear-scoring/dimension-drilldown-rationale.md",
+        "count": 2
+      },
+      {
+        "old": "05--framework-selection/019-framework-by-complexity.md",
+        "new": "05--framework-selection/framework-by-complexity.md",
+        "count": 2
+      },
+      {
+        "old": "02--smart-routing/005-intent-model-keyword-scoring.md",
+        "new": "02--smart-routing/intent-model-keyword-scoring.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/013-mechanism-first-prototype.md",
+        "new": "03--depth-clear-loop/mechanism-first-prototype.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/010-perspectives-floor-three.md",
+        "new": "03--depth-clear-loop/perspectives-floor-three.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/014-phase-exit-gate-blocking.md",
+        "new": "03--depth-clear-loop/phase-exit-gate-blocking.md",
+        "count": 2
+      },
+      {
+        "old": "02--smart-routing/007-ambiguity-delta-tiebreaker.md",
+        "new": "02--smart-routing/ambiguity-delta-tiebreaker.md",
+        "count": 2
+      },
+      {
+        "old": "02--smart-routing/008-unknown-fallback-checklist.md",
+        "new": "02--smart-routing/unknown-fallback-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/009-depth-five-phases-order.md",
+        "new": "03--depth-clear-loop/depth-five-phases-order.md",
+        "count": 2
+      },
+      {
+        "old": "02--smart-routing/006-on-demand-keyword-loading.md",
+        "new": "02--smart-routing/on-demand-keyword-loading.md",
+        "count": 2
+      },
+      {
+        "old": "01--mode-detection/003-short-mode-three-rounds.md",
+        "new": "01--mode-detection/short-mode-three-rounds.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/012-ricce-validation-gate.md",
+        "new": "03--depth-clear-loop/ricce-validation-gate.md",
+        "count": 2
+      },
+      {
+        "old": "04--clear-scoring/017-forty-of-fifty-threshold.md",
+        "new": "04--clear-scoring/forty-of-fifty-threshold.md",
+        "count": 2
+      },
+      {
+        "old": "03--depth-clear-loop/011-depth-iteration-cap.md",
+        "new": "03--depth-clear-loop/depth-iteration-cap.md",
+        "count": 2
+      },
+      {
+        "old": "04--clear-scoring/016-dimension-floors-block.md",
+        "new": "04--clear-scoring/dimension-floors-block.md",
+        "count": 2
+      },
+      {
+        "old": "01--mode-detection/001-default-mode-routing.md",
+        "new": "01--mode-detection/default-mode-routing.md",
+        "count": 2
+      },
+      {
+        "old": "01--mode-detection/002-raw-mode-passthrough.md",
+        "new": "01--mode-detection/raw-mode-passthrough.md",
+        "count": 2
+      },
+      {
+        "old": "04--clear-scoring/015-clear-five-dimensions.md",
+        "new": "04--clear-scoring/clear-five-dimensions.md",
+        "count": 2
+      },
+      {
+        "old": "07--format-modes/028-format-guide-on-demand.md",
+        "new": "07--format-modes/format-guide-on-demand.md",
+        "count": 2
+      },
+      {
+        "old": "07--format-modes/027-format-mode-delivery.md",
+        "new": "07--format-modes/format-mode-delivery.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/01--mode-detection/001-default-mode-routing.md",
+    "edits": [
+      {
+        "old": "01--mode-detection/001-default-mode-routing.md",
+        "new": "01--mode-detection/default-mode-routing.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/01--mode-detection/002-raw-mode-passthrough.md",
+    "edits": [
+      {
+        "old": "01--mode-detection/002-raw-mode-passthrough.md",
+        "new": "01--mode-detection/raw-mode-passthrough.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/01--mode-detection/003-short-mode-three-rounds.md",
+    "edits": [
+      {
+        "old": "01--mode-detection/003-short-mode-three-rounds.md",
+        "new": "01--mode-detection/short-mode-three-rounds.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/01--mode-detection/004-mode-prefix-keyword-collision.md",
+    "edits": [
+      {
+        "old": "01--mode-detection/004-mode-prefix-keyword-collision.md",
+        "new": "01--mode-detection/mode-prefix-keyword-collision.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/02--smart-routing/005-intent-model-keyword-scoring.md",
+    "edits": [
+      {
+        "old": "02--smart-routing/005-intent-model-keyword-scoring.md",
+        "new": "02--smart-routing/intent-model-keyword-scoring.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/02--smart-routing/006-on-demand-keyword-loading.md",
+    "edits": [
+      {
+        "old": "02--smart-routing/006-on-demand-keyword-loading.md",
+        "new": "02--smart-routing/on-demand-keyword-loading.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/02--smart-routing/007-ambiguity-delta-tiebreaker.md",
+    "edits": [
+      {
+        "old": "02--smart-routing/007-ambiguity-delta-tiebreaker.md",
+        "new": "02--smart-routing/ambiguity-delta-tiebreaker.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/02--smart-routing/008-unknown-fallback-checklist.md",
+    "edits": [
+      {
+        "old": "02--smart-routing/008-unknown-fallback-checklist.md",
+        "new": "02--smart-routing/unknown-fallback-checklist.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/009-depth-five-phases-order.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/009-depth-five-phases-order.md",
+        "new": "03--depth-clear-loop/depth-five-phases-order.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/010-perspectives-floor-three.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/010-perspectives-floor-three.md",
+        "new": "03--depth-clear-loop/perspectives-floor-three.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/011-depth-iteration-cap.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/011-depth-iteration-cap.md",
+        "new": "03--depth-clear-loop/depth-iteration-cap.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/012-ricce-validation-gate.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/012-ricce-validation-gate.md",
+        "new": "03--depth-clear-loop/ricce-validation-gate.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/013-mechanism-first-prototype.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/013-mechanism-first-prototype.md",
+        "new": "03--depth-clear-loop/mechanism-first-prototype.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/03--depth-clear-loop/014-phase-exit-gate-blocking.md",
+    "edits": [
+      {
+        "old": "03--depth-clear-loop/014-phase-exit-gate-blocking.md",
+        "new": "03--depth-clear-loop/phase-exit-gate-blocking.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/015-clear-five-dimensions.md",
+    "edits": [
+      {
+        "old": "04--clear-scoring/015-clear-five-dimensions.md",
+        "new": "04--clear-scoring/clear-five-dimensions.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/016-dimension-floors-block.md",
+    "edits": [
+      {
+        "old": "04--clear-scoring/016-dimension-floors-block.md",
+        "new": "04--clear-scoring/dimension-floors-block.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/017-forty-of-fifty-threshold.md",
+    "edits": [
+      {
+        "old": "04--clear-scoring/017-forty-of-fifty-threshold.md",
+        "new": "04--clear-scoring/forty-of-fifty-threshold.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/04--clear-scoring/018-dimension-drilldown-rationale.md",
+    "edits": [
+      {
+        "old": "04--clear-scoring/018-dimension-drilldown-rationale.md",
+        "new": "04--clear-scoring/dimension-drilldown-rationale.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/05--framework-selection/019-framework-by-complexity.md",
+    "edits": [
+      {
+        "old": "05--framework-selection/019-framework-by-complexity.md",
+        "new": "05--framework-selection/framework-by-complexity.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/05--framework-selection/020-user-named-framework-override.md",
+    "edits": [
+      {
+        "old": "05--framework-selection/020-user-named-framework-override.md",
+        "new": "05--framework-selection/user-named-framework-override.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/05--framework-selection/021-framework-rationale-required.md",
+    "edits": [
+      {
+        "old": "05--framework-selection/021-framework-rationale-required.md",
+        "new": "05--framework-selection/framework-rationale-required.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/05--framework-selection/022-framework-switch-mid-flight.md",
+    "edits": [
+      {
+        "old": "05--framework-selection/022-framework-switch-mid-flight.md",
+        "new": "05--framework-selection/framework-switch-mid-flight.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/023-cli-card-five-question-fast-path.md",
+    "edits": [
+      {
+        "old": "06--escalation-tiers/023-cli-card-five-question-fast-path.md",
+        "new": "06--escalation-tiers/cli-card-five-question-fast-path.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/024-escalation-trigger-thresholds.md",
+    "edits": [
+      {
+        "old": "06--escalation-tiers/024-escalation-trigger-thresholds.md",
+        "new": "06--escalation-tiers/escalation-trigger-thresholds.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/025-prompt-improver-input-payload.md",
+    "edits": [
+      {
+        "old": "06--escalation-tiers/025-prompt-improver-input-payload.md",
+        "new": "06--escalation-tiers/prompt-improver-input-payload.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/06--escalation-tiers/026-prompt-improver-output-block.md",
+    "edits": [
+      {
+        "old": "06--escalation-tiers/026-prompt-improver-output-block.md",
+        "new": "06--escalation-tiers/prompt-improver-output-block.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/07--format-modes/027-format-mode-delivery.md",
+    "edits": [
+      {
+        "old": "07--format-modes/027-format-mode-delivery.md",
+        "new": "07--format-modes/format-mode-delivery.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-prompt/manual_testing_playbook/07--format-modes/028-format-guide-on-demand.md",
+    "edits": [
+      {
+        "old": "07--format-modes/028-format-guide-on-demand.md",
+        "new": "07--format-modes/format-guide-on-demand.md",
+        "count": 1
+      }
+    ]
+  }
+]

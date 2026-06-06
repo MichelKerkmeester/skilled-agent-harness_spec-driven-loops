@@ -1,0 +1,397 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md",
+        "new": "02--manual-namespace-contract/list-tools-dot-vs-underscore.md",
+        "count": 2
+      },
+      {
+        "old": "05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md",
+        "new": "05--clickup-and-chrome-via-cm/clickup-create-read-delete.md",
+        "count": 2
+      },
+      {
+        "old": "05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md",
+        "new": "05--clickup-and-chrome-via-cm/chrome-navigate-screenshot.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-namespace-contract/005-correct-manual-tool-form.md",
+        "new": "02--manual-namespace-contract/correct-manual-tool-form.md",
+        "count": 2
+      },
+      {
+        "old": "05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md",
+        "new": "05--clickup-and-chrome-via-cm/sibling-pair-handover.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/024-deregister-reregister-cycle.md",
+        "new": "07--recovery-and-config/deregister-reregister-cycle.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/022-disabled-server-omitted.md",
+        "new": "07--recovery-and-config/disabled-server-omitted.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-namespace-contract/006-wrong-form-error.md",
+        "new": "02--manual-namespace-contract/wrong-form-error.md",
+        "count": 2
+      },
+      {
+        "old": "03--env-var-prefixing/009-unprefixed-env-not-found.md",
+        "new": "03--env-var-prefixing/unprefixed-env-not-found.md",
+        "count": 2
+      },
+      {
+        "old": "06--third-party-via-cm/020-notion-search-workspace.md",
+        "new": "06--third-party-via-cm/notion-search-workspace.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/025-partial-chain-rollback.md",
+        "new": "07--recovery-and-config/partial-chain-rollback.md",
+        "count": 2
+      },
+      {
+        "old": "04--multi-tool-workflows/012-promise-all-parallel.md",
+        "new": "04--multi-tool-workflows/promise-all-parallel.md",
+        "count": 2
+      },
+      {
+        "old": "04--multi-tool-workflows/013-try-catch-error-path.md",
+        "new": "04--multi-tool-workflows/try-catch-error-path.md",
+        "count": 2
+      },
+      {
+        "old": "06--third-party-via-cm/019-github-list-user-repos.md",
+        "new": "06--third-party-via-cm/github-list-user-repos.md",
+        "count": 2
+      },
+      {
+        "old": "03--env-var-prefixing/010-validate-config-script.md",
+        "new": "03--env-var-prefixing/validate-config-script.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/021-invalid-config-error.md",
+        "new": "07--recovery-and-config/invalid-config-error.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/026-missing-manual-entry.md",
+        "new": "07--recovery-and-config/missing-manual-entry.md",
+        "count": 2
+      },
+      {
+        "old": "06--third-party-via-cm/018-myservice-list-sites.md",
+        "new": "06--third-party-via-cm/myservice-list-sites.md",
+        "count": 2
+      },
+      {
+        "old": "06--third-party-via-cm/017-figma-file-metadata.md",
+        "new": "06--third-party-via-cm/figma-file-metadata.md",
+        "count": 2
+      },
+      {
+        "old": "07--recovery-and-config/023-timeout-escalation.md",
+        "new": "07--recovery-and-config/timeout-escalation.md",
+        "count": 2
+      },
+      {
+        "old": "04--multi-tool-workflows/011-sequential-chain.md",
+        "new": "04--multi-tool-workflows/sequential-chain.md",
+        "count": 2
+      },
+      {
+        "old": "01--core-tools/004-call-tool-chain-execution.md",
+        "new": "01--core-tools/call-tool-chain-execution.md",
+        "count": 2
+      },
+      {
+        "old": "03--env-var-prefixing/008-prefixed-env-load.md",
+        "new": "03--env-var-prefixing/prefixed-env-load.md",
+        "count": 2
+      },
+      {
+        "old": "01--core-tools/001-list-tools-enumeration.md",
+        "new": "01--core-tools/list-tools-enumeration.md",
+        "count": 2
+      },
+      {
+        "old": "01--core-tools/002-search-tools-relevance.md",
+        "new": "01--core-tools/search-tools-relevance.md",
+        "count": 2
+      },
+      {
+        "old": "01--core-tools/003-tool-info-schema.md",
+        "new": "01--core-tools/tool-info-schema.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/001-list-tools-enumeration.md",
+    "edits": [
+      {
+        "old": "01--core-tools/001-list-tools-enumeration.md",
+        "new": "01--core-tools/list-tools-enumeration.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/002-search-tools-relevance.md",
+    "edits": [
+      {
+        "old": "01--core-tools/002-search-tools-relevance.md",
+        "new": "01--core-tools/search-tools-relevance.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/003-tool-info-schema.md",
+    "edits": [
+      {
+        "old": "01--core-tools/003-tool-info-schema.md",
+        "new": "01--core-tools/tool-info-schema.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/01--core-tools/004-call-tool-chain-execution.md",
+    "edits": [
+      {
+        "old": "01--core-tools/004-call-tool-chain-execution.md",
+        "new": "01--core-tools/call-tool-chain-execution.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/005-correct-manual-tool-form.md",
+    "edits": [
+      {
+        "old": "02--manual-namespace-contract/005-correct-manual-tool-form.md",
+        "new": "02--manual-namespace-contract/correct-manual-tool-form.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/006-wrong-form-error.md",
+    "edits": [
+      {
+        "old": "02--manual-namespace-contract/006-wrong-form-error.md",
+        "new": "02--manual-namespace-contract/wrong-form-error.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md",
+    "edits": [
+      {
+        "old": "02--manual-namespace-contract/007-list-tools-dot-vs-underscore.md",
+        "new": "02--manual-namespace-contract/list-tools-dot-vs-underscore.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/008-prefixed-env-load.md",
+    "edits": [
+      {
+        "old": "03--env-var-prefixing/008-prefixed-env-load.md",
+        "new": "03--env-var-prefixing/prefixed-env-load.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/009-unprefixed-env-not-found.md",
+    "edits": [
+      {
+        "old": "03--env-var-prefixing/009-unprefixed-env-not-found.md",
+        "new": "03--env-var-prefixing/unprefixed-env-not-found.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/03--env-var-prefixing/010-validate-config-script.md",
+    "edits": [
+      {
+        "old": "03--env-var-prefixing/010-validate-config-script.md",
+        "new": "03--env-var-prefixing/validate-config-script.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/011-sequential-chain.md",
+    "edits": [
+      {
+        "old": "04--multi-tool-workflows/011-sequential-chain.md",
+        "new": "04--multi-tool-workflows/sequential-chain.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/012-promise-all-parallel.md",
+    "edits": [
+      {
+        "old": "04--multi-tool-workflows/012-promise-all-parallel.md",
+        "new": "04--multi-tool-workflows/promise-all-parallel.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/04--multi-tool-workflows/013-try-catch-error-path.md",
+    "edits": [
+      {
+        "old": "04--multi-tool-workflows/013-try-catch-error-path.md",
+        "new": "04--multi-tool-workflows/try-catch-error-path.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md",
+    "edits": [
+      {
+        "old": "05--clickup-and-chrome-via-cm/014-clickup-create-read-delete.md",
+        "new": "05--clickup-and-chrome-via-cm/clickup-create-read-delete.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md",
+    "edits": [
+      {
+        "old": "05--clickup-and-chrome-via-cm/015-chrome-navigate-screenshot.md",
+        "new": "05--clickup-and-chrome-via-cm/chrome-navigate-screenshot.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md",
+    "edits": [
+      {
+        "old": "05--clickup-and-chrome-via-cm/016-sibling-pair-handover.md",
+        "new": "05--clickup-and-chrome-via-cm/sibling-pair-handover.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/017-figma-file-metadata.md",
+    "edits": [
+      {
+        "old": "06--third-party-via-cm/017-figma-file-metadata.md",
+        "new": "06--third-party-via-cm/figma-file-metadata.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/018-myservice-list-sites.md",
+    "edits": [
+      {
+        "old": "06--third-party-via-cm/018-myservice-list-sites.md",
+        "new": "06--third-party-via-cm/myservice-list-sites.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/019-github-list-user-repos.md",
+    "edits": [
+      {
+        "old": "06--third-party-via-cm/019-github-list-user-repos.md",
+        "new": "06--third-party-via-cm/github-list-user-repos.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/06--third-party-via-cm/020-notion-search-workspace.md",
+    "edits": [
+      {
+        "old": "06--third-party-via-cm/020-notion-search-workspace.md",
+        "new": "06--third-party-via-cm/notion-search-workspace.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/021-invalid-config-error.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/021-invalid-config-error.md",
+        "new": "07--recovery-and-config/invalid-config-error.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/022-disabled-server-omitted.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/022-disabled-server-omitted.md",
+        "new": "07--recovery-and-config/disabled-server-omitted.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/023-timeout-escalation.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/023-timeout-escalation.md",
+        "new": "07--recovery-and-config/timeout-escalation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/024-deregister-reregister-cycle.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/024-deregister-reregister-cycle.md",
+        "new": "07--recovery-and-config/deregister-reregister-cycle.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/025-partial-chain-rollback.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/025-partial-chain-rollback.md",
+        "new": "07--recovery-and-config/partial-chain-rollback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-code-mode/manual_testing_playbook/07--recovery-and-config/026-missing-manual-entry.md",
+    "edits": [
+      {
+        "old": "07--recovery-and-config/026-missing-manual-entry.md",
+        "new": "07--recovery-and-config/missing-manual-entry.md",
+        "count": 1
+      }
+    ]
+  }
+]

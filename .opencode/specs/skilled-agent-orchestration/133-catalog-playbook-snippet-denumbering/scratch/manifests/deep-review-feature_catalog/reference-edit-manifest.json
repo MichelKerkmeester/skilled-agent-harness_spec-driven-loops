@@ -1,0 +1,652 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "04--severity-system/027-security-sensitive-fix-overrides.md",
+        "new": "04--severity-system/security-sensitive-fix-overrides.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/008-executor-selection-contract.md",
+        "new": "01--loop-lifecycle/executor-selection-contract.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/007-resource-map-coverage-gate.md",
+        "new": "01--loop-lifecycle/resource-map-coverage-gate.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/015-graph-convergence-event.md",
+        "new": "02--state-management/graph-convergence-event.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/021-severity-classification.md",
+        "new": "04--severity-system/severity-classification.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/022-adversarial-self-check.md",
+        "new": "04--severity-system/adversarial-self-check.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/006-resource-map-emission.md",
+        "new": "01--loop-lifecycle/resource-map-emission.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/026-convergence-signals.md",
+        "new": "04--severity-system/convergence-signals.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/011-strategy-tracking.md",
+        "new": "02--state-management/strategy-tracking.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/012-config-management.md",
+        "new": "02--state-management/config-management.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/013-findings-registry.md",
+        "new": "02--state-management/findings-registry.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/023-claim-adjudication.md",
+        "new": "04--severity-system/claim-adjudication.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/002-iteration-dispatch.md",
+        "new": "01--loop-lifecycle/iteration-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "03--review-dimensions/020-maintainability.md",
+        "new": "03--review-dimensions/maintainability.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/003-convergence-check.md",
+        "new": "01--loop-lifecycle/convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/010-jsonl-state-log.md",
+        "new": "02--state-management/jsonl-state-log.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/016-pause-sentinel.md",
+        "new": "02--state-management/pause-sentinel.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/009-fanout-dispatch.md",
+        "new": "01--loop-lifecycle/fanout-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "03--review-dimensions/019-traceability.md",
+        "new": "03--review-dimensions/traceability.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/001-initialization.md",
+        "new": "01--loop-lifecycle/initialization.md",
+        "count": 2
+      },
+      {
+        "old": "03--review-dimensions/017-correctness.md",
+        "new": "03--review-dimensions/correctness.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/025-quality-gates.md",
+        "new": "04--severity-system/quality-gates.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/005-memory-save.md",
+        "new": "01--loop-lifecycle/memory-save.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/014-dashboard.md",
+        "new": "02--state-management/dashboard.md",
+        "count": 2
+      },
+      {
+        "old": "03--review-dimensions/018-security.md",
+        "new": "03--review-dimensions/security.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/004-synthesis.md",
+        "new": "01--loop-lifecycle/synthesis.md",
+        "count": 2
+      },
+      {
+        "old": "04--severity-system/024-verdicts.md",
+        "new": "04--severity-system/verdicts.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/001-initialization.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/001-initialization.md",
+        "new": "01--loop-lifecycle/initialization.md",
+        "count": 1
+      },
+      {
+        "old": "002-iteration-dispatch.md",
+        "new": "iteration-dispatch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/002-iteration-dispatch.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/002-iteration-dispatch.md",
+        "new": "01--loop-lifecycle/iteration-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "003-convergence-check.md",
+        "new": "convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "001-initialization.md",
+        "new": "initialization.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/003-convergence-check.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/003-convergence-check.md",
+        "new": "01--loop-lifecycle/convergence-check.md",
+        "count": 1
+      },
+      {
+        "old": "002-iteration-dispatch.md",
+        "new": "iteration-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "004-synthesis.md",
+        "new": "synthesis.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/004-synthesis.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/004-synthesis.md",
+        "new": "01--loop-lifecycle/synthesis.md",
+        "count": 1
+      },
+      {
+        "old": "003-convergence-check.md",
+        "new": "convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "005-memory-save.md",
+        "new": "memory-save.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/005-memory-save.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/005-memory-save.md",
+        "new": "01--loop-lifecycle/memory-save.md",
+        "count": 1
+      },
+      {
+        "old": "006-resource-map-emission.md",
+        "new": "resource-map-emission.md",
+        "count": 2
+      },
+      {
+        "old": "004-synthesis.md",
+        "new": "synthesis.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/006-resource-map-emission.md",
+        "new": "01--loop-lifecycle/resource-map-emission.md",
+        "count": 1
+      },
+      {
+        "old": "007-resource-map-coverage-gate.md",
+        "new": "resource-map-coverage-gate.md",
+        "count": 2
+      },
+      {
+        "old": "005-memory-save.md",
+        "new": "memory-save.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/007-resource-map-coverage-gate.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/007-resource-map-coverage-gate.md",
+        "new": "01--loop-lifecycle/resource-map-coverage-gate.md",
+        "count": 1
+      },
+      {
+        "old": "01--loop-lifecycle/006-resource-map-emission.md",
+        "new": "01--loop-lifecycle/resource-map-emission.md",
+        "count": 1
+      },
+      {
+        "old": "008-executor-selection-contract.md",
+        "new": "executor-selection-contract.md",
+        "count": 2
+      },
+      {
+        "old": "006-resource-map-emission.md",
+        "new": "resource-map-emission.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/008-executor-selection-contract.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/008-executor-selection-contract.md",
+        "new": "01--loop-lifecycle/executor-selection-contract.md",
+        "count": 1
+      },
+      {
+        "old": "007-resource-map-coverage-gate.md",
+        "new": "resource-map-coverage-gate.md",
+        "count": 2
+      },
+      {
+        "old": "009-fanout-dispatch.md",
+        "new": "fanout-dispatch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/01--loop-lifecycle/009-fanout-dispatch.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/009-fanout-dispatch.md",
+        "new": "01--loop-lifecycle/fanout-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "008-executor-selection-contract.md",
+        "new": "executor-selection-contract.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/010-jsonl-state-log.md",
+    "edits": [
+      {
+        "old": "02--state-management/010-jsonl-state-log.md",
+        "new": "02--state-management/jsonl-state-log.md",
+        "count": 1
+      },
+      {
+        "old": "011-strategy-tracking.md",
+        "new": "strategy-tracking.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/011-strategy-tracking.md",
+    "edits": [
+      {
+        "old": "02--state-management/011-strategy-tracking.md",
+        "new": "02--state-management/strategy-tracking.md",
+        "count": 1
+      },
+      {
+        "old": "012-config-management.md",
+        "new": "config-management.md",
+        "count": 2
+      },
+      {
+        "old": "010-jsonl-state-log.md",
+        "new": "jsonl-state-log.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/012-config-management.md",
+    "edits": [
+      {
+        "old": "02--state-management/012-config-management.md",
+        "new": "02--state-management/config-management.md",
+        "count": 1
+      },
+      {
+        "old": "011-strategy-tracking.md",
+        "new": "strategy-tracking.md",
+        "count": 2
+      },
+      {
+        "old": "013-findings-registry.md",
+        "new": "findings-registry.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/013-findings-registry.md",
+    "edits": [
+      {
+        "old": "02--state-management/013-findings-registry.md",
+        "new": "02--state-management/findings-registry.md",
+        "count": 1
+      },
+      {
+        "old": "012-config-management.md",
+        "new": "config-management.md",
+        "count": 2
+      },
+      {
+        "old": "014-dashboard.md",
+        "new": "dashboard.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/014-dashboard.md",
+    "edits": [
+      {
+        "old": "02--state-management/014-dashboard.md",
+        "new": "02--state-management/dashboard.md",
+        "count": 1
+      },
+      {
+        "old": "015-graph-convergence-event.md",
+        "new": "graph-convergence-event.md",
+        "count": 2
+      },
+      {
+        "old": "013-findings-registry.md",
+        "new": "findings-registry.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/015-graph-convergence-event.md",
+    "edits": [
+      {
+        "old": "02--state-management/015-graph-convergence-event.md",
+        "new": "02--state-management/graph-convergence-event.md",
+        "count": 1
+      },
+      {
+        "old": "016-pause-sentinel.md",
+        "new": "pause-sentinel.md",
+        "count": 2
+      },
+      {
+        "old": "014-dashboard.md",
+        "new": "dashboard.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/02--state-management/016-pause-sentinel.md",
+    "edits": [
+      {
+        "old": "02--state-management/016-pause-sentinel.md",
+        "new": "02--state-management/pause-sentinel.md",
+        "count": 1
+      },
+      {
+        "old": "015-graph-convergence-event.md",
+        "new": "graph-convergence-event.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/017-correctness.md",
+    "edits": [
+      {
+        "old": "03--review-dimensions/017-correctness.md",
+        "new": "03--review-dimensions/correctness.md",
+        "count": 1
+      },
+      {
+        "old": "018-security.md",
+        "new": "security.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/018-security.md",
+    "edits": [
+      {
+        "old": "03--review-dimensions/018-security.md",
+        "new": "03--review-dimensions/security.md",
+        "count": 1
+      },
+      {
+        "old": "019-traceability.md",
+        "new": "traceability.md",
+        "count": 2
+      },
+      {
+        "old": "017-correctness.md",
+        "new": "correctness.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/019-traceability.md",
+    "edits": [
+      {
+        "old": "03--review-dimensions/019-traceability.md",
+        "new": "03--review-dimensions/traceability.md",
+        "count": 1
+      },
+      {
+        "old": "020-maintainability.md",
+        "new": "maintainability.md",
+        "count": 2
+      },
+      {
+        "old": "018-security.md",
+        "new": "security.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/03--review-dimensions/020-maintainability.md",
+    "edits": [
+      {
+        "old": "03--review-dimensions/020-maintainability.md",
+        "new": "03--review-dimensions/maintainability.md",
+        "count": 1
+      },
+      {
+        "old": "019-traceability.md",
+        "new": "traceability.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/021-severity-classification.md",
+    "edits": [
+      {
+        "old": "04--severity-system/021-severity-classification.md",
+        "new": "04--severity-system/severity-classification.md",
+        "count": 1
+      },
+      {
+        "old": "022-adversarial-self-check.md",
+        "new": "adversarial-self-check.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/022-adversarial-self-check.md",
+    "edits": [
+      {
+        "old": "04--severity-system/022-adversarial-self-check.md",
+        "new": "04--severity-system/adversarial-self-check.md",
+        "count": 1
+      },
+      {
+        "old": "021-severity-classification.md",
+        "new": "severity-classification.md",
+        "count": 2
+      },
+      {
+        "old": "023-claim-adjudication.md",
+        "new": "claim-adjudication.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/023-claim-adjudication.md",
+    "edits": [
+      {
+        "old": "04--severity-system/023-claim-adjudication.md",
+        "new": "04--severity-system/claim-adjudication.md",
+        "count": 1
+      },
+      {
+        "old": "022-adversarial-self-check.md",
+        "new": "adversarial-self-check.md",
+        "count": 2
+      },
+      {
+        "old": "024-verdicts.md",
+        "new": "verdicts.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/024-verdicts.md",
+    "edits": [
+      {
+        "old": "04--severity-system/024-verdicts.md",
+        "new": "04--severity-system/verdicts.md",
+        "count": 1
+      },
+      {
+        "old": "023-claim-adjudication.md",
+        "new": "claim-adjudication.md",
+        "count": 2
+      },
+      {
+        "old": "025-quality-gates.md",
+        "new": "quality-gates.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/025-quality-gates.md",
+    "edits": [
+      {
+        "old": "04--severity-system/025-quality-gates.md",
+        "new": "04--severity-system/quality-gates.md",
+        "count": 1
+      },
+      {
+        "old": "026-convergence-signals.md",
+        "new": "convergence-signals.md",
+        "count": 2
+      },
+      {
+        "old": "024-verdicts.md",
+        "new": "verdicts.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/026-convergence-signals.md",
+    "edits": [
+      {
+        "old": "04--severity-system/026-convergence-signals.md",
+        "new": "04--severity-system/convergence-signals.md",
+        "count": 1
+      },
+      {
+        "old": "027-security-sensitive-fix-overrides.md",
+        "new": "security-sensitive-fix-overrides.md",
+        "count": 2
+      },
+      {
+        "old": "025-quality-gates.md",
+        "new": "quality-gates.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-review/feature_catalog/04--severity-system/027-security-sensitive-fix-overrides.md",
+    "edits": [
+      {
+        "old": "04--severity-system/027-security-sensitive-fix-overrides.md",
+        "new": "04--severity-system/security-sensitive-fix-overrides.md",
+        "count": 1
+      },
+      {
+        "old": "04--severity-system/025-quality-gates.md",
+        "new": "04--severity-system/quality-gates.md",
+        "count": 1
+      },
+      {
+        "old": "026-convergence-signals.md",
+        "new": "convergence-signals.md",
+        "count": 2
+      }
+    ]
+  }
+]

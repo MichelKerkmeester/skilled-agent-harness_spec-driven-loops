@@ -18,7 +18,9 @@
       "133 phase 001 plan",
       "sk-doc contract de-numbering plan",
       "133 phase 001 tasks",
-      "133 phase 001 checklist"
+      "133 phase 001 checklist",
+      "133 phase 001 implementation summary",
+      "sk-doc de-numbering complete"
     ],
     "key_topics": [
       "sk-doc",
@@ -35,7 +37,7 @@
       "133"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
       ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
       ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
@@ -50,7 +52,8 @@
       "spec.md",
       "plan.md",
       "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
       {
@@ -138,6 +141,12 @@
         "source": "derived"
       },
       {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
+        "source": "derived"
+      },
+      {
         "name": "Feature Specification",
         "kind": "proper_noun",
         "path": "spec.md",
@@ -190,24 +199,19 @@
         "kind": "proper_noun",
         "path": "plan.md",
         "source": "derived"
-      },
-      {
-        "name": "Current Role",
-        "kind": "proper_noun",
-        "path": "plan.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "The sk-doc creation standards and templates mandate a globally-sequential numeric prefix on per-feature snippet filenames (`NNN-feature-name.md`). Until that contract is rewritten, any retroactive migration would contradict the documented convention and new catalogs/playbooks would keep reintroducing numbers.",
     "created_at": "2026-06-06T06:46:12.384Z",
-    "last_save_at": "2026-06-06T06:46:12.384Z",
+    "last_save_at": "2026-06-06T09:52:35.036Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null

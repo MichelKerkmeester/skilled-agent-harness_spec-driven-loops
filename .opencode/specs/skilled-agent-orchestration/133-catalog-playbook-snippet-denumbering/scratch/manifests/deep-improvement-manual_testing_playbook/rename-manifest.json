@@ -1,0 +1,194 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-known-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-missing-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/scan-diverse-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/004-json-output-file.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/json-output-file.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/005-rules-extraction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/rules-extraction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/006-output-checks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/output-checks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/inline-rules-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/008-file-output.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/file-output.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/009-dynamic-arbitrary.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/dynamic-arbitrary.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/010-dimension-details.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/dimension-details.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/011-missing-candidate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/missing-candidate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/012-without-integration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/without-integration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/013-with-integration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/with-integration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/014-no-dimensions.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/no-dimensions.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/015-with-dimensions.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/with-dimensions.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/016-plateau-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/plateau-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/017-full-pipeline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/full-pipeline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/018-any-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/any-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/019-mutation-coverage-graph-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/mutation-coverage-graph-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/020-trade-off-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/trade-off-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/021-candidate-lineage.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/candidate-lineage.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/022-stop-reason-taxonomy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/stop-reason-taxonomy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/023-audit-journal-emission.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/audit-journal-emission.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/024-resume-continuation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/resume-continuation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/025-legal-stop-gates.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/legal-stop-gates.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/026-benchmark-stability.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/benchmark-stability.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/027-dimension-trajectory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/dimension-trajectory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/028-parallel-candidates-opt-in.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/parallel-candidates-opt-in.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/029-journal-wiring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/journal-wiring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/030-insufficient-sample.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/insufficient-sample.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/031-replay-consumer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/replay-consumer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/032-skill-load-not-protocol.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/skill-load-not-protocol.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/033-proposal-only-boundary.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/proposal-only-boundary.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/034-active-critic-overfit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/active-critic-overfit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/035-legal-stop-gate-bundle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/legal-stop-gate-bundle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/036-improvement-gate-delta.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/improvement-gate-delta.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/037-benchmark-completed-boundary.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/benchmark-completed-boundary.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/038-mode-switch-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/mode-switch-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/039-default-pattern-scorer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/default-pattern-scorer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/040-optin-5dim-scorer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/optin-5dim-scorer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/041-unknown-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/unknown-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/042-criteria-exec-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/criteria-exec-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/043-mode-wiring-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/mode-wiring-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/044-contamination-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/contamination-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/045-router-replay-mode-a.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/router-replay-mode-a.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/046-d5-connectivity-hard-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/d5-connectivity-hard-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/047-scoring-vs-private-gold.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/scoring-vs-private-gold.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/048-dual-report-and-remediation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/dual-report-and-remediation.md"
+  }
+]

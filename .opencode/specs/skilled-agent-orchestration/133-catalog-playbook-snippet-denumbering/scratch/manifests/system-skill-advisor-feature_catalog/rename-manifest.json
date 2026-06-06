@@ -1,0 +1,162 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/001-watcher.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/watcher.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/002-lease.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/lease.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/003-lifecycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/lifecycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/004-generation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/generation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/005-trust-state.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/trust-state.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/006-rebuild-from-source.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/rebuild-from-source.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/007-cache-invalidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/cache-invalidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/008-derived-extraction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/derived-extraction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/009-sanitizer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/sanitizer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/010-provenance-and-trust-lanes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/provenance-and-trust-lanes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/011-sync.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/sync.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/012-anti-stuffing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/anti-stuffing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/013-df-idf-corpus.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/df-idf-corpus.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/014-age-haircut.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/age-haircut.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/015-supersession.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/supersession.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/016-archive-handling.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/archive-handling.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/017-schema-migration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/schema-migration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/018-rollback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/rollback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/019-five-lane-fusion.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/five-lane-fusion.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/020-projection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/projection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/021-ambiguity.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/ambiguity.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/022-attribution.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/attribution.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/023-ablation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/ablation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/024-weights-config.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/weights-config.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/025-advisor-recommend.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/advisor-recommend.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/026-advisor-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/advisor-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/027-advisor-validate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/advisor-validate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/028-compat-entrypoint.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/compat-entrypoint.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/029-advisor-rebuild.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/advisor-rebuild.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/030-skill-graph-scan.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-graph-scan.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/031-skill-graph-query.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-graph-query.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/032-skill-graph-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-graph-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/033-skill-graph-validate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/skill-graph-validate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/034-claude-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/claude-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/035-gemini-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/gemini-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/036-codex-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/codex-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/037-opencode-plugin-bridge.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/opencode-plugin-bridge.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/038-cli-shim.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/cli-shim.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/039-regression-suite.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/regression-suite.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/040-bench-runner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/bench-runner.md"
+  }
+]

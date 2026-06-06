@@ -1,0 +1,1510 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/001-unified-context-retrieval-memory-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/unified-context-retrieval-memory-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/002-context-recovery-and-continuation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/context-recovery-and-continuation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/003-targeted-memory-lookup.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/targeted-memory-lookup.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/004-semantic-and-lexical-search-memory-search.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/semantic-and-lexical-search-memory-search.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/005-trigger-phrase-matching-memory-match-triggers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/trigger-phrase-matching-memory-match-triggers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/006-hybrid-search-pipeline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/hybrid-search-pipeline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/007-4-stage-pipeline-architecture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/4-stage-pipeline-architecture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/008-bm25-trigger-phrase-re-index-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/bm25-trigger-phrase-re-index-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/009-quality-aware-3-tier-search-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/quality-aware-3-tier-search-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/010-session-transition-trace-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/session-transition-trace-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/011-bounded-graph-walk-rollout-and-diagnostics.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/bounded-graph-walk-rollout-and-diagnostics.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/012-memory-search-command-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/memory-search-command-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/013-quick-search-memory-quick-search.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/quick-search-memory-quick-search.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/014-ast-level-section-retrieval-tool.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/ast-level-section-retrieval-tool.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/015-tool-result-extraction-to-working-memory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/tool-result-extraction-to-working-memory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/016-session-recovery-spec-kit-resume.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/01--retrieval/session-recovery-spec-kit-resume.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/017-memory-indexing-memory-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-indexing-memory-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/018-memory-metadata-update-memory-update.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-metadata-update-memory-update.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/019-feature-09-direct-manual-scenario-per-memory-history-log.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/feature-09-direct-manual-scenario-per-memory-history-log.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/020-single-and-folder-delete-memory-delete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/single-and-folder-delete-memory-delete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/021-tier-based-bulk-deletion-memory-bulk-delete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/tier-based-bulk-deletion-memory-bulk-delete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/022-validation-feedback-memory-validate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/validation-feedback-memory-validate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/023-transaction-wrappers-on-mutation-handlers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/transaction-wrappers-on-mutation-handlers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/024-memory-delete-confirm-schema-tightening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/memory-delete-confirm-schema-tightening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/025-prediction-error-save-arbitration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/prediction-error-save-arbitration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/026-correction-tracking-with-undo.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/correction-tracking-with-undo.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/027-reconsolidation-conflict-transaction-helper.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/02--mutation/reconsolidation-conflict-transaction-helper.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/028-memory-browser-memory-list.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/memory-browser-memory-list.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/029-system-statistics-memory-stats.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/system-statistics-memory-stats.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/030-health-diagnostics-memory-health.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/health-diagnostics-memory-health.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/031-detect-changes-preflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/detect-changes-preflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/032-session-bootstrap-reader-ready-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-bootstrap-reader-ready-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/033-session-resume-continuity-ladder.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-resume-continuity-ladder.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/034-session-health-shared-payload.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/03--discovery/session-health-shared-payload.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/035-workspace-scanning-and-indexing-memory-index-scan.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/workspace-scanning-and-indexing-memory-index-scan.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/036-startup-runtime-compatibility-guards.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/startup-runtime-compatibility-guards.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/037-memory-retention-sweep-basic-flow.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/memory-retention-sweep-basic-flow.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/038-retention-sweep-dry-run-no-op.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/retention-sweep-dry-run-no-op.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/039-post-insert-enrichment-lifecycle-v30.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/post-insert-enrichment-lifecycle-v30.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/040-index-scan-phased-async-refinements.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/04--maintenance/index-scan-phased-async-refinements.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/039-checkpoint-creation-checkpoint-create.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-creation-checkpoint-create.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/040-checkpoint-listing-checkpoint-list.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-listing-checkpoint-list.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/041-checkpoint-restore-checkpoint-restore.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-restore-checkpoint-restore.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/042-checkpoint-deletion-checkpoint-delete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-deletion-checkpoint-delete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/043-async-ingestion-job-lifecycle-p0-3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/async-ingestion-job-lifecycle-p0-3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/044-path-traversal-validation-p0-4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/path-traversal-validation-p0-4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/045-advisory-ingest-lifecycle-forecast.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/advisory-ingest-lifecycle-forecast.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/046-post-insert-retry-budget.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/post-insert-retry-budget.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/050-checkpoint-v2-file-snapshot-roundtrip.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-file-snapshot-roundtrip.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/051-checkpoint-v2-needs-rebuild-self-heal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/05--lifecycle/checkpoint-v2-needs-rebuild-self-heal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/047-causal-edge-creation-memory-causal-link.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-edge-creation-memory-causal-link.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/048-causal-graph-statistics-memory-causal-stats.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-graph-statistics-memory-causal-stats.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/049-causal-edge-deletion-memory-causal-unlink.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-edge-deletion-memory-causal-unlink.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/050-causal-chain-tracing-memory-drift-why.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-chain-tracing-memory-drift-why.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/051-epistemic-baseline-capture-task-preflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/epistemic-baseline-capture-task-preflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/052-post-task-learning-measurement-task-postflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/post-task-learning-measurement-task-postflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/053-learning-history-memory-get-learning-history.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/learning-history-memory-get-learning-history.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/054-code-graph-edge-explanation-blast-radius-uplift.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/code-graph-edge-explanation-blast-radius-uplift.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/055-causal-stats-empty-graph-edge.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/06--analysis/causal-stats-empty-graph-edge.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/056-ablation-studies-eval-run-ablation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/ablation-studies-eval-run-ablation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/057-reporting-dashboard-eval-reporting-dashboard.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/reporting-dashboard-eval-reporting-dashboard.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/058-eval-ablation-edge-empty-dataset.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/eval-ablation-edge-empty-dataset.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/059-eval-dashboard-health-and-empty-state.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/07--evaluation/eval-dashboard-health-and-empty-state.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/060-graph-channel-id-fix-g1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/graph-channel-id-fix-g1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/061-chunk-collapse-deduplication-g3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/chunk-collapse-deduplication-g3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/062-co-activation-fan-effect-divisor-r17.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/co-activation-fan-effect-divisor-r17.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/063-sha-256-content-hash-deduplication-tm-02.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/sha-256-content-hash-deduplication-tm-02.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/064-database-and-schema-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/database-and-schema-safety.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/065-guards-and-edge-cases.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/guards-and-edge-cases.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/066-canonical-id-dedup-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/067-math-max-min-stack-overflow-elimination.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/math-max-min-stack-overflow-elimination.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/068-session-manager-transaction-gap-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/069-chunking-safe-swap-atomicity-p0-6.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/chunking-safe-swap-atomicity-p0-6.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/070-sqlite-datetime-session-cleanup-p0-7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/sqlite-datetime-session-cleanup-p0-7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/071-error-response-credential-sanitization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/error-response-credential-sanitization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/072-scope-normalizer-canonicalization-and-lint.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/073-evaluation-database-and-schema-r13-s1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-database-and-schema-r13-s1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/074-core-metric-computation-r13-s1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/core-metric-computation-r13-s1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/075-observer-effect-mitigation-d4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/observer-effect-mitigation-d4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/076-quality-proxy-formula-b7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/quality-proxy-formula-b7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/077-synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/synthetic-ground-truth-corpus-g-new-1-g-new-3-phase-a.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/078-bm25-only-baseline-g-new-1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/bm25-only-baseline-g-new-1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/079-agent-consumption-instrumentation-g-new-2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/agent-consumption-instrumentation-g-new-2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/080-scoring-observability-t010.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/scoring-observability-t010.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/081-full-reporting-and-ablation-study-framework-r13-s3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/full-reporting-and-ablation-study-framework-r13-s3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/082-test-quality-improvements.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/test-quality-improvements.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/083-evaluation-and-housekeeping-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/084-cross-ai-validation-fixes-tier-4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/cross-ai-validation-fixes-tier-4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/085-int8-quantization-evaluation-r5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/int8-quantization-evaluation-r5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/086-memory-roadmap-baseline-snapshot.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/087-evaluation-api-surface.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/09--evaluation-and-measurement/evaluation-api-surface.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/088-typed-weighted-degree-channel-r4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/typed-weighted-degree-channel-r4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/089-co-activation-boost-strength-increase-a7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/co-activation-boost-strength-increase-a7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/090-edge-density-measurement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/edge-density-measurement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/091-weight-history-audit-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/weight-history-audit-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/092-graph-momentum-scoring-n2a.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-momentum-scoring-n2a.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/093-causal-depth-signal-n2b.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/causal-depth-signal-n2b.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/094-community-detection-n2c.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/community-detection-n2c.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/095-graph-and-cognitive-memory-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-and-cognitive-memory-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/096-implemented-graph-centrality-and-community-detection-n2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/implemented-graph-centrality-and-community-detection-n2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/097-unified-graph-rollback-and-explainability-phase-3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/unified-graph-rollback-and-explainability-phase-3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/098-graph-refresh-mode-speckit-graph-refresh-mode.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-refresh-mode-speckit-graph-refresh-mode.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/099-llm-graph-backfill-speckit-llm-graph-backfill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/llm-graph-backfill-speckit-llm-graph-backfill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/100-graph-calibration-profile-speckit-graph-calibration-profile.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-calibration-profile-speckit-graph-calibration-profile.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/101-graph-concept-routing-speckit-graph-concept-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/graph-concept-routing-speckit-graph-concept-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/102-typed-traversal-speckit-typed-traversal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/typed-traversal-speckit-typed-traversal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/103-causal-neighbor-boost-and-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/causal-neighbor-boost-and-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/104-temporal-contiguity-layer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/temporal-contiguity-layer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/105-temporal-edges.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/10--graph-signal-activation/temporal-edges.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/106-score-normalization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/score-normalization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/107-interference-scoring-tm-01.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/interference-scoring-tm-01.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/108-classification-based-decay-tm-03.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/classification-based-decay-tm-03.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/109-folder-level-relevance-scoring-pi-a1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/folder-level-relevance-scoring-pi-a1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/110-embedding-cache-r18.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/embedding-cache-r18.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/111-double-intent-weighting-investigation-g2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/double-intent-weighting-investigation-g2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/112-rrf-k-value-sensitivity-analysis-fut-5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/rrf-k-value-sensitivity-analysis-fut-5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/113-negative-feedback-confidence-signal-a4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/negative-feedback-confidence-signal-a4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/114-auto-promotion-on-validation-t002a.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/auto-promotion-on-validation-t002a.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/115-scoring-and-ranking-corrections.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/scoring-and-ranking-corrections.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/116-stage-3-effectivescore-fallback-chain.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/117-scoring-and-fusion-corrections.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/scoring-and-fusion-corrections.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/118-stage-2-score-field-synchronization-p0-8.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/stage-2-score-field-synchronization-p0-8.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/119-adaptive-shadow-proposal-and-rollback-phase-4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/adaptive-shadow-proposal-and-rollback-phase-4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/120-learned-stage2-combiner-speckit-learned-stage2-combiner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/learned-stage2-combiner-speckit-learned-stage2-combiner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/121-shadow-feedback-speckit-shadow-feedback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/shadow-feedback-speckit-shadow-feedback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/122-calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/calibrated-overlap-bonus-speckit-calibrated-overlap-bonus.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/123-rrf-k-experimental-speckit-rrf-k-experimental.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/rrf-k-experimental-speckit-rrf-k-experimental.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/124-tool-level-ttl-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/tool-level-ttl-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/125-access-driven-popularity-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/access-driven-popularity-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/126-temporal-structural-coherence-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/11--scoring-and-calibration/temporal-structural-coherence-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/127-query-complexity-router-r15.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-complexity-router-r15.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/128-channel-min-representation-r2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/channel-min-representation-r2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/129-confidence-based-result-truncation-r15-ext.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/confidence-based-result-truncation-r15-ext.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/130-dynamic-token-budget-allocation-fut-7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/dynamic-token-budget-allocation-fut-7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/131-query-expansion-r12.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-expansion-r12.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/132-llm-reformulation-speckit-llm-reformulation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/llm-reformulation-speckit-llm-reformulation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/133-hyde-speckit-hyde.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/hyde-speckit-hyde.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/134-query-surrogates-speckit-query-surrogates.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-surrogates-speckit-query-surrogates.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/135-query-decomposition-speckit-query-decomposition.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/query-decomposition-speckit-query-decomposition.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/136-graph-concept-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/graph-concept-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/137-graph-channel-preservation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/12--query-intelligence/graph-channel-preservation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/138-context-save-index-update.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/context-save-index-update.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/139-outsourced-agent-memory-capture-round-trip.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/outsourced-agent-memory-capture-round-trip.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/140-session-enrichment-and-alignment-guardrails.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/session-enrichment-and-alignment-guardrails.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/141-verify-fix-verify-memory-quality-loop-pi-a5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop-pi-a5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/142-signal-vocabulary-expansion-tm-08.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/signal-vocabulary-expansion-tm-08.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/143-pre-flight-token-budget-validation-pi-a3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-flight-token-budget-validation-pi-a3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/144-spec-folder-description-discovery-pi-b3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/spec-folder-description-discovery-pi-b3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/145-pre-storage-quality-gate-tm-04.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/pre-storage-quality-gate-tm-04.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/146-reconsolidation-on-save-tm-06.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/reconsolidation-on-save-tm-06.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/147-smarter-memory-content-generation-s1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/smarter-memory-content-generation-s1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/148-anchor-aware-chunk-thinning-r7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/anchor-aware-chunk-thinning-r7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/149-encoding-intent-capture-at-index-time-r16.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/encoding-intent-capture-at-index-time-r16.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/150-auto-entity-extraction-r10.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/auto-entity-extraction-r10.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/151-entity-normalization-consolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/entity-normalization-consolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/152-quality-gate-timer-persistence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/quality-gate-timer-persistence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/153-implemented-auto-entity-extraction-r10.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/implemented-auto-entity-extraction-r10.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/154-deferred-lexical-only-indexing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/deferred-lexical-only-indexing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/155-memory-filename-uniqueness-ensureuniquememoryfilename.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-filename-uniqueness-ensureuniquememoryfilename.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/156-description-json-batch-backfill-validation-pi-b3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-batch-backfill-validation-pi-b3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/157-description-json-schema-field-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/description-json-schema-field-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/158-dry-run-preflight-for-memory-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/159-post-save-quality-review.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/post-save-quality-review.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/160-assistive-reconsolidation-speckit-assistive-reconsolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/assistive-reconsolidation-speckit-assistive-reconsolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/161-hybrid-decay-policy-speckit-hybrid-decay-policy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/hybrid-decay-policy-speckit-hybrid-decay-policy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/162-save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/save-quality-gate-exceptions-speckit-save-quality-gate-exceptions.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/163-content-aware-memory-filename-generation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/164-spec-doc-structure-validator-and-continuity-frontmatter.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/spec-doc-structure-validator-and-continuity-frontmatter.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/165-canonical-continuity-save-substrate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/canonical-continuity-save-substrate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/166-memory-causal-trust-display.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/memory-causal-trust-display.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/167-vec-memories-knn-and-factory-shard-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/168-constitutional-sufficiency-gate-exemption.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/169-graph-metadata-and-lineage-repair-runner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/171-4-stage-pipeline-refactor-r6.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/4-stage-pipeline-refactor-r6.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/172-mpab-chunk-to-memory-aggregation-r1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mpab-chunk-to-memory-aggregation-r1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/173-chunk-ordering-preservation-b2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/chunk-ordering-preservation-b2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/174-template-anchor-optimization-s2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/template-anchor-optimization-s2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/175-validation-signals-as-retrieval-metadata-s3.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/validation-signals-as-retrieval-metadata-s3.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/176-learned-relevance-feedback-r11.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/learned-relevance-feedback-r11.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/177-search-pipeline-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/search-pipeline-safety.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/178-performance-improvements.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/performance-improvements.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/179-legacy-v1-pipeline-removal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/legacy-v1-pipeline-removal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/180-pipeline-and-mutation-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/pipeline-and-mutation-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/181-db-path-extraction-and-import-standardization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/db-path-extraction-and-import-standardization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/182-strict-zod-schema-validation-p0-1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/strict-zod-schema-validation-p0-1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/183-cross-process-db-hot-rebinding.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/cross-process-db-hot-rebinding.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/184-transaction-atomicity-on-rename-failure-p0-5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/transaction-atomicity-on-rename-failure-p0-5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/185-lineage-state-active-projection-and-asof-resolution.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/186-lineage-backfill-rollback-drill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/lineage-backfill-rollback-drill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/187-dynamic-server-instructions-p1-6.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/dynamic-server-instructions-p1-6.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/188-backend-storage-adapter-abstraction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/backend-storage-adapter-abstraction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/189-atomic-write-then-index-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/atomic-write-then-index-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/190-embedding-retry-orchestrator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/embedding-retry-orchestrator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/191-7-layer-tool-architecture-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/7-layer-tool-architecture-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/192-mcp-server-public-api-barrel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/mcp-server-public-api-barrel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/193-embeddings-and-retry-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/embeddings-and-retry-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/194-phase-017-maintainability-extracts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/phase-017-maintainability-extracts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/195-code-graph-phase-dag-runner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/code-graph-phase-dag-runner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/196-routing-telemetry-and-graph-channel-invocation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/routing-telemetry-and-graph-channel-invocation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/258-front-proxy-reconnect-and-backend-only.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--pipeline-architecture/front-proxy-reconnect-and-backend-only.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/170-run-stress-cycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/14--stress-testing/run-stress-cycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/197-dual-scope-memory-auto-surface-tm-05.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-scope-memory-auto-surface-tm-05.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/198-constitutional-memory-as-expert-knowledge-injection-pi-a4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection-pi-a4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/199-spec-folder-hierarchy-as-retrieval-structure-s4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure-s4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/200-lightweight-consolidation-n3-lite.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/lightweight-consolidation-n3-lite.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/201-memory-summary-search-channel-r8.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/memory-summary-search-channel-r8.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/202-cross-document-entity-linking-s5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/cross-document-entity-linking-s5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/203-tier-2-fallback-channel-forcing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/204-implemented-memory-summary-generation-r8.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-memory-summary-generation-r8.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/205-implemented-cross-document-entity-linking-s5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/implemented-cross-document-entity-linking-s5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/206-provenance-rich-response-envelopes-p0-2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/provenance-rich-response-envelopes-p0-2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/207-contextual-tree-injection-p1-4.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/contextual-tree-injection-p1-4.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/208-session-boost-graduated.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/session-boost-graduated.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/209-causal-boost-graduated.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/causal-boost-graduated.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/210-community-search-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/community-search-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/211-dual-level-retrieval.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/15--retrieval-enhancements/dual-level-retrieval.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/212-phase-detection-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-detection-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/213-phase-folder-creation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-folder-creation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/214-recursive-phase-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/recursive-phase-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/215-phase-link-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-link-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/216-main-agent-review-and-verdict-handoff.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/main-agent-review-and-verdict-handoff.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/217-phase-command-workflow.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-command-workflow.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/218-spec-folder-literal-naming-create-sh-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/220-spec-folder-literal-naming-cli-driven-slug.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-cli-driven-slug.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/221-spec-folder-literal-naming-remediation-rule.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-literal-naming-remediation-rule.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/222-tree-thinning-for-spec-folder-consolidation-pi-b1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/tree-thinning-for-spec-folder-consolidation-pi-b1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/223-progressive-validation-for-spec-documents-pi-b2.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/progressive-validation-for-spec-documents-pi-b2.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/224-dead-code-removal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/dead-code-removal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/225-debug-delegation-scaffold-generator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/debug-delegation-scaffold-generator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/226-code-standards-alignment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/code-standards-alignment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/227-real-time-filesystem-watching-p1-7.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/real-time-filesystem-watching-p1-7.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/228-spec-007-finalized-verification-command-suite-evidence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-007-finalized-verification-command-suite-evidence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/229-migration-checkpoint-scripts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/migration-checkpoint-scripts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/230-schema-compatibility-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/schema-compatibility-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/231-grep-traceability-for-feature-catalog-code-references.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/grep-traceability-for-feature-catalog-code-references.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/232-feature-catalog-annotation-name-validity.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/feature-catalog-annotation-name-validity.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/233-multi-feature-annotation-coverage.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/multi-feature-annotation-coverage.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/234-module-header-compliance-via-verify-alignment-drift-py.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-header-compliance-via-verify-alignment-drift-py.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/236-constitutional-memory-manager-command.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/constitutional-memory-manager-command.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/237-rendered-memory-template-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/rendered-memory-template-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/238-source-dist-alignment-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/source-dist-alignment-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/239-module-map-accuracy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/module-map-accuracy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/240-no-symlinks-in-lib-tree.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/no-symlinks-in-lib-tree.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/241-json-mode-hybrid-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-mode-hybrid-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/242-json-primary-deprecation-posture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/json-primary-deprecation-posture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/244-runtime-family-count-census.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-family-count-census.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/245-runtime-lineage-naming-parity.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/runtime-lineage-naming-parity.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/246-gemini-runtime-path-resolution.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/gemini-runtime-path-resolution.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/247-memory-manage-command-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-manage-command-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/248-architecture-boundary-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/architecture-boundary-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/249-watcher-delete-rename-cleanup.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/watcher-delete-rename-cleanup.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/251-completion-verification-workflow.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/completion-verification-workflow.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/252-ops-self-healing-runbooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/ops-self-healing-runbooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/253-eval-runner-cli.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/eval-runner-cli.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/254-phase-system-knowledge-node.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/phase-system-knowledge-node.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/255-spec-lifecycle-automation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-lifecycle-automation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/256-spec-validation-rule-engine.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-validation-rule-engine.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/257-memory-maintenance-and-migration-clis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-maintenance-and-migration-clis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/258-core-workflow-infrastructure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/core-workflow-infrastructure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/259-session-extraction-and-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/session-extraction-and-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/260-spec-folder-detection-and-description.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/spec-folder-detection-and-description.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/261-setup-native-module-health-and-mcp-installation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/setup-native-module-health-and-mcp-installation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/262-template-composition-system.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/template-composition-system.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/263-evaluation-benchmark-and-import-policy-tooling.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/264-memory-quality-kpi-reporting.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/memory-quality-kpi-reporting.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/265-research-metadata-backfill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/research-metadata-backfill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/266-strict-validation-addons-continuity-freshness-and-evidence-markers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/267-mcp-daemon-rebuild-restart-live-probe.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/268-graph-degraded-stress-cell-isolation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/269-cli-matrix-adapter-runner-smoke.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/cli-matrix-adapter-runner-smoke.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/270-embedder-list-registry-inventory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-list-registry-inventory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/271-embedder-set-dry-run-and-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-set-dry-run-and-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/272-embedder-status-job-and-active-pointer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/embedder-status-job-and-active-pointer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/273-orphan-mcp-runtime-lifecycle-guardrails.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/orphan-mcp-runtime-lifecycle-guardrails.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/300-sk-git-worktree-convention.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/16--tooling-and-scripts/sk-git-worktree-convention.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/274-feature-flag-governance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/feature-flag-governance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/275-governed-ingest-and-scope-isolation-phase-5.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-and-scope-isolation-phase-5.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/276-constitutional-gate-enforcement-rule-pack.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/constitutional-gate-enforcement-rule-pack.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/277-session-resume-caller-binding-and-unicode-sanitization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/session-resume-caller-binding-and-unicode-sanitization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/278-governed-ingest-cancel-lifecycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/17--governance/governed-ingest-cancel-lifecycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/279-ux-hook-module-coverage-mutation-feedback-response-hints.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/ux-hook-module-coverage-mutation-feedback-response-hints.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/280-mutation-save-path-ux-parity-and-no-op-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-save-path-ux-parity-and-no-op-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/281-context-server-success-envelope-finalization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/context-server-success-envelope-finalization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/282-hooks-barrel-readme-synchronization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/hooks-barrel-readme-synchronization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/283-checkpoint-confirmname-and-schema-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/checkpoint-confirmname-and-schema-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/284-A--comment-hygiene-checker-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/A--comment-hygiene-checker-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/285-C--comment-hygiene-opencode-plugin.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/C--comment-hygiene-opencode-plugin.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/286-D--comment-hygiene-devin-precommit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/D--comment-hygiene-devin-precommit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/287-F--comment-hygiene-gemini-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/F--comment-hygiene-gemini-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/288-E--comment-hygiene-codex-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/E--comment-hygiene-codex-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/289-B--comment-hygiene-claude-code-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/B--comment-hygiene-claude-code-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/290-result-explain-v1-speckit-result-explain-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-explain-v1-speckit-result-explain-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/291-response-profile-v1-speckit-response-profile-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/response-profile-v1-speckit-response-profile-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/292-progressive-disclosure-v1-speckit-progressive-disclosure-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/progressive-disclosure-v1-speckit-progressive-disclosure-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/293-session-retrieval-state-v1-speckit-session-retrieval-state-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/session-retrieval-state-v1-speckit-session-retrieval-state-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/294-empty-result-recovery-speckit-empty-result-recovery-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/empty-result-recovery-speckit-empty-result-recovery-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/295-result-confidence-speckit-result-confidence-v1.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-confidence-speckit-result-confidence-v1.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/296-memory-health-autorepair-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/memory-health-autorepair-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/297-schema-and-type-contract-synchronization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/schema-and-type-contract-synchronization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/298-mutation-hook-result-contract-expansion.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-hook-result-contract-expansion.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/299-mutation-response-ux-payload-exposure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/mutation-response-ux-payload-exposure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/300-atomic-save-parity-and-partial-indexing-hints.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/301-final-token-metadata-recomputation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/final-token-metadata-recomputation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/302-end-to-end-success-envelope-verification.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/end-to-end-success-envelope-verification.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/303-result-provenance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/18--ux-hooks/result-provenance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/304-1-search-pipeline-features-speckit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/1-search-pipeline-features-speckit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/305-2-session-and-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/2-session-and-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/306-3-mcp-configuration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/3-mcp-configuration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/307-4-memory-and-storage.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/4-memory-and-storage.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/308-5-embedding-and-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/5-embedding-and-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/309-6-debug-and-telemetry.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/6-debug-and-telemetry.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/310-7-ci-and-build-informational.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/7-ci-and-build-informational.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/311-memory-roadmap-capability-flags.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/memory-roadmap-capability-flags.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/312-runtime-config-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/runtime-config-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/313-filter-config-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/19--feature-flag-reference/filter-config-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/314-remediation-runtime-surface.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/remediation-runtime-surface.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/315-memory-health-auto-repair.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/memory-health-auto-repair.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/316-feedback-driven-revalidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/20--remediation-revalidation/feedback-driven-revalidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/317-retired-runtime-shims.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/retired-runtime-shims.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/318-lazy-loading-migration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/lazy-loading-migration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/319-shadow-scoring-retirement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/shadow-scoring-retirement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/320-inert-scoring-flags.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/inert-scoring-flags.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/321-adaptive-fusion-flag-drift.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/21--implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/322-precompact-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/precompact-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/323-session-start-compact.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-start-compact.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/324-session-start-startup.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-start-startup.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/325-stop-hook-saves.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/stop-hook-saves.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/326-cross-runtime-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/cross-runtime-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/327-runtime-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/runtime-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/328-budget-allocator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/budget-allocator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/329-working-set-compaction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/working-set-compaction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/330-compact-merger-assembly.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/compact-merger-assembly.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/331-mcp-auto-priming.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/mcp-auto-priming.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/332-session-health.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-health.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/333-session-resume.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/session-resume.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/334-query-intent-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/query-intent-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/335-tool-routing-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/tool-routing-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/336-resource-map-template.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/resource-map-template.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/337-query-intent-classifier.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/query-intent-classifier.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/338-passive-context-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/passive-context-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/339-gemini-cli-hooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/gemini-cli-hooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/340-context-preservation-metrics.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/22--context-preservation/context-preservation-metrics.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/341-doctor-memory-fresh-install.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-fresh-install.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/342-doctor-memory-drift-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-drift-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/343-doctor-memory-long-pole-rebuild.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-long-pole-rebuild.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/344-doctor-memory-sigint-cancellation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-sigint-cancellation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/345-doctor-memory-disk-pressure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-memory-disk-pressure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/346-doctor-causal-graph-low-coverage.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-low-coverage.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/347-doctor-causal-graph-confidence-threshold.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-confidence-threshold.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/348-doctor-causal-graph-add-only.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-causal-graph-add-only.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/349-doctor-deep-loop-lazy-init.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-lazy-init.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/350-doctor-deep-loop-empty-no-source.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-empty-no-source.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/351-doctor-deep-loop-convergence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-deep-loop-convergence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/352-doctor-update-G5-confirm-failure-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G5-confirm-failure-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/353-doctor-update-G6-concurrent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G6-concurrent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/354-doctor-update-G7-sigint.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G7-sigint.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/355-doctor-update-G8-migration-gap.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G8-migration-gap.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/356-doctor-update-G9-dashboard.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-G9-dashboard.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/357-doctor-update-tier-aware-default.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/doctor-update-tier-aware-default.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/358-version-migration-3.3.0.0-to-3.4.1.0.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-3.3.0.0-to-3.4.1.0.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/359-version-migration-cleanup-legacy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-cleanup-legacy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/360-version-migration-no-op.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/23--doctor-commands/version-migration-no-op.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/361-paraphrase-recall.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/paraphrase-recall.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/362-synonymy-across-vocabularies.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/synonymy-across-vocabularies.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/363-code-intent-matching.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/code-intent-matching.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/364-disambiguation-under-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/disambiguation-under-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/365-multi-aspect-query-synthesis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/multi-aspect-query-synthesis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/366-specificity-ladder.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/specificity-ladder.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/367-adversarial-near-miss.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/adversarial-near-miss.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/368-compound-concept-synthesis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/compound-concept-synthesis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/369-llm-made-memory-recall.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/llm-made-memory-recall.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/370-query-latency-and-throughput.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/query-latency-and-throughput.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/371-causal-graph-link-quality.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-graph-link-quality.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/372-causal-coverage-under-bulk-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/causal-coverage-under-bulk-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/373-drift-detection-quality.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/drift-detection-quality.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/374-cross-ai-memory-handoff.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/cross-ai-memory-handoff.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/375-concurrent-multi-ai-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/manual_testing_playbook/24--local-llm-query-intelligence/concurrent-multi-ai-safety.md"
+  }
+]

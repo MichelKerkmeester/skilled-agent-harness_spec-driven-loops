@@ -1,0 +1,592 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/014-convergence-script.md",
+        "new": "07--script-entry-points/convergence-script.md",
+        "count": 2
+      },
+      {
+        "old": "06--coverage-graph/013-coverage-graph-signals.md",
+        "new": "06--coverage-graph/coverage-graph-signals.md",
+        "count": 2
+      },
+      {
+        "old": "06--coverage-graph/012-coverage-graph-query.md",
+        "new": "06--coverage-graph/coverage-graph-query.md",
+        "count": 2
+      },
+      {
+        "old": "08--council/020-adjudicator-verdict-scoring.md",
+        "new": "08--council/adjudicator-verdict-scoring.md",
+        "count": 2
+      },
+      {
+        "old": "03--validation/005-post-dispatch-validate.md",
+        "new": "03--validation/post-dispatch-validate.md",
+        "count": 2
+      },
+      {
+        "old": "07--script-entry-points/015-upsert-script.md",
+        "new": "07--script-entry-points/upsert-script.md",
+        "count": 2
+      },
+      {
+        "old": "07--script-entry-points/017-status-script.md",
+        "new": "07--script-entry-points/status-script.md",
+        "count": 2
+      },
+      {
+        "old": "06--coverage-graph/011-coverage-graph-db.md",
+        "new": "06--coverage-graph/coverage-graph-db.md",
+        "count": 2
+      },
+      {
+        "old": "07--script-entry-points/016-query-script.md",
+        "new": "07--script-entry-points/query-script.md",
+        "count": 2
+      },
+      {
+        "old": "08--council/022-session-state-hierarchy.md",
+        "new": "08--council/session-state-hierarchy.md",
+        "count": 2
+      },
+      {
+        "old": "04--state-safety/009-permissions-gate.md",
+        "new": "04--state-safety/permissions-gate.md",
+        "count": 2
+      },
+      {
+        "old": "02--prompt-rendering/004-prompt-pack.md",
+        "new": "02--prompt-rendering/prompt-pack.md",
+        "count": 2
+      },
+      {
+        "old": "08--council/018-multi-seat-dispatch.md",
+        "new": "08--council/multi-seat-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/023-fanout-config-schema.md",
+        "new": "09--fanout/fanout-config-schema.md",
+        "count": 2
+      },
+      {
+        "old": "04--state-safety/006-atomic-state.md",
+        "new": "04--state-safety/atomic-state.md",
+        "count": 2
+      },
+      {
+        "old": "04--state-safety/007-jsonl-repair.md",
+        "new": "04--state-safety/jsonl-repair.md",
+        "count": 2
+      },
+      {
+        "old": "08--council/019-round-state-jsonl.md",
+        "new": "08--council/round-state-jsonl.md",
+        "count": 2
+      },
+      {
+        "old": "01--executor/001-executor-config.md",
+        "new": "01--executor/executor-config.md",
+        "count": 2
+      },
+      {
+        "old": "01--executor/003-fallback-router.md",
+        "new": "01--executor/fallback-router.md",
+        "count": 2
+      },
+      {
+        "old": "01--executor/002-executor-audit.md",
+        "new": "01--executor/executor-audit.md",
+        "count": 2
+      },
+      {
+        "old": "05--scoring/010-bayesian-scorer.md",
+        "new": "05--scoring/bayesian-scorer.md",
+        "count": 2
+      },
+      {
+        "old": "04--state-safety/008-loop-lock.md",
+        "new": "04--state-safety/loop-lock.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/026-fanout-salvage.md",
+        "new": "09--fanout/fanout-salvage.md",
+        "count": 2
+      },
+      {
+        "old": "08--council/021-cost-guards.md",
+        "new": "08--council/cost-guards.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/027-fanout-merge.md",
+        "new": "09--fanout/fanout-merge.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/024-fanout-pool.md",
+        "new": "09--fanout/fanout-pool.md",
+        "count": 2
+      },
+      {
+        "old": "09--fanout/025-fanout-run.md",
+        "new": "09--fanout/fanout-run.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/01--executor/001-executor-config.md",
+    "edits": [
+      {
+        "old": "01--executor/001-executor-config.md",
+        "new": "01--executor/executor-config.md",
+        "count": 1
+      },
+      {
+        "old": "002-executor-audit.md",
+        "new": "executor-audit.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/01--executor/002-executor-audit.md",
+    "edits": [
+      {
+        "old": "01--executor/002-executor-audit.md",
+        "new": "01--executor/executor-audit.md",
+        "count": 1
+      },
+      {
+        "old": "001-executor-config.md",
+        "new": "executor-config.md",
+        "count": 2
+      },
+      {
+        "old": "003-fallback-router.md",
+        "new": "fallback-router.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/01--executor/003-fallback-router.md",
+    "edits": [
+      {
+        "old": "01--executor/003-fallback-router.md",
+        "new": "01--executor/fallback-router.md",
+        "count": 1
+      },
+      {
+        "old": "002-executor-audit.md",
+        "new": "executor-audit.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/02--prompt-rendering/004-prompt-pack.md",
+    "edits": [
+      {
+        "old": "02--prompt-rendering/004-prompt-pack.md",
+        "new": "02--prompt-rendering/prompt-pack.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/03--validation/005-post-dispatch-validate.md",
+    "edits": [
+      {
+        "old": "03--validation/005-post-dispatch-validate.md",
+        "new": "03--validation/post-dispatch-validate.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/04--state-safety/006-atomic-state.md",
+    "edits": [
+      {
+        "old": "04--state-safety/006-atomic-state.md",
+        "new": "04--state-safety/atomic-state.md",
+        "count": 1
+      },
+      {
+        "old": "007-jsonl-repair.md",
+        "new": "jsonl-repair.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/04--state-safety/007-jsonl-repair.md",
+    "edits": [
+      {
+        "old": "04--state-safety/007-jsonl-repair.md",
+        "new": "04--state-safety/jsonl-repair.md",
+        "count": 1
+      },
+      {
+        "old": "006-atomic-state.md",
+        "new": "atomic-state.md",
+        "count": 2
+      },
+      {
+        "old": "008-loop-lock.md",
+        "new": "loop-lock.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/04--state-safety/008-loop-lock.md",
+    "edits": [
+      {
+        "old": "04--state-safety/008-loop-lock.md",
+        "new": "04--state-safety/loop-lock.md",
+        "count": 1
+      },
+      {
+        "old": "009-permissions-gate.md",
+        "new": "permissions-gate.md",
+        "count": 2
+      },
+      {
+        "old": "007-jsonl-repair.md",
+        "new": "jsonl-repair.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/04--state-safety/009-permissions-gate.md",
+    "edits": [
+      {
+        "old": "04--state-safety/009-permissions-gate.md",
+        "new": "04--state-safety/permissions-gate.md",
+        "count": 1
+      },
+      {
+        "old": "008-loop-lock.md",
+        "new": "loop-lock.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/05--scoring/010-bayesian-scorer.md",
+    "edits": [
+      {
+        "old": "05--scoring/010-bayesian-scorer.md",
+        "new": "05--scoring/bayesian-scorer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/011-coverage-graph-db.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/011-coverage-graph-db.md",
+        "new": "06--coverage-graph/coverage-graph-db.md",
+        "count": 1
+      },
+      {
+        "old": "012-coverage-graph-query.md",
+        "new": "coverage-graph-query.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/012-coverage-graph-query.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/012-coverage-graph-query.md",
+        "new": "06--coverage-graph/coverage-graph-query.md",
+        "count": 1
+      },
+      {
+        "old": "013-coverage-graph-signals.md",
+        "new": "coverage-graph-signals.md",
+        "count": 2
+      },
+      {
+        "old": "011-coverage-graph-db.md",
+        "new": "coverage-graph-db.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/06--coverage-graph/013-coverage-graph-signals.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/013-coverage-graph-signals.md",
+        "new": "06--coverage-graph/coverage-graph-signals.md",
+        "count": 1
+      },
+      {
+        "old": "012-coverage-graph-query.md",
+        "new": "coverage-graph-query.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/014-convergence-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/014-convergence-script.md",
+        "new": "07--script-entry-points/convergence-script.md",
+        "count": 1
+      },
+      {
+        "old": "015-upsert-script.md",
+        "new": "upsert-script.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/015-upsert-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/015-upsert-script.md",
+        "new": "07--script-entry-points/upsert-script.md",
+        "count": 1
+      },
+      {
+        "old": "014-convergence-script.md",
+        "new": "convergence-script.md",
+        "count": 2
+      },
+      {
+        "old": "016-query-script.md",
+        "new": "query-script.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/016-query-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/016-query-script.md",
+        "new": "07--script-entry-points/query-script.md",
+        "count": 1
+      },
+      {
+        "old": "015-upsert-script.md",
+        "new": "upsert-script.md",
+        "count": 2
+      },
+      {
+        "old": "017-status-script.md",
+        "new": "status-script.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/07--script-entry-points/017-status-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/017-status-script.md",
+        "new": "07--script-entry-points/status-script.md",
+        "count": 1
+      },
+      {
+        "old": "016-query-script.md",
+        "new": "query-script.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/08--council/018-multi-seat-dispatch.md",
+    "edits": [
+      {
+        "old": "08--council/018-multi-seat-dispatch.md",
+        "new": "08--council/multi-seat-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "019-round-state-jsonl.md",
+        "new": "round-state-jsonl.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/08--council/019-round-state-jsonl.md",
+    "edits": [
+      {
+        "old": "08--council/019-round-state-jsonl.md",
+        "new": "08--council/round-state-jsonl.md",
+        "count": 1
+      },
+      {
+        "old": "020-adjudicator-verdict-scoring.md",
+        "new": "adjudicator-verdict-scoring.md",
+        "count": 2
+      },
+      {
+        "old": "018-multi-seat-dispatch.md",
+        "new": "multi-seat-dispatch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/08--council/020-adjudicator-verdict-scoring.md",
+    "edits": [
+      {
+        "old": "08--council/020-adjudicator-verdict-scoring.md",
+        "new": "08--council/adjudicator-verdict-scoring.md",
+        "count": 1
+      },
+      {
+        "old": "019-round-state-jsonl.md",
+        "new": "round-state-jsonl.md",
+        "count": 2
+      },
+      {
+        "old": "021-cost-guards.md",
+        "new": "cost-guards.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/08--council/021-cost-guards.md",
+    "edits": [
+      {
+        "old": "08--council/021-cost-guards.md",
+        "new": "08--council/cost-guards.md",
+        "count": 1
+      },
+      {
+        "old": "020-adjudicator-verdict-scoring.md",
+        "new": "adjudicator-verdict-scoring.md",
+        "count": 2
+      },
+      {
+        "old": "022-session-state-hierarchy.md",
+        "new": "session-state-hierarchy.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/08--council/022-session-state-hierarchy.md",
+    "edits": [
+      {
+        "old": "08--council/022-session-state-hierarchy.md",
+        "new": "08--council/session-state-hierarchy.md",
+        "count": 1
+      },
+      {
+        "old": "021-cost-guards.md",
+        "new": "cost-guards.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/023-fanout-config-schema.md",
+    "edits": [
+      {
+        "old": "09--fanout/023-fanout-config-schema.md",
+        "new": "09--fanout/fanout-config-schema.md",
+        "count": 1
+      },
+      {
+        "old": "024-fanout-pool.md",
+        "new": "fanout-pool.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/024-fanout-pool.md",
+    "edits": [
+      {
+        "old": "09--fanout/024-fanout-pool.md",
+        "new": "09--fanout/fanout-pool.md",
+        "count": 1
+      },
+      {
+        "old": "023-fanout-config-schema.md",
+        "new": "fanout-config-schema.md",
+        "count": 2
+      },
+      {
+        "old": "025-fanout-run.md",
+        "new": "fanout-run.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/025-fanout-run.md",
+    "edits": [
+      {
+        "old": "09--fanout/025-fanout-run.md",
+        "new": "09--fanout/fanout-run.md",
+        "count": 1
+      },
+      {
+        "old": "026-fanout-salvage.md",
+        "new": "fanout-salvage.md",
+        "count": 2
+      },
+      {
+        "old": "024-fanout-pool.md",
+        "new": "fanout-pool.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/026-fanout-salvage.md",
+    "edits": [
+      {
+        "old": "09--fanout/026-fanout-salvage.md",
+        "new": "09--fanout/fanout-salvage.md",
+        "count": 1
+      },
+      {
+        "old": "027-fanout-merge.md",
+        "new": "fanout-merge.md",
+        "count": 2
+      },
+      {
+        "old": "025-fanout-run.md",
+        "new": "fanout-run.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/feature_catalog/09--fanout/027-fanout-merge.md",
+    "edits": [
+      {
+        "old": "09--fanout/027-fanout-merge.md",
+        "new": "09--fanout/fanout-merge.md",
+        "count": 1
+      },
+      {
+        "old": "026-fanout-salvage.md",
+        "new": "fanout-salvage.md",
+        "count": 2
+      }
+    ]
+  }
+]

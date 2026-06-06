@@ -1,0 +1,2277 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "04--cupt-task-completion/031-complete-with-note.md",
+        "new": "04--cupt-task-completion/complete-with-note.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/089-create-checklist-item.md",
+        "new": "13--mcp-low-priority/create-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/090-update-checklist-item.md",
+        "new": "13--mcp-low-priority/update-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/091-delete-checklist-item.md",
+        "new": "13--mcp-low-priority/delete-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/003-workspace-default.md",
+        "new": "01--cupt-authentication/workspace-default.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/059-update-bulk-tasks.md",
+        "new": "12--mcp-medium-priority/update-bulk-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/061-task-dependencies.md",
+        "new": "12--mcp-medium-priority/task-dependencies.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/001-interactive-auth.md",
+        "new": "01--cupt-authentication/interactive-auth.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/062-create-task-link.md",
+        "new": "12--mcp-medium-priority/create-task-link.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/064-task-attachments.md",
+        "new": "12--mcp-medium-priority/task-attachments.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/058-create-bulk-tasks.md",
+        "new": "11--mcp-high-priority/create-bulk-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/073-create-document.md",
+        "new": "12--mcp-medium-priority/create-document.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/075-update-document.md",
+        "new": "12--mcp-medium-priority/update-document.md",
+        "count": 2
+      },
+      {
+        "old": "04--cupt-task-completion/029-mark-complete.md",
+        "new": "04--cupt-task-completion/mark-complete.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/060-create-subtask.md",
+        "new": "12--mcp-medium-priority/create-subtask.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/067-manage-folders.md",
+        "new": "12--mcp-medium-priority/manage-folders.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/095-get-custom-fields.md",
+        "new": "13--mcp-low-priority/get-custom-fields.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/022-stacked-filters.md",
+        "new": "02--cupt-task-listing/stacked-filters.md",
+        "count": 2
+      },
+      {
+        "old": "05--cupt-notes-comments/034-list-comments.md",
+        "new": "05--cupt-notes-comments/list-comments.md",
+        "count": 2
+      },
+      {
+        "old": "08--cupt-attachments/041-list-attachments.md",
+        "new": "08--cupt-attachments/list-attachments.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/057-manage-comments.md",
+        "new": "11--mcp-high-priority/manage-comments.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/066-manage-spaces.md",
+        "new": "12--mcp-medium-priority/manage-spaces.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/068-custom-fields.md",
+        "new": "12--mcp-medium-priority/custom-fields.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/076-time-tracking.md",
+        "new": "12--mcp-medium-priority/time-tracking.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/078-get-dependencies.md",
+        "new": "13--mcp-low-priority/get-dependencies.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/086-create-checklist.md",
+        "new": "13--mcp-low-priority/create-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/087-update-checklist.md",
+        "new": "13--mcp-low-priority/update-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/088-delete-checklist.md",
+        "new": "13--mcp-low-priority/delete-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/096-set-custom-field.md",
+        "new": "13--mcp-low-priority/set-custom-field.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/002-direct-token.md",
+        "new": "01--cupt-authentication/direct-token.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/004-list-default.md",
+        "new": "01--cupt-authentication/list-default.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/012-filter-overdue.md",
+        "new": "02--cupt-task-listing/filter-overdue.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/028-status-by-list.md",
+        "new": "03--cupt-task-details/status-by-list.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/065-manage-lists.md",
+        "new": "12--mcp-medium-priority/manage-lists.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/074-get-document.md",
+        "new": "12--mcp-medium-priority/get-document.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/077-manage-goals.md",
+        "new": "12--mcp-medium-priority/manage-goals.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/081-manage-webhooks.md",
+        "new": "13--mcp-low-priority/manage-webhooks.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/093-create-doc-page.md",
+        "new": "13--mcp-low-priority/create-doc-page.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/094-update-doc-page.md",
+        "new": "13--mcp-low-priority/update-doc-page.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/005-show-config.md",
+        "new": "01--cupt-authentication/show-config.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/006-clear-cache.md",
+        "new": "01--cupt-authentication/clear-cache.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/007-auth-status.md",
+        "new": "01--cupt-authentication/auth-status.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/009-list-assigned.md",
+        "new": "02--cupt-task-listing/list-assigned.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/027-status-schema.md",
+        "new": "03--cupt-task-details/status-schema.md",
+        "count": 2
+      },
+      {
+        "old": "05--cupt-notes-comments/033-add-comment.md",
+        "new": "05--cupt-notes-comments/add-comment.md",
+        "count": 2
+      },
+      {
+        "old": "06--cupt-time-tracking/038-timer-status.md",
+        "new": "06--cupt-time-tracking/timer-status.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/056-get-workspace.md",
+        "new": "11--mcp-high-priority/get-workspace.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/010-filter-today.md",
+        "new": "02--cupt-task-listing/filter-today.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/025-show-offline.md",
+        "new": "03--cupt-task-details/show-offline.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/026-task-context.md",
+        "new": "03--cupt-task-details/task-context.md",
+        "count": 2
+      },
+      {
+        "old": "04--cupt-task-completion/032-auto-note.md",
+        "new": "04--cupt-task-completion/auto-note.md",
+        "count": 2
+      },
+      {
+        "old": "06--cupt-time-tracking/035-start-timer.md",
+        "new": "06--cupt-time-tracking/start-timer.md",
+        "count": 2
+      },
+      {
+        "old": "07--cupt-tag-management/040-remove-tag.md",
+        "new": "07--cupt-tag-management/remove-tag.md",
+        "count": 2
+      },
+      {
+        "old": "08--cupt-attachments/043-download-file.md",
+        "new": "08--cupt-attachments/download-file.md",
+        "count": 2
+      },
+      {
+        "old": "10--cupt-global-flags/048-offline-flag.md",
+        "new": "10--cupt-global-flags/offline-flag.md",
+        "count": 2
+      },
+      {
+        "old": "10--cupt-global-flags/050-version-flag.md",
+        "new": "10--cupt-global-flags/version-flag.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/055-search-tasks.md",
+        "new": "11--mcp-high-priority/search-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/063-multi-list.md",
+        "new": "12--mcp-medium-priority/multi-list.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/070-remove-tag.md",
+        "new": "12--mcp-medium-priority/remove-tag.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/071-space-tags.md",
+        "new": "12--mcp-medium-priority/space-tags.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/083-manage-guests.md",
+        "new": "13--mcp-low-priority/manage-guests.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/092-get-doc-pages.md",
+        "new": "13--mcp-low-priority/get-doc-pages.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/011-filter-week.md",
+        "new": "02--cupt-task-listing/filter-week.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/014-exclude-tag.md",
+        "new": "02--cupt-task-listing/exclude-tag.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/015-filter-team.md",
+        "new": "02--cupt-task-listing/filter-team.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/018-cap-results.md",
+        "new": "02--cupt-task-listing/cap-results.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/020-json-output.md",
+        "new": "02--cupt-task-listing/json-output.md",
+        "count": 2
+      },
+      {
+        "old": "06--cupt-time-tracking/036-stop-timer.md",
+        "new": "06--cupt-time-tracking/stop-timer.md",
+        "count": 2
+      },
+      {
+        "old": "06--cupt-time-tracking/037-log-manual.md",
+        "new": "06--cupt-time-tracking/log-manual.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/051-create-task.md",
+        "new": "11--mcp-high-priority/create-task.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/053-update-task.md",
+        "new": "11--mcp-high-priority/update-task.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/054-delete-task.md",
+        "new": "11--mcp-high-priority/delete-task.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/072-get-views.md",
+        "new": "12--mcp-medium-priority/get-views.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/079-use-template.md",
+        "new": "13--mcp-low-priority/use-template.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/013-filter-tag.md",
+        "new": "02--cupt-task-listing/filter-tag.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/024-show-notes.md",
+        "new": "03--cupt-task-details/show-notes.md",
+        "count": 2
+      },
+      {
+        "old": "04--cupt-task-completion/030-dry-run.md",
+        "new": "04--cupt-task-completion/dry-run.md",
+        "count": 2
+      },
+      {
+        "old": "08--cupt-attachments/042-upload-file.md",
+        "new": "08--cupt-attachments/upload-file.md",
+        "count": 2
+      },
+      {
+        "old": "10--cupt-global-flags/049-debug-flag.md",
+        "new": "10--cupt-global-flags/debug-flag.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/080-manage-chat.md",
+        "new": "13--mcp-low-priority/manage-chat.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/082-user-groups.md",
+        "new": "13--mcp-low-priority/user-groups.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/016-all-tasks.md",
+        "new": "02--cupt-task-listing/all-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/017-mine-only.md",
+        "new": "02--cupt-task-listing/mine-only.md",
+        "count": 2
+      },
+      {
+        "old": "03--cupt-task-details/023-show-task.md",
+        "new": "03--cupt-task-details/show-task.md",
+        "count": 2
+      },
+      {
+        "old": "07--cupt-tag-management/039-add-tag.md",
+        "new": "07--cupt-tag-management/add-tag.md",
+        "count": 2
+      },
+      {
+        "old": "09--cupt-workspace/045-task-summary.md",
+        "new": "09--cupt-workspace/task-summary.md",
+        "count": 2
+      },
+      {
+        "old": "10--cupt-global-flags/047-json-flag.md",
+        "new": "10--cupt-global-flags/json-flag.md",
+        "count": 2
+      },
+      {
+        "old": "12--mcp-medium-priority/069-add-tag.md",
+        "new": "12--mcp-medium-priority/add-tag.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/084-audit-logs.md",
+        "new": "13--mcp-low-priority/audit-logs.md",
+        "count": 2
+      },
+      {
+        "old": "01--cupt-authentication/008-logout.md",
+        "new": "01--cupt-authentication/logout.md",
+        "count": 2
+      },
+      {
+        "old": "11--mcp-high-priority/052-get-task.md",
+        "new": "11--mcp-high-priority/get-task.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/019-verbose.md",
+        "new": "02--cupt-task-listing/verbose.md",
+        "count": 2
+      },
+      {
+        "old": "02--cupt-task-listing/021-offline.md",
+        "new": "02--cupt-task-listing/offline.md",
+        "count": 2
+      },
+      {
+        "old": "09--cupt-workspace/044-list-teams.md",
+        "new": "09--cupt-workspace/list-teams.md",
+        "count": 2
+      },
+      {
+        "old": "13--mcp-low-priority/085-feedback.md",
+        "new": "13--mcp-low-priority/feedback.md",
+        "count": 2
+      },
+      {
+        "old": "09--cupt-workspace/046-prefetch.md",
+        "new": "09--cupt-workspace/prefetch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/001-interactive-auth.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/001-interactive-auth.md",
+        "new": "01--cupt-authentication/interactive-auth.md",
+        "count": 1
+      },
+      {
+        "old": "002-direct-token.md",
+        "new": "direct-token.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/002-direct-token.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/002-direct-token.md",
+        "new": "01--cupt-authentication/direct-token.md",
+        "count": 1
+      },
+      {
+        "old": "003-workspace-default.md",
+        "new": "workspace-default.md",
+        "count": 2
+      },
+      {
+        "old": "001-interactive-auth.md",
+        "new": "interactive-auth.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/003-workspace-default.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/003-workspace-default.md",
+        "new": "01--cupt-authentication/workspace-default.md",
+        "count": 1
+      },
+      {
+        "old": "002-direct-token.md",
+        "new": "direct-token.md",
+        "count": 2
+      },
+      {
+        "old": "004-list-default.md",
+        "new": "list-default.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/004-list-default.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/004-list-default.md",
+        "new": "01--cupt-authentication/list-default.md",
+        "count": 1
+      },
+      {
+        "old": "003-workspace-default.md",
+        "new": "workspace-default.md",
+        "count": 2
+      },
+      {
+        "old": "005-show-config.md",
+        "new": "show-config.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/005-show-config.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/005-show-config.md",
+        "new": "01--cupt-authentication/show-config.md",
+        "count": 1
+      },
+      {
+        "old": "004-list-default.md",
+        "new": "list-default.md",
+        "count": 2
+      },
+      {
+        "old": "006-clear-cache.md",
+        "new": "clear-cache.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/006-clear-cache.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/006-clear-cache.md",
+        "new": "01--cupt-authentication/clear-cache.md",
+        "count": 1
+      },
+      {
+        "old": "005-show-config.md",
+        "new": "show-config.md",
+        "count": 2
+      },
+      {
+        "old": "007-auth-status.md",
+        "new": "auth-status.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/007-auth-status.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/007-auth-status.md",
+        "new": "01--cupt-authentication/auth-status.md",
+        "count": 1
+      },
+      {
+        "old": "006-clear-cache.md",
+        "new": "clear-cache.md",
+        "count": 2
+      },
+      {
+        "old": "008-logout.md",
+        "new": "logout.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/01--cupt-authentication/008-logout.md",
+    "edits": [
+      {
+        "old": "01--cupt-authentication/008-logout.md",
+        "new": "01--cupt-authentication/logout.md",
+        "count": 1
+      },
+      {
+        "old": "007-auth-status.md",
+        "new": "auth-status.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/009-list-assigned.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/009-list-assigned.md",
+        "new": "02--cupt-task-listing/list-assigned.md",
+        "count": 1
+      },
+      {
+        "old": "010-filter-today.md",
+        "new": "filter-today.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/010-filter-today.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/010-filter-today.md",
+        "new": "02--cupt-task-listing/filter-today.md",
+        "count": 1
+      },
+      {
+        "old": "009-list-assigned.md",
+        "new": "list-assigned.md",
+        "count": 2
+      },
+      {
+        "old": "011-filter-week.md",
+        "new": "filter-week.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/011-filter-week.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/011-filter-week.md",
+        "new": "02--cupt-task-listing/filter-week.md",
+        "count": 1
+      },
+      {
+        "old": "012-filter-overdue.md",
+        "new": "filter-overdue.md",
+        "count": 2
+      },
+      {
+        "old": "010-filter-today.md",
+        "new": "filter-today.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/012-filter-overdue.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/012-filter-overdue.md",
+        "new": "02--cupt-task-listing/filter-overdue.md",
+        "count": 1
+      },
+      {
+        "old": "011-filter-week.md",
+        "new": "filter-week.md",
+        "count": 2
+      },
+      {
+        "old": "013-filter-tag.md",
+        "new": "filter-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/013-filter-tag.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/013-filter-tag.md",
+        "new": "02--cupt-task-listing/filter-tag.md",
+        "count": 1
+      },
+      {
+        "old": "012-filter-overdue.md",
+        "new": "filter-overdue.md",
+        "count": 2
+      },
+      {
+        "old": "014-exclude-tag.md",
+        "new": "exclude-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/014-exclude-tag.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/014-exclude-tag.md",
+        "new": "02--cupt-task-listing/exclude-tag.md",
+        "count": 1
+      },
+      {
+        "old": "015-filter-team.md",
+        "new": "filter-team.md",
+        "count": 2
+      },
+      {
+        "old": "013-filter-tag.md",
+        "new": "filter-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/015-filter-team.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/015-filter-team.md",
+        "new": "02--cupt-task-listing/filter-team.md",
+        "count": 1
+      },
+      {
+        "old": "014-exclude-tag.md",
+        "new": "exclude-tag.md",
+        "count": 2
+      },
+      {
+        "old": "016-all-tasks.md",
+        "new": "all-tasks.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/016-all-tasks.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/016-all-tasks.md",
+        "new": "02--cupt-task-listing/all-tasks.md",
+        "count": 1
+      },
+      {
+        "old": "015-filter-team.md",
+        "new": "filter-team.md",
+        "count": 2
+      },
+      {
+        "old": "017-mine-only.md",
+        "new": "mine-only.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/017-mine-only.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/017-mine-only.md",
+        "new": "02--cupt-task-listing/mine-only.md",
+        "count": 1
+      },
+      {
+        "old": "018-cap-results.md",
+        "new": "cap-results.md",
+        "count": 2
+      },
+      {
+        "old": "016-all-tasks.md",
+        "new": "all-tasks.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/018-cap-results.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/018-cap-results.md",
+        "new": "02--cupt-task-listing/cap-results.md",
+        "count": 1
+      },
+      {
+        "old": "017-mine-only.md",
+        "new": "mine-only.md",
+        "count": 2
+      },
+      {
+        "old": "019-verbose.md",
+        "new": "verbose.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/019-verbose.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/019-verbose.md",
+        "new": "02--cupt-task-listing/verbose.md",
+        "count": 1
+      },
+      {
+        "old": "018-cap-results.md",
+        "new": "cap-results.md",
+        "count": 2
+      },
+      {
+        "old": "020-json-output.md",
+        "new": "json-output.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/020-json-output.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/020-json-output.md",
+        "new": "02--cupt-task-listing/json-output.md",
+        "count": 1
+      },
+      {
+        "old": "019-verbose.md",
+        "new": "verbose.md",
+        "count": 2
+      },
+      {
+        "old": "021-offline.md",
+        "new": "offline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/021-offline.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/021-offline.md",
+        "new": "02--cupt-task-listing/offline.md",
+        "count": 1
+      },
+      {
+        "old": "022-stacked-filters.md",
+        "new": "stacked-filters.md",
+        "count": 2
+      },
+      {
+        "old": "020-json-output.md",
+        "new": "json-output.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/02--cupt-task-listing/022-stacked-filters.md",
+    "edits": [
+      {
+        "old": "02--cupt-task-listing/022-stacked-filters.md",
+        "new": "02--cupt-task-listing/stacked-filters.md",
+        "count": 1
+      },
+      {
+        "old": "021-offline.md",
+        "new": "offline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/023-show-task.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/023-show-task.md",
+        "new": "03--cupt-task-details/show-task.md",
+        "count": 1
+      },
+      {
+        "old": "024-show-notes.md",
+        "new": "show-notes.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/024-show-notes.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/024-show-notes.md",
+        "new": "03--cupt-task-details/show-notes.md",
+        "count": 1
+      },
+      {
+        "old": "025-show-offline.md",
+        "new": "show-offline.md",
+        "count": 2
+      },
+      {
+        "old": "023-show-task.md",
+        "new": "show-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/025-show-offline.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/025-show-offline.md",
+        "new": "03--cupt-task-details/show-offline.md",
+        "count": 1
+      },
+      {
+        "old": "026-task-context.md",
+        "new": "task-context.md",
+        "count": 2
+      },
+      {
+        "old": "024-show-notes.md",
+        "new": "show-notes.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/026-task-context.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/026-task-context.md",
+        "new": "03--cupt-task-details/task-context.md",
+        "count": 1
+      },
+      {
+        "old": "027-status-schema.md",
+        "new": "status-schema.md",
+        "count": 2
+      },
+      {
+        "old": "025-show-offline.md",
+        "new": "show-offline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/027-status-schema.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/027-status-schema.md",
+        "new": "03--cupt-task-details/status-schema.md",
+        "count": 1
+      },
+      {
+        "old": "028-status-by-list.md",
+        "new": "status-by-list.md",
+        "count": 2
+      },
+      {
+        "old": "026-task-context.md",
+        "new": "task-context.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/03--cupt-task-details/028-status-by-list.md",
+    "edits": [
+      {
+        "old": "03--cupt-task-details/028-status-by-list.md",
+        "new": "03--cupt-task-details/status-by-list.md",
+        "count": 1
+      },
+      {
+        "old": "027-status-schema.md",
+        "new": "status-schema.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/029-mark-complete.md",
+    "edits": [
+      {
+        "old": "04--cupt-task-completion/029-mark-complete.md",
+        "new": "04--cupt-task-completion/mark-complete.md",
+        "count": 1
+      },
+      {
+        "old": "030-dry-run.md",
+        "new": "dry-run.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/030-dry-run.md",
+    "edits": [
+      {
+        "old": "04--cupt-task-completion/030-dry-run.md",
+        "new": "04--cupt-task-completion/dry-run.md",
+        "count": 1
+      },
+      {
+        "old": "031-complete-with-note.md",
+        "new": "complete-with-note.md",
+        "count": 2
+      },
+      {
+        "old": "029-mark-complete.md",
+        "new": "mark-complete.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/031-complete-with-note.md",
+    "edits": [
+      {
+        "old": "04--cupt-task-completion/031-complete-with-note.md",
+        "new": "04--cupt-task-completion/complete-with-note.md",
+        "count": 1
+      },
+      {
+        "old": "032-auto-note.md",
+        "new": "auto-note.md",
+        "count": 2
+      },
+      {
+        "old": "030-dry-run.md",
+        "new": "dry-run.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/04--cupt-task-completion/032-auto-note.md",
+    "edits": [
+      {
+        "old": "04--cupt-task-completion/032-auto-note.md",
+        "new": "04--cupt-task-completion/auto-note.md",
+        "count": 1
+      },
+      {
+        "old": "031-complete-with-note.md",
+        "new": "complete-with-note.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/033-add-comment.md",
+    "edits": [
+      {
+        "old": "05--cupt-notes-comments/033-add-comment.md",
+        "new": "05--cupt-notes-comments/add-comment.md",
+        "count": 1
+      },
+      {
+        "old": "034-list-comments.md",
+        "new": "list-comments.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/05--cupt-notes-comments/034-list-comments.md",
+    "edits": [
+      {
+        "old": "05--cupt-notes-comments/034-list-comments.md",
+        "new": "05--cupt-notes-comments/list-comments.md",
+        "count": 1
+      },
+      {
+        "old": "033-add-comment.md",
+        "new": "add-comment.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/035-start-timer.md",
+    "edits": [
+      {
+        "old": "06--cupt-time-tracking/035-start-timer.md",
+        "new": "06--cupt-time-tracking/start-timer.md",
+        "count": 1
+      },
+      {
+        "old": "036-stop-timer.md",
+        "new": "stop-timer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/036-stop-timer.md",
+    "edits": [
+      {
+        "old": "06--cupt-time-tracking/036-stop-timer.md",
+        "new": "06--cupt-time-tracking/stop-timer.md",
+        "count": 1
+      },
+      {
+        "old": "035-start-timer.md",
+        "new": "start-timer.md",
+        "count": 2
+      },
+      {
+        "old": "037-log-manual.md",
+        "new": "log-manual.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/037-log-manual.md",
+    "edits": [
+      {
+        "old": "06--cupt-time-tracking/037-log-manual.md",
+        "new": "06--cupt-time-tracking/log-manual.md",
+        "count": 1
+      },
+      {
+        "old": "038-timer-status.md",
+        "new": "timer-status.md",
+        "count": 2
+      },
+      {
+        "old": "036-stop-timer.md",
+        "new": "stop-timer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/06--cupt-time-tracking/038-timer-status.md",
+    "edits": [
+      {
+        "old": "06--cupt-time-tracking/038-timer-status.md",
+        "new": "06--cupt-time-tracking/timer-status.md",
+        "count": 1
+      },
+      {
+        "old": "037-log-manual.md",
+        "new": "log-manual.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/039-add-tag.md",
+    "edits": [
+      {
+        "old": "07--cupt-tag-management/039-add-tag.md",
+        "new": "07--cupt-tag-management/add-tag.md",
+        "count": 1
+      },
+      {
+        "old": "040-remove-tag.md",
+        "new": "remove-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/07--cupt-tag-management/040-remove-tag.md",
+    "edits": [
+      {
+        "old": "07--cupt-tag-management/040-remove-tag.md",
+        "new": "07--cupt-tag-management/remove-tag.md",
+        "count": 1
+      },
+      {
+        "old": "039-add-tag.md",
+        "new": "add-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/041-list-attachments.md",
+    "edits": [
+      {
+        "old": "08--cupt-attachments/041-list-attachments.md",
+        "new": "08--cupt-attachments/list-attachments.md",
+        "count": 1
+      },
+      {
+        "old": "042-upload-file.md",
+        "new": "upload-file.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/042-upload-file.md",
+    "edits": [
+      {
+        "old": "08--cupt-attachments/042-upload-file.md",
+        "new": "08--cupt-attachments/upload-file.md",
+        "count": 1
+      },
+      {
+        "old": "041-list-attachments.md",
+        "new": "list-attachments.md",
+        "count": 2
+      },
+      {
+        "old": "043-download-file.md",
+        "new": "download-file.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/08--cupt-attachments/043-download-file.md",
+    "edits": [
+      {
+        "old": "08--cupt-attachments/043-download-file.md",
+        "new": "08--cupt-attachments/download-file.md",
+        "count": 1
+      },
+      {
+        "old": "042-upload-file.md",
+        "new": "upload-file.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/044-list-teams.md",
+    "edits": [
+      {
+        "old": "09--cupt-workspace/044-list-teams.md",
+        "new": "09--cupt-workspace/list-teams.md",
+        "count": 1
+      },
+      {
+        "old": "045-task-summary.md",
+        "new": "task-summary.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/045-task-summary.md",
+    "edits": [
+      {
+        "old": "09--cupt-workspace/045-task-summary.md",
+        "new": "09--cupt-workspace/task-summary.md",
+        "count": 1
+      },
+      {
+        "old": "044-list-teams.md",
+        "new": "list-teams.md",
+        "count": 2
+      },
+      {
+        "old": "046-prefetch.md",
+        "new": "prefetch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/09--cupt-workspace/046-prefetch.md",
+    "edits": [
+      {
+        "old": "09--cupt-workspace/046-prefetch.md",
+        "new": "09--cupt-workspace/prefetch.md",
+        "count": 1
+      },
+      {
+        "old": "045-task-summary.md",
+        "new": "task-summary.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/047-json-flag.md",
+    "edits": [
+      {
+        "old": "10--cupt-global-flags/047-json-flag.md",
+        "new": "10--cupt-global-flags/json-flag.md",
+        "count": 1
+      },
+      {
+        "old": "048-offline-flag.md",
+        "new": "offline-flag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/048-offline-flag.md",
+    "edits": [
+      {
+        "old": "10--cupt-global-flags/048-offline-flag.md",
+        "new": "10--cupt-global-flags/offline-flag.md",
+        "count": 1
+      },
+      {
+        "old": "049-debug-flag.md",
+        "new": "debug-flag.md",
+        "count": 2
+      },
+      {
+        "old": "047-json-flag.md",
+        "new": "json-flag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/049-debug-flag.md",
+    "edits": [
+      {
+        "old": "10--cupt-global-flags/049-debug-flag.md",
+        "new": "10--cupt-global-flags/debug-flag.md",
+        "count": 1
+      },
+      {
+        "old": "048-offline-flag.md",
+        "new": "offline-flag.md",
+        "count": 2
+      },
+      {
+        "old": "050-version-flag.md",
+        "new": "version-flag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/10--cupt-global-flags/050-version-flag.md",
+    "edits": [
+      {
+        "old": "10--cupt-global-flags/050-version-flag.md",
+        "new": "10--cupt-global-flags/version-flag.md",
+        "count": 1
+      },
+      {
+        "old": "049-debug-flag.md",
+        "new": "debug-flag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/051-create-task.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/051-create-task.md",
+        "new": "11--mcp-high-priority/create-task.md",
+        "count": 1
+      },
+      {
+        "old": "052-get-task.md",
+        "new": "get-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/052-get-task.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/052-get-task.md",
+        "new": "11--mcp-high-priority/get-task.md",
+        "count": 1
+      },
+      {
+        "old": "051-create-task.md",
+        "new": "create-task.md",
+        "count": 2
+      },
+      {
+        "old": "053-update-task.md",
+        "new": "update-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/053-update-task.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/053-update-task.md",
+        "new": "11--mcp-high-priority/update-task.md",
+        "count": 1
+      },
+      {
+        "old": "054-delete-task.md",
+        "new": "delete-task.md",
+        "count": 2
+      },
+      {
+        "old": "052-get-task.md",
+        "new": "get-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/054-delete-task.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/054-delete-task.md",
+        "new": "11--mcp-high-priority/delete-task.md",
+        "count": 1
+      },
+      {
+        "old": "055-search-tasks.md",
+        "new": "search-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "053-update-task.md",
+        "new": "update-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/055-search-tasks.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/055-search-tasks.md",
+        "new": "11--mcp-high-priority/search-tasks.md",
+        "count": 1
+      },
+      {
+        "old": "056-get-workspace.md",
+        "new": "get-workspace.md",
+        "count": 2
+      },
+      {
+        "old": "054-delete-task.md",
+        "new": "delete-task.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/056-get-workspace.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/056-get-workspace.md",
+        "new": "11--mcp-high-priority/get-workspace.md",
+        "count": 1
+      },
+      {
+        "old": "057-manage-comments.md",
+        "new": "manage-comments.md",
+        "count": 2
+      },
+      {
+        "old": "055-search-tasks.md",
+        "new": "search-tasks.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/057-manage-comments.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/057-manage-comments.md",
+        "new": "11--mcp-high-priority/manage-comments.md",
+        "count": 1
+      },
+      {
+        "old": "058-create-bulk-tasks.md",
+        "new": "create-bulk-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "056-get-workspace.md",
+        "new": "get-workspace.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/11--mcp-high-priority/058-create-bulk-tasks.md",
+    "edits": [
+      {
+        "old": "11--mcp-high-priority/058-create-bulk-tasks.md",
+        "new": "11--mcp-high-priority/create-bulk-tasks.md",
+        "count": 1
+      },
+      {
+        "old": "057-manage-comments.md",
+        "new": "manage-comments.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/059-update-bulk-tasks.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/059-update-bulk-tasks.md",
+        "new": "12--mcp-medium-priority/update-bulk-tasks.md",
+        "count": 1
+      },
+      {
+        "old": "060-create-subtask.md",
+        "new": "create-subtask.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/060-create-subtask.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/060-create-subtask.md",
+        "new": "12--mcp-medium-priority/create-subtask.md",
+        "count": 1
+      },
+      {
+        "old": "059-update-bulk-tasks.md",
+        "new": "update-bulk-tasks.md",
+        "count": 2
+      },
+      {
+        "old": "061-task-dependencies.md",
+        "new": "task-dependencies.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/061-task-dependencies.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/061-task-dependencies.md",
+        "new": "12--mcp-medium-priority/task-dependencies.md",
+        "count": 1
+      },
+      {
+        "old": "062-create-task-link.md",
+        "new": "create-task-link.md",
+        "count": 2
+      },
+      {
+        "old": "060-create-subtask.md",
+        "new": "create-subtask.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/062-create-task-link.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/062-create-task-link.md",
+        "new": "12--mcp-medium-priority/create-task-link.md",
+        "count": 1
+      },
+      {
+        "old": "061-task-dependencies.md",
+        "new": "task-dependencies.md",
+        "count": 2
+      },
+      {
+        "old": "063-multi-list.md",
+        "new": "multi-list.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/063-multi-list.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/063-multi-list.md",
+        "new": "12--mcp-medium-priority/multi-list.md",
+        "count": 1
+      },
+      {
+        "old": "062-create-task-link.md",
+        "new": "create-task-link.md",
+        "count": 2
+      },
+      {
+        "old": "064-task-attachments.md",
+        "new": "task-attachments.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/064-task-attachments.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/064-task-attachments.md",
+        "new": "12--mcp-medium-priority/task-attachments.md",
+        "count": 1
+      },
+      {
+        "old": "065-manage-lists.md",
+        "new": "manage-lists.md",
+        "count": 2
+      },
+      {
+        "old": "063-multi-list.md",
+        "new": "multi-list.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/065-manage-lists.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/065-manage-lists.md",
+        "new": "12--mcp-medium-priority/manage-lists.md",
+        "count": 1
+      },
+      {
+        "old": "064-task-attachments.md",
+        "new": "task-attachments.md",
+        "count": 2
+      },
+      {
+        "old": "066-manage-spaces.md",
+        "new": "manage-spaces.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/066-manage-spaces.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/066-manage-spaces.md",
+        "new": "12--mcp-medium-priority/manage-spaces.md",
+        "count": 1
+      },
+      {
+        "old": "067-manage-folders.md",
+        "new": "manage-folders.md",
+        "count": 2
+      },
+      {
+        "old": "065-manage-lists.md",
+        "new": "manage-lists.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/067-manage-folders.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/067-manage-folders.md",
+        "new": "12--mcp-medium-priority/manage-folders.md",
+        "count": 1
+      },
+      {
+        "old": "066-manage-spaces.md",
+        "new": "manage-spaces.md",
+        "count": 2
+      },
+      {
+        "old": "068-custom-fields.md",
+        "new": "custom-fields.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/068-custom-fields.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/068-custom-fields.md",
+        "new": "12--mcp-medium-priority/custom-fields.md",
+        "count": 1
+      },
+      {
+        "old": "067-manage-folders.md",
+        "new": "manage-folders.md",
+        "count": 2
+      },
+      {
+        "old": "069-add-tag.md",
+        "new": "add-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/069-add-tag.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/069-add-tag.md",
+        "new": "12--mcp-medium-priority/add-tag.md",
+        "count": 1
+      },
+      {
+        "old": "068-custom-fields.md",
+        "new": "custom-fields.md",
+        "count": 2
+      },
+      {
+        "old": "070-remove-tag.md",
+        "new": "remove-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/070-remove-tag.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/070-remove-tag.md",
+        "new": "12--mcp-medium-priority/remove-tag.md",
+        "count": 1
+      },
+      {
+        "old": "071-space-tags.md",
+        "new": "space-tags.md",
+        "count": 2
+      },
+      {
+        "old": "069-add-tag.md",
+        "new": "add-tag.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/071-space-tags.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/071-space-tags.md",
+        "new": "12--mcp-medium-priority/space-tags.md",
+        "count": 1
+      },
+      {
+        "old": "070-remove-tag.md",
+        "new": "remove-tag.md",
+        "count": 2
+      },
+      {
+        "old": "072-get-views.md",
+        "new": "get-views.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/072-get-views.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/072-get-views.md",
+        "new": "12--mcp-medium-priority/get-views.md",
+        "count": 1
+      },
+      {
+        "old": "073-create-document.md",
+        "new": "create-document.md",
+        "count": 2
+      },
+      {
+        "old": "071-space-tags.md",
+        "new": "space-tags.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/073-create-document.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/073-create-document.md",
+        "new": "12--mcp-medium-priority/create-document.md",
+        "count": 1
+      },
+      {
+        "old": "074-get-document.md",
+        "new": "get-document.md",
+        "count": 2
+      },
+      {
+        "old": "072-get-views.md",
+        "new": "get-views.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/074-get-document.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/074-get-document.md",
+        "new": "12--mcp-medium-priority/get-document.md",
+        "count": 1
+      },
+      {
+        "old": "073-create-document.md",
+        "new": "create-document.md",
+        "count": 2
+      },
+      {
+        "old": "075-update-document.md",
+        "new": "update-document.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/075-update-document.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/075-update-document.md",
+        "new": "12--mcp-medium-priority/update-document.md",
+        "count": 1
+      },
+      {
+        "old": "076-time-tracking.md",
+        "new": "time-tracking.md",
+        "count": 2
+      },
+      {
+        "old": "074-get-document.md",
+        "new": "get-document.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/076-time-tracking.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/076-time-tracking.md",
+        "new": "12--mcp-medium-priority/time-tracking.md",
+        "count": 1
+      },
+      {
+        "old": "075-update-document.md",
+        "new": "update-document.md",
+        "count": 2
+      },
+      {
+        "old": "077-manage-goals.md",
+        "new": "manage-goals.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/12--mcp-medium-priority/077-manage-goals.md",
+    "edits": [
+      {
+        "old": "12--mcp-medium-priority/077-manage-goals.md",
+        "new": "12--mcp-medium-priority/manage-goals.md",
+        "count": 1
+      },
+      {
+        "old": "076-time-tracking.md",
+        "new": "time-tracking.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/078-get-dependencies.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/078-get-dependencies.md",
+        "new": "13--mcp-low-priority/get-dependencies.md",
+        "count": 1
+      },
+      {
+        "old": "079-use-template.md",
+        "new": "use-template.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/079-use-template.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/079-use-template.md",
+        "new": "13--mcp-low-priority/use-template.md",
+        "count": 1
+      },
+      {
+        "old": "078-get-dependencies.md",
+        "new": "get-dependencies.md",
+        "count": 2
+      },
+      {
+        "old": "080-manage-chat.md",
+        "new": "manage-chat.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/080-manage-chat.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/080-manage-chat.md",
+        "new": "13--mcp-low-priority/manage-chat.md",
+        "count": 1
+      },
+      {
+        "old": "081-manage-webhooks.md",
+        "new": "manage-webhooks.md",
+        "count": 2
+      },
+      {
+        "old": "079-use-template.md",
+        "new": "use-template.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/081-manage-webhooks.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/081-manage-webhooks.md",
+        "new": "13--mcp-low-priority/manage-webhooks.md",
+        "count": 1
+      },
+      {
+        "old": "080-manage-chat.md",
+        "new": "manage-chat.md",
+        "count": 2
+      },
+      {
+        "old": "082-user-groups.md",
+        "new": "user-groups.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/082-user-groups.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/082-user-groups.md",
+        "new": "13--mcp-low-priority/user-groups.md",
+        "count": 1
+      },
+      {
+        "old": "081-manage-webhooks.md",
+        "new": "manage-webhooks.md",
+        "count": 2
+      },
+      {
+        "old": "083-manage-guests.md",
+        "new": "manage-guests.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/083-manage-guests.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/083-manage-guests.md",
+        "new": "13--mcp-low-priority/manage-guests.md",
+        "count": 1
+      },
+      {
+        "old": "082-user-groups.md",
+        "new": "user-groups.md",
+        "count": 2
+      },
+      {
+        "old": "084-audit-logs.md",
+        "new": "audit-logs.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/084-audit-logs.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/084-audit-logs.md",
+        "new": "13--mcp-low-priority/audit-logs.md",
+        "count": 1
+      },
+      {
+        "old": "083-manage-guests.md",
+        "new": "manage-guests.md",
+        "count": 2
+      },
+      {
+        "old": "085-feedback.md",
+        "new": "feedback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/085-feedback.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/085-feedback.md",
+        "new": "13--mcp-low-priority/feedback.md",
+        "count": 1
+      },
+      {
+        "old": "086-create-checklist.md",
+        "new": "create-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "084-audit-logs.md",
+        "new": "audit-logs.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/086-create-checklist.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/086-create-checklist.md",
+        "new": "13--mcp-low-priority/create-checklist.md",
+        "count": 1
+      },
+      {
+        "old": "087-update-checklist.md",
+        "new": "update-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "085-feedback.md",
+        "new": "feedback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/087-update-checklist.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/087-update-checklist.md",
+        "new": "13--mcp-low-priority/update-checklist.md",
+        "count": 1
+      },
+      {
+        "old": "086-create-checklist.md",
+        "new": "create-checklist.md",
+        "count": 2
+      },
+      {
+        "old": "088-delete-checklist.md",
+        "new": "delete-checklist.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/088-delete-checklist.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/088-delete-checklist.md",
+        "new": "13--mcp-low-priority/delete-checklist.md",
+        "count": 1
+      },
+      {
+        "old": "089-create-checklist-item.md",
+        "new": "create-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "087-update-checklist.md",
+        "new": "update-checklist.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/089-create-checklist-item.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/089-create-checklist-item.md",
+        "new": "13--mcp-low-priority/create-checklist-item.md",
+        "count": 1
+      },
+      {
+        "old": "090-update-checklist-item.md",
+        "new": "update-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "088-delete-checklist.md",
+        "new": "delete-checklist.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/090-update-checklist-item.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/090-update-checklist-item.md",
+        "new": "13--mcp-low-priority/update-checklist-item.md",
+        "count": 1
+      },
+      {
+        "old": "089-create-checklist-item.md",
+        "new": "create-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "091-delete-checklist-item.md",
+        "new": "delete-checklist-item.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/091-delete-checklist-item.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/091-delete-checklist-item.md",
+        "new": "13--mcp-low-priority/delete-checklist-item.md",
+        "count": 1
+      },
+      {
+        "old": "090-update-checklist-item.md",
+        "new": "update-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "092-get-doc-pages.md",
+        "new": "get-doc-pages.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/092-get-doc-pages.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/092-get-doc-pages.md",
+        "new": "13--mcp-low-priority/get-doc-pages.md",
+        "count": 1
+      },
+      {
+        "old": "091-delete-checklist-item.md",
+        "new": "delete-checklist-item.md",
+        "count": 2
+      },
+      {
+        "old": "093-create-doc-page.md",
+        "new": "create-doc-page.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/093-create-doc-page.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/093-create-doc-page.md",
+        "new": "13--mcp-low-priority/create-doc-page.md",
+        "count": 1
+      },
+      {
+        "old": "094-update-doc-page.md",
+        "new": "update-doc-page.md",
+        "count": 2
+      },
+      {
+        "old": "092-get-doc-pages.md",
+        "new": "get-doc-pages.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/094-update-doc-page.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/094-update-doc-page.md",
+        "new": "13--mcp-low-priority/update-doc-page.md",
+        "count": 1
+      },
+      {
+        "old": "095-get-custom-fields.md",
+        "new": "get-custom-fields.md",
+        "count": 2
+      },
+      {
+        "old": "093-create-doc-page.md",
+        "new": "create-doc-page.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/095-get-custom-fields.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/095-get-custom-fields.md",
+        "new": "13--mcp-low-priority/get-custom-fields.md",
+        "count": 1
+      },
+      {
+        "old": "096-set-custom-field.md",
+        "new": "set-custom-field.md",
+        "count": 2
+      },
+      {
+        "old": "094-update-doc-page.md",
+        "new": "update-doc-page.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-click-up/feature_catalog/13--mcp-low-priority/096-set-custom-field.md",
+    "edits": [
+      {
+        "old": "13--mcp-low-priority/096-set-custom-field.md",
+        "new": "13--mcp-low-priority/set-custom-field.md",
+        "count": 1
+      },
+      {
+        "old": "095-get-custom-fields.md",
+        "new": "get-custom-fields.md",
+        "count": 2
+      }
+    ]
+  }
+]

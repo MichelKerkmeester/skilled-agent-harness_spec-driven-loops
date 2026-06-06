@@ -1,0 +1,727 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/037-benchmark-completed-boundary.md",
+        "new": "08--agent-discipline-stress-tests/benchmark-completed-boundary.md",
+        "count": 1
+      },
+      {
+        "old": "08--agent-discipline-stress-tests/032-skill-load-not-protocol.md",
+        "new": "08--agent-discipline-stress-tests/skill-load-not-protocol.md",
+        "count": 1
+      },
+      {
+        "old": "08--agent-discipline-stress-tests/033-proposal-only-boundary.md",
+        "new": "08--agent-discipline-stress-tests/proposal-only-boundary.md",
+        "count": 1
+      },
+      {
+        "old": "08--agent-discipline-stress-tests/035-legal-stop-gate-bundle.md",
+        "new": "08--agent-discipline-stress-tests/legal-stop-gate-bundle.md",
+        "count": 1
+      },
+      {
+        "old": "08--agent-discipline-stress-tests/036-improvement-gate-delta.md",
+        "new": "08--agent-discipline-stress-tests/improvement-gate-delta.md",
+        "count": 1
+      },
+      {
+        "old": "08--agent-discipline-stress-tests/034-active-critic-overfit.md",
+        "new": "08--agent-discipline-stress-tests/active-critic-overfit.md",
+        "count": 1
+      },
+      {
+        "old": "06--end-to-end-loop/019-mutation-coverage-graph-tracking.md",
+        "new": "06--end-to-end-loop/mutation-coverage-graph-tracking.md",
+        "count": 1
+      },
+      {
+        "old": "09--model-benchmark-mode/039-default-pattern-scorer.md",
+        "new": "09--model-benchmark-mode/default-pattern-scorer.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/048-dual-report-and-remediation.md",
+        "new": "10--skill-benchmark/dual-report-and-remediation.md",
+        "count": 1
+      },
+      {
+        "old": "04--benchmark-integration/012-without-integration.md",
+        "new": "04--benchmark-integration/without-integration.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/046-d5-connectivity-hard-gate.md",
+        "new": "10--skill-benchmark/d5-connectivity-hard-gate.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/028-parallel-candidates-opt-in.md",
+        "new": "07--runtime-truth/parallel-candidates-opt-in.md",
+        "count": 1
+      },
+      {
+        "old": "09--model-benchmark-mode/038-mode-switch-routing.md",
+        "new": "09--model-benchmark-mode/mode-switch-routing.md",
+        "count": 1
+      },
+      {
+        "old": "02--profile-generator/007-inline-rules-fallback.md",
+        "new": "02--profile-generator/inline-rules-fallback.md",
+        "count": 1
+      },
+      {
+        "old": "09--model-benchmark-mode/042-criteria-exec-gate.md",
+        "new": "09--model-benchmark-mode/criteria-exec-gate.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/047-scoring-vs-private-gold.md",
+        "new": "10--skill-benchmark/scoring-vs-private-gold.md",
+        "count": 1
+      },
+      {
+        "old": "01--integration-scanner/002-scan-missing-agent.md",
+        "new": "01--integration-scanner/scan-missing-agent.md",
+        "count": 1
+      },
+      {
+        "old": "01--integration-scanner/003-scan-diverse-agent.md",
+        "new": "01--integration-scanner/scan-diverse-agent.md",
+        "count": 1
+      },
+      {
+        "old": "04--benchmark-integration/013-with-integration.md",
+        "new": "04--benchmark-integration/with-integration.md",
+        "count": 1
+      },
+      {
+        "old": "09--model-benchmark-mode/040-optin-5dim-scorer.md",
+        "new": "09--model-benchmark-mode/optin-5dim-scorer.md",
+        "count": 1
+      },
+      {
+        "old": "09--model-benchmark-mode/041-unknown-fallback.md",
+        "new": "09--model-benchmark-mode/unknown-fallback.md",
+        "count": 1
+      },
+      {
+        "old": "01--integration-scanner/001-scan-known-agent.md",
+        "new": "01--integration-scanner/scan-known-agent.md",
+        "count": 1
+      },
+      {
+        "old": "01--integration-scanner/004-json-output-file.md",
+        "new": "01--integration-scanner/json-output-file.md",
+        "count": 1
+      },
+      {
+        "old": "05--reducer-dimensions/016-plateau-detection.md",
+        "new": "05--reducer-dimensions/plateau-detection.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/023-audit-journal-emission.md",
+        "new": "07--runtime-truth/audit-journal-emission.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/045-router-replay-mode-a.md",
+        "new": "10--skill-benchmark/router-replay-mode-a.md",
+        "count": 1
+      },
+      {
+        "old": "06--end-to-end-loop/020-trade-off-detection.md",
+        "new": "06--end-to-end-loop/trade-off-detection.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/043-mode-wiring-routing.md",
+        "new": "10--skill-benchmark/mode-wiring-routing.md",
+        "count": 1
+      },
+      {
+        "old": "02--profile-generator/005-rules-extraction.md",
+        "new": "02--profile-generator/rules-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "05--reducer-dimensions/015-with-dimensions.md",
+        "new": "05--reducer-dimensions/with-dimensions.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/022-stop-reason-taxonomy.md",
+        "new": "07--runtime-truth/stop-reason-taxonomy.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/027-dimension-trajectory.md",
+        "new": "07--runtime-truth/dimension-trajectory.md",
+        "count": 1
+      },
+      {
+        "old": "10--skill-benchmark/044-contamination-gate.md",
+        "new": "10--skill-benchmark/contamination-gate.md",
+        "count": 1
+      },
+      {
+        "old": "06--end-to-end-loop/021-candidate-lineage.md",
+        "new": "06--end-to-end-loop/candidate-lineage.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/024-resume-continuation.md",
+        "new": "07--runtime-truth/resume-continuation.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/026-benchmark-stability.md",
+        "new": "07--runtime-truth/benchmark-stability.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/030-insufficient-sample.md",
+        "new": "07--runtime-truth/insufficient-sample.md",
+        "count": 1
+      },
+      {
+        "old": "05--reducer-dimensions/014-no-dimensions.md",
+        "new": "05--reducer-dimensions/no-dimensions.md",
+        "count": 1
+      },
+      {
+        "old": "02--profile-generator/006-output-checks.md",
+        "new": "02--profile-generator/output-checks.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/025-legal-stop-gates.md",
+        "new": "07--runtime-truth/legal-stop-gates.md",
+        "count": 1
+      },
+      {
+        "old": "02--profile-generator/008-file-output.md",
+        "new": "02--profile-generator/file-output.md",
+        "count": 1
+      },
+      {
+        "old": "06--end-to-end-loop/017-full-pipeline.md",
+        "new": "06--end-to-end-loop/full-pipeline.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/031-replay-consumer.md",
+        "new": "07--runtime-truth/replay-consumer.md",
+        "count": 1
+      },
+      {
+        "old": "07--runtime-truth/029-journal-wiring.md",
+        "new": "07--runtime-truth/journal-wiring.md",
+        "count": 1
+      },
+      {
+        "old": "03--5d-scorer/009-dynamic-arbitrary.md",
+        "new": "03--5d-scorer/dynamic-arbitrary.md",
+        "count": 1
+      },
+      {
+        "old": "03--5d-scorer/010-dimension-details.md",
+        "new": "03--5d-scorer/dimension-details.md",
+        "count": 1
+      },
+      {
+        "old": "03--5d-scorer/011-missing-candidate.md",
+        "new": "03--5d-scorer/missing-candidate.md",
+        "count": 1
+      },
+      {
+        "old": "06--end-to-end-loop/018-any-agent.md",
+        "new": "06--end-to-end-loop/any-agent.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/001-scan-known-agent.md",
+    "edits": [
+      {
+        "old": "01--integration-scanner/001-scan-known-agent.md",
+        "new": "01--integration-scanner/scan-known-agent.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/002-scan-missing-agent.md",
+    "edits": [
+      {
+        "old": "01--integration-scanner/002-scan-missing-agent.md",
+        "new": "01--integration-scanner/scan-missing-agent.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/003-scan-diverse-agent.md",
+    "edits": [
+      {
+        "old": "01--integration-scanner/003-scan-diverse-agent.md",
+        "new": "01--integration-scanner/scan-diverse-agent.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/01--integration-scanner/004-json-output-file.md",
+    "edits": [
+      {
+        "old": "01--integration-scanner/004-json-output-file.md",
+        "new": "01--integration-scanner/json-output-file.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/005-rules-extraction.md",
+    "edits": [
+      {
+        "old": "02--profile-generator/005-rules-extraction.md",
+        "new": "02--profile-generator/rules-extraction.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/006-output-checks.md",
+    "edits": [
+      {
+        "old": "02--profile-generator/006-output-checks.md",
+        "new": "02--profile-generator/output-checks.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/007-inline-rules-fallback.md",
+    "edits": [
+      {
+        "old": "02--profile-generator/007-inline-rules-fallback.md",
+        "new": "02--profile-generator/inline-rules-fallback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/02--profile-generator/008-file-output.md",
+    "edits": [
+      {
+        "old": "02--profile-generator/008-file-output.md",
+        "new": "02--profile-generator/file-output.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/009-dynamic-arbitrary.md",
+    "edits": [
+      {
+        "old": "03--5d-scorer/009-dynamic-arbitrary.md",
+        "new": "03--5d-scorer/dynamic-arbitrary.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/010-dimension-details.md",
+    "edits": [
+      {
+        "old": "03--5d-scorer/010-dimension-details.md",
+        "new": "03--5d-scorer/dimension-details.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/03--5d-scorer/011-missing-candidate.md",
+    "edits": [
+      {
+        "old": "03--5d-scorer/011-missing-candidate.md",
+        "new": "03--5d-scorer/missing-candidate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/012-without-integration.md",
+    "edits": [
+      {
+        "old": "04--benchmark-integration/012-without-integration.md",
+        "new": "04--benchmark-integration/without-integration.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/04--benchmark-integration/013-with-integration.md",
+    "edits": [
+      {
+        "old": "04--benchmark-integration/013-with-integration.md",
+        "new": "04--benchmark-integration/with-integration.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/014-no-dimensions.md",
+    "edits": [
+      {
+        "old": "05--reducer-dimensions/014-no-dimensions.md",
+        "new": "05--reducer-dimensions/no-dimensions.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/015-with-dimensions.md",
+    "edits": [
+      {
+        "old": "05--reducer-dimensions/015-with-dimensions.md",
+        "new": "05--reducer-dimensions/with-dimensions.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/05--reducer-dimensions/016-plateau-detection.md",
+    "edits": [
+      {
+        "old": "05--reducer-dimensions/016-plateau-detection.md",
+        "new": "05--reducer-dimensions/plateau-detection.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/017-full-pipeline.md",
+    "edits": [
+      {
+        "old": "06--end-to-end-loop/017-full-pipeline.md",
+        "new": "06--end-to-end-loop/full-pipeline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/018-any-agent.md",
+    "edits": [
+      {
+        "old": "06--end-to-end-loop/018-any-agent.md",
+        "new": "06--end-to-end-loop/any-agent.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/019-mutation-coverage-graph-tracking.md",
+    "edits": [
+      {
+        "old": "06--end-to-end-loop/019-mutation-coverage-graph-tracking.md",
+        "new": "06--end-to-end-loop/mutation-coverage-graph-tracking.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/020-trade-off-detection.md",
+    "edits": [
+      {
+        "old": "06--end-to-end-loop/020-trade-off-detection.md",
+        "new": "06--end-to-end-loop/trade-off-detection.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/06--end-to-end-loop/021-candidate-lineage.md",
+    "edits": [
+      {
+        "old": "06--end-to-end-loop/021-candidate-lineage.md",
+        "new": "06--end-to-end-loop/candidate-lineage.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/022-stop-reason-taxonomy.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/022-stop-reason-taxonomy.md",
+        "new": "07--runtime-truth/stop-reason-taxonomy.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/023-audit-journal-emission.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/023-audit-journal-emission.md",
+        "new": "07--runtime-truth/audit-journal-emission.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/024-resume-continuation.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/024-resume-continuation.md",
+        "new": "07--runtime-truth/resume-continuation.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/025-legal-stop-gates.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/025-legal-stop-gates.md",
+        "new": "07--runtime-truth/legal-stop-gates.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/026-benchmark-stability.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/026-benchmark-stability.md",
+        "new": "07--runtime-truth/benchmark-stability.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/027-dimension-trajectory.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/027-dimension-trajectory.md",
+        "new": "07--runtime-truth/dimension-trajectory.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/028-parallel-candidates-opt-in.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/028-parallel-candidates-opt-in.md",
+        "new": "07--runtime-truth/parallel-candidates-opt-in.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/029-journal-wiring.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/029-journal-wiring.md",
+        "new": "07--runtime-truth/journal-wiring.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/030-insufficient-sample.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/030-insufficient-sample.md",
+        "new": "07--runtime-truth/insufficient-sample.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/07--runtime-truth/031-replay-consumer.md",
+    "edits": [
+      {
+        "old": "07--runtime-truth/031-replay-consumer.md",
+        "new": "07--runtime-truth/replay-consumer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/032-skill-load-not-protocol.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/032-skill-load-not-protocol.md",
+        "new": "08--agent-discipline-stress-tests/skill-load-not-protocol.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/033-proposal-only-boundary.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/033-proposal-only-boundary.md",
+        "new": "08--agent-discipline-stress-tests/proposal-only-boundary.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/034-active-critic-overfit.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/034-active-critic-overfit.md",
+        "new": "08--agent-discipline-stress-tests/active-critic-overfit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/035-legal-stop-gate-bundle.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/035-legal-stop-gate-bundle.md",
+        "new": "08--agent-discipline-stress-tests/legal-stop-gate-bundle.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/036-improvement-gate-delta.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/036-improvement-gate-delta.md",
+        "new": "08--agent-discipline-stress-tests/improvement-gate-delta.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/08--agent-discipline-stress-tests/037-benchmark-completed-boundary.md",
+    "edits": [
+      {
+        "old": "08--agent-discipline-stress-tests/037-benchmark-completed-boundary.md",
+        "new": "08--agent-discipline-stress-tests/benchmark-completed-boundary.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/038-mode-switch-routing.md",
+    "edits": [
+      {
+        "old": "09--model-benchmark-mode/038-mode-switch-routing.md",
+        "new": "09--model-benchmark-mode/mode-switch-routing.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/039-default-pattern-scorer.md",
+    "edits": [
+      {
+        "old": "09--model-benchmark-mode/039-default-pattern-scorer.md",
+        "new": "09--model-benchmark-mode/default-pattern-scorer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/040-optin-5dim-scorer.md",
+    "edits": [
+      {
+        "old": "09--model-benchmark-mode/040-optin-5dim-scorer.md",
+        "new": "09--model-benchmark-mode/optin-5dim-scorer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/041-unknown-fallback.md",
+    "edits": [
+      {
+        "old": "09--model-benchmark-mode/041-unknown-fallback.md",
+        "new": "09--model-benchmark-mode/unknown-fallback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/09--model-benchmark-mode/042-criteria-exec-gate.md",
+    "edits": [
+      {
+        "old": "09--model-benchmark-mode/042-criteria-exec-gate.md",
+        "new": "09--model-benchmark-mode/criteria-exec-gate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/043-mode-wiring-routing.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/043-mode-wiring-routing.md",
+        "new": "10--skill-benchmark/mode-wiring-routing.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/044-contamination-gate.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/044-contamination-gate.md",
+        "new": "10--skill-benchmark/contamination-gate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/045-router-replay-mode-a.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/045-router-replay-mode-a.md",
+        "new": "10--skill-benchmark/router-replay-mode-a.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/046-d5-connectivity-hard-gate.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/046-d5-connectivity-hard-gate.md",
+        "new": "10--skill-benchmark/d5-connectivity-hard-gate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/047-scoring-vs-private-gold.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/047-scoring-vs-private-gold.md",
+        "new": "10--skill-benchmark/scoring-vs-private-gold.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/manual_testing_playbook/10--skill-benchmark/048-dual-report-and-remediation.md",
+    "edits": [
+      {
+        "old": "10--skill-benchmark/048-dual-report-and-remediation.md",
+        "new": "10--skill-benchmark/dual-report-and-remediation.md",
+        "count": 2
+      }
+    ]
+  }
+]

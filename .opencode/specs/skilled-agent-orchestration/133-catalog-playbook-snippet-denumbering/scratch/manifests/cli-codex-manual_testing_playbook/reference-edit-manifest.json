@@ -1,0 +1,397 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/019-generate-review-fix-cycle.md",
+        "new": "06--integration-patterns/generate-review-fix-cycle.md",
+        "count": 2
+      },
+      {
+        "old": "07--prompt-templates/022-prompt-templates-inventory.md",
+        "new": "07--prompt-templates/prompt-templates-inventory.md",
+        "count": 2
+      },
+      {
+        "old": "07--prompt-templates/023-clear-scoring-quality-card.md",
+        "new": "07--prompt-templates/clear-scoring-quality-card.md",
+        "count": 2
+      },
+      {
+        "old": "03--reasoning-effort/009-low-minimal-none-baseline.md",
+        "new": "03--reasoning-effort/low-minimal-none-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/004-explicit-fast-service-tier.md",
+        "new": "01--cli-invocation/explicit-fast-service-tier.md",
+        "count": 2
+      },
+      {
+        "old": "02--sandbox-modes/007-danger-full-access-sandbox.md",
+        "new": "02--sandbox-modes/danger-full-access-sandbox.md",
+        "count": 2
+      },
+      {
+        "old": "05--session-continuity/018-session-resume-fork.md",
+        "new": "05--session-continuity/session-resume-fork.md",
+        "count": 2
+      },
+      {
+        "old": "08--built-in-tools/026-mcp-server-registration.md",
+        "new": "08--built-in-tools/mcp-server-registration.md",
+        "count": 2
+      },
+      {
+        "old": "02--sandbox-modes/006-workspace-write-sandbox.md",
+        "new": "02--sandbox-modes/workspace-write-sandbox.md",
+        "count": 2
+      },
+      {
+        "old": "03--reasoning-effort/010-medium-skill-default.md",
+        "new": "03--reasoning-effort/medium-skill-default.md",
+        "count": 2
+      },
+      {
+        "old": "03--reasoning-effort/011-high-xhigh-override.md",
+        "new": "03--reasoning-effort/high-xhigh-override.md",
+        "count": 2
+      },
+      {
+        "old": "05--session-continuity/017-full-auto-hooks.md",
+        "new": "05--session-continuity/full-auto-hooks.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/001-default-invocation.md",
+        "new": "01--cli-invocation/default-invocation.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/002-gpt-5-5-model-lock.md",
+        "new": "01--cli-invocation/gpt-5-5-model-lock.md",
+        "count": 2
+      },
+      {
+        "old": "08--built-in-tools/024-review-tui-command.md",
+        "new": "08--built-in-tools/review-tui-command.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/003-codex-exec-review.md",
+        "new": "01--cli-invocation/codex-exec-review.md",
+        "count": 2
+      },
+      {
+        "old": "06--integration-patterns/021-image-input.md",
+        "new": "06--integration-patterns/image-input.md",
+        "count": 2
+      },
+      {
+        "old": "09--codex-cloud/027-codex-cloud-dispatch.md",
+        "new": "09--codex-cloud/codex-cloud-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "02--sandbox-modes/005-read-only-sandbox.md",
+        "new": "02--sandbox-modes/read-only-sandbox.md",
+        "count": 2
+      },
+      {
+        "old": "02--sandbox-modes/008-approval-policies.md",
+        "new": "02--sandbox-modes/approval-policies.md",
+        "count": 2
+      },
+      {
+        "old": "06--integration-patterns/020-web-search.md",
+        "new": "06--integration-patterns/web-search.md",
+        "count": 2
+      },
+      {
+        "old": "08--built-in-tools/025-search-exec-mode.md",
+        "new": "08--built-in-tools/search-exec-mode.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/016-research-profile.md",
+        "new": "04--agent-routing/research-profile.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/013-context-profile.md",
+        "new": "04--agent-routing/context-profile.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/012-review-profile.md",
+        "new": "04--agent-routing/review-profile.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/014-debug-profile.md",
+        "new": "04--agent-routing/debug-profile.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/001-default-invocation.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/001-default-invocation.md",
+        "new": "01--cli-invocation/default-invocation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/002-gpt-5-5-model-lock.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/002-gpt-5-5-model-lock.md",
+        "new": "01--cli-invocation/gpt-5-5-model-lock.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/003-codex-exec-review.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/003-codex-exec-review.md",
+        "new": "01--cli-invocation/codex-exec-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/01--cli-invocation/004-explicit-fast-service-tier.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/004-explicit-fast-service-tier.md",
+        "new": "01--cli-invocation/explicit-fast-service-tier.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/005-read-only-sandbox.md",
+    "edits": [
+      {
+        "old": "02--sandbox-modes/005-read-only-sandbox.md",
+        "new": "02--sandbox-modes/read-only-sandbox.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/006-workspace-write-sandbox.md",
+    "edits": [
+      {
+        "old": "02--sandbox-modes/006-workspace-write-sandbox.md",
+        "new": "02--sandbox-modes/workspace-write-sandbox.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/007-danger-full-access-sandbox.md",
+    "edits": [
+      {
+        "old": "02--sandbox-modes/007-danger-full-access-sandbox.md",
+        "new": "02--sandbox-modes/danger-full-access-sandbox.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/02--sandbox-modes/008-approval-policies.md",
+    "edits": [
+      {
+        "old": "02--sandbox-modes/008-approval-policies.md",
+        "new": "02--sandbox-modes/approval-policies.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/009-low-minimal-none-baseline.md",
+    "edits": [
+      {
+        "old": "03--reasoning-effort/009-low-minimal-none-baseline.md",
+        "new": "03--reasoning-effort/low-minimal-none-baseline.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/010-medium-skill-default.md",
+    "edits": [
+      {
+        "old": "03--reasoning-effort/010-medium-skill-default.md",
+        "new": "03--reasoning-effort/medium-skill-default.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/03--reasoning-effort/011-high-xhigh-override.md",
+    "edits": [
+      {
+        "old": "03--reasoning-effort/011-high-xhigh-override.md",
+        "new": "03--reasoning-effort/high-xhigh-override.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/012-review-profile.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/012-review-profile.md",
+        "new": "04--agent-routing/review-profile.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/013-context-profile.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/013-context-profile.md",
+        "new": "04--agent-routing/context-profile.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/014-debug-profile.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/014-debug-profile.md",
+        "new": "04--agent-routing/debug-profile.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/04--agent-routing/016-research-profile.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/016-research-profile.md",
+        "new": "04--agent-routing/research-profile.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/017-full-auto-hooks.md",
+    "edits": [
+      {
+        "old": "05--session-continuity/017-full-auto-hooks.md",
+        "new": "05--session-continuity/full-auto-hooks.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/05--session-continuity/018-session-resume-fork.md",
+    "edits": [
+      {
+        "old": "05--session-continuity/018-session-resume-fork.md",
+        "new": "05--session-continuity/session-resume-fork.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/019-generate-review-fix-cycle.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/019-generate-review-fix-cycle.md",
+        "new": "06--integration-patterns/generate-review-fix-cycle.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/020-web-search.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/020-web-search.md",
+        "new": "06--integration-patterns/web-search.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/06--integration-patterns/021-image-input.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/021-image-input.md",
+        "new": "06--integration-patterns/image-input.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/022-prompt-templates-inventory.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/022-prompt-templates-inventory.md",
+        "new": "07--prompt-templates/prompt-templates-inventory.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/07--prompt-templates/023-clear-scoring-quality-card.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/023-clear-scoring-quality-card.md",
+        "new": "07--prompt-templates/clear-scoring-quality-card.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/024-review-tui-command.md",
+    "edits": [
+      {
+        "old": "08--built-in-tools/024-review-tui-command.md",
+        "new": "08--built-in-tools/review-tui-command.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/025-search-exec-mode.md",
+    "edits": [
+      {
+        "old": "08--built-in-tools/025-search-exec-mode.md",
+        "new": "08--built-in-tools/search-exec-mode.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/08--built-in-tools/026-mcp-server-registration.md",
+    "edits": [
+      {
+        "old": "08--built-in-tools/026-mcp-server-registration.md",
+        "new": "08--built-in-tools/mcp-server-registration.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-codex/manual_testing_playbook/09--codex-cloud/027-codex-cloud-dispatch.md",
+    "edits": [
+      {
+        "old": "09--codex-cloud/027-codex-cloud-dispatch.md",
+        "new": "09--codex-cloud/codex-cloud-dispatch.md",
+        "count": 1
+      }
+    ]
+  }
+]

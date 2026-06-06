@@ -1,0 +1,58 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/001-ensure-code-graph-ready.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/ensure-code-graph-ready.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/002-query-self-heal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/query-self-heal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/003-code-graph-scan.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/code-graph-scan.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/004-code-graph-verify.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/code-graph-verify.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/005-code-graph-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/code-graph-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/03--detect-changes/006-detect-changes-preflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/03--detect-changes/detect-changes-preflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/007-code-graph-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/code-graph-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/008-context-handler.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/context-handler.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/009-deep-loop-graph-query.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-query.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/010-deep-loop-graph-status.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-status.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/011-deep-loop-graph-upsert.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-upsert.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/012-deep-loop-graph-convergence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/deep-loop-graph-convergence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/013-tool-registrations.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/tool-registrations.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/08--doctor-code-graph/014-doctor-apply-mode.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/08--doctor-code-graph/doctor-apply-mode.md"
+  }
+]

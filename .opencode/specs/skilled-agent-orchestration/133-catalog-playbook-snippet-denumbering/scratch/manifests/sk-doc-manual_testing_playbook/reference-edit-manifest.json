@@ -1,0 +1,307 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "06--agent-dispatch/018-markdown-agent-cli-claude-code.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-claude-code.md",
+        "count": 1
+      },
+      {
+        "old": "06--agent-dispatch/020-markdown-agent-cli-opencode.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-opencode.md",
+        "count": 1
+      },
+      {
+        "old": "02--resource-loading/008-mixed-references-assets.md",
+        "new": "02--resource-loading/mixed-references-assets.md",
+        "count": 1
+      },
+      {
+        "old": "03--unknown-fallback/011-disambiguation-required.md",
+        "new": "03--unknown-fallback/disambiguation-required.md",
+        "count": 1
+      },
+      {
+        "old": "04--cross-cli-dispatch/012-short-prompt-baseline.md",
+        "new": "04--cross-cli-dispatch/short-prompt-baseline.md",
+        "count": 1
+      },
+      {
+        "old": "02--resource-loading/006-references-global-only.md",
+        "new": "02--resource-loading/references-global-only.md",
+        "count": 1
+      },
+      {
+        "old": "03--unknown-fallback/009-ambiguous-multi-intent.md",
+        "new": "03--unknown-fallback/ambiguous-multi-intent.md",
+        "count": 1
+      },
+      {
+        "old": "06--agent-dispatch/019-markdown-agent-cli-codex.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-codex.md",
+        "count": 1
+      },
+      {
+        "old": "04--cross-cli-dispatch/013-large-prompt-stress.md",
+        "new": "04--cross-cli-dispatch/large-prompt-stress.md",
+        "count": 1
+      },
+      {
+        "old": "04--cross-cli-dispatch/014-multi-step-dispatch.md",
+        "new": "04--cross-cli-dispatch/multi-step-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "03--unknown-fallback/010-no-keyword-match.md",
+        "new": "03--unknown-fallback/no-keyword-match.md",
+        "count": 1
+      },
+      {
+        "old": "05--token-cost-baseline/015-minimal-load.md",
+        "new": "05--token-cost-baseline/minimal-load.md",
+        "count": 1
+      },
+      {
+        "old": "01--intent-detection/002-skill-creation.md",
+        "new": "01--intent-detection/skill-creation.md",
+        "count": 1
+      },
+      {
+        "old": "05--token-cost-baseline/016-medium-load.md",
+        "new": "05--token-cost-baseline/medium-load.md",
+        "count": 1
+      },
+      {
+        "old": "01--intent-detection/003-agent-command.md",
+        "new": "01--intent-detection/agent-command.md",
+        "count": 1
+      },
+      {
+        "old": "01--intent-detection/005-install-guide.md",
+        "new": "01--intent-detection/install-guide.md",
+        "count": 1
+      },
+      {
+        "old": "01--intent-detection/004-optimization.md",
+        "new": "01--intent-detection/optimization.md",
+        "count": 1
+      },
+      {
+        "old": "01--intent-detection/001-doc-quality.md",
+        "new": "01--intent-detection/doc-quality.md",
+        "count": 1
+      },
+      {
+        "old": "02--resource-loading/007-assets-only.md",
+        "new": "02--resource-loading/assets-only.md",
+        "count": 1
+      },
+      {
+        "old": "05--token-cost-baseline/017-max-load.md",
+        "new": "05--token-cost-baseline/max-load.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/001-doc-quality.md",
+    "edits": [
+      {
+        "old": "01--intent-detection/001-doc-quality.md",
+        "new": "01--intent-detection/doc-quality.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/002-skill-creation.md",
+    "edits": [
+      {
+        "old": "01--intent-detection/002-skill-creation.md",
+        "new": "01--intent-detection/skill-creation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/003-agent-command.md",
+    "edits": [
+      {
+        "old": "01--intent-detection/003-agent-command.md",
+        "new": "01--intent-detection/agent-command.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/004-optimization.md",
+    "edits": [
+      {
+        "old": "01--intent-detection/004-optimization.md",
+        "new": "01--intent-detection/optimization.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/01--intent-detection/005-install-guide.md",
+    "edits": [
+      {
+        "old": "01--intent-detection/005-install-guide.md",
+        "new": "01--intent-detection/install-guide.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/006-references-global-only.md",
+    "edits": [
+      {
+        "old": "02--resource-loading/006-references-global-only.md",
+        "new": "02--resource-loading/references-global-only.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/007-assets-only.md",
+    "edits": [
+      {
+        "old": "02--resource-loading/007-assets-only.md",
+        "new": "02--resource-loading/assets-only.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/02--resource-loading/008-mixed-references-assets.md",
+    "edits": [
+      {
+        "old": "02--resource-loading/008-mixed-references-assets.md",
+        "new": "02--resource-loading/mixed-references-assets.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/009-ambiguous-multi-intent.md",
+    "edits": [
+      {
+        "old": "03--unknown-fallback/009-ambiguous-multi-intent.md",
+        "new": "03--unknown-fallback/ambiguous-multi-intent.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/010-no-keyword-match.md",
+    "edits": [
+      {
+        "old": "03--unknown-fallback/010-no-keyword-match.md",
+        "new": "03--unknown-fallback/no-keyword-match.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/03--unknown-fallback/011-disambiguation-required.md",
+    "edits": [
+      {
+        "old": "03--unknown-fallback/011-disambiguation-required.md",
+        "new": "03--unknown-fallback/disambiguation-required.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/012-short-prompt-baseline.md",
+    "edits": [
+      {
+        "old": "04--cross-cli-dispatch/012-short-prompt-baseline.md",
+        "new": "04--cross-cli-dispatch/short-prompt-baseline.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/013-large-prompt-stress.md",
+    "edits": [
+      {
+        "old": "04--cross-cli-dispatch/013-large-prompt-stress.md",
+        "new": "04--cross-cli-dispatch/large-prompt-stress.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/04--cross-cli-dispatch/014-multi-step-dispatch.md",
+    "edits": [
+      {
+        "old": "04--cross-cli-dispatch/014-multi-step-dispatch.md",
+        "new": "04--cross-cli-dispatch/multi-step-dispatch.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/015-minimal-load.md",
+    "edits": [
+      {
+        "old": "05--token-cost-baseline/015-minimal-load.md",
+        "new": "05--token-cost-baseline/minimal-load.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/016-medium-load.md",
+    "edits": [
+      {
+        "old": "05--token-cost-baseline/016-medium-load.md",
+        "new": "05--token-cost-baseline/medium-load.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/05--token-cost-baseline/017-max-load.md",
+    "edits": [
+      {
+        "old": "05--token-cost-baseline/017-max-load.md",
+        "new": "05--token-cost-baseline/max-load.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/018-markdown-agent-cli-claude-code.md",
+    "edits": [
+      {
+        "old": "06--agent-dispatch/018-markdown-agent-cli-claude-code.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-claude-code.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/019-markdown-agent-cli-codex.md",
+    "edits": [
+      {
+        "old": "06--agent-dispatch/019-markdown-agent-cli-codex.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-codex.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-doc/manual_testing_playbook/06--agent-dispatch/020-markdown-agent-cli-opencode.md",
+    "edits": [
+      {
+        "old": "06--agent-dispatch/020-markdown-agent-cli-opencode.md",
+        "new": "06--agent-dispatch/markdown-agent-cli-opencode.md",
+        "count": 1
+      }
+    ]
+  }
+]

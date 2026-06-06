@@ -1,0 +1,717 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "02--council-deliberation-and-seat-diversity/004-cross-seat-critique-blocks-premature-convergence.md",
+        "new": "02--council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md",
+        "new": "03--artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md",
+        "count": 2
+      },
+      {
+        "old": "03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md",
+        "new": "03--artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/019-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "new": "08--council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "new": "08--council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md",
+        "new": "08--council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md",
+        "count": 2
+      },
+      {
+        "old": "03--artifact-persistence-and-state-format/006-state-jsonl-records-council-complete-event.md",
+        "new": "03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md",
+        "count": 2
+      },
+      {
+        "old": "09--council-graph-value-comparison/030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md",
+        "new": "08--council-graph-integration/council-graph-convergence-three-state-decision-matrix.md",
+        "count": 2
+      },
+      {
+        "old": "09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md",
+        "new": "08--council-graph-integration/council-graph-status-recovery-payload-and-readiness.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/022-council-graph-query-five-modes-prompt-safe-context.md",
+        "new": "08--council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md",
+        "new": "04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md",
+        "count": 2
+      },
+      {
+        "old": "09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md",
+        "new": "08--council-graph-integration/council-graph-upsert-empty-input-no-op-success.md",
+        "count": 2
+      },
+      {
+        "old": "08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md",
+        "new": "08--council-graph-integration/council-graph-query-hostile-metadata-redaction.md",
+        "count": 2
+      },
+      {
+        "old": "02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md",
+        "new": "02--council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md",
+        "new": "04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        "count": 2
+      },
+      {
+        "old": "05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md",
+        "new": "05--scope-boundaries/planning-only-boundary-rejects-implementation-writes.md",
+        "count": 2
+      },
+      {
+        "old": "09--council-graph-value-comparison/031-hot-topic-discovery-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md",
+        "new": "01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md",
+        "count": 2
+      },
+      {
+        "old": "01--runtime-routing-and-rename/002-advisor-routes-council-prompts-to-skill.md",
+        "new": "01--runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md",
+        "count": 2
+      },
+      {
+        "old": "06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md",
+        "new": "06--depth-and-failure-handling/depth-detection-parallel-vs-sequential.md",
+        "count": 2
+      },
+      {
+        "old": "07--writer-library-contract/016-five-dimension-scoring-rubric-application.md",
+        "new": "07--writer-library-contract/five-dimension-scoring-rubric-application.md",
+        "count": 2
+      },
+      {
+        "old": "04--convergence-and-rollback/008-two-of-three-agree-triggers-convergence.md",
+        "new": "04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md",
+        "new": "07--writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        "count": 2
+      },
+      {
+        "old": "06--depth-and-failure-handling/014-resume-after-interrupted-state.md",
+        "new": "06--depth-and-failure-handling/resume-after-interrupted-state.md",
+        "count": 2
+      },
+      {
+        "old": "07--writer-library-contract/015-library-writer-call-sequence.md",
+        "new": "07--writer-library-contract/library-writer-call-sequence.md",
+        "count": 2
+      },
+      {
+        "old": "07--writer-library-contract/018-out-of-scope-write-rejection.md",
+        "new": "07--writer-library-contract/out-of-scope-write-rejection.md",
+        "count": 2
+      },
+      {
+        "old": "05--scope-boundaries/011-graph-support-derived-and-scoped.md",
+        "new": "05--scope-boundaries/graph-support-derived-and-scoped.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md",
+    "edits": [
+      {
+        "old": "01--runtime-routing-and-rename/001-runtime-agent-renamed-to-deep-ai-council.md",
+        "new": "01--runtime-routing-and-rename/runtime-agent-renamed-to-deep-ai-council.md",
+        "count": 5
+      },
+      {
+        "old": "002-advisor-routes-council-prompts-to-skill.md",
+        "new": "advisor-routes-council-prompts-to-skill.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/01--runtime-routing-and-rename/002-advisor-routes-council-prompts-to-skill.md",
+    "edits": [
+      {
+        "old": "01--runtime-routing-and-rename/002-advisor-routes-council-prompts-to-skill.md",
+        "new": "01--runtime-routing-and-rename/advisor-routes-council-prompts-to-skill.md",
+        "count": 4
+      },
+      {
+        "old": "001-runtime-agent-renamed-to-deep-ai-council.md",
+        "new": "runtime-agent-renamed-to-deep-ai-council.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md",
+    "edits": [
+      {
+        "old": "02--council-deliberation-and-seat-diversity/003-three-seat-diverse-deliberation.md",
+        "new": "02--council-deliberation-and-seat-diversity/three-seat-diverse-deliberation.md",
+        "count": 5
+      },
+      {
+        "old": "004-cross-seat-critique-blocks-premature-convergence.md",
+        "new": "cross-seat-critique-blocks-premature-convergence.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/02--council-deliberation-and-seat-diversity/004-cross-seat-critique-blocks-premature-convergence.md",
+    "edits": [
+      {
+        "old": "02--council-deliberation-and-seat-diversity/004-cross-seat-critique-blocks-premature-convergence.md",
+        "new": "02--council-deliberation-and-seat-diversity/cross-seat-critique-blocks-premature-convergence.md",
+        "count": 5
+      },
+      {
+        "old": "003-three-seat-diverse-deliberation.md",
+        "new": "three-seat-diverse-deliberation.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md",
+    "edits": [
+      {
+        "old": "03--artifact-persistence-and-state-format/005-persist-artifacts-helper-writes-packet-local-tree.md",
+        "new": "03--artifact-persistence-and-state-format/persist-artifacts-helper-writes-packet-local-tree.md",
+        "count": 5
+      },
+      {
+        "old": "006-state-jsonl-records-council-complete-event.md",
+        "new": "state-jsonl-records-council-complete-event.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/03--artifact-persistence-and-state-format/006-state-jsonl-records-council-complete-event.md",
+    "edits": [
+      {
+        "old": "03--artifact-persistence-and-state-format/006-state-jsonl-records-council-complete-event.md",
+        "new": "03--artifact-persistence-and-state-format/state-jsonl-records-council-complete-event.md",
+        "count": 5
+      },
+      {
+        "old": "007-output-schema-strict-required-sections-fail-closed.md",
+        "new": "output-schema-strict-required-sections-fail-closed.md",
+        "count": 2
+      },
+      {
+        "old": "005-persist-artifacts-helper-writes-packet-local-tree.md",
+        "new": "persist-artifacts-helper-writes-packet-local-tree.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md",
+    "edits": [
+      {
+        "old": "03--artifact-persistence-and-state-format/007-output-schema-strict-required-sections-fail-closed.md",
+        "new": "03--artifact-persistence-and-state-format/output-schema-strict-required-sections-fail-closed.md",
+        "count": 5
+      },
+      {
+        "old": "006-state-jsonl-records-council-complete-event.md",
+        "new": "state-jsonl-records-council-complete-event.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/04--convergence-and-rollback/008-two-of-three-agree-triggers-convergence.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-rollback/008-two-of-three-agree-triggers-convergence.md",
+        "new": "04--convergence-and-rollback/two-of-three-agree-triggers-convergence.md",
+        "count": 5
+      },
+      {
+        "old": "009-max-rounds-without-convergence-emits-non-converged.md",
+        "new": "max-rounds-without-convergence-emits-non-converged.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-rollback/009-max-rounds-without-convergence-emits-non-converged.md",
+        "new": "04--convergence-and-rollback/max-rounds-without-convergence-emits-non-converged.md",
+        "count": 5
+      },
+      {
+        "old": "010-rollback-failed-round-preserves-forensic-trail.md",
+        "new": "rollback-failed-round-preserves-forensic-trail.md",
+        "count": 2
+      },
+      {
+        "old": "008-two-of-three-agree-triggers-convergence.md",
+        "new": "two-of-three-agree-triggers-convergence.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md",
+    "edits": [
+      {
+        "old": "04--convergence-and-rollback/010-rollback-failed-round-preserves-forensic-trail.md",
+        "new": "04--convergence-and-rollback/rollback-failed-round-preserves-forensic-trail.md",
+        "count": 5
+      },
+      {
+        "old": "009-max-rounds-without-convergence-emits-non-converged.md",
+        "new": "max-rounds-without-convergence-emits-non-converged.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/05--scope-boundaries/011-graph-support-derived-and-scoped.md",
+    "edits": [
+      {
+        "old": "05--scope-boundaries/011-graph-support-derived-and-scoped.md",
+        "new": "05--scope-boundaries/graph-support-derived-and-scoped.md",
+        "count": 5
+      },
+      {
+        "old": "012-planning-only-boundary-rejects-implementation-writes.md",
+        "new": "planning-only-boundary-rejects-implementation-writes.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md",
+    "edits": [
+      {
+        "old": "05--scope-boundaries/012-planning-only-boundary-rejects-implementation-writes.md",
+        "new": "05--scope-boundaries/planning-only-boundary-rejects-implementation-writes.md",
+        "count": 5
+      },
+      {
+        "old": "011-graph-support-derived-and-scoped.md",
+        "new": "graph-support-derived-and-scoped.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md",
+    "edits": [
+      {
+        "old": "06--depth-and-failure-handling/013-depth-detection-parallel-vs-sequential.md",
+        "new": "06--depth-and-failure-handling/depth-detection-parallel-vs-sequential.md",
+        "count": 5
+      },
+      {
+        "old": "014-resume-after-interrupted-state.md",
+        "new": "resume-after-interrupted-state.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/06--depth-and-failure-handling/014-resume-after-interrupted-state.md",
+    "edits": [
+      {
+        "old": "06--depth-and-failure-handling/014-resume-after-interrupted-state.md",
+        "new": "06--depth-and-failure-handling/resume-after-interrupted-state.md",
+        "count": 5
+      },
+      {
+        "old": "013-depth-detection-parallel-vs-sequential.md",
+        "new": "depth-detection-parallel-vs-sequential.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/07--writer-library-contract/015-library-writer-call-sequence.md",
+    "edits": [
+      {
+        "old": "07--writer-library-contract/015-library-writer-call-sequence.md",
+        "new": "07--writer-library-contract/library-writer-call-sequence.md",
+        "count": 5
+      },
+      {
+        "old": "016-five-dimension-scoring-rubric-application.md",
+        "new": "five-dimension-scoring-rubric-application.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/07--writer-library-contract/016-five-dimension-scoring-rubric-application.md",
+    "edits": [
+      {
+        "old": "07--writer-library-contract/016-five-dimension-scoring-rubric-application.md",
+        "new": "07--writer-library-contract/five-dimension-scoring-rubric-application.md",
+        "count": 5
+      },
+      {
+        "old": "017-hunter-skeptic-referee-cross-critique.md",
+        "new": "hunter-skeptic-referee-cross-critique.md",
+        "count": 2
+      },
+      {
+        "old": "015-library-writer-call-sequence.md",
+        "new": "library-writer-call-sequence.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md",
+    "edits": [
+      {
+        "old": "07--writer-library-contract/017-hunter-skeptic-referee-cross-critique.md",
+        "new": "07--writer-library-contract/hunter-skeptic-referee-cross-critique.md",
+        "count": 5
+      },
+      {
+        "old": "016-five-dimension-scoring-rubric-application.md",
+        "new": "five-dimension-scoring-rubric-application.md",
+        "count": 2
+      },
+      {
+        "old": "018-out-of-scope-write-rejection.md",
+        "new": "out-of-scope-write-rejection.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/07--writer-library-contract/018-out-of-scope-write-rejection.md",
+    "edits": [
+      {
+        "old": "07--writer-library-contract/018-out-of-scope-write-rejection.md",
+        "new": "07--writer-library-contract/out-of-scope-write-rejection.md",
+        "count": 5
+      },
+      {
+        "old": "017-hunter-skeptic-referee-cross-critique.md",
+        "new": "hunter-skeptic-referee-cross-critique.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/019-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/019-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "new": "08--council-graph-integration/council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "count": 4
+      },
+      {
+        "old": "020-council-graph-upsert-empty-input-no-op-success.md",
+        "new": "council-graph-upsert-empty-input-no-op-success.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/020-council-graph-upsert-empty-input-no-op-success.md",
+        "new": "08--council-graph-integration/council-graph-upsert-empty-input-no-op-success.md",
+        "count": 4
+      },
+      {
+        "old": "019-council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "new": "council-graph-upsert-idempotency-and-self-loop-rejection.md",
+        "count": 2
+      },
+      {
+        "old": "021-council-graph-query-hostile-metadata-redaction.md",
+        "new": "council-graph-query-hostile-metadata-redaction.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/021-council-graph-query-hostile-metadata-redaction.md",
+        "new": "08--council-graph-integration/council-graph-query-hostile-metadata-redaction.md",
+        "count": 4
+      },
+      {
+        "old": "022-council-graph-query-five-modes-prompt-safe-context.md",
+        "new": "council-graph-query-five-modes-prompt-safe-context.md",
+        "count": 2
+      },
+      {
+        "old": "020-council-graph-upsert-empty-input-no-op-success.md",
+        "new": "council-graph-upsert-empty-input-no-op-success.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/022-council-graph-query-five-modes-prompt-safe-context.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/022-council-graph-query-five-modes-prompt-safe-context.md",
+        "new": "08--council-graph-integration/council-graph-query-five-modes-prompt-safe-context.md",
+        "count": 4
+      },
+      {
+        "old": "023-council-graph-convergence-three-state-decision-matrix.md",
+        "new": "council-graph-convergence-three-state-decision-matrix.md",
+        "count": 2
+      },
+      {
+        "old": "021-council-graph-query-hostile-metadata-redaction.md",
+        "new": "council-graph-query-hostile-metadata-redaction.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/023-council-graph-convergence-three-state-decision-matrix.md",
+        "new": "08--council-graph-integration/council-graph-convergence-three-state-decision-matrix.md",
+        "count": 4
+      },
+      {
+        "old": "024-council-graph-status-recovery-payload-and-readiness.md",
+        "new": "council-graph-status-recovery-payload-and-readiness.md",
+        "count": 2
+      },
+      {
+        "old": "022-council-graph-query-five-modes-prompt-safe-context.md",
+        "new": "council-graph-query-five-modes-prompt-safe-context.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/024-council-graph-status-recovery-payload-and-readiness.md",
+        "new": "08--council-graph-integration/council-graph-status-recovery-payload-and-readiness.md",
+        "count": 4
+      },
+      {
+        "old": "025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "new": "council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "count": 2
+      },
+      {
+        "old": "023-council-graph-convergence-three-state-decision-matrix.md",
+        "new": "council-graph-convergence-three-state-decision-matrix.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "new": "08--council-graph-integration/council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "count": 5
+      },
+      {
+        "old": "026-council-graph-tools-registered-separately-from-deep-loop.md",
+        "new": "council-graph-tools-registered-separately-from-deep-loop.md",
+        "count": 2
+      },
+      {
+        "old": "024-council-graph-status-recovery-payload-and-readiness.md",
+        "new": "council-graph-status-recovery-payload-and-readiness.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md",
+    "edits": [
+      {
+        "old": "08--council-graph-integration/026-council-graph-tools-registered-separately-from-deep-loop.md",
+        "new": "08--council-graph-integration/council-graph-tools-registered-separately-from-deep-loop.md",
+        "count": 4
+      },
+      {
+        "old": "025-council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "new": "council-graph-derived-projection-rebuilds-from-artifacts.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/027-unresolved-disagreement-triage-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/unresolved-disagreement-triage-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "028-decision-provenance-audit-graph-vs-baseline.md",
+        "new": "decision-provenance-audit-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/028-decision-provenance-audit-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/decision-provenance-audit-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "new": "convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "027-unresolved-disagreement-triage-graph-vs-baseline.md",
+        "new": "unresolved-disagreement-triage-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "new": "stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "028-decision-provenance-audit-graph-vs-baseline.md",
+        "new": "decision-provenance-audit-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "029-convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "new": "convergence-safety-under-critical-disagreement-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "031-hot-topic-discovery-graph-vs-baseline.md",
+        "new": "hot-topic-discovery-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/031-hot-topic-discovery-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/031-hot-topic-discovery-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/hot-topic-discovery-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "030-stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "new": "stalled-council-blocker-ranking-graph-vs-baseline.md",
+        "count": 2
+      },
+      {
+        "old": "032-mid-run-interruption-recovery-graph-vs-baseline.md",
+        "new": "mid-run-interruption-recovery-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-ai-council/feature_catalog/09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md",
+    "edits": [
+      {
+        "old": "09--council-graph-value-comparison/032-mid-run-interruption-recovery-graph-vs-baseline.md",
+        "new": "09--council-graph-value-comparison/mid-run-interruption-recovery-graph-vs-baseline.md",
+        "count": 4
+      },
+      {
+        "old": "031-hot-topic-discovery-graph-vs-baseline.md",
+        "new": "hot-topic-discovery-graph-vs-baseline.md",
+        "count": 2
+      }
+    ]
+  }
+]

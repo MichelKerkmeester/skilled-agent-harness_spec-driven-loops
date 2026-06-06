@@ -1,0 +1,1152 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/010-provenance-and-trust-lanes.md",
+        "new": "02--auto-indexing/provenance-and-trust-lanes.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/007-cache-invalidation.md",
+        "new": "01--daemon-and-freshness/cache-invalidation.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/037-opencode-plugin-bridge.md",
+        "new": "07--hooks-and-plugin/opencode-plugin-bridge.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/016-archive-handling.md",
+        "new": "03--lifecycle-routing/archive-handling.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/017-schema-migration.md",
+        "new": "03--lifecycle-routing/schema-migration.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/005-trust-state.md",
+        "new": "01--daemon-and-freshness/trust-state.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/008-derived-extraction.md",
+        "new": "02--auto-indexing/derived-extraction.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/033-skill-graph-validate.md",
+        "new": "06--mcp-surface/skill-graph-validate.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/004-generation.md",
+        "new": "01--daemon-and-freshness/generation.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/003-lifecycle.md",
+        "new": "01--daemon-and-freshness/lifecycle.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/015-supersession.md",
+        "new": "03--lifecycle-routing/supersession.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/019-five-lane-fusion.md",
+        "new": "04--scorer-fusion/five-lane-fusion.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/032-skill-graph-status.md",
+        "new": "06--mcp-surface/skill-graph-status.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/039-regression-suite.md",
+        "new": "08--python-compat/regression-suite.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/014-age-haircut.md",
+        "new": "03--lifecycle-routing/age-haircut.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/031-skill-graph-query.md",
+        "new": "06--mcp-surface/skill-graph-query.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/001-watcher.md",
+        "new": "01--daemon-and-freshness/watcher.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/024-weights-config.md",
+        "new": "04--scorer-fusion/weights-config.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/030-skill-graph-scan.md",
+        "new": "06--mcp-surface/skill-graph-scan.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/034-claude-hook.md",
+        "new": "07--hooks-and-plugin/claude-hook.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/035-gemini-hook.md",
+        "new": "07--hooks-and-plugin/gemini-hook.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/012-anti-stuffing.md",
+        "new": "02--auto-indexing/anti-stuffing.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/013-df-idf-corpus.md",
+        "new": "02--auto-indexing/df-idf-corpus.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/029-advisor-rebuild.md",
+        "new": "06--mcp-surface/advisor-rebuild.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/036-codex-hook.md",
+        "new": "07--hooks-and-plugin/codex-hook.md",
+        "count": 2
+      },
+      {
+        "old": "01--daemon-and-freshness/002-lease.md",
+        "new": "01--daemon-and-freshness/lease.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/018-rollback.md",
+        "new": "03--lifecycle-routing/rollback.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/026-advisor-status.md",
+        "new": "06--mcp-surface/advisor-status.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/040-bench-runner.md",
+        "new": "08--python-compat/bench-runner.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/022-attribution.md",
+        "new": "04--scorer-fusion/attribution.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/020-projection.md",
+        "new": "04--scorer-fusion/projection.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/009-sanitizer.md",
+        "new": "02--auto-indexing/sanitizer.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/021-ambiguity.md",
+        "new": "04--scorer-fusion/ambiguity.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/023-ablation.md",
+        "new": "04--scorer-fusion/ablation.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/038-cli-shim.md",
+        "new": "08--python-compat/cli-shim.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/011-sync.md",
+        "new": "02--auto-indexing/sync.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/001-watcher.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/001-watcher.md",
+        "new": "01--daemon-and-freshness/watcher.md",
+        "count": 1
+      },
+      {
+        "old": "004-generation.md",
+        "new": "generation.md",
+        "count": 1
+      },
+      {
+        "old": "003-lifecycle.md",
+        "new": "lifecycle.md",
+        "count": 1
+      },
+      {
+        "old": "002-lease.md",
+        "new": "lease.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/002-lease.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/002-lease.md",
+        "new": "01--daemon-and-freshness/lease.md",
+        "count": 1
+      },
+      {
+        "old": "005-trust-state.md",
+        "new": "trust-state.md",
+        "count": 1
+      },
+      {
+        "old": "003-lifecycle.md",
+        "new": "lifecycle.md",
+        "count": 1
+      },
+      {
+        "old": "001-watcher.md",
+        "new": "watcher.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/003-lifecycle.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/003-lifecycle.md",
+        "new": "01--daemon-and-freshness/lifecycle.md",
+        "count": 1
+      },
+      {
+        "old": "007-cache-invalidation.md",
+        "new": "cache-invalidation.md",
+        "count": 1
+      },
+      {
+        "old": "005-trust-state.md",
+        "new": "trust-state.md",
+        "count": 1
+      },
+      {
+        "old": "002-lease.md",
+        "new": "lease.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/004-generation.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/004-generation.md",
+        "new": "01--daemon-and-freshness/generation.md",
+        "count": 1
+      },
+      {
+        "old": "007-cache-invalidation.md",
+        "new": "cache-invalidation.md",
+        "count": 1
+      },
+      {
+        "old": "005-trust-state.md",
+        "new": "trust-state.md",
+        "count": 1
+      },
+      {
+        "old": "001-watcher.md",
+        "new": "watcher.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/005-trust-state.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/005-trust-state.md",
+        "new": "01--daemon-and-freshness/trust-state.md",
+        "count": 1
+      },
+      {
+        "old": "006-rebuild-from-source.md",
+        "new": "rebuild-from-source.md",
+        "count": 1
+      },
+      {
+        "old": "007-cache-invalidation.md",
+        "new": "cache-invalidation.md",
+        "count": 1
+      },
+      {
+        "old": "004-generation.md",
+        "new": "generation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/006-rebuild-from-source.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 1
+      },
+      {
+        "old": "02--auto-indexing/008-derived-extraction.md",
+        "new": "02--auto-indexing/derived-extraction.md",
+        "count": 2
+      },
+      {
+        "old": "007-cache-invalidation.md",
+        "new": "cache-invalidation.md",
+        "count": 1
+      },
+      {
+        "old": "005-trust-state.md",
+        "new": "trust-state.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/01--daemon-and-freshness/007-cache-invalidation.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/007-cache-invalidation.md",
+        "new": "01--daemon-and-freshness/cache-invalidation.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "005-trust-state.md",
+        "new": "trust-state.md",
+        "count": 1
+      },
+      {
+        "old": "004-generation.md",
+        "new": "generation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/008-derived-extraction.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/008-derived-extraction.md",
+        "new": "02--auto-indexing/derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "010-provenance-and-trust-lanes.md",
+        "new": "provenance-and-trust-lanes.md",
+        "count": 1
+      },
+      {
+        "old": "012-anti-stuffing.md",
+        "new": "anti-stuffing.md",
+        "count": 1
+      },
+      {
+        "old": "009-sanitizer.md",
+        "new": "sanitizer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/009-sanitizer.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/009-sanitizer.md",
+        "new": "02--auto-indexing/sanitizer.md",
+        "count": 1
+      },
+      {
+        "old": "008-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "012-anti-stuffing.md",
+        "new": "anti-stuffing.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/010-provenance-and-trust-lanes.md",
+    "edits": [
+      {
+        "old": "02--auto-indexing/010-provenance-and-trust-lanes.md",
+        "new": "02--auto-indexing/provenance-and-trust-lanes.md",
+        "count": 1
+      },
+      {
+        "old": "04--scorer-fusion/019-five-lane-fusion.md",
+        "new": "04--scorer-fusion/five-lane-fusion.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/022-attribution.md",
+        "new": "04--scorer-fusion/attribution.md",
+        "count": 2
+      },
+      {
+        "old": "008-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/011-sync.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/011-sync.md",
+        "new": "02--auto-indexing/sync.md",
+        "count": 1
+      },
+      {
+        "old": "008-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "009-sanitizer.md",
+        "new": "sanitizer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/012-anti-stuffing.md",
+    "edits": [
+      {
+        "old": "02--auto-indexing/012-anti-stuffing.md",
+        "new": "02--auto-indexing/anti-stuffing.md",
+        "count": 1
+      },
+      {
+        "old": "008-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "009-sanitizer.md",
+        "new": "sanitizer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/02--auto-indexing/013-df-idf-corpus.md",
+    "edits": [
+      {
+        "old": "03--lifecycle-routing/016-archive-handling.md",
+        "new": "03--lifecycle-routing/archive-handling.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/019-five-lane-fusion.md",
+        "new": "04--scorer-fusion/five-lane-fusion.md",
+        "count": 2
+      },
+      {
+        "old": "02--auto-indexing/013-df-idf-corpus.md",
+        "new": "02--auto-indexing/df-idf-corpus.md",
+        "count": 1
+      },
+      {
+        "old": "008-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/014-age-haircut.md",
+    "edits": [
+      {
+        "old": "04--scorer-fusion/019-five-lane-fusion.md",
+        "new": "04--scorer-fusion/five-lane-fusion.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/014-age-haircut.md",
+        "new": "03--lifecycle-routing/age-haircut.md",
+        "count": 1
+      },
+      {
+        "old": "04--scorer-fusion/022-attribution.md",
+        "new": "04--scorer-fusion/attribution.md",
+        "count": 2
+      },
+      {
+        "old": "015-supersession.md",
+        "new": "supersession.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/015-supersession.md",
+    "edits": [
+      {
+        "old": "03--lifecycle-routing/015-supersession.md",
+        "new": "03--lifecycle-routing/supersession.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "014-age-haircut.md",
+        "new": "age-haircut.md",
+        "count": 1
+      },
+      {
+        "old": "018-rollback.md",
+        "new": "rollback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/016-archive-handling.md",
+    "edits": [
+      {
+        "old": "03--lifecycle-routing/016-archive-handling.md",
+        "new": "03--lifecycle-routing/archive-handling.md",
+        "count": 1
+      },
+      {
+        "old": "02--auto-indexing/013-df-idf-corpus.md",
+        "new": "02--auto-indexing/df-idf-corpus.md",
+        "count": 2
+      },
+      {
+        "old": "017-schema-migration.md",
+        "new": "schema-migration.md",
+        "count": 1
+      },
+      {
+        "old": "015-supersession.md",
+        "new": "supersession.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/017-schema-migration.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 2
+      },
+      {
+        "old": "03--lifecycle-routing/017-schema-migration.md",
+        "new": "03--lifecycle-routing/schema-migration.md",
+        "count": 1
+      },
+      {
+        "old": "02--auto-indexing/011-sync.md",
+        "new": "02--auto-indexing/sync.md",
+        "count": 2
+      },
+      {
+        "old": "018-rollback.md",
+        "new": "rollback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/03--lifecycle-routing/018-rollback.md",
+    "edits": [
+      {
+        "old": "03--lifecycle-routing/018-rollback.md",
+        "new": "03--lifecycle-routing/rollback.md",
+        "count": 1
+      },
+      {
+        "old": "017-schema-migration.md",
+        "new": "schema-migration.md",
+        "count": 1
+      },
+      {
+        "old": "015-supersession.md",
+        "new": "supersession.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/019-five-lane-fusion.md",
+    "edits": [
+      {
+        "old": "04--scorer-fusion/019-five-lane-fusion.md",
+        "new": "04--scorer-fusion/five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "022-attribution.md",
+        "new": "attribution.md",
+        "count": 1
+      },
+      {
+        "old": "020-projection.md",
+        "new": "projection.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/020-projection.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/020-projection.md",
+        "new": "04--scorer-fusion/projection.md",
+        "count": 1
+      },
+      {
+        "old": "019-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "022-attribution.md",
+        "new": "attribution.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/021-ambiguity.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/021-ambiguity.md",
+        "new": "04--scorer-fusion/ambiguity.md",
+        "count": 1
+      },
+      {
+        "old": "019-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "022-attribution.md",
+        "new": "attribution.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/022-attribution.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/022-attribution.md",
+        "new": "04--scorer-fusion/attribution.md",
+        "count": 1
+      },
+      {
+        "old": "019-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "023-ablation.md",
+        "new": "ablation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/023-ablation.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/023-ablation.md",
+        "new": "04--scorer-fusion/ablation.md",
+        "count": 1
+      },
+      {
+        "old": "019-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/04--scorer-fusion/024-weights-config.md",
+    "edits": [
+      {
+        "old": "04--scorer-fusion/024-weights-config.md",
+        "new": "04--scorer-fusion/weights-config.md",
+        "count": 1
+      },
+      {
+        "old": "019-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/025-advisor-recommend.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/007-cache-invalidation.md",
+        "new": "01--daemon-and-freshness/cache-invalidation.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/025-advisor-recommend.md",
+        "new": "06--mcp-surface/advisor-recommend.md",
+        "count": 1
+      },
+      {
+        "old": "028-compat-entrypoint.md",
+        "new": "compat-entrypoint.md",
+        "count": 1
+      },
+      {
+        "old": "027-advisor-validate.md",
+        "new": "advisor-validate.md",
+        "count": 1
+      },
+      {
+        "old": "026-advisor-status.md",
+        "new": "advisor-status.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/026-advisor-status.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/005-trust-state.md",
+        "new": "01--daemon-and-freshness/trust-state.md",
+        "count": 2
+      },
+      {
+        "old": "04--scorer-fusion/024-weights-config.md",
+        "new": "04--scorer-fusion/weights-config.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/026-advisor-status.md",
+        "new": "06--mcp-surface/advisor-status.md",
+        "count": 1
+      },
+      {
+        "old": "025-advisor-recommend.md",
+        "new": "advisor-recommend.md",
+        "count": 1
+      },
+      {
+        "old": "029-advisor-rebuild.md",
+        "new": "advisor-rebuild.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/027-advisor-validate.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 1
+      },
+      {
+        "old": "04--scorer-fusion/023-ablation.md",
+        "new": "04--scorer-fusion/ablation.md",
+        "count": 2
+      },
+      {
+        "old": "025-advisor-recommend.md",
+        "new": "advisor-recommend.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/028-compat-entrypoint.md",
+    "edits": [
+      {
+        "old": "07--hooks-and-plugin/037-opencode-plugin-bridge.md",
+        "new": "07--hooks-and-plugin/opencode-plugin-bridge.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 1
+      },
+      {
+        "old": "08--python-compat/038-cli-shim.md",
+        "new": "08--python-compat/cli-shim.md",
+        "count": 2
+      },
+      {
+        "old": "025-advisor-recommend.md",
+        "new": "advisor-recommend.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/029-advisor-rebuild.md",
+    "edits": [
+      {
+        "old": "01--daemon-and-freshness/006-rebuild-from-source.md",
+        "new": "01--daemon-and-freshness/rebuild-from-source.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-surface/029-advisor-rebuild.md",
+        "new": "06--mcp-surface/advisor-rebuild.md",
+        "count": 1
+      },
+      {
+        "old": "02--auto-indexing/011-sync.md",
+        "new": "02--auto-indexing/sync.md",
+        "count": 2
+      },
+      {
+        "old": "026-advisor-status.md",
+        "new": "advisor-status.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/030-skill-graph-scan.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/030-skill-graph-scan.md",
+        "new": "06--mcp-surface/skill-graph-scan.md",
+        "count": 1
+      },
+      {
+        "old": "031-skill-graph-query.md",
+        "new": "skill-graph-query.md",
+        "count": 2
+      },
+      {
+        "old": "029-advisor-rebuild.md",
+        "new": "advisor-rebuild.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/031-skill-graph-query.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/031-skill-graph-query.md",
+        "new": "06--mcp-surface/skill-graph-query.md",
+        "count": 1
+      },
+      {
+        "old": "032-skill-graph-status.md",
+        "new": "skill-graph-status.md",
+        "count": 2
+      },
+      {
+        "old": "030-skill-graph-scan.md",
+        "new": "skill-graph-scan.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/032-skill-graph-status.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/032-skill-graph-status.md",
+        "new": "06--mcp-surface/skill-graph-status.md",
+        "count": 1
+      },
+      {
+        "old": "033-skill-graph-validate.md",
+        "new": "skill-graph-validate.md",
+        "count": 2
+      },
+      {
+        "old": "031-skill-graph-query.md",
+        "new": "skill-graph-query.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/06--mcp-surface/033-skill-graph-validate.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/033-skill-graph-validate.md",
+        "new": "06--mcp-surface/skill-graph-validate.md",
+        "count": 1
+      },
+      {
+        "old": "032-skill-graph-status.md",
+        "new": "skill-graph-status.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/034-claude-hook.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/034-claude-hook.md",
+        "new": "07--hooks-and-plugin/claude-hook.md",
+        "count": 1
+      },
+      {
+        "old": "035-gemini-hook.md",
+        "new": "gemini-hook.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/035-gemini-hook.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 2
+      },
+      {
+        "old": "07--hooks-and-plugin/035-gemini-hook.md",
+        "new": "07--hooks-and-plugin/gemini-hook.md",
+        "count": 1
+      },
+      {
+        "old": "034-claude-hook.md",
+        "new": "claude-hook.md",
+        "count": 1
+      },
+      {
+        "old": "036-codex-hook.md",
+        "new": "codex-hook.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/036-codex-hook.md",
+    "edits": [
+      {
+        "old": "07--hooks-and-plugin/036-codex-hook.md",
+        "new": "07--hooks-and-plugin/codex-hook.md",
+        "count": 1
+      },
+      {
+        "old": "034-claude-hook.md",
+        "new": "claude-hook.md",
+        "count": 1
+      },
+      {
+        "old": "035-gemini-hook.md",
+        "new": "gemini-hook.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/07--hooks-and-plugin/037-opencode-plugin-bridge.md",
+    "edits": [
+      {
+        "old": "07--hooks-and-plugin/037-opencode-plugin-bridge.md",
+        "new": "07--hooks-and-plugin/opencode-plugin-bridge.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/038-cli-shim.md",
+        "new": "08--python-compat/cli-shim.md",
+        "count": 2
+      },
+      {
+        "old": "034-claude-hook.md",
+        "new": "claude-hook.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/038-cli-shim.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/028-compat-entrypoint.md",
+        "new": "06--mcp-surface/compat-entrypoint.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/038-cli-shim.md",
+        "new": "08--python-compat/cli-shim.md",
+        "count": 1
+      },
+      {
+        "old": "039-regression-suite.md",
+        "new": "regression-suite.md",
+        "count": 1
+      },
+      {
+        "old": "040-bench-runner.md",
+        "new": "bench-runner.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/039-regression-suite.md",
+    "edits": [
+      {
+        "old": "08--python-compat/039-regression-suite.md",
+        "new": "08--python-compat/regression-suite.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 2
+      },
+      {
+        "old": "040-bench-runner.md",
+        "new": "bench-runner.md",
+        "count": 1
+      },
+      {
+        "old": "038-cli-shim.md",
+        "new": "cli-shim.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/feature_catalog/08--python-compat/040-bench-runner.md",
+    "edits": [
+      {
+        "old": "06--mcp-surface/027-advisor-validate.md",
+        "new": "06--mcp-surface/advisor-validate.md",
+        "count": 2
+      },
+      {
+        "old": "08--python-compat/040-bench-runner.md",
+        "new": "08--python-compat/bench-runner.md",
+        "count": 1
+      },
+      {
+        "old": "039-regression-suite.md",
+        "new": "regression-suite.md",
+        "count": 1
+      },
+      {
+        "old": "038-cli-shim.md",
+        "new": "cli-shim.md",
+        "count": 1
+      }
+    ]
+  }
+]

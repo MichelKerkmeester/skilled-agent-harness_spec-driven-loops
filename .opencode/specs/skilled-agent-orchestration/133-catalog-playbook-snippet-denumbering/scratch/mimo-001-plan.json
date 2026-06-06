@@ -1,0 +1,189 @@
+{
+  "edits": [
+    {
+      "file": ".opencode/skills/sk-doc/references/feature_catalog_creation.md",
+      "changes": [
+        {
+          "old": "└── 02--another-category/\n    └── 003-feature-name.md          # numbers continue across categories\n```",
+          "new": "└── 02--another-category/\n    └── feature-name.md\n```"
+        },
+        {
+          "old": "- per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** per skill (does not reset per category — matches manual testing playbook convention)\n- one root entry maps to one per-feature file",
+          "new": "- per-feature files use `feature-name.md` (no numeric prefix)\n- one root entry maps to one per-feature file"
+        },
+        {
+          "old": "**Naming rule**:\n- category numbering defines root section order\n- per-feature numbering defines local order within the category",
+          "new": "**Naming rule**:\n- category numbering defines root section order\n- per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order."
+        }
+      ]
+    },
+    {
+      "file": ".opencode/skills/sk-doc/references/manual_testing_playbook_creation.md",
+      "changes": [
+        {
+          "old": "│   ├── 001-feature-name.md\n│   └── 002-feature-name.md\n└── 02--another-category/\n    └── 001-feature-name.md\n```",
+          "new": "│   ├── feature-name.md\n│   └── feature-name.md\n└── 02--another-category/\n    └── feature-name.md\n```"
+        },
+        {
+          "old": "- per-feature files use stable numeric slugs such as `001-feature-name.md`\n- every feature ID maps to exactly one per-feature file",
+          "new": "- per-feature files use stable slugs such as `feature-name.md` (no numeric prefix)\n- every feature ID maps to exactly one per-feature file"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md",
+      "changes": [
+        {
+          "old": "│   ├── 001-feature-name.md\n│   └── 002-feature-name.md\n└── 02--another-category/              # Required per-feature files for category 2\n    └── 003-feature-name.md            # numbers continue across categories\n```",
+          "new": "│   ├── feature-name.md\n│   └── feature-name.md\n└── 02--another-category/              # Required per-feature files for category 2\n    └── feature-name.md\n```"
+        },
+        {
+          "old": "| Retrieval | `01--retrieval` | `001-unified-context-retrieval-memorycontext.md` |\n| Mutation | `02--mutation` | `016-memory-indexing-memorysave.md` (continues from retrieval) |\n| Tooling and scripts | `17--tooling-and-scripts` | `145-admin-cli-bootstrap.md` (continues from prior cats) |",
+          "new": "| Retrieval | `01--retrieval` | `unified-context-retrieval-memorycontext.md` |\n| Mutation | `02--mutation` | `memory-indexing-memorysave.md` |\n| Tooling and scripts | `17--tooling-and-scripts` | `admin-cli-bootstrap.md` |"
+        },
+        {
+          "old": "- Per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** that continues across all categories (does not reset per category). This matches the manual testing playbook convention.\n- Assign numbers by sorting categories in directory order, then files within each category.",
+          "new": "- Per-feature files use `feature-name.md` (no numeric prefix).\n- Per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order."
+        },
+        {
+          "old": "Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:",
+          "new": "Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:"
+        },
+        {
+          "old": "- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`\n\nRelated references:\n- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}\n- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}",
+          "new": "- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`\n\nRelated references:\n- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}\n- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}"
+        },
+        {
+          "old": "- [ ] Per-feature file numbers are globally sequential across categories (not per-category), 3-digit zero-padded",
+          "new": "- [ ] Per-feature snippet order matches root catalog listing order (filenames do not encode order)"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md",
+      "changes": [
+        {
+          "old": "Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:",
+          "new": "Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:"
+        },
+        {
+          "old": "- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`\n\nRelated references:\n- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}\n- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}",
+          "new": "- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`\n\nRelated references:\n- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}\n- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}"
+        },
+        {
+          "old": "- Preserve the feature file path and category numbering after publication — other docs link to this path.",
+          "new": "- Preserve the feature file path after publication — other docs link to this path. Category FOLDER numbering is preserved; per-feature files have no numeric prefix."
+        }
+      ]
+    },
+    {
+      "file": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md",
+      "changes": [
+        {
+          "old": "│   ├── 001-feature-name.md\n│   └── 002-feature-name.md\n└── 02--another-category/               # Required per-feature files for category 2\n    └── 001-feature-name.md\n```",
+          "new": "│   ├── feature-name.md\n│   └── feature-name.md\n└── 02--another-category/               # Required per-feature files for category 2\n    └── feature-name.md\n```"
+        },
+        {
+          "old": "- per-feature files use stable numeric slugs such as `001-feature-name.md`\n- every feature ID maps to exactly one per-feature file",
+          "new": "- per-feature files use stable slugs such as `feature-name.md` (no numeric prefix)\n- every feature ID maps to exactly one per-feature file"
+        },
+        {
+          "old": "manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md\n```\n\nPer-feature file shape:",
+          "new": "manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md\n```\n\nPer-feature file shape:"
+        },
+        {
+          "old": "> **Feature File:** [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md)\n> **Catalog:** [{CATALOG_PATH_1}](../feature_catalog/{CATALOG_PATH_1})\n\n---\n\n## 8. {CAT2_HEADING}",
+          "new": "> **Feature File:** [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md)\n> **Catalog:** [{CATALOG_PATH_1}](../feature_catalog/{CATALOG_PATH_1})\n\n---\n\n## 8. {CAT2_HEADING}"
+        },
+        {
+          "old": "> **Feature File:** [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md)\n> **Catalog:** [{CATALOG_PATH_2}](../feature_catalog/{CATALOG_PATH_2})",
+          "new": "> **Feature File:** [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md)\n> **Catalog:** [{CATALOG_PATH_2}](../feature_catalog/{CATALOG_PATH_2})"
+        },
+        {
+          "old": "Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:",
+          "new": "Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:"
+        },
+        {
+          "old": "- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`\n```\n\nValidator note:",
+          "new": "- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`\n```\n\nValidator note:"
+        },
+        {
+          "old": "| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md) |\n| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md) |",
+          "new": "| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md) |\n| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md) |"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md",
+      "changes": [
+        {
+          "old": "Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:",
+          "new": "Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:"
+        },
+        {
+          "old": "- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`\n```\n\n### Authoring Notes",
+          "new": "- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`\n```\n\n### Authoring Notes"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/feature-catalog.md",
+      "changes": [
+        {
+          "old": "- Per-feature files: `NN-feature-name.md`",
+          "new": "- Per-feature files: `feature-name.md`"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/testing-playbook.md",
+      "changes": [
+        {
+          "old": "- Per-feature files: stable numeric file IDs such as `001-feature-name.md`",
+          "new": "- Per-feature files: stable slugs such as `feature-name.md`"
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/assets/create_feature_catalog_auto.yaml",
+      "changes": [
+        {
+          "old": "- feature_catalog/NN--category-name/NN-feature-name.md",
+          "new": "- feature_catalog/NN--category-name/feature-name.md",
+          "replaceAll": true
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/assets/create_feature_catalog_confirm.yaml",
+      "changes": [
+        {
+          "old": "- feature_catalog/NN--category-name/NN-feature-name.md",
+          "new": "- feature_catalog/NN--category-name/feature-name.md",
+          "replaceAll": true
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/assets/create_testing_playbook_auto.yaml",
+      "changes": [
+        {
+          "old": "- manual_testing_playbook/NN--category-name/NNN-feature-name.md",
+          "new": "- manual_testing_playbook/NN--category-name/feature-name.md",
+          "replaceAll": true
+        }
+      ]
+    },
+    {
+      "file": ".opencode/commands/create/assets/create_testing_playbook_confirm.yaml",
+      "changes": [
+        {
+          "old": "- manual_testing_playbook/NN--category-name/NNN-feature-name.md",
+          "new": "- manual_testing_playbook/NN--category-name/feature-name.md",
+          "replaceAll": true
+        }
+      ]
+    }
+  ],
+  "notes": "validate_document.py and template_rules.json need no change: neither file contains a stale comment/description mentioning NNN-feature.md. The validator comment at line 123 references the folder pattern NN--category (which is kept), not a file-number prefix. All NN-- category-folder tokens and all Feature IDs (e.g. {CAT1}-001) are preserved unchanged."
+}

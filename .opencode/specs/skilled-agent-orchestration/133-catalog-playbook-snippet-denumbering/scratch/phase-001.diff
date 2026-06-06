@@ -1,0 +1,381 @@
+diff --git a/.opencode/commands/create/assets/create_feature_catalog_auto.yaml b/.opencode/commands/create/assets/create_feature_catalog_auto.yaml
+index a9fb3b78c9..b09d7964de 100644
+--- a/.opencode/commands/create/assets/create_feature_catalog_auto.yaml
++++ b/.opencode/commands/create/assets/create_feature_catalog_auto.yaml
+@@ -134,13 +134,13 @@ operation_router:
+     output_scope:
+       - feature_catalog/feature_catalog.md
+       - feature_catalog/NN--category-name/
+-      - feature_catalog/NN--category-name/NN-feature-name.md
++      - feature_catalog/NN--category-name/feature-name.md
+   update:
+     requires_existing_catalog: true
+     output_scope:
+       - feature_catalog/feature_catalog.md
+       - feature_catalog/NN--category-name/
+-      - feature_catalog/NN--category-name/NN-feature-name.md
++      - feature_catalog/NN--category-name/feature-name.md
+ 
+ reference_sources:
+   specific_creation: .opencode/skills/sk-doc/references/feature_catalog_creation.md
+diff --git a/.opencode/commands/create/assets/create_feature_catalog_confirm.yaml b/.opencode/commands/create/assets/create_feature_catalog_confirm.yaml
+index 8bf6a6c7d5..902cb3384f 100644
+--- a/.opencode/commands/create/assets/create_feature_catalog_confirm.yaml
++++ b/.opencode/commands/create/assets/create_feature_catalog_confirm.yaml
+@@ -148,13 +148,13 @@ operation_router:
+     output_scope:
+       - feature_catalog/feature_catalog.md
+       - feature_catalog/NN--category-name/
+-      - feature_catalog/NN--category-name/NN-feature-name.md
++      - feature_catalog/NN--category-name/feature-name.md
+   update:
+     requires_existing_catalog: true
+     output_scope:
+       - feature_catalog/feature_catalog.md
+       - feature_catalog/NN--category-name/
+-      - feature_catalog/NN--category-name/NN-feature-name.md
++      - feature_catalog/NN--category-name/feature-name.md
+ 
+ reference_sources:
+   specific_creation: .opencode/skills/sk-doc/references/feature_catalog_creation.md
+diff --git a/.opencode/commands/create/assets/create_testing_playbook_auto.yaml b/.opencode/commands/create/assets/create_testing_playbook_auto.yaml
+index 94789251a3..0bece4e9be 100644
+--- a/.opencode/commands/create/assets/create_testing_playbook_auto.yaml
++++ b/.opencode/commands/create/assets/create_testing_playbook_auto.yaml
+@@ -134,13 +134,13 @@ operation_router:
+     output_scope:
+       - manual_testing_playbook/manual_testing_playbook.md
+       - manual_testing_playbook/NN--category-name/
+-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
++      - manual_testing_playbook/NN--category-name/feature-name.md
+   update:
+     requires_existing_playbook: true
+     output_scope:
+       - manual_testing_playbook/manual_testing_playbook.md
+       - manual_testing_playbook/NN--category-name/
+-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
++      - manual_testing_playbook/NN--category-name/feature-name.md
+ 
+ reference_sources:
+   specific_creation: .opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
+diff --git a/.opencode/commands/create/assets/create_testing_playbook_confirm.yaml b/.opencode/commands/create/assets/create_testing_playbook_confirm.yaml
+index c1ea15f266..fbb19921da 100644
+--- a/.opencode/commands/create/assets/create_testing_playbook_confirm.yaml
++++ b/.opencode/commands/create/assets/create_testing_playbook_confirm.yaml
+@@ -148,13 +148,13 @@ operation_router:
+     output_scope:
+       - manual_testing_playbook/manual_testing_playbook.md
+       - manual_testing_playbook/NN--category-name/
+-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
++      - manual_testing_playbook/NN--category-name/feature-name.md
+   update:
+     requires_existing_playbook: true
+     output_scope:
+       - manual_testing_playbook/manual_testing_playbook.md
+       - manual_testing_playbook/NN--category-name/
+-      - manual_testing_playbook/NN--category-name/NNN-feature-name.md
++      - manual_testing_playbook/NN--category-name/feature-name.md
+ 
+ reference_sources:
+   specific_creation: .opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
+diff --git a/.opencode/commands/create/feature-catalog.md b/.opencode/commands/create/feature-catalog.md
+index 7b8bb618eb..01fe8c86dc 100644
+--- a/.opencode/commands/create/feature-catalog.md
++++ b/.opencode/commands/create/feature-catalog.md
+@@ -338,7 +338,7 @@ The generated catalog must match the current shipped `sk-doc` contract:
+ 
+ - Root file: `feature_catalog/feature_catalog.md`
+ - Category directories: `NN--category-name`
+-- Per-feature files: `NN-feature-name.md`
++- Per-feature files: `feature-name.md`
+ - Root structure:
+   - frontmatter
+   - H1 + short intro paragraph
+diff --git a/.opencode/commands/create/testing-playbook.md b/.opencode/commands/create/testing-playbook.md
+index 66245a365d..22d95e728c 100644
+--- a/.opencode/commands/create/testing-playbook.md
++++ b/.opencode/commands/create/testing-playbook.md
+@@ -344,7 +344,7 @@ The generated playbook must match the current shipped `sk-doc` contract:
+ 
+ - Root file: `manual_testing_playbook/manual_testing_playbook.md`
+ - Category directories: `NN--category-name`
+-- Per-feature files: stable numeric file IDs such as `001-feature-name.md`
++- Per-feature files: stable slugs such as `feature-name.md`
+ - Root structure:
+   - frontmatter
+   - H1 + short intro paragraph
+diff --git a/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md b/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
+index a592d7071a..5f89c34f3a 100644
+--- a/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
++++ b/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_snippet_template.md
+@@ -48,7 +48,7 @@ importance_tier: "important"                       # optional — omit unless th
+ 
+ ## 3. TEMPLATE SCAFFOLD
+ 
+-Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:
++Copy everything inside the code fence into `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
+ 
+ ```markdown
+ ---
+@@ -114,11 +114,11 @@ trigger_phrases:
+ 
+ - Group: {CATEGORY_NAME}
+ - Canonical catalog source: `feature_catalog.md`
+-- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`
++- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+ 
+ Related references:
+-- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}
+-- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}
++- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
++- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+ ```
+ 
+ ---
+@@ -150,7 +150,7 @@ Related references:
+ - If no implementation files exist yet, add a single row: `| — | — | Not yet implemented |`.
+ 
+ **SOURCE METADATA**
+-- Preserve the feature file path and category numbering after publication — other docs link to this path.
++- Preserve the feature file path after publication — other docs link to this path. Category FOLDER numbering is preserved; per-feature files have no numeric prefix.
+ - Related references: link to the immediately adjacent features in the same category directory so readers can navigate without returning to the root catalog.
+ 
+ ---
+diff --git a/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md b/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md
+index eff1768ddb..39b6fbd14b 100644
+--- a/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md
++++ b/.opencode/skills/sk-doc/assets/feature_catalog/feature_catalog_template.md
+@@ -32,10 +32,10 @@ Canonical layout:
+ feature_catalog/
+ ├── feature_catalog.md                 # Root inventory and summary catalog
+ ├── 01--category-name/                 # Required per-feature files for category 1
+-│   ├── 001-feature-name.md
+-│   └── 002-feature-name.md
++│   ├── feature-name.md
++│   └── feature-name.md
+ └── 02--another-category/              # Required per-feature files for category 2
+-    └── 003-feature-name.md            # numbers continue across categories
++    └── feature-name.md
+ ```
+ 
+ **Existing Example**:
+@@ -60,14 +60,14 @@ Each category groups related features under a numbered directory.
+ 
+ | Category Purpose | Example Directory | Example File |
+ |---|---|---|
+-| Retrieval | `01--retrieval` | `001-unified-context-retrieval-memorycontext.md` |
+-| Mutation | `02--mutation` | `016-memory-indexing-memorysave.md` (continues from retrieval) |
+-| Tooling and scripts | `17--tooling-and-scripts` | `145-admin-cli-bootstrap.md` (continues from prior cats) |
++| Retrieval | `01--retrieval` | `unified-context-retrieval-memorycontext.md` |
++| Mutation | `02--mutation` | `memory-indexing-memorysave.md` |
++| Tooling and scripts | `17--tooling-and-scripts` | `admin-cli-bootstrap.md` |
+ 
+ Directory and file rules:
+ - Category directories use `NN--category-name`.
+-- Per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** that continues across all categories (does not reset per category). This matches the manual testing playbook convention.
+-- Assign numbers by sorting categories in directory order, then files within each category.
++- Per-feature files use `feature-name.md` (no numeric prefix).
++- Per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order.
+ - Published slugs should remain stable unless the feature is intentionally renamed.
+ 
+ Per-feature file shape:
+@@ -160,7 +160,7 @@ See [`{CAT2_DIR}/{FEATURE_FILE_3}`]({CAT2_DIR}/{FEATURE_FILE_3}) for full implem
+ 
+ ## 5. PER-FEATURE FILE SCAFFOLD
+ 
+-Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{NN}-{feature-name}.md`:
++Copy this scaffold to create `feature_catalog/{CATEGORY_DIR}/{feature-name}.md`:
+ 
+ ```markdown
+ ---
+@@ -226,11 +226,11 @@ trigger_phrases:
+ 
+ - Group: {CATEGORY_NAME}
+ - Canonical catalog source: `feature_catalog.md`
+-- Feature file path: `{CATEGORY_DIR}/{NN}-{feature-name}.md`
++- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+ 
+ Related references:
+-- [{NNN-1}-{neighboring-feature}.md]({NNN-1}-{neighboring-feature}.md) — {brief description}
+-- [{NNN+1}-{neighboring-feature}.md]({NNN+1}-{neighboring-feature}.md) — {brief description}
++- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
++- [{neighboring-feature}.md]({neighboring-feature}.md) — {brief description}
+ ```
+ 
+ ---
+@@ -258,7 +258,7 @@ Structure:
+ - [ ] `feature_catalog.md` exists with frontmatter and H1 intro paragraph
+ - [ ] Root catalog uses numbered all-caps H2 section headers (no Table of Contents)
+ - [ ] Category directories use `NN--category-name`
+-- [ ] Per-feature file numbers are globally sequential across categories (not per-category), 3-digit zero-padded
++- [ ] Per-feature snippet order matches root catalog listing order (filenames do not encode order)
+ - [ ] Every root catalog entry links to exactly one per-feature file
+ - [ ] Every per-feature file includes frontmatter with `title` and `description`
+ 
+diff --git a/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md b/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+index 8179615515..dc39c555fd 100644
+--- a/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
++++ b/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_snippet_template.md
+@@ -34,7 +34,7 @@ Each feature file is the canonical home for full scenario execution detail. The
+ 
+ ## 2. TEMPLATE SCAFFOLD
+ 
+-Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:
++Copy this into `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
+ 
+ ```markdown
+ ---
+@@ -129,7 +129,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
+ - Group: {CATEGORY_NAME}
+ - Playbook ID: {FEATURE_ID}
+ - Canonical root source: `manual_testing_playbook.md`
+-- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`
++- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+ ```
+ 
+ ### Authoring Notes
+diff --git a/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md b/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
+index c5bb4de535..7cde143a4b 100644
+--- a/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
++++ b/.opencode/skills/sk-doc/assets/testing_playbook/manual_testing_playbook_template.md
+@@ -33,10 +33,10 @@ Canonical layout:
+ manual_testing_playbook/
+ ├── manual_testing_playbook.md          # Root directory page, review rules, and orchestration guidance
+ ├── 01--category-name/                  # Required per-feature files for category 1
+-│   ├── 001-feature-name.md
+-│   └── 002-feature-name.md
++│   ├── feature-name.md
++│   └── feature-name.md
+ └── 02--another-category/               # Required per-feature files for category 2
+-    └── 001-feature-name.md
++    └── feature-name.md
+ ```
+ 
+ **Existing Examples**:
+@@ -97,7 +97,7 @@ ID format:
+ Per-feature file path:
+ 
+ ```text
+-manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md
++manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md
+ ```
+ 
+ Per-feature file shape:
+@@ -302,7 +302,7 @@ Prompt: `{PROMPT — natural-human by default; use RCAF "As a {ROLE}, ..." only
+ Desired user-visible outcome: {DESIRED_USER_OUTCOME}
+ 
+ #### Test Execution
+-> **Feature File:** [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md)
++> **Feature File:** [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md)
+ > **Catalog:** [{CATALOG_PATH_1}](../feature_catalog/{CATALOG_PATH_1})
+ 
+ ---
+@@ -322,7 +322,7 @@ Prompt: `{PROMPT_2 — natural-human by default; use RCAF only for orchestrator-
+ Desired user-visible outcome: {DESIRED_USER_OUTCOME_2}
+ 
+ #### Test Execution
+-> **Feature File:** [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md)
++> **Feature File:** [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md)
+ > **Catalog:** [{CATALOG_PATH_2}](../feature_catalog/{CATALOG_PATH_2})
+ 
+ ---
+@@ -339,15 +339,15 @@ Desired user-visible outcome: {DESIRED_USER_OUTCOME_2}
+ 
+ | Feature ID | Feature Name | Category | Feature File |
+ |---|---|---|---|
+-| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/001-{FEATURE_SLUG}.md) |
+-| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/001-{FEATURE_SLUG_2}.md) |
++| {CAT1}-001 | {FEATURE_NAME} | {CAT1_HEADING} | [{CAT1}-001]({CAT1_DIR}/{FEATURE_SLUG}.md) |
++| {CAT2}-001 | {FEATURE_NAME_2} | {CAT2_HEADING} | [{CAT2}-001]({CAT2_DIR}/{FEATURE_SLUG_2}.md) |
+ ```
+ 
+ ---
+ 
+ ## 6. PER-FEATURE FILE SCAFFOLD
+ 
+-Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{NNN}-{feature-name}.md`:
++Copy this scaffold to create `manual_testing_playbook/{CATEGORY_DIR}/{feature-name}.md`:
+ 
+ ```markdown
+ ---
+@@ -428,7 +428,7 @@ Use this subsection only when the feature needs a tightly scoped follow-up varia
+ - Group: {CATEGORY_NAME}
+ - Playbook ID: {FEATURE_ID}
+ - Canonical root source: `manual_testing_playbook.md`
+-- Feature file path: `{CATEGORY_DIR}/{NNN}-{feature-name}.md`
++- Feature file path: `{CATEGORY_DIR}/{feature-name}.md`
+ ```
+ 
+ Validator note: the current validator does not recurse into the numbered category folders, so per-feature file completeness must be checked manually until tooling catches up.
+diff --git a/.opencode/skills/sk-doc/references/feature_catalog_creation.md b/.opencode/skills/sk-doc/references/feature_catalog_creation.md
+index b4b288ff62..a54ff17bbf 100644
+--- a/.opencode/skills/sk-doc/references/feature_catalog_creation.md
++++ b/.opencode/skills/sk-doc/references/feature_catalog_creation.md
+@@ -59,22 +59,22 @@ The current catalog contract is:
+ feature_catalog/
+ ├── feature_catalog.md
+ ├── 01--category-name/
+-│   ├── 001-feature-name.md
+-│   └── 002-feature-name.md
++│   ├── feature-name.md
++│   └── another-feature-name.md
+ └── 02--another-category/
+-    └── 003-feature-name.md          # numbers continue across categories
++    └── feature-name.md
+ ```
+ 
+ **Invariants**:
+ - root file is always `feature_catalog.md` (lowercase)
+ - category directories use `NN--category-name`
+-- per-feature files use `NNN-feature-name.md` with a **globally sequential 3-digit prefix** per skill (does not reset per category — matches manual testing playbook convention)
++- per-feature files use `feature-name.md` (no numeric prefix)
+ - one root entry maps to one per-feature file
+ - slugs should remain stable after publication
+ 
+ **Naming rule**:
+ - category numbering defines root section order
+-- per-feature numbering defines local order within the category
++- per-feature snippet order is defined by the root catalog listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order.
+ 
+ ## 4. ROOT CATALOG RESPONSIBILITIES
+ 
+diff --git a/.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md b/.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
+index 269610268f..73d7f7dd78 100644
+--- a/.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
++++ b/.opencode/skills/sk-doc/references/manual_testing_playbook_creation.md
+@@ -60,17 +60,18 @@ The current playbook contract is:
+ manual_testing_playbook/
+ ├── manual_testing_playbook.md
+ ├── 01--category-name/
+-│   ├── 001-feature-name.md
+-│   └── 002-feature-name.md
++│   ├── feature-name.md
++│   └── another-feature-name.md
+ └── 02--another-category/
+-    └── 001-feature-name.md
++    └── feature-name.md
+ ```
+ 
+ **Invariants**:
+ - root file is always `manual_testing_playbook.md`
+ - per-feature files live in numbered root-level category folders
+ - category directories use `NN--category-name`
+-- per-feature files use stable numeric slugs such as `001-feature-name.md`
++- per-feature files use stable slugs such as `feature-name.md` (no numeric prefix)
++- per-feature snippet order is defined by the root playbook listing order; filenames no longer encode order. Category folders keep `NN--` numbering for section order
+ - every feature ID maps to exactly one per-feature file
+ 
+ **Do not use**:
+diff --git a/.opencode/skills/sk-doc/scripts/validate_document.py b/.opencode/skills/sk-doc/scripts/validate_document.py
+index bb43947e61..5a2e7d5b7e 100644
+--- a/.opencode/skills/sk-doc/scripts/validate_document.py
++++ b/.opencode/skills/sk-doc/scripts/validate_document.py
+@@ -120,7 +120,7 @@ def detect_document_type(file_path: str, content: str, rules: Dict[str, Any]) ->
+     """Detect document type from file path or content."""
+     path_lower = str(file_path).lower()
+ 
+-    # Per-feature playbook files: under manual_testing_playbook/NN--category/NNN-feature.md
++    # Per-feature playbook files: under manual_testing_playbook/NN--category/feature.md
+     # The root playbook file itself stays as the standard playbook type via its path.
+     if '/manual_testing_playbook/' in path_lower or '\\manual_testing_playbook\\' in path_lower:
+         stem = Path(path_lower).stem

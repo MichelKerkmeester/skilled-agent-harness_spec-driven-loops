@@ -1,0 +1,117 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "09--post-rename-infrastructure/021-unicode-normalization-fix-from-009.md",
+        "new": "09--post-rename-infrastructure/unicode-normalization-fix-from-009.md",
+        "count": 1
+      },
+      {
+        "old": "02--manual-scan-verify-status/005-code-graph-verify-blocked-on-stale.md",
+        "new": "02--manual-scan-verify-status/code-graph-verify-blocked-on-stale.md",
+        "count": 1
+      },
+      {
+        "old": "09--post-rename-infrastructure/020-typescript-build-and-entry-point.md",
+        "new": "09--post-rename-infrastructure/typescript-build-and-entry-point.md",
+        "count": 1
+      },
+      {
+        "old": "02--manual-scan-verify-status/003-code-graph-scan-incremental.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan-incremental.md",
+        "count": 1
+      },
+      {
+        "old": "09--post-rename-infrastructure/018-mcp-json-server-key-rename.md",
+        "new": "09--post-rename-infrastructure/mcp-json-server-key-rename.md",
+        "count": 1
+      },
+      {
+        "old": "09--post-rename-infrastructure/019-database-path-verification.md",
+        "new": "09--post-rename-infrastructure/database-path-verification.md",
+        "count": 1
+      },
+      {
+        "old": "02--manual-scan-verify-status/006-code-graph-status-readonly.md",
+        "new": "02--manual-scan-verify-status/code-graph-status-readonly.md",
+        "count": 1
+      },
+      {
+        "old": "04--context-retrieval/008-code-graph-context-readiness-block.md",
+        "new": "04--context-retrieval/code-graph-context-readiness-block.md",
+        "count": 1
+      },
+      {
+        "old": "05--coverage-graph/009-deep-loop-graph-convergence-yaml-fire.md",
+        "new": "05--coverage-graph/deep-loop-graph-convergence-yaml-fire.md",
+        "count": 1
+      },
+      {
+        "old": "01--read-path-freshness/001-ensure-ready-selective-reindex.md",
+        "new": "01--read-path-freshness/ensure-ready-selective-reindex.md",
+        "count": 1
+      },
+      {
+        "old": "09--post-rename-infrastructure/017-launcher-startup-prefix.md",
+        "new": "09--post-rename-infrastructure/launcher-startup-prefix.md",
+        "count": 1
+      },
+      {
+        "old": "05--coverage-graph/010-deep-loop-graph-upsert-conditional.md",
+        "new": "05--coverage-graph/deep-loop-graph-upsert-conditional.md",
+        "count": 1
+      },
+      {
+        "old": "08--doctor-code-graph/023-code-graph-apply-sub-operations.md",
+        "new": "08--doctor-code-graph/code-graph-apply-sub-operations.md",
+        "count": 1
+      },
+      {
+        "old": "01--read-path-freshness/002-query-self-heal-stale-file.md",
+        "new": "01--read-path-freshness/query-self-heal-stale-file.md",
+        "count": 1
+      },
+      {
+        "old": "02--manual-scan-verify-status/004-code-graph-scan-full.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan-full.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-tool-surface/016-mcp-tool-manifest-post-rename.md",
+        "new": "06--mcp-tool-surface/mcp-tool-manifest-post-rename.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-tool-surface/022-code-graph-query-blast-radius.md",
+        "new": "06--mcp-tool-surface/code-graph-query-blast-radius.md",
+        "count": 1
+      },
+      {
+        "old": "03--detect-changes/007-detect-changes-no-inline-index.md",
+        "new": "03--detect-changes/detect-changes-no-inline-index.md",
+        "count": 1
+      },
+      {
+        "old": "03--detect-changes/024-detect-changes-multi-file-diff.md",
+        "new": "03--detect-changes/detect-changes-multi-file-diff.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-tool-surface/011-tool-call-shape-validation.md",
+        "new": "06--mcp-tool-surface/tool-call-shape-validation.md",
+        "count": 1
+      },
+      {
+        "old": "08--doctor-code-graph/015-doctor-apply-mode-policy.md",
+        "new": "08--doctor-code-graph/doctor-apply-mode-policy.md",
+        "count": 1
+      },
+      {
+        "old": "10--devin-hooks/025-devin-session-start.md",
+        "new": "10--devin-hooks/devin-session-start.md",
+        "count": 1
+      }
+    ]
+  }
+]

@@ -1,0 +1,127 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "05--motion-dev-and-animation-regression/014-animation-regression-baseline.md",
+        "new": "05--motion-dev-and-animation-regression/animation-regression-baseline.md",
+        "count": 1
+      },
+      {
+        "old": "05--motion-dev-and-animation-regression/012-cdn-bundle-version-pin.md",
+        "new": "05--motion-dev-and-animation-regression/cdn-bundle-version-pin.md",
+        "count": 1
+      },
+      {
+        "old": "05--motion-dev-and-animation-regression/013-prefers-reduced-motion.md",
+        "new": "05--motion-dev-and-animation-regression/prefers-reduced-motion.md",
+        "count": 1
+      },
+      {
+        "old": "06--cross-browser-and-performance-gates/015-cross-browser-animate.md",
+        "new": "06--cross-browser-and-performance-gates/cross-browser-animate.md",
+        "count": 1
+      },
+      {
+        "old": "05--motion-dev-and-animation-regression/011-motion-api-smoke.md",
+        "new": "05--motion-dev-and-animation-regression/motion-api-smoke.md",
+        "count": 1
+      },
+      {
+        "old": "06--cross-browser-and-performance-gates/017-gpu-compositing.md",
+        "new": "06--cross-browser-and-performance-gates/gpu-compositing.md",
+        "count": 1
+      },
+      {
+        "old": "04--skill-advisor-integration/010-advisor-probe-battery.md",
+        "new": "04--skill-advisor-integration/advisor-probe-battery.md",
+        "count": 2
+      },
+      {
+        "old": "07--cross-stack-routing/019-non-webflow-plus-motion-dev.md",
+        "new": "07--cross-stack-routing/non-webflow-plus-motion-dev.md",
+        "count": 1
+      },
+      {
+        "old": "03--routing-disambiguation/008-mixed-marker-ambiguity.md",
+        "new": "03--routing-disambiguation/mixed-marker-ambiguity.md",
+        "count": 1
+      },
+      {
+        "old": "06--cross-browser-and-performance-gates/016-cwv-gates.md",
+        "new": "06--cross-browser-and-performance-gates/cwv-gates.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/022-snippet-reuse-cross-stack.md",
+        "new": "07--cross-stack-routing/snippet-reuse-cross-stack.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/023-cwv-gates-animation-heavy.md",
+        "new": "07--cross-stack-routing/cwv-gates-animation-heavy.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/020-opencode-plus-motion-dev.md",
+        "new": "07--cross-stack-routing/opencode-plus-motion-dev.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/018-webflow-plus-motion-dev.md",
+        "new": "07--cross-stack-routing/webflow-plus-motion-dev.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/021-decision-matrix-routing.md",
+        "new": "07--cross-stack-routing/decision-matrix-routing.md",
+        "count": 1
+      },
+      {
+        "old": "02--language-sub-detection/004-opencode-typescript.md",
+        "new": "02--language-sub-detection/opencode-typescript.md",
+        "count": 1
+      },
+      {
+        "old": "07--cross-stack-routing/024-prefers-reduced-motion.md",
+        "new": "07--cross-stack-routing/prefers-reduced-motion.md",
+        "count": 1
+      },
+      {
+        "old": "02--language-sub-detection/005-opencode-python.md",
+        "new": "02--language-sub-detection/opencode-python.md",
+        "count": 1
+      },
+      {
+        "old": "02--language-sub-detection/007-opencode-config.md",
+        "new": "02--language-sub-detection/opencode-config.md",
+        "count": 1
+      },
+      {
+        "old": "03--routing-disambiguation/009-skcode-vs-skdoc.md",
+        "new": "03--routing-disambiguation/skcode-vs-skdoc.md",
+        "count": 1
+      },
+      {
+        "old": "02--language-sub-detection/006-opencode-shell.md",
+        "new": "02--language-sub-detection/opencode-shell.md",
+        "count": 1
+      },
+      {
+        "old": "01--surface-detection/002-opencode-detection.md",
+        "new": "01--surface-detection/opencode-detection.md",
+        "count": 1
+      },
+      {
+        "old": "01--surface-detection/001-webflow-detection.md",
+        "new": "01--surface-detection/webflow-detection.md",
+        "count": 1
+      },
+      {
+        "old": "01--surface-detection/003-unknown-fallback.md",
+        "new": "01--surface-detection/unknown-fallback.md",
+        "count": 1
+      }
+    ]
+  }
+]

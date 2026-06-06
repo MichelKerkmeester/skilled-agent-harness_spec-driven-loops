@@ -1,0 +1,897 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/006-advisor-status-rebuild-separation.md",
+        "new": "01--native-mcp-tools/advisor-status-rebuild-separation.md",
+        "count": 2
+      },
+      {
+        "old": "02--cli-hooks-and-plugin/010-claude-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/claude-user-prompt-submit.md",
+        "count": 2
+      },
+      {
+        "old": "02--cli-hooks-and-plugin/011-gemini-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/gemini-user-prompt-submit.md",
+        "count": 1
+      },
+      {
+        "old": "02--cli-hooks-and-plugin/014-devin-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/001-native-recommend-happy-path.md",
+        "new": "01--native-mcp-tools/native-recommend-happy-path.md",
+        "count": 2
+      },
+      {
+        "old": "01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+        "new": "01--native-mcp-tools/lifecycle-redirect-metadata.md",
+        "count": 1
+      },
+      {
+        "old": "05--auto-update-daemon/024-daemon-lifecycle-shutdown.md",
+        "new": "05--auto-update-daemon/daemon-lifecycle-shutdown.md",
+        "count": 1
+      },
+      {
+        "old": "02--cli-hooks-and-plugin/012-codex-hook-and-wrapper.md",
+        "new": "02--cli-hooks-and-plugin/codex-hook-and-wrapper.md",
+        "count": 1
+      },
+      {
+        "old": "02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md",
+        "new": "02--cli-hooks-and-plugin/opencode-plugin-bridge.md",
+        "count": 1
+      },
+      {
+        "old": "03--compat-and-disable/016-force-local-force-native.md",
+        "new": "03--compat-and-disable/force-local-force-native.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/002-native-status-transitions.md",
+        "new": "01--native-mcp-tools/native-status-transitions.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/004-ambiguous-brief-rendering.md",
+        "new": "01--native-mcp-tools/ambiguous-brief-rendering.md",
+        "count": 2
+      },
+      {
+        "old": "03--compat-and-disable/018-daemon-absent-fallback.md",
+        "new": "03--compat-and-disable/daemon-absent-fallback.md",
+        "count": 1
+      },
+      {
+        "old": "05--auto-update-daemon/025-generation-publication.md",
+        "new": "05--auto-update-daemon/generation-publication.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/029-provenance-and-trust-lanes.md",
+        "new": "06--auto-indexing/provenance-and-trust-lanes.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/003-native-validate-slices.md",
+        "new": "01--native-mcp-tools/native-validate-slices.md",
+        "count": 1
+      },
+      {
+        "old": "05--auto-update-daemon/022-watcher-narrow-scope.md",
+        "new": "05--auto-update-daemon/watcher-narrow-scope.md",
+        "count": 1
+      },
+      {
+        "old": "03--compat-and-disable/017-global-disable-flag.md",
+        "new": "03--compat-and-disable/global-disable-flag.md",
+        "count": 1
+      },
+      {
+        "old": "05--auto-update-daemon/023-lease-single-writer.md",
+        "new": "05--auto-update-daemon/lease-single-writer.md",
+        "count": 1
+      },
+      {
+        "old": "05--auto-update-daemon/026-rebuild-from-source.md",
+        "new": "05--auto-update-daemon/rebuild-from-source.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/043-force-native-force-local.md",
+        "new": "10--python-compat/force-native-force-local.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/009-skill-graph-validate.md",
+        "new": "01--native-mcp-tools/skill-graph-validate.md",
+        "count": 1
+      },
+      {
+        "old": "03--compat-and-disable/015-python-shim-stdin.md",
+        "new": "03--compat-and-disable/python-shim-stdin.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/036-rollback-lifecycle.md",
+        "new": "07--lifecycle-routing/rollback-lifecycle.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/007-skill-graph-status.md",
+        "new": "01--native-mcp-tools/skill-graph-status.md",
+        "count": 1
+      },
+      {
+        "old": "01--native-mcp-tools/008-skill-graph-query.md",
+        "new": "01--native-mcp-tools/skill-graph-query.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/028-sanitizer-boundaries.md",
+        "new": "06--auto-indexing/sanitizer-boundaries.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/034-archive-handling.md",
+        "new": "07--lifecycle-routing/archive-handling.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/035-schema-migration.md",
+        "new": "07--lifecycle-routing/schema-migration.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/027-derived-extraction.md",
+        "new": "06--auto-indexing/derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/020-quarantined-daemon.md",
+        "new": "04--operator-h5/quarantined-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/021-unavailable-daemon.md",
+        "new": "04--operator-h5/unavailable-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/033-supersession.md",
+        "new": "07--lifecycle-routing/supersession.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/037-five-lane-fusion.md",
+        "new": "08--scorer-fusion/five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/040-lane-attribution.md",
+        "new": "08--scorer-fusion/lane-attribution.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/045-regression-suite.md",
+        "new": "10--python-compat/regression-suite.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/032-age-haircut.md",
+        "new": "07--lifecycle-routing/age-haircut.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/044-threshold-flag.md",
+        "new": "10--python-compat/threshold-flag.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/019-degraded-daemon.md",
+        "new": "04--operator-h5/degraded-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/030-corpus-df-idf.md",
+        "new": "06--auto-indexing/corpus-df-idf.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/031-anti-stuffing.md",
+        "new": "06--auto-indexing/anti-stuffing.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/046-bench-runner.md",
+        "new": "10--python-compat/bench-runner.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/038-projection.md",
+        "new": "08--scorer-fusion/projection.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/042-stdin-mode.md",
+        "new": "10--python-compat/stdin-mode.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/039-ambiguity.md",
+        "new": "08--scorer-fusion/ambiguity.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/041-ablation.md",
+        "new": "08--scorer-fusion/ablation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/001-native-recommend-happy-path.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/001-native-recommend-happy-path.md",
+        "new": "01--native-mcp-tools/native-recommend-happy-path.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/002-native-status-transitions.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/002-native-status-transitions.md",
+        "new": "01--native-mcp-tools/native-status-transitions.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/003-native-validate-slices.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/003-native-validate-slices.md",
+        "new": "01--native-mcp-tools/native-validate-slices.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/004-ambiguous-brief-rendering.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/004-ambiguous-brief-rendering.md",
+        "new": "01--native-mcp-tools/ambiguous-brief-rendering.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+        "new": "01--native-mcp-tools/lifecycle-redirect-metadata.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/01--native-mcp-tools/006-advisor-status-rebuild-separation.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/006-advisor-status-rebuild-separation.md",
+        "new": "01--native-mcp-tools/advisor-status-rebuild-separation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/010-claude-user-prompt-submit.md",
+    "edits": [
+      {
+        "old": "02--cli-hooks-and-plugin/010-claude-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/claude-user-prompt-submit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/011-gemini-user-prompt-submit.md",
+    "edits": [
+      {
+        "old": "02--cli-hooks-and-plugin/011-gemini-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/gemini-user-prompt-submit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/012-codex-hook-and-wrapper.md",
+    "edits": [
+      {
+        "old": "02--cli-hooks-and-plugin/012-codex-hook-and-wrapper.md",
+        "new": "02--cli-hooks-and-plugin/codex-hook-and-wrapper.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md",
+    "edits": [
+      {
+        "old": "02--cli-hooks-and-plugin/013-opencode-plugin-bridge.md",
+        "new": "02--cli-hooks-and-plugin/opencode-plugin-bridge.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/02--cli-hooks-and-plugin/014-devin-user-prompt-submit.md",
+    "edits": [
+      {
+        "old": "02--cli-hooks-and-plugin/014-devin-user-prompt-submit.md",
+        "new": "02--cli-hooks-and-plugin/devin-user-prompt-submit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/015-python-shim-stdin.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/015-python-shim-stdin.md",
+        "new": "03--compat-and-disable/python-shim-stdin.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/016-force-local-force-native.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/016-force-local-force-native.md",
+        "new": "03--compat-and-disable/force-local-force-native.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/017-global-disable-flag.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/017-global-disable-flag.md",
+        "new": "03--compat-and-disable/global-disable-flag.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/03--compat-and-disable/018-daemon-absent-fallback.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/018-daemon-absent-fallback.md",
+        "new": "03--compat-and-disable/daemon-absent-fallback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/019-degraded-daemon.md",
+    "edits": [
+      {
+        "old": "04--operator-h5/019-degraded-daemon.md",
+        "new": "04--operator-h5/degraded-daemon.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/020-quarantined-daemon.md",
+    "edits": [
+      {
+        "old": "04--operator-h5/020-quarantined-daemon.md",
+        "new": "04--operator-h5/quarantined-daemon.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/04--operator-h5/021-unavailable-daemon.md",
+    "edits": [
+      {
+        "old": "04--operator-h5/021-unavailable-daemon.md",
+        "new": "04--operator-h5/unavailable-daemon.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/022-watcher-narrow-scope.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/022-watcher-narrow-scope.md",
+        "new": "05--auto-update-daemon/watcher-narrow-scope.md",
+        "count": 1
+      },
+      {
+        "old": "025-generation-publication.md",
+        "new": "generation-publication.md",
+        "count": 1
+      },
+      {
+        "old": "023-lease-single-writer.md",
+        "new": "lease-single-writer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/023-lease-single-writer.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/023-lease-single-writer.md",
+        "new": "05--auto-update-daemon/lease-single-writer.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/021-unavailable-daemon.md",
+        "new": "04--operator-h5/unavailable-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "024-daemon-lifecycle-shutdown.md",
+        "new": "daemon-lifecycle-shutdown.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/024-daemon-lifecycle-shutdown.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/024-daemon-lifecycle-shutdown.md",
+        "new": "05--auto-update-daemon/daemon-lifecycle-shutdown.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/019-degraded-daemon.md",
+        "new": "04--operator-h5/degraded-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "023-lease-single-writer.md",
+        "new": "lease-single-writer.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/025-generation-publication.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/025-generation-publication.md",
+        "new": "05--auto-update-daemon/generation-publication.md",
+        "count": 1
+      },
+      {
+        "old": "022-watcher-narrow-scope.md",
+        "new": "watcher-narrow-scope.md",
+        "count": 1
+      },
+      {
+        "old": "026-rebuild-from-source.md",
+        "new": "rebuild-from-source.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/05--auto-update-daemon/026-rebuild-from-source.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/026-rebuild-from-source.md",
+        "new": "05--auto-update-daemon/rebuild-from-source.md",
+        "count": 1
+      },
+      {
+        "old": "04--operator-h5/021-unavailable-daemon.md",
+        "new": "04--operator-h5/unavailable-daemon.md",
+        "count": 1
+      },
+      {
+        "old": "025-generation-publication.md",
+        "new": "generation-publication.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/027-derived-extraction.md",
+    "edits": [
+      {
+        "old": "06--auto-indexing/027-derived-extraction.md",
+        "new": "06--auto-indexing/derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "029-provenance-and-trust-lanes.md",
+        "new": "provenance-and-trust-lanes.md",
+        "count": 1
+      },
+      {
+        "old": "028-sanitizer-boundaries.md",
+        "new": "sanitizer-boundaries.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/028-sanitizer-boundaries.md",
+    "edits": [
+      {
+        "old": "06--auto-indexing/028-sanitizer-boundaries.md",
+        "new": "06--auto-indexing/sanitizer-boundaries.md",
+        "count": 1
+      },
+      {
+        "old": "027-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      },
+      {
+        "old": "031-anti-stuffing.md",
+        "new": "anti-stuffing.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/029-provenance-and-trust-lanes.md",
+    "edits": [
+      {
+        "old": "06--auto-indexing/029-provenance-and-trust-lanes.md",
+        "new": "06--auto-indexing/provenance-and-trust-lanes.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/040-lane-attribution.md",
+        "new": "08--scorer-fusion/lane-attribution.md",
+        "count": 1
+      },
+      {
+        "old": "027-derived-extraction.md",
+        "new": "derived-extraction.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/030-corpus-df-idf.md",
+    "edits": [
+      {
+        "old": "07--lifecycle-routing/034-archive-handling.md",
+        "new": "07--lifecycle-routing/archive-handling.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/030-corpus-df-idf.md",
+        "new": "06--auto-indexing/corpus-df-idf.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/038-projection.md",
+        "new": "08--scorer-fusion/projection.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/06--auto-indexing/031-anti-stuffing.md",
+    "edits": [
+      {
+        "old": "06--auto-indexing/031-anti-stuffing.md",
+        "new": "06--auto-indexing/anti-stuffing.md",
+        "count": 1
+      },
+      {
+        "old": "028-sanitizer-boundaries.md",
+        "new": "sanitizer-boundaries.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/032-age-haircut.md",
+    "edits": [
+      {
+        "old": "08--scorer-fusion/037-five-lane-fusion.md",
+        "new": "08--scorer-fusion/five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/032-age-haircut.md",
+        "new": "07--lifecycle-routing/age-haircut.md",
+        "count": 1
+      },
+      {
+        "old": "033-supersession.md",
+        "new": "supersession.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/033-supersession.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/005-lifecycle-redirect-metadata.md",
+        "new": "01--native-mcp-tools/lifecycle-redirect-metadata.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/033-supersession.md",
+        "new": "07--lifecycle-routing/supersession.md",
+        "count": 1
+      },
+      {
+        "old": "036-rollback-lifecycle.md",
+        "new": "rollback-lifecycle.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/034-archive-handling.md",
+    "edits": [
+      {
+        "old": "07--lifecycle-routing/034-archive-handling.md",
+        "new": "07--lifecycle-routing/archive-handling.md",
+        "count": 1
+      },
+      {
+        "old": "06--auto-indexing/030-corpus-df-idf.md",
+        "new": "06--auto-indexing/corpus-df-idf.md",
+        "count": 1
+      },
+      {
+        "old": "033-supersession.md",
+        "new": "supersession.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/035-schema-migration.md",
+    "edits": [
+      {
+        "old": "05--auto-update-daemon/026-rebuild-from-source.md",
+        "new": "05--auto-update-daemon/rebuild-from-source.md",
+        "count": 1
+      },
+      {
+        "old": "07--lifecycle-routing/035-schema-migration.md",
+        "new": "07--lifecycle-routing/schema-migration.md",
+        "count": 1
+      },
+      {
+        "old": "036-rollback-lifecycle.md",
+        "new": "rollback-lifecycle.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/07--lifecycle-routing/036-rollback-lifecycle.md",
+    "edits": [
+      {
+        "old": "07--lifecycle-routing/036-rollback-lifecycle.md",
+        "new": "07--lifecycle-routing/rollback-lifecycle.md",
+        "count": 1
+      },
+      {
+        "old": "035-schema-migration.md",
+        "new": "schema-migration.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/037-five-lane-fusion.md",
+    "edits": [
+      {
+        "old": "08--scorer-fusion/037-five-lane-fusion.md",
+        "new": "08--scorer-fusion/five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "040-lane-attribution.md",
+        "new": "lane-attribution.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/038-projection.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/003-native-validate-slices.md",
+        "new": "01--native-mcp-tools/native-validate-slices.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/038-projection.md",
+        "new": "08--scorer-fusion/projection.md",
+        "count": 1
+      },
+      {
+        "old": "037-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/039-ambiguity.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/004-ambiguous-brief-rendering.md",
+        "new": "01--native-mcp-tools/ambiguous-brief-rendering.md",
+        "count": 1
+      },
+      {
+        "old": "08--scorer-fusion/039-ambiguity.md",
+        "new": "08--scorer-fusion/ambiguity.md",
+        "count": 1
+      },
+      {
+        "old": "040-lane-attribution.md",
+        "new": "lane-attribution.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/040-lane-attribution.md",
+    "edits": [
+      {
+        "old": "08--scorer-fusion/040-lane-attribution.md",
+        "new": "08--scorer-fusion/lane-attribution.md",
+        "count": 1
+      },
+      {
+        "old": "037-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      },
+      {
+        "old": "041-ablation.md",
+        "new": "ablation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/08--scorer-fusion/041-ablation.md",
+    "edits": [
+      {
+        "old": "08--scorer-fusion/041-ablation.md",
+        "new": "08--scorer-fusion/ablation.md",
+        "count": 1
+      },
+      {
+        "old": "037-five-lane-fusion.md",
+        "new": "five-lane-fusion.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/042-stdin-mode.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/015-python-shim-stdin.md",
+        "new": "03--compat-and-disable/python-shim-stdin.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/042-stdin-mode.md",
+        "new": "10--python-compat/stdin-mode.md",
+        "count": 1
+      },
+      {
+        "old": "043-force-native-force-local.md",
+        "new": "force-native-force-local.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/043-force-native-force-local.md",
+    "edits": [
+      {
+        "old": "03--compat-and-disable/016-force-local-force-native.md",
+        "new": "03--compat-and-disable/force-local-force-native.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/043-force-native-force-local.md",
+        "new": "10--python-compat/force-native-force-local.md",
+        "count": 1
+      },
+      {
+        "old": "044-threshold-flag.md",
+        "new": "threshold-flag.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/044-threshold-flag.md",
+    "edits": [
+      {
+        "old": "10--python-compat/044-threshold-flag.md",
+        "new": "10--python-compat/threshold-flag.md",
+        "count": 1
+      },
+      {
+        "old": "043-force-native-force-local.md",
+        "new": "force-native-force-local.md",
+        "count": 1
+      },
+      {
+        "old": "045-regression-suite.md",
+        "new": "regression-suite.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/045-regression-suite.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/003-native-validate-slices.md",
+        "new": "01--native-mcp-tools/native-validate-slices.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/045-regression-suite.md",
+        "new": "10--python-compat/regression-suite.md",
+        "count": 1
+      },
+      {
+        "old": "046-bench-runner.md",
+        "new": "bench-runner.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-skill-advisor/manual_testing_playbook/10--python-compat/046-bench-runner.md",
+    "edits": [
+      {
+        "old": "01--native-mcp-tools/003-native-validate-slices.md",
+        "new": "01--native-mcp-tools/native-validate-slices.md",
+        "count": 1
+      },
+      {
+        "old": "10--python-compat/046-bench-runner.md",
+        "new": "10--python-compat/bench-runner.md",
+        "count": 1
+      },
+      {
+        "old": "045-regression-suite.md",
+        "new": "regression-suite.md",
+        "count": 1
+      }
+    ]
+  }
+]

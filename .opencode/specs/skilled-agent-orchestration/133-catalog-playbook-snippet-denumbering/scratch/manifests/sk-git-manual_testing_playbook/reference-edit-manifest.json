@@ -1,0 +1,337 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/022-cli-gemini-and-cli-copilot-handback.md",
+        "new": "06--cross-cli-orchestration/cli-gemini-and-cli-copilot-handback.md",
+        "count": 2
+      },
+      {
+        "old": "05--recovery-and-edge-cases/017-accidental-commit-wrong-branch.md",
+        "new": "05--recovery-and-edge-cases/accidental-commit-wrong-branch.md",
+        "count": 2
+      },
+      {
+        "old": "06--cross-cli-orchestration/020-native-claude-code-invocation.md",
+        "new": "06--cross-cli-orchestration/native-claude-code-invocation.md",
+        "count": 2
+      },
+      {
+        "old": "05--recovery-and-edge-cases/018-empty-commit-or-no-changes.md",
+        "new": "05--recovery-and-edge-cases/empty-commit-or-no-changes.md",
+        "count": 2
+      },
+      {
+        "old": "04--integration-and-pr/013-finish-create-pr-with-template.md",
+        "new": "04--integration-and-pr/finish-create-pr-with-template.md",
+        "count": 2
+      },
+      {
+        "old": "05--recovery-and-edge-cases/016-merge-conflict-resolution.md",
+        "new": "05--recovery-and-edge-cases/merge-conflict-resolution.md",
+        "count": 2
+      },
+      {
+        "old": "05--recovery-and-edge-cases/019-rebase-vs-merge-decision.md",
+        "new": "05--recovery-and-edge-cases/rebase-vs-merge-decision.md",
+        "count": 2
+      },
+      {
+        "old": "01--worktree-setup/003-stay-on-main-no-feature-branches.md",
+        "new": "01--worktree-setup/stay-on-main-no-feature-branches.md",
+        "count": 2
+      },
+      {
+        "old": "01--worktree-setup/001-fresh-feature-isolated-worktree.md",
+        "new": "01--worktree-setup/fresh-feature-isolated-worktree.md",
+        "count": 2
+      },
+      {
+        "old": "02--commit-formation/004-conventional-commit-from-diff.md",
+        "new": "02--commit-formation/conventional-commit-from-diff.md",
+        "count": 2
+      },
+      {
+        "old": "03--safety-refusals/011-amend-published-commit-refused.md",
+        "new": "03--safety-refusals/amend-published-commit-refused.md",
+        "count": 2
+      },
+      {
+        "old": "02--commit-formation/005-scope-inference-skill-folder.md",
+        "new": "02--commit-formation/scope-inference-skill-folder.md",
+        "count": 2
+      },
+      {
+        "old": "02--commit-formation/006-mixed-concerns-split-or-warn.md",
+        "new": "02--commit-formation/mixed-concerns-split-or-warn.md",
+        "count": 2
+      },
+      {
+        "old": "04--integration-and-pr/015-branch-cleanup-after-merge.md",
+        "new": "04--integration-and-pr/branch-cleanup-after-merge.md",
+        "count": 2
+      },
+      {
+        "old": "04--integration-and-pr/014-failing-tests-block-merge.md",
+        "new": "04--integration-and-pr/failing-tests-block-merge.md",
+        "count": 2
+      },
+      {
+        "old": "06--cross-cli-orchestration/021-cli-codex-delegation.md",
+        "new": "06--cross-cli-orchestration/cli-codex-delegation.md",
+        "count": 2
+      },
+      {
+        "old": "03--safety-refusals/010-force-push-to-main-refused.md",
+        "new": "03--safety-refusals/force-push-to-main-refused.md",
+        "count": 2
+      },
+      {
+        "old": "01--worktree-setup/002-current-branch-no-worktree.md",
+        "new": "01--worktree-setup/current-branch-no-worktree.md",
+        "count": 2
+      },
+      {
+        "old": "03--safety-refusals/008-no-verify-bypass-refused.md",
+        "new": "03--safety-refusals/no-verify-bypass-refused.md",
+        "count": 2
+      },
+      {
+        "old": "03--safety-refusals/009-secrets-in-diff-refused.md",
+        "new": "03--safety-refusals/secrets-in-diff-refused.md",
+        "count": 2
+      },
+      {
+        "old": "04--integration-and-pr/012-finish-merge-to-main.md",
+        "new": "04--integration-and-pr/finish-merge-to-main.md",
+        "count": 2
+      },
+      {
+        "old": "02--commit-formation/007-co-authored-by-footer.md",
+        "new": "02--commit-formation/co-authored-by-footer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/01--worktree-setup/001-fresh-feature-isolated-worktree.md",
+    "edits": [
+      {
+        "old": "01--worktree-setup/001-fresh-feature-isolated-worktree.md",
+        "new": "01--worktree-setup/fresh-feature-isolated-worktree.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/01--worktree-setup/002-current-branch-no-worktree.md",
+    "edits": [
+      {
+        "old": "01--worktree-setup/002-current-branch-no-worktree.md",
+        "new": "01--worktree-setup/current-branch-no-worktree.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/01--worktree-setup/003-stay-on-main-no-feature-branches.md",
+    "edits": [
+      {
+        "old": "01--worktree-setup/003-stay-on-main-no-feature-branches.md",
+        "new": "01--worktree-setup/stay-on-main-no-feature-branches.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/004-conventional-commit-from-diff.md",
+    "edits": [
+      {
+        "old": "02--commit-formation/004-conventional-commit-from-diff.md",
+        "new": "02--commit-formation/conventional-commit-from-diff.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/005-scope-inference-skill-folder.md",
+    "edits": [
+      {
+        "old": "02--commit-formation/005-scope-inference-skill-folder.md",
+        "new": "02--commit-formation/scope-inference-skill-folder.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/006-mixed-concerns-split-or-warn.md",
+    "edits": [
+      {
+        "old": "02--commit-formation/006-mixed-concerns-split-or-warn.md",
+        "new": "02--commit-formation/mixed-concerns-split-or-warn.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/02--commit-formation/007-co-authored-by-footer.md",
+    "edits": [
+      {
+        "old": "02--commit-formation/007-co-authored-by-footer.md",
+        "new": "02--commit-formation/co-authored-by-footer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/008-no-verify-bypass-refused.md",
+    "edits": [
+      {
+        "old": "03--safety-refusals/008-no-verify-bypass-refused.md",
+        "new": "03--safety-refusals/no-verify-bypass-refused.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/009-secrets-in-diff-refused.md",
+    "edits": [
+      {
+        "old": "03--safety-refusals/009-secrets-in-diff-refused.md",
+        "new": "03--safety-refusals/secrets-in-diff-refused.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/010-force-push-to-main-refused.md",
+    "edits": [
+      {
+        "old": "03--safety-refusals/010-force-push-to-main-refused.md",
+        "new": "03--safety-refusals/force-push-to-main-refused.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/03--safety-refusals/011-amend-published-commit-refused.md",
+    "edits": [
+      {
+        "old": "03--safety-refusals/011-amend-published-commit-refused.md",
+        "new": "03--safety-refusals/amend-published-commit-refused.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/012-finish-merge-to-main.md",
+    "edits": [
+      {
+        "old": "04--integration-and-pr/012-finish-merge-to-main.md",
+        "new": "04--integration-and-pr/finish-merge-to-main.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/013-finish-create-pr-with-template.md",
+    "edits": [
+      {
+        "old": "04--integration-and-pr/013-finish-create-pr-with-template.md",
+        "new": "04--integration-and-pr/finish-create-pr-with-template.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/014-failing-tests-block-merge.md",
+    "edits": [
+      {
+        "old": "04--integration-and-pr/014-failing-tests-block-merge.md",
+        "new": "04--integration-and-pr/failing-tests-block-merge.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/04--integration-and-pr/015-branch-cleanup-after-merge.md",
+    "edits": [
+      {
+        "old": "04--integration-and-pr/015-branch-cleanup-after-merge.md",
+        "new": "04--integration-and-pr/branch-cleanup-after-merge.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/016-merge-conflict-resolution.md",
+    "edits": [
+      {
+        "old": "05--recovery-and-edge-cases/016-merge-conflict-resolution.md",
+        "new": "05--recovery-and-edge-cases/merge-conflict-resolution.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/017-accidental-commit-wrong-branch.md",
+    "edits": [
+      {
+        "old": "05--recovery-and-edge-cases/017-accidental-commit-wrong-branch.md",
+        "new": "05--recovery-and-edge-cases/accidental-commit-wrong-branch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/018-empty-commit-or-no-changes.md",
+    "edits": [
+      {
+        "old": "05--recovery-and-edge-cases/018-empty-commit-or-no-changes.md",
+        "new": "05--recovery-and-edge-cases/empty-commit-or-no-changes.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/05--recovery-and-edge-cases/019-rebase-vs-merge-decision.md",
+    "edits": [
+      {
+        "old": "05--recovery-and-edge-cases/019-rebase-vs-merge-decision.md",
+        "new": "05--recovery-and-edge-cases/rebase-vs-merge-decision.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/06--cross-cli-orchestration/020-native-claude-code-invocation.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/020-native-claude-code-invocation.md",
+        "new": "06--cross-cli-orchestration/native-claude-code-invocation.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/06--cross-cli-orchestration/021-cli-codex-delegation.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/021-cli-codex-delegation.md",
+        "new": "06--cross-cli-orchestration/cli-codex-delegation.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-git/manual_testing_playbook/06--cross-cli-orchestration/022-cli-gemini-and-cli-copilot-handback.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/022-cli-gemini-and-cli-copilot-handback.md",
+        "new": "06--cross-cli-orchestration/cli-gemini-and-cli-copilot-handback.md",
+        "count": 2
+      }
+    ]
+  }
+]

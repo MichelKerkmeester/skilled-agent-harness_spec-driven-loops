@@ -1,0 +1,487 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+        "new": "07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+        "count": 1
+      },
+      {
+        "old": "07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+        "new": "07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+        "count": 1
+      },
+      {
+        "old": "09--cross-repo-cross-server/033-self-invocation-guard-nested.md",
+        "new": "09--cross-repo-cross-server/self-invocation-guard-nested.md",
+        "count": 2
+      },
+      {
+        "old": "07--prompt-templates/025-template-applied-to-real-dispatch.md",
+        "new": "07--prompt-templates/template-applied-to-real-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/001-base-non-interactive-invocation.md",
+        "new": "01--cli-invocation/base-non-interactive-invocation.md",
+        "count": 2
+      },
+      {
+        "old": "06--integration-patterns/022-memory-epilogue-handback.md",
+        "new": "06--integration-patterns/memory-epilogue-handback.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/015-deep-research-agent-iterations.md",
+        "new": "04--agent-routing/deep-research-agent-iterations.md",
+        "count": 2
+      },
+      {
+        "old": "06--integration-patterns/021-cross-ai-handback-codex.md",
+        "new": "06--integration-patterns/cross-ai-handback-codex.md",
+        "count": 2
+      },
+      {
+        "old": "09--cross-repo-cross-server/032-attach-remote-server.md",
+        "new": "09--cross-repo-cross-server/attach-remote-server.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/017-orchestrate-agent-multi-agent.md",
+        "new": "04--agent-routing/orchestrate-agent-multi-agent.md",
+        "count": 2
+      },
+      {
+        "old": "08--parallel-detached/028-parallel-detached-session.md",
+        "new": "08--parallel-detached/parallel-detached-session.md",
+        "count": 2
+      },
+      {
+        "old": "09--cross-repo-cross-server/031-cross-repo-dispatch.md",
+        "new": "09--cross-repo-cross-server/cross-repo-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/003-dir-flag-working-directory.md",
+        "new": "01--cli-invocation/dir-flag-working-directory.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/004-file-attachment-via-f-flag.md",
+        "new": "01--cli-invocation/file-attachment-via-f-flag.md",
+        "count": 2
+      },
+      {
+        "old": "02--external-dispatch/008-self-invocation-refusal.md",
+        "new": "02--external-dispatch/self-invocation-refusal.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/013-review-agent-security-audit.md",
+        "new": "04--agent-routing/review-agent-security-audit.md",
+        "count": 2
+      },
+      {
+        "old": "03--multi-provider/010-variant-levels-comparison.md",
+        "new": "03--multi-provider/variant-levels-comparison.md",
+        "count": 2
+      },
+      {
+        "old": "05--session-continuity/018-continue-last-session.md",
+        "new": "05--session-continuity/continue-last-session.md",
+        "count": 2
+      },
+      {
+        "old": "05--session-continuity/019-resume-by-session-id.md",
+        "new": "05--session-continuity/resume-by-session-id.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/002-format-default-vs-json.md",
+        "new": "01--cli-invocation/format-default-vs-json.md",
+        "count": 2
+      },
+      {
+        "old": "02--external-dispatch/007-from-codex-handback.md",
+        "new": "02--external-dispatch/from-codex-handback.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/016-deep-review-agent-audit.md",
+        "new": "04--agent-routing/deep-review-agent-audit.md",
+        "count": 2
+      },
+      {
+        "old": "07--prompt-templates/023-templates-inventory.md",
+        "new": "07--prompt-templates/templates-inventory.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/011-general-agent-default.md",
+        "new": "04--agent-routing/general-agent-default.md",
+        "count": 2
+      },
+      {
+        "old": "07--prompt-templates/024-clear-quality-card.md",
+        "new": "07--prompt-templates/clear-quality-card.md",
+        "count": 2
+      },
+      {
+        "old": "01--cli-invocation/005-pure-and-print-logs.md",
+        "new": "01--cli-invocation/pure-and-print-logs.md",
+        "count": 2
+      },
+      {
+        "old": "02--external-dispatch/006-from-claude-code.md",
+        "new": "02--external-dispatch/from-claude-code.md",
+        "count": 2
+      },
+      {
+        "old": "03--multi-provider/009-deepseek-direct-api.md",
+        "new": "03--multi-provider/deepseek-direct-api.md",
+        "count": 2
+      },
+      {
+        "old": "08--parallel-detached/029-worker-farm-loop.md",
+        "new": "08--parallel-detached/worker-farm-loop.md",
+        "count": 2
+      },
+      {
+        "old": "05--session-continuity/020-fork-and-share.md",
+        "new": "05--session-continuity/fork-and-share.md",
+        "count": 2
+      },
+      {
+        "old": "04--agent-routing/012-context-leaf-agent.md",
+        "new": "04--agent-routing/context-leaf-agent.md",
+        "count": 2
+      },
+      {
+        "old": "08--parallel-detached/030-ablation-suite.md",
+        "new": "08--parallel-detached/ablation-suite.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/001-base-non-interactive-invocation.md",
+        "new": "01--cli-invocation/base-non-interactive-invocation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/002-format-default-vs-json.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/002-format-default-vs-json.md",
+        "new": "01--cli-invocation/format-default-vs-json.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/003-dir-flag-working-directory.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/003-dir-flag-working-directory.md",
+        "new": "01--cli-invocation/dir-flag-working-directory.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/004-file-attachment-via-f-flag.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/004-file-attachment-via-f-flag.md",
+        "new": "01--cli-invocation/file-attachment-via-f-flag.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/005-pure-and-print-logs.md",
+    "edits": [
+      {
+        "old": "01--cli-invocation/005-pure-and-print-logs.md",
+        "new": "01--cli-invocation/pure-and-print-logs.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/006-from-claude-code.md",
+    "edits": [
+      {
+        "old": "02--external-dispatch/006-from-claude-code.md",
+        "new": "02--external-dispatch/from-claude-code.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/007-from-codex-handback.md",
+    "edits": [
+      {
+        "old": "02--external-dispatch/007-from-codex-handback.md",
+        "new": "02--external-dispatch/from-codex-handback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/008-self-invocation-refusal.md",
+    "edits": [
+      {
+        "old": "02--external-dispatch/008-self-invocation-refusal.md",
+        "new": "02--external-dispatch/self-invocation-refusal.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/009-deepseek-direct-api.md",
+    "edits": [
+      {
+        "old": "03--multi-provider/009-deepseek-direct-api.md",
+        "new": "03--multi-provider/deepseek-direct-api.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/010-variant-levels-comparison.md",
+    "edits": [
+      {
+        "old": "03--multi-provider/010-variant-levels-comparison.md",
+        "new": "03--multi-provider/variant-levels-comparison.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/011-general-agent-default.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/011-general-agent-default.md",
+        "new": "04--agent-routing/general-agent-default.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/012-context-leaf-agent.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/012-context-leaf-agent.md",
+        "new": "04--agent-routing/context-leaf-agent.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/013-review-agent-security-audit.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/013-review-agent-security-audit.md",
+        "new": "04--agent-routing/review-agent-security-audit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/015-deep-research-agent-iterations.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/015-deep-research-agent-iterations.md",
+        "new": "04--agent-routing/deep-research-agent-iterations.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/016-deep-review-agent-audit.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/016-deep-review-agent-audit.md",
+        "new": "04--agent-routing/deep-review-agent-audit.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/017-orchestrate-agent-multi-agent.md",
+    "edits": [
+      {
+        "old": "04--agent-routing/017-orchestrate-agent-multi-agent.md",
+        "new": "04--agent-routing/orchestrate-agent-multi-agent.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/018-continue-last-session.md",
+    "edits": [
+      {
+        "old": "05--session-continuity/018-continue-last-session.md",
+        "new": "05--session-continuity/continue-last-session.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/019-resume-by-session-id.md",
+    "edits": [
+      {
+        "old": "05--session-continuity/019-resume-by-session-id.md",
+        "new": "05--session-continuity/resume-by-session-id.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/020-fork-and-share.md",
+    "edits": [
+      {
+        "old": "05--session-continuity/020-fork-and-share.md",
+        "new": "05--session-continuity/fork-and-share.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/021-cross-ai-handback-codex.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/021-cross-ai-handback-codex.md",
+        "new": "06--integration-patterns/cross-ai-handback-codex.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/022-memory-epilogue-handback.md",
+    "edits": [
+      {
+        "old": "06--integration-patterns/022-memory-epilogue-handback.md",
+        "new": "06--integration-patterns/memory-epilogue-handback.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/023-templates-inventory.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/023-templates-inventory.md",
+        "new": "07--prompt-templates/templates-inventory.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/024-clear-quality-card.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/024-clear-quality-card.md",
+        "new": "07--prompt-templates/clear-quality-card.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/025-template-applied-to-real-dispatch.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/025-template-applied-to-real-dispatch.md",
+        "new": "07--prompt-templates/template-applied-to-real-dispatch.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+        "new": "07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+    "edits": [
+      {
+        "old": "07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+        "new": "07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/028-parallel-detached-session.md",
+    "edits": [
+      {
+        "old": "08--parallel-detached/028-parallel-detached-session.md",
+        "new": "08--parallel-detached/parallel-detached-session.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/029-worker-farm-loop.md",
+    "edits": [
+      {
+        "old": "08--parallel-detached/029-worker-farm-loop.md",
+        "new": "08--parallel-detached/worker-farm-loop.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/030-ablation-suite.md",
+    "edits": [
+      {
+        "old": "08--parallel-detached/030-ablation-suite.md",
+        "new": "08--parallel-detached/ablation-suite.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/031-cross-repo-dispatch.md",
+    "edits": [
+      {
+        "old": "09--cross-repo-cross-server/031-cross-repo-dispatch.md",
+        "new": "09--cross-repo-cross-server/cross-repo-dispatch.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/032-attach-remote-server.md",
+    "edits": [
+      {
+        "old": "09--cross-repo-cross-server/032-attach-remote-server.md",
+        "new": "09--cross-repo-cross-server/attach-remote-server.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/033-self-invocation-guard-nested.md",
+    "edits": [
+      {
+        "old": "09--cross-repo-cross-server/033-self-invocation-guard-nested.md",
+        "new": "09--cross-repo-cross-server/self-invocation-guard-nested.md",
+        "count": 1
+      }
+    ]
+  }
+]

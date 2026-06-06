@@ -1,0 +1,362 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "04--research-output/015-progressive-synthesis.md",
+        "new": "04--research-output/progressive-synthesis.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/009-strategy-tracking.md",
+        "new": "02--state-management/strategy-tracking.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/010-config-management.md",
+        "new": "02--state-management/config-management.md",
+        "count": 2
+      },
+      {
+        "old": "04--research-output/016-negative-knowledge.md",
+        "new": "04--research-output/negative-knowledge.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/002-iteration-dispatch.md",
+        "new": "01--loop-lifecycle/iteration-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/003-convergence-check.md",
+        "new": "01--loop-lifecycle/convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "02--state-management/008-jsonl-state-log.md",
+        "new": "02--state-management/jsonl-state-log.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/007-fanout-dispatch.md",
+        "new": "01--loop-lifecycle/fanout-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "03--convergence/011-three-signal-model.md",
+        "new": "03--convergence/three-signal-model.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/001-initialization.md",
+        "new": "01--loop-lifecycle/initialization.md",
+        "count": 2
+      },
+      {
+        "old": "03--convergence/014-graph-convergence.md",
+        "new": "03--convergence/graph-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "03--convergence/012-stuck-detection.md",
+        "new": "03--convergence/stuck-detection.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/005-memory-save.md",
+        "new": "01--loop-lifecycle/memory-save.md",
+        "count": 2
+      },
+      {
+        "old": "03--convergence/013-quality-guards.md",
+        "new": "03--convergence/quality-guards.md",
+        "count": 2
+      },
+      {
+        "old": "01--loop-lifecycle/004-synthesis.md",
+        "new": "01--loop-lifecycle/synthesis.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/001-initialization.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/001-initialization.md",
+        "new": "01--loop-lifecycle/initialization.md",
+        "count": 1
+      },
+      {
+        "old": "002-iteration-dispatch.md",
+        "new": "iteration-dispatch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/002-iteration-dispatch.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/002-iteration-dispatch.md",
+        "new": "01--loop-lifecycle/iteration-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "003-convergence-check.md",
+        "new": "convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "001-initialization.md",
+        "new": "initialization.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/003-convergence-check.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/003-convergence-check.md",
+        "new": "01--loop-lifecycle/convergence-check.md",
+        "count": 1
+      },
+      {
+        "old": "002-iteration-dispatch.md",
+        "new": "iteration-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "004-synthesis.md",
+        "new": "synthesis.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/004-synthesis.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/004-synthesis.md",
+        "new": "01--loop-lifecycle/synthesis.md",
+        "count": 1
+      },
+      {
+        "old": "003-convergence-check.md",
+        "new": "convergence-check.md",
+        "count": 2
+      },
+      {
+        "old": "005-memory-save.md",
+        "new": "memory-save.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/005-memory-save.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/005-memory-save.md",
+        "new": "01--loop-lifecycle/memory-save.md",
+        "count": 1
+      },
+      {
+        "old": "006-resource-map-emission.md",
+        "new": "resource-map-emission.md",
+        "count": 2
+      },
+      {
+        "old": "004-synthesis.md",
+        "new": "synthesis.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/006-resource-map-emission.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/006-resource-map-emission.md",
+        "new": "01--loop-lifecycle/resource-map-emission.md",
+        "count": 1
+      },
+      {
+        "old": "007-fanout-dispatch.md",
+        "new": "fanout-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "005-memory-save.md",
+        "new": "memory-save.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/01--loop-lifecycle/007-fanout-dispatch.md",
+    "edits": [
+      {
+        "old": "01--loop-lifecycle/007-fanout-dispatch.md",
+        "new": "01--loop-lifecycle/fanout-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "006-resource-map-emission.md",
+        "new": "resource-map-emission.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/02--state-management/008-jsonl-state-log.md",
+    "edits": [
+      {
+        "old": "02--state-management/008-jsonl-state-log.md",
+        "new": "02--state-management/jsonl-state-log.md",
+        "count": 1
+      },
+      {
+        "old": "009-strategy-tracking.md",
+        "new": "strategy-tracking.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/02--state-management/009-strategy-tracking.md",
+    "edits": [
+      {
+        "old": "02--state-management/009-strategy-tracking.md",
+        "new": "02--state-management/strategy-tracking.md",
+        "count": 1
+      },
+      {
+        "old": "010-config-management.md",
+        "new": "config-management.md",
+        "count": 2
+      },
+      {
+        "old": "008-jsonl-state-log.md",
+        "new": "jsonl-state-log.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/02--state-management/010-config-management.md",
+    "edits": [
+      {
+        "old": "02--state-management/010-config-management.md",
+        "new": "02--state-management/config-management.md",
+        "count": 1
+      },
+      {
+        "old": "009-strategy-tracking.md",
+        "new": "strategy-tracking.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/03--convergence/011-three-signal-model.md",
+    "edits": [
+      {
+        "old": "03--convergence/011-three-signal-model.md",
+        "new": "03--convergence/three-signal-model.md",
+        "count": 1
+      },
+      {
+        "old": "012-stuck-detection.md",
+        "new": "stuck-detection.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/03--convergence/012-stuck-detection.md",
+    "edits": [
+      {
+        "old": "03--convergence/012-stuck-detection.md",
+        "new": "03--convergence/stuck-detection.md",
+        "count": 1
+      },
+      {
+        "old": "011-three-signal-model.md",
+        "new": "three-signal-model.md",
+        "count": 2
+      },
+      {
+        "old": "013-quality-guards.md",
+        "new": "quality-guards.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/03--convergence/013-quality-guards.md",
+    "edits": [
+      {
+        "old": "03--convergence/013-quality-guards.md",
+        "new": "03--convergence/quality-guards.md",
+        "count": 1
+      },
+      {
+        "old": "014-graph-convergence.md",
+        "new": "graph-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "012-stuck-detection.md",
+        "new": "stuck-detection.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/03--convergence/014-graph-convergence.md",
+    "edits": [
+      {
+        "old": "03--convergence/014-graph-convergence.md",
+        "new": "03--convergence/graph-convergence.md",
+        "count": 1
+      },
+      {
+        "old": "013-quality-guards.md",
+        "new": "quality-guards.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/04--research-output/015-progressive-synthesis.md",
+    "edits": [
+      {
+        "old": "04--research-output/015-progressive-synthesis.md",
+        "new": "04--research-output/progressive-synthesis.md",
+        "count": 1
+      },
+      {
+        "old": "016-negative-knowledge.md",
+        "new": "negative-knowledge.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-research/feature_catalog/04--research-output/016-negative-knowledge.md",
+    "edits": [
+      {
+        "old": "04--research-output/016-negative-knowledge.md",
+        "new": "04--research-output/negative-knowledge.md",
+        "count": 1
+      },
+      {
+        "old": "015-progressive-synthesis.md",
+        "new": "progressive-synthesis.md",
+        "count": 2
+      }
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/001-base-non-interactive-invocation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/base-non-interactive-invocation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/002-format-default-vs-json.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/format-default-vs-json.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/003-dir-flag-working-directory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/dir-flag-working-directory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/004-file-attachment-via-f-flag.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/file-attachment-via-f-flag.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/005-pure-and-print-logs.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/01--cli-invocation/pure-and-print-logs.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/006-from-claude-code.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/from-claude-code.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/007-from-codex-handback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/from-codex-handback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/008-self-invocation-refusal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/02--external-dispatch/self-invocation-refusal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/009-deepseek-direct-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/deepseek-direct-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/010-variant-levels-comparison.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/03--multi-provider/variant-levels-comparison.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/011-general-agent-default.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/general-agent-default.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/012-context-leaf-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/context-leaf-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/013-review-agent-security-audit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/review-agent-security-audit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/014-multi-ai-council-multi-strategy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/multi-ai-council-multi-strategy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/015-deep-research-agent-iterations.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/deep-research-agent-iterations.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/016-deep-review-agent-audit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/deep-review-agent-audit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/017-orchestrate-agent-multi-agent.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/04--agent-routing/orchestrate-agent-multi-agent.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/018-continue-last-session.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/continue-last-session.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/019-resume-by-session-id.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/resume-by-session-id.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/020-fork-and-share.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/05--session-continuity/fork-and-share.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/021-cross-ai-handback-codex.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/cross-ai-handback-codex.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/022-memory-epilogue-handback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/06--integration-patterns/memory-epilogue-handback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/023-templates-inventory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/templates-inventory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/024-clear-quality-card.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/clear-quality-card.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/025-template-applied-to-real-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/template-applied-to-real-dispatch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/026-deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/deepseek-v4-via-opencode-go-with-sk-prompt-small-model.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/027-kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/07--prompt-templates/kimi-k2-6-via-opencode-go-with-sk-prompt-small-model.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/028-parallel-detached-session.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/parallel-detached-session.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/029-worker-farm-loop.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/worker-farm-loop.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/030-ablation-suite.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/08--parallel-detached/ablation-suite.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/031-cross-repo-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/cross-repo-dispatch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/032-attach-remote-server.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/attach-remote-server.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/033-self-invocation-guard-nested.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/cli-opencode/manual_testing_playbook/09--cross-repo-cross-server/self-invocation-guard-nested.md"
+  }
+]

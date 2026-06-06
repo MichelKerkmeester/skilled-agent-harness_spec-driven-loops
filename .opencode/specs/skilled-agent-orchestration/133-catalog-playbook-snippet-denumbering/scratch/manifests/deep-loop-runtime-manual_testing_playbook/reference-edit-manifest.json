@@ -1,0 +1,447 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "09--fanout/028-fanout-merge-review-strongest-restriction.md",
+        "new": "09--fanout/fanout-merge-review-strongest-restriction.md",
+        "count": 3
+      },
+      {
+        "old": "07--script-entry-points/014-convergence-script.md",
+        "new": "07--script-entry-points/convergence-script.md",
+        "count": 4
+      },
+      {
+        "old": "06--coverage-graph/013-coverage-graph-signals.md",
+        "new": "06--coverage-graph/coverage-graph-signals.md",
+        "count": 4
+      },
+      {
+        "old": "06--coverage-graph/012-coverage-graph-query.md",
+        "new": "06--coverage-graph/coverage-graph-query.md",
+        "count": 4
+      },
+      {
+        "old": "08--council/020-adjudicator-verdict-scoring.md",
+        "new": "08--council/adjudicator-verdict-scoring.md",
+        "count": 4
+      },
+      {
+        "old": "09--fanout/025-fanout-run-cli-lineage-spawn.md",
+        "new": "09--fanout/fanout-run-cli-lineage-spawn.md",
+        "count": 3
+      },
+      {
+        "old": "09--fanout/029-artifact-dir-override-parity.md",
+        "new": "09--fanout/artifact-dir-override-parity.md",
+        "count": 3
+      },
+      {
+        "old": "09--fanout/024-fanout-pool-concurrency-cap.md",
+        "new": "09--fanout/fanout-pool-concurrency-cap.md",
+        "count": 3
+      },
+      {
+        "old": "03--validation/005-post-dispatch-validate.md",
+        "new": "03--validation/post-dispatch-validate.md",
+        "count": 4
+      },
+      {
+        "old": "07--script-entry-points/015-upsert-script.md",
+        "new": "07--script-entry-points/upsert-script.md",
+        "count": 4
+      },
+      {
+        "old": "07--script-entry-points/017-status-script.md",
+        "new": "07--script-entry-points/status-script.md",
+        "count": 4
+      },
+      {
+        "old": "06--coverage-graph/011-coverage-graph-db.md",
+        "new": "06--coverage-graph/coverage-graph-db.md",
+        "count": 4
+      },
+      {
+        "old": "07--script-entry-points/016-query-script.md",
+        "new": "07--script-entry-points/query-script.md",
+        "count": 4
+      },
+      {
+        "old": "08--council/022-session-state-hierarchy.md",
+        "new": "08--council/session-state-hierarchy.md",
+        "count": 4
+      },
+      {
+        "old": "09--fanout/026-fanout-salvage-recovery.md",
+        "new": "09--fanout/fanout-salvage-recovery.md",
+        "count": 3
+      },
+      {
+        "old": "04--state-safety/009-permissions-gate.md",
+        "new": "04--state-safety/permissions-gate.md",
+        "count": 4
+      },
+      {
+        "old": "02--prompt-rendering/004-prompt-pack.md",
+        "new": "02--prompt-rendering/prompt-pack.md",
+        "count": 4
+      },
+      {
+        "old": "09--fanout/027-fanout-merge-research.md",
+        "new": "09--fanout/fanout-merge-research.md",
+        "count": 3
+      },
+      {
+        "old": "08--council/018-multi-seat-dispatch.md",
+        "new": "08--council/multi-seat-dispatch.md",
+        "count": 4
+      },
+      {
+        "old": "09--fanout/023-fanout-config-schema.md",
+        "new": "09--fanout/fanout-config-schema.md",
+        "count": 5
+      },
+      {
+        "old": "04--state-safety/006-atomic-state.md",
+        "new": "04--state-safety/atomic-state.md",
+        "count": 4
+      },
+      {
+        "old": "04--state-safety/007-jsonl-repair.md",
+        "new": "04--state-safety/jsonl-repair.md",
+        "count": 4
+      },
+      {
+        "old": "08--council/019-round-state-jsonl.md",
+        "new": "08--council/round-state-jsonl.md",
+        "count": 4
+      },
+      {
+        "old": "01--executor/001-executor-config.md",
+        "new": "01--executor/executor-config.md",
+        "count": 4
+      },
+      {
+        "old": "01--executor/003-fallback-router.md",
+        "new": "01--executor/fallback-router.md",
+        "count": 4
+      },
+      {
+        "old": "01--executor/002-executor-audit.md",
+        "new": "01--executor/executor-audit.md",
+        "count": 4
+      },
+      {
+        "old": "05--scoring/010-bayesian-scorer.md",
+        "new": "05--scoring/bayesian-scorer.md",
+        "count": 4
+      },
+      {
+        "old": "04--state-safety/008-loop-lock.md",
+        "new": "04--state-safety/loop-lock.md",
+        "count": 4
+      },
+      {
+        "old": "08--council/021-cost-guards.md",
+        "new": "08--council/cost-guards.md",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/001-executor-config.md",
+    "edits": [
+      {
+        "old": "01--executor/001-executor-config.md",
+        "new": "01--executor/executor-config.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/002-executor-audit.md",
+    "edits": [
+      {
+        "old": "01--executor/002-executor-audit.md",
+        "new": "01--executor/executor-audit.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/01--executor/003-fallback-router.md",
+    "edits": [
+      {
+        "old": "01--executor/003-fallback-router.md",
+        "new": "01--executor/fallback-router.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/02--prompt-rendering/004-prompt-pack.md",
+    "edits": [
+      {
+        "old": "02--prompt-rendering/004-prompt-pack.md",
+        "new": "02--prompt-rendering/prompt-pack.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/03--validation/005-post-dispatch-validate.md",
+    "edits": [
+      {
+        "old": "03--validation/005-post-dispatch-validate.md",
+        "new": "03--validation/post-dispatch-validate.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/006-atomic-state.md",
+    "edits": [
+      {
+        "old": "04--state-safety/006-atomic-state.md",
+        "new": "04--state-safety/atomic-state.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/007-jsonl-repair.md",
+    "edits": [
+      {
+        "old": "04--state-safety/007-jsonl-repair.md",
+        "new": "04--state-safety/jsonl-repair.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/008-loop-lock.md",
+    "edits": [
+      {
+        "old": "04--state-safety/008-loop-lock.md",
+        "new": "04--state-safety/loop-lock.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/04--state-safety/009-permissions-gate.md",
+    "edits": [
+      {
+        "old": "04--state-safety/009-permissions-gate.md",
+        "new": "04--state-safety/permissions-gate.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/05--scoring/010-bayesian-scorer.md",
+    "edits": [
+      {
+        "old": "05--scoring/010-bayesian-scorer.md",
+        "new": "05--scoring/bayesian-scorer.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/06--coverage-graph/011-coverage-graph-db.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/011-coverage-graph-db.md",
+        "new": "06--coverage-graph/coverage-graph-db.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/06--coverage-graph/012-coverage-graph-query.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/012-coverage-graph-query.md",
+        "new": "06--coverage-graph/coverage-graph-query.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/06--coverage-graph/013-coverage-graph-signals.md",
+    "edits": [
+      {
+        "old": "06--coverage-graph/013-coverage-graph-signals.md",
+        "new": "06--coverage-graph/coverage-graph-signals.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/07--script-entry-points/014-convergence-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/014-convergence-script.md",
+        "new": "07--script-entry-points/convergence-script.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/07--script-entry-points/015-upsert-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/015-upsert-script.md",
+        "new": "07--script-entry-points/upsert-script.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/07--script-entry-points/016-query-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/016-query-script.md",
+        "new": "07--script-entry-points/query-script.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/07--script-entry-points/017-status-script.md",
+    "edits": [
+      {
+        "old": "07--script-entry-points/017-status-script.md",
+        "new": "07--script-entry-points/status-script.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/018-multi-seat-dispatch.md",
+    "edits": [
+      {
+        "old": "08--council/018-multi-seat-dispatch.md",
+        "new": "08--council/multi-seat-dispatch.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/019-round-state-jsonl.md",
+    "edits": [
+      {
+        "old": "08--council/019-round-state-jsonl.md",
+        "new": "08--council/round-state-jsonl.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/020-adjudicator-verdict-scoring.md",
+    "edits": [
+      {
+        "old": "08--council/020-adjudicator-verdict-scoring.md",
+        "new": "08--council/adjudicator-verdict-scoring.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/021-cost-guards.md",
+    "edits": [
+      {
+        "old": "08--council/021-cost-guards.md",
+        "new": "08--council/cost-guards.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/08--council/022-session-state-hierarchy.md",
+    "edits": [
+      {
+        "old": "08--council/022-session-state-hierarchy.md",
+        "new": "08--council/session-state-hierarchy.md",
+        "count": 3
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/023-fanout-config-schema.md",
+    "edits": [
+      {
+        "old": "09--fanout/023-fanout-config-schema.md",
+        "new": "09--fanout/fanout-config-schema.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/024-fanout-pool-concurrency-cap.md",
+    "edits": [
+      {
+        "old": "09--fanout/024-fanout-pool-concurrency-cap.md",
+        "new": "09--fanout/fanout-pool-concurrency-cap.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/025-fanout-run-cli-lineage-spawn.md",
+    "edits": [
+      {
+        "old": "09--fanout/025-fanout-run-cli-lineage-spawn.md",
+        "new": "09--fanout/fanout-run-cli-lineage-spawn.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/026-fanout-salvage-recovery.md",
+    "edits": [
+      {
+        "old": "09--fanout/026-fanout-salvage-recovery.md",
+        "new": "09--fanout/fanout-salvage-recovery.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/027-fanout-merge-research.md",
+    "edits": [
+      {
+        "old": "09--fanout/027-fanout-merge-research.md",
+        "new": "09--fanout/fanout-merge-research.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/028-fanout-merge-review-strongest-restriction.md",
+    "edits": [
+      {
+        "old": "09--fanout/028-fanout-merge-review-strongest-restriction.md",
+        "new": "09--fanout/fanout-merge-review-strongest-restriction.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-loop-runtime/manual_testing_playbook/09--fanout/029-artifact-dir-override-parity.md",
+    "edits": [
+      {
+        "old": "09--fanout/029-artifact-dir-override-parity.md",
+        "new": "09--fanout/artifact-dir-override-parity.md",
+        "count": 1
+      },
+      {
+        "old": "09--fanout/023-fanout-config-schema.md",
+        "new": "09--fanout/fanout-config-schema.md",
+        "count": 1
+      }
+    ]
+  }
+]

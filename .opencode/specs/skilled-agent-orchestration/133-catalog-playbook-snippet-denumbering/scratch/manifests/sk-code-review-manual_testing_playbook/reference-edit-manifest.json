@@ -1,0 +1,277 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/manual_testing_playbook.md",
+    "edits": [
+      {
+        "old": "03--severity-and-evidence-discipline/009-cross-consumer-affected-surface.md",
+        "new": "03--severity-and-evidence-discipline/cross-consumer-affected-surface.md",
+        "count": 2
+      },
+      {
+        "old": "03--severity-and-evidence-discipline/008-class-of-bug-vs-instance-only.md",
+        "new": "03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md",
+        "count": 2
+      },
+      {
+        "old": "02--security-and-correctness-minimums/006-secrets-and-hardcoded-creds.md",
+        "new": "02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md",
+        "count": 2
+      },
+      {
+        "old": "05--re-review-and-stale-context/015-ai-generated-code-suspect-quality.md",
+        "new": "05--re-review-and-stale-context/ai-generated-code-suspect-quality.md",
+        "count": 2
+      },
+      {
+        "old": "02--security-and-correctness-minimums/005-input-validation-injection.md",
+        "new": "02--security-and-correctness-minimums/input-validation-injection.md",
+        "count": 2
+      },
+      {
+        "old": "06--cross-cli-orchestration/018-cli-opencode-and-cli-gemini-handback.md",
+        "new": "06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md",
+        "count": 2
+      },
+      {
+        "old": "03--severity-and-evidence-discipline/007-p0-blocker-with-file-line.md",
+        "new": "03--severity-and-evidence-discipline/p0-blocker-with-file-line.md",
+        "count": 2
+      },
+      {
+        "old": "02--security-and-correctness-minimums/004-security-sensitive-auth.md",
+        "new": "02--security-and-correctness-minimums/security-sensitive-auth.md",
+        "count": 2
+      },
+      {
+        "old": "05--re-review-and-stale-context/014-stale-architecture-fresh-pass.md",
+        "new": "05--re-review-and-stale-context/stale-architecture-fresh-pass.md",
+        "count": 2
+      },
+      {
+        "old": "06--cross-cli-orchestration/016-native-claude-code-invocation.md",
+        "new": "06--cross-cli-orchestration/native-claude-code-invocation.md",
+        "count": 2
+      },
+      {
+        "old": "04--scope-and-precedence/011-baseline-vs-surface-precedence.md",
+        "new": "04--scope-and-precedence/baseline-vs-surface-precedence.md",
+        "count": 2
+      },
+      {
+        "old": "04--scope-and-precedence/010-explicit-scope-security-only.md",
+        "new": "04--scope-and-precedence/explicit-scope-security-only.md",
+        "count": 2
+      },
+      {
+        "old": "05--re-review-and-stale-context/013-re-review-after-fixes.md",
+        "new": "05--re-review-and-stale-context/re-review-after-fixes.md",
+        "count": 2
+      },
+      {
+        "old": "01--baseline-review-flow/003-multi-commit-feature-branch.md",
+        "new": "01--baseline-review-flow/multi-commit-feature-branch.md",
+        "count": 2
+      },
+      {
+        "old": "06--cross-cli-orchestration/017-cli-codex-delegation.md",
+        "new": "06--cross-cli-orchestration/cli-codex-delegation.md",
+        "count": 2
+      },
+      {
+        "old": "01--baseline-review-flow/001-small-pr-single-file.md",
+        "new": "01--baseline-review-flow/small-pr-single-file.md",
+        "count": 2
+      },
+      {
+        "old": "01--baseline-review-flow/002-large-refactor-pr.md",
+        "new": "01--baseline-review-flow/large-refactor-pr.md",
+        "count": 2
+      },
+      {
+        "old": "04--scope-and-precedence/012-test-code-review.md",
+        "new": "04--scope-and-precedence/test-code-review.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/001-small-pr-single-file.md",
+    "edits": [
+      {
+        "old": "01--baseline-review-flow/001-small-pr-single-file.md",
+        "new": "01--baseline-review-flow/small-pr-single-file.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/002-large-refactor-pr.md",
+    "edits": [
+      {
+        "old": "01--baseline-review-flow/002-large-refactor-pr.md",
+        "new": "01--baseline-review-flow/large-refactor-pr.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/01--baseline-review-flow/003-multi-commit-feature-branch.md",
+    "edits": [
+      {
+        "old": "01--baseline-review-flow/003-multi-commit-feature-branch.md",
+        "new": "01--baseline-review-flow/multi-commit-feature-branch.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/004-security-sensitive-auth.md",
+    "edits": [
+      {
+        "old": "02--security-and-correctness-minimums/004-security-sensitive-auth.md",
+        "new": "02--security-and-correctness-minimums/security-sensitive-auth.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/005-input-validation-injection.md",
+    "edits": [
+      {
+        "old": "02--security-and-correctness-minimums/005-input-validation-injection.md",
+        "new": "02--security-and-correctness-minimums/input-validation-injection.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/02--security-and-correctness-minimums/006-secrets-and-hardcoded-creds.md",
+    "edits": [
+      {
+        "old": "02--security-and-correctness-minimums/006-secrets-and-hardcoded-creds.md",
+        "new": "02--security-and-correctness-minimums/secrets-and-hardcoded-creds.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/007-p0-blocker-with-file-line.md",
+    "edits": [
+      {
+        "old": "03--severity-and-evidence-discipline/007-p0-blocker-with-file-line.md",
+        "new": "03--severity-and-evidence-discipline/p0-blocker-with-file-line.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/008-class-of-bug-vs-instance-only.md",
+    "edits": [
+      {
+        "old": "03--severity-and-evidence-discipline/008-class-of-bug-vs-instance-only.md",
+        "new": "03--severity-and-evidence-discipline/class-of-bug-vs-instance-only.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/03--severity-and-evidence-discipline/009-cross-consumer-affected-surface.md",
+    "edits": [
+      {
+        "old": "03--severity-and-evidence-discipline/009-cross-consumer-affected-surface.md",
+        "new": "03--severity-and-evidence-discipline/cross-consumer-affected-surface.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/04--scope-and-precedence/010-explicit-scope-security-only.md",
+    "edits": [
+      {
+        "old": "04--scope-and-precedence/010-explicit-scope-security-only.md",
+        "new": "04--scope-and-precedence/explicit-scope-security-only.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/04--scope-and-precedence/011-baseline-vs-surface-precedence.md",
+    "edits": [
+      {
+        "old": "04--scope-and-precedence/011-baseline-vs-surface-precedence.md",
+        "new": "04--scope-and-precedence/baseline-vs-surface-precedence.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/04--scope-and-precedence/012-test-code-review.md",
+    "edits": [
+      {
+        "old": "04--scope-and-precedence/012-test-code-review.md",
+        "new": "04--scope-and-precedence/test-code-review.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/013-re-review-after-fixes.md",
+    "edits": [
+      {
+        "old": "05--re-review-and-stale-context/013-re-review-after-fixes.md",
+        "new": "05--re-review-and-stale-context/re-review-after-fixes.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/014-stale-architecture-fresh-pass.md",
+    "edits": [
+      {
+        "old": "05--re-review-and-stale-context/014-stale-architecture-fresh-pass.md",
+        "new": "05--re-review-and-stale-context/stale-architecture-fresh-pass.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/05--re-review-and-stale-context/015-ai-generated-code-suspect-quality.md",
+    "edits": [
+      {
+        "old": "05--re-review-and-stale-context/015-ai-generated-code-suspect-quality.md",
+        "new": "05--re-review-and-stale-context/ai-generated-code-suspect-quality.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/016-native-claude-code-invocation.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/016-native-claude-code-invocation.md",
+        "new": "06--cross-cli-orchestration/native-claude-code-invocation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/017-cli-codex-delegation.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/017-cli-codex-delegation.md",
+        "new": "06--cross-cli-orchestration/cli-codex-delegation.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/sk-code-review/manual_testing_playbook/06--cross-cli-orchestration/018-cli-opencode-and-cli-gemini-handback.md",
+    "edits": [
+      {
+        "old": "06--cross-cli-orchestration/018-cli-opencode-and-cli-gemini-handback.md",
+        "new": "06--cross-cli-orchestration/cli-opencode-and-cli-gemini-handback.md",
+        "count": 1
+      }
+    ]
+  }
+]

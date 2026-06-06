@@ -1,0 +1,332 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/001-ensure-code-graph-ready.md",
+        "new": "01--read-path-freshness/ensure-code-graph-ready.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-scan-verify-status/004-code-graph-verify.md",
+        "new": "02--manual-scan-verify-status/code-graph-verify.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-scan-verify-status/005-code-graph-status.md",
+        "new": "02--manual-scan-verify-status/code-graph-status.md",
+        "count": 2
+      },
+      {
+        "old": "05--coverage-graph/012-deep-loop-graph-convergence.md",
+        "new": "05--coverage-graph/deep-loop-graph-convergence.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-scan-verify-status/003-code-graph-scan.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan.md",
+        "count": 2
+      },
+      {
+        "old": "03--detect-changes/006-detect-changes-preflight.md",
+        "new": "03--detect-changes/detect-changes-preflight.md",
+        "count": 2
+      },
+      {
+        "old": "05--coverage-graph/010-deep-loop-graph-status.md",
+        "new": "05--coverage-graph/deep-loop-graph-status.md",
+        "count": 2
+      },
+      {
+        "old": "05--coverage-graph/011-deep-loop-graph-upsert.md",
+        "new": "05--coverage-graph/deep-loop-graph-upsert.md",
+        "count": 2
+      },
+      {
+        "old": "04--context-retrieval/007-code-graph-context.md",
+        "new": "04--context-retrieval/code-graph-context.md",
+        "count": 2
+      },
+      {
+        "old": "05--coverage-graph/009-deep-loop-graph-query.md",
+        "new": "05--coverage-graph/deep-loop-graph-query.md",
+        "count": 2
+      },
+      {
+        "old": "01--read-path-freshness/002-query-self-heal.md",
+        "new": "01--read-path-freshness/query-self-heal.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-tool-surface/013-tool-registrations.md",
+        "new": "06--mcp-tool-surface/tool-registrations.md",
+        "count": 2
+      },
+      {
+        "old": "08--doctor-code-graph/014-doctor-apply-mode.md",
+        "new": "08--doctor-code-graph/doctor-apply-mode.md",
+        "count": 2
+      },
+      {
+        "old": "04--context-retrieval/008-context-handler.md",
+        "new": "04--context-retrieval/context-handler.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/001-ensure-code-graph-ready.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/001-ensure-code-graph-ready.md",
+        "new": "01--read-path-freshness/ensure-code-graph-ready.md",
+        "count": 1
+      },
+      {
+        "old": "02--manual-scan-verify-status/003-code-graph-scan.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan.md",
+        "count": 2
+      },
+      {
+        "old": "002-query-self-heal.md",
+        "new": "query-self-heal.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/01--read-path-freshness/002-query-self-heal.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/002-query-self-heal.md",
+        "new": "01--read-path-freshness/query-self-heal.md",
+        "count": 1
+      },
+      {
+        "old": "06--mcp-tool-surface/013-tool-registrations.md",
+        "new": "06--mcp-tool-surface/tool-registrations.md",
+        "count": 2
+      },
+      {
+        "old": "001-ensure-code-graph-ready.md",
+        "new": "ensure-code-graph-ready.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/003-code-graph-scan.md",
+    "edits": [
+      {
+        "old": "02--manual-scan-verify-status/003-code-graph-scan.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan.md",
+        "count": 1
+      },
+      {
+        "old": "004-code-graph-verify.md",
+        "new": "code-graph-verify.md",
+        "count": 1
+      },
+      {
+        "old": "005-code-graph-status.md",
+        "new": "code-graph-status.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/004-code-graph-verify.md",
+    "edits": [
+      {
+        "old": "02--manual-scan-verify-status/004-code-graph-verify.md",
+        "new": "02--manual-scan-verify-status/code-graph-verify.md",
+        "count": 1
+      },
+      {
+        "old": "08--doctor-code-graph/014-doctor-apply-mode.md",
+        "new": "08--doctor-code-graph/doctor-apply-mode.md",
+        "count": 2
+      },
+      {
+        "old": "003-code-graph-scan.md",
+        "new": "code-graph-scan.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/02--manual-scan-verify-status/005-code-graph-status.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/001-ensure-code-graph-ready.md",
+        "new": "01--read-path-freshness/ensure-code-graph-ready.md",
+        "count": 2
+      },
+      {
+        "old": "02--manual-scan-verify-status/005-code-graph-status.md",
+        "new": "02--manual-scan-verify-status/code-graph-status.md",
+        "count": 1
+      },
+      {
+        "old": "003-code-graph-scan.md",
+        "new": "code-graph-scan.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/03--detect-changes/006-detect-changes-preflight.md",
+    "edits": [
+      {
+        "old": "02--manual-scan-verify-status/003-code-graph-scan.md",
+        "new": "02--manual-scan-verify-status/code-graph-scan.md",
+        "count": 2
+      },
+      {
+        "old": "03--detect-changes/006-detect-changes-preflight.md",
+        "new": "03--detect-changes/detect-changes-preflight.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/007-code-graph-context.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/001-ensure-code-graph-ready.md",
+        "new": "01--read-path-freshness/ensure-code-graph-ready.md",
+        "count": 2
+      },
+      {
+        "old": "04--context-retrieval/007-code-graph-context.md",
+        "new": "04--context-retrieval/code-graph-context.md",
+        "count": 1
+      },
+      {
+        "old": "008-context-handler.md",
+        "new": "context-handler.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/04--context-retrieval/008-context-handler.md",
+    "edits": [
+      {
+        "old": "06--mcp-tool-surface/013-tool-registrations.md",
+        "new": "06--mcp-tool-surface/tool-registrations.md",
+        "count": 2
+      },
+      {
+        "old": "04--context-retrieval/008-context-handler.md",
+        "new": "04--context-retrieval/context-handler.md",
+        "count": 1
+      },
+      {
+        "old": "007-code-graph-context.md",
+        "new": "code-graph-context.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/009-deep-loop-graph-query.md",
+    "edits": [
+      {
+        "old": "05--coverage-graph/009-deep-loop-graph-query.md",
+        "new": "05--coverage-graph/deep-loop-graph-query.md",
+        "count": 1
+      },
+      {
+        "old": "010-deep-loop-graph-status.md",
+        "new": "deep-loop-graph-status.md",
+        "count": 1
+      },
+      {
+        "old": "011-deep-loop-graph-upsert.md",
+        "new": "deep-loop-graph-upsert.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/010-deep-loop-graph-status.md",
+    "edits": [
+      {
+        "old": "05--coverage-graph/010-deep-loop-graph-status.md",
+        "new": "05--coverage-graph/deep-loop-graph-status.md",
+        "count": 1
+      },
+      {
+        "old": "012-deep-loop-graph-convergence.md",
+        "new": "deep-loop-graph-convergence.md",
+        "count": 1
+      },
+      {
+        "old": "009-deep-loop-graph-query.md",
+        "new": "deep-loop-graph-query.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/011-deep-loop-graph-upsert.md",
+    "edits": [
+      {
+        "old": "05--coverage-graph/011-deep-loop-graph-upsert.md",
+        "new": "05--coverage-graph/deep-loop-graph-upsert.md",
+        "count": 1
+      },
+      {
+        "old": "012-deep-loop-graph-convergence.md",
+        "new": "deep-loop-graph-convergence.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/05--coverage-graph/012-deep-loop-graph-convergence.md",
+    "edits": [
+      {
+        "old": "05--coverage-graph/012-deep-loop-graph-convergence.md",
+        "new": "05--coverage-graph/deep-loop-graph-convergence.md",
+        "count": 1
+      },
+      {
+        "old": "011-deep-loop-graph-upsert.md",
+        "new": "deep-loop-graph-upsert.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/06--mcp-tool-surface/013-tool-registrations.md",
+    "edits": [
+      {
+        "old": "01--read-path-freshness/002-query-self-heal.md",
+        "new": "01--read-path-freshness/query-self-heal.md",
+        "count": 2
+      },
+      {
+        "old": "06--mcp-tool-surface/013-tool-registrations.md",
+        "new": "06--mcp-tool-surface/tool-registrations.md",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-code-graph/feature_catalog/08--doctor-code-graph/014-doctor-apply-mode.md",
+    "edits": [
+      {
+        "old": "02--manual-scan-verify-status/004-code-graph-verify.md",
+        "new": "02--manual-scan-verify-status/code-graph-verify.md",
+        "count": 2
+      },
+      {
+        "old": "08--doctor-code-graph/014-doctor-apply-mode.md",
+        "new": "08--doctor-code-graph/doctor-apply-mode.md",
+        "count": 1
+      }
+    ]
+  }
+]

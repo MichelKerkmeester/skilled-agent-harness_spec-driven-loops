@@ -1,0 +1,90 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/001-install-version.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/install-version.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/002-session-start.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-start.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/003-status-json.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/status-json.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/004-session-stop.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/01--cli-bdg-lifecycle/session-stop.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/005-list-cdp-domains.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/list-cdp-domains.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/006-describe-page-domain.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/describe-page-domain.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/007-search-cdp-method.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/02--protocol-discovery/search-cdp-method.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/008-query-selector.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/query-selector.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/009-eval-javascript.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/eval-javascript.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/010-screenshot-capture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/03--dom-and-screenshot/screenshot-capture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/011-console-list.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/console-list.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/012-cookies-retrieval.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/cookies-retrieval.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/013-har-export.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/04--console-and-network/har-export.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/014-chrome-devtools-1-navigate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/chrome-devtools-1-navigate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/015-dual-instance-parallel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/dual-instance-parallel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/016-close-and-select-page.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/close-and-select-page.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/017-multi-tab-same-instance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/multi-tab-same-instance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/018-page-context-isolation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/05--mcp-parallel-instances/page-context-isolation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/019-missing-browser.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/missing-browser.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/020-invalid-url.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/invalid-url.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/021-dead-session.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/dead-session.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/022-cleanup-leak.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/mcp-chrome-devtools/manual_testing_playbook/06--recovery-and-failure/cleanup-leak.md"
+  }
+]

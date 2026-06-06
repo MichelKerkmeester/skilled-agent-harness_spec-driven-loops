@@ -1,4 +1,5 @@
 {
+  "level": "2",
   "specFolder": ".opencode/specs/skilled-agent-orchestration/133-catalog-playbook-snippet-denumbering/001-sk-doc-standards-and-templates",
   "description": "Feature Specification: sk-doc Standards & Templates De-Numbering",
   "keywords": [
@@ -9,7 +10,7 @@
     "templates",
     "de-numbering"
   ],
-  "lastUpdated": "2026-06-06T06:46:02.399Z",
+  "lastUpdated": "2026-06-06T10:04:29.007Z",
   "specId": "001",
   "folderSlug": "sk-doc-standards-and-templates",
   "parentChain": [
@@ -19,6 +20,5 @@
     "133-catalog-playbook-snippet-denumbering"
   ],
   "memorySequence": 0,
-  "memoryNameHistory": [],
-  "level": "2"
+  "memoryNameHistory": []
 }

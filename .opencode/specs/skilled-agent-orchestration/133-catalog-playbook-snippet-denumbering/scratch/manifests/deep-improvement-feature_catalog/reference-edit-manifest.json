@@ -1,0 +1,532 @@
+[
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/feature_catalog.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/019-contamination-gate-and-fixtures.md",
+        "new": "05--skill-benchmark/contamination-gate-and-fixtures.md",
+        "count": 2
+      },
+      {
+        "old": "05--skill-benchmark/020-router-replay-and-advisor-probe.md",
+        "new": "05--skill-benchmark/router-replay-and-advisor-probe.md",
+        "count": 2
+      },
+      {
+        "old": "04--model-benchmark-mode/017-mode-records-and-gates.md",
+        "new": "04--model-benchmark-mode/mode-records-and-gates.md",
+        "count": 2
+      },
+      {
+        "old": "05--skill-benchmark/023-dual-report-and-remediation.md",
+        "new": "05--skill-benchmark/dual-report-and-remediation.md",
+        "count": 2
+      },
+      {
+        "old": "04--model-benchmark-mode/016-opt-in-5dim-scorer.md",
+        "new": "04--model-benchmark-mode/opt-in-5dim-scorer.md",
+        "count": 2
+      },
+      {
+        "old": "02--integration-scanning/007-surface-discovery.md",
+        "new": "02--integration-scanning/surface-discovery.md",
+        "count": 2
+      },
+      {
+        "old": "02--integration-scanning/009-command-dispatch.md",
+        "new": "02--integration-scanning/command-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "04--model-benchmark-mode/015-model-dispatcher.md",
+        "new": "04--model-benchmark-mode/model-dispatcher.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/002-candidate-generation.md",
+        "new": "01--evaluation-loop/candidate-generation.md",
+        "count": 2
+      },
+      {
+        "old": "02--integration-scanning/008-runtime-mirrors.md",
+        "new": "02--integration-scanning/runtime-mirrors.md",
+        "count": 2
+      },
+      {
+        "old": "03--scoring-system/010-five-dimension-rubric.md",
+        "new": "03--scoring-system/five-dimension-rubric.md",
+        "count": 2
+      },
+      {
+        "old": "03--scoring-system/012-deterministic-scoring.md",
+        "new": "03--scoring-system/deterministic-scoring.md",
+        "count": 2
+      },
+      {
+        "old": "05--skill-benchmark/021-d5-connectivity-gate.md",
+        "new": "05--skill-benchmark/d5-connectivity-gate.md",
+        "count": 2
+      },
+      {
+        "old": "03--scoring-system/013-dimensional-progress.md",
+        "new": "03--scoring-system/dimensional-progress.md",
+        "count": 2
+      },
+      {
+        "old": "05--skill-benchmark/022-scoring-and-funnel.md",
+        "new": "05--skill-benchmark/scoring-and-funnel.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/006-plateau-detection.md",
+        "new": "01--evaluation-loop/plateau-detection.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/003-scoring-dispatch.md",
+        "new": "01--evaluation-loop/scoring-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "03--scoring-system/011-dynamic-profiling.md",
+        "new": "03--scoring-system/dynamic-profiling.md",
+        "count": 2
+      },
+      {
+        "old": "04--model-benchmark-mode/014-mode-switch.md",
+        "new": "04--model-benchmark-mode/mode-switch.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/004-promotion-gates.md",
+        "new": "01--evaluation-loop/promotion-gates.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/001-initialization.md",
+        "new": "01--evaluation-loop/initialization.md",
+        "count": 2
+      },
+      {
+        "old": "05--skill-benchmark/018-mode-wiring.md",
+        "new": "05--skill-benchmark/mode-wiring.md",
+        "count": 2
+      },
+      {
+        "old": "01--evaluation-loop/005-rollback.md",
+        "new": "01--evaluation-loop/rollback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/001-initialization.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/001-initialization.md",
+        "new": "01--evaluation-loop/initialization.md",
+        "count": 1
+      },
+      {
+        "old": "002-candidate-generation.md",
+        "new": "candidate-generation.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/002-candidate-generation.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/002-candidate-generation.md",
+        "new": "01--evaluation-loop/candidate-generation.md",
+        "count": 1
+      },
+      {
+        "old": "003-scoring-dispatch.md",
+        "new": "scoring-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "001-initialization.md",
+        "new": "initialization.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/003-scoring-dispatch.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/003-scoring-dispatch.md",
+        "new": "01--evaluation-loop/scoring-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "002-candidate-generation.md",
+        "new": "candidate-generation.md",
+        "count": 2
+      },
+      {
+        "old": "004-promotion-gates.md",
+        "new": "promotion-gates.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/004-promotion-gates.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/004-promotion-gates.md",
+        "new": "01--evaluation-loop/promotion-gates.md",
+        "count": 1
+      },
+      {
+        "old": "003-scoring-dispatch.md",
+        "new": "scoring-dispatch.md",
+        "count": 2
+      },
+      {
+        "old": "005-rollback.md",
+        "new": "rollback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/005-rollback.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/005-rollback.md",
+        "new": "01--evaluation-loop/rollback.md",
+        "count": 1
+      },
+      {
+        "old": "006-plateau-detection.md",
+        "new": "plateau-detection.md",
+        "count": 2
+      },
+      {
+        "old": "004-promotion-gates.md",
+        "new": "promotion-gates.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/01--evaluation-loop/006-plateau-detection.md",
+    "edits": [
+      {
+        "old": "01--evaluation-loop/006-plateau-detection.md",
+        "new": "01--evaluation-loop/plateau-detection.md",
+        "count": 1
+      },
+      {
+        "old": "005-rollback.md",
+        "new": "rollback.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/007-surface-discovery.md",
+    "edits": [
+      {
+        "old": "02--integration-scanning/007-surface-discovery.md",
+        "new": "02--integration-scanning/surface-discovery.md",
+        "count": 1
+      },
+      {
+        "old": "008-runtime-mirrors.md",
+        "new": "runtime-mirrors.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/008-runtime-mirrors.md",
+    "edits": [
+      {
+        "old": "02--integration-scanning/008-runtime-mirrors.md",
+        "new": "02--integration-scanning/runtime-mirrors.md",
+        "count": 1
+      },
+      {
+        "old": "007-surface-discovery.md",
+        "new": "surface-discovery.md",
+        "count": 2
+      },
+      {
+        "old": "009-command-dispatch.md",
+        "new": "command-dispatch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/02--integration-scanning/009-command-dispatch.md",
+    "edits": [
+      {
+        "old": "02--integration-scanning/009-command-dispatch.md",
+        "new": "02--integration-scanning/command-dispatch.md",
+        "count": 1
+      },
+      {
+        "old": "008-runtime-mirrors.md",
+        "new": "runtime-mirrors.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/010-five-dimension-rubric.md",
+    "edits": [
+      {
+        "old": "03--scoring-system/010-five-dimension-rubric.md",
+        "new": "03--scoring-system/five-dimension-rubric.md",
+        "count": 1
+      },
+      {
+        "old": "011-dynamic-profiling.md",
+        "new": "dynamic-profiling.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/011-dynamic-profiling.md",
+    "edits": [
+      {
+        "old": "03--scoring-system/011-dynamic-profiling.md",
+        "new": "03--scoring-system/dynamic-profiling.md",
+        "count": 1
+      },
+      {
+        "old": "010-five-dimension-rubric.md",
+        "new": "five-dimension-rubric.md",
+        "count": 2
+      },
+      {
+        "old": "012-deterministic-scoring.md",
+        "new": "deterministic-scoring.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/012-deterministic-scoring.md",
+    "edits": [
+      {
+        "old": "03--scoring-system/012-deterministic-scoring.md",
+        "new": "03--scoring-system/deterministic-scoring.md",
+        "count": 1
+      },
+      {
+        "old": "013-dimensional-progress.md",
+        "new": "dimensional-progress.md",
+        "count": 2
+      },
+      {
+        "old": "011-dynamic-profiling.md",
+        "new": "dynamic-profiling.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/03--scoring-system/013-dimensional-progress.md",
+    "edits": [
+      {
+        "old": "03--scoring-system/013-dimensional-progress.md",
+        "new": "03--scoring-system/dimensional-progress.md",
+        "count": 1
+      },
+      {
+        "old": "012-deterministic-scoring.md",
+        "new": "deterministic-scoring.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/014-mode-switch.md",
+    "edits": [
+      {
+        "old": "04--model-benchmark-mode/014-mode-switch.md",
+        "new": "04--model-benchmark-mode/mode-switch.md",
+        "count": 1
+      },
+      {
+        "old": "015-model-dispatcher.md",
+        "new": "model-dispatcher.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/015-model-dispatcher.md",
+    "edits": [
+      {
+        "old": "04--model-benchmark-mode/015-model-dispatcher.md",
+        "new": "04--model-benchmark-mode/model-dispatcher.md",
+        "count": 1
+      },
+      {
+        "old": "016-opt-in-5dim-scorer.md",
+        "new": "opt-in-5dim-scorer.md",
+        "count": 2
+      },
+      {
+        "old": "014-mode-switch.md",
+        "new": "mode-switch.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/016-opt-in-5dim-scorer.md",
+    "edits": [
+      {
+        "old": "04--model-benchmark-mode/016-opt-in-5dim-scorer.md",
+        "new": "04--model-benchmark-mode/opt-in-5dim-scorer.md",
+        "count": 1
+      },
+      {
+        "old": "017-mode-records-and-gates.md",
+        "new": "mode-records-and-gates.md",
+        "count": 2
+      },
+      {
+        "old": "015-model-dispatcher.md",
+        "new": "model-dispatcher.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/04--model-benchmark-mode/017-mode-records-and-gates.md",
+    "edits": [
+      {
+        "old": "04--model-benchmark-mode/017-mode-records-and-gates.md",
+        "new": "04--model-benchmark-mode/mode-records-and-gates.md",
+        "count": 1
+      },
+      {
+        "old": "016-opt-in-5dim-scorer.md",
+        "new": "opt-in-5dim-scorer.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/018-mode-wiring.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/018-mode-wiring.md",
+        "new": "05--skill-benchmark/mode-wiring.md",
+        "count": 1
+      },
+      {
+        "old": "019-contamination-gate-and-fixtures.md",
+        "new": "contamination-gate-and-fixtures.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/019-contamination-gate-and-fixtures.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/019-contamination-gate-and-fixtures.md",
+        "new": "05--skill-benchmark/contamination-gate-and-fixtures.md",
+        "count": 1
+      },
+      {
+        "old": "020-router-replay-and-advisor-probe.md",
+        "new": "router-replay-and-advisor-probe.md",
+        "count": 2
+      },
+      {
+        "old": "018-mode-wiring.md",
+        "new": "mode-wiring.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/020-router-replay-and-advisor-probe.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/020-router-replay-and-advisor-probe.md",
+        "new": "05--skill-benchmark/router-replay-and-advisor-probe.md",
+        "count": 1
+      },
+      {
+        "old": "019-contamination-gate-and-fixtures.md",
+        "new": "contamination-gate-and-fixtures.md",
+        "count": 2
+      },
+      {
+        "old": "021-d5-connectivity-gate.md",
+        "new": "d5-connectivity-gate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/021-d5-connectivity-gate.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/021-d5-connectivity-gate.md",
+        "new": "05--skill-benchmark/d5-connectivity-gate.md",
+        "count": 1
+      },
+      {
+        "old": "020-router-replay-and-advisor-probe.md",
+        "new": "router-replay-and-advisor-probe.md",
+        "count": 2
+      },
+      {
+        "old": "022-scoring-and-funnel.md",
+        "new": "scoring-and-funnel.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/022-scoring-and-funnel.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/022-scoring-and-funnel.md",
+        "new": "05--skill-benchmark/scoring-and-funnel.md",
+        "count": 1
+      },
+      {
+        "old": "023-dual-report-and-remediation.md",
+        "new": "dual-report-and-remediation.md",
+        "count": 2
+      },
+      {
+        "old": "021-d5-connectivity-gate.md",
+        "new": "d5-connectivity-gate.md",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "file": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/deep-improvement/feature_catalog/05--skill-benchmark/023-dual-report-and-remediation.md",
+    "edits": [
+      {
+        "old": "05--skill-benchmark/023-dual-report-and-remediation.md",
+        "new": "05--skill-benchmark/dual-report-and-remediation.md",
+        "count": 1
+      },
+      {
+        "old": "022-scoring-and-funnel.md",
+        "new": "scoring-and-funnel.md",
+        "count": 2
+      }
+    ]
+  }
+]

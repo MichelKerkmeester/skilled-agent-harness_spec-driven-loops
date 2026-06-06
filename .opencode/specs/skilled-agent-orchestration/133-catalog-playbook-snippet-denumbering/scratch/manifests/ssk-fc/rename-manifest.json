@@ -1,0 +1,1274 @@
+[
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/001-unified-context-retrieval-memorycontext.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/unified-context-retrieval-memorycontext.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/002-semantic-and-lexical-search-memorysearch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/semantic-and-lexical-search-memorysearch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/003-trigger-phrase-matching-memorymatchtriggers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/trigger-phrase-matching-memorymatchtriggers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/004-hybrid-search-pipeline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/hybrid-search-pipeline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/005-4-stage-pipeline-architecture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/4-stage-pipeline-architecture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/006-bm25-trigger-phrase-re-index-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/bm25-trigger-phrase-re-index-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/007-ast-level-section-retrieval-tool.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/ast-level-section-retrieval-tool.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/008-quality-aware-3-tier-search-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/quality-aware-3-tier-search-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/009-tool-result-extraction-to-working-memory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/tool-result-extraction-to-working-memory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/010-fast-delegated-search-memory-quick-search.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/fast-delegated-search-memory-quick-search.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/011-session-recovery-spec-kit-resume.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/session-recovery-spec-kit-resume.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/012-search-api-surface.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/search-api-surface.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/013-session-transition-trace-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/session-transition-trace-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/014-bounded-graph-diagnostics.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/bounded-graph-diagnostics.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/015-memory-search-command-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/01--retrieval/memory-search-command-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/016-memory-indexing-memorysave.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-indexing-memorysave.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/017-memory-metadata-update-memoryupdate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-metadata-update-memoryupdate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/018-single-and-folder-delete-memorydelete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/single-and-folder-delete-memorydelete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/019-tier-based-bulk-deletion-memorybulkdelete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/tier-based-bulk-deletion-memorybulkdelete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/020-validation-feedback-memoryvalidate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/validation-feedback-memoryvalidate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/021-transaction-wrappers-on-mutation-handlers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/transaction-wrappers-on-mutation-handlers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/022-prediction-error-save-arbitration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/prediction-error-save-arbitration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/023-correction-tracking-with-undo.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/correction-tracking-with-undo.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/024-per-memory-history-log.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/per-memory-history-log.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/025-reconsolidation-conflict-transaction-helper.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/reconsolidation-conflict-transaction-helper.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/026-memory-retention-sweep.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/02--mutation/memory-retention-sweep.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/027-memory-browser-memorylist.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/memory-browser-memorylist.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/028-system-statistics-memorystats.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/system-statistics-memorystats.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/029-health-diagnostics-memoryhealth.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/health-diagnostics-memoryhealth.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/030-detect-changes-preflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/detect-changes-preflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/031-session-bootstrap-reader-ready-context.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/session-bootstrap-reader-ready-context.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/032-session-resume-continuity-ladder.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/session-resume-continuity-ladder.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/033-session-health-shared-payload.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/03--discovery/session-health-shared-payload.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/034-workspace-scanning-and-indexing-memoryindexscan.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/workspace-scanning-and-indexing-memoryindexscan.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/035-startup-runtime-compatibility-guards.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/startup-runtime-compatibility-guards.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/036-doctor-router-and-manifest-dispatch.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/doctor-router-and-manifest-dispatch.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/037-memory-retention-sweep.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/04--maintenance/memory-retention-sweep.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/038-checkpoint-creation-checkpointcreate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-creation-checkpointcreate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/039-checkpoint-listing-checkpointlist.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-listing-checkpointlist.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/040-checkpoint-restore-checkpointrestore.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-restore-checkpointrestore.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/041-checkpoint-deletion-checkpointdelete.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/checkpoint-deletion-checkpointdelete.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/042-async-ingestion-job-lifecycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/async-ingestion-job-lifecycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/043-startup-pending-file-recovery.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/startup-pending-file-recovery.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/044-constitutional-memory-end-to-end-lifecycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/constitutional-memory-end-to-end-lifecycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/045-post-insert-retry-budget.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/05--lifecycle/post-insert-retry-budget.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/046-causal-edge-creation-memorycausallink.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-edge-creation-memorycausallink.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/047-causal-graph-statistics-memorycausalstats.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-graph-statistics-memorycausalstats.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/048-causal-edge-deletion-memorycausalunlink.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-edge-deletion-memorycausalunlink.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/049-causal-chain-tracing-memorydriftwhy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/causal-chain-tracing-memorydriftwhy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/050-epistemic-baseline-capture-taskpreflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/epistemic-baseline-capture-taskpreflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/051-post-task-learning-measurement-taskpostflight.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/post-task-learning-measurement-taskpostflight.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/052-learning-history-memorygetlearninghistory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/learning-history-memorygetlearninghistory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/053-code-graph-edge-explanation-blast-radius-uplift.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/06--analysis/code-graph-edge-explanation-blast-radius-uplift.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/054-ablation-studies-evalrunablation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/ablation-studies-evalrunablation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/055-reporting-dashboard-evalreportingdashboard.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/07--evaluation/reporting-dashboard-evalreportingdashboard.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/056-graph-channel-id-fix.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/graph-channel-id-fix.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/057-chunk-collapse-deduplication.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/chunk-collapse-deduplication.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/058-co-activation-fan-effect-divisor.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/co-activation-fan-effect-divisor.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/059-sha-256-content-hash-deduplication.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/sha-256-content-hash-deduplication.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/060-database-and-schema-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/database-and-schema-safety.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/061-guards-and-edge-cases.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/guards-and-edge-cases.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/062-error-response-credential-sanitization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/error-response-credential-sanitization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/063-canonical-id-dedup-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/canonical-id-dedup-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/064-mathmax-min-stack-overflow-elimination.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/mathmax-min-stack-overflow-elimination.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/065-session-manager-transaction-gap-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/session-manager-transaction-gap-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/066-chunking-orchestrator-safe-swap.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/chunking-orchestrator-safe-swap.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/067-working-memory-timestamp-fix.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/working-memory-timestamp-fix.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/068-scope-normalizer-canonicalization-and-lint.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/scope-normalizer-canonicalization-and-lint.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/069-schema-version-history-v28-v30.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/schema-version-history-v28-v30.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/070-error-code-reference.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/08--bug-fixes-and-data-integrity/error-code-reference.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/069-evaluation-database-and-schema.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/evaluation-database-and-schema.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/070-core-metric-computation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/core-metric-computation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/071-observer-effect-mitigation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/observer-effect-mitigation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/072-quality-proxy-formula.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/quality-proxy-formula.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/073-synthetic-ground-truth-corpus.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/synthetic-ground-truth-corpus.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/074-bm25-only-baseline.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/bm25-only-baseline.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/075-agent-consumption-instrumentation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/agent-consumption-instrumentation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/076-scoring-observability.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/scoring-observability.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/077-full-reporting-and-ablation-study-framework.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/full-reporting-and-ablation-study-framework.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/078-test-quality-improvements.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/test-quality-improvements.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/079-evaluation-and-housekeeping-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/evaluation-and-housekeeping-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/080-cross-ai-validation-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/cross-ai-validation-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/081-evaluation-api-surface.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/evaluation-api-surface.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/082-int8-quantization-evaluation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/int8-quantization-evaluation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/083-memory-roadmap-baseline-snapshot.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/09--evaluation-and-measurement/memory-roadmap-baseline-snapshot.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/084-typed-weighted-degree-channel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/typed-weighted-degree-channel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/085-co-activation-boost-strength-increase.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/co-activation-boost-strength-increase.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/086-edge-density-measurement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/edge-density-measurement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/087-weight-history-audit-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/weight-history-audit-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/088-graph-momentum-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/graph-momentum-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/089-causal-depth-signal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/causal-depth-signal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/090-community-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/community-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/091-graph-and-cognitive-memory-fixes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/graph-and-cognitive-memory-fixes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/092-causal-neighbor-boost-and-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/causal-neighbor-boost-and-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/093-temporal-contiguity-layer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/temporal-contiguity-layer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/094-unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/unified-graph-retrieval-deterministic-ranking-explainability-and-rollback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/095-graph-lifecycle-refresh.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/graph-lifecycle-refresh.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/096-llm-graph-backfill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/llm-graph-backfill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/097-graph-calibration-profiles.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/graph-calibration-profiles.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/098-typed-traversal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/typed-traversal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/099-temporal-edges.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/temporal-edges.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/100-contradiction-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/contradiction-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/101-ontology-hooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/10--graph-signal-activation/ontology-hooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/102-score-normalization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/score-normalization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/103-interference-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/interference-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/104-classification-based-decay.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/classification-based-decay.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/105-folder-level-relevance-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/folder-level-relevance-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/106-embedding-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/embedding-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/107-double-intent-weighting-investigation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/double-intent-weighting-investigation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/108-rrf-k-value-sensitivity-analysis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/rrf-k-value-sensitivity-analysis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/109-negative-feedback-confidence-signal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/negative-feedback-confidence-signal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/110-auto-promotion-on-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/auto-promotion-on-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/111-scoring-and-ranking-corrections.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/scoring-and-ranking-corrections.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/112-stage-3-effectivescore-fallback-chain.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/stage-3-effectivescore-fallback-chain.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/113-scoring-and-fusion-corrections.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/scoring-and-fusion-corrections.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/114-tool-level-ttl-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/tool-level-ttl-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/115-access-driven-popularity-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/access-driven-popularity-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/116-temporal-structural-coherence-scoring.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/temporal-structural-coherence-scoring.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/117-adaptive-shadow-ranking-bounded-proposals-and-rollback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/adaptive-shadow-ranking-bounded-proposals-and-rollback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/118-learned-stage2-weight-combiner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/learned-stage2-weight-combiner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/119-shadow-feedback-holdout-evaluation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/shadow-feedback-holdout-evaluation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/120-calibrated-overlap-bonus.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/calibrated-overlap-bonus.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/121-rrf-k-experimental.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/rrf-k-experimental.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/122-usage-weighted-ranking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/11--scoring-and-calibration/usage-weighted-ranking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/123-query-complexity-router.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/query-complexity-router.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/124-channel-min-representation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/channel-min-representation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/125-confidence-based-result-truncation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/confidence-based-result-truncation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/126-dynamic-token-budget-allocation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/dynamic-token-budget-allocation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/127-query-expansion.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/query-expansion.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/128-llm-query-reformulation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/llm-query-reformulation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/129-hyde-hypothetical-document-embeddings.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/hyde-hypothetical-document-embeddings.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/130-index-time-query-surrogates.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/index-time-query-surrogates.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/131-query-decomposition.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/query-decomposition.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/132-graph-concept-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/graph-concept-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/133-graph-channel-preservation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/12--query-intelligence/graph-channel-preservation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/134-verify-fix-verify-memory-quality-loop.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/verify-fix-verify-memory-quality-loop.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/135-signal-vocabulary-expansion.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/signal-vocabulary-expansion.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/136-pre-flight-token-budget-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/pre-flight-token-budget-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/137-spec-folder-description-discovery.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/spec-folder-description-discovery.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/138-pre-storage-quality-gate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/pre-storage-quality-gate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/139-reconsolidation-on-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/reconsolidation-on-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/140-smarter-memory-content-generation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/smarter-memory-content-generation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/141-anchor-aware-chunk-thinning.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/anchor-aware-chunk-thinning.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/142-encoding-intent-capture-at-index-time.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/encoding-intent-capture-at-index-time.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/143-auto-entity-extraction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/auto-entity-extraction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/144-content-aware-memory-filename-generation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/content-aware-memory-filename-generation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/145-entity-normalization-consolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/entity-normalization-consolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/146-quality-gate-timer-persistence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/quality-gate-timer-persistence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/147-deferred-lexical-only-indexing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/deferred-lexical-only-indexing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/148-dry-run-preflight-for-memory-save.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/dry-run-preflight-for-memory-save.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/149-outsourced-agent-memory-capture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/outsourced-agent-memory-capture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/150-session-enrichment-and-alignment-guards.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/session-enrichment-and-alignment-guards.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/151-post-save-quality-review.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/post-save-quality-review.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/152-assistive-reconsolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/assistive-reconsolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/153-hybrid-decay-policy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/hybrid-decay-policy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/154-save-quality-gate-exceptions.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/save-quality-gate-exceptions.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/155-indexing-runtime-bootstrap-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/indexing-runtime-bootstrap-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/156-spec-doc-structure-validator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/spec-doc-structure-validator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/157-canonical-continuity-save-substrate.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/canonical-continuity-save-substrate.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/158-memory-causal-trust-display.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/memory-causal-trust-display.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/159-vec-memories-knn-and-factory-shard-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/vec-memories-knn-and-factory-shard-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/160-constitutional-sufficiency-gate-exemption.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/constitutional-sufficiency-gate-exemption.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/161-graph-metadata-and-lineage-repair-runner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/graph-metadata-and-lineage-repair-runner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/162-post-insert-enrichment-marker.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/13--memory-quality-and-indexing/post-insert-enrichment-marker.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/163-4-stage-pipeline-refactor.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/4-stage-pipeline-refactor.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/164-mpab-chunk-to-memory-aggregation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mpab-chunk-to-memory-aggregation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/165-chunk-ordering-preservation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/chunk-ordering-preservation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/166-template-anchor-optimization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/template-anchor-optimization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/167-validation-signals-as-retrieval-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/validation-signals-as-retrieval-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/168-learned-relevance-feedback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/learned-relevance-feedback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/169-search-pipeline-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/search-pipeline-safety.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/170-performance-improvements.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/performance-improvements.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/171-legacy-v1-pipeline-removal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/legacy-v1-pipeline-removal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/172-pipeline-and-mutation-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/pipeline-and-mutation-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/173-dbpath-extraction-and-import-standardization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/dbpath-extraction-and-import-standardization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/174-strict-zod-schema-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/strict-zod-schema-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/175-dynamic-server-instructions-at-mcp-initialization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/dynamic-server-instructions-at-mcp-initialization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/176-backend-storage-adapter-abstraction.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/backend-storage-adapter-abstraction.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/177-cross-process-db-hot-rebinding.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/cross-process-db-hot-rebinding.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/178-atomic-write-then-index-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/atomic-write-then-index-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/179-embedding-retry-orchestrator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/embedding-retry-orchestrator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/180-7-layer-tool-architecture-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/7-layer-tool-architecture-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/181-atomic-pending-file-recovery.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/atomic-pending-file-recovery.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/182-lineage-state-active-projection-and-asof-resolution.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/lineage-state-active-projection-and-asof-resolution.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/183-mcp-server-public-api-barrel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-server-public-api-barrel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/184-embeddings-and-retry-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/embeddings-and-retry-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/185-phase-017-maintainability-extracts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/phase-017-maintainability-extracts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/186-code-graph-phase-dag-runner.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/code-graph-phase-dag-runner.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/187-stress-test-cycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/stress-test-cycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/188-routing-telemetry-and-channel-invocation-rates.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/routing-telemetry-and-channel-invocation-rates.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/189-mcp-launcher-front-proxy.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--pipeline-architecture/mcp-launcher-front-proxy.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/162-category-overview.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/14--stress-testing/category-overview.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/189-dual-scope-memory-auto-surface.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/dual-scope-memory-auto-surface.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/190-constitutional-memory-as-expert-knowledge-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/constitutional-memory-as-expert-knowledge-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/191-spec-folder-hierarchy-as-retrieval-structure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/spec-folder-hierarchy-as-retrieval-structure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/192-lightweight-consolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/lightweight-consolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/193-memory-summary-search-channel.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/memory-summary-search-channel.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/194-cross-document-entity-linking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/cross-document-entity-linking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/195-tier-2-fallback-channel-forcing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/tier-2-fallback-channel-forcing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/196-provenance-rich-response-envelopes.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/provenance-rich-response-envelopes.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/197-contextual-tree-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/contextual-tree-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/198-session-boost-graduated.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/session-boost-graduated.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/199-causal-boost-graduated.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/causal-boost-graduated.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/200-graph-expanded-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/graph-expanded-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/201-always-on-graph-context-injection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/always-on-graph-context-injection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/202-community-search-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/community-search-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/203-dual-level-retrieval.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/15--retrieval-enhancements/dual-level-retrieval.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/204-tree-thinning-for-spec-folder-consolidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/tree-thinning-for-spec-folder-consolidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/205-architecture-boundary-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/architecture-boundary-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/206-progressive-validation-for-spec-documents.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/progressive-validation-for-spec-documents.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/207-dead-code-removal.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/dead-code-removal.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/208-code-standards-alignment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/code-standards-alignment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/209-real-time-filesystem-watching-with-chokidar.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/real-time-filesystem-watching-with-chokidar.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/210-standalone-admin-cli.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/standalone-admin-cli.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/211-watcher-delete-rename-cleanup.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/watcher-delete-rename-cleanup.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/212-migration-checkpoint-scripts.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/migration-checkpoint-scripts.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/213-schema-compatibility-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/schema-compatibility-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/214-feature-catalog-code-references.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/feature-catalog-code-references.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/215-session-capturing-pipeline-quality.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/session-capturing-pipeline-quality.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/216-constitutional-memory-manager-command.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/constitutional-memory-manager-command.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/217-source-dist-alignment-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/source-dist-alignment-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/218-module-boundary-map.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/module-boundary-map.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/219-json-mode-hybrid-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/json-mode-hybrid-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/220-json-primary-deprecation-posture.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/json-primary-deprecation-posture.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/221-template-compliance-contract-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/template-compliance-contract-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/222-completion-verification-workflow.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/completion-verification-workflow.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/223-ops-self-healing-runbooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/ops-self-healing-runbooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/224-eval-runner-cli.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/eval-runner-cli.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/225-phase-system-knowledge-node.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/phase-system-knowledge-node.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/226-spec-lifecycle-automation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-lifecycle-automation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/227-spec-validation-rule-engine.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-validation-rule-engine.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/228-memory-maintenance-and-migration-clis.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/memory-maintenance-and-migration-clis.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/229-core-workflow-infrastructure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/core-workflow-infrastructure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/230-session-extraction-and-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/session-extraction-and-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/231-spec-folder-detection-and-description.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-folder-detection-and-description.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/232-setup-native-module-health-and-mcp-installation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/setup-native-module-health-and-mcp-installation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/233-template-composition-system.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/template-composition-system.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/234-evaluation-benchmark-and-import-policy-tooling.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/evaluation-benchmark-and-import-policy-tooling.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/235-memory-quality-kpi-reporting.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/memory-quality-kpi-reporting.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/236-research-metadata-backfill.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/research-metadata-backfill.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/237-strict-validation-addons-continuity-freshness-and-evidence-markers.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/strict-validation-addons-continuity-freshness-and-evidence-markers.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/238-cli-matrix-adapter-runners.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/cli-matrix-adapter-runners.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/239-codex-hook-freshness-smoke-check.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/codex-hook-freshness-smoke-check.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/240-spec-folder-literal-naming-create-sh-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-folder-literal-naming-create-sh-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/241-spec-folder-literal-naming-ai-derived-slugs.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/spec-folder-literal-naming-ai-derived-slugs.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/242-debug-delegation-scaffold-generator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/debug-delegation-scaffold-generator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/243-mcp-daemon-rebuild-restart-live-probe.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/mcp-daemon-rebuild-restart-live-probe.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/244-graph-degraded-stress-cell-isolation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/graph-degraded-stress-cell-isolation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/245-embedder-list-registry-inventory.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-list-registry-inventory.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/246-embedder-set-dry-run-and-validation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-set-dry-run-and-validation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/247-embedder-status-and-active-pointer.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/embedder-status-and-active-pointer.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/248-orphan-mcp-sweeper-and-launchagent-template.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/orphan-mcp-sweeper-and-launchagent-template.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/249-sk-git-worktree-convention.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/16--tooling-and-scripts/sk-git-worktree-convention.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/249-feature-flag-governance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/feature-flag-governance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/250-hierarchical-scope-governance-governed-ingest-retention-and-audit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/hierarchical-scope-governance-governed-ingest-retention-and-audit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/251-constitutional-gate-enforcement-rule-pack.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/constitutional-gate-enforcement-rule-pack.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/252-session-resume-caller-binding-and-unicode-sanitization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/session-resume-caller-binding-and-unicode-sanitization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/253-governed-ingest-cancel-lifecycle.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/17--governance/governed-ingest-cancel-lifecycle.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/254-memory-health-autorepair-metadata.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/memory-health-autorepair-metadata.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/255-checkpoint-delete-confirmname-safety.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/checkpoint-delete-confirmname-safety.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/256-schema-and-type-contract-synchronization.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/schema-and-type-contract-synchronization.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/257-dedicated-ux-hook-modules.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/dedicated-ux-hook-modules.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/258-mutation-hook-result-contract-expansion.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/mutation-hook-result-contract-expansion.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/259-mutation-response-ux-payload-exposure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/mutation-response-ux-payload-exposure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/260-context-server-success-hint-append.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/context-server-success-hint-append.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/261-duplicate-save-no-op-feedback-hardening.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/duplicate-save-no-op-feedback-hardening.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/262-atomic-save-parity-and-partial-indexing-hints.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/atomic-save-parity-and-partial-indexing-hints.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/263-final-token-metadata-recomputation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/final-token-metadata-recomputation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/264-hooks-readme-and-export-alignment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/hooks-readme-and-export-alignment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/265-end-to-end-success-envelope-verification.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/end-to-end-success-envelope-verification.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/266-result-explainability.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/result-explainability.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/267-mode-aware-response-profiles.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/mode-aware-response-profiles.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/268-progressive-disclosure.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/progressive-disclosure.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/269-retrieval-session-state.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/retrieval-session-state.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/270-empty-result-recovery.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/empty-result-recovery.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/271-result-confidence.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/result-confidence.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/272-result-provenance.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/18--ux-hooks/result-provenance.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/273-1-search-pipeline-features-speckit.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/1-search-pipeline-features-speckit.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/274-2-session-and-cache.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/2-session-and-cache.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/275-3-mcp-configuration.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/3-mcp-configuration.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/276-4-memory-and-storage.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/4-memory-and-storage.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/277-5-embedding-and-api.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/5-embedding-and-api.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/278-6-debug-and-telemetry.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/6-debug-and-telemetry.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/279-7-ci-and-build-informational.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/7-ci-and-build-informational.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/280-audit-phase-020-mapping-note.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/audit-phase-020-mapping-note.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/281-runtime-config-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/runtime-config-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/282-filter-config-contract.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/filter-config-contract.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/283-memory-roadmap-capability-flags.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/memory-roadmap-capability-flags.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/284-launcher-idle-timeout.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/19--feature-flag-reference/launcher-idle-timeout.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/285-category-stub.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/category-stub.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/286-memory-health-auto-repair.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/memory-health-auto-repair.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/287-feedback-driven-revalidation.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/20--remediation-revalidation/feedback-driven-revalidation.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/288-category-stub.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/category-stub.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/289-lazy-loading-migration-and-warmup-compatibility.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/lazy-loading-migration-and-warmup-compatibility.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/290-shadow-scoring-retirement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/shadow-scoring-retirement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/291-inert-scoring-flags-and-compatibility-shims.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/inert-scoring-flags-and-compatibility-shims.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/292-adaptive-fusion-flag-drift.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/21--implement-and-remove-deprecated-features/adaptive-fusion-flag-drift.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/293-category-overview.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/category-overview.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/294-precompact-hook.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/precompact-hook.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/295-session-start-priming.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-start-priming.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/296-stop-token-tracking.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/stop-token-tracking.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/297-cross-runtime-fallback.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/cross-runtime-fallback.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/298-runtime-detection.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/runtime-detection.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/299-budget-allocator.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/budget-allocator.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/300-working-set-tracker.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/working-set-tracker.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/301-compact-merger.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/compact-merger.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/302-query-intent-classifier.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/query-intent-classifier.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/303-mcp-auto-priming.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/mcp-auto-priming.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/304-session-health-tool.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-health-tool.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/305-session-resume-tool.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/session-resume-tool.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/306-query-intent-routing.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/query-intent-routing.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/307-passive-context-enrichment.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/passive-context-enrichment.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/308-gemini-cli-hooks.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/gemini-cli-hooks.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/309-context-preservation-metrics.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/context-preservation-metrics.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/310-tool-routing-enforcement.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/tool-routing-enforcement.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/311-resource-map-template.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/22--context-preservation/resource-map-template.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/23--doctor-commands/312-category-overview.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/23--doctor-commands/category-overview.md"
+  },
+  {
+    "src": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/313-category-overview.md",
+    "dst": "/Users/michelkerkmeester/MEGA/Development/Code_Environment/Public/.worktrees/0006-snippet-denumber/.opencode/skills/system-spec-kit/feature_catalog/24--local-llm-query-intelligence/category-overview.md"
+  }
+]

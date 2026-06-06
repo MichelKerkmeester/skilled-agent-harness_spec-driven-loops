@@ -18,7 +18,9 @@
       "133 phase 002 plan",
       "denumber tool algorithm",
       "133 phase 002 tasks",
-      "133 phase 002 checklist"
+      "133 phase 002 checklist",
+      "133 phase 002 implementation summary",
+      "denumber-snippets tool complete"
     ],
     "key_topics": [
       "snippet",
@@ -35,14 +37,22 @@
       "133"
     ],
     "importance_tier": "normal",
-    "status": "draft",
+    "status": "complete",
     "key_files": [
+      "tooling/denumber-snippets.cjs",
       "spec.md",
       "plan.md",
       "checklist.md",
-      "tasks.md"
+      "tasks.md",
+      "implementation-summary.md"
     ],
     "entities": [
+      {
+        "name": "denumber-snippets.cjs",
+        "kind": "file",
+        "path": "tooling/denumber-snippets.cjs",
+        "source": "derived"
+      },
       {
         "name": "spec.md",
         "kind": "doc",
@@ -65,6 +75,12 @@
         "name": "tasks.md",
         "kind": "doc",
         "path": "tasks.md",
+        "source": "derived"
+      },
+      {
+        "name": "implementation-summary.md",
+        "kind": "doc",
+        "path": "implementation-summary.md",
         "source": "derived"
       },
       {
@@ -152,13 +168,13 @@
         "source": "derived"
       },
       {
-        "name": "Phase 1: Author the tool",
+        "name": "Phase 1: Setup",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
       },
       {
-        "name": "Phase 2: Fixtures + adversarial review",
+        "name": "Phase 2: Implementation",
         "kind": "heading",
         "path": "tasks.md",
         "source": "derived"
@@ -174,30 +190,19 @@
         "kind": "proper_noun",
         "path": "checklist.md",
         "source": "derived"
-      },
-      {
-        "name": "Verification Protocol",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
-      },
-      {
-        "name": "Completion Impact",
-        "kind": "proper_noun",
-        "path": "checklist.md",
-        "source": "derived"
       }
     ],
     "causal_summary": "Renaming 1,531 files and rewriting ~2,275 link occurrences by hand is error-prone: a single missed `SOURCE METADATA` self-path or root-doc link silently breaks navigation, and two known slug collisions would overwrite real content if a rename ran blind. The migration needs a deterministic, dry-runnable tool that proves its edit set before touching disk.",
     "created_at": "2026-06-06T06:46:12.386Z",
-    "last_save_at": "2026-06-06T06:46:12.386Z",
+    "last_save_at": "2026-06-06T09:52:35.038Z",
     "save_lineage": "graph_only",
     "last_accessed_at": null,
     "source_docs": [
       "spec.md",
       "plan.md",
       "tasks.md",
-      "checklist.md"
+      "checklist.md",
+      "implementation-summary.md"
     ],
     "last_active_child_id": null,
     "last_active_at": null
