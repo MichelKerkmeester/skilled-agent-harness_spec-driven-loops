@@ -373,7 +373,11 @@ echo "No worktree cleanup needed."
 - Every fix explained as: what was broken, what we did, why it matters
 - No jargon without explanation; no metrics soup
 - Technical details (file paths, line numbers) go in the Files Changed table, not in descriptions
-- Changelog files start directly with the summary paragraph (no version header or boilerplate) - use as-is for the release body
+- **H1 contract**: repo changelog md files KEEP their `# vX.X.X.X — Title` heading (it is the file's identity in the repo); GitHub release bodies NEVER include it — the release title field already renders the name, so a body-leading H1 duplicates it. Strip the leading H1 and blank lines when publishing from a file:
+  ```bash
+  tail -n +2 changelog/vX.X.X.X.md | sed '/./,$!d' > /tmp/release-body.md
+  gh release create vX.X.X.X --title "vX.X.X.X — Release Title" --notes-file /tmp/release-body.md
+  ```
 - Always include a link back to the full changelog file in the repo
 
 **Validation**: `release_created`
@@ -387,8 +391,8 @@ echo "No worktree cleanup needed."
 
 **Using --notes-file with unprocessed changelog**:
 - **Problem**: Local changelog files include wrapper headers (`# vX.X.X.X`, `> Part of ...`) that look wrong on GitHub
-- **Fix**: Strip wrapper lines or compose release body directly with HEREDOC
-- **Detection**: Check if notes start with `# v` or `> Part of` → strip before publishing
+- **Fix**: Strip the leading H1 + wrapper lines into a temp notes file (`tail -n +2 file | sed '/./,$!d'`) or compose the release body directly with HEREDOC; never edit the H1 out of the repo changelog file itself
+- **Detection**: Check if notes start with `# v` or `> Part of` → strip before publishing; after publishing, `gh release view vX.X.X.X --json body --jq .body | head -1` must NOT start with `# `
 
 ---
 
