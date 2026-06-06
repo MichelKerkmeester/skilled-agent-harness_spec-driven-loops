@@ -10,7 +10,7 @@
     "snippet",
     "de-numbering"
   ],
-  "lastUpdated": "2026-06-06T10:40:33.852Z",
+  "lastUpdated": "2026-06-06T13:04:31.793Z",
   "specId": "133",
   "folderSlug": "catalog-playbook-snippet-denumbering",
   "parentChain": [
@@ -18,8 +18,9 @@
     "specs",
     "skilled-agent-orchestration"
   ],
-  "memorySequence": 1,
+  "memorySequence": 2,
   "memoryNameHistory": [
-    "06-06-26_11-40__complete-6-phase-program-de-numbered-1-562-per.md"
+    "06-06-26_11-40__complete-6-phase-program-de-numbered-1-562-per.md",
+    "06-06-26_14-04__path-reference-deep-review-of-skills-commands.md"
   ]
 }
