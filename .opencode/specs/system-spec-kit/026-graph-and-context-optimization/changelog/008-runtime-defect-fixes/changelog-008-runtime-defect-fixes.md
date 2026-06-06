@@ -20,7 +20,7 @@ contextType: "implementation"
 
 ### Summary
 
-Four live integration defects surfaced by the 028 MCP→CLI transition research were triaged in place. Three shipped: Codex sessions now run the Codex-native `SessionStart` and `UserPromptSubmit` adapters instead of Claude's scripts (with the unsupported `PreCompact` registration removed entirely), the Codex MCP config's backwards code-graph DB-path note was corrected to match the launcher source, and the skill-advisor Gemini hook catalog now distinguishes the active implementation from the spec-kit shim. The fourth — re-pointing the code-graph plugin bridge's three dead imports — was applied, smoke-verified (exit 0, correct transport payload), and then deliberately reverted after a fresh-model review flagged that the runnable bridge initializes the memory database directly in its own process, outside the daemon's single-writer lease. A planned orphan-launcher sweep was executed as a verified no-op: all nine running launchers belonged to live sessions.
+Four live integration defects surfaced during internal MCP-reliability research were triaged in place. Three shipped: Codex sessions now run the Codex-native `SessionStart` and `UserPromptSubmit` adapters instead of Claude's scripts (with the unsupported `PreCompact` registration removed entirely), the Codex MCP config's backwards code-graph DB-path note was corrected to match the launcher source, and the skill-advisor Gemini hook catalog now distinguishes the active implementation from the spec-kit shim. The fourth — re-pointing the code-graph plugin bridge's three dead imports — was applied, smoke-verified (exit 0, correct transport payload), and then deliberately reverted after a fresh-model review flagged that the runnable bridge initializes the memory database directly in its own process, outside the daemon's single-writer lease. A planned orphan-launcher sweep was executed as a verified no-op: all nine running launchers belonged to live sessions.
 
 ### Changed
 
@@ -34,7 +34,7 @@ Four live integration defects surfaced by the 028 MCP→CLI transition research 
 
 ### Reverted
 
-- `mk-code-graph-bridge.mjs` import re-point — mechanically working but a second direct writer on the daemon-owned memory DB (the corruption class the owner lease exists to prevent); the bridge stays inert until the 028 code-index workstream delivers the IPC-backed transport
+- `mk-code-graph-bridge.mjs` import re-point — mechanically working but a second direct writer on the daemon-owned memory DB (the corruption class the owner lease exists to prevent); the bridge stays inert until an IPC-backed transport replaces the direct imports
 
 ### Verification
 
